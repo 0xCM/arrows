@@ -1,0 +1,7 @@
+<Project>
+    <PropertyGroup>
+        <OutputDir>../bin/models</OutputDir>
+        <IntermediateOutputPath>../bin/models/obj</IntermediateOutputPath>
+        <BaseIntermediateOutputPath>../bin/models/obj</BaseIntermediateOutputPath>
+    </PropertyGroup>
+</Project>

@@ -1,0 +1,12 @@
+resolver: lts-13.3
+
+packages:
+- .
+
+extra-deps:
+- git: https://github.com/0xCM/alpha.git
+  commit: aa6c48b51c3b3e470a7f1ceab7a55367c4f41062
+- git: https://github.com/0xCM/HaTeX.git
+  commit: fde6679ba503eeb8f263c974aaf719b9f9770dcc
+- wl-pprint-extras-3.5.0.5@sha256:fcccabbab059e15ad3816998dc1f1f750afb480164bd116b147cc8a35a5da0b8
+- combinat-0.2.9.0@sha256:3daed23a2376f8d9903dc2c1c3758f1f2a0527178c81023080507e5f5ddf5b7a

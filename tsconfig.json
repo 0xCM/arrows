@@ -1,0 +1,30 @@
+{
+    "references": [         
+        {"path": "libs/z0-core"},
+
+    ],
+    "include": [
+        "app/**/*"
+      ],
+ 
+      "compilerOptions": {
+        "esModuleInterop": true,
+        "target": "esnext",
+        "module": "commonjs",
+        "strict": true,        
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "resolveJsonModule":true,
+        "moduleResolution": "node",
+        "lib": [
+            "esnext",
+            "dom"
+        ],
+        "outDir": "./dist/app",
+        "rootDir": "./app"
+    
+    },
+      
+}

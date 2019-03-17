@@ -1,0 +1,465 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+
+using Root;
+using Core;
+using Core.Data;
+using Symbols;
+using C = Core.Contracts;
+
+using static Root.Credit;
+
+public static partial class corefunc
+{
+    public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
+
+    /// <summary>
+    /// Constructs a left-valuedcopair
+    /// </summary>
+    /// <param name="left"></param>
+    /// <typeparam name="A">The left type</typeparam>
+    /// <typeparam name="B">The right type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static Copair<A,B> copair<A,B>(A left)
+        => new Copair<A, B>(left);
+
+    /// <summary>
+    /// Constructs a right-valued copair
+    /// </summary>
+    /// <param name="right"></param>
+    /// <typeparam name="A">The left type</typeparam>
+    /// <typeparam name="B">The right type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static Copair<A,B> copair<A,B>(B right)
+        => new Copair<A, B>(right);
+
+    /// <summary>
+    /// Constructs a rational number
+    /// </summary>
+    /// <param name="numerator">The numerator</param>
+    /// <param name="denominator">The denominator</param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static frac<T> frac<T>(T numerator, T denominator)
+        where T : new()
+            => new frac<T>(numerator,denominator);
+
+    /// <summary>
+    /// Constructs an integer
+    /// </summary>
+    /// <param name="value">The intgral value</param>
+    /// <typeparam name="T">The underlying type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static integer<T> integer<T>(T value)
+        where T : new()
+            => new integer<T>(value);
+
+    /// <summary>
+    /// Constructs a non-valued option
+    /// </summary>
+    /// <typeparam name="A">The underlying type</typeparam>
+    /// <returns></returns>
+    public static Option<A> none<A>() 
+        => Option<A>.None;
+    
+    /// <summary>
+    /// Constructs a valued option
+    /// </summary>
+    /// <param name="value">The option value</param>
+    /// <typeparam name="A">The underlying type</typeparam>
+    /// <returns></returns>
+    public static Option<A> some<A>(A value) 
+        => new Option<A>(value);
+
+    /// <summary>
+    /// Constructs an associative array
+    /// </summary>
+    /// <param name="items">Item tuples that will be indexed/stored</param>
+    /// <typeparam name="K">The key type</typeparam>
+    /// <typeparam name="V">The value type</typeparam>
+    /// <returns></returns>
+    public static Index<K,V> index<K,V>(IEnumerable<(K key,V value)> items)
+        => new Index<K,V>(items);
+
+    /// <summary>
+    /// Constructs an associative array
+    /// </summary>
+    /// <param name="items">Keyed values that will be indexed/stored</param>
+    /// <typeparam name="K">The key type</typeparam>
+    /// <typeparam name="V">The value type</typeparam>
+    /// <returns></returns>
+    public static Index<K,V> index<K,V>(IEnumerable<KeyedValue<K,V>> items)
+        => new Index<K,V>(items);
+
+    /// <summary>
+    /// Constructs an integrally-indexed associative array
+    /// </summary>
+    /// <param name="value">The value</param>
+    /// <typeparam name="V">The value type</typeparam>
+    /// <returns></returns>
+    public static Index<V> index<V>(IEnumerable<V> items)
+        => new Index<V>(items);
+
+    /// <summary>
+    /// Constructs an index from a collection of of 2-tuples
+    /// </summary>
+    /// <param name="src">The collection of 2-tuples from which to construct an index</param>
+    /// <typeparam name="K">The key type</typeparam>
+    /// <typeparam name="V">The value type</typeparam>
+    /// <returns></returns>
+    public static Index<K,V> index<K,V>((K key, V value)[] src)
+        => new Index<K,V>(map(src,kvp));
+
+    /// <summary>
+    /// Applies a function to elements of an input sequence to produce 
+    /// a transformed output sequence
+    /// </summary>
+    /// <param name="f">The function to be applied</param>
+    /// <param name="src">The source sequence</param>
+    /// <typeparam name="A">The input element type</typeparam>
+    /// <typeparam name="B">The output element type</typeparam>
+    /// <returns></returns>
+    public static IEnumerable<B> map<A,B>(IEnumerable<A> src, Func<A,B> f)
+        => src.Select(x => f(x));
+
+    public static Option<Y> map<X,Y>(Option<X> src, Func<X,Y> f)
+        => src.exists ? f(src.value) : none<Y>();
+
+    public static Y map<X,Y>(X x,Func<X,Y> f)
+        => f(x);
+
+    /// <summary>
+    /// Explicitly casts a source value to value of the indicated type, raising
+    /// an exception if operation fails
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <typeparam name="T">The target type</typeparam>
+    /// <returns></returns>
+    public static T cast<T>(object src) => (T) src;
+
+    /// <summary>
+    /// Applies a function to elements of an input sequence to produce 
+    /// a transformed output sequence
+    /// </summary>
+    /// <param name="f">The function to be applied</param>
+    /// <param name="src">The source sequence</param>
+    /// <typeparam name="A">The input element type</typeparam>
+    /// <typeparam name="B">The output element type</typeparam>
+    /// <returns></returns>
+    public static IEnumerable<B> mapi<A,B>(Func<int,A,B> f, IEnumerable<A> src)
+    {
+        var i = 0;
+        foreach(var item in src)
+            yield return f(i++,item);
+    }
+
+    /// <summary>
+    /// The univeral identity function that returns the source value
+    /// </summary>
+    /// <param name="x">The source value</param>
+    /// <typeparam name="A">The source value type</typeparam>
+    /// <returns>The source value</returns>
+    public static A  identity<A>(A x) => x;
+
+    /// <summary>
+    /// Constructs a keyed value
+    /// </summary>
+    /// <param name="key">The key</param>
+    /// <param name="value">The value</param>
+    /// <typeparam name="K">The key type</typeparam>
+    /// <typeparam name="V">The value type</typeparam>
+    /// <returns></returns>
+    public static KeyedValue<K,V> kvp<K,V>(K key, V value)
+        => new KeyedValue<K,V>(key,value);
+
+    /// <summary>
+    /// Constructs a keyed value from a 2-tuple
+    /// </summary>
+    /// <param name="kv">The source tuple</param>
+    /// <typeparam name="K">The key type</typeparam>
+    /// <typeparam name="V">The value type</typeparam>
+    /// <returns></returns>
+    public static KeyedValue<K,V> kvp<K,V>( (K key, V value) kv)
+        => new KeyedValue<K,V>(kv);
+
+
+    /// <summary>
+    /// Constructs integrally-keyed associative array, otherwise known
+    /// as a list from a parameter array
+    /// </summary>
+    /// <param name="values"></param>
+    /// <typeparam name="A"></typeparam>
+    /// <returns></returns>
+    public static Index<A> list<A>(params A[] values)
+        => new Index<A>(values);
+
+    /// <summary>
+    /// Constructs integrally-keyed associative array, otherwise known
+    /// as a list from an enumeration
+    /// </summary>
+    /// <param name="values"></param>
+    /// <typeparam name="A"></typeparam>
+    /// <returns></returns>
+    public static Index<A> list<A>(IEnumerable<A> values)
+        => new Index<A>(values);
+
+    /// <summary>
+    /// Constructs a citation for a bibliographic resource
+    /// </summary>
+    /// <param name="resource">The referenced biblography resource</param>
+    /// <param name="location">The location of interest within the referenced work</param>
+    /// <returns></returns>
+    public static Citation cite(Resource resource, int location)
+        => Citation.define(resource,location);
+
+    /// <summary>
+    /// Concatenates an arbitrary number of strings
+    /// </summary>
+    /// <param name="src">The strings to be concatenated</param>
+    /// <returns></returns>
+    public static string concat(params string[] src) => string.Concat(src);
+    
+    /// <summary>
+    /// Concatenates an arbitrary number of string representations
+    /// </summary>
+    /// <param name="src">The strings to be concatenated</param>
+    /// <returns></returns>
+    public static string concat<T>(IEnumerable<T> src) 
+        => string.Concat(src);
+
+    /// <summary>
+    /// Defines a symbol
+    /// </summary>
+    /// <param name="name">The name of the symbol</param>
+    /// <param name="description">Formal or informal description depending on context/needs</param>
+    /// <returns></returns>
+    public static Symbol symbol(string name, string description = null)
+        => new Symbol(name,description);
+
+    /// <summary>
+    /// Returns the name of the supplied type
+    /// </summary>
+    /// <param name="full">Whether the full name should be returned</param>
+    /// <typeparam name="T">The type to examine</typeparam>
+    /// <returns></returns>
+    public static string typename<T>(bool full = false)
+        => typeof(T).Name;
+
+    /// <summary>
+    /// Returns the System.Type of the supplied parametric type
+    /// </summary>
+    /// <typeparam name="T">The source type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static Type type<T>() 
+        => typeof(T);
+
+    /// <summary>
+    /// Returns a pair of System.Type 
+    /// </summary>
+    /// <typeparam name="T0">The first source type</typeparam>
+    /// <typeparam name="T1">The second source type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static (Type t0,Type t1) types<T0,T1>() 
+        => (typeof(T0),typeof(T1));
+
+    /// <summary>
+    /// Returns a triple of System.Type 
+    /// </summary>
+    /// <typeparam name="T0">The first source type</typeparam>
+    /// <typeparam name="T1">The second source type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static (Type t0,Type t1, Type t2) types<T0,T1,T2>() 
+        => (typeof(T0),typeof(T1),typeof(T2));
+
+    /// <summary>
+    /// Returns true if the input is false, false otherwise
+    /// </summary>
+    /// <param name="a">The value to test</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static bool not(bool a) 
+        => a ? true : false;
+
+    /// <summary>
+    /// Raises a NotImplemented exception
+    /// </summary>
+    /// <returns></returns>
+    public static T noimpl<T>() 
+        => throw new NotImplementedException();
+
+    /// <summary>
+    /// Raises a NotImplemented exception
+    /// </summary>
+    /// <returns></returns>
+    public static void noimpl() 
+        => throw new NotImplementedException();
+
+   [MethodImpl(Inline)]
+    public static T[] array<T>(long len)
+        => new T[len];
+
+   [MethodImpl(Inline)]
+    public static IEnumerable<T> seq<T>(params T[] items)
+        => items;
+
+    /// <summary>
+    /// Replicates a given value a specified number of times
+    /// </summary>
+    /// <param name="value">The value to replicate</param>
+    /// <param name="count">The number of replicants</param>
+    /// <typeparam name="T">The replicant type</typeparam>
+    /// <returns></returns>
+    public static T[] repeat<T>(T value, long count)
+    {
+        var dst = array<T>(count);
+        for(var idx = 0; idx < count; idx ++)
+            dst[idx] = value;
+        return dst;            
+    }
+
+    
+    public static T fold<T>(IEnumerable<T> src, Func<T,T,T> f, T a0 = default(T))
+    {
+        var cumulant = a0;
+        foreach(var item in src)
+            cumulant = f(cumulant,item);            
+        return cumulant;
+    }
+
+    /// <summary>
+    /// Extracts a pair's left member
+    /// </summary>
+    /// <param name="pair">The source pair</param>
+    /// <typeparam name="A">The left member type</typeparam>
+    /// <typeparam name="B">The right member type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static A left<A,B>(Pair<A,B> pair)
+        => pair.left;
+
+    /// <summary>
+    /// Extracts a pair's right member
+    /// </summary>
+    /// <param name="pair">The source pair</param>
+    /// <typeparam name="A">The left member type</typeparam>
+    /// <typeparam name="B">The right member type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static B right<A,B>(Pair<A,B> pair)
+        => pair.right;
+
+    [MethodImpl(Inline)]   
+    public static Enumerable<I> items<I>(params I[] src)
+        => src.Reify();
+
+    /// <summary>
+    /// Encloses text content between left and right braces
+    /// </summary>
+    /// <param name="content">The content to be embraced</param>
+    /// <returns></returns>
+    public static string embrace(object content)      
+        => $"{Asci.lbrace}{content}{Asci.rbrace}";
+
+    /// <summary>
+    /// Constructs the default set associated with a type whose elements
+    /// consist of all potential values of the type.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static C.Set<T> set<T>() => FullSet<T>.Inhabitant;
+
+
+    /// <summary>
+    /// Retrieves the representative of the set of rational numbers
+    /// </summary>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static Q Q() => Core.Q.Inhabitant;
+
+    /// <summary>
+    /// Retrieves the representative of the set of integers
+    /// </summary>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static Z Z() => Core.Z.Inhabitant;
+
+    /// <summary>
+    /// Retrieves the representative of the set of real numbers
+    /// </summary>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static R R() => Core.R.Inhabitant;
+
+    /// <summary>
+    /// Constructs an arrow, based at a specified source, projecting
+    /// onto a specified value
+    /// </summary>
+    /// <param name="a">The source point in the domain</param>
+    /// <param name="b">The target point in the codomain</param>
+    /// <typeparam name="A">The domain type</typeparam>
+    /// <typeparam name="B">The codomain type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static PointedArrow<A,B> arrow<A,B>(A a, B b, string label = null)
+        => new PointedArrow<A,B>(a,b,label);
+
+    /// <summary>
+    /// Constructs a pair
+    /// </summary>
+    /// <param name="a">The value of the left member</param>
+    /// <param name="b">The value of the right member</param>
+    /// <typeparam name="A">The left member type</typeparam>
+    /// <typeparam name="B">The right member type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static Pair<A,B> pair<A,B>(A a, B b)
+        => Pair.define(a,b);
+
+    /// <summary>
+    /// Constructs an elementwise cartesian product from the input sequences
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static IEnumerable<Pair<T,T>> cross<T>(IEnumerable<T> x, IEnumerable<T> y)
+        => from a in x from b in y select pair(a,b);
+
+    /// <summary>
+    /// Iterates over the supplied items, invoking a receiver for each
+    /// </summary>
+    /// <param name="src">The source items</param>
+    /// <param name="f">The receiver</param>
+    /// <typeparam name="T">The item type</typeparam>
+    [MethodImpl(Inline)]   
+    public static void iter<T>(IEnumerable<T> src, Action<T> f)
+    {
+        foreach(var item in src)
+            f(item);
+    }
+
+    /// <summary>
+    /// Renders the suppled value as text and emits the text, and a carriage return, 
+    /// to the console
+    /// </summary>
+    /// <param name="x">The value to reveal</param>
+    [MethodImpl(Inline)]   
+    public static void print<T>(T x)
+        => Console.WriteLine(x);
+}
+

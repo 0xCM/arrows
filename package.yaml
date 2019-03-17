@@ -1,0 +1,148 @@
+name:                arrows
+version:             0.0.1
+license:             MIT
+author:              "Chris Moore"
+maintainer:          "0xCM00@gmail.com"
+copyright:           "2018 Chris Moore"
+
+description: Sample app
+
+default-extensions:
+  AllowAmbiguousTypes
+  BangPatterns
+  BinaryLiterals
+  BlockArguments
+  ConstraintKinds
+  DefaultSignatures
+  DeriveDataTypeable
+  DeriveFoldable
+  DeriveGeneric
+  DeriveTraversable
+  DerivingVia
+  DuplicateRecordFields
+  FunctionalDependencies
+  FlexibleInstances
+  FlexibleContexts
+  GADTs
+  GeneralizedNewtypeDeriving
+  HexFloatLiterals
+  ImplicitParams
+  InstanceSigs
+  KindSignatures
+  LambdaCase
+  LiberalTypeSynonyms
+  MonadComprehensions
+  MultiParamTypeClasses
+  MultiWayIf
+  NoImplicitPrelude
+  OverloadedLabels
+  OverloadedStrings
+  ParallelListComp
+  PatternSynonyms
+  PolyKinds
+  PostfixOperators
+  QuasiQuotes
+  RankNTypes
+  RecursiveDo
+  RoleAnnotations
+  ScopedTypeVariables
+  StandaloneDeriving
+  TransformListComp
+  TupleSections
+  TypeApplications
+  TypeInType
+  TypeFamilies
+  TypeFamilyDependencies
+  TypeOperators
+  TypeSynonymInstances
+  ViewPatterns
+  UnicodeSyntax
+
+dependencies:
+- array
+- base
+- binary
+- bytestring
+- containers
+- deepseq
+- directory
+- filepath
+- ghc
+- ghc-prim
+- ghc-paths
+- mtl
+- parallel
+- parsec
+- process
+- stm
+- text
+- template-haskell
+- transformers
+- time
+
+- adjunctions
+- aeson
+- aeson-pretty
+- ansi-terminal
+- bifunctors
+- comonad
+- contravariant
+- data-default
+- distributive
+- either
+- entropy
+- hashable
+- intervals
+- keys
+- lattices
+- matrix
+- multiset
+- network
+- primitive
+- profunctors
+- range
+- scientific
+- semigroupoids
+- semigroups
+- streams
+- tagged
+- unordered-containers
+- vector
+- unicode-show
+- arithmoi
+- combinat
+
+- mwc-random
+- HaTeX
+- alpha
+
+library:
+  source-dirs: src
+  ghc-options:
+    - -Wall
+    - -fno-warn-unused-imports
+    - -fno-warn-orphans
+    - -Wno-unused-imports
+    - -Wno-unused-top-binds
+    - -Wno-unused-local-binds
+    - -Wno-type-defaults
+    - -Wno-name-shadowing
+    - -Wno-missing-signatures
+    - -Wno-unused-matches
+    - -Wno-missing-pattern-synonym-signatures
+    
+executables:
+  app04-shell:
+    main: App.hs
+    source-dirs: app    
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+      - -Wno-unused-imports
+      - -Wno-unused-top-binds
+      - -Wno-unused-local-binds
+      - -pgmL markdown-unlit
+    
+    dependencies:
+      - app04
