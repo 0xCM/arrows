@@ -12,11 +12,11 @@ namespace Core.Contracts
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface Integer<T>  
-        : Stepwise<T>, 
-          Ordered<T>,
-          Arithmetic<T>, 
+        : Number<T>, 
+          EuclideanDiv<T>,
           Bitwise<T>, 
-          IntDiv<T>
+          Stepwise<T>, 
+          Ordered<T>
         where T : new()
     {
         
@@ -28,13 +28,16 @@ namespace Core.Contracts
     /// </summary>
     /// <typeparam name="S">The type of the realizing structure</typeparam>
     /// <typeparam name="T">The type of the underlying primitive</typeparam>
-    public interface Integer<S,T> : Number<S,T>, Bitwise<S,T>, Stepwise<S,T>,  Ordered<S,T>
+    public interface Integer<S,T> 
+        : Number<S,T>, 
+          EuclideanDiv<S,T>, 
+          Bitwise<S,T>, 
+          Stepwise<S,T>,  
+          Ordered<S,T>
         where S : Integer<S,T>, new()
         where T : new()
     {        
         
 
-    }
-
- 
+    } 
 }

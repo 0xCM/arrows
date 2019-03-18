@@ -7,7 +7,7 @@ namespace Core.Contracts
     using System;
     using System.Numerics;
 
-    public interface BoundInt<T> : Integer<T>, Bounded<T>
+    public interface BoundInt<T> : Integer<T>, Bound<T>
         where T:new()
     {
 
@@ -15,9 +15,9 @@ namespace Core.Contracts
 
 
    /// <summary>
-   /// Characterizes a structure over a bounded integral type
+   /// Characterizes a structure over a bound integral type
    /// </summary>
-    public interface BoundInt<S,T> : Integer<S,T>, Bounded<S,T>
+    public interface BoundInt<S,T> : Integer<S,T>, Bound<S,T>
         where S : BoundInt<S,T>, new()
         where T : new()
     {

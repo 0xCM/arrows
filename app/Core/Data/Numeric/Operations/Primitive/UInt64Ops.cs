@@ -17,14 +17,14 @@ namespace Core
 
     partial class MathOps
     {
-        readonly struct UInt64Ops : C.BoundUnsignedInt<systype>
+        readonly struct UInt64Ops : C.BoundNatural<systype>
         {
         
             public static readonly UInt64Ops Inhabitant = default(UInt64Ops);
 
             public systype zero => 0;
 
-            public systype one => 0;
+            public systype one => 1;
 
             public systype maxval => systype.MaxValue;
 
@@ -123,7 +123,14 @@ namespace Core
             public QR<systype> divrem(systype lhs, systype rhs)
                 => QR.define(lhs/rhs, lhs % rhs);
  
-        }
+            [MethodImpl(Inline)]   
+             public systype abs(systype x)
+                => x;
+ 
+            [MethodImpl(Inline)]   
+            public Sign sign(systype x)
+                => x == 0 ? Sign.Neutral : Sign.Positive;
+       }
 
     }
 }

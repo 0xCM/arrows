@@ -16,29 +16,28 @@ namespace Core
 
     public readonly struct bigint :  C.SignedInt<structure,systype>,  IEquatable<bigint>
     {
+        public static readonly C.SignedInt<systype> ops =  MathOps.bigint();
 
-        public static readonly structure Zero = new structure(0);
+        public static readonly structure Zero = ops.zero;
         
-        public static readonly structure One = new structure(1);
-
-        public static readonly C.BoundSignedInt<systype> ops =  MathOps.boundsint<systype>();
+        public static readonly structure One = ops.one;
 
         public systype data {get;}
 
-        public structure zero => Zero;
+        public structure zero => ops.zero;
 
-        public structure one => One;
+        public structure one => ops.one;
 
         [MethodImpl(Inline)]
         public Sign sign() 
             => ops.sign(data);
 
         [MethodImpl(Inline)]
-        public static implicit operator bigint(BigInteger y) 
-            => new bigint(y);
+        public static implicit operator structure(systype y) 
+            => new structure(y);
 
         [MethodImpl(Inline)]
-        public static implicit operator BigInteger(structure x) 
+        public static implicit operator systype(structure x) 
             => x.data;
 
         [MethodImpl(Inline)]
@@ -82,8 +81,8 @@ namespace Core
             => ops.eq(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator != (structure a, structure b) 
-            => ops.neq(a,b);
+        public static bool operator != (structure lhs, structure rhs) 
+            => ops.neq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static structure operator & (structure lhs, structure rhs) 
@@ -111,11 +110,11 @@ namespace Core
 
         [MethodImpl(Inline)]
         public static structure operator - (structure x) 
-            => -x;
+            => ops.negate(x);
 
         [MethodImpl(Inline)]
         public static structure operator -- (structure x) 
-            =>  ops.sub(x,One);
+            =>  ops.dec(x);
 
         [MethodImpl(Inline)]
         public static structure operator ++ (structure x) 
@@ -150,6 +149,10 @@ namespace Core
             => ops.add(data, rhs);
 
         [MethodImpl(Inline)]
+        public structure add(systype rhs)
+            => ops.add(data,rhs);
+
+        [MethodImpl(Inline)]
         public structure sub(structure rhs)
             => ops.sub(data, rhs);
 
@@ -160,6 +163,14 @@ namespace Core
         [MethodImpl(Inline)]   
         public structure div(structure rhs)
             => ops.div(data, rhs);
+
+        [MethodImpl(Inline)]
+        public structure mod(structure rhs)
+            => ops.mod(data,rhs);
+
+        [MethodImpl(Inline)]
+        public QR<structure> divrem(structure rhs)
+            => map(ops.divrem(data,rhs), x => QR.define<structure>(x.q,x.r));
 
         [MethodImpl(Inline)]
         public structure dec() 
@@ -175,10 +186,10 @@ namespace Core
 
         [MethodImpl(Inline)]
         public bool odd()
-            => !even();
+            => not(even());
 
         [MethodImpl(Inline)]
-        public bigint(BigInteger _value)
+        public bigint(systype _value)
             => this.data = _value;
 
         [MethodImpl(Inline)]
@@ -220,15 +231,6 @@ namespace Core
         public byte[] bytes()
             => data.ToByteArray();
 
-        public override bool Equals(object rhs)
-            => data.Equals(rhs);
-
-        public override int GetHashCode()
-            => data.GetHashCode();
-
-        public int CompareTo(structure rhs)
-            => data.CompareTo(rhs);
-
         [MethodImpl(Inline)]
         public structure lshift(int rhs)
             => ops.lshift(data,rhs);
@@ -236,6 +238,24 @@ namespace Core
         [MethodImpl(Inline)]
         public structure rshift(int rhs)
             => ops.rshift(data,rhs);
+
+        [MethodImpl(Inline)]
+        public structure negate()
+            => ops.negate(data);
+
+        [MethodImpl(Inline)]
+        public bool divides(structure lhs)
+            => ops.eq(ops.mod(lhs,data),zero.data); 
+
+        [MethodImpl(Inline)]
+        public int CompareTo(structure rhs)
+            => data.CompareTo(rhs);
+
+        public override bool Equals(object rhs)
+            => data.Equals(rhs);
+
+        public override int GetHashCode()
+            => data.GetHashCode();
 
     }
 }

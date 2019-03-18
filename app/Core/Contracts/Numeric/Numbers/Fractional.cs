@@ -12,7 +12,7 @@ namespace Core.Contracts
     /// Characterizes a fractional operation provider
     /// </summary>
     /// <typeparam name="T">The primitive type</typeparam>
-    public interface Fractional<T> : Arithmetic<T>, Divisive<T>
+    public interface Fractional<T> : Number<T> 
         where T : new()
     {
         T ceiling(T x);
@@ -26,7 +26,7 @@ namespace Core.Contracts
     /// </summary>
     /// <typeparam name="S">The structure type</typeparam>
     /// <typeparam name="T">The primitive type</typeparam>
-    public interface Fractional<S,T> : Number<S,T>
+    public interface Fractional<S,T> : Number<S,T> 
         where S : Fractional<S,T>, new()
         where T : new()
     {

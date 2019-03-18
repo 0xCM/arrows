@@ -10,11 +10,11 @@ using System.Runtime.CompilerServices;
 
 using Root;
 using Core;
-using Core.Data;
 using Symbols;
 using C = Core.Contracts;
 
 using static Root.Credit;
+using static corefunc;
 
 public static partial class corefunc
 {
@@ -42,28 +42,6 @@ public static partial class corefunc
     public static Copair<A,B> copair<A,B>(B right)
         => new Copair<A, B>(right);
 
-    /// <summary>
-    /// Constructs a rational number
-    /// </summary>
-    /// <param name="numerator">The numerator</param>
-    /// <param name="denominator">The denominator</param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static frac<T> frac<T>(T numerator, T denominator)
-        where T : new()
-            => new frac<T>(numerator,denominator);
-
-    /// <summary>
-    /// Constructs an integer
-    /// </summary>
-    /// <param name="value">The intgral value</param>
-    /// <typeparam name="T">The underlying type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static integer<T> integer<T>(T value)
-        where T : new()
-            => new integer<T>(value);
 
     /// <summary>
     /// Constructs a non-valued option
@@ -89,8 +67,8 @@ public static partial class corefunc
     /// <typeparam name="K">The key type</typeparam>
     /// <typeparam name="V">The value type</typeparam>
     /// <returns></returns>
-    public static Index<K,V> index<K,V>(IEnumerable<(K key,V value)> items)
-        => new Index<K,V>(items);
+    public static Map<K,V> index<K,V>(IEnumerable<(K key,V value)> items)
+        => new Map<K,V>(items);
 
     /// <summary>
     /// Constructs an associative array
@@ -99,8 +77,8 @@ public static partial class corefunc
     /// <typeparam name="K">The key type</typeparam>
     /// <typeparam name="V">The value type</typeparam>
     /// <returns></returns>
-    public static Index<K,V> index<K,V>(IEnumerable<KeyedValue<K,V>> items)
-        => new Index<K,V>(items);
+    public static Map<K,V> index<K,V>(IEnumerable<KeyedValue<K,V>> items)
+        => new Map<K,V>(items);
 
     /// <summary>
     /// Constructs an integrally-indexed associative array
@@ -118,8 +96,8 @@ public static partial class corefunc
     /// <typeparam name="K">The key type</typeparam>
     /// <typeparam name="V">The value type</typeparam>
     /// <returns></returns>
-    public static Index<K,V> index<K,V>((K key, V value)[] src)
-        => new Index<K,V>(map(src,kvp));
+    public static Map<K,V> index<K,V>((K key, V value)[] src)
+        => new Map<K,V>(map(src,kvp));
 
     /// <summary>
     /// Applies a function to elements of an input sequence to produce 
@@ -454,6 +432,21 @@ public static partial class corefunc
     }
 
     /// <summary>
+    /// Attaches a 0-based integer sequence to the input value sequence and
+    /// yield the paired sequence elements
+    /// </summary>
+    /// <param name="i">The index of the paired value</param>
+    /// <param name="value">The indexed value</param>
+    /// <typeparam name="T">The item type</typeparam>
+    public static IEnumerable<(int i, T value)> iteri<T>(IEnumerable<T> items)
+    {
+        var idx = 0;
+        foreach(var item in items)
+            yield return (idx++, item);
+    }
+
+
+    /// <summary>
     /// Renders the suppled value as text and emits the text, and a carriage return, 
     /// to the console
     /// </summary>
@@ -461,5 +454,69 @@ public static partial class corefunc
     [MethodImpl(Inline)]   
     public static void print<T>(T x)
         => Console.WriteLine(x);
+
+    /// <summary>
+    /// Invokes the print operation for each item in the sequence
+    /// </summary>
+    /// <param name="x">The value to reveal</param>
+    [MethodImpl(Inline)]   
+    public static void printeach<T>(IEnumerable<T> items)
+        => iter(items, print) ;
+
+    /// <summary>
+    /// Retrieves the value of the natural number associated with a typenat
+    /// </summary>
+    /// <typeparam name="T">The nat type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static int natval<T>() 
+        where T : C.TypeNat
+        => TypeNats.nat<T>().natval;
+
+    /// <summary>
+    /// Retrieves the value of the natural number associated with a typenat
+    /// and retuns the value if it agrees with a supplied expected value; othwise,
+    /// raises an exception
+    /// </summary>
+    /// <param name="expected">The expected natural value</param>
+    /// <typeparam name="T">The nat type</typeparam>
+    /// <returns></returns>
+    public static int natcheck<T>(int expected)
+            where T : C.TypeNat
+           => natval<T>() == expected 
+            ? expected 
+            : throw new ArgumentException(); 
+
+    /// <summary>
+    /// Demands truth that enforced with an exeption upon false
+    /// </summary>
+    /// <param name="x">The value to test</param>
+    /// <returns></returns>
+    public static bool demand(bool x)
+        => x ? x : throw new ArgumentException();
+
+    public static IEnumerable<IReadOnlyList<T>> partition<W,T>(IEnumerable<T> src)
+        where W : C.TypeNat
+    {
+        var width = natval<W>();
+        var sement = new T[width];
+        var current = 0;
+        foreach(var item in src)
+        {
+            if(current == width)
+            {
+                current = 0;
+                yield return sement;
+                sement = new T[width];
+            }
+                
+            sement[current++] = item;
+        }
+
+        for(var i = current; i < width; i++)
+            sement[i] = default(T);
+        
+        yield return sement;
+    }
 }
 

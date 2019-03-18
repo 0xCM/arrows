@@ -24,7 +24,7 @@ namespace Core
 
             public systype zero => 0;
 
-            public systype one => 0;
+            public systype one => 1;
 
             public systype maxval => systype.MaxValue;
 

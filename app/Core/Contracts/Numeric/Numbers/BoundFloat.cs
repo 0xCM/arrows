@@ -13,7 +13,7 @@ namespace Core.Contracts
     /// Characterizes an operation provider for bounded floating point values
     /// </summary>
     /// <typeparam name="T">The underlying numeric type</typeparam>
-    public interface BoundFloat<T> : Bounded<T>, Floating<T>
+    public interface BoundFloat<T> : Floating<T>, Bound<T> 
         where T : new()
     {
 
@@ -23,7 +23,7 @@ namespace Core.Contracts
     /// Characterizes a structure for a bounded floating point number
     /// </summary>
     /// <typeparam name="T">The underlying numeric type</typeparam>
-    public interface BoundFloat<S,T> : Floating<S,T>, Bounded<S,T>
+    public interface BoundFloat<S,T> : Floating<S,T>, Bound<S,T>
         where S : BoundFloat<S,T>, new()
         where T : new()
 

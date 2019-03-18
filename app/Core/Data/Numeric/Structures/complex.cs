@@ -27,7 +27,7 @@ namespace Core
     public readonly struct complex<T> : C.Number<complex<T>,(T re,T im)>
         where T : new()
     {
-        static readonly C.Arithmetic<T> ops = MathOps.arithmetic<T>();
+        static readonly C.Number<T> ops = MathOps.number<T>();
         
         public static readonly complex<T> Zero = (ops.zero,ops.zero);
                 
@@ -97,5 +97,30 @@ namespace Core
 
         public bool neq(complex<T> rhs)
             => this != rhs;
+
+        public complex<T> abs()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Sign sign()
+        {
+            throw new NotImplementedException();
+        }
+
+        public complex<T> mod(complex<T> rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        complex<T> C.Divisive<complex<T>, (T re, T im)>.div(complex<T> rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public (T re, T im) mul((T re, T im) a, (T re, T im) b)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

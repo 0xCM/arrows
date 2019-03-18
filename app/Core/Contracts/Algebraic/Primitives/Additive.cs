@@ -10,7 +10,7 @@ namespace Core.Contracts
     /// Characterizes a type that defines a notion of additivity
     /// </summary>
     /// <typeparam name="T">The type subject to addition</typeparam>
-    public interface Additive<T>
+    public interface Additive<T> : Operational<T>
     {
 
         /// <summary>
@@ -23,8 +23,9 @@ namespace Core.Contracts
         
     }
 
-    public interface Additive<S,T>
+    public interface Additive<S,T> : Structural<S,T>
         where S : Additive<S,T>, new()
+        where T : new()
     {
         S add(S rhs);
     }

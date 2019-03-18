@@ -17,14 +17,14 @@ namespace Core
 
     partial class MathOps
     {
-        readonly struct DecimalOps : C.BoundFractional<systype>
+        readonly struct DecimalOps : C.Currency<systype>
         {
             
             public static readonly DecimalOps Inhabitant = default(DecimalOps);
 
             public systype zero => 0;
 
-            public systype one => 0;
+            public systype one => 1;
 
             public systype maxval => systype.MaxValue;
 
@@ -34,6 +34,12 @@ namespace Core
             [MethodImpl(Inline)]   
             public systype add(systype a, systype b) 
                 => a + b;
+
+            public systype inc(systype x)
+                => ++x;
+
+            public systype dec(systype x)
+                => --x;
 
             [MethodImpl(Inline)]   
             public systype div(systype a, systype b)
@@ -104,6 +110,9 @@ namespace Core
             [MethodImpl(Inline)]   
             public systype floor(systype x)
                 => systype.Floor(x);
+
+            public systype abs(systype x)
+                => Math.Abs(x);
         }
 
     }

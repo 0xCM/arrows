@@ -6,17 +6,24 @@ namespace Core.Contracts
 {
     using System;
     
+    public interface Natural<T> : Integer<T>, Unsigned<T>
+        where T : new()
+    {
+        
+    }
 
     /// <summary>
     /// Characterizes a natural number, i.e. one of {0,1,...} subject to the maximum
     /// value of the underlying primitive
     /// </summary>
     /// <typeparam name="S">The type of the realizing structure</typeparam>
-    /// <typeparam name="P">The type of the underlying primitive</typeparam>
-    public interface Natural<S,P> : UnsignedInt<S,P>
-        where S : Natural<S,P>, new()
-        where P : new()
+    /// <typeparam name="T">The type of the underlying primitive</typeparam>
+    public interface Natural<S,T> : Integer<S,T>, Unsigned<S,T>
+        where S : Natural<S,T>, new()
+        where T : new()
     {
         
     }
+
+
 }

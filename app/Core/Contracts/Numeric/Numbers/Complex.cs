@@ -7,6 +7,12 @@ namespace Core.Contracts
     using System;
     using System.Numerics;
 
+    public interface Complex<T> : Number<T>
+        where T : new()
+    {
+        
+    }
+
     /// <summary>
     /// Characterizes a complex number
     /// </summary>

@@ -17,14 +17,14 @@ namespace Core
 
     partial class MathOps
     {
-        readonly struct UInt8Ops : C.BoundUnsignedInt<systype>
+        readonly struct UInt8Ops : C.BoundNatural<systype>
         {
         
             public static readonly UInt8Ops Inhabitant = default(UInt8Ops);
 
             public systype zero => 0;
 
-            public systype one => 0;
+            public systype one => 1;
 
             public systype maxval => systype.MaxValue;
 
@@ -128,6 +128,13 @@ namespace Core
             public systype inc(systype x)
                 => ++x;
 
+            [MethodImpl(Inline)]   
+            public systype abs(systype x)
+                => x;
+ 
+            [MethodImpl(Inline)]   
+            public Sign sign(systype x)
+                => x == 0 ? Sign.Neutral : Sign.Positive;
         }
     }
 }

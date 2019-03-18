@@ -17,7 +17,7 @@ namespace Core
 
     partial class MathOps
     {
-        readonly struct UInt16Ops : C.BoundUnsignedInt<systype>
+        readonly struct UInt16Ops : C.BoundNatural<systype>
         {
         
             public static readonly UInt16Ops Inhabitant = default(UInt16Ops);
@@ -126,7 +126,15 @@ namespace Core
             [MethodImpl(Inline)]   
             public systype inc(systype x)
                 => ++x;
-       
+
+            [MethodImpl(Inline)]   
+            public systype abs(systype x)
+                => x;
+ 
+            [MethodImpl(Inline)]   
+            public Sign sign(systype x)
+                => x == 0 ? Sign.Neutral : Sign.Positive;
+      
         }
 
     }

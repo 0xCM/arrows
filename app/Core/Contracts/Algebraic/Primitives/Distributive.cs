@@ -5,7 +5,7 @@
 namespace Core.Contracts
 {
 
-    public interface LeftDistributive<T> : Multiplicative<T>, Additive<T>
+    public interface LeftDistributive<T>  : Multiplicative<T>, Additive<T>
     {
         /// <summary>
         /// Characterizes a type that defines an operator that left-distributes
@@ -33,7 +33,5 @@ namespace Core.Contracts
     {
 
     }
-
-
 
 }

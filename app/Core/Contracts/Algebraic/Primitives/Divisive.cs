@@ -4,17 +4,17 @@
 //-----------------------------------------------------------------------------
 namespace Core.Contracts
 {
-    using System;
-
-    public interface Divisive<T>
+    
+    public interface Divisive<T> : Operational<T>
     {
         T mod(T lhs, T rhs);
 
         T div(T lhs, T rhs);        
     }
 
-    public interface Divisive<S,T>
+    public interface Divisive<S,T> : Structural<S,T>
         where S : Divisive<S,T>, new()
+        where T : new()
     {
 
         S mod(S rhs);
@@ -22,17 +22,17 @@ namespace Core.Contracts
         S div(S rhs);        
     }
 
-    public interface IntDiv<T> : Divisive<T>
+
+    public interface EuclideanDiv<T> : Divisive<T>
     {
 
         QR<T> divrem(T lhs, T rhs);        
     }
 
-    public interface IntDiv<S,T> : Divisive<S,T>
-        where S : IntDiv<S,T>, new()
+    public interface EuclideanDiv<S,T> : Divisive<S,T>
+        where S : EuclideanDiv<S,T>, new()
+        where T : new()
     {
         QR<S> divrem(S rhs);        
-
     }
-
 }

@@ -12,7 +12,12 @@ namespace Core.Contracts
     /// Characterizes an operation provider for floating point values
     /// </summary>
     /// <typeparam name="T">The underlying numeric type</typeparam>
-    public interface Floating<T> : Fractional<T>,  Trigonmetric<T>
+    public interface Floating<T> 
+        : Fractional<T>, 
+          Signed<T>, 
+          Negatable<T>, 
+          Ordered<T>, 
+          Trigonmetric<T>
         where T : new()
     {
         IEnumerable<T> partition(T min, T max,T width = default(T)); 
@@ -23,13 +28,17 @@ namespace Core.Contracts
     /// Characterizes a structure for a floating point number
     /// </summary>
     /// <typeparam name="T">The underlying numeric type</typeparam>
-    public interface Floating<S,T> : Fractional<S,T>, Signed<S,T>, Ordered<S,T>
+    public interface Floating<S,T> 
+        : Fractional<S,T>, 
+          Signed<S,T>, 
+          Negatable<S,T>, 
+          Ordered<S,T>, 
+          Trigonmetric<S,T>
         where S : Floating<S,T>, new()
         where T : new()
-
     {
     
-    
+        IEnumerable<S> partition(S min, S max,S width = default(S));     
     }
 
 }

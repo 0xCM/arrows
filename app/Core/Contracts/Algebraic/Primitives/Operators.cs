@@ -9,10 +9,19 @@ namespace Core.Contracts
     using static corefunc;
 
     /// <summary>
+    /// Characterizes an operator over a specified type
+    /// </summary>
+    /// <typeparam name="T">The operand</typeparam>
+    public interface Operator<T>
+    {
+        
+    }
+
+    /// <summary>
     /// Characterizes a type that defines an homogenous unary operator
     /// </summary>
     /// <typeparam name="T">The operand/result type</typeparam>
-    public interface UnaryOperator<T>
+    public interface UnaryOperator<T> : Operator<T>
     {
         /// <summary>
         /// Applies the characterized operator
@@ -27,7 +36,7 @@ namespace Core.Contracts
     /// Characterizes a type that defines an homogenous binary operator
     /// </summary>
     /// <typeparam name="T">The operand/result type</typeparam>
-    public interface BinaryOperator<T>
+    public interface BinaryOperator<T> : Operator<T>
     {
         T compose(T a, T b);
     }
