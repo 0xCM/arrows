@@ -11,7 +11,7 @@ namespace Core.Contracts
     /// <typeparam name="T">The individual type</typeparam>
     public interface Semigroup<T> : Set<T>, BinaryOperator<T>
     {        
-    
+        
     }
 
     /// <summary>

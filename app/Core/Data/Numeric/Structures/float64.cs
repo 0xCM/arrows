@@ -10,276 +10,236 @@ namespace Core
     using C = Contracts;
     using static corefunc;
 
-    using system = System.Double;
-    using structure = float64;
+    using systype = System.Double;
+    using structype = float64;
     using System.Collections.Generic;
 
-    public readonly struct float64 : C.BoundFloat<structure,system>
+    public readonly struct float64 : C.BoundFloat<structype,systype>
     {
-        static readonly C.BoundFloat<system> ops = MathOps.floating<system>();
+        static readonly C.BoundFloat<systype> ops = MathOps.floating<systype>();
 
-        public static readonly structure Zero = ops.zero;
+        public static readonly structype Zero = ops.zero;
         
-        public static readonly structure One = ops.one;
+        public static readonly structype One = ops.one;
         
         [MethodImpl(Inline)]
-        public static structure operator + (structure lhs, structure rhs) 
+        public static structype operator + (structype lhs, structype rhs) 
             => ops.add(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static structure operator - (structure lhs, structure rhs) 
+        public static structype operator - (structype lhs, structype rhs) 
             => ops.sub(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static structure operator * (structure lhs, structure rhs) 
+        public static structype operator * (structype lhs, structype rhs) 
             => ops.mul(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static structure operator / (structure lhs, structure rhs) 
+        public static structype operator / (structype lhs, structype rhs) 
             => ops.div(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static structure operator % (structure lhs, structure rhs)
+        public static structype operator % (structype lhs, structype rhs)
             => ops.mod(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator < (structure lhs, structure rhs) 
+        public static bool operator < (structype lhs, structype rhs) 
             => ops.lt(lhs,rhs);
         
         [MethodImpl(Inline)]
-        public static bool operator <= (structure lhs, structure rhs) 
+        public static bool operator <= (structype lhs, structype rhs) 
             => ops.lteq(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator > (structure lhs, structure rhs) 
+        public static bool operator > (structype lhs, structype rhs) 
             => ops.gt(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator >= (structure lhs, structure rhs) 
+        public static bool operator >= (structype lhs, structype rhs) 
             => ops.gteq(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator == (structure lhs, structure rhs) 
+        public static bool operator == (structype lhs, structype rhs) 
             => ops.eq(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator != (structure lhs, structure rhs) 
+        public static bool operator != (structype lhs, structype rhs) 
             => ops.neq(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static structure operator - (structure x) 
+        public static structype operator - (structype x) 
             => ops.negate(x);
 
         [MethodImpl(Inline)]
-        public static structure operator -- (structure x) 
+        public static structype operator -- (structype x) 
             => ops.dec(x);
 
         [MethodImpl(Inline)]
-        public static structure operator ++ (structure x) 
+        public static structype operator ++ (structype x) 
             => ops.inc(x);
 
-        public system data {get;}
+        public systype data {get;}
 
         [MethodImpl(Inline)]
-        public float64(system src)
+        public float64(systype src)
             => data = src;
 
-        public structure zero 
+        public structype zero 
             => ops.zero;
 
         public float64 one
             => ops.one;
 
-        public structure minval 
+        public structype minval 
             => ops.minval;
 
-        public structure maxval 
+        public structype maxval 
             => ops.maxval;
+
+        public structype ε
+            => ops.ε;
 
         [MethodImpl(Inline)]
         public Sign sign() 
             => ops.sign(data);
 
         [MethodImpl(Inline)]
-        public float64 pow(int exp)
+        public structype pow(int exp)
             => Math.Pow(data,exp);
 
         [MethodImpl(Inline)]
-        public static implicit operator float64(double src) 
-            => new float64(src);
+        public static implicit operator structype(systype src) 
+            => new structype(src);
 
         [MethodImpl(Inline)]
-        public static implicit operator double(float64 src) 
+        public static implicit operator systype(structype src) 
             => src.data;
 
         [MethodImpl(Inline)]
-        public float64 add(float64 rhs)
-            => ops.add(data, rhs);
+        public structype add(structype rhs)
+            => this + rhs;
 
         [MethodImpl(Inline)]
-        public float64 sub(float64 rhs)
-            => ops.sub(data, rhs);
+        public structype sub(structype rhs)
+            => this - rhs;
 
         [MethodImpl(Inline)]
-        public float64 mul(float64 rhs)
-            => ops.mul(data,rhs);
+        public structype mul(structype rhs)
+            => this * rhs;
 
         [MethodImpl(Inline)]
-        public float64 div(float64 rhs)
-            => ops.div(data,rhs);
+        public structype div(structype rhs)
+            => this / rhs;
 
         [MethodImpl(Inline)]
-        public float64 mod(float64 rhs)
-            => ops.mod(data,rhs);
+        public structype mod(structype rhs)
+            => this % rhs;
 
         [MethodImpl(Inline)]
-        public float64 negate()
-            => ops.negate(data);
+        public structype negate()
+            => -this;
         
         [MethodImpl(Inline)]
-        public bool lt(float64 rhs)
-            => ops.lt(data, rhs);
+        public bool lt(structype rhs)
+            => this < rhs;
 
         [MethodImpl(Inline)]
-        public bool lteq(float64 rhs)
+        public bool lteq(structype rhs)
             => ops.lteq(data, rhs);
 
         [MethodImpl(Inline)]
-        public bool gt(float64 rhs)
-            => ops.gt(data, rhs);
+        public bool gt(structype rhs)
+            => this > rhs;
 
         [MethodImpl(Inline)]
-        public bool gteq(structure rhs)
-            => ops.gteq(data, rhs);
+        public bool gteq(structype rhs)
+            => this >= rhs;
 
         [MethodImpl(Inline)]
-        public bool eq(structure rhs)
-            => ops.eq(data,rhs);
+        public bool eq(structype rhs)
+            => this == rhs;
 
         [MethodImpl(Inline)]
-        public bool neq(structure rhs)
-            => ops.neq(data,rhs);
+        public bool neq(structype rhs)
+            => this != rhs;
 
         [MethodImpl(Inline)]
-        public structure abs() 
+        public structype abs() 
             => ops.abs(data);
 
         [MethodImpl(Inline)]
-        public structure ceiling()
+        public structype ceiling()
             => ops.ceiling(data);
 
         [MethodImpl(Inline)]
-        public structure floor()
+        public structype floor()
             => ops.floor(data);
 
         [MethodImpl(Inline)]
-        public double cos(double x)
-            => ops.cos(x);
-
-        [MethodImpl(Inline)]
-        public double cosh(double x)
-            => ops.cosh(x);
-
-        [MethodImpl(Inline)]
-        public double acos(double x)
-            => ops.acos(x);
-
-        [MethodImpl(Inline)]
-        public double acosh(double x)
-            => ops.acosh(x);
-
-        public double sin(double x)
-            => ops.sin(x);
-
-        [MethodImpl(Inline)]
-        public double sinh(double x)
-            => ops.sinh(x);
-
-        [MethodImpl(Inline)]
-        public double asin(double x)
-            => ops.asin(x);
-
-        [MethodImpl(Inline)]
-        public double asinh(double x)
-            => ops.asinh(x);
-
-        [MethodImpl(Inline)]
-        public double tan(double x)
-            => ops.tan(x);
-
-        [MethodImpl(Inline)]
-        public double tanh(double x)
-            => ops.tanh(x);
-
-        [MethodImpl(Inline)]
-        public double atan(double x)
-            => ops.atan(x);
-
-        [MethodImpl(Inline)]
-        public double atanh(double x)
-            => ops.atanh(x);
-
-        [MethodImpl(Inline)]
-        public structure inc()
-            => ops.inc(data);
-
-        [MethodImpl(Inline)]
-        public structure dec()
-            => ops.dec(data);
-
-        [MethodImpl(Inline)]
-        public IEnumerable<structure> partition(structure min, structure max, structure width = default)
+        public IEnumerable<structype> partition(structype min, structype max, structype width = default)
             => ops.partition(min,max,width).Select(x => float64(x));
 
         [MethodImpl(Inline)]
-        public structure cos()
+        public structype inc()
+            => ops.inc(data);
+
+        [MethodImpl(Inline)]
+        public structype dec()
+            => ops.dec(data);
+
+        [MethodImpl(Inline)]
+        public structype cos()
             => ops.cos(data);
 
         [MethodImpl(Inline)]
-        public structure cosh()
+        public structype cosh()
             => ops.cosh(data);
 
         [MethodImpl(Inline)]
-        public structure acos()
+        public structype acos()
             => ops.acos(data);
 
         [MethodImpl(Inline)]
-        public structure acosh()
+        public structype acosh()
             => ops.acosh(data);
 
         [MethodImpl(Inline)]
-        public structure sin()
+        public structype sin()
             => ops.sin(data);
 
         [MethodImpl(Inline)]
-        public structure sinh()
+        public structype sinh()
             => ops.sinh(data);
 
         [MethodImpl(Inline)]
-        public structure asin()
+        public structype asin()
             => ops.asin(data);
 
-        public structure asinh()
+        public structype asinh()
             => ops.asinh(data);
 
         [MethodImpl(Inline)]
-         public structure tan()
+         public structype tan()
             => ops.tan(data);
 
         [MethodImpl(Inline)]
-        public structure tanh()
+        public structype tanh()
             => ops.tanh(data);
 
         [MethodImpl(Inline)]
-        public structure atan()
+        public structype atan()
             => ops.atan(data);
 
         [MethodImpl(Inline)]
-        public structure atanh()
+        public structype atanh()
             => ops.atanh(data);
-    
+
         [MethodImpl(Inline)]
-        int IComparable<float64>.CompareTo(float64 other)
+        public string bitstring()
+            => ops.bitstring(data);    
+        
+        [MethodImpl(Inline)]
+        int IComparable<structype>.CompareTo(structype other)
             => data.CompareTo(other);
 
         public override bool Equals(object rhs)

@@ -20,7 +20,21 @@ namespace Core.Contracts
           Trigonmetric<T>
         where T : new()
     {
+        /// <summary>
+        /// The minimal resolution of the data type
+        /// </summary>
+        /// <value></value>
+        T ε {get;}
+
+        /// <summary>
+        /// Partitions an interval into a sequence of values of a specified with
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <param name="width"></param>
+        /// <returns></returns>
         IEnumerable<T> partition(T min, T max,T width = default(T)); 
+
     }
 
 
@@ -37,7 +51,13 @@ namespace Core.Contracts
         where S : Floating<S,T>, new()
         where T : new()
     {
-    
+
+        /// <summary>
+        /// The minimal resolution of the data type
+        /// </summary>
+        /// <value></value>
+        S ε {get;}
+
         IEnumerable<S> partition(S min, S max,S width = default(S));     
     }
 

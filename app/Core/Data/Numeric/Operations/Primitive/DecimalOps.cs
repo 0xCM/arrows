@@ -14,21 +14,57 @@ namespace Core
     
     using C = Core.Contracts;
     using systype = System.Decimal;
+    using opstype = MathOps.DecimalOps;
 
     partial class MathOps
     {
-        readonly struct DecimalOps : C.Currency<systype>
+        public static string ToHexString(this systype src)
+            => map(Bits.split(src), parts =>
+                concat(
+                    parts.hihi.ToString("X8"),
+                    parts.hilo.ToString("X8"),
+                    parts.lohi.ToString("X8"),
+                    parts.lolo.ToString("X8")
+                ));
+
+
+        public static string ToBitString(this systype src)
+            => map(Bits.split(src), parts =>
+                concat(
+                    parts.hihi.ToBitString(),
+                    parts.hilo.ToBitString(),
+                    parts.lohi.ToBitString(),
+                    parts.lolo.ToBitString()
+                ));
+
+        internal readonly struct DecimalOps : C.Currency<systype>
         {
             
-            public static readonly DecimalOps Inhabitant = default(DecimalOps);
+            public static readonly opstype Inhabitant = default;
+        
+            public const systype Zero = 0;
 
-            public systype zero => 0;
+            public const systype One = 1;
 
-            public systype one => 1;
+            public const byte BitSize = 128;
 
-            public systype maxval => systype.MaxValue;
+            public const systype MinVal = systype.MinValue;            
 
-            public systype minval => systype.MaxValue;
+            public const systype MaxVal = systype.MaxValue;
+
+            const byte MaxBitLength = BitSize - 1;
+
+            public systype zero 
+                => Zero;
+
+            public systype one 
+                => One;
+
+            public systype maxval 
+                => MinVal;
+
+            public systype minval 
+                => MaxVal;
             
 
             [MethodImpl(Inline)]   
@@ -113,6 +149,13 @@ namespace Core
 
             public systype abs(systype x)
                 => Math.Abs(x);
+
+            public string bitstring(systype src)
+                => src.ToBitString();
+
+            public string hexstring(systype src)
+                => src.ToHexString();
+
         }
 
     }

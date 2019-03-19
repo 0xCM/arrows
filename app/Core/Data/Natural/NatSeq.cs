@@ -15,10 +15,10 @@ namespace Core
     /// <summary>
     /// A nat sequence of length 1
     /// </summary>
-    public readonly struct NatSeq<T0> : C.NatSeq
+    public readonly struct nseq<T0> : C.NatSeq
         where T0 : C.TypeNat
     {
-        public static readonly NatSeq<T0> Inhabitant = default(NatSeq<T0>);
+        public static readonly nseq<T0> Inhabitant = default(nseq<T0>);
 
         static readonly int SeqVal 
             = TypeNats.nat<T0>().natval;
@@ -31,11 +31,11 @@ namespace Core
     /// <summary>
     /// A nat sequence of length 2
     /// </summary>
-    public readonly struct NatSeq<T0,T1>  : C.NatSeq
+    public readonly struct nseq<T0,T1>  : C.NatSeq
         where T0 : C.TypeNat
         where T1 : C.TypeNat
     {
-        public static readonly NatSeq<T0,T1> Inhabitant = default(NatSeq<T0,T1>);
+        public static readonly nseq<T0,T1> Inhabitant = default(nseq<T0,T1>);
 
         static readonly int SeqVal 
             = TypeNats.nat<T0>().natval * 10
@@ -50,12 +50,12 @@ namespace Core
     /// <summary>
     /// A nat sequence of length 3
     /// </summary>
-    public readonly struct NatSeq<T0,T1,T2>  : C.NatSeq
+    public readonly struct nseq<T0,T1,T2>  : C.NatSeq
         where T0 : C.TypeNat
         where T1 : C.TypeNat
         where T2 : C.TypeNat
     {
-        public static readonly NatSeq<T0,T1,T2> Inhabitant = default(NatSeq<T0,T1,T2>);
+        public static readonly nseq<T0,T1,T2> Inhabitant = default(nseq<T0,T1,T2>);
         static readonly int SeqVal 
             = TypeNats.nat<T0>().natval * 100
              + TypeNats.nat<T1>().natval * 10
@@ -71,13 +71,13 @@ namespace Core
     /// <summary>
    /// A nat sequence of length 4
    /// </summary>
-   public readonly struct NatSeq<T0,T1,T2,T3>  : C.NatSeq
+   public readonly struct nseq<T0,T1,T2,T3>  : C.NatSeq
         where T0 : C.TypeNat
         where T1 : C.TypeNat
         where T2 : C.TypeNat
         where T3 : C.TypeNat
     {
-        public static readonly NatSeq<T0,T1,T2,T3> Inhabitant = default(NatSeq<T0,T1,T2,T3>);
+        public static readonly nseq<T0,T1,T2,T3> Inhabitant = default(nseq<T0,T1,T2,T3>);
 
         static readonly int SeqVal 
             = TypeNats.nat<T0>().natval * 1000
@@ -94,14 +94,14 @@ namespace Core
     /// <summary>
    /// A nat sequence of length 5
    /// </summary>
-    public readonly struct NatSeq<T0,T1,T2,T3,T4>  : C.NatSeq
+    public readonly struct nseq<T0,T1,T2,T3,T4>  : C.NatSeq
         where T0 : C.TypeNat
         where T1 : C.TypeNat
         where T2 : C.TypeNat
         where T3 : C.TypeNat
         where T4 : C.TypeNat
     {
-        public static readonly NatSeq<T0,T1,T2,T3,T4> Inhabitant = default(NatSeq<T0,T1,T2,T3,T4>);
+        public static readonly nseq<T0,T1,T2,T3,T4> Inhabitant = default(nseq<T0,T1,T2,T3,T4>);
 
         static readonly int SeqVal 
             = TypeNats.nat<T0>().natval * 10000
@@ -119,7 +119,7 @@ namespace Core
     /// <summary>
    /// A nat sequence of length 6
    /// </summary>
-    public readonly struct NatSeq<T0,T1,T2,T3,T4,T5>  : C.NatSeq
+    public readonly struct nseq<T0,T1,T2,T3,T4,T5>  : C.NatSeq
         where T0 : C.TypeNat
         where T1 : C.TypeNat
         where T2 : C.TypeNat
@@ -127,7 +127,7 @@ namespace Core
         where T4 : C.TypeNat
         where T5 : C.TypeNat
     {
-        public static readonly NatSeq<T0,T1,T2,T3,T4,T5> Inhabitant = default(NatSeq<T0,T1,T2,T3,T4,T5>);
+        public static readonly nseq<T0,T1,T2,T3,T4,T5> Inhabitant = default(nseq<T0,T1,T2,T3,T4,T5>);
 
         static readonly int SeqVal 
             = TypeNats.nat<T0>().natval * 100000
@@ -142,6 +142,4 @@ namespace Core
         public override string ToString() 
             => SeqVal.ToString();    
     }
-
-
 }

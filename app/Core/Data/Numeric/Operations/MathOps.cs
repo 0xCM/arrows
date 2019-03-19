@@ -61,25 +61,38 @@ namespace Core
             where T : new()
                 => cast<C.BoundFloat<T>>(operations[type<T>()]);
 
+        /// <summary>
+        /// Retrieves the operations for numbers that support stepwise operations
+        /// </summary>
+        /// <typeparam name="T">The system type</typeparam>
+        public static C.Stepwise<T> stepwise<T>()
+            where T : new()
+                => cast<C.Stepwise<T>>(operations[type<T>()]);
+
+        /// <summary>
+        /// Retrieves the operations for numbers for which an ordering is defined
+        /// </summary>
+        /// <typeparam name="T">The system type</typeparam>
+        public static C.Ordered<T> ordered<T>()
+            where T : new()
+                => cast<C.Ordered<T>>(operations[type<T>()]);
+
 
         /// <summary>
         /// Provides access to operations specific to 16-bit signed integer values
         /// </summary>
-        /// <returns></returns>
         public static C.SignedInt<sbyte> int8()
             => Int8Ops.Inhabitant;
 
         /// <summary>
         /// Provides access to operations specific to 8-bit usigned integer values
         /// </summary>
-        /// <returns></returns>
         public static C.Integer<byte> uint8()
             => UInt8Ops.Inhabitant;
 
         /// <summary>
         /// Provides access to operations specific to 16-bit signed integer values
         /// </summary>
-        /// <returns></returns>
         public static C.SignedInt<short> int16()
             => Int16Ops.Inhabitant;
 
@@ -145,9 +158,7 @@ namespace Core
         /// <returns></returns>
         public static C.Currency<decimal> currency()
             => DecimalOps.Inhabitant;
-
-
-
+            
         static readonly Map<Type, object> operations 
             = index(seq(
                 (type<sbyte>(), cast<object>(Int8Ops.Inhabitant)),

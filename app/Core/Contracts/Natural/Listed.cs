@@ -22,4 +22,12 @@ namespace Core.Contracts
     
     }
 
+    public interface Array<N,T> : Enumerable<N,T>
+        where N : C.TypeNat
+    {
+        T this[int ix] {get; set;}
+
+    }
+
+
 }

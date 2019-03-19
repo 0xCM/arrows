@@ -10,7 +10,7 @@ namespace Core.Contracts
     public interface Rational<T> : Fractional<T>
         where T : new()
     {
-        
+        T reciprocal(T x);
     }
 
     /// <summary>
@@ -32,5 +32,11 @@ namespace Core.Contracts
         /// </summary>
         /// <value></value>
         T under {get;}
+
+        /// <summary>
+        /// Interchanges over/under
+        /// </summary>
+        /// <returns></returns>
+        S reciprocal();
     }
 }

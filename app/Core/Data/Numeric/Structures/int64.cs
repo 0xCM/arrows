@@ -8,130 +8,127 @@ namespace Core
     using System.Runtime.CompilerServices;
     using C = Contracts;
     using static corefunc;
-    using structure = int64;
+    using structype = int64;
     using systype = System.Int64;
 
-    public readonly struct int64 : C.BoundSignedInt<structure,systype>, IEquatable<structure>, IComparable<structure>
+    public readonly struct int64 : C.BoundSignedInt<structype,systype>, IEquatable<structype>, IComparable<structype>
     {
 
         static readonly C.BoundSignedInt<systype> ops = MathOps.signedint<systype>();
         
         public static readonly int64 Zero = new int64(0);
         
-        public static readonly structure One = new int64(1);
+        public static readonly structype One = new int64(1);
 
-        public static readonly structure MinValue = systype.MinValue;
+        public static readonly structype MinValue = systype.MinValue;
 
-        public static readonly structure MaxValue = systype.MaxValue;
-
-        public structure minval => MinValue;
-
-        public structure maxval => MaxValue;
+        public static readonly structype MaxValue = systype.MaxValue;
 
         [MethodImpl(Inline)]
         public static implicit operator int64(systype value) 
             => new int64(value);
 
         [MethodImpl(Inline)]
-        public static implicit operator systype(structure x) 
+        public static implicit operator systype(structype x) 
             => x.data;
 
         [MethodImpl(Inline)]
-        public static structure operator + (structure lhs, structure rhs) 
+        public static structype operator + (structype lhs, structype rhs) 
             => ops.add(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static structure operator - (structure lhs, structure rhs) 
+        public static structype operator - (structype lhs, structype rhs) 
             => ops.sub(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static structure operator * (structure lhs, structure rhs) 
+        public static structype operator * (structype lhs, structype rhs) 
             => ops.mul(lhs,rhs);
 
-        // [MethodImpl(Inline)]
-        // public static QR<int64> operator / (structure lhs, structure rhs) 
-        //     => map(ops.divrem(lhs,rhs), q =>  QR.define<int64>(q.q,q.r));
-
         [MethodImpl(Inline)]
-        public static structure operator / (structure lhs, structure rhs) 
+        public static structype operator / (structype lhs, structype rhs) 
             => ops.div(lhs,rhs);
 
-
         [MethodImpl(Inline)]
-        public static structure operator % (structure lhs, structure rhs)
+        public static structype operator % (structype lhs, structype rhs)
             => ops.mod(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator < (structure lhs, structure rhs) 
+        public static bool operator < (structype lhs, structype rhs) 
             => ops.lt(lhs,rhs);
         
         [MethodImpl(Inline)]
-        public static bool operator <= (structure lhs, structure rhs) 
+        public static bool operator <= (structype lhs, structype rhs) 
             => lhs.data <= rhs.data;
 
         [MethodImpl(Inline)]
-        public static bool operator > (structure lhs, structure rhs) 
+        public static bool operator > (structype lhs, structype rhs) 
             => lhs.data > rhs.data;
 
         [MethodImpl(Inline)]
-        public static bool operator >= (structure lhs, structure rhs) 
+        public static bool operator >= (structype lhs, structype rhs) 
             => lhs.data >= rhs.data;
 
         [MethodImpl(Inline)]
-        public static bool operator == (structure lhs, structure rhs) 
+        public static bool operator == (structype lhs, structype rhs) 
             => lhs.data == rhs.data;
 
         [MethodImpl(Inline)]
-        public static bool operator != (structure a, structure b) 
+        public static bool operator != (structype a, structype b) 
             => a.data != b.data;
 
         [MethodImpl(Inline)]
-        public static structure operator & (structure lhs, structure rhs) 
+        public static structype operator & (structype lhs, structype rhs) 
             => lhs.data & rhs.data;
 
         [MethodImpl(Inline)]
-        public static structure operator | (structure lhs, structure rhs) 
+        public static structype operator | (structype lhs, structype rhs) 
             => lhs.data | rhs.data;
 
         [MethodImpl(Inline)]
-        public static structure operator ^ (structure lhs, structure rhs) 
+        public static structype operator ^ (structype lhs, structype rhs) 
             => lhs.data ^ rhs.data;
 
         [MethodImpl(Inline)]
-        public static structure operator << (structure x, int shift) 
+        public static structype operator << (structype x, int shift) 
             => x.data << shift;
 
         [MethodImpl(Inline)]
-        public static structure operator >> (structure x, int shift) 
+        public static structype operator >> (structype x, int shift) 
             => x.data >> shift;
 
         [MethodImpl(Inline)]
-        public static structure operator ~ (structure x) 
+        public static structype operator ~ (structype x) 
             => ops.flip(x);
 
         [MethodImpl(Inline)]
-        public static structure operator -- (structure x) 
+        public static structype operator -- (structype x) 
             => ops.dec(x);
 
         [MethodImpl(Inline)]
-        public static structure operator ++ (structure x) 
+        public static structype operator ++ (structype x) 
             => ops.inc(x);
 
         [MethodImpl(Inline)]
-        public static structure operator - (structure x) 
+        public static structype operator - (structype x) 
             => - x.data;
 
         public systype data {get;}
 
-        public structure zero 
-            => Zero;
+        public structype minval 
+            => MinValue;
 
-        public structure one
+        public structype maxval 
+            => MaxValue;
+        
+        public structype zero 
+            => Zero;
+        
+        public structype one
             => One;
 
 
         [MethodImpl(Inline)]
-        public structure inc()
+        public structype inc()
             => ops.inc(data);
 
         [MethodImpl(Inline)]
@@ -139,29 +136,28 @@ namespace Core
             => throw new NotImplementedException();
 
         [MethodImpl(Inline)]
-        public structure or(structure rhs)
+        public structype or(structype rhs)
             => data | rhs;
     
         [MethodImpl(Inline)]
-        public structure xor(structure right)
+        public structype xor(structype right)
             => data ^ right;
 
         [MethodImpl(Inline)]
-        public structure and(structure rhs)
+        public structype and(structype rhs)
             => data & rhs;
 
         [MethodImpl(Inline)]
-        public structure flip()
+        public structype flip()
             => ~ this;
 
         [MethodImpl(Inline)]
-        public structure gcd(structure rhs)
+        public structype gcd(structype rhs)
             => throw new NotImplementedException();
 
         [MethodImpl(Inline)]
-        public structure dec() 
+        public structype dec() 
             => ops.sub(data,One);
-
 
         [MethodImpl(Inline)]
         public bool even()
@@ -176,84 +172,90 @@ namespace Core
             => this.data = x;
 
         [MethodImpl(Inline)]
-        public structure pow(int exp)
-            => throw new NotSupportedException();
+        public structype pow(int exp)
+            => ops.pow(this,exp);
 
         [MethodImpl(Inline)]
-        public int64 div(structure rhs)
-            => ops.div(data,rhs);
+        public int64 div(structype rhs)
+            => this / rhs;
 
         [MethodImpl(Inline)]
-        public structure add(structure rhs)
-            => ops.add(data,rhs);
+        public structype add(structype rhs)
+            => this + rhs;
 
         [MethodImpl(Inline)]
-        public structure add(systype rhs)
-            => ops.add(data,rhs);
+        public structype add(systype rhs)
+            => this + rhs;
 
         [MethodImpl(Inline)]
-        public structure sub(structure rhs)
-            => ops.sub(data,rhs);
+        public structype sub(structype rhs)
+            => this - rhs;
 
         [MethodImpl(Inline)]
-        public structure mul(structure rhs)
-            => ops.mul(data,rhs);
+        public structype mul(structype rhs)
+            => this * rhs;
 
         [MethodImpl(Inline)]
-        public structure mod(structure rhs)
-            => ops.mod(data,rhs);
+        public structype mod(structype rhs)
+            => this % rhs;
 
         [MethodImpl(Inline)]
-        public QR<structure> divrem(structure rhs)
+        public QR<structype> divrem(structype rhs)
             => map(ops.divrem(data,rhs), 
-                x => QR.define<structure>(x.q,x.r));
+                x => QR.define<structype>(x.q,x.r));
 
         [MethodImpl(Inline)]
-        public structure negate()
-            => ops.negate(data);
+        public structype negate()
+            => - this;
         
         [MethodImpl(Inline)]
-        public bool lt(structure rhs)
-            => ops.lt(data,rhs);
+        public bool lt(structype rhs)
+            => this < rhs;
 
         [MethodImpl(Inline)]
-        public bool lteq(structure rhs)
-            => ops.lteq(data,rhs);
+        public bool lteq(structype rhs)
+            => this <= rhs;
+
 
         [MethodImpl(Inline)]
-        public bool gt(structure rhs)
-            => ops.gt(data,rhs);
+        public bool gt(structype rhs)
+            => this > rhs;
 
         [MethodImpl(Inline)]
-        public bool gteq(structure rhs)
-            => ops.gteq(data,rhs);
+        public bool gteq(structype rhs)
+            => this >= rhs;
+
 
         [MethodImpl(Inline)]
-        public bool eq(structure rhs)
-            => ops.eq(data,rhs);
+        public bool eq(structype rhs)
+            => this == rhs;
 
         [MethodImpl(Inline)]
-        public bool neq(structure rhs)
-            => ops.neq(data,rhs);
+        public bool neq(structype rhs)
+            => this != rhs;
 
         [MethodImpl(Inline)]
-        public structure lshift(int rhs)
-            => ops.lshift(data,rhs);
+        public structype lshift(int rhs)
+            => this << rhs;
 
         [MethodImpl(Inline)]
-        public structure rshift(int rhs)
-            => ops.rshift(data,rhs);
+        public structype rshift(int rhs)
+            => this >> rhs;
 
         [MethodImpl(Inline)]
-        public structure abs() 
+        public structype abs() 
             => ops.abs(data);
 
         [MethodImpl(Inline)]
-        bool IEquatable<structure>.Equals(structure rhs)
+        public string bitstring()
+            => ops.bitstring(data);
+            
+        [MethodImpl(Inline)]
+        bool IEquatable<structype>.Equals(structype rhs)
             => ops.eq(data,rhs);
 
         [MethodImpl(Inline)]
-        int IComparable<structure>.CompareTo(structure rhs)
+        int IComparable<structype>.CompareTo(structype rhs)
             => data.CompareTo(rhs);
 
         public override bool Equals(object rhs)
@@ -261,8 +263,6 @@ namespace Core
 
         public override int GetHashCode()
             => data.GetHashCode();
-
-
     }
 
 }

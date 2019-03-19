@@ -7,7 +7,6 @@ using System.Numerics;
 using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;    
-using System.Text;
 using Core;
 
 using C = Core.Contracts;
@@ -15,10 +14,7 @@ using C = Core.Contracts;
 using static corefunc;
 using static Core.MathOps;
 
-
-partial class corext
+partial class corefunc
 {
-    public static IReadOnlyList<T> Unwrap<T>(this IEnumerable<intg<T>> src)
-        where T : new() => src.Select(x => x.data).ToList();
-}
 
+}

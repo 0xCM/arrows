@@ -13,21 +13,47 @@ namespace Core
 
     using C = Core.Contracts;
     using systype = System.Int64;
-
+    using opstype = MathOps.Int64Ops;
+    
     partial class MathOps
     {
-        readonly struct Int64Ops : C.BoundSignedInt<systype>
+        public static string ToBitString(this systype src)
+            => lpadZ(Convert.ToString(src,2), opstype.MaxBitLength);
+
+
+        internal readonly struct Int64Ops : C.BoundSignedInt<systype>
         {
+            public static readonly opstype Inhabitant = default;
         
-            public static readonly Int64Ops Inhabitant = default(Int64Ops);
+            public const systype Zero = 0;
 
-            public systype zero => 0;
+            public const systype One = 1;
 
-            public systype one => 1;
+            public const byte BitSize = 64;
 
-            public systype maxval => systype.MaxValue;
+            public const systype MinVal = systype.MinValue;
 
-            public systype minval => systype.MaxValue;
+            public const systype MaxVal = systype.MaxValue;
+
+            internal const byte MaxBitLength = BitSize - 1;
+
+            public systype zero 
+            {
+                [MethodImpl(Inline)]   
+                get{return Zero;}
+            }
+
+            public systype one
+            {
+                [MethodImpl(Inline)]   
+                get{return One;}
+            }
+
+            public systype maxval 
+                => MinVal;
+
+            public systype minval 
+                => MaxVal;
 
             [MethodImpl(Inline)]   
             public systype add(systype lhs, systype rhs) 
@@ -125,14 +151,31 @@ namespace Core
             public systype abs(systype x)
                 => Math.Abs(x);
 
-           [MethodImpl(Inline)]   
-           public Sign sign(systype x)
+            [MethodImpl(Inline)]   
+            public Sign sign(systype x)
                 => x switch
                 {
-                    systype t when t > 0 => Sign.Positive,
-                    systype t when t < 0 => Sign.Negative,
+                    systype t when t > Zero => Sign.Positive,
+                    systype t when t < Zero => Sign.Negative,
                     _                    => Sign.Neutral                    
                 };
+
+            public systype gcd(systype lhs, systype rhs)
+            {
+                lhs = abs(lhs);
+                rhs = abs(lhs);
+                while (rhs != Zero)
+                {
+                    var rem = mod(lhs,rhs);
+                    lhs = rhs;
+                    rhs = rem;
+                }
+                return lhs;
+            }
+
+            public string bitstring(systype src)
+                => src.ToBitString();
+
        }
 
     }

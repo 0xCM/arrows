@@ -17,17 +17,17 @@ namespace Core
     
     public static class intG
     {
-        public static intg<T> define<T>(T value)
-            where T : new() => value;
-
-
-        public static IEnumerable<intg<T>> range<T>(intg<T> min, intg<T> max)
+        public static intg<T> define<T>(T x)
             where T : new()
-        {
-            var current = min;
-            while(current <= max)
-                yield return current++;
-        }
+                => new intg<T>(x);
+
+        // public static IEnumerable<intg<T>> range<T>(intg<T> min, intg<T> max)
+        //     where T : new()
+        // {
+        //     var current = min;
+        //     while(current <= max)
+        //         yield return current++;
+        // }
 
         public static bool prime<T>(intg<T> candidate)
             where T : new()
@@ -47,6 +47,7 @@ namespace Core
                 if(c.divides(src))
                     yield return c;
         }
+
     }    
 
     /// <summary>
@@ -55,16 +56,17 @@ namespace Core
     public readonly struct intg<T> : C.Integer<intg<T>,T> 
         where T : new()
     {
-        static readonly C.Integer<T> ops 
-            = MathOps.integer<T>();
+        static readonly C.Integer<T> ops = MathOps.integer<T>();
 
         public static readonly intg<T> Zero = ops.zero;
 
         public static readonly intg<T> One = ops.one;
 
+        [MethodImpl(Inline)]
         public static implicit operator intg<T>(T src)
-            => new intg<T>(src);
+            => intG.define(src);
 
+        [MethodImpl(Inline)]
         public static implicit operator T(intg<T> src)
             => src.data;
 
@@ -96,7 +98,6 @@ namespace Core
         [MethodImpl(Inline)]
         public static intg<T> operator * (intg<T> lhs, intg<T> rhs) 
             => ops.mul(lhs, rhs);
-
 
         [MethodImpl(Inline)]
         public static intg<T> operator / (intg<T> lhs, intg<T> rhs) 
@@ -148,122 +149,136 @@ namespace Core
 
         public T data {get;}
 
-        public intg<T> zero => ops.zero;
+        public intg<T> zero 
+        {
+            [MethodImpl(Inline)]
+            get{return Zero;}
+        }
 
-        public intg<T> one => ops.one;
+        public intg<T> one 
+        {
+            [MethodImpl(Inline)]
+            get{return One;}
+        }
+            
 
+        [MethodImpl(Inline)]
         public intg (T x) 
             => data = x;
+
+        [MethodImpl(Inline)]
+        public intg<T> add(intg<T> rhs)
+            => this + rhs;
+
+        [MethodImpl(Inline)]
+        public intg<T> inc()
+            => ops.inc(data);
+
+        [MethodImpl(Inline)]
+        public intg<T> sub(intg<T> rhs)
+            => this - rhs;
 
         [MethodImpl(Inline)]
         public intg<T> dec() 
             => ops.dec(data);
 
         [MethodImpl(Inline)]
-        public intg<T> add(intg<T> rhs)
-            => ops.add(data, rhs);
-
-
-        [MethodImpl(Inline)]
-        public intg<T> sub(intg<T> rhs)
-            => ops.sub(data,rhs);
-
-        [MethodImpl(Inline)]
         public intg<T> mul(intg<T> rhs)
-            => ops.mul(data,rhs);
-
+            => this * rhs;
         
         [MethodImpl(Inline)]
         public intg<T> div(intg<T> rhs)
-            => ops.div(data,rhs);
+            => this / rhs;
 
         [MethodImpl(Inline)]
         public intg<T> mod(intg<T> rhs)
-            => ops.mod(data,rhs);
+            => this % rhs;
 
         [MethodImpl(Inline)]
         public bool divides(intg<T> lhs)
-            => lhs % this == zero;
+            => lhs % this == Zero;
 
         [MethodImpl(Inline)]
         public bool even()
-            => one.inc().divides(this);
+            => this % One.inc() == Zero;
 
         [MethodImpl(Inline)]
         public bool odd()
             => not(even());
 
-
         [MethodImpl(Inline)]
         public QR<intg<T>> divrem(intg<T> rhs)
-            => map(ops.divrem(data,rhs), 
-                x => QR.define<intg<T>>(x.q,x.r));
+            => map(ops.divrem(data,rhs), x => QR.define<intg<T>>(x.q,x.r));
 
         [MethodImpl(Inline)]
         public intg<T> and(intg<T> rhs)
-            => ops.and(data,rhs);
+            => this & rhs;
 
         [MethodImpl(Inline)]
         public intg<T> or(intg<T> rhs)
-            => ops.or(data,rhs);
+            => this | rhs;
 
         [MethodImpl(Inline)]
         public intg<T> xor(intg<T> rhs)
-            => ops.xor(data,rhs);
+            => this ^ rhs;
 
         [MethodImpl(Inline)]
         public intg<T> flip()
-            => ops.flip(data);
+            => ops.flip(this);
 
         [MethodImpl(Inline)]
         public intg<T> lshift(int rhs)
-            => ops.lshift(data, rhs);
-
-        [MethodImpl(Inline)]
-        public bool eq(intg<T> rhs)
-            => ops.eq(this,rhs);
-
-        [MethodImpl(Inline)]
-        public bool neq(intg<T> rhs)
-            => ops.neq(data,rhs);
+            => this << rhs;
 
         [MethodImpl(Inline)]
         public intg<T> rshift(int rhs)
-            => ops.rshift(data, rhs);
+            => this >> rhs;
+
+        [MethodImpl(Inline)]
+        public bool eq(intg<T> rhs)
+            => this == rhs;
+
+        [MethodImpl(Inline)]
+        public bool neq(intg<T> rhs)
+            => this != rhs;
  
         [MethodImpl(Inline)]
         public bool lteq(intg<T> rhs) 
-            => ops.lteq(this, rhs);
+            => this <= rhs;
 
         [MethodImpl(Inline)]
         public bool gteq(intg<T> rhs) 
-            => ops.gteq(this, rhs);
+            => this >= rhs;
 
         [MethodImpl(Inline)]
         public bool lt(intg<T> rhs) 
-            => ops.lt(this, rhs);
+            => this < rhs;
 
         [MethodImpl(Inline)]
         public bool gt(intg<T> rhs) 
-            => ops.gt(this, rhs);
-
-        [MethodImpl(Inline)]
-        public intg<T> inc()
-            =>  ops.inc(data);
+            => this > rhs;
 
         [MethodImpl(Inline)]
         public intg<T> abs()
-            =>ops.abs(data);
+            => ops.abs(data);
 
         [MethodImpl(Inline)]
         public Sign sign()
             => ops.sign(data);
 
         [MethodImpl(Inline)]
+        public intg<T> gcd(intg<T> rhs)
+            => ops.gcd(data, rhs);
+
+        [MethodImpl(Inline)]
+        public string bitstring()
+            => ops.bitstring(data);
+            
+        [MethodImpl(Inline)]
         public int CompareTo(intg<T> rhs)
-            => ops.lt(data,rhs) ? -1
-             : ops.eq(data,rhs) ? 0
-             : 1;
+            => this < rhs ? -1
+             : this > rhs ? 1
+             : 0;
             
         public override bool Equals(object rhs)
             => data.Equals(rhs);

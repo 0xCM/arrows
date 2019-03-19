@@ -14,24 +14,44 @@ namespace Core
 
     using C = Core.Contracts;
     using systype = System.Single;
+    using opstype = MathOps.Float32Ops;
     
 
     partial class MathOps
     {
         
-        readonly struct Float32Ops : C.BoundFloat<systype>
+        internal readonly struct Float32Ops : C.BoundFloat<systype>
         {
         
-            public static readonly Float32Ops Inhabitant = default(Float32Ops);
+            public static readonly opstype Inhabitant = default;
+        
+            public const systype Zero = 0;
 
-            public systype zero => 0;
+            public const systype One = 1;
 
-            public systype one => 1;
+            public const byte BitSize = 32;
 
-            public systype maxval => systype.MaxValue;
+            public const systype MinVal = systype.MinValue;            
 
-            public systype minval => systype.MaxValue;
+            public const systype MaxVal = systype.MaxValue;
 
+            public const systype Epsilon = systype.Epsilon;
+
+            public systype zero 
+                => Zero;
+
+            public systype one 
+                => One;
+
+            public systype maxval 
+                => MinVal;
+
+            public systype minval 
+                => MaxVal;
+
+            public systype ε
+                => Epsilon;
+            
             public systype inc(systype x)
                 => ++x;
 
@@ -171,6 +191,11 @@ namespace Core
 
             public systype abs(systype x)
                 => MathF.Abs(x);
+
+            public string bitstring(float x)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

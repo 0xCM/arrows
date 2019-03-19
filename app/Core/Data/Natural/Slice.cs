@@ -10,17 +10,18 @@ namespace Core
     using static corefunc;
 
     using C = Contracts;
+    using System.Collections;
 
     /// <summary>
     /// Defines the backing store for NArray types
     /// </summary>    
-    public ref struct NArray<T>
+    public ref struct Slice<T>
     {
         readonly ReadOnlySpan<T> data;
 
         readonly IReadOnlyList<uint> dim;
         
-        public NArray(IReadOnlyList<uint> dim, IEnumerable<T> data)
+        public Slice(IReadOnlyList<uint> dim, IEnumerable<T> data)
         {
             var arr = data.ToArray();
             if(arr.Length != fold(dim, (x,y) => x*y))
@@ -31,18 +32,29 @@ namespace Core
 
     }
 
-    public readonly struct NArray<K1,T> 
-        where K1 : C.TypeNat
+    public readonly struct Slice<N,T> : C.Slice<N,T>
+        where N : C.TypeNat
     {
-        readonly T[] data;
-        readonly int dim;
-
-        public NArray(IEnumerable<T> data)
+        readonly IReadOnlyList<T> data;
+        
+        public Slice(IEnumerable<T> data)
         {
             this.data = data.ToArray();
-            this.dim = natcheck<K1>(this.data.Length);
+            this.length = natcheck<N>(this.data.Count);
         }
+
+        public int length {get;}
+
         public T this[int i] => data[i];
+
+        int IReadOnlyCollection<T>.Count 
+            => length;
+
+        IEnumerator IEnumerable.GetEnumerator()
+            => data.GetEnumerator();
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+            => data.GetEnumerator();
     }        
 
     public readonly struct NArray<K1,K2,T> 

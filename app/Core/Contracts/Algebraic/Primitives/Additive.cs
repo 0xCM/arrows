@@ -23,9 +23,8 @@ namespace Core.Contracts
         
     }
 
-    public interface Additive<S,T> : Structural<S,T>
+    public interface Additive<S,T> //: Structural<S,T>
         where S : Additive<S,T>, new()
-        where T : new()
     {
         S add(S rhs);
     }

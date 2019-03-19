@@ -5,7 +5,6 @@
 namespace Core
 {
     using System;
-    using System.Numerics;
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
@@ -13,9 +12,12 @@ namespace Core
     using C = Contracts;
 
     using static corefunc;
-    using static MathOps;
 
+    public readonly struct Uniform<T> : C.Uniform<T>
+        where T : new()
+    {
+        public T min {get;}
 
-
-
+        public T max {get;}
+    }
 }

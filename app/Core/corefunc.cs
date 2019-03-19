@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Diagnostics;
 
 using Root;
 using Core;
@@ -183,6 +184,18 @@ public static partial class corefunc
         => new Index<A>(values);
 
     /// <summary>
+    /// Constructs a vector characterized by length and component type
+    /// </summary>
+    /// <param name="components"></param>
+    /// <typeparam name="N"></typeparam>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static vec<N,T> vec<N,T>(params T[] components)
+        where N : C.TypeNat     
+            => new vec<N,T>(components);
+
+
+    /// <summary>
     /// Constructs integrally-keyed associative array, otherwise known
     /// as a list from an enumeration
     /// </summary>
@@ -289,6 +302,11 @@ public static partial class corefunc
    [MethodImpl(Inline)]
     public static T[] array<T>(long len)
         => new T[len];
+
+   [MethodImpl(Inline)]
+    public static Array<N,T> array<N,T>(params T[] data)
+        where N : C.TypeNat
+            => new Array<N,T>(data);
 
    [MethodImpl(Inline)]
     public static IEnumerable<T> seq<T>(params T[] items)
@@ -456,6 +474,14 @@ public static partial class corefunc
         => Console.WriteLine(x);
 
     /// <summary>
+    /// Writes an empty line to the console
+    /// </summary>
+    /// <param name="x">The value to reveal</param>
+    [MethodImpl(Inline)]   
+    public static void print()
+        => Console.WriteLine();
+
+    /// <summary>
     /// Invokes the print operation for each item in the sequence
     /// </summary>
     /// <param name="x">The value to reveal</param>
@@ -466,12 +492,12 @@ public static partial class corefunc
     /// <summary>
     /// Retrieves the value of the natural number associated with a typenat
     /// </summary>
-    /// <typeparam name="T">The nat type</typeparam>
+    /// <typeparam name="N">The nat type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static int natval<T>() 
-        where T : C.TypeNat
-        => TypeNats.nat<T>().natval;
+    public static int natval<N>() 
+        where N : C.TypeNat
+        => TypeNats.nat<N>().natval;
 
     /// <summary>
     /// Retrieves the value of the natural number associated with a typenat
@@ -479,12 +505,28 @@ public static partial class corefunc
     /// raises an exception
     /// </summary>
     /// <param name="expected">The expected natural value</param>
-    /// <typeparam name="T">The nat type</typeparam>
+    /// <typeparam name="N">The nat type</typeparam>
     /// <returns></returns>
-    public static int natcheck<T>(int expected)
-            where T : C.TypeNat
-           => natval<T>() == expected 
+    [MethodImpl(Inline)]   
+    public static int natcheck<N>(int expected)
+            where N : C.TypeNat
+           => natval<N>() == expected 
             ? expected 
+            : throw new ArgumentException(); 
+
+    /// <summary>
+    /// Verfies that the lengh of a list agrees with the parameterized natural
+    /// If successful, the input list is returned; otherwise, an exception is
+    /// raised
+    /// </summary>
+    /// <param name="src"></param>
+    /// <typeparam name="N">The nat type</typeparam>
+    /// <typeparam name="T">The list element type</typeparam>
+    /// <returns></returns>
+    public static IReadOnlyList<T> natcheck<N,T>(IReadOnlyList<T> src)
+            where N : C.TypeNat
+           => natval<N>() == src.Count 
+            ? src
             : throw new ArgumentException(); 
 
     /// <summary>
@@ -492,6 +534,7 @@ public static partial class corefunc
     /// </summary>
     /// <param name="x">The value to test</param>
     /// <returns></returns>
+    [MethodImpl(Inline)]   
     public static bool demand(bool x)
         => x ? x : throw new ArgumentException();
 
@@ -518,5 +561,60 @@ public static partial class corefunc
         
         yield return sement;
     }
+
+    [MethodImpl(Inline)]   
+    public static Slice<N,T> slice<N,T>(IEnumerable<T> src)
+        where N : C.TypeNat
+            => new Slice<N,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static Slice<N,T> slice<N,T>(params T[] src)
+        where N : C.TypeNat
+            => new Slice<N,T>(src);
+
+    /// <summary>
+    /// Left-Pads the input string with an optionally-specified character.
+    /// </summary>
+    /// <param name="src">The input text</param>
+    /// <param name="width">The with of the padded string</param>
+    /// <param name="c">The padding character, if specifed; otherwise, a space is used as the filler</param>
+    /// <returns></returns>
+    public static string lpad(string src, int width, char? c = null)
+        => src.PadLeft(width,c ?? ' ');
+
+    /// <summary>
+    /// Left-Pads the input string with zeros
+    /// </summary>
+    /// <param name="src">The input text</param>
+    /// <param name="width">The with of the padded string</param>
+    /// <returns></returns>
+    public static string lpadZ(string src, int width)
+        => src.PadLeft(width,'0');
+
+    /// <summary>
+    /// Right-Pads the input string with an optionally-specified character.
+    /// </summary>
+    /// <param name="src">The input text</param>
+    /// <param name="width">The with of the padded string</param>
+    /// <param name="c">The padding character, if specifed; otherwise, a space is used as the filler</param>
+    /// <returns></returns>
+    public static string rpad(string src, int width, char? c = null)
+        => src.PadRight(width,c ?? ' ');
+
+    /// <summary>
+    /// Right-Pads the input string with zeros
+    /// </summary>
+    /// <param name="src">The input text</param>
+    /// <param name="width">The with of the padded string</param>
+    /// <returns></returns>
+    public static string rpadZ(string src, int width)
+        => src.PadRight(width,'0');
+
+    public static Stopwatch stopwatch() 
+        => Stopwatch.StartNew();
+
+    public static long elapsed(Stopwatch sw) 
+        => sw.ElapsedMilliseconds;
+
 }
 

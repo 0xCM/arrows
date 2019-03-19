@@ -15,11 +15,11 @@ namespace Core
 
     public static class Enumerable
     {
-        public static Enumerable<I> define<I>(IEnumerable<I> src)
-            => new Enumerable<I>(src); 
+        public static Enumerable<T> define<T>(IEnumerable<T> src)
+            => new Enumerable<T>(src); 
 
-        public static Enumerable<I> define<I>(params I[] src)
-            => new Enumerable<I>(src); 
+        public static Enumerable<T> define<T>(params T[] src)
+            => new Enumerable<T>(src); 
 
         /// <summary>
         /// Instantiates the canonical conrete type (but does not force evaluation) 

@@ -5,6 +5,7 @@
 namespace Core
 {
     using System;
+    using System.Numerics;
     using System.Runtime.CompilerServices;
     
     using static corefunc;
@@ -30,19 +31,18 @@ namespace Core
         static readonly C.Number<T> ops = MathOps.number<T>();
         
         public static readonly complex<T> Zero = (ops.zero,ops.zero);
-                
-
+        public static readonly complex<T> One = (ops.one,ops.zero);        
         public static implicit operator complex<T>((T re, T im) x)
-            => new complex<T>(x.re,x.im);
+            => complex.define(x.re,x.im);
 
 
         [MethodImpl(Inline)]
         public static bool operator == (complex<T> lhs, complex<T> rhs) 
-            => Object.Equals(lhs.re, rhs.re) && Object.Equals(rhs.im, rhs.im);
+            => ops.eq(lhs.re, rhs.re) && ops.eq(rhs.im, rhs.im);
 
         [MethodImpl(Inline)]
         public static bool operator != (complex<T> lhs, complex<T> rhs) 
-            => not(lhs == rhs);
+            => ops.neq(lhs.re, rhs.re) && ops.neq(rhs.im, rhs.im);
 
         [MethodImpl(Inline)]
         public static complex<T> operator + (complex<T> a, complex<T> b) 
@@ -59,16 +59,28 @@ namespace Core
         public (T re,T im) data {get;}
 
         public T re 
-            => data.re;
+        {
+            [MethodImpl(Inline)]
+            get{return data.re;}
+        }
 
-        public T  im 
-            => data.im;
+        public T im
+        {
+            [MethodImpl(Inline)]
+            get{return data.im;}
+        }
 
         public complex<T> zero 
-            => Zero;
+        {
+            [MethodImpl(Inline)]
+            get{return Zero;}
+        }
 
         public complex<T> one 
-            => Zero;
+        {
+            [MethodImpl(Inline)]
+            get{return One;}
+        }
 
         public complex<T> add(complex<T> rhs)
             => this + rhs;
@@ -87,7 +99,7 @@ namespace Core
 
         [MethodImpl(Inline)]
         bool Equals(complex<T> rhs)
-            => data.Equals(rhs);
+            => ops.eq(re, rhs.re) && ops.eq(im, rhs.im);
 
         public override bool Equals(object rhs)
             => data.Equals(rhs);
@@ -104,9 +116,7 @@ namespace Core
         }
 
         public Sign sign()
-        {
-            throw new NotImplementedException();
-        }
+            => Sign.Neutral;
 
         public complex<T> mod(complex<T> rhs)
         {
@@ -119,6 +129,12 @@ namespace Core
         }
 
         public (T re, T im) mul((T re, T im) a, (T re, T im) b)
+        {
+            throw new NotImplementedException();
+
+        }
+
+        public string bitstring()
         {
             throw new NotImplementedException();
         }

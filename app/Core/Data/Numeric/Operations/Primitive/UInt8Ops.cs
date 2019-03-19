@@ -14,21 +14,46 @@ namespace Core
 
     using C = Core.Contracts;
     using systype = System.Byte;
+    using opstype = MathOps.UInt8Ops;
 
     partial class MathOps
     {
-        readonly struct UInt8Ops : C.BoundNatural<systype>
-        {
+        public static string ToBitString(this systype src)
+            => lpadZ(Convert.ToString(src,2), opstype.MaxBitLength);
+
+        internal readonly struct UInt8Ops : C.BoundNatural<systype>
+        {        
+            public static readonly opstype Inhabitant = default;
         
-            public static readonly UInt8Ops Inhabitant = default(UInt8Ops);
+            public const systype Zero = 0;
 
-            public systype zero => 0;
+            public const systype One = 1;
 
-            public systype one => 1;
+            public const byte BitSize = 8;
 
-            public systype maxval => systype.MaxValue;
+            public const systype MinVal = systype.MinValue;
 
-            public systype minval => systype.MaxValue;
+            public const systype MaxVal = systype.MaxValue;
+
+            internal const byte MaxBitLength = BitSize - 1;
+
+            public systype zero 
+            {
+                [MethodImpl(Inline)]   
+                get{return Zero;}
+            }
+
+            public systype one
+            {
+                [MethodImpl(Inline)]   
+                get{return One;}
+            }
+
+            public systype maxval 
+                => MinVal;
+
+            public systype minval 
+                => MaxVal;
 
             [MethodImpl(Inline)]   
             public systype negate(systype src)
@@ -135,6 +160,20 @@ namespace Core
             [MethodImpl(Inline)]   
             public Sign sign(systype x)
                 => x == 0 ? Sign.Neutral : Sign.Positive;
+ 
+            public systype gcd(systype lhs, systype rhs)
+            {
+                while (rhs != Zero)
+                {
+                    var rem = mod(lhs,rhs);
+                    lhs = rhs;
+                    rhs = rem;
+                }
+                return lhs;
+            }
+            public string bitstring(systype src)
+                => src.ToBitString();
+
         }
     }
 }

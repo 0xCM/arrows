@@ -6,6 +6,7 @@ namespace Core.Contracts
 {
 
     public interface Number<T> : Operational<T>,
+        Equatable<T>,
         Additive<T>, 
         Nullary<T>, 
         Multiplicative<T>,
@@ -27,6 +28,11 @@ namespace Core.Contracts
         /// Calculates the number's sign
         /// </summary>
         Sign sign(T x);
+
+        /// <summary>
+        /// Formats the source value a sequence of base-2 digits
+        /// </summary>
+        string bitstring(T x);
 
     }
 
@@ -57,6 +63,8 @@ namespace Core.Contracts
         /// Calculates the number's sign
         /// </summary>
         Sign sign();
+
+        string bitstring();
                        
     }
 }

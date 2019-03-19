@@ -14,20 +14,50 @@ namespace Core
 
     using C = Core.Contracts;
     using systype = System.Double;
+    using opstype = MathOps.Float64Ops;
 
     partial class MathOps
     {
-        readonly struct Float64Ops : C.BoundFloat<systype>
+        public static string ToBitString(this systype x)
+            => lpadZ(map(Bits.split(x), 
+                ieee => concat(ieee.sign == Sign.Negative ? "1" : "0",
+                            ieee.exponent.ToBitString(),
+                            ieee.mantissa.ToBitString()
+                            
+                    )), opstype.MaxBitLength);
+
+        internal readonly struct Float64Ops : C.BoundFloat<systype>
         {        
-            public static readonly Float64Ops Inhabitant = default(Float64Ops);
+            public static readonly opstype Inhabitant = default;
+        
+            public const systype Zero = 0;
 
-            public systype zero => 0;
+            public const systype One = 1;
 
-            public systype one => 1;
+            public const byte BitSize = 64;
 
-            public systype maxval => systype.MaxValue;
+            internal const byte MaxBitLength = BitSize - 1;
 
-            public systype minval => systype.MaxValue;
+            public const systype MinVal = systype.MinValue;            
+
+            public const systype MaxVal = systype.MaxValue;
+
+            public const systype Epsilon = systype.Epsilon;
+
+            public systype zero 
+                => Zero;
+
+            public systype one 
+                => One;
+
+            public systype maxval 
+                => MinVal;
+
+            public systype minval 
+                => MaxVal;
+
+            public systype ε
+                => Epsilon;
 
             public systype inc(systype x)
                 => ++x;
@@ -162,12 +192,14 @@ namespace Core
                 {
                     yield return current;
                     current += width;
-                }
-            
+                }            
             }
 
             public systype abs(systype x)
                 => Math.Abs(x);
+
+            public string bitstring(double x)
+                => x.ToBitString();
         }
 
     }

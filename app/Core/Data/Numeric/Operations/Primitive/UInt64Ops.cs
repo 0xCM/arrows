@@ -14,21 +14,48 @@ namespace Core
 
     using C = Core.Contracts;
     using systype = System.UInt64;
+    using opstype = MathOps.UInt64Ops;
 
     partial class MathOps
     {
-        readonly struct UInt64Ops : C.BoundNatural<systype>
+        public static string ToBitString(this systype src)
+            => map(Bits.split(src), 
+                    parts => parts.hi.ToBitString() 
+                           + parts.lo.ToBitString());
+
+        internal readonly struct UInt64Ops : C.BoundNatural<systype>
         {
+            public static readonly opstype Inhabitant = default;
         
-            public static readonly UInt64Ops Inhabitant = default(UInt64Ops);
+            public const systype Zero = 0;
 
-            public systype zero => 0;
+            public const systype One = 1;
 
-            public systype one => 1;
+            public const byte BitSize = 64;
 
-            public systype maxval => systype.MaxValue;
+            public const systype MinVal = systype.MinValue;
 
-            public systype minval => systype.MaxValue;
+            public const systype MaxVal = systype.MaxValue;
+
+            internal const byte MaxBitLength = BitSize - 1;
+
+            public systype zero 
+            {
+                [MethodImpl(Inline)]   
+                get{return Zero;}
+            }
+
+            public systype one
+            {
+                [MethodImpl(Inline)]   
+                get{return One;}
+            }
+
+            public systype maxval 
+                => MinVal;
+
+            public systype minval 
+                => MaxVal;
 
             [MethodImpl(Inline)]   
             public systype add(systype a, systype b) 
@@ -91,16 +118,16 @@ namespace Core
                 => a ^ b;
 
             [MethodImpl(Inline)]   
-            public systype lshift(systype a, int shift) 
-                => a << shift;
+            public systype lshift(systype lhs, int rhs) 
+                => lhs << rhs;
 
             [MethodImpl(Inline)]   
-            public systype flip(systype a) 
-                => ~ a;
+            public systype flip(systype x) 
+                => ~ x;
 
             [MethodImpl(Inline)]   
-            public systype rshift(systype a, int shift) 
-                => a >> shift;
+            public systype rshift(systype lhs, int rhs) 
+                => lhs >> rhs;
 
             [MethodImpl(Inline)]   
             public systype pow(systype b, int exp) 
@@ -130,6 +157,21 @@ namespace Core
             [MethodImpl(Inline)]   
             public Sign sign(systype x)
                 => x == 0 ? Sign.Neutral : Sign.Positive;
+ 
+            public systype gcd(systype lhs, systype rhs)
+            {
+                while (rhs != Zero)
+                {
+                    var rem = mod(lhs,rhs);
+                    lhs = rhs;
+                    rhs = rem;
+                }
+                return lhs;
+            }
+
+            public string bitstring(systype src)
+                => src.ToBitString();
+
        }
 
     }

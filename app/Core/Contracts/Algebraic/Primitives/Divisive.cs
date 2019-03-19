@@ -26,6 +26,8 @@ namespace Core.Contracts
     public interface EuclideanDiv<T> : Divisive<T>
     {
 
+        T gcd(T lhs, T rhs);
+
         QR<T> divrem(T lhs, T rhs);        
     }
 
@@ -33,6 +35,8 @@ namespace Core.Contracts
         where S : EuclideanDiv<S,T>, new()
         where T : new()
     {
+        S gcd(S rhs);
+
         QR<S> divrem(S rhs);        
     }
 }
