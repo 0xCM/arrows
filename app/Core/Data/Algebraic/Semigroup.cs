@@ -5,22 +5,51 @@
 namespace Core
 {
     using System;
-    using C = Core.Contracts;
+    using static corefunc;
+    using static Class;
 
+    partial class Reify
+    {
+        public readonly struct SemigroupM<T> : Class.SemigroupM<T>, Singleton<SemigroupM<T>>
+            where T : Class.SemigroupM<T>, new()
+        {    
+            static readonly Class.SemigroupM<T> Ops = ops<T,SemigroupM<T>>();
 
-    public readonly struct Semigroup<T> : C.Semigroup<T>
-    {    
-        readonly Func<T,T,T> composer; 
+            public static SemigroupM<T> Inhabitant = default;
+            
 
-        public Semigroup(Func<T,T,T> composer)
-            => this.composer = composer;
-        
-        public T compose(T a, T b)
-            => composer(a,b);
+            public SemigroupM<T> inhabitant 
+                => Inhabitant;
 
-        public bool contains(T item)
-            => true;
+            public T mul(T lhs, T rhs)
+                => Ops.mul(lhs,rhs);
+
+            public bool eq(T lhs, T rhs)
+                => Ops.eq(lhs,rhs);
+
+            public bool neq(T lhs, T rhs)
+                => Ops.neq(lhs,rhs);
+        }
+
+        public readonly struct SemigroupA<T> : Class.SemigroupA<T>, Singleton<SemigroupA<T>>
+            where T : Class.SemigroupA<T>, new()
+        {    
+            static readonly Class.SemigroupA<T> Ops = ops<T,SemigroupA<T>>();
+
+            public static SemigroupA<T> Inhabitant = default;
+            
+            public SemigroupA<T> inhabitant 
+                => Inhabitant;
+
+            public T add(T a, T b) 
+                => Ops.add(a,b);
+
+            public bool eq(T lhs, T rhs) 
+                => Ops.eq(lhs,rhs);
+
+            public bool neq(T lhs, T rhs) 
+                => Ops.neq(lhs,rhs);
+        }
+
     }
-
-
 }

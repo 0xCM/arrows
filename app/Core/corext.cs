@@ -19,6 +19,27 @@ using static corefunc;
 
 public static partial class corext
 {
+
+    /// <summary>
+    /// Lifts a function to a unary operator
+    /// </summary>
+    /// <param name="f">The function to lift</param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static Core.UnaryOp<T> ToUnaryOp<T>(this Func<T,T> f)
+        => new Reify.UnaryOp<T>(f);
+
+    /// <summary>
+    /// Lifts a function to a binary opeator operator
+    /// </summary>
+    /// <param name="f">The function to lift</param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static BinaryOp<T> ToBinaryOp<T>(this Func<T,T,T> f, bool commutative = false)
+            => commutative 
+            ?  cast<BinaryOp<T>>(new Reify.CommutativeOp<T>(f)) 
+            : new Reify.BinaryOp<T>(f);
+
     /// <summary>
     /// Attaches a 0-based integer sequence to the input value sequence and
     /// yield the paired sequence elements
@@ -30,7 +51,7 @@ public static partial class corext
         => iteri(items);
 
     public static IEnumerable<IReadOnlyList<T>> Partition<W,T>(this IEnumerable<T> src)
-        where W : C.TypeNat
+        where W : TypeNat
             => partition<W,T>(src);
 
 

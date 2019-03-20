@@ -2,34 +2,45 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core.Contracts
+namespace Core
 {
 
-   /// <summary>
-    /// Characterizes a type for which a multiplicative unit exists
-    /// </summary>
-    /// <typeparam name="T">The characterized type</typeparam>
-    public interface Unital<T> : Operational<T>
+    partial class Class
     {
         /// <summary>
-        /// The unital value
+        /// Characterizes a type for which a multiplicative unit exists
         /// </summary>
-        T one {get;}
+        /// <typeparam name="T">The characterized type</typeparam>
+        public interface Unital<T> : TypeClass
+        {
+            /// <summary>
+            /// The unital value
+            /// </summary>
+            T one {get;}
+        }
+
+        public interface Unital<H,T> : TypeClass<H>, Unital<T>
+            where H : Unital<H,T>, new()
+        {
+
+        }
+
     }
 
-
-    /// <summary>
-    /// Characterizes a unital structure, that is, a structure
-    /// that defines a unit as a particular instance of itself
-    /// </summary>
-    /// <typeparam name="T">The unit type</typeparam>
-    public interface Unital<S,T> : Structural<S,T>
-        where S : Unital<S,T>, new()
-        where T : new()
+    partial class Struct
     {
-        S one {get;}
+
+        /// <summary>
+        /// Characterizes a unital structure, that is, a structure
+        /// that defines a unit as a particular instance of itself
+        /// </summary>
+        /// <typeparam name="T">The unit type</typeparam>
+        public interface Unital<S,T> : Structure<S,T>
+            where S : Unital<S,T>, new()
+        {
+            S one {get;}
+        }
+
     }
-
-
 
 }

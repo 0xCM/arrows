@@ -13,21 +13,13 @@ namespace Core
     using C = Contracts;
 
     using static corefunc;
-    using static MathOps;
+    using static Operations;
     
     public static class intG
     {
         public static intg<T> define<T>(T x)
-            where T : new()
+            where T : Class.Integer<T>, new()
                 => new intg<T>(x);
-
-        // public static IEnumerable<intg<T>> range<T>(intg<T> min, intg<T> max)
-        //     where T : new()
-        // {
-        //     var current = min;
-        //     while(current <= max)
-        //         yield return current++;
-        // }
 
         public static bool prime<T>(intg<T> candidate)
             where T : new()
@@ -53,10 +45,10 @@ namespace Core
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct intg<T> : C.Integer<intg<T>,T> 
-        where T : new()
+    public readonly struct intg<T> : Struct.Integer<intg<T>,T> 
+        where T : new() 
     {
-        static readonly C.Integer<T> ops = MathOps.integer<T>();
+        static readonly Class.Integer<T> ops = Operations.integer<T>();
 
         public static readonly intg<T> Zero = ops.zero;
 
@@ -64,7 +56,7 @@ namespace Core
 
         [MethodImpl(Inline)]
         public static implicit operator intg<T>(T src)
-            => intG.define(src);
+            => new intg<T>(src);
 
         [MethodImpl(Inline)]
         public static implicit operator T(intg<T> src)
@@ -207,8 +199,8 @@ namespace Core
             => not(even());
 
         [MethodImpl(Inline)]
-        public QR<intg<T>> divrem(intg<T> rhs)
-            => map(ops.divrem(data,rhs), x => QR.define<intg<T>>(x.q,x.r));
+        public Quorem<intg<T>> divrem(intg<T> rhs)
+            => map(ops.divrem(data,rhs), x => Quorem.define<intg<T>>(x.q,x.r));
 
         [MethodImpl(Inline)]
         public intg<T> and(intg<T> rhs)
@@ -273,13 +265,26 @@ namespace Core
         [MethodImpl(Inline)]
         public string bitstring()
             => ops.bitstring(data);
-            
+
         [MethodImpl(Inline)]
-        public int CompareTo(intg<T> rhs)
+        public intg<T> distributeL((intg<T> x, intg<T>y) rhs)
+            => this * rhs.x + this * rhs.y;
+ 
+        [MethodImpl(Inline)]
+        public intg<T> distributeR((intg<T> x, intg<T> y) rhs)
+            => rhs.x * this + rhs.y * this;
+
+        [MethodImpl(Inline)]
+        int IComparable<intg<T>>.CompareTo(intg<T> rhs)
             => this < rhs ? -1
              : this > rhs ? 1
              : 0;
-            
+
+        [MethodImpl(Inline)]
+        public intg<T> negate()
+            => ops.negate(data);
+
+
         public override bool Equals(object rhs)
             => data.Equals(rhs);
 
@@ -288,5 +293,6 @@ namespace Core
 
         public override string ToString()
             => data.ToString();
+
     }
 }

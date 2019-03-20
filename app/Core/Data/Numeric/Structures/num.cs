@@ -13,27 +13,22 @@ namespace Core
     using C = Contracts;
 
     using static corefunc;
-    using static MathOps;
+    using static Operations;
+    using static Struct;
+    using static Class;
 
-
-    public static class num
-    {
-        public static num<T> define<T>(T x)
-            where T : new()
-                => new num<T>(x);
-
-    }
     public readonly struct num<T> 
-        : C.Number<num<T>,T>, 
-          C.Stepwise<num<T>, T>, 
-          C.Ordered<num<T>, T> 
+        : Struct.Number<num<T>,T>, 
+          Struct.Stepwise<num<T>, T>, 
+          Struct.Ordered<num<T>, T> 
+        //where T : Number<T>, Stepwise<T>, Ordered<T>, new()
         where T : new()
     {
-        static readonly C.Number<T> ops = MathOps.number<T>();
+        static readonly Number<T> ops = Operations.number<T>();
         
-        static readonly C.Stepwise<T> step = MathOps.stepwise<T>();
+        static readonly Stepwise<T> step = Operations.stepwise<T>();
         
-        static readonly C.Ordered<T> ord = MathOps.ordered<T>();
+        static readonly Ordered<T> ord = Operations.ordered<T>();
 
         public static readonly num<T> Zero = ops.zero;
 
@@ -41,7 +36,7 @@ namespace Core
 
         [MethodImpl(Inline)]
         public static implicit operator num<T>(T src)
-            => num.define(src);
+            => new num<T>(src);
 
         [MethodImpl(Inline)]
         public static implicit operator T(num<T> src)
@@ -180,7 +175,19 @@ namespace Core
             => this < rhs ? -1
              : this > rhs ? 1
              : 0;
-            
+
+        [MethodImpl(Inline)]
+        public num<T> distributeL((num<T> x, num<T>y) rhs)
+            => this * rhs.x + this * rhs.y;
+ 
+        [MethodImpl(Inline)]
+        public num<T> distributeR((num<T> x, num<T> y) rhs)
+            => rhs.x * this + rhs.y * this;
+
+        [MethodImpl(Inline)]
+        public num<T> negate()
+            => ops.negate(this.data);
+
         public override bool Equals(object rhs)
             => data.Equals(rhs);
 
@@ -189,5 +196,6 @@ namespace Core
 
         public override string ToString()
             => data.ToString();
+
     }
 }

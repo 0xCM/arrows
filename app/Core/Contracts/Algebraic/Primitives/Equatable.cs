@@ -2,25 +2,36 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core.Contracts
+namespace Core
 {
     using System;
 
-
-    public interface Equatable<T> : Operational<T>
+    partial class Class
     {
-        bool eq(T lhs, T rhs);
+        public interface Equatable<T> : TypeClass
+        {
+            bool eq(T lhs, T rhs);
 
-        bool neq(T lhs, T rhs);
+            bool neq(T lhs, T rhs);
+        }
+
+        public interface Equatable<H,T> : TypeClass<H>, Equatable<T>
+            where H : Equatable<H,T>, new()
+        {
+        
+        }
+
     }
 
-    public interface Equatable<S,T> : Structural<S,T>
-        where S : Equatable<S,T>, new()
-        where T : new()
+    partial class Struct
     {
-        bool eq(S rhs);
 
-        bool neq(S rhs);
+        public interface Equatable<S,T> : Structure<S,T>
+            where S : Equatable<S,T>, new()
+        {
+            bool eq(S rhs);
+
+            bool neq(S rhs);
+        }
     }
-
 }

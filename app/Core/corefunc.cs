@@ -12,10 +12,10 @@ using System.Diagnostics;
 using Root;
 using Core;
 using Symbols;
-using C = Core.Contracts;
-
 using static Root.Credit;
 using static corefunc;
+
+
 
 public static partial class corefunc
 {
@@ -29,8 +29,8 @@ public static partial class corefunc
     /// <typeparam name="B">The right type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Copair<A,B> copair<A,B>(A left)
-        => new Copair<A, B>(left);
+    public static Reify.Copair<A,B> copair<A,B>(A left)
+        => new Reify.Copair<A, B>(left);
 
     /// <summary>
     /// Constructs a right-valued copair
@@ -40,8 +40,8 @@ public static partial class corefunc
     /// <typeparam name="B">The right type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Copair<A,B> copair<A,B>(B right)
-        => new Copair<A, B>(right);
+    public static Reify.Copair<A,B> copair<A,B>(B right)
+        => new Reify.Copair<A, B>(right);
 
 
     /// <summary>
@@ -68,8 +68,8 @@ public static partial class corefunc
     /// <typeparam name="K">The key type</typeparam>
     /// <typeparam name="V">The value type</typeparam>
     /// <returns></returns>
-    public static Map<K,V> index<K,V>(IEnumerable<(K key,V value)> items)
-        => new Map<K,V>(items);
+    public static Index<K,V> index<K,V>(IEnumerable<(K key,V value)> items)
+        => new Reify.Index<K,V>(items);
 
     /// <summary>
     /// Constructs an associative array
@@ -78,8 +78,8 @@ public static partial class corefunc
     /// <typeparam name="K">The key type</typeparam>
     /// <typeparam name="V">The value type</typeparam>
     /// <returns></returns>
-    public static Map<K,V> index<K,V>(IEnumerable<KeyedValue<K,V>> items)
-        => new Map<K,V>(items);
+    public static Index<K,V> index<K,V>(IEnumerable<KeyedValue<K,V>> items)
+        => new Reify.Index<K,V>(items);
 
     /// <summary>
     /// Constructs an integrally-indexed associative array
@@ -87,8 +87,8 @@ public static partial class corefunc
     /// <param name="value">The value</param>
     /// <typeparam name="V">The value type</typeparam>
     /// <returns></returns>
-    public static Index<V> index<V>(IEnumerable<V> items)
-        => new Index<V>(items);
+    public static Reify.Index<V> index<V>(IEnumerable<V> items)
+        => new Reify.Index<V>(items);
 
     /// <summary>
     /// Constructs an index from a collection of of 2-tuples
@@ -97,8 +97,8 @@ public static partial class corefunc
     /// <typeparam name="K">The key type</typeparam>
     /// <typeparam name="V">The value type</typeparam>
     /// <returns></returns>
-    public static Map<K,V> index<K,V>((K key, V value)[] src)
-        => new Map<K,V>(map(src,kvp));
+    public static Index<K,V> index<K,V>((K key, V value)[] src)
+        => new Reify.Index<K,V>(map(src,kvp));
 
     /// <summary>
     /// Applies a function to elements of an input sequence to produce 
@@ -180,8 +180,8 @@ public static partial class corefunc
     /// <param name="values"></param>
     /// <typeparam name="A"></typeparam>
     /// <returns></returns>
-    public static Index<A> list<A>(params A[] values)
-        => new Index<A>(values);
+    public static Reify.Index<A> list<A>(params A[] values)
+        => new Reify.Index<A>(values);
 
     /// <summary>
     /// Constructs a vector characterized by length and component type
@@ -190,9 +190,10 @@ public static partial class corefunc
     /// <typeparam name="N"></typeparam>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static vec<N,T> vec<N,T>(params T[] components)
-        where N : C.TypeNat     
-            => new vec<N,T>(components);
+    public static Reify.Vector<N,T> vec<N,T>(params T[] components)
+        where N : TypeNat
+        where T : Class.Semiring<T>, new()
+            => new Reify.Vector<N,T>(components);
 
 
     /// <summary>
@@ -202,8 +203,8 @@ public static partial class corefunc
     /// <param name="values"></param>
     /// <typeparam name="A"></typeparam>
     /// <returns></returns>
-    public static Index<A> list<A>(IEnumerable<A> values)
-        => new Index<A>(values);
+    public static Reify.Index<A> list<A>(IEnumerable<A> values)
+        => new Reify.Index<A>(values);
 
     /// <summary>
     /// Constructs a citation for a bibliographic resource
@@ -305,8 +306,8 @@ public static partial class corefunc
 
    [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(params T[] data)
-        where N : C.TypeNat
-            => new Array<N,T>(data);
+        where N : TypeNat
+            => new Reify.Array<N,T>(data);
 
    [MethodImpl(Inline)]
     public static IEnumerable<T> seq<T>(params T[] items)
@@ -376,7 +377,7 @@ public static partial class corefunc
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static C.Set<T> set<T>() => FullSet<T>.Inhabitant;
+    public static Set<T> set<T>() => TotalSet<T>.Inhabitant;
 
 
     /// <summary>
@@ -422,8 +423,8 @@ public static partial class corefunc
     /// <typeparam name="B">The right member type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Pair<A,B> pair<A,B>(A a, B b)
-        => Pair.define(a,b);
+    public static Reify.Pair<A,B> pair<A,B>(A a, B b)
+        => Reify.Pair.define(a,b);
 
     /// <summary>
     /// Constructs an elementwise cartesian product from the input sequences
@@ -433,7 +434,7 @@ public static partial class corefunc
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static IEnumerable<Pair<T,T>> cross<T>(IEnumerable<T> x, IEnumerable<T> y)
+    public static IEnumerable<Reify.Pair<T,T>> cross<T>(IEnumerable<T> x, IEnumerable<T> y)
         => from a in x from b in y select pair(a,b);
 
     /// <summary>
@@ -496,7 +497,7 @@ public static partial class corefunc
     /// <returns></returns>
     [MethodImpl(Inline)]   
     public static int natval<N>() 
-        where N : C.TypeNat
+        where N : TypeNat
         => TypeNats.nat<N>().natval;
 
     /// <summary>
@@ -509,7 +510,7 @@ public static partial class corefunc
     /// <returns></returns>
     [MethodImpl(Inline)]   
     public static int natcheck<N>(int expected)
-            where N : C.TypeNat
+            where N : TypeNat
            => natval<N>() == expected 
             ? expected 
             : throw new ArgumentException(); 
@@ -524,7 +525,7 @@ public static partial class corefunc
     /// <typeparam name="T">The list element type</typeparam>
     /// <returns></returns>
     public static IReadOnlyList<T> natcheck<N,T>(IReadOnlyList<T> src)
-            where N : C.TypeNat
+            where N : TypeNat
            => natval<N>() == src.Count 
             ? src
             : throw new ArgumentException(); 
@@ -539,7 +540,7 @@ public static partial class corefunc
         => x ? x : throw new ArgumentException();
 
     public static IEnumerable<IReadOnlyList<T>> partition<W,T>(IEnumerable<T> src)
-        where W : C.TypeNat
+        where W : TypeNat
     {
         var width = natval<W>();
         var sement = new T[width];
@@ -562,15 +563,16 @@ public static partial class corefunc
         yield return sement;
     }
 
-    [MethodImpl(Inline)]   
-    public static Slice<N,T> slice<N,T>(IEnumerable<T> src)
-        where N : C.TypeNat
-            => new Slice<N,T>(src);
 
     [MethodImpl(Inline)]   
-    public static Slice<N,T> slice<N,T>(params T[] src)
-        where N : C.TypeNat
-            => new Slice<N,T>(src);
+    public static Reify.Slice<N,T> slice<N,T>(IEnumerable<T> src)
+        where N : TypeNat
+            => new Reify.Slice<N,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static Reify.Slice<N,T> slice<N,T>(params T[] src)
+        where N : TypeNat
+            => new Reify.Slice<N,T>(src);
 
     /// <summary>
     /// Left-Pads the input string with an optionally-specified character.
@@ -579,6 +581,7 @@ public static partial class corefunc
     /// <param name="width">The with of the padded string</param>
     /// <param name="c">The padding character, if specifed; otherwise, a space is used as the filler</param>
     /// <returns></returns>
+    [MethodImpl(Inline)]   
     public static string lpad(string src, int width, char? c = null)
         => src.PadLeft(width,c ?? ' ');
 
@@ -588,6 +591,7 @@ public static partial class corefunc
     /// <param name="src">The input text</param>
     /// <param name="width">The with of the padded string</param>
     /// <returns></returns>
+    [MethodImpl(Inline)]   
     public static string lpadZ(string src, int width)
         => src.PadLeft(width,'0');
 
@@ -598,6 +602,7 @@ public static partial class corefunc
     /// <param name="width">The with of the padded string</param>
     /// <param name="c">The padding character, if specifed; otherwise, a space is used as the filler</param>
     /// <returns></returns>
+    [MethodImpl(Inline)]   
     public static string rpad(string src, int width, char? c = null)
         => src.PadRight(width,c ?? ' ');
 
@@ -607,14 +612,24 @@ public static partial class corefunc
     /// <param name="src">The input text</param>
     /// <param name="width">The with of the padded string</param>
     /// <returns></returns>
+    [MethodImpl(Inline)]   
     public static string rpadZ(string src, int width)
         => src.PadRight(width,'0');
 
+    [MethodImpl(Inline)]   
     public static Stopwatch stopwatch() 
         => Stopwatch.StartNew();
 
+    [MethodImpl(Inline)]   
     public static long elapsed(Stopwatch sw) 
         => sw.ElapsedMilliseconds;
 
+    [MethodImpl(Inline)]   
+    public static O ops<T,O>()
+        => Operations.ops<T,O>();
+    
+    [MethodImpl(Inline)]
+    public static Class.Semigroup<T> semigroup<T>() 
+        => Operations.ops<T,Class.Semigroup<T>>();
 }
 

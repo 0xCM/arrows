@@ -2,41 +2,53 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core.Contracts
+namespace Core
 {
     using System;
     using System.Numerics;
 
-    public interface Rational<T> : Fractional<T>
-        where T : new()
+    partial class Class
     {
-        T reciprocal(T x);
+        public interface Rational<T> : Fractional<T>
+            where T : Rational<T>, new()
+        {
+            T reciprocal(T x);
+        }
+
+
     }
 
-    /// <summary>
-    /// Charactrizes a rational number
-    /// </summary>
-    /// <typeparam name="I">The underlying integral type</typeparam>
-    public interface Rational<S,T> : Fractional<S, (T over,T under)>
-        where S : Rational<S,T>, new()
-        where T : new()
+    partial class Struct
     {
         /// <summary>
-        /// The dividend
+        /// Charactrizes a rational number
         /// </summary>
-        /// <value></value>
-        T over {get;}
+        /// <typeparam name="I">The underlying integral type</typeparam>
+        public interface Rational<S,T> : Fractional<S, (T over,T under)>
+            where S : Rational<S,T>, new()
+        {
+            /// <summary>
+            /// The dividend
+            /// </summary>
+            /// <value></value>
+            T over {get;}
 
-        /// <summary>
-        /// The divisor
-        /// </summary>
-        /// <value></value>
-        T under {get;}
+            /// <summary>
+            /// The divisor
+            /// </summary>
+            /// <value></value>
+            T under {get;}
 
-        /// <summary>
-        /// Interchanges over/under
-        /// </summary>
-        /// <returns></returns>
-        S reciprocal();
+            /// <summary>
+            /// Interchanges over/under
+            /// </summary>
+            /// <returns></returns>
+            S reciprocal();
+        }
+
     }
+
+
+
+
 }

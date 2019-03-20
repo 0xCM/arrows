@@ -13,17 +13,17 @@ namespace Core
     public static class frac
     {
         public static fraction<T> define<T>(T over, T under)
-            where T : new()
+            where T : Class.Integer<T>, new()
                 => new fraction<T>(over,under);
     }
     
     /// <summary>
     /// Represents a rational number
     /// </summary>
-    public readonly struct fraction<T> : C.Rational<fraction<T>, T>
-        where T : new()
+    public readonly struct fraction<T> : Struct.Rational<fraction<T>, T>
+        where T : Class.Integer<T>, new()
     {
-        static readonly C.Integer<T> ops = MathOps.integer<T>();
+        static readonly Class.Integer<T> ops = Operations.integer<T>();
 
         public static implicit operator fraction<T> ((T over, T under) x)
             => new fraction<T>(x.over,x.under);
@@ -48,8 +48,8 @@ namespace Core
         public fraction<T> one 
             => (ops.one,ops.one);
 
-        (T over, T under) C.Structural<fraction<T>, (T over, T under)>.data 
-            => (data.over, data.under);
+        (T over, T under) Structure<fraction<T>, (T over, T under)>.data 
+            => data;
 
         public fraction<T> add(fraction<T> rhs)
             => (data.over + rhs.over, data.under + rhs.under);
@@ -90,11 +90,6 @@ namespace Core
             throw new NotImplementedException();
         }
 
-        fraction<T> C.Divisive<fraction<T>, (T over, T under)>.div(fraction<T> rhs)
-        {
-            throw new NotImplementedException();
-        }
-
         public fraction<T> ceiling()
         {
             throw new NotImplementedException();
@@ -109,6 +104,21 @@ namespace Core
             => (under,over);
 
         public string bitstring()
+        {
+            throw new NotImplementedException();
+        }
+
+        public fraction<T> negate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public fraction<T> distributeL((fraction<T> x, fraction<T> y) rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public fraction<T> distributeR((fraction<T> x, fraction<T> y) rhs)
         {
             throw new NotImplementedException();
         }

@@ -12,7 +12,8 @@ using Core;
 using C = Core.Contracts;
 
 using static corefunc;
-using static Core.MathOps;
+using static Core.Operations;
+using static Core.Class;
 
 partial class corefunc
 {
@@ -25,7 +26,7 @@ partial class corefunc
     /// <returns></returns>
     [MethodImpl(Inline)]   
     public static fraction<T> frac<T>(T over, T under)
-        where T : new()
+        where T : Class.Integer<T>, new()
             => new fraction<T>(over,under);
 
     /// <summary>
@@ -48,7 +49,7 @@ partial class corefunc
     [MethodImpl(Inline)]   
     public static num<T> numg<T>(T x)
         where T : new()
-        => num.define(x);
+            => new num<T>(x);
 
 
 
@@ -70,6 +71,5 @@ partial class corefunc
         while(current <= max)
             yield return current++;
     }
-
 }
 

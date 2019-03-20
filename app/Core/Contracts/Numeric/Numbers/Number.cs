@@ -2,69 +2,70 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core.Contracts
+namespace Core
 {
+    partial class Class
+    {
+        public interface Number<T> : TypeClass,
+            Semiring<T>,
+            Negatable<T>,
+            Divisive<T>,
+            Modular<T>,
+            Powered<T,int> 
+        {                    
+            T muladd(T x, T y, T z);
 
-    public interface Number<T> : Operational<T>,
-        Equatable<T>,
-        Additive<T>, 
-        Nullary<T>, 
-        Multiplicative<T>,
-        Unital<T>,
-        Subtractive<T>,
-        Divisive<T>,
-        Powered<T,int> 
-    where T : new()
-    {                    
-        T muladd(T x, T y, T z);
+            /// <summary>
+            /// Calculates the number's absolute value
+            /// </summary>
+            /// <returns></returns>
+            T abs(T x);
 
-        /// <summary>
-        /// Calculates the number's absolute value
-        /// </summary>
-        /// <returns></returns>
-        T abs(T x);
+            /// <summary>
+            /// Calculates the number's sign
+            /// </summary>
+            Sign sign(T x);
 
-        /// <summary>
-        /// Calculates the number's sign
-        /// </summary>
-        Sign sign(T x);
+            /// <summary>
+            /// Formats the source value a sequence of base-2 digits
+            /// </summary>
+            string bitstring(T x);
 
-        /// <summary>
-        /// Formats the source value a sequence of base-2 digits
-        /// </summary>
-        string bitstring(T x);
+        }
 
+        public interface Number<H,T> : TypeClass<H>, Number<T>
+            where H : Number<H,T>, new()
+        {
+
+        }
     }
 
-
-    /// <summary>
-    /// Characterizes a structral number
-    /// </summary>
-    /// <typeparam name="S">The structure type</typeparam>
-    /// <typeparam name="T">The structure subect</typeparam>
-    public interface Number<S,T> : Structural<S,T>, 
-          Equatable<S,T>,
-          Additive<S,T>,
-          Nullary<S,T>,
-          Multiplicative<S,T>,
-          Unital<S,T>,
-          Subtractive<S,T>,
-          Divisive<S,T>
-        where S : Number<S,T>, new()
-        where T : new()
+    partial class Struct
     {
         /// <summary>
-        /// Calculates the number's magnitude
+        /// Characterizes a structral number
         /// </summary>
-        /// <returns></returns>
-        S abs();
+        /// <typeparam name="S">The structure type</typeparam>
+        /// <typeparam name="T">The structure subect</typeparam>
+        public interface Number<S,T> : Structure<S,T>, 
+            Semiring<S,T>,
+            Negatable<S,T>,
+            Modular<S,T>
+            where S : Number<S,T>, new()
+        {
+            /// <summary>
+            /// Calculates the number's magnitude
+            /// </summary>
+            /// <returns></returns>
+            S abs();
 
-        /// <summary>
-        /// Calculates the number's sign
-        /// </summary>
-        Sign sign();
+            /// <summary>
+            /// Calculates the number's sign
+            /// </summary>
+            Sign sign();
 
-        string bitstring();
-                       
+            string bitstring();
+                        
+        }
     }
 }

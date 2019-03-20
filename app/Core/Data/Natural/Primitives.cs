@@ -8,14 +8,14 @@ namespace Core
     using System.Numerics;
     using System.Collections.Generic;
     using System.Collections.Concurrent;
-    using C = Contracts;    
     using static corefunc;
     using static TypeNats;
+    using static Class;
 
     /// <summary>
     /// The singleton type representative for 0
     /// </summary>
-    public readonly struct N0 : C.TypeNat<N0,N1>
+    public readonly struct N0 : TypeNat<N0,N1>
     {
         public static readonly N0 Inhabitant = new N0(0);
 
@@ -32,7 +32,7 @@ namespace Core
     /// <summary>
     /// The singleton type representative for 1
     /// </summary>
-    public readonly struct N1 : C.TypeNat<N1,N2>
+    public readonly struct N1 : TypeNat<N1,N2>
     {
         public static readonly N1 Inhabitant = new N1(1);        
         
@@ -51,7 +51,7 @@ namespace Core
     /// <summary>
     /// The type that represents 2
     /// </summary>
-    public readonly struct N2 : C.TypeNat<N2,N3>
+    public readonly struct N2 : TypeNat<N2,N3>
     {
         public static readonly N2 Inhabitant = new N2(2);        
 
@@ -70,7 +70,7 @@ namespace Core
     /// <summary>
     /// The singleton type representative for 3
     /// </summary>
-    public readonly struct N3 : C.TypeNat<N3,N4>
+    public readonly struct N3 : TypeNat<N3,N4>
     {
         public static readonly N3 Inhabitant = new N3(3);        
 
@@ -89,7 +89,7 @@ namespace Core
     /// <summary>
     /// The singleton type representative for 4
     /// </summary>
-    public readonly struct N4 : C.TypeNat<N4,N5>
+    public readonly struct N4 : TypeNat<N4,N5>
     {
         public static readonly N4 Inhabitant = new N4(4);        
         public int natval {get;}    
@@ -108,7 +108,7 @@ namespace Core
     /// <summary>
     /// The singleton type representative for 5
     /// </summary>
-    public readonly struct N5 : C.TypeNat<N5,N6>
+    public readonly struct N5 : TypeNat<N5,N6>
     {
         public static readonly N5 Inhabitant = new N5(5);        
         
@@ -127,7 +127,7 @@ namespace Core
     /// <summary>
     /// The singleton type representative for 6
     /// </summary>
-    public readonly struct N6 : C.TypeNat<N6,N7>
+    public readonly struct N6 : TypeNat<N6,N7>
     {
         public static readonly N6 Inhabitant = new N6(6);        
         
@@ -146,7 +146,7 @@ namespace Core
     /// <summary>
     /// The singleton type representative for 7
     /// </summary>
-    public readonly struct N7 : C.TypeNat<N7,N8>
+    public readonly struct N7 : TypeNat<N7,N8>
     {
         public static readonly N7 Inhabitant = new N7(7);        
 
@@ -162,7 +162,7 @@ namespace Core
         public override string ToString() => natval.ToString();
     }
 
-    public readonly struct N8 : C.TypeNat<N8,N9>
+    public readonly struct N8 : TypeNat<N8,N9>
     {
         public static readonly N8 Inhabitant = new N8(8);        
         public int natval {get;}    
@@ -176,7 +176,7 @@ namespace Core
         public override string ToString() => natval.ToString();    
     }
 
-    public readonly struct N9 : C.TypeNat<N9>
+    public readonly struct N9 : TypeNat<N9>
     {
         public static readonly N9 Inhabitant = new N9(9);        
         public int natval {get;}    

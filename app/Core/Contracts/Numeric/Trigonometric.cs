@@ -2,63 +2,69 @@
 // CopyrighS   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core.Contracts
+namespace Core
 {
-    public interface Trigonmetric<T>
+    partial class Class
     {
-        T cos(T x);   
+        public interface Trigonmetric<T>
+        {
+            T cos(T x);   
 
-        T cosh(T x);   
+            T cosh(T x);   
 
-        T acos(T x);   
-    
-        T acosh(T x);   
+            T acos(T x);   
+        
+            T acosh(T x);   
 
-        T sin(T x);   
+            T sin(T x);   
 
-        T sinh(T x);   
+            T sinh(T x);   
 
-        T asin(T x);   
+            T asin(T x);   
 
-        T asinh(T x);   
+            T asinh(T x);   
 
-        T tan(T x);
+            T tan(T x);
 
-        T tanh(T x);
+            T tanh(T x);
 
-        T atan(T x);
+            T atan(T x);
 
-        T atanh(T x);
-    
+            T atanh(T x);
+        
+        }
+
     }
 
-    public interface Trigonmetric<S,T>
-        where S : Trigonmetric<S,T>, new()
+    partial class Struct
     {
-        S cos();   
+        public interface Trigonmetric<S,T>
+            where S : Trigonmetric<S,T>, new()
+        {
+            S cos();   
 
-        S cosh();   
+            S cosh();   
 
-        S acos();   
-    
-        S acosh();   
+            S acos();   
+        
+            S acosh();   
 
-        S sin();   
+            S sin();   
 
-        S sinh();   
+            S sinh();   
 
-        S asin();   
+            S asin();   
 
-        S asinh();   
+            S asinh();   
 
-        S tan();
+            S tan();
 
-        S tanh();
+            S tanh();
 
-        S atan();
+            S atan();
 
-        S atanh();
-    
+            S atanh();
+        
+        }
     }
-
 }

@@ -19,7 +19,7 @@ namespace App04
 
         static void EffectPartition()
         {
-            var ops = MathOps.float64();
+            var ops = Operations.float64();
             var parition = ops.partition(0, 1);
             iter(parition, print);            
         }
@@ -39,11 +39,11 @@ namespace App04
                 print($"{value} is not prime");
         }
 
-        static T dot<N,T>(Slice<N,T> s1, Slice<N,T> s2)
-            where N : C.TypeNat
+        static T dot<N,T>(Reify.Slice<N,T> s1, Reify.Slice<N,T> s2)
+            where N : TypeNat
             where T : new()
             {
-                var ops = MathOps.integer<T>();
+                var ops = Operations.integer<T>();
                 var result = ops.zero;
                 for(var i=0; i< s1.length; i++)
                     result = ops.add(result, ops.mul(s1[i],s2[i]));
@@ -336,9 +336,15 @@ namespace App04
 
         }
 
+        static void Semigroups()
+        {
+            var sg = semigroup<long>();
+            //print(sg.(3,4));
+
+        }
         static void Main(string[] args)
         {            
-            DisplayBits();
+            Semigroups();
         }
     }
 }

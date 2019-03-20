@@ -14,9 +14,9 @@ namespace Core
     using structype = float64;
     using System.Collections.Generic;
 
-    public readonly struct float64 : C.BoundFloat<structype,systype>
+    public readonly struct float64 : Struct.FiniteFloat<structype,systype>
     {
-        static readonly C.BoundFloat<systype> ops = MathOps.floating<systype>();
+        static readonly Class.FiniteFloat<systype> ops = Operations.floating<systype>();
 
         public static readonly structype Zero = ops.zero;
         
@@ -237,7 +237,15 @@ namespace Core
         [MethodImpl(Inline)]
         public string bitstring()
             => ops.bitstring(data);    
-        
+
+        [MethodImpl(Inline)]
+        public structype distributeL((structype x, structype y) rhs)
+            => this * rhs.x + this * rhs.y;
+ 
+        [MethodImpl(Inline)]
+        public structype distributeR((structype x, structype y) rhs)
+            => rhs.x * this + rhs.y * this;
+         
         [MethodImpl(Inline)]
         int IComparable<structype>.CompareTo(structype other)
             => data.CompareTo(other);
@@ -250,5 +258,6 @@ namespace Core
 
         public override string ToString()
             => data.ToString();
+
     }
 }

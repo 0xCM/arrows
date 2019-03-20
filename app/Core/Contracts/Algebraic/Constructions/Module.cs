@@ -2,8 +2,9 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core.Contracts
+namespace Core
 {
+    using static Class;
 
     /// <summary>
     /// Characterizes a left module over a commtative unital ring
@@ -11,8 +12,8 @@ namespace Core.Contracts
     /// <typeparam name="G">The group individual type</typeparam>
     /// <typeparam name="R">The ring individual type</typeparam>
     public interface LeftModule<R,G> 
-        where G : AbelianGroup<G>
-        where R : Ring<R>
+        where G : GroupA<G>, new()
+        where R : Ring<R>, new()
     {
         /// <summary>
         /// Effects left scalar multiplication
@@ -29,8 +30,8 @@ namespace Core.Contracts
     /// <typeparam name="G">The group individual type</typeparam>
     /// <typeparam name="R">The ring individual type</typeparam>
     public interface RightModule<G,R> 
-        where G : AbelianGroup<G>
-        where R : Ring<R>
+        where G : GroupA<G>, new()
+        where R : Ring<R>, new()
     {
         /// <summary>
         /// Effects right scalar multiplication

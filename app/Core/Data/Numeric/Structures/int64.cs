@@ -11,10 +11,13 @@ namespace Core
     using structype = int64;
     using systype = System.Int64;
 
-    public readonly struct int64 : C.BoundSignedInt<structype,systype>, IEquatable<structype>, IComparable<structype>
+    using static Class;
+    using static Struct;
+
+    public readonly struct int64 : Struct.FiniteSignedInt<structype,systype>, IEquatable<structype>, IComparable<structype>
     {
 
-        static readonly C.BoundSignedInt<systype> ops = MathOps.signedint<systype>();
+        static readonly FiniteSignedInt<systype> ops = Operations.signedint<systype>();
         
         public static readonly int64 Zero = new int64(0);
         
@@ -200,9 +203,9 @@ namespace Core
             => this % rhs;
 
         [MethodImpl(Inline)]
-        public QR<structype> divrem(structype rhs)
+        public Quorem<structype> divrem(structype rhs)
             => map(ops.divrem(data,rhs), 
-                x => QR.define<structype>(x.q,x.r));
+                x => Quorem.define<structype>(x.q,x.r));
 
         [MethodImpl(Inline)]
         public structype negate()
@@ -250,6 +253,14 @@ namespace Core
         public string bitstring()
             => ops.bitstring(data);
             
+        [MethodImpl(Inline)]
+        public structype distributeL((structype x, structype y) rhs)
+            => this * rhs.x + this * rhs.y;
+ 
+        [MethodImpl(Inline)]
+        public structype distributeR((structype x, structype y) rhs)
+            => rhs.x * this + rhs.y * this;
+
         [MethodImpl(Inline)]
         bool IEquatable<structype>.Equals(structype rhs)
             => ops.eq(data,rhs);

@@ -9,7 +9,7 @@ namespace Core
     using System.Runtime.CompilerServices;
     
     using static corefunc;
-    using static MathOps;
+    using static Operations;
 
     using C = Contracts;
 
@@ -25,10 +25,10 @@ namespace Core
     /// <summary>
     /// Defines a parameterized complex number 
     /// </summary>
-    public readonly struct complex<T> : C.Number<complex<T>,(T re,T im)>
+    public readonly struct complex<T> : Struct.Number<complex<T>,(T re,T im)>
         where T : new()
     {
-        static readonly C.Number<T> ops = MathOps.number<T>();
+        static readonly Class.Number<T> ops = Operations.number<T>();
         
         public static readonly complex<T> Zero = (ops.zero,ops.zero);
         public static readonly complex<T> One = (ops.one,ops.zero);        
@@ -88,7 +88,7 @@ namespace Core
         public complex<T> sub(complex<T> rhs)
             => this - rhs;
 
-        public QR<complex<T>> div(complex<T> rhs)        
+        public Quorem<complex<T>> div(complex<T> rhs)        
             => throw new NotImplementedException();
         
         public complex<T> mul(complex<T> rhs)
@@ -123,10 +123,6 @@ namespace Core
             throw new NotImplementedException();
         }
 
-        complex<T> C.Divisive<complex<T>, (T re, T im)>.div(complex<T> rhs)
-        {
-            throw new NotImplementedException();
-        }
 
         public (T re, T im) mul((T re, T im) a, (T re, T im) b)
         {
@@ -135,6 +131,26 @@ namespace Core
         }
 
         public string bitstring()
+        {
+            throw new NotImplementedException();
+        }
+
+        complex<T> Struct.Divisive<complex<T>, (T re, T im)>.div(complex<T> rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public complex<T> negate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public complex<T> distributeL((complex<T> x, complex<T> y) rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public complex<T> distributeR((complex<T> x, complex<T> y) rhs)
         {
             throw new NotImplementedException();
         }

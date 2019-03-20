@@ -40,7 +40,7 @@ namespace Core
     /// </summary>
     public readonly struct Word
     {
-        Index<Symbol> symbols {get;}        
+        Reify.Index<Symbol> symbols {get;}        
 
         public Word(params Symbol[] symbols)
             => this.symbols = list(symbols);

@@ -4,9 +4,8 @@ namespace Core
     using System.Numerics;
     using System.Collections.Generic;
     using System.Collections.Concurrent;
-    using C = Contracts;    
     using static corefunc;
-    using static TypeNats;
+    using static Reify;
 
     /// <summary>
     /// Reifies nat primitives and common derivations thereof,
@@ -16,8 +15,8 @@ namespace Core
     /// </summary>
     public static class TypeNats
     {
-         static readonly ConcurrentDictionary<Type,C.TypeNat> nats
-            = new ConcurrentDictionary<Type, C.TypeNat>();
+         static readonly ConcurrentDictionary<Type,TypeNat> nats
+            = new ConcurrentDictionary<Type, TypeNat>();
 
         /// <summary>
         /// Specifies the type literal for the first natural number 0
@@ -76,7 +75,7 @@ namespace Core
         }        
         
         static T record<T>(T inhabitant) 
-            where T : C.TypeNat
+            where T : TypeNat
         {
             nats.TryAdd(type<T>(), inhabitant);
             return inhabitant;
@@ -88,31 +87,31 @@ namespace Core
         /// <typeparam name="T">The nattype type</typeparam>
         /// <returns></returns>
         public static T nat<T>()
-            where T : C.TypeNat
+            where T : TypeNat
             => (T)nats[type<T>()];            
 
         public static nseq<T0> natseq<T0>()
-            where T0 : C.TypeNat        
+            where T0 : TypeNat        
                 => (nseq<T0>)nats.GetOrAdd(type<T0>(), t => nseq<T0>.Inhabitant);
 
         public static nseq<T0,T1> natseq<T0,T1>()
-            where T0 : C.TypeNat        
-            where T1 : C.TypeNat
+            where T0 : TypeNat        
+            where T1 : TypeNat
                 => (nseq<T0,T1>)nats.GetOrAdd(type<nseq<T0,T1>>(), 
                     t => nseq<T0,T1>.Inhabitant);
     
         public static nseq<T0,T1,T2> natseq<T0,T1,T2>()
-            where T0 : C.TypeNat        
-            where T1 : C.TypeNat
-            where T2 : C.TypeNat
+            where T0 : TypeNat        
+            where T1 : TypeNat
+            where T2 : TypeNat
                 => (nseq<T0,T1,T2>)nats.GetOrAdd(type<nseq<T0,T1,T2>>(), 
                     t => nseq<T0,T1,T2>.Inhabitant);
         
         public static nseq<T0,T1,T2,T3> natseq<T0,T1,T2,T3>()
-            where T0 : C.TypeNat        
-            where T1 : C.TypeNat
-            where T2 : C.TypeNat
-            where T3 : C.TypeNat
+            where T0 : TypeNat        
+            where T1 : TypeNat
+            where T2 : TypeNat
+            where T3 : TypeNat
                 => (nseq<T0,T1,T2,T3>)nats.GetOrAdd(type<nseq<T0,T1,T2,T3>>(), 
                     t => nseq<T0,T1,T2,T3>.Inhabitant);
 
@@ -162,7 +161,6 @@ namespace Core
         /// Specifies the type literal for the natural number 2^12 = 4096
         /// </summary>
         public static readonly nseq<N4,N0,N2,N6> N4096 = natseq<N4,N0,N2,N6>();
-
  
     }
 

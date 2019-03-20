@@ -9,14 +9,13 @@ namespace Core
     using System.Runtime.CompilerServices;
     using static corefunc;
 
-    using C = Contracts;
     
     using structype = bigint;
     using systype = System.Numerics.BigInteger;
 
-    public readonly struct bigint :  C.SignedInt<structype,systype>,  IEquatable<bigint>
+    public readonly struct bigint : Struct.InfiniteSignedInt<structype,systype> 
     {
-        public static readonly C.SignedInt<systype> ops =  MathOps.bigint();
+        public static readonly Class.InfiniteSignedInt<systype> ops = Operations.bigint();
 
         public static readonly structype Zero = ops.zero;
         
@@ -24,9 +23,15 @@ namespace Core
 
         public systype data {get;}
 
-        public structype zero => ops.zero;
+        public structype zero 
+            => Zero;
 
-        public structype one => ops.one;
+        public structype one 
+            => One;
+
+        public structype unit 
+            => One;
+
 
         [MethodImpl(Inline)]
         public Sign sign() 
@@ -169,8 +174,8 @@ namespace Core
             => ops.mod(data,rhs);
 
         [MethodImpl(Inline)]
-        public QR<structype> divrem(structype rhs)
-            => map(ops.divrem(data,rhs), x => QR.define<structype>(x.q,x.r));
+        public Quorem<structype> divrem(structype rhs)
+            => map(ops.divrem(data,rhs), x => Quorem.define<structype>(x.q,x.r));
 
         [MethodImpl(Inline)]
         public structype dec() 
@@ -252,7 +257,15 @@ namespace Core
             => ops.bitstring(data);
 
         [MethodImpl(Inline)]
-        public int CompareTo(structype rhs)
+        public structype distributeL((structype x, structype y) rhs)
+            => this * rhs.x + this * rhs.y;
+ 
+        [MethodImpl(Inline)]
+        public structype distributeR((structype x, structype y) rhs)
+            => rhs.x * this + rhs.y * this;
+
+        [MethodImpl(Inline)]
+        int IComparable<structype>.CompareTo(structype rhs)
             => data.CompareTo(rhs);
 
         public override bool Equals(object rhs)

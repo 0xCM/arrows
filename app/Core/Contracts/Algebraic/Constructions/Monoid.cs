@@ -2,34 +2,53 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core.Contracts
+namespace Core
 {
 
-
-    /// <summary>
-    /// Characterizes an algebraic monoid
-    /// </summary>
-    /// <typeparam name="T">The individual type</typeparam>
-    public interface Monoid<T> : Semigroup<T>
+    partial class Class
     {
-        /// <summary>
-        /// The monoidal unit, relative to the composition operator on the
-        /// subsumed semigroup
-        /// </summary>
-        /// <value></value>
-        T unit {get;}
-    }
 
-    /// <summary>
-    /// Characterizes a finitely generated free monoid
-    /// </summary>
-    /// <typeparam name="T">The individual type</typeparam>
-    /// <remarks>See https://en.wikipedia.org/wiki/Free_monoid </remarks>
-    public interface FreeMonoid<T> : Monoid<T>, FreeSemigroup<T>
+        public interface Monoid<T> : Semigroup<T>
+        {
+
+
+        }
+        public interface MonoidM<T> : Monoid<T>, SemigroupM<T>, Unital<T>
+        {
+
+        }
+
+
+        public interface MonoidA<T> : Monoid<T>, SemigroupA<T>, Nullary<T>
+        {
+            
+
+        }
+
+
+    }   
+
+    partial class Struct
     {
-        
-    }
 
-    
+        public interface Monoid<S,T> : Semigroup<S,T>
+            where S : Monoid<S,T>, new()
+        {
+            
+        }            
+
+        public interface MonoidM<S,T> : Monoid<S,T>, SemigroupM<S,T>
+            where S : MonoidM<S,T>, new()
+        {
+
+        }            
+
+        public interface MonoidA<S,T> :  Monoid<S,T>, SemigroupA<S,T>
+            where S : MonoidA<S,T>, new()
+        {
+
+        }            
+
+    }
 
 }

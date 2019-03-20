@@ -13,7 +13,7 @@ using Core;
 using C = Core.Contracts;
 
 using static corefunc;
-using static Core.MathOps;
+using static Core.Operations;
 
 
 partial class corext
