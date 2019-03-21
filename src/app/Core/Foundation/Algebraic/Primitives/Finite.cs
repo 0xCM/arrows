@@ -4,10 +4,10 @@
 //-----------------------------------------------------------------------------
 namespace Core
 {
-    using static Class;
+    using static Traits;
     using static Struct;
 
-    partial class Class
+    partial class Traits
     {
         public interface Finite<T> : Ordered<T>
         {

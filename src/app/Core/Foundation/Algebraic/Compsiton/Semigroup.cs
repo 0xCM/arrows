@@ -7,9 +7,9 @@ namespace Core
     using System;
     using System.Runtime.CompilerServices;
     using static corefunc;
-    using static Class;
+    using static Traits;
 
-    partial class Class
+    partial class Traits
     {
         public interface Semigroup<T> : BinaryOp<T>, Equatable<T>
         {
@@ -49,10 +49,10 @@ namespace Core
 
    partial class Reify
     {
-        public readonly struct SemigroupM<T> : Class.SemigroupM<T>, Singleton<SemigroupM<T>>
-            where T : Class.SemigroupM<T>, new()
+        public readonly struct SemigroupM<T> : Traits.SemigroupM<T>, Singleton<SemigroupM<T>>
+            where T : Traits.SemigroupM<T>, new()
         {    
-            static readonly Class.SemigroupM<T> Ops = ops<T,SemigroupM<T>>();
+            static readonly Traits.SemigroupM<T> Ops = ops<T,SemigroupM<T>>();
 
             public static SemigroupM<T> Inhabitant = default;
             
@@ -81,10 +81,10 @@ namespace Core
 
         }
 
-        public readonly struct SemigroupA<T> : Class.SemigroupA<T>, Singleton<SemigroupA<T>>
-            where T : Class.SemigroupA<T>, new()
+        public readonly struct SemigroupA<T> : Traits.SemigroupA<T>, Singleton<SemigroupA<T>>
+            where T : Traits.SemigroupA<T>, new()
         {    
-            static readonly Class.SemigroupA<T> Ops = ops<T,SemigroupA<T>>();
+            static readonly Traits.SemigroupA<T> Ops = ops<T,SemigroupA<T>>();
 
             public static SemigroupA<T> Inhabitant = default;
             

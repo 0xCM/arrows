@@ -8,7 +8,7 @@ namespace Core
     using System.Numerics;
 
 
-    partial class Class
+    partial class Traits
     {
 
         public interface FiniteInt<T> : Integer<T>, Finite<T>

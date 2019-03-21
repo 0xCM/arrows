@@ -10,7 +10,7 @@ namespace Core
 
 
     using static corefunc;
-    using static Class;
+    using static Traits;
 
     using systype = System.SByte;
     using opstype = Int8Ops;

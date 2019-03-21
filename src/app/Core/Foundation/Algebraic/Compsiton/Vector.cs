@@ -28,7 +28,7 @@ namespace Core
 
     }
 
-    partial class Class
+    partial class Traits
     {
 
         public interface Vector<N,T> : Tranposable<Reify.Vector<N,T>, Reify.Covector<N,T>>
@@ -49,7 +49,7 @@ namespace Core
     partial class Reify
     {
 
-        public readonly struct Vector<N, T> : Class.Vector<N, T>
+        public readonly struct Vector<N, T> : Traits.Vector<N, T>
             where N : TypeNat        
         {
 
@@ -107,7 +107,7 @@ namespace Core
                 => cells.ToString();
         }
 
-        public readonly struct Covector<N, T> : Class.Covector<N, T>
+        public readonly struct Covector<N, T> : Traits.Covector<N, T>
             where N : TypeNat        
         {
             /// <summary>

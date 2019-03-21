@@ -9,7 +9,7 @@ namespace Core
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
     using static corefunc;
-    using static Class;
+    using static Traits;
 
     public static class Matrix
     {
@@ -22,7 +22,7 @@ namespace Core
 
 
 
-    public readonly struct Matrix<M, N, T> : Class.Matrix<M, N, T>
+    public readonly struct Matrix<M, N, T> : Traits.Matrix<M, N, T>
         where M : TypeNat
         where N : TypeNat
     {
@@ -53,33 +53,33 @@ namespace Core
         public T cell(uint i, uint j)
             => data[m*i + j];
 
-        public Class.Vector<M, T> col(uint j)
+        public Traits.Vector<M, T> col(uint j)
             => vector<M,T>(data[0..]);
 
-        public Class.Vector<M, T> col<J>() 
+        public Traits.Vector<M, T> col<J>() 
             where J : TypeNat
                 => col(natval<J>());
 
-        public IEnumerable<Class.Vector<M, T>> cols()
+        public IEnumerable<Traits.Vector<M, T>> cols()
         {
             for(var j =0u; j < n; j++)
                 yield return col(j);
         }
 
-        public Class.Covector<N, T> row<I>() 
+        public Traits.Covector<N, T> row<I>() 
             where I : TypeNat
             => row(natval<I>());
 
-        public Class.Covector<N, T> row(uint i)
+        public Traits.Covector<N, T> row(uint i)
             => covector<N,T>(data.Segment(n*i,n));  
 
-        public IEnumerable<Class.Covector<N, T>> rows()
+        public IEnumerable<Traits.Covector<N, T>> rows()
         {
             for(var i = 0u; i < m; i++)
                 yield return row(i);
         }
 
-        public Class.Matrix<N, M, T> tranpose(Class.Matrix<M, N, T> src)
+        public Traits.Matrix<N, M, T> tranpose(Traits.Matrix<M, N, T> src)
             => throw new Exception();
 
         public override string ToString()

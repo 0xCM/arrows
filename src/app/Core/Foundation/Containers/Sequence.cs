@@ -7,7 +7,7 @@ namespace Core
     using System;
     using System.Collections.Generic;
     using static corefunc;
-    using static Class;
+    using static Traits;
 
     /// <summary>
     /// Characterizes a mathematical sequence that carries an integer

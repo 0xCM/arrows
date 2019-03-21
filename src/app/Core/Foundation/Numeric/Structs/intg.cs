@@ -11,13 +11,13 @@ namespace Core
     using System.Runtime.CompilerServices;    
 
     using static corefunc;
-    using static Class;
+    using static Traits;
 
     public static class intG
     {
 
         public static intg<T> define<T>(T x)
-            where T : Class.Integer<T>, new()
+            where T : Traits.Integer<T>, new()
                 => new intg<T>(x);
 
         public static bool prime<T>(intg<T> candidate)

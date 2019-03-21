@@ -8,7 +8,7 @@ namespace Core
     using System.Numerics;
     using System.Runtime.CompilerServices;
     using static corefunc;
-    using static Class;
+    using static Traits;
 
     
     using structype = bigint;

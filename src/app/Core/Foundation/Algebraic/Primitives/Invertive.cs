@@ -4,7 +4,7 @@
 //-----------------------------------------------------------------------------
 namespace Core
 {
-    partial class Class
+    partial class Traits
     {
 
         /// <summary>

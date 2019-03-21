@@ -13,7 +13,7 @@ namespace Core
     using System.Reflection;
 
     using static corefunc;
-    using static Class;
+    using static Traits;
 
 
 

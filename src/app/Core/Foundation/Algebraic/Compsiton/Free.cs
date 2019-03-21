@@ -8,7 +8,7 @@ namespace Core
     using System;
     using System.Collections.Generic;
 
-    partial class Class
+    partial class Traits
     {
         /// <summary>
         /// Characterizes a *finitely generated* free semigroup over a set

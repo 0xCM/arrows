@@ -7,7 +7,7 @@ namespace Core
     using System;
     using System.Numerics;
 
-    partial class Class
+    partial class Traits
     {
         public interface InfiniteInt<T> : Integer<T>, Infinite<T>
         {

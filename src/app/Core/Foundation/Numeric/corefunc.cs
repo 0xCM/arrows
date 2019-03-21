@@ -13,7 +13,7 @@ using C = Core.Contracts;
 
 using static corefunc;
 using static Core.Operations;
-using static Core.Class;
+using static Core.Traits;
 
 partial class corefunc
 {
@@ -26,7 +26,7 @@ partial class corefunc
     /// <returns></returns>
     [MethodImpl(Inline)]   
     public static fraction<T> frac<T>(T over, T under)
-        where T : Class.Integer<T>, new()
+        where T : Traits.Integer<T>, new()
             => new fraction<T>(over,under);
 
     /// <summary>

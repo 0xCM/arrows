@@ -85,7 +85,7 @@ namespace Core
     /// <summary>
     /// Represents the set of integers
     /// </summary>
-    public readonly struct Z : Set<bigint>, DiscreteSet<bigint>, Singleton<Z>, Class.GroupA<bigint>
+    public readonly struct Z : Set<bigint>, DiscreteSet<bigint>, Singleton<Z>, Traits.GroupA<bigint>
     {
         internal static readonly Z Inhabitant = default;
     
@@ -136,7 +136,7 @@ namespace Core
         bigint BinaryOp<bigint>.apply(bigint lhs, bigint rhs)
             => lhs + rhs;
 
-        bigint Class.Invertive<bigint>.invert(bigint x)
+        bigint Traits.Invertive<bigint>.invert(bigint x)
             => negate(x);
     }
 

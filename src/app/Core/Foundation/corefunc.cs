@@ -13,7 +13,7 @@ using Core;
 using Symbols;
 using static Core.Credit;
 using static corefunc;
-using static Core.Class;
+using static Core.Traits;
 
 
 public static partial class corefunc
@@ -686,12 +686,12 @@ public static partial class corefunc
         => Operations.ops<T,O>();
     
     [MethodImpl(Inline)]
-    public static Class.Semigroup<T> semigroup<T>() 
-        => Operations.ops<T,Class.Semigroup<T>>();
+    public static Traits.Semigroup<T> semigroup<T>() 
+        => Operations.ops<T,Traits.Semigroup<T>>();
 
     [MethodImpl(Inline)]
-    public static Class.Semiring<T> semiring<T>() 
-        => Operations.ops<T,Class.Semiring<T>>();
+    public static Traits.Semiring<T> semiring<T>() 
+        => Operations.ops<T,Traits.Semiring<T>>();
 
     [MethodImpl(Inline)]
     public static num<T> min<T>(num<T> x, num<T> y)

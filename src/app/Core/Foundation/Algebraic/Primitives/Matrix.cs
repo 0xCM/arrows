@@ -9,10 +9,10 @@ namespace Core
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
     using static corefunc;
-    using static Class;
+    using static Traits;
 
 
-    partial class Class
+    partial class Traits
     {
         /// <summary>
         /// Characterizes a type that supports a notion of transposition

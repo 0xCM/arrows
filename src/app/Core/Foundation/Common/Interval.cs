@@ -11,7 +11,7 @@ namespace Core
 
     using static corefunc;
 
-    partial class Class
+    partial class Traits
     {
 
         
@@ -88,17 +88,17 @@ namespace Core
         {
 
             public static Interval<T> closed<T>(T left, T right)
-                where T : Class.Ordered<T>
+                where T : Traits.Ordered<T>
                     => new Interval<T>(left,right, (true,true));
 
             public static Interval<T> open<T>(T left, T right)
-                where T : Class.Ordered<T>
+                where T : Traits.Ordered<T>
                     => new Interval<T>(left,right, (false,false));
             
         }
         
-        public readonly struct Interval<T> : Class.Interval<T>
-            where T : Class.Ordered<T>
+        public readonly struct Interval<T> : Traits.Interval<T>
+            where T : Traits.Ordered<T>
         {
             public Interval(Option<T> left, Option<T> right, (bool left, bool right) inclusion)
             {

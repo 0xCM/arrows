@@ -4,9 +4,9 @@
 //-----------------------------------------------------------------------------
 namespace Core
 {
-    using static Class;
+    using static Traits;
 
-    partial class Class
+    partial class Traits
     {
         /// <summary>
         /// Characterizes a left module over a commtative unital ring

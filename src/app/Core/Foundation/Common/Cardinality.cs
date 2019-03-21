@@ -6,7 +6,7 @@ namespace Core
 {
     using System;
 
-    using static Class;
+    using static Traits;
 
     using static corefunc;
 

@@ -8,7 +8,7 @@ namespace Core
     using System.Numerics;
 
 
-    partial class Class
+    partial class Traits
     {
         /// <summary>
         /// Characterizes a bounded fractional operation provider

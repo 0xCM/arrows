@@ -8,7 +8,7 @@ namespace Core
     using System.Runtime.CompilerServices;
     using static corefunc;
 
-    partial class Class
+    partial class Traits
     {
         /// <summary>
         /// Characterizes a type that defines a notion of additivity

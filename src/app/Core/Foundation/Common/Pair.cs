@@ -7,7 +7,7 @@ namespace Core
     using System;
     using static corefunc;
 
-    partial class Class
+    partial class Traits
     {
 
         public interface Copair<A,B>
@@ -61,7 +61,7 @@ namespace Core
         /// a left-value of one type and a right-value
         /// of another type
         /// </summary>
-        public readonly struct Pair<A,B> : Class.Pair<A,B>
+        public readonly struct Pair<A,B> : Traits.Pair<A,B>
         {        
             public A left {get;}
 
@@ -79,7 +79,7 @@ namespace Core
         /// a left-value of one type or a right value
         /// of another type
         /// </summary>
-        public readonly struct Copair<A,B> : Class.Copair<A, B>
+        public readonly struct Copair<A,B> : Traits.Copair<A, B>
         {
 
             /// <summary>
@@ -122,10 +122,10 @@ namespace Core
     public static class PairX
     {
 
-        public static bool IsLeft<A,B>(this Class.Copair<A,B> cp)
+        public static bool IsLeft<A,B>(this Traits.Copair<A,B> cp)
             => cp.left.exists;
 
-        public static bool IsRight<A,B>(this Class.Copair<A,B> cp)
+        public static bool IsRight<A,B>(this Traits.Copair<A,B> cp)
             => cp.right.exists;
     }
 

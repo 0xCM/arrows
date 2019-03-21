@@ -10,7 +10,7 @@ namespace Core
     using System.Collections.Generic;
 
     using static corefunc;
-    using static Class;
+    using static Traits;
 
     using systype = System.Double;
     using structype = float64;

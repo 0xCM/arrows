@@ -11,7 +11,7 @@ namespace Core
     using System.Runtime.CompilerServices;
     
     using static corefunc;
-    using static Class;
+    using static Traits;
     
     using systype = System.Numerics.BigInteger;
     using opstype = BigIntOps;

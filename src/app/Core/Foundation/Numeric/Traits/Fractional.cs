@@ -7,7 +7,7 @@ namespace Core
     using System;
     using System.Numerics;
 
-    partial class Class
+    partial class Traits
     {
         /// <summary>
         /// Characterizes fractional operations

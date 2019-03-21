@@ -7,7 +7,7 @@ namespace Core
     using System;
     using System.Numerics;
 
-    partial class Class
+    partial class Traits
     {
         public interface Rational<T> : Fractional<T>
             where T : Rational<T>, new()

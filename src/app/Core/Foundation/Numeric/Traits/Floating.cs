@@ -6,10 +6,10 @@ namespace Core
 {
     using System;
     using System.Collections.Generic;
-    using static Class;
+    using static Traits;
     using static Struct;
 
-    partial class Class
+    partial class Traits
     {
         /// <summary>
         /// Characterizes an operation provider for floating point values

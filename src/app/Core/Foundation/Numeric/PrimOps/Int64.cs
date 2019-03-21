@@ -8,7 +8,7 @@ namespace Core
     using System.Runtime.CompilerServices;
 
     using static corefunc;
-    using static Class;
+    using static Traits;
     using systype = System.Int64;
     using opstype = Operations.Int64Ops;
     

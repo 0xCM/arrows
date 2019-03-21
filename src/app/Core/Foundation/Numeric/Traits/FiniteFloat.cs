@@ -7,7 +7,7 @@ namespace Core
     using System;
     using System.Collections.Generic;
 
-    partial class Class
+    partial class Traits
     {
         /// <summary>
         /// Characterizes an operation provider for bounded floating point values

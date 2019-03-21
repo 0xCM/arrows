@@ -6,7 +6,7 @@ namespace Core
 {
     using System;
     
-    partial class Class
+    partial class Traits
     {
 
         public interface Natural<T> : Integer<T>, Unsigned<T>

@@ -6,7 +6,7 @@ namespace Core
 {
     using System;
 
-    partial class Class
+    partial class Traits
     {
         /// <summary>
         /// Characterizes a type that supports a notion of bit-level logic

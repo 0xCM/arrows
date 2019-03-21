@@ -5,7 +5,7 @@
 namespace Core
 {
 
-    partial class Class
+    partial class Traits
     {
          /// <summary>
         /// Characterizes semiring operations
@@ -21,7 +21,7 @@ namespace Core
         /// </summary>
         /// <typeparam name="S">The classified structure</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-         public interface Semiring<S,T> : Class.MonoidA<S,T>, Class.MonoidM<S,T>, Distributive<S,T>
+         public interface Semiring<S,T> : Traits.MonoidA<S,T>, Traits.MonoidM<S,T>, Distributive<S,T>
             where S : Semiring<S,T>, new()
         {
             

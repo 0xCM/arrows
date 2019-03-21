@@ -9,10 +9,10 @@ namespace Core
 
     using static corefunc;
 
-    partial class Class
+    partial class Traits
     {
 
-        public interface ModN<N,T> : Class.Ring<T>
+        public interface ModN<N,T> : Traits.Ring<T>
             where N : TypeNat
             where T : new()
         {
@@ -26,13 +26,13 @@ namespace Core
     {
  
         
-        public readonly struct ModN<N,T> : Class.ModN<N,T>, Singleton<ModN<N,T>>
+        public readonly struct ModN<N,T> : Traits.ModN<N,T>, Singleton<ModN<N,T>>
             where N : TypeNat
             where T : new()
         {
             public static readonly ModN<N,T> Inhabitant = default;
             
-            static readonly Class.Integer<T> Ops = ops<T,Class.Integer<T>>();
+            static readonly Traits.Integer<T> Ops = ops<T,Traits.Integer<T>>();
             
             static readonly intg<T> @base =  natval<N>().ToIntG<T>();
 

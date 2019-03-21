@@ -5,7 +5,7 @@
 namespace Core
 {
 
-    partial class Class
+    partial class Traits
     {
         /// <summary>
         /// Characterizs operations over a type that has infinitely many refications

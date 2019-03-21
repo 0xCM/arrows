@@ -11,7 +11,7 @@ namespace Core
         GT = 1
     }
 
-    partial class Class
+    partial class Traits
     {
 
         /// <summary>

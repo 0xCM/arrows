@@ -10,7 +10,7 @@ namespace Core
 
     using static corefunc;
 
-    using static Class;
+    using static Traits;
     using systype = System.UInt32;
     using opstype = Operations.UInt32Ops;
     

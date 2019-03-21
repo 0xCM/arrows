@@ -13,7 +13,7 @@ namespace Core
     using C = Contracts;
 
     using static corefunc;
-    using static Class;
+    using static Traits;
 
     public readonly struct num<T> : Number<num<T>,T>, Stepwise<num<T>, T>, Ordered<num<T>, T> 
         where T : new()

@@ -8,7 +8,7 @@ namespace Core
     using System.Runtime.CompilerServices;
     using static corefunc;
 
-    using static Class;
+    using static Traits;
 
     public static class frac
     {

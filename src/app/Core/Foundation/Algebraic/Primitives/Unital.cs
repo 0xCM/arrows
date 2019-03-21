@@ -5,7 +5,7 @@
 namespace Core
 {
 
-    partial class Class
+    partial class Traits
     {
         /// <summary>
         /// Characterizes a type for which a multiplicative unit exists

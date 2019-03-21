@@ -10,7 +10,7 @@ namespace Core
 
     using static corefunc;
 
-    using static Class;
+    using static Traits;
     using systype = System.Double;
     using opstype = Float64Ops;
     using SysMath = System.Math;

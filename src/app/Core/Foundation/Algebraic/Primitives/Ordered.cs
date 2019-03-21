@@ -6,7 +6,7 @@ namespace Core
 {
     using System;
 
-    partial class Class
+    partial class Traits
     {
         public interface Ordered<T> : Stepwise<T>, Equatable<T>
         {

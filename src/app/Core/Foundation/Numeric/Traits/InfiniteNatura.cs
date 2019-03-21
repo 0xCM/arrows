@@ -6,7 +6,7 @@ namespace Core
 {
     using System;
     
-    partial class Class
+    partial class Traits
     {
         /// Characterizes operations over the natural numbers: N
         public interface InfiniteNatural<T> :  Infinite<T>, Integer<T>, Unsigned<T>

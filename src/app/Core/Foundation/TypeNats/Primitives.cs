@@ -10,7 +10,7 @@ namespace Core
     using System.Collections.Concurrent;
     using static corefunc;
     using static Nats;
-    using static Class;
+    using static Traits;
 
     /// <summary>
     /// The singleton type representative for 0

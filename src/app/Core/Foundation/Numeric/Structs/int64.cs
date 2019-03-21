@@ -11,7 +11,7 @@ namespace Core
     using structype = int64;
     using systype = System.Int64;
 
-    using static Class;
+    using static Traits;
     
 
     public readonly struct int64 : FiniteSignedInt<structype,systype>, IEquatable<structype>, IComparable<structype>

@@ -6,7 +6,7 @@ namespace Core
 {
     using Core.Contracts;
 
-    public static partial class Class
+    public static partial class Traits
     {
 
     }

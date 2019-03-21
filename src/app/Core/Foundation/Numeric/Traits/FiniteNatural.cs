@@ -5,7 +5,7 @@
 namespace Core
 {
 
-    partial class Class
+    partial class Traits
     {
         /// <summary>
         /// Characterizes an operation provider for bounded natural types
@@ -22,7 +22,7 @@ namespace Core
         /// </summary>
         /// <typeparam name="S">The realizing type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface FiniteNatural<S,T> : Class.Natural<S,T>, Finite<S,T>
+        public interface FiniteNatural<S,T> : Traits.Natural<S,T>, Finite<S,T>
             where S : FiniteNatural<S,T>, new()
             where T : new()
         {

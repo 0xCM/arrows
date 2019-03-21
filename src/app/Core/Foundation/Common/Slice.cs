@@ -12,7 +12,7 @@ namespace Core
 
     using static corefunc;
 
-    partial class Class
+    partial class Traits
     {
 
         public interface Slice<T>
@@ -54,19 +54,19 @@ namespace Core
     public static class Slice
     {
         [MethodImpl(Inline)]
-        public static Reify.Slice<N,T> add<N,T>(Class.Slice<N,T> s1, Class.Slice<N,T> s2)
+        public static Reify.Slice<N,T> add<N,T>(Traits.Slice<N,T> s1, Traits.Slice<N,T> s2)
             where N : Core.TypeNat => Slice<N,T>.add(s1,s2);
 
         [MethodImpl(Inline)]
-        public static Reify.Slice<N,T> mul<N,T>(Class.Slice<N,T> a, Class.Slice<N,T> b)
+        public static Reify.Slice<N,T> mul<N,T>(Traits.Slice<N,T> a, Traits.Slice<N,T> b)
             where N : Core.TypeNat => Slice<N,T>.mul(a,b);
 
         [MethodImpl(Inline)]
-        public static T sum<N,T>(Class.Slice<N,T> x)
+        public static T sum<N,T>(Traits.Slice<N,T> x)
             where N : Core.TypeNat => Slice<N,T>.sum(x);
     
         [MethodImpl(Inline)]
-        public static Reify.Slice<N,T> square<N,T>(Class.Slice<N,T> x)
+        public static Reify.Slice<N,T> square<N,T>(Traits.Slice<N,T> x)
             where N : Core.TypeNat => Slice<N,T>.square(x);
     }
 
@@ -79,10 +79,10 @@ namespace Core
         where N : Core.TypeNat
     {
         static readonly uint Length = natval<N>();
-        static readonly Class.Semiring<T> Ops = semiring<T>();
+        static readonly Traits.Semiring<T> Ops = semiring<T>();
 
         [MethodImpl(Inline)]
-        static Class.Slice<N,U> apply<U>(Class.Slice<N,T> s, Func<T,U> f)
+        static Traits.Slice<N,U> apply<U>(Traits.Slice<N,T> s, Func<T,U> f)
         {
             var result = array<U>(Length);
             for(var i=0; i< Length; i++)
@@ -91,7 +91,7 @@ namespace Core
         }
 
         [MethodImpl(Inline)]
-        static Reify.Slice<N,U> apply<U>(Class.Slice<N,T> s1, Class.Slice<N,T> s2, Func<T,T,U> f)
+        static Reify.Slice<N,U> apply<U>(Traits.Slice<N,T> s1, Traits.Slice<N,T> s2, Func<T,T,U> f)
         {
             var result = array<U>(Length);
             for(var i=0; i< Length; i++)
@@ -100,7 +100,7 @@ namespace Core
         }
 
        [MethodImpl(Inline)]
-       public static T reduce(Class.Slice<N,T> s, Func<T,T,T> reducer)
+       public static T reduce(Traits.Slice<N,T> s, Func<T,T,T> reducer)
         {
             var result = Ops.zero;
             for(var i=0; i< Length; i++)
@@ -117,7 +117,7 @@ namespace Core
         /// <param name="s1">The first slice</param>
         /// <param name="s2">the second slice</param>
         /// <returns></returns>
-        public static Reify.Slice<N,T> add(Class.Slice<N,T> s1, Class.Slice<N,T> s2)
+        public static Reify.Slice<N,T> add(Traits.Slice<N,T> s1, Traits.Slice<N,T> s2)
             => apply(s1,s2,Ops.add);
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Core
         /// <typeparam name="N">The natural length type</typeparam>
         /// <typeparam name="T">The semigroup element type</typeparam>
         /// <returns></returns>
-        public static Reify.Slice<N,T> mul(Class.Slice<N,T> a, Class.Slice<N,T> b)
+        public static Reify.Slice<N,T> mul(Traits.Slice<N,T> a, Traits.Slice<N,T> b)
             => apply(a,b,Ops.mul);
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Core
         /// <param name="s">The source slice</param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static T sum(Class.Slice<N,T> s)
+        public static T sum(Traits.Slice<N,T> s)
             => reduce(s, Ops.add);
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Core
         /// <param name="s">The source slice</param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Reify.Slice<N,T> square(Class.Slice<N,T> s)
+        public static Reify.Slice<N,T> square(Traits.Slice<N,T> s)
             => apply(s, s, Ops.mul);
 
     }
@@ -155,7 +155,7 @@ namespace Core
     partial class Reify
     {
 
-        public readonly struct Slice<N,T> : Class.Slice<Slice<N,T>,N,T>
+        public readonly struct Slice<N,T> : Traits.Slice<Slice<N,T>,N,T>
             where N : TypeNat
         {
                         
