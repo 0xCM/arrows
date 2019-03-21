@@ -22,8 +22,8 @@
             "esnext",
             "dom"
         ],
-        "outDir": "./dist/app",
-        "rootDir": "./app"
+        "outDir": "./.work/app",
+        "rootDir": "./src/app"
     
     },
       

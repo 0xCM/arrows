@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
-        <OutputDir>bin</OutputDir>
-        <IntermediateOutputPath>bin/obj</IntermediateOutputPath>
-        <BaseIntermediateOutputPath>bin/obj</BaseIntermediateOutputPath>
+        <OutputDir>.work/bin</OutputDir>
+        <IntermediateOutputPath>.work/bin/obj</IntermediateOutputPath>
+        <BaseIntermediateOutputPath>.work/bin/obj</BaseIntermediateOutputPath>
     </PropertyGroup>
 </Project>

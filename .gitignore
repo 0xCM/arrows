@@ -5,3 +5,4 @@ libs/
 dist/
 bin/
 .vs/
+.work/
