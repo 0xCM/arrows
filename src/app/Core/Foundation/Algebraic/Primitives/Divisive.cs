@@ -6,53 +6,51 @@ namespace Core
 {
     partial class Class
     {
-        public interface Divisive<T> : TypeClass
+        public interface Divisive<T>
         {
             T div(T lhs, T rhs);        
-        }
-
-        public interface Modular<T> : Divisive<T>, TypeClass
-        {
-            T mod(T lhs, T rhs);
-
-        }
-
-
-        public interface EuclideanDiv<T> : Modular<T>
-        {    
 
             T gcd(T lhs, T rhs);
 
             Quorem<T> divrem(T lhs, T rhs);        
+
+            T mod(T lhs, T rhs);
         }
 
-
-    }
-
-    partial class Struct
-    {
         public interface Divisive<S,T> : Structure<S,T>
             where S : Divisive<S,T>, new()
         {
 
             S div(S rhs);        
-        }
 
-
-        public interface Modular<S,T> : Divisive<S,T>
-            where S : Modular<S,T>, new()
-        {
-
-            S mod(S rhs);
-
-        }
-
-        public interface EuclideanDiv<S,T> : Divisive<S,T>
-            where S : EuclideanDiv<S,T>, new()
-        {
             S gcd(S rhs);
 
             Quorem<S> divrem(S rhs);        
+
+            S mod(S rhs);
+        }
+
+
+        public interface Reciprocative<T>
+        {
+            /// <summary>
+            /// Calculates the multiplicative inverse of a given element
+            /// </summary>
+            /// <param name="x">The individual for which an inverse will be calculated</param>
+            /// <returns></returns>
+            T reciprocal(T x);
+            
+        }
+
+        public interface Reciprocative<S,T> : Structure<S,T>
+            where S : Reciprocative<S,T>,new()
+        {
+            /// <summary>
+            /// Calculates the multiplicative inverse of self
+            /// </summary>
+            /// <returns></returns>
+            S reciprocal();
+            
         }
 
     }

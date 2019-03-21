@@ -8,32 +8,17 @@ namespace Core
     {
 
         /// <summary>
-        /// Characterizes a type that defines a notion of additivity
+        /// Characterizes operational multiplication
         /// </summary>
         /// <typeparam name="T">The type subject to multiplication</typeparam>
-        public interface Multiplicative<T> : BinaryOp<T>, TypeClass
+        public interface Multiplicative<T> : BinaryOp<T>
         {
             T mul(T a, T b);
 
         }
 
         /// <summary>
-        /// Characterizes a type that defines a notion of additivity
-        /// </summary>
-        /// <typeparam name="T">The type subject to multiplication</typeparam>
-        public interface Multiplicative<H,T> : TypeClass<H>, Multiplicative<T>
-            where H : Multiplicative<H,T>, new()
-        {
-
-        }
-    
-    }
-
-    partial class Struct
-    {
-
-        /// <summary>
-        /// Characterizes structural multiplicativity
+        /// Characterizes structural multiplication
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The individual type</typeparam>
@@ -43,7 +28,8 @@ namespace Core
             S mul(S a);
 
         }
-
+    
     }
+
 
 }

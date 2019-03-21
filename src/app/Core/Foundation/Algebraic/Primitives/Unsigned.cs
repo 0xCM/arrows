@@ -6,20 +6,11 @@ namespace Core
 {
     partial class Class
     {
-        public interface Unsigned<T> : TypeClass
+        public interface Unsigned<T>
         {
             
         }
 
-        public interface Unsigned<H,T> : TypeClass<H>, Unsigned<T>
-            where H : Unsigned<H,T>, new()
-        {
-            
-        }
-    }
-
-    partial class Struct
-    {
         /// <summary>
         /// Characterizes a structural unsigned number
         /// </summary>

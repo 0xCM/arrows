@@ -59,11 +59,6 @@ namespace Core
             
         }
 
-    }
-
-
-    partial class Struct
-    {
         public interface BitLogics<S,T>
             where S : BitLogics<S,T>
         {
@@ -117,4 +112,6 @@ namespace Core
         }
 
     }
+
+
 }

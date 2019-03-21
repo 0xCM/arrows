@@ -19,17 +19,6 @@ namespace Core
             bool gteq(T lhs, T rhs);              
         }    
 
-        public interface Ordered<H,T> : TypeClass<H>, Ordered<T>
-            where H : Ordered<H,T>, new()
-        {
-
-        }
-
-        
-    }
-
-    partial class Struct
-    {
         /// <summary>
         /// Characterizes a structural number that can be ordered
         /// </summary>
@@ -46,5 +35,8 @@ namespace Core
             
             bool gteq(S rhs);              
         }    
+
+        
     }
+
 }

@@ -19,13 +19,13 @@ namespace Core
     {
         public static readonly N0 Inhabitant = new N0(0);
 
-        public int value {get;}
+        public uint value {get;}
 
         public N0 current => N0.Inhabitant;
 
         public N1 next => N1.Inhabitant;
 
-        N0(int natval)
+        N0(uint natval)
             => this.value = natval;        
     }
 
@@ -36,14 +36,14 @@ namespace Core
     {
         public static readonly N1 Inhabitant = new N1(1);        
         
-        public int value {get;}    
+        public uint value {get;}    
         
         public N1 current => N1.Inhabitant;
 
         public N2 next => N2.Inhabitant;
         
 
-        N1(int natval)
+        N1(uint natval)
             => this.value = natval;        
         public override string ToString() => value.ToString();    
     }
@@ -55,13 +55,13 @@ namespace Core
     {
         public static readonly N2 Inhabitant = new N2(2);        
 
-        public int value {get;}    
+        public uint value {get;}    
 
         public N2 current => N2.Inhabitant;
 
         public N3 next => N3.Inhabitant;
 
-        N2(int natval)
+        N2(uint natval)
             => this.value = natval;        
 
         public override string ToString() => value.ToString();    
@@ -74,13 +74,13 @@ namespace Core
     {
         public static readonly N3 Inhabitant = new N3(3);        
 
-        public int value {get;}    
+        public uint value {get;}    
 
         public N3 current => N3.Inhabitant;
         
         public N4 next => N4.Inhabitant;
 
-        N3(int natval)
+        N3(uint natval)
             => this.value = natval;        
 
         public override string ToString() => value.ToString();    
@@ -92,14 +92,14 @@ namespace Core
     public readonly struct N4 : TypeNat<N4,N5>
     {
         public static readonly N4 Inhabitant = new N4(4);        
-        public int value {get;}    
+        public uint value {get;}    
 
         public N4 current => N4.Inhabitant;
 
         public N5 next => N5.Inhabitant;
 
 
-        N4(int natval)
+        N4(uint natval)
             => this.value = natval;        
 
         public override string ToString() => value.ToString();    
@@ -112,13 +112,13 @@ namespace Core
     {
         public static readonly N5 Inhabitant = new N5(5);        
         
-        public int value {get;}
+        public uint value {get;}
 
         public N5 current => N5.Inhabitant;
 
         public N6 next => N6.Inhabitant;
         
-        N5(int natval)
+        N5(uint natval)
             => this.value = natval;        
         
         public override string ToString() => value.ToString();    
@@ -131,13 +131,13 @@ namespace Core
     {
         public static readonly N6 Inhabitant = new N6(6);        
         
-        public int value {get;}    
+        public uint value {get;}    
 
         public N6 current => N6.Inhabitant;
         
         public N7 next => N7.Inhabitant;
         
-        N6(int natval)
+        N6(uint natval)
             => this.value = natval;        
 
         public override string ToString() => value.ToString();    
@@ -150,13 +150,13 @@ namespace Core
     {
         public static readonly N7 Inhabitant = new N7(7);        
 
-        public int value {get;}    
+        public uint value {get;}    
 
         public N7 current => N7.Inhabitant;
 
         public N8 next => N8.Inhabitant;
 
-        N7(int natval)
+        N7(uint natval)
             => this.value = natval;        
             
         public override string ToString() => value.ToString();
@@ -165,12 +165,12 @@ namespace Core
     public readonly struct N8 : TypeNat<N8,N9>
     {
         public static readonly N8 Inhabitant = new N8(8);        
-        public int value {get;}    
+        public uint value {get;}    
 
         public N8 current => N8.Inhabitant;
 
         public N9 next => N9.Inhabitant;
-        N8(int natval)
+        N8(uint natval)
             => this.value = natval;        
 
         public override string ToString() => value.ToString();    
@@ -179,11 +179,11 @@ namespace Core
     public readonly struct N9 : TypeNat<N9>
     {
         public static readonly N9 Inhabitant = new N9(9);        
-        public int value {get;}    
+        public uint value {get;}    
         
         public N9 current => N9.Inhabitant;
 
-        N9(int natval)
+        N9(uint natval)
             => this.value = natval;      
 
         public override string ToString() => value.ToString();    

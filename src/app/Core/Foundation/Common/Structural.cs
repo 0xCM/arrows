@@ -10,7 +10,7 @@ namespace Core
     /// </summary>
     /// <typeparam name="S">The structure type</typeparam>
     /// <typeparam name="T">The underlying data type</typeparam>
-    public interface Structure<S,T> : TypeClass<S>
+    public interface Structure<S,T>
         where S : Structure<S,T>, new()
     {
         /// <summary>

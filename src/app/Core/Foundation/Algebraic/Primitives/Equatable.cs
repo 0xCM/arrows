@@ -8,23 +8,12 @@ namespace Core
 
     partial class Class
     {
-        public interface Equatable<T> : TypeClass
+        public interface Equatable<T>
         {
             bool eq(T lhs, T rhs);
 
             bool neq(T lhs, T rhs);
         }
-
-        public interface Equatable<H,T> : TypeClass<H>, Equatable<T>
-            where H : Equatable<H,T>, new()
-        {
-        
-        }
-
-    }
-
-    partial class Struct
-    {
 
         public interface Equatable<S,T> : Structure<S,T>
             where S : Equatable<S,T>, new()
@@ -33,5 +22,7 @@ namespace Core
 
             bool neq(S rhs);
         }
+
     }
+
 }

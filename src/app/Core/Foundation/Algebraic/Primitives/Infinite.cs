@@ -11,22 +11,12 @@ namespace Core
         /// Characterizs operations over a type that has infinitely many refications
         /// </summary>
         /// <typeparam name="T">The type over which operations are defined</typeparam>
-        public interface Infinite<T> : TypeClass
+        public interface Infinite<T> 
         
         {
             
         }
 
-        public interface Infinite<H,T> : TypeClass<H>, Infinite<T>
-            where H : Infinite<H,T>, new()
-        {
-
-
-        }
-    }
-
-    partial class Struct
-    {
         /// <summary>
         /// Characterizes a Unbounded structural number
         /// </summary>
@@ -36,6 +26,8 @@ namespace Core
             where S : Infinite<S,T>, new()
         {
 
-        }
+        }    
     }
+
+
 }

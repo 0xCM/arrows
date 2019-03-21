@@ -516,7 +516,7 @@ public static partial class corefunc
     /// <typeparam name="N">The nat type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static int natval<N>() 
+    public static uint natval<N>() 
         where N : TypeNat
         => Nats.nat<N>().value;
 
@@ -530,7 +530,7 @@ public static partial class corefunc
     /// <typeparam name="N">The nat type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static int natcheck<N>(int expected)
+    public static uint natcheck<N>(uint expected)
             where N : TypeNat
            => natval<N>() == expected 
             ? expected 
@@ -542,10 +542,22 @@ public static partial class corefunc
     /// <typeparam name="M">The first nat type</typeparam>
     /// <typeparam name="N">The second type</typeparam>
     /// <returns></returns>
-    public static (int m, int n) natvals<M,N>()
+    public static (uint m, uint n) natvals<M,N>()
         where N : TypeNat
         where M : TypeNat
             => (natval<M>(),natval<N>());            
+
+    /// <summary>
+    /// Retrieves the value of a nat triple
+    /// </summary>
+    /// <typeparam name="M">The first nat type</typeparam>
+    /// <typeparam name="N">The second type</typeparam>
+    /// <returns></returns>
+    public static (uint m, uint n, uint p) natvals<M,N,P>()
+        where N : TypeNat
+        where M : TypeNat
+        where P : TypeNat
+            => (natval<M>(),natval<N>(), natval<P>());            
 
     /// <summary>
     /// Verfies that the lengh of a list agrees with the parameterized natural
@@ -561,25 +573,6 @@ public static partial class corefunc
             ? src
             : throw new ArgumentException(); 
 
-    public class NatConstraintException : Exception
-    {
-        public int Expect {get;}
-        
-        public int Actual{get;}
-
-        public string Constraint {get;}
-
-        public NatConstraintException(string constraint, int expect, int actual)
-        {
-            this.Constraint = constraint;
-            this.Expect = expect;
-            this.Actual = actual;            
-        }
-
-        public override string Message 
-            => $"Natural number {Constraint} failed. Expected: {Expect} | Actual: {Actual}";
-    }
-
     /// <summary>
     /// Verfies that the lengh of an array agrees with the parameterized natural
     /// If successful, the input list is returned; otherwise, an exception is
@@ -592,7 +585,7 @@ public static partial class corefunc
             where N : TypeNat
            => natval<N>() == src.Length 
             ? src
-            : throw new NatConstraintException("equality", natval<N>(), src.Length); 
+            : throw new NatConstraintException("equality", natval<N>(), (uint)src.Length); 
 
     /// <summary>
     /// Demands truth that enforced with an exeption upon false

@@ -11,24 +11,13 @@ namespace Core
         /// Characterizes a type for which a multiplicative unit exists
         /// </summary>
         /// <typeparam name="T">The characterized type</typeparam>
-        public interface Unital<T> : TypeClass
+        public interface Unital<T>
         {
             /// <summary>
             /// The unital value
             /// </summary>
             T one {get;}
         }
-
-        public interface Unital<H,T> : TypeClass<H>, Unital<T>
-            where H : Unital<H,T>, new()
-        {
-
-        }
-
-    }
-
-    partial class Struct
-    {
 
         /// <summary>
         /// Characterizes a unital structure, that is, a structure
@@ -42,5 +31,6 @@ namespace Core
         }
 
     }
+
 
 }

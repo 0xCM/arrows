@@ -9,11 +9,16 @@ namespace Core
         
     }
     
-    public interface TypeClass<T0> : TypeClass
-        where T0 : TypeClass<T0>, new()
+    public interface TypeClass<T> : TypeClass, Singleton<T>
+        where T : TypeClass<T>, new()
     {
         
     }
 
+    public interface TypeClass<T,K> : TypeClass<T>
+        where T : TypeClass<T>, new()
+    {
+        
+    }
 
 }

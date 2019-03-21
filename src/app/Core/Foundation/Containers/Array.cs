@@ -47,13 +47,13 @@ namespace Core
                     this.data = array<T>(natval<N>());
                 else
                 {
-                    natcheck<N>(data.Length);
+                    natcheck<N>(data.length());
                     this.data = data;
                 }
             }
 
-            public int length 
-                => data.Length;
+            public uint length 
+                => (uint)data.Length;
 
             IEnumerator<T> IEnumerable<T>.GetEnumerator()
                 =>(from item in data select item).GetEnumerator();
@@ -72,7 +72,7 @@ namespace Core
         {
             readonly T[,] data;
             
-            readonly (int k1, int k2) dim;
+            readonly (uint k1, uint k2) dim;
             
             public Array(IEnumerable<T> src)
             {
@@ -96,7 +96,7 @@ namespace Core
         {
             readonly T[,,] data;
             
-            readonly (int k1, int k2, int k3) dim;
+            readonly (uint k1, uint k2, uint k3) dim;
 
             public Array(IEnumerable<T> src)
             {
@@ -111,7 +111,5 @@ namespace Core
             public T this[int i, int j, int k] => data[i,j,k];
         }        
 
-
     }
-
 }

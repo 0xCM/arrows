@@ -14,7 +14,7 @@ namespace Core
         /// Characterizes a type that defines a notion of additivity
         /// </summary>
         /// <typeparam name="T">The type subject to addition</typeparam>
-        public interface Additive<T> : BinaryOp<T>,  TypeClass
+        public interface Additive<T> : BinaryOp<T>
         {
 
             /// <summary>
@@ -28,24 +28,12 @@ namespace Core
             
         }
 
-        public interface Additive<H,T> : Additive<T>, TypeClass<H>
-            where H : Additive<H,T>, new()
-        {
-
-        }
-
-
-    }
-
-    partial class Struct
-    {
-
-
         public interface Additive<S,T> : Structure<S,T>
             where S : Additive<S,T>, new()
         {
             S add(S rhs);
         }
+
 
     }
 

@@ -7,22 +7,11 @@ namespace Core
 
     partial class Class
     {    
-        public interface Signed<T> : TypeClass
+        public interface Signed<T>
         {
 
         }
 
-        public interface Signed<H,T> : TypeClass<H>, Signed<T>
-            where H : Signed<H,T>, new()
-        {
-
-
-        }
-
-    }
-
-    partial class Struct
-    {
         /// <summary>
         /// Characterizes a structure that carries a sign
         /// </summary>

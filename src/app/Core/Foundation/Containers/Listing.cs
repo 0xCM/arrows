@@ -22,7 +22,7 @@ namespace Core
         /// <summary>
         /// The value of the natural parameter
         /// </summary>
-        int length {get;}
+        uint length {get;}
         
     }
 
@@ -46,7 +46,7 @@ namespace Core
         {
             readonly IReadOnlyList<T> data;
             
-            public int length {get;}
+            public uint length {get;}
 
             int IReadOnlyCollection<T>.Count 
                 => data.Count;
@@ -57,7 +57,7 @@ namespace Core
             public Listing(IEnumerable<T> src)
             {
                 this.data = src.ToList();
-                this.length = natcheck<N>(data.Count);
+                this.length = natcheck<N>(data.length());
             }
 
             IEnumerator<T> IEnumerable<T>.GetEnumerator()

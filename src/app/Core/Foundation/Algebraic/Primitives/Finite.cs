@@ -23,16 +23,6 @@ namespace Core
             
         }
 
-        public interface Finite<H,T> : TypeClass<H>, Finite<T>
-            where H : Finite<H,T>, new()
-        {
-
-        }
-
-    }
-
-    partial class Struct
-    {
         /// <summary>
         /// Characterizes a bounded structural number
         /// </summary>
@@ -57,4 +47,5 @@ namespace Core
 
         }
     }
+
 }

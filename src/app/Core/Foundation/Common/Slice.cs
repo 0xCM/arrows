@@ -19,7 +19,7 @@ namespace Core
         {
             IReadOnlyList<T> cells {get;}        
 
-            int length {get;}
+            uint length {get;}
 
             T this[int i] {get;}
         }
@@ -78,7 +78,7 @@ namespace Core
     public static class Slice<N,T>
         where N : Core.TypeNat
     {
-        static readonly int Length = natval<N>();
+        static readonly uint Length = natval<N>();
         static readonly Class.Semiring<T> Ops = semiring<T>();
 
         [MethodImpl(Inline)]
@@ -166,31 +166,29 @@ namespace Core
 
             public Slice(params T[] src)
             {
-                this.length = natcheck<N>(src.Length);
+                this.length = natcheck<N>(src.length());
                 this.cells = src;
             }
 
             public Slice(IReadOnlyList<T> src)
             {
                 this.cells = src;
-                this.length = natcheck<N>(this.cells.Count);
+                this.length = natcheck<N>(this.cells.length());
             }
 
             public Slice(IEnumerable<T> src)
             {
                 this.cells = src.ToArray();
-                this.length = natcheck<N>(this.cells.Count);
+                this.length = natcheck<N>(this.cells.length());
             }
 
-            public int length {get;}
+            public uint length {get;}
 
             public T this[int i] => cells[i];
 
             public override string ToString() 
                 => embrace(string.Join(',' ,cells));
-
         }        
-
     }
 
     public static class SliceX
@@ -198,8 +196,5 @@ namespace Core
         public static Reify.Slice<N,T> slice<N,T>(this Core.TypeNat<N> nat, IEnumerable<T> src)
             where N : TypeNat
                 => new Reify.Slice<N, T>(src);
-
     }
-
-
 }

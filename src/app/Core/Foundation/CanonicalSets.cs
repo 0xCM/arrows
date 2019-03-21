@@ -48,7 +48,8 @@ namespace Core
         public EmptySet<T> inhabitant 
             => Inhabitant;
 
-        public bool empty => false;
+        public bool empty 
+            => false;
 
         public bool contains(T item) 
             => false;
@@ -57,19 +58,25 @@ namespace Core
     /// <summary>
     /// Represents the set of natural numbers
     /// </summary>
-    public readonly struct N : Set<bigint>, DiscreteSet<bigint>
+    public readonly struct N : Set<bigint>, DiscreteSet<bigint>, Singleton<N> 
     {
+        internal static readonly N Inhabitant = default;
+
         public bool contains(bigint item)
             => true;
 
         static IEnumerable<bigint> peano()
         {
-            var next = new bigint(0);
-            for(;;)                
-                yield return next++;
+            var p = new bigint(0);
+            for(;;)               
+                yield return p++;
+           
         }
 
         public bool empty => false;
+
+        public N inhabitant 
+            => Inhabitant;
 
         public Enumerable<bigint> individuals()
             => peano().Reify();
@@ -78,19 +85,35 @@ namespace Core
     /// <summary>
     /// Represents the set of integers
     /// </summary>
-    public readonly struct Z : Set<bigint>, Singleton<Z>, Class.GroupA<bigint>
+    public readonly struct Z : Set<bigint>, DiscreteSet<bigint>, Singleton<Z>, Class.GroupA<bigint>
     {
-        internal static readonly Z Inhabitant = default(Z);           
+        internal static readonly Z Inhabitant = default;
     
-        public Z inhabitant => Inhabitant;
+        public Z inhabitant 
+            => Inhabitant;
 
-        public bool empty => false;
+        public bool empty 
+            => false;
 
         public Func<bigint, bigint, bigint> addition 
             => add;
 
         public bigint zero 
             => bigint.Zero;
+
+        public IEnumerable<bigint> integers()
+        {
+            var p = new bigint(0);
+            var n = new bigint(0);
+            for(;;)               
+            { 
+                yield return p++;
+                yield return --n;
+            }
+        }
+
+        public Enumerable<bigint> individuals()
+            => integers().Reify();
 
         public bigint add(bigint lhs, bigint rhs)
             => lhs + rhs;
@@ -124,11 +147,14 @@ namespace Core
     {
         internal static readonly Q Inhabitant = default(Q);
 
-        public Q inhabitant => Inhabitant;
+        public Q inhabitant 
+            => Inhabitant;
 
-        public bool empty => false;
+        public bool empty 
+            => false;
 
-        public bool contains(Q item) => true;
+        public bool contains(Q item) 
+            => true;
     }
 
     /// <summary>
