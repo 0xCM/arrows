@@ -186,8 +186,8 @@ public static partial class corefunc
     /// Constructs a vector characterized by length and component type
     /// </summary>
     /// <param name="components"></param>
-    /// <typeparam name="N"></typeparam>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="N">The length</typeparam>
+    /// <typeparam name="T">The component type</typeparam>
     /// <returns></returns>
     public static Reify.Vector<N,T> vector<N,T>(params T[] components)
         where N : TypeNat
@@ -197,10 +197,21 @@ public static partial class corefunc
     /// Constructs a covector characterized by length and component type
     /// </summary>
     /// <param name="components"></param>
-    /// <typeparam name="N"></typeparam>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="N">The length</typeparam>
+    /// <typeparam name="T">The component type</typeparam>
     /// <returns></returns>
     public static Reify.Covector<N,T> covector<N,T>(params T[] components)
+        where N : TypeNat
+            => new Reify.Covector<N,T>(components);
+
+    /// <summary>
+    /// Constructs a covector characterized by length and component type
+    /// </summary>
+    /// <param name="components"></param>
+    /// <typeparam name="N">The length</typeparam>
+    /// <typeparam name="T">The component type</typeparam>
+    /// <returns></returns>
+    public static Reify.Covector<N,T> covector<N,T>(IReadOnlyList<T> components)
         where N : TypeNat
             => new Reify.Covector<N,T>(components);
 
@@ -210,10 +221,10 @@ public static partial class corefunc
     /// as a list from an enumeration
     /// </summary>
     /// <param name="values"></param>
-    /// <typeparam name="A"></typeparam>
+    /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static Reify.Index<A> list<A>(IEnumerable<A> values)
-        => new Reify.Index<A>(values);
+    public static Reify.Index<T> list<T>(IEnumerable<T> values)
+        => new Reify.Index<T>(values);
 
     /// <summary>
     /// Constructs a citation for a bibliographic resource
@@ -509,6 +520,7 @@ public static partial class corefunc
         where N : TypeNat
         => Nats.nat<N>().value;
 
+
     /// <summary>
     /// Retrieves the value of the natural number associated with a typenat
     /// and retuns the value if it agrees with a supplied expected value; othwise,
@@ -549,6 +561,25 @@ public static partial class corefunc
             ? src
             : throw new ArgumentException(); 
 
+    public class NatConstraintException : Exception
+    {
+        public int Expect {get;}
+        
+        public int Actual{get;}
+
+        public string Constraint {get;}
+
+        public NatConstraintException(string constraint, int expect, int actual)
+        {
+            this.Constraint = constraint;
+            this.Expect = expect;
+            this.Actual = actual;            
+        }
+
+        public override string Message 
+            => $"Natural number {Constraint} failed. Expected: {Expect} | Actual: {Actual}";
+    }
+
     /// <summary>
     /// Verfies that the lengh of an array agrees with the parameterized natural
     /// If successful, the input list is returned; otherwise, an exception is
@@ -561,7 +592,7 @@ public static partial class corefunc
             where N : TypeNat
            => natval<N>() == src.Length 
             ? src
-            : throw new ArgumentException(); 
+            : throw new NatConstraintException("equality", natval<N>(), src.Length); 
 
     /// <summary>
     /// Demands truth that enforced with an exeption upon false

@@ -367,13 +367,13 @@ namespace App04
         static void Semigroups()
         {
             var sg = semigroup<long>();
-            //print(sg.(3,4));
 
         }
 
         static void Matrices()
         {
-            Matrix.define<N3,N2,int>(1,2,3,4,5,6);
+            var m = Matrix.define<N3,N2,int>(1,2,3,4,5,6);
+            print(m);
         }
 
         static void Integers()
@@ -382,9 +382,18 @@ namespace App04
             for(var i=0; i<1024; i++)
                 print(total++);
         }
+
+        static void IntModN()
+        {
+            var mN = modN<N8,int>();
+            print(mN.members.Embrace());
+
+
+
+        }
         static void Main(string[] args)
         {            
-            Matrices();
+            IntModN();
         }
     }
 }

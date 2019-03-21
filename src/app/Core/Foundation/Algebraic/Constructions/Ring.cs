@@ -17,7 +17,7 @@ namespace Core
         /// <summary>
         /// Characterizes a (unital) ring
         /// </summary>
-        public interface Ring<T> : Unital<T>, Multiplicative<T>, Distributive<T>
+        public interface Ring<T> : GroupA<T>, MonoidM<T>, Distributive<T> 
         {
             
         }

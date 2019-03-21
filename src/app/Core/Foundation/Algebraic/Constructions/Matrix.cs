@@ -18,6 +18,7 @@ namespace Core
             where N : TypeNat
                 => new Reify.Matrix<M,N,T>(src);
 
+
     }
 
     partial class Class
@@ -112,7 +113,7 @@ namespace Core
                 => row(natval<I>());
 
             public Class.Covector<N, T> row(int i)
-                => covector<N,T>(data[m*i..(m*i + n-1)]);
+                => covector<N,T>(data.Segment(n*i,n));  
 
             public IEnumerable<Class.Covector<N, T>> rows()
             {

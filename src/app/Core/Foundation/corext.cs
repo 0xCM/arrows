@@ -18,6 +18,16 @@ using static corefunc;
 
 public static partial class corext
 {
+    /// <summary>
+    /// Defines a window over a 1-d array beginning at a specified index for a specified length
+    /// 
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <param name="start">The 0-based starting index</param>
+    /// <param name="len">The length of the segment</param>
+    /// <typeparam name="T">The element type</typeparam>
+    public static IReadOnlyList<T> Segment<T>(this T[] src, int start, int len)
+        => new ArraySegment<T>(src, start, len);
 
     /// <summary>
     /// Lifts a function to a unary operator
@@ -51,8 +61,8 @@ public static partial class corext
 
     public static IEnumerable<IReadOnlyList<T>> Partition<W,T>(this IEnumerable<T> src)
         where W : TypeNat
-            => partition<W,T>(src);
+            => partition<W,T>(src);    
 
-    
-
+    public static string Embrace<T>(this IEnumerable<T> src)
+        => embrace(string.Join(',',src));
 }

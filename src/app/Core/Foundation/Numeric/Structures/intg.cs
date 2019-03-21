@@ -17,6 +17,7 @@ namespace Core
     
     public static class intG
     {
+
         public static intg<T> define<T>(T x)
             where T : Class.Integer<T>, new()
                 => new intg<T>(x);

@@ -5,46 +5,132 @@
 namespace Core
 {
     using System;
+    using static corefunc;
 
-
-    public interface Copair<A,B>
+    partial class Class
     {
+
+        public interface Copair<A,B>
+        {
+            /// <summary>
+            /// The potential left value
+            /// </summary>
+            Option<A> left {get;}
+
+            /// <summary>
+            /// The potential right value
+            /// </summary>
+            Option<B> right {get;}
+            
+        }
+
+        public interface Pair<A,B>
+        {
+            A left {get;}
+
+            B right {get;}
+        }    
+
+        public interface Cotriple<A,B,C>
+        {
+            Option<A> left {get;}
+
+            Option<C> center {get;}
+            
+            Option<B> right {get;}
+
+        }
+
+        public interface Triple<A,B,C>
+        {
+            A left {get;}
+
+            C center {get;}
+            
+            B right {get;}
+
+        }
+
+    }
+    
+    partial class Reify
+    {
+
         /// <summary>
-        /// The potential left value
+        /// Encapsulates two oriented values, 
+        /// a left-value of one type and a right-value
+        /// of another type
         /// </summary>
-        Option<A> left {get;}
+        public readonly struct Pair<A,B> : Class.Pair<A,B>
+        {        
+            public A left {get;}
+
+            public B right {get;}
+
+            public Pair(A left, B right)
+            {
+                this.left = left;
+                this.right = right;
+            }
+        }
 
         /// <summary>
-        /// The potential right value
+        /// Encapsulates exactly one value,
+        /// a left-value of one type or a right value
+        /// of another type
         /// </summary>
-        Option<B> right {get;}
-        
+        public readonly struct Copair<A,B> : Class.Copair<A, B>
+        {
+
+            /// <summary>
+            /// The potential left value
+            /// </summary>
+            public Option<A> left {get;}
+
+            /// <summary>
+            /// The potential right value
+            /// </summary>
+            public Option<B> right {get;}
+
+            public Copair(A left)
+            {
+                this.left = some(left);
+                this.right = none<B>();
+            }
+
+            public Copair(B right)
+            {
+                this.left = none<A>();
+                this.right = some(right);
+            }
+        }
+
+        /// <summary>
+        /// Defines pair-related functions
+        /// </summary>
+        public static class Pair
+        {
+            public static Pair<A,B> define<A,B>(A a, B b)
+                => new Pair<A,B>(a,b);
+
+        } 
     }
 
-    public interface Pair<A,B>
+    /// <summary>
+    /// Defines pair-related extensions
+    /// </summary>
+    public static class PairX
     {
-        A left {get;}
 
-        B right {get;}
-    }    
+        public static bool IsLeft<A,B>(this Class.Copair<A,B> cp)
+            => cp.left.exists;
 
-    public interface Cotriple<A,B,C>
-    {
-        Option<A> left {get;}
-
-        Option<C> center {get;}
-        
-        Option<B> right {get;}
-
+        public static bool IsRight<A,B>(this Class.Copair<A,B> cp)
+            => cp.right.exists;
     }
 
-    public interface Triple<A,B,C>
-    {
-        A left {get;}
 
-        C center {get;}
-        
-        B right {get;}
 
-    }
 }
+
+

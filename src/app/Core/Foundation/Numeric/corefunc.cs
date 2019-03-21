@@ -51,14 +51,17 @@ partial class corefunc
         where T : new()
             => new num<T>(x);
 
-
-
+    /// <summary>
+    /// Renders a generic number as a bitstring
+    /// </summary>
+    /// <param name="src">The source number</param>
+    /// <typeparam name="T">The unerlying numeric type</typeparam>
     public static string bitstring<T>(num<T> src)
         where T : new()
             => src.bitstring();
 
     /// <summary>
-    /// Enumerates the integers inclusively between specified first and last values.
+    /// Enumerates generic integers inclusively between specified first and last values.
     /// If the first value is greater than the last, the range will be constructed
     /// in descending order.
     /// </summary>
@@ -82,8 +85,27 @@ partial class corefunc
         }
     }
 
+    /// <summary>
+    /// Enumerates integers inclusively between specified first and last values.
+    /// If the first value is greater than the last, the range will be constructed
+    /// in descending order.
+    /// </summary>
+    /// <param name="first">The first integer to yeild</param>
+    /// <param name="last">The last integer to yield</param>
+    /// <typeparam name="T">The underlying integral type</typeparam>
     public static IEnumerable<T> range<T>(intg<T> first, intg<T> last)
         where T : new()
             => rangeG(first,last).Unwrap();
+
+    /// <summary>
+    /// Constructs a representation of the ring of integers mod N
+    /// </summary>
+    /// <typeparam name="N">The modulus type</typeparam>
+    /// <typeparam name="T">The integral type</typeparam>
+    /// <returns></returns>
+    public static Reify.ModN<N,T> modN<N,T>()
+        where N : TypeNat
+        where T : new()
+            => Reify.ModN<N,T>.Inhabitant;
 }
 

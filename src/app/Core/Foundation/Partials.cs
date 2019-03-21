@@ -11,5 +11,16 @@ namespace Core
 
     }
 
+    public static partial class Reify
+    {
+
+        
+    }
+
+    public static partial class Struct
+    {
+
+        
+    }
 
 }

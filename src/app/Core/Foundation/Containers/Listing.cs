@@ -11,6 +11,30 @@ namespace Core
 
     using static corefunc;
 
+
+    /// <summary>
+    /// Characterizes an enumerable with a known length as specified
+    /// by a natural type parameter
+    /// </summary>
+    public interface Enumerable<N,I> : IEnumerable<I>
+        where N : TypeNat
+    {
+        /// <summary>
+        /// The value of the natural parameter
+        /// </summary>
+        int length {get;}
+        
+    }
+
+    /// <summary>
+    /// Characterizes an immutable list whose length is specified via a typenat
+    /// </summary>
+    public interface Listed<N,T> : Enumerable<N,T>, IReadOnlyList<T>
+        where N : TypeNat
+    {
+    
+    }
+
     partial class Reify
     {
 

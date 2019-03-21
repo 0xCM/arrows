@@ -13,6 +13,13 @@ namespace Core
     using static corefunc;
     using C = Contracts;
 
+    public interface Array<N,T> : Enumerable<N,T>
+        where N : TypeNat
+    {
+        T this[int ix] {get; set;}
+
+    }
+
     partial class Reify
     {
 
