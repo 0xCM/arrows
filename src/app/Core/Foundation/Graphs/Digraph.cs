@@ -9,17 +9,16 @@ namespace Core
     using System.Linq;
         
     using static corefunc;
-
-    using C = Contracts;    
+      
 
     /// <summary>
     /// Represents a directed graph with two node types
     /// </summary>
     public readonly struct Digraph
     {
-        Index<Label,C.Arrow> edges {get;}    
+        Index<Label,Traits.Arrow> edges {get;}    
 
-        public Digraph(IEnumerable<C.Arrow> edges)
+        public Digraph(IEnumerable<Traits.Arrow> edges)
             => this.edges = index(edges.Select(x => (x.label,x)));
 
         
@@ -31,9 +30,9 @@ namespace Core
 
     public readonly struct Triangle<X1,X2,X3>
     {
-        Index<Label,C.Arrow> edges {get;} 
+        Index<Label, Traits.Arrow> edges {get;} 
 
-        public Triangle(IEnumerable<C.Arrow> edges)
+        public Triangle(IEnumerable<Traits.Arrow> edges)
             => this.edges = index(edges.Select(x => (x.label,x)));
 
     }

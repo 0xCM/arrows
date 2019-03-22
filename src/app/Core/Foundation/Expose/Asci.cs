@@ -6,30 +6,50 @@ namespace Core
 {
     using static corefunc;
  
-    public static class Asci
+    public static class AsciSym
     {
-        public const string pipe = "|";
+        public const string Pipe = "|";
 
-        public const string bang = "!";
-        public const string at = "@";
-        public const string dollar = "$";
-        public const string percent = "%";
-        public const string caret = "^";
-        public const string amp = "&";
-        public const string star = "*";
-        public const string lparen = "(";        
-        public const string rparen = ")";        
+        public const string Bang = "!";
+
+        public const string At = "@";
+
+        public const string Dollar = "$";
+
+        public const string Percent = "%";
+
+        public const string Caret = "^";
+
+        public const string Amp = "&";
+
+        public const string Star = "*";
+
+        public const string LParen = "(";        
+
+        public const string RParen = ")";        
         
-        public const string lbrace = "{";
-        public const string rbrace = "}";
-        public const string lbracket = "[";
-        public const string rbracket = "]";
+        public const string Lbrace = "{";
 
-        public const string bslash = "\\";
-        public const string fslash = "/";
-        public const string colon = ":";
-        public const string semicolon = ";";
+        public const string Rbrace = "}";
 
+        public const string LBracket = "[";
+
+        public const string RBracket = "]";
+
+        public const string BSlash = "\\";
+
+        public const string FSlash = "/";
+
+        public const string Colon = ":";
+
+        public const string Comma = ",";
+
+        public const string Semicolon = ";";
+
+    }
+
+    public static class AsciLower
+    {
         public const string a = "a";
         public const string b = "b";
         public const string c = "c";
@@ -38,6 +58,10 @@ namespace Core
         public const string f = "f";
         public const string g = "g";
 
+    }
+
+    public static class AsciUpper
+    {
         public const string A = "A";
         public const string B = "B";
         public const string C = "C";

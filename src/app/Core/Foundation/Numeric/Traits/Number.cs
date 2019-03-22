@@ -6,13 +6,14 @@ namespace Core
 {
     partial class Traits
     {
-        public interface Number<T> : 
-            SemigroupA<T>,  
-            SemigroupM<T>, 
-            Semiring<T>,
-            Negatable<T>,
-            Divisive<T>,
-            Powered<T,int> 
+        /// <summary>
+        /// Defines the minimal aspects for a value to be considered a "real number"
+        /// The dual contract, that subsumes every possible aspect of number, is 
+        /// defined via the Real trait. Note that every Number can be parameterized 
+        /// by any underlying primitive numeric type
+        /// </summary>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface Number<T> :  SemigroupA<T>,  SemigroupM<T>, Semiring<T>, Negatable<T>, Divisive<T>, Powered<T,int> 
         {                    
             T muladd(T x, T y, T z);
 
@@ -39,10 +40,7 @@ namespace Core
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The structure subect</typeparam>
-        public interface Number<S,T> : Structure<S,T>, 
-                Semiring<S,T>,
-                Negatable<S,T>,
-                Divisive<S,T>
+        public interface Number<S,T> : Semiring<S,T>, Negatable<S,T>, Divisive<S,T>
             where S : Number<S,T>, new()
         {
             /// <summary>

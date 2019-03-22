@@ -12,14 +12,14 @@ namespace Core
     public static class Dimension
     {
         public static Dimenson<M,N> define<M,N>()
-            where M : TypeNat
-            where N : TypeNat
+            where M : TypeNat, new()
+            where N : TypeNat, new()
                 => Dimenson<M,N>.Inhabitant;
 
         public static Dimenson<M,N,P> define<M,N,P>()
-            where M : TypeNat
-            where N : TypeNat
-            where P : TypeNat
+            where M : TypeNat, new()
+            where N : TypeNat, new()
+            where P : TypeNat, new()
                 => Dimenson<M,N,P>.Inhabitant;
     }
 
@@ -29,8 +29,8 @@ namespace Core
     /// <typeparam name="M">The type of the first dimension</typeparam>
     /// <typeparam name="N">The type of the second dimension</typeparam>
     public readonly struct Dimenson<M,N> : Singleton<Dimenson<M,N>>
-        where M : TypeNat
-        where N : TypeNat
+        where M : TypeNat, new()
+        where N : TypeNat, new()
     {
         public static readonly Dimenson<M,N> Inhabitant = default;
 
@@ -59,9 +59,9 @@ namespace Core
     /// <typeparam name="N">The type of the second dimension</typeparam>
     /// <typeparam name="P">The type of the third dimension</typeparam>
     public readonly struct Dimenson<M,N,P> : Singleton<Dimenson<M,N,P>>
-        where M : TypeNat
-        where N : TypeNat
-        where P : TypeNat
+        where M : TypeNat, new()
+        where N : TypeNat, new()
+        where P : TypeNat, new()
     {
         public static readonly Dimenson<M,N,P> Inhabitant = default;
 

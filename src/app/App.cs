@@ -10,16 +10,19 @@ using static corefunc;
 
 using C = Core.Contracts;
 
+
 namespace App04
 {
 
+    using N128 = NatSeq<N1,N2,N8>;
+    using N512 = NatSeq<N5,N1,N2>;
 
     class Program
     {
 
         static void EffectPartition()
         {
-            var ops = Operations.float64();
+            var ops = Resolve.float64();
             var parition = ops.partition(0, 1);
             iter(parition, print);            
         }
@@ -39,11 +42,10 @@ namespace App04
                 print($"{value} is not prime");
         }
 
-        static T dot<N,T>(Reify.Slice<N,T> s1, Reify.Slice<N,T> s2)
-            where N : TypeNat
-            where T : new()
+        static T dot<N,T>(Core.Slice<N,T> s1, Core.Slice<N,T> s2)
+            where N : TypeNat, new()
             {
-                var ops = Operations.integer<T>();
+                var ops = Resolve.integer<T>();
                 var result = ops.zero;
                 for(var i=0; i< s1.length; i++)
                     result = ops.add(result, ops.mul(s1[i],s2[i]));
@@ -265,33 +267,42 @@ namespace App04
             print($"long Sum(finished): {elapsed(sw)}ms");
         }
 
-        static void SumMul(intg<long> n)
+        static void SumMulLong(int reps, long vecLen)
         {
-            print($"intg<long> SumMul(n = {n})");
-            long count = n;
-            var v1 = rangeG<long>(1, n).ToArray();
-            var v2 = rangeG<long>(1, n).ToArray();
-            var v3 = rangeG<long>(1, n).ToArray();
-            var v4 = array<intg<long>>(n);
-            var sw = stopwatch();
-            for(int i=0; i < count; i++)
-                v4[i] = v1[i]+v2[i]+v3[i] + v1[i]*v2[i]*v3[i];
-            print($"intg<long> SumMul(finished): {elapsed(sw)}ms");
+            void generic()
+            {
+                print($"intg<long> SumMul(n = {vecLen})");
+                var v1 = rangeG<long>(1, vecLen).ToArray();
+                var v2 = rangeG<long>(1, vecLen).ToArray();
+                var v3 = rangeG<long>(1, vecLen).ToArray();
+                var v4 = array<intg<long>>(vecLen);
+                var sw = stopwatch();
+                for(int i=0; i < vecLen; i++)
+                    v4[i] = v1[i]+v2[i]+v3[i] + v1[i]*v2[i]*v3[i];
+                print($"intg<long> SumMul(finished): {elapsed(sw)}ms");
+            }
+
+            void system()
+            {
+                print($"long SumMul(n = {vecLen})");
+                var v1 = rangeG<long>(1, vecLen).Unwrap();
+                var v2 = rangeG<long>(1, vecLen).Unwrap();
+                var v3 = rangeG<long>(1, vecLen).Unwrap();
+                var v4 = array<long>(vecLen);
+                var sw = stopwatch();
+                for(int i=0; i < vecLen; i++)
+                    v4[i] = v1[i]+v2[i]+v3[i] + v1[i]*v2[i]*v3[i];
+                print($"long SumMul(finished): {elapsed(sw)}ms");
+            }
+
+            for(var k = 0; k<reps; k++)
+            {
+                generic();
+                system();
+            }
+
         }
 
-        static void SumMul(long n)
-        {
-            print($"long SumMul(n = {n})");
-            long count = n;
-            var v1 = rangeG<long>(1, n).Unwrap();
-            var v2 = rangeG<long>(1, n).Unwrap();
-            var v3 = rangeG<long>(1, n).Unwrap();
-            var v4 = array<long>(n);
-            var sw = stopwatch();
-            for(int i=0; i < count; i++)
-                v4[i] = v1[i]+v2[i]+v3[i] + v1[i]*v2[i]*v3[i];
-            print($"long SumMul(finished): {elapsed(sw)}ms");
-        }
 
         static void SplitDouble(double src)
         {
@@ -331,8 +342,7 @@ namespace App04
             Sum(Cycles);
             print();
 
-            SumMul(CyclesG);
-            SumMul(Cycles);
+            SumMulLong(5,CyclesG);
 
         }
 
@@ -385,15 +395,30 @@ namespace App04
 
         static void IntModN()
         {
-            var mN = modN<N8,int>();
-            print(mN.members.Embrace());
+            var x = mod<NatSeq<N1,N2>,uint>(32u);
+            var y = mod<NatSeq<N1,N2>,uint>(18u);
+            print($"x := {x}, y := {y}");
+            print($"{x} + {y} = {x + y}");
+            print($"{x} * {y} = {x * y}");
 
 
+        }
+
+        static void NatSeq()
+        {
+            
+            print($"{Nats.N1024}");
+            print($"{N128.Rep}");
+            print($"{NatSeq<N1,N2>.Rep}");
+            print($"{Nats.nat<NatSeq<N4,N3,N2>>()}");
 
         }
         static void Main(string[] args)
         {            
-            IntModN();
+            Perf();
+            // NatSeq();
+            // IntModN();
+            // Slices();
         }
     }
 }

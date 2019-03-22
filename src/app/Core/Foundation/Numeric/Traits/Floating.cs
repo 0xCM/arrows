@@ -7,7 +7,6 @@ namespace Core
     using System;
     using System.Collections.Generic;
     using static Traits;
-    using static Struct;
 
     partial class Traits
     {
@@ -47,8 +46,7 @@ namespace Core
         /// Characterizes a structure for a floating point number
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface Floating<S,T> :   
-            Fractional<S,T>, 
+        public interface Floating<S,T> : Fractional<S,T>, 
             Signed<S,T>, 
             Negatable<S,T>, 
             Ordered<S,T>, 
@@ -66,5 +64,28 @@ namespace Core
             S sqrt();
             IEnumerable<S> partition(S min, S max,S width = default(S));     
         }
+    
+        /// <summary>
+        /// Characterizes an operation provider for bounded floating point values
+        /// </summary>
+        /// <typeparam name="T">The underlying numeric type</typeparam>
+        public interface FiniteFloat<T> : Floating<T>, Finite<T> 
+        {
+
+        }
+
+        /// <summary>
+        /// Characterizes a structure for a bounded floating point number
+        /// </summary>
+        /// <typeparam name="T">The underlying numeric type</typeparam>
+        public interface FiniteFloat<S,T> : Floating<S,T>, Finite<S,T>
+            where S : FiniteFloat<S,T>, new()
+            where T : new()
+
+        {
+        
+        
+        }
+    
     }
 }

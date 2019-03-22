@@ -21,7 +21,7 @@ namespace Core
     /// </summary>
     /// <typeparam name="K1">The Nat type</typeparam>
     public interface NatConstraint<K1> : NatConstraint
-        where K1 : TypeNat
+        where K1 : TypeNat, new()
     {
 
     }
@@ -32,7 +32,7 @@ namespace Core
     /// <typeparam name="K1">The first nat type</typeparam>
     /// <typeparam name="K2">The second nat type</typeparam>
     public interface NatConstraint<K1,K2> : NatConstraint
-        where K1 : TypeNat
+        where K1 : TypeNat, new()
         where K2 : TypeNat
     {
         
@@ -45,9 +45,9 @@ namespace Core
     /// <typeparam name="K2">The second nat type</typeparam>
     /// <typeparam name="K3">The third nat type</typeparam>
     public interface NatConstraint<K1,K2,K3> : NatConstraint
-        where K1 : TypeNat
-        where K2 : TypeNat
-        where K3 : TypeNat
+        where K1 : TypeNat, new()
+        where K2 : TypeNat, new()
+        where K3 : TypeNat, new()
     {
         
     }
@@ -66,8 +66,8 @@ namespace Core
         /// <typeparam name="C1">The first constraint type</typeparam>
         /// <typeparam name="C2">The second constraint type</typeparam>
         public interface Or<K1,K2,C1,C2> : NatConstraint<K1,K2>
-            where K1 : TypeNat
-            where K2 : TypeNat
+            where K1 : TypeNat, new()
+            where K2 : TypeNat, new()
             where C1 : NatConstraint
             where C2 : NatConstraint
         {
@@ -83,8 +83,8 @@ namespace Core
         /// <typeparam name="C1">The first constraint type</typeparam>
         /// <typeparam name="C2">The second constraint type</typeparam>
         public interface And<K1,K2,C1,C2> : NatConstraint<K1,K2>
-            where K1 : TypeNat
-            where K2 : TypeNat
+            where K1 : TypeNat, new()
+            where K2 : TypeNat, new()
             where C1 : NatConstraint
             where C2 : NatConstraint
         {
@@ -98,7 +98,7 @@ namespace Core
         /// </summary>
         /// <typeparam name="K">A nonzero nat type</typeparam>
         public interface Nonzero<K> : NatConstraint<K>
-            where K : TypeNat
+            where K : TypeNat, new()
         {
 
         }
@@ -108,7 +108,7 @@ namespace Core
         /// </summary>
         /// <typeparam name="K">A prime nat type</typeparam>
         public interface Prime<K> : NatConstraint<K>
-            where K : TypeNat
+            where K : TypeNat, new()
         {
 
         }
@@ -119,8 +119,8 @@ namespace Core
         /// <typeparam name="K1">The first nat type</typeparam>
         /// <typeparam name="K2">The second nat type</typeparam>
         public interface Adjacent<K1,K2> : LT<K1,K2> 
-            where K1 : TypeNat
-            where K2 : TypeNat
+            where K1 : TypeNat, new()
+            where K2 : TypeNat, new()
         {
 
 
@@ -134,9 +134,9 @@ namespace Core
         /// <typeparam name="K2"></typeparam>
         /// <typeparam name="K3"></typeparam>
         public interface Sum<K1,K2,K3> : NatConstraint<K1,K2,K3>
-            where K1 : TypeNat
-            where K2 : TypeNat
-            where K3 : TypeNat
+            where K1 : TypeNat, new()
+            where K2 : TypeNat, new()
+            where K3 : TypeNat, new()
         {
 
         }
@@ -149,9 +149,9 @@ namespace Core
         /// <typeparam name="K2"></typeparam>
         /// <typeparam name="K3"></typeparam>
         public interface Product<K1,K2,K3> : NatConstraint<K1,K2,K3>
-            where K1 : TypeNat
-            where K2 : TypeNat
-            where K3 : TypeNat
+            where K1 : TypeNat, new()
+            where K2 : TypeNat, new()
+            where K3 : TypeNat, new()
         {
 
         }
@@ -164,9 +164,9 @@ namespace Core
         /// <typeparam name="K2"></typeparam>
         /// <typeparam name="K3"></typeparam>
         public interface Mod<K1,K2,K3> : NatConstraint<K1,K2,K3>
-            where K1 : TypeNat
-            where K2 : TypeNat
-            where K3 : TypeNat
+            where K1 : TypeNat, new()
+            where K2 : TypeNat, new()
+            where K3 : TypeNat, new()
         {
 
         }
@@ -181,7 +181,7 @@ namespace Core
             public static class Nonzero
             {
                 public static NC.Nonzero<K> require<K>()
-                    where K: TypeNat
+                    where K: TypeNat, new()
                 {
                     var k = natval<K>();
                     demand(k != 0);
@@ -193,8 +193,8 @@ namespace Core
             public static class LT
             {
                 public static NC.LT<K1,K2> require<K1,K2>()
-                    where K1:TypeNat
-                    where K2:TypeNat
+                    where K1:TypeNat, new()
+                    where K2:TypeNat, new()
                 {
                     var k1 = natval<K1>();
                     var k2 = natval<K2>();
@@ -206,8 +206,8 @@ namespace Core
             public static class LTEQ
             {
                 public static NC.LTEQ<K1,K2> require<K1,K2>()
-                    where K1: TypeNat
-                    where K2: TypeNat
+                    where K1: TypeNat, new()
+                    where K2: TypeNat, new()
                 {
                     var k1 = natval<K1>();
                     var k2 = natval<K2>();
@@ -222,8 +222,8 @@ namespace Core
             public static class GT
             {
                 public static NC.GT<K1,K2> require<K1,K2>()
-                    where K1: TypeNat
-                    where K2: TypeNat
+                    where K1: TypeNat, new()
+                    where K2: TypeNat, new()
                 {
                     var k1 = natval<K1>();
                     var k2 = natval<K2>();
@@ -236,8 +236,8 @@ namespace Core
             public static class GTEQ
             {
                 public static NC.GTEQ<K1,K2> require<K1,K2>()
-                    where K1: TypeNat
-                    where K2: TypeNat
+                    where K1: TypeNat, new()
+                    where K2: TypeNat, new()
                 {
                     var k1 = natval<K1>();
                     var k2 = natval<K2>();
@@ -252,8 +252,8 @@ namespace Core
             public static class Adjacent
             {
                 public static NC.Adjacent<K1,K2> require<K1,K2>()
-                    where K1: TypeNat
-                    where K2: TypeNat
+                    where K1: TypeNat, new()
+                    where K2: TypeNat, new()
                 {
                     var k1 = natval<K1>();
                     var k2 = natval<K2>();
@@ -265,9 +265,9 @@ namespace Core
             public static class Sum
             {
                 public static NC.Sum<K1,K2,K3> require<K1,K2,K3>()
-                    where K1: TypeNat
-                    where K2: TypeNat
-                    where K3: TypeNat
+                    where K1: TypeNat, new()
+                    where K2: TypeNat, new()
+                    where K3: TypeNat, new()
 
                 {
                     var k1 = natval<K1>();
@@ -284,8 +284,8 @@ namespace Core
             /// Provides evidence that K1 < K2
             /// </summary>
             readonly struct LT<K1,K2> : NC.LT<K1,K2>
-                where K1: TypeNat
-                where K2: TypeNat
+                where K1: TypeNat, new()
+                where K2: TypeNat, new()
             {
 
             }
@@ -294,8 +294,8 @@ namespace Core
             /// Provides evidence that K1 <= K2
             /// </summary>
             readonly struct LTEQ<K1,K2> : NC.LTEQ<K1,K2>
-                where K1: TypeNat
-                where K2: TypeNat
+                where K1: TypeNat, new()
+                where K2: TypeNat, new()
             {
 
             }
@@ -304,8 +304,8 @@ namespace Core
             /// Provides evidence that K1 > K2
             /// </summary>
             readonly struct GT<K1,K2> : NC.GT<K1,K2>
-                where K1: TypeNat
-                where K2: TypeNat
+                where K1: TypeNat, new()
+                where K2: TypeNat, new()
             {
 
             }
@@ -314,8 +314,8 @@ namespace Core
             /// Provides evidence that K1 > K2
             /// </summary>
             readonly struct GTEQ<K1,K2> : NC.GTEQ<K1,K2>
-                where K1: TypeNat
-                where K2: TypeNat
+                where K1: TypeNat, new()
+                where K2: TypeNat, new()
             {
 
             }
@@ -324,8 +324,8 @@ namespace Core
             /// Provides evidence that K1 is directly succeeded by K2
             /// </summary>
             readonly struct Adjacent<K1,K2> : NC.Adjacent<K1,K2>
-                where K1: TypeNat
-                where K2: TypeNat
+                where K1: TypeNat, new()
+                where K2: TypeNat, new()
             {
 
             }
@@ -334,9 +334,9 @@ namespace Core
             /// Provides evidence that k1 + k2 = k3
             /// </summary>
             readonly struct Sum<K1,K2,K3> : NC.Sum<K1,K2,K3>
-                where K1: TypeNat
-                where K2: TypeNat
-                where K3: TypeNat
+                where K1: TypeNat, new()
+                where K2: TypeNat, new()
+                where K3: TypeNat, new()
             {
 
             }
@@ -345,7 +345,7 @@ namespace Core
             /// Provides evidence that k != 0
             /// </summary>
             readonly struct Nonzero<K> : NC.Nonzero<K>
-                where K: TypeNat
+                where K: TypeNat, new()
             {
 
             }

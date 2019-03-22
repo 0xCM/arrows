@@ -2,28 +2,14 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Symbols
+namespace Expose
 {
     using Core;
     using static corefunc;
     using static Latex;
 
 
-    public static class Latex
-    {
-        public static string cmd(string name) => concat(Asci.bslash,name);
-        
-        public static string begin(string tag) => $"{cmd("begin")}{embrace(tag)}";
-        
-        public static string end(string tag) => $"{cmd("end")}{embrace(tag)}";
-
-        public static string begindoc() => begin("document");
-
-        public static string enddoc() => end("document");
-    }
-
-
-    public static class Super
+    public static class SU
     {
         public static readonly Symbol n = symbol("ⁿ",cmd("^n"));
     }

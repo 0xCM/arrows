@@ -10,7 +10,6 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
 using Core;
-using Symbols;
 using static Core.Credit;
 using static corefunc;
 using static Core.Traits;
@@ -19,28 +18,6 @@ using static Core.Traits;
 public static partial class corefunc
 {
     public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
-
-    /// <summary>
-    /// Constructs a left-valuedcopair
-    /// </summary>
-    /// <param name="left"></param>
-    /// <typeparam name="A">The left type</typeparam>
-    /// <typeparam name="B">The right type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static Reify.Copair<A,B> copair<A,B>(A left)
-        => new Reify.Copair<A, B>(left);
-
-    /// <summary>
-    /// Constructs a right-valued copair
-    /// </summary>
-    /// <param name="right"></param>
-    /// <typeparam name="A">The left type</typeparam>
-    /// <typeparam name="B">The right type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static Reify.Copair<A,B> copair<A,B>(B right)
-        => new Reify.Copair<A, B>(right);
 
 
     /// <summary>
@@ -59,45 +36,6 @@ public static partial class corefunc
     /// <returns></returns>
     public static Option<A> some<A>(A value) 
         => new Option<A>(value);
-
-    /// <summary>
-    /// Constructs an associative array
-    /// </summary>
-    /// <param name="items">Item tuples that will be indexed/stored</param>
-    /// <typeparam name="K">The key type</typeparam>
-    /// <typeparam name="V">The value type</typeparam>
-    /// <returns></returns>
-    public static Index<K,V> index<K,V>(IEnumerable<(K key,V value)> items)
-        => new Reify.Index<K,V>(items);
-
-    /// <summary>
-    /// Constructs an associative array
-    /// </summary>
-    /// <param name="items">Keyed values that will be indexed/stored</param>
-    /// <typeparam name="K">The key type</typeparam>
-    /// <typeparam name="V">The value type</typeparam>
-    /// <returns></returns>
-    public static Index<K,V> index<K,V>(IEnumerable<KeyedValue<K,V>> items)
-        => new Reify.Index<K,V>(items);
-
-    /// <summary>
-    /// Constructs an integrally-indexed associative array
-    /// </summary>
-    /// <param name="value">The value</param>
-    /// <typeparam name="V">The value type</typeparam>
-    /// <returns></returns>
-    public static Reify.Index<V> index<V>(IEnumerable<V> items)
-        => new Reify.Index<V>(items);
-
-    /// <summary>
-    /// Constructs an index from a collection of of 2-tuples
-    /// </summary>
-    /// <param name="src">The collection of 2-tuples from which to construct an index</param>
-    /// <typeparam name="K">The key type</typeparam>
-    /// <typeparam name="V">The value type</typeparam>
-    /// <returns></returns>
-    public static Index<K,V> index<K,V>((K key, V value)[] src)
-        => new Reify.Index<K,V>(map(src,kvp));
 
     /// <summary>
     /// Applies a function to elements of an input sequence to produce 
@@ -150,37 +88,6 @@ public static partial class corefunc
     /// <returns>The source value</returns>
     public static A  identity<A>(A x) => x;
 
-    /// <summary>
-    /// Constructs a keyed value
-    /// </summary>
-    /// <param name="key">The key</param>
-    /// <param name="value">The value</param>
-    /// <typeparam name="K">The key type</typeparam>
-    /// <typeparam name="V">The value type</typeparam>
-    /// <returns></returns>
-    public static KeyedValue<K,V> kvp<K,V>(K key, V value)
-        => new KeyedValue<K,V>(key,value);
-
-    /// <summary>
-    /// Constructs a keyed value from a 2-tuple
-    /// </summary>
-    /// <param name="kv">The source tuple</param>
-    /// <typeparam name="K">The key type</typeparam>
-    /// <typeparam name="V">The value type</typeparam>
-    /// <returns></returns>
-    public static KeyedValue<K,V> kvp<K,V>( (K key, V value) kv)
-        => new KeyedValue<K,V>(kv);
-
-
-    /// <summary>
-    /// Constructs integrally-keyed associative array, otherwise known
-    /// as a list from a parameter array
-    /// </summary>
-    /// <param name="values"></param>
-    /// <typeparam name="A"></typeparam>
-    /// <returns></returns>
-    public static Reify.Index<A> list<A>(params A[] values)
-        => new Reify.Index<A>(values);
 
     /// <summary>
     /// Constructs a vector characterized by length and component type
@@ -189,9 +96,9 @@ public static partial class corefunc
     /// <typeparam name="N">The length</typeparam>
     /// <typeparam name="T">The component type</typeparam>
     /// <returns></returns>
-    public static Reify.Vector<N,T> vector<N,T>(params T[] components)
-        where N : TypeNat
-            => new Reify.Vector<N,T>(components);
+    public static Core.Vector<N,T> vector<N,T>(params T[] components)
+        where N : TypeNat, new()
+            => new Core.Vector<N,T>(components);
 
     /// <summary>
     /// Constructs a covector characterized by length and component type
@@ -200,9 +107,9 @@ public static partial class corefunc
     /// <typeparam name="N">The length</typeparam>
     /// <typeparam name="T">The component type</typeparam>
     /// <returns></returns>
-    public static Reify.Covector<N,T> covector<N,T>(params T[] components)
-        where N : TypeNat
-            => new Reify.Covector<N,T>(components);
+    public static Core.Covector<N,T> covector<N,T>(params T[] components)
+        where N : TypeNat, new()
+            => new Core.Covector<N,T>(components);
 
     /// <summary>
     /// Constructs a covector characterized by length and component type
@@ -211,9 +118,9 @@ public static partial class corefunc
     /// <typeparam name="N">The length</typeparam>
     /// <typeparam name="T">The component type</typeparam>
     /// <returns></returns>
-    public static Reify.Covector<N,T> covector<N,T>(IReadOnlyList<T> components)
-        where N : TypeNat
-            => new Reify.Covector<N,T>(components);
+    public static Core.Covector<N,T> covector<N,T>(IReadOnlyList<T> components)
+        where N : TypeNat, new()
+            => new Core.Covector<N,T>(components);
 
 
     /// <summary>
@@ -223,8 +130,8 @@ public static partial class corefunc
     /// <param name="values"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static Reify.Index<T> list<T>(IEnumerable<T> values)
-        => new Reify.Index<T>(values);
+    public static Core.Index<T> list<T>(IEnumerable<T> values)
+        => new Core.Index<T>(values);
 
     /// <summary>
     /// Constructs a citation for a bibliographic resource
@@ -256,8 +163,8 @@ public static partial class corefunc
     /// <param name="name">The name of the symbol</param>
     /// <param name="description">Formal or informal description depending on context/needs</param>
     /// <returns></returns>
-    public static Symbol symbol(string name, string description = null)
-        => new Symbol(name,description);
+    public static Expose.Symbol symbol(string name, string description = null)
+        => new Expose.Symbol(name,description);
 
     /// <summary>
     /// Returns the name of the supplied type
@@ -320,18 +227,6 @@ public static partial class corefunc
     public static void noimpl() 
         => throw new NotImplementedException();
 
-   [MethodImpl(Inline)]
-    public static T[] array<T>(long len)
-        => new T[len];
-
-   [MethodImpl(Inline)]
-    public static Array<N,T> array<N,T>(params T[] data)
-        where N : TypeNat
-            => new Reify.Array<N,T>(data);
-
-   [MethodImpl(Inline)]
-    public static IEnumerable<T> seq<T>(params T[] items)
-        => items;
 
     /// <summary>
     /// Replicates a given value a specified number of times
@@ -347,7 +242,6 @@ public static partial class corefunc
             dst[idx] = value;
         return dst;            
     }
-
     
     public static T fold<T>(IEnumerable<T> src, Func<T,T,T> f, T a0 = default(T))
     {
@@ -356,28 +250,6 @@ public static partial class corefunc
             cumulant = f(cumulant,item);            
         return cumulant;
     }
-
-    /// <summary>
-    /// Extracts a pair's left member
-    /// </summary>
-    /// <param name="pair">The source pair</param>
-    /// <typeparam name="A">The left member type</typeparam>
-    /// <typeparam name="B">The right member type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static A left<A,B>(Pair<A,B> pair)
-        => pair.left;
-
-    /// <summary>
-    /// Extracts a pair's right member
-    /// </summary>
-    /// <param name="pair">The source pair</param>
-    /// <typeparam name="A">The left member type</typeparam>
-    /// <typeparam name="B">The right member type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static B right<A,B>(Pair<A,B> pair)
-        => pair.right;
 
     [MethodImpl(Inline)]   
     public static Enumerable<I> items<I>(params I[] src)
@@ -389,7 +261,7 @@ public static partial class corefunc
     /// <param name="content">The content to be embraced</param>
     /// <returns></returns>
     public static string embrace(object content)      
-        => $"{Asci.lbrace}{content}{Asci.rbrace}";
+        => $"{AsciSym.Lbrace}{content}{AsciSym.Rbrace}";
 
     /// <summary>
     /// Constructs the default set associated with a type whose elements
@@ -397,7 +269,8 @@ public static partial class corefunc
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static Set<T> set<T>() => TotalSet<T>.Inhabitant;
+    public static Set<T> set<T>() 
+        => TotalSet<T>.Inhabitant;
 
 
     /// <summary>
@@ -405,21 +278,24 @@ public static partial class corefunc
     /// </summary>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Q Q() => Core.Q.Inhabitant;
+    public static Q Q() 
+        => Core.Q.Inhabitant;
 
     /// <summary>
     /// Retrieves the representative of the set of integers
     /// </summary>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Z Z() => Core.Z.Inhabitant;
+    public static Z Z() 
+        => Core.Z.Inhabitant;
 
     /// <summary>
     /// Retrieves the representative of the set of real numbers
     /// </summary>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static R R() => Core.R.Inhabitant;
+    public static R R() 
+        => Core.R.Inhabitant;
 
     /// <summary>
     /// Constructs an arrow, based at a specified source, projecting
@@ -431,31 +307,8 @@ public static partial class corefunc
     /// <typeparam name="B">The codomain type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static PointedArrow<A,B> arrow<A,B>(A a, B b, string label = null)
-        => new PointedArrow<A,B>(a,b,label);
-
-    /// <summary>
-    /// Constructs a pair
-    /// </summary>
-    /// <param name="a">The value of the left member</param>
-    /// <param name="b">The value of the right member</param>
-    /// <typeparam name="A">The left member type</typeparam>
-    /// <typeparam name="B">The right member type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static Reify.Pair<A,B> pair<A,B>(A a, B b)
-        => Reify.Pair.define(a,b);
-
-    /// <summary>
-    /// Constructs an elementwise cartesian product from the input sequences
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static IEnumerable<Reify.Pair<T,T>> cross<T>(IEnumerable<T> x, IEnumerable<T> y)
-        => from a in x from b in y select pair(a,b);
+    public static Core.PointedArrow<A,B> arrow<A,B>(A a, B b, string label = null)
+        => new Core.PointedArrow<A,B>(a,b,label);
 
     /// <summary>
     /// Iterates over the supplied items, invoking a receiver for each
@@ -510,82 +363,6 @@ public static partial class corefunc
     public static void printeach<T>(IEnumerable<T> items)
         => iter(items, print) ;
 
-    /// <summary>
-    /// Retrieves the value of the natural number associated with a typenat
-    /// </summary>
-    /// <typeparam name="N">The nat type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static uint natval<N>() 
-        where N : TypeNat
-        => Nats.nat<N>().value;
-
-
-    /// <summary>
-    /// Retrieves the value of the natural number associated with a typenat
-    /// and retuns the value if it agrees with a supplied expected value; othwise,
-    /// raises an exception
-    /// </summary>
-    /// <param name="expected">The expected natural value</param>
-    /// <typeparam name="N">The nat type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static uint natcheck<N>(uint expected)
-            where N : TypeNat
-           => natval<N>() == expected 
-            ? expected 
-            : throw new ArgumentException(); 
-
-    /// <summary>
-    /// Retrieves the value of a pair of nats
-    /// </summary>
-    /// <typeparam name="M">The first nat type</typeparam>
-    /// <typeparam name="N">The second type</typeparam>
-    /// <returns></returns>
-    public static (uint m, uint n) natvals<M,N>()
-        where N : TypeNat
-        where M : TypeNat
-            => (natval<M>(),natval<N>());            
-
-    /// <summary>
-    /// Retrieves the value of a nat triple
-    /// </summary>
-    /// <typeparam name="M">The first nat type</typeparam>
-    /// <typeparam name="N">The second type</typeparam>
-    /// <returns></returns>
-    public static (uint m, uint n, uint p) natvals<M,N,P>()
-        where N : TypeNat
-        where M : TypeNat
-        where P : TypeNat
-            => (natval<M>(),natval<N>(), natval<P>());            
-
-    /// <summary>
-    /// Verfies that the lengh of a list agrees with the parameterized natural
-    /// If successful, the input list is returned; otherwise, an exception is
-    /// raised
-    /// </summary>
-    /// <param name="src">The source list</param>
-    /// <typeparam name="N">The nat type</typeparam>
-    /// <typeparam name="T">The list element type</typeparam>
-    public static IReadOnlyList<T> natcheck<N,T>(IReadOnlyList<T> src)
-            where N : TypeNat
-           => natval<N>() == src.Count 
-            ? src
-            : throw new ArgumentException(); 
-
-    /// <summary>
-    /// Verfies that the lengh of an array agrees with the parameterized natural
-    /// If successful, the input list is returned; otherwise, an exception is
-    /// raised
-    /// </summary>
-    /// <param name="src">The source array</param>
-    /// <typeparam name="N">The nat type</typeparam>
-    /// <typeparam name="T">The list element type</typeparam>
-    public static T[] natcheck<N,T>(params T[] src)
-            where N : TypeNat
-           => natval<N>() == src.Length 
-            ? src
-            : throw new NatConstraintException("equality", natval<N>(), (uint)src.Length); 
 
     /// <summary>
     /// Demands truth that enforced with an exeption upon false
@@ -596,40 +373,6 @@ public static partial class corefunc
     public static bool demand(bool x)
         => x ? x : throw new ArgumentException();
 
-    public static IEnumerable<IReadOnlyList<T>> partition<W,T>(IEnumerable<T> src)
-        where W : TypeNat
-    {
-        var width = natval<W>();
-        var sement = new T[width];
-        var current = 0;
-        foreach(var item in src)
-        {
-            if(current == width)
-            {
-                current = 0;
-                yield return sement;
-                sement = new T[width];
-            }
-                
-            sement[current++] = item;
-        }
-
-        for(var i = current; i < width; i++)
-            sement[i] = default(T);
-        
-        yield return sement;
-    }
-
-
-    [MethodImpl(Inline)]   
-    public static Reify.Slice<N,T> slice<N,T>(IEnumerable<T> src)
-        where N : TypeNat
-            => new Reify.Slice<N,T>(src);
-
-    [MethodImpl(Inline)]   
-    public static Reify.Slice<N,T> slice<N,T>(params T[] src)
-        where N : TypeNat
-            => new Reify.Slice<N,T>(src);
 
     /// <summary>
     /// Left-Pads the input string with an optionally-specified character.
@@ -683,15 +426,15 @@ public static partial class corefunc
 
     [MethodImpl(Inline)]   
     public static O ops<T,O>()
-        => Operations.ops<T,O>();
+        => Resolve.ops<T,O>();
     
     [MethodImpl(Inline)]
     public static Traits.Semigroup<T> semigroup<T>() 
-        => Operations.ops<T,Traits.Semigroup<T>>();
+        => Resolve.ops<T,Traits.Semigroup<T>>();
 
     [MethodImpl(Inline)]
     public static Traits.Semiring<T> semiring<T>() 
-        => Operations.ops<T,Traits.Semiring<T>>();
+        => Resolve.ops<T,Traits.Semiring<T>>();
 
     [MethodImpl(Inline)]
     public static num<T> min<T>(num<T> x, num<T> y)
@@ -717,5 +460,8 @@ public static partial class corefunc
             result = sr.add(result,  sr.mul(a[i], b[i]));
         return result;
     }
+
+    public static string format<T>(T x)
+        => x.ToString();
 }
 

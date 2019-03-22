@@ -7,8 +7,8 @@ namespace Core
     /// Provides evidence that K1 == K2
     /// </summary>
     public readonly struct EQ<K1,K2> : NC.EQ<K1,K2>
-        where K1: TypeNat
-        where K2: TypeNat
+        where K1: TypeNat, new()
+        where K2: TypeNat, new()
     {
 
     }
@@ -16,8 +16,8 @@ namespace Core
     public static class EQ
     {
         public static EQ<K1,K2> require<K1,K2>()
-            where K1: TypeNat
-            where K2: TypeNat
+            where K1: TypeNat, new()
+            where K2: TypeNat, new()
         {
             var k1 = natval<K1>();
             var k2 = natval<K2>();
@@ -35,8 +35,8 @@ namespace Core
         /// <typeparam name="K1">The first nat type</typeparam>
         /// <typeparam name="K2">The second nat type</typeparam>
         public interface EQ<K1,K2> : NatConstraint<K1,K2>
-            where K1 : TypeNat
-            where K2 : TypeNat
+            where K1: TypeNat, new()
+            where K2: TypeNat, new()
         {
             
         }
@@ -47,8 +47,8 @@ namespace Core
         /// <typeparam name="K1">The first nat type</typeparam>
         /// <typeparam name="K2">The second nat type</typeparam>
         public interface NEQ<K1,K2> : NatConstraint<K1,K2>
-            where K1 : TypeNat
-            where K2 : TypeNat
+            where K1: TypeNat, new()
+            where K2: TypeNat, new()
         {
             
         }

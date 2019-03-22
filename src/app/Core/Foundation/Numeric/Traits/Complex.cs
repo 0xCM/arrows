@@ -23,7 +23,6 @@ namespace Core
         /// <typeparam name="T">The underlying numeric type</typeparam>
         public interface Complex<S,T> : Number<S,T>
             where S : Complex<S,T>, new()
-            where T : new()
         {
             /// <summary>
             /// The real part

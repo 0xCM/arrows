@@ -8,17 +8,15 @@ namespace Core
     using System.Collections.Generic;
     using System.Linq;
     
-    using Symbols;
+    using Expose;
     
     using static corefunc;
-
-    using C = Contracts;
 
     /// <summary>
     /// Represents a directed path from a source space to a target space
     /// with no particular basepoint selection
     /// </summary>
-    public readonly struct Arrow<A,B> : C.Arrow<A,B>
+    public readonly struct Arrow<A,B> : Traits.Arrow<A,B>
     {
         public static implicit operator Arrow<A,B>(Func<A,B> carrier)
             => new Arrow<A,B>(carrier);
@@ -44,7 +42,7 @@ namespace Core
         
 
         public override string ToString()
-            => concat(label.empty() ? string.Empty : label.name, Asci.colon) 
+            => concat(label.empty() ? string.Empty : label.name, AsciSym.Colon) 
              + concat(typename<A>(),Arrows.longright, typename<B>());
     }
 
@@ -52,7 +50,7 @@ namespace Core
     /// Represents a directed path from a specific basepoint in one space to a
     /// specific basepoint in another space
     /// </summary>
-    public readonly struct PointedArrow<X,Y> : C.PointedArrow<X,Y>
+    public readonly struct PointedArrow<X,Y> : Traits.PointedArrow<X,Y>
     {
         /// <summary>
         /// The source-valued basepoint

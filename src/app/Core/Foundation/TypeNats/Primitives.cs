@@ -17,16 +17,20 @@ namespace Core
     /// </summary>
     public readonly struct N0 : TypeNat<N0,N1>
     {
-        public static readonly N0 Inhabitant = new N0(0);
+        public static readonly N0 Rep = default;
 
-        public uint value {get;}
+        public uint value 
+            => 0;
 
-        public N0 current => N0.Inhabitant;
+        public N0 rep 
+            => N0.Rep;
 
-        public N1 next => N1.Inhabitant;
+        public N1 nextrep 
+            => N1.Rep;
 
-        N0(uint natval)
-            => this.value = natval;        
+        public override string ToString() 
+            => value.ToString();    
+
     }
 
     /// <summary>
@@ -34,18 +38,19 @@ namespace Core
     /// </summary>
     public readonly struct N1 : TypeNat<N1,N2>
     {
-        public static readonly N1 Inhabitant = new N1(1);        
+        public static readonly N1 Rep = default;
         
-        public uint value {get;}    
-        
-        public N1 current => N1.Inhabitant;
+        public N1 rep 
+            => N1.Rep;
 
-        public N2 next => N2.Inhabitant;
+        public N2 nextrep 
+            => N2.Rep;
         
+        public uint value 
+            => 1;
 
-        N1(uint natval)
-            => this.value = natval;        
-        public override string ToString() => value.ToString();    
+        public override string ToString() 
+            => value.ToString();    
     }
 
     /// <summary>
@@ -53,18 +58,20 @@ namespace Core
     /// </summary>
     public readonly struct N2 : TypeNat<N2,N3>
     {
-        public static readonly N2 Inhabitant = new N2(2);        
+        public static readonly N2 Rep = default;        
 
-        public uint value {get;}    
+        public uint value 
+            => 2;
 
-        public N2 current => N2.Inhabitant;
+        public N2 rep 
+            => N2.Rep;
 
-        public N3 next => N3.Inhabitant;
+        public N3 nextrep 
+            => N3.Rep;
 
-        N2(uint natval)
-            => this.value = natval;        
 
-        public override string ToString() => value.ToString();    
+        public override string ToString() 
+            => value.ToString();    
     }
 
     /// <summary>
@@ -72,18 +79,19 @@ namespace Core
     /// </summary>
     public readonly struct N3 : TypeNat<N3,N4>
     {
-        public static readonly N3 Inhabitant = new N3(3);        
+        public static readonly N3 Rep = default;        
 
-        public uint value {get;}    
+        public uint value 
+            => 3;
 
-        public N3 current => N3.Inhabitant;
+        public N3 rep 
+            => N3.Rep;
         
-        public N4 next => N4.Inhabitant;
+        public N4 nextrep 
+            => N4.Rep;
 
-        N3(uint natval)
-            => this.value = natval;        
-
-        public override string ToString() => value.ToString();    
+        public override string ToString() 
+            => value.ToString();    
     }
 
     /// <summary>
@@ -91,18 +99,20 @@ namespace Core
     /// </summary>
     public readonly struct N4 : TypeNat<N4,N5>
     {
-        public static readonly N4 Inhabitant = new N4(4);        
-        public uint value {get;}    
+        public static readonly N4 Rep = default;        
+        
+        public uint value 
+            => 4;
 
-        public N4 current => N4.Inhabitant;
+        public N4 rep 
+            => N4.Rep;
 
-        public N5 next => N5.Inhabitant;
+        public N5 nextrep 
+            => N5.Rep;
 
 
-        N4(uint natval)
-            => this.value = natval;        
-
-        public override string ToString() => value.ToString();    
+        public override string ToString() 
+            => value.ToString();    
     }
 
     /// <summary>
@@ -110,18 +120,19 @@ namespace Core
     /// </summary>
     public readonly struct N5 : TypeNat<N5,N6>
     {
-        public static readonly N5 Inhabitant = new N5(5);        
+        public static readonly N5 Rep = default;
         
-        public uint value {get;}
+        public uint value 
+            => 5;
 
-        public N5 current => N5.Inhabitant;
+        public N5 rep 
+            => N5.Rep;
 
-        public N6 next => N6.Inhabitant;
-        
-        N5(uint natval)
-            => this.value = natval;        
-        
-        public override string ToString() => value.ToString();    
+        public N6 nextrep 
+            => N6.Rep;
+                
+        public override string ToString() 
+            => value.ToString();    
     }
 
     /// <summary>
@@ -129,18 +140,20 @@ namespace Core
     /// </summary>
     public readonly struct N6 : TypeNat<N6,N7>
     {
-        public static readonly N6 Inhabitant = new N6(6);        
+        public static readonly N6 Rep = default;
         
-        public uint value {get;}    
+        public uint value 
+            => 6;
 
-        public N6 current => N6.Inhabitant;
+        public N6 rep 
+            => N6.Rep;
         
-        public N7 next => N7.Inhabitant;
+        public N7 nextrep 
+            => N7.Rep;
         
-        N6(uint natval)
-            => this.value = natval;        
 
-        public override string ToString() => value.ToString();    
+        public override string ToString() 
+            => value.ToString();    
     }
 
     /// <summary>
@@ -148,45 +161,51 @@ namespace Core
     /// </summary>
     public readonly struct N7 : TypeNat<N7,N8>
     {
-        public static readonly N7 Inhabitant = new N7(7);        
+        public static readonly N7 Rep = default;
 
-        public uint value {get;}    
+        public uint value 
+            => 7;
 
-        public N7 current => N7.Inhabitant;
+        public N7 rep 
+            => N7.Rep;
 
-        public N8 next => N8.Inhabitant;
+        public N8 nextrep 
+            => N8.Rep;
 
-        N7(uint natval)
-            => this.value = natval;        
             
         public override string ToString() => value.ToString();
     }
 
     public readonly struct N8 : TypeNat<N8,N9>
     {
-        public static readonly N8 Inhabitant = new N8(8);        
-        public uint value {get;}    
+        public static readonly N8 Rep = default;
+        
+        public uint value 
+            => 8;
 
-        public N8 current => N8.Inhabitant;
+        public N8 rep 
+            => N8.Rep;
 
-        public N9 next => N9.Inhabitant;
-        N8(uint natval)
-            => this.value = natval;        
+        public N9 nextrep 
+            => N9.Rep;
+        
 
-        public override string ToString() => value.ToString();    
+        public override string ToString() 
+            => value.ToString();    
     }
 
     public readonly struct N9 : TypeNat<N9>
     {
-        public static readonly N9 Inhabitant = new N9(9);        
-        public uint value {get;}    
+        public static readonly N9 Rep = default;  
         
-        public N9 current => N9.Inhabitant;
+        public uint value 
+            => 9;
+        
+        public N9 rep 
+            => N9.Rep;
 
-        N9(uint natval)
-            => this.value = natval;      
-
-        public override string ToString() => value.ToString();    
+        public override string ToString() 
+            => value.ToString();    
     }
 
 

@@ -12,7 +12,7 @@ namespace Core
     /// <summary>
     /// Represents the set that contains all potential values of a specified type
     /// </summary>
-    public readonly struct TotalSet<T> : Set<TotalSet<T>, T>, Singleton<TotalSet<T>>
+    public readonly struct TotalSet<T> : Traits.Set<TotalSet<T>, T>, Singleton<TotalSet<T>>
     {
         public static readonly TotalSet<T> Inhabitant = default;
 
@@ -28,7 +28,7 @@ namespace Core
     /// <summary>
     /// Represents the universal empty set
     /// </summary>
-    public readonly struct EmptySet : Set, Singleton<EmptySet>
+    public readonly struct EmptySet : Traits.Set, Singleton<EmptySet>
     {
         public static readonly EmptySet Inhabitant = default;
 
@@ -41,7 +41,7 @@ namespace Core
     /// <summary>
     /// Represents the set that contains no values of a specified type
     /// </summary>
-    public readonly struct EmptySet<T> : Set<EmptySet<T>, T>, Singleton<EmptySet<T>>
+    public readonly struct EmptySet<T> : Traits.Set<EmptySet<T>, T>, Singleton<EmptySet<T>>
     {
         public static readonly EmptySet<T> Inhabitant = default;
 
@@ -58,7 +58,7 @@ namespace Core
     /// <summary>
     /// Represents the set of natural numbers
     /// </summary>
-    public readonly struct N : Set<bigint>, DiscreteSet<bigint>, Singleton<N> 
+    public readonly struct N : Traits.DiscreteSet<bigint>, Singleton<N> 
     {
         internal static readonly N Inhabitant = default;
 
@@ -85,7 +85,7 @@ namespace Core
     /// <summary>
     /// Represents the set of integers
     /// </summary>
-    public readonly struct Z : Set<bigint>, DiscreteSet<bigint>, Singleton<Z>, Traits.GroupA<bigint>
+    public readonly struct Z : Traits.DiscreteSet<bigint>, Traits.GroupA<bigint>,  Singleton<Z> 
     {
         internal static readonly Z Inhabitant = default;
     
@@ -133,7 +133,7 @@ namespace Core
         public bigint sub(bigint lhs, bigint rhs)
             => lhs - rhs;
 
-        bigint BinaryOp<bigint>.apply(bigint lhs, bigint rhs)
+        bigint Traits.BinaryOp<bigint>.apply(bigint lhs, bigint rhs)
             => lhs + rhs;
 
         bigint Traits.Invertive<bigint>.invert(bigint x)
@@ -143,7 +143,7 @@ namespace Core
     /// <summary>
     /// Represents the set of rational numbers
     /// </summary>
-    public readonly struct Q : Set<Q>, Singleton<Q>
+    public readonly struct Q : Traits.Set<Q>, Singleton<Q>
     {
         internal static readonly Q Inhabitant = default(Q);
 
@@ -160,7 +160,7 @@ namespace Core
     /// <summary>
     /// Represents the set of real numbers
     /// </summary>
-    public readonly struct R : Set<R>, Singleton<R>
+    public readonly struct R : Traits.Set<R>, Singleton<R>
     {
         internal static readonly R Inhabitant = default(R);
     

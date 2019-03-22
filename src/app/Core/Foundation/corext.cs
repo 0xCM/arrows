@@ -9,8 +9,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 using Core;
-using Symbols;
-using C = Core.Contracts;
 
 using static Core.Credit;
 using static corefunc;
@@ -38,7 +36,7 @@ public static partial class corext
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static Core.UnaryOp<T> ToUnaryOp<T>(this Func<T,T> f)
-        => new Reify.UnaryOp<T>(f);
+        => new UnaryOp<T>(f);
 
     /// <summary>
     /// Lifts a function to a binary opeator operator
@@ -49,8 +47,8 @@ public static partial class corext
     [MethodImpl(Inline)]
     public static BinaryOp<T> ToBinaryOp<T>(this Func<T,T,T> f, bool commutative = false)
             => commutative 
-            ?  cast<BinaryOp<T>>(new Reify.CommutativeOp<T>(f)) 
-            : new Reify.BinaryOp<T>(f);
+            ?  cast<BinaryOp<T>>(new CommutativeOp<T>(f)) 
+            : new BinaryOp<T>(f);
 
     /// <summary>
     /// Attaches a 0-based integer sequence to the input value sequence and
@@ -72,7 +70,7 @@ public static partial class corext
     /// <typeparam name="N">The segment length</typeparam>
     [MethodImpl(Inline)]
     public static IEnumerable<IReadOnlyList<T>> Partition<N,T>(this IEnumerable<T> src)
-        where N : TypeNat
+        where N : TypeNat, new()
             => partition<N,T>(src);    
 
     /// <summary>

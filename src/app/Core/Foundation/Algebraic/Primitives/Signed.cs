@@ -19,7 +19,6 @@ namespace Core
         /// <typeparam name="T">The type of the underling primitive</typeparam>
         public interface Signed<S,T> : Structure<S,T>
             where S : Signed<S,T>, new()
-            where T : new()
         {
         }
 

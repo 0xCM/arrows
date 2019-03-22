@@ -8,12 +8,23 @@ namespace Core
     {
 
         /// <summary>
-        /// Characterizes operational invertivity
+        /// Characterizes operational inversion
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         public interface Invertive<T>
         {
             T invert(T x);                
+        }
+
+        /// <summary>
+        /// Characterizes structural inversion
+        /// </summary>
+        /// <typeparam name="T">The type over which the structrue is defined</typeparam>
+        /// <typeparam name="S">The structure type</typeparam>
+        public interface Invertive<S,T> : Structure<S,T>
+            where S : Invertive<S,T>, new()
+        {
+            S invert();                
         }
 
         /// <summary>
@@ -26,6 +37,18 @@ namespace Core
         }
 
         /// <summary>
+        /// Characterizes structural multiplicative inversion
+        /// </summary>
+        /// <typeparam name="T">The type over which the structrue is defined</typeparam>
+        /// <typeparam name="S">The structure type</typeparam>
+        public interface InvertiveM<S,T> : Invertive<S,T>
+            where S : InvertiveM<S,T>, new()
+        {
+            T invertM();
+        }
+
+
+        /// <summary>
         /// Characterizes operational additive inversion
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
@@ -34,7 +57,15 @@ namespace Core
             T invertA(T x);
         }
 
-
+        /// <summary>
+        /// Characterizes structural additive inversion
+        /// </summary>
+        /// <typeparam name="T">The type over which the structrue is defined</typeparam>
+        /// <typeparam name="S">The structure type</typeparam>
+        public interface InvertiveA<S,T> : Invertive<S,T>
+            where S : InvertiveA<S,T>, new()
+        {
+            T invertA();
+        }
     }
-
 }

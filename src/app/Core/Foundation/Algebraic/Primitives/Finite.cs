@@ -5,7 +5,6 @@
 namespace Core
 {
     using static Traits;
-    using static Struct;
 
     partial class Traits
     {
@@ -30,7 +29,6 @@ namespace Core
         /// <typeparam name="T">The type of the underling primitive</typeparam>
         public interface Finite<S,T> : Ordered<S,T>
             where S : Finite<S,T>, new()
-            where T : new()
         {
 
             /// <summary>
