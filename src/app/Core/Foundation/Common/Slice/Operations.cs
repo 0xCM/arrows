@@ -11,6 +11,18 @@ namespace Core
     public static class Slice
     {
         [MethodImpl(Inline)]
+        public static Slice<T> define<T>(params T[] data)
+            => new Slice<T>(data);
+
+        [MethodImpl(Inline)]
+        public static Slice<T> define<T>(IEnumerable<T> data)
+            => new Slice<T>(data);
+
+        [MethodImpl(Inline)]
+        public static Slice<T> define<T>(IReadOnlyList<T> data)
+            => new Slice<T>(data);
+
+        [MethodImpl(Inline)]
         public static Slice<N,T> add<N,T>(Traits.Slice<N,T> s1, Traits.Slice<N,T> s2)
             where N : Core.TypeNat, new() => SliceOps<N,T>.add(s1,s2);
 

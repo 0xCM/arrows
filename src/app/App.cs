@@ -356,8 +356,8 @@ namespace App04
 
         static void Slices()
         {
-            var s1 = Nats.N256.slice(range<int>(1,256));
-            var s2 = Nats.N256.slice(range<int>(1,256));
+            var s1 = Nats.N256.Slice(range<int>(1,256));
+            var s2 = Nats.N256.Slice(range<int>(1,256));
             print(Slice.add(s1,s2));
             print(Slice.mul(s1,s2));
             print(Slice.sum(s1));
@@ -410,15 +410,29 @@ namespace App04
             print($"{Nats.N1024}");
             print($"{N128.Rep}");
             print($"{NatSeq<N1,N2>.Rep}");
-            print($"{Nats.nat<NatSeq<N4,N3,N2>>()}");
+            print($"{Nat.nat<NatSeq<N4,N3,N2>>()}");
 
+        }
+
+        static void VectorArithmetic()
+        {
+            var sr = VectorSemiring.define<N3,int>();
+            var v1 = Nats.N3.Vector(1,2,3);
+            var v2 = Nats.N3.Vector(3,2,1);
+            var v3 = sr.add(v1,v2);
+            print(v3);
+        }
+
+        static void NatReflect(uint min, uint max)
+        {
+            print($"Creating type nat range {min}..{max}");
+            var sw = stopwatch();
+            var result = Nat.reflect(min,max).ToList();
+            print($"Created {result.Count} natural values in {sw.ElapsedMilliseconds}ms");
         }
         static void Main(string[] args)
         {            
-            Perf();
-            // NatSeq();
-            // IntModN();
-            // Slices();
+            VectorArithmetic();
         }
     }
 }

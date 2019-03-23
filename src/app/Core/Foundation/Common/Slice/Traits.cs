@@ -15,11 +15,11 @@ namespace Core
     partial class Traits
     {
 
-        public interface Slice<T>
+        public interface Slice<T> : IEnumerable<T>
         {
             IReadOnlyList<T> cells {get;}        
 
-            uint length {get;}
+            intg<uint> length {get;}
 
             T this[int i] {get;}
         }

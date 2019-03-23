@@ -10,38 +10,41 @@ namespace Core
 
     partial class Traits
     {
-        /// <summary>
-        /// Characterizes a *finitely generated* free semigroup over a set
-        /// </summary>
-        /// <typeparam name="T">The individual type</typeparam>
-        public interface FreeSemigroup<T> : Semigroup<T>
+        public interface Concatenable<T>
+        {
+            IEnumerable<T> concat(IEnumerable<T> s1, IEnumerable<T> s2);
+
+            IEnumerable<T> concat(T lhs, T rhs);
+        }
+
+        public interface Concatenable<S,T>
+            where S : Concatenable<S,T>,new()
+        {
+            IEnumerable<S> concat(IEnumerable<S> s1);
+        }
+
+        public interface FinitelyGenerable<T>
         {
             FiniteSet<T> generators {get;}
         }
 
-        public interface FreeSemigroup<S,T> : Semigroup<S,T>
-            where S : FreeSemigroup<S,T>,new()
-        {
-
-        }
 
         /// <summary>
-        /// Characterizes a finitely generated free monoid
+        /// Characterizes a *finitely generated* free moinoid over a set
         /// </summary>
         /// <typeparam name="T">The individual type</typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Free_monoid 
         /// and http://localhost:9000/refs/books/Y2007GRAA.pdf#page=39&view=fit</remarks>
-        public interface FreeMonoid<T> : Monoid<T>, FreeSemigroup<T>
+        public interface FreeMonoid<T> : Monoid<T>, Concatenable<T>, FinitelyGenerable<T>
         {
-            IEnumerable<T> concat(IEnumerable<T> s1, IEnumerable<T> s2);
+
         }
 
-        public interface FreeMonoid<S,T> : Monoid<S,T>, FreeSemigroup<S,T>
+        public interface FreeMonoid<S,T> : Monoid<S,T>, Concatenable<S,T>, FinitelyGenerable<S>
             where S : FreeMonoid<S,T>, new()
         {
 
-            IEnumerable<T> concat(IEnumerable<T> s1);
-
+                    
         }
 
         public interface FreeGroup<T> : Group<T>, FreeMonoid<T>

@@ -51,11 +51,11 @@ namespace Core
         public systype ε
             => Epsilon;
 
-        public Func<systype, systype, systype> addition 
-            => add;
+        public Addition<systype> addition 
+            => Addition.define(this);
 
-        public Func<systype, systype, systype> multiplication 
-            => mul;
+        public Multiplication<systype> multiplication 
+            => Multiplication.define(this);
 
         public systype apply(systype lhs, systype rhs)
             => throw new NotImplementedException();
@@ -193,7 +193,6 @@ namespace Core
         public systype sqrt(systype x)
             => SysMath.Sqrt(x);
 
-
         public IEnumerable<systype> partition(systype min, systype max, systype width)
         {
             var current = min;
@@ -218,9 +217,7 @@ namespace Core
             => lhs.x * rhs + lhs.y * rhs;
 
         public string bitstring(float x)
-        {
-            throw new NotImplementedException();
-        }
+            => x.ToBitString();
 
         public systype gcd(systype lhs, systype rhs)
         {

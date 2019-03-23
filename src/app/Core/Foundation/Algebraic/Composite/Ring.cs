@@ -52,12 +52,18 @@ namespace Core
 
         }
 
-        public interface DivisionRing<S,T> : Ring<S,T>
+        public interface DivisionRing<S,T> : Ring<S,T>, Divisive<S,T>, Reciprocative<S,T>
             where S : DivisionRing<S,T>, new()
         {
 
 
         }
+
+        public interface Field<T> : CommutativeRing<T>, DivisionRing<T>
+        {
+
+        }
+
 
     }
 }

@@ -15,17 +15,26 @@ namespace Core
     /// <summary>
     /// A nat sequence of length 1
     /// </summary>
-    public readonly struct NatSeq<T0> : TypeNat
-        where T0 : TypeNat, new()
+    public readonly struct NatSeq<T1> : Traits.NatSeq<NatSeq<T1>,T1>
+        where T1 : TypeNat, new()
     {
-        public static readonly NatSeq<T0> Rep = default;
-
+        public static readonly NatSeq<T1> Rep = default;
+        
         public static readonly uint Value 
-            = Nats.nat<T0>().value;
+            = Nat.nat<T1>().value;
+        
+        public static readonly byte[] Digits 
+            = corefunc.digits(Value);
         
         public uint value 
             => Value;
-        
+
+        public NatSeq<T1> rep
+            => Rep; 
+
+        public byte[] digits()
+            => Digits;
+
         public override string ToString() 
             => Value.ToString();    
     }
@@ -33,22 +42,27 @@ namespace Core
     /// <summary>
     /// A nat sequence of length 2
     /// </summary>
-    public readonly struct NatSeq<T0,T1>  : TypeNat<NatSeq<T0,T1>>
-        where T0 : TypeNat, new()
+    public readonly struct NatSeq<T1,T2> : Traits.NatSeq<NatSeq<T1,T2>,T1,T2>  
         where T1 : TypeNat, new()
+        where T2 : TypeNat, new()
     {
-        public static readonly NatSeq<T0,T1> Rep = default;
+        public static readonly NatSeq<T1,T2> Rep = default;
 
         public static readonly uint Value 
-            = Nats.nat<T0>().value * 10
-            + Nats.nat<T1>().value;
+            = Nat.nat<T1>().value * 10
+            + Nat.nat<T2>().value;
+
+        public static readonly byte[] Digits 
+            = corefunc.digits(Value);
 
         public uint value 
             => Value;
 
-        public NatSeq<T0, T1> rep 
+        public NatSeq<T1, T2> rep 
             => Rep;
 
+        public byte[] digits()
+            => Digits;
 
         public override string ToString() 
             => Value.ToString();            
@@ -57,51 +71,69 @@ namespace Core
     /// <summary>
     /// A nat sequence of length 3
     /// </summary>
-    public readonly struct NatSeq<T0,T1,T2>  : TypeNat<NatSeq<T0,T1,T2>>
-        where T0 : TypeNat, new()
-        where T1 : TypeNat, new()
-        where T2 : TypeNat, new()
+    public readonly struct NatSeq<T1,T2,T3>  
+        : Traits.NatSeq
+        <
+            NatSeq<T1,T2,T3>,
+            T1,T2,T3
+        >
+            where T1 : TypeNat, new()
+            where T2 : TypeNat, new()
+            where T3 : TypeNat, new()
     {
-        public static readonly NatSeq<T0,T1,T2> Rep = default;
+        public static readonly NatSeq<T1,T2,T3> Rep = default;
         
         public static readonly uint Value 
-            = Nats.nat<T0>().value * 100
-            + Nats.nat<T1>().value * 10
-            + Nats.nat<T2>().value;
-        
+            = Nat.nat<T1>().value * 100
+            + Nat.nat<T2>().value * 10
+            + Nat.nat<T3>().value;
+
+        public static readonly byte[] Digits 
+            = corefunc.digits(Value);
+
         public uint value 
             => Value;
 
-        public NatSeq<T0, T1, T2> rep 
+        public NatSeq<T1, T2, T3> rep 
             => Rep;
 
         public override string ToString() 
             => Value.ToString();    
-
     }
 
     /// <summary>
     /// A nat sequence of length 4
     /// </summary>
-    public readonly struct NatSeq<T0,T1,T2,T3> : TypeNat<NatSeq<T0,T1,T2,T3>>
-        where T0 : TypeNat, new()
-        where T1 : TypeNat, new()
-        where T2 : TypeNat, new()
-        where T3 : TypeNat, new()
+    public readonly struct NatSeq<T1,T2,T3,T4> 
+        : Traits.NatSeq
+        <
+            NatSeq<T1,T2,T3,T4>,
+            T1,T2,T3,T4
+        >
+            where T1 : TypeNat, new()
+            where T2 : TypeNat, new()
+            where T3 : TypeNat, new()
+            where T4 : TypeNat, new()
     {
-        public static readonly NatSeq<T0,T1,T2,T3> Rep = default;
+        public static readonly NatSeq<T1,T2,T3,T4> Rep = default;
 
         public static readonly uint Value 
-            = Nats.nat<T0>().value * 1000
-            + Nats.nat<T1>().value * 100
-            + Nats.nat<T2>().value * 10
-            + Nats.nat<T3>().value;
+            = Nat.nat<T1>().value * 1000
+            + Nat.nat<T2>().value * 100
+            + Nat.nat<T3>().value * 10
+            + Nat.nat<T4>().value;
+
+        public static readonly byte[] Digits 
+            = corefunc.digits(Value);
 
         public uint value 
             => Value;
 
-        public NatSeq<T0, T1, T2, T3> rep 
+        public NatSeq<T1, T2, T3, T4> rep 
             => Rep;
+
+        public byte[] digits()
+            => Digits;
 
         public override string ToString() 
             => Value.ToString();    
@@ -110,27 +142,38 @@ namespace Core
     /// <summary>
     /// A nat sequence of length 5
     /// </summary>
-    public readonly struct NatSeq<T0,T1,T2,T3,T4>  : TypeNat<NatSeq<T0,T1,T2,T3,T4>>
-        where T0 : TypeNat, new()
-        where T1 : TypeNat, new()
-        where T2 : TypeNat, new()
-        where T3 : TypeNat, new()
-        where T4 : TypeNat, new()
+    public readonly struct NatSeq<T1,T2,T3,T4,T5>
+        : Traits.NatSeq
+        <
+            NatSeq<T1,T2,T3,T4,T5>,
+            T1,T2,T3,T4,T5
+        >
+            where T1 : TypeNat, new()
+            where T2 : TypeNat, new()
+            where T3 : TypeNat, new()
+            where T4 : TypeNat, new()
+            where T5 : TypeNat, new()
     {
-        public static readonly NatSeq<T0,T1,T2,T3,T4> Rep = default;
+        public static readonly NatSeq<T1,T2,T3,T4,T5> Rep = default;
 
         public static readonly uint Value 
-            = Nats.nat<T0>().value * 10000
-            + Nats.nat<T1>().value * 1000
-            + Nats.nat<T2>().value * 100
-            + Nats.nat<T3>().value * 10
-            + Nats.nat<T4>().value;
+            = Nat.nat<T1>().value * 10000
+            + Nat.nat<T2>().value * 1000
+            + Nat.nat<T3>().value * 100
+            + Nat.nat<T4>().value * 10
+            + Nat.nat<T5>().value;
+
+        public static readonly byte[] Digits 
+            = corefunc.digits(Value);
 
         public uint value 
             => Value;
 
-        public NatSeq<T0, T1, T2, T3, T4> rep 
+        public NatSeq<T1, T2, T3, T4, T5> rep 
             => Rep;
+
+        public byte[] digits()
+            => Digits;
 
         public override string ToString() 
             => Value.ToString();    
@@ -139,34 +182,87 @@ namespace Core
     /// <summary>
     /// A nat sequence of length 6
     /// </summary>
-    public readonly struct NatSeq<T0,T1,T2,T3,T4,T5> : TypeNat<NatSeq<T0,T1,T2,T3,T4,T5>>
-        where T0 : TypeNat, new()
-        where T1 : TypeNat, new()
-        where T2 : TypeNat, new()
-        where T3 : TypeNat, new()
-        where T4 : TypeNat, new()
-        where T5 : TypeNat, new()
+    public readonly struct NatSeq<T1,T2,T3,T4,T5,T6> 
+        : Traits.NatSeq
+        <
+            NatSeq<T1,T2,T3,T4,T5,T6>,
+            T1,T2,T3,T4,T5,T6
+        >
+            where T1 : TypeNat, new()
+            where T2 : TypeNat, new()
+            where T3 : TypeNat, new()
+            where T4 : TypeNat, new()
+            where T5 : TypeNat, new()
+            where T6 : TypeNat, new()
     {
-        public static readonly NatSeq<T0,T1,T2,T3,T4,T5> Rep = default;
+        public static readonly NatSeq<T1,T2,T3,T4,T5,T6> Rep = default;
 
         public static readonly uint Value 
-            = Nats.nat<T0>().value * 100000
-            + Nats.nat<T1>().value * 10000
-            + Nats.nat<T2>().value * 1000
-            + Nats.nat<T3>().value * 100
-            + Nats.nat<T4>().value * 10
-            + Nats.nat<T5>().value;
+            = Nat.nat<T1>().value * 100000
+            + Nat.nat<T2>().value * 10000
+            + Nat.nat<T3>().value * 1000
+            + Nat.nat<T4>().value * 100
+            + Nat.nat<T5>().value * 10
+            + Nat.nat<T6>().value;
 
+        public static readonly byte[] Digits 
+            = corefunc.digits(Value);
     
         public uint value 
             => Value;
 
-        public NatSeq<T0, T1, T2, T3, T4, T5> rep 
+        public NatSeq<T1, T2, T3, T4, T5, T6> rep 
             => Rep;
+
+        public byte[] digits()
+            => Digits;
 
         public override string ToString() 
             => Value.ToString();    
     }
 
-    
+   /// <summary>
+    /// A nat sequence of length 7
+    /// </summary>
+    public readonly struct NatSeq<T1,T2,T3,T4,T5,T6,T7> 
+        : Traits.NatSeq
+        <
+            NatSeq<T1,T2,T3,T4,T5,T6,T7>,
+            T1,T2,T3,T4,T5,T6,T7
+        >
+            where T1 : TypeNat, new()
+            where T2 : TypeNat, new()
+            where T3 : TypeNat, new()
+            where T4 : TypeNat, new()
+            where T5 : TypeNat, new()
+            where T6 : TypeNat, new()
+            where T7 : TypeNat, new()
+    {
+        public static readonly NatSeq<T1,T2,T3,T4,T5,T6,T7> Rep = default;
+
+        public static readonly uint Value 
+            = Nat.nat<T1>().value * 1000000
+            + Nat.nat<T2>().value * 100000
+            + Nat.nat<T3>().value * 10000
+            + Nat.nat<T4>().value * 1000
+            + Nat.nat<T5>().value * 100
+            + Nat.nat<T6>().value * 10
+            + Nat.nat<T7>().value;
+
+        public static readonly byte[] Digits 
+            = corefunc.digits(Value);
+
+        public uint value 
+            => Value;
+
+        public NatSeq<T1, T2, T3, T4, T5, T6, T7> rep 
+            => Rep;
+
+        public byte[] digits()
+            => Digits;
+
+        public override string ToString() 
+            => Value.ToString();    
+    }
+   
 }

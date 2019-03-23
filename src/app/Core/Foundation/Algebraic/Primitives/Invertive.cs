@@ -13,7 +13,7 @@ namespace Core
         /// <typeparam name="T">The operand type</typeparam>
         public interface Invertive<T>
         {
-            T invert(T x);                
+            //T invert(T x);                
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Core
         public interface Invertive<S,T> : Structure<S,T>
             where S : Invertive<S,T>, new()
         {
-            S invert();                
+            //S invert();                
         }
 
         /// <summary>

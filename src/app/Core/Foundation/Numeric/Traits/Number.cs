@@ -13,7 +13,7 @@ namespace Core
         /// by any underlying primitive numeric type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Number<T> :  SemigroupA<T>,  SemigroupM<T>, Semiring<T>, Negatable<T>, Divisive<T>, Powered<T,int> 
+        public interface Number<T> :  GroupA<T>,  SemigroupM<T>, Semiring<T>, Divisive<T>, Powered<T,int> 
         {                    
             T muladd(T x, T y, T z);
 

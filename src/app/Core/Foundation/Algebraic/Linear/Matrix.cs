@@ -20,54 +20,6 @@ namespace Core
 
     }
 
-    partial class Traits
-    {
-        /// <summary>
-        /// Characterizes a type that supports a notion of transposition
-        /// </summary>
-        /// <typeparam name="S">The source type</typeparam>
-        /// <typeparam name="T">The target type</typeparam>
-        public interface Tranposable<S,T>
-        {
-            /// <summary>
-            /// Effects the source-to-target transposition
-            /// </summary>
-            /// <param name="src">The source type</param>
-            /// <returns></returns>
-            T tranpose(S src);        
-        }
-
-
-
-        public interface Matrix<M,N,T> : Tranposable<Matrix<M,N,T>, Matrix<N,M,T>>
-            where M : TypeNat, new()
-            where N : TypeNat, new()
-        {
-            IEnumerable<Covector<N,T>> rows();
-
-            IEnumerable<Vector<M,T>> cols();
-
-            Covector<N,T> row<I>()
-                where I : TypeNat, new(); 
-
-            Covector<N,T> row(uint i);
-
-            Dimenson<M,N> dim();
-
-            Vector<M,T> col<J>()
-                where J : TypeNat, new(); 
-
-            Vector<M,T> col(uint i);
-
-            T cell<I,J>()
-                where I : TypeNat, new()
-                where J : TypeNat, new(); 
-            
-            T cell(uint i, uint j);
-        }
-
-    }
-
     public readonly struct Matrix<M, N, T> : Traits.Matrix<M, N, T>
         where M : TypeNat, new()
         where N : TypeNat, new()
@@ -125,11 +77,10 @@ namespace Core
                 yield return row(i);
         }
 
-        public Traits.Matrix<N, M, T> tranpose(Traits.Matrix<M, N, T> src)
-            => throw new Exception();
+        public Traits.Matrix<N, M, T> tranpose()
+            => new Matrix<N,M,T>(cols().SelectMany(x => x).ToArray());
 
         public override string ToString()
             => string.Join("\r\n",rows().Select(r => r.ToString()));
-    }
- 
+    } 
 }

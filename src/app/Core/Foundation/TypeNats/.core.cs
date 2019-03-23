@@ -49,6 +49,14 @@ public static partial class corefunc
             ? expected 
             : throw new ArgumentException(); 
 
+    [MethodImpl(Inline)]   
+    public static uint natcheck<N>(int expected)
+            where N : TypeNat, new()
+           => natval<N>() == (uint)expected 
+            ? (uint)expected 
+            : throw new ArgumentException(); 
+
+
     /// <summary>
     /// Retrieves the value of a pair of nats
     /// </summary>
@@ -99,5 +107,14 @@ public static partial class corefunc
            => natval<N>() == src.Length 
             ? src
             : throw new NatConstraintException("equality", natval<N>(), (uint)src.Length); 
+
+    /// <summary>
+    /// Constructs the specifeid natural representative
+    /// </summary>
+    /// <typeparam name="N">The natural type</typeparam>
+    /// <returns></returns>
+    public static N natrep<N>()
+        where N : TypeNat,new()
+            => new N(); 
 
 }

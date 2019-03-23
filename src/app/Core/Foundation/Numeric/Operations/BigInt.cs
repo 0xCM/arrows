@@ -17,23 +17,25 @@ namespace Core
     using opstype = BigIntOps;
 
     internal readonly struct BigIntOps : InfiniteSignedInt<systype>, 
-        TypeClass<opstype,InfiniteSignedInt<systype>,systype>
+        TypeClass<opstype,InfiniteSignedInt<systype>>
     {
     
         public static readonly opstype Inhabitant = default;
+
 
         public systype zero => 0;
 
         public systype one => 1;
 
-        public opstype inhabitant 
+        [MethodImpl(Inline)]   
+        public opstype instance()
             => Inhabitant;
 
-        public Func<systype, systype, systype> addition 
-            => add;
+        public Addition<systype> addition 
+            => Addition.define(this);
 
-        public Func<systype, systype, systype> multiplication 
-            => mul;
+        public Multiplication<systype> multiplication 
+            => Multiplication.define(this);
 
         [MethodImpl(Inline)]   
         public systype add(systype lhs, systype rhs) 
@@ -163,6 +165,5 @@ namespace Core
             throw new NotImplementedException();
         }
     }
-
 
 }

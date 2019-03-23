@@ -10,6 +10,10 @@ namespace Core
     {
         public const string Pipe = "|";
 
+        public const string Plus = "+";
+
+        public const string Minus = "-";
+
         public const string Bang = "!";
 
         public const string At = "@";

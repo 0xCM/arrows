@@ -17,6 +17,18 @@ public static partial class corefunc
 {
 
     /// <summary>
+    /// Constructs integrally-keyed associative array, otherwise known
+    /// as a list from an enumeration
+    /// </summary>
+    /// <param name="values"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static Index<T> list<T>(IEnumerable<T> values)
+        => new Index<T>(values);
+
+
+    /// <summary>
     /// Constructs an associative array
     /// </summary>
     /// <param name="items">Item tuples that will be indexed/stored</param>
@@ -144,6 +156,12 @@ public static partial class corefunc
         yield return sement;
     }
 
-
-
+    /// <summary>
+    /// Constructs a sequence of singleton sequences from a sequence of elements
+    /// </summary>
+    /// <param name="src">The source sequence</param>
+    /// <typeparam name="T">The item type</typeparam>
+    [MethodImpl(Inline)]
+    public static IEnumerable<IEnumerable<T>> singletons<T>(IEnumerable<T> src)
+        => from item in src select seq(item);
 }

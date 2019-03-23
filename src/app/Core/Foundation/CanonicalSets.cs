@@ -21,8 +21,11 @@ namespace Core
 
         public bool empty => false;
 
-        public bool contains(T item) 
+        public bool member(T item) 
             => true;
+
+        public bool member(object candidate)
+            => candidate is T ? true : false;
     }
 
     /// <summary>
@@ -36,6 +39,9 @@ namespace Core
 
         public EmptySet inhabitant 
             => Inhabitant;
+
+        public bool member(object candidate)
+            => false;
     }
 
     /// <summary>
@@ -51,8 +57,13 @@ namespace Core
         public bool empty 
             => false;
 
-        public bool contains(T item) 
+        public bool member(T item) 
             => false;
+
+        public bool member(object candidate)
+            => (candidate is T) 
+             ? member((T)candidate) 
+             : false;
     }
 
     /// <summary>
@@ -62,24 +73,30 @@ namespace Core
     {
         internal static readonly N Inhabitant = default;
 
-        public bool contains(bigint item)
-            => true;
+        public bool member(bigint item)
+            => item >= bigint.Zero;
 
         static IEnumerable<bigint> peano()
         {
             var p = new bigint(0);
             for(;;)               
                 yield return p++;
-           
+    
         }
 
-        public bool empty => false;
+        public bool empty 
+            => false;
 
         public N inhabitant 
             => Inhabitant;
 
-        public Enumerable<bigint> individuals()
+        public Enumerable<bigint> members()
             => peano().Reify();
+
+        public bool member(object candidate)
+            => candidate is bigint 
+            ? member((bigint)candidate) 
+            : false;
     }
 
     /// <summary>
@@ -95,8 +112,8 @@ namespace Core
         public bool empty 
             => false;
 
-        public Func<bigint, bigint, bigint> addition 
-            => add;
+        public Addition<bigint> addition 
+            => Addition.define(this);
 
         public bigint zero 
             => bigint.Zero;
@@ -112,13 +129,13 @@ namespace Core
             }
         }
 
-        public Enumerable<bigint> individuals()
+        public Enumerable<bigint> members()
             => integers().Reify();
 
         public bigint add(bigint lhs, bigint rhs)
             => lhs + rhs;
 
-        public bool contains(bigint item)
+        public bool member(bigint item)
             => true;
 
         public bool eq(bigint lhs, bigint rhs)
@@ -133,11 +150,8 @@ namespace Core
         public bigint sub(bigint lhs, bigint rhs)
             => lhs - rhs;
 
-        bigint Traits.BinaryOp<bigint>.apply(bigint lhs, bigint rhs)
-            => lhs + rhs;
-
-        bigint Traits.Invertive<bigint>.invert(bigint x)
-            => negate(x);
+        public bool member(object candidate)
+            => candidate is bigint;
     }
 
     /// <summary>
@@ -153,8 +167,11 @@ namespace Core
         public bool empty 
             => false;
 
-        public bool contains(Q item) 
+        public bool member(Q item) 
             => true;
+
+        public bool member(object candidate)
+            => candidate is Q;
     }
 
     /// <summary>
@@ -164,11 +181,17 @@ namespace Core
     {
         internal static readonly R Inhabitant = default(R);
     
-        public R inhabitant => Inhabitant;  
+        public R inhabitant 
+            => Inhabitant;  
 
-        public bool empty => false;
+        public bool empty 
+            => false;
 
-        public bool contains(R item) => true;  
+        public bool member(R item) 
+            => true;
+
+        public bool member(object candidate)
+            => candidate is R;
     }
 
 }

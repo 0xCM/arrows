@@ -101,5 +101,31 @@ partial class corefunc
     public static mod<N,T> mod<N,T>(T lhs)
         where N : TypeNat, new()
             => new mod<N,T>(lhs);
+
+    /// <summary>
+    /// Retrieves the representative of the set of rational numbers
+    /// </summary>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static Q Q() 
+        => Core.Q.Inhabitant;
+
+    /// <summary>
+    /// Retrieves the representative of the set of integers
+    /// </summary>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static Z Z() 
+        => Core.Z.Inhabitant;
+
+    /// <summary>
+    /// Retrieves the representative of the set of real numbers
+    /// </summary>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static R R() 
+        => Core.R.Inhabitant;
+
+
 }
 

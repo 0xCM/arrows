@@ -9,14 +9,16 @@ namespace Core
     using System.Runtime.CompilerServices;
 
     using static corefunc;
-    using static Traits;
 
-    using C = Core.Contracts;
     using systype = System.Decimal;
     using opstype = DecimalOps;
+    using Currency = Traits.Currency<decimal>;
 
-    internal readonly struct DecimalOps : Currency<systype>, 
-        TypeClass<opstype,Currency<systype>,systype> 
+    using Nat128 = NatSeq<N1,N2,N8>;
+    using N127 = NatSeq<N1,N2,N7>;
+
+    internal readonly struct DecimalOps : Currency, 
+        TypeClass<opstype,Currency,systype> 
     {
         
         public static readonly opstype Inhabitant = default;
@@ -25,13 +27,13 @@ namespace Core
 
         public const systype One = 1;
 
-        public const byte BitSize = 128;
+        public static readonly Nat128 BitSize = natrep<Nat128>();
+        
+        public static readonly N127 MaxBitLength = natrep<N127>();
 
         public const systype MinVal = systype.MinValue;            
 
         public const systype MaxVal = systype.MaxValue;
-
-        const byte MaxBitLength = BitSize - 1;
 
         public systype zero 
             => Zero;
@@ -48,11 +50,12 @@ namespace Core
         public opstype inhabitant 
             => Inhabitant;
 
-        public Func<systype, systype, systype> addition 
-            => add;
+        public Addition<systype> addition 
+            => Addition.define(this);
 
-        public Func<systype, systype, systype> multiplication 
-            => mul;
+        public Multiplication<systype> multiplication 
+            => Multiplication.define(this);
+
 
         public systype apply(systype lhs, systype rhs)
             => throw new NotImplementedException();
@@ -61,9 +64,11 @@ namespace Core
         public systype add(systype a, systype b) 
             => a + b;
 
+        [MethodImpl(Inline)]   
         public systype inc(systype x)
             => ++x;
 
+        [MethodImpl(Inline)]   
         public systype dec(systype x)
             => --x;
 
@@ -150,6 +155,8 @@ namespace Core
         public systype distribute((systype x, systype y) lhs, systype rhs)
             => lhs.x * rhs + lhs.y * rhs;
 
+        public BitString<N127> bitstring2(systype src)
+            => new BitString<N127>(src.ToBitString());
         public string bitstring(systype src)
             => src.ToBitString();
 

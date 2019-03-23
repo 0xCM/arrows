@@ -282,6 +282,13 @@ namespace Core
         public intg<T> negate()
             => ops.negate(data);
 
+        /// <summary>
+        /// Represents the integer as a sequence of 10-based digits
+        /// </summary>
+        [MethodImpl(Inline)]
+        public byte[] digits()
+            => (from c in data.ToString() select byte.Parse(c.ToString())).ToArray();
+
 
         public override bool Equals(object rhs)
             => data.Equals(rhs);

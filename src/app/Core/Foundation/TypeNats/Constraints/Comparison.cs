@@ -5,6 +5,19 @@
 namespace Core
 {
 
+    public static class NatEvidence
+    {
+        public readonly struct LT<K1,K2>
+            where K1: TypeNat, new()
+            where K2: TypeNat, new()
+        {
+            
+        
+            
+        }
+
+
+    }
     partial class NatConstraints
     {
 

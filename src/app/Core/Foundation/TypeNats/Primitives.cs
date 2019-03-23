@@ -171,11 +171,14 @@ namespace Core
 
         public N8 nextrep 
             => N8.Rep;
-
             
-        public override string ToString() => value.ToString();
+        public override string ToString() 
+            => value.ToString();
     }
 
+    /// <summary>
+    /// The singleton type representative for 8
+    /// </summary>
     public readonly struct N8 : TypeNat<N8,N9>
     {
         public static readonly N8 Rep = default;
@@ -194,6 +197,9 @@ namespace Core
             => value.ToString();    
     }
 
+    /// <summary>
+    /// The singleton type representative for 9
+    /// </summary>
     public readonly struct N9 : TypeNat<N9>
     {
         public static readonly N9 Rep = default;  
@@ -207,6 +213,4 @@ namespace Core
         public override string ToString() 
             => value.ToString();    
     }
-
-
 }

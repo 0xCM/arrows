@@ -52,11 +52,11 @@ namespace Core
         public systype minval 
             => MaxVal;
 
-        public Func<systype, systype, systype> addition 
-            => add;
+        public Addition<systype> addition 
+            => Addition.define(this);
 
-        public Func<systype, systype, systype> multiplication 
-            => mul;
+        public Multiplication<systype> multiplication 
+            => Multiplication.define(this);
         public systype apply(systype lhs, systype rhs)
             => throw new NotImplementedException();
 

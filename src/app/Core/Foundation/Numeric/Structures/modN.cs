@@ -85,10 +85,6 @@ namespace Core
         public mod<N, T> distributeR((mod<N, T> x, mod<N, T> y) lhs)
             => Ops.distribute((lhs.x.data, lhs.y.data), this.data);
 
-        [MethodImpl(Inline)]
-        public mod<N, T> invert()
-            => Ops.invert(this.data);
-
 
         public override bool Equals(object rhs)
             => data.Equals(rhs);

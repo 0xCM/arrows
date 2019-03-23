@@ -8,11 +8,11 @@ namespace Core
     /// Characterizes a type for which exactly one value may exist and that value
     /// must be obtainable via a parameterless new construction
     /// </summary>
-    /// <typeparam name="T">The type of both the type and value so characterized</typeparam>
-    public interface Singleton<T>
-        where T : Singleton<T>, new()
+    /// <typeparam name="S">The type of both the type and value so characterized</typeparam>
+    public interface Singleton<S>
+        where S : Singleton<S>, new()
     {
-        T inhabitant {get;}        
+        S inhabitant {get;}        
     }
 
 
@@ -25,6 +25,17 @@ namespace Core
         where I : TypeClass<I,R,T>, new()
     {
         
+    }
+
+    /// <summary>
+    /// Binds a realization R with a trait T
+    /// </summary>
+    /// <typeparam name="R">The concrete instance type</typeparam>
+    /// <typeparam name="T">The resolution type, i.e., the type that will be used to resolve the instance</typeparam>
+    public interface TypeClass<R,T>
+        where R : T,  new()
+    {
+        R instance();        
     }
 
 }

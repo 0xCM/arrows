@@ -24,7 +24,7 @@ namespace Core
         
         public interface SemigroupM<T> : Semigroup<T>, Multiplicative<T>
         {
-           Func<T,T,T> multiplication {get;} 
+           Multiplication<T> multiplication {get;} 
         }
 
         public interface SemigroupM<S,T> : Semigroup<S,T>, Multiplicative<S,T>
@@ -35,7 +35,7 @@ namespace Core
 
         public interface SemigroupA<T> : Semigroup<T>, Additive<T>
         {
-           Func<T,T,T> addition {get;} 
+           Addition<T> addition {get;} 
 
         }
 
@@ -56,7 +56,6 @@ namespace Core
 
             public static SemigroupM<T> Inhabitant = default;
             
-
             public SemigroupM<T> inhabitant 
                 => Inhabitant;
 
@@ -76,8 +75,8 @@ namespace Core
             public T apply(T lhs, T rhs) 
                 => mul(lhs,rhs);
 
-            public Func<T, T, T> multiplication
-                => mul;
+            public Multiplication<T> multiplication
+                => Multiplication.define(this);
 
         }
 
@@ -91,8 +90,8 @@ namespace Core
             public SemigroupA<T> inhabitant 
                 => Inhabitant;
 
-            public Func<T, T, T> addition 
-                => add;
+            public Addition<T> addition 
+                => Addition.define(this);
 
             [MethodImpl(Inline)]
             public T add(T a, T b) 

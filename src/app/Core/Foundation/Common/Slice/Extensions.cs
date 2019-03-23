@@ -13,8 +13,20 @@ namespace Core
 
     public static class SliceX
     {
-        public static Slice<N,T> slice<N,T>(this Core.TypeNat<N> nat, IEnumerable<T> src)
+        [MethodImpl(Inline)]
+        public static Slice<N,T> Slice<N,T>(this Core.TypeNat<N> nat, IEnumerable<T> src)
             where N : TypeNat, new()
                 => new Slice<N, T>(src);
+    
+        [MethodImpl(Inline)]
+        public static Vector<N,T> ToVector<N,T>(this Slice<N,T> src)
+            where N : TypeNat, new()
+                => vector<N,T>(src.cells);
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> Vector<N,T>(this Core.TypeNat<N> nat, params T[] components)
+            where N : TypeNat, new()
+                => new Vector<N, T>(components);
+
     }
 }    

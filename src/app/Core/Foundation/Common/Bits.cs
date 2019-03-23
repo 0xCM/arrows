@@ -298,6 +298,7 @@ namespace Core
         public static (Sign sign, int exponent, long mantissa)  split (double d)
         {        
 
+            
             // Translate the double into sign, exponent and mantissa.
             long bits = BitConverter.DoubleToInt64Bits(d);
             // Note that the shift is sign-extended, hence the test against -1 not 1

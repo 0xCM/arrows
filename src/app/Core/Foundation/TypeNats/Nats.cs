@@ -2,16 +2,17 @@ namespace Core
 {
     using System;
     using System.Numerics;
+    using System.Linq;
+    using System.Reflection;
+    using System.Reflection.Emit;
     using System.Collections.Generic;
     using System.Collections.Concurrent;
     using static corefunc;
+    using static Nat;
     
-
     /// <summary>
-    /// Reifies nat primitives and common derivations thereof,
-    /// provides an indexed source-of-truth for these reifications,
-    /// and exposes the means by which additional reifications
-    /// can be constructed
+    /// Records the representative instance of the primitive nats N0-N9 and
+    /// other commonly-used natural types
     /// </summary>
     public static class Nats
     {
@@ -110,46 +111,31 @@ namespace Core
         /// </summary>
         public static readonly NatSeq<N4,N0,N2,N6> N4096 = nat<N4,N0,N2,N6>();
 
-        
+        /// <summary>
+        /// Specifies the type literal for the natural number 2^13 = 8192
+        /// </summary>
+        public static readonly NatSeq<N8,N1,N9,N2> N8192 = nat<N8,N1,N9,N2>();
 
-        public static T nat<T>()
-            where T : TypeNat,new()
-             => new T(); 
+        /// <summary>
+        /// Specifies the type literal for the natural number 2^14 = 16384
+        /// </summary>
+        public static readonly NatSeq<N1,N6,N3,N8,N4> N16384 = nat<N1,N6,N3,N8,N4>();
+
+        /// <summary>
+        /// Specifies the type literal for the natural number 2^14 = 32768
+        /// </summary>
+        public static readonly NatSeq<N3,N2,N7,N6,N8> N32768 = nat<N3,N2,N7,N6,N8>();
+
+        /// <summary>
+        /// Specifies the type literal for the natural number 2^14 = 65536
+        /// </summary>
+        public static readonly NatSeq<N6,N5,N5,N3,N6> N65536 = nat<N6,N5,N5,N3,N6>();
                     
-        public static NatSeq<T0,T1> nat<T0,T1>()
-            where T0 : TypeNat, new()        
-            where T1 : TypeNat, new()
-                => NatSeq<T0,T1>.Rep;
-
-        public static NatSeq<T0,T1,T2> nat<T0,T1,T2>()
-            where T0 : TypeNat, new()        
-            where T1 : TypeNat, new()
-            where T2 : TypeNat, new()
-                => NatSeq<T0,T1,T2>.Rep;
-        
-        public static NatSeq<T0,T1,T2,T3> nat<T0,T1,T2,T3>()
-            where T0 : TypeNat, new()        
-            where T1 : TypeNat, new()
-            where T2 : TypeNat, new()
-            where T3 : TypeNat, new()
-                => NatSeq<T0,T1,T2,T3>.Rep;
-
-        public static NatSeq<T0,T1,T2,T3,T4> nat<T0,T1,T2,T3,T4>()
-            where T0 : TypeNat, new()        
-            where T1 : TypeNat, new()
-            where T2 : TypeNat, new()
-            where T3 : TypeNat, new()
-            where T4 : TypeNat, new()
-                => NatSeq<T0,T1,T2,T3,T4>.Rep;
-
-        public static NatSeq<T0,T1,T2,T3,T4,T5> nat<T0,T1,T2,T3,T4,T5>()
-            where T0 : TypeNat, new()        
-            where T1 : TypeNat, new()
-            where T2 : TypeNat, new()
-            where T3 : TypeNat, new()
-            where T4 : TypeNat, new()
-            where T5 : TypeNat, new()
-                => NatSeq<T0,T1,T2,T3,T4,T5>.Rep;
+        /// <summary>
+        /// Specifies the type literal for the natural number 2^14 = 131072
+        /// </summary>
+        public static readonly NatSeq<N1,N3,N1,N0,N7,N2> N131072 = nat<N1,N3,N1,N0,N7,N2>();
+                    
 
     }
 

@@ -8,6 +8,39 @@ namespace Core
     using System.Runtime.CompilerServices;
     using static corefunc;
 
+    using static Traits;
+
+
+    public static class Addition 
+    {
+        public static Addition<T> define<T>(Additive<T> x)
+            => Addition<T>.define(x);
+    }
+
+    /// <summary>
+    /// Reification of addition as a binary applicative
+    /// </summary>
+    public readonly struct Addition<T> : Additive<T>, BinaryApply<T>
+    {
+        [MethodImpl(Inline)]
+        public static Addition<T> define(Additive<T> effector)
+            => new Addition<T>(effector);
+
+        readonly Traits.Additive<T> effector;
+        
+        [MethodImpl(Inline)]    
+        public Addition(Additive<T> effector)
+            => this.effector = effector;
+
+        [MethodImpl(Inline)]    
+        public T add(T lhs, T rhs)
+            => effector.add(lhs,rhs);
+
+        [MethodImpl(Inline)]    
+        public T apply(T lhs, T rhs)
+            => effector.add(lhs,rhs);
+    }
+
     partial class Traits
     {
         /// <summary>

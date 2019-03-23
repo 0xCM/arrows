@@ -14,8 +14,8 @@ namespace Core
         /// <typeparam name="G">The group individual type</typeparam>
         /// <typeparam name="R">The ring individual type</typeparam>
         public interface LeftModule<R,G> 
-            where G : GroupA<G>, new()
             where R : Ring<R>, new()
+            where G : GroupA<G>, new()
         {
             /// <summary>
             /// Effects left scalar multiplication

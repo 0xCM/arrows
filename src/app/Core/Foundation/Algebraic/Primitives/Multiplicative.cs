@@ -4,6 +4,41 @@
 //-----------------------------------------------------------------------------
 namespace Core
 {
+    using System.Runtime.CompilerServices;
+    using static corefunc;
+    using static Traits;
+
+    public static class Multiplication 
+    {
+        public static Multiplication<T> define<T>(Multiplicative<T> x)
+            => Multiplication<T>.define(x);
+    }
+
+    /// <summary>
+    /// Reification of multiplication as a binary applicative
+    /// </summary>
+    public readonly struct Multiplication<T> : Multiplicative<T>, BinaryApply<T>
+    {
+        [MethodImpl(Inline)]
+        public static Multiplication<T> define(Multiplicative<T> muliplier)
+            => new Multiplication<T>(muliplier);
+
+        readonly Traits.Multiplicative<T> effector;
+        
+        [MethodImpl(Inline)]    
+        public Multiplication(Traits.Multiplicative<T> effector)
+            => this.effector = effector;
+
+        [MethodImpl(Inline)]    
+        public T mul(T lhs, T rhs)
+            => effector.mul(lhs,rhs);
+
+        [MethodImpl(Inline)]    
+        public T apply(T lhs, T rhs)
+            => effector.mul(lhs,rhs);
+
+    }
+
     partial class Traits
     {
 
@@ -13,9 +48,10 @@ namespace Core
         /// <typeparam name="T">The type subject to multiplication</typeparam>
         public interface Multiplicative<T> : BinaryOp<T>
         {
-            T mul(T a, T b);
+            T mul(T lhs, T rhs);
 
         }
+    
 
         /// <summary>
         /// Characterizes structural multiplication
@@ -25,7 +61,7 @@ namespace Core
         public interface Multiplicative<S,T> : Structure<S,T>
             where S : Multiplicative<S,T>, new()
         {
-            S mul(S a);
+            S mul(S rhs);
 
         }
     
