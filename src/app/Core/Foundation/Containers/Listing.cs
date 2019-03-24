@@ -57,7 +57,7 @@ namespace Core
             public Listing(IEnumerable<T> src)
             {
                 this.data = src.ToList();
-                this.length = natcheck<N>(data.length());
+                this.length = natcheck<N>(data.Length());
             }
 
             IEnumerator<T> IEnumerable<T>.GetEnumerator()

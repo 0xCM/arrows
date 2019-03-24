@@ -333,4 +333,40 @@ partial class corefunc
     public static intg<ulong> uint64g(ulong x)
         => x;
 
+    /// <summary>
+    /// Converts an integer to a sequence of digits
+    /// </summary>
+    /// <param name="x">The source value</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static byte[] digits(uint x)
+        => x.ToIntG<uint>().digits();
+
+    /// <summary>
+    /// Converts an integer to a sequence of digits
+    /// </summary>
+    /// <param name="x">The source value</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static byte[] digits(ulong x)
+        => x.ToIntG<ulong>().digits();
+
+    /// <summary>
+    /// Converts an integer to a sequence of digits
+    /// </summary>
+    /// <param name="x">The source value</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static byte[] digits(ushort x)
+        => x.ToIntG<ushort>().digits();
+
+    [MethodImpl(Inline)]
+    public static intg<T> min<T>(intg<T> x, intg<T> y)
+        => x < y ? x : y;
+
+
+    [MethodImpl(Inline)]
+    public static intg<T> max<T>(intg<T> x, intg<T> y)
+        => x > y ? x : y;
+
 }

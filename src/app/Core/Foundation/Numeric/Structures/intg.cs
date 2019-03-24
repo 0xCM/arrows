@@ -16,28 +16,8 @@ namespace Core
     public static class intG
     {
 
-        public static intg<T> define<T>(T x)
-            where T : Traits.Integer<T>, new()
-                => new intg<T>(x);
-
-        public static bool prime<T>(intg<T> candidate)
-            where T : new()
-                => divisors(candidate).Count() == 0;
 
 
-        /// <summary>
-        /// Enumerates the divisors of the input values, excluding 1 and itself
-        /// </summary>
-        /// <param name="src"></param>
-        /// <returns></returns>
-        public static IEnumerable<intg<T>> divisors<T>(intg<T> src)
-            where T : new()
-        {
-            var candidates = rangeG(intg<T>.One.inc(), src.abs().dec());
-            foreach(var c in candidates)
-                if(c.divides(src))
-                    yield return c;
-        }
 
     }    
 
@@ -277,6 +257,14 @@ namespace Core
             => this < rhs ? -1
              : this > rhs ? 1
              : 0;
+
+        /// <summary>
+        /// Returns true of the number is nonzero; false otherwise
+        /// </summary>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public bool nonzero()
+            => this != Zero;
 
         [MethodImpl(Inline)]
         public intg<T> negate()

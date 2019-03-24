@@ -70,7 +70,7 @@ namespace Core
         public static NatSeq reflect(byte[] digits)
         {
             var dtypes = types(digits);
-            var nattype = seqtype(dtypes.length()).MakeGenericType(dtypes);
+            var nattype = seqtype(dtypes.Length()).MakeGenericType(dtypes);
             return instance<NatSeq>(nattype);            
         }
         public static T nat<T>()
@@ -82,10 +82,10 @@ namespace Core
             where T2 : TypeNat, new()
                 => Mul<T1,T2>.Rep;
 
-        public static Exp<B,E> exp<B,E>()
+        public static Pow<B,E> exp<B,E>()
             where B : TypeNat, new()        
             where E : TypeNat, new()
-                => Exp<B,E>.Rep;
+                => Pow<B,E>.Rep;
 
          public static NatSeq<T0,T1> nat<T0,T1>()
             where T0 : TypeNat, new()        

@@ -11,13 +11,21 @@ partial class corefunc
 {
 
     [MethodImpl(Inline)]   
+    public static Core.Slice<T> slice<T>(params T[] src)
+            => new Slice<T>(src);
+
+    [MethodImpl(Inline)]   
+    public static Core.Slice<T> slice<T>(IEnumerable<T> src)
+            => new Slice<T>(src);
+
+    [MethodImpl(Inline)]   
     public static Core.Slice<N,T> slice<N,T>(IEnumerable<T> src)
         where N : TypeNat, new()
-            => new Core.Slice<N,T>(src);
+            => new Slice<N,T>(src);
 
     [MethodImpl(Inline)]   
     public static Core.Slice<N,T> slice<N,T>(params T[] src)
         where N : TypeNat, new()
-            => new Core.Slice<N,T>(src);
+            => new Slice<N,T>(src);
 
 }

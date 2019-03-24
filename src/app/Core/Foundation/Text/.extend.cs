@@ -34,7 +34,7 @@ public static partial class corext
     /// <param name="src">The source list</param>
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]
-    public static uint length<T>(this IReadOnlyList<T> src)
+    public static uint Length<T>(this IReadOnlyList<T> src)
         => (uint)src.Count;
 
 

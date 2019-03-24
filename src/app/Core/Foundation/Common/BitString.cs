@@ -27,8 +27,7 @@ namespace Core
             natcheck<N>(src.Length);
             var digits = new BinaryDigit[src.Length];
             for(var i = 0; i< digits.Length; i++)
-                digits[i] = src[i] == '0' ? BinaryDigit.B0 : BinaryDigit.B0;
-            
+                digits[i] = src[i] == '0' ? BinaryDigit.B0 : BinaryDigit.B0;        
             bits = digits;            
         }
             

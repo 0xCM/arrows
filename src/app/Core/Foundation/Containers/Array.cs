@@ -38,7 +38,7 @@ namespace Core
                 this.data = array<T>(natval<N>());
             else
             {
-                natcheck<N>(data.length());
+                natcheck<N>(data.Length());
                 this.data = data;
             }
         }

@@ -7,15 +7,6 @@ namespace Core
     partial class Traits
     {
 
-        public interface Successive<T>
-        {
-            T next(T x);
-        }
-
-        public interface Antecedant<T>
-        {
-            T prior(T x);
-        }
 
         /// <summary>
         /// Caracterizes an association between two types for which there
@@ -63,7 +54,7 @@ namespace Core
         /// </summary>
         /// <typeparam name="A">The type that succeeds B</typeparam>
         /// <typeparam name="B">The type that precedes A</typeparam>
-        public interface Adjacent<A,B> : Successive<B,A>, Antecedant<A,B>
+        public interface Adjacency<A,B> : Successive<B,A>, Antecedant<A,B>
         {
 
         }

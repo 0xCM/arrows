@@ -26,6 +26,12 @@ namespace Core
             T reduce(T src);
         }
 
+        public interface GF<N,T> : ModN<N,T>
+            where N : TypeNat, PrimePower<N>, new()
+            
+        {
+
+        }
 
         public interface ModN<N,S,T> : Ring<S,T>
             where S : ModN<N,S,T>, new()

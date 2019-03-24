@@ -6,7 +6,7 @@ namespace Core
     using System.Collections.Concurrent;
     using static corefunc;
 
-    public static class NatCheck
+    public static class Check
     {
         static bool failure<N>(string name, uint value, bool raise)
             where N : TypeNat, new()

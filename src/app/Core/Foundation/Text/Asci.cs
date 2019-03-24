@@ -8,72 +8,91 @@ namespace Core
  
     public static class AsciSym
     {
-        public const string Pipe = "|";
+        public static readonly Atom Pipe = "|";
 
-        public const string Plus = "+";
+        public static readonly Atom Plus = "+";
 
-        public const string Minus = "-";
+        public static readonly Atom Minus = "-";
 
-        public const string Bang = "!";
+        public static readonly Atom Bang = "!";
 
-        public const string At = "@";
+        public static readonly Atom At = "@";
 
-        public const string Dollar = "$";
+        public static readonly Atom Dollar = "$";
 
-        public const string Percent = "%";
+        public static readonly Atom Percent = "%";
 
-        public const string Caret = "^";
+        public static readonly Atom Caret = "^";
 
-        public const string Amp = "&";
+        public static readonly Atom Amp = "&";
 
-        public const string Star = "*";
+        public static readonly Atom Star = "*";
 
-        public const string LParen = "(";        
+        public static readonly Atom LParen = "(";        
 
-        public const string RParen = ")";        
+        public static readonly Atom RParen = ")";        
         
-        public const string Lbrace = "{";
+        public static readonly Atom Lbrace = "{";
 
-        public const string Rbrace = "}";
+        public static readonly Atom Rbrace = "}";
 
-        public const string LBracket = "[";
+        public static readonly Atom LBracket = "[";
 
-        public const string RBracket = "]";
+        public static readonly Atom RBracket = "]";
 
-        public const string BSlash = "\\";
+        public static readonly Atom BSlash = "\\";
 
-        public const string FSlash = "/";
+        public static readonly Atom FSlash = "/";
 
-        public const string Colon = ":";
+        public static readonly Atom Colon = ":";
 
-        public const string Comma = ",";
+        public static readonly Atom Comma = ",";
 
-        public const string Semicolon = ";";
+        public static readonly Atom Semicolon = ";";
 
     }
 
     public static class AsciLower
     {
-        public const string a = "a";
-        public const string b = "b";
-        public const string c = "c";
-        public const string d = "d";
-        public const string e = "e";
-        public const string f = "f";
-        public const string g = "g";
+        public static readonly Atom a = "a";
+        public static readonly Atom b = "b";
+        public static readonly Atom c = "c";
+        public static readonly Atom d = "d";
+        public static readonly Atom e = "e";
+        public static readonly Atom f = "f";
+        public static readonly Atom g = "g";
+        public static readonly Atom h = "h";
+        public static readonly Atom i = "i";
+        public static readonly Atom j = "j";
+
 
     }
 
     public static class AsciUpper
     {
-        public const string A = "A";
-        public const string B = "B";
-        public const string C = "C";
-        public const string D = "D";
-        public const string E = "E";
-        public const string F = "F";
-        public const string G = "G";
-
+        public static readonly Atom A = "A";
+        public static readonly Atom B = "B";
+        public static readonly Atom C = "C";
+        public static readonly Atom D = "D";
+        public static readonly Atom E = "E";
+        public static readonly Atom F = "F";
+        public static readonly Atom G = "G";
+        public static readonly Atom H = "H";
+        public static readonly Atom I = "I";
+        public static readonly Atom J = "J";
     }
 
+    public static class AsciDigits
+    {
+        public static readonly Atom A0 = "1";
+        public static readonly Atom A1 = "1";
+        public static readonly Atom A2 = "2";
+        public static readonly Atom A3 = "3";
+        public static readonly Atom A4 = "4";
+        public static readonly Atom A5 = "5";
+        public static readonly Atom A6 = "6";
+        public static readonly Atom A7 = "7";
+        public static readonly Atom A8 = "8";
+        public static readonly Atom A9 = "9";
+    }
 }

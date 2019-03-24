@@ -30,7 +30,7 @@ namespace Core
         static readonly intg<T> @base =  natval<N>().ToIntG<T>();
 
         public IEnumerable<T> members 
-            => range<T>(@base.zero, @base.dec());
+            => range<T>(@base.zero, @base.dec()).Unwrap();
 
         public T one 
             => @base.one;

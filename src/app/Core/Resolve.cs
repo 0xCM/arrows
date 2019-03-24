@@ -2,6 +2,14 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Collections.Concurrent;
+using System.Runtime.CompilerServices;
+using System.Numerics;
+using System.Reflection;
+using Core;
 namespace Core
 {
     using System;
@@ -248,3 +256,19 @@ namespace Core
     }
 }
 
+public static partial class corefunc
+{
+
+    [MethodImpl(Inline)]   
+    public static O ops<T,O>()
+        => Resolve.ops<T,O>();
+    
+    [MethodImpl(Inline)]
+    public static Traits.Semigroup<T> semigroup<T>() 
+        => Resolve.ops<T,Traits.Semigroup<T>>();
+
+    [MethodImpl(Inline)]
+    public static Traits.Semiring<T> semiring<T>() 
+        => Resolve.ops<T,Traits.Semiring<T>>();
+
+}

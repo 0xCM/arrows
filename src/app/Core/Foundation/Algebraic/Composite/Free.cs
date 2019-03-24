@@ -12,15 +12,17 @@ namespace Core
     {
         public interface Concatenable<T>
         {
-            IEnumerable<T> concat(IEnumerable<T> s1, IEnumerable<T> s2);
+            T concat(T lhs, T rhs);
 
-            IEnumerable<T> concat(T lhs, T rhs);
+
         }
 
         public interface Concatenable<S,T>
             where S : Concatenable<S,T>,new()
         {
-            IEnumerable<S> concat(IEnumerable<S> s1);
+
+            S append(S rhs);
+
         }
 
         public interface FinitelyGenerable<T>
@@ -30,20 +32,22 @@ namespace Core
 
 
         /// <summary>
-        /// Characterizes a *finitely generated* free moinoid over a set
+        /// Characterizes a free moinoid over a set
         /// </summary>
         /// <typeparam name="T">The individual type</typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Free_monoid 
         /// and http://localhost:9000/refs/books/Y2007GRAA.pdf#page=39&view=fit</remarks>
-        public interface FreeMonoid<T> : Monoid<T>, Concatenable<T>, FinitelyGenerable<T>
+        public interface FreeMonoid<T> : Monoid<T>, Concatenable<T>
         {
+            T empty {get;}
 
         }
 
-        public interface FreeMonoid<S,T> : Monoid<S,T>, Concatenable<S,T>, FinitelyGenerable<S>
+        public interface FreeMonoid<S,T> : Monoid<S,T>, Concatenable<S,T>
             where S : FreeMonoid<S,T>, new()
         {
-
+            
+            S empty {get;}
                     
         }
 

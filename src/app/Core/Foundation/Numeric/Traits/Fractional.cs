@@ -29,7 +29,6 @@ namespace Core
         /// <typeparam name="T">The primitive type</typeparam>
         public interface Fractional<S,T> : Number<S,T> 
             where S : Fractional<S,T>, new()
-            where T : new()
         {
             S ceiling();
             

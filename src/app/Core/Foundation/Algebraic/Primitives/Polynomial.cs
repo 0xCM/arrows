@@ -15,6 +15,7 @@ namespace Core
     }
     public readonly struct PolynomialTerm<T>
     {
+        public static readonly PolynomialTerm<T> Zero = default;
         public static implicit operator PolynomialTerm<T>((T coefficient, intg<uint> power) x)        
             => new PolynomialTerm<T>(x.coefficient, x.power);
 
@@ -52,20 +53,17 @@ namespace Core
             => concat(AsciSym.Plus, terms);
 
         public intg<uint> degree()
-            => nonzero ? reverse(terms).Where(t => Ops.neq(t.coefficient, FZero)).First().power : 0;
+            => nonzero ? filter(reverse(terms), t => Ops.neq(t.coefficient, FZero)).First().power : 0;
 
         public bool nonzero
             => any(terms, t => Ops.neq(t.coefficient, FZero));
 
         public Polynomial<T> add(Polynomial<T> rhs)
         {
-            
             var dst = new PolynomialTerm<T>[max(terms.length, rhs.terms.length)]; 
-            var ld = degree();
-            var rd = degree();
-            var md = min(ld,rd);
-            for(var i = 0; i<= md; i++)           
-                dst[i] = Polynomial.term(Ops.add(terms[i].coefficient, rhs.terms[i].coefficient), i.ToIntG<uint>());
+            var src = terms.conform(rhs.terms, PolynomialTerm<T>.Zero);
+            for(var i = 0; i<= dst.Length(); i++)           
+                dst[i] = Polynomial.term(Ops.add(src.lhs[i].coefficient, src.rhs[i].coefficient), i.ToIntG<uint>());
             return new Polynomial<T>(dst);
         }
 

@@ -12,7 +12,6 @@ using System.Diagnostics;
 using Core;
 using static corefunc;
 
-
 public static partial class corefunc
 {
 
@@ -164,4 +163,45 @@ public static partial class corefunc
     [MethodImpl(Inline)]
     public static IEnumerable<IEnumerable<T>> singletons<T>(IEnumerable<T> src)
         => from item in src select seq(item);
+
+    /// <summary>
+    /// Constructs the default set associated with a type whose elements
+    /// consist of all potential values of the type.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static Traits.Set<T> set<T>() 
+        => TotalSet<T>.Inhabitant;
+
+    /// <summary>
+    /// Replicates a given value a specified number of times
+    /// </summary>
+    /// <param name="value">The value to replicate</param>
+    /// <param name="count">The number of replicants</param>
+    /// <typeparam name="T">The replicant type</typeparam>
+    /// <returns></returns>
+    public static T[] repeat<T>(T value, long count)
+    {
+        var dst = array<T>(count);
+        for(var idx = 0; idx < count; idx ++)
+            dst[idx] = value;
+        return dst;            
+    }
+
+    /// <summary>
+    /// Replicates a given value a specified number of times
+    /// </summary>
+    /// <param name="value">The value to replicate</param>
+    /// <typeparam name="N">The natural count type</typeparam>
+    /// <typeparam name="T">The replicant type</typeparam>
+    [MethodImpl(Inline)]   
+    public static T[] repeat<N,T>(T value)
+        where N : TypeNat, new()
+        => repeat(value, natval<N>());
+
+    [MethodImpl(Inline)]   
+    public static Enumerable<I> items<I>(params I[] src)
+        => src.Reify();
+
+
 }

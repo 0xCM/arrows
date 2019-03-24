@@ -10,7 +10,7 @@ namespace Expose
 
     public static class Arrows
     {
-        public static readonly Symbol longright = symbol("⟶",cmd("longrightarrow"));
+        public static readonly Symbol longright = symbol("⟶", cmd("longrightarrow"));
     }
 
 }

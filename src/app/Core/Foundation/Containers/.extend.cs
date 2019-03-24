@@ -61,6 +61,15 @@ public static class ContainerX
         => singletons(src);
 
     /// <summary>
+    /// Constructs a slice from a supplied sequence
+    /// </summary>
+    /// <param name="src">The source sequence</param>
+    /// <typeparam name="T">The item type</typeparam>
+    [MethodImpl(Inline)]
+    public static Slice<T> ToSlice<T>(this IEnumerable<T> src)
+        => new Slice<T>(src);
+
+    /// <summary>
     /// Constructs a slice with natural length from a sequence of elements
     /// </summary>
     /// <param name="src">The source sequence</param>

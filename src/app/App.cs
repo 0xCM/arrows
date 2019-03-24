@@ -27,20 +27,18 @@ namespace App04
             iter(parition, print);            
         }
 
-        static void CalcDivisors(intg<long> value)
-        {
-            print($"calculating the divisors of {value}");
-            printeach(intG.divisors(value));
+        static void TestPrimality(int min, int max)
+        {            
+            for(var i = min; i<=max; i++)            
+            {
+            
+                if(prime(i.ToIntG()))
+                    print($"{i} is prime");
+                else
+                    print($"{i} is not prime");
+            }
         }
 
-        static void TestPrimality(intg<int> value)
-        {
-            var prime = intG.prime(value);
-            if(prime)
-                print($"{value} is prime");
-            else
-                print($"{value} is not prime");
-        }
 
         static T dot<N,T>(Core.Slice<N,T> s1, Core.Slice<N,T> s2)
             where N : TypeNat, new()
@@ -210,9 +208,9 @@ namespace App04
         {
             print($"intg<long> Mul(n = {n})");
             long count = n;
-            var v1 = rangeG<long>(1, n).ToArray();
-            var v2 = rangeG<long>(1, n).ToArray();
-            var v3 = rangeG<long>(1, n).ToArray();
+            var v1 = range<long>(1, n).ToArray();
+            var v2 = range<long>(1, n).ToArray();
+            var v3 = range<long>(1, n).ToArray();
             var v4 = array<intg<long>>(n);
             var sw = stopwatch();
             for(long i=0; i < count; i++)
@@ -226,9 +224,9 @@ namespace App04
         {
             print($"long Mul(n = {n})");
             long count = n;
-            var v1 = rangeG<long>(1, n).Unwrap();
-            var v2 = rangeG<long>(1, n).Unwrap();
-            var v3 = rangeG<long>(1, n).Unwrap();
+            var v1 = range<long>(1, n).Unwrap();
+            var v2 = range<long>(1, n).Unwrap();
+            var v3 = range<long>(1, n).Unwrap();
             var v4 = array<long>(n);
             var sw = stopwatch();
             for(int i=0; i < count; i++)
@@ -243,9 +241,9 @@ namespace App04
         {
             print($"intg<long> Sum(n = {n})");
             long count = n;
-            var v1 = rangeG<long>(1, n).ToArray();
-            var v2 = rangeG<long>(1, n).ToArray();
-            var v3 = rangeG<long>(1, n).ToArray();
+            var v1 = range<long>(1, n).ToArray();
+            var v2 = range<long>(1, n).ToArray();
+            var v3 = range<long>(1, n).ToArray();
             var v4 = array<intg<long>>(n);
             var sw = stopwatch();
             for(int i=0; i < count; i++)
@@ -257,9 +255,9 @@ namespace App04
         {
             print($"long Sum(n = {n})");
             long count = n;
-            var v1 = rangeG<long>(1, n).Unwrap();
-            var v2 = rangeG<long>(1, n).Unwrap();
-            var v3 = rangeG<long>(1, n).Unwrap();
+            var v1 = range<long>(1, n).Unwrap();
+            var v2 = range<long>(1, n).Unwrap();
+            var v3 = range<long>(1, n).Unwrap();
             var v4 = array<long>(n);
             var sw = stopwatch();
             for(int i=0; i < count; i++)
@@ -272,9 +270,9 @@ namespace App04
             void generic()
             {
                 print($"intg<long> SumMul(n = {vecLen})");
-                var v1 = rangeG<long>(1, vecLen).ToArray();
-                var v2 = rangeG<long>(1, vecLen).ToArray();
-                var v3 = rangeG<long>(1, vecLen).ToArray();
+                var v1 = range<long>(1, vecLen).ToArray();
+                var v2 = range<long>(1, vecLen).ToArray();
+                var v3 = range<long>(1, vecLen).ToArray();
                 var v4 = array<intg<long>>(vecLen);
                 var sw = stopwatch();
                 for(int i=0; i < vecLen; i++)
@@ -285,9 +283,9 @@ namespace App04
             void system()
             {
                 print($"long SumMul(n = {vecLen})");
-                var v1 = rangeG<long>(1, vecLen).Unwrap();
-                var v2 = rangeG<long>(1, vecLen).Unwrap();
-                var v3 = rangeG<long>(1, vecLen).Unwrap();
+                var v1 = range<long>(1, vecLen).Unwrap();
+                var v2 = range<long>(1, vecLen).Unwrap();
+                var v3 = range<long>(1, vecLen).Unwrap();
                 var v4 = array<long>(vecLen);
                 var sw = stopwatch();
                 for(int i=0; i < vecLen; i++)
@@ -348,16 +346,16 @@ namespace App04
 
         static void Ranges()
         {
-            printeach(rangeG<int>(1,9));
-            printeach(rangeG<int>(9,1));
+            printeach(range<int>(1,9));
+            printeach(range<int>(9,1));
         
 
         }
 
         static void Slices()
         {
-            var s1 = Nats.N256.Slice(range<int>(1,256));
-            var s2 = Nats.N256.Slice(range<int>(1,256));
+            var s1 = N256.Rep.Slice(range<int>(1,256).Unwrap());
+            var s2 = N256.Rep.Slice(range<int>(1,256).Unwrap());
             print(Slice.add(s1,s2));
             print(Slice.mul(s1,s2));
             print(Slice.sum(s1));
@@ -395,8 +393,8 @@ namespace App04
 
         static void IntModN()
         {
-            var x = mod<NatSeq<N1,N2>,uint>(32u);
-            var y = mod<NatSeq<N1,N2>,uint>(18u);
+            var x = modring<NatSeq<N1,N2>,uint>(32u);
+            var y = modring<NatSeq<N1,N2>,uint>(18u);
             print($"x := {x}, y := {y}");
             print($"{x} + {y} = {x + y}");
             print($"{x} * {y} = {x * y}");
@@ -405,10 +403,9 @@ namespace App04
         }
 
         static void NatSeq()
-        {
-            
-            print($"{Nats.N1024}");
+        {            
             print($"{N128.Rep}");
+            print($"{N512.Rep}");
             print($"{NatSeq<N1,N2>.Rep}");
             print($"{Nat.nat<NatSeq<N4,N3,N2>>()}");
 
@@ -417,8 +414,8 @@ namespace App04
         static void VectorArithmetic()
         {
             var sr = VectorSemiring.define<N3,int>();
-            var v1 = Nats.N3.Vector(1,2,3);
-            var v2 = Nats.N3.Vector(3,2,1);
+            var v1 = N3.Rep.Vector(1,2,3);
+            var v2 = N3.Rep.Vector(3,2,1);
             var v3 = sr.add(v1,v2);
             print(v3);
         }
@@ -431,8 +428,10 @@ namespace App04
             print($"Created {result.Count} natural values in {sw.ElapsedMilliseconds}ms");
         }
         static void Main(string[] args)
-        {            
-            VectorArithmetic();
+        {     
+        
+            TestPrimality(100,1000);
+
         }
     }
 }

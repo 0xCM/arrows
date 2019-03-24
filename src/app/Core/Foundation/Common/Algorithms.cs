@@ -114,6 +114,18 @@ public static partial class corefunc
         => src.Any(predicate);
 
     /// <summary>
+    /// If possible, returns the first value in the sequence that matches a predicate;
+    /// otherwise returns none
+    /// </summary>
+    /// <param name="src">The source sequence</param>
+    /// <param name="predicate">The predicate to evaluate over sequence elements</param>
+    /// <typeparam name="T">The element type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)] 
+    public static Option<T> first<T>(IEnumerable<T> src, Func<T,bool> predicate)
+        => src.FirstOrDefault(predicate);
+
+    /// <summary>
     /// Applies a function to elements of an input sequence to produce 
     /// a transformed output sequence
     /// </summary>
@@ -136,7 +148,7 @@ public static partial class corefunc
     /// <returns></returns>
     [MethodImpl(Inline)]   
     public static Option<Y> map<X,Y>(Option<X> src, Func<X,Y> f)
-        => src.exists ? f(src.value) : none<Y>();
+        => src.trymap(f);
 
     /// <summary>
     /// Applies a function to a value
@@ -226,4 +238,30 @@ public static partial class corefunc
             yield return (idx++, item);
     }
 
+    /// <summary>
+    /// Transforms a function (S,T) -> U to a function S -> (T -> U)
+    /// </summary>
+    /// <typeparam name="S">The first argument type</typeparam>
+    /// <typeparam name="T">The second argument type</typeparam>
+    /// <typeparam name="U">The codomain</typeparam>
+    [MethodImpl(Inline)]
+    public static Func<S,T,U> curry<S,T,U>(Func<(S,T), U> f)
+    {        
+        U g(S a, T b) => f((a,b));        
+        return g;
+    }
+
+    /// <summary>
+    /// Transforms a function S -> (T -> U) to a function (S,T) -> U
+    /// </summary>
+    /// <typeparam name="S">The first argument type</typeparam>
+    /// <typeparam name="T">The second argument type</typeparam>
+    /// <typeparam name="U">The codomain</typeparam>
+    [MethodImpl(Inline)]
+    public static Func<(S,T),U> uncurry<S,T,U>(Func<S,T,U> f)
+    {        
+        U g((S a, T b) x) => f(x.a,x.b);
+        return g;
+    }
+    
 }

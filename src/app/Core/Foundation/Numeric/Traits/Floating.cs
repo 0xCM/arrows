@@ -46,13 +46,8 @@ namespace Core
         /// Characterizes a structure for a floating point number
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface Floating<S,T> : Fractional<S,T>, 
-            Signed<S,T>, 
-            Negatable<S,T>, 
-            Ordered<S,T>, 
-            Trigonmetric<S,T>
+        public interface Floating<S,T> : Fractional<S,T>, Ordered<S,T>, Signed<S,T>, Negatable<S,T>, Trigonmetric<S,T>
             where S : Floating<S,T>, new()
-            where T : new()
         {
 
             /// <summary>
