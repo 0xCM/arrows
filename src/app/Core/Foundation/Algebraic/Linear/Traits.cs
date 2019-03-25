@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core
+namespace Z0
 {
     using System;
     using System.Collections.Generic;
@@ -71,13 +71,13 @@ namespace Core
         }
 
 
-        public interface Vector<N,T> : IEnumerable<T>, Tranposable<Core.Covector<N,T>>
+        public interface Vector<N,T> : IEnumerable<T>, Tranposable<Z0.Covector<N,T>>
             where N : TypeNat, new()
         {
             
         }
 
-        public interface Covector<N,T> : Tranposable<Core.Vector<N,T>>
+        public interface Covector<N,T> : Tranposable<Z0.Vector<N,T>>
             where N : TypeNat, new()
         {
             

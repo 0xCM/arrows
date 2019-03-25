@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-using Core;
+using Z0;
 
-using static Core.Credit;
+using static Z0.Credit;
 using static corefunc;
 
 
@@ -23,7 +23,7 @@ public static partial class corext
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]
-    public static Core.UnaryOp<T> ToUnaryOp<T>(this Func<T,T> f)
+    public static Z0.UnaryOp<T> ToUnaryOp<T>(this Func<T,T> f)
         => new UnaryOp<T>(f);
 
     /// <summary>

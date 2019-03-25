@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-using Core;
+using Z0;
 
 public static partial class corefunc
 {

@@ -8,10 +8,10 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;    
 using System.Text;
-using Core;
+using Z0;
 
 using static corefunc;
-using static Core.Operations;
+using static Z0.Operations;
 
 /// <summary>
 /// Defines extenstions for numeric formatting

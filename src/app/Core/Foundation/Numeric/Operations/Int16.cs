@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core
+namespace Z0
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace Core
     using static corefunc;
     using static Traits;
     
-    using C = Core.Contracts;
+    using C = Z0.Contracts;
     using systype = System.Int16;
     using opstype = Int16Ops;
 

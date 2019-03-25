@@ -3,7 +3,7 @@
 // Author: Chris Moore, 0xCM@gmail.com
 // License: MIT
 //-------------------------------------------------------------------------------------------
-namespace Core
+namespace Z0
 {
     using System;
     using System.Linq;

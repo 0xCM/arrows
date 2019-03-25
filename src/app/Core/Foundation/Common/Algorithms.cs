@@ -9,10 +9,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
-using Core;
-using static Core.Credit;
+using Z0;
+using static Z0.Credit;
 using static corefunc;
-using static Core.Traits;
+using static Z0.Traits;
 
 
 public static partial class corefunc

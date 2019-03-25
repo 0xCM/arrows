@@ -2,9 +2,9 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core
+namespace Z0
 {
-    using Core.Contracts;
+    using Z0.Contracts;
 
     public static partial class Traits
     {

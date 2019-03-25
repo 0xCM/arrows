@@ -9,8 +9,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
-using Core;
-using static Core.Credit;
+using Z0;
+using static Z0.Credit;
 using static corefunc;
 
 
@@ -26,7 +26,7 @@ public static partial class corefunc
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(params T[] components)
         where N : TypeNat, new()
-            => new Core.Vector<N,T>(components);
+            => new Z0.Vector<N,T>(components);
 
     public static Vector<N,T> vector<N,T>(T component)
         where N : TypeNat, new()

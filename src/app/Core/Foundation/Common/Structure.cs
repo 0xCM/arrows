@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core
+namespace Z0
 {
     /// <summary>
     /// Characterizes a type that exists to encapsulate and define 

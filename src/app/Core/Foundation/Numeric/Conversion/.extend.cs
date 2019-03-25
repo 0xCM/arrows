@@ -8,12 +8,12 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;    
 using System.Text;
-using Core;
+using Z0;
 
-using C = Core.Contracts;
+using C = Z0.Contracts;
 
 using static corefunc;
-using static Core.Operations;
+using static Z0.Operations;
 
 
 public static partial class ConversionX

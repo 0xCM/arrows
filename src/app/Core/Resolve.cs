@@ -9,10 +9,10 @@ using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
 using System.Numerics;
 using System.Reflection;
-using Core;
-using static Core.Traits;
+using Z0;
+using static Z0.Traits;
 
-namespace Core
+namespace Z0
 {
     using System;
     using System.Linq;

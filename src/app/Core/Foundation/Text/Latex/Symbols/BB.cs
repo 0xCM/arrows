@@ -4,7 +4,7 @@
 //-----------------------------------------------------------------------------
 namespace Expose
 {
-    using Core;
+    using Z0;
     using static corefunc;
     using static Latex;
 

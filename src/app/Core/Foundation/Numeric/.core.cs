@@ -7,12 +7,12 @@ using System.Numerics;
 using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;    
-using Core;
+using Z0;
 
 
 using static corefunc;
-using static Core.Operations;
-using static Core.Traits;
+using static Z0.Operations;
+using static Z0.Traits;
 
 partial class corefunc
 {
@@ -86,8 +86,8 @@ partial class corefunc
     public static IEnumerable<intg<T>> divisors<T>(intg<T> src)
         where T : new()
     {        
-        var zero = Core.intg<T>.Zero;
-        var one = Core.intg<T>.One;
+        var zero = Z0.intg<T>.Zero;
+        var one = Z0.intg<T>.One;
         var two = one.inc();
         if(src != zero && src != one)
         {
@@ -158,7 +158,7 @@ partial class corefunc
     /// <returns></returns>
     [MethodImpl(Inline)]   
     public static Q Q() 
-        => Core.Q.Inhabitant;
+        => Z0.Q.Inhabitant;
 
     /// <summary>
     /// Specifies the canoncial representative of the set of integers
@@ -166,14 +166,14 @@ partial class corefunc
     /// <returns></returns>
     [MethodImpl(Inline)]   
     public static Z Z() 
-        => Core.Z.Inhabitant;
+        => Z0.Z.Inhabitant;
 
     /// <summary>
     /// Specifies the canoncial representative of the set of real numbers
     /// </summary>
     [MethodImpl(Inline)]   
     public static R R() 
-        => Core.R.Inhabitant;
+        => Z0.R.Inhabitant;
 
     public static T acaddmul<T>(Semiring<T> sr, Traits.FiniteSeq<T> a, Traits.FiniteSeq<T> b)
     {

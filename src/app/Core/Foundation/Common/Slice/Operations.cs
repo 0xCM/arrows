@@ -1,4 +1,4 @@
-namespace Core
+namespace Z0
 {
     using System;
     using System.Collections;
@@ -50,19 +50,19 @@ namespace Core
 
         [MethodImpl(Inline)]
         public static Slice<N,T> add<N,T>(Traits.Slice<N,T> s1, Traits.Slice<N,T> s2)
-            where N : Core.TypeNat, new() => Slice<N,T>.add(s1,s2);
+            where N : Z0.TypeNat, new() => Slice<N,T>.add(s1,s2);
 
         [MethodImpl(Inline)]
         public static Slice<N,T> mul<N,T>(Traits.Slice<N,T> a, Traits.Slice<N,T> b)
-            where N : Core.TypeNat, new() => Slice<N,T>.mul(a,b);
+            where N : Z0.TypeNat, new() => Slice<N,T>.mul(a,b);
 
         [MethodImpl(Inline)]
         public static T sum<N,T>(Traits.Slice<N,T> x)
-            where N : Core.TypeNat, new() => Slice<N,T>.sum(x);
+            where N : Z0.TypeNat, new() => Slice<N,T>.sum(x);
     
         [MethodImpl(Inline)]
         public static Slice<N,T> square<N,T>(Traits.Slice<N,T> x)
-            where N : Core.TypeNat, new() => Slice<N,T>.square(x);
+            where N : Z0.TypeNat, new() => Slice<N,T>.square(x);
     }
 
  

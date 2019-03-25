@@ -1,4 +1,4 @@
-namespace Core
+namespace Z0
 {
     using System;
     using System.Numerics;

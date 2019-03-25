@@ -3,7 +3,7 @@
 // License     :  MIT
 //-----------------------------------------------------------------------------
 using System;
-using Core;
+using Z0;
 
 partial class corefunc
 {

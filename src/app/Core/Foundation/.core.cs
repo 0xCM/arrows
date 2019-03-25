@@ -9,10 +9,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
-using Core;
-using static Core.Credit;
+using Z0;
+using static Z0.Credit;
 using static corefunc;
-using static Core.Traits;
+using static Z0.Traits;
 
 
 public static partial class corefunc
@@ -158,8 +158,8 @@ public static partial class corefunc
     /// <typeparam name="B">The codomain type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Core.PointedArrow<A,B> arrow<A,B>(A a, B b, string label = null)
-        => new Core.PointedArrow<A,B>(a,b,label);
+    public static Z0.PointedArrow<A,B> arrow<A,B>(A a, B b, string label = null)
+        => new Z0.PointedArrow<A,B>(a,b,label);
 
     [MethodImpl(Inline)]   
     public static Stopwatch stopwatch() 

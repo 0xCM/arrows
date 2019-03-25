@@ -4,11 +4,11 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-using Core;
+using Z0;
 
 using static corefunc;
 
-using C = Core.Contracts;
+using C = Z0.Contracts;
 
 
 namespace App04
@@ -40,7 +40,7 @@ namespace App04
         }
 
 
-        static T dot<N,T>(Core.Slice<N,T> s1, Core.Slice<N,T> s2)
+        static T dot<N,T>(Z0.Slice<N,T> s1, Z0.Slice<N,T> s2)
             where N : TypeNat, new()
             {
                 var ops = integer<T>();

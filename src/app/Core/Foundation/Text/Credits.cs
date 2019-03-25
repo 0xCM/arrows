@@ -2,10 +2,10 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core
+namespace Z0
 {
     using System;
-    using Core;
+    using Z0;
     using static Credit;
 
     /// <summary>

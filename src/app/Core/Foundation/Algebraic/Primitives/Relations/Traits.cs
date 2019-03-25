@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Core
+namespace Z0
 {
     using System;
     using System.Collections.Generic;
@@ -109,7 +109,7 @@ namespace Core
             /// Effects a partition via the equivalence
             /// </summary>
             /// <returns></returns>
-            Core.Seq<C> partition();
+            Z0.Seq<C> partition();
 
             /// <summary>
             /// The canonical surjective projection from the underlying set to the equivalence 

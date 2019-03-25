@@ -1,5 +1,5 @@
-namespace Core
+namespace Z0
 {
 
-    
+
 }

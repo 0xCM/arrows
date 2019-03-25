@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-using Core;
-using static Core.Traits;
+using Z0;
+using static Z0.Traits;
 
 
 public static partial class corefunc

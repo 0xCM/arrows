@@ -3,14 +3,14 @@
 // Author: Chris Moore, 0xCM@gmail.com
 // License: MIT
 //-------------------------------------------------------------------------------------------
-namespace Core
+namespace Z0
 {
     using System;
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static Core.Traits;
+    using static Z0.Traits;
 
 
     /// <summary>
