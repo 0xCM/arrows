@@ -16,6 +16,59 @@ using static Z0.Traits;
 
 partial class corefunc
 {
+    /// <summary>
+    /// Retrieves the operations for any integral type
+    /// </summary>
+    /// <typeparam name="T">The system type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static Integer<T> integer<T>()
+        => ops<T,Integer<T>>();
+
+    /// <summary>
+    /// Retrieves operations for signed integral types
+    /// </summary>
+    /// <typeparam name="T">The system type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static SignedInt<T> signedint<T>()
+        => ops<T,SignedInt<T>>();
+
+    /// <summary>
+    /// Retrieves operations for a unsigned integral type
+    /// </summary>
+    /// <typeparam name="T">The system type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static Natural<T> natural<T>()
+        => ops<T,Natural<T>>();
+
+    /// <summary>
+    /// Retrieves operations valid for any number type
+    /// </summary>
+    /// <typeparam name="T">The operand type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static Number<T> number<T>()
+        => ops<T, Traits.Number<T>>();
+
+    /// <summary>
+    /// Retrieves operations valid for any real number type
+    /// </summary>
+    /// <typeparam name="T">The operand type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static Real<T> real<T>()
+        => ops<T, Traits.Real<T>>();
+
+    /// <summary>
+    /// Retrieves the operations for bounded floating point types
+    /// </summary>
+    /// <typeparam name="T">The system type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static FiniteFloat<T> floating<T>()
+        => ops<T,FiniteFloat<T>>();
 
     /// <summary>
     /// Constructs a generic integer
@@ -66,6 +119,7 @@ partial class corefunc
     /// <param name="rhs">The value to divide by</param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
+    [MethodImpl(Inline)]   
     public static num<T> mod<T>(T lhs, T rhs)
         => numg<T>(lhs).mod(rhs);
 
@@ -148,6 +202,7 @@ partial class corefunc
     /// <typeparam name="N">The modulus type</typeparam>
     /// <typeparam name="T">The integral type</typeparam>
     /// <returns></returns>
+    [MethodImpl(Inline)]   
     public static mod<N,T> modring<N,T>(T lhs)
         where N : TypeNat, new()
             => new mod<N,T>(lhs);
@@ -175,6 +230,7 @@ partial class corefunc
     public static R R() 
         => Z0.R.Inhabitant;
 
+    [MethodImpl(Inline)]   
     public static T acaddmul<T>(Semiring<T> sr, Traits.FiniteSeq<T> a, Traits.FiniteSeq<T> b)
     {
         var result = sr.zero;

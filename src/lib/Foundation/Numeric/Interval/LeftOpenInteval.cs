@@ -12,7 +12,8 @@ namespace Z0
     using static corefunc;
 
     public readonly struct LeftOpenInterval<T> : Traits.LeftOpenInterval<T>, Traits.RightClosedInterval<T>
-        where T : Traits.Ordered<T>
+        where T : Traits.OrderedNumber<T>
+
     {
 
         public static implicit operator Interval<T>(LeftOpenInterval<T> x)

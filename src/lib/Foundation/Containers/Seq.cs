@@ -18,12 +18,28 @@ namespace Z0
     /// </summary>
     public readonly struct Seq<T> : Traits.Seq<T> 
     {
-        readonly IEnumerable<T> src;
-        
+        public static readonly Seq<T> Empty = default;
+
+        /// <summary>
+        /// Implicitly constructs a sequence from an array
+        /// </summary>
+        /// <param name="src"></param>
+        public static implicit operator Seq<T>(T[] src)
+            => new Seq<T>(src);
+
         public Seq(IEnumerable<T> src)
         {
             this.src = src;
+            this.nonempty = true;
         }
+
+        readonly IEnumerable<T> src;
+        
+        readonly bool nonempty;
+
+
+        public bool empty()
+            => not(nonempty);
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
             => src.GetEnumerator();
@@ -36,15 +52,32 @@ namespace Z0
     }
 
     public readonly struct FiniteSeq<T> : Traits.FiniteSeq<T>
+        where T : IEquatable<T>
     {
-        readonly Slice<T> src;
+        public static readonly FiniteSeq<T> Empty = default;
+
+
+        /// <summary>
+        /// Implicitly constructs a sequence from an array
+        /// </summary>
+        /// <param name="src"></param>
+        public static implicit operator FiniteSeq<T>(T[] src)
+            => new FiniteSeq<T>(src);
 
 
         [MethodImpl(Inline)]
         public FiniteSeq(IEnumerable<T> src)
         {
             this.src = src.ToSlice();
+            this.nonempty = true;
         }
+
+        readonly Slice<T> src;
+
+        readonly bool nonempty;
+
+        public bool empty()
+            => not(nonempty);
 
         public T this[int i] 
             => src[i];
@@ -67,14 +100,16 @@ namespace Z0
     public static class Seq
     {
         public static Seq<T> define<T>(IEnumerable<T> src)
-            => new Seq<T>(src); 
+                => new Seq<T>(src); 
 
         public static FiniteSeq<T> finite<T>(IEnumerable<T> src)
-            => new FiniteSeq<T>(src); 
+            where T : IEquatable<T>
+                => new FiniteSeq<T>(src); 
 
 
         public static Seq<T> define<T>(params T[] src)
-            => new Seq<T>(src); 
+            where T : IEquatable<T>
+                => new Seq<T>(src); 
 
         /// <summary>
         /// Instantiates the canonical conrete type (but does not force evaluation) 
@@ -84,7 +119,8 @@ namespace Z0
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static Seq<T> Reify<T>(this IEnumerable<T> src)
-            => define(src);
+            where T : IEquatable<T>
+                => define(src);
     }
 
  

@@ -8,8 +8,12 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
 
+    using static corefunc;
+
+    /// <summary>
+    /// Contains a finite set of values
+    /// </summary>
     public readonly struct FiniteSet<T> : Traits.FiniteSet<T>
-        where T : IEquatable<T>
     {
         readonly HashSet<T> container;
         
@@ -22,7 +26,6 @@ namespace Z0
         public bool empty 
             => count == 0;
 
-
         public bool member(T candidate)
             => container.Contains(candidate);
 
@@ -31,6 +34,7 @@ namespace Z0
 
         public Seq<T> members()
             => Seq.define<T>(container);
+
     }
 
 

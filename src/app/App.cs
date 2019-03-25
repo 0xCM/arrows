@@ -454,8 +454,9 @@ namespace App04
 
         static void Main(string[] args)
         {     
-        
-            RandomU16(5000);
+
+            iter(SysInit.initializers<Program>(), init => init.Initialize());
+            
 
         }
     }

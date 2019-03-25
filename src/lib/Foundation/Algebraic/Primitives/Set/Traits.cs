@@ -31,8 +31,7 @@ namespace Z0
         /// Characterizes a set that, if nonempty, contains elements of specific type
         /// </summary>
         /// <typeparam name="T">The individual type</typeparam>
-        public interface Set<T> : Set
-            where T : IEquatable<T>
+        public interface Set<T> : Set 
         {
             /// <summary>
             /// Determines whether a supplied value is a member of the reified set
@@ -46,9 +45,7 @@ namespace Z0
         /// Characterizes a set that contains at least one individual
         /// </summary>
         /// <typeparam name="T">The member type</typeparam>
-        public interface NonempySet<T> : Set<T>
-            where T : IEquatable<T>
-            
+        public interface NonempySet<T> : Set<T>            
         {
 
         }
@@ -58,7 +55,6 @@ namespace Z0
         /// </summary>
         public interface Set<S,T> : Set<T>
             where S : Set<S,T>, new()
-            where T : IEquatable<T>
         {
 
         }
@@ -68,7 +64,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The member type</typeparam>
         public interface DiscreteSet<T> : Set<T>
-            where T : IEquatable<T>
         {
             /// <summary>
             /// Enumerates the members of the set
@@ -82,7 +77,6 @@ namespace Z0
         /// <typeparam name="S">The reification type</typeparam>
         /// <typeparam name="M">The member type</typeparam>
         public interface DiscreteSet<S,T> : DiscreteSet<T> 
-            where T : IEquatable<T>
             where S: DiscreteSet<S,T>, new()
         {
 
@@ -93,7 +87,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The member type</typeparam>
         public interface InfiniteSet<T> : Set<T>
-            where T : IEquatable<T>
         {
 
         }
@@ -103,7 +96,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The member type</typeparam>
         public interface FiniteSet<T> : DiscreteSet<T>
-            where T : IEquatable<T>
         {
             /// <summary>
             /// Evidence that the set is indeed finite
@@ -118,7 +110,6 @@ namespace Z0
         /// <typeparam name="S">The reification type</typeparam>
         /// <typeparam name="T">The member type</typeparam>
         public interface FiniteSet<S,T> : FiniteSet<T>, DiscreteSet<S,T>
-            where T : IEquatable<T>
             where S : FiniteSet<S,T>, new()
         {
 
@@ -131,7 +122,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T"></typeparam>
         public interface InfiniteDiscreteSet<T> : InfiniteSet<T>, DiscreteSet<T>
-            where T : IEquatable<T>
         {            
 
 

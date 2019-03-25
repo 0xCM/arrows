@@ -11,16 +11,14 @@ namespace Z0
 
     using static corefunc;
 
-    public class Setoid<T> : Traits.Setoid<DiscreteEqClass<T>, T>
-        where T : IEquatable<T>
-
+    public class Setoid<T> : Traits.Setoid<FiniteEqClass<T>, T>
     {
         
         readonly Traits.FiniteSet<T> membership;
         
         readonly Traits.Equivalence<T> equivalence;
         
-        readonly Slice<DiscreteEqClass<T>> parts;
+        readonly Slice<FiniteEqClass<T>> parts;
         
         public Setoid(Traits.FiniteSet<T> data, Traits.Equivalence<T> equivalence)
         {
@@ -33,16 +31,17 @@ namespace Z0
         public bool empty 
             => false;
 
+ 
         public bool member(T candidate)
             => membership.member(candidate);
 
         public bool member(object candidate)
             => membership.member(candidate);
 
-        public Seq<DiscreteEqClass<T>> partition()
+        public Seq<FiniteEqClass<T>> partition()
             => parts.ToSeq();
     
-        public DiscreteEqClass<T> project(T x)
+        public FiniteEqClass<T> project(T x)
             => parts.First(c => related(c.representative,x));
 
         public bool related(T x, T y)

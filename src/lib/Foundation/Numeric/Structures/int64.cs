@@ -14,7 +14,7 @@ namespace Z0
     using static Traits;
     
 
-    public readonly struct int64 : FiniteSignedInt<structype,systype>, IEquatable<structype>, IComparable<structype>
+    public readonly struct int64 : FiniteSignedInt<structype,systype>
     {
 
         static readonly SignedInt<systype> ops = signedint<systype>();
@@ -274,6 +274,7 @@ namespace Z0
 
         public override int GetHashCode()
             => data.GetHashCode();
+
     }
 
 }

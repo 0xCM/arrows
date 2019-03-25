@@ -14,7 +14,7 @@ namespace Z0
         /// Characterizes operations over an integer type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Integer<T> : Number<T>,  Ordered<T>, Stepwise<T>, Bitwise<T>
+        public interface Integer<T> : OrderedNumber<T>, Stepwise<T>, Bitwise<T>
         {
             
         }
@@ -24,7 +24,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The type of the realizing structure</typeparam>
         /// <typeparam name="T">The type of the underlying primitive</typeparam>
-        public interface Integer<S,T> : Number<S,T>, Ordered<S,T>, Stepwise<S,T>, Bitwise<S,T> 
+        public interface Integer<S,T> : OrderedNumber<S,T>, Stepwise<S,T>, Bitwise<S,T> 
             where S : Integer<S,T>, new()
         {        
             

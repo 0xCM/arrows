@@ -12,7 +12,7 @@ namespace Z0
     using static corefunc;
 
     public readonly struct ClosedInterval<T> : Traits.ClosedInterval<T>
-        where T : Traits.Ordered<T>
+        where T : Traits.OrderedNumber<T>
     {
 
         public static implicit operator Interval<T>(ClosedInterval<T> x)

@@ -15,19 +15,18 @@ namespace Z0
     /// <summary>
     /// Defines the canonical reification of a discrete equivalence class
     /// </summary>
-    public readonly struct DiscreteEqClass<T> : Traits.DiscreteEqClass<T>
-        where T : IEquatable<T>
+    public readonly struct FiniteEqClass<T> : Traits.FiniteEqClass<T>, IEquatable<FiniteEqClass<T>>
     {
         
         Traits.Equivalence<T> equivalence {get;}
         
-        Seq<T> membership {get;}
+        FiniteSet<T> membership {get;}
 
-        public DiscreteEqClass(T representative, Traits.Equivalence<T> equivalence, IEnumerable<T> members)
+        public FiniteEqClass(T representative, Traits.Equivalence<T> equivalence, IEnumerable<T> members)
         {
             this.representative = representative;
             this.equivalence = equivalence;
-            this.membership = Seq.define(members);
+            this.membership = members.ToFiniteSet();
         }
 
         public T representative {get;}
@@ -35,14 +34,33 @@ namespace Z0
         public bool empty 
             => false;
 
+        public int count => throw new NotImplementedException();
+
         public bool member(T candidate)
             => equivalence.related(representative, candidate);
 
         public bool member(object candidate)
             => candidate is T ? member((T)candidate) : false;
 
+
+
+        public bool Equals(FiniteEqClass<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
         public Seq<T> members()
-            => membership;
+            => membership.members();
+
+        public bool eq(T lhs, T rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool neq(T lhs, T rhs)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

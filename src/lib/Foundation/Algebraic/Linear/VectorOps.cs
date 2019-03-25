@@ -13,10 +13,14 @@ namespace Z0
                 => CVectorSemiring<N,T>.Inhabitant.instance();
     }
 
-    readonly struct CVectorSemiring<N, T> : TypeClass<VectorOps<N, T>, TVectorSemiring<N, T>>
+    readonly struct CVectorSemiring<N, T> : TypeClass<CVectorSemiring<N, T>,VectorOps<N, T>, TVectorSemiring<N, T>>
         where N : TypeNat, new()
     {
         public static readonly CVectorSemiring<N, T> Inhabitant = default;
+
+        public CVectorSemiring<N, T> inhabitant 
+            => Inhabitant;
+
         public VectorOps<N, T> instance()
             => VectorOps<N,T>.Inhabitant;
     }

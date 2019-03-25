@@ -16,7 +16,7 @@ namespace Z0
 
     public readonly struct bigint : InfiniteSignedInt<structype,systype> 
     {
-        public static readonly InfiniteSignedInt<systype> ops = Resolve.bigint();
+        public static readonly InfiniteSignedInt<systype> ops = BigIntOps.Inhabitant;
 
         public static readonly structype Zero = ops.zero;
         

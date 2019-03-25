@@ -14,8 +14,6 @@ namespace  Z0
 
     using static corefunc;
 
-
-
     public static class PrimitiveX
     {
 
@@ -25,8 +23,7 @@ namespace  Z0
         /// <param name="relation">The partitioning relation</param>
         /// <param name="items">The items to partition</param>
         /// <typeparam name="T">The item type</typeparam>
-        public static IEnumerable<DiscreteEqClass<T>> Partition<T>(this Traits.Equivalence<T> relation, IEnumerable<T> items)
-            where T : IEquatable<T>
+        public static IEnumerable<FiniteEqClass<T>> Partition<T>(this Traits.Equivalence<T> relation, IEnumerable<T> items)
         {
             var classes = cindex<T, ConcurrentBag<T>>();
             foreach(var item in items)
@@ -36,8 +33,31 @@ namespace  Z0
                        .OnSome(k => classes[k].Add(item));
             }
 
-            return classes.KeyedValues.Select(kvp => new DiscreteEqClass<T>(kvp.key,relation, kvp.value ));
+            return classes.KeyedValues.Select(kvp => new FiniteEqClass<T>(kvp.key,relation, kvp.value ));
         }
+
+
+        class Komparer<T> : IComparer<T>
+        {
+            Traits.Ordered<T> ordered {get;}                
+
+            public Komparer(Traits.Ordered<T> ordered)
+                => this.ordered = ordered;
+            public int Compare(T x, T y)
+            {
+                if(ordered.lt(x,y))
+                    return - 1;
+                else if(ordered.gt(x, y))
+                    return 1;
+                else
+                    return 0;
+                
+
+            }
+        }
+
+        public static IComparer<T> ToComparer<T>(this Traits.Ordered<T> order)
+            => new Komparer<T>(order);
 
 
     }    

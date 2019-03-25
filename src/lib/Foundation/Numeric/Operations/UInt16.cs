@@ -15,7 +15,7 @@ namespace Z0
     using opstype = UInt16Ops;
 
     internal readonly struct UInt16Ops : FiniteNatural<systype>, 
-        TypeClass<opstype,systype,FiniteNatural<systype>>
+        TypeClass<opstype,FiniteNatural<systype>,systype>
     {
         public static readonly opstype Inhabitant = default;
     

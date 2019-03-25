@@ -14,40 +14,41 @@ namespace Z0
     using System.Collections.Generic;
 
     public readonly struct real<T> : Real<real<T>, T>
-        where T : new()
     {
 
 
         static readonly Real<T> Ops = ops<T,Real<T>>();
+        static readonly real<T> Epsilon = Ops.ε;
 
-        
+        public static implicit operator real<T>(T src)
+            => new real<T>(src);
+
+        public static implicit operator T(real<T> src)
+            => src.data;
+        public real(T src)
+        {
+            this.data = src;
+        }
+
+        public T data {get;}
+
+        public bool infinite 
+            => false;
 
         public real<T> ε 
-            => throw new NotImplementedException();
-
-        public T data => throw new NotImplementedException();
-
-        public bool infinite => throw new NotImplementedException();
+            => Epsilon;
 
         public real<T> abs()
-        {
-            throw new NotImplementedException();
-        }
+            => Ops.abs(data);
 
         public real<T> acos()
-        {
-            throw new NotImplementedException();
-        }
+            => Ops.acos(data);
 
         public real<T> acosh()
-        {
-            throw new NotImplementedException();
-        }
+            => Ops.acosh(data);
 
         public real<T> add(real<T> rhs)
-        {
-            throw new NotImplementedException();
-        }
+            => Ops.add(this.data, rhs.data);
 
         public real<T> and(real<T> a)
         {

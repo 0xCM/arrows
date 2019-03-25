@@ -75,24 +75,32 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The classified type</typeparam>
         public interface EqClass<T> : NonempySet<T>
-            where T : IEquatable<T>
-
         {
             T representative {get;}
 
         }
 
         /// <summary>
-        /// Characterizes a constructive equivalence class, i.e. an equivalnce class 
+        /// Characterizes a constructive equivalence class, i.e. an equivalence class 
         /// with enumerable content
         /// </summary>
         /// <typeparam name="T">The content type</typeparam>
         public interface DiscreteEqClass<T> : EqClass<T>, DiscreteSet<T>
-            where T : IEquatable<T>
 
         {
 
         }
+
+        /// <summary>
+        /// Characterizes an equivalence class, i.e. a segment of a partition effected via 
+        /// an equivalence relation
+        /// </summary>
+        /// <typeparam name="T">The classified type</typeparam>
+        public interface FiniteEqClass<T> : DiscreteEqClass<T>, FiniteSet<T>
+        {
+            
+        }
+
 
         /// <summary>
         /// Characterizes a partition over a set effected via an equivalence relation. 
@@ -102,7 +110,6 @@ namespace Z0
         /// <typeparam name="C">The equivalence class type</typeparam>
         /// <typeparam name="T">The set domain</typeparam>
         public interface QuotientSet<C,T> : Set<T>, Equivalence<T>
-            where T : IEquatable<T>
             where C : EqClass<T>
         {
             /// <summary>
@@ -131,7 +138,6 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Setoid</remarks>
         public interface Setoid<C,T> : QuotientSet<C,T>
-            where T : IEquatable<T>
             where C : DiscreteEqClass<T>
         {
 

@@ -17,7 +17,7 @@ namespace Z0
     using opstype = BigIntOps;
 
     internal readonly struct BigIntOps : InfiniteSignedInt<systype>, 
-        TypeClass<opstype,InfiniteSignedInt<systype>>
+        TypeClass<opstype,InfiniteSignedInt<systype>,systype>
     {
     
         public static readonly opstype Inhabitant = default;
@@ -36,6 +36,9 @@ namespace Z0
 
         public Multiplication<systype> multiplication 
             => Multiplication.define(this);
+
+        public opstype inhabitant 
+            => Inhabitant;
 
         [MethodImpl(Inline)]   
         public systype add(systype lhs, systype rhs) 

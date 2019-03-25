@@ -22,7 +22,6 @@ namespace Z0
         /// <typeparam name="T">The operand type</typeparam>
         public interface Real<S,T> : Integer<S,T>, Floating<S,T>
             where S : Real<S,T>, Floating<S,T>, new()
-            where T : new()
             
         {
             bool infinite {get;}

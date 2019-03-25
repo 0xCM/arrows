@@ -14,7 +14,7 @@ namespace Z0
     /// <summary>
     /// Represents a rational number
     /// </summary>
-    public readonly struct fraction<T> : Rational<fraction<T>, T>, IEquatable<fraction<T>>
+    public readonly struct fraction<T> : Rational<fraction<T>, T>
         where T : Integer<T>, new()
     {
         static readonly Integer<T> Ops = integer<T>();

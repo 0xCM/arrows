@@ -37,6 +37,7 @@ namespace Z0
 
         }
 
+ 
         /// <summary>
         /// Characterizes a structral number
         /// </summary>
@@ -58,6 +59,25 @@ namespace Z0
 
             string bitstring();
                         
+        }
+
+        /// <summary>
+        /// Characterizes numeric operations in the presence of order
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public interface OrderedNumber<T> : Number<T>, Ordered<T>
+        {
+
+        }
+
+        /// <summary>
+        /// Characterizes a structural number with order
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public interface OrderedNumber<S,T> : Number<S,T>, Ordered<S,T>
+            where S : OrderedNumber<S,T>, new()
+        {
+
         }
 
     }

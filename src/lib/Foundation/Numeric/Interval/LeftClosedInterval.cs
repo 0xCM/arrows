@@ -12,14 +12,14 @@ namespace Z0
 
     using static corefunc;
 
-    public readonly struct RightOpenInterval<T> : Traits.LeftClosedInterval<T>, Traits.RightOpenInterval<T> 
-        where T : Traits.Ordered<T>
+    public readonly struct LeftClosedInterval<T> : Traits.LeftClosedInterval<T>, Traits.RightOpenInterval<T> 
+        where T : Traits.OrderedNumber<T>
     {
 
-        public static implicit operator Interval<T>(RightOpenInterval<T> x)
+        public static implicit operator Interval<T>(LeftClosedInterval<T> x)
             => new Interval<T>(x.left,x.leftclosed, x.right,x.rightclosed);
 
-        public RightOpenInterval(T left, T right)
+        public LeftClosedInterval(T left, T right)
         {
             this.left = left;
 

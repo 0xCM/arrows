@@ -20,6 +20,24 @@ public static partial class corefunc
     public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
 
     /// <summary>
+    /// Retrives the operations of type O defined for a type T
+    /// </summary>
+    /// <typeparam name="T">The operand type</typeparam>
+    /// <typeparam name="O">The operations type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static O ops<T,O>()
+        => Resolver.ops<T,O>();
+
+    /// <summary>
+    /// Returns the equality operations for a specified type
+    /// </summary>
+    /// <typeparam name="T">The operand type</typeparam>
+    [MethodImpl(Inline)]   
+    public static Traits.Equatable<T> equality<T>()
+        => ops<T,Traits.Equatable<T>>();
+
+    /// <summary>
     /// Specifies the generic type definition for a specified generic type
     /// </summary>
     /// <typeparam name="T">The generic type</typeparam>

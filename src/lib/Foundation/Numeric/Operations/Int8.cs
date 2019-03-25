@@ -16,7 +16,7 @@ namespace Z0
     using opstype = Int8Ops;
 
     internal readonly struct Int8Ops : FiniteSignedInt<systype>
-        , TypeClass<opstype,systype,FiniteSignedInt<systype>>
+        , TypeClass<opstype,FiniteSignedInt<systype>, systype>
     {        
         public static readonly opstype Inhabitant = default;
     

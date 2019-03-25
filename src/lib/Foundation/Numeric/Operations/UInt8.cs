@@ -15,7 +15,7 @@ namespace Z0
     using opstype = UInt8Ops;
 
     internal readonly struct UInt8Ops : FiniteNatural<systype>, 
-        TypeClass<opstype,systype,FiniteNatural<systype>>
+        TypeClass<opstype,FiniteNatural<systype>,systype>
     {        
         public static readonly opstype Inhabitant = default;
     

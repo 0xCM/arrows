@@ -19,7 +19,7 @@ public static partial class corefunc
 {
 
     /// <summary>
-    /// Creates a concurrent index with the specified key/value types
+    /// Constructs an empty concurrent index 
     /// </summary>
     /// <typeparam name="K">The key type</typeparam>
     /// <typeparam name="V">The value type</typeparam>
@@ -27,20 +27,23 @@ public static partial class corefunc
     public static ConcurrentIndex<K,V> cindex<K,V>()
         => new ConcurrentIndex<K,V>();
 
-    public static ConcurrentBag<T> cbag<T>(params T[] initial)
-        => new ConcurrentBag<T>(initial);
-
     /// <summary>
-    /// Constructs integrally-keyed associative array, otherwise known
-    /// as a list from an enumeration
+    /// Constructs integrally-keyed associative array
     /// </summary>
     /// <param name="values"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Index<T> list<T>(IEnumerable<T> values)
+    public static Index<T> index<T>(IEnumerable<T> values)
         => new Index<T>(values);
 
+    /// <summary>
+    /// Constructs a concurrent bag with optional initial items
+    /// </summary>
+    /// <typeparam name="T">The bagged type</typeparam>
+    /// <returns></returns>
+    public static ConcurrentBag<T> cbag<T>(params T[] initial)
+        => new ConcurrentBag<T>(initial);
 
     /// <summary>
     /// Constructs an associative array
@@ -61,15 +64,6 @@ public static partial class corefunc
     /// <returns></returns>
     public static Index<K,V> index<K,V>(IEnumerable<KeyedValue<K,V>> items)
         => new Index<K,V>(items);
-
-    /// <summary>
-    /// Constructs an integrally-indexed associative array
-    /// </summary>
-    /// <param name="value">The value</param>
-    /// <typeparam name="V">The value type</typeparam>
-    /// <returns></returns>
-    public static Index<V> index<V>(IEnumerable<V> items)
-        => new Index<V>(items);
 
     /// <summary>
     /// Constructs an index from a collection of of 2-tuples
@@ -216,8 +210,7 @@ public static partial class corefunc
         => repeat(value, natval<N>());
 
     [MethodImpl(Inline)]   
-    public static Seq<I> items<I>(params I[] src)
-        => src.Reify();
-
-
+    public static Seq<T> items<T>(params T[] src)
+        where T : IEquatable<T>
+            => src.Reify();
 }

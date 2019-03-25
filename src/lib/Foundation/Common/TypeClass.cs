@@ -17,25 +17,37 @@ namespace Z0
 
 
     /// <summary>
-    /// Characterizes a typeclass *instance* together with the trait and implementation
+    /// Characterizes a typeclass reification
     /// </summary>
-    /// <typeparam name="I">The concrete instance type</typeparam>
-    /// <typeparam name="R">The resolution type, i.e., the type that will be used to resolve the instance</typeparam>
-    public interface TypeClass<I,R,T> : Singleton<I>
-        where I : TypeClass<I,R,T>, new()
+    /// <typeparam name="R"></typeparam>
+    public interface TypeClass<R> 
+        where R : TypeClass<R>, new()
+    {
+
+    }
+
+    /// <summary>
+    /// Characterizes a typeclass reification for a specified contract
+    /// </summary>
+    /// <typeparam name="R">The reification type</typeparam>
+    /// <typeparam name="T">The operand type </typeparam>
+    public interface TypeClass<R,T> : TypeClass<R>
+        where R : TypeClass<R,T>, new()
+    {
+
+    }
+
+    /// <summary>
+    /// Characterizes a typeclass reification for a specified operations/operand type
+    /// </summary>
+    /// <typeparam name="R">The reification type</typeparam>
+    /// <typeparam name="C">The contract/trait that characterizes the operations to be realized</typeparam>
+    /// <typeparam name="T">The operand type</typeparam>
+    public interface TypeClass<R,C,T> : TypeClass<R,T>, Singleton<R>
+        where R : TypeClass<R,C,T>, new()
     {
         
     }
 
-    /// <summary>
-    /// Binds a realization R with a trait T
-    /// </summary>
-    /// <typeparam name="R">The concrete instance type</typeparam>
-    /// <typeparam name="T">The resolution type, i.e., the type that will be used to resolve the instance</typeparam>
-    public interface TypeClass<R,T>
-        where R : T,  new()
-    {
-        R instance();        
-    }
 
 }
