@@ -55,7 +55,7 @@ namespace Core
         /// <summary>
         /// Characterizes a structure over a bound integral type
         /// </summary>
-        public interface FiniteInt<S,T> : Integer<S,T>, Finite<S,T>
+        public interface FiniteInt<S,T> : Integer<S,T>, Bounded<S,T>
             where S : FiniteInt<S,T>, new()
             where T : new()
         {
@@ -69,7 +69,7 @@ namespace Core
         /// <remarks>
         /// Applies to, for instance, the types {sbyte, short, int, long}
         /// </remarks>
-        public interface FiniteSignedInt<T> : SignedInt<T>, Finite<T>
+        public interface FiniteSignedInt<T> : SignedInt<T>, Bounded<T>
         {
 
         }
@@ -82,7 +82,7 @@ namespace Core
         /// <remarks>
         /// Applies to structures, for instance, with underlying types of {sbyte, short, int, long}
         /// </remarks>
-        public interface FiniteSignedInt<S,T> : SignedInt<S,T>, Finite<S,T>
+        public interface FiniteSignedInt<S,T> : SignedInt<S,T>, Bounded<S,T>
             where S : FiniteSignedInt<S,T>, new()
         {
 

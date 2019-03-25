@@ -121,13 +121,21 @@ public static partial class corefunc
         => src.PadRight(width,'0');
 
     /// <summary>
-    /// Renders the suppled value as text and emits the text, and a carriage return, 
-    /// to the console
+    /// Renders the supplied value to the console followed by a carriage return
     /// </summary>
     /// <param name="x">The value to reveal</param>
     [MethodImpl(Inline)]   
     public static void print<T>(T x)
         => Console.WriteLine(x);
+
+    /// <summary>
+    /// Renders the supplied value to the console with no carriage return
+    /// </summary>
+    /// <param name="x"></param>
+    /// <typeparam name="T"></typeparam>
+    [MethodImpl(Inline)]   
+    public static void write<T>(T x)
+        => Console.Write(x);
 
     /// <summary>
     /// Writes an empty line to the console

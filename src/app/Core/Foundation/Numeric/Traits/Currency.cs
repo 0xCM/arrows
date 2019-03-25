@@ -14,7 +14,7 @@ namespace Core
         /// Characterizes a bounded fractional operation provider
         /// </summary>
         /// <typeparam name="T">The primitive type</typeparam>
-        public interface Currency<T> : Finite<T>, Fractional<T>
+        public interface Currency<T> : Bounded<T>, Fractional<T>
         {
 
         }
@@ -24,8 +24,9 @@ namespace Core
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The primitive type</typeparam>
-        public interface Currency<S,T> : Finite<S,T>, Fractional<S,T>
-            where S : Currency<S,T>, new()
+        public interface Currency<S,T> : Bounded<S,T>, Fractional<S,T>
+            where S : Currency<S,T>,  new()
+
             where T : new()
         {
         }

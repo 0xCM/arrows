@@ -17,16 +17,16 @@ namespace Core
 
     public readonly struct num<T> : Number<num<T>,T>, Stepwise<num<T>, T>, Ordered<num<T>, T> 
     {
-        static readonly Number<T> ops = Resolve.number<T>();
+        static readonly Number<T> Ops = number<T>();
         
-        static readonly Stepwise<T> step = Resolve.stepwise<T>();
+        static readonly Stepwise<T> step = stepwise<T>();
         
-        static readonly Ordered<T> ord = Resolve.ordered<T>();
+        static readonly Ordered<T> ord = ordered<T>();
 
 
-        public static readonly num<T> Zero = ops.zero;
+        public static readonly num<T> Zero = Ops.zero;
 
-        public static readonly num<T> One = ops.one;
+        public static readonly num<T> One = Ops.one;
 
         [MethodImpl(Inline)]
         public static implicit operator num<T>(T src)
@@ -38,15 +38,15 @@ namespace Core
 
         [MethodImpl(Inline)]
         public static bool operator == (num<T> lhs, num<T> rhs) 
-            => ops.eq(lhs,rhs);
+            => Ops.eq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static bool operator != (num<T> lhs, num<T> rhs) 
-            => ops.neq(lhs,rhs);
+            => Ops.neq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static num<T> operator + (num<T> lhs, num<T> rhs) 
-            => ops.add(lhs, rhs);
+            => Ops.add(lhs, rhs);
 
         [MethodImpl(Inline)]
         public static num<T> operator ++ (num<T> x) 
@@ -54,7 +54,7 @@ namespace Core
 
         [MethodImpl(Inline)]
         public static num<T> operator - (num<T> lhs, num<T> rhs) 
-            => ops.sub(lhs, rhs);
+            => Ops.sub(lhs, rhs);
 
         [MethodImpl(Inline)]
         public static num<T> operator -- (num<T> x) 
@@ -62,15 +62,15 @@ namespace Core
 
         [MethodImpl(Inline)]
         public static num<T> operator * (num<T> lhs, num<T> rhs) 
-            => ops.mul(lhs, rhs);
+            => Ops.mul(lhs, rhs);
 
         [MethodImpl(Inline)]
         public static num<T> operator / (num<T> lhs, num<T> rhs) 
-            => ops.div(lhs,rhs);
+            => Ops.div(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static num<T> operator % (num<T> lhs, num<T> rhs)
-            => ops.mod(lhs,rhs);
+            => Ops.mod(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static bool operator < (num<T> lhs, num<T> rhs) 
@@ -130,7 +130,7 @@ namespace Core
 
         [MethodImpl(Inline)]
         public Sign sign()
-            => ops.sign(this);
+            => Ops.sign(this);
 
         [MethodImpl(Inline)]
         public num<T> inc()
@@ -158,11 +158,11 @@ namespace Core
 
         [MethodImpl(Inline)]
         public num<T> abs()
-            => ops.abs(this);
+            => Ops.abs(this);
 
         [MethodImpl(Inline)]
          public string bitstring()
-            => ops.bitstring(this);
+            => Ops.bitstring(this);
 
         [MethodImpl(Inline)]
         public int CompareTo(num<T> rhs)
@@ -180,7 +180,7 @@ namespace Core
 
         [MethodImpl(Inline)]
         public num<T> negate()
-            => ops.negate(this.data);
+            => Ops.negate(this.data);
 
         public override bool Equals(object rhs)
             => data.Equals(rhs);
@@ -192,9 +192,13 @@ namespace Core
             => data.ToString();
 
         public num<T> gcd(num<T> rhs)
-            => ops.gcd(this,rhs);
+            => Ops.gcd(this,rhs);
 
         public Quorem<num<T>> divrem(num<T> rhs)
             => Quorem.define(this/rhs, this % rhs);
+ 
+ 
+         public bool Equals(num<T> rhs)
+            => Ops.eq(this.data, rhs.data);
     }
 }

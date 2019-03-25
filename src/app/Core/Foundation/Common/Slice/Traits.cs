@@ -15,7 +15,7 @@ namespace Core
     partial class Traits
     {
 
-        public interface Slice<T> : IEnumerable<T>
+        public interface Slice<T> : Seq<T>
         {
             IReadOnlyList<T> cells {get;}        
 

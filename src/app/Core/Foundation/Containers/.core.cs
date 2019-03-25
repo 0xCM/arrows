@@ -5,15 +5,30 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
 using Core;
 using static corefunc;
 
+
 public static partial class corefunc
 {
+
+    /// <summary>
+    /// Creates a concurrent index with the specified key/value types
+    /// </summary>
+    /// <typeparam name="K">The key type</typeparam>
+    /// <typeparam name="V">The value type</typeparam>
+    /// <returns></returns>
+    public static ConcurrentIndex<K,V> cindex<K,V>()
+        => new ConcurrentIndex<K,V>();
+
+    public static ConcurrentBag<T> cbag<T>(params T[] initial)
+        => new ConcurrentBag<T>(initial);
 
     /// <summary>
     /// Constructs integrally-keyed associative array, otherwise known
@@ -171,7 +186,8 @@ public static partial class corefunc
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
     public static Traits.Set<T> set<T>() 
-        => TotalSet<T>.Inhabitant;
+        where T : IEquatable<T>
+            => TotalSet<T>.Inhabitant;
 
     /// <summary>
     /// Replicates a given value a specified number of times
@@ -200,7 +216,7 @@ public static partial class corefunc
         => repeat(value, natval<N>());
 
     [MethodImpl(Inline)]   
-    public static Enumerable<I> items<I>(params I[] src)
+    public static Seq<I> items<I>(params I[] src)
         => src.Reify();
 
 

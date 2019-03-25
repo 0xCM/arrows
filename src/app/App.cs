@@ -22,7 +22,7 @@ namespace App04
 
         static void EffectPartition()
         {
-            var ops = Resolve.float64();
+            var ops = floating<double>();
             var parition = ops.partition(0, 1);
             iter(parition, print);            
         }
@@ -43,7 +43,7 @@ namespace App04
         static T dot<N,T>(Core.Slice<N,T> s1, Core.Slice<N,T> s2)
             where N : TypeNat, new()
             {
-                var ops = Resolve.integer<T>();
+                var ops = integer<T>();
                 var result = ops.zero;
                 for(var i=0; i< s1.length; i++)
                     result = ops.add(result, ops.mul(s1[i],s2[i]));
@@ -427,10 +427,35 @@ namespace App04
             var result = Nat.reflect(min,max).ToList();
             print($"Created {result.Count} natural values in {sw.ElapsedMilliseconds}ms");
         }
+        
+        static void RandomU64(ulong count)
+        {
+            var r = new RandUInt64();
+            var current = 0ul;
+            while(++current <= count)
+                write($"{r.next()}, ");
+        }
+
+        static void RandomU32(int count)
+        {
+            var r = new RandUInt32();
+            var current = 0;
+            while(++current <= count)
+                write($"{r.next()}, ");
+        }
+
+        static void RandomU16(int count)
+        {
+            var r = new RandUInt16();
+            var current = 0u;
+            while(++current <= count)
+                write($"{r.next()}, ");
+        }
+
         static void Main(string[] args)
         {     
         
-            TestPrimality(100,1000);
+            RandomU16(5000);
 
         }
     }

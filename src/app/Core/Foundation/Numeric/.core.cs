@@ -12,6 +12,7 @@ using Core;
 
 using static corefunc;
 using static Core.Operations;
+using static Core.Traits;
 
 partial class corefunc
 {
@@ -106,18 +107,7 @@ partial class corefunc
         return divisors(x).Count() == 0;
     }            
 
-    // [MethodImpl(Inline)]   
-    // public static bool prime(intg<ulong> x)
-    //     => prime<ulong>(x);
-
-    // [MethodImpl(Inline)]   
-    // public static bool prime(intg<uint> x)
-    //     => prime<uint>(x);
-
-    // [MethodImpl(Inline)]   
-    // public static bool prime(intg<long> x)
-    //     => prime(x.ToIntG<ulong>());
-
+    
     /// <summary>
     /// Renders a generic number as a bitstring
     /// </summary>
@@ -185,13 +175,33 @@ partial class corefunc
     public static R R() 
         => Core.R.Inhabitant;
 
-    public static T acaddmul<T>(Traits.Semiring<T> sr, IReadOnlyList<T> a, IReadOnlyList<T> b)
+    public static T acaddmul<T>(Semiring<T> sr, Traits.FiniteSeq<T> a, Traits.FiniteSeq<T> b)
     {
         var result = sr.zero;
-        for(var i=0; i < min<int>(a.Count, b.Count); i++)
+        for(var i=0; i < min<int>(a.count, b.count); i++)
             result = sr.add(result,  sr.mul(a[i], b[i]));
         return result;
     }
+
+    /// <summary>
+    /// Computes the sign of the product of two numbers
+    /// </summary>
+    /// <param name="lhs">The left number</param>
+    /// <param name="rhs">The right number</param>
+    /// <typeparam name="T">The underlying type</typeparam>
+    /// <returns></returns>
+    public static Sign sigmul<T>(T lhs,T rhs)
+        where T : Number<T>, new()
+            => (number<T>().sign(lhs),number<T>().sign(rhs)) switch   
+                {
+                    (Sign.Negative, Sign.Positive) => Sign.Negative,
+                    (Sign.Positive, Sign.Negative) => Sign.Negative,
+                    (Sign.Positive, Sign.Positive) => Sign.Positive,
+                    (Sign.Negative, Sign.Negative) => Sign.Positive,
+                    (Sign.Neutral, _) => Sign.Neutral,
+                    (_, Sign.Neutral) => Sign.Neutral,
+                    _ => Sign.Neutral
+                };
 
 }
 

@@ -14,22 +14,20 @@ namespace Core
     public static class FreeMonoid
     {
         public static FreeMonoid<T> define<T>(params T[] generators)
-            => new FreeMonoid<T>(generators);
-
+            where T : IEquatable<T>
+                => new FreeMonoid<T>(generators);
 
         static IEnumerable<T> generate<T>(Traits.FreeMonoid<T> fm, T m, IEnumerable<T> src)
         {
             foreach(var item in src)
-                yield return fm.concat(m,item);
-                    
+                yield return fm.concat(m,item);                    
         }
 
         static IEnumerable<T> generate<T>(Traits.FreeMonoid<T> fm, IEnumerable<T> m, IEnumerable<IEnumerable<T>> src)
         {
             foreach(var item in src.SelectMany(x => x))
             foreach(var n in m)
-                yield return fm.concat(n,item);
-                    
+                yield return fm.concat(n,item);                    
         }
 
         static IEnumerable<T> nextlevel<T>(Traits.FreeMonoid<T> fm, IEnumerable<T> src)
@@ -44,7 +42,6 @@ namespace Core
 
         public static IEnumerable<T> generate<T>(Traits.FreeMonoid<T> fm, IEnumerable<T> generators)
         {
-
             var level1 = generators;
             foreach(var m in level1)
                 yield return m;
@@ -73,6 +70,7 @@ namespace Core
     }
     
     public readonly struct FreeMonoid<T> : Traits.FreeMonoid<T>
+        where T : IEquatable<T>
     {
 
         static readonly Traits.FreeMonoid<T> Ops = ops<T,Traits.FreeMonoid<T>>();
@@ -102,6 +100,4 @@ namespace Core
         public T reduce(IEnumerable<T> src)
             => fold(src, concat, empty);
     }
-
-
 }

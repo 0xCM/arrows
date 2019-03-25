@@ -57,7 +57,7 @@ namespace Core
     /// <summary>
     /// A 2-dimensional array with length encoded by two typenat parameters
     /// </summary>
-    public readonly struct Array<K1,K2,T> 
+    public readonly struct Array<K1,K2,T> : Container<(int i, int j, T value)>
         where K1 : TypeNat, new()
         where K2 : TypeNat, new()
     {
@@ -75,12 +75,24 @@ namespace Core
         }
 
         public T this[int i, int j] => data[i,j];
+
+        public IEnumerable<(int i, int j, T value)> content 
+        {
+            get
+            {
+                for(var i = 0; i< dim.k1; i++)
+                for(var j = 0; j < dim.k2; j++)
+                    yield return (i,j,data[i,j]);
+
+            }
+        }
+
     }        
 
         /// <summary>
-    /// A e-dimensional array with length encoded by three typenat parameters
+    /// A e-dimensional array with length encoded by three natural parameters
     /// </summary>
-    public readonly struct Array<K1,K2,K3,T> 
+    public readonly struct Array<K1,K2,K3,T> : Container<(int i, int j, int k, T value)>
         where K1 : TypeNat, new()
         where K2 : TypeNat, new()
         where K3 : TypeNat, new()
@@ -100,6 +112,19 @@ namespace Core
         }
 
         public T this[int i, int j, int k] => data[i,j,k];
+
+        public IEnumerable<(int i, int j, int k, T value)> content 
+        {
+            get
+            {
+                for(var i = 0; i< dim.k1; i++)
+                for(var j = 0; j < dim.k2; j++)
+                for(var k = 0; k< dim.k3; k++)
+                    yield return (i,j,k,data[i,j,k]);
+
+            }
+        }
+
     }        
 
 }

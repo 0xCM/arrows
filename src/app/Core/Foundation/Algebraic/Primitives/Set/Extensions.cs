@@ -18,7 +18,8 @@ namespace Core
         /// <typeparam name="T">The set member type</typeparam>
         /// <returns></returns>
         public static  FiniteSet<T> ToFiniteSet<T>(this IEnumerable<T> src)
-            => new FiniteSet<T>(src);
+            where T : IEquatable<T>
+                => new FiniteSet<T>(src);
     }
 
 }

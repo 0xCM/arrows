@@ -4,6 +4,8 @@
 //-----------------------------------------------------------------------------
 namespace Core
 {
+    using System;
+
     partial class Traits
     {
         /// <summary>
@@ -40,8 +42,8 @@ namespace Core
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The structure subect</typeparam>
-        public interface Number<S,T> : Semiring<S,T>, Negatable<S,T>, Divisive<S,T>
-            where S : Number<S,T>, new()
+        public interface Number<S,T> : Semiring<S,T>, Negatable<S,T>, Divisive<S,T>, IEquatable<S>
+            where S : Number<S,T>,  new()
         {
             /// <summary>
             /// Calculates the number's magnitude

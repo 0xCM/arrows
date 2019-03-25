@@ -8,9 +8,8 @@ namespace Core
     using System.Collections.Generic;
     using System.Linq;
 
-
-
     public readonly struct FiniteSet<T> : Traits.FiniteSet<T>
+        where T : IEquatable<T>
     {
         readonly HashSet<T> container;
         
@@ -23,14 +22,15 @@ namespace Core
         public bool empty 
             => count == 0;
 
+
         public bool member(T candidate)
             => container.Contains(candidate);
 
         public bool member(object candidate)
             => candidate is T ? member((T)candidate) :false;
 
-        public Enumerable<T> members()
-            => Enumerable.define<T>(container);
+        public Seq<T> members()
+            => Seq.define<T>(container);
     }
 
 

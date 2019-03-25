@@ -17,7 +17,7 @@ namespace Core
     public readonly struct int64 : FiniteSignedInt<structype,systype>, IEquatable<structype>, IComparable<structype>
     {
 
-        static readonly FiniteSignedInt<systype> ops = Resolve.signedint<systype>();
+        static readonly SignedInt<systype> ops = signedint<systype>();
         
         public static readonly int64 Zero = new int64(0);
         

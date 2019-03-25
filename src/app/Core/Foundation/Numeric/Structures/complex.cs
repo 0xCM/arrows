@@ -28,7 +28,7 @@ namespace Core
     public readonly struct complex<T>
         where T : new()
     {
-        static readonly Traits.Number<T> ops = Resolve.number<T>();
+        static readonly Traits.Number<T> ops = number<T>();
         
         public static readonly complex<T> Zero = (ops.zero,ops.zero);
         public static readonly complex<T> One = (ops.one,ops.zero);        

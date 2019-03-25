@@ -73,11 +73,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "j:\\dev\\projects\\z0-foundations\\arrows.csproj",
-      "projectName": "arrows",
-      "projectPath": "j:\\dev\\projects\\z0-foundations\\arrows.csproj",
+      "projectUniqueName": "j:\\dev\\projects\\z0\\z0.csproj",
+      "projectName": "z0",
+      "projectPath": "j:\\dev\\projects\\z0\\z0.csproj",
       "packagesPath": "J:\\cache\\nuget\\cache",
-      "outputPath": "j:\\dev\\projects\\z0-foundations\\obj\\",
+      "outputPath": "j:\\dev\\projects\\z0\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "j:\\tools\\netsdk\\sdk\\NuGetFallbackFolder"

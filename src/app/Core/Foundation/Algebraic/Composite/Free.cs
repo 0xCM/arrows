@@ -26,6 +26,7 @@ namespace Core
         }
 
         public interface FinitelyGenerable<T>
+            where T : IEquatable<T>
         {
             FiniteSet<T> generators {get;}
         }

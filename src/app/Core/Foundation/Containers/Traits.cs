@@ -45,6 +45,20 @@ namespace Core
         }
 
 
+        public interface Seq<T> : IEnumerable<T>
+        {
+            
+        }
+
+        public interface FiniteSeq<T> : Seq<T>, Finite<T>
+        {
+            /// <summary>
+            /// Retrieves the 0-based i'th element of the sequence
+            /// </summary>
+            /// <value></value>
+            T this[int i] {get;}
+        }
+
     }
 
 

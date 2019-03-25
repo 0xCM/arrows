@@ -20,7 +20,7 @@ namespace Core
         /// </summary>
         /// <typeparam name="I">The underlying integral type</typeparam>
         public interface Rational<S,T> : Fractional<S, (T over,T under)>
-            where S : Rational<S,T>, new()
+            where S : Rational<S,T>,  new()
         {
             /// <summary>
             /// The dividend

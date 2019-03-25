@@ -12,6 +12,9 @@ namespace Core
     using static corefunc;
 
 
+    /// <summary>
+    /// Defines a contiguous segment of values between left and round bounds
+    /// </summary>
     public readonly struct Interval<T> : Traits.Interval<T>
         where T : Traits.Ordered<T>
     {
@@ -75,6 +78,7 @@ namespace Core
 
         public static OpenInterval<T> ToOpenInterval<T>(this (T left, T right) x)
             where T : Traits.Ordered<T> => Interval.open(x.left,x.right);
+        
     }
 
 }

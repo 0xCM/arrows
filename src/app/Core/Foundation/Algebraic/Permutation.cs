@@ -22,7 +22,7 @@ namespace Core
             => this.assigments = assigments;
 
         public int map(int index)            
-            =>  first(assigments, a => a.k == index).trymap(a => a.v).extract(index);
+            =>  first(assigments, a => a.k == index).TryMap(a => a.v).ValueOrDefault(index);
     }
 
 

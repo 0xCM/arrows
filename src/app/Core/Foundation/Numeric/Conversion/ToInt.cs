@@ -16,12 +16,99 @@ using static corefunc;
 using static Core.Operations;
 
 
-
 /// <summary>
 /// Defines extensions to convert various types of values to System.Int32
 /// </summary>
 public static class ToIntX
 {
+    [MethodImpl(Inline)]   
+    public static int ToInt(this byte src)
+        => src;
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this sbyte src)
+        => src;
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this short src)
+        => src;
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this ushort src)
+        => src;
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this int src)
+        => src;
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this uint src)
+        => (int)src;
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this long src)
+        => (int)src;
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this ulong src)
+        => (int)src;
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this float src)
+        => (int)src;
+
+
+   [MethodImpl(Inline)]   
+    public static int ToInt(this double src)
+        => (int)src;
+
+   [MethodImpl(Inline)]   
+    public static int ToInt(this decimal src)
+        => (int)src;
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this byte? src)
+        => (src ?? 0);
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this sbyte? src)
+        => (src ?? 0);
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this short? src)
+        => (src ?? 0);
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this ushort? src)
+        => (src ?? 0);
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this int? src)
+        => (src ?? 0);
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this uint? src)
+        => (int)(src ?? 0);
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this long? src)
+        => (int)(src ?? 0);
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this ulong? src)
+        => (int)(src ?? 0);
+
+    [MethodImpl(Inline)]   
+    public static int ToInt(this float? src)
+        => (int)(src ?? 0);
+
+   [MethodImpl(Inline)]   
+    public static int ToInt(this double? src)
+        => (int)src;
+
+   [MethodImpl(Inline)]   
+    public static int ToInt(this decimal? src)
+        => (int)src;
 
     /// <summary>
     /// x:intg[byte] => x:int
@@ -75,25 +162,15 @@ public static class ToIntX
     public static int ToInt(this intg<ulong> src)
         => (int)src.data;
 
-   [MethodImpl(Inline)]   
-    public static int ToInt(this double src)
-        => (int)src;
 
    [MethodImpl(Inline)]   
     public static int ToInt(this floatg<double> src)
         => (int)src.data;
 
-   [MethodImpl(Inline)]   
-    public static int ToInt(this float src)
-        => (int)src;
 
    [MethodImpl(Inline)]   
     public static int ToInt(this floatg<float> src)
         => (int)src.data;
-
-   [MethodImpl(Inline)]   
-    public static int ToInt(this decimal src)
-        => (int)src;
 
    [MethodImpl(Inline)]   
     public static int ToInt<T>(this floatg<T> src)

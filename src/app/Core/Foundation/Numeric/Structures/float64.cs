@@ -17,7 +17,7 @@ namespace Core
 
     public readonly struct float64 : FiniteFloat<structype,systype>
     {
-        static readonly FiniteFloat<systype> ops = Resolve.floating<systype>();
+        static readonly FiniteFloat<systype> ops = floating<systype>();
 
         public static readonly structype Zero = ops.zero;
         
@@ -258,6 +258,11 @@ namespace Core
         [MethodImpl(Inline)]
         public Quorem<structype> divrem(structype rhs)
             => Quorem.define(this/rhs, this % rhs);
+
+
+        [MethodImpl(Inline)]
+        public bool Equals(structype rhs)
+            => this == rhs;
 
         [MethodImpl(Inline)]
         int IComparable<structype>.CompareTo(structype other)

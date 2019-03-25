@@ -26,7 +26,7 @@ namespace Core
     /// </summary>
     public readonly struct intg<T> : Integer<intg<T>,T> 
     {
-        static readonly Integer<T> ops = Resolve.integer<T>();
+        static readonly Integer<T> ops = integer<T>();
 
         public static readonly intg<T> Zero = ops.zero;
 
@@ -277,6 +277,9 @@ namespace Core
         public byte[] digits()
             => (from c in data.ToString() select byte.Parse(c.ToString())).ToArray();
 
+        
+        public bool Equals(intg<T> rhs)
+            => this == rhs;
 
         public override bool Equals(object rhs)
             => data.Equals(rhs);

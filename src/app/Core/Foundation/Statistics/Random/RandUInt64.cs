@@ -11,10 +11,10 @@ namespace Core
     using static corefunc;
 
     /// <summary>
-    /// Defines pseudorandom number genorators
+    /// Defines pseudorandom number generator
     /// </summary>
     /// <remarks> Adapted from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
-    public class Randomicity
+    public class RandUInt64
     {
         /* When supplied to the jump function, it is equivalent
         to 2^128 calls to next(); it can be used to generate 2^128
@@ -31,7 +31,8 @@ namespace Core
             { 0x76e15d3efefdcbbf, 0xc5004e441c522fb3, 
               0x77710069854ee241, 0x39109bb02acbe635 };
 
-        readonly ulong[] seed;
+        static ulong rotl(ulong x, int k) 
+            => (x << k) | (x >> (64 - k));
 
         static IEnumerable<ulong> guiseed()
         {
@@ -43,19 +44,18 @@ namespace Core
             yield return BitConverter.ToUInt64(g2,4);
         }
 
-        public Randomicity()
+        readonly ulong[] seed;
+
+        public RandUInt64()
         {
             seed = guiseed().ToArray();
             jump(J128);
         }
 
-        public Randomicity(ulong[] seed)
+        public RandUInt64(ulong[] seed)
         {
             this.seed = seed;
         }
-
-        public static ulong rotl(ulong x, int k) 
-            => (x << k) | (x >> (64 - k));
 
         public ulong next() 
         {

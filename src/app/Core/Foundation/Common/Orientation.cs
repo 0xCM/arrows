@@ -12,7 +12,7 @@ namespace Core
     /// chosen - "Left" and "Right" reflect convention, not semantics
     /// </summary>
     /// <remarks> The most elementary and primitive perspective of duality</remarks>
-    public enum Orientation
+    public enum Orientation : sbyte
     {        
         /// <summary>
         /// Specifies a leftward orientation
@@ -34,7 +34,7 @@ namespace Core
     /// Note also that this fills in the need for a true mathematical "sign": A number
     /// is either Negative, Positive or Neutral=0.
     /// </remaks>
-    public enum Sign
+    public enum Sign : sbyte
     {
         
         /// <summary>
@@ -42,6 +42,10 @@ namespace Core
         /// </summary>
         Negative = -1,
         
+        /// <summary>
+        /// Specifies neutral polarity and from a mathemtatical perspectives gives 
+        /// a sign classification to the number 0.
+        /// </summary>
         Neutral = 0,
         
         

@@ -67,7 +67,7 @@ public static class ContainerX
     /// <typeparam name="T">The item type</typeparam>
     [MethodImpl(Inline)]
     public static Slice<T> ToSlice<T>(this IEnumerable<T> src)
-        => new Slice<T>(src);
+        => Slice.define(src);
 
     /// <summary>
     /// Constructs a slice with natural length from a sequence of elements
@@ -78,5 +78,24 @@ public static class ContainerX
     [MethodImpl(Inline)]
     public static Slice<N,T> ToSlice<N,T>(this IEnumerable<T> src)
         where N : TypeNat, new()
-        => new Slice<N,T>(src);
+        => Slice.define<N,T>(src);
+
+    /// <summary>
+    /// Wraps an enumerable with a sequence structure
+    /// </summary>
+    /// <param name="src">The source sequence</param>
+    /// <typeparam name="T">The item type</typeparam>
+    [MethodImpl(Inline)]
+    public static Seq<T> ToSeq<T>(this IEnumerable<T> src)
+        => Seq.define(src);
+
+    /// <summary>
+    /// Reifies an enumerable as a finite sequence
+    /// </summary>
+    /// <param name="src">The source sequence</param>
+    /// <typeparam name="T">The item type</typeparam>
+    [MethodImpl(Inline)]
+    public static FiniteSeq<T> ToFiniteSeq<T>(this IEnumerable<T> src)
+        => Seq.finite(src);
+
 }

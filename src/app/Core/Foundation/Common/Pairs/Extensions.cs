@@ -15,10 +15,10 @@ namespace Core
     {
 
         public static bool IsLeft<A,B>(this Traits.Copair<A,B> cp)
-            => cp.left.exists;
+            => cp.left.Exists;
 
         public static bool IsRight<A,B>(this Traits.Copair<A,B> cp)
-            => cp.right.exists;
+            => cp.right.Exists;
     }
 
 

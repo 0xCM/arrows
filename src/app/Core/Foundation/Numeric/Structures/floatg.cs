@@ -19,7 +19,7 @@ namespace Core
     /// </summary>
     public readonly struct floatg<T> : Floating<floatg<T>,T>
     {
-        static readonly Floating<T> Ops = Resolve.floating<T>();
+        static readonly Floating<T> Ops = floating<T>();
 
         public static readonly floatg<T> Zero = Ops.zero;
 
@@ -303,5 +303,8 @@ namespace Core
         [MethodImpl(Inline)]
         public override string ToString()
             => data.ToString();
+
+        public bool Equals(floatg<T> rhs)
+            => this == rhs;
     }
 }

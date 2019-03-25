@@ -243,6 +243,10 @@ namespace Core
         {
             throw new NotImplementedException();
         }
+ 
+         public bool Equals(real<T> rhs)
+            => Ops.eq(this.data, rhs.data);
+
     }
 
 }

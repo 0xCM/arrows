@@ -13,6 +13,7 @@ namespace Core
     /// Represents the set that contains all potential values of a specified type
     /// </summary>
     public readonly struct TotalSet<T> : Traits.Set<TotalSet<T>, T>, Singleton<TotalSet<T>>
+        where T : IEquatable<T>
     {
         public static readonly TotalSet<T> Inhabitant = default;
 
@@ -48,6 +49,7 @@ namespace Core
     /// Represents the set that contains no values of a specified type
     /// </summary>
     public readonly struct EmptySet<T> : Traits.Set<EmptySet<T>, T>, Singleton<EmptySet<T>>
+        where T : IEquatable<T>
     {
         public static readonly EmptySet<T> Inhabitant = default;
 
@@ -90,7 +92,7 @@ namespace Core
         public N inhabitant 
             => Inhabitant;
 
-        public Enumerable<bigint> members()
+        public Seq<bigint> members()
             => peano().Reify();
 
         public bool member(object candidate)
@@ -129,7 +131,7 @@ namespace Core
             }
         }
 
-        public Enumerable<bigint> members()
+        public Seq<bigint> members()
             => integers().Reify();
 
         public bigint add(bigint lhs, bigint rhs)
@@ -157,7 +159,7 @@ namespace Core
     /// <summary>
     /// Represents the set of rational numbers
     /// </summary>
-    public readonly struct Q : Traits.Set<Q>, Singleton<Q>
+    public readonly struct Q : Traits.Set<Q>, Singleton<Q>, IEquatable<Q>
     {
         internal static readonly Q Inhabitant = default(Q);
 
@@ -166,6 +168,9 @@ namespace Core
 
         public bool empty 
             => false;
+
+        public bool Equals(Q other)
+            => true;
 
         public bool member(Q item) 
             => true;
@@ -177,7 +182,7 @@ namespace Core
     /// <summary>
     /// Represents the set of real numbers
     /// </summary>
-    public readonly struct R : Traits.Set<R>, Singleton<R>
+    public readonly struct R : Traits.Set<R>, Singleton<R>, IEquatable<R>
     {
         internal static readonly R Inhabitant = default(R);
     
@@ -187,11 +192,14 @@ namespace Core
         public bool empty 
             => false;
 
-        public bool member(R item) 
+        public bool member(R x) 
             => true;
 
-        public bool member(object candidate)
-            => candidate is R;
+        public bool Equals(R rhs)
+            => true;
+
+        public bool member(object x)
+            => x is R;
     }
 
 }

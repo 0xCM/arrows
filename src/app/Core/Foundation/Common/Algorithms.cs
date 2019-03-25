@@ -148,7 +148,7 @@ public static partial class corefunc
     /// <returns></returns>
     [MethodImpl(Inline)]   
     public static Option<Y> map<X,Y>(Option<X> src, Func<X,Y> f)
-        => src.trymap(f);
+        => src.TryMap(f);
 
     /// <summary>
     /// Applies a function to a value

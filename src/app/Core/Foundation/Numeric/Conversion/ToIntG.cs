@@ -224,6 +224,7 @@ public static class ToIntGX
     /// x:floatg[float] => x:intg[T]
     /// </summary>
     /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this floatg<float> src)
         => convert<T>(src.data);
 
@@ -231,9 +232,18 @@ public static class ToIntGX
     /// x:floatg[float] => x:intg[T]
     /// </summary>
     /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this floatg<double> src)
         => convert<T>(src.data);
 
+    /// <summary>
+    /// x:Enum => x:intg[T]
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
+    public static intg<T> ToIntG<T>(this Enum src)    
+        => (T)Convert.ChangeType(src, type<T>());
 
+    
 }
 

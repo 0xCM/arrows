@@ -25,6 +25,15 @@ namespace Core
         public static Slice<T> define<T>(IReadOnlyList<T> data)
             => new Slice<T>(data);
 
+        [MethodImpl(Inline)]
+        public static Slice<N,T> define<N,T>(params T[] data)
+            where N : TypeNat, new() => new Slice<N,T>(data);
+
+        [MethodImpl(Inline)]
+        public static Slice<N,T> define<N,T>(IEnumerable<T> data)
+            where N : TypeNat, new() => new Slice<N,T>(data);
+
+        [MethodImpl(Inline)]
         public static Slice<T> concat<T>(Slice<T> s1, Slice<T> s2)
             => s1 + s2;
 

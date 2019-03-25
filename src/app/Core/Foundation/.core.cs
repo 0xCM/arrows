@@ -78,25 +78,7 @@ public static partial class corefunc
     public static T cast<T>(object src) 
         => (T) src;
 
-    /// <summary>
-    /// Constructs a non-valued option
-    /// </summary>
-    /// <typeparam name="A">The underlying type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static Option<A> none<A>() 
-        => Option<A>.None;
-    
-    /// <summary>
-    /// Constructs a valued option
-    /// </summary>
-    /// <param name="value">The option value</param>
-    /// <typeparam name="A">The underlying type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static Option<A> some<A>(A value) 
-        => new Option<A>(value);
-
+ 
     /// <summary>
     /// The univeral identity function that returns the source value
     /// </summary>

@@ -32,7 +32,7 @@ namespace Core
         /// Characterizes an operation provider for bounded natural types
         /// </summary>
         /// <typeparam name="T">The type over which operations are defined</typeparam>
-        public interface FiniteNatural<T> : Natural<T>, Finite<T>
+        public interface FiniteNatural<T> : Natural<T>, Bounded<T>
         {
             
         }
@@ -43,7 +43,7 @@ namespace Core
         /// </summary>
         /// <typeparam name="S">The realizing type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface FiniteNatural<S,T> : Natural<S,T>, Finite<S,T>
+        public interface FiniteNatural<S,T> : Natural<S,T>, Bounded<S,T>
             where S : FiniteNatural<S,T>, new()
             where T : new()
         {
