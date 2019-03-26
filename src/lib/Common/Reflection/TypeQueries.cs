@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
@@ -9,10 +13,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Collections.Concurrent;
 
-
-
-    using static CommonBindingFlags;
-    using static corefunc;
+    using static ReflectionFlags;
+    using static zcore;
     partial class Reflections
     {
         static readonly ConcurrentDictionary<Type, IReadOnlyList<ValueMember>> ValueMemberCache

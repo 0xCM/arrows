@@ -1,8 +1,7 @@
-//-------------------------------------------------------------------------------------------
-// MetaCore
-// Author: Chris Moore, 0xCM@gmail.com
-// License: MIT
-//-------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
@@ -15,8 +14,8 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
-    using static CommonBindingFlags;
-    using static corefunc;
+    using static ReflectionFlags;
+    using static zcore;
 
     partial class Reflections
     {

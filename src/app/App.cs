@@ -6,9 +6,8 @@ using System.Collections.Generic;
 
 using Z0;
 
-using static corefunc;
+using static zcore;
 
-using C = Z0.Contracts;
 
 
 namespace App04
@@ -452,10 +451,12 @@ namespace App04
                 write($"{r.next()}, ");
         }
 
+
+
         static void Main(string[] args)
         {     
-
-            iter(SysInit.initializers<Program>(), init => init.Initialize());
+            SysInit.initialize<Program>();
+            print($"{interval<N2,N7>()}");
             
 
         }

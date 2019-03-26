@@ -1,15 +1,14 @@
-//-------------------------------------------------------------------------------------------
-// MetaCore
-// Author: Chris Moore, 0xCM@gmail.com
-// License: MIT
-//-------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using static corefunc;
+    using static zcore;
     partial class Reflections
     {
 

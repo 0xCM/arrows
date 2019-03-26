@@ -5,7 +5,7 @@
 namespace Z0
 {
     using System.Runtime.CompilerServices;
-    using static corefunc;
+    using static zcore;
     using static Traits;
 
     public static class Multiplication 

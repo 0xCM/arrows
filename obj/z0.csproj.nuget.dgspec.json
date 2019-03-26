@@ -54,7 +54,7 @@
             "Microsoft.NETCore.Platforms": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.0.0-preview4.19160.5, )",
+              "version": "[3.0.0-preview4.19164.7, )",
               "autoReferenced": true
             },
             "mathnet.numerics": {

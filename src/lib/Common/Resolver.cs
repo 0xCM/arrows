@@ -12,8 +12,7 @@ namespace Z0
     using System.Numerics;
     using System.Reflection;
 
-    using static corefunc;
-    using static Operations;
+    using static zcore;
     
 
     /// <summary>

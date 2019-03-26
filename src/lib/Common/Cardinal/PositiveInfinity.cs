@@ -8,7 +8,7 @@ namespace Z0
 
     using static Traits;
 
-    using static corefunc;
+    using static zcore;
 
 
     /// <summary>

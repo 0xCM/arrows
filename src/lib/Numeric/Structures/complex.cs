@@ -8,11 +8,9 @@ namespace Z0
     using System.Numerics;
     using System.Runtime.CompilerServices;
     
-    using static corefunc;
-    using static Operations;
+    using static zcore;
 
-    using C = Contracts;
-
+    
 
     public static class complex
     {

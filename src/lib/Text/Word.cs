@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;    
     using System.Linq;
-    using static corefunc;
+    using static zcore;
     using Z0;
 
     /// <summary>
@@ -23,7 +23,7 @@ namespace Z0
             => lhs.append(rhs);
                     
         public static implicit operator string(Word s)                
-            => Ops.reduce(s.data);
+            => Ops.reduce(s.data.cells);
 
         public static implicit operator Slice<Symbol>(Word s)                
             => s.data;
@@ -55,7 +55,7 @@ namespace Z0
             => seq(this).Concat(rhs);
 
         public Word append(Word rhs)
-            => new Word(this.data + rhs.data);
+            => new Word(this.data.cells.Concat(rhs.data.cells));
     }
 
 }

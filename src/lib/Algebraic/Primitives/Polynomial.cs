@@ -6,7 +6,7 @@ namespace Z0
 {
     using System;
     using System.Linq;
-    using static corefunc;
+    using static zcore;
 
     public static class Polynomial
     {
@@ -50,13 +50,13 @@ namespace Z0
             => this.terms = Slice.define(terms);
 
         public override string ToString()
-            => concat(AsciSym.Plus, terms);
+            => concat(AsciSym.Plus, terms.cells);
 
         public intg<uint> degree()
-            => nonzero ? filter(reverse(terms), t => Ops.neq(t.coefficient, FZero)).First().power : 0;
+            => nonzero ? filter(reverse(terms), t => Ops.neq(t.coefficient, FZero)).cells.First().power : 0;
 
         public bool nonzero
-            => any(terms, t => Ops.neq(t.coefficient, FZero));
+            => any(terms.cells, t => Ops.neq(t.coefficient, FZero));
 
         public Polynomial<T> add(Polynomial<T> rhs)
         {

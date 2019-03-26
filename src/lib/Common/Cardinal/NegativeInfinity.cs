@@ -8,7 +8,7 @@ namespace Z0
 
     using static Traits;
 
-    using static corefunc;
+    using static zcore;
 
 
     /// <summary>
@@ -26,12 +26,13 @@ namespace Z0
 
         public static readonly NegativeInfinity Inhabitant = default;
 
-        public NegativeInfinity inhabitant => Inhabitant;
+        public NegativeInfinity inhabitant 
+            => Inhabitant;
 
-        public bool positive => false;
+        public bool positive 
+            => false;
 
-        public bool negative => true;
+        public bool negative 
+            => true;
     }
-
-
 }

@@ -6,7 +6,7 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
-    using static corefunc;
+    using static zcore;
 
     using static Traits;
 

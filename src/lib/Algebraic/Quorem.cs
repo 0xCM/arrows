@@ -9,9 +9,8 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
 
-    using C = Contracts;
     
     public static class Quorem
     {

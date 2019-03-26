@@ -8,7 +8,7 @@ namespace Z0
     using System.Linq;
     using System.Collections.Generic;
 
-    using static corefunc;
+    using static zcore;
 
     /// <summary>
     /// Implementation of a basic multiset
@@ -32,6 +32,12 @@ namespace Z0
                     data[item] = 1;
             }
         }
+
+        public bool finite
+            => true;
+
+        public bool discrete
+            => true;
 
         public int count 
             => data.Count;

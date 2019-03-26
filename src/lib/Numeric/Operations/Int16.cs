@@ -8,10 +8,9 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
     using static Traits;
     
-    using C = Z0.Contracts;
     using systype = System.Int16;
     using opstype = Int16Ops;
 
@@ -182,7 +181,7 @@ namespace Z0
             return lhs;
         }
 
-            public string bitstring(systype src)
+        public string bitstring(systype src)
             => src.ToBitString();
     }
  

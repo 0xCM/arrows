@@ -10,8 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Z0;
 
-using static corefunc;
-using static Z0.Operations;
+using static zcore;
 
 /// <summary>
 /// Defines extenstions for numeric formatting
@@ -78,6 +77,10 @@ public static class FormattingX
     [MethodImpl(Inline)]   
     public static string ToBitString(this uint src)
         => lpadZ(Convert.ToString(src,2), UInt32Ops.MaxBitLength);
+
+    [MethodImpl(Inline)]   
+    public static string ToBitString(this long src)
+        => lpadZ(Convert.ToString(src,2), Int64Ops.MaxBitLength);
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this ulong src)

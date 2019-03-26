@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
@@ -7,7 +11,7 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
 
     partial class Reflections
     {
@@ -247,7 +251,7 @@ namespace Z0
         /// </summary>
         /// <param name="type">The type to evaluate</param>
         /// <returns></returns>
-        public static bool IsNumber(this Type type)
+        public static bool IsIntrinsicNumber(this Type type)
         {
             switch (Type.GetTypeCode(type))
             {
@@ -258,7 +262,7 @@ namespace Z0
                     return true;
                 case TypeCode.Object:
                     if (type.IsNullableType())
-                        return IsNumber(Nullable.GetUnderlyingType(type));
+                        return IsIntrinsicNumber(Nullable.GetUnderlyingType(type));
                     return false;
             }
             return false;

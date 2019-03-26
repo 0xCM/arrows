@@ -10,10 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Z0;
 
-using C = Z0.Contracts;
 
-using static corefunc;
-using static Z0.Operations;
+using static zcore;
 
 
 /// <summary>

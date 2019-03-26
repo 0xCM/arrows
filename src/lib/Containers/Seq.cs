@@ -10,7 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
 
    /// <summary>
     /// Provides a layer of indirection for, and gives a concrete type to, 
@@ -41,11 +41,14 @@ namespace Z0
         public bool empty()
             => not(nonempty);
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-            => src.GetEnumerator();
+        public IEnumerable<T> stream()
+            => src;
 
-        IEnumerator IEnumerable.GetEnumerator()
-            => src.GetEnumerator();
+        // IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        //     => src.GetEnumerator();
+
+        // IEnumerator IEnumerable.GetEnumerator()
+        //     => src.GetEnumerator();
 
         public Seq<T> redefine(IEnumerable<T> src)
             => new Seq<T>(src);        
@@ -89,11 +92,14 @@ namespace Z0
         public FiniteSeq<T> redefine(IEnumerable<T> src)
             => new FiniteSeq<T>(src);                
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-            => src.GetEnumerator();
+        public IEnumerable<T> stream()
+            => src.cells;
 
-        IEnumerator IEnumerable.GetEnumerator()
-            => src.GetEnumerator();
+        // IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        //     => src.GetEnumerator();
+
+        // IEnumerator IEnumerable.GetEnumerator()
+        //     => src.GetEnumerator();
 
     }
 

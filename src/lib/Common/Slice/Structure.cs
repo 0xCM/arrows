@@ -10,7 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
 
     /// <summary>
     /// Encapsulates a linear data segment with length determined at runtime
@@ -18,7 +18,7 @@ namespace Z0
     public readonly struct Slice<T> : Traits.Slice<T>, IEquatable<Slice<T>>
     {                    
         public static Slice<T> operator + (Slice<T> lhs, Slice<T> rhs)
-            => new Slice<T>(lhs.Concat(rhs));
+            => new Slice<T>(lhs.cells.Concat(rhs.cells));
 
         public static bool operator == (Slice<T> lhs, Slice<T> rhs)
             => lhs.Equals(rhs);
@@ -76,11 +76,11 @@ namespace Z0
         public override string ToString() 
             => embrace(string.Join(',' ,cells));
 
-        public IEnumerator<T> GetEnumerator()
-            => cells.GetEnumerator();
+        // public IEnumerator<T> GetEnumerator()
+        //     => cells.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-            => GetEnumerator();
+        // IEnumerator IEnumerable.GetEnumerator()
+        //     => GetEnumerator();
 
         public bool Equals(Slice<T> rhs)
         {
@@ -124,7 +124,7 @@ namespace Z0
 
        [MethodImpl(Inline)]
        public static T reduce(Traits.Slice<N,T> s, Func<T,T,T> reducer)
-            => fold(s,reducer, Ops.zero);
+            => fold(s.cells,reducer, Ops.zero);
 
         /// <summary>
         /// Calculates the component-wise sum of two slices via a semigroup
@@ -199,11 +199,11 @@ namespace Z0
         public override string ToString() 
             => embrace(string.Join(',' ,cells));
 
-        public IEnumerator<T> GetEnumerator()
-            => cells.GetEnumerator();
+        // public IEnumerator<T> GetEnumerator()
+        //     => cells.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-            => GetEnumerator();
+        // IEnumerator IEnumerable.GetEnumerator()
+        //     => GetEnumerator();
     }        
 
 }

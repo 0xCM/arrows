@@ -8,7 +8,7 @@ namespace Z0
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
-    using static corefunc;
+    using static zcore;
     using static Traits;
 
     public static class Matrix

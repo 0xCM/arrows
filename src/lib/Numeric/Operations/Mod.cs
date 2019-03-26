@@ -9,7 +9,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static Traits;
-    using static corefunc;
+    using static zcore;
 
     /// <summary>
     /// Defines interal operations modulo N

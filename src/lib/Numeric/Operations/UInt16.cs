@@ -8,7 +8,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
     using static Traits;
 
     using systype = System.UInt16;
@@ -187,13 +187,5 @@ namespace Z0
 
         public string bitstring(systype src)
             => Convert.ToString(src,2).PadLeft(MaxBitLength);
-    }
-
-
-    partial class Operations
-    {
-        public static string ToBitString(this systype src)
-            => lpadZ(Convert.ToString(src,2), opstype.MaxBitLength);
-
     }
 }

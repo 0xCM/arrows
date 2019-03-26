@@ -10,7 +10,7 @@ namespace Z0
     using System.Numerics;
     using System.Runtime.CompilerServices;
     
-    using static corefunc;
+    using static zcore;
     using static Traits;
     
     using systype = System.Numerics.BigInteger;

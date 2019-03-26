@@ -11,7 +11,7 @@ namespace Z0
     using System.Reflection;
     using System.Linq;
 
-    using static corefunc;
+    using static zcore;
 
 
     public readonly struct Factorization<T>

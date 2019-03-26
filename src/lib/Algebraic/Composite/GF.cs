@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
-    using static corefunc;
+    using static zcore;
 
     partial class Traits
     {
@@ -27,7 +27,7 @@ namespace Z0
         }
 
         public interface GF<N,T> : ModN<N,T>
-            where N : TypeNat, PrimePower<N>, new()
+            where N : TypeNat, Demands.PrimePower<N>, new()
             
         {
 

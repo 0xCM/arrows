@@ -9,7 +9,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
 
-    using static corefunc;
+    using static zcore;
     using static Traits;
 
     using systype = System.Double;

@@ -4,7 +4,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
 
-    using static corefunc;
+    using static zcore;
 
     public enum BinaryDigit : byte
     {
@@ -36,7 +36,7 @@ namespace Z0
             => this.bits = natcheck<N,BinaryDigit>(bits);
 
         public override string ToString()
-            => concat(map(bits, b => (byte)b));
+            => concat(map(bits.cells, b => (byte)b));
     }
 
     public enum DecimalDigit : byte

@@ -8,9 +8,9 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     
-    using Expose;
+    using Latex;
     
-    using static corefunc;
+    using static zcore;
 
     /// <summary>
     /// Represents a directed path from a source space to a target space
@@ -43,7 +43,7 @@ namespace Z0
 
         public override string ToString()
             => concat(label.empty() ? string.Empty : label.name, AsciSym.Colon) 
-             + concat(typename<A>(),Arrows.longright, typename<B>());
+             + concat(typename<A>(),Arrows.longright.identity, typename<B>());
     }
 
    /// <summary>

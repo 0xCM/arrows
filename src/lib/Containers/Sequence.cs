@@ -6,7 +6,7 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
-    using static corefunc;
+    using static zcore;
 
 
     partial class Traits

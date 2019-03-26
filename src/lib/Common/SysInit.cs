@@ -11,7 +11,7 @@ namespace Z0
     using System.Reflection;
     using System.Linq;
 
-    using static corefunc;
+    using static zcore;
 
     /// <summary>
     /// Characterizes a system initializer, i.e. a component whose initialization
@@ -52,6 +52,15 @@ namespace Z0
 
     public static class SysInit
     {
+        /// <summary>
+        /// Initializes a specified assembly
+        /// </summary>
+        /// <typeparam name="T">A type defined in the assembly to initialize</typeparam>
+        public static void initialize<T>()
+        {
+            iter(initializers<T>(), init => init.Initialize());
+        }
+
         /// <summary>
         /// Yields the initializers defined in the assembly of the parametrized type
         /// </summary>

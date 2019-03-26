@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;    
     using System.Linq;
-    using static corefunc;
+    using static zcore;
     using Z0;
 
     /// <summary>
@@ -27,7 +27,7 @@ namespace Z0
             => not(lhs == rhs);
             
         public static implicit operator string(Symbol s)                
-            => string.Concat(s.data.Select(x => x.data));
+            => string.Concat(s.data.cells.Select(x => x.data));
 
         public Symbol(IEnumerable<Atom> data)
         {
@@ -59,7 +59,7 @@ namespace Z0
             => name != rhs;
 
         public Symbol append(Symbol rhs)
-            => new Symbol(this.data + rhs.data);
+            => new Symbol(data.cells.Concat(rhs.data.cells));
 
         public override string ToString() 
             => name;

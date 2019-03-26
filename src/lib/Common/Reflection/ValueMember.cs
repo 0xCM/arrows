@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
@@ -20,7 +24,6 @@ namespace Z0
 
         public static implicit operator ValueMember(FieldInfo Member) 
             => new ValueMember(Member);
-
 
         public ValueMember(PropertyInfo Member)
         {

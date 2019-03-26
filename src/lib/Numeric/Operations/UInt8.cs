@@ -8,7 +8,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
     using static Traits;
 
     using systype = System.Byte;
@@ -192,8 +192,6 @@ namespace Z0
 
     partial class Operations
     {
-        public static string ToBitString(this systype src)
-            => lpadZ(Convert.ToString(src,2), opstype.MaxBitLength);
 
     }
 }

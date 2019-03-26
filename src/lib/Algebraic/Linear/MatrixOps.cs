@@ -1,7 +1,7 @@
 namespace Z0
 {
     using System;
-    using static corefunc;
+    using static zcore;
     using static Traits;
 
     public readonly struct MatrixOps<N,M,T> : Semiring<Matrix<M,N,T>>

@@ -9,8 +9,20 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
 
+    partial class Traits
+    {
+        /// <summary>
+        /// Characterizes a commutative binary operator
+        /// </summary>
+        /// <typeparam name="T">The operand/result type</typeparam>
+        public interface CommutativeOp<T> : BinaryOp<T>
+        {
+
+        }
+
+    }
 
 
     /// <summary>

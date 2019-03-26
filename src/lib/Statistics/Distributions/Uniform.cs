@@ -2,24 +2,26 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Contracts
+namespace Z0
 {
-    /// <summary>
-    /// Characterizes a uniform distribution
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface Uniform<T> : Distribution<T>
-        where T : new()
+    partial class Traits
     {
         /// <summary>
-        /// The minimum potential value
+        /// Characterizes a uniform distribution
         /// </summary>
-        T min {get;}
+        /// <typeparam name="T"></typeparam>
+        public interface Uniform<T> : Distribution<T>
+            where T : new()
+        {
+            /// <summary>
+            /// The minimum potential value
+            /// </summary>
+            T min {get;}
 
-        /// <summary>
-        /// The maximum potential value
-        /// </summary>
-        T max {get;}
+            /// <summary>
+            /// The maximum potential value
+            /// </summary>
+            T max {get;}
+        }
     }
-
 }

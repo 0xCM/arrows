@@ -1,8 +1,7 @@
-//-------------------------------------------------------------------------------------------
-// MetaCore
-// Author: Chris Moore, 0xCM@gmail.com
-// License: MIT
-//-------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
@@ -14,7 +13,7 @@ namespace Z0
     using System.Runtime.Versioning;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
 
     /// <summary>
     /// Defines extensions to <see cref="Assembly"/> type 

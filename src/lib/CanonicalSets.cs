@@ -20,10 +20,17 @@ namespace Z0
         public TotalSet<T> inhabitant 
             => Inhabitant;
 
-        public bool empty => false;
+        public bool empty 
+            => false;
 
         public bool member(T item) 
             => true;
+
+        public bool finite
+            => false;
+
+        public bool discrete
+            => false;
 
         public bool member(object candidate)
             => candidate is T ? true : false;
@@ -36,7 +43,14 @@ namespace Z0
     {
         public static readonly EmptySet Inhabitant = default;
 
-        public bool empty => true;
+        public bool empty 
+            => true;
+
+        public bool finite
+            => true;
+
+        public bool discrete
+            => true;
 
         public EmptySet inhabitant 
             => Inhabitant;
@@ -58,6 +72,12 @@ namespace Z0
 
         public bool empty 
             => false;
+
+        public bool finite
+            => true;
+
+        public bool discrete
+            => true;
 
         public bool member(T item) 
             => false;
@@ -89,6 +109,12 @@ namespace Z0
         public bool empty 
             => false;
 
+        public bool finite
+            => false;
+
+        public bool discrete
+            => true;
+
         public N inhabitant 
             => Inhabitant;
 
@@ -113,6 +139,12 @@ namespace Z0
 
         public bool empty 
             => false;
+
+        public bool finite
+            => false;
+
+        public bool discrete
+            => true;
 
         public Addition<bigint> addition 
             => Addition.define(this);
@@ -159,7 +191,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of rational numbers
     /// </summary>
-    public readonly struct Q : Traits.Set<Q>, Singleton<Q>, IEquatable<Q>
+    public readonly struct Q : Traits.Set<Q>, Singleton<Q>
     {
         internal static readonly Q Inhabitant = default(Q);
 
@@ -169,8 +201,12 @@ namespace Z0
         public bool empty 
             => false;
 
-        public bool Equals(Q other)
+        public bool finite
+            => false;
+
+        public bool discrete
             => true;
+
 
         public bool member(Q item) 
             => true;
@@ -182,7 +218,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of real numbers
     /// </summary>
-    public readonly struct R : Traits.Set<R>, Singleton<R>, IEquatable<R>
+    public readonly struct R : Traits.Set<R>, Singleton<R>
     {
         internal static readonly R Inhabitant = default(R);
     
@@ -192,10 +228,13 @@ namespace Z0
         public bool empty 
             => false;
 
-        public bool member(R x) 
-            => true;
+        public bool finite
+            => false;
 
-        public bool Equals(R rhs)
+        public bool discrete
+            => false;
+
+        public bool member(R x) 
             => true;
 
         public bool member(object x)

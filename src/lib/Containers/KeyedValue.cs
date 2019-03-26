@@ -9,9 +9,8 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
 
-    using C = Contracts;
-
-    using static corefunc;
+    
+    using static zcore;
 
     /// <summary>
     /// Correlates a value with a key that uniquely identifies

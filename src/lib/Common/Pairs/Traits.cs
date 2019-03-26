@@ -5,7 +5,7 @@
 namespace Z0
 {
     using System;
-    using static corefunc;
+    using static zcore;
 
     partial class Traits
     {

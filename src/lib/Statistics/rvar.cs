@@ -12,10 +12,7 @@ namespace Z0
     using MathNet.Numerics.Random;
     using MathNet.Numerics.Distributions;
 
-    using C = Contracts;
-
-    using static corefunc;
-    using static Operations;
+    using static zcore;
 
     public readonly struct Entropy
     {
@@ -40,7 +37,7 @@ namespace Z0
 
     public static class rvar
     {
-        public static rvar<T> define<T>(C.Distribution<T> dist)
+        public static rvar<T> define<T>(Traits.Distribution<T> dist)
             => new rvar<T>(); 
     }
 

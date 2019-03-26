@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
     using static Traits;
     using systype = System.Int64;
     using opstype = Int64Ops;
@@ -194,8 +194,6 @@ namespace Z0
     partial class Operations
     {
 
-        public static string ToBitString(this systype src)
-            => lpadZ(Convert.ToString(src,2), opstype.MaxBitLength);
-
+ 
     }
 }

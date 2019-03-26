@@ -4,7 +4,6 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    using static corefunc;
  
     public static class AsciSym
     {

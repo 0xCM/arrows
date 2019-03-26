@@ -8,7 +8,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
 
     using systype = System.Decimal;
     using opstype = DecimalOps;
@@ -177,8 +177,5 @@ namespace Z0
         [MethodImpl(Inline)]   
         public Quorem<systype> divrem(systype lhs, systype rhs)
             => new Quorem<systype>(lhs/rhs,lhs%rhs);
-
     }
-
-
 }

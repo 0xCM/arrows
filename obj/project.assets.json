@@ -11,7 +11,7 @@
           "lib/netstandard2.0/MathNet.Numerics.dll": {}
         }
       },
-      "Microsoft.NETCore.Platforms/3.0.0-preview4.19160.5": {
+      "Microsoft.NETCore.Platforms/3.0.0-preview4.19164.7": {
         "type": "package",
         "compile": {
           "lib/netstandard1.0/_._": {}
@@ -42,17 +42,17 @@
         "mathnet.numerics.nuspec"
       ]
     },
-    "Microsoft.NETCore.Platforms/3.0.0-preview4.19160.5": {
-      "sha512": "O7TCy3Ba7D8v5KZb5qVRzekc8qbWFXVL+7EE3XNwGWZkgWldmJuHfxLTHgz/IxdVYw0LzVkdVGJHQGHzi+OPsg==",
+    "Microsoft.NETCore.Platforms/3.0.0-preview4.19164.7": {
+      "sha512": "HC9pXnJR+jEHn4vBRH/FwxRCY23QpcZvouC1bl38ygbE3c2mkA6CZGhk7wRu9cA1WOiSV6aJKwcF0VzJZhWFXQ==",
       "type": "package",
-      "path": "microsoft.netcore.platforms/3.0.0-preview4.19160.5",
+      "path": "microsoft.netcore.platforms/3.0.0-preview4.19164.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netstandard1.0/_._",
-        "microsoft.netcore.platforms.3.0.0-preview4.19160.5.nupkg.sha512",
+        "microsoft.netcore.platforms.3.0.0-preview4.19164.7.nupkg.sha512",
         "microsoft.netcore.platforms.nuspec",
         "runtime.json",
         "useSharedDesignerContext.txt",
@@ -62,7 +62,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
-      "Microsoft.NETCore.Platforms >= 3.0.0-preview4.19160.5",
+      "Microsoft.NETCore.Platforms >= 3.0.0-preview4.19164.7",
       "mathnet.numerics >= 4.7.0"
     ]
   },
@@ -120,7 +120,7 @@
           "Microsoft.NETCore.Platforms": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[3.0.0-preview4.19160.5, )",
+            "version": "[3.0.0-preview4.19164.7, )",
             "autoReferenced": true
           },
           "mathnet.numerics": {

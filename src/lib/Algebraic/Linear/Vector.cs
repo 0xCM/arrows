@@ -9,7 +9,7 @@ namespace Z0
     using System.Collections;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using static corefunc;
+    using static zcore;
 
 
     public static class Vector
@@ -88,7 +88,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public IEnumerator<T> GetEnumerator()
-            => cells.GetEnumerator();
+            => cells.cells.GetEnumerator();
 
         [MethodImpl(Inline)]   
         IEnumerator IEnumerable.GetEnumerator()

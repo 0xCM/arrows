@@ -9,7 +9,7 @@ namespace Z0
     using System.Linq;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
 
     /// <summary>
     /// Defines pseudorandom number generator

@@ -6,8 +6,7 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
-    using C = Contracts;
-    using static corefunc;
+    using static zcore;
     using structype = int64;
     using systype = System.Int64;
 

@@ -9,7 +9,26 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
+
+
+    partial class Traits
+    {
+
+        /// <summary>
+        /// Characterizes a type that defines an homogenous unary operator
+        /// </summary>
+        /// <typeparam name="T">The operand/result type</typeparam>
+        public interface UnaryOp<T> : Operator<T>
+        {
+        }
+
+        public interface UnaryApply<T> : Apply<T>, UnaryOp<T>
+        {
+            T apply(T lhs);
+        }
+    }
+
 
     /// <summary>
     /// Defines a unary operator

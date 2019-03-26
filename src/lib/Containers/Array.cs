@@ -10,9 +10,8 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
-    using C = Contracts;
-
+    using static zcore;
+    
 
     /// <summary>
     /// A one-dimensional array with lenght encoded by typenat parameter

@@ -9,7 +9,26 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
+
+    partial class Traits
+    {
+
+        /// <summary>
+        /// Characterizes a type that defines an homogenous binary operator
+        /// </summary>
+        /// <typeparam name="T">The operand/result type</typeparam>
+        public interface BinaryOp<T> : Operator<T>
+        {
+
+        }
+
+        public interface BinaryApply<T> : Apply<T>, BinaryOp<T>
+        {
+            T apply(T lhs, T rhs);
+        }
+
+    }
 
     /// <summary>
     /// Defines a binary operator

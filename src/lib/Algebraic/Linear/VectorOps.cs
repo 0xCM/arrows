@@ -4,7 +4,7 @@ namespace Z0
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using static corefunc;
+    using static zcore;
 
     public static class VectorSemiring
     {

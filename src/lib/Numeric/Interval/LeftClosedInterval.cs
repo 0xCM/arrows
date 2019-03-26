@@ -10,14 +10,14 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static corefunc;
+    using static zcore;
 
     public readonly struct LeftClosedInterval<T> : Traits.LeftClosedInterval<T>, Traits.RightOpenInterval<T> 
         where T : Traits.OrderedNumber<T>
     {
 
         public static implicit operator Interval<T>(LeftClosedInterval<T> x)
-            => new Interval<T>(x.left,x.leftclosed, x.right,x.rightclosed);
+            => x.canonical();
 
         public LeftClosedInterval(T left, T right)
         {
@@ -38,12 +38,15 @@ namespace Z0
         public bool rightclosed 
             => false;
 
-        Interval<T> generalize()
-            =>this;
+        public Interval<T> canonical()
+            =>new Interval<T>(left,leftclosed, right,rightclosed);
 
-        public override string ToString()
-            => generalize().ToString();
-                    
+       public string format()
+            => canonical().format();
+        
+       public override string ToString()
+            => format();
+                     
     }
 
 

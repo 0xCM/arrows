@@ -10,9 +10,8 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
 
-    using C = Contracts;
-
-    using static corefunc;
+    
+    using static zcore;
     using static Traits;
 
     public readonly struct num<T> : Number<num<T>,T>, Stepwise<num<T>, T>, Ordered<num<T>, T> 

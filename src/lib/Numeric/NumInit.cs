@@ -7,7 +7,7 @@ namespace Z0
 
     using System;
     using System.Numerics;
-    using static corefunc;
+    using static zcore;
 
     public sealed class NumInit : SysInit<NumInit>
     {
