@@ -15,7 +15,7 @@ namespace Z0
     /// Defines pseudorandom number generator
     /// </summary>
     /// <remarks> Adapted from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
-    public class RandUInt32
+    public class RandUInt32 : Randomizer<uint>
     {
 
         const int Bitsize = 32;
@@ -54,11 +54,18 @@ namespace Z0
             seed[3] = rotl(seed[3], 45);
         }
         
-        public uint next() 
+        public real<uint> next() 
         {
             var next = rotl(seed[1] * 5, 7) * 9;
             increment(); 
             return next;
         }
+
+        public IEnumerable<real<uint>> next(int count)
+        {
+            for(var j = 0; j<count; j++)
+                yield return next();
+        }
+
     }
 }

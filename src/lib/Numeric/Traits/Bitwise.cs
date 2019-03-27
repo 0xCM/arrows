@@ -10,18 +10,18 @@ namespace Z0
     {
         public interface BitShifts<T>
         {
-            T lshift(T a, int shift);
+            T lshift(T lhs, int rhs);
 
-            T rshift(T a, int shift);
+            T rshift(T lhs, int rhs);
 
         }
 
-        public interface BitShifts<S,T>
-            where S : BitShifts<S,T>
+        public interface BitShifts<S,T> : BitShifts<S>, Structure<S,T>
+            where S : BitShifts<S,T>, new()
         {
-            S lshift(int shift);
+            S lshift(int rhs);
 
-            S rshift(int shift);
+            S rshift(int rhs);
 
         }
         
@@ -35,33 +35,33 @@ namespace Z0
             /// <summary>
             /// Computes the bitwise and from the supplied values
             /// </summary>
-            /// <param name="a">The left value</param>
-            /// <param name="b">The right value</param>
+            /// <param name="lhs">The left value</param>
+            /// <param name="rhs">The right value</param>
             /// <returns></returns>
-            T and(T a, T b);
+            T and(T lhs, T rhs);
 
             /// <summary>
             /// Computes the bitwise or from the supplied values
             /// </summary>
-            /// <param name="a">The left value</param>
-            /// <param name="b">The right value</param>
+            /// <param name="lhs">The left value</param>
+            /// <param name="rhs">The right value</param>
             /// <returns></returns>
-            T or(T a, T b);
+            T or(T lhs, T rhs);
 
             /// <summary>
             /// Computes the bitwise exlusive or from the supplied values
             /// </summary>
-            /// <param name="a">The left value</param>
-            /// <param name="b">The right value</param>
+            /// <param name="lhs">The left value</param>
+            /// <param name="rhs">The right value</param>
             /// <returns></returns>
-            T xor(T a, T b);
+            T xor(T lhs, T rhs);
 
             /// <summary>
             /// Calculates the bitwise two's-complement of the input
             /// </summary>
-            /// <param name="a">The source value</param>
+            /// <param name="x">The source value</param>
             /// <returns></returns>
-            T flip(T a);
+            T flip(T x);
         }
 
 
@@ -70,51 +70,49 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S"></typeparam>
         /// <typeparam name="T"></typeparam>
-        public interface BitLogic<S,T>
-            where S : BitLogic<S,T>
+        public interface BitLogic<S,T> : BitLogic<S>, Structure<S,T>
+            where S : BitLogic<S,T>, new()
         {
             /// <summary>
-            /// Computes the bitwise and from the supplied values
+            /// Computes the bitwise and
             /// </summary>
-            /// <param name="a">The left value</param>
-            /// <param name="b">The right value</param>
+            /// <param name="rhs">The right value</param>
             /// <returns></returns>
-            S and(S a);
+            S and(S rhs);
 
             /// <summary>
-            /// Computes the bitwise or from the supplied values
+            /// Computes the bitwise or
             /// </summary>
-            /// <param name="a">The left value</param>
-            /// <param name="b">The right value</param>
+            /// <param name="rhs">The right  value</param>
             /// <returns></returns>
-            S or(S a);
+            S or(S rhs);
 
             /// <summary>
-            /// Computes the bitwise exlusive or from the supplied values
+            /// Computes the bitwise exlusive or
             /// </summary>
-            /// <param name="a">The left value</param>
-            /// <param name="b">The right value</param>
+            /// <param name="rhs">The right  value</param>
             /// <returns></returns>
-            S xor(S a);
+            S xor(S rhs);
 
             /// <summary>
-            /// Calculates the bitwise two's-complement of the input
+            /// Calculates the bitwise two's-complement
             /// </summary>
-            /// <param name="a">The source value</param>
             /// <returns></returns>
             S flip();
         }
  
-        public interface Bitwise<T> : BitLogic<T>, BitShifts<T>
-        {
-            
-        }
+        /// <summary>
+        /// Characterizes bitwise operations over an operand
+        /// </summary>
+        public interface Bitwise<T> : BitLogic<T>, BitShifts<T> { }
 
-       public interface Bitwise<S,T> : BitLogic<S,T>, BitShifts<S,T>
-            where S : Bitwise<S,T>, new()
-        {
-            
-        }
+        /// <summary>
+        /// Characterizes a structure that supports bitwise operations
+        /// </summary>
+        /// <typeparam name="S">The structure type</typeparam>
+        /// <typeparam name="T">The underlying operand type</typeparam>
+       public interface Bitwise<S,T> : Bitwise<S>, Structure<S,T>
+            where S : Bitwise<S,T>, new() { }
 
 
     }

@@ -27,7 +27,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The primitive type</typeparam>
-        public interface Fractional<S,T> : Number<S,T> 
+        public interface Fractional<S,T> : Fractional<S>, Structure<S,T> 
             where S : Fractional<S,T>, new()
         {
             S ceiling();

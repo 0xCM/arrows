@@ -286,7 +286,7 @@ namespace Z0
             => (hi(src),lo(src));
 
         public static (int hihi, int hilo, int lohi, int lolo) split(decimal src)
-            => map(Decimal.GetBits(src), x => (x[3],x[2],x[1],x[0]));
+            => apply(Decimal.GetBits(src), x => (x[3],x[2],x[1],x[0]));
 
         /// <summary>
         /// Extracts the IEEE parts from the source value

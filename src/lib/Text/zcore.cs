@@ -44,6 +44,13 @@ partial class zcore
         => string.Concat(src);
 
     /// <summary>
+    /// Renders an end-of-line marker
+    /// </summary>
+    [MethodImpl(Inline)]   
+    public static string eol() 
+        => AsciEscape.EOL;
+
+    /// <summary>
     /// Concatenates an arbitrary number of string representations,
     /// separated by a specified delimiter
     /// </summary>
@@ -298,18 +305,10 @@ partial class zcore
     /// <summary>
     /// Produces a tab character
     /// </summary>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string tab(int count = 1)
         => new string('\t', count);
 
-    /// <summary>
-    /// Produces an end-of-line character sequence
-    /// </summary>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static string eol()
-        => "\r\n";
 
     /// <summary>
     /// Produces a quote
@@ -718,6 +717,22 @@ partial class zcore
     [MethodImpl(Inline)]
     public static string csv(params object[] content)
         => string.Join(',', content);
+
+    /// <summary>
+    /// Renders a sequence of items as a comma-separated list of values
+    /// </summary>
+    /// <param name="content"></param>
+    [MethodImpl(Inline)]
+    public static string csv(IEnumerable<object> content)
+        => string.Join(',', content);
+
+    /// <summary>
+    /// Renders each item from a sequence as list of values, delimited by end-of-line
+    /// </summary>
+    /// <param name="content">The source items</param>
+    [MethodImpl(Inline)]
+    public static string eol(IEnumerable<object> content)
+        => string.Join(eol(), content);
 
     /// <summary>
     /// Renders a content array as a space-separated list of values

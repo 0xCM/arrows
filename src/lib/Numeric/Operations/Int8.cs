@@ -15,7 +15,7 @@ namespace Z0
     using systype = System.SByte;
     using opstype = Int8Ops;
 
-    internal readonly struct Int8Ops : FiniteSignedInt<systype>
+    internal readonly struct Int8Ops : SignedFiniteRealInt<systype>
         , TypeClass<opstype,FiniteSignedInt<systype>, systype>
     {        
         public static readonly opstype Inhabitant = default;
@@ -53,8 +53,11 @@ namespace Z0
         public Multiplication<systype> multiplication 
             => Multiplication.define(this);
 
-        public systype apply(systype lhs, systype rhs)
-            => throw new NotImplementedException();
+        public bool infinite 
+            => false;
+
+        public sbyte ε 
+            => Zero;
 
         [MethodImpl(Inline)]   
         public systype add(systype a, systype b) 
@@ -170,6 +173,65 @@ namespace Z0
         public systype distribute((systype x, systype y) lhs, systype rhs)
             => add(mul(lhs.x, rhs), mul(lhs.y, rhs));
 
+        [MethodImpl(Inline)]   
+        public systype sqrt(systype x)
+            => (systype)MathF.Sqrt(x);
+ 
+        [MethodImpl(Inline)]   
+        public systype ceiling(systype x)
+            => (systype)MathF.Ceiling(x);
+
+        [MethodImpl(Inline)]   
+        public systype floor(systype x)
+            => (systype)MathF.Floor(x);
+
+        [MethodImpl(Inline)]   
+        public systype sin(systype x)
+            => (systype)MathF.Sin(x);
+
+        [MethodImpl(Inline)]   
+        public systype sinh(systype x)
+            => (systype)MathF.Sinh(x);
+
+        [MethodImpl(Inline)]   
+        public systype asin(systype x)
+            => (systype)MathF.Asin(x);
+
+        [MethodImpl(Inline)]   
+        public systype asinh(systype x)
+            => (systype)MathF.Asinh(x);
+
+        [MethodImpl(Inline)]   
+        public systype cos(systype x)
+            => (systype)MathF.Cos(x);
+
+        [MethodImpl(Inline)]   
+        public systype cosh(systype x)
+            => (systype)MathF.Cosh(x);
+
+        [MethodImpl(Inline)]   
+        public systype acos(systype x)
+            => (systype)MathF.Acos(x);
+
+        [MethodImpl(Inline)]   
+        public systype acosh(systype x)
+            => (systype)MathF.Acosh(x);
+
+        [MethodImpl(Inline)]   
+        public systype tan(systype x)
+            => (systype)MathF.Tan(x);
+
+        [MethodImpl(Inline)]   
+        public systype tanh(systype x)
+            => (systype)MathF.Tanh(x);
+
+        [MethodImpl(Inline)]   
+        public systype atan(systype x)
+            => (systype)MathF.Atan(x);
+
+        [MethodImpl(Inline)]   
+        public systype atanh(systype x)
+                => (systype)MathF.Atanh(x);
 
         public systype gcd(systype lhs, systype rhs)
         {

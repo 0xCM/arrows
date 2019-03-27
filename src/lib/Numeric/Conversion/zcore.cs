@@ -7,10 +7,13 @@ using System.Numerics;
 using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;    
+using bigint = Z0.intg<System.Numerics.BigInteger>;
+using int64 = Z0.intg<long>;
+
 using Z0;
-
-
 using static zcore;
+
+
 
 partial class zcore
 {
@@ -85,136 +88,136 @@ partial class zcore
     /// <param name="x">The source value</param>
     /// <returns></returns>
     public static int64 int32(sbyte x)
-        => new int64(x);
+        => int64(x);
 
     /// <summary>
     /// Effects sbyte => int64
     /// </summary>
     /// <param name="x">The source value</param>
     public static int64 int32(byte x)
-        => new int64(x);
+        => int64(x);
 
     /// <summary>
     /// Effects short => int64
     /// </summary>
     /// <param name="x">The source value</param>
     public static int64 int32(short x)
-        => new int64(x);
+        => int64(x);
 
     /// <summary>
     /// Effects ushort => int64
     /// </summary>
     /// <param name="x">The source value</param>
     public static int64 int64(ushort x)
-        => new int64(x);
+        => int64(x);
 
     /// <summary>
     /// Effects int => int64
     /// </summary>
     /// <param name="x">The source value</param>
     public static int64 int64(int x)
-        => new int64(x);
+        => int64(x);
 
     /// <summary>
     /// Effects uint => int64
     /// </summary>
     /// <param name="x">The source value</param>
     public static int64 int64(uint x)
-        => new int64(x);
+        => int64(x);
 
     /// <summary>
     /// Effects long => int64
     /// </summary>
     /// <param name="x">The source value</param>
     public static int64 int64(long x)
-        => new int64(x);
+        => int64(x);
 
     /// <summary>
     /// Effects ulong => int64
     /// </summary>
     /// <param name="x">The source value</param>
     public static int64 int64(ulong x)
-        => new int64((long)x);
+        => int64((long)x);
 
     /// <summary>
     /// Effects sbyte => float64
     /// </summary>
     /// <param name="x">The source value</param>
     /// <returns></returns>
-    public static float64 float64(sbyte x)
-        => new float64(x);
+    public static floatg<double> float64(sbyte x)
+        => new floatg<double>(x);
 
     /// <summary>
     /// Effects byte => float64
     /// </summary>
     /// <param name="x">The source value</param>
     /// <returns></returns>
-    public static float64 float64(byte x)
-        => new float64(x);
+    public static floatg<double> float64(byte x)
+        => new floatg<double>(x);
 
     /// <summary>
     /// Effects short => float64
     /// </summary>
     /// <param name="x">The source value</param>
     /// <returns></returns>
-    public static float64 float64(short x)
-        => new float64(x);
+    public static floatg<double> float64(short x)
+        => new floatg<double>(x);
 
     /// <summary>
     /// Effects ushort => float64
     /// </summary>
     /// <param name="x">The source value</param>
     /// <returns></returns>
-    public static float64 float64(ushort x)
-        => new float64(x);
+    public static floatg<double> float64(ushort x)
+        => new floatg<double>(x);
 
     /// <summary>
     /// Effects int => float64
     /// </summary>
     /// <param name="x">The source value</param>
     /// <returns></returns>
-    public static float64 float64(int x)
-        => new float64(x);
+    public static floatg<double> float64(int x)
+        => new floatg<double>(x);
 
     /// <summary>
     /// Effects uint => float64
     /// </summary>
     /// <param name="x">The source value</param>
     /// <returns></returns>
-    public static float64 float64(uint x)
-        => new float64(x);
+    public static floatg<double> float64(uint x)
+        => new floatg<double>(x);
 
     /// <summary>
     /// Effects long => float64
     /// </summary>
     /// <param name="x">The source value</param>
     /// <returns></returns>
-    public static float64 float64(long x)
-        => new float64(x);
+    public static floatg<double> float64(long x)
+        => new floatg<double>(x);
 
     /// <summary>
     /// Effects ulong => float64
     /// </summary>
     /// <param name="x">The source value</param>
     /// <returns></returns>
-    public static float64 float64(ulong x)
-        => new float64(x);
+    public static floatg<double> float64(ulong x)
+        => new floatg<double>(x);
 
     /// <summary>
     /// Effects float => float64
     /// </summary>
     /// <param name="x">The source value</param>
     /// <returns></returns>
-    public static float64 float64(float x)
-        => new float64(x);
+    public static floatg<double> float64(float x)
+        => new floatg<double>(x);
 
     /// <summary>
     /// Effects double => float64
     /// </summary>
     /// <param name="x">The source value</param>
     /// <returns></returns>
-    public static float64 float64(double x)
-        => new float64(x);
+    public static floatg<double> float64(double x)
+        => new floatg<double>(x);
 
 
     /// <summary>
@@ -366,5 +369,7 @@ partial class zcore
     [MethodImpl(Inline)]
     public static intg<T> max<T>(intg<T> x, intg<T> y)
         => x > y ? x : y;
+
+    
 
 }

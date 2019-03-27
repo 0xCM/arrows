@@ -56,6 +56,9 @@ namespace Z0
 
         public Word append(Word rhs)
             => new Word(this.data.cells.Concat(rhs.data.cells));
+
+        public bool Equals(Word rhs)
+            => eq(rhs);
     }
 
 }

@@ -11,11 +11,17 @@ namespace Z0
 
     using static zcore;
 
+    public interface Randomizer<T>
+    {
+        real<T> next();
+        IEnumerable<real<T>> next(int count);
+    }
+
     /// <summary>
     /// Defines pseudorandom number generator
     /// </summary>
     /// <remarks> Adapted from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
-    public class RandUInt16
+    public class RandUInt16 : Randomizer<ushort>
     {
 
         const int Bitsize = 16;
@@ -36,9 +42,11 @@ namespace Z0
 
         readonly ushort[] seed;
 
+        [MethodImpl(Inline)]
         public RandUInt16()
             => seed = guiseed().ToArray();
 
+        [MethodImpl(Inline)]
         public RandUInt16(ushort[] seed)
             => this.seed = seed;
  
@@ -54,11 +62,18 @@ namespace Z0
             seed[3] = rotl(seed[3], 45);
         }
         
-        public ushort next() 
+        [MethodImpl(Inline)]
+        public real<ushort> next() 
         {
             var next = (ushort)(rotl( (ushort)(seed[1] * 5), 7) * 9);
             increment(); 
             return next;
+        }
+
+        public IEnumerable<real<ushort>> next(int count)
+        {
+            for(var j = 0; j<count; j++)
+                yield return next();
         }
     }
 }

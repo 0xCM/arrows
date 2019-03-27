@@ -51,6 +51,11 @@ namespace Z0
 
     }
 
+    public static class AsciEscape
+    {
+        public static readonly Atom EOL = new Atom("\r\n");
+    }
+
     public static class AsciLower
     {
         public static readonly Atom a = "a";

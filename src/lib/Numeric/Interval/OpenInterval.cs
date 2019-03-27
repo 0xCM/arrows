@@ -13,7 +13,6 @@ namespace Z0
 
 
     public readonly struct OpenInterval<T> : Traits.OpenInterval<T>
-        where T : Traits.OrderedNumber<T>
     {
 
         public static implicit operator Interval<T>(OpenInterval<T> x)

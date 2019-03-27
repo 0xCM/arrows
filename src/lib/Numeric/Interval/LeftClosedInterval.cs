@@ -13,7 +13,6 @@ namespace Z0
     using static zcore;
 
     public readonly struct LeftClosedInterval<T> : Traits.LeftClosedInterval<T>, Traits.RightOpenInterval<T> 
-        where T : Traits.OrderedNumber<T>
     {
 
         public static implicit operator Interval<T>(LeftClosedInterval<T> x)

@@ -51,10 +51,13 @@ namespace Z0
         public static floatg<T> operator ++ (floatg<T> x) 
             => Ops.inc(x);
 
-
         [MethodImpl(Inline)]
         public static floatg<T> operator - (floatg<T> lhs, floatg<T> rhs) 
             => Ops.sub(lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static floatg<T> operator - (floatg<T> x) 
+            => Ops.negate(x);
 
         [MethodImpl(Inline)]
         public static floatg<T> operator -- (floatg<T> x) 
@@ -153,7 +156,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Quorem<floatg<T>> divrem(floatg<T> rhs)
-            => map(Ops.divrem(data,rhs), x => Quorem.define<floatg<T>>(x.q,x.r));
+            => apply(Ops.divrem(data,rhs), x => Quorem.define<floatg<T>>(x.q,x.r));
 
         [MethodImpl(Inline)]
         public bool eq(floatg<T> rhs)
@@ -203,11 +206,6 @@ namespace Z0
         public floatg<T> distributeR((floatg<T> x, floatg<T> y) rhs)
             => rhs.x * this + rhs.y * this;
 
-        [MethodImpl(Inline)]
-        int IComparable<floatg<T>>.CompareTo(floatg<T> rhs)
-            => this < rhs ? -1
-             : this > rhs ? 1
-             : 0;
 
         [MethodImpl(Inline)]
         public floatg<T> negate()
@@ -224,8 +222,6 @@ namespace Z0
         public floatg<T> sqrt()
             => Ops.sqrt(data);
 
-        public IEnumerable<floatg<T>> partition(floatg<T> min, floatg<T> max, floatg<T> width = default)
-            => map(Ops.partition(min,max,width), x => new floatg<T>(x));
  
         [MethodImpl(Inline)]
         public floatg<T> ceiling()
@@ -293,18 +289,177 @@ namespace Z0
             => convert<I>(data);
 
         [MethodImpl(Inline)]
-         public override bool Equals(object rhs)
+        public bool Equals(floatg<T> rhs)
+            => this == rhs;
+
+        public override bool Equals(object rhs)
             => data.Equals(rhs);
 
-        [MethodImpl(Inline)]
         public override int GetHashCode()
             => data.GetHashCode();
 
-        [MethodImpl(Inline)]
         public override string ToString()
             => data.ToString();
+  
+        //
+        //---------------------------------------------------------------------
+        Addition<floatg<T>> SemigroupA<floatg<T>>.addition 
+            => new Addition<floatg<T>>(this);
 
-        public bool Equals(floatg<T> rhs)
-            => this == rhs;
+        Multiplication<floatg<T>> SemigroupM<floatg<T>>.multiplication 
+            => new Multiplication<floatg<T>>(this);
+
+        [MethodImpl(Inline)]
+        floatg<T> Incrementable<floatg<T>>.inc(floatg<T> x)
+            => x.inc();
+
+        [MethodImpl(Inline)]
+        floatg<T> Decrementable<floatg<T>>.dec(floatg<T> x)
+            => x.dec();
+
+        [MethodImpl(Inline)]
+        floatg<T> Negatable<floatg<T>>.negate(floatg<T> x)
+            => x.negate();
+
+        [MethodImpl(Inline)]
+        floatg<T> Number<floatg<T>>.abs(floatg<T> x)
+            => x.abs();
+        
+        [MethodImpl(Inline)]
+        Sign Number<floatg<T>>.sign(floatg<T> x)
+            => x.sign();
+
+        [MethodImpl(Inline)]
+        floatg<T> Additive<floatg<T>>.add(floatg<T> lhs, floatg<T> rhs)
+            => lhs.add(rhs);
+
+        [MethodImpl(Inline)]
+        floatg<T> Negatable<floatg<T>>.sub(floatg<T> lhs, floatg<T> rhs)
+            => lhs.sub(rhs);
+
+        [MethodImpl(Inline)]
+        floatg<T> Multiplicative<floatg<T>>.mul(floatg<T> lhs, floatg<T> rhs)
+            => lhs.mul(rhs);
+
+        [MethodImpl(Inline)]
+        floatg<T> Number<floatg<T>>.muladd(floatg<T> x, floatg<T> y, floatg<T> z)
+            => x*y + z;
+
+        [MethodImpl(Inline)]
+        floatg<T> LeftDistributive<floatg<T>>.distribute(floatg<T> lhs, (floatg<T> x, floatg<T> y) rhs)
+            => lhs.distributeL(rhs);
+
+        [MethodImpl(Inline)]
+        floatg<T> RightDistributive<floatg<T>>.distribute((floatg<T> x, floatg<T> y) lhs, floatg<T> rhs)
+            => rhs.distributeL(lhs);
+
+        [MethodImpl(Inline)]
+        floatg<T> Divisive<floatg<T>>.div(floatg<T> lhs, floatg<T> rhs)
+            => lhs.div(rhs);
+
+        [MethodImpl(Inline)]
+        Quorem<floatg<T>> Divisive<floatg<T>>.divrem(floatg<T> lhs, floatg<T> rhs)
+            => lhs.divrem(rhs);
+
+        [MethodImpl(Inline)]
+        floatg<T> Divisive<floatg<T>>.mod(floatg<T> lhs, floatg<T> rhs)
+            => lhs.mod(rhs);
+
+        [MethodImpl(Inline)]
+        floatg<T> Divisive<floatg<T>>.gcd(floatg<T> lhs, floatg<T> rhs)
+            => lhs.gcd(rhs);
+
+        [MethodImpl(Inline)]
+        floatg<T> Powered<floatg<T>, int>.pow(floatg<T> b, int exp)
+            => Ops.pow(b.data,exp);
+
+        [MethodImpl(Inline)]
+        bool Ordered<floatg<T>>.lt(floatg<T> lhs, floatg<T> rhs)
+            => lhs.lt(rhs);
+
+        [MethodImpl(Inline)]
+        bool Ordered<floatg<T>>.lteq(floatg<T> lhs, floatg<T> rhs)
+            => lhs.lteq(rhs);
+
+        [MethodImpl(Inline)]
+        bool Ordered<floatg<T>>.gt(floatg<T> lhs, floatg<T> rhs)
+            => lhs.gt(rhs);
+
+        [MethodImpl(Inline)]
+        bool Ordered<floatg<T>>.gteq(floatg<T> lhs, floatg<T> rhs)
+            => lhs.gteq(rhs);
+
+        [MethodImpl(Inline)]
+        bool Equatable<floatg<T>>.eq(floatg<T> lhs, floatg<T> rhs)
+            => lhs.eq(rhs);
+
+        [MethodImpl(Inline)]
+        bool Equatable<floatg<T>>.neq(floatg<T> lhs, floatg<T> rhs)
+            => lhs.neq(rhs);
+
+        [MethodImpl(Inline)]
+        floatg<T> Trigonmetric<floatg<T>>.sin(floatg<T> x)
+            => x.sin();
+
+        [MethodImpl(Inline)]
+        floatg<T> Trigonmetric<floatg<T>>.sinh(floatg<T> x)
+            => x.sinh();
+
+        [MethodImpl(Inline)]
+        floatg<T> Trigonmetric<floatg<T>>.asin(floatg<T> x)
+            => x.asin();
+
+        [MethodImpl(Inline)]
+        floatg<T> Trigonmetric<floatg<T>>.asinh(floatg<T> x)
+            => x.asinh();
+
+        [MethodImpl(Inline)]
+        floatg<T> Trigonmetric<floatg<T>>.cos(floatg<T> x)
+            => x.cos();
+
+        [MethodImpl(Inline)]
+        floatg<T> Trigonmetric<floatg<T>>.cosh(floatg<T> x)
+            => x.cosh();
+
+        [MethodImpl(Inline)]
+        floatg<T> Trigonmetric<floatg<T>>.acos(floatg<T> x)
+            => x.acos();
+
+        [MethodImpl(Inline)]
+        floatg<T> Trigonmetric<floatg<T>>.acosh(floatg<T> x)
+            => x.acosh();
+
+        [MethodImpl(Inline)]
+        floatg<T> Trigonmetric<floatg<T>>.tan(floatg<T> x)
+            => x.tan();
+
+        [MethodImpl(Inline)]
+        floatg<T> Trigonmetric<floatg<T>>.tanh(floatg<T> x)
+            => x.tanh();
+
+        [MethodImpl(Inline)]
+        floatg<T> Trigonmetric<floatg<T>>.atan(floatg<T> x)
+            => x.atan();
+
+        [MethodImpl(Inline)]
+        floatg<T> Trigonmetric<floatg<T>>.atanh(floatg<T> x)
+            => x.atanh();
+
+
+        [MethodImpl(Inline)]
+        floatg<T> Floating<floatg<T>>.sqrt(floatg<T> x)
+            => x.sqrt();
+
+        [MethodImpl(Inline)]
+        floatg<T> Fractional<floatg<T>>.ceiling(floatg<T> x)
+            => x.ceiling();
+
+        [MethodImpl(Inline)]
+        floatg<T> Fractional<floatg<T>>.floor(floatg<T> x)
+            => x.floor();
+
+        [MethodImpl(Inline)]
+        string Number<floatg<T>>.bitstring(floatg<T> x)
+            => x.bitstring();
     }
 }

@@ -158,7 +158,7 @@ public static partial class zcore
     /// <typeparam name="Y">The output value type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Y map<X,Y>(X x,Func<X,Y> f)
+    public static Y apply<X,Y>(X x,Func<X,Y> f)
         => f(x);
 
     /// <summary>

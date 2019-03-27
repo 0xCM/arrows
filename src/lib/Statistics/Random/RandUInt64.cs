@@ -7,6 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
 
     using static zcore;
 
@@ -14,7 +15,7 @@ namespace Z0
     /// Defines pseudorandom number generator
     /// </summary>
     /// <remarks> Adapted from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
-    public class RandUInt64
+    public class RandUInt64 : Randomizer<ulong>
     {
         /* When supplied to the jump function, it is equivalent
         to 2^128 calls to next(); it can be used to generate 2^128
@@ -57,7 +58,8 @@ namespace Z0
             this.seed = seed;
         }
 
-        public ulong next() 
+        [MethodImpl(Inline)]
+        public real<ulong> next() 
         {
             var next = rotl(seed[1] * 5, 7) * 9;
             var t = seed[1] << 17;
@@ -99,7 +101,14 @@ namespace Z0
             seed[1] = s1;
             seed[2] = s2;
             seed[3] = s3;
-        }              
+        }          
+
+        public IEnumerable<real<ulong>> next(int count)
+        {
+            for(var j = 0; j<count; j++)
+                yield return next();
+        }
+
     }
 
 }

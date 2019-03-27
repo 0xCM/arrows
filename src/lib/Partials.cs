@@ -11,6 +11,14 @@ namespace Z0
     }
 
     /// <summary>
+    /// Provides canonical trait implementations
+    /// </summary>
+    public static partial class Default
+    {
+
+    }
+
+    /// <summary>
     /// Constituents responsible for defining constraints
     /// that, when proof is given, allows access to a
     /// a particular context, operation set, etc.

@@ -11,18 +11,24 @@ namespace Z0
     partial class Traits
     {
 
-        public interface Complex<T> : Number<T>
-            where T : Complex<T>,  new()
+        /// <summary>
+        /// Characterizes operations over complex numbers
+        /// </summary>
+        /// <typeparam name="T">The component type</typeparam>
+        /// <typeparam name="C">The operand type</typeparam>
+        public interface Complex<T,C> : Number<C>
         {
             
         }
 
         /// <summary>
-        /// Characterizes a complex number
+        /// Characterizes a structure that represents a complex number
         /// </summary>
-        /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface Complex<S,T> : Number<S,T>
-            where S : Complex<S,T>,  new()
+        /// <typeparam name="S">The structure type</typeparam>
+        /// <typeparam name="T">The underlying numeric component type</typeparam>
+        /// <typeparam name="C">The complex number type</typeparam>
+        public interface Complex<S,T,C> : Complex<T,C>, Structure<S,C>
+            where S : Complex<S,T,C>,  new()
         {
             /// <summary>
             /// The real part

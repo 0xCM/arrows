@@ -4,13 +4,15 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    using System;
+
     /// <summary>
     /// Characterizes a type that exists to encapsulate and define 
     /// a specific presentation of the encapsulated value
     /// </summary>
     /// <typeparam name="S">The structure type</typeparam>
     /// <typeparam name="T">The underlying data type</typeparam>
-    public interface Structure<S,T>
+    public interface Structure<S,T> : IEquatable<S>
         where S : Structure<S,T>, new()
     {
         /// <summary>

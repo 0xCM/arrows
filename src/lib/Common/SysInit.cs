@@ -68,9 +68,22 @@ namespace Z0
         /// <returns></returns>
         public static IEnumerable<ISysInit> initializers<T>()
         {
-            var types = assembly<T>().GetTypeAttributions<SysInitAttribute>(t => !t.IsAbstract).Select(x => x.Key); 
+            var ass = assembly<T>();
+            var sw = stopwatch();
+
+            print($"Initalizing {ass}");
+
+            var types = ass.GetTypeAttributions<SysInitAttribute>(t => !t.IsAbstract).Select(x => x.Key).ToList(); 
+            print($"Found {types.Count} type initializers");
+
             foreach(var t in types)
+            {
+                print($"Initializing {t.Name}");
                 yield return instance<ISysInit>(t);
+            }
+
+            print($"Finished {ass} initialization {sw.ElapsedMilliseconds}ms");
+
         }
         
     }

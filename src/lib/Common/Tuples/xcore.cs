@@ -5,11 +5,16 @@
 namespace Z0
 {
     using System;
+    using System.Collections;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Runtime.CompilerServices;
+    using System.Diagnostics;
 
     using static zcore;
 
-    public static class TupleConvertX
+    partial class xcore
     {
 
         /// <summary>
@@ -20,7 +25,7 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N2,T> ToVector<T>(this (T x1, T x2) x)
-            => vector<N2,T>(x.x1, x.x2);
+            => vector(x);
 
         /// <summary>
         /// Converts a 2-vector to a 2-tuple
@@ -64,7 +69,7 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N4,T> ToVector<T>(this (T x1, T x2, T x3, T x4) x)
-            => vector<N4,T>(x.x1, x.x2,x.x3,x.x4);
+            => vector(x);
 
 
         /// <summary>
@@ -77,7 +82,18 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static (T x1, T x2, T x3, T x4) ToTuple<T>(this Vector<N4,T> v)
-            => (v[0], v[1], v[2], v[3]);
+            => tuple(v);
+
+        /// <summary>
+        /// Transforms a sequence of key-value pairs into a sequence of tuples
+        /// </summary>
+        /// <param name="key">The key</param>
+        /// <param name="value">The value</param>
+        /// <typeparam name="K">The key type</typeparam>
+        /// <typeparam name="V">The value type</typeparam>
+        [MethodImpl(Inline)]
+        public static IEnumerable<(K key, V value)> ToTuples<K,V>(this IEnumerable<KeyValuePair<K,V>> pairs)
+            => tuples(pairs);
 
     }
 }

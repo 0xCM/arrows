@@ -14,7 +14,7 @@ namespace Z0
         /// Characterizes an operation provider for floating point values
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface Floating<T> : Fractional<T>, Signed<T>, Negatable<T>, Ordered<T>, Trigonmetric<T>
+        public interface Floating<T> : Fractional<T>, Ordered<T>, Signed<T>, Negatable<T>, Trigonmetric<T>
         {
             /// <summary>
             /// The minimal resolution of the data type
@@ -23,15 +23,10 @@ namespace Z0
             T ε {get;}
 
             /// <summary>
-            /// Partitions an interval into a sequence of values of a specified with
+            /// Calculates the square root of the input
             /// </summary>
-            /// <param name="min"></param>
-            /// <param name="max"></param>
-            /// <param name="width"></param>
+            /// <param name="x">The input value</param>
             /// <returns></returns>
-            IEnumerable<T> partition(T min, T max,T width = default(T)); 
-
-            
             T sqrt(T x);   
 
 
@@ -41,18 +36,12 @@ namespace Z0
         /// Characterizes a structure for a floating point number
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface Floating<S,T> : Fractional<S,T>, Ordered<S,T>, Signed<S,T>, Negatable<S,T>, Trigonmetric<S,T>
+        public interface Floating<S,T> : Floating<S>, Structure<S,T>
             where S : Floating<S,T>, new()
         {
 
-            /// <summary>
-            /// The minimal resolution of the data type
-            /// </summary>
-            /// <value></value>
-            S ε {get;}
-
             S sqrt();
-            IEnumerable<S> partition(S min, S max,S width = default(S));     
+            
         }
     
         /// <summary>
@@ -68,9 +57,8 @@ namespace Z0
         /// Characterizes a structure for a bounded floating point number
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface FiniteFloat<S,T> : Floating<S,T>, Bounded<S,T>
+        public interface FiniteFloat<S,T> : FiniteFloat<S>, Structure<S,T>
             where S : FiniteFloat<S,T>, new()
-            where T : new()
 
         {
         

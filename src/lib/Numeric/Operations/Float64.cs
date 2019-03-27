@@ -15,7 +15,7 @@ namespace Z0
     using opstype = Float64Ops;
     using SysMath = System.Math;
 
-    internal readonly struct Float64Ops : FiniteFloat<systype>, 
+    internal readonly struct Float64Ops :  FiniteRealFloat<systype>, 
         TypeClass<opstype,FiniteFloat<systype>,systype>
     {        
         public static readonly opstype Inhabitant = default;
@@ -58,8 +58,8 @@ namespace Z0
         public Multiplication<systype> multiplication 
             => Multiplication.define(this);
 
-        public systype apply(systype lhs, systype rhs)
-            => throw new NotImplementedException();
+        public bool infinite 
+            => false;
 
         public systype inc(systype x)
             => ++x;
@@ -211,11 +211,9 @@ namespace Z0
             }            
         }
 
+        [MethodImpl(Inline)]
         public systype abs(systype x)
             => SysMath.Abs(x);
-
-        public string bitstring(double x)
-            => x.ToBitString();
 
         public systype gcd(systype lhs, systype rhs)
         {
@@ -231,6 +229,35 @@ namespace Z0
         [MethodImpl(Inline)]   
         public Quorem<systype> divrem(systype lhs, systype rhs)
             => new Quorem<systype>(lhs/rhs,lhs%rhs);
+
+        [MethodImpl(Inline)]   
+        public systype and(systype lhs, systype rhs)
+            => (long)lhs & (long)rhs;
+
+        [MethodImpl(Inline)]   
+        public systype or(systype lhs, systype rhs)
+            => (long)lhs | (long)rhs;
+
+        [MethodImpl(Inline)]   
+        public systype xor(systype lhs, systype rhs)
+            => (long)lhs ^ (long)rhs;
+
+        [MethodImpl(Inline)]   
+        public systype flip(systype x)
+            => ~(long)x;
+
+        [MethodImpl(Inline)]   
+        public systype lshift(systype lhs, int rhs)
+            => (long)lhs << rhs;
+
+        [MethodImpl(Inline)]   
+        public systype rshift(systype lhs, int rhs)
+            => (long)lhs >> rhs;
+                
+        [MethodImpl(Inline)]   
+        public string bitstring(double x)
+            => x.ToBitString();
+
 
     }
  

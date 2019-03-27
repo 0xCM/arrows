@@ -6,16 +6,12 @@ namespace Z0
 {
     partial class Traits
     {
+        /// <summary>
+        /// Characterizes trigonometric operations over a type
+        /// </summary>
+        /// <typeparam name="T">The operand type</typeparam>
         public interface Trigonmetric<T>
         {
-            T cos(T x);   
-
-            T cosh(T x);   
-
-            T acos(T x);   
-        
-            T acosh(T x);   
-
             T sin(T x);   
 
             T sinh(T x);   
@@ -23,6 +19,14 @@ namespace Z0
             T asin(T x);   
 
             T asinh(T x);   
+
+            T cos(T x);   
+
+            T cosh(T x);   
+
+            T acos(T x);   
+        
+            T acosh(T x);   
 
             T tan(T x);
 
@@ -34,17 +38,14 @@ namespace Z0
         
         }
 
-        public interface Trigonmetric<S,T> : Structure<S,T>
+        /// <summary>
+        /// Characterizes a trigonometric structure
+        /// </summary>
+        /// <typeparam name="S">The structure type</typeparam>
+        /// <typeparam name="T">The underlying type</typeparam>
+        public interface Trigonmetric<S,T> : Trigonmetric<S>, Structure<S,T>
             where S : Trigonmetric<S,T>, new()
         {
-            S cos();   
-
-            S cosh();   
-
-            S acos();   
-        
-            S acosh();   
-
             S sin();   
 
             S sinh();   
@@ -52,6 +53,14 @@ namespace Z0
             S asin();   
 
             S asinh();   
+
+            S cos();   
+
+            S cosh();   
+
+            S acos();   
+        
+            S acosh();   
 
             S tan();
 

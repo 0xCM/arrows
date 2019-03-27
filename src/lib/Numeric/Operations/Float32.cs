@@ -15,7 +15,7 @@ namespace Z0
     using opstype = Float32Ops;
     using SysMath = System.MathF;
     
-    internal readonly struct Float32Ops : FiniteFloat<systype>, 
+    internal readonly struct Float32Ops : FiniteRealFloat<systype>,
         TypeClass<opstype,FiniteFloat<systype>,systype>
     {
     
@@ -56,6 +56,8 @@ namespace Z0
 
         public Multiplication<systype> multiplication 
             => Multiplication.define(this);
+
+        public bool infinite => throw new NotImplementedException();
 
         public systype apply(systype lhs, systype rhs)
             => throw new NotImplementedException();
@@ -216,9 +218,6 @@ namespace Z0
         public systype distribute((systype x, systype y) lhs, systype rhs)
             => lhs.x * rhs + lhs.y * rhs;
 
-        public string bitstring(float x)
-            => x.ToBitString();
-
         public systype gcd(systype lhs, systype rhs)
         {
             while (rhs != Zero)
@@ -233,6 +232,34 @@ namespace Z0
         [MethodImpl(Inline)]   
         public Quorem<systype> divrem(systype lhs, systype rhs)
             => new Quorem<systype>(lhs/rhs,lhs%rhs);
+
+        [MethodImpl(Inline)]   
+        public float and(float lhs, float rhs)
+            => (int)lhs & (int)rhs;
+
+        [MethodImpl(Inline)]   
+        public float or(float lhs, float rhs)
+            => (int)lhs | (int)rhs;
+
+        [MethodImpl(Inline)]   
+        public float xor(float lhs, float rhs)
+            => (int)lhs ^ (int)rhs;
+
+        [MethodImpl(Inline)]   
+        public float flip(float x)
+            => ~(int)x;
+
+        [MethodImpl(Inline)]   
+        public float lshift(float lhs, int rhs)
+            => (int)lhs << rhs;
+
+        [MethodImpl(Inline)]   
+        public float rshift(float lhs, int rhs)
+            => (int)lhs >> rhs;
+
+        [MethodImpl(Inline)]   
+        public string bitstring(float x)
+            => x.ToBitString();
 
     }
 

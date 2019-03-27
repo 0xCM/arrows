@@ -15,41 +15,54 @@ namespace Z0
 
     public static class Interval
     {
+        public static IEnumerable<real<T>> partition<T>(Traits.Interval<real<T>> src, real<T> width)
+        {
+            if(width.neq(real<T>.Zero))
+            {            
+                if(src.leftclosed)
+                    yield return src.left;
+                
+                var prior = src.left;
+                var current = src.left + width;
+                while(current < src.right)
+                {
+                    yield return current;
+                    prior = current;
+                    current += width;
 
+                    //Detects overlow
+                    if(current < prior)
+                        break;
+                }
+            }
+        }
+        
         public static ClosedInterval<T> closed<T>(T left, T right)
-            where T : Traits.OrderedNumber<T>
-                => new ClosedInterval<T>(left,right);
+            => new ClosedInterval<T>(left,right);
 
         public static LeftOpenInterval<T> leftopen<T>(T left, T right)
-            where T : Traits.OrderedNumber<T>
-                => new LeftOpenInterval<T>(left,right);
+            => new LeftOpenInterval<T>(left,right);
 
         public static LeftClosedInterval<T> leftclosed<T>(T left, T right)
-            where T : Traits.OrderedNumber<T>
-                => new LeftClosedInterval<T>(left,right);
+            => new LeftClosedInterval<T>(left,right);
 
         public static OpenInterval<T> open<T>(T left, T right)
-            where T : Traits.OrderedNumber<T>
-                => new OpenInterval<T>(left,right);
+            => new OpenInterval<T>(left,right);
         
     }
 
     public static class IntervalX
     {
         public static ClosedInterval<T> ToClosedInterval<T>(this (T left, T right) x)
-            where T : Traits.OrderedNumber<T>
-                => Interval.closed(x.left,x.right);
+            => Interval.closed(x.left,x.right);
 
         public static LeftOpenInterval<T> ToLeftOpenInterval<T>(this (T left, T right) x)
-            where T : Traits.OrderedNumber<T>
-                => Interval.leftopen(x.left,x.right);
+            => Interval.leftopen(x.left,x.right);
 
         public static LeftClosedInterval<T> ToRightOpenInterval<T>(this (T left, T right) x)
-            where T : Traits.OrderedNumber<T>
-                => Interval.leftclosed(x.left,x.right);
+            => Interval.leftclosed(x.left,x.right);
 
         public static OpenInterval<T> ToOpenInterval<T>(this (T left, T right) x)
-            where T : Traits.OrderedNumber<T>
-                => Interval.open(x.left,x.right);        
+            => Interval.open(x.left,x.right);        
     }
 }

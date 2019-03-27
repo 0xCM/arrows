@@ -27,6 +27,9 @@ public static partial class zcore
     public static ConcurrentIndex<K,V> cindex<K,V>()
         => new ConcurrentIndex<K,V>();
 
+    public static Dictionary<K,V> dict<K,V>(params (K key, V value)[] entries)
+        => new Dictionary<K, V>();
+
     /// <summary>
     /// Constructs integrally-keyed associative array
     /// </summary>

@@ -168,7 +168,7 @@ public static partial class xcore
     /// <param name="c">The character</param>
     /// <returns></returns>
     public static string LeftOf(this string s, char c)
-        => s.Substring(0, map(s.IndexOf(c), idx => idx == -1 ? s.Length - 1 : idx));
+        => s.Substring(0, apply(s.IndexOf(c), idx => idx == -1 ? s.Length - 1 : idx));
 
     /// <summary>
     /// Gets the string to the right of, but not including, the first instance of a specified character

@@ -11,7 +11,7 @@ namespace Z0
 
     using static zcore;
 
-    public static class SliceX
+    partial class xcore
     {
         [MethodImpl(Inline)]
         public static Slice<N,T> Slice<N,T>(this Z0.TypeNat<N> nat, IEnumerable<T> src)
@@ -27,6 +27,27 @@ namespace Z0
         public static Vector<N,T> Vector<N,T>(this Z0.TypeNat<N> nat, params T[] components)
             where N : TypeNat, new()
                 => new Vector<N, T>(components);
+
+        /// <summary>
+        /// Constructs a slice from a supplied sequence
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static Slice<T> ToSlice<T>(this IEnumerable<T> src)
+            => Z0.Slice.define(src);
+
+        /// <summary>
+        /// Constructs a slice with natural length from a sequence of elements
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The item type</typeparam>
+        /// <typeparam name="N">The natural type</typeparam>
+        [MethodImpl(Inline)]
+        public static Slice<N,T> ToSlice<N,T>(this IEnumerable<T> src)
+            where N : TypeNat, new()
+                => Z0.Slice.define<N,T>(src);
+ 
 
     }
 }    

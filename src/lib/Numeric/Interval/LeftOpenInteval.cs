@@ -12,8 +12,6 @@ namespace Z0
     using static zcore;
 
     public readonly struct LeftOpenInterval<T> : Traits.LeftOpenInterval<T>, Traits.RightClosedInterval<T>
-        where T : Traits.OrderedNumber<T>
-
     {
 
         public static implicit operator Interval<T>(LeftOpenInterval<T> x)

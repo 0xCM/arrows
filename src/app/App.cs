@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using SN = System.Numerics;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -19,12 +20,6 @@ namespace App04
     class Program
     {
 
-        static void EffectPartition()
-        {
-            var ops = floating<double>();
-            var parition = ops.partition(0, 1);
-            iter(parition, print);            
-        }
 
         static void TestPrimality(int min, int max)
         {            
@@ -451,13 +446,53 @@ namespace App04
                 write($"{r.next()}, ");
         }
 
+        static void Partitions()
+        {
+            var left = real(UInt16.MinValue);
+            var right = real(UInt16.MaxValue);
+            var width = (right - left)/real<ushort>(100);
+            var i = (left,right).ToClosedInterval();
+            var p = Interval.partition(i, width).ToList();            
+            print($"interval = {i}, partition width = {width}, point count = {p.Count}");
+            // foreach(var point in p)
+            //     write($"{point}, ");
+        }
 
+        public static void Histo(int trials)
+        {
+            var min = UInt16.MinValue;
+            var max = UInt16.MaxValue;
+            var hg = Histogram.define(min, max);            
+            var r = new RandUInt16();
+            print($"binwidth = {hg.binwidth}");            
+            hg.distribute(r.next(trials));
+            iter(hg.ratios(), r => print($"{r.bin} : {r.ratio}"));
+
+        }
+
+        public static void Histo<T>(int trials)
+        {
+            
+        }
+
+        static real<T> sum<T>(params real<T>[] values)
+        {
+            var total = real<T>().zero;
+            foreach(var v in values)
+                total += v;
+            return total;
+        }
 
         static void Main(string[] args)
         {     
             SysInit.initialize<Program>();
-            print($"{interval<N2,N7>()}");
-            
+
+            Histo(1000000);
+
+            //Partitions();
+
+
+            //printeach(Partitionize());
 
         }
     }

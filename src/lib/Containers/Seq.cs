@@ -44,12 +44,6 @@ namespace Z0
         public IEnumerable<T> stream()
             => src;
 
-        // IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        //     => src.GetEnumerator();
-
-        // IEnumerator IEnumerable.GetEnumerator()
-        //     => src.GetEnumerator();
-
         public Seq<T> redefine(IEnumerable<T> src)
             => new Seq<T>(src);        
     }
@@ -95,12 +89,6 @@ namespace Z0
         public IEnumerable<T> stream()
             => src.cells;
 
-        // IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        //     => src.GetEnumerator();
-
-        // IEnumerator IEnumerable.GetEnumerator()
-        //     => src.GetEnumerator();
-
     }
 
     public static class Seq
@@ -129,6 +117,28 @@ namespace Z0
                 => define(src);
     }
 
- 
+    
+    partial class xcore
+    {
+        /// <summary>
+        /// Wraps an enumerable with a sequence structure
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static Seq<T> ToSeq<T>(this IEnumerable<T> src)
+                => Seq.define(src);
+    
+            /// <summary>
+        /// Reifies an enumerable as a finite sequence
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static FiniteSeq<T> ToFiniteSeq<T>(this IEnumerable<T> src)
+            where T : IEquatable<T>
+                => Seq.finite(src);
+
+    }
 
 }

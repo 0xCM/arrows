@@ -8,6 +8,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Numerics;
 
+    using bigint = intg<System.Numerics.BigInteger>;
 
     /// <summary>
     /// Represents the set that contains all potential values of a specified type

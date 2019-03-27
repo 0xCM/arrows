@@ -24,7 +24,7 @@ public static class FormattingX
 
     [MethodImpl(Inline)]   
     public static string ToHexString(this decimal src)
-        => map(Bits.split(src), parts =>
+        => apply(Bits.split(src), parts =>
             concat(
                 parts.hihi.ToString("X8"),
                 parts.hilo.ToString("X8"),
@@ -84,7 +84,7 @@ public static class FormattingX
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this ulong src)
-        => map(Bits.split(src), 
+        => apply(Bits.split(src), 
                 parts => parts.hi.ToBitString() 
                         + parts.lo.ToBitString());
 
@@ -93,7 +93,7 @@ public static class FormattingX
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this decimal src)
-        => map(Bits.split(src), parts =>
+        => apply(Bits.split(src), parts =>
             concat(
                 parts.hihi.ToBitString(),
                 parts.hilo.ToBitString(),
@@ -103,7 +103,7 @@ public static class FormattingX
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this double x)
-        => lpadZ(map(Bits.split(x), 
+        => lpadZ(apply(Bits.split(x), 
             ieee => concat(ieee.sign == Sign.Negative ? "1" : "0",
                         ieee.exponent.ToBitString(),
                         ieee.mantissa.ToBitString()                        

@@ -32,7 +32,7 @@ namespace Z0
             /// <param name="x">The input value</param>
             /// <param name="@base">The logarithm base</param> 
             /// <returns></returns>
-            T log(T x, T @base);
+            T logb(T x, T @base);
 
         }
 
@@ -41,7 +41,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The type of the underlying primitive</typeparam>
         /// <typeparam name="S">The structure type</typeparam>
-        public interface Logarithmic<S,T>
+        public interface Logarithmic<S,T> : Logarithmic<S>, Structure<S,T>
             where S : Logarithmic<S,T>,  new()
         {
             /// <summary>
@@ -64,7 +64,7 @@ namespace Z0
             /// <param name="x">The input value</param>
             /// <param name="@base">The logarithm base</param> 
             /// <returns></returns>
-            T log(T @base);
+            T logb(T @base);
         }
 
     }

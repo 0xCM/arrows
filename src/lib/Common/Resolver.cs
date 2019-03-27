@@ -60,9 +60,9 @@ namespace Z0
         /// <typeparam name="R">The reifying type</typeparam>
         /// <typeparam name="T">The operand type</typeparam>
         [MethodImpl(Inline)]
-        public static void define<R,T>() 
+        public static R define<R,T>() 
             where R : TypeClass<R,T>, new()
-                => index.TryAdd(type<T>(), new R());
+                => (R)index.GetOrAdd(type<T>(), _ => new R());
 
         /// <summary>
         /// Resolves the requested operations, if possible; otherwise,

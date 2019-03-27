@@ -17,7 +17,7 @@ namespace Z0
     using Nat128 = NatSeq<N1,N2,N8>;
     using N127 = NatSeq<N1,N2,N7>;
 
-    internal readonly struct DecimalOps : Currency, 
+    internal readonly struct DecimalOps : Traits.FiniteCurrency,
         TypeClass<opstype,Currency,systype> 
     {
         
@@ -56,6 +56,11 @@ namespace Z0
         public Multiplication<systype> multiplication 
             => Multiplication.define(this);
 
+        public bool infinite 
+            => false;
+
+        public decimal ε 
+            => (decimal)Double.Epsilon;
 
         public systype apply(systype lhs, systype rhs)
             => throw new NotImplementedException();
@@ -157,6 +162,86 @@ namespace Z0
 
         public BitString<N127> bitstring2(systype src)
             => new BitString<N127>(src.ToBitString());
+
+        [MethodImpl(Inline)]   
+        public systype and(systype lhs, systype rhs)
+            => (long)lhs & (long)rhs;
+
+        [MethodImpl(Inline)]   
+        public systype or(systype lhs, systype rhs)
+            => (long)lhs | (long)rhs;
+
+        [MethodImpl(Inline)]   
+        public systype xor(systype lhs, systype rhs)
+            => (long)lhs ^ (long)rhs;
+
+        [MethodImpl(Inline)]   
+        public systype flip(systype x)
+            => ~(long)x;
+
+        [MethodImpl(Inline)]   
+        public systype lshift(systype lhs, int rhs)
+            => (long)lhs << rhs;
+
+        [MethodImpl(Inline)]   
+        public systype rshift(systype lhs, int rhs)
+            => (long)lhs >> rhs;
+                
+        [MethodImpl(Inline)]   
+        public systype sqrt(systype x)
+            => (systype)Math.Sqrt((double)x);
+ 
+
+        [MethodImpl(Inline)]   
+        public systype sin(systype x)
+            => (systype)Math.Sin((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype sinh(systype x)
+            => (systype)Math.Sinh((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype asin(systype x)
+            => (systype)Math.Asin((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype asinh(systype x)
+            => (systype)Math.Asinh((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype cos(systype x)
+            => (systype)Math.Cos((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype cosh(systype x)
+            => (systype)Math.Cosh((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype acos(systype x)
+            => (systype)Math.Acos((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype acosh(systype x)
+            => (systype)Math.Acosh((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype tan(systype x)
+            => (systype)Math.Tan((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype tanh(systype x)
+            => (systype)Math.Tanh((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype atan(systype x)
+            => (systype)Math.Atan((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype atanh(systype x)
+                => (systype)Math.Atanh((double)x);
+
+
+        [MethodImpl(Inline)]   
         public string bitstring(systype src)
             => src.ToBitString();
 

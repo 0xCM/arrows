@@ -4,6 +4,9 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    using System;
+    using System.Collections.Generic;
+
     partial class Traits
     {
         /// <summary>
@@ -13,6 +16,11 @@ namespace Z0
         /// <typeparam name="T">The operand type</typeparam>
         public interface Real<T> : Integer<T>, Floating<T>
         {
+            /// <summary>
+            /// Specifies whether the operand type is capable of supporing arbitrary
+            /// precision arithmetic
+            /// </summary>
+            bool infinite {get;}
 
         }
 
@@ -20,15 +28,32 @@ namespace Z0
         /// Characterizes an extended structual real
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Real<S,T> : Integer<S,T>, Floating<S,T>
-            where S : Real<S,T>, Floating<S,T>, new()
+        public interface Real<S,T> : IComparable<S>, Real<S>, Structure<S,T>
+            where S : Real<S,T>, new()
             
         {
-            bool infinite {get;}
+
+        }
+
+        /// <summary>
+        /// Characterizes finite real operations
+        /// </summary>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface FiniteReal<T> : Bounded<T>, Real<T>
+        {
 
         }
 
 
+        /// <summary>
+        /// Characterizes a stuctural finite real type
+        /// </summary>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface FiniteReal<S,T> : FiniteReal<S>, Structure<S,T>
+            where S : FiniteReal<S,T>, new()
+        {
+
+        }
     }
 
 

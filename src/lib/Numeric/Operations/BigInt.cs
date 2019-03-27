@@ -16,16 +16,19 @@ namespace Z0
     using systype = System.Numerics.BigInteger;
     using opstype = BigIntOps;
 
-    internal readonly struct BigIntOps : InfiniteSignedInt<systype>, 
+    internal readonly struct BigIntOps : SignedInfiniteRealInt, 
         TypeClass<opstype,InfiniteSignedInt<systype>,systype>
     {
     
         public static readonly opstype Inhabitant = default;
 
 
-        public systype zero => 0;
+        public systype zero 
+            => 0;
 
-        public systype one => 1;
+        public systype one 
+            => 1;
+
 
         [MethodImpl(Inline)]   
         public opstype instance()
@@ -39,6 +42,12 @@ namespace Z0
 
         public opstype inhabitant 
             => Inhabitant;
+
+        public bool infinite 
+            => true;
+
+        public systype ε 
+            => zero;
 
         [MethodImpl(Inline)]   
         public systype add(systype lhs, systype rhs) 
@@ -157,16 +166,72 @@ namespace Z0
         public systype distribute((systype x, systype y) lhs, systype rhs)
             => lhs.x * rhs + lhs.y * rhs;
 
+        [MethodImpl(Inline)]   
+        public systype sqrt(systype x)
+            => (systype)Math.Sqrt((double)x);
+ 
+        [MethodImpl(Inline)]   
+        public systype ceiling(systype x)
+            => (systype)Math.Ceiling((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype floor(systype x)
+            => (systype)Math.Floor((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype sin(systype x)
+            => (systype)Math.Sin((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype sinh(systype x)
+            => (systype)Math.Sinh((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype asin(systype x)
+            => (systype)Math.Asin((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype asinh(systype x)
+            => (systype)Math.Asinh((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype cos(systype x)
+            => (systype)Math.Cos((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype cosh(systype x)
+            => (systype)Math.Cosh((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype acos(systype x)
+            => (systype)Math.Acos((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype acosh(systype x)
+            => (systype)Math.Acosh((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype tan(systype x)
+            => (systype)Math.Tan((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype tanh(systype x)
+            => (systype)Math.Tanh((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype atan(systype x)
+            => (systype)Math.Atan((double)x);
+
+        [MethodImpl(Inline)]   
+        public systype atanh(systype x)
+                => (systype)Math.Atanh((double)x);
+ 
         public string bitstring(systype x)
             => x.ToBitString();
 
         public string hexstring(systype x)
             => x.ToHexString();
 
-        public systype apply(systype lhs, systype rhs)
-        {
-            throw new NotImplementedException();
-        }
     }
 
 }

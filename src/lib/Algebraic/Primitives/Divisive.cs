@@ -37,8 +37,7 @@ namespace Z0
             /// Calculates the multiplicative inverse of a given element
             /// </summary>
             /// <param name="x">The individual for which an inverse will be calculated</param>
-            /// <returns></returns>
-            T reciprocal(T x);
+            T recip(T x);
             
         }
 
@@ -48,8 +47,7 @@ namespace Z0
             /// <summary>
             /// Calculates the multiplicative inverse of self
             /// </summary>
-            /// <returns></returns>
-            S reciprocal();
+            S recip();
             
         }
 

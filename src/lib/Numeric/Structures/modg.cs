@@ -17,7 +17,7 @@ namespace Z0
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct mod<N, T> : ModN<N, mod<N, T>, T>
+    public readonly struct modg<N, T> : ModN<N, modg<N, T>, T>
         where N : TypeNat, new()
     {
 
@@ -26,32 +26,32 @@ namespace Z0
         static readonly intg<T> @base = natvalg<N,T>();
 
         [MethodImpl(Inline)]
-        public static implicit operator mod<N,T>(T data)
-            => new mod<N,T>(data);
+        public static implicit operator modg<N,T>(T data)
+            => new modg<N,T>(data);
 
         // [MethodImpl(Inline)]
         // public static implicit operator T(mod<N,T> mod)
         //     => mod.data;
 
         [MethodImpl(Inline)]
-        public static bool operator == (mod<N,T> lhs, mod<N,T> rhs) 
+        public static bool operator == (modg<N,T> lhs, modg<N,T> rhs) 
             => Ops.eq(lhs.data,rhs.data);
 
         [MethodImpl(Inline)]
-        public static bool operator != (mod<N,T> lhs, mod<N,T> rhs) 
+        public static bool operator != (modg<N,T> lhs, modg<N,T> rhs) 
             => Ops.neq(lhs.data,rhs.data);
 
         [MethodImpl(Inline)]
-        public static mod<N,T> operator + (mod<N,T> lhs, mod<N,T> rhs) 
+        public static modg<N,T> operator + (modg<N,T> lhs, modg<N,T> rhs) 
             => Ops.add(lhs.data, rhs.data);
 
         [MethodImpl(Inline)]
-        public static mod<N,T> operator * (mod<N,T> lhs, mod<N,T> rhs) 
+        public static modg<N,T> operator * (modg<N,T> lhs, modg<N,T> rhs) 
             => Ops.mul(lhs.data, rhs.data);
 
         
         [MethodImpl(Inline)]
-        public mod(T data)
+        public modg(T data)
             => this.data = Ops.reduce(data);
 
         public T data  {get;}
@@ -61,30 +61,29 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public mod<N, T> add(mod<N, T> rhs)
+        public modg<N, T> add(modg<N, T> rhs)
             => this + rhs;
 
         [MethodImpl(Inline)]
-        public mod<N, T> mul(mod<N, T> rhs)
+        public modg<N, T> mul(modg<N, T> rhs)
             => this * rhs;
 
 
         [MethodImpl(Inline)]
-        public bool eq(mod<N, T> rhs)
+        public bool eq(modg<N, T> rhs)
             => this == rhs;
 
         [MethodImpl(Inline)]
-        public bool neq(mod<N, T> rhs)
+        public bool neq(modg<N, T> rhs)
             => this != rhs;
 
         [MethodImpl(Inline)]
-        public mod<N, T> distributeL((mod<N, T> x, mod<N, T> y) rhs)
+        public modg<N, T> distributeL((modg<N, T> x, modg<N, T> y) rhs)
             => Ops.distribute(this.data,(rhs.x.data, rhs.y.data));
 
         [MethodImpl(Inline)]
-        public mod<N, T> distributeR((mod<N, T> x, mod<N, T> y) lhs)
+        public modg<N, T> distributeR((modg<N, T> x, modg<N, T> y) lhs)
             => Ops.distribute((lhs.x.data, lhs.y.data), this.data);
-
 
         public override bool Equals(object rhs)
             => data.Equals(rhs);
@@ -95,6 +94,8 @@ namespace Z0
         public override string ToString()
             => $"{data} (mod {@base})";
 
+        public bool Equals(modg<N, T> rhs)
+            => eq(rhs);
     }
 
 }

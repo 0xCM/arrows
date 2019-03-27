@@ -14,15 +14,10 @@ namespace Z0
     using static zcore;
     using static Traits;
 
-    public readonly struct num<T> : Number<num<T>,T>, Stepwise<num<T>, T>, Ordered<num<T>, T> 
+    public readonly struct num<T> : OrderedNumber<num<T>,T>
     {
-        static readonly Number<T> Ops = number<T>();
+        static readonly OrderedNumber<T> Ops = ordnum<T>();
         
-        static readonly Stepwise<T> step = stepwise<T>();
-        
-        static readonly Ordered<T> ord = ordered<T>();
-
-
         public static readonly num<T> Zero = Ops.zero;
 
         public static readonly num<T> One = Ops.one;
@@ -44,20 +39,25 @@ namespace Z0
             => Ops.neq(lhs,rhs);
 
         [MethodImpl(Inline)]
+        public static num<T> operator - (num<T> x) 
+            => Ops.negate(x);
+
+
+        [MethodImpl(Inline)]
+        public static num<T> operator ++ (num<T> x) 
+            => Ops.inc(x);
+
+        [MethodImpl(Inline)]
+        public static num<T> operator -- (num<T> x) 
+            => Ops.dec(x);
+
+        [MethodImpl(Inline)]
         public static num<T> operator + (num<T> lhs, num<T> rhs) 
             => Ops.add(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static num<T> operator ++ (num<T> x) 
-            => step.inc(x);
-
-        [MethodImpl(Inline)]
         public static num<T> operator - (num<T> lhs, num<T> rhs) 
             => Ops.sub(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static num<T> operator -- (num<T> x) 
-            => step.dec(x);
 
         [MethodImpl(Inline)]
         public static num<T> operator * (num<T> lhs, num<T> rhs) 
@@ -73,19 +73,19 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator < (num<T> lhs, num<T> rhs) 
-            => ord.lt(lhs,rhs);
+            => Ops.lt(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static bool operator <= (num<T> lhs, num<T> rhs) 
-            => ord.lteq(lhs,rhs);
+            => Ops.lteq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static bool operator > (num<T> lhs, num<T> rhs) 
-            => ord.gt(lhs,rhs);
+            => Ops.gt(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static bool operator >= (num<T> lhs, num<T> rhs) 
-            => ord.gteq(lhs,rhs);
+            => Ops.gteq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public num(T src)
@@ -116,6 +116,14 @@ namespace Z0
             => this / rhs;
 
         [MethodImpl(Inline)]
+        public num<T> gcd(num<T> rhs)
+            => Ops.gcd(this,rhs);
+
+        [MethodImpl(Inline)]
+        public Quorem<num<T>> divrem(num<T> rhs)
+            => Quorem.define(this/rhs, this % rhs);
+
+        [MethodImpl(Inline)]
         public bool eq(num<T> rhs)
             => this == rhs;
 
@@ -133,11 +141,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public num<T> inc()
-            => step.inc(this);
+            => Ops.inc(this);
  
         [MethodImpl(Inline)]
         public num<T> dec()
-            => step.dec(this);
+            => Ops.dec(this);
 
         [MethodImpl(Inline)]
         public bool lt(num<T> rhs)
@@ -180,6 +188,11 @@ namespace Z0
         [MethodImpl(Inline)]
         public num<T> negate()
             => Ops.negate(this.data);
+ 
+ 
+        [MethodImpl(Inline)]
+        public bool Equals(num<T> rhs)
+            => Ops.eq(this.data, rhs.data);
 
         public override bool Equals(object rhs)
             => data.Equals(rhs);
@@ -190,14 +203,108 @@ namespace Z0
         public override string ToString()
             => data.ToString();
 
-        public num<T> gcd(num<T> rhs)
-            => Ops.gcd(this,rhs);
 
-        public Quorem<num<T>> divrem(num<T> rhs)
-            => Quorem.define(this/rhs, this % rhs);
- 
- 
-         public bool Equals(num<T> rhs)
-            => Ops.eq(this.data, rhs.data);
+        //
+        //---------------------------------------------------------------------
+
+        Addition<num<T>> SemigroupA<num<T>>.addition 
+            => new Addition<num<T>>(this);
+
+        Multiplication<num<T>> SemigroupM<num<T>>.multiplication 
+            => new Multiplication<num<T>>(this);
+
+
+        [MethodImpl(Inline)]
+        num<T> Incrementable<num<T>>.inc(num<T> x)
+            => x.inc();
+
+        [MethodImpl(Inline)]
+        num<T> Decrementable<num<T>>.dec(num<T> x)
+            => x.dec();
+
+        [MethodImpl(Inline)]
+        num<T> Negatable<num<T>>.negate(num<T> x)
+            => x.negate();
+
+        [MethodImpl(Inline)]
+        num<T> Number<num<T>>.abs(num<T> x)
+            => x.abs();
+        
+        [MethodImpl(Inline)]
+        Sign Number<num<T>>.sign(num<T> x)
+            => x.sign();
+
+        [MethodImpl(Inline)]
+        num<T> Additive<num<T>>.add(num<T> lhs, num<T> rhs)
+            => lhs.add(rhs);
+
+        [MethodImpl(Inline)]
+        num<T> Negatable<num<T>>.sub(num<T> lhs, num<T> rhs)
+            => lhs.sub(rhs);
+
+        [MethodImpl(Inline)]
+        num<T> Multiplicative<num<T>>.mul(num<T> lhs, num<T> rhs)
+            => lhs.mul(rhs);
+
+        [MethodImpl(Inline)]
+        num<T> Number<num<T>>.muladd(num<T> x, num<T> y, num<T> z)
+            => x*y + z;
+
+        [MethodImpl(Inline)]
+        num<T> LeftDistributive<num<T>>.distribute(num<T> lhs, (num<T> x, num<T> y) rhs)
+            => lhs.distributeL(rhs);
+
+        [MethodImpl(Inline)]
+        num<T> RightDistributive<num<T>>.distribute((num<T> x, num<T> y) lhs, num<T> rhs)
+            => rhs.distributeL(lhs);
+
+        [MethodImpl(Inline)]
+        num<T> Divisive<num<T>>.div(num<T> lhs, num<T> rhs)
+            => lhs.div(rhs);
+
+        [MethodImpl(Inline)]
+        Quorem<num<T>> Divisive<num<T>>.divrem(num<T> lhs, num<T> rhs)
+            => lhs.divrem(rhs);
+
+        [MethodImpl(Inline)]
+        num<T> Divisive<num<T>>.mod(num<T> lhs, num<T> rhs)
+            => lhs.mod(rhs);
+
+        [MethodImpl(Inline)]
+        num<T> Divisive<num<T>>.gcd(num<T> lhs, num<T> rhs)
+            => lhs.gcd(rhs);
+
+        [MethodImpl(Inline)]
+        num<T> Powered<num<T>, int>.pow(num<T> b, int exp)
+            => Ops.pow(b,exp);
+
+        [MethodImpl(Inline)]
+        bool Ordered<num<T>>.lt(num<T> lhs, num<T> rhs)
+            => lhs.lt(rhs);
+
+        [MethodImpl(Inline)]
+        bool Ordered<num<T>>.lteq(num<T> lhs, num<T> rhs)
+            => lhs.lteq(rhs);
+
+        [MethodImpl(Inline)]
+        bool Ordered<num<T>>.gt(num<T> lhs, num<T> rhs)
+            => lhs.gt(rhs);
+
+        [MethodImpl(Inline)]
+        bool Ordered<num<T>>.gteq(num<T> lhs, num<T> rhs)
+            => lhs.gteq(rhs);
+
+        [MethodImpl(Inline)]
+        bool Equatable<num<T>>.eq(num<T> lhs, num<T> rhs)
+            => lhs.eq(rhs);
+
+        [MethodImpl(Inline)]
+        bool Equatable<num<T>>.neq(num<T> lhs, num<T> rhs)
+            => lhs.neq(rhs);
+
+        [MethodImpl(Inline)]
+        string Number<num<T>>.bitstring(num<T> x)
+            => x.bitstring();
+
     }
 }

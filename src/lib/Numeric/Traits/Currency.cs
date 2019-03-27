@@ -24,7 +24,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The primitive type</typeparam>
-        public interface Currency<S,T> : Bounded<S,T>, Fractional<S,T>
+        public interface Currency<S,T> : Currency<S>, Structure<S,T>
             where S : Currency<S,T>,  new()
 
             where T : new()

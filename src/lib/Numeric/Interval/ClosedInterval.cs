@@ -12,7 +12,6 @@ namespace Z0
     using static zcore;
 
     public readonly struct ClosedInterval<T> : Traits.ClosedInterval<T>
-        where T : Traits.OrderedNumber<T>
     {
 
         public static implicit operator Interval<T>(ClosedInterval<T> x)
@@ -43,11 +42,7 @@ namespace Z0
             => canonical().format();
         
         public override string ToString()
-            => format();
-                    
+            => format();                    
     }
-
-
-
 
 }

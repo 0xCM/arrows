@@ -15,7 +15,7 @@ namespace Z0
         /// by any underlying primitive numeric type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Number<T> :  GroupA<T>,  SemigroupM<T>, Semiring<T>, Divisive<T>, Powered<T,int> 
+        public interface Number<T> : GroupA<T>,  SemigroupM<T>, Semiring<T>, Divisive<T>, Powered<T,int> 
         {                    
             T muladd(T x, T y, T z);
 
@@ -42,10 +42,13 @@ namespace Z0
         /// Characterizes a structral number
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
-        /// <typeparam name="T">The structure subect</typeparam>
-        public interface Number<S,T> : Semiring<S,T>, Negatable<S,T>, Divisive<S,T>, IEquatable<S>
+        /// <typeparam name="T">The underlying operand type</typeparam>
+        public interface Number<S,T> : Number<S>, Structure<S,T>
             where S : Number<S,T>,  new()
         {
+            
+            S muladd(S y, S z);
+
             /// <summary>
             /// Calculates the number's magnitude
             /// </summary>
@@ -57,28 +60,10 @@ namespace Z0
             /// </summary>
             Sign sign();
 
-            string bitstring();
-                        
-        }
-
-        /// <summary>
-        /// Characterizes numeric operations in the presence of order
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        public interface OrderedNumber<T> : Number<T>, Ordered<T>
-        {
-
-        }
-
-        /// <summary>
-        /// Characterizes a structural number with order
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        public interface OrderedNumber<S,T> : Number<S,T>, Ordered<S,T>
-            where S : OrderedNumber<S,T>, new()
-        {
-
-        }
-
+            /// <summary>
+            /// Formats the number a sequence of base-2 digits
+            /// </summary>
+            string bitstring();                        
+        } 
     }
 }
