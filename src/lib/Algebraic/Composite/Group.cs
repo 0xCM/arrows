@@ -4,6 +4,8 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    using System;
+    using System.Collections.Generic;
 
     
     partial class Traits
@@ -65,6 +67,33 @@ namespace Z0
             
         }
 
+        public interface FreeGroup<T> : Group<T>, FreeMonoid<T>
+        {
+
+        }
+
+        public interface FreeGroup<S,T> : FreeGroup<S>, Structure<S,T>
+            where S : FreeGroup<S,T>, new()
+        {
+            
+        }
+
+        public interface FinitelyGenerable<T>
+        {
+            FiniteSet<T> generators {get;}
+        }
+
+
+        public interface FreeAbelianGroup<T> : FreeGroup<T>, GroupA<T>,  FreeMonoid<T>
+        {
+            
+        }
+
+        public interface FreeAbelianGroup<S,T> : FreeAbelianGroup<S>, Structure<S,T>
+            where S : FreeAbelianGroup<S,T>, new()
+        {
+            
+        }
 
         /// <summary>
         /// Characterizes a group action on a set

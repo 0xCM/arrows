@@ -92,7 +92,6 @@ namespace Z0
             => Ops.gteq(lhs,rhs);
 
 
-
         public T data {get;}
 
         public floatg<T> zero 
@@ -303,19 +302,24 @@ namespace Z0
   
         //
         //---------------------------------------------------------------------
-        Addition<floatg<T>> SemigroupA<floatg<T>>.addition 
+
+        floatg<T> Floating<floatg<T>>.ε 
+            => Epsilon;
+
+        floatg<T> Nullary<floatg<T>>.zero 
+            => Zero;
+
+        floatg<T> Unital<floatg<T>>.one 
+            => One;
+
+        T Structure<floatg<T>, T>.data 
+            => data;
+
+        public Addition<floatg<T>> addition 
             => new Addition<floatg<T>>(this);
 
-        Multiplication<floatg<T>> SemigroupM<floatg<T>>.multiplication 
+        public Multiplication<floatg<T>> multiplication 
             => new Multiplication<floatg<T>>(this);
-
-        floatg<T> Floating<floatg<T>>.ε => throw new NotImplementedException();
-
-        floatg<T> Nullary<floatg<T>>.zero => throw new NotImplementedException();
-
-        floatg<T> Unital<floatg<T>>.one => throw new NotImplementedException();
-
-        T Structure<floatg<T>, T>.data => throw new NotImplementedException();
 
         [MethodImpl(Inline)]
         floatg<T> Incrementable<floatg<T>>.inc(floatg<T> x)

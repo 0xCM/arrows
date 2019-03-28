@@ -4,7 +4,6 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-
     partial class Traits
     {
 
@@ -70,6 +69,25 @@ namespace Z0
         {
 
         }            
+
+        /// <summary>
+        /// Characterizes a free moinoid over a set
+        /// </summary>
+        /// <typeparam name="T">The individual type</typeparam>
+        /// <remarks>See https://en.wikipedia.org/wiki/Free_monoid 
+        /// and http://localhost:9000/refs/books/Y2007GRAA.pdf#page=39&view=fit</remarks>
+        public interface FreeMonoid<T> : Monoid<T>, Concatenable<T>
+        {
+            T empty {get;}
+
+        }
+
+        public interface FreeMonoid<S,T> :  FreeMonoid<S>, Structure<S,T> 
+            where S : FreeMonoid<S,T>, new()
+        {
+            
+                    
+        }
 
     }   
 

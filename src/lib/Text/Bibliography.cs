@@ -10,7 +10,7 @@ namespace Z0
     /// <summary>
     /// Defines a basic vocabulary for resource attribution
     /// </summary>
-    public static class Credit
+    public static class Bibliography
     {
 
         /// <summary>

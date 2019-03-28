@@ -11,48 +11,16 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
 
-
-    public static class Vector
+    partial class Traits
     {
-
-        [MethodImpl(Inline)]
-        public static Vector<N,T> define<N,T>(Dim<N> dim, params T[] src) 
-                where N : TypeNat, new() => new Vector<N,T>(src);
-
-        [MethodImpl(Inline)]
-        public static Vector<N,T> define<N,T>(params T[] src) 
-                where N : TypeNat, new() => new Vector<N,T>(src);
-
-
-        [MethodImpl(Inline)]
-        public static Vector<N,T> add<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
-            where N : TypeNat, new() 
-            where T : Traits.Semiring<T>, new()
-                => Slice.add(lhs.cells,rhs.cells);
-
-        [MethodImpl(Inline)]
-        public static Vector<N,T> mul<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
-            where N : TypeNat, new() 
-            where T : Traits.Semiring<T>, new()
-                => Slice.mul(lhs.cells,rhs.cells);
-
-        [MethodImpl(Inline)]
-        public static T sum<N,T>(Vector<N,T> x) 
-            where N : TypeNat, new() 
-            where T : Traits.Semiring<T>, new()
-                => Slice.sum(x.cells);
-
-        // [MethodImpl(Inline)]
-        // public static Vector<N,T> NatVec<N,T>(this Z0.TypeNat<N> n, params T[] components)
-        //     where N : TypeNat, new()
-        //         => new Vector<N, T>(components);
-
-        [MethodImpl(Inline)]
-        public static Vector<N,T> NatVec<N,T>(this Z0.TypeNat<N> n, IEnumerable<T> components)
+       public interface Vector<N,T> : IEnumerable<T>, Tranposable<Z0.Covector<N,T>>
             where N : TypeNat, new()
-                => new Vector<N, T>(components);
+        {
+            
+        }
 
     }
+
 
     public readonly struct Vector<N, T> : Traits.Vector<N, T>, IEnumerable<T>, Traits.Formattable
         where N : TypeNat, new()        

@@ -152,7 +152,7 @@ namespace Z0
         /// <returns></returns>
         public IReadOnlyList<Date> CreatePartitionPoints(int width)
         {
-            var points = new List<Date>(seq(Min));
+            var points = new List<Date>(items(Min));
             var last = Min;
             var finished = false;
             while (!finished)

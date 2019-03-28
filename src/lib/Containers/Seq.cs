@@ -105,23 +105,13 @@ namespace Z0
             where T : IEquatable<T>
                 => new Seq<T>(src); 
 
-        /// <summary>
-        /// Instantiates the canonical conrete type (but does not force evaluation) 
-        /// for an IEnumerable instance
-        /// </summary>
-        /// <param name="src">The</param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public static Seq<T> Reify<T>(this IEnumerable<T> src)
-            where T : IEquatable<T>
-                => define(src);
     }
 
     
     partial class xcore
     {
         /// <summary>
-        /// Wraps an enumerable with a sequence structure
+        /// Reifies a Seq[T] value from an enumerable
         /// </summary>
         /// <param name="src">The source sequence</param>
         /// <typeparam name="T">The item type</typeparam>

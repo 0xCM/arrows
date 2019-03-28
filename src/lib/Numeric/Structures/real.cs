@@ -317,14 +317,14 @@ namespace Z0
         real<T> Floating<real<T>>.ε 
             => Ops.ε;
 
-        Addition<real<T>> SemigroupA<real<T>>.addition 
-            => new Addition<real<T>>(this);
-
         real<T> Nullary<real<T>>.zero 
             => Ops.zero;
 
-        Multiplication<real<T>> SemigroupM<real<T>>.multiplication 
-            => new Multiplication<real<T>>(this);
+        public Addition<real<T>> addition 
+            => Addition.define(this);
+            
+        public Multiplication<real<T>> multiplication 
+            => Multiplication.define(this);
         
         real<T> Unital<real<T>>.one 
             => Ops.one;

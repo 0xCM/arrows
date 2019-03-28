@@ -14,7 +14,7 @@ namespace Z0
     public static class FreeMonoid
     {
         public static FreeMonoid<T> define<T>(params T[] generators)
-            where T : IEquatable<T>
+            where T : IEquatable<T>, Traits.Concatenable<T>, new()
                 => new FreeMonoid<T>(generators);
 
         static IEnumerable<T> generate<T>(Traits.FreeMonoid<T> fm, T m, IEnumerable<T> src)
@@ -70,7 +70,7 @@ namespace Z0
     }
     
     public readonly struct FreeMonoid<T> : Traits.FreeMonoid<T>
-        where T : IEquatable<T>
+        where T : IEquatable<T>, Traits.Concatenable<T>, new()
     {
 
         static readonly Traits.FreeMonoid<T> Ops = ops<T,Traits.FreeMonoid<T>>();
@@ -83,7 +83,8 @@ namespace Z0
 
         public Traits.FiniteSet<T> generators {get;}
 
-        public T empty => Ops.empty;
+        public T empty 
+            => Ops.empty;
 
         public IEnumerable<T> concat(IEnumerable<T> s1, IEnumerable<T> s2)
             => s1.Concat(s2);

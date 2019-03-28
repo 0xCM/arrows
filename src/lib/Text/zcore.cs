@@ -15,7 +15,7 @@ using System.Reflection;
 
 
 using Z0;
-using static Z0.Credit;
+using static Z0.Bibliography;
 using static zcore;
 using static Z0.Traits;
 using static Z0.ReflectionFlags;

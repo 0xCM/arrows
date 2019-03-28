@@ -76,10 +76,15 @@ namespace Z0
         public bool eq(Slice<Atom> lhs, Slice<Atom> rhs)
             => throw new NotImplementedException();
 
-        public bool neq(Slice<Atom> lhs, Slice<Atom> rhs)
-        {
-            throw new NotImplementedException();
-        }
+        bool Traits.Equatable<Symbol>.eq(Symbol lhs, Symbol rhs)
+            => lhs.eq(rhs);
+ 
+        bool Traits.Equatable<Symbol>.neq(Symbol lhs, Symbol rhs)
+            => lhs.neq(rhs);
+
+        Symbol Traits.Concatenable<Symbol>.concat(Symbol lhs, Symbol rhs)
+            => lhs.append(rhs);
+
     }
    
 }

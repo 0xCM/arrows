@@ -56,11 +56,11 @@ namespace Z0
         IEnumerable<T> members 
             => Ops.members;
 
-        Addition<modg<N, T>> SemigroupA<modg<N, T>>.addition 
-            => new Addition<modg<N,T>>(this);
-
-        Multiplication<modg<N, T>> SemigroupM<modg<N, T>>.multiplication 
-            => new Multiplication<modg<N,T>>(this);
+        public Addition<modg<N, T>> addition 
+            => Addition.define(this);
+            
+        public Multiplication<modg<N, T>> multiplication 
+            => Multiplication.define(this);
 
         modg<N, T> Unital<modg<N, T>>.one 
             => new modg<N,T>(Ops.one);

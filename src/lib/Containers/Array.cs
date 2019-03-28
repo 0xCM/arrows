@@ -13,13 +13,37 @@ namespace Z0
     using static zcore;
     
 
+    public static class NArray
+    {
+        /// <summary>
+        /// Allocates an array of of natural length
+        /// </summary>
+        /// <typeparam name="N">The natural length type</typeparam>
+        /// <typeparam name="T">Then element type</typeparam>
+        /// <returns></returns>
+        public static Array<N,T> define<N,T>()
+            where N : TypeNat, new()
+                => new Array<N,T>();
+
+        /// <summary>
+        /// Creates an array from the first N elements of a sequence
+        /// </summary>
+        /// <typeparam name="N">The natural length type</typeparam>
+        /// <typeparam name="T">Then element type</typeparam>
+        /// <returns></returns>
+        public static Array<N,T> define<N,T>(IEnumerable<T> src)
+            where N : TypeNat, new()
+                => new Array<N,T>(src);
+
+    }
+
     /// <summary>
     /// A one-dimensional array with lenght encoded by typenat parameter
     /// </summary>
-    public readonly struct Array<N,T> : Traits.Array<N,T>
+    public struct Array<N,T> : Traits.Array<N,T>
         where N : TypeNat, new()
     {
-        readonly T[] data;
+        T[] data;
 
         public T this[int ix] 
         { 
@@ -29,6 +53,21 @@ namespace Z0
             [MethodImpl(Inline)]
             set => data[ix] = value;
         }
+
+        [MethodImpl(Inline)]
+        internal Array(int len)
+        {
+            Nat.claim<N>(len);
+            data = new T[]{};
+        }
+
+        [MethodImpl(Inline)]
+        internal Array(IEnumerable<T> src)
+        {
+            var len = natval<N>();
+            data = src.Take((int)len).ToArray();
+        }
+
 
         [MethodImpl(Inline)]
         public Array(params T[] data)
@@ -88,8 +127,8 @@ namespace Z0
 
     }        
 
-        /// <summary>
-    /// A e-dimensional array with length encoded by three natural parameters
+    /// <summary>
+    /// A 3-dimensional array with length encoded by three natural parameters
     /// </summary>
     public readonly struct Array<K1,K2,K3,T> : Container<(int i, int j, int k, T value)>
         where K1 : TypeNat, new()

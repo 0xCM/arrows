@@ -6,57 +6,87 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
 
-    public static class VectorSemiring
+    public static class Vector
     {
-        public static VectorOps<N,T> define<N,T>()
-            where N : TypeNat, new()
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> define<N,T>(Dim<N> dim, params T[] src) 
+                where N : TypeNat, new() => new Vector<N,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> define<N,T>(Dim<N> dim, IEnumerable<T> src) 
+                where N : TypeNat, new() => new Vector<N,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> define<N,T>(Dim<N> dim, IReadOnlyList<T> src) 
+                where N : TypeNat, new() => new Vector<N,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> define<N,T>(params T[] src) 
+                where N : TypeNat, new() => new Vector<N,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> add<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
+            where N : TypeNat, new() 
             where T : Traits.Semiring<T>, new()
-                => CVectorSemiring<N,T>.Inhabitant.instance();
+                => Slice.add(lhs.cells,rhs.cells);
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> mul<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
+            where N : TypeNat, new() 
+            where T : Traits.Semiring<T>, new()
+                => Slice.mul(lhs.cells,rhs.cells);
+
+        [MethodImpl(Inline)]
+        public static T sum<N,T>(Vector<N,T> x) 
+            where N : TypeNat, new() 
+            where T : Traits.Semiring<T>, new()
+                => Slice.sum(x.cells);
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> NatVec<N,T>(this Z0.TypeNat<N> n, IEnumerable<T> components)
+            where N : TypeNat, new()
+                => new Vector<N, T>(components);
     }
 
-    readonly struct CVectorSemiring<N, T> : TypeClass<CVectorSemiring<N, T>,VectorOps<N, T>, TVectorSemiring<N, T>>
+    /// <summary>
+    /// Reifies a semiring of vectors over a semiring of elements
+    /// </summary>
+    public readonly struct VectorSemiring<N, T> : Traits.Semiring<Vector<N,T>>
         where N : TypeNat, new()
         where T : Traits.Semiring<T>, new()
     {
-        public static readonly CVectorSemiring<N, T> Inhabitant = default;
+        static VectorSemiring<N, T> Inhabitant = default;
 
-        public CVectorSemiring<N, T> inhabitant 
+        static readonly Traits.Semiring<T> SR = new T();
+
+        public static Vector<N,T> Zero = vector<N,T>(SR.zero);
+
+        public static Vector<N,T> One = vector<N,T>(SR.one);
+
+        public Vector<N, T> zero 
+            => Zero;
+
+        public Vector<N, T> one 
+            => One;
+
+        public VectorSemiring<N, T> inhabitant 
             => Inhabitant;
-
-        public VectorOps<N, T> instance()
-            => VectorOps<N,T>.Inhabitant;
-    }
-
-    public readonly struct VectorOps<N, T> : TVectorSemiring<N, T>
-        where N : TypeNat, new()
-        where T : Traits.Semiring<T>, new()
-    {
-        public static VectorOps<N, T> Inhabitant = default;
-
-        static readonly Traits.Semiring<T> Semiring = ops<T,Traits.Semiring<T>>();
 
         public Addition<Vector<N, T>> addition 
             => Addition.define(this);
 
-        public Vector<N, T> zero 
-            => vector<N,T>(Semiring.zero);
-
-        public Vector<N, T> one 
-            => vector<N,T>(Semiring.one);
-
         public Multiplication<Vector<N, T>> multiplication 
             => Multiplication.define(this);
 
-        public VectorOps<N, T> inhabitant 
-            => Inhabitant;
-
         [MethodImpl(Inline)]   
         public Vector<N, T> add(Vector<N, T> lhs, Vector<N, T> rhs)
-            => vector<N,T>(zip(lhs, rhs, Semiring.add));
+            => vector(dim<N>(), zip(lhs, rhs, SR.add));
 
         [MethodImpl(Inline)]   
         public Vector<N, T> mul(Vector<N, T> lhs, Vector<N, T> rhs)
-            => vector<N,T>(zip(lhs,rhs, Semiring.mul));
+            => vector(dim<N>(), zip(lhs,rhs, SR.mul));
 
         [MethodImpl(Inline)]   
         public Vector<N, T> distribute(Vector<N, T> lhs, (Vector<N, T> x, Vector<N, T> y) rhs)
@@ -69,12 +99,13 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public bool eq(Vector<N, T> lhs, Vector<N, T> rhs)
-            => any(zip(lhs,rhs), Semiring.neq);
+            => any(zip(lhs,rhs), SR.neq);
 
         [MethodImpl(Inline)]   
         public bool neq(Vector<N, T> lhs, Vector<N, T> rhs)
             => not(eq(lhs,rhs));
 
+        [MethodImpl(Inline)]   
         public Covector<N, T> tranpose(Vector<N, T> src)
             => src.tranpose();
     }

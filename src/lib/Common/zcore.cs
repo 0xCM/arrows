@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
 using Z0;
-using static Z0.Credit;
+using static Z0.Bibliography;
 using static Z0.Traits;
 
 
@@ -137,17 +137,6 @@ public static partial class zcore
     public static IEnumerable<B> map<A,B>(IEnumerable<A> src, Func<A,B> f)
         => src.Select(x => f(x));
 
-    /// <summary>
-    /// Applies a function to a potential value
-    /// </summary>
-    /// <param name="src">The potential value</param>
-    /// <param name="f">The function to apply</param>
-    /// <typeparam name="X">The source type</typeparam>
-    /// <typeparam name="Y">The target type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static Option<Y> map<X,Y>(Option<X> src, Func<X,Y> f)
-        => src.TryMap(f);
 
     /// <summary>
     /// Applies a function to a value
@@ -177,80 +166,6 @@ public static partial class zcore
             yield return f(i++,item);
     }
 
-    /// <summary>
-    /// Reverses the input sequence
-    /// </summary>
-    /// <param name="src">The input sequence</param>
-    /// <typeparam name="T">The input sequence type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static IEnumerable<T> reverse<T>(IEnumerable<T> src)
-        => src.Reverse();
-
-
-    /// <summary>
-    /// Filters the input sequence via a supplied predicate
-    /// </summary>
-    /// <param name="src">The input sequence</param>
-    /// <param name="f">The predicate used to test values from the input sequence</param>
-    /// <typeparam name="T">The input sequence type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static IEnumerable<T> filter<T>(IEnumerable<T> src, Func<T,bool> f)
-        => src.Where(f);
-
-    /// <summary>
-    /// Filters the input sequence via a supplied predicate
-    /// </summary>
-    /// <param name="src">The input sequence</param>
-    /// <param name="f">The predicate used to test values from the input sequence</param>
-    /// <typeparam name="T">The input sequence type</typeparam>
-    public static Z0.Slice<T> filter<T>(Traits.Slice<T> src, Func<T,bool> f)
-        => slice(src.data.Where(f));
-        
-
-    /// <summary>
-    /// Transforms a sequence in reverse order
-    /// </summary>
-    /// <param name="src">The source sequence</param>
-    /// <param name="f">The transformer</param>
-    /// <typeparam name="S">The input sequence type</typeparam>
-    /// <typeparam name="T">The output sequence type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static IEnumerable<T> reverse<S,T>(IEnumerable<S> src, Func<S,T> f)
-        => map(reverse(src),f);
-
-    /// <summary>
-    /// Iterates over the supplied items, invoking a receiver for each
-    /// </summary>
-    /// <param name="src">The source items</param>
-    /// <param name="f">The receiver</param>
-    /// <typeparam name="T">The item type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Unit iter<T>(IEnumerable<T> items, Action<T> action, bool pll = false)
-    {
-        if (pll)
-            items.AsParallel().ForAll(item => action(item));
-        else
-            foreach (var item in items)
-                action(item);
-        return Unit.Value;
-    }
-
-    /// <summary>
-    /// Attaches a 0-based integer sequence to the input value sequence and
-    /// yield the paired sequence elements
-    /// </summary>
-    /// <param name="i">The index of the paired value</param>
-    /// <param name="value">The indexed value</param>
-    /// <typeparam name="T">The item type</typeparam>
-    public static IEnumerable<(int i, T value)> iteri<T>(IEnumerable<T> items)
-    {
-        var idx = 0;
-        foreach(var item in items)
-            yield return (idx++, item);
-    }
 
     /// <summary>
     /// Transforms a function (S,T) -> U to a function S -> (T -> U)
@@ -283,38 +198,157 @@ public static partial class zcore
     /// Creates a <see cref="lazy{T}(Func{T})"/>.
     /// </summary>
     /// <param name="factory">A function that creates an instance of the lazy object</param>
-    /// <returns></returns>
+    [MethodImpl(Inline)]
     public static Lazy<T> lazy<T>(Func<T> factory)
         => new Lazy<T>(factory);
 
     /// <summary>
-    /// Casts a value if possible, otherwise returns failure
+    /// Evaluates a predicate and then brances based on the outcome of the evaluation
     /// </summary>
-    /// <typeparam name="T">The target type</typeparam>
-    /// <param name="item">The object to cast</param>
-    /// <returns></returns>
-    public static Option<T> tryCast<T>(object item)
-        => item is T ? some((T)item) : none<T>();
+    /// <typeparam name="X">The type of value to evaluate and subsequently process</typeparam>
+    /// <typeparam name="Y">The output type</typeparam>
+    /// <param name="test">The input value</param>
+    /// <param name="predicate">The predicate that will determine the branch to invoke</param>
+    /// <param name="true">The function to execute when the predicate evaulates to true</param>
+    /// <param name="false">The function to evaluate when the predicate evaluates to false</param>
+    [MethodImpl(Inline)]
+    public static Y when<X, Y>(X test, Predicate<X> predicate, Func<X, Y> @true, Func<X, Y> @false)
+        => predicate(test) ? @true(test) : @false(test);
 
     /// <summary>
-    /// Evaluates a function within a try block and returns the value of the computation if 
-    /// successful; otherwise, returns None together with the reported exceptions
+    /// Returns the supplied value if not null, otherwise invokes a function to provide
+    /// a non-null value as a replacement
     /// </summary>
-    /// <typeparam name="T">The result type</typeparam>
-    /// <param name="f">The function to evaluate</param>
+    /// <typeparam name="T">The object type</typeparam>
+    /// <param name="x">The object to test</param>
+    /// <param name="replace">The function that yields a replacement value in the event that the supplied value is null</param>
     /// <returns></returns>
-    public static Option<T> Try<T>(Func<T> f, Action<Exception> error = null)
+    [MethodImpl(Inline)]
+    public static T ifNull<T>(T x, Func<T> replace)
+        where T : class => x ?? replace();
+
+    /// <summary>
+    /// Maps the source <paramref name="x"/> to a value in the target space <typeparamref name="Y"/>
+    /// </summary>
+    /// <typeparam name="X"></typeparam>
+    /// <typeparam name="Y"></typeparam>
+    /// <param name="x"></param>
+    /// <param name="null"></param>
+    /// <param name="else"></param>
+    [MethodImpl(Inline)]
+    public static Y ifNull<X, Y>(X x, Func<Y> @null, Func<X, Y> @else)
+        => x == null ? @null() : @else(x);
+
+    /// <summary>
+    /// Executes one action if a condition is true and another should it be false
+    /// </summary>
+    /// <param name="condition">Specifies whether some condition is true</param>
+    /// <param name="true">The action to invoke when condition is true</param>
+    /// <param name="false">The action to invoke when condition is false</param>
+    [MethodImpl(Inline)]
+    public static Unit on(bool condition, Action @true, Action @false = null)
     {
-        try
-        {
-            return f();
-        }
-        catch (Exception e)
-        {
-            error?.Invoke(e);
-            return none<T>();
-        }
+        if (condition)
+            @true();
+        else
+            @false?.Invoke();
+
+        return Unit.Value;
     }
 
+    /// <summary>
+    /// Invokes an action if the supplied value is not null
+    /// </summary>
+    /// <typeparam name="V">The value type</typeparam>
+    /// <param name="value">The potentially null value</param>
+    /// <param name="a">The action to invoke if possible</param>
+    [MethodImpl(Inline)]
+    public static Unit onValue<V>(V value, Action<V> a)
+    {
+        if (value != null)
+            a(value);
+
+        return Unit.Value;
+    }
+
+
+    /// <summary>
+    /// Evaluates a function over a value if the value is not null; otherwise,
+    /// returns the default result value
+    /// </summary>
+    /// <typeparam name="S"></typeparam>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="x"></param>
+    /// <param name="f1"></param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static T ifNotNull<S, T>(S x, Func<S, T> f1, T @default = default)
+        => x != null ? f1(x) : @default;
+
+    /// <summary>
+    /// Evaluates a function over a value if the value is not null; otherwise invokes
+    /// a function that will produce a value that is within the expected range
+    /// </summary>
+    /// <typeparam name="S">The object type</typeparam>
+    /// <typeparam name="T">The function result type</typeparam>
+    /// <param name="x">The object to test</param>
+    /// <param name="f1">The non-null evaluator</param>
+    /// <param name="f2">The null evaluator</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static T ifNotNull<S, T>(S x, Func<S, T> f1, Func<T> f2)
+        where S : class => (x != null) ? f1(x) : f2();
+
+
+    /// <summary>
+    /// Executes one of two functions depending on the evaulation criterion
+    /// </summary>
+    /// <typeparam name="X">The function input type</typeparam>
+    /// <typeparam name="Y">The function output type</typeparam>
+    /// <param name="criterion">The criterion on which to branch</param>
+    /// <param name="value">The value to supply to the chosen function</param>
+    /// <param name="onTrue">The function to evaulate when the criterion is true</param>
+    /// <param name="onFalse">The function to evaulate when the criterion is false</param>
+    /// <returns></returns>
+    [DebuggerStepperBoundary, MethodImpl(Inline)]
+    public static Y ifElse<X, Y>(bool criterion, X value, Func<X, Y> onTrue, Func<X, Y> onFalse)
+        => criterion ? onTrue(value) : onFalse(value);
+
+    /// <summary>
+    /// Executes one of two functions depending on the evaulation criterion
+    /// </summary>
+    /// <typeparam name="X">The function input type</typeparam>
+    /// <param name="criterion">The criterion on which to branch</param>
+    /// <param name="onTrue">The function to evaulate when the criterion is true</param>
+    /// <param name="onFalse">The function to evaulate when the criterion is false</param>
+    /// <returns></returns>
+    [DebuggerStepperBoundary, MethodImpl(Inline)]
+    public static X ifElse<X>(bool criterion, Func<X> onTrue, Func<X> onFalse)
+        => criterion ? onTrue() : onFalse();
+
+    /// <summary>
+    /// Executes a function if the criterion is true, otherwise returns the supplied value
+    /// </summary>
+    /// <typeparam name="T">The function input/output type</typeparam>
+    /// <param name="criterion">The criterion on which to branch</param>
+    /// <param name="value">The value to supply to the chosen function</param>
+    /// <param name="onTrue">The function to evaulate when the criterion is true</param>
+    /// <returns></returns>
+    [DebuggerStepperBoundary, MethodImpl(Inline)]
+    public static T ifTrue<T>(bool criterion, T value, Func<T, T> onTrue)
+        => criterion ? onTrue(value) : value;
+
+
+    /// <summary>
+    /// Returns the source <paramref name="x"/> if not null; otherwise returns <paramref name="replacement"/>
+    /// </summary>
+    /// <typeparam name="X"></typeparam>
+    /// <param name="x"></param>
+    /// <param name="replacement"></param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static X ifNullValue<X>(X? x, X replacement)
+        where X : struct
+            => x == null ? replacement : (X)x;
 
 }

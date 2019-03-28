@@ -99,6 +99,12 @@ namespace Z0
         public num<T> one 
             => One;
 
+        public Addition<num<T>> addition 
+            => Addition.define(this);
+            
+        public Multiplication<num<T>> multiplication 
+            => Multiplication.define(this);
+
         [MethodImpl(Inline)]
         public num<T> add(num<T> rhs)
             => this + rhs;
@@ -206,12 +212,6 @@ namespace Z0
 
         //
         //---------------------------------------------------------------------
-
-        Addition<num<T>> SemigroupA<num<T>>.addition 
-            => new Addition<num<T>>(this);
-
-        Multiplication<num<T>> SemigroupM<num<T>>.multiplication 
-            => new Multiplication<num<T>>(this);
 
 
         [MethodImpl(Inline)]

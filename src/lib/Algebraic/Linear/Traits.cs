@@ -7,11 +7,6 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
-    public interface TVectorSemiring<N,T> : Traits.Semiring<Vector<N, T>>, Traits.Tranposable<Vector<N,T>, Covector<N,T>> 
-        where N : TypeNat, new()
-    {
-        
-    }
 
     partial class Traits
     {
@@ -43,44 +38,6 @@ namespace Z0
         }
 
 
-        public interface Matrix<M,N,T> : Tranposable<Z0.Matrix<N,M,T>>
-            where M : TypeNat, new()
-            where N : TypeNat, new()
-        {
-            Z0.Slice<N,Z0.Covector<N,T>> covectors();
 
-            Z0.Slice<M,Z0.Vector<M,T>> vectors();
-
-            Z0.Covector<N,T> covector<I>()
-                where I : TypeNat, new(); 
-
-            Z0.Covector<N,T> covector(uint i);
-
-            Z0.Dim<M,N> dim();
-
-            Z0.Vector<M,T> vector<J>()
-                where J : TypeNat, new(); 
-
-            Z0.Vector<M,T> vector(uint i);
-
-            T cell<I,J>()
-                where I : TypeNat, new()
-                where J : TypeNat, new(); 
-            
-            T cell(uint i, uint j);
-        }
-
-
-        public interface Vector<N,T> : IEnumerable<T>, Tranposable<Z0.Covector<N,T>>
-            where N : TypeNat, new()
-        {
-            
-        }
-
-        public interface Covector<N,T> : Tranposable<Z0.Vector<N,T>>
-            where N : TypeNat, new()
-        {
-            
-        }
     }
 }

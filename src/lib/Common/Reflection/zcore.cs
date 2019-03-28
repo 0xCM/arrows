@@ -349,4 +349,82 @@ partial class zcore
     public static void invoke(params Action[] actions)
         => iter(actions, a => a());
 
+    /// <summary>
+    /// Applies f(v) if v is of type X otherwise applies unmatched(v)
+    /// </summary>
+    /// <typeparam name="X">The match type</typeparam>
+    /// <typeparam name="Y">The evaluation type</typeparam>
+    /// <param name="v">The candidate value</param>
+    /// <param name="f">The function to apply if matched</param>
+    /// <param name="u">The function to apply if unmatched</param>
+    /// <returns></returns>
+    public static Y ifType<X, Y>(object v, Func<X, Y> f, Func<object, Y> u)
+    {
+        switch (v)
+        {
+            case X x:
+                return f(x);
+            default:
+                return u(v);
+        }
+    }
+
+    /// <summary>
+    /// Applies f(v) if v is of type X otherwise returns None
+    /// </summary>
+    /// <typeparam name="X">The match type</typeparam>
+    /// <typeparam name="Y">The evaluation type</typeparam>
+    /// <param name="v">The candidate value</param>
+    /// <param name="f">The function to apply if matched</param>
+    /// <returns></returns>
+    public static Option<Y> ifType<X, Y>(object v, Func<X, Y> f)
+    {
+        switch (v)
+        {
+            case X x:
+                return f(x);
+            default:
+                return none<Y>();
+        }
+    }
+
+    /// <summary>
+    /// Applies f(X left, X right) if possible, otherwise returns None
+    /// </summary>
+    /// <typeparam name="X">The right input type</typeparam>
+    /// <typeparam name="Y">The output type</typeparam>
+    /// <param name="v">The value to be evaluated </param>
+    /// <param name="f">The function to apply</param>
+    /// <returns></returns>
+    public static Option<Y> ifType<X, Y>((object candididate, X right) v, Func<(X left, X right), Y> f)
+    {
+        switch (v.candididate)
+        {
+            case X x:
+                return f((x, v.right));
+            default:
+                return none<Y>();
+        }
+    }
+
+    /// <summary>
+    /// Applies f(X left, X right) if possible, otherwise applies f(candidate)
+    /// </summary>
+    /// <typeparam name="X">The right input type</typeparam>
+    /// <typeparam name="Y">The output type</typeparam>
+    /// <param name="v">The value to be evaluated </param>
+    /// <param name="f">The function to apply</param>
+    /// <param name="else">The alternate</param>
+    /// <returns></returns>
+    public static Y ifType<X, Y>((object candididate, X right) v, Func<(X left, X right), Y> f, Func<object, Y> @else)
+    {
+        switch (v.candididate)
+        {
+            case X x:
+                return f((x, v.right));
+            default:
+                return @else(v.candididate);
+        }
+    }
+
 }

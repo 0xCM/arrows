@@ -6,7 +6,7 @@ namespace Z0
 {
     using System;
     using Z0;
-    using static Credit;
+    using static Bibliography;
 
     /// <summary>
     /// Defines the the bibliography for this work

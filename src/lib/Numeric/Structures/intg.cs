@@ -298,19 +298,21 @@ namespace Z0
 
         //
         //---------------------------------------------------------------------
+
         intg<T> Nullary<intg<T>>.zero 
             => Zero;
 
         intg<T> Unital<intg<T>>.one 
             => One;
- 
-        Addition<intg<T>> SemigroupA<intg<T>>.addition 
+
+        T Structure<intg<T>, T>.data 
+            => data;
+
+        public Addition<intg<T>> addition 
             => new Addition<intg<T>>(this);
 
-        Multiplication<intg<T>> SemigroupM<intg<T>>.multiplication 
+        public Multiplication<intg<T>> multiplication 
             => new Multiplication<intg<T>>(this);
-
-
 
         [MethodImpl(Inline)]
         intg<T> Incrementable<intg<T>>.inc(intg<T> x)

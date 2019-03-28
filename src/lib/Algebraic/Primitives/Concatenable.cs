@@ -11,6 +11,21 @@ namespace Z0
     partial class Traits
     {
 
+
+        public interface Concatenable<T>
+        {
+            T concat(T lhs, T rhs);
+
+        }
+
+        public interface Concatenable<S,T> : Concatenable<S>, Structure<S,T>
+            where S : Concatenable<S,T>,new()
+        {
+            S concat(S rhs);
+
+        }
+
     }
+
 
 }

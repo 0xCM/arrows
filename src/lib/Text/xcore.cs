@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 using Z0;
 
-using static Z0.Credit;
+using static Z0.Bibliography;
 using static zcore;
 
 

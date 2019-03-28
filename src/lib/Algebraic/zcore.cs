@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
 using Z0;
-using static Z0.Credit;
+using static Z0.Bibliography;
 using static Z0.Traits;
 
 

@@ -17,13 +17,13 @@ namespace Z0
     {
         public static readonly Word Empty = new Word();
 
-        static readonly FreeMonoid<Symbol> Ops = ops<Symbol,FreeMonoid<Symbol>>();
+        static readonly FreeMonoid<Symbol> M = default;
 
         public static Word operator +(Word lhs, Word rhs)
             => lhs.append(rhs);
                     
         public static implicit operator string(Word s)                
-            => Ops.reduce(s.data.data);
+            => M.reduce(s.data.data);
 
         public static implicit operator Slice<Symbol>(Word s)                
             => s.data;
@@ -52,7 +52,7 @@ namespace Z0
             => data != rhs;
 
         public IEnumerable<Word> append(IEnumerable<Word> rhs)
-            => seq(this).Concat(rhs);
+            => items(this).Concat(rhs);
 
         public Word append(Word rhs)
             => new Word(this.data.data.Concat(rhs.data.data));
@@ -60,15 +60,15 @@ namespace Z0
         public bool Equals(Word rhs)
             => eq(rhs);
 
-        public bool eq(Slice<Symbol> lhs, Slice<Symbol> rhs)
-        {
-            throw new NotImplementedException();
-        }
+        bool Traits.Equatable<Word>.eq(Word lhs, Word rhs)
+            => lhs.eq(rhs);
 
-        public bool neq(Slice<Symbol> lhs, Slice<Symbol> rhs)
-        {
-            throw new NotImplementedException();
-        }
+        bool Traits.Equatable<Word>.neq(Word lhs, Word rhs)
+            => lhs.neq(rhs);
+
+        Word Traits.Concatenable<Word>.concat(Word lhs, Word rhs)
+            => lhs.append(rhs);
+
     }
 
 }

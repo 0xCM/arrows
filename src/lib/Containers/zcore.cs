@@ -19,26 +19,104 @@ public static partial class zcore
 {
 
     /// <summary>
-    /// Constructs an empty concurrent index 
+    /// Constructs a Seq[T] from a parameter array
+    /// </summary>
+    /// <param name="src">The source items</param>
+    /// <typeparam name="T">The item type</typeparam>
+    [MethodImpl(Inline)]   
+    public static Seq<T> seq<T>(params T[] src)
+        where T : IEquatable<T> 
+            => src.ToSeq();
+
+    /// <summary>
+    /// Consructs an enumerable from a parameter array
+    /// </summary>
+    /// <param name="src">The source items</param>
+    /// <typeparam name="T">The item type</typeparam>
+    [MethodImpl(Inline)]
+    public static IEnumerable<T> items<T>(params T[] src)
+        => src;
+
+    /// <summary>
+    /// Constructs an integrally-indexed associative array
+    /// </summary>
+    /// <param name="src">The source values</param>
+    /// <typeparam name="T">The valud type</typeparam>
+    [MethodImpl(Inline)]
+    public static Index<T> list<T>(params T[] src)
+        => new Index<T>(src);
+
+    /// <summary>
+    /// Allocates a mutable array
+    /// </summary>
+    /// <param name="len">The length of the array</param>
+    /// <typeparam name="T">The array element type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static T[] array<T>(long len = 0)
+        => new T[len];
+
+    /// <summary>
+    /// Reflects variable number of arguments from a parms array back as
+    /// a standard array
+    /// </summary>
+    /// <param name="len">The length of the array</param>
+    /// <typeparam name="T">The array element type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static T[] array<T>(params T[] values)
+        => values;
+
+    /// <summary>
+    /// Allocates and fills a naturally-sized array
+    /// </summary>
+    /// <param name="data">The source data</param>
+    /// <typeparam name="N">The length type</typeparam>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static Array<N,T> array<N,T>(params T[] data)
+        where N : TypeNat, new()
+            => NArray.define<N,T>(data);
+
+    /// <summary>
+    /// Creates an array from the first N elements of a sequence
+    /// </summary>
+    /// <typeparam name="N">The natural length type</typeparam>
+    /// <typeparam name="T">Then element type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static Array<N,T> array<N,T>(IEnumerable<T> src)
+        where N : TypeNat, new()
+            => NArray.define<N,T>(src);
+
+    /// <summary>
+    /// Constructs a mutable dictionary 
     /// </summary>
     /// <typeparam name="K">The key type</typeparam>
     /// <typeparam name="V">The value type</typeparam>
-    /// <returns></returns>
-    public static ConcurrentIndex<K,V> cindex<K,V>()
-        => new ConcurrentIndex<K,V>();
-
-    public static Dictionary<K,V> dict<K,V>(params (K key, V value)[] entries)
+    [MethodImpl(Inline)]   
+    public static Dictionary<K,V> dict<K,V>(params (K key, V value)[] src)
         => new Dictionary<K, V>();
 
     /// <summary>
     /// Constructs integrally-keyed associative array
     /// </summary>
-    /// <param name="values"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="src">The source values</param>
+    /// <typeparam name="T">The item type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Index<T> index<T>(IEnumerable<T> values)
-        => new Index<T>(values);
+    public static Index<T> index<T>(IEnumerable<T> src)
+        => new Index<T>(src);
+
+    /// <summary>
+    /// Constructs an empty concurrent index 
+    /// </summary>
+    /// <typeparam name="K">The key type</typeparam>
+    /// <typeparam name="V">The value type</typeparam>
+    [MethodImpl(Inline)]   
+    public static ConcurrentIndex<K,V> cindex<K,V>()
+        => new ConcurrentIndex<K,V>();
+
 
     /// <summary>
     /// Constructs a concurrent bag with optional initial items
@@ -101,51 +179,16 @@ public static partial class zcore
         => new KeyedValue<K,V>(kv);
 
     /// <summary>
-    /// Constructs integrally-keyed associative array, otherwise known
-    /// as a list from a parameter array
+    /// Constructs the default set associated with a type whose elements
+    /// consist of all potential values of the type.
     /// </summary>
-    /// <param name="values"></param>
-    /// <typeparam name="A"></typeparam>
+    /// <typeparam name="T"></typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]
-    public static Index<A> list<A>(params A[] values)
-        => new Index<A>(values);
+    public static Traits.Set<T> set<T>() 
+        where T : IEquatable<T>
+            => TotalSet<T>.Inhabitant;
 
-    /// <summary>
-    /// Allocates a mutable array
-    /// </summary>
-    /// <param name="len">The length of the array</param>
-    /// <typeparam name="T">The array element type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static T[] array<T>(long len = 0)
-        => new T[len];
-
-    /// <summary>
-    /// Reflects variable number of arguments from a parms array back as
-    /// a standard array
-    /// </summary>
-    /// <param name="len">The length of the array</param>
-    /// <typeparam name="T">The array element type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static T[] array<T>(params T[] values)
-        => values;
-
-    /// <summary>
-    /// Allocates and fills a naturally-sized array
-    /// </summary>
-    /// <param name="data">The source data</param>
-    /// <typeparam name="N">The length type</typeparam>
-    /// <typeparam name="T">The element type</typeparam>
-   [MethodImpl(Inline)]
-    public static Array<N,T> array<N,T>(params T[] data)
-        where N : TypeNat, new()
-            => new Array<N,T>(data);
-
-   [MethodImpl(Inline)]
-    public static IEnumerable<T> seq<T>(params T[] items)
-        => items;
 
     /// <summary>
     /// Partitions a seequence into segments of a specified natural width
@@ -179,23 +222,14 @@ public static partial class zcore
     }
 
     /// <summary>
-    /// Constructs a sequence of singleton sequences from a sequence of elements
+    /// Transforms a sequence of elements into a sequence of singleton sequences 
     /// </summary>
     /// <param name="src">The source sequence</param>
     /// <typeparam name="T">The item type</typeparam>
     [MethodImpl(Inline)]
     public static IEnumerable<IEnumerable<T>> singletons<T>(IEnumerable<T> src)
-        => from item in src select seq(item);
+        => from item in src select items(item);
 
-    /// <summary>
-    /// Constructs the default set associated with a type whose elements
-    /// consist of all potential values of the type.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    public static Traits.Set<T> set<T>() 
-        where T : IEquatable<T>
-            => TotalSet<T>.Inhabitant;
 
     /// <summary>
     /// Replicates a given value a specified number of times
@@ -223,8 +257,79 @@ public static partial class zcore
         where N : TypeNat, new()
         => repeat(value, natval<N>());
 
+    /// <summary>
+    /// Reverses the input sequence
+    /// </summary>
+    /// <param name="src">The input sequence</param>
+    /// <typeparam name="T">The input sequence type</typeparam>
+    /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Seq<T> items<T>(params T[] src)
-        where T : IEquatable<T>
-            => src.Reify();
+    public static IEnumerable<T> reverse<T>(IEnumerable<T> src)
+        => src.Reverse();
+
+
+    /// <summary>
+    /// Filters the input sequence via a supplied predicate
+    /// </summary>
+    /// <param name="src">The input sequence</param>
+    /// <param name="f">The predicate used to test values from the input sequence</param>
+    /// <typeparam name="T">The input sequence type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static IEnumerable<T> filter<T>(IEnumerable<T> src, Func<T,bool> f)
+        => src.Where(f);
+
+    /// <summary>
+    /// Filters the input sequence via a supplied predicate
+    /// </summary>
+    /// <param name="src">The input sequence</param>
+    /// <param name="f">The predicate used to test values from the input sequence</param>
+    /// <typeparam name="T">The input sequence type</typeparam>
+    public static Z0.Slice<T> filter<T>(Traits.Slice<T> src, Func<T,bool> f)
+        => slice(src.data.Where(f));        
+
+    /// <summary>
+    /// Transforms a sequence in reverse order
+    /// </summary>
+    /// <param name="src">The source sequence</param>
+    /// <param name="f">The transformer</param>
+    /// <typeparam name="S">The input sequence type</typeparam>
+    /// <typeparam name="T">The output sequence type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static IEnumerable<T> reverse<S,T>(IEnumerable<S> src, Func<S,T> f)
+        => map(reverse(src),f);
+
+
+    /// <summary>
+    /// Iterates over the supplied items, invoking a receiver for each
+    /// </summary>
+    /// <param name="src">The source items</param>
+    /// <param name="f">The receiver</param>
+    /// <typeparam name="T">The item type</typeparam>
+    [MethodImpl(Inline)]   
+    public static Unit iter<T>(IEnumerable<T> items, Action<T> action, bool pll = false)
+    {
+        if (pll)
+            items.AsParallel().ForAll(item => action(item));
+        else
+            foreach (var item in items)
+                action(item);
+        return Unit.Value;
+    }
+
+    /// <summary>
+    /// Attaches a 0-based integer sequence to the input value sequence and
+    /// yield the paired sequence elements
+    /// </summary>
+    /// <param name="i">The index of the paired value</param>
+    /// <param name="value">The indexed value</param>
+    /// <typeparam name="T">The item type</typeparam>
+    public static IEnumerable<(int i, T value)> iteri<T>(IEnumerable<T> items)
+    {
+        var idx = 0;
+        foreach(var item in items)
+            yield return (idx++, item);
+    }
+
 }

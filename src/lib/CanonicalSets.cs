@@ -120,7 +120,7 @@ namespace Z0
             => Inhabitant;
 
         public Seq<bigint> members()
-            => peano().Reify();
+            => peano().ToSeq();
 
         public bool member(object candidate)
             => candidate is bigint 
@@ -165,7 +165,7 @@ namespace Z0
         }
 
         public Seq<bigint> members()
-            => integers().Reify();
+            => integers().ToSeq();
 
         public bigint add(bigint lhs, bigint rhs)
             => lhs + rhs;
