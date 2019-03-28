@@ -14,8 +14,8 @@ namespace Z0
     using systype = System.Byte;
     using opstype = UInt8Ops;
 
-    internal readonly struct UInt8Ops : UnsignedFiniteRealInt<systype>,
-        TypeClass<opstype,FiniteNatural<systype>,systype>
+    [TypeClass(typeof(RealFiniteUInt<systype>))]
+    internal readonly struct UInt8Ops : RealFiniteUInt<systype>
     {        
         public static readonly opstype Inhabitant = default;
     
@@ -252,12 +252,11 @@ namespace Z0
             return lhs;
         }
         public string bitstring(systype src)
-            => src.ToBitString();
+            => lpadZ(Convert.ToString(src,2), UInt8Ops.MaxBitLength);
+
+
+
 
     }
 
-    partial class Operations
-    {
-
-    }
 }

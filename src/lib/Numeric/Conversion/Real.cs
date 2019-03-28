@@ -133,7 +133,8 @@ public static class ToRealX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static real<T> ToReal<T>(this sbyte src)
-        => convert<T>(src);
+        where T: IConvertible
+            => convert<T>(src);
 
     /// <summary>
     /// x:byte => x:real[T]
@@ -141,7 +142,8 @@ public static class ToRealX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static real<T> ToReal<T>(this byte src)
-        => convert<T>(src);
+        where T: IConvertible
+            => convert<T>(src);
 
     /// <summary>
     /// x:short => x:real[T]
@@ -149,7 +151,8 @@ public static class ToRealX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static real<T> ToReal<T>(this short src)
-        => convert<T>(src);
+        where T: IConvertible
+            => convert<T>(src);
 
     /// <summary>
     /// x:ushort => x:real[T]
@@ -157,7 +160,8 @@ public static class ToRealX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static real<T> ToReal<T>(this ushort src)
-        => convert<T>(src);
+        where T: IConvertible
+            => convert<T>(src);
 
     /// <summary>
     /// x:int => x:real[T]
@@ -165,35 +169,43 @@ public static class ToRealX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static real<T> ToReal<T>(this int src)
-        => convert<T>(src);
+        where T: IConvertible
+            => convert<T>(src);
 
     [MethodImpl(Inline)]   
     public static real<T> ToReal<T>(this uint src)
-        => convert<T>(src);
+        where T: IConvertible
+            => convert<T>(src);
 
 
     [MethodImpl(Inline)]   
     public static real<T> ToReal<T>(this long src)    
-        => convert<T>(src);
+        where T: IConvertible
+            => convert<T>(src);
 
     [MethodImpl(Inline)]   
     public static real<T> ToReal<T>(this ulong src)
-        => convert<T>(src);
+        where T: IConvertible
+            => convert<T>(src);
 
     [MethodImpl(Inline)]   
     public static real<T> ToReal<T>(this BigInteger src)
-        => convert<T>(src);
+        where T: IConvertible
+            => convert<T>(src);
 
     [MethodImpl(Inline)]   
     public static real<T> ToReal<T>(this float src)
-        => convert<T>(src);
+        where T: IConvertible
+            => convert<T>(src);
 
     [MethodImpl(Inline)]   
     public static real<T> ToReal<T>(this double src)
-        => convert<T>(src);
+        where T: IConvertible
+            => convert<T>(src);
 
     [MethodImpl(Inline)]   
     public static real<T> ToReal<T>(this decimal src)
+            where T: IConvertible
         => convert<T>(src);
 
 

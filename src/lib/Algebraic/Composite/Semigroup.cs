@@ -83,7 +83,7 @@ namespace Z0
         public readonly struct SemigroupA<T> : Traits.SemigroupA<T>, Singleton<SemigroupA<T>>
             where T : Traits.SemigroupA<T>, new()
         {    
-            static readonly Traits.SemigroupA<T> Ops = ops<T,SemigroupA<T>>();
+            static readonly Traits.SemigroupA<T> Ops = new T();
 
             public static SemigroupA<T> Inhabitant = default;
             

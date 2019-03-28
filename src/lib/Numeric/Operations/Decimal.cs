@@ -14,11 +14,11 @@ namespace Z0
     using opstype = DecimalOps;
     using Currency = Traits.Currency<decimal>;
 
-    using Nat128 = NatSeq<N1,N2,N8>;
+    //using N128 = NatSeq<N1,N2,N8>;
     using N127 = NatSeq<N1,N2,N7>;
 
-    internal readonly struct DecimalOps : Traits.FiniteCurrency,
-        TypeClass<opstype,Currency,systype> 
+    [TypeClass(typeof(Traits.FiniteCurrency))]
+    internal readonly struct DecimalOps : Traits.FiniteCurrency
     {
         
         public static readonly opstype Inhabitant = default;
@@ -27,10 +27,8 @@ namespace Z0
 
         public const systype One = 1;
 
-        public static readonly Nat128 BitSize = natrep<Nat128>();
+        //public static readonly N128 BitSize = N128.Nat;
         
-        public static readonly N127 MaxBitLength = natrep<N127>();
-
         public const systype MinVal = systype.MinValue;            
 
         public const systype MaxVal = systype.MaxValue;
@@ -159,9 +157,6 @@ namespace Z0
         [MethodImpl(Inline)]   
         public systype distribute((systype x, systype y) lhs, systype rhs)
             => lhs.x * rhs + lhs.y * rhs;
-
-        public BitString<N127> bitstring2(systype src)
-            => new BitString<N127>(src.ToBitString());
 
         [MethodImpl(Inline)]   
         public systype and(systype lhs, systype rhs)

@@ -23,28 +23,26 @@ namespace Z0
 
 
         /// <summary>
-        /// Determines whether to lists of value objects are equal
+        /// Determines whether two lists, adjudicated by positional elemental equality, are equal
         /// </summary>
         /// <typeparam name="T">The type of value object</typeparam>
-        /// <param name="x">The first list</param>
-        /// <param name="y">The second list</param>
+        /// <param name="lhs">The first list</param>
+        /// <param name="rhs">The second list</param>
         /// <returns></returns>
-        public static bool DeepEqualityWith<T>(this IReadOnlyList<T> x, IReadOnlyList<T> y)
-        {
-            if (x == null || y == null || x.Count != y.Count)
-                return false;
+        public static bool DeepEquals<T>(this IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            where T : Traits.Equatable<T>
+                => eq(lhs,rhs);
 
-            for (int i = 0; i < x.Count; i++)
-            {
-                //Yes, either x[i] or y[i} could be null but that would be a pretty
-                //stupid list and we might as well blow up so we can fix whatever
-                //mechanism is adding null items to the list
-                if (!x[i].Equals(y[i]))
-                    return false;
-            }
-            return true;
-        }
-
+        /// <summary>
+        /// Determines whether two sequence, adjudicated by positional elemental equality, are equal
+        /// </summary>
+        /// <typeparam name="T">The type of value object</typeparam>
+        /// <param name="lhs">The first list</param>
+        /// <param name="rhs">The second list</param>
+        /// <returns></returns>
+        public static bool DeepEquals<T>(this IEnumerable<T> lhs, IEnumerable<T> rhs)
+            where T : Traits.Equatable<T>
+                => eq(lhs,rhs);
 
         /// <summary>
         /// Determines whether two lists have identitical content

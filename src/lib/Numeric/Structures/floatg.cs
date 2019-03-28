@@ -309,6 +309,14 @@ namespace Z0
         Multiplication<floatg<T>> SemigroupM<floatg<T>>.multiplication 
             => new Multiplication<floatg<T>>(this);
 
+        floatg<T> Floating<floatg<T>>.ε => throw new NotImplementedException();
+
+        floatg<T> Nullary<floatg<T>>.zero => throw new NotImplementedException();
+
+        floatg<T> Unital<floatg<T>>.one => throw new NotImplementedException();
+
+        T Structure<floatg<T>, T>.data => throw new NotImplementedException();
+
         [MethodImpl(Inline)]
         floatg<T> Incrementable<floatg<T>>.inc(floatg<T> x)
             => x.inc();
@@ -461,5 +469,6 @@ namespace Z0
         [MethodImpl(Inline)]
         string Number<floatg<T>>.bitstring(floatg<T> x)
             => x.bitstring();
+
     }
 }

@@ -27,6 +27,7 @@ namespace Z0
         /// <typeparam name="U">The codomain</typeparam>
         /// <remarks>
         /// See http://localhost:9000/refs/books/Y2013HTT.pdf#page=36
+        /// & https://en.wikipedia.org/wiki/Dependent_type
         /// </remarks>
         public interface TypeFamily<in A, out U> : TypeFamily, Function<A,U>
             where U : Universe

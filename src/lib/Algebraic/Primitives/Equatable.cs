@@ -15,7 +15,7 @@ namespace Z0
             bool neq(T lhs, T rhs);
         }
 
-        public interface Equatable<S,T> : Structure<S,T>
+        public interface Equatable<S,T> : Equatable<T>, Structure<S,T>
             where S : Equatable<S,T>, new()
         {
             bool eq(S rhs);
@@ -24,5 +24,22 @@ namespace Z0
         }
 
     }
+
+    public readonly struct Equality<T> : Traits.Equatable<T>
+        where T : Traits.Equatable<T>
+    {
+        
+        readonly Traits.Equatable<T> ops;
+
+        public Equality(Traits.Equatable<T> ops)    
+            => this.ops = ops;
+
+        public bool eq(T lhs, T rhs)
+            => ops.eq(lhs,rhs);
+
+        public bool neq(T lhs, T rhs)
+            => ops.neq(lhs,rhs);
+    }
+
 
 }

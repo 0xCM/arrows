@@ -15,9 +15,9 @@ namespace Z0
     partial class Traits
     {
 
-        public interface Slice<T> : Seq<T>
+        public interface Slice<T> : Seq<T> 
         {
-            IReadOnlyList<T> cells {get;}        
+            IReadOnlyList<T> data {get;}        
 
             intg<uint> length {get;}
 
@@ -30,7 +30,7 @@ namespace Z0
         /// <typeparam name="N">The natural number type that indicates the slice length</typeparam>
         /// <typeparam name="T">The element type</typeparam>
         public interface Slice<N,T> : Slice<T>
-            where N : TypeNat
+            where N : TypeNat, new()
         {
             
 
@@ -41,9 +41,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="N">The natural number type that indicates the slice length</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-        public interface Slice<H,N,T> : Slice<N,T>
-            where N : TypeNat
-            where H : Slice<H,N,T>, new()
+        public interface Slice<S,N,T> : Slice<N,T>
+            where S : Slice<S,N,T>, new()
+            where N : TypeNat,new()
         {
             
 

@@ -62,10 +62,10 @@ namespace Z0
             => membership.member(candidate);
 
         public Seq<FiniteEqClass<T>> partition()
-            => parts.cells.ToSeq();
+            => parts.data.ToSeq();
     
         public FiniteEqClass<T> project(T x)
-            => parts.cells.First(c => related(c.representative,x));
+            => parts.data.First(c => related(c.representative,x));
 
         public bool related(T x, T y)
             => equivalence.related(x,y);

@@ -198,36 +198,28 @@ namespace App04
             print($"intg<long> Misc(finished): {elapsed(sw)}ms");
         }
 
-        static void Mul(intg<long> n)
+
+        static void Mul(long n)
         {
-            print($"intg<long> Mul(n = {n})");
+            print($"long & intg<long> Mul(n = {n})");
             long count = n;
             var v1 = range<long>(1, n).ToArray();
             var v2 = range<long>(1, n).ToArray();
             var v3 = range<long>(1, n).ToArray();
             var v4 = array<intg<long>>(n);
-            var sw = stopwatch();
-            for(long i=0; i < count; i++)
-            {
-                v4[i] = v1[i]*v2[i]*v3[i];
-            }
-            print($"intg<long> Mul(finished): {elapsed(sw)}ms");
-        }
+            var v1u = v1.Unwrap();
+            var v2u = v2.Unwrap();
+            var v3u = v3.Unwrap();
+            var v4u = array<long>(n);
+            var swu = stopwatch();
+            for(int i=0; i < count; i++)
+                v4u[i] = v1u[i]*v2u[i]*v3u[i];
+            print($"long Mul(finished): {elapsed(swu)}ms");
 
-        static void Mul(long n)
-        {
-            print($"long Mul(n = {n})");
-            long count = n;
-            var v1 = range<long>(1, n).Unwrap();
-            var v2 = range<long>(1, n).Unwrap();
-            var v3 = range<long>(1, n).Unwrap();
-            var v4 = array<long>(n);
             var sw = stopwatch();
             for(int i=0; i < count; i++)
-            {
                 v4[i] = v1[i]*v2[i]*v3[i];
-            }
-            print($"long Mul(finished): {elapsed(sw)}ms");
+            print($"intg<long> Mul(finished): {elapsed(sw)}ms");
 
         }
 
@@ -326,7 +318,6 @@ namespace App04
             Misc(Cycles);
             print();
 
-            Mul(CyclesG);
             Mul(Cycles);
             print();
 
@@ -348,8 +339,8 @@ namespace App04
 
         static void Slices()
         {
-            var s1 = N256.Rep.Slice(range<int>(1,256).Unwrap());
-            var s2 = N256.Rep.Slice(range<int>(1,256).Unwrap());
+            var s1 = N256.Seq.NatSlice(range<int>(1,256));
+            var s2 = N256.Seq.NatSlice(range<int>(1,256));
             print(Slice.add(s1,s2));
             print(Slice.mul(s1,s2));
             print(Slice.sum(s1));
@@ -360,23 +351,18 @@ namespace App04
 
         static void Vectors()
         {
-            var v1 = vector<N9,long>(1,2,3,4,5,6,7,8,9);
-            var v2 = vector<N9,long>(9,8,7,6,5,4,3,2,1);
+            var v1 = vector<N9,intg<long>>(1,2,3,4,5,6,7,8,9);
+            var v2 = vector<N9,intg<long>>(9,8,7,6,5,4,3,2,1);
             var result = Vector.mul(v1,v2);
-            print(result);
+            print($"{v1} * {v2} = {result}");
         }
 
         static void Semigroups()
         {
-            var sg = semigroup<long>();
+            var sg = semigroup<intg<long>>();
 
         }
 
-        static void Matrices()
-        {
-            var m = Matrix.define<N3,N2,int>(1,2,3,4,5,6);
-            print(m);
-        }
 
         static void Integers()
         {
@@ -407,11 +393,10 @@ namespace App04
 
         static void VectorArithmetic()
         {
-            var sr = VectorSemiring.define<N3,int>();
-            var v1 = N3.Rep.Vector(1,2,3);
-            var v2 = N3.Rep.Vector(3,2,1);
-            var v3 = sr.add(v1,v2);
-            print(v3);
+            var v1 = N3.Rep.NatVec(intg(1,2,3));
+            var v2 = N3.Rep.NatVec(intg(3,2,1));
+            var v3 = Vector.add(v1,v2);
+            print($"{v1} + {v2} = {v3}");
         }
 
         static void NatReflect(uint min, uint max)
@@ -424,27 +409,13 @@ namespace App04
         
         static void RandomU64(ulong count)
         {
-            var r = new RandUInt64();
+            var r = new RandUInt();
             var current = 0ul;
             while(++current <= count)
                 write($"{r.next()}, ");
         }
 
-        static void RandomU32(int count)
-        {
-            var r = new RandUInt32();
-            var current = 0;
-            while(++current <= count)
-                write($"{r.next()}, ");
-        }
 
-        static void RandomU16(int count)
-        {
-            var r = new RandUInt16();
-            var current = 0u;
-            while(++current <= count)
-                write($"{r.next()}, ");
-        }
 
         static void Partitions()
         {
@@ -454,8 +425,6 @@ namespace App04
             var i = (left,right).ToClosedInterval();
             var p = Interval.partition(i, width).ToList();            
             print($"interval = {i}, partition width = {width}, point count = {p.Count}");
-            // foreach(var point in p)
-            //     write($"{point}, ");
         }
 
         public static void Histo(int trials)
@@ -463,9 +432,9 @@ namespace App04
             var min = UInt16.MinValue;
             var max = UInt16.MaxValue;
             var hg = Histogram.define(min, max);            
-            var r = new RandUInt16();
+            var r = new RandUInt();
             print($"binwidth = {hg.binwidth}");            
-            hg.distribute(r.next(trials));
+            hg.distribute(r.next(trials,min,max));
             iter(hg.ratios(), r => print($"{r.bin} : {r.ratio}"));
 
         }
@@ -476,6 +445,7 @@ namespace App04
         }
 
         static real<T> sum<T>(params real<T>[] values)
+            where T: IConvertible
         {
             var total = real<T>().zero;
             foreach(var v in values)
@@ -483,16 +453,34 @@ namespace App04
             return total;
         }
 
+        static void Matrices()
+        {
+            var rand = new RandUInt();
+            
+            var dim = Dim.define<N3,N3>();
+            var m1 = Matrix.define(dim, rand.next(9,221,287));
+            printeach("m1 := ", m1.vectors());
+            var m2 = Matrix.define(dim, rand.next(9,10,369));
+            printeach($"m2 := ", m2.vectors());
+            var m3 = Matrix.mul(m1,m2);
+            printeach($"m1 * m2 = ", m3.vectors());
+
+        }
+
+        //
+        // Summary:
+        //     Represents positive infinity. This field is constant.
+        public const Double PositiveInfinity = 1D / 0D;
         static void Main(string[] args)
         {     
             SysInit.initialize<Program>();
 
-            Histo(1000000);
+            var n1 = uintg(1,2,3);
+            
+            var n2 = intg(1,2,3);
+            
+            Matrices();
 
-            //Partitions();
-
-
-            //printeach(Partitionize());
 
         }
     }

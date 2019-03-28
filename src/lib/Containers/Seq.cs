@@ -87,7 +87,7 @@ namespace Z0
             => new FiniteSeq<T>(src);                
 
         public IEnumerable<T> stream()
-            => src.cells;
+            => src.data;
 
     }
 

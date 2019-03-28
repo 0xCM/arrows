@@ -23,7 +23,7 @@ namespace Z0
             => lhs.append(rhs);
                     
         public static implicit operator string(Word s)                
-            => Ops.reduce(s.data.cells);
+            => Ops.reduce(s.data.data);
 
         public static implicit operator Slice<Symbol>(Word s)                
             => s.data;
@@ -55,10 +55,20 @@ namespace Z0
             => seq(this).Concat(rhs);
 
         public Word append(Word rhs)
-            => new Word(this.data.cells.Concat(rhs.data.cells));
+            => new Word(this.data.data.Concat(rhs.data.data));
 
         public bool Equals(Word rhs)
             => eq(rhs);
+
+        public bool eq(Slice<Symbol> lhs, Slice<Symbol> rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool neq(Slice<Symbol> lhs, Slice<Symbol> rhs)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

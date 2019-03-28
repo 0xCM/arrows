@@ -16,8 +16,8 @@ namespace Z0
     using systype = System.Numerics.BigInteger;
     using opstype = BigIntOps;
 
-    internal readonly struct BigIntOps : SignedInfiniteRealInt, 
-        TypeClass<opstype,InfiniteSignedInt<systype>,systype>
+    [TypeClass(typeof(RealInfiniteInt))]
+    internal readonly struct BigIntOps : RealInfiniteInt 
     {
     
         public static readonly opstype Inhabitant = default;

@@ -13,7 +13,7 @@ namespace Z0
     {
 
         public interface ModN<N,T> : Ring<T>
-            where N : TypeNat
+            where N : TypeNat, new()
         {
 
             IEnumerable<T> members {get;}
@@ -26,19 +26,20 @@ namespace Z0
             T reduce(T src);
         }
 
-        public interface GF<N,T> : ModN<N,T>
-            where N : TypeNat, Demands.PrimePower<N>, new()
-            
+
+        public interface ModN<N,S,T> : ModN<N,S>, Structure<S,T>
+            where S : ModN<N,S,T>, new()
+            where N : TypeNat, new()
         {
 
         }
 
-        public interface ModN<N,S,T> : Ring<S,T>
-            where S : ModN<N,S,T>, new()
-            where N : TypeNat
+        public interface GF<N, S, T> : ModN<N, S, T>, Structure<S,T>
+            where N : TypeNat, Demands.PrimePower<N>, new()
+            where S : GF<N,S,T>,new()
+            
         {
 
-            IEnumerable<T> members {get;}
         }
 
     }

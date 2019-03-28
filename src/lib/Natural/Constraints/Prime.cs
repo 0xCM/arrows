@@ -52,7 +52,11 @@ namespace Z0
     public readonly struct Prime<P> : Demands.Prime<P>
         where P : TypeNat, new()
     {
+        public Prime(P n)
+            => valid = demand(prime<uint>(n.value));
 
+        public bool valid {get;}
     }
+
 
 }

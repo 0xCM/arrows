@@ -26,6 +26,15 @@ partial class zcore
 
     
     /// <summary>
+    /// Formats and concatenates an arbitrary number of elements
+    /// </summary>
+    /// <param name="src">The formattables to be rendered and concatenated</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static string format(params Formattable[] src)
+        => concat(src.Select(x => x.format()));
+
+    /// <summary>
     /// Concatenates an arbitrary number of strings
     /// </summary>
     /// <param name="src">The strings to be concatenated</param>
@@ -715,8 +724,8 @@ partial class zcore
     /// </summary>
     /// <param name="content"></param>
     [MethodImpl(Inline)]
-    public static string csv(params object[] content)
-        => string.Join(',', content);
+    public static string csv(object o1, object o2, params object[] content)
+        =>  string.Join(',', o1, o2) + string.Join(',', content);
 
     /// <summary>
     /// Renders a sequence of items as a comma-separated list of values
@@ -724,6 +733,14 @@ partial class zcore
     /// <param name="content"></param>
     [MethodImpl(Inline)]
     public static string csv(IEnumerable<object> content)
+        => string.Join(',', content);
+
+    /// <summary>
+    /// Renders a sequence of items as a comma-separated list of values
+    /// </summary>
+    /// <param name="content"></param>
+    [MethodImpl(Inline)]
+    public static string csv<T>(IEnumerable<T> content)
         => string.Join(',', content);
 
     /// <summary>

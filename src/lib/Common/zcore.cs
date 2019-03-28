@@ -187,15 +187,6 @@ public static partial class zcore
     public static IEnumerable<T> reverse<T>(IEnumerable<T> src)
         => src.Reverse();
 
-    /// <summary>
-    /// Reverses the input sequence
-    /// </summary>
-    /// <param name="src">The input sequence</param>
-    /// <typeparam name="T">The input sequence type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static Z0.Slice<T> reverse<T>(Traits.Slice<T> src)
-        => slice(src.cells.Reverse());
 
     /// <summary>
     /// Filters the input sequence via a supplied predicate
@@ -215,7 +206,7 @@ public static partial class zcore
     /// <param name="f">The predicate used to test values from the input sequence</param>
     /// <typeparam name="T">The input sequence type</typeparam>
     public static Z0.Slice<T> filter<T>(Traits.Slice<T> src, Func<T,bool> f)
-        => slice(src.cells.Where(f));
+        => slice(src.data.Where(f));
         
 
     /// <summary>

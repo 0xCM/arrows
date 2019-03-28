@@ -38,7 +38,7 @@ namespace Z0
 
     public readonly struct Polynomial<T>
     {
-        static readonly Traits.Field<T> Ops = ops<T,Traits.Field<T>>();
+        static readonly Traits.Field<T> Ops = Resolver.ops<T,Traits.Field<T>>();
         static readonly T FZero = Ops.zero;
 
         public static Polynomial<T> operator +(Polynomial<T> lhs, Polynomial<T> rhs)
@@ -50,13 +50,14 @@ namespace Z0
             => this.terms = Slice.define(terms);
 
         public override string ToString()
-            => concat(AsciSym.Plus, terms.cells);
+            => concat(AsciSym.Plus, terms.data);
 
         public intg<uint> degree()
-            => nonzero ? filter(reverse(terms), t => Ops.neq(t.coefficient, FZero)).cells.First().power : 0;
+            => nonzero 
+            ? terms.reverse().filter(t => Ops.neq(t.coefficient, FZero)).data.First().power : 0;
 
         public bool nonzero
-            => any(terms.cells, t => Ops.neq(t.coefficient, FZero));
+            => any(terms.data, t => Ops.neq(t.coefficient, FZero));
 
         public Polynomial<T> add(Polynomial<T> rhs)
         {

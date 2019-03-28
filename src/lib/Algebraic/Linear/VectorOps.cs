@@ -10,11 +10,13 @@ namespace Z0
     {
         public static VectorOps<N,T> define<N,T>()
             where N : TypeNat, new()
+            where T : Traits.Semiring<T>, new()
                 => CVectorSemiring<N,T>.Inhabitant.instance();
     }
 
     readonly struct CVectorSemiring<N, T> : TypeClass<CVectorSemiring<N, T>,VectorOps<N, T>, TVectorSemiring<N, T>>
         where N : TypeNat, new()
+        where T : Traits.Semiring<T>, new()
     {
         public static readonly CVectorSemiring<N, T> Inhabitant = default;
 
@@ -27,6 +29,7 @@ namespace Z0
 
     public readonly struct VectorOps<N, T> : TVectorSemiring<N, T>
         where N : TypeNat, new()
+        where T : Traits.Semiring<T>, new()
     {
         public static VectorOps<N, T> Inhabitant = default;
 

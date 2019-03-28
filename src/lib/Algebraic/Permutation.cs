@@ -32,6 +32,14 @@ namespace Z0
         public string format()
             => paren(space(embrace(left),embrace(right)));
     }
+
+    /// <summary>
+    /// See https://en.wikipedia.org/wiki/Inversion_(discrete_mathematics)
+    /// </summary>
+    public readonly struct Inversion<N>
+    {
+
+    }
     
     /// <summary>
     /// Defines a permutation as a bijective function 
@@ -49,7 +57,7 @@ namespace Z0
             => this.assigments = assigments;
 
         public ulong map(ulong index)            
-            =>  first(assigments.cells, a => a.k == index).TryMap(a => a.v).ValueOrDefault(index);
+            =>  first(assigments.data, a => a.k == index).TryMap(a => a.v).ValueOrDefault(index);
     }
 
 

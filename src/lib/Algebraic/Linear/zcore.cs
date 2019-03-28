@@ -28,6 +28,7 @@ public static partial class zcore
         where N : TypeNat, new()
             => new Z0.Vector<N,T>(components);
 
+    [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(T component)
         where N : TypeNat, new()
             => new Vector<N,T>(repeat<N,T>(component));

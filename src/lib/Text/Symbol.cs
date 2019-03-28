@@ -27,7 +27,7 @@ namespace Z0
             => not(lhs == rhs);
             
         public static implicit operator string(Symbol s)                
-            => string.Concat(s.data.cells.Select(x => x.data));
+            => string.Concat(s.data.data.Select(x => x.data));
 
         public Symbol(IEnumerable<Atom> data)
         {
@@ -59,7 +59,7 @@ namespace Z0
             => name != rhs;
 
         public Symbol append(Symbol rhs)
-            => new Symbol(data.cells.Concat(rhs.data.cells));
+            => new Symbol(data.data.Concat(rhs.data.data));
 
         public override string ToString() 
             => name;
@@ -73,6 +73,13 @@ namespace Z0
         public override bool Equals(Object rhs)
             => rhs is Symbol ? Equals((Symbol)rhs) : false;
 
+        public bool eq(Slice<Atom> lhs, Slice<Atom> rhs)
+            => throw new NotImplementedException();
+
+        public bool neq(Slice<Atom> lhs, Slice<Atom> rhs)
+        {
+            throw new NotImplementedException();
+        }
     }
    
 }

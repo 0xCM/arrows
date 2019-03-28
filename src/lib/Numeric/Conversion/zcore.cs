@@ -235,7 +235,7 @@ partial class zcore
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static intg<uint> uint32g(sbyte x)
-        => intg((uint)x);
+        => (uint)x;
 
     /// <summary>
     /// Effects sbyte => intg[ulong]
@@ -243,7 +243,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static intg<uint> uint32g(byte x)
-        => intg((uint)x);
+        => (uint)x;
 
     /// <summary>
     /// Effects short => intg[ulong]
@@ -251,7 +251,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static intg<uint> uint32g(short x)
-        => intg((uint)x);
+        => (uint)x;
 
     /// <summary>
     /// Effects ushort => intg[ulong]
@@ -259,7 +259,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static intg<uint> uint32g(ushort x)
-        => intg((uint)x);
+        => (uint)x;
 
     /// <summary>
     /// Effects int => intg[uint]
@@ -267,7 +267,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static intg<uint> uint32g(int x)
-        => intg((uint)x);
+        => (uint)x;
 
     /// <summary>
     /// Effects uint => intg[uint]
@@ -275,7 +275,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static intg<uint> uint32g(uint x)
-        => intg((uint)x);
+        => (uint)x;
 
     /// <summary>
     /// Effects sbyte => intg[ulong]
@@ -284,7 +284,7 @@ partial class zcore
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static intg<ulong> uint64g(sbyte x)
-        => intg((ulong)x);
+        => (ulong)x;
 
     /// <summary>
     /// Effects sbyte => intg[ulong]
@@ -292,7 +292,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static intg<ulong> uint64g(byte x)
-        => intg((ulong)x);
+        => (ulong)x;
 
     /// <summary>
     /// Effects short => intg[ulong]
@@ -300,7 +300,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static intg<ulong> uint64g(short x)
-        => intg((ulong)x);
+        => (ulong)x;
 
     /// <summary>
     /// Effects ushort => intg[ulong]
@@ -308,7 +308,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static intg<ulong> uint64g(ushort x)
-        => intg((ulong)x);
+        => (ulong)x;
 
     /// <summary>
     /// Effects int => intg[ulong]
@@ -316,7 +316,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static intg<ulong> uint64g(int x)
-        => intg((ulong)x);
+        => (ulong)x;
 
     /// <summary>
     /// Effects uint => intg[ulong]
@@ -324,7 +324,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static intg<ulong> uint64g(uint x)
-        => intg((ulong)x);
+        => (ulong)x;
 
     /// <summary>
     /// Effects ulong => intg[ulong]
@@ -369,7 +369,5 @@ partial class zcore
     [MethodImpl(Inline)]
     public static intg<T> max<T>(intg<T> x, intg<T> y)
         => x > y ? x : y;
-
-    
 
 }

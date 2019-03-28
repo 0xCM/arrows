@@ -19,23 +19,6 @@ partial class zcore
 {
     public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
 
-    /// <summary>
-    /// Retrives the operations of type O defined for a type T
-    /// </summary>
-    /// <typeparam name="T">The operand type</typeparam>
-    /// <typeparam name="O">The operations type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static O ops<T,O>()
-        => Resolver.ops<T,O>();
-
-    /// <summary>
-    /// Returns the equality operations for a specified type
-    /// </summary>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Traits.Equatable<T> equality<T>()
-        => ops<T,Traits.Equatable<T>>();
 
     /// <summary>
     /// Specifies the generic type definition for a specified generic type
@@ -188,13 +171,13 @@ partial class zcore
         => sw.ElapsedMilliseconds;
 
     /// <summary>
-    /// Demands truth that enforced with an exeption upon false
+    /// Demands truth that is enforced with an exeption upon false
     /// </summary>
     /// <param name="x">The value to test</param>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static bool demand(bool x)
-        => x ? x : throw new ArgumentException();
+    public static bool demand(bool x, string message = null)
+        => x ? x : throw new ArgumentException(message ?? "demand failed");
 
     /// <summary>
     /// Constructs a value if boolean predondition is true; otherwise, raises an exception
@@ -206,6 +189,5 @@ partial class zcore
         where T : new()
         => condition ? new T() 
         : throw new ArgumentException(msg ?? $"Precondition for construction of {type<T>().Name} unmet");
-
 }
 

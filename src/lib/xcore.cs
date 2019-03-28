@@ -36,5 +36,17 @@ namespace Z0
                 => commutative 
                 ?  cast<BinaryOp<T>>(new CommutativeOp<T>(f)) 
                 : new BinaryOp<T>(f);
+ 
+
+        /// <summary>
+        /// Formats a sequence of formattable things
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="sep"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public static string Format<T>(this IEnumerable<T> src, string sep = null)
+            where T : Traits.Formattable => string.Join(sep ?? ",", src.Select(x => x.format()));
     }
 }

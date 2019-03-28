@@ -9,11 +9,31 @@ namespace Z0
     using System.Collections.Generic;
     using static zcore;
 
-    public readonly struct Interval<K1,K2> 
-        : Demands.Smaller<K1,K2>, 
-          Traits.DiscreteInterval<uint>, 
-          Traits.ClosedInterval<uint>
-        where K1 : TypeNat, new()
+    partial class Traits
+    {
+
+        public interface NatInterval<K1,K2> : Traits.DiscreteInterval<uint>, Traits.ClosedInterval<uint>
+            where K1: TypeNat, Demands.Smaller<K1,K2>, new()
+            where K2: TypeNat, new()
+        {
+            
+        }
+        
+        public interface NatInterval<K, K1,K2> : NatInterval<K1,K2>
+            where K : NatInterval<K,K1,K2>, new()
+            where K1: TypeNat, Demands.Smaller<K1,K2>, new()
+            where K2: TypeNat, new()
+        {
+            
+        }
+
+    }
+
+    /// <summary>
+    /// Reifies a nondegenerate interval of natural numbers
+    /// </summary>
+    public readonly struct Interval<K1,K2> : Traits.NatInterval<Interval<K1,K2>, K1,K2>
+        where K1: TypeNat, Demands.Smaller<K1,K2>, new()
         where K2 : TypeNat, new()
         
     {

@@ -35,10 +35,7 @@ namespace Z0
         where K: TypeNat, new()
         where K1: TypeNat, new()
         where K2: TypeNat, new()
-    {
-        public static bool holds()
-            => natval<K>() >= natval<K1>() && natval<K>() <= natval<K2>();
-        
+    {        
         public Between(K n, K1 n1, K2 n2)
             => valid = demand(n.value >= n1.value && n.value <= n2.value);
         

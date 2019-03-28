@@ -8,9 +8,10 @@ namespace Latex
     using static zcore;
     using static LatexCmd;
 
-    public static class Arrows
+    public static class Math
     {
         public static readonly Syntax longright = syntax("⟶", "longrightarrow");
+        public static readonly Syntax times = syntax("×", "times");
     }
 
 }

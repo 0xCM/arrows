@@ -23,15 +23,12 @@ namespace Z0
 
         static ModN<N,T> Ops = ModOps<N,T>.Inhabitant;
         
-        static readonly intg<T> @base = natvalg<N,T>();
+        static readonly intg<T> @base = Nat.gval<N,T>();
 
         [MethodImpl(Inline)]
         public static implicit operator modg<N,T>(T data)
             => new modg<N,T>(data);
 
-        // [MethodImpl(Inline)]
-        // public static implicit operator T(mod<N,T> mod)
-        //     => mod.data;
 
         [MethodImpl(Inline)]
         public static bool operator == (modg<N,T> lhs, modg<N,T> rhs) 
@@ -56,9 +53,23 @@ namespace Z0
 
         public T data  {get;}
 
-        public IEnumerable<T> members 
+        IEnumerable<T> members 
             => Ops.members;
 
+        Addition<modg<N, T>> SemigroupA<modg<N, T>>.addition 
+            => new Addition<modg<N,T>>(this);
+
+        Multiplication<modg<N, T>> SemigroupM<modg<N, T>>.multiplication 
+            => new Multiplication<modg<N,T>>(this);
+
+        modg<N, T> Unital<modg<N, T>>.one 
+            => new modg<N,T>(Ops.one);
+
+        IEnumerable<modg<N, T>> ModN<N, modg<N, T>>.members 
+            => members.Select(x => new modg<N,T>(x));
+
+        public modg<N, T> zero 
+            => new modg<N,T>(Ops.zero);
 
         [MethodImpl(Inline)]
         public modg<N, T> add(modg<N, T> rhs)
@@ -96,6 +107,36 @@ namespace Z0
 
         public bool Equals(modg<N, T> rhs)
             => eq(rhs);
+
+        modg<N, T> ModN<N, modg<N, T>>.reduce(modg<N, T> src)
+            => throw new NotImplementedException();
+
+        modg<N, T> Negatable<modg<N, T>>.negate(modg<N, T> x)
+            => throw new NotImplementedException();
+
+        modg<N, T> Negatable<modg<N, T>>.sub(modg<N, T> lhs, modg<N, T> rhs)
+            => throw new NotImplementedException();
+
+        bool Equatable<modg<N, T>>.eq(modg<N, T> lhs, modg<N, T> rhs)
+            => lhs.eq(rhs);
+
+        bool Equatable<modg<N, T>>.neq(modg<N, T> lhs, modg<N, T> rhs)
+            => lhs.neq(rhs);
+
+        modg<N, T> LeftDistributive<modg<N, T>>.distribute(modg<N, T> lhs, (modg<N, T> x, modg<N, T> y) rhs)
+            => rhs.x.mul(lhs).add(rhs.y.mul(lhs));
+
+        modg<N, T> RightDistributive<modg<N, T>>.distribute((modg<N, T> x, modg<N, T> y) lhs, modg<N, T> rhs)
+            => lhs.x.mul(rhs).add(lhs.y.mul(rhs));
+
+        modg<N, T> Multiplicative<modg<N, T>>.mul(modg<N, T> lhs, modg<N, T> rhs)
+            => lhs.mul(rhs);
+
+        modg<N, T> Additive<modg<N, T>>.add(modg<N, T> lhs, modg<N, T> rhs)
+            => lhs.add(rhs);
+
+        bool IEquatable<modg<N, T>>.Equals(modg<N, T> rhs)
+            => this.eq(rhs);
     }
 
 }

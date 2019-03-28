@@ -8,25 +8,27 @@ namespace Z0
     partial class Traits
     {
         /// <summary>
-        /// Characterizs operations over a type that has infinitely many refications
+        /// Characterizes operational reversiblity
         /// </summary>
-        /// <typeparam name="T">The type over which operations are defined</typeparam>
-        public interface Infinite<T> 
+        /// <typeparam name="T">The type for which a reverse operator is defined</typeparam>
+        public interface Reversible<T> 
         
         {
-            
+            T reverse(T src);
         }
 
         /// <summary>
-        /// Characterizes a Unbounded structural number
+        /// Characterizes a reversible structure
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
-        /// <typeparam name="T">The individual type</typeparam>
-        public interface Infinite<S,T> : Infinite<S>, Structure<S,T>
-            where S : Infinite<S,T>, new()
+        /// <typeparam name="T">The underlying type</typeparam>
+        public interface Reversible<S,T> : Reversible<S>
+            where S : Reversible<S,T>, new()
         {
-
+            S reverse();
         }    
+
+
     }
 
 

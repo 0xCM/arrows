@@ -4,6 +4,19 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    using System;
+
+    /// <summary>
+    /// Identifies a typeclass instance
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Struct)]
+    public class TypeClassAttribute : Attribute
+    {
+        public TypeClassAttribute(Type TraitType)
+            => this.TraitType = TraitType;
+        public Type TraitType {get;}
+    }
+    
     /// <summary>
     /// Characterizes a type for which exactly one value may exist and that value
     /// must be obtainable via a parameterless new construction

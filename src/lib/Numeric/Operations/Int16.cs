@@ -14,8 +14,8 @@ namespace Z0
     using systype = System.Int16;
     using opstype = Int16Ops;
 
-    internal readonly struct Int16Ops : SignedFiniteRealInt<systype>,
-        TypeClass<opstype,FiniteSignedInt<systype>,systype>
+    [TypeClass(typeof(RealFiniteInt<systype>))]
+    internal readonly struct Int16Ops : RealFiniteInt<systype>
 
     {        
         public static readonly opstype Inhabitant = default;

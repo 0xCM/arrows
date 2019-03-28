@@ -16,38 +16,57 @@ using static Z0.Traits;
 
 partial class zcore
 {
-    /// <summary>
-    /// Retrieves semigroup operations for a specified type
-    /// </summary>
-    [MethodImpl(Inline)]
-    public static Traits.Semigroup<T> semigroup<T>() 
-        => ops<T,Traits.Semigroup<T>>();
-
 
     /// <summary>
-    /// Retrieves semiring operations for a specified type
+    /// Determines whether two lists, adjudicated by positional elemental equality, are equal
     /// </summary>
-    [MethodImpl(Inline)]
-    public static Traits.Semiring<T> semiring<T>() 
-        => ops<T,Traits.Semiring<T>>();
+    /// <typeparam name="T">The type of value object</typeparam>
+    /// <param name="lhs">The first list</param>
+    /// <param name="rhs">The second list</param>
+    /// <returns></returns>
+    public static bool eq<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+        where T : Traits.Equatable<T>
+    {    
+        if (lhs == null || rhs == null || lhs.Count != rhs.Count)
+            return false;
 
+        var equality = ops<T,Traits.Equatable<T>>();
 
+        for (int i = 0; i < lhs.Count; i++)
+            if(equality.neq(lhs[i], rhs[i]))
+                return false;
+        return true;
+    }
 
     /// <summary>
-    /// Retrieves the ordering operations defined for a specified type
+    /// Determines whether two sequences, adjudicated by positional elemental equality, are equal
     /// </summary>
-    /// <typeparam name="T">The system type</typeparam>
-    [MethodImpl(Inline)]
-    public static Ordered<T> ordered<T>()
-        => ops<T,Ordered<T>>();
+    /// <typeparam name="T">The type of value object</typeparam>
+    /// <param name="lhs">The first list</param>
+    /// <param name="rhs">The second list</param>
+    /// <returns></returns>
+   public static bool eq<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
+        where T : Traits.Equatable<T>
+    {    
+        
+        var equality = ops<T,Traits.Equatable<T>>();
+        var lenum = lhs.GetEnumerator();
+        var renum = rhs.GetEnumerator();
+        var lnext = lenum.MoveNext();
+        var rnext = renum.MoveNext();
+        while(lnext || rnext)
+        {
+            if( (lnext & not(rnext)) || (rnext && not(lnext)))
+                return false;
+            
+            if(equality.neq(lenum.Current, renum.Current))
+                return false;
 
+            lnext = lenum.MoveNext();
+            rnext = renum.MoveNext();
+        }
 
-    /// <summary>
-    /// Retrieves the stepwise operations defined for a specified type
-    /// </summary>
-    /// <typeparam name="T">The system type</typeparam>
-    [MethodImpl(Inline)]
-    public static Stepwise<T> stepwise<T>()
-        => ops<T,Stepwise<T>>();
-
+        return true;
+    }
+ 
 }

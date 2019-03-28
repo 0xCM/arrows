@@ -10,10 +10,10 @@ namespace Z0
     partial class Demands
     {
         /// <summary>
-        /// Characterizes a nonzero natural number
+        /// Characterizes an odd natural number
         /// </summary>
-        /// <typeparam name="K">A nonzero nat type</typeparam>
-        public interface Nonzero<K> : Demand<K>, Larger<K,N0>
+        /// <typeparam name="K">An Odd nat type</typeparam>
+        public interface Odd<K> : Demand<K>
             where K : TypeNat, new()
         {
 
@@ -24,11 +24,11 @@ namespace Z0
     /// <summary>
     /// Reifies evidence that k != 0
     /// </summary>
-    public readonly struct Nonzero<K> : Demands.Nonzero<K>
+    public readonly struct Odd<K> : Demands.Odd<K>
         where K: TypeNat, new()
     {
-        public Nonzero(K n)
-            => valid = demand(n.value != 0);
+        public Odd(K n)
+            => valid = demand(n.value % 2 != 0);
         
         public bool valid {get;}
 

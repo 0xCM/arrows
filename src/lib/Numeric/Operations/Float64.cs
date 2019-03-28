@@ -15,8 +15,7 @@ namespace Z0
     using opstype = Float64Ops;
     using SysMath = System.Math;
 
-    internal readonly struct Float64Ops :  FiniteRealFloat<systype>, 
-        TypeClass<opstype,FiniteFloat<systype>,systype>
+    internal readonly struct Float64Ops :  RealFiniteFloat<systype> 
     {        
         public static readonly opstype Inhabitant = default;
     

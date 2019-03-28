@@ -15,10 +15,10 @@ namespace Z0
     /// <summary>
     /// Encapsulates a linear data segment with length determined at runtime
     /// </summary>
-    public readonly struct Slice<T> : Traits.Slice<T>, IEquatable<Slice<T>>
+    public readonly struct Slice<T> : Traits.Slice<T>, IEquatable<Slice<T>>, IEnumerable<T>, Traits.Reversible<Slice<T>,T>, Traits.Formattable
     {                    
         public static Slice<T> operator + (Slice<T> lhs, Slice<T> rhs)
-            => new Slice<T>(lhs.cells.Concat(rhs.cells));
+            => new Slice<T>(lhs.data.Concat(rhs.data));
 
         public static bool operator == (Slice<T> lhs, Slice<T> rhs)
             => lhs.Equals(rhs);
@@ -26,7 +26,7 @@ namespace Z0
         public static bool operator != (Slice<T> lhs, Slice<T> rhs)
             => not(lhs == rhs);
 
-        public IReadOnlyList<T> cells {get;}
+        public IReadOnlyList<T> data {get;}
 
         public static implicit operator Slice<T>(T[] src)
             => new Slice<T>(src);
@@ -34,25 +34,25 @@ namespace Z0
         public Slice(params T[] src)
         {
             this.length = src.Length();
-            this.cells = src;
+            this.data = src;
         }
 
         public Slice(IReadOnlyList<T> src)
         {
-            this.cells = src;
-            this.length = this.cells.Length();
+            this.data = src;
+            this.length = this.data.Length();
         }
 
         public Slice(IEnumerable<T> src)
         {
-            this.cells = src.ToArray();
-            this.length = this.cells.Length();
+            this.data = src.ToArray();
+            this.length = this.data.Length();
         }
 
         public intg<uint> length {get;}
 
         public T this[int i] 
-            => cells[i];
+            => data[i];
 
         public (Slice<T> lhs, Slice<T> rhs) conform(Slice<T> rhs, T filler)
         {
@@ -66,21 +66,41 @@ namespace Z0
                 return (this, rhs + filled);
             else
                 return (this + filled, rhs);
-
         }
 
         public Slice<N,T> ToNatLenth<N>()
             where N : TypeNat, new()
-                => new Slice<N,T>(cells);
+                => new Slice<N,T>(data);
 
-        public override string ToString() 
-            => embrace(string.Join(',' ,cells));
+        /// <summary>
+        /// Reverses the slice elements
+        /// </summary>
+        [MethodImpl(Inline)]   
+        public Z0.Slice<T> reverse()
+            => slice(data.Reverse());
 
-        // public IEnumerator<T> GetEnumerator()
-        //     => cells.GetEnumerator();
+        [MethodImpl(Inline)]   
+        Slice<T> Traits.Reversible<Slice<T>>.reverse(Slice<T> src)
+            => src.reverse();
 
-        // IEnumerator IEnumerable.GetEnumerator()
-        //     => GetEnumerator();
+        /// <summary>
+        /// Reverses the slice elements
+        /// </summary>
+        [MethodImpl(Inline)]   
+        public Z0.Slice<T> filter(Func<T,bool> predicate)
+            => slice(data.Where(predicate));
+
+        /// <summary>
+        /// Renders the slice as a comma-delimted parenthetical value
+        /// </summary>
+        public string format()
+            => paren(csv(data));
+
+        public IEnumerator<T> GetEnumerator()
+            => data.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
+            => GetEnumerator();
 
         public bool Equals(Slice<T> rhs)
         {
@@ -98,112 +118,83 @@ namespace Z0
             => rhs is Slice<T> ? Equals((Slice<T>)rhs) : false;
 
         public override int GetHashCode()
-            => cells.GetHashCode();
+            => data.GetHashCode();
+
+        public override string ToString()
+            => format();
+
     }        
 
 
     /// <summary>
     /// Encapsulates a linear data segment with naturally-typed length
     /// </summary>
-    public readonly struct Slice<N,T> : Traits.Slice<Slice<N,T>,N,T>
+    public readonly struct Slice<N,T> : Traits.Slice<Slice<N,T>,N,T>, IEnumerable<T>, Traits.Reversible<Slice<N,T>,T>
         where N : TypeNat, new()
     {                    
         
-        static readonly uint Length = natval<N>();
-
-        static readonly Traits.Semiring<T> Ops = semiring<T>();
-
-        [MethodImpl(Inline)]
-        static Slice<N,U> apply<U>(Traits.Slice<N,T> s1, Traits.Slice<N,T> s2, Func<T,T,U> f)
-        {
-            var result = array<U>(Length);
-            for(var i=0; i< Length; i++)
-                result[i] = f(s1[i], s2[i]);
-            return slice<N,U>(result);
-        }
-
-       [MethodImpl(Inline)]
-       public static T reduce(Traits.Slice<N,T> s, Func<T,T,T> reducer)
-            => fold(s.cells,reducer, Ops.zero);
 
         /// <summary>
-        /// Calculates the component-wise sum of two slices via a semigroup
-        /// </summary>
-        /// <param name="sg">The semigroup defining the desired addition operator</param>
-        /// <param name="s1">The first slice</param>
-        /// <param name="s2">the second slice</param>
-        /// <returns></returns>
-        [MethodImpl(Inline)]
-        public static Slice<N,T> add(Traits.Slice<N,T> s1, Traits.Slice<N,T> s2)
-            => apply(s1,s2,Ops.add);
-
-        /// <summary>
-        /// Calculates the component-wise product of two slices via a semigroup
-        /// </summary>
-        /// <param name="sg">The semigroup defining the desired product operator</param>
-        /// <param name="a">The first slice</param>
-        /// <param name="b">the second slice</param>
-        /// <typeparam name="N">The natural length type</typeparam>
-        /// <typeparam name="T">The semigroup element type</typeparam>
-        /// <returns></returns>
-        public static Slice<N,T> mul(Traits.Slice<N,T> a, Traits.Slice<N,T> b)
-            => apply(a,b,Ops.mul);
-
-        /// <summary>
-        /// Sums the slice elements and returns the result
+        /// Interprets an array as a slice
         /// </summary>
         /// <param name="s">The source slice</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static T sum(Traits.Slice<N,T> s)
-            => reduce(s, Ops.add);
-
-        /// <summary>
-        /// Computes the component-wise square of a slice
-        /// </summary>
-        /// <param name="s">The source slice</param>
-        /// <returns></returns>
-        [MethodImpl(Inline)]
-        public static Slice<N,T> square(Traits.Slice<N,T> s)
-            => apply(s, s, Ops.mul);
-
-
-        public IReadOnlyList<T> cells {get;}
-
         public static implicit operator Slice<N,T>(T[] src)
             => new Slice<N,T>(src);
+        
+        static readonly uint Length = natval<N>();
 
         public Slice(params T[] src)
         {
-            this.cells = src;
-            this.length = natcheck<N>(cells.Length());
+            this.data = src;
+            this.length = Nat.claim<N>(data.Length());
         }
 
         public Slice(IReadOnlyList<T> src)
         {
-            this.cells = src;
-            this.length = natcheck<N>(cells.Length());
+            this.data = src;
+            this.length = Nat.claim<N>(data.Length());
         }
 
         public Slice(IEnumerable<T> src)
         {
-            this.cells = src.ToArray();
-            this.length = natcheck<N>(cells.Length());
+            this.data = src.Take((int)natval<N>()).ToArray();
+            this.length = Nat.claim<N>(this.data.Count);
         }
+
+        public IReadOnlyList<T> data {get;}
 
         public intg<uint> length {get;}
 
         public T this[int i] 
-            => cells[i];
+            => data[i];
 
-        public override string ToString() 
-            => embrace(string.Join(',' ,cells));
+        /// <summary>
+        /// Renders the slice as a comma-delimted parenthetical value
+        /// </summary>
+        [MethodImpl(Inline)]   
+        public string format()
+            => paren(csv(data));
 
-        // public IEnumerator<T> GetEnumerator()
-        //     => cells.GetEnumerator();
+        /// <summary>
+        /// Reverses the slice elements
+        /// </summary>
+        [MethodImpl(Inline)]   
+        public Z0.Slice<N,T> reverse()
+            => slice<N,T>(data.Reverse());
 
-        // IEnumerator IEnumerable.GetEnumerator()
-        //     => GetEnumerator();
+        public IEnumerator<T> GetEnumerator()
+            => data.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
+            => GetEnumerator();
+ 
+        public override string ToString()
+            => format();
+
+        Slice<N, T> Traits.Reversible<Slice<N,T>>.reverse(Slice<N, T> src)
+            => src.reverse();
+
     }        
 
 }

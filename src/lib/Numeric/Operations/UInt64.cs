@@ -15,8 +15,8 @@ namespace Z0
     using opstype = UInt64Ops;
 
 
-    internal readonly struct UInt64Ops : UnsignedFiniteRealInt<systype>,
-        TypeClass<opstype,FiniteNatural<systype>,systype>
+    [TypeClass(typeof(RealFiniteUInt<systype>))]
+    internal readonly struct UInt64Ops : RealFiniteUInt<systype>
     {
         public static readonly opstype Inhabitant = default;
     

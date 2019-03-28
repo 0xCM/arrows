@@ -14,21 +14,47 @@ namespace Z0
 
     public static class Vector
     {
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> define<N,T>(Dim<N> dim, params T[] src) 
+                where N : TypeNat, new() => new Vector<N,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> define<N,T>(params T[] src) 
+                where N : TypeNat, new() => new Vector<N,T>(src);
+
+
         [MethodImpl(Inline)]
         public static Vector<N,T> add<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
-                where N : TypeNat, new() => Slice.add(lhs.cells,rhs.cells);
+            where N : TypeNat, new() 
+            where T : Traits.Semiring<T>, new()
+                => Slice.add(lhs.cells,rhs.cells);
 
         [MethodImpl(Inline)]
         public static Vector<N,T> mul<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
-                where N : TypeNat, new() => Slice.mul(lhs.cells,rhs.cells);
+            where N : TypeNat, new() 
+            where T : Traits.Semiring<T>, new()
+                => Slice.mul(lhs.cells,rhs.cells);
 
         [MethodImpl(Inline)]
         public static T sum<N,T>(Vector<N,T> x) 
-                where N : TypeNat, new() => Slice.sum(x.cells);
+            where N : TypeNat, new() 
+            where T : Traits.Semiring<T>, new()
+                => Slice.sum(x.cells);
+
+        // [MethodImpl(Inline)]
+        // public static Vector<N,T> NatVec<N,T>(this Z0.TypeNat<N> n, params T[] components)
+        //     where N : TypeNat, new()
+        //         => new Vector<N, T>(components);
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> NatVec<N,T>(this Z0.TypeNat<N> n, IEnumerable<T> components)
+            where N : TypeNat, new()
+                => new Vector<N, T>(components);
 
     }
 
-    public readonly struct Vector<N, T> : Traits.Vector<N, T>, IEnumerable<T>
+    public readonly struct Vector<N, T> : Traits.Vector<N, T>, IEnumerable<T>, Traits.Formattable
         where N : TypeNat, new()        
     {
 
@@ -50,7 +76,7 @@ namespace Z0
         /// <typeparam name="T">THe component type</typeparam>
         [MethodImpl(Inline)]   
         public static implicit operator Vector<N,T>(Slice<N,T> src)
-            => new Vector<N,T>(src.cells);
+            => new Vector<N,T>(src.data);
 
         /// <summary>
         /// The underlying data
@@ -59,15 +85,15 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public Vector(params T[] src)
-            => cells = natcheck<N,T>(src);
+            => cells = slice<N,T>(src);
 
         [MethodImpl(Inline)]   
         public Vector(IEnumerable<T> src)
-            => cells = natcheck<N,T>(src.ToArray());
+            => cells = slice<N,T>(src);
 
         [MethodImpl(Inline)]   
         public Vector(IReadOnlyList<T> src)
-            => cells = new Slice<N,T>(natcheck<N,T>(src));
+            => cells = slice<N,T>(src);
 
         [MethodImpl(Inline)]   
         public Vector(Slice<N,T> src)
@@ -75,6 +101,10 @@ namespace Z0
 
         public T this[int index] 
             => cells[index];
+
+        [MethodImpl(Inline)]   
+        public T cell(uint index)
+            => cells[(int)index];
 
         public uint length 
             => cells.length;
@@ -84,16 +114,19 @@ namespace Z0
             => new Covector<N,T>(cells);
 
         public override string ToString()
-            => cells.ToString();
+            => format();
 
         [MethodImpl(Inline)]   
         public IEnumerator<T> GetEnumerator()
-            => cells.cells.GetEnumerator();
+            => cells.data.GetEnumerator();
 
         [MethodImpl(Inline)]   
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
-}
+
+        public string format()
+            => cells.format();
+    }
 
  
 

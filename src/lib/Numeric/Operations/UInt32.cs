@@ -14,8 +14,8 @@ namespace Z0
     using systype = System.UInt32;
     using opstype = UInt32Ops;
     
-    internal readonly struct UInt32Ops : UnsignedFiniteRealInt<systype>,
-        TypeClass<opstype,FiniteNatural<systype>,systype>
+    [TypeClass(typeof(RealFiniteUInt<systype>))]
+    internal readonly struct UInt32Ops : RealFiniteUInt<systype>
     {
         public static readonly opstype Inhabitant = default;
     

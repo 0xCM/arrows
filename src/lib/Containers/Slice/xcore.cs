@@ -14,19 +14,20 @@ namespace Z0
     partial class xcore
     {
         [MethodImpl(Inline)]
-        public static Slice<N,T> Slice<N,T>(this Z0.TypeNat<N> nat, IEnumerable<T> src)
+        public static Slice<N,T> NatSlice<N,T>(this Z0.TypeNat<N> n, IEnumerable<T> src)
             where N : TypeNat, new()
                 => new Slice<N, T>(src);
-    
+
+        [MethodImpl(Inline)]
+        public static Slice<N,T> NatSlice<N,T>(this Z0.TypeNat<N> n, params T[] src)
+            where N : TypeNat, new()
+                => new Slice<N, T>(src);
+
         [MethodImpl(Inline)]
         public static Vector<N,T> ToVector<N,T>(this Slice<N,T> src)
             where N : TypeNat, new()
-                => vector<N,T>(src.cells);
+                => vector<N,T>(src.data);
 
-        [MethodImpl(Inline)]
-        public static Vector<N,T> Vector<N,T>(this Z0.TypeNat<N> nat, params T[] components)
-            where N : TypeNat, new()
-                => new Vector<N, T>(components);
 
         /// <summary>
         /// Constructs a slice from a supplied sequence

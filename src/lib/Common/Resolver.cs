@@ -61,7 +61,7 @@ namespace Z0
         /// <typeparam name="T">The operand type</typeparam>
         [MethodImpl(Inline)]
         public static R define<R,T>() 
-            where R : TypeClass<R,T>, new()
+            where R : new()
                 => (R)index.GetOrAdd(type<T>(), _ => new R());
 
         /// <summary>

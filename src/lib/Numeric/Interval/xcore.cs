@@ -16,6 +16,7 @@ namespace Z0
     public static class Interval
     {
         public static IEnumerable<real<T>> partition<T>(Traits.Interval<real<T>> src, real<T> width)
+            where T: IConvertible
         {
             if(width.neq(real<T>.Zero))
             {            

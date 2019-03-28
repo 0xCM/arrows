@@ -15,8 +15,8 @@ namespace Z0
     using systype = System.SByte;
     using opstype = Int8Ops;
 
-    internal readonly struct Int8Ops : SignedFiniteRealInt<systype>
-        , TypeClass<opstype,FiniteSignedInt<systype>, systype>
+    [TypeClass(typeof(RealFiniteInt<systype>))]
+    internal readonly struct Int8Ops : RealFiniteInt<systype>
     {        
         public static readonly opstype Inhabitant = default;
     

@@ -14,7 +14,25 @@ namespace Z0
 
     partial class Traits
     {
-        public interface Pow<S,B,E> : NatOp<S,B,E>
+        /// <summary>
+        /// Characterizes a natural k such that b:B & e:E => k = b^e
+        /// </summary>
+        /// <typeparam name="B">The base type</typeparam>
+        /// <typeparam name="E">The exponent type</typeparam>
+        public interface Pow<B,E> : TypeNat
+            where B : TypeNat, new()
+            where E : TypeNat, new()
+        {
+
+        }
+
+        /// <summary>
+        /// Characterizes the reification of a natural k such that 
+        /// b:B & e:E => k = b^e
+        /// </summary>
+        /// <typeparam name="B">The base type</typeparam>
+        /// <typeparam name="E">The exponent type</typeparam>
+        public interface Pow<S,B,E> : Pow<B,E>, NatOp<S,B,E>
             where S : Pow<S,B,E>, new()
             where B : TypeNat, new()
             where E : TypeNat, new()
@@ -23,20 +41,13 @@ namespace Z0
         }
 
 
-        /// <summary>
-        /// Characterizes a natural base raised to a natural power
-        /// </summary>
-        public interface PrimePower<S,B,P> : Pow<S, B, P>
-            where S : PrimePower<S,B,P>, new()
-            where B : TypeNat, new()
-            where P : TypeNat, Demands.Prime<P>,  new()
-        {
-
-        }
-
+    
     }
 
-    public readonly struct Pow<B, E> : Traits.Pow<Pow<B, E>, B, E>,
+    /// <summary>
+    /// Reifies a natural k such that b:B & e:E => k = b^e
+    /// </summary>
+    public readonly struct Pow<B,E> : Traits.Pow<Pow<B, E>, B, E>,
           IEquatable<Pow<B,E>>,
           IEquatable<NatSeq>
             where B : TypeNat, new()
@@ -54,11 +65,14 @@ namespace Z0
         public static readonly NatSeq Seq
             = Nat.reflect(Digits);
 
-        public uint value 
-            => Value;
-
         public TypeNat rep 
             => Rep;
+
+        public NatSeq seq
+            => Seq;
+
+        public uint value 
+            => Value;
 
         public byte[] digits()
             => Digits;
@@ -82,7 +96,4 @@ namespace Z0
             => Value == other.value;
 
     }
-
-
-
 }

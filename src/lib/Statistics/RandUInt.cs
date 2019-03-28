@@ -11,11 +11,18 @@ namespace Z0
 
     using static zcore;
 
+    public interface Randomizer<T>
+        where T: IConvertible
+    {
+        real<T> next();
+        IEnumerable<real<T>> next(int count);
+    }
+
     /// <summary>
     /// Defines pseudorandom number generator
     /// </summary>
     /// <remarks> Adapted from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
-    public class RandUInt64 : Randomizer<ulong>
+    public class RandUInt : Randomizer<ulong>
     {
         /* When supplied to the jump function, it is equivalent
         to 2^128 calls to next(); it can be used to generate 2^128
@@ -47,13 +54,13 @@ namespace Z0
 
         readonly ulong[] seed;
 
-        public RandUInt64()
+        public RandUInt()
         {
             seed = guiseed().ToArray();
             jump(J128);
         }
 
-        public RandUInt64(ulong[] seed)
+        public RandUInt(ulong[] seed)
         {
             this.seed = seed;
         }
@@ -108,6 +115,23 @@ namespace Z0
             for(var j = 0; j<count; j++)
                 yield return next();
         }
+
+        public IEnumerable<real<ulong>> next(int count, ulong min, ulong max)
+        {
+            var width = max - min;
+            var offset = min + 1;
+            foreach(var n in next(count))
+                yield return (n % width + offset);
+        }
+
+        public IEnumerable<real<uint>> next(int count, uint min, uint max)
+            => next(count, (ulong)min, (ulong)max).Select(x => real<uint>(x));
+
+        public IEnumerable<real<ushort>> next(int count, ushort min, ushort max)
+            => next(count, (ulong)min, (ulong)max).Select(x => real<ushort>(x));
+
+        public IEnumerable<real<byte>> next(int count, byte min, byte max)
+            => next(count, (ulong)min, (ulong)max).Select(x => real<byte>(x));
 
     }
 

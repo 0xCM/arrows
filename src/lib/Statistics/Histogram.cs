@@ -15,11 +15,12 @@ namespace Z0
     public static class Histogram
     {
         public static Histogram<T> define<T>(T min, T max, T? binwidth = null)
-            where T : struct
+            where T : struct, IConvertible 
              => new Histogram<T>(min,max,binwidth);
     }
     
     public class Histogram<T> : Traits.Formattable
+        where T: IConvertible
     {
         
         public Histogram(real<T> min, real<T> max, real<T>? binwidth = null)

@@ -20,7 +20,14 @@ namespace Z0
         public interface Demand<K1> : Constraint
             where K1 : TypeNat, new()
         {
-
+            /// <summary>
+            /// Specifies whether reification satisfies demand
+            /// </summary>
+            /// <remarks>
+            /// Any attempt to instantiate an invalid reification should fail
+            /// and thus this attribute should always be true
+            /// </remarks>
+            bool valid {get;}
         }
         
         /// <summary>

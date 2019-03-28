@@ -10,7 +10,7 @@ namespace Z0
         /// Characterizes finite unsigned integer operations over byte,
         /// ushort, uint and ulong values
         /// </summary>
-        public interface UnsignedFiniteRealInt<T> : FiniteNatural<T>, FiniteReal<T>        
+        public interface RealFiniteUInt<T> : FiniteNatural<T>, FiniteReal<T>        
         {
             
         }
@@ -19,7 +19,7 @@ namespace Z0
         /// Characterizes finite signed integer operations over sbyte,
         /// short, int and long values
         /// </summary>
-        public interface SignedFiniteRealInt<T> : FiniteSignedInt<T>, FiniteReal<T>
+        public interface RealFiniteInt<T> : FiniteSignedInt<T>, FiniteReal<T>
         {
             
         }
@@ -27,7 +27,7 @@ namespace Z0
         /// <summary>
         /// Characterizes real floating point operations that include float and double
         /// </summary>
-        public interface FiniteRealFloat<T> : FiniteFloat<T>, FiniteReal<T>
+        public interface RealFiniteFloat<T> : FiniteFloat<T>, FiniteReal<T>
         {
             
         }
@@ -35,7 +35,7 @@ namespace Z0
         /// <summary>
         /// Characterizes BigInteger operations
         /// </summary>
-        public interface SignedInfiniteRealInt : Real<BigInteger>,  InfiniteSignedInt<BigInteger>
+        public interface RealInfiniteInt : Real<BigInteger>,  InfiniteSignedInt<BigInteger>
         {
 
         }

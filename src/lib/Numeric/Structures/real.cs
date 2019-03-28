@@ -12,9 +12,10 @@ namespace Z0
     
     using static Traits;
 
-    public readonly struct real<T> : Real<real<T>, T>
+    public readonly struct real<T> : Real<real<T>, T>, IConvertible
+        where T : IConvertible
     {
-        static readonly Real<T> Ops = ops<T,Real<T>>();
+        static readonly Real<T> Ops = Resolver.ops<T,Real<T>>();
         static readonly real<T> Epsilon = Ops.ε;
 
         public static readonly real<T> Zero = Ops.zero;
@@ -125,8 +126,9 @@ namespace Z0
             => Epsilon;
 
         [MethodImpl(Inline)]
-        public real<Y> convert<Y>()            
-            => zcore.convert<Y>(data);
+        public real<Y> convert<Y>()    
+            where Y : IConvertible        
+                => zcore.convert<Y>(data);
 
         [MethodImpl(Inline)]
         public real<T> inc()
@@ -456,6 +458,7 @@ namespace Z0
         bool Equatable<real<T>>.neq(real<T> lhs, real<T> rhs)
             => lhs.neq(rhs);
 
+        #region Trigonometric (Operations)
         [MethodImpl(Inline)]
         real<T> Trigonmetric<real<T>>.sin(real<T> x)
             => x.sin();
@@ -503,6 +506,77 @@ namespace Z0
         [MethodImpl(Inline)]
         real<T> Trigonmetric<real<T>>.atanh(real<T> x)
             => x.atanh();
+        #endregion
+
+        #region IConvertible
+        [MethodImpl(Inline)]
+        TypeCode IConvertible.GetTypeCode()
+            => data.GetTypeCode();
+
+        [MethodImpl(Inline)]
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+            => data.ToBoolean(provider);
+ 
+        [MethodImpl(Inline)]
+        byte IConvertible.ToByte(IFormatProvider provider)
+            => data.ToByte(provider);
+
+        [MethodImpl(Inline)]
+        char IConvertible.ToChar(IFormatProvider provider)
+            => data.ToChar(provider);
+
+        [MethodImpl(Inline)]
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+            => data.ToDateTime(provider);
+
+        [MethodImpl(Inline)]
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+            => data.ToDecimal(provider);
+
+        [MethodImpl(Inline)]
+        double IConvertible.ToDouble(IFormatProvider provider)
+            => data.ToDouble(provider);
+
+        [MethodImpl(Inline)]
+        short IConvertible.ToInt16(IFormatProvider provider)
+            => data.ToInt16(provider);
+
+        [MethodImpl(Inline)]
+        int IConvertible.ToInt32(IFormatProvider provider)
+            => data.ToInt32(provider);
+
+        [MethodImpl(Inline)]
+        long IConvertible.ToInt64(IFormatProvider provider)
+            => data.ToInt64(provider);
+
+        [MethodImpl(Inline)]
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+            => data.ToSByte(provider);
+
+        [MethodImpl(Inline)]
+        float IConvertible.ToSingle(IFormatProvider provider)
+            => data.ToSingle(provider);
+
+        [MethodImpl(Inline)]
+        string IConvertible.ToString(IFormatProvider provider)
+            => data.ToString(provider);
+
+        [MethodImpl(Inline)]
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+            => data.ToType(conversionType, provider);
+
+        [MethodImpl(Inline)]
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+            => data.ToUInt16(provider);
+
+        [MethodImpl(Inline)]
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+            => data.ToUInt32(provider);
+
+        [MethodImpl(Inline)]
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+            => data.ToUInt64(provider);
+        #endregion
 
     }
 }

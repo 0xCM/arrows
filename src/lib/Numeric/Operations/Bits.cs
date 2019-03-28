@@ -296,9 +296,7 @@ namespace Z0
         /// <param name="mantissa">The value's mantissa</param>
         /// <remarks>Adapted from https://stackoverflow.com/questions/389993/extracting-mantissa-and-exponent-from-double-in-c-sharp</remarks>        
         public static (Sign sign, int exponent, long mantissa)  split (double d)
-        {        
-
-            
+        {                    
             // Translate the double into sign, exponent and mantissa.
             long bits = BitConverter.DoubleToInt64Bits(d);
             // Note that the shift is sign-extended, hence the test against -1 not 1

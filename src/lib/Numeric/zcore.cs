@@ -16,12 +16,76 @@ using static Z0.Traits;
 partial class zcore
 {
     /// <summary>
+    /// Defines a slice of generic integers
+    /// </summary>
+    /// <param name="src">The source values</param>
+    /// <typeparam name="T">The underlying primitive type</typeparam>
+    /// <remarks>This function exists primarily to facilitate type inference</remarks>
+    // public static Z0.Slice<intg<T>> integers<T>(params intg<T>[] src)
+    //     => Slice.define<intg<T>>(src);
+
+
+    [MethodImpl(Inline)]
+    static intg<T>[] igarray<T>(params T[] src)
+    {
+        var dst = new intg<T>[src.Length];
+        for(var i = 0; i<src.Length; i++)
+            dst[i] = src[i];
+        return dst;
+    }
+
+    [MethodImpl(Inline)]
+    static Z0.Slice<intg<T>> igslice<T>(params T[] src)
+        => slice(from x in src select intg<T>(x));
+
+    
+    [MethodImpl(Inline)]
+    public static Z0.Slice<intg<byte>> uintg(params byte[] src)
+        => igslice(src);
+
+    
+    [MethodImpl(Inline)]
+    public static Z0.Slice<intg<sbyte>> intg(params sbyte[] src)
+        => igslice(src);
+
+    
+    [MethodImpl(Inline)]
+    public static Z0.Slice<intg<ushort>> intg(params ushort[] src)
+        => igslice(src);
+
+
+    [MethodImpl(Inline)]
+    public static Z0.Slice<intg<short>> intg(params short[] src)
+        => igslice(src);
+
+    
+    [MethodImpl(Inline)]
+    public static Z0.Slice<intg<uint>> intg(params uint[] src)
+        => igslice(src);
+
+
+    [MethodImpl(Inline)]
+    public static intg<int>[] intg(params int[] src)
+        => igarray(src);
+
+
+    [MethodImpl(Inline)]
+    public static intg<long>[] intg(params long[] src)
+        => igarray(src);
+
+    [MethodImpl(Inline)]
+    public static Z0.Slice<intg<ulong>> intg(params ulong[] src)
+        => igslice(src);
+
+
+
+    /// <summary>
     /// Specifies operations applicable to any integer
     /// </summary>
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
-    public static Integer<T> integer<T>()
-        => ops<T,Integer<T>>();
+    public static Traits.Integer<T> integer<T>()
+        => Resolver.ops<T,Integer<T>>();
 
     /// <summary>
     /// Specifies operations applicable signed ingegers
@@ -29,7 +93,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static SignedInt<T> signedint<T>()
-        => ops<T,SignedInt<T>>();
+        => Resolver.ops<T,SignedInt<T>>();
 
     /// <summary>
     /// Specifies operations applicable unsigned integers
@@ -37,7 +101,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static Natural<T> natural<T>()
-        => ops<T,Natural<T>>();
+        => Resolver.ops<T,Natural<T>>();
 
     /// <summary>
     /// Specifies operations applicable to any number
@@ -45,7 +109,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static Number<T> number<T>()
-        => ops<T, Traits.Number<T>>();
+        => Resolver.ops<T, Traits.Number<T>>();
 
     /// <summary>
     /// Specifies operations applicable to ordered numbers
@@ -53,7 +117,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static OrderedNumber<T> ordnum<T>()
-        => ops<T, Traits.OrderedNumber<T>>();
+        => Resolver.ops<T, Traits.OrderedNumber<T>>();
 
     /// <summary>
     /// Specifies operations applicable to any real number
@@ -61,7 +125,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static Real<T> real<T>()
-        => ops<T, Traits.Real<T>>();
+        => Resolver.ops<T, Traits.Real<T>>();
 
     /// <summary>
     /// Constructs a generic real from a byte primitive 
@@ -70,7 +134,8 @@ partial class zcore
     /// <typeparam name="T">The target primitive type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(byte x)
-        => convert<T>(x);
+        where T: IConvertible
+            => convert<T>(x);
 
     /// <summary>
     /// Constructs a generic real from a sbyte primitive 
@@ -79,7 +144,8 @@ partial class zcore
     /// <typeparam name="T">The target primitive type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(sbyte x)
-        => convert<T>(x);
+        where T: IConvertible
+            => convert<T>(x);
 
     /// <summary>
     /// Constructs a generic real from a short primitive 
@@ -88,7 +154,8 @@ partial class zcore
     /// <typeparam name="T">The target primitive type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(short x)
-        => convert<T>(x);
+        where T: IConvertible
+            => convert<T>(x);
 
     /// <summary>
     /// Constructs a generic real from a ushort primitive 
@@ -97,7 +164,8 @@ partial class zcore
     /// <typeparam name="T">The target primitive type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(ushort x)
-        => convert<T>(x);
+        where T: IConvertible
+            => convert<T>(x);
 
     /// <summary>
     /// Constructs a generic real from a primitive int
@@ -106,7 +174,8 @@ partial class zcore
     /// <typeparam name="T">The target primitive type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(int x)
-        => convert<T>(x);
+        where T: IConvertible
+            => convert<T>(x);
 
     /// <summary>
     /// Constructs a generic real from a primitive uint
@@ -115,7 +184,8 @@ partial class zcore
     /// <typeparam name="T">The target primitive type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(uint x)
-        => convert<T>(x);
+        where T: IConvertible
+            => convert<T>(x);
 
     /// <summary>
     /// Constructs a generic real from a primitive long
@@ -124,7 +194,8 @@ partial class zcore
     /// <typeparam name="T">The target primitive type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(long x)
-        => convert<T>(x);
+        where T: IConvertible
+            => convert<T>(x);
 
     /// <summary>
     /// Constructs a generic real from a primitive ulong
@@ -133,7 +204,8 @@ partial class zcore
     /// <typeparam name="T">The target primitive type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(ulong x)
-        => convert<T>(x);
+        where T: IConvertible
+            => convert<T>(x);
 
     /// <summary>
     /// Constructs a generic real from a primitive float
@@ -142,7 +214,8 @@ partial class zcore
     /// <typeparam name="T">The target primitive type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(float x)
-        => convert<T>(x);
+        where T: IConvertible
+            => convert<T>(x);
 
     /// <summary>
     /// Constructs a generic real from a primitive double 
@@ -151,7 +224,8 @@ partial class zcore
     /// <typeparam name="T">The target primitive type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(double x)
-        => convert<T>(x);
+        where T: IConvertible
+            => convert<T>(x);
 
     /// <summary>
     /// Constructs a generic real from a primitive decimal
@@ -160,7 +234,8 @@ partial class zcore
     /// <typeparam name="T">The target primitive type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(decimal x)
-        => convert<T>(x);
+        where T: IConvertible
+            => convert<T>(x);
 
     /// <summary>
     /// Constructs a real byte from a primitive byte
@@ -241,7 +316,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static FiniteFloat<T> floating<T>()
-        => ops<T,FiniteFloat<T>>();
+        => Resolver.ops<T,FiniteFloat<T>>();
 
     /// <summary>
     /// Constructs a generic integer
@@ -268,7 +343,8 @@ partial class zcore
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]   
     public static real<T> real<T>(T x)
-        => new real<T>(x);
+        where T: IConvertible
+            => new real<T>(x);
 
     /// <summary>
     /// Constructs a generic float

@@ -43,25 +43,25 @@ namespace Z0
         }
 
 
-        public interface Matrix<M,N,T> : Tranposable<Matrix<N,M,T>>
+        public interface Matrix<M,N,T> : Tranposable<Z0.Matrix<N,M,T>>
             where M : TypeNat, new()
             where N : TypeNat, new()
         {
-            IEnumerable<Covector<N,T>> rows();
+            Z0.Slice<N,Z0.Covector<N,T>> covectors();
 
-            IEnumerable<Vector<M,T>> cols();
+            Z0.Slice<M,Z0.Vector<M,T>> vectors();
 
-            Covector<N,T> row<I>()
+            Z0.Covector<N,T> covector<I>()
                 where I : TypeNat, new(); 
 
-            Covector<N,T> row(uint i);
+            Z0.Covector<N,T> covector(uint i);
 
-            Dimenson<M,N> dim();
+            Z0.Dim<M,N> dim();
 
-            Vector<M,T> col<J>()
+            Z0.Vector<M,T> vector<J>()
                 where J : TypeNat, new(); 
 
-            Vector<M,T> col(uint i);
+            Z0.Vector<M,T> vector(uint i);
 
             T cell<I,J>()
                 where I : TypeNat, new()

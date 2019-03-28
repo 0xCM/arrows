@@ -17,6 +17,7 @@ public static partial class zcore
     /// </summary>
     /// <typeparam name="T1">The left operand</typeparam>
     /// <typeparam name="T2">The right operand</typeparam>
+    [MethodImpl(Inline)]   
     public static Same<T1,T2> eq<T1,T2>()
         where T1: TypeNat, new()
         where T2: TypeNat, new()
@@ -28,6 +29,7 @@ public static partial class zcore
     /// </summary>
     /// <typeparam name="T1">The left operand</typeparam>
     /// <typeparam name="T2">The right operand</typeparam>
+    [MethodImpl(Inline)]   
     public static Different<T1,T2> neq<T1,T2>()
         where T1: TypeNat, new()
         where T2: TypeNat, new()
@@ -52,6 +54,7 @@ public static partial class zcore
     /// </summary>
     /// <typeparam name="T1">The left operand</typeparam>
     /// <typeparam name="T2">The right operand</typeparam>
+    [MethodImpl(Inline)]   
     public static Smaller<T1,T2> smaller<T1,T2>()
         where T1:TypeNat, new()
         where T2:TypeNat, new()
@@ -62,6 +65,7 @@ public static partial class zcore
     /// raises an exception
     /// </summary>
     /// <typeparam name="T">The operand</typeparam>
+    [MethodImpl(Inline)]   
     public static Nonzero<T> nonzero<T>()
         where T: TypeNat, new()
         => demand<Nonzero<T>>(natval<T>() != 0);
@@ -70,9 +74,10 @@ public static partial class zcore
     /// Proves, if possible, that n:T => n is prime; otherwise
     /// raises an exception
     /// </summary>
-    /// <typeparam name="T">The operand</typeparam>
-    public static Prime<T> prime<T>()
-        where T : TypeNat, new()
-            => demand<Prime<T>>(prime(intg(natval<T>())));
+    /// <typeparam name="P">The operand</typeparam>
+    [MethodImpl(Inline)]   
+    public static Prime<P> prime<P>()
+        where P : TypeNat, new()
+            => demand<Prime<P>>(prime(natvalg<P>()) );
 
 }

@@ -15,27 +15,49 @@ namespace Z0
 
     partial class Traits
     {
-        public interface Add<S,T1,T2> : NatOp<S,T1,T2>
-            where S : Add<S,T1,T2>, new()
-            where T1 : TypeNat, new()
-            where T2 : TypeNat, new()
+        /// <summary>
+        /// Characterizes a natural k such that k1:K1 & k2:K2 => k = k1 + k2
+        /// </summary>
+        /// <typeparam name="K1">The first operand type</typeparam>
+        /// <typeparam name="K2">The second operand type</typeparam>
+        public interface Add<K1,K2> : TypeNat
+            where K1 : TypeNat, new()
+            where K2 : TypeNat, new()
+        {
+
+        }
+
+        /// <summary>
+        /// Characterizes a refification K that encodes a natural value 
+        /// n:K such that k:K1 & kK2 => k = k1 + k2 
+        /// </summary>
+        /// <typeparam name="K">The reifying type</typeparam>
+        /// <typeparam name="K1">The first operand type</typeparam>
+        /// <typeparam name="K2">The second operand type</typeparam>
+        public interface Add<K,K1,K2> : Add<K1,K2>, NatOp<K,K1,K2>
+            where K : Add<K,K1,K2>, new()
+            where K1 : TypeNat, new()
+            where K2 : TypeNat, new()
         {
 
         }
 
     }
 
-    public readonly struct Add<T1, T2> : Traits.Add<Add<T1, T2>, T1, T2>,
-          IEquatable<Pow<T1,T2>>,
+    /// <summary>
+    /// Encodes a natural number k such that k1:K1 & k2:K2 => k = k1 + k2
+    /// </summary>
+    public readonly struct Add<K1, K2> : Traits.Add<Add<K1, K2>, K1, K2>,
+          IEquatable<Pow<K1,K2>>,
           IEquatable<NatSeq>
-            where T1 : TypeNat, new()
-            where T2 : TypeNat, new()
+            where K1 : TypeNat, new()
+            where K2 : TypeNat, new()
     {
-        public static readonly Add<T1,T2> Rep = default;
+        public static readonly Add<K1,K2> Rep = default;
 
         public static readonly uint Value
-            = Nat.nat<T1>().value
-            + Nat.nat<T2>().value;
+            = Nat.nat<K1>().value
+            + Nat.nat<K2>().value;
 
         public static readonly byte[] Digits 
             = zcore.digits(Value);
@@ -43,11 +65,15 @@ namespace Z0
         public static readonly NatSeq Seq
             = Nat.reflect(Digits);
 
+        public TypeNat rep 
+            => Rep;
+
+        public NatSeq seq
+            => Seq;
+
         public uint value 
             => Value;
 
-        public TypeNat rep 
-            => Rep;
 
         [MethodImpl(Inline)]
         public byte[] digits()
@@ -58,7 +84,7 @@ namespace Z0
             => Seq;
 
         [MethodImpl(Inline)]
-        public bool Equals(Pow<T1, T2> other)
+        public bool Equals(Pow<K1, K2> other)
             => Value == other.value;
 
         [MethodImpl(Inline)]

@@ -17,7 +17,7 @@ namespace Z0
     public readonly struct Multiset<T>  : Traits.FiniteSet<T>
         where T : Traits.Ordered<T>        
     {
-        static Traits.Ordered<T> Ops = ops<T, Traits.Ordered<T>>();
+        static Traits.Ordered<T> Ops = Resolver.ops<T, Traits.Ordered<T>>();
         
         readonly SortedDictionary<T,int> data;
 

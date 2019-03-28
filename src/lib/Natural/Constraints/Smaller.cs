@@ -28,9 +28,6 @@ namespace Z0
         where T1: TypeNat, new()
         where T2: TypeNat, new()
     {
-        public static bool holds()
-            => natval<T1>() < natval<T2>();
-        
         public Smaller(T1 n1, T2 n2)
             => valid = demand(n1.value < n2.value);
         

@@ -37,7 +37,7 @@ namespace Z0
                 this.data = array<T>(natval<N>());
             else
             {
-                natcheck<N>(data.Length());
+                Nat.claim<N>(data.Length());
                 this.data = data;
             }
         }

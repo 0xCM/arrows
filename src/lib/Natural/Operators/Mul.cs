@@ -12,76 +12,53 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
 
-
     partial class Traits
     {
+     
         /// <summary>
-        /// Characterizes a refification S that encodes a natural value 
-        /// n such that x:T1 & yT2 => n = x*y
+        /// Characterizes the natural k such that k1:K1 & k2:K2 => k = k1 * k2
         /// </summary>
-        /// <typeparam name="S">The defining reification</typeparam>
-        /// <typeparam name="T1">The first operand type</typeparam>
-        /// <typeparam name="T2">The second operand type</typeparam>
-        public interface Mul<S,T1,T2> : NatOp<S,T1,T2>
-            where S : Mul<S,T1,T2>, new()
-            where T1 : TypeNat, new()
-            where T2 : TypeNat, new()
+        /// <typeparam name="K1">The first operand type</typeparam>
+        /// <typeparam name="K2">The second operand type</typeparam>
+        public interface Mul<K1,K2> : TypeNat
+            where K1 : TypeNat, new()
+            where K2 : TypeNat, new()
         {
-            
+
         }
 
         /// <summary>
-        /// Characterizes a refification S that encodes a natural value 
-        /// n such that a:T1 & b:T2 & c:T3 => n = a*b*c
+        /// Characterizes a refification K that encodes a natural value 
+        /// k:K such that k1:K1 & k2:K2 => k = k1*k2
         /// </summary>
-        /// <typeparam name="S">The defining reification</typeparam>
-        /// <typeparam name="T1">The first operand type</typeparam>
-        /// <typeparam name="T2">The second operand type</typeparam>
-        /// <typeparam name="T3">The third operand type</typeparam>
-        public interface Mul<S,T1,T2,T3> : NatOp<S,T1,T2,T3>
-            where S : Mul<S,T1,T2,T3>, new()
-            where T1 : TypeNat, new()
-            where T2 : TypeNat, new()
-            where T3 : TypeNat, new()
+        /// <typeparam name="K">The defining reification</typeparam>
+        /// <typeparam name="K1">The first operand type</typeparam>
+        /// <typeparam name="K2">The second operand type</typeparam>
+        public interface Mul<K,K1,K2> : Mul<K1,K2>, NatOp<K,K1,K2>
+            where K : Mul<K,K1,K2>, new()
+            where K1 : TypeNat, new()
+            where K2 : TypeNat, new()
         {
             
         }
-
-        /// <summary>
-        /// Characterizes a refification S that encodes a natural value 
-        /// n such that a:T1 & b:T2 & c:T3 & d:T4 => n = a*b*c*d
-        /// </summary>
-        /// <typeparam name="S">The defining reification</typeparam>
-        /// <typeparam name="T1">The first operand type</typeparam>
-        /// <typeparam name="T2">The second operand type</typeparam>
-        /// <typeparam name="T3">The third operand type</typeparam>
-        /// <typeparam name="T4">The fourth operand type</typeparam>
-        public interface Mul<S,T1,T2,T3,T4> : NatOp<S,T1,T2,T3,T4>
-            where S : Mul<S,T1,T2,T3,T4>, new()
-            where T1 : TypeNat, new()
-            where T2 : TypeNat, new()
-            where T3 : TypeNat, new()
-            where T4 : TypeNat, new()
-        {
-            
-        }
-
-
     }
 
-    public readonly struct Mul<T1, T2> : Traits.Mul<Mul<T1, T2>, T1, T2>,
-          IEquatable<Pow<T1,T2>>,
+    /// <summary>
+    /// Encodes a natural number k such that k1:K1 & k2:K2 => k = k1*k2
+    /// </summary>
+    public readonly struct Mul<K1, K2> : Traits.Mul<Mul<K1, K2>, K1, K2>,
+          IEquatable<Pow<K1,K2>>,
           IEquatable<NatSeq> 
-            where T1 : TypeNat, new()
-            where T2 : TypeNat, new()
+            where K1 : TypeNat, new()
+            where K2 : TypeNat, new()
     {
-        public static readonly Mul<T1,T2> Rep = default;        
+        public static readonly Mul<K1,K2> Rep = default;        
         
-        public static readonly TypeNat[] Operands = {new T1(), new T2()};
+        public static readonly TypeNat[] Operands = {new K1(), new K2()};
 
         public static readonly uint Value
-            = Nat.nat<T1>().value * 10
-            + Nat.nat<T2>().value;
+            = Nat.nat<K1>().value * 10
+            + Nat.nat<K2>().value;
 
         public static readonly byte[] Digits 
             = zcore.digits(Value);
@@ -89,12 +66,14 @@ namespace Z0
         public static readonly NatSeq Seq
             = Nat.reflect(Digits);
 
+        public TypeNat rep 
+            => Rep;
+
+        public NatSeq seq
+            => Seq;
 
         public uint value 
             => Value;
-
-        public TypeNat rep 
-            => Rep;
 
         [MethodImpl(Inline)]
         public byte[] digits()
@@ -105,7 +84,7 @@ namespace Z0
             => Seq;
 
         [MethodImpl(Inline)]
-        public bool Equals(Pow<T1, T2> other)
+        public bool Equals(Pow<K1, K2> other)
             => Value == other.value;
 
         [MethodImpl(Inline)]
