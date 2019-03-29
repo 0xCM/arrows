@@ -18,7 +18,7 @@ namespace Z0
 
         }
 
-        public interface Concatenable<S,T> : Concatenable<S>, Structure<S,T>
+        public interface Concatenable<S,T> : Concatenable<S>, Structural<S,T>
             where S : Concatenable<S,T>,new()
         {
             S concat(S rhs);

@@ -13,6 +13,7 @@ namespace Z0
         public static PolynomialTerm<T> term<T>(T coefficient, intg<uint> power)
             => new PolynomialTerm<T>(coefficient,power);
     }
+    
     public readonly struct PolynomialTerm<T>
     {
         public static readonly PolynomialTerm<T> Zero = default;
@@ -37,8 +38,10 @@ namespace Z0
     }
 
     public readonly struct Polynomial<T>
+        where T : Traits.MonoidA<T>, new()
     {
-        static readonly Traits.Field<T> Ops = Resolver.ops<T,Traits.Field<T>>();
+        static readonly Traits.MonoidA<T> Ops = new T();
+        
         static readonly T FZero = Ops.zero;
 
         public static Polynomial<T> operator +(Polynomial<T> lhs, Polynomial<T> rhs)

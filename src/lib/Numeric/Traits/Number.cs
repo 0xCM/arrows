@@ -35,6 +35,7 @@ namespace Z0
             /// </summary>
             string bitstring(T x);
 
+
         }
 
  
@@ -43,7 +44,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying operand type</typeparam>
-        public interface Number<S,T> : Number<S>, Structure<S,T>
+        public interface Number<S,T> : Number<S>, Structural<S,T>
             where S : Number<S,T>,  new()
         {
             
@@ -65,5 +66,6 @@ namespace Z0
             /// </summary>
             string bitstring();                        
         } 
+ 
     }
 }

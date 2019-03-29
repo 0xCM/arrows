@@ -19,14 +19,15 @@ namespace Z0
     /// </summary>
     public readonly struct floatg<T> : Floating<floatg<T>,T>
     {
-        static readonly Floating<T> Ops = floating<T>();
+        static readonly Floating<T> Ops = Resolver.floating<T>();
 
         public static readonly floatg<T> Zero = Ops.zero;
 
         public static readonly floatg<T> One = Ops.one;
 
         public static readonly floatg<T> Epsilon = Ops.ε;
-
+        
+        
         [MethodImpl(Inline)]
         public static implicit operator floatg<T>(T src)
             => new floatg<T>(src);
@@ -285,6 +286,7 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]
         public intg<I> intg<I>()
+            where I : IConvertible
             => convert<I>(data);
 
         [MethodImpl(Inline)]
@@ -312,7 +314,7 @@ namespace Z0
         floatg<T> Unital<floatg<T>>.one 
             => One;
 
-        T Structure<floatg<T>, T>.data 
+        T Structural<floatg<T>, T>.data 
             => data;
 
         public Addition<floatg<T>> addition 
@@ -320,6 +322,9 @@ namespace Z0
 
         public Multiplication<floatg<T>> multiplication 
             => new Multiplication<floatg<T>>(this);
+
+        public (floatg<T> min, floatg<T> max)? limits 
+            => Ops.limits.TryMap(x => (x.min, x.max));
 
         [MethodImpl(Inline)]
         floatg<T> Incrementable<floatg<T>>.inc(floatg<T> x)

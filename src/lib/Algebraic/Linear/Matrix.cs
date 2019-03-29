@@ -13,9 +13,9 @@ namespace Z0
 
     partial class Traits
     {
-        public interface Matrix<M,N,T> : Tranposable<Z0.Matrix<N,M,T>>
+        public interface Matrix<M,N,T> : Formattable 
             where M : TypeNat, new()
-            where N : TypeNat, new()
+            where N : TypeNat, new()            
         {
             Z0.Slice<N,Z0.Covector<N,T>> covectors();
 
@@ -33,6 +33,8 @@ namespace Z0
 
             Z0.Vector<M,T> vector(uint i);
 
+            T[] data {get;}
+
             T cell<I,J>()
                 where I : TypeNat, new()
                 where J : TypeNat, new(); 
@@ -43,17 +45,40 @@ namespace Z0
 
     }
 
-    public readonly struct Matrix<M, N, T> : Traits.Matrix<M, N, T>, Formattable
+    public readonly struct Matrix<M, N, T> : Traits.Matrix<M, N, T>, Traits.Tranposable<Matrix<N,M,T>>, IEquatable<Matrix<M,N,T>>
         where M : TypeNat, new()
         where N : TypeNat, new()
+        where T : Traits.Semiring<T>, new()
     {
         static readonly Dim<M,N> Dim = default;
         
+        static readonly MatrixOps<M,N,T> Ops = default;        
+        
+
+        [MethodImpl(Inline)]
+        public static bool operator == (Matrix<M, N, T> lhs, Matrix<M, N, T> rhs) 
+            => Ops.eq(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator != (Matrix<M, N, T> lhs, Matrix<M, N, T> rhs) 
+            => Ops.neq(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static Matrix<M, N, T> operator + (Matrix<M, N, T> lhs, Matrix<M, N, T> rhs) 
+            => Ops.add(lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static Matrix<M, M, T> operator * (Matrix<M, N, T> lhs, Matrix<N, M, T> rhs)             
+            => lhs.mul(rhs);
+
         readonly T[] data;
         
         readonly uint m;
         
         readonly uint n;
+
+        T[] Traits.Matrix<M, N, T>.data 
+            => data;
 
         [MethodImpl(Inline)]
         public Matrix(params T[] src)
@@ -71,23 +96,26 @@ namespace Z0
             demand(m*n == data.Length);
         }
 
+        [MethodImpl(Inline)]   
+        public Matrix<M, N, T> add( Matrix<M, N, T> rhs) 
+            => Ops.add(this,rhs);
+
+        [MethodImpl(Inline)]   
+        public Matrix<M, P, T> mul<P>(Matrix<N, P, T> rhs) 
+            where P : TypeNat, new()
+            => MatrixOps<M,N,P,T>.Inhabitant.mul(this,rhs);
+
         [MethodImpl(Inline)]
         public Dim<M,N> dim()
             => Dim;
 
         [MethodImpl(Inline)]
-        IEnumerable<Vector<M, T>> cols()
-        {
-            for(var j =0u; j < n; j++)
-                yield return vector(j);
-        }
+        public IEnumerable<Vector<M, T>> cols()
+            => Ops.cols(this);
 
         [MethodImpl(Inline)]
-        IEnumerable<Covector<N, T>> rows()
-        {
-            for(var i = 0u; i < m; i++)
-                yield return covector(i);
-        }
+        public IEnumerable<Covector<N, T>> rows()
+            => Ops.rows(this);
 
         [MethodImpl(Inline)]
         public Slice<M,Vector<M, T>> vectors()
@@ -95,22 +123,16 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Vector<M, T> vector(uint j)
-        {            
-            var v = new T[m];
-            for(var r = 0u; r < m; r++)
-                v[r] = data[r + j];
-            return  Vector.define<M,T>(v);
-        }    
-
+            => Ops.vector(this,j);
 
         [MethodImpl(Inline)]
         public Vector<M, T> vector<J>() 
             where J : TypeNat, new()
-                => vector(natval<J>());
+            => Ops.vector<J>(this);
 
         [MethodImpl(Inline)]
         public Slice<N, Covector<N, T>> covectors()
-            => rows().ToSlice<N,Covector<N,T>>();
+            => Ops.covectors(this);
 
         [MethodImpl(Inline)]
         public Covector<N, T> covector<I>() 
@@ -119,31 +141,36 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Covector<N, T> covector(uint i)
-            => covector<N,T>(data.Segment(n*i,n));  
-
-
-        [MethodImpl(Inline)]
-        public IReadOnlyList<T> cells()
-            => data;
+            => Ops.covector(this,i);
 
         [MethodImpl(Inline)]
         public T cell<I, J>()
             where I : TypeNat, new()
             where J : TypeNat, new()
-                => cell(natval<I>(), natval<J>());
+                => Ops.cell<I,J>(this);
 
         [MethodImpl(Inline)]
         public T cell(uint i, uint j)
-            => data[m*i + j];
+            => Ops.cell(this,i,j);
         
         [MethodImpl(Inline)]
         public Matrix<N, M, T> tranpose()
-            => new Matrix<N,M,T>(vectors().data.SelectMany(x => x).ToArray());
+            => Ops.tranpose(this);
+
+        [MethodImpl(Inline)]
+        public bool Equals(Matrix<M,N,T> rhs)
+            => Ops.eq(this,rhs);
 
         public string format()
             => rows().Format();
 
-        public override string ToString()
+        public override string ToString() 
             => format();
+
+        public override bool Equals(object rhs)
+            => data.Equals(rhs);
+
+        public override int GetHashCode()
+            => data.GetHashCode();
     } 
 }

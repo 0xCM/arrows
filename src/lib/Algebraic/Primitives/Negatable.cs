@@ -34,7 +34,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The individual type</typeparam>
         /// <typeparam name="S">The structure/self type</typeparam>
-        public interface Negatable<S,T> : Negatable<S>,  Structure<S,T>
+        public interface Negatable<S,T> : Negatable<S>,  Structural<S,T>
             where S : Negatable<S,T>, new()
         {
             /// <summary>

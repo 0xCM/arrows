@@ -14,13 +14,12 @@ namespace Z0
     /// <summary>
     /// Defines interal operations modulo N
     /// </summary>
-    [TypeClass(typeof(ModN<,>))]
     public readonly struct ModOps<N,T> : ModN<N,T>
         where N : TypeNat, new()
     {
         public static readonly ModOps<N,T> Inhabitant = default;
         
-        static readonly Traits.Integer<T> Ops = Resolver.ops<T,Integer<T>>();
+        static readonly Traits.Integer<T> Ops = Resolver.integer<T>();
         
         static readonly intg<T> @base =  natval<N>().ToIntG<T>();
 

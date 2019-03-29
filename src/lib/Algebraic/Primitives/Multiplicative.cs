@@ -58,7 +58,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The individual type</typeparam>
-        public interface Multiplicative<S,T> : Structure<S,T>
+        public interface Multiplicative<S,T> : Structural<S,T>
             where S : Multiplicative<S,T>, new()
         {
             S mul(S rhs);

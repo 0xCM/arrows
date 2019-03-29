@@ -27,14 +27,14 @@ namespace Z0
         }
 
 
-        public interface ModN<N,S,T> : ModN<N,S>, Structure<S,T>
+        public interface ModN<N,S,T> : ModN<N,S>, Structural<S,T>
             where S : ModN<N,S,T>, new()
             where N : TypeNat, new()
         {
 
         }
 
-        public interface GF<N, S, T> : ModN<N, S, T>, Structure<S,T>
+        public interface GF<N, S, T> : ModN<N, S, T>, Structural<S,T>
             where N : TypeNat, Demands.PrimePower<N>, new()
             where S : GF<N,S,T>,new()
             

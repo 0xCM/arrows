@@ -51,6 +51,7 @@ namespace Z0
     /// Defines the canonical reification of a discrete equivalence class
     /// </summary>
     public readonly struct FiniteEqClass<T> : Traits.FiniteEqClass<T>, IEquatable<FiniteEqClass<T>>
+        where T : Traits.Equatable<T>, new()
     {
         
         Traits.Equivalence<T> equivalence {get;}

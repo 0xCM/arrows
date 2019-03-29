@@ -13,20 +13,12 @@ namespace Z0
     using static zcore;
     using static Traits;
 
-    public static class intG
-    {
-
-
-
-
-    }    
-
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
     public readonly struct intg<T> : Integer<intg<T>,T>
     {
-        static readonly Integer<T> Ops = integer<T>();
+        static readonly Integer<T> Ops = Resolver.integer<T>();
 
         public static readonly intg<T> Zero = Ops.zero;
 
@@ -134,6 +126,8 @@ namespace Z0
             get{return One;}
         }
 
+        public (intg<T> min, intg<T> max)? limits 
+            => Ops.limits.TryMap(x => (x.min, x.max));
 
         [MethodImpl(Inline)]
         public intg (T x) 
@@ -305,7 +299,7 @@ namespace Z0
         intg<T> Unital<intg<T>>.one 
             => One;
 
-        T Structure<intg<T>, T>.data 
+        T Structural<intg<T>, T>.data 
             => data;
 
         public Addition<intg<T>> addition 
@@ -429,6 +423,56 @@ namespace Z0
         [MethodImpl(Inline)]
         string Number<intg<T>>.bitstring(intg<T> x)
             => x.bitstring();
+
+        #region Trigonometric (Operations)
+        [MethodImpl(Inline)]
+        intg<T> Trigonmetric<intg<T>>.sin(intg<T> x)
+            => Ops.sin(x);
+
+        [MethodImpl(Inline)]
+        intg<T> Trigonmetric<intg<T>>.sinh(intg<T> x)
+            => Ops.sinh(x);
+
+        [MethodImpl(Inline)]
+        intg<T> Trigonmetric<intg<T>>.asin(intg<T> x)
+            => Ops.asin(x);
+
+        [MethodImpl(Inline)]
+        intg<T> Trigonmetric<intg<T>>.asinh(intg<T> x)
+            => Ops.asinh(x);
+
+        [MethodImpl(Inline)]
+        intg<T> Trigonmetric<intg<T>>.cos(intg<T> x)
+            => Ops.cos(x);
+
+        [MethodImpl(Inline)]
+        intg<T> Trigonmetric<intg<T>>.cosh(intg<T> x)
+            => Ops.cosh(x);
+
+        [MethodImpl(Inline)]
+        intg<T> Trigonmetric<intg<T>>.acos(intg<T> x)
+            => Ops.acos(x);
+
+        [MethodImpl(Inline)]
+        intg<T> Trigonmetric<intg<T>>.acosh(intg<T> x)
+            => Ops.acosh(x);
+
+        [MethodImpl(Inline)]
+        intg<T> Trigonmetric<intg<T>>.tan(intg<T> x)
+            => Ops.tan(x);
+
+        [MethodImpl(Inline)]
+        intg<T> Trigonmetric<intg<T>>.tanh(intg<T> x)
+            => Ops.tanh(x);
+
+        [MethodImpl(Inline)]
+        intg<T> Trigonmetric<intg<T>>.atan(intg<T> x)
+            => Ops.atan(x);
+
+        [MethodImpl(Inline)]
+        intg<T> Trigonmetric<intg<T>>.atanh(intg<T> x)
+            => Ops.atanh(x);
+        #endregion
 
     }
 }

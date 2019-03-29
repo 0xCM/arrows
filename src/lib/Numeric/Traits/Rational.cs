@@ -10,6 +10,20 @@ namespace Z0
 
     partial class Traits
     {
+        
+        /// <summary>
+        /// Characterizes fractional operations
+        /// </summary>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface Fractional<T> : RealNumber<T> 
+        {
+            T ceiling(T x);
+            
+            T floor(T x);
+
+            
+        }
+        
         /// <summary>
         /// Characterizes operations over a numeric rational type R
         /// with integeral component type T
@@ -30,7 +44,7 @@ namespace Z0
         /// Charactrizes a rational number
         /// </summary>
         /// <typeparam name="I">The underlying integral type</typeparam>
-        public interface Rational<S,T,R> : Rational<T,R>, Structure<S,R>
+        public interface Rational<S,T,R> : Rational<T,R>, Structural<S,R>
             where S : Rational<S,T,R>,  new()
             where T : Integer<T>
         {

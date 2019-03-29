@@ -144,27 +144,31 @@ namespace Z0
         
         static readonly uint Length = natval<N>();
 
-        public Slice(params T[] src)
-        {
-            this.data = src;
-            this.length = Nat.claim<N>(data.Length());
-        }
-
-        public Slice(IReadOnlyList<T> src)
-        {
-            this.data = src;
-            this.length = Nat.claim<N>(data.Length());
-        }
-
-        public Slice(IEnumerable<T> src)
-        {
-            this.data = src.Take((int)natval<N>()).ToArray();
-            this.length = Nat.claim<N>(this.data.Count);
-        }
-
         public IReadOnlyList<T> data {get;}
 
         public intg<uint> length {get;}
+
+        [MethodImpl(Inline)]
+        public Slice(params T[] src)
+        {
+             this.data = src;
+             this.length = Prove.claim<N>(data.Length());
+        }
+
+        [MethodImpl(Inline)]
+        public Slice(IReadOnlyList<T> src)
+        {
+            this.data = src;
+            this.length = Prove.claim<N>(data.Length());
+        }
+
+        [MethodImpl(Inline)]
+        public Slice(IEnumerable<T> src)
+        {
+            this.data = src.Take((int)natval<N>()).ToArray();
+            this.length = Prove.claim<N>(this.data.Count);
+        }
+
 
         public T this[int i] 
             => data[i];

@@ -81,11 +81,12 @@ namespace Z0
     /// Contains a finite set of values
     /// </summary>
     public readonly struct FiniteSet<T> : Traits.FiniteSet<FiniteSet<T>,T>
+        where T : Traits.Equatable<T>, new()
     {
         static readonly IEqualityComparer<HashSet<T>> setcomparer = HashSet<T>.CreateSetComparer();
 
         static HashSet<T> hashset(IEnumerable<T> members)
-            => new HashSet<T>(members, ops<T,Traits.Equatable<T>>().ToEqualityComparer());
+            => new HashSet<T>(members, new T().ToEqualityComparer());
 
         public static implicit operator FiniteSet<T>(HashSet<T> src)
             => new FiniteSet<T>(src);

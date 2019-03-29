@@ -57,7 +57,7 @@ namespace Z0
         [MethodImpl(Inline)]
         internal Array(int len)
         {
-            Nat.claim<N>(len);
+            Prove.claim<N>(len);
             data = new T[]{};
         }
 
@@ -76,7 +76,7 @@ namespace Z0
                 this.data = array<T>(natval<N>());
             else
             {
-                Nat.claim<N>(data.Length());
+                Prove.claim<N>(data.Length());
                 this.data = data;
             }
         }

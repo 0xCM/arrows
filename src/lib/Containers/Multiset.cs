@@ -13,11 +13,11 @@ namespace Z0
     /// <summary>
     /// Implementation of a basic multiset
     /// </summary>
-    /// <remarks>https://en.wikipedia.org/wiki/Multiset</remarks>
+    /// <remarks>See https://en.wikipedia.org/wiki/Multiset</remarks>
     public readonly struct Multiset<T>  : Traits.FiniteSet<T>
-        where T : Traits.Ordered<T>        
+        where T : Traits.Ordered<T>, new()        
     {
-        static Traits.Ordered<T> Ops = Resolver.ops<T, Traits.Ordered<T>>();
+        static Traits.Ordered<T> Ops = new T();
         
         readonly SortedDictionary<T,int> data;
 

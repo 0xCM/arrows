@@ -24,7 +24,7 @@ namespace Z0
         /// that defines a unit as a particular instance of itself
         /// </summary>
         /// <typeparam name="T">The unit type</typeparam>
-        public interface Unital<S,T> : Structure<S,T>
+        public interface Unital<S,T> : Structural<S,T>
             where S : Unital<S,T>, new()
         {
             S one {get;}

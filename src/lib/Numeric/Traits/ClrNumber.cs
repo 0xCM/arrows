@@ -9,25 +9,43 @@ namespace Z0
         /// <summary>
         /// Characterizes finite unsigned integer operations over byte,
         /// ushort, uint and ulong values
-        /// </summary>
-        public interface RealFiniteUInt<T> : FiniteNatural<T>, FiniteReal<T>        
+        /// </summary>    
+        public interface FiniteUInt<T> : FiniteNatural<T>, BoundReal<T>        
         {
             
         }
 
         /// <summary>
-        /// Characterizes finite signed integer operations over sbyte,
-        /// short, int and long values
-        /// </summary>
-        public interface RealFiniteInt<T> : FiniteSignedInt<T>, FiniteReal<T>
+        /// Characterizes operational reifications of RealFiniteUInt 
+        /// </summary>        
+        /// <typeparam name="R">The reification type</typeparam>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface FiniteUInt<R,T> : FiniteUInt<T>, Operational<R,T>
+            where R : FiniteUInt<R,T>, new()
         {
             
         }
 
+
         /// <summary>
-        /// Characterizes real floating point operations that include float and double
+        /// Characterizes operational reifications of RealFiniteUInt 
         /// </summary>
-        public interface RealFiniteFloat<T> : FiniteFloat<T>, FiniteReal<T>
+        /// <typeparam name="R">The reification type</typeparam>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface RealFiniteInt<R,T> : FiniteSignedInt<T>, Operational<R,T>
+            where R : RealFiniteInt<R,T>, new()
+        {
+            
+        }
+
+
+        /// <summary>
+        /// Characterizes operational reifications of RealFiniteUInt 
+        /// </summary>
+        /// <typeparam name="R">The reification type</typeparam>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface FiniteFloat<R,T> : FiniteFloat<T>, Operational<R,T>
+            where R : FiniteFloat<R,T>, new()
         {
             
         }
@@ -35,18 +53,43 @@ namespace Z0
         /// <summary>
         /// Characterizes BigInteger operations
         /// </summary>
-        public interface RealInfiniteInt : Real<BigInteger>,  InfiniteSignedInt<BigInteger>
+        public interface RealInfiniteInt<T> : RealNumber<T>, InfiniteSignedInt<T>
         {
 
         }
 
         /// <summary>
-        /// Characterizes decimal operations
+        /// Characterizes operational reifications of RealFiniteUInt 
         /// </summary>
-        public interface FiniteCurrency : Currency, Traits.FiniteReal<decimal>
+        /// <typeparam name="R">The reification type</typeparam>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface RealInfiniteInt<R,T> : RealInfiniteInt<T>, Operational<R,T>
+            where R : RealInfiniteInt<R,T>, new()
+        {
+            
+        }
+
+        /// <summary>
+        /// Characterizes a bounded fractional operation provider
+        /// </summary>
+        /// <typeparam name="T">The primitive type</typeparam>
+        public interface Currency<T> : BoundReal<T>, Fractional<T> 
         {
 
         }
+
+
+        /// <summary>
+        /// Characterizes operational reifications of Currency 
+        /// </summary>
+        /// <typeparam name="R">The reification type</typeparam>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface Currency<R,T> : Currency<T>, Operational<R,T>
+            where R : Currency<R,T>, new()
+        {
+            
+        }
+
     }
 
 }

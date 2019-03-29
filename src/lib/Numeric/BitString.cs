@@ -19,7 +19,7 @@ namespace Z0
 
         public BitString(string src)
         {
-            Nat.claim<N>(src.Length);
+            Prove.claim<N>(src.Length);
             var digits = new bit[src.Length];
             for(var i = 0; i< digits.Length; i++)
                 digits[i] = src[i] == '0' ? BinaryDigit.B0 : BinaryDigit.B0;        
@@ -29,7 +29,7 @@ namespace Z0
         public Slice<N,bit> bits {get;}
 
         public BitString(params bit[] bits)
-            => this.bits = Nat.claim<N,bit>(bits);
+            => this.bits = Prove.length<N,bit>(bits);
 
         public override string ToString()
             => concat(map(bits.data, b => b.ToString()));

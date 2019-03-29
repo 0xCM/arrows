@@ -12,7 +12,7 @@ namespace Z0
         /// <summary>
         /// Characterizes any type family
         /// </summary>
-        public interface TypeFamily : Function
+        public interface TypeFamily
         {
 
         }
@@ -29,7 +29,7 @@ namespace Z0
         /// See http://localhost:9000/refs/books/Y2013HTT.pdf#page=36
         /// & https://en.wikipedia.org/wiki/Dependent_type
         /// </remarks>
-        public interface TypeFamily<in A, out U> : TypeFamily, Function<A,U>
+        public interface TypeFamily<in A, out U> : TypeFamily, Rule<A,U>
             where U : Universe
         {
 
@@ -48,17 +48,6 @@ namespace Z0
 
         }
 
-       /// <summary>
-        /// Characterizes a function whose type inhabits a parameter-identified universe
-        /// </summary>
-        /// <typeparam name="A">The function domain</typeparam>
-        /// <typeparam name="B">The function codomain</typeparam>
-        /// <typeparam name="U">The universe that is inhabited by the function type A->B</typeparam>
-        public interface Function<A,B,U> : Inhabitant<U>, Function<A,B>
-            where U : Universe        
-        {
-
-        }    
  
         /// <summary>
         /// Characterizes a function that ranges over values of a type A ∈ 𝒰 and
@@ -69,8 +58,8 @@ namespace Z0
         /// <remarks>
         /// See http://localhost:9000/refs/books/Y2013HTT.pdf#page=37
         /// </remarks>
-        public interface DependentFunction<A,U> : Function<A,U>
-        where U : Universe
+        public interface DependentFunction<A,U> : Rule<A,U>
+            where U : Universe
         {
 
             TypeFamily<A,U> B {get;}

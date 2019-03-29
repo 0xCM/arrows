@@ -64,23 +64,23 @@ public static class FormattingX
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this sbyte src)
-            => lpadZ(Convert.ToString(src,2), UInt8Ops.MaxBitLength);
+            => lpadZ(Convert.ToString(src,2), UInt8Ops.BitSize - 1);
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this short src)
-        => lpadZ(Convert.ToString(src,2), UInt16Ops.MaxBitLength);
+        => lpadZ(Convert.ToString(src,2), UInt16Ops.BitSize - 1);
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this int src)
-        => lpadZ(Convert.ToString(src,2), Int32Ops.MaxBitLength);
+        => lpadZ(Convert.ToString(src,2), Int32Ops.BitSize - 1);
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this uint src)
-        => lpadZ(Convert.ToString(src,2), UInt32Ops.MaxBitLength);
+        => lpadZ(Convert.ToString(src,2), UInt32Ops.BitSize - 1);
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this long src)
-        => lpadZ(Convert.ToString(src,2), Int64Ops.MaxBitLength);
+        => lpadZ(Convert.ToString(src,2), Int64Ops.BitSize - 1);
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this ulong src)
@@ -107,6 +107,6 @@ public static class FormattingX
             ieee => concat(ieee.sign == Sign.Negative ? "1" : "0",
                         ieee.exponent.ToBitString(),
                         ieee.mantissa.ToBitString()                        
-                )), Float64Ops.MaxBitLength);
+                )), Float64Ops.BitSize - 1);
 
 }

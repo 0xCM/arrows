@@ -11,231 +11,233 @@ namespace Z0
     using static zcore;
 
     using static Traits;
-    using systype = System.UInt32;
-    using opstype = UInt32Ops;
+    using operand = System.UInt32;
+    using reify = UInt32Ops;
     
-    [TypeClass(typeof(RealFiniteUInt<systype>))]
-    internal readonly struct UInt32Ops : RealFiniteUInt<systype>
+    [TypeClass(typeof(reify),typeof(operand))]
+    internal readonly struct UInt32Ops : FiniteUInt<reify,operand>
     {
-        public static readonly opstype Inhabitant = default;
+        public static readonly reify Inhabitant = default;
     
-        public const systype Zero = 0;
+        public const operand Zero = 0;
 
-        public const systype One = 1;
+        public const operand One = 1;
 
         public const byte BitSize = 32;
 
-        public const systype MinVal = systype.MinValue;
+        public const operand MinVal = operand.MinValue;
 
-        public const systype MaxVal = systype.MaxValue;
+        public const operand MaxVal = operand.MaxValue;
 
-        internal const byte MaxBitLength = BitSize - 1;
 
-        public opstype inhabitant 
+        public (operand min, operand max)? limits 
+            => (MinVal,MaxVal);
+
+        public reify inhabitant 
             => Inhabitant;
 
-        public systype zero 
+        public operand zero 
         {
             [MethodImpl(Inline)]   
             get{return Zero;}
         }
 
-        public systype one
+        public operand one
         {
             [MethodImpl(Inline)]   
             get{return One;}
         }
 
-        public systype maxval 
+        public operand supremum 
             => MinVal;
 
-        public systype minval 
+        public operand infimum 
             => MaxVal;
 
-        public Addition<systype> addition 
+        public Addition<operand> addition 
             => Addition.define(this);
 
-        public Multiplication<systype> multiplication 
+        public Multiplication<operand> multiplication 
             => Multiplication.define(this);
 
         public bool infinite 
             => false;
 
-        public systype ε 
+        public operand ε 
             => Zero;
 
-        public systype apply(systype lhs, systype rhs)
+        public operand apply(operand lhs, operand rhs)
             => throw new NotImplementedException();
 
         [MethodImpl(Inline)]   
-        public systype add(systype a, systype b) 
+        public operand add(operand a, operand b) 
             => a + b;
 
         [MethodImpl(Inline)]   
-        public systype and(systype a, systype b) 
+        public operand and(operand a, operand b) 
             => a & b;
 
         [MethodImpl(Inline)]   
-        public systype div(systype lhs, systype rhs)
+        public operand div(operand lhs, operand rhs)
             => lhs/rhs;
 
         [MethodImpl(Inline)]   
-        public Quorem<uint> divrem(systype a, systype b)
+        public Quorem<uint> divrem(operand a, operand b)
             => new Quorem<uint>(a/b,a%b);
 
         [MethodImpl(Inline)]   
-        public bool eq(systype lhs, systype rhs) 
+        public bool eq(operand lhs, operand rhs) 
             => lhs == rhs;
 
         [MethodImpl(Inline)]   
-        public bool neq(systype lhs, systype rhs) 
+        public bool neq(operand lhs, operand rhs) 
             => lhs != rhs;
 
         [MethodImpl(Inline)]   
-        public bool gt(systype a, systype b) 
+        public bool gt(operand a, operand b) 
             => a > b;
 
         [MethodImpl(Inline)]   
-        public bool lt(systype a, systype b) 
+        public bool lt(operand a, operand b) 
             => a < b;
 
         [MethodImpl(Inline)]   
-        public systype mod(systype a, systype b) 
+        public operand mod(operand a, operand b) 
             => a % b;
 
         [MethodImpl(Inline)]   
-        public systype mul(systype a, systype b) 
+        public operand mul(operand a, operand b) 
             => a * b;
 
         [MethodImpl(Inline)]   
-        public systype negate(systype a) 
+        public operand negate(operand a) 
             => a;
 
         [MethodImpl(Inline)]   
-        public systype or(systype a, systype b) 
+        public operand or(operand a, operand b) 
             => a | b;
 
         [MethodImpl(Inline)]   
-        public systype xor(systype a, systype b) 
+        public operand xor(operand a, operand b) 
             => a ^ b;
 
         [MethodImpl(Inline)]   
-        public systype lshift(systype a, int shift) 
+        public operand lshift(operand a, int shift) 
             => a << shift;
 
         [MethodImpl(Inline)]   
-        public systype flip(systype a) 
+        public operand flip(operand a) 
             => ~ a;
 
         [MethodImpl(Inline)]   
-        public systype rshift(systype a, int shift) 
+        public operand rshift(operand a, int shift) 
             => a >> shift;
 
         [MethodImpl(Inline)]   
-        public systype pow(systype b, int exp) 
+        public operand pow(operand b, int exp) 
             => fold(repeat(b,(long)exp), mul);
 
         [MethodImpl(Inline)]   
-        public systype sub(systype x, systype y) 
+        public operand sub(operand x, operand y) 
             => x - y;
 
         [MethodImpl(Inline)]   
-        public systype dec(systype x)
+        public operand dec(operand x)
             => --x;
 
         [MethodImpl(Inline)]   
-        public systype muladd(systype x, systype y,systype z) 
+        public operand muladd(operand x, operand y,operand z) 
             => x*y + z;
 
         [MethodImpl(Inline)]   
-        public bool lteq(systype lhs, systype rhs)
+        public bool lteq(operand lhs, operand rhs)
             => lhs <= rhs;
 
         [MethodImpl(Inline)]   
-        public bool gteq(systype lhs, systype rhs)
+        public bool gteq(operand lhs, operand rhs)
             => lhs >= rhs;
 
         [MethodImpl(Inline)]   
-        public systype inc(systype x)
+        public operand inc(operand x)
             => ++x;
 
         [MethodImpl(Inline)]   
-        public systype abs(systype x)
+        public operand abs(operand x)
             => x;
 
         [MethodImpl(Inline)]   
-        public Sign sign(systype x)
+        public Sign sign(operand x)
             => x == Zero ? Sign.Neutral : Sign.Positive;
 
         [MethodImpl(Inline)]   
-        public systype distribute(systype lhs, (systype x, systype y) rhs)
+        public operand distribute(operand lhs, (operand x, operand y) rhs)
             => add(mul(lhs, rhs.x),  mul(lhs, rhs.y));
 
         [MethodImpl(Inline)]   
-        public systype distribute((systype x, systype y) lhs, systype rhs)
+        public operand distribute((operand x, operand y) lhs, operand rhs)
             => add(mul(lhs.x, rhs), mul(lhs.y, rhs));
 
         [MethodImpl(Inline)]   
-        public systype sqrt(systype x)
-            => (systype)Math.Sqrt(x);
+        public operand sqrt(operand x)
+            => (operand)Math.Sqrt(x);
  
         [MethodImpl(Inline)]   
-        public systype ceiling(systype x)
-            => (systype)Math.Ceiling((double)x);
+        public operand ceiling(operand x)
+            => (operand)Math.Ceiling((double)x);
 
         [MethodImpl(Inline)]   
-        public systype floor(systype x)
-            => (systype)Math.Floor((double)x);
+        public operand floor(operand x)
+            => (operand)Math.Floor((double)x);
 
         [MethodImpl(Inline)]   
-        public systype sin(systype x)
-            => (systype)Math.Sin(x);
+        public operand sin(operand x)
+            => (operand)Math.Sin(x);
 
         [MethodImpl(Inline)]   
-        public systype sinh(systype x)
-            => (systype)Math.Sinh(x);
+        public operand sinh(operand x)
+            => (operand)Math.Sinh(x);
 
         [MethodImpl(Inline)]   
-        public systype asin(systype x)
-            => (systype)Math.Asin(x);
+        public operand asin(operand x)
+            => (operand)Math.Asin(x);
 
         [MethodImpl(Inline)]   
-        public systype asinh(systype x)
-            => (systype)Math.Asinh(x);
+        public operand asinh(operand x)
+            => (operand)Math.Asinh(x);
 
         [MethodImpl(Inline)]   
-        public systype cos(systype x)
-            => (systype)Math.Cos(x);
+        public operand cos(operand x)
+            => (operand)Math.Cos(x);
 
         [MethodImpl(Inline)]   
-        public systype cosh(systype x)
-            => (systype)Math.Cosh(x);
+        public operand cosh(operand x)
+            => (operand)Math.Cosh(x);
 
         [MethodImpl(Inline)]   
-        public systype acos(systype x)
-            => (systype)Math.Acos(x);
+        public operand acos(operand x)
+            => (operand)Math.Acos(x);
 
         [MethodImpl(Inline)]   
-        public systype acosh(systype x)
-            => (systype)Math.Acosh(x);
+        public operand acosh(operand x)
+            => (operand)Math.Acosh(x);
 
         [MethodImpl(Inline)]   
-        public systype tan(systype x)
-            => (systype)Math.Tan(x);
+        public operand tan(operand x)
+            => (operand)Math.Tan(x);
 
         [MethodImpl(Inline)]   
-        public systype tanh(systype x)
-            => (systype)Math.Tanh(x);
+        public operand tanh(operand x)
+            => (operand)Math.Tanh(x);
 
         [MethodImpl(Inline)]   
-        public systype atan(systype x)
-            => (systype)Math.Atan(x);
+        public operand atan(operand x)
+            => (operand)Math.Atan(x);
 
         [MethodImpl(Inline)]   
-        public systype atanh(systype x)
-                => (systype)Math.Atanh(x);
+        public operand atanh(operand x)
+                => (operand)Math.Atanh(x);
 
-        public systype gcd(systype lhs, systype rhs)
+        public operand gcd(operand lhs, operand rhs)
         {
             while (rhs != Zero)
             {
@@ -246,7 +248,7 @@ namespace Z0
             return lhs;
         }
 
-        public string bitstring(systype src)
+        public string bitstring(operand src)
             => src.ToBitString();
 
     }

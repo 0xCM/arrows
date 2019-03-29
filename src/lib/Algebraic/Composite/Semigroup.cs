@@ -27,7 +27,7 @@ namespace Z0
         }
 
 
-        public interface Semigroup<S,T> : Semigroup<S>, Structure<S,T>
+        public interface Semigroup<S,T> : Semigroup<S>, Structural<S,T>
             where S : Semigroup<S,T>, new()
         {
             
@@ -51,7 +51,7 @@ namespace Z0
     public readonly struct SemigroupM<T> : Traits.SemigroupM<T>, Singleton<SemigroupM<T>>
         where T : Traits.SemigroupM<T>, new()
     {    
-        static readonly Traits.SemigroupM<T> Ops = ops<T,SemigroupM<T>>();
+        static readonly Traits.SemigroupM<T> Ops = new T();
 
         public static SemigroupM<T> Inhabitant = default;
         

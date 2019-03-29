@@ -15,12 +15,6 @@ namespace Z0
         /// </summary>
         public interface Inhabitant
         {
-            /// <summary>
-            /// The least universe, with respect to hierarchy, if known/relevant, in which the
-            /// inhabitant may be found
-            /// </summary>
-            /// <value></value>
-            Option<Universe> Location {get;}
         }
 
         /// <summary>
@@ -34,12 +28,10 @@ namespace Z0
             /// inhabitant may be found
             /// </summary>
             /// <value></value>
-            new Option<U> Location {get;}
+            Option<U> location();
         }
 
         
-
-
         /// <summary>
         /// Characterizes a type that is inhabited by other types
         /// </summary>
@@ -48,7 +40,7 @@ namespace Z0
         /// </remarks>
         public interface Universe : Inhabitant
         {
-            IEnumerable<Inhabitant> inhabitants {get;}
+            IEnumerable<Inhabitant> inhabitants();
         }
 
         

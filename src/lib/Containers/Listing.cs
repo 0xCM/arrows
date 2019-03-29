@@ -57,7 +57,7 @@ namespace Z0
             public Listing(IEnumerable<T> src)
             {
                 this.data = src.ToList();
-                this.length = Nat.claim<N>(data.Length());
+                this.length = Prove.claim<N>(data.Length());
             }
 
             IEnumerator<T> IEnumerable<T>.GetEnumerator()

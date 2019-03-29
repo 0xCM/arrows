@@ -15,7 +15,7 @@ namespace Z0
             bool neq(T lhs, T rhs);
         }
 
-        public interface Equatable<S,T> : Equatable<T>, Structure<S,T>
+        public interface Equatable<S,T> : Equatable<T>, Structural<S,T>
             where S : Equatable<S,T>, new()
         {
             bool eq(S rhs);

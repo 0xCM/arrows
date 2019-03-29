@@ -13,7 +13,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The type for which a finite number of instances exist
         /// within a reification context</typeparam>
-        public interface Finite<T> 
+        public interface Finite<T> : Operational<T>
         {
             /// <summary>
             /// The count providing evidence that the reification is finite
@@ -21,40 +21,9 @@ namespace Z0
             int count {get;}
         }
 
-        public interface Bounded<T> : Ordered<T>
+
+        public interface Bound<T> : Operational<T>
         {
-            /// <summary>
-            /// The minimum value the number may obtain
-            /// </summary>
-            T minval {get;}
-
-            /// <summary>
-            /// The maximum value the number may obtain
-            /// </summary>
-            T maxval {get;}
-
-        }
-
-        /// <summary>
-        /// Characterizes a bounded structural number
-        /// </summary>
-        /// <typeparam name="S">The type of the realizing structure</typeparam>
-        /// <typeparam name="T">The type of the underling primitive</typeparam>
-        public interface Bounded<S,T> : Ordered<S,T>
-            where S : Bounded<S,T>, new()
-        {
-
-            /// <summary>
-            /// The minimum value the number may obtain
-            /// </summary>
-            /// <value></value>
-            S minval {get;}
-
-            /// <summary>
-            /// The maximum value the number may obtain
-            /// </summary>
-            /// <value></value>
-            S maxval {get;}
 
         }
     }

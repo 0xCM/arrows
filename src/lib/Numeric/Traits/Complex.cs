@@ -27,7 +27,7 @@ namespace Z0
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying numeric component type</typeparam>
         /// <typeparam name="C">The complex number type</typeparam>
-        public interface Complex<S,T,C> : Complex<T,C>, Structure<S,C>
+        public interface Complex<S,T,C> : Complex<T,C>, Structural<S,C>
             where S : Complex<S,T,C>,  new()
         {
             /// <summary>

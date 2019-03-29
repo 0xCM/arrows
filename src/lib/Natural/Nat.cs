@@ -15,27 +15,11 @@ namespace Z0
 
     using static zcore;
     
+    /// <summary>
+    /// Constructs natural number prepresentatives and calculates related values
+    /// </summary>
     public static class Nat
     {        
-        /// <summary>
-        /// Registers constraint failure
-        /// </summary>
-        /// <param name="name">The name of the constraint that failed</param>
-        /// <param name="value">The integral value for which the constraint was calculated</param>
-        /// <param name="raise"></param>
-        /// <typeparam name="K">The type of the natural representative for which the constraint was calculated</typeparam>
-        [MethodImpl(Inline)]   
-        static bool failure<K>(string name, uint value, bool raise)
-            where K : TypeNat, new()
-            => raise ? throw new NatConstraintException("eq", value, natval<K>())  : false;
-
-        [MethodImpl(Inline)]   
-        static bool failure<M,N>(string name, bool raise)
-            where M : TypeNat, new()
-            where N : TypeNat, new()
-            => raise 
-               ? throw new NatConstraintException("successor", pair<M,N>()) 
-               : false;
 
         [MethodImpl(Inline)]   
         static Type primtype(byte value)
@@ -114,71 +98,10 @@ namespace Z0
              => new K(); 
 
         /// <summary>
-        /// Retrieves the value of the natural number associated with a typenat
-        /// and retuns the value if it agrees with a supplied expected value; othwise,
-        /// raises an exception
-        /// </summary>
-        /// <param name="expected">The expected natural value</param>
-        /// <typeparam name="K">The nat type</typeparam>
-        /// <returns></returns>
-        [MethodImpl(Inline)]   
-        public static uint claim<K>(uint expected)
-                where K : TypeNat, new()
-            => natval<K>() == expected  ? expected 
-                : throw new ArgumentException(); 
-
-        /// <summary>
-        /// Retrieves the value of the natural number associated with a typenat
-        /// and retuns the value if it agrees with a supplied expected value; othwise,
-        /// raises an exception
-        /// </summary>
-        /// <param name="expected">The expected natural value</param>
-        /// <typeparam name="K">The nat type</typeparam>
-        /// <returns></returns>
-        [MethodImpl(Inline)]   
-        public static uint claim<K>(int expected)
-                where K : TypeNat, new()
-            => natval<K>() == (uint)expected 
-                ? (uint)expected 
-                : throw new ArgumentException(); 
-
-
-        /// <summary>
-        /// Verfies that the lengh of a list agrees with the parameterized natural
-        /// If successful, the input list is returned; otherwise, an exception is
-        /// raised
-        /// </summary>
-        /// <param name="src">The source list</param>
-        /// <typeparam name="K">The nat type</typeparam>
-        /// <typeparam name="T">The list element type</typeparam>
-        [MethodImpl(Inline)]   
-        public static IReadOnlyList<T> claim<K,T>(IReadOnlyList<T> src)
-            where K : TypeNat, new()
-            => natval<K>() == src.Count 
-                ? src
-                : throw new ArgumentException(); 
-
-        /// <summary>
-        /// Verfies that the lengh of an array agrees with the parameterized natural
-        /// If successful, the input list is returned; otherwise, an exception is
-        /// raised
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <typeparam name="K">The nat type</typeparam>
-        /// <typeparam name="T">The list element type</typeparam>
-        public static T[] claim<K,T>(params T[] src)
-            where K : TypeNat, new()
-            => natval<K>() == src.Length 
-                ? src
-                : throw new NatConstraintException("equality", natval<K>(), (uint)src.Length); 
-
-
-        /// <summary>
-        /// Retrieves the value of a pair of nats
+        /// Constructs (k1,k2) where k1:K2 & k2:K2 
         /// </summary>
         /// <typeparam name="K1">The first nat type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
-        /// <returns></returns>
         [MethodImpl(Inline)]   
         public static (uint k1, uint k2) pair<K1,K2>()
             where K2 : TypeNat, new()
@@ -186,11 +109,11 @@ namespace Z0
                 => (natval<K1>(), natval<K2>());            
 
         /// <summary>
-        /// Retrieves the value of a nat triple
+        /// Constructs (k1,k2,k3) where k1:K2 & k2:K2 & k3:K3
         /// </summary>
         /// <typeparam name="K1">The first nat type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
-        /// <returns></returns>
+        /// <typeparam name="K3">The thrid type</typeparam>
         [MethodImpl(Inline)]   
         public static (uint k1, uint k2, uint k3) triple<K1,K2,K3>()
             where K2 : TypeNat, new()
@@ -199,22 +122,22 @@ namespace Z0
                 => (natval<K1>(),natval<K2>(), natval<K3>());            
 
         /// <summary>
-        /// Returns the natural value as a generic integer
+        /// Reifies a natural value as a generic integer
         /// </summary>
         /// <typeparam name="K">The nat type</typeparam>
         /// <typeparam name="Z">The underlying integral type</typeparam>
         [MethodImpl(Inline)]   
-        public static intg<Z> gval<K,Z>()
+        public static intg<Z> natvalg<K,Z>()
             where K : TypeNat, new()
                 => new K().value.ToIntG<Z>(); 
 
         /// <summary>
-        /// Determines the canonical nat sequence representative
+        /// Contructs the canonical 1-element natural sequence for a primitive natural
         /// </summary>
         /// <typeparam name="K">A representative type</typeparam>
         [MethodImpl(Inline)]   
         public static NatSeq natseq<K>()
-            where K : TypeNat,new()
+            where K : NatPrimitive<K>,new()
                 => new K().seq;
 
         /// <summary>
@@ -225,8 +148,8 @@ namespace Z0
         /// <typeparam name="K2">The second nat type, corresponding the second digit of the associated value</typeparam>
         [MethodImpl(Inline)]   
         public static NatSeq<K1,K2> seq<K1,K2>()
-            where K1 : TypeNat, new()        
-            where K2 : TypeNat, new()
+            where K1 : NatPrimitive<K1>, new()        
+            where K2 : NatPrimitive<K2>, new()
                 => NatSeq<K1,K2>.Rep;
 
         /// <summary>
@@ -240,6 +163,28 @@ namespace Z0
             where K1 : TypeNat, Demands.Smaller<K1,K2>, new()
             where K2 : TypeNat, new()
                 => new Interval<K1,K2>(natrep<K1>(), natrep<K2>());
+
+        /// <summary>
+        /// Constructs a natural representative that encodes the sum of two naturals
+        /// </summary>
+        /// <typeparam name="K1">The first operand type</typeparam>
+        /// <typeparam name="K2">The second operand type</typeparam>
+        [MethodImpl(Inline)]   
+        public static Add<K1,K2> add<K1,K2>()
+            where K1 : TypeNat, new()        
+            where K2 : TypeNat, new()
+                => Add<K1,K2>.Rep;
+
+        /// <summary>
+        /// Constructs a natural representative that encodes the sum of two naturals
+        /// </summary>
+        /// <typeparam name="K1">The first operand type</typeparam>
+        /// <typeparam name="K2">The second operand type</typeparam>
+        [MethodImpl(Inline)]   
+        public static Add<K1,K2> add<K1,K2>(K1 k1, K2 k2)
+            where K1 : TypeNat, new()        
+            where K2 : TypeNat, new()
+                => Add<K1,K2>.Rep;
 
         /// <summary>
         /// Constructs a natural representative that encodes the product of two naturals
@@ -276,7 +221,6 @@ namespace Z0
             where E : TypeNat, new()
                 => PrimePow<P,E>.Rep;
 
-
         /// <summary>
         /// Constructs the natural dimension (k1,k2) where k1:K1 & k2:K2 
         /// </summary>
@@ -287,6 +231,18 @@ namespace Z0
             where K1 : TypeNat, new()        
             where K2 : TypeNat, new()
                 => Dim<K1,K2>.Rep;
+
+        /// <summary>
+        /// Constructs the natural dimension (k1,k2) where k1:K1 & k2:K2 
+        /// </summary>
+        /// <typeparam name="K1">The first dimensional factor</typeparam>
+        /// <typeparam name="K2">The second dimensional factor</typeparam>
+        [MethodImpl(Inline)]   
+        public static Dim<K1,K2> dim<K1,K2>(K1 k1, K2 k2)
+            where K1 : TypeNat, new()        
+            where K2 : TypeNat, new()
+                => Dim<K1,K2>.Rep;
+
 
         /// <summary>
         /// Constructs the natural dimension (k1,k2,k3) where k1:K1 & k2:K2 & k3:K3
@@ -302,74 +258,6 @@ namespace Z0
                 => Dim<K1,K2,K3>.Rep;
 
         /// <summary>
-        /// Checks that a test value is equal to the value of a natural representative
-        /// </summary>
-        /// <param name="test">The value to test</param>
-        /// <param name="raise">Specifies whether an error should be raised if the check fails</param>
-        /// <typeparam name="K">The natural representative</typeparam>
-        [MethodImpl(Inline)]   
-        public static bool eq<K>(uint test, bool raise = true)
-            where K : TypeNat, new() 
-                =>  natval<K>() == test ? true : failure<K>("eq", test, raise);
-
-        /// <summary>
-        /// Checks that a test value is smaller than the value of a natural representative
-        /// </summary>
-        /// <param name="test">The value to test</param>
-        /// <param name="raise">Specifies whether an error should be raised if the check fails</param>
-        /// <typeparam name="K">The natural representative</typeparam>
-        [MethodImpl(Inline)]   
-        public static bool lt<K>(uint test, bool raise = true)
-            where K : TypeNat, new() 
-                =>  natval<K>() < test ? true : failure<K>("lt", test, raise);
-
-        /// <summary>
-        /// Checks that a test value is lesser or equal to the value of a natural representative
-        /// </summary>
-        /// <param name="test">The value to test</param>
-        /// <param name="raise">Specifies whether an error should be raised if the check fails</param>
-        /// <typeparam name="K">The natural representative</typeparam>
-        [MethodImpl(Inline)]   
-        public static bool lteq<K>(uint test, bool raise = true)
-            where K : TypeNat, new() 
-                =>  natval<K>() <= test ? true : failure<K>("lteq", test, raise);
-
-        /// <summary>
-        /// Checks that a test value is larger than the value of a natural representative
-        /// </summary>
-        /// <param name="test">The value to test</param>
-        /// <param name="raise">Specifies whether an error should be raised if the check fails</param>
-        /// <typeparam name="K">The natural representative</typeparam>
-        [MethodImpl(Inline)]   
-        public static bool gt<K>(uint test, bool raise = true)
-            where K : TypeNat, new() 
-                =>  natval<K>() > test ? true : failure<K>("gt", test, raise);
-
-        /// <summary>
-        /// Checks that a test value is greater or equal to the value of a natural representative
-        /// </summary>
-        /// <param name="test">The value to test</param>
-        /// <param name="raise">Specifies whether an error should be raised if the check fails</param>
-        /// <typeparam name="K">The natural representative</typeparam>
-        [MethodImpl(Inline)]   
-        public static bool gteq<K>(uint test, bool raise = true)
-            where K : TypeNat, new() 
-                =>  natval<K>() >= test ? true : failure<K>("gteq", test, raise);
-
-        /// <summary>
-        /// Checks that the first type is a successor to the second
-        /// </summary>
-        /// <param name="raise">Specifies whether an error should be raised if the check fails</param>
-        /// <typeparam name="K1">The claimed successor</typeparam>
-        /// <typeparam name="K2">The claimed predecessor</typeparam>
-        [MethodImpl(Inline)]   
-        public static bool successor<K1,K2>(bool raise = true)
-            where K1 : TypeNat, new() 
-            where K2 : TypeNat, new()
-                =>  natval<K1>() == natval<K2>() + 1 ? true : failure<K1,K2>("successor", raise);
- 
-
-        /// <summary>
         /// Constructs the canonical 3-element natural sequence for the 3-digit natural number k such that
         /// {k1:K1, k2:K2, k3:K3} => k = k1*10^2 + k2*10^1 + k3
         /// </summary>
@@ -378,9 +266,9 @@ namespace Z0
         /// <typeparam name="K3">The third nat type, corresponding the third digit of the associated value</typeparam>
         [MethodImpl(Inline)]   
         public static NatSeq<K1,K2,K3> seq<K1,K2,K3>()
-            where K1 : TypeNat, new()        
-            where K2 : TypeNat, new()
-            where K3 : TypeNat, new()
+            where K1 : NatPrimitive<K1>, new()        
+            where K2 : NatPrimitive<K2>, new()
+            where K3 : NatPrimitive<K3>, new()
                 => NatSeq<K1,K2,K3>.Rep;
         
         /// <summary>
@@ -393,10 +281,10 @@ namespace Z0
         /// <typeparam name="K4">The fourth nat type, corresponding the fourth digit of the associated value</typeparam>
         [MethodImpl(Inline)]   
         public static NatSeq<K1,K2,K3,K4> seq<K1,K2,K3,K4>()
-            where K1 : TypeNat, new()        
-            where K2 : TypeNat, new()
-            where K3 : TypeNat, new()
-            where K4 : TypeNat, new()
+            where K1 : NatPrimitive<K1>, new()        
+            where K2 : NatPrimitive<K2>, new()
+            where K3 : NatPrimitive<K3>, new()
+            where K4 : NatPrimitive<K4>, new()
                 => default;
 
         /// <summary>
@@ -410,11 +298,11 @@ namespace Z0
         /// <typeparam name="K5">The fifth nat type, corresponding the fifth digit of the associated value</typeparam>
         [MethodImpl(Inline)]   
         public static NatSeq<K1,K2,K3,K4,K5> seq<K1,K2,K3,K4,K5>()
-            where K1 : TypeNat, new()        
-            where K2 : TypeNat, new()
-            where K3 : TypeNat, new()
-            where K4 : TypeNat, new()
-            where K5 : TypeNat, new()
+            where K1 : NatPrimitive<K1>, new()        
+            where K2 : NatPrimitive<K2>, new()
+            where K3 : NatPrimitive<K3>, new()
+            where K4 : NatPrimitive<K4>, new()
+            where K5 : NatPrimitive<K5>, new()
                 => default;
 
         /// <summary>
@@ -429,12 +317,12 @@ namespace Z0
         /// <typeparam name="K6">The sixth nat type, corresponding the sixth digit of the associated value</typeparam>
         [MethodImpl(Inline)]   
         public static NatSeq<K1,K2,K3,K4,K5,K6> seq<K1,K2,K3,K4,K5,K6>()
-            where K1 : TypeNat, new()        
-            where K2 : TypeNat, new()
-            where K3 : TypeNat, new()
-            where K4 : TypeNat, new()
-            where K5 : TypeNat, new()
-            where K6 : TypeNat, new()
+            where K1 : NatPrimitive<K1>, new()        
+            where K2 : NatPrimitive<K2>, new()
+            where K3 : NatPrimitive<K3>, new()
+            where K4 : NatPrimitive<K4>, new()
+            where K5 : NatPrimitive<K5>, new()
+            where K6 : NatPrimitive<K6>, new()
                 => default;
 
     }

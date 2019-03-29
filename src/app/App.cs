@@ -37,7 +37,7 @@ namespace App04
         static T dot<N,T>(Z0.Slice<N,T> s1, Z0.Slice<N,T> s2)
             where N : TypeNat, new()
             {
-                var ops = integer<T>();
+                var ops = Resolver.integer<T>();
                 var result = ops.zero;
                 for(var i=0; i< s1.length; i++)
                     result = ops.add(result, ops.mul(s1[i],s2[i]));
@@ -447,7 +447,7 @@ namespace App04
         static real<T> sum<T>(params real<T>[] values)
             where T: IConvertible
         {
-            var total = real<T>().zero;
+            var total = Resolver.real<T>().zero;
             foreach(var v in values)
                 total += v;
             return total;
@@ -464,7 +464,7 @@ namespace App04
             printeach("m1 := ", m1.vectors());
             var m2 = Matrix.define(dim, rand.next(9,10,369));
             printeach($"m2 := ", m2.vectors());
-            var m3 = Matrix.mul(m1,m2);
+            var m3 = m1 * m2;
             printeach($"m1 * m2 = ", m3.vectors());
 
         }
@@ -477,12 +477,8 @@ namespace App04
         {     
             SysInit.initialize<Program>();
 
-            var n1 = uintg(1,2,3);
-            
-            var n2 = intg(1,2,3);
-            
-            Matrices();
 
+            TestRunner.RunTests();
 
         }
     }

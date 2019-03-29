@@ -28,11 +28,11 @@ partial class zcore
     /// <summary>
     /// Formats and concatenates an arbitrary number of elements
     /// </summary>
-    /// <param name="src">The formattables to be rendered and concatenated</param>
+    /// <param name="rest">The formattables to be rendered and concatenated</param>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static string format(params Formattable[] src)
-        => concat(src.Select(x => x.format()));
+    public static string format(Formattable first, params Formattable[] rest)
+        => first.format() + concat(rest.Select(x => x.format()));
 
     /// <summary>
     /// Concatenates an arbitrary number of strings
@@ -209,6 +209,31 @@ partial class zcore
         var text = concat(string.Join(',',items));
         print($"{msg}: {text}");       
     }
+
+
+    public static void colorize(ConsoleColor color, Action action)
+    {
+        var fg = Console.ForegroundColor;
+        Console.ForegroundColor = color;
+        action();
+        Console.ForegroundColor = fg;
+    }
+
+    /// <summary>
+    /// Emits an information-level message
+    /// </summary>
+    /// <param name="msg">The message to emit</param>
+    /// <param name="member">The calling member</param>
+    public static void inform(object msg, [CallerMemberName] string member = null)
+        => colorize(ConsoleColor.Green, () => print($"{member}: {msg}"));
+
+    /// <summary>
+    /// Emits an error-level message
+    /// </summary>
+    /// <param name="msg">The message to emit</param>
+    /// <param name="member">The calling member</param>
+    public static void error(object msg, [CallerMemberName] string member = null)
+        => colorize(ConsoleColor.Red, () => print($"{member}: {msg}"));
 
     static readonly ConcurrentDictionary<string, Regex> _regexCache
         = new ConcurrentDictionary<string, Regex>();

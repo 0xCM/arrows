@@ -16,11 +16,12 @@ namespace Z0
 
     public readonly struct num<T> : OrderedNumber<num<T>,T>
     {
-        static readonly OrderedNumber<T> Ops = ordnum<T>();
+        static readonly OrderedNumber<T> Ops = Resolver.ordnum<T>();
         
         public static readonly num<T> Zero = Ops.zero;
 
         public static readonly num<T> One = Ops.one;
+
 
         [MethodImpl(Inline)]
         public static implicit operator num<T>(T src)
@@ -98,6 +99,9 @@ namespace Z0
 
         public num<T> one 
             => One;
+
+        public (num<T> min, num<T> max)? limits 
+            => Ops.limits.TryMap(x => (x.min, x.max));
 
         public Addition<num<T>> addition 
             => Addition.define(this);

@@ -16,7 +16,7 @@ namespace Z0
 
         }
 
-        public interface BitShifts<S,T> : BitShifts<S>, Structure<S,T>
+        public interface BitShifts<S,T> : BitShifts<S>, Structural<S,T>
             where S : BitShifts<S,T>, new()
         {
             S lshift(int rhs);
@@ -70,7 +70,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S"></typeparam>
         /// <typeparam name="T"></typeparam>
-        public interface BitLogic<S,T> : BitLogic<S>, Structure<S,T>
+        public interface BitLogic<S,T> : BitLogic<S>, Structural<S,T>
             where S : BitLogic<S,T>, new()
         {
             /// <summary>
@@ -111,7 +111,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying operand type</typeparam>
-       public interface Bitwise<S,T> : Bitwise<S>, Structure<S,T>
+       public interface Bitwise<S,T> : Bitwise<S>, Structural<S,T>
             where S : Bitwise<S,T>, new() { }
 
 

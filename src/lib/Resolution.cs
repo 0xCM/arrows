@@ -14,15 +14,6 @@ using Z0;
 
 partial class zcore
 {
-    /// <summary>
-    /// Retrives the operations of type O defined for a type T
-    /// </summary>
-    /// <typeparam name="T">The operand type</typeparam>
-    /// <typeparam name="O">The operations type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static O ops<T,O>()
-        => Resolver.ops<T,O>();
 
     /// <summary>
     /// Retrieves semigroup operations for a specified type

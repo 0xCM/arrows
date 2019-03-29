@@ -14,30 +14,23 @@ namespace Z0
 
     partial class xcore
     {
+        [MethodImpl(Inline)]   
+        public static IReadOnlyList<T> Unwrap<T>(this IEnumerable<intg<T>> src)
+            => src.Select(x => x.data).ToList();
 
-         //Prime numbers to use when generating a hash code. Taken from John Skeet's answer on SO:
-        //http://stackoverflow.com/questions/263400/what-is-the-best-algorithm-for-an-overridden-system-object-gethashcode
-        const int P1 = 17;
-        const int P2 = 23;
+        [MethodImpl(Inline)]
+        public static T SumG<T>(this IEnumerable<T> src)
+            where T : Traits.Additive<T>, new()
+                => fold(src, (x,y) => x.add(x,y));
 
-        /// <summary>
-        /// Helper to compute hash code from a collection of items
-        /// </summary>
-        /// <typeparam name="S">The item type</typeparam>
-        /// <param name="items">The items</param>
-        /// <returns></returns>
-        public static int HashCode<S>(this IEnumerable<S> items)
+        [MethodImpl(Inline)]
+        public static T MaxG<T>(this IEnumerable<T> src)
+            where T : struct, Traits.OrderedNumber<T>
         {
-            if (items == null)
-                return 0;
-
-            unchecked
-            {
-                var hash = P1;
-                foreach (var item in items)
-                    hash = hash * P2 + item.GetHashCode();
-                return hash;
-            }
+            T max = default(T).limits.Map(x =>x.min);
+            foreach(var item in src)
+                max = item.gt(item,max) ? item : max;
+            return max;
         }
 
    }

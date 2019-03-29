@@ -187,7 +187,6 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static T demand<T>(bool condition, string msg = null)
         where T : new()
-        => condition ? new T() 
-        : throw new ArgumentException(msg ?? $"Precondition for construction of {type<T>().Name} unmet");
+        => condition ? new T() : throw new ArgumentException(msg ?? $"Precondition for construction of {type<T>().Name} unmet");
 }
 

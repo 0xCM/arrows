@@ -11,10 +11,38 @@ namespace Z0
 
     using static zcore;
 
+    partial class Traits
+    {
+        /// <summary>
+        /// Characterizes free moinoidial operations
+        /// </summary>
+        /// <typeparam name="T">The individual type</typeparam>
+        /// <remarks>See https://en.wikipedia.org/wiki/Free_monoid 
+        /// and http://localhost:9000/refs/books/Y2007GRAA.pdf#page=39&view=fit</remarks>
+        public interface FreeMonoid<T> : Monoid<T>, Concatenable<T>
+        {
+            T empty {get;}
+
+        }
+
+        /// <summary>
+        /// Characterizes a free monoidal structure
+        /// </summary>
+        /// <typeparam name="S">The structure type</typeparam>
+        /// <typeparam name="T">The underlying type</typeparam>
+        public interface FreeMonoid<S,T> :  FreeMonoid<S>, Structural<S,T> 
+            where S : FreeMonoid<S,T>, new()
+        {
+            
+                    
+        }
+
+    }
+
     public static class FreeMonoid
     {
         public static FreeMonoid<T> define<T>(params T[] generators)
-            where T : IEquatable<T>, Traits.Concatenable<T>, new()
+            where T :  Traits.FreeMonoid<T>, new()
                 => new FreeMonoid<T>(generators);
 
         static IEnumerable<T> generate<T>(Traits.FreeMonoid<T> fm, T m, IEnumerable<T> src)
@@ -62,18 +90,16 @@ namespace Z0
                          from y in level3
                          select fm.concat(x,y);
             foreach(var s in level4)
-                yield return s;                         
-
-
+                yield return s;
         }
 
     }
     
     public readonly struct FreeMonoid<T> : Traits.FreeMonoid<T>
-        where T : IEquatable<T>, Traits.Concatenable<T>, new()
+        where T : Traits.FreeMonoid<T>, new()
     {
 
-        static readonly Traits.FreeMonoid<T> Ops = ops<T,Traits.FreeMonoid<T>>();
+        static readonly Traits.FreeMonoid<T> Ops = new T();
 
         public FreeMonoid(IEnumerable<T> generators)
             => this.generators = generators.ToFiniteSet();

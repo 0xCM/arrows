@@ -21,7 +21,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The type over which the structrue is defined</typeparam>
         /// <typeparam name="S">The structure type</typeparam>
-        public interface Invertive<S,T> : Structure<S,T>
+        public interface Invertive<S,T> : Structural<S,T>
             where S : Invertive<S,T>, new()
         {
             //S invert();                

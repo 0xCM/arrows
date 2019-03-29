@@ -14,7 +14,7 @@ namespace Z0
         /// Characterizes an operator over a specified type
         /// </summary>
         /// <typeparam name="T">The operand</typeparam>
-        public interface Operator<T>
+        public interface Operator<T> : Operational<T>
         {
             
         }

@@ -15,6 +15,17 @@ namespace Z0
 
     partial class xcore
     {
+
+        public static Y? TryMap<X,Y>(this X? x, Func<X,Y> f)
+            where X : struct
+            where Y : struct
+                => x.HasValue ? f(x.Value) : (Y?)null;
+
+        public static Y Map<X,Y>(this X? x, Func<X,Y> f)
+            where X : struct
+            where Y : struct
+                => x.HasValue ? f(x.Value) : default(Y);
+
         /// <summary>
         /// Lifts a function to a unary operator
         /// </summary>

@@ -17,7 +17,7 @@ namespace Z0
             T mod(T lhs, T rhs);
         }
 
-        public interface Divisive<S,T> : Structure<S,T>
+        public interface Divisive<S,T> : Structural<S,T>
             where S : Divisive<S,T>, new()
         {
 
@@ -41,7 +41,7 @@ namespace Z0
             
         }
 
-        public interface Reciprocative<S,T> : Structure<S,T>
+        public interface Reciprocative<S,T> : Structural<S,T>
             where S : Reciprocative<S,T>,new()
         {
             /// <summary>

@@ -18,12 +18,13 @@ namespace Z0
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
     public readonly struct modg<N, T> : ModN<N, modg<N, T>, T>
+        where T : IConvertible
         where N : TypeNat, new()
     {
 
         static ModN<N,T> Ops = ModOps<N,T>.Inhabitant;
         
-        static readonly intg<T> @base = Nat.gval<N,T>();
+        static readonly intg<T> @base = Nat.natvalg<N,T>();
 
         [MethodImpl(Inline)]
         public static implicit operator modg<N,T>(T data)

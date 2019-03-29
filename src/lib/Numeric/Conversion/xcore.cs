@@ -16,10 +16,6 @@ using static zcore;
 
 partial class xcore
 {
-    [MethodImpl(Inline)]   
-    public static IReadOnlyList<T> Unwrap<T>(this IEnumerable<intg<T>> src)
-        => src.Select(x => x.data).ToList();
-
 
 
 

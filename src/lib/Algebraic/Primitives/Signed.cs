@@ -17,7 +17,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The type of the realizing structure</typeparam>
         /// <typeparam name="T">The type of the underling primitive</typeparam>
-        public interface Signed<S,T> : Structure<S,T>
+        public interface Signed<S,T> : Structural<S,T>
             where S : Signed<S,T>, new()
         {
         }

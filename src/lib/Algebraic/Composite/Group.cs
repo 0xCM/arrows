@@ -72,7 +72,7 @@ namespace Z0
 
         }
 
-        public interface FreeGroup<S,T> : FreeGroup<S>, Structure<S,T>
+        public interface FreeGroup<S,T> : FreeGroup<S>, Structural<S,T>
             where S : FreeGroup<S,T>, new()
         {
             
@@ -89,7 +89,7 @@ namespace Z0
             
         }
 
-        public interface FreeAbelianGroup<S,T> : FreeAbelianGroup<S>, Structure<S,T>
+        public interface FreeAbelianGroup<S,T> : FreeAbelianGroup<S>, Structural<S,T>
             where S : FreeAbelianGroup<S,T>, new()
         {
             

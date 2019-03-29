@@ -22,7 +22,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The individual type</typeparam>
-        public interface Infinite<S,T> : Infinite<S>, Structure<S,T>
+        public interface Infinite<S,T> : Infinite<S>, Structural<S,T>
             where S : Infinite<S,T>, new()
         {
 

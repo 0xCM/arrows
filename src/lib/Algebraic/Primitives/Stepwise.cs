@@ -14,7 +14,7 @@ namespace Z0
             T dec(T x);        
         }
 
-        public interface Decrementable<S,T> : Structure<S,T>
+        public interface Decrementable<S,T> : Structural<S,T>
             where S : Decrementable<S,T>, new()
         {
             S dec();
@@ -25,7 +25,7 @@ namespace Z0
             T inc(T x);        
         }
 
-        public interface Incrementable<S,T> : Structure<S,T>
+        public interface Incrementable<S,T> : Structural<S,T>
             where S : Incrementable<S,T>, new()
         {
             S inc();        

@@ -43,7 +43,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface Trigonmetric<S,T> : Trigonmetric<S>, Structure<S,T>
+        public interface Trigonmetric<S,T> : Trigonmetric<S>, Structural<S,T>
             where S : Trigonmetric<S,T>, new()
         {
             S sin();   

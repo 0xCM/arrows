@@ -15,18 +15,9 @@ using static Z0.Traits;
 
 partial class zcore
 {
-    /// <summary>
-    /// Defines a slice of generic integers
-    /// </summary>
-    /// <param name="src">The source values</param>
-    /// <typeparam name="T">The underlying primitive type</typeparam>
-    /// <remarks>This function exists primarily to facilitate type inference</remarks>
-    // public static Z0.Slice<intg<T>> integers<T>(params intg<T>[] src)
-    //     => Slice.define<intg<T>>(src);
-
-
     [MethodImpl(Inline)]
     static intg<T>[] igarray<T>(params T[] src)
+        where T : IConvertible
     {
         var dst = new intg<T>[src.Length];
         for(var i = 0; i<src.Length; i++)
@@ -36,7 +27,8 @@ partial class zcore
 
     [MethodImpl(Inline)]
     static Z0.Slice<intg<T>> igslice<T>(params T[] src)
-        => slice(from x in src select intg<T>(x));
+        where T : IConvertible
+            => slice(from x in src select intg<T>(x));
 
     
     [MethodImpl(Inline)]
@@ -79,53 +71,6 @@ partial class zcore
 
 
 
-    /// <summary>
-    /// Specifies operations applicable to any integer
-    /// </summary>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static Traits.Integer<T> integer<T>()
-        => Resolver.ops<T,Integer<T>>();
-
-    /// <summary>
-    /// Specifies operations applicable signed ingegers
-    /// </summary>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static SignedInt<T> signedint<T>()
-        => Resolver.ops<T,SignedInt<T>>();
-
-    /// <summary>
-    /// Specifies operations applicable unsigned integers
-    /// </summary>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static Natural<T> natural<T>()
-        => Resolver.ops<T,Natural<T>>();
-
-    /// <summary>
-    /// Specifies operations applicable to any number
-    /// </summary>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static Number<T> number<T>()
-        => Resolver.ops<T, Traits.Number<T>>();
-
-    /// <summary>
-    /// Specifies operations applicable to ordered numbers
-    /// </summary>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static OrderedNumber<T> ordnum<T>()
-        => Resolver.ops<T, Traits.OrderedNumber<T>>();
-
-    /// <summary>
-    /// Specifies operations applicable to any real number
-    /// </summary>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static Real<T> real<T>()
-        => Resolver.ops<T, Traits.Real<T>>();
 
     /// <summary>
     /// Constructs a generic real from a byte primitive 
@@ -311,21 +256,14 @@ partial class zcore
 
 
     /// <summary>
-    /// Specifies operations applicable to floating point numbers
-    /// </summary>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static FiniteFloat<T> floating<T>()
-        => Resolver.ops<T,FiniteFloat<T>>();
-
-    /// <summary>
     /// Constructs a generic integer
     /// </summary>
     /// <param name="value">The source value</param>
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]   
     public static intg<T> intg<T>(T value)
-        => new intg<T>(value);
+        where T : IConvertible
+            => new intg<T>(value);
 
     /// <summary>
     /// Constructs a generic number
@@ -353,7 +291,8 @@ partial class zcore
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]   
     public static floatg<T> floatg<T>(T x)
-        => new floatg<T>(x);
+        where T : IConvertible
+            => new floatg<T>(x);
 
 
     /// <summary>
@@ -361,7 +300,7 @@ partial class zcore
     /// </summary>
     /// <param name="src">The source value</param>
     public static IEnumerable<intg<T>> divisors<T>(intg<T> src)
-        where T : new()
+        where T : IConvertible
     {        
         var zero = Z0.intg<T>.Zero;
         var one = Z0.intg<T>.One;
@@ -383,7 +322,7 @@ partial class zcore
     /// <typeparam name="T">The underlying integer type</typeparam>
     [MethodImpl(Inline)]   
     public static bool prime<T>(intg<T> x)
-        where T : new()
+        where T : IConvertible
     {
         var upperBound = x.ToFloatG().sqrt().ceiling().ToIntG<T>();   
         return divisors(x).Count() == 0;
@@ -431,6 +370,7 @@ partial class zcore
     /// <returns></returns>
     [MethodImpl(Inline)]   
     public static modg<N,T> modring<N,T>(T lhs)
+        where T : IConvertible
         where N : TypeNat, new()
             => new modg<N,T>(lhs);
 
@@ -476,7 +416,7 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static Sign sigmul<T>(T lhs,T rhs)
         where T : Number<T>, new()
-            => (number<T>().sign(lhs),number<T>().sign(rhs)) switch   
+            => (Resolver.number<T>().sign(lhs),Resolver.number<T>().sign(rhs)) switch   
                 {
                     (Sign.Negative, Sign.Positive) => Sign.Negative,
                     (Sign.Positive, Sign.Negative) => Sign.Negative,

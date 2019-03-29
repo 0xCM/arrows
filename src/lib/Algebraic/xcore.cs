@@ -24,6 +24,8 @@ namespace  Z0
         /// <param name="items">The items to partition</param>
         /// <typeparam name="T">The item type</typeparam>
         public static IEnumerable<FiniteEqClass<T>> Partition<T>(this Traits.Equivalence<T> relation, IEnumerable<T> items)
+            where T : Traits.Equatable<T>, new()
+
         {
             var classes = cindex<T, ConcurrentBag<T>>();
             foreach(var item in items)

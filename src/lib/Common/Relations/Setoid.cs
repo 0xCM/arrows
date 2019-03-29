@@ -30,6 +30,7 @@ namespace Z0
     }
 
     public class Setoid<T> : Traits.Setoid<FiniteEqClass<T>, T>
+        where T : Traits.Equatable<T>, new()
     {
         
         readonly Traits.FiniteSet<T> membership;

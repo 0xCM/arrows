@@ -14,7 +14,7 @@ namespace Z0
         /// Characterizes an operation provider for floating point values
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface Floating<T> : Fractional<T>, Ordered<T>, Signed<T>, Negatable<T>, Trigonmetric<T>
+        public interface Floating<T> : RealNumber<T>, Fractional<T>, Signed<T>, Negatable<T>, Trigonmetric<T>
         {
             /// <summary>
             /// The minimal resolution of the data type
@@ -36,7 +36,7 @@ namespace Z0
         /// Characterizes a structure for a floating point number
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface Floating<S,T> : Floating<S>, Structure<S,T>
+        public interface Floating<S,T> : Floating<S>, Structural<S,T>
             where S : Floating<S,T>, new()
         {
 
@@ -48,21 +48,11 @@ namespace Z0
         /// Characterizes an operation provider for bounded floating point values
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface FiniteFloat<T> : Floating<T>, Bounded<T> 
+        public interface FiniteFloat<T> : Floating<T>, BoundReal<T> 
         {
 
         }
 
-        /// <summary>
-        /// Characterizes a structure for a bounded floating point number
-        /// </summary>
-        /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface FiniteFloat<S,T> : FiniteFloat<S>, Structure<S,T>
-            where S : FiniteFloat<S,T>, new()
-
-        {
-        
-        }
 
     }
 }
