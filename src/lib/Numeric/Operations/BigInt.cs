@@ -17,11 +17,19 @@ namespace Z0
     using reify = BigIntOps;
 
     [TypeClass(typeof(reify),typeof(operand))]
-    internal readonly struct BigIntOps : RealInfiniteInt<reify,operand>
+    internal readonly struct BigIntOps : InfiniteSignedInt<reify,operand>
     {
     
         public static readonly reify Inhabitant = default;
 
+        public const bool Signed = true;
+                
+        public const bool Infinite = true;
+
+        public static readonly NumberInfo<operand> Info = new NumberInfo<operand>((0,0), Signed, 0, 1, 0,Infinite);
+
+        public NumberInfo<operand> numinfo 
+            => Info;
 
         public operand zero 
             => 0;
@@ -48,8 +56,9 @@ namespace Z0
         public operand ε 
             => zero;
 
-        public (operand min, operand max)? limits 
-            => null;
+        public uint bitsize 
+            => 0;
+
 
         [MethodImpl(Inline)]   
         public operand add(operand lhs, operand rhs) 

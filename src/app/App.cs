@@ -393,8 +393,8 @@ namespace App04
 
         static void VectorArithmetic()
         {
-            var v1 = N3.Rep.NatVec(intg(1,2,3));
-            var v2 = N3.Rep.NatVec(intg(3,2,1));
+            var v1 = N3.Rep.NatVec(ints(1,2,3));
+            var v2 = N3.Rep.NatVec(ints(3,2,1));
             var v3 = Vector.add(v1,v2);
             print($"{v1} + {v2} = {v3}");
         }
@@ -427,7 +427,7 @@ namespace App04
             print($"interval = {i}, partition width = {width}, point count = {p.Count}");
         }
 
-        public static void Histo(int trials)
+        public static void Histo(uint trials)
         {
             var min = UInt16.MinValue;
             var max = UInt16.MaxValue;
@@ -458,27 +458,46 @@ namespace App04
         static void Matrices()
         {
             var rand = new RandUInt();
-            
+
             var dim = Dim.define<N3,N3>();
             var m1 = Matrix.define(dim, rand.next(9,221,287));
             printeach("m1 := ", m1.vectors());
             var m2 = Matrix.define(dim, rand.next(9,10,369));
             printeach($"m2 := ", m2.vectors());
-            var m3 = m1 * m2;
+            var m3 = m1.mul(m2);
             printeach($"m1 * m2 = ", m3.vectors());
 
         }
 
-        //
-        // Summary:
-        //     Represents positive infinity. This field is constant.
-        public const Double PositiveInfinity = 1D / 0D;
+        static void ShowBit<T>(intg<T> x, int pos)
+            => print($"value: {x}, bits = {x.bitstring()} bit[1] = {bit(x,pos)}");
+
+
+        public static void ShowBits<T>(intg<T> x)
+        {
+            
+        }
+        public static void BitOps()
+        {
+            ShowBit(u(34), 0);
+            ShowBit(u(34), 1);
+            ShowBit(u(34), 2);
+            ShowBit(u(34), 3);
+            ShowBit(u(34), 4);
+            ShowBit(u(34), 5);            
+            ShowBit(u(34), 6);
+            ShowBit(u(34), 7);
+
+
+        }
+
         static void Main(string[] args)
         {     
             SysInit.initialize<Program>();
 
 
-            TestRunner.RunTests();
+            BitOps();
+            //TestRunner.RunTests();
 
         }
     }

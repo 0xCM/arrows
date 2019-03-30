@@ -40,13 +40,16 @@ namespace Z0
             (T over, T under) paired(R x);
         }
 
+
+    }
+
+    partial class Structure
+    {
         /// <summary>
         /// Charactrizes a rational number
         /// </summary>
-        /// <typeparam name="I">The underlying integral type</typeparam>
-        public interface Rational<S,T,R> : Rational<T,R>, Structural<S,R>
+        public interface Rational<S, T, R> //: Reciprocative<T,R>
             where S : Rational<S,T,R>,  new()
-            where T : Integer<T>
         {
             /// <summary>
             /// The dividend
@@ -62,5 +65,4 @@ namespace Z0
         }
 
     }
-
 }

@@ -20,6 +20,9 @@ namespace Latex
     {
         public static readonly Syntax Empty = new Syntax(string.Empty, string.Empty);
 
+        public static implicit operator string(Syntax x)
+            => x.identity;
+
         public static Syntax operator +(Syntax lhs, Syntax rhs)
             => lhs.append(rhs);
         

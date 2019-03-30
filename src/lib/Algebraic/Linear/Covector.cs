@@ -11,20 +11,10 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
 
-    partial class Traits
-    {
-        public interface Covector<N,T> : Tranposable<Z0.Vector<N,T>>
-            where N : TypeNat, new()
-        {
-            
-        }
- 
-    }
-
     /// <summary>
     /// Strutural represention of the dual of an N-dimensional vector
     /// </summary>
-    public readonly struct Covector<N, T> : Traits.Covector<N, T>, Traits.Formattable
+    public readonly struct Covector<N, T> :  Traits.Tranposable<Z0.Vector<N,T>>, Traits.Formattable
         where N : TypeNat, new()        
     {
         /// <summary>

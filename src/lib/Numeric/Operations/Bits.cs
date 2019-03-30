@@ -11,6 +11,41 @@ namespace Z0
 
     public static class Bits
     {
+        /// <summary>
+        /// Tests whether the bit in an specific position is set
+        /// </summary>
+        /// <param name="src">The source integer</param>
+        /// <param name="pos">The bit position to test</param>
+        /// <typeparam name="T">The underlying integral type</typeparam>
+        /// <returns>Returns true if the identified bit is set, false otherwise</returns>
+        [MethodImpl(Inline)]
+        public static bool test<T>(intg<T> src, int pos)            
+            => (src & (intg<T>.One << pos)) != intg<T>.Zero;
+
+
+        /// <summary>
+        /// Determines the binary digit in an integral value at a specified position
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="pos">The bit position</param>
+        /// <typeparam name="T">The underlying integral type</typeparam>
+        [MethodImpl(Inline)]
+        public static BinaryDigit digit<T>(intg<T> src, int pos)
+            => test(src,pos) switch 
+                {
+                    true => BinaryDigit.B0,
+                    false => BinaryDigit.B1
+                };
+
+        /// <summary>
+        /// Constructs a bit from the data in an integral value at a specified position
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="pos">The bit position</param>
+        /// <typeparam name="T">The underlying integral type</typeparam>
+        [MethodImpl(Inline)]
+        public static bit bit<T>(intg<T> src, int pos)
+            => new bit(test(src,pos));
 
         /// <summary>
         /// Extracts the high-order bits from a uint to produce a ushort

@@ -11,11 +11,16 @@ namespace Z0
         /// Characterizes a type that defines an additive unit
         /// </summary>
         /// <typeparam name="T">The unit type</typeparam>
-        public interface Nullary<T>
+        public interface Nullary<T> : Operational<T>
         {
             T zero {get;}
         }
 
+
+    }
+
+    partial class Structure
+    {
         /// <summary>
         /// Characterizes a nullary structure, that is, a structure
         /// that defines a zero that is an instance of itself

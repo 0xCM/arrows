@@ -51,13 +51,13 @@ namespace Z0
     public readonly struct Permutaton<N>
         where N : TypeNat, new()        
     {
-        readonly Slice<(ulong k, ulong v)> assigments;
+        readonly (ulong k, ulong v)[] assigments;
 
         public Permutaton(params (ulong k, ulong v)[] assigments)
             => this.assigments = assigments;
 
         public ulong map(ulong index)            
-            =>  first(assigments.data, a => a.k == index).TryMap(a => a.v).ValueOrDefault(index);
+            =>  first(assigments, a => a.k == index).TryMap(a => a.v).ValueOrDefault(index);
     }
 
 

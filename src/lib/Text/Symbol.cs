@@ -13,7 +13,7 @@ namespace Z0
     /// <summary>
     /// Represents a symbol
     /// </summary>
-    public readonly struct Symbol : Traits.FreeMonoid<Symbol,Slice<Atom>>, IEquatable<Symbol>
+    public readonly struct Symbol : Structure.FreeMonoid<Symbol,Slice<Atom>>,Structure.Equatable<Symbol>,  IEquatable<Symbol>
     {
         public static readonly Symbol Empty = new Symbol(string.Empty);
 
@@ -76,15 +76,8 @@ namespace Z0
         public bool eq(Slice<Atom> lhs, Slice<Atom> rhs)
             => throw new NotImplementedException();
 
-        bool Traits.Equatable<Symbol>.eq(Symbol lhs, Symbol rhs)
-            => lhs.eq(rhs);
- 
-        bool Traits.Equatable<Symbol>.neq(Symbol lhs, Symbol rhs)
-            => lhs.neq(rhs);
-
-        Symbol Traits.Concatenable<Symbol>.concat(Symbol lhs, Symbol rhs)
-            => lhs.append(rhs);
-
+        public Symbol concat(Symbol rhs)
+            => new Symbol(this.data + rhs.data);
     }
    
 }

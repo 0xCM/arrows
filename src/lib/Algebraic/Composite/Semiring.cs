@@ -16,6 +16,11 @@ namespace Z0
             
         }
 
+
+    }
+
+    partial class Structure
+    {
         /// <summary>
         /// Characterizes semiring structure
         /// </summary>

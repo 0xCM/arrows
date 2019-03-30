@@ -52,12 +52,32 @@ partial class zcore
             => Dim.define<K>();
 
     /// <summary>
+    /// Constructs a 1-component natural dimension
+    /// </summary>
+    /// <typeparam name="K">The natural type</typeparam>
+    [MethodImpl(Inline)]   
+    public static Dim<K> dim<K>(K k)
+        where K : TypeNat, new()
+            => Dim.define<K>();
+
+    /// <summary>
     /// Constructs a 2-component natural dimension
     /// </summary>
     /// <typeparam name="K1">The type of the first component</typeparam>
     /// <typeparam name="K2">The type of the second component</typeparam>
     [MethodImpl(Inline)]   
     public static Dim<K1,K2> dim<K1,K2>()
+        where K1 : TypeNat, new()
+        where K2 : TypeNat, new()
+            => Dim.define<K1,K2>();
+
+    /// <summary>
+    /// Constructs a 2-component natural dimension
+    /// </summary>
+    /// <typeparam name="K1">The type of the first component</typeparam>
+    /// <typeparam name="K2">The type of the second component</typeparam>
+    [MethodImpl(Inline)]   
+    public static Dim<K1,K2> dim<K1,K2>(K1 k1, K2 k2)
         where K1 : TypeNat, new()
         where K2 : TypeNat, new()
             => Dim.define<K1,K2>();
@@ -74,6 +94,20 @@ partial class zcore
         where K2 : TypeNat, new()
         where K3 : TypeNat, new()
             => Dim.define<K1,K2,K3>();
+
+    /// <summary>
+    /// Constructs a 3-component natural dimension
+    /// </summary>
+    /// <typeparam name="K1">The type of the first component</typeparam>
+    /// <typeparam name="K2">The type of the second component</typeparam>
+    /// <typeparam name="K3">The type of the third component</typeparam>
+    [MethodImpl(Inline)]   
+    public static Dim<K1,K2,K3> dim<K1,K2,K3>(K1 k1, K2 k2, K3 k3)
+        where K1 : TypeNat, new()
+        where K2 : TypeNat, new()
+        where K3 : TypeNat, new()
+            => Dim.define<K1,K2,K3>();
+
 
 
 

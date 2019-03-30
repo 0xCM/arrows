@@ -15,245 +15,6 @@ using static Z0.Traits;
 
 partial class zcore
 {
-    [MethodImpl(Inline)]
-    static intg<T>[] igarray<T>(params T[] src)
-        where T : IConvertible
-    {
-        var dst = new intg<T>[src.Length];
-        for(var i = 0; i<src.Length; i++)
-            dst[i] = src[i];
-        return dst;
-    }
-
-    [MethodImpl(Inline)]
-    static Z0.Slice<intg<T>> igslice<T>(params T[] src)
-        where T : IConvertible
-            => slice(from x in src select intg<T>(x));
-
-    
-    [MethodImpl(Inline)]
-    public static Z0.Slice<intg<byte>> uintg(params byte[] src)
-        => igslice(src);
-
-    
-    [MethodImpl(Inline)]
-    public static Z0.Slice<intg<sbyte>> intg(params sbyte[] src)
-        => igslice(src);
-
-    
-    [MethodImpl(Inline)]
-    public static Z0.Slice<intg<ushort>> intg(params ushort[] src)
-        => igslice(src);
-
-
-    [MethodImpl(Inline)]
-    public static Z0.Slice<intg<short>> intg(params short[] src)
-        => igslice(src);
-
-    
-    [MethodImpl(Inline)]
-    public static Z0.Slice<intg<uint>> intg(params uint[] src)
-        => igslice(src);
-
-
-    [MethodImpl(Inline)]
-    public static intg<int>[] intg(params int[] src)
-        => igarray(src);
-
-
-    [MethodImpl(Inline)]
-    public static intg<long>[] intg(params long[] src)
-        => igarray(src);
-
-    [MethodImpl(Inline)]
-    public static Z0.Slice<intg<ulong>> intg(params ulong[] src)
-        => igslice(src);
-
-
-
-
-    /// <summary>
-    /// Constructs a generic real from a byte primitive 
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The target primitive type</typeparam>
-    [MethodImpl(Inline)]
-    public static real<T> real<T>(byte x)
-        where T: IConvertible
-            => convert<T>(x);
-
-    /// <summary>
-    /// Constructs a generic real from a sbyte primitive 
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The target primitive type</typeparam>
-    [MethodImpl(Inline)]
-    public static real<T> real<T>(sbyte x)
-        where T: IConvertible
-            => convert<T>(x);
-
-    /// <summary>
-    /// Constructs a generic real from a short primitive 
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The target primitive type</typeparam>
-    [MethodImpl(Inline)]
-    public static real<T> real<T>(short x)
-        where T: IConvertible
-            => convert<T>(x);
-
-    /// <summary>
-    /// Constructs a generic real from a ushort primitive 
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The target primitive type</typeparam>
-    [MethodImpl(Inline)]
-    public static real<T> real<T>(ushort x)
-        where T: IConvertible
-            => convert<T>(x);
-
-    /// <summary>
-    /// Constructs a generic real from a primitive int
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The target primitive type</typeparam>
-    [MethodImpl(Inline)]
-    public static real<T> real<T>(int x)
-        where T: IConvertible
-            => convert<T>(x);
-
-    /// <summary>
-    /// Constructs a generic real from a primitive uint
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The target primitive type</typeparam>
-    [MethodImpl(Inline)]
-    public static real<T> real<T>(uint x)
-        where T: IConvertible
-            => convert<T>(x);
-
-    /// <summary>
-    /// Constructs a generic real from a primitive long
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The target primitive type</typeparam>
-    [MethodImpl(Inline)]
-    public static real<T> real<T>(long x)
-        where T: IConvertible
-            => convert<T>(x);
-
-    /// <summary>
-    /// Constructs a generic real from a primitive ulong
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The target primitive type</typeparam>
-    [MethodImpl(Inline)]
-    public static real<T> real<T>(ulong x)
-        where T: IConvertible
-            => convert<T>(x);
-
-    /// <summary>
-    /// Constructs a generic real from a primitive float
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The target primitive type</typeparam>
-    [MethodImpl(Inline)]
-    public static real<T> real<T>(float x)
-        where T: IConvertible
-            => convert<T>(x);
-
-    /// <summary>
-    /// Constructs a generic real from a primitive double 
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The target primitive type</typeparam>
-    [MethodImpl(Inline)]
-    public static real<T> real<T>(double x)
-        where T: IConvertible
-            => convert<T>(x);
-
-    /// <summary>
-    /// Constructs a generic real from a primitive decimal
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The target primitive type</typeparam>
-    [MethodImpl(Inline)]
-    public static real<T> real<T>(decimal x)
-        where T: IConvertible
-            => convert<T>(x);
-
-    /// <summary>
-    /// Constructs a real byte from a primitive byte
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static real<byte> real(byte x)
-        => x;
-
-    /// <summary>
-    /// Constructs a real sbyte from a primitive sbyte
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static real<sbyte> real(sbyte x)
-        => x;
-
-    /// <summary>
-    /// Constructs a real short from a primitive short
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static real<short> real(short x)
-        => x;
-
-    /// <summary>
-    /// Constructs a real ushort from a primitive ushort
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static real<ushort> real(ushort x)
-        => convert<ushort>(x);
-
-    /// <summary>
-    /// Constructs a real int from a primitive int
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static real<int> real(int x)
-        => x;
-
-    /// <summary>
-    /// Constructs a real uint from a primitive uint
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static real<uint> real(uint x)
-        => x;
-
-    /// <summary>
-    /// Constructs a real long from a primitive long
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static real<long> real(long x)
-        => x;
-
-    [MethodImpl(Inline)]
-    public static real<ulong> real(ulong x)
-        => x;
-
-    [MethodImpl(Inline)]
-    public static real<float> real(float x)
-        => x;
-
-    [MethodImpl(Inline)]
-    public static real<double> real(double x)
-        => x;
-
-    [MethodImpl(Inline)]
-    public static real<decimal> real(decimal x)
-        => x;
-
 
     /// <summary>
     /// Constructs a generic integer
@@ -397,6 +158,15 @@ partial class zcore
     public static R R() 
         => Z0.R.Inhabitant;
 
+    [MethodImpl(Inline)]
+    public static intg<T> min<T>(intg<T> x, intg<T> y)
+        => x < y ? x : y;
+
+
+    [MethodImpl(Inline)]
+    public static intg<T> max<T>(intg<T> x, intg<T> y)
+        => x > y ? x : y;
+
     [MethodImpl(Inline)]   
     public static T acaddmul<T>(Semiring<T> sr, Traits.FiniteSeq<T> a, Traits.FiniteSeq<T> b)
     {
@@ -412,7 +182,6 @@ partial class zcore
     /// <param name="lhs">The left number</param>
     /// <param name="rhs">The right number</param>
     /// <typeparam name="T">The underlying type</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
     public static Sign sigmul<T>(T lhs,T rhs)
         where T : Number<T>, new()
@@ -426,5 +195,15 @@ partial class zcore
                     (_, Sign.Neutral) => Sign.Neutral,
                     _ => Sign.Neutral
                 };
+
+    /// <summary>
+    /// Constructs a bit from the data in an integral value at a specified position
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <param name="pos">The bit position</param>
+    /// <typeparam name="T">The underlying integral type</typeparam>
+    [MethodImpl(Inline)]   
+    public static bit bit<T>(intg<T> x, int pos)
+        => Bits.bit(x, pos);
 }
 

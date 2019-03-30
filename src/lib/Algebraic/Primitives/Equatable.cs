@@ -8,21 +8,31 @@ namespace Z0
 
     partial class Traits
     {
-        public interface Equatable<T>
+        public interface Equatable<T> : Operational<T>
         {
             bool eq(T lhs, T rhs);
 
             bool neq(T lhs, T rhs);
         }
 
-        public interface Equatable<S,T> : Equatable<T>, Structural<S,T>
-            where S : Equatable<S,T>, new()
+
+    }
+
+    partial class Structure
+    {
+        public interface Equatable<S>
+            where S : Equatable<S>, new()
         {
             bool eq(S rhs);
 
             bool neq(S rhs);
         }
 
+        public interface Equatable<S,T> : Equatable<S>, Structural<S,T>
+            where S : Equatable<S,T>, new()
+        {
+
+        }
     }
 
     public readonly struct Equality<T> : Traits.Equatable<T>

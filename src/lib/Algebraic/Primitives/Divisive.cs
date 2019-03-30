@@ -17,6 +17,21 @@ namespace Z0
             T mod(T lhs, T rhs);
         }
 
+
+        public interface Reciprocative<T> : Operational<T>
+        {
+            /// <summary>
+            /// Calculates the multiplicative inverse of a given element
+            /// </summary>
+            /// <param name="x">The individual for which an inverse will be calculated</param>
+            T recip(T x);
+            
+        }
+
+    }
+
+    partial class Structure
+    {
         public interface Divisive<S,T> : Structural<S,T>
             where S : Divisive<S,T>, new()
         {
@@ -28,17 +43,6 @@ namespace Z0
             Quorem<S> divrem(S rhs);        
 
             S mod(S rhs);
-        }
-
-
-        public interface Reciprocative<T>
-        {
-            /// <summary>
-            /// Calculates the multiplicative inverse of a given element
-            /// </summary>
-            /// <param name="x">The individual for which an inverse will be calculated</param>
-            T recip(T x);
-            
         }
 
         public interface Reciprocative<S,T> : Structural<S,T>

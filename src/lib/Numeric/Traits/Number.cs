@@ -36,15 +36,19 @@ namespace Z0
             string bitstring(T x);
 
 
+            NumberInfo<T> numinfo {get;}
         }
 
+    }
+    partial class Structure
+    {
  
         /// <summary>
         /// Characterizes a structral number
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying operand type</typeparam>
-        public interface Number<S,T> : Number<S>, Structural<S,T>
+        public interface Number<S,T> : GroupA<S,T>, SemigroupM<S,T>, Semiring<S,T>, Divisive<S,T>, Powered<S,int> 
             where S : Number<S,T>,  new()
         {
             

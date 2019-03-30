@@ -11,18 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
 
-    partial class Traits
-    {
-       public interface Vector<N,T> : IEnumerable<T>, Tranposable<Z0.Covector<N,T>>
-            where N : TypeNat, new()
-        {
-            
-        }
-
-    }
-
-
-    public readonly struct Vector<N, T> : Traits.Vector<N, T>, IEnumerable<T>, Traits.Formattable
+    public readonly struct Vector<N, T> : IEnumerable<T>, Traits.Tranposable<Z0.Covector<N,T>>, Traits.Formattable
         where N : TypeNat, new()        
     {
 

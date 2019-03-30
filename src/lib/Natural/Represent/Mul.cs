@@ -12,43 +12,11 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
 
-    partial class Traits
-    {
-     
-        /// <summary>
-        /// Characterizes the natural k such that k1:K1 & k2:K2 => k = k1 * k2
-        /// </summary>
-        /// <typeparam name="K1">The first operand type</typeparam>
-        /// <typeparam name="K2">The second operand type</typeparam>
-        public interface Mul<K1,K2> : TypeNat
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
-        {
-
-        }
-
-        /// <summary>
-        /// Characterizes a refification K that encodes a natural value 
-        /// k:K such that k1:K1 & k2:K2 => k = k1*k2
-        /// </summary>
-        /// <typeparam name="K">The defining reification</typeparam>
-        /// <typeparam name="K1">The first operand type</typeparam>
-        /// <typeparam name="K2">The second operand type</typeparam>
-        public interface Mul<K,K1,K2> : Mul<K1,K2>, TypeNat<K>
-            where K : Mul<K,K1,K2>, new()
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
-        {
-            
-        }
-    }
 
     /// <summary>
     /// Encodes a natural number k such that k1:K1 & k2:K2 => k = k1*k2
     /// </summary>
-    public readonly struct Mul<K1, K2> : Traits.Mul<Mul<K1, K2>, K1, K2>,
-          IEquatable<Pow<K1,K2>>,
-          IEquatable<NatSeq> 
+    public readonly struct Mul<K1, K2> : TypeNat, IEquatable<Pow<K1,K2>>, IEquatable<NatSeq> 
             where K1 : TypeNat, new()
             where K2 : TypeNat, new()
     {

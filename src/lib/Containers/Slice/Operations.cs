@@ -7,6 +7,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    
 
     /// <summary>
     /// Defines slice construction/manipulation routines
@@ -15,19 +16,24 @@ namespace Z0
     {        
         [MethodImpl(Inline)]
         public static Slice<T> define<T>(params T[] data)
-            => new Slice<T>(data);
+            where T : Structure.Equatable<T>, new()
+                => new Slice<T>(data);
 
         [MethodImpl(Inline)]
         public static Slice<T> define<T>(IEnumerable<T> data)
-            => new Slice<T>(data);
+            where T : Structure.Equatable<T>, new()
+                => new Slice<T>(data);
 
         [MethodImpl(Inline)]
         public static Slice<T> define<T>(IReadOnlyList<T> data)
-            => new Slice<T>(data);
+            where T : Structure.Equatable<T>, new()
+                => new Slice<T>(data);
 
         [MethodImpl(Inline)]
         public static Slice<N,T> define<N,T>(params T[] data)
-            where N : TypeNat, new() => new Slice<N,T>(data);
+            where N : TypeNat, new() 
+            where T : Structure.Equatable<T>, new()
+              => new Slice<N,T>(data);
 
         [MethodImpl(Inline)]
         public static Slice<N,T> define<N,T>(IEnumerable<T> data)
@@ -35,6 +41,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Slice<T> concat<T>(Slice<T> s1, Slice<T> s2)
+            where T : Structure.Equatable<T>, new()
             => s1 + s2;
 
         /// <summary>
@@ -46,31 +53,32 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]
         public static Slice<T> define<T>(T value, uint count)
-            => new Slice<T>(repeat(value,count));
+            where T : Structure.Equatable<T>, new()
+                => new Slice<T>(repeat(value,count));
 
 
         [MethodImpl(Inline)]
-        public static T sum<N,T>(Traits.Slice<N,T> x)
+        public static T sum<N,T>(Traits.NSlice<N,T> x)
             where N : Z0.TypeNat, new() 
             where T : Traits.Semiring<T>, new()     
                 => reduce(x, semiring<T>().add);
     
         [MethodImpl(Inline)]
-        public static Slice<N,T> square<N,T>(Traits.Slice<N,T> x)
+        public static Slice<N,T> square<N,T>(Traits.NSlice<N,T> x)
             where N : Z0.TypeNat, new() 
             where T : Traits.Semiring<T>, new()     
                 => apply(x, x, semiring<T>().mul);
 
         [MethodImpl(Inline)]
-        public static T reduce<N,T>(Traits.Slice<N,T> s, Func<T,T,T> reducer)
+        public static T reduce<N,T>(Traits.NSlice<N,T> s, Func<T,T,T> reducer)
                 where N : Z0.TypeNat, new()
                 where T : Traits.Semiring<T>, new()     
                     => fold(s.data,reducer, semiring<T>().zero);
 
         [MethodImpl(Inline)]
         static Slice<U> apply<T,U>(Traits.Slice<T> s1, Traits.Slice<T> s2, Func<T,T,U> f)
-            where T : Traits.Semiring<T>, new()     
-            where U : Traits.Semiring<U>, new()     
+            where T : Traits.Semiring<T>, Structure.Equatable<T>, new()     
+            where U : Traits.Semiring<U>, Structure.Equatable<U>, new()     
         {
             var len = s1.length;
             demand(s1.length == s2.length, $"The slice lengths {s1.length} and {s2.length} must match");
@@ -81,7 +89,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        static Slice<N,U> apply<N,T,U>(Traits.Slice<N,T> s1, Traits.Slice<N,T> s2, Func<T,T,U> f)
+        static Slice<N,U> apply<N,T,U>(Traits.NSlice<N,T> s1, Traits.NSlice<N,T> s2, Func<T,T,U> f)
             where N : Z0.TypeNat, new()
             where T : Traits.Semiring<T>, new()     
             where U : Traits.Semiring<U>, new()     
@@ -101,7 +109,7 @@ namespace Z0
         /// <typeparam name="T">The semigroup-conforming element type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<T> add<T>(Traits.Slice<T> s1, Traits.Slice<T> s2)
-                where T : Traits.Semiring<T>, new()     
+                where T : Traits.Semiring<T>, Structure.Equatable<T>, new()     
                     => apply(s1,s2,semiring<T>().add);
 
         /// <summary>
@@ -112,7 +120,7 @@ namespace Z0
         /// <typeparam name="N">The natural length type</typeparam>
         /// <typeparam name="T">The semigroup-conforming element type</typeparam>
         [MethodImpl(Inline)]
-        public static Slice<N,T> add<N,T>(Traits.Slice<N,T> s1, Traits.Slice<N,T> s2)
+        public static Slice<N,T> add<N,T>(Traits.NSlice<N,T> s1, Traits.NSlice<N,T> s2)
                 where N : Z0.TypeNat, new()
                 where T : Traits.Semiring<T>, new()     
                     => apply(s1,s2,semiring<T>().add);
@@ -126,7 +134,7 @@ namespace Z0
         /// <typeparam name="N">The natural length type</typeparam>
         /// <typeparam name="T">The semigroup-conforming element type</typeparam>
         [MethodImpl(Inline)]
-        public static Slice<N,T> mul<N,T>(Traits.Slice<N,T> s1, Traits.Slice<N,T> s2)
+        public static Slice<N,T> mul<N,T>(Traits.NSlice<N,T> s1, Traits.NSlice<N,T> s2)
                 where N : Z0.TypeNat, new()
                 where T : Traits.Semiring<T>, new()      
                     => apply(s1,s2,semiring<T>().mul);
@@ -139,9 +147,7 @@ namespace Z0
         /// <typeparam name="T">The semigroup-conforming element type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<T> mul<T>(Traits.Slice<T> s1, Traits.Slice<T> s2)
-                where T : Traits.Semiring<T>, new()     
+                where T : Traits.Semiring<T>, Structure.Equatable<T>,  new()     
                     => apply(s1,s2,semiring<T>().mul);
-
-
     } 
 }

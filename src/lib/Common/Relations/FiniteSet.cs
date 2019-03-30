@@ -7,6 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
 
     using static zcore;
 
@@ -80,10 +81,10 @@ namespace Z0
     /// <summary>
     /// Contains a finite set of values
     /// </summary>
-    public readonly struct FiniteSet<T> : Traits.FiniteSet<FiniteSet<T>,T>
+    public readonly struct FiniteSet<T> : Traits.FiniteSet<FiniteSet<T>,T>, Traits.Equatable<FiniteSet<T>>
         where T : Traits.Equatable<T>, new()
     {
-        static readonly IEqualityComparer<HashSet<T>> setcomparer = HashSet<T>.CreateSetComparer();
+        static readonly IEqualityComparer<HashSet<T>> setcomparer = HashSet<T>.CreateSetComparer();        
 
         static HashSet<T> hashset(IEnumerable<T> members)
             => new HashSet<T>(members, new T().ToEqualityComparer());
@@ -94,9 +95,11 @@ namespace Z0
         readonly HashSet<T> data;
 
 
+        [MethodImpl(Inline)]   
         public FiniteSet(IEnumerable<T> members)
             => this.data = hashset(members);
 
+        [MethodImpl(Inline)]   
         public FiniteSet(HashSet<T> members)
             => this.data = members;
 
@@ -112,15 +115,19 @@ namespace Z0
         public bool discrete
             => true;
 
+        [MethodImpl(Inline)]   
         public bool Equals(FiniteSet<T> other)
             => setcomparer.Equals(data, other.data);
 
+        [MethodImpl(Inline)]   
         public bool member(T candidate)
             => data.Contains(candidate);
 
+        [MethodImpl(Inline)]   
         public bool member(object candidate)
             => candidate is T ? member((T)candidate) :false;
 
+        [MethodImpl(Inline)]   
         public Seq<T> members()
             => Seq.define<T>(data);
 
@@ -129,7 +136,7 @@ namespace Z0
         /// </summary>
         /// <param name="rhs">The candidate superset</param>
         /// <param name="proper">Specifies whether only proper subsets are considered "subsets"</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]   
         public bool subset(FiniteSet<T> rhs, bool proper = true)
             => proper ? data.IsProperSubsetOf(rhs.data) : data.IsSubsetOf(rhs.data);
 
@@ -138,7 +145,7 @@ namespace Z0
         /// </summary>
         /// <param name="rhs">The candidate subset</param>
         /// <param name="proper">Specifies whether only proper subsets are considered "subsets"</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]   
         public bool superset(FiniteSet<T> rhs, bool proper = true)
             => proper ? data.IsProperSupersetOf(rhs.data) : data.IsSubsetOf(rhs.data);
 
@@ -147,6 +154,7 @@ namespace Z0
         /// returns a new set that embodies this result
         /// </summary>
         /// <param name="rhs">The set with which to union/param>
+        [MethodImpl(Inline)]   
         public FiniteSet<T> union(FiniteSet<T> rhs)
         {
             var result = hashset(data);
@@ -159,6 +167,7 @@ namespace Z0
         /// returns a new set that embodies this result
         /// </summary>
         /// <param name="rhs">The set with which to intersect</param>
+        [MethodImpl(Inline)]   
         public FiniteSet<T> intersect(FiniteSet<T> rhs)
         {
             var result = hashset(data);
@@ -172,6 +181,7 @@ namespace Z0
         /// </summary>
         /// <param name="rhs">The set that should be differenced</param>
         /// <remarks>See https://en.wikipedia.org/wiki/Symmetric_difference</remarks>
+        [MethodImpl(Inline)]   
         public FiniteSet<T> difference(FiniteSet<T> rhs, bool symmetric = false)
         {
             var result = hashset(data);
@@ -181,14 +191,22 @@ namespace Z0
                 result.ExceptWith(rhs.data);
             return result;
         }
-
     
         /// <summary>
         /// Determine whether the current set and a specified set have a nonemtpy intersection
         /// </summary>
         /// <param name="rhs">The set to compare</param>
         /// <returns></returns>
+        [MethodImpl(Inline)]   
         public bool intersects(FiniteSet<T> rhs)
-            => data.Overlaps(rhs.data);        
+            => data.Overlaps(rhs.data);
+
+        [MethodImpl(Inline)]   
+        public bool eq(FiniteSet<T> lhs, FiniteSet<T> rhs)
+            => lhs.data.SetEquals(rhs.data);
+
+        [MethodImpl(Inline)]   
+        public bool neq(FiniteSet<T> lhs, FiniteSet<T> rhs)
+            => not(eq(lhs,rhs));
     }
 }

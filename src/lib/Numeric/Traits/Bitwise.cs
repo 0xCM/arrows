@@ -8,7 +8,7 @@ namespace Z0
 
     partial class Traits
     {
-        public interface BitShifts<T>
+        public interface BitShifts<T> : Operational<T>
         {
             T lshift(T lhs, int rhs);
 
@@ -16,21 +16,13 @@ namespace Z0
 
         }
 
-        public interface BitShifts<S,T> : BitShifts<S>, Structural<S,T>
-            where S : BitShifts<S,T>, new()
-        {
-            S lshift(int rhs);
-
-            S rshift(int rhs);
-
-        }
         
 
         /// <summary>
         /// Characterizes bitwise logical operations over a type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface BitLogic<T>
+        public interface BitLogic<T> : Operational<T>
         {
             /// <summary>
             /// Computes the bitwise and from the supplied values
@@ -66,11 +58,30 @@ namespace Z0
 
 
         /// <summary>
+        /// Characterizes bitwise operations over an operand
+        /// </summary>
+        public interface Bitwise<T> : BitLogic<T>, BitShifts<T> { }
+
+
+    }
+
+    partial class Structure
+    {
+        public interface BitShifts<S,T> : Structural<S,T>
+            where S : BitShifts<S,T>, new()
+        {
+            S lshift(int rhs);
+
+            S rshift(int rhs);
+
+        }
+
+        /// <summary>
         /// Characterizes a structure over which logical bitwise operations may be applied
         /// </summary>
         /// <typeparam name="S"></typeparam>
         /// <typeparam name="T"></typeparam>
-        public interface BitLogic<S,T> : BitLogic<S>, Structural<S,T>
+        public interface BitLogic<S,T> :  Structural<S,T>
             where S : BitLogic<S,T>, new()
         {
             /// <summary>
@@ -100,22 +111,16 @@ namespace Z0
             /// <returns></returns>
             S flip();
         }
- 
-        /// <summary>
-        /// Characterizes bitwise operations over an operand
-        /// </summary>
-        public interface Bitwise<T> : BitLogic<T>, BitShifts<T> { }
 
         /// <summary>
         /// Characterizes a structure that supports bitwise operations
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying operand type</typeparam>
-       public interface Bitwise<S,T> : Bitwise<S>, Structural<S,T>
+       public interface Bitwise<S,T> : BitLogic<S,T>, BitShifts<S,T>
             where S : Bitwise<S,T>, new() { }
 
 
     }
-
 
 }

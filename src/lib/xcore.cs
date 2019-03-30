@@ -16,6 +16,21 @@ namespace Z0
     partial class xcore
     {
 
+        public static IEnumerable<ulong> ToLongs(this IEnumerable<Guid> guids)
+        {
+            foreach(var guid in guids)
+            {
+                var bytes = guid.ToByteArray();      
+                yield return BitConverter.ToUInt64(bytes,0);
+                yield return BitConverter.ToUInt64(bytes,4);
+            }
+            
+        }
+
+        public static ulong[] ToLongArray(this IEnumerable<Guid> guids)
+            => guids.ToLongs().ToArray();
+
+
         public static Y? TryMap<X,Y>(this X? x, Func<X,Y> f)
             where X : struct
             where Y : struct

@@ -18,13 +18,6 @@ using static zcore;
 /// </summary>
 public static class ToIntGX
 {
-    /// <summary>
-    /// x:byte => x:intg[byte]
-    /// </summary>
-    /// <param name="src">The source value</param>
-    [MethodImpl(Inline)]   
-    public static intg<byte> ToIntG(this byte src)
-        => src;
 
 
     [MethodImpl(Inline)]   
@@ -36,24 +29,14 @@ public static class ToIntGX
     public static intg<short> ToIntG(this short src)
         => src;
 
-    [MethodImpl(Inline)]   
-    public static intg<ushort> ToIntG(this ushort src)
-        => src;
 
     [MethodImpl(Inline)]   
     public static intg<int> ToIntG(this int src)
-        => src;
+        => new intg<int>(src);
 
-    [MethodImpl(Inline)]   
-    public static intg<uint> ToIntG(this uint src)
-        => src;
 
     [MethodImpl(Inline)]   
     public static intg<long> ToIntG(this long src)
-        => src;
-
-    [MethodImpl(Inline)]   
-    public static intg<ulong> ToIntG(this ulong src)
         => src;
 
     [MethodImpl(Inline)]   
@@ -61,10 +44,41 @@ public static class ToIntGX
         => src;
 
     /// <summary>
-    /// x:byte => x:intg[T]
+    /// effects byte => intg[byte]
     /// </summary>
     /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
+    public static intg<byte> ToUIntG(this byte src)
+        => src;
 
+    /// <summary>
+    /// effects ushort => intg[ushort]
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
+    public static intg<ushort> ToUIntG(this ushort src)
+        => src;
+
+    /// <summary>
+    /// effects uint => intg[ulong]
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
+    public static intg<uint> ToUIntG(this uint src)
+        => src;
+
+    /// <summary>
+    /// effects ulong => intg[ulong]
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
+    public static intg<ulong> ToUIntG(this ulong src)
+        => src;
+
+    /// <summary>
+    /// effects byte => intg[T]
+    /// </summary>
+    /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this byte src)
         => convert<T>(src);
@@ -238,8 +252,6 @@ public static class ToIntGX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this Enum src)    
-        => (T)Convert.ChangeType(src, type<T>());
-
-    
+        => (T)Convert.ChangeType(src, type<T>());    
 }
 

@@ -65,11 +65,11 @@ namespace Z0
         [MethodImpl(Inline)]
         public FiniteSeq(IEnumerable<T> src)
         {
-            this.src = src.ToSlice();
+            this.src = src.ToArray();
             this.nonempty = true;
         }
 
-        readonly Slice<T> src;
+        readonly T[] src;
 
         readonly bool nonempty;
 
@@ -80,14 +80,14 @@ namespace Z0
             => src[i];
 
         public int count 
-            => src.length.ToInt();
+            => src.Length;
 
         [MethodImpl(Inline)]
         public FiniteSeq<T> redefine(IEnumerable<T> src)
             => new FiniteSeq<T>(src);                
 
         public IEnumerable<T> stream()
-            => src.data;
+            => src;
 
     }
 

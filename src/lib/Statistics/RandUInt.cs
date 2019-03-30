@@ -15,7 +15,7 @@ namespace Z0
         where T: IConvertible
     {
         real<T> next();
-        IEnumerable<real<T>> next(int count);
+        IEnumerable<real<T>> next(intg<ulong> count);
     }
 
     /// <summary>
@@ -42,27 +42,28 @@ namespace Z0
         static ulong rotl(ulong x, int k) 
             => (x << k) | (x >> (64 - k));
 
-        static IEnumerable<ulong> guiseed()
-        {
-            var g1 = Guid.NewGuid().ToByteArray();
-            var g2 = Guid.NewGuid().ToByteArray();
-            yield return BitConverter.ToUInt64(g1,0);
-            yield return BitConverter.ToUInt64(g1,4);
-            yield return BitConverter.ToUInt64(g2,0);
-            yield return BitConverter.ToUInt64(g2,4);
-        }
+        static ulong[] guiseed()
+            => items(Guid.NewGuid(), Guid.NewGuid()).ToLongArray();
+
 
         readonly ulong[] seed;
 
         public RandUInt()
         {
-            seed = guiseed().ToArray();
+            seed = guiseed();
+            jump(J128);
+        }
+
+        public RandUInt(Guid g1, Guid g2)
+        {
+            this.seed = items(g1,g2).ToLongArray();
             jump(J128);
         }
 
         public RandUInt(ulong[] seed)
         {
             this.seed = seed;
+            jump(J128);
         }
 
         [MethodImpl(Inline)]
@@ -110,13 +111,13 @@ namespace Z0
             seed[3] = s3;
         }          
 
-        public IEnumerable<real<ulong>> next(int count)
+        public IEnumerable<real<ulong>> next(intg<ulong> count)
         {
-            for(var j = 0; j<count; j++)
+            for(var j = count.zero; j<count; j++)
                 yield return next();
         }
 
-        public IEnumerable<real<ulong>> next(int count, ulong min, ulong max)
+        public IEnumerable<real<ulong>> next(intg<ulong> count, ulong min, ulong max)
         {
             var width = max - min;
             var offset = min + 1;
@@ -124,13 +125,13 @@ namespace Z0
                 yield return (n % width + offset);
         }
 
-        public IEnumerable<real<uint>> next(int count, uint min, uint max)
+        public IEnumerable<real<uint>> next(intg<ulong> count, uint min, uint max)
             => next(count, (ulong)min, (ulong)max).Select(x => real<uint>(x));
 
-        public IEnumerable<real<ushort>> next(int count, ushort min, ushort max)
+        public IEnumerable<real<ushort>> next(intg<ulong> count, ushort min, ushort max)
             => next(count, (ulong)min, (ulong)max).Select(x => real<ushort>(x));
 
-        public IEnumerable<real<byte>> next(int count, byte min, byte max)
+        public IEnumerable<real<byte>> next(intg<ulong> count, byte min, byte max)
             => next(count, (ulong)min, (ulong)max).Select(x => real<byte>(x));
 
     }

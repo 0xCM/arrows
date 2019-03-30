@@ -12,10 +12,12 @@ namespace Z0
 
     using static zcore;
 
+
     /// <summary>
     /// Encapsulates a linear data segment with length determined at runtime
     /// </summary>
-    public readonly struct Slice<T> : Traits.Slice<T>, IEquatable<Slice<T>>, IEnumerable<T>, Traits.Reversible<Slice<T>,T>, Traits.Formattable
+    public readonly struct Slice<T> : Traits.Slice<Slice<T>, T>
+        where T : Structure.Equatable<T>, new()        
     {                    
         public static Slice<T> operator + (Slice<T> lhs, Slice<T> rhs)
             => new Slice<T>(lhs.data.Concat(rhs.data));
@@ -102,17 +104,23 @@ namespace Z0
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
 
-        public bool Equals(Slice<T> rhs)
+        public bool eq(Slice<T> lhs, Slice<T> rhs)
         {
-            if(length != rhs.length)
+            if(lhs.length != rhs.length)
                 return false;
             for(var i = 0; i<length; i++)
             {
-                if(!Object.Equals(this[i], rhs[i]))
+                if(lhs[i].neq(rhs[i]))
                     return false;
             }
             return true;            
         }
+
+        public bool neq(Slice<T> lhs, Slice<T> rhs)
+            => not(eq(lhs,rhs));
+
+        public bool Equals(Slice<T> rhs)
+            => eq(this,rhs);
 
         public override bool Equals(object rhs)
             => rhs is Slice<T> ? Equals((Slice<T>)rhs) : false;
@@ -129,7 +137,7 @@ namespace Z0
     /// <summary>
     /// Encapsulates a linear data segment with naturally-typed length
     /// </summary>
-    public readonly struct Slice<N,T> : Traits.Slice<Slice<N,T>,N,T>, IEnumerable<T>, Traits.Reversible<Slice<N,T>,T>
+    public readonly struct Slice<N,T> : Traits.NSlice<Slice<N,T>,N,T>, IEnumerable<T>, Traits.Reversible<Slice<N,T>,T>
         where N : TypeNat, new()
     {                    
         

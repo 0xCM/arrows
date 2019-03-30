@@ -97,6 +97,45 @@ namespace Z0
             where K : TypeNat,new()
              => new K(); 
 
+        [MethodImpl(Inline)]   
+        public static Next<K> next<K>()
+                where K : TypeNat,new()
+            => new Next<K>();
+
+        /// <summary>
+        /// Recuces the representation to canonical form
+        /// </summary>
+        /// <typeparam name="S">The source natural</typeparam>
+        /// <typeparam name="T">The target natural</typeparam>
+        /// <returns></returns>
+        [MethodImpl(Inline)]   
+        public static T reduce<S,T>()
+            where S : TypeNat, new()
+            where T : TypeNat, new()
+        {                        
+            var tval = Nat.nat<T>();
+            var sval = Nat.nat<S>();
+            Prove.equal(tval, sval);
+            return tval;
+        }
+
+
+        [MethodImpl(Inline)]   
+        public static Next<K> next<K>(K nat)
+                where K : TypeNat,new()
+            => new Next<K>();
+
+        [MethodImpl(Inline)]   
+        public static Prior<K> prior<K>()
+                where K : TypeNat,new()
+            => new Prior<K>();
+
+
+        [MethodImpl(Inline)]   
+        public static Prior<K> prior<K>(K nat)
+                where K : TypeNat,new()
+            => new Prior<K>();
+
         /// <summary>
         /// Constructs (k1,k2) where k1:K2 & k2:K2 
         /// </summary>

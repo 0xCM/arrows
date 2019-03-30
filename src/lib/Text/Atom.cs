@@ -13,7 +13,7 @@ namespace Z0
     /// <summary>
     /// Represents a Atom
     /// </summary>
-    public readonly struct Atom : IEquatable<Atom>
+    public readonly struct Atom : IEquatable<Atom>, Structure.Equatable<Atom>
     {
         public static readonly Atom Empty = new Atom(string.Empty);
 
@@ -49,11 +49,14 @@ namespace Z0
         public Slice<Atom> append(Atom rhs)
             => this + rhs;
 
+        public bool eq(Atom lhs, Atom rhs)
+            => lhs.data == rhs.data;
+
+        public bool neq(Atom lhs, Atom rhs)
+            => not(eq(lhs,rhs));
+
         public override string ToString() 
             => data;
-
-        public bool Equals(Atom rhs)
-            => data == rhs.data;
 
         public override bool Equals(Object rhs)
             => rhs is Atom ? Equals((Atom)rhs) : false;
@@ -61,6 +64,9 @@ namespace Z0
         public override int GetHashCode() 
             => data.GetHashCode();
 
+
+        public bool Equals(Atom rhs)
+            => eq(this,rhs);
     }
    
 }

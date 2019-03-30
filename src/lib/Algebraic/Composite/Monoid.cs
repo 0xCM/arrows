@@ -17,6 +17,33 @@ namespace Z0
 
         }
 
+
+        /// <summary>
+        /// Characterizes multiplicative monoidal operations
+        /// </summary>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface MonoidM<T> : Monoid<T>, SemigroupM<T>, Unital<T>
+        {
+
+        }
+
+
+
+        /// <summary>
+        /// Characterizes additive monoidal operations
+        /// </summary>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface MonoidA<T> : Monoid<T>, SemigroupA<T>, Nullary<T>
+        {
+            
+
+        }
+
+
+    }   
+
+    partial class Structure
+    {
         /// <summary>
         /// Characterizes monoidal structure
         /// </summary>
@@ -29,15 +56,6 @@ namespace Z0
         }            
 
         /// <summary>
-        /// Characterizes multiplicative monoidal operations
-        /// </summary>
-        /// <typeparam name="T">The operand type</typeparam>
-        public interface MonoidM<T> : Monoid<T>, SemigroupM<T>, Unital<T>
-        {
-
-        }
-
-        /// <summary>
         /// Characterizes multiplicative monoidal structure
         /// </summary>
         /// <typeparam name="S">The classified structure</typeparam>
@@ -47,17 +65,6 @@ namespace Z0
         {
 
         }            
-
-
-        /// <summary>
-        /// Characterizes additive monoidal operations
-        /// </summary>
-        /// <typeparam name="T">The operand type</typeparam>
-        public interface MonoidA<T> : Monoid<T>, SemigroupA<T>, Nullary<T>
-        {
-            
-
-        }
 
         /// <summary>
         /// Characterizes additive monoidal structure
@@ -71,6 +78,5 @@ namespace Z0
         }            
 
 
-    }   
-
+    }
 }

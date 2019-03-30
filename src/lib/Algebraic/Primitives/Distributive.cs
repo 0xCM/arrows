@@ -16,16 +16,6 @@ namespace Z0
             T distribute(T lhs, (T x, T y) rhs);
         }
 
-         public interface LeftDistributive<S,T>  : Multiplicative<S,T>, Additive<S,T>
-            where S : LeftDistributive<S,T>, new()
-        {
-            /// <summary>
-            /// Characterizes a type that defines an operator that left-distributes
-            /// multiplication over addition
-            /// </summary>
-            /// <typeparam name="X">The operand type</typeparam>
-            S distributeL((S x, S y) rhs);
-        }
 
         /// <summary>
         /// Characterizes a type that defines an operator that right-distributes
@@ -35,6 +25,32 @@ namespace Z0
         public interface RightDistributive<T> : Multiplicative<T>, Additive<T>
         {
             T distribute((T x, T y) lhs, T rhs);
+        }
+
+
+
+        /// <summary>
+        /// Characterizes a type that defines both left and right distribution
+        /// over addition
+        /// </summary>
+        public interface Distributive<T> : LeftDistributive<T>, RightDistributive<T>
+        {
+
+        }
+
+    }
+
+    partial class Structure
+    {
+         public interface LeftDistributive<S,T>  : Multiplicative<S,T>, Additive<S,T>
+            where S : LeftDistributive<S,T>, new()
+        {
+            /// <summary>
+            /// Characterizes a type that defines an operator that left-distributes
+            /// multiplication over addition
+            /// </summary>
+            /// <typeparam name="X">The operand type</typeparam>
+            S distributeL((S x, S y) rhs);
         }
 
         public interface RightDistributive<S,T>  : Multiplicative<S,T>, Additive<S,T>
@@ -48,20 +64,11 @@ namespace Z0
             S distributeR((S x, S y) rhs);
         }
 
-
-        /// <summary>
-        /// Characterizes a type that defines both left and right distribution
-        /// over addition
-        /// </summary>
-        public interface Distributive<T> : LeftDistributive<T>, RightDistributive<T>
-        {
-
-        }
-
         public interface Distributive<S,T> : LeftDistributive<S,T>, RightDistributive<S,T>
             where S : Distributive<S,T>,new()
         {
 
         }
+
     }
 }

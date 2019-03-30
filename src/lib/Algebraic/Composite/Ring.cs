@@ -22,16 +22,33 @@ namespace Z0
             
         }
 
-        public interface Ring<S,T> : GroupA<S,T>, MonoidM<S,T>, Distributive<S,T>
-            where S : Ring<S,T>, new()
-        {
-            
-        }
-
         /// <summary>
         /// Characterizes a commutative, unital ring
         /// </summary>
         public interface CommutativeRing<T> : Ring<T>
+        {
+            
+        }
+
+
+
+        public interface DivisionRing<T> : Ring<T>, Divisive<T>, Reciprocative<T>
+        {
+
+
+        }
+
+
+        public interface Field<T> : CommutativeRing<T>, DivisionRing<T>
+        {
+
+        }
+    }
+
+    partial class Structure
+    {
+        public interface Ring<S,T> : GroupA<S,T>, MonoidM<S,T>, Distributive<S,T>
+            where S : Ring<S,T>, new()
         {
             
         }
@@ -46,24 +63,12 @@ namespace Z0
         }
 
 
-        public interface DivisionRing<T> : Ring<T>, Divisive<T>, Reciprocative<T>
-        {
-
-
-        }
-
         public interface DivisionRing<S,T> : Ring<S,T>, Divisive<S,T>, Reciprocative<S,T>
             where S : DivisionRing<S,T>, new()
         {
 
 
         }
-
-        public interface Field<T> : CommutativeRing<T>, DivisionRing<T>
-        {
-
-        }
-
 
     }
 }

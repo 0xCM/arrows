@@ -10,7 +10,7 @@ namespace Z0
         /// Characterizes trigonometric operations over a type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Trigonmetric<T>
+        public interface Trigonmetric<T> : Operational<T>
         {
             T sin(T x);   
 
@@ -34,16 +34,18 @@ namespace Z0
 
             T atan(T x);
 
-            T atanh(T x);
-        
+            T atanh(T x);        
         }
+    }
 
+    partial class Structure
+    {
         /// <summary>
         /// Characterizes a trigonometric structure
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface Trigonmetric<S,T> : Trigonmetric<S>, Structural<S,T>
+        public interface Trigonmetric<S,T> : Structural<S,T>
             where S : Trigonmetric<S,T>, new()
         {
             S sin();   
@@ -71,7 +73,5 @@ namespace Z0
             S atanh();
         
         }
-
     }
-
 }

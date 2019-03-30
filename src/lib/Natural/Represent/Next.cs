@@ -12,26 +12,11 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
 
-
-    partial class Traits
-    {
-        /// <summary>
-        /// Characterizes natural numbers j and k such that k:K & j: Next[K] => k + 1 = j
-        /// </summary>
-        /// <typeparam name="K">The antecedent type</typeparam>
-        public interface Next<K> : TypeNat
-            where K : TypeNat, new()
-        {
-
-        }
-
-    }
-
     /// <summary>
     /// Encodes a natural number k such that k1:K1 & k2:K2 => k = k1 + 1
     /// </summary>
-    public readonly struct Next<K> : Traits.Next<K>, IEquatable<Next<K>>
-            where K : TypeNat, new()
+    public readonly struct Next<K> : TypeNat, IEquatable<Next<K>>
+        where K : TypeNat, new()
     {
         
         static K k = default;
@@ -41,7 +26,7 @@ namespace Z0
         public static readonly uint Value
             = k.value + 1u;
 
-        static readonly string description = $"++{k} = {Value}";
+        static readonly string description = $"++{k.value} = {Value}";
 
         public static readonly byte[] Digits 
             = zcore.digits(Value);

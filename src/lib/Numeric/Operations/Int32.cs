@@ -15,7 +15,7 @@ namespace Z0
     using reify = Int32Ops;
 
     [TypeClass(typeof(reify),typeof(operand))]
-    internal readonly struct Int32Ops : RealFiniteInt<reify,operand>
+    internal readonly struct Int32Ops : FiniteSignedInt<reify,operand>
 
     {
         public static readonly reify Inhabitant = default;
@@ -24,14 +24,18 @@ namespace Z0
 
         public const operand One = 1;
 
-        public const byte BitSize = 32;
+        public const uint BitSize = sizeof(operand);
 
         public const operand MinVal = operand.MinValue;
 
         public const operand MaxVal = operand.MaxValue;
 
-        public (operand min, operand max)? limits 
-            => (MinVal,MaxVal);
+        public const bool Signed = true;
+
+        public static readonly NumberInfo<operand> Info = new NumberInfo<operand>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+
+        public NumberInfo<operand> numinfo 
+            => Info;
 
         public reify inhabitant 
             => Inhabitant;
@@ -42,11 +46,8 @@ namespace Z0
         public operand one 
             => One;
 
-        public operand supremum 
-            => MinVal;
-
-        public operand infimum 
-            => MaxVal;
+        public uint bitsize 
+            => BitSize;
 
         public Addition<operand> addition 
             => Addition.define(this);
@@ -54,18 +55,13 @@ namespace Z0
         public Multiplication<operand> multiplication 
             => Multiplication.define(this);
 
-        public bool infinite 
-            => false;
-
-        public operand ε 
-            => Zero;
-
+        
         public operand apply(operand lhs, operand rhs)
             => throw new NotImplementedException();
 
         [MethodImpl(Inline)]   
-        public operand add(operand a, operand b) 
-            => a + b;
+        public operand add(operand lhs, operand rhs) 
+            => lhs + rhs;
 
         [MethodImpl(Inline)]   
         public operand and(operand a, operand b) 

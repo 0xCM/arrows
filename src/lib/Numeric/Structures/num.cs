@@ -14,13 +14,26 @@ namespace Z0
     using static zcore;
     using static Traits;
 
-    public readonly struct num<T> : OrderedNumber<num<T>,T>
+    public readonly struct num<T> : Structure.OrderedNumber<num<T>,T>
     {
         static readonly OrderedNumber<T> Ops = Resolver.ordnum<T>();
-        
+
+        static readonly NumberInfo<T> UnderInfo = Ops.numinfo;
+
+        public static readonly bool Signed = UnderInfo.Signed;
+
+        public static readonly num<T> MinVal = UnderInfo.MinVal;
+
+        public static readonly num<T> MaxVal = UnderInfo.MaxVal;
+
         public static readonly num<T> Zero = Ops.zero;
 
         public static readonly num<T> One = Ops.one;
+
+        public static readonly uint BitSize = UnderInfo.BitSize;
+
+        public static readonly NumberInfo<num<T>> Info 
+            = new NumberInfo<num<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);                 
 
 
         [MethodImpl(Inline)]
@@ -100,14 +113,18 @@ namespace Z0
         public num<T> one 
             => One;
 
-        public (num<T> min, num<T> max)? limits 
-            => Ops.limits.TryMap(x => (x.min, x.max));
+        public uint bitsize 
+            => BitSize;
 
-        public Addition<num<T>> addition 
-            => Addition.define(this);
+        public NumberInfo<num<T>> numinfo 
+            => Info;
+
+
+        // public Addition<num<T>> addition 
+        //     => Addition.define(this);
             
-        public Multiplication<num<T>> multiplication 
-            => Multiplication.define(this);
+        // public Multiplication<num<T>> multiplication 
+        //     => Multiplication.define(this);
 
         [MethodImpl(Inline)]
         public num<T> add(num<T> rhs)
@@ -218,97 +235,88 @@ namespace Z0
         //---------------------------------------------------------------------
 
 
-        [MethodImpl(Inline)]
-        num<T> Incrementable<num<T>>.inc(num<T> x)
-            => x.inc();
+        // [MethodImpl(Inline)]
+        // num<T> Incrementable<num<T>>.inc(num<T> x)
+        //     => x.inc();
 
-        [MethodImpl(Inline)]
-        num<T> Decrementable<num<T>>.dec(num<T> x)
-            => x.dec();
+        // [MethodImpl(Inline)]
+        // num<T> Decrementable<num<T>>.dec(num<T> x)
+        //     => x.dec();
 
-        [MethodImpl(Inline)]
-        num<T> Negatable<num<T>>.negate(num<T> x)
-            => x.negate();
+        // [MethodImpl(Inline)]
+        // num<T> Negatable<num<T>>.negate(num<T> x)
+        //     => x.negate();
 
-        [MethodImpl(Inline)]
-        num<T> Number<num<T>>.abs(num<T> x)
-            => x.abs();
+        // [MethodImpl(Inline)]
+        // num<T> Number<num<T>>.abs(num<T> x)
+        //     => x.abs();
         
-        [MethodImpl(Inline)]
-        Sign Number<num<T>>.sign(num<T> x)
-            => x.sign();
+        // [MethodImpl(Inline)]
+        // Sign Number<num<T>>.sign(num<T> x)
+        //     => x.sign();
 
-        [MethodImpl(Inline)]
-        num<T> Additive<num<T>>.add(num<T> lhs, num<T> rhs)
-            => lhs.add(rhs);
+        // [MethodImpl(Inline)]
+        // num<T> Additive<num<T>>.add(num<T> lhs, num<T> rhs)
+        //     => lhs.add(rhs);
 
-        [MethodImpl(Inline)]
-        num<T> Negatable<num<T>>.sub(num<T> lhs, num<T> rhs)
-            => lhs.sub(rhs);
+        // [MethodImpl(Inline)]
+        // num<T> Negatable<num<T>>.sub(num<T> lhs, num<T> rhs)
+        //     => lhs.sub(rhs);
 
-        [MethodImpl(Inline)]
-        num<T> Multiplicative<num<T>>.mul(num<T> lhs, num<T> rhs)
-            => lhs.mul(rhs);
+        // [MethodImpl(Inline)]
+        // num<T> Multiplicative<num<T>>.mul(num<T> lhs, num<T> rhs)
+        //     => lhs.mul(rhs);
 
-        [MethodImpl(Inline)]
-        num<T> Number<num<T>>.muladd(num<T> x, num<T> y, num<T> z)
-            => x*y + z;
+        // [MethodImpl(Inline)]
+        // num<T> Number<num<T>>.muladd(num<T> x, num<T> y, num<T> z)
+        //     => x*y + z;
 
-        [MethodImpl(Inline)]
-        num<T> LeftDistributive<num<T>>.distribute(num<T> lhs, (num<T> x, num<T> y) rhs)
-            => lhs.distributeL(rhs);
+        // [MethodImpl(Inline)]
+        // num<T> LeftDistributive<num<T>>.distribute(num<T> lhs, (num<T> x, num<T> y) rhs)
+        //     => lhs.distributeL(rhs);
 
-        [MethodImpl(Inline)]
-        num<T> RightDistributive<num<T>>.distribute((num<T> x, num<T> y) lhs, num<T> rhs)
-            => rhs.distributeL(lhs);
+        // [MethodImpl(Inline)]
+        // num<T> RightDistributive<num<T>>.distribute((num<T> x, num<T> y) lhs, num<T> rhs)
+        //     => rhs.distributeL(lhs);
 
-        [MethodImpl(Inline)]
-        num<T> Divisive<num<T>>.div(num<T> lhs, num<T> rhs)
-            => lhs.div(rhs);
+        // [MethodImpl(Inline)]
+        // num<T> Divisive<num<T>>.div(num<T> lhs, num<T> rhs)
+        //     => lhs.div(rhs);
 
-        [MethodImpl(Inline)]
-        Quorem<num<T>> Divisive<num<T>>.divrem(num<T> lhs, num<T> rhs)
-            => lhs.divrem(rhs);
+        // [MethodImpl(Inline)]
+        // Quorem<num<T>> Divisive<num<T>>.divrem(num<T> lhs, num<T> rhs)
+        //     => lhs.divrem(rhs);
 
-        [MethodImpl(Inline)]
-        num<T> Divisive<num<T>>.mod(num<T> lhs, num<T> rhs)
-            => lhs.mod(rhs);
+        // [MethodImpl(Inline)]
+        // num<T> Divisive<num<T>>.mod(num<T> lhs, num<T> rhs)
+        //     => lhs.mod(rhs);
 
-        [MethodImpl(Inline)]
-        num<T> Divisive<num<T>>.gcd(num<T> lhs, num<T> rhs)
-            => lhs.gcd(rhs);
+        // [MethodImpl(Inline)]
+        // num<T> Divisive<num<T>>.gcd(num<T> lhs, num<T> rhs)
+        //     => lhs.gcd(rhs);
 
-        [MethodImpl(Inline)]
-        num<T> Powered<num<T>, int>.pow(num<T> b, int exp)
-            => Ops.pow(b,exp);
+        // [MethodImpl(Inline)]
+        // num<T> Powered<num<T>, int>.pow(num<T> b, int exp)
+        //     => Ops.pow(b,exp);
 
-        [MethodImpl(Inline)]
-        bool Ordered<num<T>>.lt(num<T> lhs, num<T> rhs)
-            => lhs.lt(rhs);
+        // [MethodImpl(Inline)]
+        // bool Equatable<num<T>>.eq(num<T> lhs, num<T> rhs)
+        //     => lhs.eq(rhs);
 
-        [MethodImpl(Inline)]
-        bool Ordered<num<T>>.lteq(num<T> lhs, num<T> rhs)
-            => lhs.lteq(rhs);
+        // [MethodImpl(Inline)]
+        // bool Equatable<num<T>>.neq(num<T> lhs, num<T> rhs)
+        //     => lhs.neq(rhs);
 
-        [MethodImpl(Inline)]
-        bool Ordered<num<T>>.gt(num<T> lhs, num<T> rhs)
-            => lhs.gt(rhs);
+        // [MethodImpl(Inline)]
+        // string Number<num<T>>.bitstring(num<T> x)
+        //     => x.bitstring();
 
-        [MethodImpl(Inline)]
-        bool Ordered<num<T>>.gteq(num<T> lhs, num<T> rhs)
-            => lhs.gteq(rhs);
+        public num<T> muladd(num<T> y, num<T> z)
+            => Ops.muladd(this,y,z);
 
-        [MethodImpl(Inline)]
-        bool Equatable<num<T>>.eq(num<T> lhs, num<T> rhs)
-            => lhs.eq(rhs);
-
-        [MethodImpl(Inline)]
-        bool Equatable<num<T>>.neq(num<T> lhs, num<T> rhs)
-            => lhs.neq(rhs);
-
-        [MethodImpl(Inline)]
-        string Number<num<T>>.bitstring(num<T> x)
-            => x.bitstring();
-
+        public num<T> pow(num<T> b, int exp)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

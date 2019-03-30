@@ -12,37 +12,18 @@ namespace Z0
         /// Characterizes numeric operations in the presence of order
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public interface OrderedNumber<T> : Number<T>, Ordered<T>
-        {
-            /// <summary>
-            /// Specifies the lower and upper bounds of the number, if they exist
-            /// </summary>
-            (T min, T max)? limits {get;}
+        public interface OrderedNumber<T> :  Ordered<T>, Number<T> { }
 
-        }
+    }
 
+    partial class Structure
+    {
         /// <summary>
         /// Characterizes a structural number with order
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public interface OrderedNumber<S,T> :  OrderedNumber<S>, Structural<S,T>
+        public interface OrderedNumber<S,T> :  Ordered<S,T>,  Number<S,T>
             where S : OrderedNumber<S,T>, new() {}
-
-        /// <summary>
-        /// Characterizes operations on a type whose values are bounded below and above
-        /// by respective finite values
-        /// </summary>
-        /// <typeparam name="T">The operand type</typeparam>
-        /// <remarks>Note that Bounded => Ordered, at least by our definitions</remarks>
-        public interface FiniteNumber<T> : Number<T>, BoundReal<T> { }
-
-        /// <summary>
-        /// Characterizes a structural number with order
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        public interface FiniteNumber<S,T> :  FiniteNumber<S>, Structural<S,T>
-            where S : FiniteNumber<S,T>, new() {}
-
     }
 
 }

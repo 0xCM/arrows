@@ -56,7 +56,7 @@ namespace Z0.Tests
         {
             
             var reflected = Nat.reflect(500, 5000);
-            var sumActual = fold(map(reflected, x => x.value), (x,y) => x+ y).ToIntG();
+            var sumActual = fold(map(reflected, x => x.value), (x,y) => x+ y).ToUIntG();
             var sumExpect = range<uint>(500,5000).SumG();
             demand(sumActual == sumExpect, $"{sumActual} != {sumExpect}");       
             demand(range<uint>(1,50).MaxG() == 50);
@@ -74,6 +74,28 @@ namespace Z0.Tests
             inform(Prove.next(N0,N1));            
             inform(Prove.next(N5,N6));            
             inform(Prove.next(N15,N16));
+            
+            var n11 = Nat.next(N10);
+            var n12 = Nat.next(n11);
+            var n13 = Nat.next(n12);
+            inform(Prove.next(N10,n11));
+            inform(Prove.next(n11,n12));
+            inform(Prove.next(n12,n13));
+
+        }
+
+        public static void iterate()
+        {
+           var n11 = Nat.next(N10);
+           var n12 = Nat.next(n11);
+           var n13 = Nat.next(n12);
+           var n14 = Nat.next(n13);
+           var n15 = Nat.next(n14);
+           var n16 = Nat.next(n15);
+           var n17 = Nat.next(n16);
+           var n18 = Nat.next(n17);
+           var n19 = Nat.next(n17);
+           inform($"n18: {n19}");
         }
 
     }

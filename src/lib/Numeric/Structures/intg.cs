@@ -16,13 +16,28 @@ namespace Z0
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct intg<T> : Integer<intg<T>,T>
+    public readonly struct intg<T> : Structure.Integer<intg<T>,T>
     {
         static readonly Integer<T> Ops = Resolver.integer<T>();
+
+        static readonly NumberInfo<T> UnderInfo = Ops.numinfo;
+
+        public static readonly bool Signed = UnderInfo.Signed;
+
+        public static readonly intg<T> MinVal = UnderInfo.MinVal;
+
+        public static readonly intg<T> MaxVal = UnderInfo.MaxVal;
+
+        public static readonly uint BitSize = UnderInfo.BitSize;
 
         public static readonly intg<T> Zero = Ops.zero;
 
         public static readonly intg<T> One = Ops.one;
+
+
+
+        public static readonly NumberInfo<intg<T>> Info 
+            = new NumberInfo<intg<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);                 
 
         [MethodImpl(Inline)]
         public static implicit operator intg<T>(T src)
@@ -126,8 +141,11 @@ namespace Z0
             get{return One;}
         }
 
-        public (intg<T> min, intg<T> max)? limits 
-            => Ops.limits.TryMap(x => (x.min, x.max));
+        public uint bitsize 
+            => BitSize;
+
+        public NumberInfo<intg<T>> numinfo 
+            => Info;
 
         [MethodImpl(Inline)]
         public intg (T x) 
@@ -140,6 +158,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public intg<T> dec() 
             => Ops.dec(data);
+
 
 
         [MethodImpl(Inline)]
@@ -290,189 +309,66 @@ namespace Z0
 
     
 
-        //
-        //---------------------------------------------------------------------
-
-        intg<T> Nullary<intg<T>>.zero 
-            => Zero;
-
-        intg<T> Unital<intg<T>>.one 
-            => One;
-
-        T Structural<intg<T>, T>.data 
-            => data;
-
-        public Addition<intg<T>> addition 
-            => new Addition<intg<T>>(this);
-
-        public Multiplication<intg<T>> multiplication 
-            => new Multiplication<intg<T>>(this);
-
-        [MethodImpl(Inline)]
-        intg<T> Incrementable<intg<T>>.inc(intg<T> x)
-            => x.inc();
-
-        [MethodImpl(Inline)]
-        intg<T> Decrementable<intg<T>>.dec(intg<T> x)
-            => x.dec();
-
-        [MethodImpl(Inline)]
-        intg<T> Negatable<intg<T>>.negate(intg<T> x)
-            => x.negate();
-
-        [MethodImpl(Inline)]
-        intg<T> Number<intg<T>>.abs(intg<T> x)
-            => x.abs();
-        
-        [MethodImpl(Inline)]
-        Sign Number<intg<T>>.sign(intg<T> x)
-            => x.sign();
-
-        [MethodImpl(Inline)]
-        intg<T> Additive<intg<T>>.add(intg<T> lhs, intg<T> rhs)
-            => lhs.add(rhs);
-
-        [MethodImpl(Inline)]
-        intg<T> Negatable<intg<T>>.sub(intg<T> lhs, intg<T> rhs)
-            => lhs.sub(rhs);
-
-        [MethodImpl(Inline)]
-        intg<T> Multiplicative<intg<T>>.mul(intg<T> lhs, intg<T> rhs)
-            => lhs.mul(rhs);
-
-        [MethodImpl(Inline)]
-        intg<T> Number<intg<T>>.muladd(intg<T> x, intg<T> y, intg<T> z)
-            => x*y + z;
-
-        [MethodImpl(Inline)]
-        intg<T> LeftDistributive<intg<T>>.distribute(intg<T> lhs, (intg<T> x, intg<T> y) rhs)
-            => lhs.distributeL(rhs);
-
-        [MethodImpl(Inline)]
-        intg<T> RightDistributive<intg<T>>.distribute((intg<T> x, intg<T> y) lhs, intg<T> rhs)
-            => rhs.distributeL(lhs);
-
-        [MethodImpl(Inline)]
-        intg<T> Divisive<intg<T>>.div(intg<T> lhs, intg<T> rhs)
-            => lhs.div(rhs);
-
-        [MethodImpl(Inline)]
-        Quorem<intg<T>> Divisive<intg<T>>.divrem(intg<T> lhs, intg<T> rhs)
-            => lhs.divrem(rhs);
-
-        [MethodImpl(Inline)]
-        intg<T> Divisive<intg<T>>.mod(intg<T> lhs, intg<T> rhs)
-            => lhs.mod(rhs);
-
-        [MethodImpl(Inline)]
-        intg<T> Divisive<intg<T>>.gcd(intg<T> lhs, intg<T> rhs)
-            => lhs.gcd(rhs);
 
         [MethodImpl(Inline)]
         intg<T> Powered<intg<T>, int>.pow(intg<T> b, int exp)
             => b.pow(exp);
 
-        [MethodImpl(Inline)]
-        bool Ordered<intg<T>>.lt(intg<T> lhs, intg<T> rhs)
-            => lhs.lt(rhs);
 
         [MethodImpl(Inline)]
-        bool Ordered<intg<T>>.lteq(intg<T> lhs, intg<T> rhs)
-            => lhs.lteq(rhs);
+        public intg<T> muladd(intg<T> y, intg<T> z)
+            => Ops.muladd(this, y, z);
 
         [MethodImpl(Inline)]
-        bool Ordered<intg<T>>.gt(intg<T> lhs, intg<T> rhs)
-            => lhs.gt(rhs);
+        public intg<T> sin()
+            => Ops.sin(this);
 
         [MethodImpl(Inline)]
-        bool Ordered<intg<T>>.gteq(intg<T> lhs, intg<T> rhs)
-            => lhs.gteq(rhs);
+        public intg<T> sinh()
+            => Ops.sinh(this);
 
         [MethodImpl(Inline)]
-        bool Equatable<intg<T>>.eq(intg<T> lhs, intg<T> rhs)
-            => lhs.eq(rhs);
+        public intg<T> asin()
+            => Ops.asin(this);
 
         [MethodImpl(Inline)]
-        bool Equatable<intg<T>>.neq(intg<T> lhs, intg<T> rhs)
-            => lhs.neq(rhs);
+        public intg<T> asinh()
+            => Ops.asinh(this);
 
         [MethodImpl(Inline)]
-        intg<T> BitLogic<intg<T>>.and(intg<T> lhs, intg<T> rhs)
-            => lhs & rhs;
+        public intg<T> cos()
+            => Ops.cos(this);
 
         [MethodImpl(Inline)]
-        intg<T> BitLogic<intg<T>>.or(intg<T> lhs, intg<T> rhs)
-            => lhs.or(rhs);
+        public intg<T> cosh()
+            => Ops.cosh(this);
 
         [MethodImpl(Inline)]
-        intg<T> BitLogic<intg<T>>.xor(intg<T> lhs, intg<T> rhs)
-            => lhs.xor(rhs);
+        public intg<T> acos()
+            => Ops.acos(this);
 
         [MethodImpl(Inline)]
-        intg<T> BitLogic<intg<T>>.flip(intg<T> x)
-            => x.flip();
+        public intg<T> acosh()
+            => Ops.acosh(this);
 
         [MethodImpl(Inline)]
-        intg<T> BitShifts<intg<T>>.lshift(intg<T> lhs, int rhs)
-            => lhs.lshift(rhs);
+        public intg<T> tan()
+            => Ops.tan(this);
 
         [MethodImpl(Inline)]
-        intg<T> BitShifts<intg<T>>.rshift(intg<T> lhs, int rhs)
-            => lhs.rshift(rhs);
+        public intg<T> tanh()
+            => Ops.tanh(this);
 
         [MethodImpl(Inline)]
-        string Number<intg<T>>.bitstring(intg<T> x)
-            => x.bitstring();
-
-        #region Trigonometric (Operations)
-        [MethodImpl(Inline)]
-        intg<T> Trigonmetric<intg<T>>.sin(intg<T> x)
-            => Ops.sin(x);
+        public intg<T> atan()
+            => Ops.atan(this);
 
         [MethodImpl(Inline)]
-        intg<T> Trigonmetric<intg<T>>.sinh(intg<T> x)
-            => Ops.sinh(x);
+        public intg<T> atanh()
+            => Ops.atanh(this);
 
-        [MethodImpl(Inline)]
-        intg<T> Trigonmetric<intg<T>>.asin(intg<T> x)
-            => Ops.asin(x);
-
-        [MethodImpl(Inline)]
-        intg<T> Trigonmetric<intg<T>>.asinh(intg<T> x)
-            => Ops.asinh(x);
-
-        [MethodImpl(Inline)]
-        intg<T> Trigonmetric<intg<T>>.cos(intg<T> x)
-            => Ops.cos(x);
-
-        [MethodImpl(Inline)]
-        intg<T> Trigonmetric<intg<T>>.cosh(intg<T> x)
-            => Ops.cosh(x);
-
-        [MethodImpl(Inline)]
-        intg<T> Trigonmetric<intg<T>>.acos(intg<T> x)
-            => Ops.acos(x);
-
-        [MethodImpl(Inline)]
-        intg<T> Trigonmetric<intg<T>>.acosh(intg<T> x)
-            => Ops.acosh(x);
-
-        [MethodImpl(Inline)]
-        intg<T> Trigonmetric<intg<T>>.tan(intg<T> x)
-            => Ops.tan(x);
-
-        [MethodImpl(Inline)]
-        intg<T> Trigonmetric<intg<T>>.tanh(intg<T> x)
-            => Ops.tanh(x);
-
-        [MethodImpl(Inline)]
-        intg<T> Trigonmetric<intg<T>>.atan(intg<T> x)
-            => Ops.atan(x);
-
-        [MethodImpl(Inline)]
-        intg<T> Trigonmetric<intg<T>>.atanh(intg<T> x)
-            => Ops.atanh(x);
-        #endregion
-
+        public int CompareTo(intg<T> other)
+            => throw new NotImplementedException();
+ 
     }
 }

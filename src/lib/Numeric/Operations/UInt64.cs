@@ -16,7 +16,7 @@ namespace Z0
 
 
     [TypeClass(typeof(reify),typeof(operand))]
-    internal readonly struct UInt64Ops : FiniteUInt<reify,operand>
+    internal readonly struct UInt64Ops : FiniteNatural<reify,operand>
     {
         public static readonly reify Inhabitant = default;
     
@@ -24,14 +24,18 @@ namespace Z0
 
         public const operand One = 1;
 
-        public const byte BitSize = 64;
+        public const uint BitSize = sizeof(operand);
 
         public const operand MinVal = operand.MinValue;
 
         public const operand MaxVal = operand.MaxValue;
 
-        public (operand min, operand max)? limits 
-            => (MinVal,MaxVal);
+        public const bool Signed = true;
+
+        public static readonly NumberInfo<operand> Info = new NumberInfo<operand>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+
+        public NumberInfo<operand> numinfo 
+            => Info;
 
         public reify inhabitant 
             => Inhabitant;
@@ -48,17 +52,9 @@ namespace Z0
             get{return One;}
         }
 
-        public operand supremum 
-            => MinVal;
 
-        public operand infimum 
-            => MaxVal;
-
-        public bool infinite 
-            => false;
-
-        public operand ε 
-            => Zero;
+        public uint bitsize 
+            => BitSize;
 
         public Addition<operand> addition 
             => Addition.define(this);
@@ -235,8 +231,12 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public operand atanh(operand x)
-                => (operand)Math.Atanh(x);
+            => (operand)Math.Atanh(x);
 
+
+        [MethodImpl(Inline)]   
+        public string bitstring(operand src)
+            => src.ToBitString();
 
         public operand gcd(operand lhs, operand rhs)
         {
@@ -248,9 +248,6 @@ namespace Z0
             }
             return lhs;
         }
-
-        public string bitstring(operand src)
-            => src.ToBitString();
 
     }
 

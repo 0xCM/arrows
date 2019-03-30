@@ -68,7 +68,7 @@ public static partial class zcore
         => values;
 
     /// <summary>
-    /// Allocates and fills a naturally-sized array
+    /// Constructs an N-array from a parameter array
     /// </summary>
     /// <param name="data">The source data</param>
     /// <typeparam name="N">The length type</typeparam>
@@ -79,7 +79,18 @@ public static partial class zcore
             => NArray.define<N,T>(data);
 
     /// <summary>
-    /// Creates an array from the first N elements of a sequence
+    /// Constructs an N-array from a parameter array
+    /// </summary>
+    /// <param name="data">The source data</param>
+    /// <typeparam name="N">The length type</typeparam>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static Array<N,T> array<N,T>(N len, params T[] data)
+        where N : TypeNat, new()
+            => NArray.define(len,data);
+
+    /// <summary>
+    /// Constructs an N-array from a sequence
     /// </summary>
     /// <typeparam name="N">The natural length type</typeparam>
     /// <typeparam name="T">Then element type</typeparam>
@@ -88,6 +99,17 @@ public static partial class zcore
     public static Array<N,T> array<N,T>(IEnumerable<T> src)
         where N : TypeNat, new()
             => NArray.define<N,T>(src);
+
+    /// <summary>
+    /// Constructs an N-array from a sequence
+    /// </summary>
+    /// <typeparam name="N">The natural length type</typeparam>
+    /// <typeparam name="T">Then element type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static Array<N,T> array<N,T>(N len, IEnumerable<T> src)
+        where N : TypeNat, new()
+            => NArray.define(len,src);
 
     /// <summary>
     /// Constructs a mutable dictionary 
@@ -286,7 +308,8 @@ public static partial class zcore
     /// <param name="f">The predicate used to test values from the input sequence</param>
     /// <typeparam name="T">The input sequence type</typeparam>
     public static Z0.Slice<T> filter<T>(Traits.Slice<T> src, Func<T,bool> f)
-        => slice(src.data.Where(f));        
+        where T : Structure.Equatable<T>, new()
+            => slice(src.data.Where(f));        
 
     /// <summary>
     /// Transforms a sequence in reverse order

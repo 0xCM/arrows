@@ -19,6 +19,12 @@ namespace Z0
             T one {get;}
         }
 
+
+    }
+
+    partial class Structure
+    {
+
         /// <summary>
         /// Characterizes a unital structure, that is, a structure
         /// that defines a unit as a particular instance of itself
@@ -29,8 +35,6 @@ namespace Z0
         {
             S one {get;}
         }
-
     }
-
 
 }

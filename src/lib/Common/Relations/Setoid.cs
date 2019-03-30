@@ -37,13 +37,13 @@ namespace Z0
         
         readonly Traits.Equivalence<T> equivalence;
         
-        readonly Slice<FiniteEqClass<T>> parts;
+        readonly FiniteEqClass<T>[] parts;
         
         public Setoid(Traits.FiniteSet<T> data, Traits.Equivalence<T> equivalence)
         {
             this.membership = data;
             this.equivalence = equivalence;
-            this.parts = equivalence.Partition(data.members().stream()).ToSlice();
+            this.parts = equivalence.Partition(data.members().stream()).ToArray();
 
         }
         
@@ -63,10 +63,10 @@ namespace Z0
             => membership.member(candidate);
 
         public Seq<FiniteEqClass<T>> partition()
-            => parts.data.ToSeq();
+            => parts.ToSeq();
     
         public FiniteEqClass<T> project(T x)
-            => parts.data.First(c => related(c.representative,x));
+            => parts.First(c => related(c.representative,x));
 
         public bool related(T x, T y)
             => equivalence.related(x,y);

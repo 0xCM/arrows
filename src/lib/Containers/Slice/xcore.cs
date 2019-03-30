@@ -36,7 +36,8 @@ namespace Z0
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<T> ToSlice<T>(this IEnumerable<T> src)
-            => Z0.Slice.define(src);
+            where T : Structure.Equatable<T>, new()
+                => Z0.Slice.define(src);
 
         /// <summary>
         /// Constructs a slice with natural length from a sequence of elements

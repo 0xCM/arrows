@@ -11,48 +11,17 @@ namespace Z0
     using static zcore;
     using static Traits;
 
-    partial class Traits
-    {
-        public interface Matrix<M,N,T> : Formattable 
-            where M : TypeNat, new()
-            where N : TypeNat, new()            
-        {
-            Z0.Slice<N,Z0.Covector<N,T>> covectors();
 
-            Z0.Slice<M,Z0.Vector<M,T>> vectors();
-
-            Z0.Covector<N,T> covector<I>()
-                where I : TypeNat, new(); 
-
-            Z0.Covector<N,T> covector(uint i);
-
-            Z0.Dim<M,N> dim();
-
-            Z0.Vector<M,T> vector<J>()
-                where J : TypeNat, new(); 
-
-            Z0.Vector<M,T> vector(uint i);
-
-            T[] data {get;}
-
-            T cell<I,J>()
-                where I : TypeNat, new()
-                where J : TypeNat, new(); 
-            
-            T cell(uint i, uint j);
-        }
-
-
-    }
-
-    public readonly struct Matrix<M, N, T> : Traits.Matrix<M, N, T>, Traits.Tranposable<Matrix<N,M,T>>, IEquatable<Matrix<M,N,T>>
+    public readonly struct Matrix<M, N, T> :  Equatable<Matrix<M,N,T>>,
+        IEquatable<Matrix<M,N,T>>,
+        Traits.Tranposable<Matrix<N,M,T>> 
         where M : TypeNat, new()
         where N : TypeNat, new()
         where T : Traits.Semiring<T>, new()
     {
-        static readonly Dim<M,N> Dim = default;
+        static readonly Dim<M,N> Dim = default;        
         
-        static readonly MatrixOps<M,N,T> Ops = default;        
+        static readonly Traits.MatrixOps<M,N,T> Ops = Matrix.ops<M,N,T>();        
         
 
         [MethodImpl(Inline)]
@@ -67,33 +36,23 @@ namespace Z0
         public static Matrix<M, N, T> operator + (Matrix<M, N, T> lhs, Matrix<M, N, T> rhs) 
             => Ops.add(lhs, rhs);
 
-        [MethodImpl(Inline)]
-        public static Matrix<M, M, T> operator * (Matrix<M, N, T> lhs, Matrix<N, M, T> rhs)             
-            => lhs.mul(rhs);
-
-        readonly T[] data;
+        public readonly T[] data;
         
-        readonly uint m;
-        
-        readonly uint n;
-
-        T[] Traits.Matrix<M, N, T>.data 
-            => data;
 
         [MethodImpl(Inline)]
         public Matrix(params T[] src)
         {
-            (m, n) = (Dim.i, Dim.j);
             data = src;
-            demand(m*n == data.Length);
+            demand(Dim.i * Dim.j == data.Length);
         }
+
+
 
         [MethodImpl(Inline)]
         public Matrix(IEnumerable<T> src)
         {
-            (m, n) = (Dim.i, Dim.j);
             data = src.ToArray();
-            demand(m*n == data.Length);
+            demand(Dim.i * Dim.j == data.Length);
         }
 
         [MethodImpl(Inline)]   
@@ -103,8 +62,13 @@ namespace Z0
         [MethodImpl(Inline)]   
         public Matrix<M, P, T> mul<P>(Matrix<N, P, T> rhs) 
             where P : TypeNat, new()
-            => MatrixOps<M,N,P,T>.Inhabitant.mul(this,rhs);
+                => multiplier<P>() * rhs;
 
+        [MethodImpl(Inline)]   
+        public MatMul<M, N,P, T> multiplier<P>() 
+            where P : TypeNat, new()
+                => Ops.multiplier<P>(this);
+             
         [MethodImpl(Inline)]
         public Dim<M,N> dim()
             => Dim;
@@ -119,7 +83,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Slice<M,Vector<M, T>> vectors()
-            => Slice.define<M, Vector<M, T>>(cols());
+            => Ops.vectors(this);
 
         [MethodImpl(Inline)]
         public Vector<M, T> vector(uint j)
@@ -128,7 +92,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Vector<M, T> vector<J>() 
             where J : TypeNat, new()
-            => Ops.vector<J>(this);
+                => Ops.vector<J>(this);
 
         [MethodImpl(Inline)]
         public Slice<N, Covector<N, T>> covectors()
@@ -137,7 +101,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Covector<N, T> covector<I>() 
             where I : TypeNat, new()
-                => covector(natval<I>());
+                => Ops.covector<I>(this);
 
         [MethodImpl(Inline)]
         public Covector<N, T> covector(uint i)
@@ -161,16 +125,65 @@ namespace Z0
         public bool Equals(Matrix<M,N,T> rhs)
             => Ops.eq(this,rhs);
 
+        [MethodImpl(Inline)]
+        public Slice<N,T> row(uint i)
+            => Ops.row(this,i);
+
+        [MethodImpl(Inline)]
+        public Slice<M,T> col(uint j)
+            => Ops.col(this,j);
+
+        /// <summary>
+        /// Reinterprets the matrix dimension if the new dimension
+        /// can be proved equivalent to the current. Otherwise,
+        /// raises an error
+        /// </summary>
+        /// <typeparam name="I">The new row dimension representation</typeparam>
+        /// <typeparam name="J">The new column dimension representation</typeparam>
+        [MethodImpl(Inline)]
+        public Matrix<I, J, T> reinterpret<I,J>()
+            where I : TypeNat, new()
+            where J : TypeNat, new()
+                => Ops.reinterpret<I,J>(this);
+
+        /// <summary>
+        /// Reinterprets the matrix dimension if the new dimension
+        /// can be proved equivalent to the current. Otherwise,
+        /// raises an error
+        /// </summary>
+        /// <typeparam name="I">The new row dimension representation</typeparam>
+        /// <typeparam name="J">The new column dimension representation</typeparam>
+        [MethodImpl(Inline)]
+        public Matrix<I, J, T> reinterpret<I,J>(Dim<I,J> equivalent)
+            where I : TypeNat, new()
+            where J : TypeNat, new()
+                => Ops.reinterpret(this, equivalent);
+
+        [MethodImpl(Inline)]
+        public void mutate(Func<T,T> f)
+            => Ops.mutate(this,f);
+
+        [MethodImpl(Inline)]
+        public Matrix<M,N,Y> transform<Y>(Func<T,Y> f)
+            where Y : Semiring<Y>, new()
+            => Ops.transform(this,f);
+        [MethodImpl(Inline)]
         public string format()
-            => rows().Format();
+            => Ops.format(this);
 
         public override string ToString() 
-            => format();
+            => Ops.format(this);
 
         public override bool Equals(object rhs)
             => data.Equals(rhs);
 
         public override int GetHashCode()
             => data.GetHashCode();
+
+        public bool eq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
+             => Ops.eq(this,rhs);
+
+        public bool neq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
+            => Ops.neq(this,rhs);
     } 
 }

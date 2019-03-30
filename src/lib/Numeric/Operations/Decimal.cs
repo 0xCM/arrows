@@ -24,13 +24,18 @@ namespace Z0
 
         public const operand One = 1;
 
-        
+        public const uint BitSize = sizeof(operand);
+
         public const operand MinVal = operand.MinValue;            
 
         public const operand MaxVal = operand.MaxValue;
 
-        public (operand min, operand max)? limits 
-            => (MinVal,MaxVal);
+        public const bool Signed = true;
+
+        public static readonly NumberInfo<operand> Info = new NumberInfo<operand>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+
+        public NumberInfo<operand> numinfo 
+            => Info;
 
         public operand zero 
             => Zero;
@@ -47,23 +52,15 @@ namespace Z0
         public reify inhabitant 
             => Inhabitant;
 
+        public uint bitsize 
+            => BitSize;
+
         public Addition<operand> addition 
             => Addition.define(this);
 
         public Multiplication<operand> multiplication 
             => Multiplication.define(this);
 
-        public bool infinite 
-            => false;
-
-        public decimal ε 
-            => (decimal)Double.Epsilon;
-
-        public decimal infimum 
-            => Decimal.MinValue;
-
-        public decimal supremum 
-            => Decimal.MaxValue;
 
         public operand apply(operand lhs, operand rhs)
             => throw new NotImplementedException();

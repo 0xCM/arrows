@@ -16,6 +16,7 @@ namespace Z0
     /// <remarks>See https://en.wikipedia.org/wiki/Boolean_algebra</remarks>
     public readonly struct bit : IEquatable<bit>, IComparable<bit>
     {
+
         public static bit Zero = false;
 
         public static bit One = true;

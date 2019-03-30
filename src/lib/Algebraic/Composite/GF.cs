@@ -27,7 +27,12 @@ namespace Z0
         }
 
 
-        public interface ModN<N,S,T> : ModN<N,S>, Structural<S,T>
+
+    }
+
+    partial class Structure
+    {
+        public interface ModN<N,S,T> : Ring<S,T>, Structural<S,T>
             where S : ModN<N,S,T>, new()
             where N : TypeNat, new()
         {
@@ -43,7 +48,6 @@ namespace Z0
         }
 
     }
-
 
 }
 

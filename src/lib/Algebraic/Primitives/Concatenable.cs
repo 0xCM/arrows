@@ -12,13 +12,18 @@ namespace Z0
     {
 
 
-        public interface Concatenable<T>
+        public interface Concatenable<T> : Operational<T>
         {
             T concat(T lhs, T rhs);
 
         }
 
-        public interface Concatenable<S,T> : Concatenable<S>, Structural<S,T>
+
+    }
+
+    partial class Structure
+    {
+        public interface Concatenable<S,T> : Structural<S,T>
             where S : Concatenable<S,T>,new()
         {
             S concat(S rhs);

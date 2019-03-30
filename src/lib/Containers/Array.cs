@@ -35,6 +35,16 @@ namespace Z0
             where N : TypeNat, new()
                 => new Array<N,T>(src);
 
+        /// <summary>
+        /// Creates an array from the first N elements of a sequence
+        /// </summary>
+        /// <typeparam name="N">The natural length type</typeparam>
+        /// <typeparam name="T">Then element type</typeparam>
+        /// <returns></returns>
+        public static Array<N,T> define<N,T>(N len, IEnumerable<T> src)
+            where N : TypeNat, new()
+                => new Array<N,T>(src);
+
     }
 
     /// <summary>

@@ -22,6 +22,7 @@ namespace Z0
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Fundamental_theorem_of_arithmetic</remarks>
     public readonly struct Factorization<T>
+        where T : Structure.Equatable<T>, new()
     {
         public Factorization(params T[] factors)
             => this.factors = factors;

@@ -64,30 +64,40 @@ public static class FormattingX
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this sbyte src)
-            => lpadZ(Convert.ToString(src,2), UInt8Ops.BitSize - 1);
+        => lpadZ(Convert.ToString(src,2), UInt8Ops.BitSize);
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this short src)
-        => lpadZ(Convert.ToString(src,2), UInt16Ops.BitSize - 1);
+        => lpadZ(Convert.ToString(src,2), UInt16Ops.BitSize);
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this int src)
-        => lpadZ(Convert.ToString(src,2), Int32Ops.BitSize - 1);
-
-    [MethodImpl(Inline)]   
-    public static string ToBitString(this uint src)
-        => lpadZ(Convert.ToString(src,2), UInt32Ops.BitSize - 1);
+        => lpadZ(Convert.ToString(src,2), Int32Ops.BitSize);
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this long src)
-        => lpadZ(Convert.ToString(src,2), Int64Ops.BitSize - 1);
+        => lpadZ(Convert.ToString(src,2), Int64Ops.BitSize);
+
+    [MethodImpl(Inline)]   
+    public static string ToBitString(this byte src)
+        => lpadZ(Convert.ToString(src,2), UInt8Ops.BitSize);
+
+    [MethodImpl(Inline)]   
+    public static string ToBitString(this ushort src)
+        => lpadZ(Convert.ToString(src,2), UInt16Ops.BitSize);
+
+
+    [MethodImpl(Inline)]   
+    public static string ToBitString(this uint src)
+        => lpadZ(Convert.ToString(src,2), UInt32Ops.BitSize);
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this ulong src)
         => apply(Bits.split(src), 
                 parts => parts.hi.ToBitString() 
-                        + parts.lo.ToBitString());
+                       + parts.lo.ToBitString());
 
+    [MethodImpl(Inline)]   
     public static string ToBitString(this float x)
         => BitConverter.SingleToInt32Bits(x).ToBitString();
 
@@ -103,10 +113,14 @@ public static class FormattingX
 
     [MethodImpl(Inline)]   
     public static string ToBitString(this double x)
+        => BitConverter.DoubleToInt64Bits(x).ToBitString();
+
+    [MethodImpl(Inline)]   
+    public static string ToIeeeBitString(this double x)
         => lpadZ(apply(Bits.split(x), 
             ieee => concat(ieee.sign == Sign.Negative ? "1" : "0",
                         ieee.exponent.ToBitString(),
                         ieee.mantissa.ToBitString()                        
-                )), Float64Ops.BitSize - 1);
+                )), (int)Float64Ops.BitSize);
 
 }

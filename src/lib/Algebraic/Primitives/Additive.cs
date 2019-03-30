@@ -61,12 +61,17 @@ namespace Z0
             
         }
 
+
+    }
+
+    partial class Structure
+    {
+
         public interface Additive<S,T> : Structural<S,T>
             where S : Additive<S,T>, new()
         {
             S add(S rhs);
         }
-
 
     }
 

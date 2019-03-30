@@ -17,16 +17,29 @@ namespace Z0
     /// <summary>
     /// Represents an floateger predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct floatg<T> : Floating<floatg<T>,T>
+    public readonly struct floatg<T> : Structure.Floating<floatg<T>,T>
     {
         static readonly Floating<T> Ops = Resolver.floating<T>();
+
+        static readonly NumberInfo<T> UnderInfo = Ops.numinfo;
+
+        public static readonly bool Signed = UnderInfo.Signed;
+
+        public static readonly floatg<T> MinVal = UnderInfo.MinVal;
+
+        public static readonly floatg<T> MaxVal = UnderInfo.MaxVal;
 
         public static readonly floatg<T> Zero = Ops.zero;
 
         public static readonly floatg<T> One = Ops.one;
 
-        public static readonly floatg<T> Epsilon = Ops.ε;
+
+        public static readonly floatg<T> Epsilon = Ops.epsilon;
+
+        public static readonly uint BitSize = UnderInfo.BitSize;
         
+        public static readonly NumberInfo<floatg<T>> Info 
+            = new NumberInfo<floatg<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);                 
         
         [MethodImpl(Inline)]
         public static implicit operator floatg<T>(T src)
@@ -107,12 +120,18 @@ namespace Z0
             get{return One;}
         }
 
-        public floatg<T> ε 
+        public floatg<T> epsilon 
             => Epsilon;
 
         [MethodImpl(Inline)]
         public floatg (T x) 
             => data = x;
+
+        public NumberInfo<floatg<T>> numinfo 
+            => Info;
+
+        public uint bitsize 
+            => BitSize;
 
         [MethodImpl(Inline)]
         public floatg<T> add(floatg<T> rhs)
@@ -305,7 +324,7 @@ namespace Z0
         //
         //---------------------------------------------------------------------
 
-        floatg<T> Floating<floatg<T>>.ε 
+        floatg<T> Floating<floatg<T>>.epsilon 
             => Epsilon;
 
         floatg<T> Nullary<floatg<T>>.zero 
@@ -314,17 +333,6 @@ namespace Z0
         floatg<T> Unital<floatg<T>>.one 
             => One;
 
-        T Structural<floatg<T>, T>.data 
-            => data;
-
-        public Addition<floatg<T>> addition 
-            => new Addition<floatg<T>>(this);
-
-        public Multiplication<floatg<T>> multiplication 
-            => new Multiplication<floatg<T>>(this);
-
-        public (floatg<T> min, floatg<T> max)? limits 
-            => Ops.limits.TryMap(x => (x.min, x.max));
 
         [MethodImpl(Inline)]
         floatg<T> Incrementable<floatg<T>>.inc(floatg<T> x)

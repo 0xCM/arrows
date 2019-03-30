@@ -15,7 +15,7 @@ namespace Z0
     partial class Traits
     {
 
-        public interface Slice<T> : Seq<T> 
+        public interface Slice<T> : Seq<T>, IEnumerable<T>,Traits.Formattable
         {
             IReadOnlyList<T> data {get;}        
 
@@ -24,12 +24,18 @@ namespace Z0
             T this[int i] {get;}
         }
 
+        public interface Slice<S,T> : Slice<T>, IEquatable<S>, Equatable<S>, Traits.Reversible<S,T>
+            where S : Slice<S,T>
+        {
+
+        }
+
         /// <summary>
         /// Characterizes a fixed-lenth sequence of elements
         /// </summary>
         /// <typeparam name="N">The natural number type that indicates the slice length</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-        public interface Slice<N,T> : Slice<T>
+        public interface NSlice<N,T> : Slice<T>
             where N : TypeNat, new()
         {
             
@@ -41,8 +47,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="N">The natural number type that indicates the slice length</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-        public interface Slice<S,N,T> : Slice<N,T>
-            where S : Slice<S,N,T>, new()
+        public interface NSlice<S,N,T> : NSlice<N,T>
+            where S : NSlice<S,N,T>, new()
             where N : TypeNat,new()
         {
             

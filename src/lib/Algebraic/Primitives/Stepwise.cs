@@ -14,22 +14,11 @@ namespace Z0
             T dec(T x);        
         }
 
-        public interface Decrementable<S,T> : Structural<S,T>
-            where S : Decrementable<S,T>, new()
-        {
-            S dec();
-        }
-
         public interface Incrementable<T>
         {
             T inc(T x);        
         }
 
-        public interface Incrementable<S,T> : Structural<S,T>
-            where S : Incrementable<S,T>, new()
-        {
-            S inc();        
-        }
 
 
         /// <summary>
@@ -41,7 +30,23 @@ namespace Z0
             
         }
 
-       /// <summary>
+    }
+
+    partial class Structure
+    {
+        public interface Decrementable<S,T> : Structural<S,T>
+            where S : Decrementable<S,T>, new()
+        {
+            S dec();
+        }
+
+
+        public interface Incrementable<S,T> : Structural<S,T>
+            where S : Incrementable<S,T>, new()
+        {
+            S inc();        
+        }
+        /// <summary>
         /// Characterizes a structure over which both incrementing and decrementing 
         /// operations are defined
         /// </summary>

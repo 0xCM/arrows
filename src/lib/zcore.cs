@@ -68,6 +68,7 @@ partial class zcore
     public static T convert<T>(object src)
         => (T)Convert.ChangeType(src, type<T>());
 
+
     /// <summary>
     /// Explicitly casts a source value to value of the indicated type, raising
     /// an exception if operation fails

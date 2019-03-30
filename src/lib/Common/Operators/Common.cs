@@ -19,12 +19,24 @@ namespace Z0
             
         }
 
+
+
         public interface Apply<T> : Operator<T>
         {
 
         }
 
     
+    }
+
+    partial class Structure
+    {
+        public interface Operator<S,T> : Structural<S,T>
+            where S : Operator<S,T>, new()
+        {
+
+        }
+
     }
 
 }

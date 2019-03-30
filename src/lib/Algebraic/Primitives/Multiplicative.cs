@@ -53,6 +53,11 @@ namespace Z0
         }
     
 
+    
+    }
+
+    partial class Structure
+    {
         /// <summary>
         /// Characterizes structural multiplication
         /// </summary>
@@ -64,8 +69,7 @@ namespace Z0
             S mul(S rhs);
 
         }
-    
-    }
 
+    }
 
 }

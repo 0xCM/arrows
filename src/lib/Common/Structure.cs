@@ -10,20 +10,25 @@ namespace Z0
 
     using static zcore;
 
-    /// <summary>
-    /// Characterizes structural reification of type S over a data type T
-    /// </summary>
-    /// <typeparam name="S">The structure type</typeparam>
-    /// <typeparam name="T">The underlying data type</typeparam>
-    public interface Structural<S,T> : IEquatable<S>
-        where S : Structural<S,T>, new()
+    partial class Structure
     {
         /// <summary>
-        /// Specifies the data encapsulated by the structure
+        /// Characterizes structural reification of type S over a data type T
         /// </summary>
-        /// <value></value>
-        T data {get;}        
-    }    
+        /// <typeparam name="S">The structure type</typeparam>
+        /// <typeparam name="T">The underlying data type</typeparam>
+        public interface Structural<S,T> :  IEquatable<S>
+            where S : Structural<S,T>, new()
+        {
+            /// <summary>
+            /// Specifies the data encapsulated by the structure
+            /// </summary>
+            /// <value></value>
+            T data {get;}        
+        }    
+
+    }
+
 
     /// <summary>
     /// Characterizes an operational reification of unspecified type over an operand of type T

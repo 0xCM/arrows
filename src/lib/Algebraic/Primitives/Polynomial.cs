@@ -11,12 +11,17 @@ namespace Z0
     public static class Polynomial
     {
         public static PolynomialTerm<T> term<T>(T coefficient, intg<uint> power)
-            => new PolynomialTerm<T>(coefficient,power);
+            where  T: Structure.Equatable<T>, new()
+                => new PolynomialTerm<T>(coefficient,power);
     }
     
-    public readonly struct PolynomialTerm<T>
+    public readonly struct PolynomialTerm<T> : Structure.Equatable<PolynomialTerm<T>>
+        where  T: Structure.Equatable<T>, new()
     {
+        
         public static readonly PolynomialTerm<T> Zero = default;
+
+
         public static implicit operator PolynomialTerm<T>((T coefficient, intg<uint> power) x)        
             => new PolynomialTerm<T>(x.coefficient, x.power);
 
@@ -35,10 +40,23 @@ namespace Z0
 
         public override string ToString()
             => $"{coefficient}X^{power}";
+
+        public bool eq(PolynomialTerm<T> lhs, PolynomialTerm<T> rhs)
+            => lhs.coefficient.eq(rhs.coefficient)
+                && lhs.power == rhs.power;
+
+        public bool neq(PolynomialTerm<T> lhs, PolynomialTerm<T> rhs)
+            => not(eq(lhs,rhs));
+
+        public bool eq(PolynomialTerm<T> rhs)
+            => this.coefficient.eq(rhs.coefficient) && this.power == rhs.power;
+
+        public bool neq(PolynomialTerm<T> rhs)
+            => not(eq(rhs));
     }
 
     public readonly struct Polynomial<T>
-        where T : Traits.MonoidA<T>, new()
+        where T : Traits.MonoidA<T>, Structure.Equatable<T>, new()
     {
         static readonly Traits.MonoidA<T> Ops = new T();
         
@@ -50,17 +68,17 @@ namespace Z0
         readonly Slice<PolynomialTerm<T>> terms;
     
         public Polynomial(params PolynomialTerm<T>[] terms)
-            => this.terms = Slice.define(terms);
+            => this.terms = terms;
 
         public override string ToString()
-            => concat(AsciSym.Plus, terms.data);
+            => concat(AsciSym.Plus, terms);
 
         public intg<uint> degree()
             => nonzero 
             ? terms.reverse().filter(t => Ops.neq(t.coefficient, FZero)).data.First().power : 0;
 
         public bool nonzero
-            => any(terms.data, t => Ops.neq(t.coefficient, FZero));
+            => any(terms, t => Ops.neq(t.coefficient, FZero));
 
         public Polynomial<T> add(Polynomial<T> rhs)
         {
@@ -70,9 +88,5 @@ namespace Z0
                 dst[i] = Polynomial.term(Ops.add(src.lhs[i].coefficient, src.rhs[i].coefficient), i.ToIntG<uint>());
             return new Polynomial<T>(dst);
         }
-
     }
-
-
-
 }

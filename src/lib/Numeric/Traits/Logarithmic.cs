@@ -10,7 +10,7 @@ namespace Z0
         /// Characterizes a type that supports primitive logarithmic operations
         /// </summary>
         /// <typeparam name="T">The type of the underlying primitive</typeparam>
-        public interface Logarithmic<T>
+        public interface Logarithmic<T> : Operational<T>
         {
             /// <summary>
             /// Computes the natural logarithm 
@@ -36,12 +36,15 @@ namespace Z0
 
         }
 
+    }
+    partial class Structure
+    {
         /// <summary>
         /// Characterizes a structure for which logarithms can be calculated
         /// </summary>
         /// <typeparam name="T">The type of the underlying primitive</typeparam>
         /// <typeparam name="S">The structure type</typeparam>
-        public interface Logarithmic<S,T> : Logarithmic<S>, Structural<S,T>
+        public interface Logarithmic<S,T> : Structural<S,T>
             where S : Logarithmic<S,T>,  new()
         {
             /// <summary>

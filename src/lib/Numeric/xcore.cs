@@ -27,7 +27,7 @@ namespace Z0
         public static T MaxG<T>(this IEnumerable<T> src)
             where T : struct, Traits.OrderedNumber<T>
         {
-            T max = default(T).limits.Map(x =>x.min);
+            T max = default(T).numinfo.MaxVal;
             foreach(var item in src)
                 max = item.gt(item,max) ? item : max;
             return max;

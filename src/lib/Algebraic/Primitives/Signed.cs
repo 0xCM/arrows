@@ -7,11 +7,16 @@ namespace Z0
 
     partial class Traits
     {    
-        public interface Signed<T>
+        public interface Signed<T>  : Operational<T>
         {
 
         }
 
+
+    }
+
+    partial class Structure
+    {
         /// <summary>
         /// Characterizes a structure that carries a sign
         /// </summary>
@@ -22,8 +27,5 @@ namespace Z0
         {
         }
 
-
     }
-
-
 }

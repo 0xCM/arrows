@@ -15,12 +15,17 @@ namespace Z0
 
         }
 
-        public interface RealNumber<S,T> : RealNumber<S>, IComparable<S>, Structural<S,T>
+
+
+    }
+
+    partial class Structure
+    {
+        public interface RealNumber<S,T> : OrderedNumber<S,T>, Trigonmetric<S,T>, IComparable<S>
             where S : RealNumber<S,T>, new()
         {
 
         }
-
 
     }
 

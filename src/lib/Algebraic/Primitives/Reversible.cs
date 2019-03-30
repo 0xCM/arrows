@@ -23,7 +23,7 @@ namespace Z0
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
         public interface Reversible<S,T> : Reversible<S>
-            where S : Reversible<S,T>, new()
+            where S : Reversible<S,T>//, new()
         {
             S reverse();
         }    

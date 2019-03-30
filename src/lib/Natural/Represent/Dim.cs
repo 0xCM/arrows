@@ -11,7 +11,7 @@ namespace Z0
     {
         public interface Dim : Formattable
         {
-            Z0.Slice<uint> components {get;}
+            Z0.Slice<intg<uint>> components {get;}
         }
 
     }
@@ -59,22 +59,29 @@ namespace Z0
         public static readonly Dim<K> Rep = default;
 
         public static implicit operator uint(Dim<K> x)
-            => x.n;
+            => x.i;
     
         /// <summary>
         /// Specifies the value of the dimension component
         /// </summary>
-        public uint n 
+        public intg<uint> i 
             => natval<K>();
 
-        public Slice<uint> components 
-            => slice(n);
+        public uint volume()
+            => i;
+
+        public Slice<intg<uint>> components 
+            => slice(i);
 
         public string format()
-            => $"i{times}j{times}k";
+            => $"{i}";
  
         public override string  ToString()
             => format();
+
+        public T[] alloc<T>()
+            => new T[volume()];
+
     }
 
 
@@ -95,23 +102,29 @@ namespace Z0
        /// <summary>
         /// Specifies the first component of the dimension
         /// </summary>
-        public uint i 
+        public intg<uint> i 
             => natval<K1>();
         
         /// <summary>
         /// Specifies the second component of the dimension
         /// </summary>
-        public uint j 
+        public intg<uint> j 
             => natval<K2>();
 
-        public Slice<uint> components 
+        public uint volume()
+            => i*j;
+
+        public Slice<intg<uint>> components 
             => slice(i,j);
 
         public string format()
-            => $"i{times}j{times}k";
+            => xsv(times, i, j);
  
         public override string  ToString()
             => format();
+
+        public T[] alloc<T>()
+            => new T[volume()];
     }
 
 
@@ -128,33 +141,33 @@ namespace Z0
     {
         public static readonly Dim<M,N,P> Rep = default;
 
-        public static implicit operator (uint i, uint j, uint k)(Dim<M,N,P> x)
-            => Nat.triple<M,N,P>();
-
         /// <summary>
         /// Specifies the first component of the dimension
         /// </summary>
-        public uint i 
+        public intg<uint> i 
             => natval<M>();
         
         /// <summary>
         /// Specifies the second component of the dimension
         /// </summary>
-        public uint j 
+        public intg<uint> j 
             => natval<N>();
 
         /// <summary>
         /// Specifies the third component of the dimension
         /// </summary>
-        public uint k 
+        public intg<uint> k 
             => natval<P>();
 
-        public Slice<uint> components 
+        public intg<uint> volume()
+            => i*j*k;
+
+        public Slice<intg<uint>> components 
             => slice(i,j,k);
 
         public string format()
-            => $"i{times}j{times}k";
- 
+            => xsv(times, i, j, k);
+
         public override string  ToString()
             => format();
     }

@@ -11,155 +11,80 @@ namespace Z0
     using static zcore;
     using static Traits;
 
-
-    
-
-    public static class Matrix
-    {
-        
-        /// <summary>
-        /// Defines a matrix from an array whose elements are in row-major form 
-        /// for the matrix under construction
-        /// </summary>
-        /// <param name="dim">The dimension of the maxtrix; unused, but useful for type inference</param>
-        /// <param name="src">The source array</param>
-        /// <typeparam name="M">The number of rows</typeparam>
-        /// <typeparam name="N">The number of columns</typeparam>
-        /// <typeparam name="T">The cell type</typeparam>
-        [MethodImpl(Inline)]
-        public static Matrix<M, N, T> define<M,N,T>(Dim<M,N> dim, params T[] src)
-            where M : TypeNat, new()
-            where N : TypeNat, new()
-            where T : Semiring<T>, new()
-                => new Matrix<M,N,T>(src);
-        
-
-        /// <summary>
-        /// Defines a matrix from an array whose elements are in row-major form 
-        /// for the matrix under construction
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <typeparam name="M">The number of rows</typeparam>
-        /// <typeparam name="N">The number of columns</typeparam>
-        /// <typeparam name="T">The cell typee</typeparam>
-        [MethodImpl(Inline)]
-        public static Matrix<M, N, T> define<M,N,T>(params T[] src)
-            where M : TypeNat, new()
-            where N : TypeNat, new()
-            where T : Semiring<T>, new()
-                => new Matrix<M,N,T>(src);
-
-
-        /// <summary>
-        /// Defines a matrix from a sequence whose elements are in row-major form
-        /// for the matrix under construction
-        /// </summary>
-        /// <param name="dim">The dimension of the maxtrix; unused, but useful for type inference</param>
-        /// <param name="src">The source array</param>
-        /// <typeparam name="M">The number of rows</typeparam>
-        /// <typeparam name="N">The number of columns</typeparam>
-        /// <typeparam name="T">The cell typee</typeparam>
-        [MethodImpl(Inline)]
-        public static Matrix<M, N, T> define<M,N,T>(Dim<M,N> dim, IEnumerable<T> src)
-            where M : TypeNat, new()
-            where N : TypeNat, new()
-            where T : Semiring<T>, new()
-                => new Matrix<M,N,T>(src);
-
-
-        /// <summary>
-        /// Defines a matrix from a sequence whose elements are in row-major form
-        /// for the matrix under construction
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <typeparam name="M">The number of rows</typeparam>
-        /// <typeparam name="N">The number of columns</typeparam>
-        /// <typeparam name="T">The cell typee</typeparam>
-        [MethodImpl(Inline)]
-        public static Matrix<M, N, T> define<M,N,T>(IEnumerable<T> src)
-            where M : TypeNat, new()
-            where N : TypeNat, new()
-            where T : Semiring<T>, new()
-                => new Matrix<M,N,T>(src);
-
-
-
-
-    }
-
     partial class Traits
     {
-
-        public interface MatrixOps<M,N,P,T>
-                where M : TypeNat, new()
-                where N : TypeNat, new()
-                where P : TypeNat, new()
-                where T : Semiring<T>, new()
-        {
-
-            Z0.Matrix<M, P, T> mul(Traits.Matrix<M, N, T> lhs, Traits.Matrix<N, P, T> rhs);
-
-        }
-
         public interface MatrixOps<M,N,T>
                 where M : TypeNat, new()
                 where N : TypeNat, new()
                 where T : Semiring<T>, new()
         {
 
-            Z0.Matrix<M,N,T> zero();
+            Matrix<M,N,T> zero();
+
+            Dim<M,N> dim();
         
-            T cell(Traits.Matrix<M,N,T> src, uint i, uint j);
+            Z0.Slice<N,T> row(Matrix<M, N, T> src, uint i);
+
+            Z0.Slice<M,T> col(Matrix<M,N,T> src, uint j);
+
+            T cell(Matrix<M,N,T> src, uint i, uint j);
             
-            T cell<I, J>(Traits.Matrix<M,N,T> src)
+            T cell<I, J>(Matrix<M,N,T> src)
                 where I : TypeNat, new()
                 where J : TypeNat, new();            
             
-            Z0.Vector<M, T> vector(Traits.Matrix<M, N, T> src, uint j);
+            Vector<M, T> vector(Matrix<M, N, T> src, uint j);
         
-            IEnumerable<Z0.Covector<N, T>> rows(Traits.Matrix<M, N, T> src);
-            
-            IEnumerable<Z0.Vector<M, T>> cols(Traits.Matrix<M, N, T> src);
+            Covector<N, T> covector(Matrix<M, N, T> src, uint i);
 
-            Z0.Covector<N, T> covector(Traits.Matrix<M, N, T> src, uint i);
-            
-            Z0.Slice<N, Z0.Covector<N, T>> covectors(Traits.Matrix<M,N,T> src);
-
-            Z0.Matrix<M,N,T> add(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs);
-            
-            bool eq(Traits.Matrix<M, N, T> lhs, Traits.Matrix<M, N, T> rhs);
-
-            bool neq(Traits.Matrix<M, N, T> lhs, Traits.Matrix<M, N, T> rhs);
-
-            Z0.Vector<M, T> vector<J>(Traits.Matrix<M, N, T> src)
+            Vector<M, T> vector<J>(Matrix<M, N, T> src)
                 where J:TypeNat, new();
 
-            Z0.Matrix<N, M, T> tranpose(Traits.Matrix<M,N,T> src);
+            Covector<N, T> covector<I>(Matrix<M, N, T> src) 
+                where I : TypeNat, new();
+
+            Z0.Slice<M,Vector<M, T>> vectors(Matrix<M, N, T> src);
+            
+            Z0.Slice<N, Covector<N, T>> covectors(Matrix<M,N,T> src);
+
+
+            IEnumerable<Covector<N, T>> rows(Matrix<M, N, T> src);
+            
+            IEnumerable<Vector<M, T>> cols(Matrix<M, N, T> src);
+
+            Matrix<M,N,T> add(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs);
+            
+            bool eq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs);
+
+            bool neq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs);
+
+     
+            Matrix<N, M, T> tranpose(Matrix<M,N,T> src);
+
+            MatMul<M, N, P, T> multiplier<P>(Matrix<M,N,T> src)
+                where P : TypeNat, new();
+
+            string format(Matrix<M,N,T> src);
+
+            Matrix<Z0.Prior<M>, Z0.Prior<N>,T> delete(Matrix<M,N,T> src, uint rowix, uint colix);
+
+            Matrix<I,J,T> submatrix<I,J>(Matrix<M,N,T> src, Dim<I,J> newdim, (uint r, uint c) origin)
+                where I : TypeNat, new()
+                where J : TypeNat, new();
+
+            Matrix<I, J, T> reinterpret<I,J>(Matrix<M,N,T> src)
+                where I : TypeNat, new()
+                where J : TypeNat, new();
+
+            Matrix<I, J, T> reinterpret<I,J>(Matrix<M,N,T> src, Dim<I,J> equivalent)
+                where I : TypeNat, new()
+                where J : TypeNat, new();
+
+            Matrix<M,N,Y> transform<Y>(Matrix<M,N,T> src, Func<T,Y> f)
+                        where Y : Semiring<Y>, new();
+
+            void mutate(Matrix<M,N,T> src, Func<T,T> f);
         }
-
-
-    }
-
-    public readonly struct MatrixOps<M,N,P,T> : Traits.MatrixOps<M,N,P,T>
-            where M : TypeNat, new()
-            where N : TypeNat, new()
-            where P : TypeNat, new()
-            where T : Semiring<T>, new()
-    {
-        public static readonly MatrixOps<M,N,P,T> Inhabitant = default;
-
-        [MethodImpl(Inline)]
-        public Matrix<M, P, T> mul(Traits.Matrix<M, N, T> lhs, Traits.Matrix<N, P, T> rhs)
-        {            
-            var m = Prove.claim<M>(lhs.dim().i);
-            var p = Prove.claim<P>(rhs.dim().j);
-            var product = new T[m*p];
-            for(var i = 0u; i< m; i++)
-                for(var j =0u; j< p; j++)
-                    product[i] = Covector.apply(lhs.covector(i), rhs.vector(j));
-            return Matrix.define<M,P,T>(product);
-        }
-
     }
 
     public readonly struct MatrixOps<M,N,T> : Traits.MatrixOps<M,N,T>
@@ -179,74 +104,184 @@ namespace Z0
         public static readonly Matrix<M,N,T> Zero = Matrix.define<M,N,T>(zeros());
 
         [MethodImpl(Inline)]        
-        public T cell(Traits.Matrix<M,N,T> src, uint i, uint j)
+        public T cell(Matrix<M,N,T> src, uint i, uint j)
             => src.data[Dim.i*i + j];
 
         [MethodImpl(Inline)]
-        public T cell<I, J>(Traits.Matrix<M,N,T> src)
+        public Dim<M,N> dim()
+            => Dim;
+
+        [MethodImpl(Inline)]
+        public T cell<I, J>(Matrix<M,N,T> src)
             where I : TypeNat, new()
             where J : TypeNat, new()
                 => cell(src,natval<I>(), natval<J>());
 
         [MethodImpl(Inline)]
-        public Vector<M, T> vector(Traits.Matrix<M, N, T> src, uint j)
-        {            
+        public Z0.Slice<M,T> col(Matrix<M,N,T> src, uint j)
+        {
             var data = src.data;
-            var n = (int)Dim.i;
+            var n = Dim.i;
             var col = (int)j;
             var v = new T[n];
             for(var r = 0; r < n; r++)
                 v[r] = data[r + col];
-            return  Vector.define<M,T>(v);
-        }    
+            return Slice.define<M,T>(data);
+        }
+
+        [MethodImpl(Inline)]        
+        public Vector<M, T> vector(Matrix<M, N, T> src, uint j)
+            => col(src,j);
 
 
         [MethodImpl(Inline)]
-        public IEnumerable<Covector<N, T>> rows(Traits.Matrix<M, N, T> src)
+        public IEnumerable<Covector<N, T>> rows(Matrix<M, N, T> src)
         {
             for(var i = 0u; i < Dim.i; i++)
                 yield return covector(src, i);
         }
 
         [MethodImpl(Inline)]
-        public IEnumerable<Vector<M, T>> cols(Traits.Matrix<M, N, T> src)
+        public IEnumerable<Vector<M, T>> cols(Matrix<M, N, T> src)
         {
             for(var j =0u; j < Dim.j; j++)
                 yield return vector(src,j);
         }
 
         [MethodImpl(Inline)]
-        public Z0.Vector<M, T> vector<J>(Traits.Matrix<M, N, T> src) 
+        public Z0.Slice<M,Vector<M, T>> vectors(Matrix<M, N, T> src)
+            => Slice.define<M, Vector<M, T>>(cols(src));
+
+        [MethodImpl(Inline)]
+        public Vector<M, T> vector<J>(Matrix<M, N, T> src) 
             where J : TypeNat, new()
                 => vector(src,natval<J>());
 
         [MethodImpl(Inline)]
-        public Z0.Covector<N, T> covector(Traits.Matrix<M, N, T> src, uint i)
-            => covector<N,T>(src.data.Segment(Dim.j*i,Dim.j));  
+        public Z0.Slice<N,T> row(Matrix<M, N, T> src, uint i)
+            => Slice.define<N,T>(src.data.Segment(Dim.j*i,Dim.j));
 
         [MethodImpl(Inline)]
-        public Z0.Matrix<M, N, T> add(Traits.Matrix<M, N, T> lhs, Traits.Matrix<M, N, T> rhs)
+        public Covector<N, T> covector(Matrix<M, N, T> src, uint i)
+            => row(src, i);
+
+        [MethodImpl(Inline)]
+        public Matrix<M, N, T> add(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
             => Matrix.define(dim<M,N>(), zip(lhs.data, rhs.data, (x,y) =>  SR.add(x,y)));
 
         [MethodImpl(Inline)]
-        public bool eq(Traits.Matrix<M, N, T> lhs, Traits.Matrix<M, N, T> rhs)
+        public bool eq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
             => zcore.eq(lhs.data, rhs.data); 
 
         [MethodImpl(Inline)]
-        public bool neq(Traits.Matrix<M, N, T> lhs, Traits.Matrix<M, N, T> rhs)
+        public bool neq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
             => not(eq(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public Z0.Matrix<M,N,T> zero() 
+        public Covector<N, T> covector<I>(Matrix<M, N, T> src) 
+            where I : TypeNat, new()
+                => covector(src,natval<I>());
+
+        [MethodImpl(Inline)]
+        public Matrix<M,N,T> zero() 
             => Zero;
 
         [MethodImpl(Inline)]
-        public Z0.Matrix<N, M, T> tranpose(Traits.Matrix<M,N,T> src)
+        public Matrix<N, M, T> tranpose(Matrix<M,N,T> src)
             => new Matrix<N,M,T>(src.vectors().data.SelectMany(x => x).ToArray());
 
         [MethodImpl(Inline)]
-        public Z0.Slice<N, Z0.Covector<N, T>> covectors(Traits.Matrix<M,N,T> src)
-            => rows(src).ToSlice<N,Z0.Covector<N,T>>();        
-   }            
+        public Z0.Slice<N, Covector<N, T>> covectors(Matrix<M,N,T> src)
+            => rows(src).ToSlice<N,Covector<N,T>>();        
 
+        [MethodImpl(Inline)]   
+        public MatMul<M, N,P, T> multiplier<P>(Matrix<M,N,T> src) 
+            where P : TypeNat, new()
+                => new MatMul<M,N,P,T>(src);
+
+        [MethodImpl(Inline)]   
+        public string format(Matrix<M,N,T> src)
+            => rows(src).Format();
+
+        public Matrix<Prior<M>, Prior<N>,T> delete(Matrix<M,N,T> src, uint rowix, uint colix)
+        {            
+            var dstdim = dim<Prior<M>, Prior<N>>();
+            var dstmem = new T[dstdim.volume()];
+            var curidx = 0;            
+            for(var i = 0u; i< Dim.i; i++)
+            {
+                if(i != rowix)
+                    for(var j =0u; j<Dim.j; j++)                    
+                        if(j != colix)
+                            dstmem[curidx++] = src.cell(i,j);            
+            }
+            return Matrix.define(dstdim, dstmem);
+
+        }
+
+        public Matrix<I,J,T> submatrix<I,J>(Matrix<M,N,T> src, Dim<I,J> dstdim, (uint r, uint c) origin)
+            where I : TypeNat, new()
+            where J : TypeNat, new()
+        {            
+            var  dst = new T[dstdim.volume()];
+            var curidx = 0;
+            for(var i = origin.r; i < (origin.r + dstdim.i); i++)
+                for(var j = origin.c; j < (origin.c + dstdim.j); j++)
+                    dst[curidx++] = src.cell(i,j);
+
+            return Matrix.define(dstdim, dst);        
+        }
+
+        /// <summary>
+        /// Reinterprets the matrix dimension if the new dimension
+        /// can be proved equivalent to the current. Otherwise,
+        /// raises an error
+        /// </summary>
+        /// <typeparam name="I">The new row dimension representation</typeparam>
+        /// <typeparam name="J">The new column dimension representation</typeparam>
+        [MethodImpl(Inline)]
+        public Matrix<I, J, T> reinterpret<I,J>(Matrix<M,N,T> src)
+            where I : TypeNat, new()
+            where J : TypeNat, new()
+        {
+            Prove.equal<I,J>();
+            return new Matrix<I, J, T>(src.data);        
+        }
+
+        /// <summary>
+        /// Reinterprets the matrix dimension if the new dimension
+        /// can be proved equivalent to the current. Otherwise,
+        /// raises an error
+        /// </summary>
+        /// <typeparam name="I">The new row dimension representation</typeparam>
+        /// <typeparam name="J">The new column dimension representation</typeparam>
+        [MethodImpl(Inline)]
+        public Matrix<I, J, T> reinterpret<I,J>(Matrix<M,N,T> src, Dim<I,J> equivalent)
+            where I : TypeNat, new()
+            where J : TypeNat, new()
+        {
+            Prove.equal<I,J>();
+            return new Matrix<I, J, T>(src.data);
+        }
+
+        [MethodImpl(Inline)]
+        public void mutate(Matrix<M,N,T> src, Func<T,T> f)
+        {
+            var data = src.data;
+            for(var k = 0; k< data.Length; k++)
+                data[k] = f(data[k]);
+        }
+
+        [MethodImpl(Inline)]
+        public Matrix<M,N,Y> transform<Y>(Matrix<M,N,T> src, Func<T,Y> f)
+            where Y : Semiring<Y>, new()
+        {                
+            var data = src.data;
+            var dst = new Y[data.Length];
+            for(var k = 0; k< data.Length; k++)
+                dst[k] = f(data[k]);
+            return new Matrix<M,N,Y>(dst);
+        }
+
+     }            
 }

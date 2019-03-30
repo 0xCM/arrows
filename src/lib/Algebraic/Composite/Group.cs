@@ -21,31 +21,10 @@ namespace Z0
             
         }
 
-        /// <summary>
-        /// Characterizes a group structure
-        /// </summary>
-        /// <typeparam name="T">The type over which the structure is defind</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface Group<S,T> : Invertive<S,T>, Monoid<S,T>
-            where S : Group<S,T>, new()
-        {
-            
-        }
 
         public interface GroupM<T> : Group<T>, MonoidM<T>, InvertiveM<T>
         {
 
-        }
-
-        /// <summary>
-        /// Characterizes a multiplicative group structure
-        /// </summary>
-        /// <typeparam name="T">The type over which the structure is defind</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface GroupM<S,T> : Group<S,T>, Monoid<S,T>
-            where S : GroupM<S,T>, new()
-        {
-            
         }
 
         /// <summary>
@@ -55,28 +34,11 @@ namespace Z0
         {
 
         }
-
-        /// <summary>
-        /// Characterizes an additive group structure
-        /// </summary>
-        /// <typeparam name="T">The type over which the structure is defind</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface GroupA<S,T> : Group<S,T>, Monoid<S,T>
-            where S : GroupA<S,T>, new()
-        {
-            
-        }
-
         public interface FreeGroup<T> : Group<T>, FreeMonoid<T>
         {
 
         }
 
-        public interface FreeGroup<S,T> : FreeGroup<S>, Structural<S,T>
-            where S : FreeGroup<S,T>, new()
-        {
-            
-        }
 
         public interface FinitelyGenerable<T>
         {
@@ -89,11 +51,6 @@ namespace Z0
             
         }
 
-        public interface FreeAbelianGroup<S,T> : FreeAbelianGroup<S>, Structural<S,T>
-            where S : FreeAbelianGroup<S,T>, new()
-        {
-            
-        }
 
         /// <summary>
         /// Characterizes a group action on a set
@@ -116,5 +73,55 @@ namespace Z0
             /// <returns></returns>
             T act(G g, T t);
         }
+    }
+
+    partial class Structure
+    {
+        /// <summary>
+        /// Characterizes a group structure
+        /// </summary>
+        /// <typeparam name="T">The type over which the structure is defind</typeparam>
+        /// <typeparam name="S">The structure type</typeparam>
+        public interface Group<S,T> : Invertive<S,T>, Monoid<S,T>
+            where S : Group<S,T>, new()
+        {
+            
+        }
+
+        /// <summary>
+        /// Characterizes a multiplicative group structure
+        /// </summary>
+        /// <typeparam name="T">The type over which the structure is defind</typeparam>
+        /// <typeparam name="S">The structure type</typeparam>
+        public interface GroupM<S,T> : Group<S,T>, Monoid<S,T>
+            where S : GroupM<S,T>, new()
+        {
+            
+        }
+
+
+        /// <summary>
+        /// Characterizes an additive group structure
+        /// </summary>
+        /// <typeparam name="T">The type over which the structure is defind</typeparam>
+        /// <typeparam name="S">The structure type</typeparam>
+        public interface GroupA<S,T> : Group<S,T>, Monoid<S,T>
+            where S : GroupA<S,T>, new()
+        {
+            
+        }
+
+        public interface FreeGroup<S,T> : Traits.FreeGroup<S>, Structural<S,T>
+            where S : FreeGroup<S,T>, new()
+        {
+            
+        }
+
+        public interface FreeAbelianGroup<S,T> : Traits.FreeAbelianGroup<S>, Structural<S,T>
+            where S : FreeAbelianGroup<S,T>, new()
+        {
+            
+        }
+
     }
 }

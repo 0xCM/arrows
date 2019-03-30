@@ -21,13 +21,18 @@ namespace Z0
             
         }
 
+    }
+
+
+    partial class Structure
+    {
         /// <summary>
         /// Characterizes a structure that represents a complex number
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying numeric component type</typeparam>
         /// <typeparam name="C">The complex number type</typeparam>
-        public interface Complex<S,T,C> : Complex<T,C>, Structural<S,C>
+        public interface Complex<S,T,C> : Number<S,C>
             where S : Complex<S,T,C>,  new()
         {
             /// <summary>
@@ -46,8 +51,5 @@ namespace Z0
         }
 
     }
-
-
-
 
 }

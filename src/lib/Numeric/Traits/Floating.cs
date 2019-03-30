@@ -20,7 +20,7 @@ namespace Z0
             /// The minimal resolution of the data type
             /// </summary>
             /// <value></value>
-            T ε {get;}
+            T epsilon {get;}
 
             /// <summary>
             /// Calculates the square root of the input
@@ -32,6 +32,29 @@ namespace Z0
 
         }
 
+    
+        /// <summary>
+        /// Characterizes an operation provider for bounded floating point values
+        /// </summary>
+        /// <typeparam name="T">The underlying numeric type</typeparam>
+        public interface FiniteFloat<T> : Floating<T>, BoundReal<T> 
+        { }
+            
+
+        /// <summary>
+        /// Characterizes operational reifications of RealFiniteUInt 
+        /// </summary>
+        /// <typeparam name="R">The reification type</typeparam>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface FiniteFloat<R,T> : FiniteFloat<T>, Operational<R,T>
+            where R : FiniteFloat<R,T>, new() { }
+
+    }
+
+    partial class Structure
+    {
+
+        //RealNumber<T>, Fractional<T>, Signed<T>, Negatable<T>, Trigonmetric<T>
         /// <summary>
         /// Characterizes a structure for a floating point number
         /// </summary>
@@ -43,16 +66,6 @@ namespace Z0
             S sqrt();
             
         }
-    
-        /// <summary>
-        /// Characterizes an operation provider for bounded floating point values
-        /// </summary>
-        /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface FiniteFloat<T> : Floating<T>, BoundReal<T> 
-        {
-
-        }
-
 
     }
 }

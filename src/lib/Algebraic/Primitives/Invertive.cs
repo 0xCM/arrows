@@ -13,9 +13,32 @@ namespace Z0
         /// <typeparam name="T">The operand type</typeparam>
         public interface Invertive<T>
         {
-            //T invert(T x);                
+
         }
 
+
+        /// <summary>
+        /// Characterizes operational multiplicative inversion
+        /// </summary>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface InvertiveM<T> : Invertive<T>
+        {
+            T invertM(T x);
+        }
+
+        /// <summary>
+        /// Characterizes operational additive inversion
+        /// </summary>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface InvertiveA<T> : Invertive<T>
+        {
+            T invertA(T x);
+        }
+
+    }
+
+    partial class Structure
+    {
         /// <summary>
         /// Characterizes structural inversion
         /// </summary>
@@ -25,15 +48,6 @@ namespace Z0
             where S : Invertive<S,T>, new()
         {
             //S invert();                
-        }
-
-        /// <summary>
-        /// Characterizes operational multiplicative inversion
-        /// </summary>
-        /// <typeparam name="T">The operand type</typeparam>
-        public interface InvertiveM<T> : Invertive<T>
-        {
-            T invertM(T x);
         }
 
         /// <summary>
@@ -48,14 +62,6 @@ namespace Z0
         }
 
 
-        /// <summary>
-        /// Characterizes operational additive inversion
-        /// </summary>
-        /// <typeparam name="T">The operand type</typeparam>
-        public interface InvertiveA<T> : Invertive<T>
-        {
-            T invertA(T x);
-        }
 
         /// <summary>
         /// Characterizes structural additive inversion
@@ -69,3 +75,4 @@ namespace Z0
         }
     }
 }
+ 

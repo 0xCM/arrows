@@ -29,6 +29,11 @@ namespace Z0
 
     }
 
+    public static partial class Structure
+    {
+        
+    }
+
     /// <summary>
     /// Constituents responsible for reifying proofs that
     /// demands have been satisfied

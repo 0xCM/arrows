@@ -13,17 +13,17 @@ namespace Z0
     /// <summary>
     /// Represents a Word
     /// </summary>
-    public readonly struct Word : Traits.FreeMonoid<Word,Slice<Symbol>>
+    public readonly struct Word : Structure.FreeMonoid<Word,Slice<Symbol>>, Structure.Equatable<Word>
     {
         public static readonly Word Empty = new Word();
 
-        static readonly FreeMonoid<Symbol> M = default;
+        static readonly Structure.FreeMonoid<Word,Slice<Symbol>> M = default;
 
         public static Word operator +(Word lhs, Word rhs)
             => lhs.append(rhs);
                     
-        public static implicit operator string(Word s)                
-            => M.reduce(s.data.data);
+        // public static implicit operator string(Word s)                
+        //     => M.reduce(s.data.data);
 
         public static implicit operator Slice<Symbol>(Word s)                
             => s.data;
@@ -60,15 +60,8 @@ namespace Z0
         public bool Equals(Word rhs)
             => eq(rhs);
 
-        bool Traits.Equatable<Word>.eq(Word lhs, Word rhs)
-            => lhs.eq(rhs);
-
-        bool Traits.Equatable<Word>.neq(Word lhs, Word rhs)
-            => lhs.neq(rhs);
-
-        Word Traits.Concatenable<Word>.concat(Word lhs, Word rhs)
-            => lhs.append(rhs);
-
+        public Word concat(Word rhs)
+            => new Word(data + rhs.data);
     }
 
 }

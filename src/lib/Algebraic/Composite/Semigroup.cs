@@ -10,38 +10,43 @@ namespace Z0
     
     partial class Traits
     {
-        public interface Semigroup<T> :  BinaryOp<T>, Equatable<T>
+        public interface Semigroup<T> :  Equatable<T>, Operational<T>
         {
             
         }
 
+
         public interface SemigroupA<T> : Semigroup<T>, Additive<T>
         {
-           Addition<T> addition {get;} 
 
         }
+
 
         public interface SemigroupM<T> : Semigroup<T>, Multiplicative<T>
         {
-           Multiplication<T> multiplication {get;} 
+
         }
 
 
-        public interface Semigroup<S,T> : Semigroup<S>, Structural<S,T>
+
+    }
+
+    partial class Structure
+    {
+        public interface Semigroup<S,T> : Equatable<S,T>
             where S : Semigroup<S,T>, new()
         {
             
         }            
-        
-        public interface SemigroupM<S,T> : Semigroup<S,T>, Multiplicative<S,T>
-                where S : SemigroupM<S,T>, new()
+
+        public interface SemigroupA<S,T> :  Semigroup<S,T>, Additive<S,T>
+            where S : SemigroupA<S,T>, new()
         {
 
         }            
 
-
-        public interface SemigroupA<S,T> :  Semigroup<S,T>, Additive<S,T>
-            where S : SemigroupA<S,T>, new()
+        public interface SemigroupM<S,T> : Semigroup<S,T>, Multiplicative<S,T>
+                where S : SemigroupM<S,T>, new()
         {
 
         }            
@@ -89,8 +94,6 @@ namespace Z0
         public SemigroupA<T> inhabitant 
             => Inhabitant;
 
-        public Addition<T> addition 
-            => Addition.define(this);
 
         [MethodImpl(Inline)]
         public T add(T a, T b) 

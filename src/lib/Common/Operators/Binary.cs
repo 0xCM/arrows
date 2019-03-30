@@ -28,6 +28,7 @@ namespace Z0
             T apply(T lhs, T rhs);
         }
 
+
     }
 
     /// <summary>

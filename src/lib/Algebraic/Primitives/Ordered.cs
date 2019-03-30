@@ -20,6 +20,11 @@ namespace Z0
             bool gteq(T lhs, T rhs);              
         }    
 
+        
+    }
+
+    partial class Structure
+    {
         /// <summary>
         /// Characterizes a structural number that can be ordered
         /// </summary>
@@ -36,8 +41,6 @@ namespace Z0
             
             bool gteq(S rhs);              
         }    
-
-        
     }
 
 }

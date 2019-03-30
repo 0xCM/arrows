@@ -18,16 +18,6 @@ namespace Z0
 
         }
 
-        /// <summary>
-        /// Characterizes a discrete group structure
-        /// </summary>
-        /// <typeparam name="T">The operational type</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface DiscreteGroup<S,T> : Group<S,T>, DiscreteSet<S,T>
-            where S : DiscreteGroup<S,T>, new()
-        {
-
-        }
 
         /// <summary>
         /// Characterizes a group that consists of finitely many individuals
@@ -39,13 +29,6 @@ namespace Z0
 
         }
 
-        public interface FiniteGroup<H,T> : DiscreteGroup<H,T>
-            where T : IEquatable<T>
-            where H : FiniteGroup<H,T>, new()
-        {
-
-
-        }
 
         /// <summary>
         /// Characterizes a discrete abelian group
@@ -55,11 +38,6 @@ namespace Z0
 
         }
 
-        public interface DiscreteAbelianGroup<S,T> : GroupA<S,T>, DiscreteSet<S,T>
-            where S : DiscreteAbelianGroup<S,T>, new()
-        {
-
-        }
 
 
         /// <summary>
@@ -71,7 +49,29 @@ namespace Z0
 
         }
 
-        public interface FiniteAbelianGroup<S,T> : DiscreteAbelianGroup<S,T>, FiniteSet<S,T>
+    }
+
+    partial class Structure
+    {
+        /// <summary>
+        /// Characterizes a discrete group structure
+        /// </summary>
+        /// <typeparam name="T">The operational type</typeparam>
+        /// <typeparam name="S">The structure type</typeparam>
+        public interface DiscreteGroup<S,T> : Group<S,T>, Traits.DiscreteSet<S,T>
+            where S : DiscreteGroup<S,T>, new()
+        {
+
+        }
+        public interface FiniteGroup<H,T> : DiscreteGroup<H,T>
+            where T : IEquatable<T>
+            where H : FiniteGroup<H,T>, new()
+        {
+
+
+        }
+
+        public interface FiniteAbelianGroup<S,T> : DiscreteAbelianGroup<S,T>, Traits.FiniteSet<S,T>
             where S : FiniteAbelianGroup<S,T>, new()
             where T : IEquatable<T>
         {
@@ -79,6 +79,11 @@ namespace Z0
 
         }
 
+        public interface DiscreteAbelianGroup<S,T> : GroupA<S,T>, Traits.DiscreteSet<S,T>
+            where S : DiscreteAbelianGroup<S,T>, new()
+        {
+
+        }
 
     }
 

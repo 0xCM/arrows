@@ -4,7 +4,6 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-
     
     partial class Traits
     {        
@@ -20,15 +19,6 @@ namespace Z0
             
         }
 
-        /// <summary>
-        /// Characterizes normal subgroup structure
-        /// </summary>
-        /// <typeparam name="T">The structural type</typeparam>
-        public interface NormalSubgroup<S,T> : Group<S,T>
-            where S : NormalSubgroup<S,T>, new()
-        {
-            
-        }
 
         /// <summary>
         /// Characterizes a coset
@@ -66,6 +56,20 @@ namespace Z0
         /// </summary>
         public interface RightCoset<T> : Coset<T>
             where T : Group<T>, new()
+        {
+            
+        }
+
+    }
+
+    partial class Structure
+    {
+        /// <summary>
+        /// Characterizes normal subgroup structure
+        /// </summary>
+        /// <typeparam name="T">The structural type</typeparam>
+        public interface NormalSubgroup<S,T> : Group<S,T>
+            where S : NormalSubgroup<S,T>, new()
         {
             
         }

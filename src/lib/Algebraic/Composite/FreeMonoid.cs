@@ -25,12 +25,17 @@ namespace Z0
 
         }
 
+
+    }
+
+    partial class Structure
+    {
         /// <summary>
         /// Characterizes a free monoidal structure
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface FreeMonoid<S,T> :  FreeMonoid<S>, Structural<S,T> 
+        public interface FreeMonoid<S,T> :  Monoid<S,T>, Concatenable<S,T>
             where S : FreeMonoid<S,T>, new()
         {
             
@@ -38,7 +43,6 @@ namespace Z0
         }
 
     }
-
     public static class FreeMonoid
     {
         public static FreeMonoid<T> define<T>(params T[] generators)

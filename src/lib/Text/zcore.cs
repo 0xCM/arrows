@@ -121,8 +121,8 @@ partial class zcore
     /// <param name="c">The padding character, if specifed; otherwise, a space is used as the filler</param>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static string lpad(string src, int width, char? c = null)
-        => src.PadLeft(width,c ?? ' ');
+    public static string lpad(string src, uint width, char? c = null)
+        => src.PadLeft((int)width,c ?? ' ');
 
     /// <summary>
     /// Left-Pads the input string with zeros
@@ -131,8 +131,8 @@ partial class zcore
     /// <param name="width">The with of the padded string</param>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static string lpadZ(string src, int width)
-        => src.PadLeft(width,'0');
+    public static string lpadZ(string src, uint width)
+        => src.PadLeft((int)width,'0');
 
     /// <summary>
     /// Right-Pads the input string with an optionally-specified character.
@@ -142,8 +142,8 @@ partial class zcore
     /// <param name="c">The padding character, if specifed; otherwise, a space is used as the filler</param>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static string rpad(string src, int width, char? c = null)
-        => src.PadRight(width,c ?? ' ');
+    public static string rpad(string src, uint width, char? c = null)
+        => src.PadRight((int)width,c ?? ' ');
 
     /// <summary>
     /// Right-Pads the input string with zeros
@@ -152,8 +152,8 @@ partial class zcore
     /// <param name="width">The with of the padded string</param>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static string rpadZ(string src, int width)
-        => src.PadRight(width,'0');
+    public static string rpadZ(string src, uint width)
+        => src.PadRight((int)width,'0');
 
     /// <summary>
     /// Renders the supplied value to the console followed by a carriage return
@@ -761,12 +761,22 @@ partial class zcore
         => string.Join(',', content);
 
     /// <summary>
+    /// Renders a sequence of items as an x-separated list of values
+    /// </summary>
+    /// <param name="content"></param>
+    [MethodImpl(Inline)]
+    public static string xsv(string separator, params object[] content)
+        => string.Join(separator, content);
+
+    /// <summary>
     /// Renders a sequence of items as a comma-separated list of values
     /// </summary>
     /// <param name="content"></param>
     [MethodImpl(Inline)]
     public static string csv<T>(IEnumerable<T> content)
         => string.Join(',', content);
+
+
 
     /// <summary>
     /// Renders each item from a sequence as list of values, delimited by end-of-line

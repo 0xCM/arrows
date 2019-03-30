@@ -7,11 +7,11 @@ namespace Z0
     partial class Traits
     {
 
-        /// <summary>
-        /// Characterizes external unary negation
-        /// </summary>
+         /// <summary>
+        /// Characterizes operational negation and subtraction
+         /// </summary>
         /// <typeparam name="T">The individual type</typeparam>
-        public interface Negatable<T>
+        public interface Negatable<T> : Operational<T>
         {
             /// <summary>
             /// Unary negation of input
@@ -29,12 +29,16 @@ namespace Z0
             T sub(T lhs, T rhs);
         }
 
+    }
+
+    partial class Structure
+    {
         /// <summary>
-        /// Characterizes self unary negation
+        /// Characterizes structural unary negation and subtraction
         /// </summary>
         /// <typeparam name="T">The individual type</typeparam>
         /// <typeparam name="S">The structure/self type</typeparam>
-        public interface Negatable<S,T> : Negatable<S>,  Structural<S,T>
+        public interface Negatable<S,T> : Structural<S,T>
             where S : Negatable<S,T>, new()
         {
             /// <summary>
@@ -44,7 +48,15 @@ namespace Z0
             /// <returns></returns>
             S negate();
 
+            /// <summary>
+            /// Negates the operand and adds result to self
+            /// </summary>
+            /// <param name="rhs">The right operand</param>
+            /// <returns></returns>
+            T sub(T rhs);
+
         }
+
     }
 
 }

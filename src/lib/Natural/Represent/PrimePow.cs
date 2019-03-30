@@ -4,40 +4,11 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-
-    partial class Traits
-    {
-        /// <summary>
-        /// Characterizes a natural number k such that p:P and e:E => k = p^e
-        /// where p is prime
-        /// </summary>
-        /// <typeparam name="P"></typeparam>
-        /// <typeparam name="E"></typeparam>
-        public interface PrimePow<P,E> : TypeNat
-            where P : TypeNat, Demands.Prime<P>,  new()
-            where E : TypeNat, new()
-        {
-
-        }
-
-        /// <summary>
-        /// Characterizes a reification of a natural prime base 
-        /// raised to a natural power
-        /// </summary>
-        public interface PrimePow<K,P,E> : PrimePow<P,E>, Pow<K, P, E>
-            where K : PrimePow<K,P,E>, new()
-            where P : TypeNat, Demands.Prime<P>, new()
-            where E : TypeNat, new()
-        {
-
-        }
-
-    }
         
     /// <summary>
     /// Reifies a natural prime base raised to a natural power
     /// </summary>
-    public readonly struct PrimePow<P, E> : Traits.PrimePow<PrimePow<P,E>, P, E>
+    public readonly struct PrimePow<P, E> : TypeNat
         where E : TypeNat, new()
         where P : TypeNat, Demands.Prime<P>, new()
     {
