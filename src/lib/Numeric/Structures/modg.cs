@@ -99,6 +99,11 @@ namespace Z0
 
         public bool Equals(modg<N, T> rhs)
             => eq(rhs);
-    }
+ 
+        bool Equality<modg<N,T>>.eq(modg<N, T> lhs, modg<N, T> rhs)
+            => lhs.eq(rhs);
 
+        bool Equality<modg<N,T>>.neq(modg<N, T> lhs, modg<N, T> rhs)
+            => lhs.neq(rhs); 
+    }
 }

@@ -19,7 +19,7 @@ namespace Z0
              => new Histogram<T>(min,max,binwidth);
     }
     
-    public class Histogram<T> : Traits.Formattable
+    public class Histogram<T> : Formattable
         where T: IConvertible
     {
         

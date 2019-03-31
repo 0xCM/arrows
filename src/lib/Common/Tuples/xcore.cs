@@ -25,7 +25,7 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N2,T> ToVector<T>(this (T x1, T x2) x)
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
             => vector(x);
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static (T x1, T x2) ToTuple<T>(this Vector<N2,T> v)
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
                 => (v[0], v[1]);
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N3,T> ToVector<T>(this (T x1, T x2, T x3) x)
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
                 => vector<N3,T>(x.x1, x.x2,x.x3);
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static (T x1, T x2, T x3) ToTuple<T>(this Vector<N3,T> v)
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
                 => (v[0], v[1], v[2]);
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N4,T> ToVector<T>(this (T x1, T x2, T x3, T x4) x)
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
                 => vector(x);
 
 
@@ -87,7 +87,7 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static (T x1, T x2, T x3, T x4) ToTuple<T>(this Vector<N4,T> v)
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
                 => tuple(v);
 
         /// <summary>

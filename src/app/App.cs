@@ -36,7 +36,7 @@ namespace App04
 
         static T dot<N,T>(Z0.Slice<N,T> s1, Z0.Slice<N,T> s2)
             where N : TypeNat, new()
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
             {
                 var ops = Resolver.integer<T>();
                 var result = ops.zero;
@@ -289,11 +289,6 @@ namespace App04
         }
 
 
-        static void SplitDouble(double src)
-        {
-            var parts = Bits.split(src);
-            var exp =  bitstring<double>(parts.exponent);
-        }
 
         static void DisplayBits()
         {
@@ -463,15 +458,7 @@ namespace App04
 
         }
 
-        static void ShowBit<T>(intg<T> x, int pos)
-            => print($"value: {x}, bits = {x.bitstring()} bit[1] = {bit(x,pos)}");
-
-
-        public static void ShowBits<T>(intg<T> x)
-        {
-            
-        }
-        public static void BitOps()
+        public static void BitOps1()
         {
             ShowBit(u(34), 0);
             ShowBit(u(34), 1);
@@ -485,14 +472,29 @@ namespace App04
 
         }
 
+        static void ShowBit<T>(intg<T> x, int pos)
+            => print($"value: {x}, bits = {x.bitstring()} bit[{pos}] = {bit(x,pos)}");
+        
+        public static void PrintBits<T>(intg<T> src)
+        {
+            for(var i = 0; i < src.bitsize; i ++)
+                ShowBit(src, i);
+        }
+
+        public static void ShowBits<T>(intg<T> src)
+            => print(src.bitstring());
+            
+        
         static void Main(string[] args)
         {     
             SysInit.initialize<Program>();
 
-
-            //BitOps();
-            TestRunner.RunTests();
-
+            var u8 = u(0b00010000);
+            ShowBits(u8);
+            var z8 = z(-8);
+            ShowBits(z8);
+            print(bitstring(-8));
+            //TestRunner.RunTests();
         }
     }
 }

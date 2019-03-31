@@ -43,11 +43,11 @@ namespace Z0
             => new Claim<T>(lhs,rhs,name,predicate);
 
         public static string eq<T>(T x, T y)
-            where T : Operative.Equatable<T>, new()        
+            where T : Equality<T>, new()        
                 => define(x,y,"==", new T().eq).demand();
                     
         public static string neq<T>(T x, T y)
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
                 => define(x,y,"!=", new T().neq).demand();
 
         public static string lt<T>(T x, T y)

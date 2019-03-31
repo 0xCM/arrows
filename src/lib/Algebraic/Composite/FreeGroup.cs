@@ -13,7 +13,7 @@ namespace Z0
         {
             
         }
-        public interface FreeGroup<S,T> : Group<S,T>, FreeMonoid<S,T>
+        public interface FreeGroup<S,T> : FreeGroup<S>, Group<S,T>, FreeMonoid<S,T>
             where S : FreeGroup<S,T>, new()
         {
             

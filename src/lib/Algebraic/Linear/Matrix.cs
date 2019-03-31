@@ -12,13 +12,10 @@ namespace Z0
     using static Traits;
 
 
-    public readonly struct Matrix<M, N, T> 
-        : Structure.Equatable<Matrix<M,N,T>>,           
-          Structure.Tranposable<Matrix<N,M,T>>,
-          IEquatable<Matrix<M,N,T>>
+    public readonly struct Matrix<M, N, T>  : Equatable<Matrix<M,N,T>>
             where M : TypeNat, new()
             where N : TypeNat, new()
-            where T : Structure.Semiring<T>, Operative.Equatable<T>, new()
+            where T : Structure.Semiring<T>, new()
     {
         static readonly Dim<M,N> Dim = default;        
         
@@ -163,7 +160,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Matrix<M,N,Y> transform<Y>(Func<T,Y> f)
-            where Y : Structure.Semiring<Y>, Operative.Equatable<Y>, new()
+            where Y : Structure.Semiring<Y>, new()
             => Ops.transform(this,f);
         
         [MethodImpl(Inline)]
@@ -183,5 +180,11 @@ namespace Z0
             => Ops.eq(this,rhs);
         public bool neq(Matrix<M, N, T> rhs)
             => Ops.neq(this,rhs);
+
+        bool Equality<Matrix<M, N, T>>.eq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
+            => lhs.eq(rhs);
+ 
+        bool Equality<Matrix<M, N, T>>.neq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
+            => lhs.neq(rhs);
     } 
 }

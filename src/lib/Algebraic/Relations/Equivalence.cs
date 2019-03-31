@@ -67,8 +67,11 @@ namespace Z0
         /// <summary>
         /// Defines the canonical reification of a discrete equivalence class
         /// </summary>
-        public readonly struct FiniteEquivalenceClass<T> : Structure.DiscreteEqivalenceClass<FiniteEquivalenceClass<T>,T>,  Operative.Equatable<FiniteEquivalenceClass<T>>, IEquatable<FiniteEquivalenceClass<T>>
-            where T : Operative.Equatable<T>, new()
+        public readonly struct FiniteEquivalenceClass<T> 
+            : Structure.DiscreteEqivalenceClass<FiniteEquivalenceClass<T>,T>,  
+              Z0.Equality<FiniteEquivalenceClass<T>>, 
+              IEquatable<FiniteEquivalenceClass<T>>
+                where T : Z0.Equality<T>, new()
         {
                     
             Operative.Equivalence<T> equivalence {get;}

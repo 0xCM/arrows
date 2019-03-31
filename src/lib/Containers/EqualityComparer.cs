@@ -13,18 +13,18 @@ namespace  Z0
 
     public static class EqualityComparer
     {
-        public static IEqualityComparer<T> ToEqualityComparer<T>(this Operative.Equatable<T> eq)
+        public static IEqualityComparer<T> ToEqualityComparer<T>(this Equality<T> eq)
             => new EqualityComparer<T>(eq);
     }
     
     readonly struct EqualityComparer<T> : IEqualityComparer<T>
     {
 
-        readonly Operative.Equatable<T> equatable;
+        readonly Equality<T> equatable;
 
 
         [MethodImpl(Inline)]
-        public EqualityComparer(Operative.Equatable<T> equatable)
+        public EqualityComparer(Equality<T> equatable)
             => this.equatable = equatable;
 
         [MethodImpl(Inline)]

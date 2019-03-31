@@ -16,19 +16,19 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Slice<N,T> NatSlice<N,T>(this Z0.TypeNat<N> n, IEnumerable<T> src)
             where N : TypeNat, new()
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
                 => new Slice<N, T>(src);
 
         [MethodImpl(Inline)]
         public static Slice<N,T> NatSlice<N,T>(this Z0.TypeNat<N> n, params T[] src)
             where N : TypeNat, new()
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
                 => new Slice<N, T>(src);
 
         [MethodImpl(Inline)]
         public static Vector<N,T> ToVector<N,T>(this Slice<N,T> src)
             where N : TypeNat, new()
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
                 => vector<N,T>(src.data);
 
 
@@ -39,7 +39,7 @@ namespace Z0
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<T> ToSlice<T>(this IEnumerable<T> src)
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
                 => Z0.Slice.define(src);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Slice<N,T> ToSlice<N,T>(this IEnumerable<T> src)
             where N : TypeNat, new()
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
                 => Z0.Slice.define<N,T>(src);
  
 

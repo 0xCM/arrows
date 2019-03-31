@@ -19,7 +19,7 @@ namespace Z0
         /// <typeparam name="T">The set domain</typeparam>
         public interface QuotientSet<C,T> 
             where C : Structure.EquivalenceClass<C,T>, new()
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
         {
             /// <summary>
             /// Effects a partition via the equivalence

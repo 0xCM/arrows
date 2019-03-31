@@ -320,6 +320,15 @@ namespace Z0
         public static (uint hi, uint lo) split(ulong src)
             => (hi(src),lo(src));
 
+        /// <summary>
+        /// Partitions the bits of a decimal as a sequence of four integers
+        /// </summary>
+        /// <param name="hihi">The hi bits of the hi half</param>
+        /// <param name="hilo">The lo bits of the hi half</param>
+        /// <param name="lohi">The hi bits of the lo half</param>
+        /// <param name="lolo">The lo bits of the lo half</param>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static (int hihi, int hilo, int lohi, int lolo) split(decimal src)
             => apply(Decimal.GetBits(src), x => (x[3],x[2],x[1],x[0]));
 

@@ -13,7 +13,7 @@ namespace Z0
     /// <summary>
     /// Represents a Atom
     /// </summary>
-    public readonly struct Atom : IEquatable<Atom>, Structure.Equatable<Atom>, Operative.Equatable<Atom>
+    public readonly struct Atom : IEquatable<Atom>, Equatable<Atom>, Equality<Atom>
     {
         public static readonly Atom Empty = new Atom(string.Empty);
 

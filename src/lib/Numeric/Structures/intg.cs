@@ -16,7 +16,7 @@ namespace Z0
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct intg<T> : Structure.Integer<intg<T>,T>, Operative.Equatable<intg<T>>
+    public readonly struct intg<T> : Structure.Integer<intg<T>,T>, Equality<intg<T>>
     {
         static readonly Operative.Integer<T> Ops = Resolver.integer<T>();
 
@@ -261,7 +261,7 @@ namespace Z0
             => Ops.gcd(data, rhs);
 
         [MethodImpl(Inline)]
-        public string bitstring()
+        public BitString bitstring()
             => Ops.bitstring(data);
 
         [MethodImpl(Inline)]

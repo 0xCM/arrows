@@ -73,6 +73,7 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]
         public static string Format<T>(this IEnumerable<T> src, string sep = null)
-            where T : Traits.Formattable => string.Join(sep ?? ",", src.Select(x => x.format()));
+            where T : Formattable 
+                => string.Join(sep ?? ",", src.Select(x => x.format()));
     }
 }

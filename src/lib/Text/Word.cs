@@ -13,7 +13,7 @@ namespace Z0
     /// <summary>
     /// Represents a Word
     /// </summary>
-    public readonly struct Word : Structure.FreeMonoid<Word,Slice<Symbol>>, Structure.Equatable<Word>
+    public readonly struct Word : Structure.FreeMonoid<Word,Slice<Symbol>>, Equatable<Word>
     {
         public static readonly Word Empty = new Word();        
 
@@ -55,8 +55,14 @@ namespace Z0
         public bool Equals(Word rhs)
             => eq(rhs);
 
-        public Word concat(Word rhs)
+        public Word concat(Word rhs)     
             => new Word(data + rhs.data);
+
+        bool Equality<Word>.eq(Word lhs, Word rhs)
+            => lhs.eq(rhs);
+
+        bool Equality<Word>.neq(Word lhs, Word rhs)
+            => lhs.neq(rhs);
     }
 
 }

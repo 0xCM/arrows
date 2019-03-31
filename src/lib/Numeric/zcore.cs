@@ -89,14 +89,6 @@ partial class zcore
         return divisors(x).Count() == 0;
     }            
     
-    /// <summary>
-    /// Renders a generic number as a bitstring
-    /// </summary>
-    /// <param name="src">The source number</param>
-    /// <typeparam name="T">The unerlying numeric type</typeparam>
-    [MethodImpl(Inline)]   
-    public static string bitstring<T>(num<T> src)
-        => src.bitstring();
 
     /// <summary>
     /// Enumerates generic integers inclusively between specified first and last values.

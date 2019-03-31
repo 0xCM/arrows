@@ -11,14 +11,9 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
 
-    public readonly struct Vector<N, T> 
-        : IEnumerable<T>, 
-          Structure.Equatable<Vector<N,T>>,  
-          Operative.Equatable<Vector<N,T>>,
-          Structure.Tranposable<Z0.Covector<N,T>>, 
-          Traits.Formattable
+    public readonly struct Vector<N, T> : IEnumerable<T>, Equatable<Vector<N,T>>, Formattable, Lengthwise
         where N : TypeNat, new()    
-        where T : Operative.Equatable<T>, new()    
+        where T : Equality<T>, new()    
     {
 
         /// <summary>

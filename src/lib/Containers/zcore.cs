@@ -296,8 +296,8 @@ public static partial class zcore
     /// <param name="src">The input sequence</param>
     /// <param name="f">The predicate used to test values from the input sequence</param>
     /// <typeparam name="T">The input sequence type</typeparam>
-    public static Z0.Slice<T> filter<T>(Traits.Slice<T> src, Func<T,bool> f)
-        where T : Operative.Equatable<T>, new()
+    public static Slice<T> filter<T>(Slice<T> src, Func<T,bool> f)
+        where T : Equality<T>, new()
             => slice(src.Where(f));        
 
     /// <summary>

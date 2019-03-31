@@ -16,7 +16,7 @@ namespace Z0
         public interface MatrixOps<M,N,T>
                 where M : TypeNat, new()
                 where N : TypeNat, new()
-                where T : Structure.Semiring<T>, Operative.Equatable<T>, new()
+                where T : Structure.Semiring<T>,  new()
         {
 
             Matrix<M,N,T> zero();
@@ -81,7 +81,7 @@ namespace Z0
                 where J : TypeNat, new();
 
             Matrix<M,N,Y> transform<Y>(Matrix<M,N,T> src, Func<T,Y> f)
-                    where Y : Structure.Semiring<Y>, Operative.Equatable<Y>, new();
+                    where Y : Structure.Semiring<Y>, Equality<Y>, new();
 
             void mutate(Matrix<M,N,T> src, Func<T,T> f);
         }
@@ -90,7 +90,7 @@ namespace Z0
     public readonly struct MatrixOps<M,N,T> : Operative.MatrixOps<M,N,T>
             where M : TypeNat, new()
             where N : TypeNat, new()
-            where T : Structure.Semiring<T>, Operative.Equatable<T>, new()
+            where T : Structure.Semiring<T>, Equality<T>, new()
     {
         static readonly Operative.Semiring<T> SR =  new Reify.Semiring<T>();
         static readonly Dim<M,N> Dim = default;
@@ -274,7 +274,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Matrix<M,N,Y> transform<Y>(Matrix<M,N,T> src, Func<T,Y> f)
-            where Y : Structure.Semiring<Y>, Operative.Equatable<Y>,  new()
+            where Y : Structure.Semiring<Y>, Equality<Y>,  new()
         {                
             var data = src.data;
             var dst = new Y[data.Length];

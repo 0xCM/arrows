@@ -185,7 +185,7 @@ namespace Z0
             => Ops.abs(this);
 
         [MethodImpl(Inline)]
-         public string bitstring()
+         public BitString bitstring()
             => Ops.bitstring(this);
 
         [MethodImpl(Inline)]
@@ -225,5 +225,12 @@ namespace Z0
 
         public num<T> pow(int exp)
             => Ops.pow(data, exp);
+ 
+        bool Equality<num<T>>.eq(num<T> lhs, num<T> rhs)
+            => lhs.eq(rhs);
+
+        bool Equality<num<T>>.neq(num<T> lhs, num<T> rhs)
+            => lhs.neq(rhs);
+ 
     }
 }

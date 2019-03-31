@@ -231,9 +231,11 @@ namespace Z0
         public operand atanh(operand x)
                 => (operand)Math.Atanh((double)x);
  
-        public string bitstring(operand x)
-            => x.ToBitString();
+        [MethodImpl(Inline)]   
+        public BitString bitstring(operand x)
+            => BitString.define(x);
 
+        [MethodImpl(Inline)]   
         public string hexstring(operand x)
             => x.ToHexString();
 

@@ -11,15 +11,15 @@ namespace Z0
     public static class Polynomial
     {
         public static PolynomialTerm<T> term<T>(T coefficient, intg<uint> power)
-            where  T: Operative.Equatable<T>, new()
+            where  T: Equality<T>, new()
                 => new PolynomialTerm<T>(coefficient,power);
     }
     
-    public readonly struct PolynomialTerm<T> : Structure.Equatable<PolynomialTerm<T>>, Operative.Equatable<PolynomialTerm<T>>
-        where  T: Operative.Equatable<T>, new()
+    public readonly struct PolynomialTerm<T> : Equatable<PolynomialTerm<T>>, Equality<PolynomialTerm<T>>
+        where  T: Equality<T>, new()
     {
         
-        static readonly Operative.Equatable<T> eqops = new T();
+        static readonly Equality<T> eqops = new T();
         public static readonly PolynomialTerm<T> Zero = default;
 
 
@@ -59,7 +59,7 @@ namespace Z0
     }
 
     public readonly struct Polynomial<T>
-        where T : Operative.MonoidA<T>, Operative.Equatable<T>, new()
+        where T : Operative.MonoidA<T>, Equality<T>, new()
     {
         static readonly Operative.MonoidA<T> Ops = new T();
         

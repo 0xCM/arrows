@@ -24,7 +24,7 @@ namespace  Z0
         /// <param name="items">The items to partition</param>
         /// <typeparam name="T">The item type</typeparam>
         public static IEnumerable<Reify.FiniteEquivalenceClass<T>> Partition<T>(this Operative.Equivalence<T> relation, IEnumerable<T> items)
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
 
         {
             var classes = cindex<T, ConcurrentBag<T>>();

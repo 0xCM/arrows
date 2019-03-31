@@ -12,41 +12,47 @@ namespace Z0
 
     using static zcore;
 
-
     /// <summary>
     /// Encapsulates a linear data segment with length determined at runtime
     /// </summary>
-    public readonly struct Slice<T> : Structure.Slice<Slice<T>, T>, Traits.Slice<T>, Operative.Equatable<Slice<T>>
-        where T : Operative.Equatable<T>, new()        
+    public readonly struct Slice<T> : Structure.Slice<Slice<T>, T>
+        where T : Equality<T>, new()        
     {                    
-        static readonly Operative.Equatable<T> Equatable = new T();
+        static readonly Equality<T> Equatable = new T();
         
+        [MethodImpl(Inline)]   
         public static Slice<T> operator + (Slice<T> lhs, Slice<T> rhs)
             => new Slice<T>(lhs.data.Concat(rhs.data));
 
+        [MethodImpl(Inline)]   
         public static bool operator == (Slice<T> lhs, Slice<T> rhs)
             => lhs.Equals(rhs);
 
+        [MethodImpl(Inline)]   
         public static bool operator != (Slice<T> lhs, Slice<T> rhs)
             => not(lhs == rhs);
 
         public IReadOnlyList<T> data {get;}
 
+        [MethodImpl(Inline)]   
         public static implicit operator Slice<T>(T[] src)
             => new Slice<T>(src);
 
+        [MethodImpl(Inline)]   
         public Slice(params T[] src)
         {
             this.length = src.Length();
             this.data = src;
         }
 
+        [MethodImpl(Inline)]   
         public Slice(IReadOnlyList<T> src)
         {
             this.data = src;
             this.length = this.data.Length();
         }
 
+        [MethodImpl(Inline)]   
         public Slice(IEnumerable<T> src)
         {
             this.data = src.ToArray();
@@ -72,6 +78,7 @@ namespace Z0
                 return (this + filled, rhs);
         }
 
+        [MethodImpl(Inline)]   
         public Slice<N,T> ToNatLenth<N>()
             where N : TypeNat, new()
                 => new Slice<N,T>(data);
@@ -83,19 +90,12 @@ namespace Z0
         public Z0.Slice<T> reverse()
             => slice(data.Reverse());
 
-
         /// <summary>
         /// Reverses the slice elements
         /// </summary>
         [MethodImpl(Inline)]   
         public Z0.Slice<T> filter(Func<T,bool> predicate)
             => slice(data.Where(predicate));
-
-        /// <summary>
-        /// Renders the slice as a comma-delimted parenthetical value
-        /// </summary>
-        public string format()
-            => paren(csv(data));
 
         public IEnumerator<T> GetEnumerator()
             => data.GetEnumerator();
@@ -115,42 +115,50 @@ namespace Z0
             return true;            
         }
 
+        [MethodImpl(Inline)]   
         public bool neq(Slice<T> lhs, Slice<T> rhs)
             => not(eq(lhs,rhs));
 
+        [MethodImpl(Inline)]   
+        public bool eq(Slice<T> rhs)
+            => eq(this, rhs);
+
+        [MethodImpl(Inline)]   
+        public bool neq(Slice<T> rhs)
+            => neq(this, rhs);
+
+        [MethodImpl(Inline)]   
         public bool Equals(Slice<T> rhs)
             => eq(this,rhs);
+
+        [MethodImpl(Inline)]   
+        public int hash()
+            => data.HashCode();
+
+        /// <summary>
+        /// Renders the slice as a comma-delimted parenthetical value
+        /// </summary>
+        public string format()
+            => paren(csv(data));
 
         public override bool Equals(object rhs)
             => rhs is Slice<T> ? Equals((Slice<T>)rhs) : false;
 
         public override int GetHashCode()
-            => data.GetHashCode();
+            => hash();
 
         public override string ToString()
             => format();
-
-        public bool eq(Slice<T> rhs)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool neq(Slice<T> rhs)
-        {
-            throw new NotImplementedException();
-        }
     }        
-
 
     /// <summary>
     /// Encapsulates a linear data segment with naturally-typed length
     /// </summary>
-    public readonly struct Slice<N,T> : Structure.NSlice<N,Slice<N,T>,T>, IEnumerable<T>, Structure.Reversible<Slice<N,T>>, Operative.Equatable<Slice<N,T>>
+    public readonly struct Slice<N,T> : Structure.Slice<Slice<N,T>,T>
         where N : TypeNat, new()
-        where T : Operative.Equatable<T>, new()        
+        where T : Equality<T>, new()        
     {                    
         
-
         /// <summary>
         /// Interprets an array as a slice
         /// </summary>
@@ -191,18 +199,42 @@ namespace Z0
             => data[i];
 
         /// <summary>
-        /// Renders the slice as a comma-delimted parenthetical value
-        /// </summary>
-        [MethodImpl(Inline)]   
-        public string format()
-            => paren(csv(data));
-
-        /// <summary>
         /// Reverses the slice elements
         /// </summary>
         [MethodImpl(Inline)]   
         public Z0.Slice<N,T> reverse()
             => slice<N,T>(data.Reverse());
+
+        [MethodImpl(Inline)]   
+        public bool eq(Slice<N, T> rhs)
+            => data.eq(rhs.data);
+
+        [MethodImpl(Inline)]   
+        public bool neq(Slice<N, T> rhs)
+            => data.neq(rhs.data);
+
+        [MethodImpl(Inline)]   
+        public bool eq(Slice<N, T> lhs, Slice<N, T> rhs)
+            => lhs.eq(rhs);
+
+        [MethodImpl(Inline)]   
+        public bool neq(Slice<N, T> lhs, Slice<N, T> rhs)
+            => lhs.neq(rhs);
+ 
+        [MethodImpl(Inline)]   
+        public int hash()
+            => data.HashCode();
+
+        [MethodImpl(Inline)]   
+        public bool Equals(Slice<N, T> rhs)
+            => eq(rhs);
+
+        /// <summary>
+        /// Renders the slice as a comma-delimted parenthetical value
+        /// </summary>
+        [MethodImpl(Inline)]   
+        public string format()
+            => paren(csv(data));
 
         public IEnumerator<T> GetEnumerator()
             => data.GetEnumerator();
@@ -213,20 +245,6 @@ namespace Z0
         public override string ToString()
             => format();
 
-        public bool eq(Slice<N, T> rhs)
-            => data.eq(rhs.data);
-
-        public bool neq(Slice<N, T> rhs)
-            => data.neq(rhs.data);
-
-        public bool Equals(Slice<N, T> rhs)
-            => eq(rhs);
-
-        public bool eq(Slice<N, T> lhs, Slice<N, T> rhs)
-            => lhs.eq(rhs);
-
-        public bool neq(Slice<N, T> lhs, Slice<N, T> rhs)
-            => lhs.neq(rhs);
     }        
 
 }

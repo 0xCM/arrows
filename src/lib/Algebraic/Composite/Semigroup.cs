@@ -10,7 +10,7 @@ namespace Z0
     
     partial class Operative
     {
-        public interface Semigroup<T> :  Equatable<T>, Operational<T>
+        public interface Semigroup<T> :  Equality<T>, Operational<T>
         {
             
         }
@@ -49,7 +49,7 @@ namespace Z0
 
         }            
 
-        public interface Semigroup<S,T> : Semigroup<S>, Equatable<S,T>
+        public interface Semigroup<S,T> : Semigroup<S>
             where S : Semigroup<S,T>, new()
         {
             

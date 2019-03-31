@@ -27,7 +27,7 @@ namespace Z0
         }
 
         public interface FinitelyGenerable<T>
-            where T : Operative.Equatable<T>, new()        
+            where T : Equality<T>, new()        
         {
             FiniteSet<T> generators {get;}
         }
@@ -39,6 +39,7 @@ namespace Z0
     {
         public interface FreeMonoid<S> :  Monoid<S>, Concatenable<S>
         {
+            S empty {get;}
 
         }
         /// <summary>
@@ -113,7 +114,7 @@ namespace Z0
 
     partial class Reify
     {   
-        public readonly struct FreeMonoid<T> : Structure.FreeMonoid<FreeMonoid<T>, T>
+        public readonly struct FreeMonoid<T> 
             where T : Operative.FreeMonoid<T>, new()
         {
 
@@ -127,45 +128,9 @@ namespace Z0
 
             public FiniteSet<T> generators {get;}
 
-            public T empty 
-                => Ops.empty;
-
-            public T data => throw new NotImplementedException();
-
             public IEnumerable<T> concat(IEnumerable<T> s1, IEnumerable<T> s2)
                 => s1.Concat(s2);
 
-            public T concat(T lhs, T rhs)
-                => throw new NotSupportedException();
-
-            public FreeMonoid<T> concat(FreeMonoid<T> rhs)
-            {
-                throw new NotImplementedException();
-            }
-
-            public bool eq(T lhs, T rhs)
-                => Ops.eq(lhs,rhs);
-
-            public bool eq(FreeMonoid<T> rhs)
-            {
-                throw new NotImplementedException();
-            }
-
-            public bool Equals(FreeMonoid<T> other)
-            {
-                throw new NotImplementedException();
-            }
-
-            public bool neq(T lhs, T rhs)
-                => Ops.neq(lhs,rhs);
-
-            public bool neq(FreeMonoid<T> rhs)
-            {
-                throw new NotImplementedException();
-            }
-
-            public T reduce(IEnumerable<T> src)
-                => fold(src, concat, empty);
         }
     }
 }

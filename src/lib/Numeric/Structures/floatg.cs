@@ -212,7 +212,7 @@ namespace Z0
             => Ops.gcd(data, rhs);
 
         [MethodImpl(Inline)]
-        public string bitstring()
+        public BitString bitstring()
             => Ops.bitstring(data);
 
         [MethodImpl(Inline)]
@@ -328,9 +328,10 @@ namespace Z0
         public floatg<T> pow(int exp)
             => Ops.pow(this,exp);
 
-        public T sub(T rhs)
-        {
-            throw new NotImplementedException();
-        }
+        bool Equality<floatg<T>>.eq(floatg<T> lhs, floatg<T> rhs)
+            => lhs.eq(rhs);
+
+        bool Equality<floatg<T>>.neq(floatg<T> lhs, floatg<T> rhs)
+            => lhs.neq(rhs);
     }
 }

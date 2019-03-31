@@ -33,7 +33,7 @@ namespace Z0
             /// <summary>
             /// Formats the source value a sequence of base-2 digits
             /// </summary>
-            string bitstring(T x);
+            BitString bitstring(T x);
 
 
             NumberInfo<T> numinfo {get;}
@@ -59,9 +59,9 @@ namespace Z0
             Sign sign();
 
             /// <summary>
-            /// Formats the number a sequence of base-2 digits
+            /// Constructs a bitstring from the number
             /// </summary>
-            string bitstring();                        
+            Z0.BitString bitstring();                        
 
         }
         

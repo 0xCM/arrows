@@ -28,7 +28,7 @@ namespace Z0
 
         public const operand MaxVal = operand.MaxValue;
 
-        public const uint BitSize = sizeof(operand);
+        public const uint BitSize = sizeof(operand) * 8;
 
         public const bool Signed = true;
 
@@ -224,6 +224,7 @@ namespace Z0
         public operand atanh(operand x)
                 => (operand)MathF.Atanh(x);
 
+        [MethodImpl(Inline)]   
         public operand gcd(operand lhs, operand rhs)
         {
             lhs = abs(lhs);
@@ -236,8 +237,11 @@ namespace Z0
             }
             return lhs;
         }
-        public string bitstring(operand src)
-            => src.ToBitString();
+
+        [MethodImpl(Inline)]   
+        public BitString bitstring(operand x)
+            => BitString.define(x);
+
 
     }
 

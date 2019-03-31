@@ -9,25 +9,22 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using System.Collections;
-    
-    partial class Traits
+
+    public interface Formattable
     {
-
-        public interface Formattable
-        {
-            string format();
-            
-        }
-        public interface Formattable<T>
-        {
-            string format(T value);
-        }
-
-        public interface Formattable<T,O> : Formattable<T>
-        {
-            string format(T value, O options);
-        }
-
+        string format();
+        
     }
+
+    public interface Formatter<T>
+    {
+        string format(T value);
+    }
+
+    public interface Formatter<T,O> : Formatter<T>
+    {
+        string format(T value, O options);
+    }
+
 
 }

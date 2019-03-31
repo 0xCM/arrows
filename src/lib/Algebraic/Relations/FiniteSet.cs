@@ -76,17 +76,15 @@ namespace Z0
             /// <param name="rhs">The set that should be differenced</param>
             /// <remarks>See https://en.wikipedia.org/wiki/Symmetric_difference</remarks>
             S difference(S rhs, bool symmetric = false);
-
         }
-
 
     }
 
     /// <summary>
     /// Contains a finite set of values
     /// </summary>
-    public readonly struct FiniteSet<T> : Structure.FiniteSet<FiniteSet<T>,T>, Structure.Equatable<FiniteSet<T>>
-        where T : Operative.Equatable<T>, new()
+    public readonly struct FiniteSet<T> : Structure.FiniteSet<FiniteSet<T>,T>, Equatable<FiniteSet<T>>
+        where T : Equality<T>, new()
     {
         static readonly IEqualityComparer<HashSet<T>> setcomparer = HashSet<T>.CreateSetComparer();        
 
@@ -201,16 +199,29 @@ namespace Z0
         /// Determine whether the current set and a specified set have a nonemtpy intersection
         /// </summary>
         /// <param name="rhs">The set to compare</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]   
         public bool intersects(FiniteSet<T> rhs)
             => data.Overlaps(rhs.data);
 
+        /// <summary>
+        /// Adjudicates equality between the current set and a specified set
+        /// </summary>
         public bool eq(FiniteSet<T> rhs)
             => data.SetEquals(rhs.data);
 
+        /// <summary>
+        /// Adjudicates inequality between the current set and a specified set
+        /// </summary>
+         [MethodImpl(Inline)]   
         public bool neq(FiniteSet<T> rhs)
             => not(eq(rhs));
 
+        [MethodImpl(Inline)]   
+        bool Equality<FiniteSet<T>>.eq(FiniteSet<T> lhs, FiniteSet<T> rhs)
+            => lhs.eq(rhs);
+
+        [MethodImpl(Inline)]   
+        bool Equality<FiniteSet<T>>.neq(FiniteSet<T> lhs, FiniteSet<T> rhs)
+            => lhs.neq(rhs);
     }
 }

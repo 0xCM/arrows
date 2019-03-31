@@ -17,7 +17,7 @@ namespace Z0
     /// a function f sends l to r and a function g sends r to l then
     /// the transposition t is the function t(l) = g(f(l)) == l. 
     /// </remarks>
-    public readonly struct Transposition<N> : Traits.Formattable
+    public readonly struct Transposition<N> : Formattable
     {
         public Transposition(ulong left, ulong right)
         {

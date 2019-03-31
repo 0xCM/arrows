@@ -25,14 +25,14 @@ namespace Z0
         /// <remarks>See https://en.wikipedia.org/wiki/Setoid</remarks>
         public interface Setoid<C,T> : QuotientSet<C,T>
             where C : DiscreteEqivalenceClass<C,T>, new()
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
         {
 
         }
     }
 
     public class Setoid<T> : Structure.Setoid<FiniteEquivalenceClass<T>, T>, Structure.FiniteSet<Setoid<T>>
-        where T : Operative.Equatable<T>, new()
+        where T : Equality<T>, new()
     {
         
         readonly FiniteSet<T> membership;

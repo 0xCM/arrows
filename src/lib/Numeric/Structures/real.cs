@@ -12,7 +12,7 @@ namespace Z0
     
     using static Traits;
 
-    public readonly struct real<T> : Structure.RealNumber<real<T>, T>, Operative.Equatable<real<T>>,  IConvertible
+    public readonly struct real<T> : Structure.RealNumber<real<T>, T>, Equality<real<T>>,  IConvertible
         where T : IConvertible
     {
         static readonly Operative.RealNumber<T> Ops = Resolver.real<T>();
@@ -160,7 +160,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public string bitstring()
+        public BitString bitstring()
             => Ops.bitstring(data);
 
         [MethodImpl(Inline)]

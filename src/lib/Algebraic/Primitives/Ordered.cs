@@ -9,7 +9,7 @@ namespace Z0
 
     partial class Operative
     {
-        public interface Ordered<T> : Stepwise<T>, Equatable<T>
+        public interface Ordered<T> : Stepwise<T>, Equality<T>
         {
             bool lt(T lhs, T rhs);
             

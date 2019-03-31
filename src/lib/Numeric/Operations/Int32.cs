@@ -24,7 +24,7 @@ namespace Z0
 
         public const operand One = 1;
 
-        public const uint BitSize = sizeof(operand);
+        public const uint BitSize = sizeof(operand) * 8;
 
         public const operand MinVal = operand.MinValue;
 
@@ -241,7 +241,8 @@ namespace Z0
             return lhs;
         }
 
-        public string bitstring(operand src)
-            => src.ToBitString();
+        [MethodImpl(Inline)]   
+        public BitString bitstring(operand x)
+            => BitString.define(x);
     }
 }

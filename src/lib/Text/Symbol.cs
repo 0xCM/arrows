@@ -13,7 +13,7 @@ namespace Z0
     /// <summary>
     /// Represents a symbol
     /// </summary>
-    public readonly struct Symbol : Structure.FreeMonoid<Symbol,Slice<Atom>>,Structure.Equatable<Symbol>, Operative.Equatable<Symbol>,  IEquatable<Symbol>
+    public readonly struct Symbol : Structure.FreeMonoid<Symbol,Slice<Atom>>,Equatable<Symbol>, Equality<Symbol>,  IEquatable<Symbol>
     {
         public static readonly Symbol Empty = new Symbol(string.Empty);
 
@@ -51,6 +51,7 @@ namespace Z0
 
         public Symbol empty 
             => Empty;
+
 
         public bool eq(Symbol rhs)
             => name == rhs;

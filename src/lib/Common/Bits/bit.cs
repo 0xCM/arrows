@@ -10,13 +10,24 @@ namespace Z0
 
     using static zcore;
 
+    partial class Structure
+    {
+        public interface bit<S> : IComparable<S>, Equatable<S>, Equality<S>, Formattable
+        {
+
+        }
+    }
+
     /// <summary>
     /// Represents a numeric or logical bit
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Boolean_algebra</remarks>
-    public readonly struct bit : IComparable<bit>, Structure.Equatable<bit>, Operative.Equatable<bit>
+    public readonly struct bit : Structure.bit<bit>
     {
 
+        public static bit Parse(char c)
+            => c != '0' ? One : Zero;
+        
         public static bit Zero = false;
 
         public static bit One = true;
@@ -29,6 +40,11 @@ namespace Z0
         public static implicit operator bit(bool src)
             => new bit(src);
         
+        [MethodImpl(Inline)]
+        public static explicit operator byte(bit src)
+            => src.value ? (byte)1 : (byte)0;
+
+
         [MethodImpl(Inline)]
         public static implicit operator BinaryDigit(bit src)
             => src.value ? BinaryDigit.B1 : BinaryDigit.B0;
@@ -102,7 +118,11 @@ namespace Z0
         [MethodImpl(Inline)]
         public bit(bool value)        
             => this.value = value;
-        
+
+        [MethodImpl(Inline)]
+        public bit(byte value, int pos = 0)        
+            => this.value = Bits.test<byte>(value,pos);
+
         [MethodImpl(Inline)]
         public int CompareTo(bit rhs)
             => value.CompareTo(rhs);
@@ -113,27 +133,33 @@ namespace Z0
 
         public bool value {get;}
 
+        [MethodImpl(Inline)]
+        public bool eq(bit rhs)
+            => this.value == rhs.value;
+
+        [MethodImpl(Inline)]
+        public bool neq(bit rhs)
+            => not(eq(rhs));
+
+        [MethodImpl(Inline)]
+        bool Equality<bit>.eq(bit lhs, bit rhs)
+            => lhs.eq(rhs);
+
+        [MethodImpl(Inline)]
+        bool Equality<bit>.neq(bit lhs, bit rhs)
+            => lhs.neq(rhs);
+
+        [MethodImpl(Inline)]
+        public string format()
+            => $"{(byte)this}";
+
         public override bool Equals(object rhs)
             => rhs is bit ? Equals((bit)rhs) : false;
 
         public override int GetHashCode()
-            => value ? 1 : 0;
+            => (byte)this;
     
         public override string ToString()
-            => (value ? 1 : 0).ToString();
-
-        public bool eq(bit rhs)
-            => this.value == rhs.value;
-
-        public bool neq(bit rhs)
-            => not(eq(rhs));
-
-        bool Operative.Equatable<bit>.eq(bit lhs, bit rhs)
-            => lhs.eq(rhs);
-
-        bool Operative.Equatable<bit>.neq(bit lhs, bit rhs)
-            => lhs.neq(rhs);
+            => format();
     }
-
-
 }

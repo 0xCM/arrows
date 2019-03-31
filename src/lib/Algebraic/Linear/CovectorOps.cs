@@ -25,7 +25,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static T apply<N,T>(Covector<N,T> cv, Vector<N,T> v)
             where N : TypeNat, new()        
-            where T : Structure.Semiring<T>, Operative.Equatable<T>, new()
+            where T : Structure.Semiring<T>, new()
         {
             var sr = Reify.Semiring<T>.Inhabitant;
             var result = sr.zero;
@@ -42,7 +42,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(Dim<N> dim, params T[] src) 
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
             where N : TypeNat, new() 
                 => new Covector<N,T>(src);
 
@@ -54,7 +54,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(IEnumerable<T> src) 
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
             where N : TypeNat, new() 
                 => new Covector<N,T>(src);
         
@@ -67,7 +67,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(params T[] src) 
-            where T : Operative.Equatable<T>, new()
+            where T : Equality<T>, new()
             where N : TypeNat, new() 
                 => new Covector<N,T>(src);
 
@@ -75,19 +75,19 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Covector<N,T> add<N,T>(Covector<N,T> lhs, Covector<N,T> rhs) 
             where N : TypeNat, new() 
-            where T : Structure.Semiring<T>, Operative.Equatable<T>, new()
+            where T : Structure.Semiring<T>, new()
                 => new Covector<N,T>(Slice.add(lhs.cells,rhs.cells));
 
         [MethodImpl(Inline)]
         public static Covector<N,T> mul<N,T>(Covector<N,T> lhs, Covector<N,T> rhs) 
             where N : TypeNat, new() 
-            where T : Structure.Semiring<T>, Operative.Equatable<T>, new()
+            where T : Structure.Semiring<T>, new()
                 => new Covector<N,T>(Slice.mul(lhs.cells,rhs.cells));
 
         [MethodImpl(Inline)]
         public static T sum<N,T>(Covector<N,T> x) 
             where N : TypeNat, new() 
-            where T : Structure.Semiring<T>, Operative.Equatable<T>, new()
+            where T : Structure.Semiring<T>, new()
                 => Slice.sum(x.cells);
     }
 }
