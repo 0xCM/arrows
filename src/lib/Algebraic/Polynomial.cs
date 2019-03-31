@@ -11,14 +11,15 @@ namespace Z0
     public static class Polynomial
     {
         public static PolynomialTerm<T> term<T>(T coefficient, intg<uint> power)
-            where  T: Structure.Equatable<T>, new()
+            where  T: Operative.Equatable<T>, new()
                 => new PolynomialTerm<T>(coefficient,power);
     }
     
-    public readonly struct PolynomialTerm<T> : Structure.Equatable<PolynomialTerm<T>>
-        where  T: Structure.Equatable<T>, new()
+    public readonly struct PolynomialTerm<T> : Structure.Equatable<PolynomialTerm<T>>, Operative.Equatable<PolynomialTerm<T>>
+        where  T: Operative.Equatable<T>, new()
     {
         
+        static readonly Operative.Equatable<T> eqops = new T();
         public static readonly PolynomialTerm<T> Zero = default;
 
 
@@ -42,23 +43,25 @@ namespace Z0
             => $"{coefficient}X^{power}";
 
         public bool eq(PolynomialTerm<T> lhs, PolynomialTerm<T> rhs)
-            => lhs.coefficient.eq(rhs.coefficient)
-                && lhs.power == rhs.power;
+            => eqops.eq(lhs.coefficient,rhs.coefficient) && lhs.power == rhs.power;
 
         public bool neq(PolynomialTerm<T> lhs, PolynomialTerm<T> rhs)
             => not(eq(lhs,rhs));
 
         public bool eq(PolynomialTerm<T> rhs)
-            => this.coefficient.eq(rhs.coefficient) && this.power == rhs.power;
+            => eq(this, rhs);
 
         public bool neq(PolynomialTerm<T> rhs)
             => not(eq(rhs));
+
+        public bool Equals(PolynomialTerm<T> rhs)
+            => eq(rhs);
     }
 
     public readonly struct Polynomial<T>
-        where T : Traits.MonoidA<T>, Structure.Equatable<T>, new()
+        where T : Operative.MonoidA<T>, Operative.Equatable<T>, new()
     {
-        static readonly Traits.MonoidA<T> Ops = new T();
+        static readonly Operative.MonoidA<T> Ops = new T();
         
         static readonly T FZero = Ops.zero;
 

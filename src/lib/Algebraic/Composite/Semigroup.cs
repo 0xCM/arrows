@@ -8,7 +8,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
     
-    partial class Traits
+    partial class Operative
     {
         public interface Semigroup<T> :  Equatable<T>, Operational<T>
         {
@@ -33,84 +33,100 @@ namespace Z0
 
     partial class Structure
     {
-        public interface Semigroup<S,T> : Equatable<S,T>
+        
+        public interface Semigroup<S> : Equatable<S>
+        {
+
+        }
+
+        public interface SemigroupM<S>: Semigroup<S>, Multiplicative<S>
+        {
+
+        }            
+
+        public interface SemigroupA<S>: Semigroup<S>, Additive<S>
+        {
+
+        }            
+
+        public interface Semigroup<S,T> : Semigroup<S>, Equatable<S,T>
             where S : Semigroup<S,T>, new()
         {
             
         }            
 
-        public interface SemigroupA<S,T> :  Semigroup<S,T>, Additive<S,T>
+        public interface SemigroupA<S,T> : SemigroupA<S>, Semigroup<S,T>, Additive<S,T>
             where S : SemigroupA<S,T>, new()
         {
 
         }            
 
-        public interface SemigroupM<S,T> : Semigroup<S,T>, Multiplicative<S,T>
-                where S : SemigroupM<S,T>, new()
+        public interface SemigroupM<S,T> : SemigroupM<S>, Semigroup<S,T>, Multiplicative<S,T>
+            where S : SemigroupM<S,T>, new()
         {
 
         }            
 
     }
 
-    public readonly struct SemigroupM<T> : Traits.SemigroupM<T>, Singleton<SemigroupM<T>>
-        where T : Traits.SemigroupM<T>, new()
-    {    
-        static readonly Traits.SemigroupM<T> Ops = new T();
+    partial class Reify
+    {
+        public readonly struct SemigroupM<T> : Operative.SemigroupM<T>, Singleton<SemigroupM<T>>
+            where T : Operative.SemigroupM<T>, new()
+        {    
+            static readonly Operative.SemigroupM<T> Ops = new T();
 
-        public static SemigroupM<T> Inhabitant = default;
-        
-        public SemigroupM<T> inhabitant 
-            => Inhabitant;
+            public static SemigroupM<T> Inhabitant = default;
+            
+            public SemigroupM<T> inhabitant 
+                => Inhabitant;
 
-        [MethodImpl(Inline)]
-        public T mul(T lhs, T rhs)
-            => Ops.mul(lhs,rhs);
+            [MethodImpl(Inline)]
+            public T mul(T lhs, T rhs)
+                => Ops.mul(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public bool eq(T lhs, T rhs)
-            => Ops.eq(lhs,rhs);
+            [MethodImpl(Inline)]
+            public bool eq(T lhs, T rhs)
+                => Ops.eq(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public bool neq(T lhs, T rhs)
-            => Ops.neq(lhs,rhs);
+            [MethodImpl(Inline)]
+            public bool neq(T lhs, T rhs)
+                => Ops.neq(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public T apply(T lhs, T rhs) 
-            => mul(lhs,rhs);
+            [MethodImpl(Inline)]
+            public T apply(T lhs, T rhs) 
+                => mul(lhs,rhs);
 
-        public Multiplication<T> multiplication
-            => Multiplication.define(this);
 
+        }
+
+        public readonly struct SemigroupA<T> : Operative.SemigroupA<T>, Singleton<SemigroupA<T>>
+            where T : Operative.SemigroupA<T>, new()
+        {    
+            static readonly Operative.SemigroupA<T> Ops = new T();
+
+            public static SemigroupA<T> Inhabitant = default;
+            
+            public SemigroupA<T> inhabitant 
+                => Inhabitant;
+
+
+            [MethodImpl(Inline)]
+            public T add(T a, T b) 
+                => Ops.add(a,b);
+
+            [MethodImpl(Inline)]
+            public bool eq(T lhs, T rhs) 
+                => Ops.eq(lhs,rhs);
+
+            [MethodImpl(Inline)]
+            public bool neq(T lhs, T rhs) 
+                => Ops.neq(lhs,rhs);
+
+            [MethodImpl(Inline)]
+            public T apply(T lhs, T rhs) 
+                => add(lhs,rhs);
+
+        }
     }
-
-    public readonly struct SemigroupA<T> : Traits.SemigroupA<T>, Singleton<SemigroupA<T>>
-        where T : Traits.SemigroupA<T>, new()
-    {    
-        static readonly Traits.SemigroupA<T> Ops = new T();
-
-        public static SemigroupA<T> Inhabitant = default;
-        
-        public SemigroupA<T> inhabitant 
-            => Inhabitant;
-
-
-        [MethodImpl(Inline)]
-        public T add(T a, T b) 
-            => Ops.add(a,b);
-
-        [MethodImpl(Inline)]
-        public bool eq(T lhs, T rhs) 
-            => Ops.eq(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public bool neq(T lhs, T rhs) 
-            => Ops.neq(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public T apply(T lhs, T rhs) 
-            => add(lhs,rhs);
-
-    }
-
 }    

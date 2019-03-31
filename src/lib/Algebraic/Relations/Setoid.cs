@@ -10,8 +10,9 @@ namespace Z0
     using System.Collections.Concurrent;
 
     using static zcore;
+    using static Reify;
 
-    partial class Traits
+    partial class Structure
     {
         /// <summary>
         /// Characterizes a discrete partition over a discrete set and, consequently, 
@@ -23,23 +24,29 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Setoid</remarks>
         public interface Setoid<C,T> : QuotientSet<C,T>
-            where C : DiscreteEqClass<T>
+            where C : DiscreteEqivalenceClass<C,T>, new()
+            where T : Operative.Equatable<T>, new()
         {
 
         }
     }
 
-    public class Setoid<T> : Traits.Setoid<FiniteEqClass<T>, T>
-        where T : Traits.Equatable<T>, new()
+    public class Setoid<T> : Structure.Setoid<FiniteEquivalenceClass<T>, T>, Structure.FiniteSet<Setoid<T>>
+        where T : Operative.Equatable<T>, new()
     {
         
-        readonly Traits.FiniteSet<T> membership;
+        readonly FiniteSet<T> membership;
         
-        readonly Traits.Equivalence<T> equivalence;
+        readonly Operative.Equivalence<T> equivalence;
         
-        readonly FiniteEqClass<T>[] parts;
+        readonly Reify.FiniteEquivalenceClass<T>[] parts;
         
-        public Setoid(Traits.FiniteSet<T> data, Traits.Equivalence<T> equivalence)
+        
+        public Setoid()
+        {
+            this.membership = new FiniteSet<T>();
+        }
+        public Setoid(FiniteSet<T> data, Operative.Equivalence<T> equivalence)
         {
             this.membership = data;
             this.equivalence = equivalence;
@@ -56,16 +63,21 @@ namespace Z0
         public bool discrete
             => true;
 
+        public bool Equals(Setoid<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool member(T candidate)
             => membership.member(candidate);
 
         public bool member(object candidate)
             => membership.member(candidate);
 
-        public Seq<FiniteEqClass<T>> partition()
+        public Seq<FiniteEquivalenceClass<T>> partition()
             => parts.ToSeq();
     
-        public FiniteEqClass<T> project(T x)
+        public FiniteEquivalenceClass<T> project(T x)
             => parts.First(c => related(c.representative,x));
 
         public bool related(T x, T y)

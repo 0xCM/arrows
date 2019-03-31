@@ -6,7 +6,7 @@ namespace Z0
 {
     using static Traits;
 
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes a left module over a commtative unital ring

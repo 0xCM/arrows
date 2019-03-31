@@ -6,7 +6,7 @@ namespace Z0
 {
     using System;
 
-    partial class Traits
+    partial class Operative
     {
         public interface BitShifts<T> : Operational<T>
         {
@@ -67,8 +67,8 @@ namespace Z0
 
     partial class Structure
     {
-        public interface BitShifts<S,T> : Structural<S,T>
-            where S : BitShifts<S,T>, new()
+
+        public interface BitShifts<S>
         {
             S lshift(int rhs);
 
@@ -76,13 +76,13 @@ namespace Z0
 
         }
 
-        /// <summary>
-        /// Characterizes a structure over which logical bitwise operations may be applied
-        /// </summary>
-        /// <typeparam name="S"></typeparam>
-        /// <typeparam name="T"></typeparam>
-        public interface BitLogic<S,T> :  Structural<S,T>
-            where S : BitLogic<S,T>, new()
+        public interface BitShifts<S,T> : BitShifts<S>, Structural<S,T>
+            where S : BitShifts<S,T>, new()
+        {
+
+        }
+
+        public interface BitLogic<S> 
         {
             /// <summary>
             /// Computes the bitwise and
@@ -113,13 +113,28 @@ namespace Z0
         }
 
         /// <summary>
+        /// Characterizes a structure over which logical bitwise operations may be applied
+        /// </summary>
+        /// <typeparam name="S"></typeparam>
+        /// <typeparam name="T"></typeparam>
+        public interface BitLogic<S,T> :  BitLogic<S>, Structural<S,T>
+            where S : BitLogic<S,T>, new()
+        {
+
+        }
+
+        public interface Bitwise<S> : BitLogic<S>, BitShifts<S>
+        {
+
+        }
+
+        /// <summary>
         /// Characterizes a structure that supports bitwise operations
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying operand type</typeparam>
-       public interface Bitwise<S,T> : BitLogic<S,T>, BitShifts<S,T>
+        public interface Bitwise<S,T> : Bitwise<S>, BitLogic<S,T>, BitShifts<S,T>
             where S : Bitwise<S,T>, new() { }
-
 
     }
 

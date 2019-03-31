@@ -11,7 +11,7 @@ namespace Z0
 
     using static zcore;
 
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes a commutative binary operator
@@ -28,7 +28,7 @@ namespace Z0
     /// <summary>
     /// Defines a commutative (binary) operator
     /// </summary>
-    public readonly struct CommutativeOp<T> : Traits.CommutativeOp<T>
+    public readonly struct CommutativeOp<T> : Operative.CommutativeOp<T>
     {
         readonly Func<T,T,T> op;
 

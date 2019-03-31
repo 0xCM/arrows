@@ -5,7 +5,7 @@
 namespace Z0
 {
     
-    partial class Traits
+    partial class Operative
     {        
 
 
@@ -64,11 +64,15 @@ namespace Z0
 
     partial class Structure
     {
+        public interface NormalSubgroup<S> : Group<S>
+        {
+
+        }
         /// <summary>
         /// Characterizes normal subgroup structure
         /// </summary>
         /// <typeparam name="T">The structural type</typeparam>
-        public interface NormalSubgroup<S,T> : Group<S,T>
+        public interface NormalSubgroup<S,T> : NormalSubgroup<S>, Group<S,T>
             where S : NormalSubgroup<S,T>, new()
         {
             

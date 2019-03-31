@@ -12,10 +12,10 @@ namespace Z0
 
     using operand = System.Decimal;
     using reify = DecimalOps;
-    using Currency = Traits.Currency<decimal>;
+    using Currency = Operative.Currency<decimal>;
 
-    [TypeClass(typeof(reify),typeof(operand))]
-    internal readonly struct DecimalOps : Traits.Currency<reify,operand>
+    [Structure(typeof(reify),typeof(operand))]
+    internal readonly struct DecimalOps : Operative.Currency<operand>
     {
         
         public static readonly reify Inhabitant = default;
@@ -54,12 +54,6 @@ namespace Z0
 
         public uint bitsize 
             => BitSize;
-
-        public Addition<operand> addition 
-            => Addition.define(this);
-
-        public Multiplication<operand> multiplication 
-            => Multiplication.define(this);
 
 
         public operand apply(operand lhs, operand rhs)

@@ -22,7 +22,7 @@ namespace Z0
         where N : TypeNat, new()
     {
 
-        static ModN<N,T> Ops = ModOps<N,T>.Inhabitant;
+        static Operative.ModN<N,T> Ops = ModOps<N,T>.Inhabitant;
         
         static readonly intg<T> @base = Nat.natvalg<N,T>();
 
@@ -57,15 +57,11 @@ namespace Z0
         IEnumerable<T> members 
             => Ops.members;
 
-
-        // modg<N, T> Unital<modg<N, T>>.one 
-        //     => new modg<N,T>(Ops.one);
-
-        // IEnumerable<modg<N, T>> ModN<N, modg<N, T>>.members 
-        //     => members.Select(x => new modg<N,T>(x));
-
         public modg<N, T> zero 
             => new modg<N,T>(Ops.zero);
+
+        public modg<N, T> one 
+            => new modg<N,T>(Ops.one);
 
         [MethodImpl(Inline)]
         public modg<N, T> add(modg<N, T> rhs)

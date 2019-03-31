@@ -45,18 +45,31 @@ namespace Z0
         }
 
 
-        public interface Seq<T> //: IEnumerable<T>
+
+    }
+
+    partial class Structure
+    {
+        public interface Seq<T> 
         {
             
         }
 
-        public interface FiniteSeq<T> : Seq<T>, Finite<T>
+        public interface FiniteSeq<T>
         {
             /// <summary>
             /// Retrieves the 0-based i'th element of the sequence
             /// </summary>
             /// <value></value>
             T this[int i] {get;}
+
+            uint count {get;}
+
+        }
+
+        public interface FiniteSeq<S,T> : FiniteSeq<T>, Finite<S,T>, Seq<S> 
+            where S : FiniteSeq<S,T>, new()
+        {
         }
 
     }

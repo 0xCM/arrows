@@ -6,7 +6,7 @@ namespace Z0
 {
     using System;
     
-    partial class Traits
+    partial class Operative
     {
 
         public interface Natural<T> : Integer<T>, Unsigned<T> {}
@@ -29,13 +29,19 @@ namespace Z0
 
     partial class Structure
     {
+        public interface Natural<S> : Integer<S>, Unsigned<S>
+        {
+
+        }            
+
+
         /// <summary>
         /// Characterizes a natural number, i.e. one of {0,1,...} subject to the maximum
         /// value of the underlying primitive
         /// </summary>
         /// <typeparam name="S">The type of the realizing structure</typeparam>
         /// <typeparam name="T">The type of the underlying primitive</typeparam>
-        public interface Natural<S,T> : Integer<S,T>, Unsigned<S,T>
+        public interface Natural<S,T> : Natural<S>, Integer<S,T>, Unsigned<S,T>
             where S : Natural<S,T>, new() { }
 
     }

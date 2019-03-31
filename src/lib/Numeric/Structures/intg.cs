@@ -16,28 +16,23 @@ namespace Z0
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct intg<T> : Structure.Integer<intg<T>,T>
+    public readonly struct intg<T> : Structure.Integer<intg<T>,T>, Operative.Equatable<intg<T>>
     {
-        static readonly Integer<T> Ops = Resolver.integer<T>();
+        static readonly Operative.Integer<T> Ops = Resolver.integer<T>();
 
-        static readonly NumberInfo<T> UnderInfo = Ops.numinfo;
+        static readonly NumberInfo<T> BaseInfo = Ops.numinfo;
 
-        public static readonly bool Signed = UnderInfo.Signed;
+        public static readonly intg<T> Zero = BaseInfo.Zero;
 
-        public static readonly intg<T> MinVal = UnderInfo.MinVal;
+        public static readonly intg<T> One = BaseInfo.One;
 
-        public static readonly intg<T> MaxVal = UnderInfo.MaxVal;
+        public static readonly bool Signed = BaseInfo.Signed;
 
-        public static readonly uint BitSize = UnderInfo.BitSize;
+        public static readonly intg<T> MinVal = BaseInfo.MinVal;
 
-        public static readonly intg<T> Zero = Ops.zero;
+        public static readonly intg<T> MaxVal = BaseInfo.MaxVal;
 
-        public static readonly intg<T> One = Ops.one;
-
-
-
-        public static readonly NumberInfo<intg<T>> Info 
-            = new NumberInfo<intg<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);                 
+        public static readonly uint BitSize = BaseInfo.BitSize;            
 
         [MethodImpl(Inline)]
         public static implicit operator intg<T>(T src)
@@ -145,7 +140,7 @@ namespace Z0
             => BitSize;
 
         public NumberInfo<intg<T>> numinfo 
-            => Info;
+            => new NumberInfo<intg<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);
 
         [MethodImpl(Inline)]
         public intg (T x) 
@@ -306,15 +301,6 @@ namespace Z0
         public override string ToString()
             => data.ToString();
 
-
-    
-
-
-        [MethodImpl(Inline)]
-        intg<T> Powered<intg<T>, int>.pow(intg<T> b, int exp)
-            => b.pow(exp);
-
-
         [MethodImpl(Inline)]
         public intg<T> muladd(intg<T> y, intg<T> z)
             => Ops.muladd(this, y, z);
@@ -369,6 +355,11 @@ namespace Z0
 
         public int CompareTo(intg<T> other)
             => throw new NotImplementedException();
+
+        public bool eq(intg<T> lhs, intg<T> rhs)
+            => lhs.eq(rhs);
  
+        public bool neq(intg<T> lhs, intg<T> rhs)
+            => lhs.neq(rhs);
     }
 }

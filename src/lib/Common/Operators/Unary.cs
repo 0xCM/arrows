@@ -12,7 +12,7 @@ namespace Z0
     using static zcore;
 
 
-    partial class Traits
+    partial class Operative
     {
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Z0
     /// <summary>
     /// Defines a unary operator
     /// </summary>
-    public readonly struct UnaryOp<T> : Traits.UnaryOp<T>
+    public readonly struct UnaryOp<T> : Operative.UnaryOp<T>
     {
         readonly Func<T,T> op;
 

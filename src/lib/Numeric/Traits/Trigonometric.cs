@@ -4,7 +4,7 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes trigonometric operations over a type
@@ -40,13 +40,8 @@ namespace Z0
 
     partial class Structure
     {
-        /// <summary>
-        /// Characterizes a trigonometric structure
-        /// </summary>
-        /// <typeparam name="S">The structure type</typeparam>
-        /// <typeparam name="T">The underlying type</typeparam>
-        public interface Trigonmetric<S,T> : Structural<S,T>
-            where S : Trigonmetric<S,T>, new()
+
+        public interface Trigonmetric<S> 
         {
             S sin();   
 
@@ -71,6 +66,17 @@ namespace Z0
             S atan();
 
             S atanh();
+        
+        }
+
+        /// <summary>
+        /// Characterizes a trigonometric structure
+        /// </summary>
+        /// <typeparam name="S">The structure type</typeparam>
+        /// <typeparam name="T">The underlying type</typeparam>
+        public interface Trigonmetric<S,T> : Trigonmetric<S>, Structural<S,T>
+            where S : Trigonmetric<S,T>, new()
+        {
         
         }
     }

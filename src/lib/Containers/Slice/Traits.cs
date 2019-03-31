@@ -15,26 +15,18 @@ namespace Z0
     partial class Traits
     {
 
-        public interface Slice<T> : Seq<T>, IEnumerable<T>,Traits.Formattable
+        public interface Slice<T> :  Traits.Formattable, IEnumerable<T> 
         {
-            IReadOnlyList<T> data {get;}        
-
             intg<uint> length {get;}
 
             T this[int i] {get;}
         }
 
-        public interface Slice<S,T> : Slice<T>, IEquatable<S>, Equatable<S>, Traits.Reversible<S,T>
-            where S : Slice<S,T>
-        {
-
-        }
-
         /// <summary>
-        /// Characterizes a fixed-lenth sequence of elements
+        /// Characterizes a structure comprized of a fixed-lenth sequence of elements
         /// </summary>
         /// <typeparam name="N">The natural number type that indicates the slice length</typeparam>
-        /// <typeparam name="T">The element type</typeparam>
+        /// <typeparam name="S">The element type</typeparam>
         public interface NSlice<N,T> : Slice<T>
             where N : TypeNat, new()
         {
@@ -42,13 +34,32 @@ namespace Z0
 
         }
 
+
+    }
+
+    partial class Structure
+    {
+
+
         /// <summary>
-        /// Characterizes a fixed-lenth sequence of elements
+        /// Characterizes a structre S comprised of finite sequence of elements of type T
+        /// </summary>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <typeparam name="S">The type of the reifying structure</typeparam>
+        public interface Slice<S,T> : Traits.Slice<T>, Reversible<S>, Equatable<S>, IEquatable<S>
+            where S : Slice<S,T>, new()
+        {
+
+        }
+
+        /// <summary>
+        /// Characterizes a structre S comprised of finite sequence of elements T of natural length N
         /// </summary>
         /// <typeparam name="N">The natural number type that indicates the slice length</typeparam>
         /// <typeparam name="T">The element type</typeparam>
-        public interface NSlice<S,N,T> : NSlice<N,T>
-            where S : NSlice<S,N,T>, new()
+        /// <typeparam name="S">The type of the reifying structure</typeparam>
+        public interface NSlice<N,S,T> : Slice<S,T>, Traits.NSlice<N,T>
+            where S : NSlice<N,S,T>, new()
             where N : TypeNat,new()
         {
             

@@ -4,7 +4,7 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    partial class Traits
+    partial class Operative
     {
         public static class AlgeraicDomain
         {

@@ -13,7 +13,7 @@ namespace Z0
     /// <summary>
     /// Represents the set that contains all potential values of a specified type
     /// </summary>
-    public readonly struct TotalSet<T> : Traits.Set<TotalSet<T>, T>, Singleton<TotalSet<T>>
+    public readonly struct TotalSet<T> : Structure.Set<TotalSet<T>,T>, Singleton<TotalSet<T>>
         where T : IEquatable<T>
     {
         public static readonly TotalSet<T> Inhabitant = default;
@@ -35,12 +35,16 @@ namespace Z0
 
         public bool member(object candidate)
             => candidate is T ? true : false;
+
+        public bool Equals(TotalSet<T> other)
+            => true;
+
     }
 
     /// <summary>
     /// Represents the universal empty set
     /// </summary>
-    public readonly struct EmptySet : Traits.Set, Singleton<EmptySet>
+    public readonly struct EmptySet : Structure.Set, Singleton<EmptySet>
     {
         public static readonly EmptySet Inhabitant = default;
 
@@ -63,7 +67,7 @@ namespace Z0
     /// <summary>
     /// Represents the set that contains no values of a specified type
     /// </summary>
-    public readonly struct EmptySet<T> : Traits.Set<EmptySet<T>, T>, Singleton<EmptySet<T>>
+    public readonly struct EmptySet<T> : Structure.Set<EmptySet<T>, T>, Singleton<EmptySet<T>>
         where T : IEquatable<T>
     {
         public static readonly EmptySet<T> Inhabitant = default;
@@ -80,6 +84,9 @@ namespace Z0
         public bool discrete
             => true;
 
+        public bool Equals(EmptySet<T> other)
+            => true;
+
         public bool member(T item) 
             => false;
 
@@ -92,7 +99,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of natural numbers
     /// </summary>
-    public readonly struct N : Traits.DiscreteSet<bigint>, Singleton<N> 
+    public readonly struct N : Structure.DiscreteSet<N,bigint>, Singleton<N> 
     {
         internal static readonly N Inhabitant = default;
 
@@ -126,12 +133,16 @@ namespace Z0
             => candidate is bigint 
             ? member((bigint)candidate) 
             : false;
+
+
+        public bool Equals(N other)
+            => true;
     }
 
     /// <summary>
     /// Represents the set of integers
     /// </summary>
-    public readonly struct Z : Traits.DiscreteSet<bigint>, Traits.GroupA<bigint>,  Singleton<Z> 
+    public readonly struct Z : Structure.DiscreteSet<Z>, Operative.GroupA<bigint>,  Singleton<Z> 
     {
         internal static readonly Z Inhabitant = default;
     
@@ -146,9 +157,6 @@ namespace Z0
 
         public bool discrete
             => true;
-
-        public Addition<bigint> addition 
-            => Addition.define(this);
 
         public bigint zero 
             => bigint.Zero;
@@ -187,12 +195,27 @@ namespace Z0
 
         public bool member(object candidate)
             => candidate is bigint;
+
+        public bool Equals(Z other)
+            => true;
+        
+
+        public bool eq(Z rhs)
+            => true;
+
+        public bool neq(Z rhs)
+            => false;
+
+        public Z add(Z rhs)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     /// <summary>
     /// Represents the set of rational numbers
     /// </summary>
-    public readonly struct Q : Traits.Set<Q>, Singleton<Q>
+    public readonly struct Q : Structure.Set<Q>, Singleton<Q>
     {
         internal static readonly Q Inhabitant = default(Q);
 
@@ -208,6 +231,8 @@ namespace Z0
         public bool discrete
             => true;
 
+        public bool Equals(Q other)
+            => true;
 
         public bool member(Q item) 
             => true;
@@ -219,7 +244,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of real numbers
     /// </summary>
-    public readonly struct R : Traits.Set<R>, Singleton<R>
+    public readonly struct R : Structure.Set<R>, Singleton<R>
     {
         internal static readonly R Inhabitant = default(R);
     
@@ -235,6 +260,9 @@ namespace Z0
         public bool discrete
             => false;
 
+        public bool Equals(R other)
+            => true;
+ 
         public bool member(R x) 
             => true;
 

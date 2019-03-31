@@ -19,24 +19,24 @@ partial class zcore
     /// Retrieves semigroup operations for a specified type
     /// </summary>
     [MethodImpl(Inline)]
-    public static Traits.Equatable<T> equatable<T>() 
-        where T : Traits.Equatable<T>, new()
+    public static Operative.Equatable<T> equatable<T>() 
+        where T : Operative.Equatable<T>, new()
             => new T();
 
     /// <summary>
     /// Retrieves semigroup operations for a specified type
     /// </summary>
     [MethodImpl(Inline)]
-    public static Traits.Semigroup<T> semigroup<T>() 
-        where T : Traits.Semigroup<T>, new()
+    public static Operative.Semigroup<T> semigroup<T>() 
+        where T : Operative.Semigroup<T>, new()
             => new T();
 
     /// <summary>
     /// Retrieves semiring operations for a specified type
     /// </summary>
     [MethodImpl(Inline)]
-    public static Traits.Semiring<T> semiring<T>() 
-        where T : Traits.Semiring<T>, new()
+    public static Operative.Semiring<T> semiring<T>() 
+        where T : Operative.Semiring<T>, new()
             => new T();
 
     /// <summary>
@@ -44,8 +44,8 @@ partial class zcore
     /// </summary>
     /// <typeparam name="T">The system type</typeparam>
     [MethodImpl(Inline)]
-    public static Traits.Ordered<T> ordered<T>()
-        where T : Traits.Ordered<T>, new()
+    public static Operative.Ordered<T> ordered<T>()
+        where T : Operative.Ordered<T>, new()
         => new T();
 
     /// <summary>
@@ -53,8 +53,8 @@ partial class zcore
     /// </summary>
     /// <typeparam name="T">The system type</typeparam>
     [MethodImpl(Inline)]
-    public static Traits.Stepwise<T> stepwise<T>()
-        where T : Traits.Stepwise<T>, new()
+    public static Operative.Stepwise<T> stepwise<T>()
+        where T : Operative.Stepwise<T>, new()
             => new T();
 
 }

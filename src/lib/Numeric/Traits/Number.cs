@@ -6,7 +6,7 @@ namespace Z0
 {
     using System;
 
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Defines the minimal aspects for a value to be considered a "real number"
@@ -43,15 +43,8 @@ namespace Z0
     partial class Structure
     {
  
-        /// <summary>
-        /// Characterizes a structral number
-        /// </summary>
-        /// <typeparam name="S">The structure type</typeparam>
-        /// <typeparam name="T">The underlying operand type</typeparam>
-        public interface Number<S,T> : GroupA<S,T>, SemigroupM<S,T>, Semiring<S,T>, Divisive<S,T>, Powered<S,int> 
-            where S : Number<S,T>,  new()
+        public interface Number<S>
         {
-            
             S muladd(S y, S z);
 
             /// <summary>
@@ -69,6 +62,19 @@ namespace Z0
             /// Formats the number a sequence of base-2 digits
             /// </summary>
             string bitstring();                        
+
+        }
+        
+        /// <summary>
+        /// Characterizes a structral number
+        /// </summary>
+        /// <typeparam name="S">The structure type</typeparam>
+        /// <typeparam name="T">The underlying operand type</typeparam>
+        public interface Number<S,T> : Number<S>, GroupA<S,T>, SemigroupM<S,T>, Semiring<S,T>, Divisive<S,T>
+            where S : Number<S,T>,  new()
+        {
+            S pow(int exp);
+            
         } 
  
     }

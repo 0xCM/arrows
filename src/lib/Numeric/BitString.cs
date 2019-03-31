@@ -10,8 +10,8 @@ namespace Z0
 
     using static zcore;
 
-    public readonly struct BitString<N>
-        where N : TypeNat, new()        
+    public readonly struct BitString<N> : Structure.Equatable<BitString<N>>
+        where N : TypeNat, new()     
     {
 
         public BitString(IEnumerable<bit> src)
@@ -33,5 +33,15 @@ namespace Z0
 
         public override string ToString()
             => concat(map(bits.data, b => b.ToString()));
+
+        public bool eq(BitString<N> rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool neq(BitString<N> rhs)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
-    partial class Traits
+    partial class Operative
     {
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The element type</typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Preorder </remarks>
-        public interface Proset<T> : Preorder<T>, Set<T>
+        public interface Proset<T> : Preorder<T>
             where T : IEquatable<T>
 
         {

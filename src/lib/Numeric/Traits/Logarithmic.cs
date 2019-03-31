@@ -4,7 +4,7 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes a type that supports primitive logarithmic operations
@@ -39,27 +39,21 @@ namespace Z0
     }
     partial class Structure
     {
-        /// <summary>
-        /// Characterizes a structure for which logarithms can be calculated
-        /// </summary>
-        /// <typeparam name="T">The type of the underlying primitive</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface Logarithmic<S,T> : Structural<S,T>
-            where S : Logarithmic<S,T>,  new()
+        public interface Logarithmic<S>
         {
             /// <summary>
             /// Computes the natural logarithm 
             /// </summary>
             /// <param name="x">The input value</param>
             /// <returns></returns>
-            T ln();
+            S ln();
 
             /// <summary>
             /// Computes the base-10 logarithm
             /// </summary>
             /// <param name="x">The input value</param>
             /// <returns></returns>
-            T log();
+            S log();
 
             /// <summary>
             /// Computes a logarithm at a specified base
@@ -67,7 +61,18 @@ namespace Z0
             /// <param name="x">The input value</param>
             /// <param name="@base">The logarithm base</param> 
             /// <returns></returns>
-            T logb(T @base);
+            S logb(S @base);
+        }
+
+        /// <summary>
+        /// Characterizes a structure for which logarithms can be calculated
+        /// </summary>
+        /// <typeparam name="T">The type of the underlying primitive</typeparam>
+        /// <typeparam name="S">The structure type</typeparam>
+        public interface Logarithmic<S,T> : Logarithmic<S>, Structural<S,T>
+            where S : Logarithmic<S,T>,  new()
+        {
+
         }
 
     }

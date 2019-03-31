@@ -8,7 +8,7 @@ namespace Z0
     using System.Collections.Generic;
 
     
-    partial class Traits
+    partial class Operative
     {        
 
 
@@ -30,26 +30,11 @@ namespace Z0
         /// <summary>
         /// Characterizes additive/abelian group operations
         /// </summary>
-        public interface GroupA<T> : Group<T>, MonoidA<T>, Negatable<T> 
-        {
-
-        }
-        public interface FreeGroup<T> : Group<T>, FreeMonoid<T>
+        public interface GroupA<T> : Group<T>, MonoidA<T>, Subtractive<T> 
         {
 
         }
 
-
-        public interface FinitelyGenerable<T>
-        {
-            FiniteSet<T> generators {get;}
-        }
-
-
-        public interface FreeAbelianGroup<T> : FreeGroup<T>, GroupA<T>,  FreeMonoid<T>
-        {
-            
-        }
 
 
         /// <summary>
@@ -77,6 +62,21 @@ namespace Z0
 
     partial class Structure
     {
+
+        public interface Group<S> : Invertive<S>, Monoid<S>
+        {
+
+        }
+
+        public interface GroupM<S> : Group<S>, MonoidM<S>
+        {
+            
+        }
+
+        public interface GroupA<S> : Group<S>, MonoidA<S>
+        {
+
+        }
         /// <summary>
         /// Characterizes a group structure
         /// </summary>
@@ -93,7 +93,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The type over which the structure is defind</typeparam>
         /// <typeparam name="S">The structure type</typeparam>
-        public interface GroupM<S,T> : Group<S,T>, Monoid<S,T>
+        public interface GroupM<S,T> : GroupM<S>, Group<S,T>, MonoidM<S,T>
             where S : GroupM<S,T>, new()
         {
             
@@ -105,20 +105,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The type over which the structure is defind</typeparam>
         /// <typeparam name="S">The structure type</typeparam>
-        public interface GroupA<S,T> : Group<S,T>, Monoid<S,T>
+        public interface GroupA<S,T> : GroupA<S>, Group<S,T>, MonoidA<S,T>
             where S : GroupA<S,T>, new()
-        {
-            
-        }
-
-        public interface FreeGroup<S,T> : Traits.FreeGroup<S>, Structural<S,T>
-            where S : FreeGroup<S,T>, new()
-        {
-            
-        }
-
-        public interface FreeAbelianGroup<S,T> : Traits.FreeAbelianGroup<S>, Structural<S,T>
-            where S : FreeAbelianGroup<S,T>, new()
         {
             
         }

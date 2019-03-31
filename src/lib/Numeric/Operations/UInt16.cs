@@ -14,8 +14,8 @@ namespace Z0
     using operand = System.UInt16;
     using reify = UInt16Ops;
 
-    [TypeClass(typeof(reify),typeof(operand))]
-    internal readonly struct UInt16Ops : FiniteNatural<reify,operand>
+    [Structure(typeof(reify),typeof(operand))]
+    internal readonly struct UInt16Ops : Operative.FiniteNatural<operand>
     {
         public static readonly reify Inhabitant = default;
     
@@ -51,12 +51,6 @@ namespace Z0
             get{return One;}
         }
 
-
-        public Addition<operand> addition 
-            => Addition.define(this);
-
-        public Multiplication<operand> multiplication 
-            => Multiplication.define(this);
 
         public uint bitsize 
             => BitSize;

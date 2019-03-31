@@ -25,6 +25,7 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N2,T> ToVector<T>(this (T x1, T x2) x)
+            where T : Operative.Equatable<T>, new()
             => vector(x);
 
         /// <summary>
@@ -35,7 +36,8 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static (T x1, T x2) ToTuple<T>(this Vector<N2,T> v)
-            => (v[0], v[1]);
+            where T : Operative.Equatable<T>, new()
+                => (v[0], v[1]);
 
         /// <summary>
         /// Converts an homogenous 3-tuple to a 3-vector
@@ -46,7 +48,8 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N3,T> ToVector<T>(this (T x1, T x2, T x3) x)
-            => vector<N3,T>(x.x1, x.x2,x.x3);
+            where T : Operative.Equatable<T>, new()
+                => vector<N3,T>(x.x1, x.x2,x.x3);
 
         /// <summary>
         /// Converts a 3-vector to a 3-tuple
@@ -57,7 +60,8 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static (T x1, T x2, T x3) ToTuple<T>(this Vector<N3,T> v)
-            => (v[0], v[1], v[2]);
+            where T : Operative.Equatable<T>, new()
+                => (v[0], v[1], v[2]);
 
         /// <summary>
         /// Converts an homogenous 4-tuple to a 4-vector
@@ -69,7 +73,8 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N4,T> ToVector<T>(this (T x1, T x2, T x3, T x4) x)
-            => vector(x);
+            where T : Operative.Equatable<T>, new()
+                => vector(x);
 
 
         /// <summary>
@@ -82,7 +87,8 @@ namespace Z0
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static (T x1, T x2, T x3, T x4) ToTuple<T>(this Vector<N4,T> v)
-            => tuple(v);
+            where T : Operative.Equatable<T>, new()
+                => tuple(v);
 
         /// <summary>
         /// Transforms a sequence of key-value pairs into a sequence of tuples

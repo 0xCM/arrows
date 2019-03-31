@@ -6,7 +6,7 @@ namespace Z0
 {
     using System;
 
-    partial class Traits
+    partial class Operative
     {
         public interface Equatable<T> : Operational<T>
         {
@@ -21,7 +21,6 @@ namespace Z0
     partial class Structure
     {
         public interface Equatable<S>
-            where S : Equatable<S>, new()
         {
             bool eq(S rhs);
 
@@ -35,21 +34,24 @@ namespace Z0
         }
     }
 
-    public readonly struct Equality<T> : Traits.Equatable<T>
-        where T : Traits.Equatable<T>
+
+    partial class Reify
     {
-        
-        readonly Traits.Equatable<T> ops;
 
-        public Equality(Traits.Equatable<T> ops)    
-            => this.ops = ops;
+        public readonly struct Equality<T> : Operative.Equatable<T>
+            where T : Operative.Equatable<T>
+        {        
+            readonly Operative.Equatable<T> ops;
 
-        public bool eq(T lhs, T rhs)
-            => ops.eq(lhs,rhs);
+            public Equality(Operative.Equatable<T> ops)    
+                => this.ops = ops;
 
-        public bool neq(T lhs, T rhs)
-            => ops.neq(lhs,rhs);
+            public bool eq(T lhs, T rhs)
+                => ops.eq(lhs,rhs);
+
+            public bool neq(T lhs, T rhs)
+                => ops.neq(lhs,rhs);
+        }
+
     }
-
-
 }

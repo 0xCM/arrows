@@ -5,7 +5,7 @@
 namespace Z0
 {
 
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes a type that defines an additive unit
@@ -21,15 +21,20 @@ namespace Z0
 
     partial class Structure
     {
+        public interface Nullary<S> 
+        {
+            S zero {get;}
+        }
+
         /// <summary>
         /// Characterizes a nullary structure, that is, a structure
         /// that defines a zero that is an instance of itself
         /// </summary>
         /// <typeparam name="T">The unit type</typeparam>
-        public interface Nullary<S,T> : Structural<S,T>
+        public interface Nullary<S,T> : Nullary<S>, Structural<S,T>
             where S : Nullary<S,T>, new()
         {
-            S zero {get;}
+
         }
 
     }

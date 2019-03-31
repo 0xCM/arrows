@@ -16,7 +16,7 @@ namespace Z0
 
     public readonly struct num<T> : Structure.OrderedNumber<num<T>,T>
     {
-        static readonly OrderedNumber<T> Ops = Resolver.ordnum<T>();
+        static readonly Operative.OrderedNumber<T> Ops = Resolver.ordnum<T>();
 
         static readonly NumberInfo<T> UnderInfo = Ops.numinfo;
 
@@ -31,9 +31,6 @@ namespace Z0
         public static readonly num<T> One = Ops.one;
 
         public static readonly uint BitSize = UnderInfo.BitSize;
-
-        public static readonly NumberInfo<num<T>> Info 
-            = new NumberInfo<num<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);                 
 
 
         [MethodImpl(Inline)]
@@ -117,14 +114,7 @@ namespace Z0
             => BitSize;
 
         public NumberInfo<num<T>> numinfo 
-            => Info;
-
-
-        // public Addition<num<T>> addition 
-        //     => Addition.define(this);
-            
-        // public Multiplication<num<T>> multiplication 
-        //     => Multiplication.define(this);
+            => new NumberInfo<num<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);
 
         [MethodImpl(Inline)]
         public num<T> add(num<T> rhs)
@@ -230,93 +220,10 @@ namespace Z0
         public override string ToString()
             => data.ToString();
 
-
-        //
-        //---------------------------------------------------------------------
-
-
-        // [MethodImpl(Inline)]
-        // num<T> Incrementable<num<T>>.inc(num<T> x)
-        //     => x.inc();
-
-        // [MethodImpl(Inline)]
-        // num<T> Decrementable<num<T>>.dec(num<T> x)
-        //     => x.dec();
-
-        // [MethodImpl(Inline)]
-        // num<T> Negatable<num<T>>.negate(num<T> x)
-        //     => x.negate();
-
-        // [MethodImpl(Inline)]
-        // num<T> Number<num<T>>.abs(num<T> x)
-        //     => x.abs();
-        
-        // [MethodImpl(Inline)]
-        // Sign Number<num<T>>.sign(num<T> x)
-        //     => x.sign();
-
-        // [MethodImpl(Inline)]
-        // num<T> Additive<num<T>>.add(num<T> lhs, num<T> rhs)
-        //     => lhs.add(rhs);
-
-        // [MethodImpl(Inline)]
-        // num<T> Negatable<num<T>>.sub(num<T> lhs, num<T> rhs)
-        //     => lhs.sub(rhs);
-
-        // [MethodImpl(Inline)]
-        // num<T> Multiplicative<num<T>>.mul(num<T> lhs, num<T> rhs)
-        //     => lhs.mul(rhs);
-
-        // [MethodImpl(Inline)]
-        // num<T> Number<num<T>>.muladd(num<T> x, num<T> y, num<T> z)
-        //     => x*y + z;
-
-        // [MethodImpl(Inline)]
-        // num<T> LeftDistributive<num<T>>.distribute(num<T> lhs, (num<T> x, num<T> y) rhs)
-        //     => lhs.distributeL(rhs);
-
-        // [MethodImpl(Inline)]
-        // num<T> RightDistributive<num<T>>.distribute((num<T> x, num<T> y) lhs, num<T> rhs)
-        //     => rhs.distributeL(lhs);
-
-        // [MethodImpl(Inline)]
-        // num<T> Divisive<num<T>>.div(num<T> lhs, num<T> rhs)
-        //     => lhs.div(rhs);
-
-        // [MethodImpl(Inline)]
-        // Quorem<num<T>> Divisive<num<T>>.divrem(num<T> lhs, num<T> rhs)
-        //     => lhs.divrem(rhs);
-
-        // [MethodImpl(Inline)]
-        // num<T> Divisive<num<T>>.mod(num<T> lhs, num<T> rhs)
-        //     => lhs.mod(rhs);
-
-        // [MethodImpl(Inline)]
-        // num<T> Divisive<num<T>>.gcd(num<T> lhs, num<T> rhs)
-        //     => lhs.gcd(rhs);
-
-        // [MethodImpl(Inline)]
-        // num<T> Powered<num<T>, int>.pow(num<T> b, int exp)
-        //     => Ops.pow(b,exp);
-
-        // [MethodImpl(Inline)]
-        // bool Equatable<num<T>>.eq(num<T> lhs, num<T> rhs)
-        //     => lhs.eq(rhs);
-
-        // [MethodImpl(Inline)]
-        // bool Equatable<num<T>>.neq(num<T> lhs, num<T> rhs)
-        //     => lhs.neq(rhs);
-
-        // [MethodImpl(Inline)]
-        // string Number<num<T>>.bitstring(num<T> x)
-        //     => x.bitstring();
-
         public num<T> muladd(num<T> y, num<T> z)
             => Ops.muladd(this,y,z);
 
-        public num<T> pow(num<T> b, int exp)
-        {
-            throw new NotImplementedException();
-        }
+        public num<T> pow(int exp)
+            => Ops.pow(data, exp);
     }
 }

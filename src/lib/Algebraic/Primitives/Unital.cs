@@ -5,7 +5,7 @@
 namespace Z0
 {
 
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes a type for which a multiplicative unit exists
@@ -24,16 +24,20 @@ namespace Z0
 
     partial class Structure
     {
+        public interface Unital<S>
+        {
+            S one {get;}
+        }
 
         /// <summary>
         /// Characterizes a unital structure, that is, a structure
         /// that defines a unit as a particular instance of itself
         /// </summary>
         /// <typeparam name="T">The unit type</typeparam>
-        public interface Unital<S,T> : Structural<S,T>
+        public interface Unital<S,T> : Unital<S>, Structural<S,T>
             where S : Unital<S,T>, new()
         {
-            S one {get;}
+
         }
     }
 

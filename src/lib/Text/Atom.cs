@@ -13,12 +13,12 @@ namespace Z0
     /// <summary>
     /// Represents a Atom
     /// </summary>
-    public readonly struct Atom : IEquatable<Atom>, Structure.Equatable<Atom>
+    public readonly struct Atom : IEquatable<Atom>, Structure.Equatable<Atom>, Operative.Equatable<Atom>
     {
         public static readonly Atom Empty = new Atom(string.Empty);
 
-        public static Slice<Atom> operator +(Atom lhs, Atom rhs)
-            => slice(lhs,rhs);
+        // public static Slice<Atom> operator +(Atom lhs, Atom rhs)
+        //     => slice(lhs,rhs);
 
         public static bool operator ==(Atom lhs, Atom rhs)
             => lhs.data == rhs.data;
@@ -45,9 +45,6 @@ namespace Z0
 
         public bool neq(Atom rhs)
             => data != rhs.data;
-
-        public Slice<Atom> append(Atom rhs)
-            => this + rhs;
 
         public bool eq(Atom lhs, Atom rhs)
             => lhs.data == rhs.data;

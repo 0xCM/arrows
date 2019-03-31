@@ -28,7 +28,7 @@ namespace Z0
         /// <param name="rhs">The second list</param>
         /// <returns></returns>
         public static bool DeepEquals<T>(this IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
-            where T : Traits.Equatable<T>, new()
+            where T : Operative.Equatable<T>, new()
                 => eq(lhs,rhs);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Z0
         /// <param name="rhs">The second list</param>
         /// <returns></returns>
         public static bool DeepEquals<T>(this IEnumerable<T> lhs, IEnumerable<T> rhs)
-            where T : Traits.Equatable<T>, new()
+            where T : Operative.Equatable<T>, new()
                 => eq(lhs,rhs);
 
         /// <summary>

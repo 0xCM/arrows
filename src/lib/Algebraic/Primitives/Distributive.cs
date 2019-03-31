@@ -4,7 +4,7 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    partial class Traits
+    partial class Operative
     {
         public interface LeftDistributive<T>  : Multiplicative<T>, Additive<T>
         {
@@ -42,8 +42,7 @@ namespace Z0
 
     partial class Structure
     {
-         public interface LeftDistributive<S,T>  : Multiplicative<S,T>, Additive<S,T>
-            where S : LeftDistributive<S,T>, new()
+        public interface LeftDistributive<S>: Multiplicative<S>, Additive<S>
         {
             /// <summary>
             /// Characterizes a type that defines an operator that left-distributes
@@ -51,10 +50,10 @@ namespace Z0
             /// </summary>
             /// <typeparam name="X">The operand type</typeparam>
             S distributeL((S x, S y) rhs);
+
         }
 
-        public interface RightDistributive<S,T>  : Multiplicative<S,T>, Additive<S,T>
-            where S : RightDistributive<S,T>, new()
+        public interface RightDistributive<S> : Multiplicative<S>, Additive<S>
         {
             /// <summary>
             /// Characterizes a type that defines an operator that left-distributes
@@ -62,13 +61,19 @@ namespace Z0
             /// </summary>
             /// <typeparam name="X">The operand type</typeparam>
             S distributeR((S x, S y) rhs);
-        }
-
-        public interface Distributive<S,T> : LeftDistributive<S,T>, RightDistributive<S,T>
-            where S : Distributive<S,T>,new()
-        {
 
         }
+        
+        public interface Distributive<S> : LeftDistributive<S>, RightDistributive<S> {}
+
+        public interface LeftDistributive<S,T>  : LeftDistributive<S>, Multiplicative<S,T>, Additive<S,T>
+            where S : LeftDistributive<S,T>, new() { }
+
+        public interface RightDistributive<S,T>  : RightDistributive<S>, Multiplicative<S,T>, Additive<S,T>
+            where S : RightDistributive<S,T>, new() { }
+
+        public interface Distributive<S,T> : Distributive<S>, LeftDistributive<S,T>, RightDistributive<S,T>
+            where S : Distributive<S,T>,new() { }
 
     }
 }

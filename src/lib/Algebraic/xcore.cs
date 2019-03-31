@@ -23,8 +23,8 @@ namespace  Z0
         /// <param name="relation">The partitioning relation</param>
         /// <param name="items">The items to partition</param>
         /// <typeparam name="T">The item type</typeparam>
-        public static IEnumerable<FiniteEqClass<T>> Partition<T>(this Traits.Equivalence<T> relation, IEnumerable<T> items)
-            where T : Traits.Equatable<T>, new()
+        public static IEnumerable<Reify.FiniteEquivalenceClass<T>> Partition<T>(this Operative.Equivalence<T> relation, IEnumerable<T> items)
+            where T : Operative.Equatable<T>, new()
 
         {
             var classes = cindex<T, ConcurrentBag<T>>();
@@ -35,15 +35,15 @@ namespace  Z0
                        .OnSome(k => classes[k].Add(item));
             }
 
-            return classes.KeyedValues.Select(kvp => new FiniteEqClass<T>(kvp.key,relation, kvp.value ));
+            return classes.KeyedValues.Select(kvp => new Reify.FiniteEquivalenceClass<T>(kvp.key,relation, kvp.value ));
         }
 
 
         class Komparer<T> : IComparer<T>
         {
-            Traits.Ordered<T> ordered {get;}                
+            Operative.Ordered<T> ordered {get;}                
 
-            public Komparer(Traits.Ordered<T> ordered)
+            public Komparer(Operative.Ordered<T> ordered)
                 => this.ordered = ordered;
             public int Compare(T x, T y)
             {
@@ -58,7 +58,7 @@ namespace  Z0
             }
         }
 
-        public static IComparer<T> ToComparer<T>(this Traits.Ordered<T> order)
+        public static IComparer<T> ToComparer<T>(this Operative.Ordered<T> order)
             => new Komparer<T>(order);
 
 

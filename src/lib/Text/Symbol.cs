@@ -13,7 +13,7 @@ namespace Z0
     /// <summary>
     /// Represents a symbol
     /// </summary>
-    public readonly struct Symbol : Structure.FreeMonoid<Symbol,Slice<Atom>>,Structure.Equatable<Symbol>,  IEquatable<Symbol>
+    public readonly struct Symbol : Structure.FreeMonoid<Symbol,Slice<Atom>>,Structure.Equatable<Symbol>, Operative.Equatable<Symbol>,  IEquatable<Symbol>
     {
         public static readonly Symbol Empty = new Symbol(string.Empty);
 
@@ -78,6 +78,12 @@ namespace Z0
 
         public Symbol concat(Symbol rhs)
             => new Symbol(this.data + rhs.data);
+
+        public bool eq(Symbol lhs, Symbol rhs)
+            => lhs.eq(rhs);
+ 
+        public bool neq(Symbol lhs, Symbol rhs)
+            => lhs.eq(rhs);
     }
    
 }

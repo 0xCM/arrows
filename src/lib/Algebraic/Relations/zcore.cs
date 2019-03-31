@@ -20,7 +20,7 @@ partial class zcore
     /// <typeparam name="T">The member type</typeparam>
     /// <returns></returns>
     public static FiniteSet<T> set<T>(params T[] members)
-        where T : Traits.Equatable<T>, new()
+        where T : Operative.Equatable<T>, new()
             => new FiniteSet<T>(members);
 
     /// <summary>
@@ -30,7 +30,7 @@ partial class zcore
     /// <typeparam name="T">The member type</typeparam>
     /// <returns></returns>
     public static FiniteSet<T> set<T>(IEnumerable<T> members)
-        where T : Traits.Equatable<T>, new()
+        where T : Operative.Equatable<T>, new()
             => new FiniteSet<T>(members);
 
 }

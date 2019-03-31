@@ -14,12 +14,12 @@ namespace Z0
     /// <summary>
     /// Defines interal operations modulo N
     /// </summary>
-    public readonly struct ModOps<N,T> : ModN<N,T>
+    public readonly struct ModOps<N,T> : Operative.ModN<N,T>
         where N : TypeNat, new()
     {
         public static readonly ModOps<N,T> Inhabitant = default;
         
-        static readonly Traits.Integer<T> Ops = Resolver.integer<T>();
+        static readonly Operative.Integer<T> Ops = Resolver.integer<T>();
         
         static readonly intg<T> @base =  natval<N>().ToIntG<T>();
 
@@ -36,11 +36,6 @@ namespace Z0
         public ModOps<N, T> inhabitant 
             => Inhabitant;
 
-        public Addition<T> addition 
-            => Addition.define(this);
-
-        public Multiplication<T> multiplication 
-            => Multiplication.define(this);
 
         [MethodImpl(Inline)]
         public T reduce(T src) 

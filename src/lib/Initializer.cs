@@ -14,7 +14,7 @@ namespace Z0
     {
         protected override void ExecInit()
         {
-            var classes = TypeClassAttribute.Find<Initalizer>();
+            var classes = StructureAttribute.Find<Initalizer>();
             iter(classes, c => Resolver.define(c.operand, c.reifier));                    
         }
     }

@@ -16,7 +16,7 @@ namespace Z0
     /// Provides a layer of indirection for, and gives a concrete type to, 
     /// an IEnumerable instance
     /// </summary>
-    public readonly struct Seq<T> : Traits.Seq<T> 
+    public readonly struct Seq<T> : Structure.Seq<Seq<T>> 
     {
         public static readonly Seq<T> Empty = default;
 
@@ -48,7 +48,7 @@ namespace Z0
             => new Seq<T>(src);        
     }
 
-    public readonly struct FiniteSeq<T> : Traits.FiniteSeq<T>
+    public readonly struct FiniteSeq<T> : Structure.FiniteSeq<FiniteSeq<T>,T>
         where T : IEquatable<T>
     {
         public static readonly FiniteSeq<T> Empty = default;
@@ -79,8 +79,8 @@ namespace Z0
         public T this[int i] 
             => src[i];
 
-        public int count 
-            => src.Length;
+        public uint count 
+            => (uint)src.Length;        
 
         [MethodImpl(Inline)]
         public FiniteSeq<T> redefine(IEnumerable<T> src)
@@ -89,6 +89,8 @@ namespace Z0
         public IEnumerable<T> stream()
             => src;
 
+        public bool Equals(FiniteSeq<T> other)
+            =>throw new NotImplementedException();
     }
 
     public static class Seq

@@ -60,56 +60,56 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         [MethodImpl(Inline)]
-        public static Traits.Integer<T> integer<T>()
-            => resolve<T,Traits.Integer<T>>();
+        public static Operative.Integer<T> integer<T>()
+            => resolve<T,Operative.Integer<T>>();
 
         /// <summary>
         /// Resolves a reification of the SignedInt[T] trait
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         [MethodImpl(Inline)]
-        public static Traits.SignedInt<T> signedint<T>()
-            => resolve<T,Traits.SignedInt<T>>();
+        public static Operative.SignedInt<T> signedint<T>()
+            => resolve<T,Operative.SignedInt<T>>();
 
         /// <summary>
         /// Resolves a reification of the Natural[T] trait
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         [MethodImpl(Inline)]
-        public static Traits.Natural<T> natural<T>()
-            => resolve<T,Traits.Natural<T>>();
+        public static Operative.Natural<T> natural<T>()
+            => resolve<T,Operative.Natural<T>>();
 
         /// <summary>
         /// Resolves a reification of the Number[T] trait
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         [MethodImpl(Inline)]
-        public static Traits.Number<T> number<T>()
-            => resolve<T, Traits.Number<T>>();
+        public static Operative.Number<T> number<T>()
+            => resolve<T, Operative.Number<T>>();
 
         /// <summary>
         /// Resolves a reification of the OrderedNumber[T] trait
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         [MethodImpl(Inline)]
-        public static Traits.OrderedNumber<T> ordnum<T>()
-            => resolve<T, Traits.OrderedNumber<T>>();
+        public static Operative.OrderedNumber<T> ordnum<T>()
+            => resolve<T, Operative.OrderedNumber<T>>();
 
         /// <summary>
         /// Resolves a reification of the Real[T] trait
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         [MethodImpl(Inline)]
-        public static Traits.RealNumber<T> real<T>()
-            => resolve<T, Traits.RealNumber<T>>();
+        public static Operative.RealNumber<T> real<T>()
+            => resolve<T, Operative.RealNumber<T>>();
 
         /// <summary>
         /// Resolves a reification of the FiniteFloat[T] trait
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         [MethodImpl(Inline)]
-        public static Traits.FiniteFloat<T> floating<T>()
-            => resolve<T,Traits.FiniteFloat<T>>();
+        public static Operative.FiniteFloat<T> floating<T>()
+            => resolve<T,Operative.FiniteFloat<T>>();
     }
 }
 

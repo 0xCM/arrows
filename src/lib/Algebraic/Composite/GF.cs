@@ -9,7 +9,7 @@ namespace Z0
 
     using static zcore;
 
-    partial class Traits
+    partial class Operative
     {
 
         public interface ModN<N,T> : Ring<T>
@@ -32,14 +32,24 @@ namespace Z0
 
     partial class Structure
     {
-        public interface ModN<N,S,T> : Ring<S,T>, Structural<S,T>
+        public interface ModN<N,S> : Ring<S>
+        {
+
+        }
+
+        public interface GF<N, S> : ModN<N, S>
+        {
+
+        }
+
+        public interface ModN<N,S,T> : ModN<N,S>, Ring<S,T>, Structural<S,T>
             where S : ModN<N,S,T>, new()
             where N : TypeNat, new()
         {
 
         }
 
-        public interface GF<N, S, T> : ModN<N, S, T>, Structural<S,T>
+        public interface GF<N, S, T> : GF<N,S>, ModN<N, S, T>, Structural<S,T>
             where N : TypeNat, Demands.PrimePower<N>, new()
             where S : GF<N,S,T>,new()
             

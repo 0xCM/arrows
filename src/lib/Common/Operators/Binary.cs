@@ -11,7 +11,7 @@ namespace Z0
 
     using static zcore;
 
-    partial class Traits
+    partial class Operative
     {
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Z0
     /// <summary>
     /// Defines a binary operator
     /// </summary>
-    public readonly struct BinaryOp<T> : Traits.BinaryOp<T>
+    public readonly struct BinaryOp<T> : Operative.BinaryOp<T>
     {
         readonly Func<T,T,T> op;
 

@@ -15,16 +15,11 @@ namespace Z0
     /// </summary>
     public readonly struct Word : Structure.FreeMonoid<Word,Slice<Symbol>>, Structure.Equatable<Word>
     {
-        public static readonly Word Empty = new Word();
-
-        static readonly Structure.FreeMonoid<Word,Slice<Symbol>> M = default;
+        public static readonly Word Empty = new Word();        
 
         public static Word operator +(Word lhs, Word rhs)
             => lhs.append(rhs);
                     
-        // public static implicit operator string(Word s)                
-        //     => M.reduce(s.data.data);
-
         public static implicit operator Slice<Symbol>(Word s)                
             => s.data;
 

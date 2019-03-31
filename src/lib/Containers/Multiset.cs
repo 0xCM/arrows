@@ -14,10 +14,11 @@ namespace Z0
     /// Implementation of a basic multiset
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Multiset</remarks>
-    public readonly struct Multiset<T>  : Traits.FiniteSet<T>
-        where T : Traits.Ordered<T>, new()        
+    public readonly struct Multiset<T>  : Structure.FiniteSet<Multiset<T>>
+        where T : Operative.Ordered<T>,  new()        
+        
     {
-        static Traits.Ordered<T> Ops = new T();
+        static Operative.Ordered<T> Ops = new T();
         
         readonly SortedDictionary<T,int> data;
 
@@ -57,5 +58,8 @@ namespace Z0
 
         public Seq<T> members()
             => data.Keys.ToSeq();
-    }
+
+        public bool Equals(Multiset<T> other)
+            => throw new NotImplementedException();
+   }
 }

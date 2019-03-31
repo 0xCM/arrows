@@ -5,7 +5,7 @@
 namespace Z0
 {
 
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizs operations over a type that has infinitely many refications
@@ -22,12 +22,17 @@ namespace Z0
     partial class Structure
     {
 
+        public interface Infinite<S> 
+        {
+
+        }    
+
         /// <summary>
         /// Characterizes a Unbounded structural number
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The individual type</typeparam>
-        public interface Infinite<S,T> :  Structural<S,T>
+        public interface Infinite<S,T> : Infinite<S>, Structural<S,T>
             where S : Infinite<S,T>, new()
         {
 

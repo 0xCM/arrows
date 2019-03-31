@@ -12,18 +12,18 @@ namespace Z0
     using static Traits;
 
 
-    public readonly struct Matrix<M, N, T> :  Equatable<Matrix<M,N,T>>,
-        IEquatable<Matrix<M,N,T>>,
-        Traits.Tranposable<Matrix<N,M,T>> 
-        where M : TypeNat, new()
-        where N : TypeNat, new()
-        where T : Traits.Semiring<T>, new()
+    public readonly struct Matrix<M, N, T> 
+        : Structure.Equatable<Matrix<M,N,T>>,           
+          Structure.Tranposable<Matrix<N,M,T>>,
+          IEquatable<Matrix<M,N,T>>
+            where M : TypeNat, new()
+            where N : TypeNat, new()
+            where T : Structure.Semiring<T>, Operative.Equatable<T>, new()
     {
         static readonly Dim<M,N> Dim = default;        
         
-        static readonly Traits.MatrixOps<M,N,T> Ops = Matrix.ops<M,N,T>();        
+        static readonly Operative.MatrixOps<M,N,T> Ops = Matrix.ops<M,N,T>();        
         
-
         [MethodImpl(Inline)]
         public static bool operator == (Matrix<M, N, T> lhs, Matrix<M, N, T> rhs) 
             => Ops.eq(lhs,rhs);
@@ -45,8 +45,6 @@ namespace Z0
             data = src;
             demand(Dim.i * Dim.j == data.Length);
         }
-
-
 
         [MethodImpl(Inline)]
         public Matrix(IEnumerable<T> src)
@@ -165,8 +163,9 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Matrix<M,N,Y> transform<Y>(Func<T,Y> f)
-            where Y : Semiring<Y>, new()
+            where Y : Structure.Semiring<Y>, Operative.Equatable<Y>, new()
             => Ops.transform(this,f);
+        
         [MethodImpl(Inline)]
         public string format()
             => Ops.format(this);
@@ -180,10 +179,9 @@ namespace Z0
         public override int GetHashCode()
             => data.GetHashCode();
 
-        public bool eq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
-             => Ops.eq(this,rhs);
-
-        public bool neq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
+        public bool eq(Matrix<M, N, T> rhs)
+            => Ops.eq(this,rhs);
+        public bool neq(Matrix<M, N, T> rhs)
             => Ops.neq(this,rhs);
     } 
 }

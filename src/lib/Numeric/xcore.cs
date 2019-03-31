@@ -20,16 +20,16 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T SumG<T>(this IEnumerable<T> src)
-            where T : Traits.Additive<T>, new()
-                => fold(src, (x,y) => x.add(x,y));
+            where T : Structure.Additive<T>, new()
+                => fold(src, (x,y) => x.add(y));
 
         [MethodImpl(Inline)]
         public static T MaxG<T>(this IEnumerable<T> src)
-            where T : struct, Traits.OrderedNumber<T>
+            where T : struct, Structure.OrderedNumber<T>
         {
-            T max = default(T).numinfo.MaxVal;
+            T max = src.FirstOrDefault();
             foreach(var item in src)
-                max = item.gt(item,max) ? item : max;
+                max = item.gt(max) ? item : max;
             return max;
         }
 

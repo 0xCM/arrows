@@ -13,7 +13,7 @@ namespace Z0
     /// <summary>
     /// Provides canonical trait implementations
     /// </summary>
-    public static partial class Default
+    public static partial class Reify
     {
 
     }
@@ -30,6 +30,11 @@ namespace Z0
     }
 
     public static partial class Structure
+    {
+        
+    }
+
+    public static partial class Operative
     {
         
     }

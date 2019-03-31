@@ -4,9 +4,8 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    using static Traits;
-
-    partial class Traits
+    
+    partial class Operative
     {
 
         /// <summary>
@@ -23,6 +22,10 @@ namespace Z0
 
     partial class Structure
     {
+        public interface BoundReal<S> :  RealNumber<S>
+        {
+
+        }
         /// <summary>
         /// Characterizes a bounded structural number
         /// </summary>

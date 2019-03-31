@@ -6,7 +6,11 @@ namespace Z0
 {
     using System;
 
-    partial class Traits
+    partial class Operative
+    {
+    }
+
+    partial class Structure
     {
         /// <summary>
         /// Characterizes a set that, if nonempty, contains elements of unknown type
@@ -41,7 +45,17 @@ namespace Z0
         /// Characterizes a set that, if nonempty, contains elements of specific type
         /// </summary>
         /// <typeparam name="T">The individual type</typeparam>
-        public interface Set<T> : Set 
+        public interface Set<T> : Set
+        {
+
+        }
+
+
+        /// <summary>
+        /// Characterizes a reified set
+        /// </summary>
+        public interface Set<S,T> : Set<S>
+            where S : Set<S,T>, new()
         {
             /// <summary>
             /// Determines whether a supplied value is a member of the reified set
@@ -49,46 +63,6 @@ namespace Z0
             /// <param name="candidate">The potential member to check</param>
             /// <returns></returns>
             bool member(T candidate);
-        }
-
-        /// <summary>
-        /// Characterizes a set that contains at least one individual
-        /// </summary>
-        /// <typeparam name="T">The member type</typeparam>
-        public interface NonempySet<T> : Set<T>            
-        {
-
-        }
-
-        /// <summary>
-        /// Characterizes a reified set
-        /// </summary>
-        public interface Set<S,T> : Set<T>
-            where S : Set<S,T>, new()
-        {
-
-        }
-
-        /// <summary>
-        /// Characterizes a set that has a countable number of members
-        /// </summary>
-        /// <typeparam name="T">The member type</typeparam>
-        public interface DiscreteSet<T> : Set<T>
-        {
-            /// <summary>
-            /// Enumerates the members of the set
-            /// </summary>
-            Z0.Seq<T> members();
-        }
-
-        /// <summary>
-        /// Characteriizes a reified set for which there are a countable number of members
-        /// </summary>
-        /// <typeparam name="S">The reification type</typeparam>
-        /// <typeparam name="M">The member type</typeparam>
-        public interface DiscreteSet<S,T> : DiscreteSet<T> 
-            where S: DiscreteSet<S,T>, new()
-        {
 
         }
 
@@ -97,20 +71,40 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The member type</typeparam>
         public interface InfiniteSet<T> : Set<T>
+            where T : InfiniteSet<T>, new()
+        {
+
+        }
+
+        /// <summary>
+        /// Characterizes a type that represents an infinite number of values
+        /// </summary>
+        /// <typeparam name="T">The member type</typeparam>
+        public interface InfiniteSet<S,T> : InfiniteSet<S>, Set<S,T>
+            where S : InfiniteSet<S,T>, new()
         {
 
         }
 
 
-        /// <summary>
-        /// Characteries a type that repesents an infinite number of values but
-        /// which can be enumerated
+        /// Characterizes a set that contains at least one individual
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        public interface InfiniteDiscreteSet<T> : InfiniteSet<T>, DiscreteSet<T>
-        {            
-
+        /// <typeparam name="T">The member type</typeparam>
+        public interface NonempySet<T> : Set<T>            
+            where T : NonempySet<T>, new()
+        {
 
         }
+
+        /// <summary>
+        /// Characterizes a set that contains at least one individual
+        /// </summary>
+        /// <typeparam name="T">The member type</typeparam>
+        public interface NonempySet<S,T> : NonempySet<S>, Structural<S,T>
+            where S : NonempySet<S,T>, new()
+        {
+
+        }
+
     }
 }

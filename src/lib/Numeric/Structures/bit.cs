@@ -14,7 +14,7 @@ namespace Z0
     /// Represents a numeric or logical bit
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Boolean_algebra</remarks>
-    public readonly struct bit : IEquatable<bit>, IComparable<bit>
+    public readonly struct bit : IComparable<bit>, Structure.Equatable<bit>, Operative.Equatable<bit>
     {
 
         public static bit Zero = false;
@@ -122,6 +122,17 @@ namespace Z0
         public override string ToString()
             => (value ? 1 : 0).ToString();
 
+        public bool eq(bit rhs)
+            => this.value == rhs.value;
+
+        public bool neq(bit rhs)
+            => not(eq(rhs));
+
+        bool Operative.Equatable<bit>.eq(bit lhs, bit rhs)
+            => lhs.eq(rhs);
+
+        bool Operative.Equatable<bit>.neq(bit lhs, bit rhs)
+            => lhs.neq(rhs);
     }
 
 

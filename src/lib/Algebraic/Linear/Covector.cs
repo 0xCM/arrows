@@ -14,8 +14,13 @@ namespace Z0
     /// <summary>
     /// Strutural represention of the dual of an N-dimensional vector
     /// </summary>
-    public readonly struct Covector<N, T> :  Traits.Tranposable<Z0.Vector<N,T>>, Traits.Formattable
-        where N : TypeNat, new()        
+    public readonly struct Covector<N, T> 
+        : Structure.Equatable<Covector<N,T>>, 
+          Operative.Equatable<Covector<N,T>>,
+          Structure.Tranposable<Z0.Vector<N,T>>,  
+          Traits.Formattable
+        where N : TypeNat, new() 
+        where T : Operative.Equatable<T>, new()       
     {
         /// <summary>
         /// Vector => Slice
@@ -79,6 +84,20 @@ namespace Z0
         public override string ToString()
             => format();
 
+        public bool eq(Covector<N, T> rhs)
+            => cells.eq(rhs);
+
+        public bool neq(Covector<N, T> rhs)
+            => cells.neq(rhs);
+
+        public bool Equals(Covector<N, T> rhs)
+            => eq(rhs);
+
+        public bool eq(Covector<N, T> lhs, Covector<N, T> rhs)
+            => lhs.eq(rhs);
+
+        public bool neq(Covector<N, T> lhs, Covector<N, T> rhs)
+            => lhs.neq(rhs);
     }
 
 }

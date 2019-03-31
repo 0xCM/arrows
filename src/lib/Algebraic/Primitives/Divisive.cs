@@ -4,9 +4,9 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    partial class Traits
+    partial class Operative
     {
-        public interface Divisive<T>
+        public interface Divisive<T> : Operational<T>
         {
             T div(T lhs, T rhs);        
 
@@ -18,22 +18,12 @@ namespace Z0
         }
 
 
-        public interface Reciprocative<T> : Operational<T>
-        {
-            /// <summary>
-            /// Calculates the multiplicative inverse of a given element
-            /// </summary>
-            /// <param name="x">The individual for which an inverse will be calculated</param>
-            T recip(T x);
-            
-        }
 
     }
 
     partial class Structure
     {
-        public interface Divisive<S,T> : Structural<S,T>
-            where S : Divisive<S,T>, new()
+        public interface Divisive<S> 
         {
 
             S div(S rhs);        
@@ -45,15 +35,12 @@ namespace Z0
             S mod(S rhs);
         }
 
-        public interface Reciprocative<S,T> : Structural<S,T>
-            where S : Reciprocative<S,T>,new()
+        public interface Divisive<S,T> : Divisive<S>, Structural<S,T>
+            where S : Divisive<S,T>, new()
         {
-            /// <summary>
-            /// Calculates the multiplicative inverse of self
-            /// </summary>
-            S recip();
-            
+
         }
+
 
     }
 }

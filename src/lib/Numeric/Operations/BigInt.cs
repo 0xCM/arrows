@@ -16,8 +16,8 @@ namespace Z0
     using operand = System.Numerics.BigInteger;
     using reify = BigIntOps;
 
-    [TypeClass(typeof(reify),typeof(operand))]
-    internal readonly struct BigIntOps : InfiniteSignedInt<reify,operand>
+    [Structure(typeof(reify),typeof(operand))]
+    internal readonly struct BigIntOps : Operative.InfiniteSignedInt<operand>
     {
     
         public static readonly reify Inhabitant = default;
@@ -40,12 +40,6 @@ namespace Z0
         [MethodImpl(Inline)]   
         public reify instance()
             => Inhabitant;
-
-        public Addition<operand> addition 
-            => Addition.define(this);
-
-        public Multiplication<operand> multiplication 
-            => Multiplication.define(this);
 
         public reify inhabitant 
             => Inhabitant;

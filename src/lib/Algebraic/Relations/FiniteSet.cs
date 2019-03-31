@@ -11,19 +11,18 @@ namespace Z0
 
     using static zcore;
 
-    partial class Traits
+    
+    partial class Operative
     {
 
-        /// <summary>
-        /// Characteriizes a set that contains a finite number of values
-        /// </summary>
-        /// <typeparam name="T">The member type</typeparam>
+    }
+
+    partial class Structure
+    {
+
         public interface FiniteSet<T> : DiscreteSet<T>
+            where T : FiniteSet<T>, new()
         {
-            /// <summary>
-            /// Evidence that the set is indeed finite
-            /// </summary>
-            int count {get;}
 
         }
 
@@ -32,9 +31,14 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
         /// <typeparam name="T">The member type</typeparam>
-        public interface FiniteSet<S,T> : FiniteSet<T>, DiscreteSet<S,T>, IEquatable<S>
+        public interface FiniteSet<S,T> : FiniteSet<S>, DiscreteSet<S,T>, IEquatable<S>
             where S : FiniteSet<S,T>, new()
         {
+            /// <summary>
+            /// Evidence that the set is indeed finite
+            /// </summary>
+            int count {get;}
+
 
             /// <summary>
             /// Determines whether the current set is a subset of a specified set.
@@ -81,8 +85,8 @@ namespace Z0
     /// <summary>
     /// Contains a finite set of values
     /// </summary>
-    public readonly struct FiniteSet<T> : Traits.FiniteSet<FiniteSet<T>,T>, Traits.Equatable<FiniteSet<T>>
-        where T : Traits.Equatable<T>, new()
+    public readonly struct FiniteSet<T> : Structure.FiniteSet<FiniteSet<T>,T>, Structure.Equatable<FiniteSet<T>>
+        where T : Operative.Equatable<T>, new()
     {
         static readonly IEqualityComparer<HashSet<T>> setcomparer = HashSet<T>.CreateSetComparer();        
 
@@ -114,6 +118,7 @@ namespace Z0
 
         public bool discrete
             => true;
+        
 
         [MethodImpl(Inline)]   
         public bool Equals(FiniteSet<T> other)
@@ -201,12 +206,11 @@ namespace Z0
         public bool intersects(FiniteSet<T> rhs)
             => data.Overlaps(rhs.data);
 
-        [MethodImpl(Inline)]   
-        public bool eq(FiniteSet<T> lhs, FiniteSet<T> rhs)
-            => lhs.data.SetEquals(rhs.data);
+        public bool eq(FiniteSet<T> rhs)
+            => data.SetEquals(rhs.data);
 
-        [MethodImpl(Inline)]   
-        public bool neq(FiniteSet<T> lhs, FiniteSet<T> rhs)
-            => not(eq(lhs,rhs));
+        public bool neq(FiniteSet<T> rhs)
+            => not(eq(rhs));
+
     }
 }

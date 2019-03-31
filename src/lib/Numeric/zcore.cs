@@ -168,10 +168,10 @@ partial class zcore
         => x > y ? x : y;
 
     [MethodImpl(Inline)]   
-    public static T acaddmul<T>(Semiring<T> sr, Traits.FiniteSeq<T> a, Traits.FiniteSeq<T> b)
+    public static T acaddmul<T>(Operative.Semiring<T> sr, Structure.FiniteSeq<T> a, Structure.FiniteSeq<T> b)
     {
         var result = sr.zero;
-        for(var i=0; i < min<int>(a.count, b.count); i++)
+        for(var i=0; i < min<uint>(a.count, b.count); i++)
             result = sr.add(result,  sr.mul(a[i], b[i]));
         return result;
     }
@@ -184,7 +184,7 @@ partial class zcore
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]   
     public static Sign sigmul<T>(T lhs,T rhs)
-        where T : Number<T>, new()
+        where T : Operative.Number<T>, new()
             => (Resolver.number<T>().sign(lhs),Resolver.number<T>().sign(rhs)) switch   
                 {
                     (Sign.Negative, Sign.Positive) => Sign.Negative,

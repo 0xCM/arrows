@@ -11,12 +11,12 @@ namespace Z0
     using static zcore;
     using static Traits;
 
-    partial class Traits
+    partial class Operative
     {
         public interface MatrixOps<M,N,T>
                 where M : TypeNat, new()
                 where N : TypeNat, new()
-                where T : Semiring<T>, new()
+                where T : Structure.Semiring<T>, Operative.Equatable<T>, new()
         {
 
             Matrix<M,N,T> zero();
@@ -81,18 +81,18 @@ namespace Z0
                 where J : TypeNat, new();
 
             Matrix<M,N,Y> transform<Y>(Matrix<M,N,T> src, Func<T,Y> f)
-                        where Y : Semiring<Y>, new();
+                    where Y : Structure.Semiring<Y>, Operative.Equatable<Y>, new();
 
             void mutate(Matrix<M,N,T> src, Func<T,T> f);
         }
     }
 
-    public readonly struct MatrixOps<M,N,T> : Traits.MatrixOps<M,N,T>
+    public readonly struct MatrixOps<M,N,T> : Operative.MatrixOps<M,N,T>
             where M : TypeNat, new()
             where N : TypeNat, new()
-            where T : Semiring<T>, new()
+            where T : Structure.Semiring<T>, Operative.Equatable<T>, new()
     {
-        static readonly Semiring<T> SR = semiring<T>();
+        static readonly Operative.Semiring<T> SR =  new Reify.Semiring<T>();
         static readonly Dim<M,N> Dim = default;
         
         public static readonly MatrixOps<M,N,T> Inhabitant = default;
@@ -171,7 +171,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public bool eq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
-            => zcore.eq(lhs.data, rhs.data); 
+            => lhs.eq(rhs);
 
         [MethodImpl(Inline)]
         public bool neq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
@@ -274,7 +274,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Matrix<M,N,Y> transform<Y>(Matrix<M,N,T> src, Func<T,Y> f)
-            where Y : Semiring<Y>, new()
+            where Y : Structure.Semiring<Y>, Operative.Equatable<Y>,  new()
         {                
             var data = src.data;
             var dst = new Y[data.Length];

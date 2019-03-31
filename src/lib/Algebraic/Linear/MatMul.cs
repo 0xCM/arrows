@@ -15,7 +15,7 @@ namespace Z0
             where M : TypeNat, new()
             where N : TypeNat, new()
             where P : TypeNat, new()
-            where T : Semiring<T>, new()
+            where T : Structure.Semiring<T>, Operative.Equatable<T>, new()
     {
         
         readonly Matrix<M,N,T> lhs;
@@ -40,5 +40,7 @@ namespace Z0
             return Matrix.define<M,P,T>(product);
         }
     }
+
+
 
 }

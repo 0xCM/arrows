@@ -12,10 +12,10 @@ namespace Z0
     
     using static Traits;
 
-    public readonly struct real<T> : Structure.RealNumber<real<T>, T>, IConvertible
+    public readonly struct real<T> : Structure.RealNumber<real<T>, T>, Operative.Equatable<real<T>>,  IConvertible
         where T : IConvertible
     {
-        static readonly RealNumber<T> Ops = Resolver.real<T>();
+        static readonly Operative.RealNumber<T> Ops = Resolver.real<T>();
         
         static readonly NumberInfo<T> UnderInfo = Ops.numinfo;
 
@@ -31,8 +31,6 @@ namespace Z0
 
         public static readonly uint BitSize = UnderInfo.BitSize;
 
-        public static readonly NumberInfo<real<T>> Info 
-            = new NumberInfo<real<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);                 
 
         [MethodImpl(Inline)]
         public static implicit operator real<T>(T src)
@@ -111,7 +109,7 @@ namespace Z0
             => false;
 
         public NumberInfo<real<T>> numinfo
-            => Info;
+            => new NumberInfo<real<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);                 
 
 
         [MethodImpl(Inline)]
@@ -178,6 +176,19 @@ namespace Z0
             => Ops.eq(data,rhs);
 
         [MethodImpl(Inline)]
+        public bool neq(real<T> rhs)
+            => Ops.neq(data,rhs);
+
+        [MethodImpl(Inline)]
+        public bool eq(real<T> lhs, real<T> rhs)
+            => lhs.eq(rhs);
+
+        [MethodImpl(Inline)]
+        public bool neq(real<T> lhs, real<T> rhs)
+            => lhs.neq(rhs);
+
+
+        [MethodImpl(Inline)]
         public real<T> gcd(real<T> rhs)
             => Ops.gcd(data,rhs);
 
@@ -196,10 +207,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool lteq(real<T> rhs)
             => Ops.lteq(data,rhs);
-
-        [MethodImpl(Inline)]
-        public bool neq(real<T> rhs)
-            => Ops.neq(data,rhs);
 
 
         [MethodImpl(Inline)]
@@ -221,88 +228,12 @@ namespace Z0
         public override string ToString()
             => data.ToString();
 
-        // public Addition<real<T>> addition 
-        //     => Addition.define(this);
-            
-        // public Multiplication<real<T>> multiplication 
-        //     => Multiplication.define(this);
-        
-        // real<T> Unital<real<T>>.one 
-        //     => Ops.one;
-
         public real<T> zero 
             => Ops.zero;
 
+        public real<T> one 
+            => Ops.zero;
 
-        // [MethodImpl(Inline)]
-        // real<T> Number<real<T>>.muladd(real<T> x, real<T> y, real<T> z)
-        //     => throw new NotImplementedException();
-
-        // [MethodImpl(Inline)]
-        // real<T> Number<real<T>>.abs(real<T> x)
-        //     => x.abs();
-
-        // [MethodImpl(Inline)]
-        // Sign Number<real<T>>.sign(real<T> x)
-        //     => x.sign();
-
-        // [MethodImpl(Inline)]
-        // string Number<real<T>>.bitstring(real<T> x)
-        //     => x.bitstring();
-
-        // [MethodImpl(Inline)]
-        // real<T> LeftDistributive<real<T>>.distribute(real<T> lhs, (real<T> x, real<T> y) rhs)
-        //     => lhs.distributeR(rhs);
-
-        // [MethodImpl(Inline)]
-        // real<T> RightDistributive<real<T>>.distribute((real<T> x, real<T> y) lhs, real<T> rhs)
-        //     => rhs.distributeL(lhs);
-
-        // [MethodImpl(Inline)]
-        // real<T> Multiplicative<real<T>>.mul(real<T> lhs, real<T> rhs)
-        //     => lhs.mul(rhs);
-
-        // [MethodImpl(Inline)]
-        // real<T> Additive<real<T>>.add(real<T> lhs, real<T> rhs)
-        //     => lhs.add(rhs);
-
-        // [MethodImpl(Inline)]
-        // real<T> Divisive<real<T>>.div(real<T> lhs, real<T> rhs)
-        //     => lhs.div(rhs);
-
-        // [MethodImpl(Inline)]
-        // real<T> Divisive<real<T>>.gcd(real<T> lhs, real<T> rhs)
-        //     => lhs.gcd(rhs);
-
-        // [MethodImpl(Inline)]
-        // Quorem<real<T>> Divisive<real<T>>.divrem(real<T> lhs, real<T> rhs)
-        //     => lhs.divrem(rhs);
-
-
-        // [MethodImpl(Inline)]
-        // real<T> Divisive<real<T>>.mod(real<T> lhs, real<T> rhs)
-        //     => lhs.mod(rhs);
-
-        [MethodImpl(Inline)]
-        real<T> Powered<real<T>, int>.pow(real<T> b, int exp)
-            => throw new NotImplementedException();
-
-        // [MethodImpl(Inline)]
-        // real<T> Negatable<real<T>>.negate(real<T> x)
-        //     => x.negate();
-
-        // [MethodImpl(Inline)]
-        // real<T> Negatable<real<T>>.sub(real<T> lhs, real<T> rhs)
-        //     => lhs - rhs;
-
-        // [MethodImpl(Inline)]
-        // bool Equatable<real<T>>.eq(real<T> lhs, real<T> rhs)
-        //     => lhs.eq(rhs);
-
-        // [MethodImpl(Inline)]
-        // bool Equatable<real<T>>.neq(real<T> lhs, real<T> rhs)
-        //     => lhs.neq(rhs);
- 
         [MethodImpl(Inline)]
         public real<T> muladd(real<T> y, real<T> z)
             => Ops.muladd(this, y, z);
@@ -354,7 +285,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public real<T> atanh()
             => Ops.atanh(this);
- 
+
+        public real<T> pow(int exp)
+            => Ops.pow(data, exp);
+
         #region IConvertible
         [MethodImpl(Inline)]
         TypeCode IConvertible.GetTypeCode()

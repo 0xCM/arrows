@@ -5,7 +5,7 @@
 namespace Z0
 {
 
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes operational aspects of a N-dimensional vector space over 

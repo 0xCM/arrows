@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
-    partial class Traits
+    partial class Operative
     {
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Partially_ordered_set </remarks>
-        public interface Poset<T> : Set<T>, PartialOrder<T>
+        public interface Poset<T> : PartialOrder<T>
             where T : IEquatable<T>
 
         {

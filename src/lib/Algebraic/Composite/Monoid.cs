@@ -4,7 +4,7 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    partial class Traits
+    partial class Operative
     {
 
         /// <summary>
@@ -44,23 +44,38 @@ namespace Z0
 
     partial class Structure
     {
+        public interface Monoid<S> : Semigroup<S>
+        {
+
+        }
+
         /// <summary>
         /// Characterizes monoidal structure
         /// </summary>
         /// <typeparam name="S">The classified structure</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface Monoid<S,T> : Semigroup<S,T>
+        public interface Monoid<S,T> : Monoid<S>, Semigroup<S,T>
             where S : Monoid<S,T>, new()
         {
             
         }            
+
+        public interface MonoidM<S> : Monoid<S>, SemigroupM<S>, Unital<S>
+        {
+
+        }
+
+        public interface MonoidA<S> : Monoid<S>, SemigroupA<S>, Nullary<S>
+        {
+
+        }
 
         /// <summary>
         /// Characterizes multiplicative monoidal structure
         /// </summary>
         /// <typeparam name="S">The classified structure</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface MonoidM<S,T> : Monoid<S,T>, SemigroupM<S,T>
+        public interface MonoidM<S,T> : MonoidM<S>, Monoid<S,T>, SemigroupM<S,T>
             where S : MonoidM<S,T>, new()
         {
 
@@ -71,12 +86,11 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The classified structure</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface MonoidA<S,T> :  Monoid<S,T>, SemigroupA<S,T>
+        public interface MonoidA<S,T> :  MonoidA<S>, Monoid<S,T>, SemigroupA<S,T>
             where S : MonoidA<S,T>, new()
         {
 
         }            
-
 
     }
 }

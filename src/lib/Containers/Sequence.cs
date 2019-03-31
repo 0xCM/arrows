@@ -18,7 +18,6 @@ namespace Z0
         /// <typeparam name="I">The sequence domain</typeparam>
         /// <typeparam name="T">The sequence codomain</typeparam>
         public interface Sequence<I,T> : Container<KeyedValue<I,T>>
-            where I : Integer<I>,new()
         {
 
             /// <summary>
@@ -35,7 +34,6 @@ namespace Z0
         /// <typeparam name="I">The sequence domain</typeparam>
         /// <typeparam name="T">The sequence codomain</typeparam>
         public interface NonemptySequence<I,T> : Sequence<I,T>
-            where I : Integer<I>,new()
         {
             /// <summary>
             /// The first element of the sequence
@@ -56,7 +54,6 @@ namespace Z0
         /// <typeparam name="I">The sequence domain</typeparam>
         /// <typeparam name="T">The sequence codomain</typeparam>
         public interface InfiniteSequence<I,T> : NonemptySequence<I,T>
-            where I : InfiniteInt<I>,new()
         {
 
         }
@@ -67,7 +64,6 @@ namespace Z0
         /// <typeparam name="I">The sequence domain</typeparam>
         /// <typeparam name="T">The sequence codomain</typeparam>
         public interface FiniteSequence<I,T> : Sequence<I,T>
-            where I : FiniteInt<I>,new()
         {
             int length {get;}
 

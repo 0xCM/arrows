@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
-    partial class Traits
+    partial class Operative
     {
 
         public interface RealNumber<T> : OrderedNumber<T>, Trigonmetric<T>
@@ -21,7 +21,12 @@ namespace Z0
 
     partial class Structure
     {
-        public interface RealNumber<S,T> : OrderedNumber<S,T>, Trigonmetric<S,T>, IComparable<S>
+        public interface RealNumber<S> : OrderedNumber<S>, Trigonmetric<S>
+        {
+
+        }
+
+        public interface RealNumber<S,T> : RealNumber<S>, OrderedNumber<S,T>, Trigonmetric<S,T>, IComparable<S>
             where S : RealNumber<S,T>, new()
         {
 

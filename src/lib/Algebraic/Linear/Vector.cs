@@ -11,8 +11,14 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
 
-    public readonly struct Vector<N, T> : IEnumerable<T>, Traits.Tranposable<Z0.Covector<N,T>>, Traits.Formattable
-        where N : TypeNat, new()        
+    public readonly struct Vector<N, T> 
+        : IEnumerable<T>, 
+          Structure.Equatable<Vector<N,T>>,  
+          Operative.Equatable<Vector<N,T>>,
+          Structure.Tranposable<Z0.Covector<N,T>>, 
+          Traits.Formattable
+        where N : TypeNat, new()    
+        where T : Operative.Equatable<T>, new()    
     {
 
         /// <summary>
@@ -83,6 +89,21 @@ namespace Z0
 
         public string format()
             => cells.format();
+
+        public bool eq(Vector<N, T> rhs)
+            => cells.eq(rhs);
+
+        public bool neq(Vector<N, T> rhs)
+            => cells.neq(rhs);
+
+        public bool Equals(Vector<N, T> rhs)
+            => eq(rhs);
+
+        public bool eq(Vector<N, T> lhs, Vector<N, T> rhs)
+            => lhs.eq(rhs);
+
+        public bool neq(Vector<N, T> lhs, Vector<N, T> rhs)
+            => lhs.neq(rhs);
     }
 
  

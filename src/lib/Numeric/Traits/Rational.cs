@@ -8,7 +8,7 @@ namespace Z0
     using System.Numerics;
 
 
-    partial class Traits
+    partial class Operative
     {
         
         /// <summary>
@@ -45,11 +45,26 @@ namespace Z0
 
     partial class Structure
     {
+         public interface Fractional<S> : RealNumber<S> 
+         {
+            S ceiling();
+            
+            S floor();
+
+         }
+
         /// <summary>
-        /// Charactrizes a rational number
+        /// Characterizes a fractional structure
         /// </summary>
-        public interface Rational<S, T, R> //: Reciprocative<T,R>
-            where S : Rational<S,T,R>,  new()
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface Fractional<S,T> : Fractional<S>, RealNumber<S,T> 
+            where S : Fractional<S,T>, new()
+        {
+
+            
+        }
+
+        public interface Rational<T>
         {
             /// <summary>
             /// The dividend
@@ -62,6 +77,20 @@ namespace Z0
             T under();
 
             (T over, T under) paired();
+
+        }
+        
+        public interface Rational<T,R> : Rational<T>
+        {
+
+        }
+
+        /// <summary>
+        /// Charactrizes a rational number
+        /// </summary>
+        public interface Rational<S, T, R> : Rational<T,R>
+            where S : Rational<S,T,R>,  new()
+        {
         }
 
     }

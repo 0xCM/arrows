@@ -15,8 +15,8 @@ namespace Z0
     using reify = UInt64Ops;
 
 
-    [TypeClass(typeof(reify),typeof(operand))]
-    internal readonly struct UInt64Ops : FiniteNatural<reify,operand>
+    [Structure(typeof(reify),typeof(operand))]
+    internal readonly struct UInt64Ops : Operative.FiniteNatural<operand>
     {
         public static readonly reify Inhabitant = default;
     
@@ -56,11 +56,6 @@ namespace Z0
         public uint bitsize 
             => BitSize;
 
-        public Addition<operand> addition 
-            => Addition.define(this);
-
-        public Multiplication<operand> multiplication 
-            => Multiplication.define(this);
         public operand apply(operand lhs, operand rhs)
             => throw new NotImplementedException();
 

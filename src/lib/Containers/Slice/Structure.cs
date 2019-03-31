@@ -16,9 +16,11 @@ namespace Z0
     /// <summary>
     /// Encapsulates a linear data segment with length determined at runtime
     /// </summary>
-    public readonly struct Slice<T> : Traits.Slice<Slice<T>, T>
-        where T : Structure.Equatable<T>, new()        
+    public readonly struct Slice<T> : Structure.Slice<Slice<T>, T>, Traits.Slice<T>, Operative.Equatable<Slice<T>>
+        where T : Operative.Equatable<T>, new()        
     {                    
+        static readonly Operative.Equatable<T> Equatable = new T();
+        
         public static Slice<T> operator + (Slice<T> lhs, Slice<T> rhs)
             => new Slice<T>(lhs.data.Concat(rhs.data));
 
@@ -52,7 +54,7 @@ namespace Z0
         }
 
         public intg<uint> length {get;}
-
+    
         public T this[int i] 
             => data[i];
 
@@ -81,9 +83,6 @@ namespace Z0
         public Z0.Slice<T> reverse()
             => slice(data.Reverse());
 
-        [MethodImpl(Inline)]   
-        Slice<T> Traits.Reversible<Slice<T>>.reverse(Slice<T> src)
-            => src.reverse();
 
         /// <summary>
         /// Reverses the slice elements
@@ -110,7 +109,7 @@ namespace Z0
                 return false;
             for(var i = 0; i<length; i++)
             {
-                if(lhs[i].neq(rhs[i]))
+                if( Equatable.neq(lhs[i],rhs[i]))
                     return false;
             }
             return true;            
@@ -131,14 +130,24 @@ namespace Z0
         public override string ToString()
             => format();
 
+        public bool eq(Slice<T> rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool neq(Slice<T> rhs)
+        {
+            throw new NotImplementedException();
+        }
     }        
 
 
     /// <summary>
     /// Encapsulates a linear data segment with naturally-typed length
     /// </summary>
-    public readonly struct Slice<N,T> : Traits.NSlice<Slice<N,T>,N,T>, IEnumerable<T>, Traits.Reversible<Slice<N,T>,T>
+    public readonly struct Slice<N,T> : Structure.NSlice<N,Slice<N,T>,T>, IEnumerable<T>, Structure.Reversible<Slice<N,T>>, Operative.Equatable<Slice<N,T>>
         where N : TypeNat, new()
+        where T : Operative.Equatable<T>, new()        
     {                    
         
 
@@ -152,31 +161,31 @@ namespace Z0
         
         static readonly uint Length = natval<N>();
 
-        public IReadOnlyList<T> data {get;}
+        public Slice<T> data {get;}
 
         public intg<uint> length {get;}
+
 
         [MethodImpl(Inline)]
         public Slice(params T[] src)
         {
              this.data = src;
-             this.length = Prove.claim<N>(data.Length());
+             this.length = Prove.claim<N>(data.length);
         }
 
         [MethodImpl(Inline)]
         public Slice(IReadOnlyList<T> src)
         {
-            this.data = src;
-            this.length = Prove.claim<N>(data.Length());
+            this.data = new Slice<T>(src);
+            this.length = Prove.claim<N>(data.length);
         }
 
         [MethodImpl(Inline)]
         public Slice(IEnumerable<T> src)
         {
             this.data = src.Take((int)natval<N>()).ToArray();
-            this.length = Prove.claim<N>(this.data.Count);
+            this.length = Prove.claim<N>(data.length);
         }
-
 
         public T this[int i] 
             => data[i];
@@ -204,9 +213,20 @@ namespace Z0
         public override string ToString()
             => format();
 
-        Slice<N, T> Traits.Reversible<Slice<N,T>>.reverse(Slice<N, T> src)
-            => src.reverse();
+        public bool eq(Slice<N, T> rhs)
+            => data.eq(rhs.data);
 
+        public bool neq(Slice<N, T> rhs)
+            => data.neq(rhs.data);
+
+        public bool Equals(Slice<N, T> rhs)
+            => eq(rhs);
+
+        public bool eq(Slice<N, T> lhs, Slice<N, T> rhs)
+            => lhs.eq(rhs);
+
+        public bool neq(Slice<N, T> lhs, Slice<N, T> rhs)
+            => lhs.neq(rhs);
     }        
 
 }

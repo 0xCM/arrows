@@ -25,7 +25,7 @@ partial class zcore
     /// <param name="rhs">The second list</param>
     /// <returns></returns>
     public static bool eq<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
-        where T : Traits.Equatable<T>, new()
+        where T : Operative.Equatable<T>, new()
     {    
         if (lhs == null || rhs == null || lhs.Count != rhs.Count)
             return false;
@@ -46,7 +46,7 @@ partial class zcore
     /// <param name="rhs">The second list</param>
     /// <returns></returns>
    public static bool eq<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
-        where T : Traits.Equatable<T>, new()
+        where T : Operative.Equatable<T>, new()
     {    
         
         var equality = new T(); //ops<T,Traits.Equatable<T>>();

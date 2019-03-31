@@ -7,8 +7,22 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
+    partial class Operative
+    {
 
-    partial class Traits
+        public interface Tranposable<S,T>
+        {
+            /// <summary>
+            /// Effects the source-to-target transposition
+            /// </summary>
+            /// <param name="src">The source type</param>
+            /// <returns></returns>
+            T tranpose(S src);        
+        }
+    }
+
+    
+    partial class Structure
     {
 
         /// <summary>
@@ -27,15 +41,6 @@ namespace Z0
         }
 
 
-        public interface Tranposable<S,T>
-        {
-            /// <summary>
-            /// Effects the source-to-target transposition
-            /// </summary>
-            /// <param name="src">The source type</param>
-            /// <returns></returns>
-            T tranpose(S src);        
-        }
 
 
 

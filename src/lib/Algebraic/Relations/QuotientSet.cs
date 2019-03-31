@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
-    partial class Traits
+    partial class Structure
     {
 
         /// <summary>
@@ -17,8 +17,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="C">The equivalence class type</typeparam>
         /// <typeparam name="T">The set domain</typeparam>
-        public interface QuotientSet<C,T> : Set<T>, Equivalence<T>
-            where C : EqClass<T>
+        public interface QuotientSet<C,T> 
+            where C : Structure.EquivalenceClass<C,T>, new()
+            where T : Operative.Equatable<T>, new()
         {
             /// <summary>
             /// Effects a partition via the equivalence

@@ -8,7 +8,7 @@ namespace Z0
     using System.Numerics;
 
 
-    partial class Traits
+    partial class Operative
     {
 
         /// <summary>

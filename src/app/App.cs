@@ -36,6 +36,7 @@ namespace App04
 
         static T dot<N,T>(Z0.Slice<N,T> s1, Z0.Slice<N,T> s2)
             where N : TypeNat, new()
+            where T : Operative.Equatable<T>, new()
             {
                 var ops = Resolver.integer<T>();
                 var result = ops.zero;
@@ -45,8 +46,8 @@ namespace App04
             }
         static void CreateSlices()
         {
-            var s1 = slice<N5,int>(1,2,3,4,5);
-            var s2 = slice<N5,int>(1,1,1,1,1);
+            var s1 = slice<N5,intg<int>>(1,2,3,4,5);
+            var s2 = slice<N5,intg<int>>(1,1,1,1,1);
             var dp = dot(s1,s2);
             print($"dot product = {dp}");
 
@@ -357,13 +358,6 @@ namespace App04
             print($"{v1} * {v2} = {result}");
         }
 
-        static void Semigroups()
-        {
-            var sg = semigroup<intg<long>>();
-
-        }
-
-
         static void Integers()
         {
             var total = intg<byte>(0);
@@ -496,8 +490,8 @@ namespace App04
             SysInit.initialize<Program>();
 
 
-            BitOps();
-            //TestRunner.RunTests();
+            //BitOps();
+            TestRunner.RunTests();
 
         }
     }

@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
-    partial class Traits
+    partial class Operative
     {
         public interface Ordered<T> : Stepwise<T>, Equatable<T>
         {
@@ -25,13 +25,7 @@ namespace Z0
 
     partial class Structure
     {
-        /// <summary>
-        /// Characterizes a structural number that can be ordered
-        /// </summary>
-        /// <typeparam name="S">The type of the realizing structure</typeparam>
-        /// <typeparam name="T">The type of the underling primitive</typeparam>
-        public interface Ordered<S,T> : Stepwise<S,T>, Equatable<S,T>, IComparable<S>
-            where S : Ordered<S,T>, new()
+        public interface Ordered<S> : Stepwise<S>
         {   
             bool lt(S rhs);
             
@@ -40,6 +34,17 @@ namespace Z0
             bool gt(S rhs);                
             
             bool gteq(S rhs);              
+        }    
+
+        /// <summary>
+        /// Characterizes a structural number that can be ordered
+        /// </summary>
+        /// <typeparam name="S">The type of the realizing structure</typeparam>
+        /// <typeparam name="T">The type of the underling primitive</typeparam>
+        public interface Ordered<S,T> : Ordered<S>, Stepwise<S,T>, Equatable<S,T>, IComparable<S>
+            where S : Ordered<S,T>, new()
+        {   
+
         }    
     }
 

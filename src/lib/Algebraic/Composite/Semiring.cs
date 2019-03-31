@@ -4,8 +4,9 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    using System;
 
-    partial class Traits
+    partial class Operative
     {
          /// <summary>
         /// Characterizes semiring operations
@@ -21,17 +22,58 @@ namespace Z0
 
     partial class Structure
     {
+
+         public interface Semiring<S> : MonoidA<S>, MonoidM<S>, Distributive<S>
+         {
+
+         }
+
         /// <summary>
         /// Characterizes semiring structure
         /// </summary>
         /// <typeparam name="S">The classified structure</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-         public interface Semiring<S,T> : MonoidA<S,T>, MonoidM<S,T>, Distributive<S,T>
+         public interface Semiring<S,T> : Semiring<S>, MonoidA<S,T>, MonoidM<S,T>, Distributive<S,T>
             where S : Semiring<S,T>, new()
         {
             
         }            
 
+    }
+
+    partial class Reify
+    {
+        public readonly struct Semiring<T> : Operative.Semiring<T>
+            where T : Structure.Semiring<T>, new()
+        {
+            static readonly Structure.Semiring<T> exemplar = new T();
+
+            public static readonly Semiring<T> Inhabitant = default;
+            
+            public T zero 
+                => exemplar.zero;
+
+            public T one 
+                => exemplar.one;
+
+            public T add(T lhs, T rhs)
+                => lhs.add(rhs);
+
+            public T distribute(T lhs, (T x, T y) rhs)
+                => lhs.distributeL(rhs);
+
+            public T distribute((T x, T y) lhs, T rhs)
+                => rhs.distributeR(lhs);
+
+            public bool eq(T lhs, T rhs)
+                => lhs.eq(rhs);
+
+            public T mul(T lhs, T rhs)
+                => lhs.mul(rhs);
+
+            public bool neq(T lhs, T rhs)
+                => lhs.neq(rhs);
+        }
     }
 
 }

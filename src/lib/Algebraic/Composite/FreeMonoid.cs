@@ -10,8 +10,9 @@ namespace Z0
     using System.Linq;
 
     using static zcore;
+    using static Reify;
 
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes free moinoidial operations
@@ -25,17 +26,27 @@ namespace Z0
 
         }
 
+        public interface FinitelyGenerable<T>
+            where T : Operative.Equatable<T>, new()        
+        {
+            FiniteSet<T> generators {get;}
+        }
+
 
     }
 
     partial class Structure
     {
+        public interface FreeMonoid<S> :  Monoid<S>, Concatenable<S>
+        {
+
+        }
         /// <summary>
         /// Characterizes a free monoidal structure
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface FreeMonoid<S,T> :  Monoid<S,T>, Concatenable<S,T>
+        public interface FreeMonoid<S,T> : FreeMonoid<S>, Monoid<S,T>, Concatenable<S,T>
             where S : FreeMonoid<S,T>, new()
         {
             
@@ -43,36 +54,37 @@ namespace Z0
         }
 
     }
+
     public static class FreeMonoid
     {
         public static FreeMonoid<T> define<T>(params T[] generators)
-            where T :  Traits.FreeMonoid<T>, new()
+            where T :  Operative.FreeMonoid<T>, new()
                 => new FreeMonoid<T>(generators);
 
-        static IEnumerable<T> generate<T>(Traits.FreeMonoid<T> fm, T m, IEnumerable<T> src)
+        static IEnumerable<T> generate<T>(Operative.FreeMonoid<T> fm, T m, IEnumerable<T> src)
         {
             foreach(var item in src)
                 yield return fm.concat(m,item);                    
         }
 
-        static IEnumerable<T> generate<T>(Traits.FreeMonoid<T> fm, IEnumerable<T> m, IEnumerable<IEnumerable<T>> src)
+        static IEnumerable<T> generate<T>(Operative.FreeMonoid<T> fm, IEnumerable<T> m, IEnumerable<IEnumerable<T>> src)
         {
             foreach(var item in src.SelectMany(x => x))
             foreach(var n in m)
                 yield return fm.concat(n,item);                    
         }
 
-        static IEnumerable<T> nextlevel<T>(Traits.FreeMonoid<T> fm, IEnumerable<T> src)
+        static IEnumerable<T> nextlevel<T>(Operative.FreeMonoid<T> fm, IEnumerable<T> src)
             => from m in src
                from n in generate(fm, m, src)
                select n;
 
-        static IEnumerable<T> nextlevel<T>(Traits.FreeMonoid<T> fm, IEnumerable<T> lhs, IEnumerable<T> rhs)
+        static IEnumerable<T> nextlevel<T>(Operative.FreeMonoid<T> fm, IEnumerable<T> lhs, IEnumerable<T> rhs)
             =>  from x in lhs
                 from y in rhs
                 select fm.concat(x,y);
 
-        public static IEnumerable<T> generate<T>(Traits.FreeMonoid<T> fm, IEnumerable<T> generators)
+        public static IEnumerable<T> generate<T>(Operative.FreeMonoid<T> fm, IEnumerable<T> generators)
         {
             var level1 = generators;
             foreach(var m in level1)
@@ -98,37 +110,62 @@ namespace Z0
         }
 
     }
-    
-    public readonly struct FreeMonoid<T> : Traits.FreeMonoid<T>
-        where T : Traits.FreeMonoid<T>, new()
-    {
 
-        static readonly Traits.FreeMonoid<T> Ops = new T();
+    partial class Reify
+    {   
+        public readonly struct FreeMonoid<T> : Structure.FreeMonoid<FreeMonoid<T>, T>
+            where T : Operative.FreeMonoid<T>, new()
+        {
 
-        public FreeMonoid(IEnumerable<T> generators)
-            => this.generators = generators.ToFiniteSet();
+            static readonly Operative.FreeMonoid<T> Ops = new T();
 
-        public FreeMonoid(params T[] generators)
-            => this.generators = generators.ToFiniteSet();
+            public FreeMonoid(IEnumerable<T> generators)
+                => this.generators = generators.ToFiniteSet();
 
-        public Traits.FiniteSet<T> generators {get;}
+            public FreeMonoid(params T[] generators)
+                => this.generators = generators.ToFiniteSet();
 
-        public T empty 
-            => Ops.empty;
+            public FiniteSet<T> generators {get;}
 
-        public IEnumerable<T> concat(IEnumerable<T> s1, IEnumerable<T> s2)
-            => s1.Concat(s2);
+            public T empty 
+                => Ops.empty;
 
-        public T concat(T lhs, T rhs)
-            => throw new NotSupportedException();
+            public T data => throw new NotImplementedException();
 
-        public bool eq(T lhs, T rhs)
-            => Ops.eq(lhs,rhs);         
+            public IEnumerable<T> concat(IEnumerable<T> s1, IEnumerable<T> s2)
+                => s1.Concat(s2);
 
-        public bool neq(T lhs, T rhs)
-            => Ops.neq(lhs,rhs);
+            public T concat(T lhs, T rhs)
+                => throw new NotSupportedException();
 
-        public T reduce(IEnumerable<T> src)
-            => fold(src, concat, empty);
+            public FreeMonoid<T> concat(FreeMonoid<T> rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool eq(T lhs, T rhs)
+                => Ops.eq(lhs,rhs);
+
+            public bool eq(FreeMonoid<T> rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool Equals(FreeMonoid<T> other)
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool neq(T lhs, T rhs)
+                => Ops.neq(lhs,rhs);
+
+            public bool neq(FreeMonoid<T> rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T reduce(IEnumerable<T> src)
+                => fold(src, concat, empty);
+        }
     }
 }

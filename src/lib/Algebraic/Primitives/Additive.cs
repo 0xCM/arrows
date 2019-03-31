@@ -13,23 +13,23 @@ namespace Z0
 
     public static class Addition 
     {
-        public static Addition<T> define<T>(Additive<T> x)
+        public static Addition<T> define<T>(Operative.Additive<T> x)
             => Addition<T>.define(x);
     }
 
     /// <summary>
     /// Reification of addition as a binary applicative
     /// </summary>
-    public readonly struct Addition<T> : Additive<T>, BinaryApply<T>
+    public readonly struct Addition<T> : Operative.Additive<T>, Operative.BinaryApply<T>
     {
         [MethodImpl(Inline)]
-        public static Addition<T> define(Additive<T> effector)
+        public static Addition<T> define(Operative.Additive<T> effector)
             => new Addition<T>(effector);
 
-        readonly Traits.Additive<T> effector;
+        readonly Operative.Additive<T> effector;
         
         [MethodImpl(Inline)]    
-        public Addition(Additive<T> effector)
+        public Addition(Operative.Additive<T> effector)
             => this.effector = effector;
 
         [MethodImpl(Inline)]    
@@ -41,7 +41,7 @@ namespace Z0
             => effector.add(lhs,rhs);
     }
 
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes a type that defines a notion of additivity
@@ -66,11 +66,15 @@ namespace Z0
 
     partial class Structure
     {
-
-        public interface Additive<S,T> : Structural<S,T>
-            where S : Additive<S,T>, new()
+        public interface Additive<S>
         {
             S add(S rhs);
+
+        }
+
+        public interface Additive<S,T> : Additive<S>, Structural<S,T>
+            where S : Additive<S,T>, new()
+        {
         }
 
     }

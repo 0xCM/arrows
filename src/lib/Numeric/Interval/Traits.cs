@@ -56,7 +56,7 @@ namespace Z0
         /// Characterizes a discrete interval
         /// </summary>
         /// <typeparam name="T">The value type</typeparam>
-        public interface DiscreteInterval<T> : Interval<T>, DiscreteSet<T> { }
+        public interface DiscreteInterval<T> : Interval<T> { }
 
         /// <summary>
         /// Characterizes an interval that does not contain its lower bound

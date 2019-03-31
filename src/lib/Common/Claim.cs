@@ -43,30 +43,27 @@ namespace Z0
             => new Claim<T>(lhs,rhs,name,predicate);
 
         public static string eq<T>(T x, T y)
-            where T : Traits.Equatable<T>, new()        
+            where T : Operative.Equatable<T>, new()        
                 => define(x,y,"==", new T().eq).demand();
                     
         public static string neq<T>(T x, T y)
-            where T : Traits.Equatable<T>, new()
+            where T : Operative.Equatable<T>, new()
                 => define(x,y,"!=", new T().neq).demand();
 
         public static string lt<T>(T x, T y)
-            where T : Traits.Ordered<T>, new()
+            where T : Operative.Ordered<T>, new()
                 => define(x,y,"<", new T().lt).demand();
 
         public static string lteq<T>(T x, T y)
-            where T : Traits.Ordered<T>, new()
+            where T : Operative.Ordered<T>, new()
                 => define(x,y,"<=", new T().lteq).demand();
 
         public static void gt<T>(T x, T y)
-            where T : Traits.Ordered<T>, new()
+            where T : Operative.Ordered<T>, new()
                 => define(x,y,">", new T().gt).demand();
 
         public static void gteq<T>(T x, T y)
-            where T : Traits.Ordered<T>, new()
-                => define(x,y,">=", new T().gteq).demand();
-        
-
+            where T : Operative.Ordered<T>, new()
+                => define(x,y,">=", new T().gteq).demand();    
     }
-
 }

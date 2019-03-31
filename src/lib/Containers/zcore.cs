@@ -200,17 +200,6 @@ public static partial class zcore
     public static KeyedValue<K,V> kvp<K,V>( (K key, V value) kv)
         => new KeyedValue<K,V>(kv);
 
-    /// <summary>
-    /// Constructs the default set associated with a type whose elements
-    /// consist of all potential values of the type.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static Traits.Set<T> set<T>() 
-        where T : IEquatable<T>
-            => TotalSet<T>.Inhabitant;
-
 
     /// <summary>
     /// Partitions a seequence into segments of a specified natural width
@@ -308,8 +297,8 @@ public static partial class zcore
     /// <param name="f">The predicate used to test values from the input sequence</param>
     /// <typeparam name="T">The input sequence type</typeparam>
     public static Z0.Slice<T> filter<T>(Traits.Slice<T> src, Func<T,bool> f)
-        where T : Structure.Equatable<T>, new()
-            => slice(src.data.Where(f));        
+        where T : Operative.Equatable<T>, new()
+            => slice(src.Where(f));        
 
     /// <summary>
     /// Transforms a sequence in reverse order

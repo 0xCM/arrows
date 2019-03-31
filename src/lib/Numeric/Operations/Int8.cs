@@ -15,8 +15,8 @@ namespace Z0
     using operand = System.SByte;
     using reify = Int8Ops;
 
-    [TypeClass(typeof(reify),typeof(operand))]
-    internal readonly struct Int8Ops : FiniteSignedInt<reify,operand>
+    [Structure(typeof(reify),typeof(operand))]
+    internal readonly struct Int8Ops : Operative.FiniteSignedInt<operand>
     {        
         public static readonly reify Inhabitant = default;
     
@@ -49,12 +49,6 @@ namespace Z0
 
         public uint bitsize 
             => BitSize;
-
-        public Addition<operand> addition 
-            => Addition.define(this);
-
-        public Multiplication<operand> multiplication 
-            => Multiplication.define(this);
 
         [MethodImpl(Inline)]   
         public operand add(operand a, operand b) 

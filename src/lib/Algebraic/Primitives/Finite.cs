@@ -6,7 +6,7 @@ namespace Z0
 {
     using static Traits;
 
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes something for which a fininte count can be defined
@@ -26,6 +26,30 @@ namespace Z0
         {
 
         }
+    }
+
+    partial class Structure
+    {
+        public interface Finite<S> 
+        {
+
+            /// <summary>
+            /// The count providing evidence that the reification is finite
+            /// </summary>
+            uint count {get;}
+
+        }        
+
+        /// <summary>
+        /// Characterizes a structure S comprised of a finite number of elements T
+        /// </summary>
+        /// <typeparam name="S">The reifying structure</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        public interface Finite<S,T> : Finite<S>
+            where S : Finite<S,T>, new()
+        {
+
+        }        
     }
 
 }

@@ -4,7 +4,7 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes operations over unsigned numbers
@@ -19,12 +19,17 @@ namespace Z0
 
     partial class Structure
     {
+        public interface Unsigned<S>
+        {
+
+        }
+
         /// <summary>
         /// Characterizes a structural unsigned number
         /// </summary>
         /// <typeparam name="S">The type of the realizing structure</typeparam>
         /// <typeparam name="T">The type of the underling primitive</typeparam>
-        public interface Unsigned<S,T> : Structural<S,T>
+        public interface Unsigned<S,T> : Unsigned<S>, Structural<S,T>
             where S : Unsigned<S,T>, new()
         {
 

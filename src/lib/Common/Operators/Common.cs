@@ -8,7 +8,7 @@ namespace Z0
     using System.Collections.Generic;
     using static zcore;
 
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes an operator over a specified type

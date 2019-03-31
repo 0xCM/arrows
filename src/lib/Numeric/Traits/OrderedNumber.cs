@@ -6,7 +6,7 @@ namespace Z0
 {
     using System;
 
-    partial class Traits
+    partial class Operative
     {
         /// <summary>
         /// Characterizes numeric operations in the presence of order
@@ -18,11 +18,16 @@ namespace Z0
 
     partial class Structure
     {
+        public interface OrderedNumber<S> :  Ordered<S>,  Number<S>
+        {
+
+        }
+        
         /// <summary>
         /// Characterizes a structural number with order
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public interface OrderedNumber<S,T> :  Ordered<S,T>,  Number<S,T>
+        public interface OrderedNumber<S,T> : OrderedNumber<S>,  Ordered<S,T>,  Number<S,T>
             where S : OrderedNumber<S,T>, new() {}
     }
 

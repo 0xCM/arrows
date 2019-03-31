@@ -12,8 +12,8 @@ namespace Z0
     using operand = System.Int64;
     using reify = Int64Ops;
 
-    [TypeClass(typeof(reify),typeof(operand))]
-    internal readonly struct Int64Ops : FiniteSignedInt<reify,operand> 
+    [Structure(typeof(reify),typeof(operand))]
+    internal readonly struct Int64Ops : Operative.FiniteSignedInt<operand> 
     {
         public static readonly reify Inhabitant = default;
     
@@ -55,12 +55,6 @@ namespace Z0
 
         public uint bitsize 
             => BitSize;
-
-        public Addition<operand> addition 
-            => Addition.define(this);
-
-        public Multiplication<operand> multiplication 
-            => Multiplication.define(this);
 
         public operand apply(operand lhs, operand rhs)
             => throw new NotImplementedException();
