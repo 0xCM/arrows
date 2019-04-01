@@ -11,18 +11,13 @@ namespace Z0
 
     using static zcore;
 
-    public interface Randomizer<T>
-        where T: IConvertible
-    {
-        real<T> next();
-        IEnumerable<real<T>> next(intg<ulong> count);
-    }
+
 
     /// <summary>
     /// Defines pseudorandom number generator
     /// </summary>
     /// <remarks> Adapted from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
-    public class RandUInt : Randomizer<ulong>
+    public class Randomizer 
     {
         /* When supplied to the jump function, it is equivalent
         to 2^128 calls to next(); it can be used to generate 2^128
@@ -48,26 +43,26 @@ namespace Z0
 
         readonly ulong[] seed;
 
-        public RandUInt()
+        public Randomizer()
         {
             seed = guiseed();
             jump(J128);
         }
 
-        public RandUInt(Guid g1, Guid g2)
+        public Randomizer(Guid g1, Guid g2)
         {
             this.seed = items(g1,g2).ToLongArray();
             jump(J128);
         }
 
-        public RandUInt(ulong[] seed)
+        public Randomizer(ulong[] seed)
         {
             this.seed = seed;
             jump(J128);
         }
 
         [MethodImpl(Inline)]
-        public real<ulong> next() 
+        public real<ulong> one() 
         {
             var next = rotl(seed[1] * 5, 7) * 9;
             var t = seed[1] << 17;
@@ -102,7 +97,7 @@ namespace Z0
                         s2 ^= seed[2];
                         s3 ^= seed[3];
                     }
-                    next();	
+                    one();	
                 }
                 
             seed[0] = s0;
@@ -111,28 +106,69 @@ namespace Z0
             seed[3] = s3;
         }          
 
-        public IEnumerable<real<ulong>> next(intg<ulong> count)
+        public byte one(byte min, byte max)
         {
-            for(var j = count.zero; j<count; j++)
-                yield return next();
+            var width = (ulong)(max - min);
+            var offset = (ulong)(min + 1);
+            var result = one().data % width + offset;
+            return (byte)result;            
         }
 
-        public IEnumerable<real<ulong>> next(intg<ulong> count, ulong min, ulong max)
+        public double one(double min, double max)
         {
             var width = max - min;
             var offset = min + 1;
-            foreach(var n in next(count))
+            var @base = (double)one().data;
+            return (@base % width + offset)/width;
+        }
+
+        public ushort one(ushort min, ushort max)
+        {
+            var width = (ulong)(max - min);
+            var offset = (ulong)(min + 1);
+            var result = one().data % width + offset;
+            return (ushort)result;            
+        }
+
+        public uint one(uint min, uint max)
+        {
+            var width = (ulong)(max - min);
+            var offset = (ulong)(min + 1);
+            var result = one().data % width + offset;
+            return (uint)result;            
+        }
+
+        public ulong one(ulong min, ulong max)
+        {
+            var width = max - min;
+            var offset = min + 1;
+            var result = one().data % width + offset;
+            return result;            
+        }
+
+        public IEnumerable<ulong> many(ulong count)
+        {
+            for(var j = 0u; j<count; j++)
+                yield return one();
+        }
+
+        public IEnumerable<ulong> many(ulong count, ulong min, ulong max)
+        {
+            var width = max - min;
+            var offset = min + 1;
+            foreach(var n in many(count))
                 yield return (n % width + offset);
         }
 
-        public IEnumerable<real<uint>> next(intg<ulong> count, uint min, uint max)
-            => next(count, (ulong)min, (ulong)max).Select(x => real<uint>(x));
+        public IEnumerable<uint> many(ulong count, uint min, uint max)
+            => many(count, (ulong)min, (ulong)max).Cast<uint>();
 
-        public IEnumerable<real<ushort>> next(intg<ulong> count, ushort min, ushort max)
-            => next(count, (ulong)min, (ulong)max).Select(x => real<ushort>(x));
+        public IEnumerable<ushort> many(ulong count, ushort min, ushort max)
+            => many(count, (ulong)min, (ulong)max).Cast<ushort>();
 
-        public IEnumerable<real<byte>> next(intg<ulong> count, byte min, byte max)
-            => next(count, (ulong)min, (ulong)max).Select(x => real<byte>(x));
+        public IEnumerable<byte> many(ulong count, byte min, byte max)
+            => many(count, (ulong)min, (ulong)max).Cast<byte>();
+
 
     }
 

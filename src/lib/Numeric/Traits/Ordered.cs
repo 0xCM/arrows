@@ -18,16 +18,14 @@ namespace Z0
 
     partial class Structure
     {
-        public interface OrderedNumber<S> :  Ordered<S>,  Number<S>
-        {
-
-        }
+        public interface OrderedNumber<S> :  Ordered<S>,  Number<S> { }
         
         /// <summary>
         /// Characterizes a structural number with order
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        public interface OrderedNumber<S,T> : OrderedNumber<S>,  Ordered<S,T>,  Number<S,T>
+        /// <typeparam name="S">The reification type</typeparam>
+        /// <typeparam name="T">The underlying type</typeparam>
+        public interface OrderedNumber<S,T> : OrderedNumber<S>
             where S : OrderedNumber<S,T>, new() {}
     }
 

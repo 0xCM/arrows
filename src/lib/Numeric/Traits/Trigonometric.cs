@@ -69,15 +69,6 @@ namespace Z0
         
         }
 
-        /// <summary>
-        /// Characterizes a trigonometric structure
-        /// </summary>
-        /// <typeparam name="S">The structure type</typeparam>
-        /// <typeparam name="T">The underlying type</typeparam>
-        public interface Trigonmetric<S,T> : Trigonmetric<S>, Structural<S,T>
-            where S : Trigonmetric<S,T>, new()
-        {
-        
-        }
+
     }
 }

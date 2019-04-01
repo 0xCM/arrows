@@ -11,13 +11,13 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static zcore;
-    using static Traits;
+    using static Operative;
     
     using operand = System.Numerics.BigInteger;
     using reify = BigIntOps;
 
     [Structure(typeof(reify),typeof(operand))]
-    internal readonly struct BigIntOps : Operative.InfiniteSignedInt<operand>
+    internal readonly struct BigIntOps : InfiniteSignedInt<operand>
     {
     
         public static readonly reify Inhabitant = default;

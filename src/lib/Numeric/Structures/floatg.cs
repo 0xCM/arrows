@@ -11,13 +11,12 @@ namespace Z0
     using System.Runtime.CompilerServices;    
 
     using static zcore;
-    using static Traits;
-
+    using static Structure;
 
     /// <summary>
     /// Represents an floateger predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct floatg<T> : Structure.Floating<floatg<T>,T>
+    public readonly struct floatg<T> : Floating<floatg<T>,T>
     {
         static readonly Operative.Floating<T> Ops = Resolver.floating<T>();
 

@@ -67,7 +67,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Slice<T> add<T>(Structure.Slice<T> s1, Structure.Slice<T> s2)
             where T : Structure.Semiring<T>, Equality<T>, new()     
-                => slice(zip(s1,s2, (x,y) =>  x.add(y)));
+                => slice(fuse(s1,s2, (x,y) =>  x.add(y)));
 
         /// <summary>
         /// Calculates the component-wise sum of two slices 
@@ -78,14 +78,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Slice<T> mul<T>(Structure.Slice<T> s1, Structure.Slice<T> s2)
             where T : Structure.Semiring<T>, Equality<T>, new()     
-                => slice(zip(s1,s2, (x,y) =>  x.mul(y)));
+                => slice(fuse(s1,s2, (x,y) =>  x.mul(y)));
 
 
         [MethodImpl(Inline)]
         public static Slice<N,T> square<N,T>(Slice<N,T> x)
             where N : Z0.TypeNat, new() 
             where T : Structure.Semiring<T>,Equality<T>,  new()     
-                => new Slice<N,T>(zip(x,x, (a,b) => a.mul(b)));
+                => new Slice<N,T>(fuse(x,x, (a,b) => a.mul(b)));
 
         [MethodImpl(Inline)]
         public static T reduce<N,T>(Slice<N,T> s, Func<T,T,T> reducer)

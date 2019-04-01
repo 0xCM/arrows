@@ -8,7 +8,7 @@ namespace Z0
         
         static readonly Guid s2 = Guid.Parse("83861b3a-8012-4edf-aaee-c7d7136117cf");
         
-        public static readonly RandUInt Random = new RandUInt(s1,s2);
+        public static readonly Randomizer Random = new Randomizer(s1,s2);
 
         public static Context<T> get<T>()
             => Context<T>.Current;
@@ -22,10 +22,10 @@ namespace Z0
         
         static readonly Guid s2 = Guid.Parse("83861b3a-8012-4edf-aaee-c7d7136117cf");
         
-        static readonly RandUInt random = new RandUInt(s1,s2);
+        static readonly Randomizer random = new Randomizer(s1,s2);
 
 
-        public RandUInt Random = random;
+        public Randomizer Random = random;
 
 
     }   

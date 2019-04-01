@@ -35,16 +35,6 @@ namespace Z0
         }
     }
 
-    public static class rvar
-    {
-        public static rvar<T> define<T>(Traits.Distribution<T> dist)
-            => new rvar<T>(); 
-    }
 
-    public readonly struct rvar<T>
-    {
-
-
-    }
 
 }

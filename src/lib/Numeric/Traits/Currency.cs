@@ -32,7 +32,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The structural reification type</typeparam>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Currency<S,T> : BoundReal<S,T>, Fractional<S,T>
+        public interface Currency<S,T> : Currency<S>, Structural<S,T>
             where S : Currency<S,T>, new()
         {
             

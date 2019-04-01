@@ -10,12 +10,12 @@ namespace Z0
 
     using static zcore;
 
-    using static Traits;
+    using static Operative;
     using operand = System.UInt32;
     using reify = UInt32Ops;
     
     [Structure(typeof(reify),typeof(operand))]
-    internal readonly struct UInt32Ops : Operative.FiniteNatural<operand>
+    internal readonly struct UInt32Ops : FiniteNatural<operand>
     {
         public static readonly reify Inhabitant = default;
     

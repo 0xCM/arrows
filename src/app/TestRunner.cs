@@ -13,6 +13,7 @@ namespace Z0
 
     using static Nats;
     using static zcore;
+    using static Z0.Tests.ztest;
 
     public class TestRunner
     {
@@ -22,11 +23,11 @@ namespace Z0
         }
 
 
-        static void failure(string info, [CallerMemberName] string member = null)
-            => error($"{member} test failed: {info}");
+        static void failure(string info, string member)
+            => error($"{member}: test failed - {info}");
 
-        static void success([CallerMemberName] string member = null)
-            => inform($"{member} test succeded");
+        static void success(string member, long ms)
+            => inform($"succeeded {ms}ms",member);
 
         public TestRunner()
         {
@@ -50,8 +51,11 @@ namespace Z0
         {
             try
             {
+                var name = $"{test.DeclaringType.DisplayName()}/{test.Name}";
+                hilite("executing",  name);
+                var sw = stopwatch();
                 test.Invoke(null,null);                    
-                success(test.Name);
+                success(name,sw.ElapsedMilliseconds);
             }
             catch(Exception e)
             {

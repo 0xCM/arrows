@@ -4,9 +4,16 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    
+    using System;
+    using System.Collections.Generic;
+
     partial class Operative
     {
+
+        public interface RealNumber<T> : OrderedNumber<T>, Trigonmetric<T>
+        {
+
+        }
 
         /// <summary>
         /// Characterizes operations over (ordered) values that 
@@ -18,25 +25,38 @@ namespace Z0
 
         }
 
+
     }
 
     partial class Structure
     {
+        /// <summary>
+        /// Characterizes a structured real
+        /// </summary>
+        /// <typeparam name="S">The reification type</typeparam>
+        public interface RealNumber<S> : OrderedNumber<S>, Trigonmetric<S>, IComparable<S>
+        {
+
+        }
+
         public interface BoundReal<S> :  RealNumber<S>
         {
 
         }
-        /// <summary>
-        /// Characterizes a bounded structural number
-        /// </summary>
-        /// <typeparam name="S">The type of the realizing structure</typeparam>
-        /// <typeparam name="T">The type of the underling primitive</typeparam>
-        public interface BoundReal<S,T> :  RealNumber<S,T>
-            where S : BoundReal<S,T>, new()
-        {
 
+
+        /// <summary>
+        /// Characterizes a reification structure over real numbers
+        /// </summary>
+        /// <typeparam name="S">The reification type</typeparam>
+        /// <typeparam name="T">The underlying type</typeparam>
+        public interface RealNumber<S,T> : RealNumber<S> 
+            where S : RealNumber<S,T>, new()
+        {
 
         }
 
     }
+
+
 }

@@ -188,14 +188,6 @@ partial class zcore
                     _ => Sign.Neutral
                 };
 
-    /// <summary>
-    /// Constructs a bit from the data in an integral value at a specified position
-    /// </summary>
-    /// <param name="src">The source value</param>
-    /// <param name="pos">The bit position</param>
-    /// <typeparam name="T">The underlying integral type</typeparam>
-    [MethodImpl(Inline)]   
-    public static bit bit<T>(intg<T> x, int pos)
-        => Bits.bit(x, pos);
+    
 }
 

@@ -11,7 +11,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T"></typeparam>
         public interface Uniform<T> : Distribution<T>
-            where T : new()
         {
             /// <summary>
             /// The minimum potential value

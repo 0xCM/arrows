@@ -9,14 +9,14 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    using static Traits;
+    using static Operative;
 
     using operand = System.Single;
     using reify = Float32Ops;
     using SysMath = System.MathF;
     
     [Structure(typeof(reify),typeof(operand))]
-    internal readonly struct Float32Ops : Operative.FiniteFloat<operand>
+    internal readonly struct Float32Ops : FiniteFloat<operand>
     {
     
         public static readonly reify Inhabitant = default;

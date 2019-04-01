@@ -12,9 +12,9 @@ namespace Z0
 
     
     using static zcore;
-    using static Traits;
+    using static Structure;
 
-    public readonly struct num<T> : Structure.OrderedNumber<num<T>,T>
+    public readonly struct num<T> : OrderedNumber<num<T>,T>
     {
         static readonly Operative.OrderedNumber<T> Ops = Resolver.ordnum<T>();
 

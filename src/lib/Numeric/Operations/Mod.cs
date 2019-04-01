@@ -32,11 +32,6 @@ namespace Z0
         public T zero 
             => @base.zero;
 
-
-        public ModOps<N, T> inhabitant 
-            => Inhabitant;
-
-
         [MethodImpl(Inline)]
         public T reduce(T src) 
             => Ops.mod(src, @base);
@@ -76,12 +71,6 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public T sub(T lhs, T rhs)
-            => Ops.mod(Ops.sub(lhs,rhs), @base);
-
-        public T apply(T lhs, T rhs)
-        {
-            throw new NotImplementedException();
-        }
+            => Ops.mod(Ops.sub(lhs,rhs), @base);        
     }
-
 }

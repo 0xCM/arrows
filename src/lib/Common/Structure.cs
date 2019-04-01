@@ -10,6 +10,8 @@ namespace Z0
 
     using static zcore;
 
+
+
     /// <summary>
     /// Characterizes structural reification over a type S
     /// </summary>

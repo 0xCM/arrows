@@ -9,13 +9,13 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    using static Traits;
+    using static Operative;
 
     using operand = System.Int32;
     using reify = Int32Ops;
 
     [Structure(typeof(reify),typeof(operand))]
-    internal readonly struct Int32Ops : Operative.FiniteSignedInt<operand>
+    internal readonly struct Int32Ops : FiniteSignedInt<operand>
 
     {
         public static readonly reify Inhabitant = default;
@@ -48,10 +48,6 @@ namespace Z0
 
         public uint bitsize 
             => BitSize;
-
-        
-        public operand apply(operand lhs, operand rhs)
-            => throw new NotImplementedException();
 
         [MethodImpl(Inline)]   
         public operand add(operand lhs, operand rhs) 

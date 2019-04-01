@@ -63,7 +63,7 @@ namespace Z0
         /// Characterizes a structure for a floating point number
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface Floating<S,T> : Floating<S>, RealNumber<S,T>, Fractional<S,T>, Signed<S,T>, Subtractive<S,T>, Trigonmetric<S,T>, Structural<S,T>
+        public interface Floating<S,T> : Floating<S>,  Structural<S,T>
             where S : Floating<S,T>, new()
         {
 

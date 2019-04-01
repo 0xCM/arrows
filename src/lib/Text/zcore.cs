@@ -24,12 +24,19 @@ using static Z0.ReflectionFlags;
 partial class zcore
 {
 
-    
+    /// <summary>
+    /// Boxes a value
+    /// </summary>
+    /// <param name="value">The value to box</param>
+    [MethodImpl(Inline)]
+    public static Box<T> box<T>(T value)
+        where T : struct
+        => value;
+
     /// <summary>
     /// Formats and concatenates an arbitrary number of elements
     /// </summary>
     /// <param name="rest">The formattables to be rendered and concatenated</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
     public static string format(Formattable first, params Formattable[] rest)
         => first.format() + concat(rest.Select(x => x.format()));
@@ -226,6 +233,22 @@ partial class zcore
     /// <param name="member">The calling member</param>
     public static void inform(object msg, [CallerMemberName] string member = null)
         => colorize(ConsoleColor.Green, () => print($"{member}: {msg}"));
+
+    /// <summary>
+    /// Emits a highlighted information-level message
+    /// </summary>
+    /// <param name="msg">The message to emit</param>
+    /// <param name="member">The calling member</param>
+    public static void hilite(object msg, [CallerMemberName] string member = null)
+        => colorize(ConsoleColor.Blue, () => print($"{member}: {msg}"));
+
+    /// <summary>
+    /// Emits a verbose-level message
+    /// </summary>
+    /// <param name="msg">The message to emit</param>
+    /// <param name="member">The calling member</param>
+    public static void babble(object msg, [CallerMemberName] string member = null)
+        => colorize(ConsoleColor.DarkGray, () => print($"{member}: {msg}"));
 
     /// <summary>
     /// Emits an error-level message
@@ -1180,7 +1203,7 @@ partial class zcore
     /// <param name="s">The value to parse</param>
     /// <returns></returns>
     public static T parse<T>(string s)
-        => ifNotNull(s, _ => (T)parsers[typeof(T)](s), () => default(T));
+        => ifvalue(s, _ => (T)parsers[typeof(T)](s), () => default(T));
 
     /// <summary>
     /// Attempts to parse the supplied value
@@ -1192,7 +1215,7 @@ partial class zcore
     {
         try
         {
-            return ifNotNull(s, _ => (T)parsers[typeof(T)](s), () => none<T>());
+            return ifvalue(s, _ => (T)parsers[typeof(T)](s), () => none<T>());
         }
         catch (Exception e)
         {

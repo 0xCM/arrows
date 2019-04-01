@@ -42,13 +42,16 @@ namespace Z0
         static Claim<T> define<T>(T lhs, T rhs, string name, Func<T,T,bool> predicate)
             => new Claim<T>(lhs,rhs,name,predicate);
 
+        public static void fail(string msg)
+            => throw new Exception(msg);
+            
         public static string eq<T>(T x, T y)
-            where T : Equality<T>, new()        
-                => define(x,y,"==", new T().eq).demand();
+            where T : Equatable<T>, new()        
+                => define(x,y,"==",  (a,b) => a.eq(b)).demand();
                     
         public static string neq<T>(T x, T y)
-            where T : Equality<T>, new()
-                => define(x,y,"!=", new T().neq).demand();
+            where T : Equatable<T>, new()
+                => define(x,y,"!=", (a,b) => a.neq(b)).demand();
 
         public static string lt<T>(T x, T y)
             where T : Operative.Ordered<T>, new()

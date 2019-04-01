@@ -9,13 +9,13 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    using static Traits;
+    using static Operative;
     
     using operand = System.Int16;
     using reify = Int16Ops;
 
     [Structure(typeof(reify),typeof(operand))]
-    internal readonly struct Int16Ops : Operative.FiniteSignedInt<operand>
+    internal readonly struct Int16Ops : FiniteSignedInt<operand>
 
     {        
         public static readonly reify Inhabitant = default;

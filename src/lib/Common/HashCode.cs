@@ -11,6 +11,28 @@ namespace Z0
     
     using static zcore;
 
+    public class Box<T>
+        where T : struct
+    {
+        [MethodImpl(Inline)]
+        public static implicit operator T(Box<T> box)
+            => box.unbox();
+
+        [MethodImpl(Inline)]
+        public static implicit operator Box<T>(T value)
+            => new Box<T>(value);
+
+        readonly T boxed;
+        
+        [MethodImpl(Inline)]
+        public Box(T boxed)
+            => this.boxed = boxed;
+
+        [MethodImpl(Inline)]
+        public T unbox()
+            => boxed;
+    }
+
     public static class HashCodeX
     {
          //Prime numbers to use when generating a hash code. Taken from John Skeet's answer on SO:

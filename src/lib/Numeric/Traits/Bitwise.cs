@@ -8,7 +8,7 @@ namespace Z0
 
     partial class Operative
     {
-        public interface BitShifts<T> : Operational<T>
+        public interface Shifty<T> : Operational<T>
         {
             T lshift(T lhs, int rhs);
 
@@ -60,7 +60,7 @@ namespace Z0
         /// <summary>
         /// Characterizes bitwise operations over an operand
         /// </summary>
-        public interface Bitwise<T> : BitLogic<T>, BitShifts<T> { }
+        public interface Bitwise<T> : BitLogic<T>, Shifty<T> { }
 
 
     }
@@ -68,7 +68,7 @@ namespace Z0
     partial class Structure
     {
 
-        public interface BitShifts<S>
+        public interface Shifty<S>
         {
             S lshift(int rhs);
 
@@ -76,11 +76,6 @@ namespace Z0
 
         }
 
-        public interface BitShifts<S,T> : BitShifts<S>, Structural<S,T>
-            where S : BitShifts<S,T>, new()
-        {
-
-        }
 
         public interface BitLogic<S> 
         {
@@ -112,29 +107,11 @@ namespace Z0
             S flip();
         }
 
-        /// <summary>
-        /// Characterizes a structure over which logical bitwise operations may be applied
-        /// </summary>
-        /// <typeparam name="S"></typeparam>
-        /// <typeparam name="T"></typeparam>
-        public interface BitLogic<S,T> :  BitLogic<S>, Structural<S,T>
-            where S : BitLogic<S,T>, new()
+        public interface Bitwise<S> : BitLogic<S>, Shifty<S>
         {
 
         }
 
-        public interface Bitwise<S> : BitLogic<S>, BitShifts<S>
-        {
-
-        }
-
-        /// <summary>
-        /// Characterizes a structure that supports bitwise operations
-        /// </summary>
-        /// <typeparam name="S">The structure type</typeparam>
-        /// <typeparam name="T">The underlying operand type</typeparam>
-        public interface Bitwise<S,T> : Bitwise<S>, BitLogic<S,T>, BitShifts<S,T>
-            where S : Bitwise<S,T>, new() { }
 
     }
 

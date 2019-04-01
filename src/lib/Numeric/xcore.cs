@@ -18,6 +18,10 @@ namespace Z0
         public static IReadOnlyList<T> Unwrap<T>(this IEnumerable<intg<T>> src)
             => src.Select(x => x.data).ToList();
 
+        [MethodImpl(Inline)]   
+        public static IReadOnlyList<T> Unwrap<T>(this IEnumerable<real<T>> src)
+            => src.Select(x => x.data).ToList();
+
         [MethodImpl(Inline)]
         public static T SumG<T>(this IEnumerable<T> src)
             where T : Structure.Additive<T>, new()
@@ -32,6 +36,20 @@ namespace Z0
                 max = item.gt(max) ? item : max;
             return max;
         }
+
+        public static real<T> AvgG<T>(this IEnumerable<real<T>> src) 
+        {
+            var result = default(real<T>);
+            var count = default(real<T>);
+            foreach(var val in src)
+            {
+                result += val;
+                ++count;
+            }
+            return count.nonzero() ? result/count : result;
+
+        }
+
 
    }
 }

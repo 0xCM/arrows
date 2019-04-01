@@ -71,11 +71,11 @@ public static partial class zcore
     /// <param name="left">The left enumerator</param>
     /// <param name="right">The right enumerator</param>
     /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
     public static (T left, T right) current<T>((IEnumerator<T> left, IEnumerator<T> right) enumerator)
         => (enumerator.left.Current, enumerator.right.Current);
 
+    [MethodImpl(Inline)]   
     public static IEnumerable<(T left, T right)> zip<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
     {
         var e = enumerator<T>(lhs,rhs);
@@ -84,15 +84,13 @@ public static partial class zcore
     }
 
     /// <summary>
-    /// Zips the source sequences and fuses elements componentwise via a binary operator
-    /// to determine the result sequence
+    /// Combines two input sequences to form a single target sequence
     /// </summary>
     /// <param name="lhs">The first sequence</param>
     /// <param name="rhs">The second sequence</param>
-    /// <param name="f">The binary operator that fuses positional pairs</param>
-    /// <typeparam name="T">The squence type</typeparam>
-    /// <returns></returns>
-    public static IEnumerable<T> zip<T>(IEnumerable<T> lhs, IEnumerable<T> rhs, Func<T,T,T> f)
+    /// <param name="f">A binary operator that composes pairs of elements from the input sequences</param>
+    /// <typeparam name="T">The sequence element type</typeparam>
+    public static IEnumerable<T> fuse<T>(IEnumerable<T> lhs, IEnumerable<T> rhs, Func<T,T,T> f)
         => from pair in zip(lhs,rhs) select f(pair.left, pair.right);
 
     
@@ -102,12 +100,18 @@ public static partial class zcore
     /// </summary>
     /// <param name="left">The left pair component</param>
     /// <param name="right">The right pair component</param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <typeparam name="T">The sequence element type</typeparam>
     [MethodImpl(Inline)]   
     public static bool any<T>(IEnumerable<(T left, T right)> src, Func<T,T,bool> predicate)
         => src.Any(pair => predicate(pair.left, pair.right));
 
+    /// <summary>
+    /// Returns true if an element is found in the soruce sequence that 
+    /// satisfies a predicate. 
+    /// </summary>
+    /// <param name="src">The source sequence</param>
+    /// <param name="predicate">The predcicate to eveluate</param>
+    /// <typeparam name="T">The sequence element type</typeparam>
     [MethodImpl(Inline)]   
     public static bool any<T>(IEnumerable<T> src, Func<T,bool> predicate)
         => src.Any(predicate);
@@ -118,23 +122,21 @@ public static partial class zcore
     /// </summary>
     /// <param name="src">The source sequence</param>
     /// <param name="predicate">The predicate to evaluate over sequence elements</param>
-    /// <typeparam name="T">The element type</typeparam>
-    /// <returns></returns>
+    /// <typeparam name="T">The sequence element type</typeparam>
     [MethodImpl(Inline)] 
     public static Option<T> first<T>(IEnumerable<T> src, Func<T,bool> predicate)
         => src.FirstOrDefault(predicate);
 
     /// <summary>
-    /// Applies a function to elements of an input sequence to produce 
-    /// a transformed output sequence
+    /// Applies a function f:S->T over an input sequence [S] to obtain 
+    /// a target sequence [T]
     /// </summary>
     /// <param name="f">The function to be applied</param>
     /// <param name="src">The source sequence</param>
-    /// <typeparam name="A">The input element type</typeparam>
-    /// <typeparam name="B">The output element type</typeparam>
-    /// <returns></returns>
+    /// <typeparam name="S">The source element type</typeparam>
+    /// <typeparam name="T">The target element type</typeparam>
     [MethodImpl(Inline)]   
-    public static IEnumerable<B> map<A,B>(IEnumerable<A> src, Func<A,B> f)
+    public static IEnumerable<T> map<S,T>(IEnumerable<S> src, Func<S,T> f)
         => src.Select(x => f(x));
 
 
@@ -195,11 +197,11 @@ public static partial class zcore
 
 
     /// <summary>
-    /// Creates a <see cref="lazy{T}(Func{T})"/>.
+    /// Creates a deferred value
     /// </summary>
-    /// <param name="factory">A function that creates an instance of the lazy object</param>
+    /// <param name="factory">A function that produces a value upon demeand</param>
     [MethodImpl(Inline)]
-    public static Lazy<T> lazy<T>(Func<T> factory)
+    public static Lazy<T> defer<T>(Func<T> factory)
         => new Lazy<T>(factory);
 
     /// <summary>
@@ -222,10 +224,41 @@ public static partial class zcore
     /// <typeparam name="T">The object type</typeparam>
     /// <param name="x">The object to test</param>
     /// <param name="replace">The function that yields a replacement value in the event that the supplied value is null</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
-    public static T ifNull<T>(T x, Func<T> replace)
+    public static T coalesce<T>(T x, Func<T> replace)
         where T : class => x ?? replace();
+
+    /// <summary>
+    /// Returns the source value if not null; otherwise returns the fallback value
+    /// </summary>
+    /// <param name="x">The source value</param>
+    /// <param name="fallback">The value to return when the source is null</param>
+    /// <typeparam name="T">The source value type</typeparam>
+    [MethodImpl(Inline)]
+    public static T coalesce<T>(T x, T replace)
+        where T : class => x ?? replace;
+
+    /// <summary>
+    /// Returns the source value if not null; otherwise result of fallback invocation
+    /// </summary>
+    /// <param name="x">The source value</param>
+    /// <param name="fallback">A function that produces a value if needed</param>
+    /// <typeparam name="T">The source value type</typeparam>
+    [MethodImpl(Inline)]
+    public static T coalesce<T>(T? x, Func<T> fallback)
+        where T : struct
+            => x == null ? fallback() : x.Value;
+
+    /// <summary>
+    /// Returns the source value if not null; otherwise returns the fallback value
+    /// </summary>
+    /// <param name="x">The source value</param>
+    /// <param name="fallback">The value to return when the source is null</param>
+    /// <typeparam name="T">The source value type</typeparam>
+    [MethodImpl(Inline)]
+    public static T coalesce<T>(T? x, T fallback)
+        where T : struct
+            => x == null ? fallback : x.Value;
 
     /// <summary>
     /// Maps the source <paramref name="x"/> to a value in the target space <typeparamref name="Y"/>
@@ -236,8 +269,36 @@ public static partial class zcore
     /// <param name="null"></param>
     /// <param name="else"></param>
     [MethodImpl(Inline)]
-    public static Y ifNull<X, Y>(X x, Func<Y> @null, Func<X, Y> @else)
+    public static Y ifnull<X, Y>(X x, Func<Y> @null, Func<X, Y> @else)
         => x == null ? @null() : @else(x);
+
+    /// <summary>
+    /// Evaluates a function over a value if the value is not null; otherwise,
+    /// returns the default result value
+    /// </summary>
+    /// <typeparam name="S"></typeparam>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="x"></param>
+    /// <param name="f1"></param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static T ifvalue<S, T>(S x, Func<S, T> f1, T @default = default)
+        => x != null ? f1(x) : @default;
+
+    /// <summary>
+    /// Evaluates a function over a value if the value is not null; otherwise invokes
+    /// a function that will produce a value that is within the expected range
+    /// </summary>
+    /// <typeparam name="S">The object type</typeparam>
+    /// <typeparam name="T">The function result type</typeparam>
+    /// <param name="x">The object to test</param>
+    /// <param name="f1">The non-null evaluator</param>
+    /// <param name="f2">The null evaluator</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static T ifvalue<S, T>(S x, Func<S, T> f1, Func<T> f2)
+        where S : class => (x != null) ? f1(x) : f2();
+
 
     /// <summary>
     /// Executes one action if a condition is true and another should it be false
@@ -286,33 +347,6 @@ public static partial class zcore
     }
 
 
-    /// <summary>
-    /// Evaluates a function over a value if the value is not null; otherwise,
-    /// returns the default result value
-    /// </summary>
-    /// <typeparam name="S"></typeparam>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="x"></param>
-    /// <param name="f1"></param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static T ifNotNull<S, T>(S x, Func<S, T> f1, T @default = default)
-        => x != null ? f1(x) : @default;
-
-    /// <summary>
-    /// Evaluates a function over a value if the value is not null; otherwise invokes
-    /// a function that will produce a value that is within the expected range
-    /// </summary>
-    /// <typeparam name="S">The object type</typeparam>
-    /// <typeparam name="T">The function result type</typeparam>
-    /// <param name="x">The object to test</param>
-    /// <param name="f1">The non-null evaluator</param>
-    /// <param name="f2">The null evaluator</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static T ifNotNull<S, T>(S x, Func<S, T> f1, Func<T> f2)
-        where S : class => (x != null) ? f1(x) : f2();
-
 
     /// <summary>
     /// Executes one of two functions depending on the evaulation criterion
@@ -325,7 +359,7 @@ public static partial class zcore
     /// <param name="onFalse">The function to evaulate when the criterion is false</param>
     /// <returns></returns>
     [DebuggerStepperBoundary, MethodImpl(Inline)]
-    public static Y ifElse<X, Y>(bool criterion, X value, Func<X, Y> onTrue, Func<X, Y> onFalse)
+    public static Y ifelse<X, Y>(bool criterion, X value, Func<X, Y> onTrue, Func<X, Y> onFalse)
         => criterion ? onTrue(value) : onFalse(value);
 
     /// <summary>
@@ -333,12 +367,12 @@ public static partial class zcore
     /// </summary>
     /// <typeparam name="X">The function input type</typeparam>
     /// <param name="criterion">The criterion on which to branch</param>
-    /// <param name="onTrue">The function to evaulate when the criterion is true</param>
-    /// <param name="onFalse">The function to evaulate when the criterion is false</param>
+    /// <param name="true">The function to evaulate when the criterion is true</param>
+    /// <param name="false">The function to evaulate when the criterion is false</param>
     /// <returns></returns>
     [DebuggerStepperBoundary, MethodImpl(Inline)]
-    public static X ifElse<X>(bool criterion, Func<X> onTrue, Func<X> onFalse)
-        => criterion ? onTrue() : onFalse();
+    public static X ifelse<X>(bool criterion, Func<X> @true, Func<X> @false)
+        => criterion ? @true() : @false();
 
     /// <summary>
     /// Executes a function if the criterion is true, otherwise returns the supplied value
@@ -348,21 +382,48 @@ public static partial class zcore
     /// <param name="value">The value to supply to the chosen function</param>
     /// <param name="onTrue">The function to evaulate when the criterion is true</param>
     /// <returns></returns>
-    [DebuggerStepperBoundary, MethodImpl(Inline)]
+    [MethodImpl(Inline)]
     public static T ifTrue<T>(bool criterion, T value, Func<T, T> onTrue)
         => criterion ? onTrue(value) : value;
 
 
-    /// <summary>
-    /// Returns the source <paramref name="x"/> if not null; otherwise returns <paramref name="replacement"/>
-    /// </summary>
-    /// <typeparam name="X"></typeparam>
-    /// <param name="x"></param>
-    /// <param name="replacement"></param>
-    /// <returns></returns>
+
     [MethodImpl(Inline)]
-    public static X ifNullValue<X>(X? x, X replacement)
-        where X : struct
-            => x == null ? replacement : (X)x;
+    public static void iter<T>(intg<T> min, intg<T> max, Action<T> f)
+    {
+       for(var i = min; i< max; i++) 
+            f(i);
+    }
+
+    [MethodImpl(Inline)]
+    public static void iter(int min, int max, Action<int> f)
+    {
+       for(var i = min; i< max; i++) 
+            f(i);
+    }
+
+    [MethodImpl(Inline)]
+    public static void iter(long min, long max, Action<long> f)
+    {
+       for(var i = min; i< max; i++) 
+            f(i);
+    }
+
+    [MethodImpl(Inline)]
+    public static void iter(ulong min, ulong max, Action<ulong> f)
+    {
+       for(var i = min; i< max; i++) 
+            f(i);
+    }
+
+    /// <summary>
+    /// Constructs a bit from the data in an integral value at a specified position
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <param name="pos">The bit position</param>
+    /// <typeparam name="T">The underlying integral type</typeparam>
+    [MethodImpl(Inline)]   
+    public static bit bit<T>(intg<T> x, int pos)
+        => Bits.bit(x, pos);
 
 }

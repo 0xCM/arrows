@@ -52,35 +52,15 @@ namespace Z0
 
         public interface Integer<S> :  RealNumber<S>, Stepwise<S>, Bitwise<S> { }
 
-        public interface FiniteSignedInt<S> : Integer<S>, Finite<S>, Signed<S> {}
-
-        public interface InfiniteSignedInt<S> : Integer<S>, Infinite<S>, Signed<S> { }
-
         /// <summary>
-        /// Characterizes a structure over an integer type
+        /// Characterizes a reification structure over an integer type
         /// </summary>
-        /// <typeparam name="S">The type of the realizing structure</typeparam>
-        /// <typeparam name="T">The type of the underlying primitive</typeparam>
-        public interface Integer<S,T> : Integer<S>, RealNumber<S,T>, Stepwise<S,T>, Bitwise<S,T>
+        /// <typeparam name="S">The reification type</typeparam>
+        /// <typeparam name="T">The underlying type</typeparam>
+        public interface Integer<S,T> : Integer<S>
             where S : Integer<S,T>, new() { }
 
         
-        /// <summary>
-        /// Characterizes operational reifications over infinite signed ingegers
-        /// </summary>
-        /// <typeparam name="R">The reification type</typeparam>
-        /// <typeparam name="T">The operand type</typeparam>
-        public interface InfiniteSignedInt<S,T> : InfiniteSignedInt<S>, Integer<S,T>, Infinite<S,T>, Signed<S,T>
-            where S : InfiniteSignedInt<S,T>, new() { }
-
-
-        /// <summary>
-        /// Characterizes operational reifications of RealFiniteUInt 
-        /// </summary>
-        /// <typeparam name="R">The reification type</typeparam>
-        /// <typeparam name="T">The operand type</typeparam>
-        public interface FiniteSignedInt<S,T> : FiniteSignedInt<S>, Integer<S,T>, Finite<S,T>, Signed<S,T>
-            where S : FiniteSignedInt<S,T>, new() { }
 
     }
 }

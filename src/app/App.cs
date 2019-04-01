@@ -9,7 +9,7 @@ using Z0;
 
 using static zcore;
 
-
+using static Z0.Nats;
 
 namespace App04
 {
@@ -335,8 +335,8 @@ namespace App04
 
         static void Slices()
         {
-            var s1 = N256.Seq.NatSlice(range<int>(1,256));
-            var s2 = N256.Seq.NatSlice(range<int>(1,256));
+            var s1 = Z0.N256.Seq.NatSlice(range<int>(1,256));
+            var s2 = Z0.N256.Seq.NatSlice(range<int>(1,256));
             print(Slice.add(s1,s2));
             print(Slice.mul(s1,s2));
             print(Slice.sum(s1));
@@ -382,8 +382,8 @@ namespace App04
 
         static void VectorArithmetic()
         {
-            var v1 = N3.Rep.NatVec(ints(1,2,3));
-            var v2 = N3.Rep.NatVec(ints(3,2,1));
+            var v1 = Nats.N3.NatVec(ints(1,2,3));
+            var v2 = Nats.N3.NatVec(ints(3,2,1));
             var v3 = Vector.add(v1,v2);
             print($"{v1} + {v2} = {v3}");
         }
@@ -398,10 +398,10 @@ namespace App04
         
         static void RandomU64(ulong count)
         {
-            var r = new RandUInt();
+            var r = new Randomizer();
             var current = 0ul;
             while(++current <= count)
-                write($"{r.next()}, ");
+                write($"{r.one()}, ");
         }
 
 
@@ -416,17 +416,17 @@ namespace App04
             print($"interval = {i}, partition width = {width}, point count = {p.Count}");
         }
 
-        public static void Histo(uint trials)
-        {
-            var min = UInt16.MinValue;
-            var max = UInt16.MaxValue;
-            var hg = Histogram.define(min, max);            
-            var r = new RandUInt();
-            print($"binwidth = {hg.binwidth}");            
-            hg.distribute(r.next(trials,min,max));
-            iter(hg.ratios(), r => print($"{r.bin} : {r.ratio}"));
+        // public static void Histo(uint trials)
+        // {
+        //     var min = UInt16.MinValue;
+        //     var max = UInt16.MaxValue;
+        //     var hg = Histogram.define(min, max);            
+        //     var r = new Randomizer();
+        //     print($"binwidth = {hg.binwidth}");            
+        //     hg.distribute(r.many(trials,min,max));
+        //     iter(hg.ratios(), r => print($"{r.bin} : {r.ratio}"));
 
-        }
+        // }
 
         public static void Histo<T>(int trials)
         {
@@ -443,20 +443,6 @@ namespace App04
         }
 
         
-
-        static void Matrices()
-        {
-            var rand = new RandUInt();
-
-            var dim = Dim.define<N3,N3>();
-            var m1 = Matrix.define(dim, rand.next(9,221,287));
-            printeach("m1 := ", m1.vectors());
-            var m2 = Matrix.define(dim, rand.next(9,10,369));
-            printeach($"m2 := ", m2.vectors());
-            var m3 = m1.mul(m2);
-            printeach($"m1 * m2 = ", m3.vectors());
-
-        }
 
         public static void BitOps1()
         {
@@ -483,18 +469,43 @@ namespace App04
 
         public static void ShowBits<T>(intg<T> src)
             => print(src.bitstring());
+
+
+        public static void GenRandMatrices<T>(uint count, real<T> min, real<T> max)
+        {
+            var stream = Rand.matrices<N2,N2,T>(min,max);
+            printeach(stream.Take((int)count));
+        }
+
+        public static void GenRandVectors<T>(uint count, real<T> min, real<T> max)
+        {
+            var stream = Rand.vectors<N5,T>(min,max);
+            printeach(stream.Take((int)count));
+        }
+
+        public static void Averages()
+        {
+            var src = slice(Rand.values(real(-500000L), real(500000L)).Take(5000000));
+            var avg1 = src.AvgG();
+            var avg2 = src.Unwrap().Average();
+
+            print($"Avg1 = {avg1}, Avg2 = {avg2}");
             
-        
+            
+        }
+
         static void Main(string[] args)
         {     
             SysInit.initialize<Program>();
 
-            var u8 = u(0b00010000);
-            ShowBits(u8);
-            var z8 = z(-8);
-            ShowBits(z8);
-            print(bitstring(-8));
+            // var u8 = u(0b00010000);
+            // ShowBits(u8);
+            // var z8 = z(-8);
+            // ShowBits(z8);
+            // print(bitstring(-8));
+            //GenRandVectors(100u, real(-5000), real(5000));
             //TestRunner.RunTests();
+            Averages();
         }
     }
 }

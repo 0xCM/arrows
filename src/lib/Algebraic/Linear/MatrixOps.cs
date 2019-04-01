@@ -167,11 +167,19 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Matrix<M, N, T> add(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
-            => Matrix.define(dim<M,N>(), zip(lhs.data, rhs.data, (x,y) =>  SR.add(x,y)));
+            => Matrix.define(dim<M,N>(), fuse(lhs.data, rhs.data, (x,y) =>  SR.add(x,y)));
 
         [MethodImpl(Inline)]
         public bool eq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
-            => lhs.eq(rhs);
+        {
+            var m = natval<M>();
+            var n = natval<N>();
+            for(var i = 0u; i< m; i++)                
+                for(var j = 0u; j < n; j++)
+                    if(lhs[i,j].neq(rhs[i,j]))
+                        return(false);
+            return true;
+        }
 
         [MethodImpl(Inline)]
         public bool neq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)

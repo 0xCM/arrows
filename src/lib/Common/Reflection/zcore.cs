@@ -58,6 +58,10 @@ partial class zcore
         => constructor(typeof(T), argTypes);
 
 
+    [MethodImpl(Inline)]
+    public static MethodBase method()
+        => MethodBase.GetCurrentMethod();
+
     /// <summary>
     /// If non-nullable, returns the supplied type. If nullable, returns the underlying type
     /// </summary>

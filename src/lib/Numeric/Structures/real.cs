@@ -10,10 +10,9 @@ namespace Z0
     using System.Collections.Generic;
     using static zcore;
     
-    using static Traits;
+    using static Structure;
 
-    public readonly struct real<T> : Structure.RealNumber<real<T>, T>, Equality<real<T>>,  IConvertible
-        where T : IConvertible
+    public readonly struct real<T> : RealNumber<real<T>, T>
     {
         static readonly Operative.RealNumber<T> Ops = Resolver.real<T>();
         
@@ -30,6 +29,51 @@ namespace Z0
         public static readonly real<T> One = Ops.one;
 
         public static readonly uint BitSize = UnderInfo.BitSize;
+
+
+        [MethodImpl(Inline)]
+        public static explicit operator byte(real<T> src)
+            => src.convert<byte>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator sbyte(real<T> src)
+            => src.convert<sbyte>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator short(real<T> src)
+            => src.convert<short>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator ushort(real<T> src)
+            => src.convert<ushort>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator int(real<T> src)
+            => src.convert<int>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator uint(real<T> src)
+            => src.convert<uint>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator long(real<T> src)
+            => src.convert<long>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator ulong(real<T> src)
+            => src.convert<ulong>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator float(real<T> src)
+            => src.convert<float>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator double(real<T> src)
+            => src.convert<double>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator decimal(real<T> src)
+            => src.convert<decimal>();
 
 
         [MethodImpl(Inline)]
@@ -114,8 +158,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public real<Y> convert<Y>()    
-            where Y : IConvertible        
-                => zcore.convert<Y>(data);
+            => zcore.convert<Y>(data);
 
         [MethodImpl(Inline)]
         public real<T> inc()
@@ -289,76 +332,9 @@ namespace Z0
         public real<T> pow(int exp)
             => Ops.pow(data, exp);
 
-        #region IConvertible
         [MethodImpl(Inline)]
-        TypeCode IConvertible.GetTypeCode()
-            => data.GetTypeCode();
-
-        [MethodImpl(Inline)]
-        bool IConvertible.ToBoolean(IFormatProvider provider)
-            => data.ToBoolean(provider);
- 
-        [MethodImpl(Inline)]
-        byte IConvertible.ToByte(IFormatProvider provider)
-            => data.ToByte(provider);
-
-        [MethodImpl(Inline)]
-        char IConvertible.ToChar(IFormatProvider provider)
-            => data.ToChar(provider);
-
-        [MethodImpl(Inline)]
-        DateTime IConvertible.ToDateTime(IFormatProvider provider)
-            => data.ToDateTime(provider);
-
-        [MethodImpl(Inline)]
-        decimal IConvertible.ToDecimal(IFormatProvider provider)
-            => data.ToDecimal(provider);
-
-        [MethodImpl(Inline)]
-        double IConvertible.ToDouble(IFormatProvider provider)
-            => data.ToDouble(provider);
-
-        [MethodImpl(Inline)]
-        short IConvertible.ToInt16(IFormatProvider provider)
-            => data.ToInt16(provider);
-
-        [MethodImpl(Inline)]
-        int IConvertible.ToInt32(IFormatProvider provider)
-            => data.ToInt32(provider);
-
-        [MethodImpl(Inline)]
-        long IConvertible.ToInt64(IFormatProvider provider)
-            => data.ToInt64(provider);
-
-        [MethodImpl(Inline)]
-        sbyte IConvertible.ToSByte(IFormatProvider provider)
-            => data.ToSByte(provider);
-
-        [MethodImpl(Inline)]
-        float IConvertible.ToSingle(IFormatProvider provider)
-            => data.ToSingle(provider);
-
-        [MethodImpl(Inline)]
-        string IConvertible.ToString(IFormatProvider provider)
-            => data.ToString(provider);
-
-        [MethodImpl(Inline)]
-        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
-            => data.ToType(conversionType, provider);
-
-        [MethodImpl(Inline)]
-        ushort IConvertible.ToUInt16(IFormatProvider provider)
-            => data.ToUInt16(provider);
-
-        [MethodImpl(Inline)]
-        uint IConvertible.ToUInt32(IFormatProvider provider)
-            => data.ToUInt32(provider);
-
-        [MethodImpl(Inline)]
-        ulong IConvertible.ToUInt64(IFormatProvider provider)
-            => data.ToUInt64(provider);
-
-        #endregion
+        public bool nonzero()
+            => Ops.neq(data, Ops.zero);
 
     }
 }

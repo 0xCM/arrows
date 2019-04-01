@@ -43,7 +43,7 @@ namespace Z0
     partial class Structure
     {
  
-        public interface Number<S>
+        public interface Number<S> : Equatable<S>, GroupA<S>, SemigroupM<S>, Semiring<S>, Divisive<S>, Powered<S>
         {
             S muladd(S y, S z);
 
@@ -70,10 +70,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying operand type</typeparam>
-        public interface Number<S,T> : Number<S>, GroupA<S,T>, SemigroupM<S,T>, Semiring<S,T>, Divisive<S,T>
+        public interface Number<S,T> : Number<S>
             where S : Number<S,T>,  new()
         {
-            S pow(int exp);
             
         } 
  

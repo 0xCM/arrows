@@ -9,6 +9,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static Operative;
 
     using static Traits;
     using operand = System.Double;
@@ -16,7 +17,7 @@ namespace Z0
     using SysMath = System.Math;
 
     [Structure(typeof(reify),typeof(operand))]
-    internal readonly struct Float64Ops :  Operative.FiniteFloat<reify,operand> 
+    internal readonly struct Float64Ops :  FiniteFloat<reify,operand> 
     {        
         public static readonly reify Inhabitant = default;
     

@@ -64,16 +64,6 @@ namespace Z0
             S logb(S @base);
         }
 
-        /// <summary>
-        /// Characterizes a structure for which logarithms can be calculated
-        /// </summary>
-        /// <typeparam name="T">The type of the underlying primitive</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface Logarithmic<S,T> : Logarithmic<S>, Structural<S,T>
-            where S : Logarithmic<S,T>,  new()
-        {
-
-        }
 
     }
 

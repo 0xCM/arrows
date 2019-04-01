@@ -114,6 +114,10 @@ namespace Z0
                 : declaringType.GetMethod(name, AnyVisibilityOrInstanceType);
 
 
+
+        public static string DisplayName(this MethodBase t)
+            => $"{t.DeclaringType.DisplayName()}{t.Name}";
+
         /// <summary>
         /// Constructs a reasonably pretty display name for a type
         /// </summary>

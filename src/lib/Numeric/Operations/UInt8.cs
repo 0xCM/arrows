@@ -9,13 +9,13 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    using static Traits;
+    using static Operative;
 
     using operand = System.Byte;
     using reify = UInt8Ops;
 
     [Structure(typeof(reify),typeof(operand))]
-    internal readonly struct UInt8Ops : Operative.FiniteNatural<operand>
+    internal readonly struct UInt8Ops : FiniteNatural<operand>
     {        
         public static readonly reify Inhabitant = default;
     

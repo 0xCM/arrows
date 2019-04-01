@@ -19,7 +19,9 @@ namespace Z0
     {
         static readonly Dim<M,N> Dim = default;        
         
-        static readonly Operative.MatrixOps<M,N,T> Ops = Matrix.ops<M,N,T>();        
+        static readonly Operative.MatrixOps<M,N,T> Ops = Matrix.ops<M,N,T>();    
+
+        static readonly Matrix<M,N,T> Zero = Ops.zero();    
         
         [MethodImpl(Inline)]
         public static bool operator == (Matrix<M, N, T> lhs, Matrix<M, N, T> rhs) 
@@ -112,6 +114,18 @@ namespace Z0
         public T cell(uint i, uint j)
             => Ops.cell(this,i,j);
         
+
+        public T this[uint i, uint j]
+        {
+            
+            [MethodImpl(Inline)]
+            get
+            {
+                return Ops.cell(this,i,j);
+            }
+        }
+
+        
         [MethodImpl(Inline)]
         public Matrix<N, M, T> tranpose()
             => Ops.tranpose(this);
@@ -164,27 +178,33 @@ namespace Z0
             => Ops.transform(this,f);
         
         [MethodImpl(Inline)]
+        public bool eq(Matrix<M, N, T> rhs)
+            => Ops.eq(this,rhs);
+        
+        [MethodImpl(Inline)]
+        public bool neq(Matrix<M, N, T> rhs)
+            => Ops.neq(this,rhs);
+
+        [MethodImpl(Inline)]
+        bool Equality<Matrix<M, N, T>>.eq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
+            => Ops.eq(lhs,rhs);
+
+        [MethodImpl(Inline)] 
+        bool Equality<Matrix<M, N, T>>.neq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
+            => Ops.neq(lhs,rhs);
+
+        [MethodImpl(Inline)]
         public string format()
             => Ops.format(this);
 
         public override string ToString() 
-            => Ops.format(this);
+            => format();
 
         public override bool Equals(object rhs)
-            => data.Equals(rhs);
+            => eq((Matrix<M,N,T>?)rhs ?? Zero);
 
         public override int GetHashCode()
             => data.GetHashCode();
 
-        public bool eq(Matrix<M, N, T> rhs)
-            => Ops.eq(this,rhs);
-        public bool neq(Matrix<M, N, T> rhs)
-            => Ops.neq(this,rhs);
-
-        bool Equality<Matrix<M, N, T>>.eq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
-            => lhs.eq(rhs);
- 
-        bool Equality<Matrix<M, N, T>>.neq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
-            => lhs.neq(rhs);
     } 
 }

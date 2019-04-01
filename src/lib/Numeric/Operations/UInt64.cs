@@ -9,14 +9,14 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    using static Traits;
+    using static Operative;
     
     using operand = System.UInt64;
     using reify = UInt64Ops;
 
 
     [Structure(typeof(reify),typeof(operand))]
-    internal readonly struct UInt64Ops : Operative.FiniteNatural<operand>
+    internal readonly struct UInt64Ops : FiniteNatural<operand>
     {
         public static readonly reify Inhabitant = default;
     

@@ -9,14 +9,6 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;    
 
 using bigint = Z0.intg<System.Numerics.BigInteger>;
-using int64 = Z0.intg<long>;
-using int32 = Z0.intg<int>;
-using int16 = Z0.intg<short>;
-using int8 = Z0.intg<sbyte>;
-using uint64 = Z0.intg<ulong>;
-using uint32 = Z0.intg<uint>;
-using uint16 = Z0.intg<ushort>;
-using uint8 = Z0.intg<byte>;
 
 using Z0;
 using static zcore;
@@ -39,6 +31,48 @@ partial class zcore
         return dst;
     }
 
+
+    /// <summary>
+    /// Converts an integer to a sequence of digits
+    /// </summary>
+    /// <param name="x">The source value</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static byte[] digits(byte x)
+        => x.ToIntG<byte>().digits();
+
+    /// <summary>
+    /// Converts an integer to a sequence of digits
+    /// </summary>
+    /// <param name="x">The source value</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static byte[] digits(ushort x)
+        => x.ToIntG<ushort>().digits();
+
+    /// <summary>
+    /// Converts an integer to a sequence of digits
+    /// </summary>
+    /// <param name="x">The source value</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static byte[] digits(uint x)
+        => x.ToIntG<uint>().digits();
+
+    /// <summary>
+    /// Converts an integer to a sequence of digits
+    /// </summary>
+    /// <param name="x">The source value</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static byte[] digits(ulong x)
+        => x.ToIntG<ulong>().digits();
+
+
+    // !!! x : unsigned => intg[x]
+    // !!! --------------------------------------------------------------------
+
+    #region x : unsigned => intg[x] 
     /// <summary>
     /// Effects byte => intg[byte]
     /// </summary>
@@ -71,6 +105,12 @@ partial class zcore
     public static intg<ulong> u(ulong x)
         => x;
 
+
+    // !!! x : signed => intg[x]
+    // !!! --------------------------------------------------------------------
+
+    #region x : unsigned => intg[x] 
+
     /// <summary>
     /// Effects sbyte => intg[sbyte]
     /// </summary>
@@ -78,6 +118,9 @@ partial class zcore
     [MethodImpl(Inline)]
     public static intg<sbyte> z(sbyte x) 
         => x;
+
+    #endregion
+
 
     /// <summary>
     /// Effects short => intg[short]
@@ -102,6 +145,14 @@ partial class zcore
     [MethodImpl(Inline)]
     public static intg<long> z(long x)
         => x;
+
+    #endregion
+    
+    
+    // !!! clrint => BigInteger
+    // !!! --------------------------------------------------------------------
+
+    # region clrint => BigInteger
 
     /// <summary>
     /// Effects sbyte => bigint
@@ -170,69 +221,21 @@ partial class zcore
         => new bigint(x);
 
     /// <summary>
-    /// Effects sbyte => int64
+    /// Constructs an bigint from an int
     /// </summary>
     /// <param name="x">The source value</param>
     /// <returns></returns>
     [MethodImpl(Inline)]
-    public static int64 int32(sbyte x)
-        => int64(x);
+    public static bigint bigint(float x)
+        => new bigint((int)x);
 
-    /// <summary>
-    /// Effects sbyte => int64
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static int64 int32(byte x)
-        => int64(x);
+    #endregion
 
-    /// <summary>
-    /// Effects short => int64
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static int64 int32(short x)
-        => int64(x);
 
-    /// <summary>
-    /// Effects ushort => int64
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static int64 int64(ushort x)
-        => int64(x);
+    // !!! clrnumber => floatg[double]
+    // !!! --------------------------------------------------------------------
 
-    /// <summary>
-    /// Effects int => int64
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static int64 int64(int x)
-        => int64(x);
-
-    /// <summary>
-    /// Effects uint => int64
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static int64 int64(uint x)
-        => int64(x);
-
-    /// <summary>
-    /// Effects long => int64
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static int64 int64(long x)
-        => int64(x);
-
-    /// <summary>
-    /// Effects ulong => int64
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static int64 int64(ulong x)
-        => int64((long)x);
+    #region clrint => floatg[double]  
 
     /// <summary>
     /// Effects sbyte => float64
@@ -319,13 +322,13 @@ partial class zcore
     public static floatg<double> float64(double x)
         => new floatg<double>(x);
 
-    /// <summary>
-    /// Effects byte => intg[byte]
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static intg<byte> byteg(byte x)
-        => x;
+    # endregion
+
+
+    // !!! clrint => intg[uint]
+    // !!! --------------------------------------------------------------------
+
+    #region clrint => intg[uint] 
 
     /// <summary>
     /// Effects sbyte => intg<uint>
@@ -375,6 +378,14 @@ partial class zcore
     [MethodImpl(Inline)]
     public static intg<uint> uint32g(uint x)
         => (uint)x;
+
+    #endregion
+
+
+    // !!! clrint => intg[ulong]
+    // !!! --------------------------------------------------------------------
+
+    # region clrint => intg[ulong]
 
     /// <summary>
     /// Effects sbyte => intg[ulong]
@@ -433,34 +444,14 @@ partial class zcore
     public static intg<ulong> uint64g(ulong x)
         => x;
 
-    /// <summary>
-    /// Converts an integer to a sequence of digits
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static byte[] digits(uint x)
-        => x.ToIntG<uint>().digits();
+    #endregion
 
-    /// <summary>
-    /// Converts an integer to a sequence of digits
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static byte[] digits(ulong x)
-        => x.ToIntG<ulong>().digits();
 
-    /// <summary>
-    /// Converts an integer to a sequence of digits
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static byte[] digits(ushort x)
-        => x.ToIntG<ushort>().digits();
+    // !!! [clrint] => [ingt[clrint]]
+    // !!! --------------------------------------------------------------------
 
-    
+    # region [clrint] => [ingt[clrint]]
+
     /// <summary>
     /// Effects byte[] => intg[byte][]
     /// </summary>
@@ -512,7 +503,46 @@ partial class zcore
     public static intg<long>[] ints(params long[] src)
         => intarray(src);
 
+    # endregion
 
+
+    /// <summary>
+    /// Effects byte => real[byte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<byte> ureal(byte x) 
+        => x;
+
+    /// <summary>
+    /// Effects ushort => real[ushort]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ushort> ureal(ushort x)
+        => x;
+
+    /// <summary>
+    /// Effects uint => real[uint]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<uint> ureal(uint x)
+        => x;
+
+    /// <summary>
+    /// Effects ulong => real[ulong]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ulong> ureal(ulong x)
+        => x;
+
+
+    /// <summary>
+    /// Effects byte => intg[byte]
+    /// </summary>
+    /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static intg<byte> uintg(byte x) 
         => x;
@@ -529,8 +559,9 @@ partial class zcore
     public static intg<ulong> uintg(ulong x)
         => x;
 
+
     /// <summary>
-    /// Effects sbyte => intg[byte]
+    /// Effects sbyte => intg[sbyte]
     /// </summary>
     /// <param name="x">The source value</param>
     /// <typeparam name="T">The underlying target type</typeparam>
@@ -565,6 +596,10 @@ partial class zcore
     public static intg<long> intg(long x)
         => x;
 
+    // !!! x:clrnumber => real[x:T]
+    // !!! --------------------------------------------------------------------
+
+    #region x:clrnumber => real[x:T]
     /// <summary>
     /// Effects byte => real[T]
     /// </summary>
@@ -675,6 +710,13 @@ partial class zcore
         where T: IConvertible
             => convert<T>(x);
 
+    #endregion
+
+    // !!! x:clrnumber => real[x:byte]
+    // !!! --------------------------------------------------------------------
+    
+    #region x:clrnumber => real[x:byte]
+
     /// <summary>
     /// Effects byte => real[byte]
     /// </summary>
@@ -760,6 +802,1011 @@ partial class zcore
     /// </summary>
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
-    public static real<decimal> real(decimal x)
+    public static real<decimal> real(decimal x) 
         => x;
+
+    #endregion
+
+    // !!! real[X] => real[byte]
+    // !!! --------------------------------------------------------------------
+
+    #region real[X] => real[byte]
+
+    /// <summary>
+    /// Effects identity transformation
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<byte> uint8(real<byte> x)
+        => x;
+
+    /// <summary>
+    /// Effects real[sbyte] => real[byte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<byte> uint8(real<sbyte> x)
+        => (byte)x.data;
+
+    /// <summary>
+    /// Effects real[short] => real[byte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<byte> uint8(real<short> x)
+        => (byte)x.data;
+
+    /// <summary>
+    /// Effects real[ushort] => real[byte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<byte> uint8(real<ushort> x)
+        => (byte)x.data;
+
+    /// <summary>
+    /// Effects real[int] => real[byte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<byte> uint8(real<int> x)
+        => (byte)x.data;
+
+    /// <summary>
+    /// Effects real[uint] => real[byte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<byte> uint8(real<uint> x)
+        => (byte)x.data;
+
+    /// <summary>
+    /// Effects real[long] => real[byte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<byte> uint8(real<long> x)
+        => (byte)x.data;
+
+    /// <summary>
+    /// Effects real[ulong] => real[byte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<byte> uint8(real<ulong> x)
+        => (byte)x.data;
+
+    /// <summary>
+    /// Effects real[float] => real[byte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<byte> uint8(real<float> x)
+        => (byte)x.data;
+
+    /// <summary>
+    /// Effects real[double] => real[byte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<byte> uint8(real<double> x)
+        => (byte)x.data;
+
+    /// <summary>
+    /// Effects real[decimal] => real[byte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<byte> uint8(real<decimal> x)
+        => (byte)x.data;
+
+    #endregion
+
+    // !!! real[X] => real[sbyte]
+    // !!! --------------------------------------------------------------------
+
+    #region real[X] => real[sbyte]
+
+    /// <summary>
+    /// Effects real[byte] => real[sbyte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<sbyte> int8(real<byte> x)
+        => (sbyte)x.data;
+
+    /// <summary>
+    /// Effects identity transformation
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<sbyte> int8(real<sbyte> x)
+        => x;
+
+    /// <summary>
+    /// Effects real[short] => real[sbyte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<sbyte> int8(real<short> x)
+        => (sbyte)x.data;
+
+    /// <summary>
+    /// Effects real[ushort] => real[sbyte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<sbyte> int8(real<ushort> x)
+        => (sbyte)x.data;
+
+    /// <summary>
+    /// Effects real[int] => real[sbyte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<sbyte> int8(real<int> x)
+        => (sbyte)x.data;
+
+    /// <summary>
+    /// Effects real[uint] => real[sbyte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<sbyte> int8(real<uint> x)
+        => (sbyte)x.data;
+
+    /// <summary>
+    /// Effects real[long] => real[sbyte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<sbyte> int8(real<long> x)
+        => (sbyte)x.data;
+
+    /// <summary>
+    /// Effects real[ulong] => real[sbyte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<sbyte> int8(real<ulong> x)
+        => (sbyte)x.data;
+
+    /// <summary>
+    /// Effects real[float] => real[sbyte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<sbyte> int8(real<float> x)
+        => (sbyte)x.data;
+
+    /// <summary>
+    /// Effects real[double] => real[sbyte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<sbyte> int8(real<double> x)
+        => (sbyte)x.data;
+
+    /// <summary>
+    /// Effects real[decimal] => real[sbyte]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<sbyte> int8(real<decimal> x)
+        => (sbyte)x.data;
+
+    #endregion
+
+    // !!! real[X] => real[short]
+    // !!! --------------------------------------------------------------------
+
+    #region real[X] => real[short]
+
+    /// <summary>
+    /// Effects real[byte] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<short> int16(real<byte> x)
+        => (short)x.data;
+
+    /// <summary>
+    /// Effects real[sbyte] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<short> int16(real<sbyte> x)
+        => (short)x.data;
+
+    /// <summary>
+    /// Effects real[short] => real[short], the identity transformation
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<short> int16(real<short> x)
+        => x;
+
+    /// <summary>
+    /// Effects real[ushort] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<short> int16(real<ushort> x)
+        => (short)x.data;
+
+    /// <summary>
+    /// Effects real[int] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<short> int16(real<int> x)
+        => (short)x.data;
+
+    /// <summary>
+    /// Effects real[uint] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<short> int16(real<uint> x)
+        => (short)x.data;
+
+    /// <summary>
+    /// Effects real[long] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<short> int16(real<long> x)
+        => (short)x.data;
+
+    /// <summary>
+    /// Effects real[ulong] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<short> int16(real<ulong> x)
+        => (short)x.data;
+
+    /// <summary>
+    /// Effects real[float] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<short> int16(real<float> x)
+        => (short)x.data;
+
+    /// <summary>
+    /// Effects real[double] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<short> int16(real<double> x)
+        => (short)x.data;
+
+    /// <summary>
+    /// Effects real[decimal] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<short> int16(real<decimal> x)
+        => (short)x.data;
+
+    #endregion 
+    
+    // !!! real[X] => real[ushort]
+    // !!! --------------------------------------------------------------------
+ 
+    #region real[X] => real[ushort]
+
+    /// <summary>
+    /// Effects real[byte] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ushort> uint16(real<byte> x)
+        => (ushort)x.data;
+
+    /// <summary>
+    /// Effects real[sbyte] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ushort> uint16(real<sbyte> x)
+        => (ushort)x.data;
+
+    /// <summary>
+    /// Effects real[short] => real[short], the identity transformation
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ushort> uint16(real<short> x)
+        => (ushort)x.data;
+
+    /// <summary>
+    /// Effects real[ushort] => real[short], the identity transformation
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ushort> uint16(real<ushort> x)
+        => x;
+
+    /// <summary>
+    /// Effects real[int] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ushort> uint16(real<int> x)
+        => (ushort)x.data;
+
+    /// <summary>
+    /// Effects real[uint] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ushort> uint16(real<uint> x)
+        => (ushort)x.data;
+
+    /// <summary>
+    /// Effects real[long] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ushort> uint16(real<long> x)
+        => (ushort)x.data;
+
+    /// <summary>
+    /// Effects real[ulong] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ushort> uint16(real<ulong> x)
+        => (ushort)x.data;
+
+    /// <summary>
+    /// Effects real[float] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ushort> uint16(real<float> x)
+        => (ushort)x.data;
+
+    /// <summary>
+    /// Effects real[double] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ushort> uint16(real<double> x)
+        => (ushort)x.data;
+
+    /// <summary>
+    /// Effects real[decimal] => real[short]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ushort> uint16(real<decimal> x)
+        => (ushort)x.data;
+
+    #endregion
+    
+    // !!! real[X] => real[uint]
+    // !!! -------------------------------------------------------------------- 
+
+    #region real[X] => real[uint]
+
+    /// <summary>
+    /// Effects real[byte] => real[uint]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<uint> uint32(real<byte> x)
+        => (uint)x.data;
+
+    /// <summary>
+    /// Effects real[sbyte] => real[uint]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<uint> uint32(real<sbyte> x)
+        => (uint)x.data;
+
+    /// <summary>
+    /// Effects real[uint] => real[uint]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<uint> uint32(real<short> x)
+        => (uint)x.data;
+
+    /// <summary>
+    /// Effects real[ushort] => real[uint]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<uint> uint32(real<ushort> x)
+        => (uint)x.data;
+
+    /// <summary>
+    /// Effects real[int] => real[uint]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<uint> uint32(real<int> x)
+        => (uint)x.data;
+
+    /// <summary>
+    /// Effects real[uint] => real[uint]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<uint> uint32(real<uint> x)
+        => x;
+
+    /// <summary>
+    /// Effects real[long] => real[uint]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<uint> uint32(real<long> x)
+        => (uint)x.data;
+
+    /// <summary>
+    /// Effects real[ulong] => real[uint]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<uint> uint32(real<ulong> x)
+        => (uint)x.data;
+
+    /// <summary>
+    /// Effects real[float] => real[uint]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<uint> uint32(real<float> x)
+        => (uint)x.data;
+
+    /// <summary>
+    /// Effects real[double] => real[uint]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<uint> uint32(real<double> x)
+        => (uint)x.data;
+
+    /// <summary>
+    /// Effects real[decimal] => real[uint]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<uint> uint32(real<decimal> x)
+        => (uint)x.data;
+
+    #endregion
+
+    // !!! real[X] => real[long]
+    // !!! -------------------------------------------------------------------- 
+
+    #region real[X] => real[long]
+
+    /// <summary>
+    /// Effects real[byte] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<long> int64(real<byte> x)
+        => (long)x.data;
+
+    /// <summary>
+    /// Effects real[sbyte] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<long> int64(real<sbyte> x)
+        => (long)x.data;
+
+    /// <summary>
+    /// Effects real[short] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<long> int64(real<short> x)
+        => (long)x.data;
+
+    /// <summary>
+    /// Effects real[ushort] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<long> int64(real<ushort> x)
+        => (long)x.data;
+
+    /// <summary>
+    /// Effects real[int] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<long> int64(real<int> x)
+        => (long)x.data;
+
+    /// <summary>
+    /// Effects real[uint] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<long> int64(real<uint> x)
+        => (long)x.data;
+
+    /// <summary>
+    /// Effects real[long] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<long> int64(real<long> x)
+        => (long)x.data;
+
+    /// <summary>
+    /// Effects real[ulong] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<long> int64(real<ulong> x)
+        => (long)x.data;
+
+    /// <summary>
+    /// Effects real[float] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<long> int64(real<float> x)
+        => (long)x.data;
+
+    /// <summary>
+    /// Effects real[double] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<long> int64(real<double> x)
+        => (long)x.data;
+
+    /// <summary>
+    /// Effects real[decimal] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<long> int64(real<decimal> x)
+        => (long)x.data;
+
+    #endregion
+
+
+    // !!! real[X] => real[ulong]
+    // !!! -------------------------------------------------------------------- 
+
+    #region real[X] => real[ulong]
+
+    /// <summary>
+    /// Effects real[byte] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ulong> uint64(real<byte> x)
+        => (ulong)x.data;
+
+    /// <summary>
+    /// Effects real[sbyte] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ulong> uint64(real<sbyte> x)
+        => (ulong)x.data;
+
+    /// <summary>
+    /// Effects real[short] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ulong> uint64(real<short> x)
+        => (ulong)x.data;
+
+    /// <summary>
+    /// Effects real[ushort] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ulong> uint64(real<ushort> x)
+        => (ulong)x.data;
+
+    /// <summary>
+    /// Effects real[int] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ulong> uint64(real<int> x)
+        => (ulong)x.data;
+
+    /// <summary>
+    /// Effects real[uint] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ulong> uint64(real<uint> x)
+        => (ulong)x.data;
+
+    /// <summary>
+    /// Effects real[long] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ulong> uint64(real<long> x)
+        => (ulong)x.data;
+
+    /// <summary>
+    /// Effects real[ulong] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ulong> uint64(real<ulong> x)
+        => (ulong)x.data;
+
+    /// <summary>
+    /// Effects real[float] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ulong> uint64(real<float> x)
+        => (ulong)x.data;
+
+    /// <summary>
+    /// Effects real[double] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ulong> uint64(real<double> x)
+        => (ulong)x.data;
+
+    /// <summary>
+    /// Effects real[decimal] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<ulong> uint64(real<decimal> x)
+        => (ulong)x.data;
+
+    #endregion
+
+
+    // !!! real[X] => real[int]
+    // !!! -------------------------------------------------------------------- 
+
+    #region real[X] => real[float]
+
+    /// <summary>
+    /// Effects real[byte] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<int> int32(real<byte> x)
+        => (int)x.data;
+
+    /// <summary>
+    /// Effects real[sbyte] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<int> int32(real<sbyte> x)
+        => (int)x.data;
+
+    /// <summary>
+    /// Effects real[short] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<int> int32(real<short> x)
+        => (int)x.data;
+
+    /// <summary>
+    /// Effects real[ushort] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<int> int32(real<ushort> x)
+        => (int)x.data;
+
+    /// <summary>
+    /// Effects real[int] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<int> int32(real<int> x)
+        => x;
+
+    /// <summary>
+    /// Effects real[uint] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<int> int32(real<uint> x)
+        => (int)x.data;
+
+    /// <summary>
+    /// Effects real[long] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<int> int32(real<long> x)
+        => (int)x.data;
+
+    /// <summary>
+    /// Effects real[ulong] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<int> int32(real<ulong> x)
+        => (int)x.data;
+
+    /// <summary>
+    /// Effects real[float] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<int> int32(real<float> x)
+        => (int)x.data;
+
+    /// <summary>
+    /// Effects real[double] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<int> int32(real<double> x)
+        => (int)x.data;
+
+    /// <summary>
+    /// Effects real[decimal] => real[int]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<int> int32(real<decimal> x)
+        => (int)x.data;
+
+    #endregion
+
+    // !!! real[X] => real[float]
+    // !!! -------------------------------------------------------------------- 
+
+    #region real[X] => real[double] 
+    /// <summary>
+    /// Effects real[byte] => real[float]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<float> float32(real<byte> x)
+        => (float)x.data;
+
+    /// <summary>
+    /// Effects real[sbyte] => real[float]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<float> float32(real<sbyte> x)
+        => (float)x.data;
+
+    /// <summary>
+    /// Effects real[short] => real[float]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<float> float32(real<short> x)
+        => (float)x.data;
+
+    /// <summary>
+    /// Effects real[ushort] => real[float]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<float> float32(real<ushort> x)
+        => (float)x.data;
+
+    /// <summary>
+    /// Effects real[float] => real[float]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<float> float32(real<int> x)
+        => (float)x.data;
+
+    /// <summary>
+    /// Effects real[uint] => real[float]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<float> float32(real<uint> x)
+        => (float)x.data;
+
+    /// <summary>
+    /// Effects real[long] => real[float]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<float> float32(real<long> x)
+        => (float)x.data;
+
+    /// <summary>
+    /// Effects real[ulong] => real[float]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<float> float32(real<ulong> x)
+        => (float)x.data;
+
+    /// <summary>
+    /// Effects real[float] => real[float]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<float> float32(real<float> x)
+        => (float)x.data;
+
+    /// <summary>
+    /// Effects real[double] => real[float]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<float> float32(real<double> x)
+        => (float)x.data;
+
+    /// <summary>
+    /// Effects real[decimal] => real[float]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<float> float32(real<decimal> x)
+        => (float)x.data;
+
+    #endregion
+
+    // !!! real[X] => real[double]
+    // !!! -------------------------------------------------------------------- 
+
+    #region real[X] => real[double]
+    /// <summary>
+    /// Effects real[byte] => real[double]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<double> float64(real<byte> x)
+        => (double)x.data;
+
+    /// <summary>
+    /// Effects real[sbyte] => real[double]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<double> float64(real<sbyte> x)
+        => (double)x.data;
+
+    /// <summary>
+    /// Effects real[short] => real[double]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<double> float64(real<short> x)
+        => (double)x.data;
+
+    /// <summary>
+    /// Effects real[ushort] => real[double]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<double> float64(real<ushort> x)
+        => (double)x.data;
+
+    /// <summary>
+    /// Effects real[double] => real[double]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<double> float64(real<int> x)
+        => (double)x.data;
+
+    /// <summary>
+    /// Effects real[uint] => real[double]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<double> float64(real<uint> x)
+        => (double)x.data;
+
+    /// <summary>
+    /// Effects real[long] => real[double]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<double> float64(real<long> x)
+        => (double)x.data;
+
+    /// <summary>
+    /// Effects real[ulong] => real[double]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<double> float64(real<ulong> x)
+        => (double)x.data;
+
+    /// <summary>
+    /// Effects real[float] => real[double]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<double> float64(real<float> x)
+        => (double)x.data;
+
+    /// <summary>
+    /// Effects real[double] => real[double]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<double> float64(real<double> x)
+        => (double)x.data;
+
+    /// <summary>
+    /// Effects real[decimal] => real[double]
+    /// </summary>
+    /// <param name="x">The source value</param>
+    [MethodImpl(Inline)]
+    public static real<double> float64(real<decimal> x)
+        => (double)x.data;
+    #endregion
+
+    // !!! [x] => [real[x]]
+    // !!! -------------------------------------------------------------------- 
+
+
+    #region [x] => [real[x]]
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<byte>> reals(IEnumerable<byte> src)
+        => from x in src select real(x);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<sbyte>> reals(IEnumerable<sbyte> src)
+        => from x in src select real(x);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<short>> reals(IEnumerable<short> src)
+        => from x in src select real(x);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<ushort>> reals(IEnumerable<ushort> src)
+        => from x in src select real(x);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<int>> reals(IEnumerable<int> src)
+        => from x in src select real(x);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<uint>> reals(IEnumerable<uint> src)
+        => from x in src select real(x);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<long>> reals(IEnumerable<long> src)
+        => from x in src select real(x);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<ulong>> reals(IEnumerable<ulong> src)
+        => from x in src select real(x);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<float>> reals(IEnumerable<float> src)
+        => from x in src select real(x);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<double>> reals(IEnumerable<double> src)
+        => from x in src select real(x);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<decimal>> reals(IEnumerable<decimal> src)
+        => from x in src select real(x);
+
+    #endregion
 }
+    
+    

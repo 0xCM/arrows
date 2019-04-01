@@ -11,12 +11,12 @@ namespace Z0
     using System.Runtime.CompilerServices;    
 
     using static zcore;
-    using static Traits;
+    using static Structure;
 
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct intg<T> : Structure.Integer<intg<T>,T>, Equality<intg<T>>
+    public readonly struct intg<T> : Integer<intg<T>,T>
     {
         static readonly Operative.Integer<T> Ops = Resolver.integer<T>();
 

@@ -216,4 +216,49 @@ public static class ToRealX
     [MethodImpl(Inline)]   
     public static real<float> ToReal32<T>(this intg<T> src)
         => convert<float>(src.data);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<byte>> ToReal(this IEnumerable<byte> src)
+        => reals(src);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<sbyte>> ToReal(this IEnumerable<sbyte> src)
+        => reals(src);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<short>> ToReal(this IEnumerable<short> src)
+        => reals(src);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<ushort>> ToReal(this IEnumerable<ushort> src)
+        => reals(src);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<int>> ToReal(this IEnumerable<int> src)
+        => reals(src);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<uint>> ToReal(this IEnumerable<uint> src)
+        => reals(src);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<long>> ToReal(this IEnumerable<long> src)
+        => reals(src);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<ulong>> ToReal(this IEnumerable<ulong> src)
+        => reals(src);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<float>> ToReal(this IEnumerable<float> src)
+        => reals(src);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<double>> ToReal(this IEnumerable<double> src)
+        => reals(src);
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<decimal>> ToReal(this IEnumerable<decimal> src)
+        => reals(src);
+
 }

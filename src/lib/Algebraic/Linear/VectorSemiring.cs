@@ -44,11 +44,11 @@ namespace Z0
 
             [MethodImpl(Inline)]   
             public Vector<N, T> add(Vector<N, T> lhs, Vector<N, T> rhs)
-                => vector(dim<N>(), zip(lhs, rhs, srAdd));
+                => vector(dim<N>(), fuse(lhs, rhs, srAdd));
 
             [MethodImpl(Inline)]   
             public Vector<N, T> mul(Vector<N, T> lhs, Vector<N, T> rhs)
-                => vector(dim<N>(), zip(lhs,rhs, srMul));
+                => vector(dim<N>(), fuse(lhs,rhs, srMul));
 
             [MethodImpl(Inline)]   
             public Vector<N, T> distribute(Vector<N, T> lhs, (Vector<N, T> x, Vector<N, T> y) rhs)

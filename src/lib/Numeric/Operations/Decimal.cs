@@ -9,13 +9,14 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static Operative;
 
     using operand = System.Decimal;
     using reify = DecimalOps;
     using Currency = Operative.Currency<decimal>;
 
     [Structure(typeof(reify),typeof(operand))]
-    internal readonly struct DecimalOps : Operative.Currency<operand>
+    internal readonly struct DecimalOps : Currency<operand>
     {
         
         public static readonly reify Inhabitant = default;

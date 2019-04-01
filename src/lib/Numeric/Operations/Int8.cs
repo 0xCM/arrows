@@ -10,13 +10,13 @@ namespace Z0
 
 
     using static zcore;
-    using static Traits;
+    using static Operative;
 
     using operand = System.SByte;
     using reify = Int8Ops;
 
     [Structure(typeof(reify),typeof(operand))]
-    internal readonly struct Int8Ops : Operative.FiniteSignedInt<operand>
+    internal readonly struct Int8Ops : FiniteSignedInt<operand>
     {        
         public static readonly reify Inhabitant = default;
     
