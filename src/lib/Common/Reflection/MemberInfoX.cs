@@ -137,14 +137,14 @@ namespace Z0
                 var typeArgs = t.GenericTypeArguments;
                 var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
                 var typeName = t.Name.Replace($"`{typeArgs.Length}", string.Empty);
-                return concat(typeName, "<", argFmt, ">");
+                return append(typeName, "<", argFmt, ">");
             }
             else
             {
                 var typeArgs = t.GetGenericTypeDefinition().GetGenericArguments();
                 var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
                 var typeName = t.Name.Replace($"`{typeArgs.Length}", string.Empty);
-                return concat(typeName, "<", argFmt, ">");
+                return append(typeName, "<", argFmt, ">");
             }
         }
 

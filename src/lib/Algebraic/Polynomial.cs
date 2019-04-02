@@ -74,7 +74,7 @@ namespace Z0
             => this.terms = terms;
 
         public override string ToString()
-            => concat(AsciSym.Plus, terms);
+            => append(AsciSym.Plus, terms);
 
         public intg<uint> degree()
             => nonzero 

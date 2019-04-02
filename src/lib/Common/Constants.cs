@@ -79,24 +79,92 @@ namespace Z0
 
     }
 
-    public static class PowersOfTwo
+    public static class Pow2
     {
-        public const long N0 = 2^0; //1
-        public const long N1 = 2^1; //2
-        public const long N2 = 2^2; //4
-        public const long N3 = 2^3; //8
-        public const long N4 = 2^4; //16
-        public const long N5 = 2^5; //32
-        public const long N6 = 2^6; //64
-        public const long N7 = 2^7; //128
-        public const long N8 = 2^8; //256
-        public const long N9 = 2^9; //512
-        public const long N10 = 2^10; //1024
-        public const long N11 = 2^11; //2056
-        public const long N12 = 2^12;
-        public const long N13 = 2^13;
-        public const long N14 = 2^14;
-        public const long N15 = 2^15;
+
+
+        /// <summary>
+        /// Computes 2^i * rhs
+        /// </summary>
+        /// <param name="exp">The exponent</param>
+        public static ulong mul(int exp, ulong factor)
+            => pow(exp)*factor;
+
+        public static intg<T> mul<T>(int exp, intg<T> factor)
+            => 2.ToIntG<T>().pow(exp) * factor;
+
+        /// <summary>
+        /// Computes 2^i 
+        /// </summary>
+        /// <param name="exp">The exponent</param>
+        public static ulong pow(int exp)
+            => exp switch {
+                0 => T0,
+                1 => T1,
+                2 => T2,
+                3 => T3,
+                4 => T4,
+                5 => T5,
+                6 => T6,
+                7 => T7,
+                8 => T8,
+                9 => T9,
+                10 => T10,
+                11 => T11,
+                12 => T12,
+                13 => T13,
+                14 => T14,
+                15 => T15,
+                16 => T16,
+                17 => T17,
+                18 => T18,
+                19 => T19,
+                20 => T20,
+                21 => T21,
+                22 => T12,
+                23 => T23,
+                _ => 0UL,
+            };
+
+
+        public const byte T0 = 0; //1
+        public const byte T1 = 2; //2
+        public const byte T2 = 2*2; //4
+        public const byte T3 = 2*T2; //8
+        public const byte T4 = 2*T3; //16
+        public const byte T5 = 2*T4; //32
+        public const byte T6 = 2*T5; //64
+        public const byte T7 = 2*T6; //128
+        public const ulong T8 = 2*T7; //256
+        public const ulong T9 = 2*T8; //512
+        public const ulong T10 = 2*T9; //1024
+        public const ulong T11 = 2*T10; //2056
+        public const ulong T12 = 2*T11;
+        public const ulong T13 = 2*T12;
+        public const ulong T14 = 2*T13;
+        public const ulong T15 = 2*T14;
+        public const ulong T16 = 2*T15;
+        public const ulong T17 = 2*T16;
+        public const ulong T18 = 2*T17;
+        public const ulong T19 = 2*T18;
+        public const ulong T20 = 2*T19;
+        public const ulong T21 = 2*T20;
+        public const ulong T22 = 2*T21;
+        public const ulong T23 = 2*T22;
+        public const ulong T24 = 2*T23;
+        public const ulong T25 = 2*T24;
+        public const ulong T26 = 2*T25;
+        public const ulong T27 = 2*T26;
+        public const ulong T28 = 2*T27;
+        public const ulong T29 = 2*T28;
+        public const ulong T30 = 2*T29;
+        public const ulong T31 = 2*T30;
+        public const ulong T32 = 2*T31;
+        public const ulong T33 = 2*T32;
+        public const ulong T34 = 2*T33;
+        public const ulong T35 = 2*T34;
     }
+
+    
 
 }

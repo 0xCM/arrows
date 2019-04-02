@@ -52,7 +52,7 @@ namespace Z0
         /// <typeparam name="T">The operand type</typeparam>
         [MethodImpl(Inline)]
         public static void define<T,R>() 
-            where R : Operational<R,T>, new()
+            where R : new()
                 => index.GetOrAdd(type<T>(), _ => new R());
 
         /// <summary>

@@ -32,7 +32,7 @@ namespace Z0
             => this.data = data;
 
         public Word(IEnumerable<Symbol> data)
-            => this.data = data.ToSlice();
+            => this.data = data.Freeze();
 
         public Word(string data)
             => this.data = slice(symbol(data));

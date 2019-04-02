@@ -10,7 +10,7 @@ namespace Z0
         /// Characterizes operations over unsigned numbers
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Unsigned<T> : Operational<T>
+        public interface Unsigned<T>
         {
             
         }

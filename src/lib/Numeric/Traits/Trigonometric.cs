@@ -10,7 +10,7 @@ namespace Z0
         /// Characterizes trigonometric operations over a type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Trigonmetric<T> : Operational<T>
+        public interface Trigonmetric<T>
         {
             T sin(T x);   
 

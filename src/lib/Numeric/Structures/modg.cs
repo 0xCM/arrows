@@ -88,6 +88,22 @@ namespace Z0
         public modg<N, T> distributeR((modg<N, T> x, modg<N, T> y) lhs)
             => Ops.distribute((lhs.x.data, lhs.y.data), this.data);
 
+        [MethodImpl(Inline)]
+        public bool Equals(modg<N, T> rhs)
+            => eq(rhs);
+ 
+        [MethodImpl(Inline)]
+        public bool nonzero()
+            => Ops.nonzero(data);
+
+        [MethodImpl(Inline)]
+        bool Equality<modg<N,T>>.eq(modg<N, T> lhs, modg<N, T> rhs)
+            => lhs.eq(rhs);
+
+        [MethodImpl(Inline)]
+        bool Equality<modg<N,T>>.neq(modg<N, T> lhs, modg<N, T> rhs)
+            => lhs.neq(rhs); 
+
         public override bool Equals(object rhs)
             => data.Equals(rhs);
 
@@ -97,13 +113,5 @@ namespace Z0
         public override string ToString()
             => $"{data} (mod {@base})";
 
-        public bool Equals(modg<N, T> rhs)
-            => eq(rhs);
- 
-        bool Equality<modg<N,T>>.eq(modg<N, T> lhs, modg<N, T> rhs)
-            => lhs.eq(rhs);
-
-        bool Equality<modg<N,T>>.neq(modg<N, T> lhs, modg<N, T> rhs)
-            => lhs.neq(rhs); 
     }
 }

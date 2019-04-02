@@ -11,7 +11,7 @@ namespace Z0
         /// Characterizs operations over a type that has infinitely many refications
         /// </summary>
         /// <typeparam name="T">The type over which operations are defined</typeparam>
-        public interface Infinite<T> : Operational<T>
+        public interface Infinite<T>
         
         {
             

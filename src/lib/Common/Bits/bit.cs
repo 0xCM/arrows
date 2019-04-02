@@ -46,6 +46,18 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
+        public static explicit operator ushort(bit src)
+            => src.value ? (ushort)1 : (ushort)0;
+
+        [MethodImpl(Inline)]
+        public static explicit operator uint(bit src)
+            => src.value ? 1u : 0u;
+
+        [MethodImpl(Inline)]
+        public static explicit operator ulong(bit src)
+            => src.value ? 1ul : 0ul;
+
+        [MethodImpl(Inline)]
         public static implicit operator BinaryDigit(bit src)
             => src.value ? BinaryDigit.B1 : BinaryDigit.B0;
 
@@ -161,5 +173,8 @@ namespace Z0
     
         public override string ToString()
             => format();
+        
+        public intg<T> ToIntG<T>()
+            => value ? intg<T>.One : intg<T>.Zero;
     }
 }

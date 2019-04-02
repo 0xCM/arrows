@@ -28,7 +28,7 @@ namespace Z0
 
         public const operand MaxVal = operand.MaxValue;
 
-        public const uint BitSize = sizeof(operand) * 8;
+        public const operand BitSize = sizeof(operand) * 8;
 
         public const bool Signed = true;
 
@@ -47,8 +47,12 @@ namespace Z0
         public operand one 
             => One;
 
-        public uint bitsize 
+        public operand bitsize 
             => BitSize;
+
+        [MethodImpl(Inline)]   
+        public bool nonzero(operand x)
+            => x != 0;
 
         [MethodImpl(Inline)]   
         public operand add(operand a, operand b) 
@@ -83,12 +87,12 @@ namespace Z0
             => (operand)(a % b);
 
         [MethodImpl(Inline)]   
-        public operand mul(operand a, operand b) 
-            => (operand)(a * b);
+        public operand mul(operand lhs, operand rhs) 
+            => (operand)(lhs * rhs);
 
         [MethodImpl(Inline)]   
-        public operand negate(operand a) 
-            => (operand)(-a);
+        public operand negate(operand x) 
+            => (operand)(-x);
 
         [MethodImpl(Inline)]   
         public operand or(operand a, operand b) 
@@ -113,7 +117,13 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public operand pow(operand b, int exp) 
-            => fold(repeat(b,exp), mul);
+        {
+            var result = (operand)1;
+            for(var i = 1; i <= exp; i++)
+                result *= result;
+            return result;
+        }
+            
 
         [MethodImpl(Inline)]   
         public operand sub(operand x, operand y) 

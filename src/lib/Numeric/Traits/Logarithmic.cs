@@ -10,7 +10,7 @@ namespace Z0
         /// Characterizes a type that supports primitive logarithmic operations
         /// </summary>
         /// <typeparam name="T">The type of the underlying primitive</typeparam>
-        public interface Logarithmic<T> : Operational<T>
+        public interface Logarithmic<T>
         {
             /// <summary>
             /// Computes the natural logarithm 

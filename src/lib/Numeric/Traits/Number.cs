@@ -15,7 +15,7 @@ namespace Z0
         /// by any underlying primitive numeric type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Number<T> : GroupA<T>,  SemigroupM<T>, Semiring<T>, Divisive<T>, Powered<T,int> 
+        public interface Number<T> : GroupA<T>,  SemigroupM<T>, Semiring<T>, Divisive<T>, Powered<T,int>, BitSource<T> 
         {                    
             T muladd(T x, T y, T z);
 
@@ -30,10 +30,6 @@ namespace Z0
             /// </summary>
             Sign sign(T x);
 
-            /// <summary>
-            /// Formats the source value a sequence of base-2 digits
-            /// </summary>
-            BitString bitstring(T x);
 
 
             NumberInfo<T> numinfo {get;}
@@ -43,7 +39,7 @@ namespace Z0
     partial class Structure
     {
  
-        public interface Number<S> : Equatable<S>, GroupA<S>, SemigroupM<S>, Semiring<S>, Divisive<S>, Powered<S>
+        public interface Number<S> : Equatable<S>, GroupA<S>, SemigroupM<S>, Semiring<S>, Divisive<S>, Powered<S>, BitSource<S>
         {
             S muladd(S y, S z);
 
@@ -58,10 +54,6 @@ namespace Z0
             /// </summary>
             Sign sign();
 
-            /// <summary>
-            /// Constructs a bitstring from the number
-            /// </summary>
-            Z0.BitString bitstring();                        
 
         }
         

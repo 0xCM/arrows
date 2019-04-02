@@ -14,7 +14,7 @@ namespace Z0
     /// <summary>
     /// Singleton representative for positive infinity
     /// </summary>
-    public readonly struct PositiveInfinity : Singleton<PositiveInfinity>, Infinity<PositiveInfinity>
+    public readonly struct PositiveInfinity : Infinity<PositiveInfinity>
     {
         /// <summary>
         /// Determines whether a supplied value represents positive infinity

@@ -24,7 +24,7 @@ namespace Z0
 
         public const operand One = 1;
 
-        public const uint BitSize = sizeof(operand) * 8;
+        public const operand BitSize = sizeof(operand) * 8;
 
         public const operand MinVal = operand.MinValue;
 
@@ -47,7 +47,7 @@ namespace Z0
         public operand one 
             => One;
 
-        public uint bitsize 
+        public operand bitsize 
             => BitSize;
 
         public bool infinite 
@@ -56,8 +56,9 @@ namespace Z0
         public operand ε 
             => Zero;
 
-        public operand apply(operand lhs, operand rhs)
-            => throw new NotImplementedException();
+        [MethodImpl(Inline)]   
+        public bool nonzero(operand x)
+            => x != 0;
 
         [MethodImpl(Inline)]   
         public operand add(operand a, operand b) 
@@ -124,7 +125,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public operand pow(operand b, int exp) 
-            => fold(repeat(b,exp), mul);
+            => fold(repeat(b,exp), mul,One);
 
         [MethodImpl(Inline)]   
         public operand sub(operand x, operand y) 

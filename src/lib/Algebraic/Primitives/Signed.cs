@@ -7,7 +7,7 @@ namespace Z0
 
     partial class Operative
     {    
-        public interface Signed<T>  : Operational<T>
+        public interface Signed<T>
         {
 
         }

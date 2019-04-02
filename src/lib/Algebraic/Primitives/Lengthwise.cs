@@ -14,4 +14,15 @@ namespace Z0
         uint length {get;}
     }
 
+    /// <summary>
+    /// Characterizes a structure over data
+    /// </summary>
+    /// <typeparam name="T">The data type</typeparam>
+    public interface Wrapped<T>
+    {
+        T data {get;}
+
+        
+    }
+
 }

@@ -13,7 +13,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The type for which a finite number of instances exist
         /// within a reification context</typeparam>
-        public interface Finite<T> : Operational<T>
+        public interface Finite<T>
         {
             /// <summary>
             /// The count providing evidence that the reification is finite
@@ -22,7 +22,7 @@ namespace Z0
         }
 
 
-        public interface Bound<T> : Operational<T>
+        public interface Bound<T>
         {
 
         }
@@ -40,16 +40,6 @@ namespace Z0
 
         }        
 
-        /// <summary>
-        /// Characterizes a structure S comprised of a finite number of elements T
-        /// </summary>
-        /// <typeparam name="S">The reifying structure</typeparam>
-        /// <typeparam name="T">The element type</typeparam>
-        public interface Finite<S,T> : Finite<S>
-            where S : Finite<S,T>, new()
-        {
-
-        }        
     }
 
 }

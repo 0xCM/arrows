@@ -23,7 +23,7 @@ namespace Z0
         /// </summary>        
         /// <typeparam name="R">The reification type</typeparam>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface FiniteNatural<R,T> : FiniteNatural<T>, Operational<R,T>
+        public interface FiniteNatural<R,T> : FiniteNatural<T>
             where R : FiniteNatural<R,T>, new() {  }
     }
 

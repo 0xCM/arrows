@@ -38,6 +38,10 @@ namespace Z0
             => 1;
 
         [MethodImpl(Inline)]   
+        public bool nonzero(operand x)
+            => x != 0;
+
+        [MethodImpl(Inline)]   
         public reify instance()
             => Inhabitant;
 
@@ -145,7 +149,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public operand pow(operand b, int exp) 
-            => fold(repeat(b,(long)exp), mul);
+            => fold(repeat(b,exp), mul,1);
 
         [MethodImpl(Inline)]   
         public operand abs(operand x)
@@ -229,7 +233,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public operand atanh(operand x)
-                => (operand)Math.Atanh((double)x);
+            => (operand)Math.Atanh((double)x);
  
         [MethodImpl(Inline)]   
         public BitString bitstring(operand x)

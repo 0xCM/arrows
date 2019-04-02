@@ -8,7 +8,17 @@ namespace Z0
 
     partial class Operative
     {
-        public interface Shifty<T> : Operational<T>
+        public interface BitSource<T>
+        {
+            /// <summary>
+            /// Formats the source value a sequence of base-2 digits
+            /// </summary>
+            Z0.BitString bitstring(T x);
+
+
+        }
+     
+        public interface Shifty<T> 
         {
             T lshift(T lhs, int rhs);
 
@@ -22,7 +32,7 @@ namespace Z0
         /// Characterizes bitwise logical operations over a type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface BitLogic<T> : Operational<T>
+        public interface BitLogic<T>
         {
             /// <summary>
             /// Computes the bitwise and from the supplied values
@@ -76,7 +86,15 @@ namespace Z0
 
         }
 
+        public interface BitSource<S>
+        {
+            /// <summary>
+            /// Formats the source value a sequence of base-2 digits
+            /// </summary>
+            Z0.BitString bitstring();
 
+        }
+        
         public interface BitLogic<S> 
         {
             /// <summary>
@@ -107,7 +125,7 @@ namespace Z0
             S flip();
         }
 
-        public interface Bitwise<S> : BitLogic<S>, Shifty<S>
+        public interface Bitwise<S> : BitLogic<S>, Shifty<S>, BitSource<S>
         {
 
         }

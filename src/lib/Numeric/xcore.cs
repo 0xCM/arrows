@@ -23,33 +23,28 @@ namespace Z0
             => src.Select(x => x.data).ToList();
 
         [MethodImpl(Inline)]
-        public static T SumG<T>(this IEnumerable<T> src)
-            where T : Structure.Additive<T>, new()
-                => fold(src, (x,y) => x.add(y));
+        public static T Sum<T>(this IEnumerable<T> src)
+            where T : Structure.Additive<T>, Structure.Nullary<T>, new()
+                => sum(src);
 
         [MethodImpl(Inline)]
-        public static T MaxG<T>(this IEnumerable<T> src)
-            where T : struct, Structure.OrderedNumber<T>
-        {
-            T max = src.FirstOrDefault();
-            foreach(var item in src)
-                max = item.gt(max) ? item : max;
-            return max;
-        }
+        public static T Sup<T>(this IEnumerable<T> src)
+            where T : struct, Structure.Ordered<T>
+                => max(src);
 
-        public static real<T> AvgG<T>(this IEnumerable<real<T>> src) 
-        {
-            var result = default(real<T>);
-            var count = default(real<T>);
-            foreach(var val in src)
-            {
-                result += val;
-                ++count;
-            }
-            return count.nonzero() ? result/count : result;
+        [MethodImpl(Inline)]
+        public static T Inf<T>(this IEnumerable<T> src)
+            where T : struct, Structure.Ordered<T>
+                => min(src);
 
-        }
+        [MethodImpl(Inline)]
+        public static IEnumerable<T> Pow<T>(this IEnumerable<T> src, int exp)
+            where T : Structure.Powered<T>, new() 
+                => pow(src,exp);
 
-
+        [MethodImpl(Inline)]
+        public static T Avg<T>(this IEnumerable<T> src)
+            where T : Structure.RealNumber<T>,new()
+                => avg(src);
    }
 }

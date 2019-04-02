@@ -7,7 +7,7 @@ namespace Z0
     partial class Operative
     {
 
-        public interface Negatable<T> : Operational<T>
+        public interface Negatable<T>
         {
             /// <summary>
             /// Unary negation of input

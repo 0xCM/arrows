@@ -90,7 +90,7 @@ public static partial class zcore
     /// <param name="rhs">The second sequence</param>
     /// <param name="f">A binary operator that composes pairs of elements from the input sequences</param>
     /// <typeparam name="T">The sequence element type</typeparam>
-    public static IEnumerable<T> fuse<T>(IEnumerable<T> lhs, IEnumerable<T> rhs, Func<T,T,T> f)
+    public static IEnumerable<Y> fuse<T,Y>(IEnumerable<T> lhs, IEnumerable<T> rhs, Func<T,T,Y> f)
         => from pair in zip(lhs,rhs) select f(pair.left, pair.right);
 
     
@@ -138,6 +138,12 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static IEnumerable<T> map<S,T>(IEnumerable<S> src, Func<S,T> f)
         => src.Select(x => f(x));
+
+    [MethodImpl(Inline)]   
+    public static Slice<T> map<S,T>(Slice<S> src, Func<S,T> f)
+        where S : Equatable<S>, new()     
+        where T : Equatable<T>, new()     
+            => src.Select(x => f(x)).Freeze();
 
 
     /// <summary>

@@ -11,9 +11,15 @@ namespace Z0
         /// Characterizes a type that defines an additive unit
         /// </summary>
         /// <typeparam name="T">The unit type</typeparam>
-        public interface Nullary<T> : Operational<T>
+        public interface Nullary<T> 
         {
             T zero {get;}
+
+            /// <summary>
+            /// Determines whether the source has some value other than 0
+            /// </summary>
+            bool nonzero(T x);
+
         }
 
 
@@ -23,7 +29,15 @@ namespace Z0
     {
         public interface Nullary<S> 
         {
+            /// <summary>
+            /// Specifies the zero value
+            /// </summary>
             S zero {get;}
+        
+            /// <summary>
+            /// Determines whether the source has some value other than 0
+            /// </summary>
+            bool nonzero();
         }
 
         /// <summary>

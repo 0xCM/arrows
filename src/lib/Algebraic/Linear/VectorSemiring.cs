@@ -38,6 +38,9 @@ namespace Z0
             public Vector<N, T> one 
                 => One;
 
+            public bool nonzero(Vector<N, T> x)
+                => x.eq(Zero);
+
             public VectorSemiring<N, T> inhabitant 
                 => Inhabitant;
 

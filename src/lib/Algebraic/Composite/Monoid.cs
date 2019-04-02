@@ -4,6 +4,9 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    using System.Runtime.CompilerServices;
+    using static zcore;
+
     partial class Operative
     {
 
@@ -93,4 +96,58 @@ namespace Z0
         }            
 
     }
+
+    partial class Reify
+    {
+        public readonly struct MonoidM<T> : Operative.MonoidM<T>
+            where T : Operative.MonoidM<T>, new()
+        {    
+            static readonly Operative.MonoidM<T> Ops = new T();
+
+            public T one 
+                => Ops.one;
+
+            [MethodImpl(Inline)]
+            public T mul(T lhs, T rhs)
+                => Ops.mul(lhs,rhs);
+
+            [MethodImpl(Inline)]
+            public bool eq(T lhs, T rhs)
+                => Ops.eq(lhs,rhs);
+
+            [MethodImpl(Inline)]
+            public bool neq(T lhs, T rhs)
+                => Ops.neq(lhs,rhs);
+
+
+        }
+
+        public readonly struct MonoidA<T> : Operative.MonoidA<T>
+            where T : Operative.MonoidA<T>, new()
+        {    
+            static readonly Operative.MonoidA<T> Ops = new T();
+
+            public T zero 
+                => Ops.zero;
+
+            [MethodImpl(Inline)]
+            public bool nonzero(T a) 
+                => Ops.eq(Ops.zero, a);
+
+            [MethodImpl(Inline)]
+            public T add(T a, T b) 
+                => Ops.add(a,b);
+
+            [MethodImpl(Inline)]
+            public bool eq(T lhs, T rhs) 
+                => Ops.eq(lhs,rhs);
+
+            [MethodImpl(Inline)]
+            public bool neq(T lhs, T rhs) 
+                => Ops.neq(lhs,rhs);
+
+
+        }
+    }
+
 }

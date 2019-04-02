@@ -11,6 +11,35 @@ namespace Z0
 
     using static zcore;
 
+    partial class Traits
+    {
+        
+        /// <summary>
+        /// Characterizes a set indexed by another set
+        /// </summary>
+        /// <typeparam name="I">The indexing set</typeparam>
+        /// <typeparam name="X">The indexed set</typeparam>
+        public interface Index<I,T> : Container<KeyedValue<I,T>>
+        {
+            /// <summary>
+            /// Retrives an indexed value
+            /// </summary>
+            /// <param name="index">The index value</param>
+            /// <returns>The indexed value</returns>
+            T item(I index);
+
+            /// <summary>
+            /// Retrives an indexed value via an index operator
+            /// </summary>
+            /// <param name="index">The index value</param>
+            /// <returns>The indexed value</returns>
+            T  this[I ix] {get;}
+        }
+
+
+
+    }
+
 
     /// <summary>
     /// Defines an associative array
@@ -80,9 +109,7 @@ namespace Z0
         public V this[int key] => _items[key];   
 
         public IEnumerable<KeyedValue<int,V>> content
-            => mapi((k,v) => kvp(k,v), _items);
-        
+            => mapi((k,v) => kvp(k,v), _items);        
     }
-
 }
 

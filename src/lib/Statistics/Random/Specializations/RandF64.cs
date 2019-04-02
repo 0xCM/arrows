@@ -21,7 +21,7 @@ namespace Z0
             => this.random = random;
 
         [MethodImpl(Inline)]
-        public prim one(prim min, prim max)
+        prim one(prim min, prim max)
             => (double) random.one((long)min,(long)max);
 
         public IEnumerable<real<prim>> stream(real<prim> min, real<prim> max)
@@ -30,20 +30,13 @@ namespace Z0
                 yield return one(min,max);
         }
 
-        public IEnumerable<prim> many(ulong count, prim min, prim max)
-        {
-            var width = max - min;
-            for(var j = 0UL; j<count; j++)
-                yield return one(min,max)/width;
-        }
-
         [MethodImpl(Inline)]
         real<prim> Rand<prim>.one(real<prim> min, real<prim> max)
              => one(min,max);
 
         [MethodImpl(Inline)]
         IEnumerable<real<prim>> Rand<prim>.many(ulong count, real<prim> min, real<prim> max)
-            => reals(many(count,min,max));
+             => stream(min,max).Take((int)count);
 
     }
 }

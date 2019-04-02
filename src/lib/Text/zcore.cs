@@ -39,7 +39,7 @@ partial class zcore
     /// <param name="rest">The formattables to be rendered and concatenated</param>
     [MethodImpl(Inline)]   
     public static string format(Formattable first, params Formattable[] rest)
-        => first.format() + concat(rest.Select(x => x.format()));
+        => first.format() + append(rest.Select(x => x.format()));
 
     /// <summary>
     /// Concatenates an arbitrary number of strings
@@ -47,7 +47,7 @@ partial class zcore
     /// <param name="src">The strings to be concatenated</param>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static string concat(params string[] src) 
+    public static string append(params string[] src) 
         => string.Concat(src);
     
     /// <summary>
@@ -56,15 +56,8 @@ partial class zcore
     /// <param name="src">The strings to be concatenated</param>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static string concat<T>(IEnumerable<T> src) 
+    public static string append<T>(IEnumerable<T> src) 
         => string.Concat(src);
-
-    /// <summary>
-    /// Renders an end-of-line marker
-    /// </summary>
-    [MethodImpl(Inline)]   
-    public static string eol() 
-        => AsciEscape.EOL;
 
     /// <summary>
     /// Concatenates an arbitrary number of string representations,
@@ -75,8 +68,15 @@ partial class zcore
     /// be formed</param>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static string concat<T>(string delimiter, IEnumerable<T> src) 
+    public static string append<T>(string delimiter, IEnumerable<T> src) 
         => string.Join(delimiter, src.Select(x => x.ToString()));
+
+    /// <summary>
+    /// Renders an end-of-line marker
+    /// </summary>
+    [MethodImpl(Inline)]   
+    public static string eol() 
+        => AsciEscape.EOL;
 
     /// <summary>
     /// Defines a symbol
@@ -87,7 +87,6 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static Symbol symbol(string name, string description = null)
         => new Symbol(name,description);
-
 
     /// <summary>
     /// Formats the source value as a string
@@ -213,7 +212,7 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static void print<T>(string msg, IEnumerable<T> items)
     {
-        var text = concat(string.Join(',',items));
+        var text = append(string.Join(',',items));
         print($"{msg}: {text}");       
     }
 
@@ -765,7 +764,7 @@ partial class zcore
     /// <param name="content"></param>
     [MethodImpl(Inline)]
     public static string paren(params object[] content)
-        => enclose(concat(content), lparen(), rparen());
+        => enclose(append(content), lparen(), rparen());
 
     /// <summary>
     /// Renders a content array as a comma-separated list of values
@@ -873,7 +872,7 @@ partial class zcore
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string tabs(int count, string content)
-        => concat(tabs(count), content);
+        => append(tabs(count), content);
 
     /// <summary>
     /// Produces a string containing a specified number of spaces
@@ -907,6 +906,14 @@ partial class zcore
     [MethodImpl(Inline)]
     public static string remove(string text, string substring)
         => text.Replace(substring, String.Empty);
+
+    /// <summary>
+    /// Reverses the string
+    /// </summary>
+    /// <param name="src">The string to reverse</param>
+    [MethodImpl(Inline)]   
+    public static string reorient(string src)
+        => new string(src.Reverse().ToArray());
 
     /// <summary>
     /// Encloses the potential text in quotation marks

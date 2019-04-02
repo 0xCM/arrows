@@ -15,7 +15,7 @@ namespace Z0
         /// Characterizes operational multiplication
         /// </summary>
         /// <typeparam name="T">The type subject to multiplication</typeparam>
-        public interface Multiplicative<T> : Operational<T>
+        public interface Multiplicative<T>
         {
             T mul(T lhs, T rhs);
         }    

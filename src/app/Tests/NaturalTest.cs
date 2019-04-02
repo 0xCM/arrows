@@ -56,11 +56,11 @@ namespace Z0.Tests
         public static void reflect()
         {
             
-            var reflected = Nat.reflect(500, 5000);
+            var reflected = Nat.reflect(500, 600);
             var sumActual = fold(map(reflected, x => x.value), (x,y) => x+ y).ToUIntG();
-            var sumExpect = range<uint>(500,5000).SumG();
-            demand(sumActual == sumExpect, $"{sumActual} != {sumExpect}");       
-            demand(range<uint>(1,50).MaxG() == 50);
+            var sumExpect = range<uint>(500, 600).Sum();
+            demand(sumActual == sumExpect, $"{sumActual} != {sumExpect}");
+            demand(range<uint>(1, 50).Sup() == 50, $"{range<uint>(1, 50).Sup()} != 50");
         }
 
         public static void product()

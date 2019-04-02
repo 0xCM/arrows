@@ -14,7 +14,7 @@ namespace Z0
     /// <summary>
     /// Singleton representative for negative infinity
     /// </summary>
-    public readonly struct NegativeInfinity : Singleton<NegativeInfinity>, Infinity<NegativeInfinity>
+    public readonly struct NegativeInfinity : Infinity<NegativeInfinity>
     {
         /// <summary>
         /// Determines whether a supplied value represents negative infinity

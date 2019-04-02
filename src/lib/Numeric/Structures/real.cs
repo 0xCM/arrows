@@ -28,7 +28,7 @@ namespace Z0
 
         public static readonly real<T> One = Ops.one;
 
-        public static readonly uint BitSize = UnderInfo.BitSize;
+        public static readonly real<T> BitSize = UnderInfo.BitSize;
 
 
         [MethodImpl(Inline)]
@@ -74,6 +74,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static explicit operator decimal(real<T> src)
             => src.convert<decimal>();
+
 
 
         [MethodImpl(Inline)]

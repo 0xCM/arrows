@@ -15,7 +15,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="B">The base type</typeparam>
         /// <typeparam name="E">The exponent type</typeparam>
-        public interface Powered<B,E> : Operational<B>
+        public interface Powered<B,E> 
         {
             B pow(B b, E exp);
         }
@@ -24,7 +24,7 @@ namespace Z0
 
     partial class Structure
     {
-        public interface Powered<S>
+        public interface Powered<S> : Equatable<S>
         {
             S pow(int exp);
         }

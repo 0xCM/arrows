@@ -11,7 +11,7 @@ namespace Z0
         /// Characterizes operational reversiblity
         /// </summary>
         /// <typeparam name="T">The type for which a reverse operator is defined</typeparam>
-        public interface Reversible<T> : Operational<T>
+        public interface Reversible<T> 
         
         {
             T reverse(T src);

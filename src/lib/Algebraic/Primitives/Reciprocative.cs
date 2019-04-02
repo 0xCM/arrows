@@ -6,7 +6,7 @@ namespace Z0
 {
     partial class Operative
     {
-        public interface Reciprocative<T> : Operational<T>
+        public interface Reciprocative<T>
         {
             /// <summary>
             /// Calculates the multiplicative inverse of a given element

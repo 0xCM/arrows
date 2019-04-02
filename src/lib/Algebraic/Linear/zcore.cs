@@ -26,13 +26,13 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(params T[] components)
         where N : TypeNat, new()
-        where T : Equality<T>, new()            
+        where T : Equatable<T>, new()            
             => new Z0.Vector<N,T>(components);
 
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(T component)
         where N : TypeNat, new()
-        where T : Equality<T>, new()            
+        where T : Equatable<T>, new()            
             => new Vector<N,T>(repeat<N,T>(component));
 
     /// <summary>
@@ -45,7 +45,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(IEnumerable<T> components)
         where N : TypeNat, new()
-        where T : Equality<T>, new()            
+        where T : Equatable<T>, new()            
             => Vector.define(dim<N>(),components);
 
     /// <summary>
@@ -58,7 +58,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(Dim<N> dim, IEnumerable<T> components)
         where N : TypeNat, new()
-        where T : Equality<T>, new()            
+        where T : Equatable<T>, new()            
             => Vector.define(dim,components);
 
     /// <summary>
@@ -70,7 +70,7 @@ public static partial class zcore
     /// <remarks>No allocation occurs during construction</remarks>
     public static Vector<N,T> vector<N,T>(Dim<N> dim, IReadOnlyList<T> components)
         where N : TypeNat, new()
-        where T : Equality<T>, new()            
+        where T : Equatable<T>, new()            
             => Vector.define(dim,components);
 
 
@@ -84,7 +84,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Covector<N,T> covector<N,T>(Dim<N> dim, params T[] components)
         where N : TypeNat, new()
-        where T : Equality<T>, new()            
+        where T : Equatable<T>, new()            
             => Covector.define<N,T>(dim, components);
 
     /// <summary>
@@ -97,7 +97,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Covector<N,T> covector<N,T>(IReadOnlyList<T> components)
         where N : TypeNat, new()
-        where T : Equality<T>, new()            
+        where T : Equatable<T>, new()            
             => Covector.define<N,T>(components);
 
 }

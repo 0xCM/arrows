@@ -12,7 +12,7 @@ namespace Z0
     {
 
 
-        public interface Concatenable<T> : Operational<T>
+        public interface Concatenable<T>
         {
             T concat(T lhs, T rhs);
 

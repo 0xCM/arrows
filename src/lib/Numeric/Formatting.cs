@@ -28,7 +28,7 @@ namespace  Z0
         [MethodImpl(Inline)]   
         public static string ToHexString(this decimal src)
             => apply(Bits.split(src), parts =>
-                concat(
+                append(
                     parts.hihi.ToString("X8"),
                     parts.hilo.ToString("X8"),
                     parts.lohi.ToString("X8"),
@@ -53,7 +53,7 @@ namespace  Z0
         [MethodImpl(Inline)]   
         public static string ToIeeeBitString(this double x)
             => lpadZ(apply(Bits.split(x), 
-                ieee => concat(ieee.sign == Sign.Negative ? "1" : "0",
+                ieee => append(ieee.sign == Sign.Negative ? "1" : "0",
                             ieee.exponent.ToBitString(),
                             ieee.mantissa.ToBitString()                        
                     )), (int)Float64Ops.BitSize);

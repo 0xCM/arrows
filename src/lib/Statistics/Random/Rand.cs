@@ -39,6 +39,7 @@ namespace Z0
 
             [type<float>()] = new RandF32(new Randomizer()),
             [type<double>()] = new RandF64(new Randomizer()),            
+            [type<decimal>()] = new RandF128(new Randomizer()),            
         };
 
         public static Rand<T> random<T>()
@@ -89,8 +90,8 @@ namespace Z0
         public static IEnumerable<real<T>> values<T>(real<T> min, real<T> max)
                 => random<T>().stream(min,max);
 
-        public static Slice<real<T>> slice<T>(uint count, real<T> min, real<T> max)
-                => random<T>().stream(min,max).Take((int)count).ToSlice();
+        public static Slice<real<T>> values<T>(int count, real<T> min, real<T> max)
+                => random<T>().stream(min,max).Take(count).Freeze();
 
         public static IEnumerable<Matrix<M,N,real<T>>> matrices<M,N,T>(real<T> min, real<T> max)
             where M : TypeNat, new()

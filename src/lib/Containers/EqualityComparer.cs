@@ -10,12 +10,6 @@ namespace  Z0
     using System.Linq;
     using System.Runtime.CompilerServices;
     using static zcore;
-
-    public static class EqualityComparer
-    {
-        public static IEqualityComparer<T> ToEqualityComparer<T>(this Equality<T> eq)
-            => new EqualityComparer<T>(eq);
-    }
     
     readonly struct EqualityComparer<T> : IEqualityComparer<T>
     {

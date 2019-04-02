@@ -56,6 +56,9 @@ namespace Z0
             public T one 
                 => exemplar.one;
 
+            public bool nonzero(T x)
+                => x.eq(zero);
+
             public T add(T lhs, T rhs)
                 => lhs.add(rhs);
 

@@ -12,16 +12,10 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
 
-
-
     using static Z0.Bibliography;
     using static zcore;
-
-
     partial class xcore
     {
-
-
         /// <summary>
         /// Runs through a <see cref="IEnumerable{T}"/> in batches
         /// </summary>
@@ -100,7 +94,5 @@ namespace Z0
         /// <param name="batchSize">The block size</param>
         public static void ProcessBatches<T>(this IEnumerable<T> items, Action<IReadOnlyList<T>> processor, int batchSize)
             => items.ProcessBatches(processor, batchSize, (count) => { });
-
-
     }
 }

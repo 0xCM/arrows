@@ -24,8 +24,12 @@ partial class zcore
         => lpadZ(Convert.ToString(src,2), UInt8Ops.BitSize);
 
     [MethodImpl(Inline)]
+    public static byte[] bytes(byte src)
+        => array(src);
+
+    [MethodImpl(Inline)]
     public static string bitchars(sbyte src)
-        => lpadZ(Convert.ToString(src,2), Int8Ops.BitSize);
+        => lpadZ(Convert.ToString(src,2), (int)Int8Ops.BitSize);
 
     [MethodImpl(Inline)]
     public static string bitchars(short src)
@@ -33,7 +37,7 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static string bitchars(ushort src)
-        => lpadZ(Convert.ToString(src,2), Int16Ops.BitSize);
+        => lpadZ(Convert.ToString(src,2), (int)Int16Ops.BitSize);
 
     [MethodImpl(Inline)]
     public static string bitchars(int src)
@@ -93,7 +97,7 @@ partial class zcore
         for (idx--; idx >= 0; idx--)
             base2.Append(Convert.ToString(bytes[idx], 2).PadLeft(8, '0'));
 
-        return base2.ToString();
+        return base2.ToString().Substring(1);
     }
 
 

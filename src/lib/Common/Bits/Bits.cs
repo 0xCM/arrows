@@ -6,8 +6,32 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
 
     using static zcore;
+
+    /// <summary>
+    /// Interesting approach!
+    /// </summary>
+    /// <remarks>See https://stackoverflow.com/questions/5419453/getting-upper-and-lower-byte-of-an-integer-in-c-sharp-and-putting-it-as-a-char-a</remarks>
+    [StructLayout(LayoutKind.Explicit )]
+    public struct UInt32Bytes 
+    {
+        [FieldOffset(0)]
+        public uint value;
+        
+        [FieldOffset(0)]
+        public readonly byte lolo;
+        
+        [FieldOffset(1)]
+        public readonly byte lohi;
+        
+        [FieldOffset(2)]
+        public readonly byte hilo;
+        
+        [FieldOffset(3)]
+        public readonly byte hihi;
+    }
 
     public static class Bits
     {
@@ -60,7 +84,6 @@ namespace Z0
         /// Extracts the low-order bits from a ushort to produce a byte
         /// </summary>
         /// <param name="src">The source value</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static byte lo(ushort src)
             => (byte)src;
@@ -71,8 +94,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static sbyte hi(short src)
-            => (sbyte)(src >> 8);
+        public static byte hi(short src)
+            => (byte)(src >> 8);
 
         /// <summary>
         /// Extracts the low-order bits from a ushort to produce a byte
@@ -80,14 +103,14 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static sbyte lo(short src)
-            => (sbyte)src;
+        public static byte lo(short src)
+            => (byte)src;
+
 
         /// <summary>
         /// Extracts the high-order bits from a uint to produce a ushort
         /// </summary>
         /// <param name="src">The source value</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static ushort hi(uint src)
             => (ushort)(src >> 16);
@@ -100,6 +123,48 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ushort lo(uint src)
             => (ushort)src;
+
+
+        /// <summary>
+        /// Extracts the highest-order byte from the source, i.e.,
+        /// For a 32-bit integer k comprised of a sequence of bytes (k4)(k3)(k2)(k1),
+        /// yeilds k4
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte hihi(uint src)
+            => hi(hi(src));
+
+        /// <summary>
+        /// Extracts the third order byte from a 32-bit integer, i.e.,
+        /// For a 32-bit integer k comprised of a sequence of bytes (k4)(k3)(k2)(k1),
+        /// yeilds k3
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte hilo(uint src)
+            => lo(hi(src));
+
+        /// <summary>
+        /// Extracts the second order byte from a 32-bit integer, i.e.,
+        /// For a 32-bit integer k comprised of a sequence of bytes (k4)(k3)(k2)(k1),
+        /// yeilds k2
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte lohi(uint src)
+            => hi(lo(src));
+
+        /// <summary>
+        /// Extracts the least order byte from a 32-bit integer, i.e.,
+        /// For a 32-bit integer k comprised of a sequence of bytes (k4)(k3)(k2)(k1),
+        /// yeilds k1
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte lolo(uint src)
+            => lo(lo(src));
+
 
 
         /// <summary>
@@ -120,11 +185,52 @@ namespace Z0
         public static short lo(int src)
             => (short)src;
 
+
+        /// <summary>
+        /// Extracts the highest order byte from a 32-bit signed integer, i.e.,
+        /// For a 32-bit integer k comprised of a sequence of bytes (k4)(k3)(k2)(k1),
+        /// yeilds k4
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte hihi(int src)
+            => hi(hi(src));
+
+        /// <summary>
+        /// Extracts the third order byte from a 32-bit signed integer, i.e.,
+        /// For a 32-bit integer k comprised of a sequence of bytes (k4)(k3)(k2)(k1),
+        /// yeilds k3
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte hilo(int src)
+            => lo(hi(src));
+
+        /// <summary>
+        /// Extracts the second order byte from a 32-bit signed integer, i.e.,
+        /// For a 32-bit integer k comprised of a sequence of bytes (k4)(k3)(k2)(k1),
+        /// yeilds k2
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte lohi(int src)
+            => hi(lo(src));
+
+        /// <summary>
+        /// Extracts the least order byte from a 32-bit signed integer, i.e.,
+        /// For a 32-bit integer k comprised of a sequence of bytes (k4)(k3)(k2)(k1),
+        /// yeilds k1
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte lolo(int src)
+            => lo(lo(src));
+
+
         /// <summary>
         /// int => (short, .)
         /// </summary>
         /// <param name="src">The source value</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static int hi(long src)
             => (int)(src >> 32);
@@ -225,7 +331,7 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]
         public static uint concat(byte x1, byte x2, byte x3, byte x4)
-            => concat(concat(x1,x2), concat(x3,x4));
+            => BitConverter.ToUInt32(array(x1,x2,x3,x4));
 
         /// <summary>
         /// (byte,byte,byte,byte,byte,byte,byte,byte) => ulong
@@ -235,8 +341,7 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]
         public static ulong concat(byte x1, byte x2, byte x3, byte x4, byte x5, byte x6, byte x7, byte x8)
-            => concat(concat(concat(x1,x2), concat(x3,x4)),
-                concat(concat(x4,x5), concat(x6,x7)));
+            => BitConverter.ToUInt64(array(x1,x2,x3,x4,x5,x6,x7,x8));
 
         /// <summary>
         /// (short,short,short,short) => long
@@ -265,7 +370,7 @@ namespace Z0
         /// <param name="lo">The low-order bits</param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static (sbyte hi, sbyte lo) split(short src)
+        public static (byte hi, byte lo) split(short src)
             => (hi(src),lo(src));
 
         /// <summary>
@@ -331,6 +436,95 @@ namespace Z0
         [MethodImpl(Inline)]
         public static (int hihi, int hilo, int lohi, int lolo) split(decimal src)
             => apply(Decimal.GetBits(src), x => (x[3],x[2],x[1],x[0]));
+
+       /// <summary>
+       /// Interprets the source as an array of bytes
+       /// </summary>
+       /// <param name="src">The soruce value</param>
+        [MethodImpl(Inline)]
+        public static byte[] bytes(byte src)
+            => array(src);
+
+        /// <summary>
+        /// Interprets the source as an array of bytes
+        /// </summary>
+        /// <param name="src">The soruce value</param>
+        [MethodImpl(Inline)]
+        public static byte[] bytes(sbyte src)
+            => array((byte)src);
+
+        /// <summary>
+        /// Extracts the data contained in the source as an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] bytes(short src)
+            => array(hi(src),lo(src));
+
+        /// <summary>
+        /// Interprets the source as an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] bytes(ushort src)
+            => array(hi(src),lo(src));
+
+        /// <summary>
+        /// Extracts the data contained in the source as an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] bytes(int src)
+            => array(hihi(src),hilo(src),lohi(src),lolo(src));
+
+        /// <summary>
+        /// Extracts the data contained in the source as an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] bytes(uint src)
+            => array(hihi(src),hilo(src),lohi(src),lolo(src));
+
+
+        /// <summary>
+        /// Extracts the data contained in the source as an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] bytes(long src)
+            => BitConverter.GetBytes(src);
+
+        /// <summary>
+        /// Extracts the data contained in the source as an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static byte[] bytes(ulong src)
+            => BitConverter.GetBytes(src);
+
+       /// <summary>
+       /// Interprets the source as an array of bytes
+       /// </summary>
+       /// <param name="src">The soruce value</param>
+        [MethodImpl(Inline)]
+        public static byte[] bytes(decimal src)
+            => zcore.concat(map(Decimal.GetBits(src), bytes));
+
+       /// <summary>
+       /// Interprets the source as an array of bytes
+       /// </summary>
+       /// <param name="src">The soruce value</param>
+        [MethodImpl(Inline)]
+        public static byte[] bytes(float src)
+            => BitConverter.GetBytes(src);
+
+       /// <summary>
+       /// Interprets the source as an array of bytes
+       /// </summary>
+       /// <param name="src">The soruce value</param>
+        [MethodImpl(Inline)]
+        public static byte[] bytes(double src)
+            => BitConverter.GetBytes(src);
 
         /// <summary>
         /// Extracts the IEEE parts from the source value

@@ -42,8 +42,8 @@ namespace Z0
         
 
         public override string ToString()
-            => concat(label.empty() ? string.Empty : label.name, AsciSym.Colon) 
-             + concat(typename<A>(), Latex.Math.longright.identity, typename<B>());
+            => append(label.empty() ? string.Empty : label.name, AsciSym.Colon) 
+             + append(typename<A>(), Latex.Math.longright.identity, typename<B>());
     }
 
    /// <summary>

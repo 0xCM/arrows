@@ -19,11 +19,11 @@ namespace Z0
     public interface Enumerable<N,I> : IEnumerable<I>
         where N : TypeNat, new()
     {
+
         /// <summary>
         /// The value of the natural parameter
         /// </summary>
         uint length {get;}
-        
     }
 
     /// <summary>
@@ -35,36 +35,33 @@ namespace Z0
     
     }
 
-    partial class Reify
+    /// <summary>
+    /// Defines an immutable list whose length is specified via a typenat
+    /// </summary>
+    public readonly struct Listing<N,T> : Listed<N,T>
+        where N : TypeNat, new()
     {
+        readonly IReadOnlyList<T> data;
+        
+        public uint length {get;}
 
-        /// <summary>
-        /// Defines an immutable list whose length is specified via a typenat
-        /// </summary>
-        public readonly struct Listing<N,T> : Listed<N,T>
-            where N : TypeNat, new()
+        int IReadOnlyCollection<T>.Count 
+            => data.Count;
+
+        T IReadOnlyList<T>.this[int index] 
+            => data[index];
+
+        public Listing(IEnumerable<T> src)
         {
-            readonly IReadOnlyList<T> data;
-            
-            public uint length {get;}
-
-            int IReadOnlyCollection<T>.Count 
-                => data.Count;
-
-            T IReadOnlyList<T>.this[int index] 
-                => data[index];
-
-            public Listing(IEnumerable<T> src)
-            {
-                this.data = src.ToList();
-                this.length = Prove.claim<N>(data.Length());
-            }
-
-            IEnumerator<T> IEnumerable<T>.GetEnumerator()
-                => data.GetEnumerator();
-
-            IEnumerator IEnumerable.GetEnumerator()
-                => data.GetEnumerator();
+            this.data = src.ToList();
+            this.length = Prove.claim<N>(data.Length());
         }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+            => data.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
+            => data.GetEnumerator();
     }
+
 }

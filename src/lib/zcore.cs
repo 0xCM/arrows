@@ -178,7 +178,7 @@ partial class zcore
     /// <returns></returns>
     [MethodImpl(Inline)]   
     public static bool demand(bool x, string message = null)
-        => x ? x : throw new ArgumentException(message ?? "demand failed");
+        => x ? x : throw new Exception(message ?? "demand failed");
 
     /// <summary>
     /// Constructs a value if boolean predondition is true; otherwise, raises an exception
@@ -188,6 +188,6 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static T demand<T>(bool condition, string msg = null)
         where T : new()
-        => condition ? new T() : throw new ArgumentException(msg ?? $"Precondition for construction of {type<T>().Name} unmet");
+        => condition ? new T() : throw new Exception(msg ?? $"Precondition for construction of {type<T>().Name} unmet");
 }
 

@@ -34,7 +34,7 @@ namespace Z0
 
         public static readonly floatg<T> Epsilon = Ops.epsilon;
 
-        public static readonly uint BitSize = UnderInfo.BitSize;
+        public static readonly floatg<T> BitSize = UnderInfo.BitSize;
         
         
         [MethodImpl(Inline)]
@@ -127,8 +127,12 @@ namespace Z0
         public NumberInfo<floatg<T>> numinfo 
             => new NumberInfo<floatg<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);
 
-        public uint bitsize 
+        public floatg<T> bitsize 
             => BitSize;
+
+        [MethodImpl(Inline)]   
+        public bool nonzero()
+            => Ops.nonzero(data);
 
         [MethodImpl(Inline)]
         public floatg<T> add(floatg<T> rhs)

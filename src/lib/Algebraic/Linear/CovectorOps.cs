@@ -42,7 +42,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(Dim<N> dim, params T[] src) 
-            where T : Equality<T>, new()
+            where T : Equatable<T>, new()
             where N : TypeNat, new() 
                 => new Covector<N,T>(src);
 
@@ -54,7 +54,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(IEnumerable<T> src) 
-            where T : Equality<T>, new()
+            where T : Equatable<T>, new()
             where N : TypeNat, new() 
                 => new Covector<N,T>(src);
         
@@ -67,7 +67,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(params T[] src) 
-            where T : Equality<T>, new()
+            where T : Equatable<T>, new()
             where N : TypeNat, new() 
                 => new Covector<N,T>(src);
 
@@ -78,11 +78,11 @@ namespace Z0
             where T : Structure.Semiring<T>, new()
                 => new Covector<N,T>(Slice.add(lhs.cells,rhs.cells));
 
-        [MethodImpl(Inline)]
-        public static Covector<N,T> mul<N,T>(Covector<N,T> lhs, Covector<N,T> rhs) 
-            where N : TypeNat, new() 
-            where T : Structure.Semiring<T>, new()
-                => new Covector<N,T>(Slice.mul(lhs.cells,rhs.cells));
+        // [MethodImpl(Inline)]
+        // public static Covector<N,T> mul<N,T>(Covector<N,T> lhs, Covector<N,T> rhs) 
+        //     where N : TypeNat, new() 
+        //     where T : Structure.Semiring<T>, new()
+        //         => new Covector<N,T>(Slice.mul(lhs.cells,rhs.cells));
 
         [MethodImpl(Inline)]
         public static T sum<N,T>(Covector<N,T> x) 

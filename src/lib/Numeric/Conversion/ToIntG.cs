@@ -21,6 +21,10 @@ public static class ToIntGX
 
 
     [MethodImpl(Inline)]   
+    public static intg<byte> ToIntG(this byte src)
+        => src;
+
+    [MethodImpl(Inline)]   
     public static intg<sbyte> ToIntG(this sbyte src)
         => src;
 
@@ -31,17 +35,41 @@ public static class ToIntGX
 
 
     [MethodImpl(Inline)]   
-    public static intg<int> ToIntG(this int src)
-        => new intg<int>(src);
+    public static intg<ushort> ToIntG(this ushort src)
+        => src;
 
+    [MethodImpl(Inline)]   
+    public static intg<int> ToIntG(this int src)
+        => src;
+
+
+    [MethodImpl(Inline)]   
+    public static intg<uint> ToIntG(this uint src)
+        => src;
 
     [MethodImpl(Inline)]   
     public static intg<long> ToIntG(this long src)
         => src;
 
     [MethodImpl(Inline)]   
+    public static intg<ulong> ToIntG(this ulong src)
+        => src;
+
+    [MethodImpl(Inline)]   
     public static intg<BigInteger> ToIntG(this BigInteger src)
         => src;
+
+    [MethodImpl(Inline)]   
+    public static intg<int> ToIntG(this float src)
+        => (int)src;
+
+    [MethodImpl(Inline)]   
+    public static intg<long> ToIntG(this double src)
+        => (long)src;
+
+    [MethodImpl(Inline)]   
+    public static intg<long> ToIntG(this decimal src)
+        => (long)src;
 
     /// <summary>
     /// effects byte => intg[byte]

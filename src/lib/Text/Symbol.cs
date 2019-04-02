@@ -31,7 +31,7 @@ namespace Z0
 
         public Symbol(IEnumerable<Atom> data)
         {
-            this.data = data.ToSlice();
+            this.data = data.Freeze();
             this.description = string.Empty;
         }
 

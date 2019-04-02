@@ -19,11 +19,9 @@ namespace Z0
         public RandU8(Randomizer random)
             => this.random = random;
 
-        public prim one(prim min, prim max)
+        prim one(prim min, prim max)
             => random.one(min, max);
 
-        public IEnumerable<prim> many(ulong count, prim min, prim max)
-            => random.many(count, min, max);
 
         public IEnumerable<real<prim>> stream(real<prim> min, real<prim> max)
         {
@@ -36,8 +34,8 @@ namespace Z0
              => one(min,max);
 
         [MethodImpl(Inline)]
-        IEnumerable<real<prim>> Rand<prim>.many(ulong count, real<prim> min, real<prim> max)
-            => reals(many(count,min,max));
+        public IEnumerable<real<prim>> many(ulong count, real<prim> min, real<prim> max)
+             => stream(min,max).Take((int)count);
 
     }
 

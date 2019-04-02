@@ -44,7 +44,7 @@ namespace Z0
             => this;
 
         public string format()
-            => concat(
+            => append(
                 leftclosed ? AsciSym.LBracket: AsciSym.LParen, 
                 zcore.format(left), AsciSym.Comma, zcore.format(right), 
                 rightclosed ? AsciSym.RBracket : AsciSym.RParen

@@ -13,10 +13,31 @@ using System.Diagnostics;
 
 using Z0;
 using static zcore;
-
+using Array = Z0.array;
 
 public static partial class zcore
 {
+    [MethodImpl(Inline)]   
+    public static Z0.Slice<T> slice<T>(params T[] src)
+        where T : Equatable<T>, new()
+            => new Slice<T>(src);
+
+    [MethodImpl(Inline)]   
+    public static Z0.Slice<T> slice<T>(IEnumerable<T> src)
+        where T : Equatable<T>, new()
+            => new Slice<T>(src);
+
+    [MethodImpl(Inline)]   
+    public static Z0.Slice<N,T> slice<N,T>(IEnumerable<T> src)
+        where N : TypeNat, new()
+        where T : Equatable<T>, new()
+            => new Slice<N,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static Z0.Slice<N,T> slice<N,T>(params T[] src)
+        where N : TypeNat, new()
+        where T : Equatable<T>, new()
+            => new Slice<N,T>(src);
 
     /// <summary>
     /// Constructs a Seq[T] from a parameter array
@@ -55,6 +76,41 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static T[] array<T>(long len = 0)
         => new T[len];
+
+    /// <summary>
+    /// Concatentates two byte arrays
+    /// </summary>
+    /// <param name="lhs">The first array of bytes</param>
+    /// <param name="rhs">The second array of bytes</param>
+    public static byte[] concat(byte[] lhs, byte[] rhs)
+        => Array.concat(lhs,rhs);
+
+    /// <summary>
+    /// Concatentates a parameter array of byte arrays
+    /// </summary>
+    public static byte[] concat(params byte[][] src)
+        => Array.concat(src);
+
+    /// <summary>
+    /// Concatenates a sequence of byte arrays
+    /// </summary>
+    /// <param name="src">The source arrays</param>
+    public static byte[] concat(IEnumerable<byte[]> src)
+        => Array.concat(src);
+
+    /// <summary>
+    /// Concatenates a sequence of parameter arrays
+    /// </summary>
+    /// <param name="src">The source arrays</param>
+    public static T[] concat<T>(params T[][] src)
+        => Array.concat(src);
+
+    /// <summary>
+    /// Concatenates a sequence of arrays
+    /// </summary>
+    /// <param name="src">The source arrays</param>
+    public static T[] concat<T>(IEnumerable<T[]> src)
+        => Array.concat(src);
 
     /// <summary>
     /// Reflects variable number of arguments from a parms array back as
@@ -297,7 +353,7 @@ public static partial class zcore
     /// <param name="f">The predicate used to test values from the input sequence</param>
     /// <typeparam name="T">The input sequence type</typeparam>
     public static Slice<T> filter<T>(Slice<T> src, Func<T,bool> f)
-        where T : Equality<T>, new()
+        where T : Equatable<T>, new()
             => slice(src.Where(f));        
 
     /// <summary>

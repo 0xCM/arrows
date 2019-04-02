@@ -6,7 +6,7 @@ namespace Z0
 {
     partial class Operative
     {
-        public interface Divisive<T> : Operational<T>
+        public interface Divisive<T>
         {
             T div(T lhs, T rhs);        
 

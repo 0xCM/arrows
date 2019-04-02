@@ -49,8 +49,9 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static BitString defineG<T>(intg<T> src)
         {
-            var bits = new bit[src.bitsize];
-            for(var i = 0; i < src.bitsize; i++)
+            var len = (int)src.bitsize;
+            var bits = new bit[len];
+            for(var i = 0; i < len; i++)
                 bits[i] = Bits.test(src,i);
             return new BitString(bits);
         }
@@ -221,69 +222,5 @@ namespace Z0
         
     }
 
-    public readonly struct BitString<N> : Structure.BitString<BitString<N>,N>
-        where N : TypeNat, new()     
-    {
-        public static readonly uint Length = natval<N>();
-        
-        [MethodImpl(Inline)]
-        public BitString(IEnumerable<bit> src)
-            => this.bits = slice<N,bit>(src);
-
-        [MethodImpl(Inline)]
-        public BitString(string src)
-        {
-            Prove.claim<N>(src.Length);
-            var digits = new bit[src.Length];
-            for(var i = 0; i< digits.Length; i++)
-                digits[i] = src[i] == '0' ? BinaryDigit.B0 : BinaryDigit.B0;        
-            bits = digits;            
-        }
-            
-
-        [MethodImpl(Inline)]
-        public BitString(params bit[] bits)
-            => this.bits = Prove.length<N,bit>(bits);
-
-        public Slice<N,bit> bits {get;}
-
-
-        [MethodImpl(Inline)]
-        public bool eq(BitString<N> rhs)
-            => bits.eq(rhs.bits);
-
-        [MethodImpl(Inline)]
-        public bool neq(BitString<N> rhs)
-            => bits.neq(rhs.bits);
-
-        [MethodImpl(Inline)]
-        public bool Equals(BitString<N> rhs)
-            => this.eq(rhs);
-
-        [MethodImpl(Inline)]
-        bool Equality<BitString<N>>.eq(BitString<N> lhs, BitString<N> rhs)
-            => lhs.eq(rhs);
-
-        [MethodImpl(Inline)]
-        bool Equality<BitString<N>>.neq(BitString<N> lhs, BitString<N> rhs)
-            => lhs.neq(rhs);
-
-        [MethodImpl(Inline)]
-        public string format()
-            => string.Concat(map(bits,b =>  b.format()));
-
-        [MethodImpl(Inline)]
-        public int hash()
-            => bits.hash();
-
-        public uint length
-            => Length;
-
-        public override string ToString()
-            => format();
-        
-        public override int GetHashCode()
-            => hash();
-
-    }
+ 
 }

@@ -15,7 +15,7 @@ namespace Latex
     public static class LatexCmd
     {
         public static string cmd(string name) 
-            => concat(AsciSym.BSlash,name);
+            => append(AsciSym.BSlash,name);
         
         public static string begin(string tag) 
             => $"{cmd("begin")}{embrace(tag)}";

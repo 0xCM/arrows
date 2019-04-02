@@ -13,7 +13,7 @@ namespace Z0
     /// <summary>
     /// Represents the set that contains all potential values of a specified type
     /// </summary>
-    public readonly struct TotalSet<T> : Structure.Set<TotalSet<T>,T>, Singleton<TotalSet<T>>
+    public readonly struct TotalSet<T> : Structure.Set<TotalSet<T>,T>
         where T : IEquatable<T>
     {
         public static readonly TotalSet<T> Inhabitant = default;
@@ -44,7 +44,7 @@ namespace Z0
     /// <summary>
     /// Represents the universal empty set
     /// </summary>
-    public readonly struct EmptySet : Structure.Set, Singleton<EmptySet>
+    public readonly struct EmptySet : Structure.Set
     {
         public static readonly EmptySet Inhabitant = default;
 
@@ -67,7 +67,7 @@ namespace Z0
     /// <summary>
     /// Represents the set that contains no values of a specified type
     /// </summary>
-    public readonly struct EmptySet<T> : Structure.Set<EmptySet<T>, T>, Singleton<EmptySet<T>>
+    public readonly struct EmptySet<T> : Structure.Set<EmptySet<T>, T>
         where T : IEquatable<T>
     {
         public static readonly EmptySet<T> Inhabitant = default;
@@ -99,7 +99,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of natural numbers
     /// </summary>
-    public readonly struct N : Structure.DiscreteSet<N,bigint>, Singleton<N> 
+    public readonly struct N : Structure.DiscreteSet<N,bigint>
     {
         internal static readonly N Inhabitant = default;
 
@@ -142,7 +142,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of integers
     /// </summary>
-    public readonly struct Z : Structure.DiscreteSet<Z>, Operative.GroupA<bigint>,  Singleton<Z> 
+    public readonly struct Z : Structure.DiscreteSet<Z>, Operative.GroupA<bigint>
     {
         internal static readonly Z Inhabitant = default;
     
@@ -199,23 +199,20 @@ namespace Z0
         public bool Equals(Z other)
             => true;
         
-
         public bool eq(Z rhs)
             => true;
 
         public bool neq(Z rhs)
             => false;
 
-        public Z add(Z rhs)
-        {
-            throw new NotImplementedException();
-        }
+        public bool nonzero(bigint x)
+            => x.neq(x.zero);
     }
 
     /// <summary>
     /// Represents the set of rational numbers
     /// </summary>
-    public readonly struct Q : Structure.Set<Q>, Singleton<Q>
+    public readonly struct Q : Structure.Set<Q>
     {
         internal static readonly Q Inhabitant = default(Q);
 
@@ -244,7 +241,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of real numbers
     /// </summary>
-    public readonly struct R : Structure.Set<R>, Singleton<R>
+    public readonly struct R : Structure.Set<R>
     {
         internal static readonly R Inhabitant = default(R);
     

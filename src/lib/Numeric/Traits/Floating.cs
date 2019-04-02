@@ -46,7 +46,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="R">The reification type</typeparam>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface FiniteFloat<R,T> : FiniteFloat<T>, Operational<R,T>
+        public interface FiniteFloat<R,T> : FiniteFloat<T>
             where R : FiniteFloat<R,T>, new() { }
 
     }

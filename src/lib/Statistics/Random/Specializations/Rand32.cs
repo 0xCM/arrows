@@ -31,18 +31,14 @@ namespace Z0
             while(true)
                 yield return one(min,max);
         }
-        public IEnumerable<sprim> many(ulong count, sprim min, sprim max)
-        {
-            for(var j = 0UL; j<count; j++)
-                yield return one(min,max);
-        }
+        
 
         [MethodImpl(Inline)]
         real<prim> Rand<prim>.one(real<prim> min, real<prim> max)
              => one(min,max);
 
         [MethodImpl(Inline)]
-        IEnumerable<real<prim>> Rand<prim>.many(ulong count, real<prim> min, real<prim> max)
-            => reals(many(count,min,max));
+        public IEnumerable<real<prim>> many(ulong count, real<prim> min, real<prim> max)
+            => stream(min,max).Take((int)count);
     }
 }

@@ -9,7 +9,7 @@ namespace Z0
     /// The category whose objects are finite sets and whose morphisms are
     /// maps between them; the category of finite sets
     /// </summary>
-    public readonly struct CFinSet<T> : Singleton<CFinSet<T>>
+    public readonly struct CFinSet<T> 
     {
         public static readonly CFinSet<T> Inhabitant = default;
         

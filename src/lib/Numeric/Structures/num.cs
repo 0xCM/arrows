@@ -30,7 +30,7 @@ namespace Z0
 
         public static readonly num<T> One = Ops.one;
 
-        public static readonly uint BitSize = UnderInfo.BitSize;
+        public static readonly num<T> BitSize = UnderInfo.BitSize;
 
 
         [MethodImpl(Inline)]
@@ -110,11 +110,15 @@ namespace Z0
         public num<T> one 
             => One;
 
-        public uint bitsize 
+        public num<T> bitsize 
             => BitSize;
 
         public NumberInfo<num<T>> numinfo 
             => new NumberInfo<num<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);
+
+        [MethodImpl(Inline)]
+        public bool nonzero()
+            => Ops.nonzero(data);
 
         [MethodImpl(Inline)]
         public num<T> add(num<T> rhs)
@@ -205,11 +209,26 @@ namespace Z0
         [MethodImpl(Inline)]
         public num<T> negate()
             => Ops.negate(this.data);
- 
- 
+  
         [MethodImpl(Inline)]
         public bool Equals(num<T> rhs)
             => Ops.eq(this.data, rhs.data);
+
+        [MethodImpl(Inline)]
+        public num<T> muladd(num<T> y, num<T> z)
+            => Ops.muladd(this,y,z);
+
+        [MethodImpl(Inline)]
+        public num<T> pow(int exp)
+            => Ops.pow(data, exp);
+ 
+        [MethodImpl(Inline)]
+        bool Equality<num<T>>.eq(num<T> lhs, num<T> rhs)
+            => lhs.eq(rhs);
+
+        [MethodImpl(Inline)]
+        bool Equality<num<T>>.neq(num<T> lhs, num<T> rhs)
+            => lhs.neq(rhs);
 
         public override bool Equals(object rhs)
             => data.Equals(rhs);
@@ -220,17 +239,6 @@ namespace Z0
         public override string ToString()
             => data.ToString();
 
-        public num<T> muladd(num<T> y, num<T> z)
-            => Ops.muladd(this,y,z);
-
-        public num<T> pow(int exp)
-            => Ops.pow(data, exp);
- 
-        bool Equality<num<T>>.eq(num<T> lhs, num<T> rhs)
-            => lhs.eq(rhs);
-
-        bool Equality<num<T>>.neq(num<T> lhs, num<T> rhs)
-            => lhs.neq(rhs);
  
     }
 }

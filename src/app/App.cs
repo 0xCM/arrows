@@ -36,7 +36,7 @@ namespace App04
 
         static T dot<N,T>(Z0.Slice<N,T> s1, Z0.Slice<N,T> s2)
             where N : TypeNat, new()
-            where T : Equality<T>, new()
+            where T : Equatable<T>, new()
             {
                 var ops = Resolver.integer<T>();
                 var result = ops.zero;
@@ -338,7 +338,7 @@ namespace App04
             var s1 = Z0.N256.Seq.NatSlice(range<int>(1,256));
             var s2 = Z0.N256.Seq.NatSlice(range<int>(1,256));
             print(Slice.add(s1,s2));
-            print(Slice.mul(s1,s2));
+            //print(Slice.mul(s1,s2));
             print(Slice.sum(s1));
             print(Slice.square(s1));
 
@@ -355,7 +355,7 @@ namespace App04
 
         static void Integers()
         {
-            var total = intg<byte>(0);
+            var total = u(0);
             for(var i=0; i<1024; i++)
                 print(total++);
         }
@@ -463,7 +463,7 @@ namespace App04
         
         public static void PrintBits<T>(intg<T> src)
         {
-            for(var i = 0; i < src.bitsize; i ++)
+            for(var i = 0; i < (int)src.bitsize; i ++)
                 ShowBit(src, i);
         }
 
@@ -483,29 +483,54 @@ namespace App04
             printeach(stream.Take((int)count));
         }
 
-        public static void Averages()
+        public static void BitVectors()
         {
-            var src = slice(Rand.values(real(-500000L), real(500000L)).Take(5000000));
-            var avg1 = src.AvgG();
-            var avg2 = src.Unwrap().Average();
+            var bv16fixed = BitVector.define(u(0b1010000001010110));
+            var bv16var = BitVector.define(bigint(0b1010000001010110));
 
-            print($"Avg1 = {avg1}, Avg2 = {avg2}");
-            
-            
+            print($"bv16var  : bitstring={bv16var}, bitcount={bv16var.length}");
+            print($"bv16fixed: bitstring={bv16fixed}, bitcount={bv16fixed.length}");
+
+
+            var bv32fixed = BitVector.define(u(0b00100000010101101010000001010110));
+            var bv32var = BitVector.define(bigint(0b00100000010101101010000001010110));
+
+            print($"bv32var  : bitstring={bv32var}, bitcount={bv32var.length}");
+            print($"bv32fixed: bitstring={bv32fixed}, bitcount={bv32fixed.length}");
+
+
         }
 
+        static IEnumerable<ulong> from(ulong min, ulong max)
+        {
+            for(var i = min; i <=max; i++)
+                yield return i;
+        }
+        static IEnumerable<ulong> divisors(ulong src)
+        {        
+            if(src != 0 && src != 1)
+            {
+                var upper = src/2 + 1;
+                var candidates = from(2, upper);
+                foreach(var c in candidates)
+                    if(src % c == 0 )
+                        yield return c;
+            }    
+        }
+
+    
         static void Main(string[] args)
         {     
             SysInit.initialize<Program>();
 
-            // var u8 = u(0b00010000);
-            // ShowBits(u8);
-            // var z8 = z(-8);
-            // ShowBits(z8);
-            // print(bitstring(-8));
-            //GenRandVectors(100u, real(-5000), real(5000));
-            //TestRunner.RunTests();
-            Averages();
+
+
+            // print(BitVector.parse<byte>("0b11000"));
+            // print(BitVector.parse<uint>("0b11100011001"));
+            
+
+            TestRunner.RunTests();
+            
         }
     }
 }

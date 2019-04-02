@@ -453,7 +453,7 @@ partial class zcore
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static (T x1, T x2, T x3, T x4) tuple<T>(Vector<N4,T> v)
-            where T : Equality<T>, new()
+            where T : Equatable<T>, new()
                 => (v[0], v[1], v[2], v[3]);
 
         /// <summary>
@@ -466,7 +466,7 @@ partial class zcore
         /// <typeparam name="T">The coordinate type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N4,T> vector<T>((T x1, T x2, T x3, T x4) x)
-            where T : Equality<T>, new()
+            where T : Equatable<T>, new()
                 => vector<N4,T>(x.x1, x.x2,x.x3,x.x4);
 
     /// <summary>
@@ -488,7 +488,7 @@ partial class zcore
     /// <typeparam name="T">The coordinate type</typeparam>
     [MethodImpl(Inline)]
     public static Vector<N2,T> vector<T>((T x1, T x2) x)
-        where T : Equality<T>, new()
+        where T : Equatable<T>, new()
             => vector<N2,T>(x.x1, x.x2);
 
 }

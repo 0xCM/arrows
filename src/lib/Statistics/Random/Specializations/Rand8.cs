@@ -23,7 +23,7 @@ namespace Z0
             => this.random = random;
 
         [MethodImpl(Inline)]
-        public sprim one(sprim min, sprim max)
+        sprim one(sprim min, sprim max)
             => (sprim)random.one((uprim)(min),(uprim)max);
 
         public IEnumerable<real<prim>> stream(real<prim> min, real<prim> max)
@@ -32,18 +32,13 @@ namespace Z0
                 yield return one(min,max);
         }
 
-        public IEnumerable<real<sprim>> many(ulong count, sprim min, sprim max)
-        {
-            for(var j = 0UL; j<count; j++)
-                yield return one(min,max);
-        }
 
         [MethodImpl(Inline)]
         real<prim> Rand<prim>.one(real<prim> min, real<prim> max)
              => one(min,max);
 
         [MethodImpl(Inline)]
-        IEnumerable<real<prim>> Rand<prim>.many(ulong count, real<prim> min, real<prim> max)
-            => many(count,min,max);
+        public IEnumerable<real<prim>> many(ulong count, real<prim> min, real<prim> max)
+            => stream(min,max).Take((int)count);
     }
 }

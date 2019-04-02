@@ -32,6 +32,11 @@ namespace Z0
         public T zero 
             => @base.zero;
 
+        [MethodImpl(Inline)]   
+        public bool nonzero(T x)
+            => Ops.eq(x,zero);
+
+
         [MethodImpl(Inline)]
         public T reduce(T src) 
             => Ops.mod(src, @base);

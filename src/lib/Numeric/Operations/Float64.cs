@@ -58,9 +58,15 @@ namespace Z0
         public bool infinite 
             => false;
 
+        [MethodImpl(Inline)]   
+        public bool nonzero(operand x)
+            => x != 0;
+
+        [MethodImpl(Inline)]   
         public operand inc(operand x)
             => ++x;
 
+        [MethodImpl(Inline)]   
         public operand dec(operand x)
             => --x;
 

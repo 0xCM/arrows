@@ -10,53 +10,18 @@ namespace Z0
 
     using static zcore;
 
-
-
-    /// <summary>
-    /// Characterizes structural reification over a type S
-    /// </summary>
-    /// <typeparam name="S">The structure type</typeparam>
-    /// <typeparam name="T">The underlying data type</typeparam>
-    public interface Structural<S> : IEquatable<S>
-        where S : Structural<S>, new()
-    {
-
-    }    
-    
     
     /// <summary>
     /// Characterizes structural reification of type S over a data type T
     /// </summary>
     /// <typeparam name="S">The structure type</typeparam>
     /// <typeparam name="T">The underlying data type</typeparam>
-    public interface Structural<S,T> :  Structural<S>
+    public interface Structural<S,T> :  IEquatable<S>
         where S : Structural<S,T>, new()
     {
-        /// <summary>
-        /// Specifies the data encapsulated by the structure
-        /// </summary>
-        //T data {get;}        
+
     }    
 
-    /// <summary>
-    /// Characterizes an operational reification of unspecified type over an operand of type T
-    /// </summary>
-    /// <typeparam name="T">The operand type</typeparam>
-    public interface Operational<T>
-    {
-
-    }
-
-    /// <summary>
-    /// Characterizes an operational reification of type R over an operand of type T
-    /// </summary>
-    /// <typeparam name="R">The reification type</typeparam>
-    /// <typeparam name="T">The operand type</typeparam>
-    public interface Operational<R,T> : Operational<T>
-        where R : Operational<R,T>, new()
-    {
-
-    }
 
     /// <summary>
     /// Identifies a typeclass instance
@@ -86,16 +51,5 @@ namespace Z0
         public Type OperandType{get;}
     }
     
-    /// <summary>
-    /// Characterizes a type for which exactly one value may exist and that value
-    /// must be obtainable via a parameterless new construction
-    /// </summary>
-    /// <typeparam name="S">The type of both the type and value so characterized</typeparam>
-    public interface Singleton<S>
-        where S : Singleton<S>, new()
-    {
-        S inhabitant {get;}        
-    }
-
 
 }

@@ -32,7 +32,39 @@ namespace Z0
 
         public static readonly intg<T> MaxVal = BaseInfo.MaxVal;
 
-        public static readonly uint BitSize = BaseInfo.BitSize;            
+        public static readonly intg<T> BitSize = BaseInfo.BitSize;            
+
+        [MethodImpl(Inline)]
+        public static explicit operator byte(intg<T> src)
+            => convert<byte>(src.data);
+
+        [MethodImpl(Inline)]
+        public static explicit operator sbyte(intg<T> src)
+            => convert<sbyte>(src.data);
+
+        [MethodImpl(Inline)]
+        public static explicit operator short(intg<T> src)
+            => convert<short>(src.data);
+
+        [MethodImpl(Inline)]
+        public static explicit operator ushort(intg<T> src)
+            => convert<ushort>(src.data);
+
+        [MethodImpl(Inline)]
+        public static explicit operator int(intg<T> src)
+            => convert<int>(src.data);
+
+        [MethodImpl(Inline)]
+        public static explicit operator uint(intg<T> src)
+            => convert<uint>(src.data);
+
+        [MethodImpl(Inline)]
+        public static explicit operator long(intg<T> src)
+            => convert<long>(src.data);
+
+        [MethodImpl(Inline)]
+        public static explicit operator ulong(intg<T> src)
+            => convert<ulong>(src.data);
 
         [MethodImpl(Inline)]
         public static implicit operator intg<T>(T src)
@@ -136,7 +168,7 @@ namespace Z0
             get{return One;}
         }
 
-        public uint bitsize 
+        public intg<T> bitsize 
             => BitSize;
 
         public NumberInfo<intg<T>> numinfo 
@@ -186,7 +218,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public intg<T> pow(int rhs)
-            => Ops.pow(data, rhs);
+            => Ops.pow(this.data,rhs);
         
         [MethodImpl(Inline)]
         public bool even()
@@ -272,14 +304,9 @@ namespace Z0
         public intg<T> distributeR((intg<T> x, intg<T> y) rhs)
             => rhs.x * this + rhs.y * this;
 
-
-        /// <summary>
-        /// Returns true of the number is nonzero; false otherwise
-        /// </summary>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public bool nonzero()
-            => this != Zero;
+            => Ops.nonzero(data);
 
         /// <summary>
         /// Represents the integer as a sequence of 10-based digits
@@ -353,13 +380,24 @@ namespace Z0
         public intg<T> atanh()
             => Ops.atanh(this);
 
+        [MethodImpl(Inline)]
         public int CompareTo(intg<T> other)
             => throw new NotImplementedException();
 
+        [MethodImpl(Inline)]
         public bool eq(intg<T> lhs, intg<T> rhs)
             => lhs.eq(rhs);
  
+        [MethodImpl(Inline)]
         public bool neq(intg<T> lhs, intg<T> rhs)
             => lhs.neq(rhs);
+ 
+        [MethodImpl(Inline)]
+        public intg<T> min(intg<T> rhs)
+            => rhs < this ? rhs : this;
+
+        [MethodImpl(Inline)]
+        public intg<T> max(intg<T> rhs)
+            => rhs > this ? rhs : this;
     }
 }

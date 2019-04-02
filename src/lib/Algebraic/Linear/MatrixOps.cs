@@ -200,7 +200,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Z0.Slice<N, Covector<N, T>> covectors(Matrix<M,N,T> src)
-            => rows(src).ToSlice<N,Covector<N,T>>();        
+            => rows(src).Freeze<N,Covector<N,T>>();        
 
         [MethodImpl(Inline)]   
         public MatMul<M, N,P, T> multiplier<P>(Matrix<M,N,T> src) 

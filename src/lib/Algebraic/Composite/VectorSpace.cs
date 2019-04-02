@@ -13,15 +13,21 @@ namespace Z0
         /// </summary>
         /// <typeparam name="N">The dimension type</typeparam>
         /// <typeparam name="K">The field type</typeparam>
-        /// <typeparam name="A">The indidual type</typeparam>
-        public interface VectorSpace<N,K,A> : LeftModule<K,A>
-            where K : Field<K>, new()
-            where A : GroupA<A>, new()
+        /// <typeparam name="G">The indidual type</typeparam>
+        public interface VectorSpace<N,K,G> : LeftModule<K,G>
             where N : TypeNat, new()
+            where G : GroupA<G>, new()
+            where K : Field<K>, new()
         {
 
         }
             
+    }
+
+    partial class Structure
+    {
+
+    
     }
 
 

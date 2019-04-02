@@ -10,7 +10,7 @@ namespace Z0
     
     partial class Operative
     {
-        public interface Semigroup<T> :  Equality<T>, Operational<T>
+        public interface Semigroup<T> :  Equality<T>
         {
             
         }
@@ -71,16 +71,13 @@ namespace Z0
 
     partial class Reify
     {
-        public readonly struct SemigroupM<T> : Operative.SemigroupM<T>, Singleton<SemigroupM<T>>
+        public readonly struct SemigroupM<T> : Operative.SemigroupM<T>
             where T : Operative.SemigroupM<T>, new()
         {    
             static readonly Operative.SemigroupM<T> Ops = new T();
 
             public static SemigroupM<T> Inhabitant = default;
             
-            public SemigroupM<T> inhabitant 
-                => Inhabitant;
-
             [MethodImpl(Inline)]
             public T mul(T lhs, T rhs)
                 => Ops.mul(lhs,rhs);
@@ -93,24 +90,15 @@ namespace Z0
             public bool neq(T lhs, T rhs)
                 => Ops.neq(lhs,rhs);
 
-            [MethodImpl(Inline)]
-            public T apply(T lhs, T rhs) 
-                => mul(lhs,rhs);
-
 
         }
 
-        public readonly struct SemigroupA<T> : Operative.SemigroupA<T>, Singleton<SemigroupA<T>>
+        public readonly struct SemigroupA<T> : Operative.SemigroupA<T>
             where T : Operative.SemigroupA<T>, new()
         {    
             static readonly Operative.SemigroupA<T> Ops = new T();
 
-            public static SemigroupA<T> Inhabitant = default;
             
-            public SemigroupA<T> inhabitant 
-                => Inhabitant;
-
-
             [MethodImpl(Inline)]
             public T add(T a, T b) 
                 => Ops.add(a,b);
@@ -123,9 +111,6 @@ namespace Z0
             public bool neq(T lhs, T rhs) 
                 => Ops.neq(lhs,rhs);
 
-            [MethodImpl(Inline)]
-            public T apply(T lhs, T rhs) 
-                => add(lhs,rhs);
 
         }
     }
