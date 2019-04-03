@@ -151,18 +151,6 @@ namespace Z0
         public operand pow(operand b, int exp) 
             => fold(repeat(b,exp), mul,1);
 
-        [MethodImpl(Inline)]   
-        public operand abs(operand x)
-            => BigInteger.Abs(x);
-
-        [MethodImpl(Inline)]   
-        public Sign sign(operand x)
-            => x switch
-            {
-                operand t when x > 0 => Sign.Positive,
-                operand t when x < 0 => Sign.Negative,
-                _                    => Sign.Neutral                    
-            };
 
         public operand gcd(operand lhs, operand rhs)
             => operand.GreatestCommonDivisor(lhs,rhs);
@@ -243,6 +231,19 @@ namespace Z0
         public string hexstring(operand x)
             => x.ToHexString();
 
+        [MethodImpl(Inline)]   
+        public operand abs(operand x)
+            => BigInteger.Abs(x);
+
+        [MethodImpl(Inline)]   
+        public Sign sign(operand x)
+            => x == 0 ? Sign.Neutral :
+               x > 0 ? Sign.Positive :
+               Sign.Negative;
+
+        [MethodImpl(Inline)]   
+        public operand sign(operand x, Sign s)
+            => x != 0 && s != Sign.Neutral && sign(x) != s ? -x : x;    
     }
 
 }

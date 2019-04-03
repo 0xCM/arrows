@@ -110,7 +110,7 @@ namespace Z0
         {
             var width = (ulong)(max - min);
             var offset = (ulong)(min + 1);
-            var result = one().data % width + offset;
+            var result = unwrap(one()) % width + offset;
             return (byte)result;            
         }
 
@@ -118,7 +118,7 @@ namespace Z0
         {
             var width = max - min;
             var offset = min + 1;
-            var @base = (double)one().data;
+            var @base = (double)unwrap(one());
             return (@base % width + offset)/width;
         }
 
@@ -126,7 +126,7 @@ namespace Z0
         {
             var width = (ulong)(max - min);
             var offset = (ulong)(min + 1);
-            var result = one().data % width + offset;
+            var result = unwrap(one()) % width + offset;
             return (ushort)result;            
         }
 
@@ -134,7 +134,7 @@ namespace Z0
         {
             var width = (ulong)(max - min);
             var offset = (ulong)(min + 1);
-            var result = one().data % width + offset;
+            var result = unwrap(one()) % width + offset;
             return (uint)result;            
         }
 
@@ -142,7 +142,7 @@ namespace Z0
         {
             var width = max - min;
             var offset = min + 1;
-            var result = one().data % width + offset;
+            var result = unwrap(one()) % width + offset;
             return result;            
         }
 

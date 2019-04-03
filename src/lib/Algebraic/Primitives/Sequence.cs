@@ -9,15 +9,16 @@ namespace Z0
     using static zcore;
 
 
-    partial class Traits
+    partial class Structures
     {
         /// <summary>
-        /// Characterizes a mathematical sequence that carries an integer
-        /// to a term and may be empty, finite or infinite
+        /// Characterizes a mathematical sequence that carries an integer to a term 
+        /// and may be empty, finite or infinite
         /// </summary>
         /// <typeparam name="I">The sequence domain</typeparam>
         /// <typeparam name="T">The sequence codomain</typeparam>
-        public interface Sequence<I,T> : Container<KeyedValue<I,T>>
+        public interface Sequence<I,T> : Structure<I>
+            where I : Sequence<I,T>, new()
         {
 
             /// <summary>
@@ -34,6 +35,7 @@ namespace Z0
         /// <typeparam name="I">The sequence domain</typeparam>
         /// <typeparam name="T">The sequence codomain</typeparam>
         public interface NonemptySequence<I,T> : Sequence<I,T>
+            where I : NonemptySequence<I,T>, new()
         {
             /// <summary>
             /// The first element of the sequence
@@ -54,6 +56,7 @@ namespace Z0
         /// <typeparam name="I">The sequence domain</typeparam>
         /// <typeparam name="T">The sequence codomain</typeparam>
         public interface InfiniteSequence<I,T> : NonemptySequence<I,T>
+            where I : InfiniteSequence<I,T>, new()
         {
 
         }
@@ -64,6 +67,7 @@ namespace Z0
         /// <typeparam name="I">The sequence domain</typeparam>
         /// <typeparam name="T">The sequence codomain</typeparam>
         public interface FiniteSequence<I,T> : Sequence<I,T>
+            where I : FiniteSequence<I,T>, new()
         {
             int length {get;}
 

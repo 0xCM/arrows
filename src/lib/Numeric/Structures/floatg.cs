@@ -11,7 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;    
 
     using static zcore;
-    using static Structure;
+    using static Structures;
 
     /// <summary>
     /// Represents an floateger predicated on (and constrained by) an underlying type
@@ -102,8 +102,10 @@ namespace Z0
         public static bool operator >= (floatg<T> lhs, floatg<T> rhs) 
             => Ops.gteq(lhs,rhs);
 
+        public NumberInfo<floatg<T>> numinfo 
+            => new NumberInfo<floatg<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);
 
-        public T data {get;}
+        readonly T data;
 
         public floatg<T> zero 
         {
@@ -123,9 +125,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public floatg (T x) 
             => data = x;
-
-        public NumberInfo<floatg<T>> numinfo 
-            => new NumberInfo<floatg<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);
 
         public floatg<T> bitsize 
             => BitSize;
@@ -299,11 +298,6 @@ namespace Z0
         public floatg<T> atanh()
             => Ops.atanh(this.data); 
 
-        /// <summary>
-        /// x:floatg[T] => x:intg[I]
-        /// </summary>
-        /// <typeparam name="I">The underlying type of the destination</typeparam>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public intg<I> intg<I>()
             where I : IConvertible
@@ -313,28 +307,34 @@ namespace Z0
         public bool Equals(floatg<T> rhs)
             => this == rhs;
 
+        [MethodImpl(Inline)]
+        public floatg<T> muladd(floatg<T> y, floatg<T> z)
+            => Ops.muladd(this.data,y,z);
+
+        [MethodImpl(Inline)]
+        public floatg<T> pow(int exp)
+            => Ops.pow(this,exp);
+
+        [MethodImpl(Inline)]
+        public floatg<T> resign(Sign sign)
+            => Ops.resign(data, sign);
+
+        [MethodImpl(Inline)]
+        public int hash()
+            => data.GetHashCode();
+
+        public override int GetHashCode()
+            => hash();
+
         public override bool Equals(object rhs)
             => data.Equals(rhs);
 
-        public override int GetHashCode()
-            => data.GetHashCode();
 
         public override string ToString()
             => data.ToString();
 
-        public floatg<T> muladd(floatg<T> y, floatg<T> z)
-            => Ops.muladd(this.data,y,z);
-
         public int CompareTo(floatg<T> other)
             => throw new NotImplementedException();
 
-        public floatg<T> pow(int exp)
-            => Ops.pow(this,exp);
-
-        bool Equality<floatg<T>>.eq(floatg<T> lhs, floatg<T> rhs)
-            => lhs.eq(rhs);
-
-        bool Equality<floatg<T>>.neq(floatg<T> lhs, floatg<T> rhs)
-            => lhs.neq(rhs);
     }
 }

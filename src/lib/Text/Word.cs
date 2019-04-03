@@ -6,63 +6,89 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;    
+    using System.Runtime.CompilerServices;
     using System.Linq;
     using static zcore;
     using Z0;
 
     /// <summary>
-    /// Represents a Word
+    /// Represents a symbol comprising a finite ordered sequence of symbols
     /// </summary>
-    public readonly struct Word : Structure.FreeMonoid<Word,Slice<Symbol>>, Equatable<Word>
+    public readonly struct Word : Structures.FreeMonoid<Word>
     {
         public static readonly Word Empty = new Word();        
 
+        [MethodImpl(Inline)]
         public static Word operator +(Word lhs, Word rhs)
             => lhs.append(rhs);
                     
+        [MethodImpl(Inline)]
         public static implicit operator Slice<Symbol>(Word s)                
-            => s.data;
+            => s.symbols;
 
-        public Slice<Symbol> data {get;}
+        readonly Slice<Symbol> symbols;
 
-        public Word empty 
+        [MethodImpl(Inline)]
+        public Word(params Symbol[] data)
+            => this.symbols = data;
+
+        [MethodImpl(Inline)]
+        public Word(IEnumerable<Symbol> data)
+            => this.symbols = data.Freeze();
+
+        [MethodImpl(Inline)]
+        public Word(string data)
+            => this.symbols = slice(symbol(data));
+
+        public Word zero 
             => Empty;
 
-        public Word(params Symbol[] data)
-            => this.data = data;
+        public uint length 
+            => symbols.length;
 
-        public Word(IEnumerable<Symbol> data)
-            => this.data = data.Freeze();
-
-        public Word(string data)
-            => this.data = slice(symbol(data));
-
-        public override string ToString() 
-            => data.ToString();
-
+        [MethodImpl(Inline)]
         public bool eq(Word rhs)
-            => data == rhs.data;
+            => symbols == rhs.symbols;
 
+        [MethodImpl(Inline)]
         public bool neq(Word rhs)
-            => data != rhs;
+            => symbols != rhs;
 
-        public IEnumerable<Word> append(IEnumerable<Word> rhs)
-            => items(this).Concat(rhs);
-
+        [MethodImpl(Inline)]
         public Word append(Word rhs)
-            => new Word(this.data.data.Concat(rhs.data.data));
+            => new Word(this.symbols.data.Concat(rhs.symbols.data));
 
+        public Word concat(Word rhs)     
+            => new Word(symbols + rhs.symbols);
+
+        [MethodImpl(Inline)]
+        public bool nonzero()
+            => symbols.length != 0;
+
+        [MethodImpl(Inline)]
+        public bool eq(Word lhs, Word rhs)
+            => lhs.eq(rhs);
+
+        [MethodImpl(Inline)]
+        public bool neq(Word lhs, Word rhs)
+            => lhs.neq(rhs);
+
+
+        [MethodImpl(Inline)]
+        public string format()
+            => symbols.ToString();
+
+        [MethodImpl(Inline)]
+        public int hash()
+            => symbols.hash();
+
+        [MethodImpl(Inline)]
         public bool Equals(Word rhs)
             => eq(rhs);
 
-        public Word concat(Word rhs)     
-            => new Word(data + rhs.data);
+        public override string ToString() 
+            => symbols.ToString();
 
-        bool Equality<Word>.eq(Word lhs, Word rhs)
-            => lhs.eq(rhs);
-
-        bool Equality<Word>.neq(Word lhs, Word rhs)
-            => lhs.neq(rhs);
     }
 
 }

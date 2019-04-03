@@ -75,10 +75,11 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
 
         public interface Shifty<S>
+            where S : Shifty<S>, new()
         {
             S lshift(int rhs);
 
@@ -87,6 +88,7 @@ namespace Z0
         }
 
         public interface BitSource<S>
+            where S : BitSource<S>, new()
         {
             /// <summary>
             /// Formats the source value a sequence of base-2 digits
@@ -96,6 +98,7 @@ namespace Z0
         }
         
         public interface BitLogic<S> 
+            where S : BitLogic<S>, new()
         {
             /// <summary>
             /// Computes the bitwise and
@@ -126,6 +129,7 @@ namespace Z0
         }
 
         public interface Bitwise<S> : BitLogic<S>, Shifty<S>, BitSource<S>
+            where S : Bitwise<S>, new()
         {
 
         }

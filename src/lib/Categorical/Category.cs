@@ -9,7 +9,7 @@ namespace Z0
     using static zcore;
 
     
-    partial class Structure
+    partial class Structures
     {
         public interface Category
         {

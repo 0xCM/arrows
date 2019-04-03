@@ -10,7 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using static zcore;
     
-    using static Structure;
+    using static Structures;
 
     public readonly struct real<T> : RealNumber<real<T>, T>
     {
@@ -74,8 +74,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static explicit operator decimal(real<T> src)
             => src.convert<decimal>();
-
-
 
         [MethodImpl(Inline)]
         public static implicit operator real<T>(T src)
@@ -148,7 +146,7 @@ namespace Z0
         public real(T src)
             => this.data = src;
 
-        public T data {get;}
+        readonly T data;
 
         public bool infinite 
             => false;
@@ -175,7 +173,9 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Sign sign()
-            => Ops.sign(data);
+            => nonzero() ? Sign.Neutral : 
+               this < Zero ? Sign.Negative :
+               Sign.Positive;
 
         [MethodImpl(Inline)]
         public real<T> add(real<T> rhs)
@@ -263,15 +263,6 @@ namespace Z0
              : this > rhs ? 1
              : 0;
 
-        public override bool Equals(object rhs)
-            => data.Equals(rhs);
-
-        public override int GetHashCode()
-            => data.GetHashCode();
-
-        public override string ToString()
-            => data.ToString();
-
         public real<T> zero 
             => Ops.zero;
 
@@ -336,6 +327,19 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool nonzero()
             => Ops.neq(data, Ops.zero);
+
+        [MethodImpl(Inline)]
+        public int hash()
+            => data.GetHashCode();
+
+        public override bool Equals(object rhs)
+            => data.Equals(rhs);
+
+        public override int GetHashCode()
+            => hash();
+
+        public override string ToString()
+            => data.ToString();
 
     }
 }

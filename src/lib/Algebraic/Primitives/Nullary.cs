@@ -8,9 +8,17 @@ namespace Z0
     partial class Operative
     {
         /// <summary>
-        /// Characterizes a type that defines an additive unit
+        /// Characterizes operations over a nullary type
         /// </summary>
         /// <typeparam name="T">The unit type</typeparam>
+        /// <remarks>
+        /// It is tempting to subclass Additive here, but there are cases where
+        /// it makese sense for something have a zero element and yet not be
+        /// additive, e.g. a string can be empty, and they can be added (via concatentation)
+        /// but consider the set of singleton/atomic strings over some alphabet. In
+        /// this case, there can be no (closed) concatenation operation and yet
+        /// the concept of nothingness (the empty string) is still meaningful
+        /// </remarks>
         public interface Nullary<T> 
         {
             T zero {get;}
@@ -25,9 +33,23 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
-        public interface Nullary<S> 
+        /// <summary>
+        /// Characterizes an additve structure S for which there exists a
+        /// distinguished element 0:S such that for every s:S, s + 0 = s
+        /// </summary>
+        /// <typeparam name="S">The reification type</typeparam>
+        /// <remarks>
+        /// It is tempting to subclass Additive here, but there are cases where
+        /// it makese sense for something have a zero element and yet not be
+        /// additive, e.g. a string can be empty, and they can be added (via concatentation)
+        /// but consider the set of singleton/atomic strings over some alphabet. In
+        /// this case, there can be no (closed) concatenation operation and yet
+        /// the concept of nothingness (the empty string) is still meaningful
+        /// </remarks>
+        public interface Nullary<S>
+            where S : Nullary<S>, new()
         {
             /// <summary>
             /// Specifies the zero value
@@ -40,16 +62,6 @@ namespace Z0
             bool nonzero();
         }
 
-        /// <summary>
-        /// Characterizes a nullary structure, that is, a structure
-        /// that defines a zero that is an instance of itself
-        /// </summary>
-        /// <typeparam name="T">The unit type</typeparam>
-        public interface Nullary<S,T> : Nullary<S>, Structural<S,T>
-            where S : Nullary<S,T>, new()
-        {
-
-        }
 
     }
 

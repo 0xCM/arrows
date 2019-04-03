@@ -114,7 +114,7 @@ public static class ToIntX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static int ToInt(this intg<byte> src)
-        => (int)src.data;
+        => src;
 
     /// <summary>
     /// x:intg[sbyte] => x:int
@@ -122,7 +122,7 @@ public static class ToIntX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static int ToInt(this intg<sbyte> src)
-        => (int)src.data;
+        => src;
 
     /// <summary>
     /// x:intg[short] => x:int
@@ -150,28 +150,28 @@ public static class ToIntX
 
     [MethodImpl(Inline)]   
     public static int ToInt(this intg<uint> src)
-        => (int)src.data;
+        => (int)src;
 
     [MethodImpl(Inline)]   
     public static int ToInt(this intg<long> src)
-        => (int)src.data;
+        => (int)src;
 
     [MethodImpl(Inline)]   
     public static int ToInt(this intg<ulong> src)
-        => (int)src.data;
+        => (int)src;
 
 
-   [MethodImpl(Inline)]   
+    [MethodImpl(Inline)]   
     public static int ToInt(this floatg<double> src)
-        => (int)src.data;
+        => (int)unwrap(src);
 
 
-   [MethodImpl(Inline)]   
+    [MethodImpl(Inline)]   
     public static int ToInt(this floatg<float> src)
-        => (int)src.data;
+        => (int)unwrap(src);
 
-   [MethodImpl(Inline)]   
+    [MethodImpl(Inline)]   
     public static int ToInt<T>(this floatg<T> src)
-        => convert<int>(src.data);
+        => convert<int>(unwrap(src));
 
 }

@@ -15,14 +15,12 @@ namespace Z0
     }
 
     /// <summary>
-    /// Characterizes a structure over data
+    /// Characterizes  a type that  exhibits a notion of length
     /// </summary>
-    /// <typeparam name="T">The data type</typeparam>
-    public interface Wrapped<T>
+    public interface Lengthwise<S> : Lengthwise
+        where S : Lengthwise<S>, new()
     {
-        T data {get;}
 
-        
     }
 
 }

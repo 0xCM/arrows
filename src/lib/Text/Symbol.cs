@@ -7,84 +7,122 @@ namespace Z0
     using System;
     using System.Collections.Generic;    
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using static zcore;
     using Z0;
 
+
+    partial class Structures
+    {
+        public interface Symbol<S,T> :  FreeMonoid<S>
+            where S : Symbol<S,T>, new()
+            where T : Nullary<T>, new()
+        {
+        }
+
+    }
     /// <summary>
-    /// Represents a symbol
+    /// Represents a symbol comprising a finite ordered sequence of atoms
     /// </summary>
-    public readonly struct Symbol : Structure.FreeMonoid<Symbol,Slice<Atom>>,Equatable<Symbol>, Equality<Symbol>,  IEquatable<Symbol>
+    public readonly struct Symbol : Structures.Symbol<Symbol,Atom>
     {
         public static readonly Symbol Empty = new Symbol(string.Empty);
 
+        [MethodImpl(Inline)]
         public static Symbol operator +(Symbol lhs, Symbol rhs)
             => lhs.append(rhs);
         
+        [MethodImpl(Inline)]
         public static bool operator ==(Symbol lhs, Symbol rhs)
-            => lhs.data == rhs.data;
+            => lhs.atoms == rhs.atoms;
 
+        [MethodImpl(Inline)]
         public static bool operator !=(Symbol lhs, Symbol rhs)
             => not(lhs == rhs);
             
+        [MethodImpl(Inline)]
         public static implicit operator string(Symbol s)                
-            => string.Concat(s.data.data.Select(x => x.data));
+            => string.Concat(s.atoms.data.Select(x => x.data));
 
+        [MethodImpl(Inline)]
         public Symbol(IEnumerable<Atom> data)
         {
-            this.data = data.Freeze();
-            this.description = string.Empty;
+            this.atoms = data.Freeze();
         }
 
-        public Symbol(string data, string description = null)
-        {
-            this.data = slice(new Atom(data));
-            this.description = description ?? string.Empty;
-        }
+        [MethodImpl(Inline)]
+        public Symbol(string data)
+            => this.atoms = slice(new Atom(data));
 
-        public string description {get;}
+        readonly Slice<Atom> atoms;
 
-
-        public Slice<Atom> data {get;}
-
-        public string name
-            => this;
-
-        public Symbol empty 
+        public Symbol zero 
             => Empty;
 
+        [MethodImpl(Inline)]
+        public bool nonzero()
+            => atoms.length != 0;
 
-        public bool eq(Symbol rhs)
-            => name == rhs;
+        public uint length 
+            => atoms.length;
 
-        public bool neq(Symbol rhs)
-            => name != rhs;
+        public uint count 
+            => length;
 
+        public Atom this[int i] 
+            => atoms[i];
+
+        [MethodImpl(Inline)]
         public Symbol append(Symbol rhs)
-            => new Symbol(data.data.Concat(rhs.data.data));
+            => new Symbol(atoms.data.Concat(rhs.atoms.data));
 
-        public override string ToString() 
-            => name;
+        [MethodImpl(Inline)]
+        public Symbol concat(Symbol rhs)
+            => new Symbol(this.atoms + rhs.atoms);
 
-        public override int GetHashCode() 
-            => data.GetHashCode();
+        [MethodImpl(Inline)]
+        static Symbol concat(Symbol lhs, Symbol rhs)
+            => lhs.concat(rhs);
 
+        [MethodImpl(Inline)]
+        public Symbol reverse()
+            => new Symbol(atoms.Reverse());
+                
+        [MethodImpl(Inline)]
+        public bool eq(Symbol rhs)
+            => atoms.eq(rhs.atoms);
+
+        [MethodImpl(Inline)]
+        public bool neq(Symbol rhs)
+            => atoms.neq(rhs.atoms);
+
+
+        [MethodImpl(Inline)]
+        public int hash()
+            => atoms.GetHashCode();
+
+    
+        [MethodImpl(Inline)]
         public bool Equals(Symbol other)
             => this == other;
 
+        [MethodImpl(Inline)]
+        public string format()
+            => string.Concat(apply(atoms, x => x.format()));
+
+        public override string ToString() 
+            => format();
+
         public override bool Equals(Object rhs)
-            => rhs is Symbol ? Equals((Symbol)rhs) : false;
+            => rhs is Symbol ? eq((Symbol)rhs) : false;
 
-        public bool eq(Slice<Atom> lhs, Slice<Atom> rhs)
-            => throw new NotImplementedException();
-
-        public Symbol concat(Symbol rhs)
-            => new Symbol(this.data + rhs.data);
+        public override int GetHashCode() 
+            => hash();
 
         public bool eq(Symbol lhs, Symbol rhs)
             => lhs.eq(rhs);
- 
+
         public bool neq(Symbol lhs, Symbol rhs)
-            => lhs.eq(rhs);
-    }
-   
+            => lhs.neq(rhs);
+    }   
 }

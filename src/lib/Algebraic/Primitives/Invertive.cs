@@ -37,14 +37,13 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
         
         /// <summary>
         /// Characterizes structural inversion
         /// </summary>
         /// <typeparam name="T">The type over which the structrue is defined</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
         public interface Invertive<S>
         {
             
@@ -53,9 +52,9 @@ namespace Z0
         /// <summary>
         /// Characterizes structural multiplicative inversion
         /// </summary>
-        /// <typeparam name="T">The type over which the structrue is defined</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface InvertiveM<S> : Invertive<S>
+        /// <typeparam name="S">The reification type</typeparam>
+        public interface InvertiveM<S> : Invertive<S>, Multiplicative<S>
+            where S : InvertiveM<S>, new()
         {
             /// <summary>
             /// Effects multiplicative inversion
@@ -64,11 +63,11 @@ namespace Z0
         }
 
         /// <summary>
-        /// Characterizes structural multiplicative inversion
+        /// Characterizes structural additive inversion
         /// </summary>
-        /// <typeparam name="T">The type over which the structrue is defined</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface InvertiveA<S> : Invertive<S>
+        /// <typeparam name="S">The reification type</typeparam>
+        public interface InvertiveA<S> : Invertive<S>, Additive<S>
+            where S : InvertiveA<S>, new()
         {
             /// <summary>
             /// Effects additive inversion
@@ -76,41 +75,6 @@ namespace Z0
             S invertA();
         }
 
-
-        /// <summary>
-        /// Characterizes structural inversion
-        /// </summary>
-        /// <typeparam name="T">The type over which the structrue is defined</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface Invertive<S,T> : Invertive<S>, Structural<S,T>
-            where S : Invertive<S,T>, new()
-        {
-
-        }
-
-        /// <summary>
-        /// Characterizes structural multiplicative inversion
-        /// </summary>
-        /// <typeparam name="T">The type over which the structrue is defined</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface InvertiveM<S,T> : InvertiveM<S>, Invertive<S,T>
-            where S : InvertiveM<S,T>, new()
-        {
-
-        }
-
-
-
-        /// <summary>
-        /// Characterizes structural additive inversion
-        /// </summary>
-        /// <typeparam name="T">The type over which the structrue is defined</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface InvertiveA<S,T> : InvertiveA<S>, Invertive<S,T>
-            where S : InvertiveA<S,T>, new()
-        {
-
-        }
     }
 }
  

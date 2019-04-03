@@ -43,9 +43,10 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
          public interface Fractional<S> : RealNumber<S> 
+            where S : Fractional<S>, new()
          {
             S ceiling();
             

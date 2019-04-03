@@ -7,6 +7,9 @@ namespace Z0
 
     using System;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
+    using static zcore;
+    using static Operative;
 
     partial class Operative
     {
@@ -21,21 +24,28 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
-        public interface Concatenable<S> 
+        public interface Concatenable<S> : Structure<S>, Formattable 
+            where S : Concatenable<S>, new()
         {
             S concat(S rhs);
 
         }
 
-        public interface Concatenable<S,T> : Concatenable<S>, Structural<S,T>
-            where S : Concatenable<S,T>,new()
+        public interface Concatenable<S,T> : Concatenable<S>
+            where S : Concatenable<S,T>, new()
         {
 
         }
 
     }
 
+    public readonly struct Concatenable : Concatenable<string>
+    {
+        [MethodImpl(Inline)]
+        public string concat(string lhs, string rhs)
+            => lhs + rhs;
+    }
 
 }

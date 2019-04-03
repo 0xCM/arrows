@@ -13,7 +13,7 @@ namespace Z0
     using static zcore;
 
 
-    public readonly struct FixedBitVector<N> : Structure.BitString<FixedBitVector<N>,N>
+    public readonly struct FixedBitVector<N> 
         where N : TypeNat, new()     
     {
         public static readonly uint Length = natval<N>();
@@ -52,13 +52,6 @@ namespace Z0
         public bool Equals(FixedBitVector<N> rhs)
             => this.eq(rhs);
 
-        [MethodImpl(Inline)]
-        bool Equality<FixedBitVector<N>>.eq(FixedBitVector<N> lhs, FixedBitVector<N> rhs)
-            => lhs.eq(rhs);
-
-        [MethodImpl(Inline)]
-        bool Equality<FixedBitVector<N>>.neq(FixedBitVector<N> lhs, FixedBitVector<N> rhs)
-            => lhs.neq(rhs);
 
         [MethodImpl(Inline)]
         public string format()
@@ -70,6 +63,7 @@ namespace Z0
 
         public uint length
             => Length;
+
 
         public override string ToString()
             => format();

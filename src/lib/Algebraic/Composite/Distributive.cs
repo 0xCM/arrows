@@ -40,9 +40,10 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
         public interface LeftDistributive<S>: Multiplicative<S>, Additive<S>
+            where S : LeftDistributive<S>, new()
         {
             /// <summary>
             /// Characterizes a type that defines an operator that left-distributes
@@ -54,6 +55,7 @@ namespace Z0
         }
 
         public interface RightDistributive<S> : Multiplicative<S>, Additive<S>
+            where S : RightDistributive<S>, new()
         {
             /// <summary>
             /// Characterizes a type that defines an operator that left-distributes
@@ -64,7 +66,9 @@ namespace Z0
 
         }
         
-        public interface Distributive<S> : LeftDistributive<S>, RightDistributive<S> {}
+        public interface Distributive<S> : LeftDistributive<S>, RightDistributive<S> 
+            where S : Distributive<S>, new()
+        {}
 
         public interface LeftDistributive<S,T>  : LeftDistributive<S>, Multiplicative<S,T>, Additive<S,T>
             where S : LeftDistributive<S,T>, new() { }

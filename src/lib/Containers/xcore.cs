@@ -53,9 +53,6 @@ namespace Z0
             where T : Equatable<T>, new()
                 => Z0.Slice.define<N,T>(src);
 
-        [MethodImpl(Inline)]
-        public static IEqualityComparer<T> ToEqualityComparer<T>(this Equality<T> eq)
-            => new EqualityComparer<T>(eq);
 
         /// <summary>
         /// Creates a transformed array
@@ -99,6 +96,7 @@ namespace Z0
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
         public static Seq<T> ToSeq<T>(this IEnumerable<T> src)
+            where T : Structure<T>, new()
                 => Seq.define(src);
     
             /// <summary>
@@ -108,7 +106,7 @@ namespace Z0
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
         public static FiniteSeq<T> ToFiniteSeq<T>(this IEnumerable<T> src)
-            where T : IEquatable<T>
+            where T : Structure<T>, new()
                 => Seq.finite(src);
 
 

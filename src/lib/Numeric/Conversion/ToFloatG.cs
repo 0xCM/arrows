@@ -199,9 +199,9 @@ public static class ToFloatGX
 
     [MethodImpl(Inline)]   
     public static floatg<double> ToFloatG<T>(this intg<T> src)
-        => convert<double>(src.data);
+        => convert<double>((T)src);
 
     [MethodImpl(Inline)]   
     public static floatg<float> ToFloatG32<T>(this intg<T> src)
-        => convert<float>(src.data);
+        => convert<float>((T)src);
 }

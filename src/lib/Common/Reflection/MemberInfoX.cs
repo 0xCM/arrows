@@ -8,9 +8,6 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using System.ComponentModel;
-    using System.Linq.Expressions;
-    using System.IO;
-    using System.Diagnostics;
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
@@ -19,23 +16,12 @@ namespace Z0
 
     partial class Reflections
     {
-
-        /// <summary>
-        /// Determines an expression for the name of the method relative to the supplied type parameter
-        /// </summary>
-        /// <typeparam name="R"></typeparam>
-        /// <param name="m">The method for which a name relative to  <typeparamref name="R"/></param> will be specified
-        /// <returns></returns>
-        public static string RelativeName<R>(this MethodBase m)
-            => typeof(R).Name
-            + $"/{m.Name.Replace(typeof(R).FullName + ".", string.Empty)}";
-
         /// <summary>
         /// Gets the value of a specified field or property
         /// </summary>
         /// <param name="m">The field or property</param>
         /// <param name="o">The object on which the member is defined</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static object GetMemberValue(this MemberInfo m, object o)
         {
             if (m is FieldInfo)
@@ -46,15 +32,13 @@ namespace Z0
                 throw new NotSupportedException();
         }
 
-
         /// <summary>
         /// Gets the value of the identified member field or property
         /// </summary>
         /// <typeparam name="T">The value type</typeparam>
         /// <param name="m">The member</param>
         /// <param name="o">The instance from which to access the member</param>
-        /// <returns></returns>
-        [DebuggerStepThrough]
+        [MethodImpl(Inline)]
         public static T GetMemberValue<T>(this MemberInfo m, object o)
             => (T)m.GetMemberValue(o);
 
@@ -63,6 +47,7 @@ namespace Z0
         /// </summary>
         /// <param name="f">The field to examine</param>
         /// <returns></returns>
+        [MethodImpl(Inline)]
         public static bool IsCompilerGenerated(this FieldInfo f)
             => f.HasAttribute<CompilerGeneratedAttribute>();
 
@@ -72,7 +57,6 @@ namespace Z0
         /// </summary>
         /// <param name="x">An object</param>
         /// <param name="y">An object</param>
-        /// <returns></returns>
         public static IDictionary<string, Tuple<object, object>> ComputePropertyValueDelta(object x, object y)
         {
             var delta = new Dictionary<string, Tuple<object, object>>();
@@ -95,9 +79,13 @@ namespace Z0
             return delta;
         }
 
-
-        public static IReadOnlyList<Type> GetParameterTypes(this MethodInfo method)
-            => method.GetParameters().Select(p => p.ParameterType).ToReadOnlyList();
+        /// <summary>
+        /// Returns a method's parameter types
+        /// </summary>
+        /// <param name="src">The soruce method</param>
+        [MethodImpl(Inline)]
+        public static IEnumerable<Type> GetParameterTypes(this MethodInfo src)
+            => src.GetParameters().Select(p => p.ParameterType);
 
         /// <summary>
         /// Searches a type for any method that matches the supplied signature
@@ -105,50 +93,63 @@ namespace Z0
         /// <param name="declaringType">The type to search</param>
         /// <param name="name">The name of the method</param>
         /// <param name="argTypes">The method parameter types in ordinal position</param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static Option<MethodInfo> MatchMethod(this Type declaringType, string name, params Type[] argTypes)
             => argTypes.Length != 0
-                ? declaringType.GetMethod(name, bindingAttr: AnyVisibilityOrInstanceType,
-                            binder: null, types: argTypes, modifiers: null)
+                ? declaringType.GetMethod(name, 
+                        bindingAttr: AnyVisibilityOrInstanceType, 
+                        binder: null, 
+                        types: argTypes, 
+                        modifiers: null
+                        )
                 : declaringType.GetMethod(name, AnyVisibilityOrInstanceType);
 
-
-
-        public static string DisplayName(this MethodBase t)
-            => $"{t.DeclaringType.DisplayName()}{t.Name}";
+ 
+        /// <summary>
+        /// Determines an expression for the name of the method relative to the supplied type parameter
+        /// </summary>
+        /// <typeparam name="T">The relative type</typeparam>
+        /// <param name="src">The source method</param> 
+        [MethodImpl(Inline)]
+        public static string RelativeName<T>(this MethodBase src)
+            => typeof(T).Name
+            + $"/{src.Name.Replace(typeof(T).FullName + ".", string.Empty)}";
 
         /// <summary>
-        /// Constructs a reasonably pretty display name for a type
+        /// Constructs a display name for a method
         /// </summary>
-        /// <param name="t">The type</param>
-        /// <returns></returns>
-        public static string DisplayName(this Type t)
+        /// <param name="src">The source method</param>
+        [MethodImpl(Inline)]
+        public static string DisplayName(this MethodBase src)
+            => $"{src.DeclaringType.DisplayName()}{src.Name}";
+
+        /// <summary>
+        /// Constructs a display name for a type
+        /// </summary>
+        /// <param name="src">The source type</param>
+        public static string DisplayName(this Type src)
         {
-            var attrib = t.GetCustomAttribute<DisplayNameAttribute>();
+            var attrib = src.GetCustomAttribute<DisplayNameAttribute>();
             if (attrib != null)
                 return attrib.DisplayName;
 
-            if (!t.IsGenericType)
-                return t.Name;
+            if (!src.IsGenericType)
+                return src.Name;
 
-            if (t.IsConstructedGenericType)
+            if (src.IsConstructedGenericType)
             {
-                var typeArgs = t.GenericTypeArguments;
+                var typeArgs = src.GenericTypeArguments;
                 var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
-                var typeName = t.Name.Replace($"`{typeArgs.Length}", string.Empty);
+                var typeName = src.Name.Replace($"`{typeArgs.Length}", string.Empty);
                 return append(typeName, "<", argFmt, ">");
             }
             else
             {
-                var typeArgs = t.GetGenericTypeDefinition().GetGenericArguments();
+                var typeArgs = src.GetGenericTypeDefinition().GetGenericArguments();
                 var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
-                var typeName = t.Name.Replace($"`{typeArgs.Length}", string.Empty);
+                var typeName = src.Name.Replace($"`{typeArgs.Length}", string.Empty);
                 return append(typeName, "<", argFmt, ">");
             }
         }
-
-
-
     }
 }

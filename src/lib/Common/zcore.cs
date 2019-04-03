@@ -328,12 +328,25 @@ public static partial class zcore
     /// </summary>
     /// <param name="condition">Specifies whether some condition is true</param>
     /// <param name="@false">The action to invoke when condition is false</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static Unit onFalse(bool condition, Action @false)
     {
         if(!condition)
             @false();
+        return Unit.Value;
+    }
+
+    /// <summary>
+    /// Executes an action if condition is true
+    /// </summary>
+    /// <param name="condition">Specifies whether some condition is true</param>
+    /// <param name="@false">The action to invoke when condition is false</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static Unit onTrue(bool condition, Action @true)
+    {
+        if(condition)
+            @true();
         return Unit.Value;
     }
 

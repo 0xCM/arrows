@@ -85,8 +85,8 @@ partial class zcore
     /// <param name="description">Formal or informal description depending on context/needs</param>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Symbol symbol(string name, string description = null)
-        => new Symbol(name,description);
+    public static Symbol symbol(string name)
+        => new Symbol(name);
 
     /// <summary>
     /// Formats the source value as a string

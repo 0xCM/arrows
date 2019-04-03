@@ -25,15 +25,13 @@ partial class zcore
     /// <param name="rhs">The second list</param>
     /// <returns></returns>
     public static bool eq<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
-        where T : Equality<T>, new()
+        where T : Equatable<T>, new()
     {    
         if (lhs == null || rhs == null || lhs.Count != rhs.Count)
             return false;
 
-        var equality = new T();
-
         for (int i = 0; i < lhs.Count; i++)
-            if(equality.neq(lhs[i], rhs[i]))
+            if(lhs[i].neq(rhs[i]))
                 return false;
         return true;
     }
@@ -46,10 +44,9 @@ partial class zcore
     /// <param name="rhs">The second list</param>
     /// <returns></returns>
    public static bool eq<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
-        where T : Equality<T>, new()
+        where T : Equatable<T>, new()
     {    
         
-        var equality = new T(); //ops<T,Traits.Equatable<T>>();
         var lenum = lhs.GetEnumerator();
         var renum = rhs.GetEnumerator();
         var lnext = lenum.MoveNext();
@@ -59,7 +56,7 @@ partial class zcore
             if( (lnext & not(rnext)) || (rnext && not(lnext)))
                 return false;
             
-            if(equality.neq(lenum.Current, renum.Current))
+            if(lenum.Current.neq(renum.Current))
                 return false;
 
             lnext = lenum.MoveNext();

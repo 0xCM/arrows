@@ -14,39 +14,34 @@ namespace Z0
         /// <typeparam name="T">The individual type</typeparam>
         public interface Semiring<T> : MonoidA<T>, MonoidM<T>, Distributive<T>
         {        
-            
+            T muladd(T x, T y, T z);            
         }
 
 
     }
 
-    partial class Structure
+    partial class Structures
     {
 
+        /// <summary>
+        /// Characterizes a semiring structure
+        /// </summary>
+        /// <typeparam name="S">The structure type</typeparam>
          public interface Semiring<S> : MonoidA<S>, MonoidM<S>, Distributive<S>
+            where S : Semiring<S>, new()
          {
-
+            S muladd(S y, S z);
          }
 
-        /// <summary>
-        /// Characterizes semiring structure
-        /// </summary>
-        /// <typeparam name="S">The classified structure</typeparam>
-        /// <typeparam name="T">The underlying type</typeparam>
-         public interface Semiring<S,T> : Semiring<S>, MonoidA<S,T>, MonoidM<S,T>, Distributive<S,T>
-            where S : Semiring<S,T>, new()
-        {
-            
-        }            
 
     }
 
     partial class Reify
     {
         public readonly struct Semiring<T> : Operative.Semiring<T>
-            where T : Structure.Semiring<T>, new()
+            where T : Structures.Semiring<T>, new()
         {
-            static readonly Structure.Semiring<T> exemplar = new T();
+            static readonly Structures.Semiring<T> exemplar = new T();
 
             public static readonly Semiring<T> Inhabitant = default;
             
@@ -76,6 +71,9 @@ namespace Z0
 
             public bool neq(T lhs, T rhs)
                 => lhs.neq(rhs);
+
+            public T muladd(T x, T y, T z)
+                => x.muladd(y,z);
         }
     }
 

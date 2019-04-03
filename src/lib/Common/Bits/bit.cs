@@ -10,9 +10,10 @@ namespace Z0
 
     using static zcore;
 
-    partial class Structure
+    partial class Structures
     {
-        public interface bit<S> : IComparable<S>, Equatable<S>, Equality<S>, Formattable
+        public interface bit<S> : IComparable<S>, Equatable<S>, Formattable
+            where S : bit<S>, new()
         {
 
         }
@@ -22,7 +23,7 @@ namespace Z0
     /// Represents a numeric or logical bit
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Boolean_algebra</remarks>
-    public readonly struct bit : Structure.bit<bit>
+    public readonly struct bit : Structures.bit<bit>
     {
 
         public static bit Parse(char c)
@@ -139,10 +140,6 @@ namespace Z0
         public int CompareTo(bit rhs)
             => value.CompareTo(rhs);
 
-        [MethodImpl(Inline)]
-        public bool Equals(bit rhs)
-            => value == rhs.value;
-
         public bool value {get;}
 
         [MethodImpl(Inline)]
@@ -154,27 +151,37 @@ namespace Z0
             => not(eq(rhs));
 
         [MethodImpl(Inline)]
-        bool Equality<bit>.eq(bit lhs, bit rhs)
+        public bool eq(bit lhs, bit rhs)
             => lhs.eq(rhs);
 
         [MethodImpl(Inline)]
-        bool Equality<bit>.neq(bit lhs, bit rhs)
+        public bool neq(bit lhs, bit rhs)
             => lhs.neq(rhs);
 
         [MethodImpl(Inline)]
         public string format()
             => $"{(byte)this}";
 
+        [MethodImpl(Inline)]
+        public intg<T> ToIntG<T>()
+            => value ? intg<T>.One : intg<T>.Zero;
+
+        [MethodImpl(Inline)]
+        public int hash()
+            => (byte)this;
+
+        [MethodImpl(Inline)]
+        public bool Equals(bit rhs)
+            => value == rhs.value;
+
         public override bool Equals(object rhs)
             => rhs is bit ? Equals((bit)rhs) : false;
 
         public override int GetHashCode()
-            => (byte)this;
+            => hash();
     
         public override string ToString()
             => format();
         
-        public intg<T> ToIntG<T>()
-            => value ? intg<T>.One : intg<T>.Zero;
     }
 }

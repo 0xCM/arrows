@@ -45,9 +45,10 @@ namespace Z0
 
     }   
 
-    partial class Structure
+    partial class Structures
     {
         public interface Monoid<S> : Semigroup<S>
+            where S : Monoid<S>, new()
         {
 
         }
@@ -64,11 +65,13 @@ namespace Z0
         }            
 
         public interface MonoidM<S> : Monoid<S>, SemigroupM<S>, Unital<S>
+            where S: MonoidM<S>, new()
         {
 
         }
 
         public interface MonoidA<S> : Monoid<S>, SemigroupA<S>, Nullary<S>
+            where S : MonoidA<S>, new()
         {
 
         }
@@ -100,52 +103,52 @@ namespace Z0
     partial class Reify
     {
         public readonly struct MonoidM<T> : Operative.MonoidM<T>
-            where T : Operative.MonoidM<T>, new()
+            where T : Structures.MonoidM<T>, new()
         {    
-            static readonly Operative.MonoidM<T> Ops = new T();
+
+            static readonly Structures.MonoidM<T>  exemplar = default;
 
             public T one 
-                => Ops.one;
+                => exemplar.one;
 
             [MethodImpl(Inline)]
             public T mul(T lhs, T rhs)
-                => Ops.mul(lhs,rhs);
+                => lhs.mul(rhs);
 
             [MethodImpl(Inline)]
-            public bool eq(T lhs, T rhs)
-                => Ops.eq(lhs,rhs);
+            public bool eq(T lhs, T rhs) 
+                => lhs.eq(rhs);
 
             [MethodImpl(Inline)]
-            public bool neq(T lhs, T rhs)
-                => Ops.neq(lhs,rhs);
+            public bool neq(T lhs, T rhs) 
+                => lhs.neq(rhs);
 
 
         }
 
         public readonly struct MonoidA<T> : Operative.MonoidA<T>
-            where T : Operative.MonoidA<T>, new()
+            where T : Structures.MonoidA<T>, new()
         {    
-            static readonly Operative.MonoidA<T> Ops = new T();
+            static readonly Structures.MonoidA<T> exemplar = default;
 
             public T zero 
-                => Ops.zero;
+                => exemplar.zero;
 
             [MethodImpl(Inline)]
-            public bool nonzero(T a) 
-                => Ops.eq(Ops.zero, a);
+            public bool nonzero(T x) 
+                => x.eq(zero);
 
             [MethodImpl(Inline)]
-            public T add(T a, T b) 
-                => Ops.add(a,b);
+            public T add(T lhs, T rhs) 
+            => lhs.add(rhs);
 
             [MethodImpl(Inline)]
             public bool eq(T lhs, T rhs) 
-                => Ops.eq(lhs,rhs);
+                => lhs.eq(rhs);
 
             [MethodImpl(Inline)]
             public bool neq(T lhs, T rhs) 
-                => Ops.neq(lhs,rhs);
-
+                => lhs.neq(rhs);
 
         }
     }

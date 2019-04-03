@@ -16,35 +16,35 @@ namespace Z0
     {
         [MethodImpl(Inline)]   
         public static IReadOnlyList<T> Unwrap<T>(this IEnumerable<intg<T>> src)
-            => src.Select(x => x.data).ToList();
+            => src.Select(unwrap).ToList();
 
         [MethodImpl(Inline)]   
         public static IReadOnlyList<T> Unwrap<T>(this IEnumerable<real<T>> src)
-            => src.Select(x => x.data).ToList();
+            => src.Select(unwrap).ToList();
 
         [MethodImpl(Inline)]
         public static T Sum<T>(this IEnumerable<T> src)
-            where T : Structure.Additive<T>, Structure.Nullary<T>, new()
+            where T : Structures.Additive<T>, Structures.Nullary<T>, new()
                 => sum(src);
 
         [MethodImpl(Inline)]
         public static T Sup<T>(this IEnumerable<T> src)
-            where T : struct, Structure.Ordered<T>
+            where T : struct, Structures.Ordered<T>
                 => max(src);
 
         [MethodImpl(Inline)]
         public static T Inf<T>(this IEnumerable<T> src)
-            where T : struct, Structure.Ordered<T>
+            where T : struct, Structures.Ordered<T>
                 => min(src);
 
         [MethodImpl(Inline)]
         public static IEnumerable<T> Pow<T>(this IEnumerable<T> src, int exp)
-            where T : Structure.Powered<T>, new() 
+            where T : Structures.Powered<T>, new() 
                 => pow(src,exp);
 
         [MethodImpl(Inline)]
         public static T Avg<T>(this IEnumerable<T> src)
-            where T : Structure.RealNumber<T>,new()
+            where T : Structures.RealNumber<T>,new()
                 => avg(src);
    }
 }

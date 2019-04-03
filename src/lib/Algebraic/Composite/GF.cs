@@ -30,26 +30,28 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
         public interface ModN<N,S> : Ring<S>
+            where S : ModN<N,S>, new()
         {
 
         }
 
         public interface GF<N, S> : ModN<N, S>
+            where S : GF<N,S>, new()
         {
 
         }
 
-        public interface ModN<N,S,T> : ModN<N,S>, Ring<S,T>, Structural<S,T>
+        public interface ModN<N,S,T> : ModN<N,S>, Ring<S,T>
             where S : ModN<N,S,T>, new()
             where N : TypeNat, new()
         {
 
         }
 
-        public interface GF<N, S, T> : GF<N,S>, ModN<N, S, T>, Structural<S,T>
+        public interface GF<N, S, T> : GF<N,S>, ModN<N, S, T>
             where N : TypeNat, Demands.PrimePower<N>, new()
             where S : GF<N,S,T>,new()
             

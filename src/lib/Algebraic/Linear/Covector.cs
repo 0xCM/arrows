@@ -77,32 +77,45 @@ namespace Z0
         public string format()
             => cells.format();
 
-        public override string ToString()
-            => format();
 
         public bool eq(Covector<N, T> rhs)
             => cells.eq(rhs);
 
+        [MethodImpl(Inline)]   
         public bool neq(Covector<N, T> rhs)
             => cells.neq(rhs);
 
-        public bool Equals(Covector<N, T> rhs)
-            => eq(rhs);
-
+        [MethodImpl(Inline)]   
         public bool eq(Covector<N, T> lhs, Covector<N, T> rhs)
             => lhs.eq(rhs);
 
+        [MethodImpl(Inline)]   
         public bool neq(Covector<N, T> lhs, Covector<N, T> rhs)
             => lhs.neq(rhs);
- 
-         [MethodImpl(Inline)]   
+
+  
+        [MethodImpl(Inline)]
+        public bool Equals(Covector<N, T> rhs)
+            => eq(rhs);
+
         public IEnumerator<T> GetEnumerator()
             => cells.data.GetEnumerator();
 
-        [MethodImpl(Inline)]   
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
 
+        [MethodImpl(Inline)]
+        public int hash()
+            => cells.hash();
+
+        public override int GetHashCode()
+            => hash();
+
+        public override string ToString()
+            => format();
+
+        public override bool Equals(object obj)
+            => obj is Covector<N,T> ? eq((Covector<N,T>)obj) : false;
     }
 
 }

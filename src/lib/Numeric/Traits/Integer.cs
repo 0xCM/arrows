@@ -47,10 +47,12 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
 
-        public interface Integer<S> :  RealNumber<S>, Stepwise<S>, Bitwise<S> { }
+        public interface Integer<S> :  RealNumber<S>, Stepwise<S>, Bitwise<S> 
+            where S : Integer<S>, new()
+        { }
 
         /// <summary>
         /// Characterizes a reification structure over an integer type

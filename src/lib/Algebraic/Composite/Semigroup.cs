@@ -7,11 +7,52 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     using static zcore;
-    
+
+
+    /// <summary>
+    /// Characterizes structural equality
+    /// </summary>
+    /// <typeparam name="S">The structure type</typeparam>
+    public interface Equatable<S> : IEquatable<S>
+        where S : Equatable<S>, new()
+    {
+        int hash();
+
+        bool eq(S rhs);
+
+        bool neq(S rhs);
+    }
+
+    /// <summary>
+    /// Characterizes a structure which is, by definition,
+    /// a reifiable abstraction
+    /// </summary>
+    /// <typeparam name="S">The reification type</typeparam>
+    public interface Structure<S> : Equatable<S>
+        where S : Structure<S>, new()
+    {
+
+
+    }    
+
     partial class Operative
     {
-        public interface Semigroup<T> :  Equality<T>
+
+        public interface Semigroup<T>
         {
+            /// <summary>
+            /// Adjudicates equality between semigroup members
+            /// </summary>
+            /// <param name="lhs">The first operand</param>
+            /// <param name="rhs">The second operand</param>
+            bool eq(T lhs, T rhs);
+
+            /// <summary>
+            /// Adjudicates negated equality between semigroup members
+            /// </summary>
+            /// <param name="lhs">The first operand</param>
+            /// <param name="rhs">The second operand</param>
+            bool neq(T lhs, T rhs);
             
         }
 
@@ -31,20 +72,23 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
         
-        public interface Semigroup<S> : Equatable<S>
+        public interface Semigroup<S> : Structure<S>
+            where S : Semigroup<S>, new()
         {
 
         }
 
         public interface SemigroupM<S>: Semigroup<S>, Multiplicative<S>
+            where S : SemigroupM<S>, new()
         {
 
         }            
 
         public interface SemigroupA<S>: Semigroup<S>, Additive<S>
+            where S : SemigroupA<S>, new()
         {
 
         }            
@@ -72,44 +116,41 @@ namespace Z0
     partial class Reify
     {
         public readonly struct SemigroupM<T> : Operative.SemigroupM<T>
-            where T : Operative.SemigroupM<T>, new()
+            where T : Structures.SemigroupM<T>, new()
         {    
-            static readonly Operative.SemigroupM<T> Ops = new T();
 
             public static SemigroupM<T> Inhabitant = default;
             
             [MethodImpl(Inline)]
             public T mul(T lhs, T rhs)
-                => Ops.mul(lhs,rhs);
+                => lhs.mul(rhs);
+
 
             [MethodImpl(Inline)]
-            public bool eq(T lhs, T rhs)
-                => Ops.eq(lhs,rhs);
+            public bool eq(T lhs, T rhs) 
+                => lhs.eq(rhs);
 
             [MethodImpl(Inline)]
-            public bool neq(T lhs, T rhs)
-                => Ops.neq(lhs,rhs);
-
+            public bool neq(T lhs, T rhs) 
+                => lhs.neq(rhs);
 
         }
 
         public readonly struct SemigroupA<T> : Operative.SemigroupA<T>
-            where T : Operative.SemigroupA<T>, new()
+            where T : Structures.SemigroupA<T>, new()
         {    
-            static readonly Operative.SemigroupA<T> Ops = new T();
-
             
             [MethodImpl(Inline)]
-            public T add(T a, T b) 
-                => Ops.add(a,b);
+            public T add(T lhs, T rhs) 
+                => lhs.add(rhs);
 
             [MethodImpl(Inline)]
             public bool eq(T lhs, T rhs) 
-                => Ops.eq(lhs,rhs);
+                => lhs.eq(rhs);
 
             [MethodImpl(Inline)]
             public bool neq(T lhs, T rhs) 
-                => Ops.neq(lhs,rhs);
+                => lhs.neq(rhs);
 
 
         }

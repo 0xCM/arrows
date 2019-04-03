@@ -15,12 +15,6 @@ namespace Z0
 
     partial class Traits
     {
-        public interface Array<N,T> : Enumerable<N,T>
-            where N : TypeNat, new()
-        {
-            T this[int ix] {get; set;}
-
-        }
 
     }
 
@@ -162,7 +156,7 @@ namespace Z0
     /// <summary>
     /// A one-dimensional array with lenght encoded by typenat parameter
     /// </summary>
-    public struct Array<N,T> : Traits.Array<N,T>
+    public struct Array<N,T> : Contain.Array<N,T>
         where N : TypeNat, new()
     {
         T[] data;
@@ -217,7 +211,7 @@ namespace Z0
     /// <summary>
     /// A 2-dimensional array with length encoded by two typenat parameters
     /// </summary>
-    public readonly struct Array<K1,K2,T> : Container<(int i, int j, T value)>
+    public readonly struct Array<K1,K2,T> : Contain.DiscreteContainer<Array<K1,K2,T>,(int i, int j, T value)>
         where K1 : TypeNat, new()
         where K2 : TypeNat, new()
     {
@@ -247,12 +241,31 @@ namespace Z0
             }
         }
 
+        public bool eq(Array<K1, K2, T> rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Equals(Array<K1, K2, T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int hash()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool neq(Array<K1, K2, T> rhs)
+        {
+            throw new NotImplementedException();
+        }
     }        
 
     /// <summary>
     /// A 3-dimensional array with length encoded by three natural parameters
     /// </summary>
-    public readonly struct Array<K1,K2,K3,T> : Container<(int i, int j, int k, T value)>
+    public readonly struct Array<K1,K2,K3,T> : Contain.DiscreteContainer<Array<K1,K2,K3,T>, (int i, int j, int k, T value)>
         where K1 : TypeNat, new()
         where K2 : TypeNat, new()
         where K3 : TypeNat, new()
@@ -285,6 +298,25 @@ namespace Z0
             }
         }
 
+        public bool eq(Array<K1, K2, K3, T> rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Equals(Array<K1, K2, K3, T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int hash()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool neq(Array<K1, K2, K3, T> rhs)
+        {
+            throw new NotImplementedException();
+        }
     }        
 
 }

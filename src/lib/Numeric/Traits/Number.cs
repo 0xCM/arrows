@@ -15,58 +15,27 @@ namespace Z0
         /// by any underlying primitive numeric type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Number<T> : GroupA<T>,  SemigroupM<T>, Semiring<T>, Divisive<T>, Powered<T,int>, BitSource<T> 
-        {                    
-            T muladd(T x, T y, T z);
-
-            /// <summary>
-            /// Calculates the number's absolute value
-            /// </summary>
-            /// <returns></returns>
-            T abs(T x);
-
-            /// <summary>
-            /// Calculates the number's sign
-            /// </summary>
-            Sign sign(T x);
-
-
-
+        public interface Number<T> : Absolutive<T>, GroupA<T>,  SemigroupM<T>, Semiring<T>, Divisive<T>, Powered<T,int>, BitSource<T> 
+        {                                
             NumberInfo<T> numinfo {get;}
         }
 
     }
-    partial class Structure
+    partial class Structures
     {
  
-        public interface Number<S> : Equatable<S>, GroupA<S>, SemigroupM<S>, Semiring<S>, Divisive<S>, Powered<S>, BitSource<S>
-        {
-            S muladd(S y, S z);
-
-            /// <summary>
-            /// Calculates the number's magnitude
-            /// </summary>
-            /// <returns></returns>
-            S abs();
-
-            /// <summary>
-            /// Calculates the number's sign
-            /// </summary>
-            Sign sign();
-
-
-        }
-        
         /// <summary>
         /// Characterizes a structral number
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying operand type</typeparam>
-        public interface Number<S,T> : Number<S>
-            where S : Number<S,T>,  new()
+        public interface Number<S> : Absolitive<S>, Equatable<S>, GroupA<S>, SemigroupM<S>, Semiring<S>, Divisive<S>, Powered<S>, BitSource<S>
+            where S : Number<S>, new()
         {
             
-        } 
- 
+
+
+        }
+         
     }
 }

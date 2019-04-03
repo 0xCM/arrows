@@ -20,22 +20,16 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
-        public interface Currency<S> : BoundReal<S>, Fractional<S>
-        {
-
-        }
-        
         /// <summary>
-        /// Characterizes operational reifications of Currency 
+        /// Characterizes structural reifications of Currency 
         /// </summary>
         /// <typeparam name="S">The structural reification type</typeparam>
-        /// <typeparam name="T">The operand type</typeparam>
-        public interface Currency<S,T> : Currency<S>, Structural<S,T>
-            where S : Currency<S,T>, new()
+        public interface Currency<S> : BoundReal<S>, Fractional<S>
+            where S : Currency<S>, new()
         {
-            
+
         }
 
     }

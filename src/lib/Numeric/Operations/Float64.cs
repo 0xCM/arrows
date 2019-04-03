@@ -174,14 +174,6 @@ namespace Z0
         public bool gteq(operand lhs, operand rhs)
             => lhs >= rhs;
 
-        [MethodImpl(Inline)]   
-        public Sign sign(operand x)
-            => x switch
-            {
-                operand t when t > 0 => Sign.Positive,
-                operand t when t < 0 => Sign.Negative,
-                _                    => Sign.Neutral                    
-            };
 
         [MethodImpl(Inline)]   
         public operand ceiling(operand x)
@@ -261,6 +253,15 @@ namespace Z0
         public BitString bitstring(operand x)
             => BitString.define(x);
 
+        [MethodImpl(Inline)]   
+        public Sign sign(operand x)
+            => x == 0 ? Sign.Neutral :
+               x > 0 ? Sign.Positive :
+               Sign.Negative;
+
+        [MethodImpl(Inline)]   
+        public operand resign(operand x, Sign s)
+            => x != 0 && s != Sign.Neutral && sign(x) != s ? -x : x;    
 
     }
  

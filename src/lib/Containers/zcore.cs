@@ -46,7 +46,7 @@ public static partial class zcore
     /// <typeparam name="T">The item type</typeparam>
     [MethodImpl(Inline)]   
     public static Seq<T> seq<T>(params T[] src)
-        where T : IEquatable<T> 
+        where T : Structure<T>, new()
             => src.ToSeq();
 
     /// <summary>

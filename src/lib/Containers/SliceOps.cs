@@ -65,8 +65,8 @@ namespace Z0
         /// <param name="s2">the second slice</param>
         /// <typeparam name="T">The semigroup-conforming element type</typeparam>
         [MethodImpl(Inline)]
-        public static Slice<T> add<T>(Structure.Slice<T> s1, Structure.Slice<T> s2)
-            where T : Structure.Semiring<T>, new()     
+        public static Slice<T> add<T>(Structures.Slice<T> s1, Structures.Slice<T> s2)
+            where T : Structures.Semiring<T>, new()     
                 => slice(fuse(s1,s2, (x,y) =>  x.add(y)));
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Z0
         /// <typeparam name="T">The semigroup-conforming element type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<T> mul<T>(Slice<T> s1, Slice<T> s2)
-            where T : Structure.Semiring<T>, new()     
+            where T : Structures.Semiring<T>, new()     
                 => slice(fuse(s1,s2, (x,y) =>  x.mul(y)));
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Z0
         /// <param name="s1">The first slice</param>
         [MethodImpl(Inline)]
         public static Slice<T> pow<T>(Slice<T> s1, int exp)
-            where T : Structure.Powered<T>, new()     
+            where T : Structures.Powered<T>, new()     
                 => map(s1, x => x.pow(exp));
 
 
@@ -104,17 +104,17 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Slice<N,T> square<N,T>(Slice<N,T> x)
             where N : Z0.TypeNat, new() 
-            where T : Structure.Semiring<T>, Equatable<T>,  new()     
+            where T : Structures.Semiring<T>, Equatable<T>,  new()     
                 => new Slice<N,T>(fuse(x,x, (a,b) => a.mul(b)));
 
         [MethodImpl(Inline)]
         public static T reduce<N,T>(Slice<N,T> s, Func<T,T,T> reducer)
                 where N : Z0.TypeNat, new()
-                where T : Structure.Semiring<T>, new()     
+                where T : Structures.Semiring<T>, new()     
                     => fold(s,reducer);
 
         [MethodImpl(Inline)]
-        static Slice<U> apply<T,U>(Structure.Slice<T> s1, Structure.Slice<T> s2, Func<T,T,U> f)
+        static Slice<U> apply<T,U>(Structures.Slice<T> s1, Structures.Slice<T> s2, Func<T,T,U> f)
             where T : Operative.Semiring<T>, Equatable<T>, new()     
             where U : Operative.Semiring<U>, Equatable<U>, new()     
         {
@@ -143,7 +143,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T sum<N,T>(Slice<N,T> x)
             where N : Z0.TypeNat, new() 
-            where T : Structure.Semiring<T>, new()     
+            where T : Structures.Semiring<T>, new()     
                 => reduce(x, (a,b) => a.add(b));
 
         /// <summary>

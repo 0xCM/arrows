@@ -198,7 +198,7 @@ public static class ToIntGX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this intg<byte> src)
-        => convert<T>(src.data);
+        => convert<T>(unwrap(src));
 
     /// <summary>
     /// x:intg[sbyte] => x:intg[T]
@@ -206,7 +206,7 @@ public static class ToIntGX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this intg<sbyte> src)
-        => convert<T>(src.data);
+        => convert<T>(unwrap(src));
 
 
     /// <summary>
@@ -215,7 +215,7 @@ public static class ToIntGX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this intg<short> src)
-        => convert<T>(src.data);
+        => convert<T>(unwrap(src));
     
     /// <summary>
     /// x:intg[ushort] => x:intg[T]
@@ -223,7 +223,7 @@ public static class ToIntGX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]       
     public static intg<T> ToIntG<T>(this intg<ushort> src)
-        => convert<T>(src.data);
+        => convert<T>(unwrap(src));
 
     /// <summary>
     /// x:intg[int] => x:intg[T]
@@ -231,7 +231,7 @@ public static class ToIntGX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this intg<int> src)
-        => convert<T>(src.data);
+        => convert<T>(unwrap(src));
 
     /// <summary>
     /// x:intg[uint] => x:intg[T]
@@ -239,7 +239,7 @@ public static class ToIntGX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this intg<uint> src)
-        => convert<T>(src.data);
+        => convert<T>(unwrap(src));
 
     /// <summary>
     /// x:intg[long] => x:intg[T]
@@ -247,7 +247,7 @@ public static class ToIntGX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this intg<long> src)    
-        => convert<T>(src.data);
+        => convert<T>(unwrap(src));
 
     /// <summary>
     /// x:intg[ulong] => x:intg[T]
@@ -255,7 +255,7 @@ public static class ToIntGX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this intg<ulong> src)
-        => convert<T>(src.data);
+        => convert<T>(unwrap(src));
 
     
     /// <summary>
@@ -264,7 +264,7 @@ public static class ToIntGX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this floatg<float> src)
-        => convert<T>(src.data);
+        => convert<T>(unwrap(src));
 
     /// <summary>
     /// x:floatg[float] => x:intg[T]
@@ -272,7 +272,7 @@ public static class ToIntGX
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this floatg<double> src)
-        => convert<T>(src.data);
+        => convert<T>(unwrap(src));
 
     /// <summary>
     /// x:Enum => x:intg[T]

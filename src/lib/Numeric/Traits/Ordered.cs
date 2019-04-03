@@ -12,13 +12,14 @@ namespace Z0
         /// Characterizes numeric operations in the presence of order
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public interface OrderedNumber<T> :  Ordered<T>, Number<T> { }
+        public interface OrderedNumber<T> : Stepwise<T>,  Ordered<T>, Number<T> { }
 
     }
 
-    partial class Structure
+    partial class Structures
     {
-        public interface OrderedNumber<S> :  Ordered<S>,  Number<S> { }
+        public interface OrderedNumber<S> :  Stepwise<S>,  Ordered<S>,  Number<S>
+            where S : OrderedNumber<S>, new() {}
         
         /// <summary>
         /// Characterizes a structural number with order

@@ -6,9 +6,10 @@ namespace Z0
 {
     using System;
 
-    partial class Structure
+    partial class Structures
     {
         public interface DiscreteGroup<S> : Group<S>, DiscreteSet<S>
+            where S : DiscreteGroup<S>, new()
         {
             
         }

@@ -29,7 +29,7 @@ namespace Z0
 
     }
 
-    public static partial class Structure
+    public static partial class Structures
     {
         
     }

@@ -11,40 +11,10 @@ namespace Z0
 
     using static zcore;
 
-    partial class Traits
-    {
-        
-        /// <summary>
-        /// Characterizes a set indexed by another set
-        /// </summary>
-        /// <typeparam name="I">The indexing set</typeparam>
-        /// <typeparam name="X">The indexed set</typeparam>
-        public interface Index<I,T> : Container<KeyedValue<I,T>>
-        {
-            /// <summary>
-            /// Retrives an indexed value
-            /// </summary>
-            /// <param name="index">The index value</param>
-            /// <returns>The indexed value</returns>
-            T item(I index);
-
-            /// <summary>
-            /// Retrives an indexed value via an index operator
-            /// </summary>
-            /// <param name="index">The index value</param>
-            /// <returns>The indexed value</returns>
-            T  this[I ix] {get;}
-        }
-
-
-
-    }
-
-
     /// <summary>
     /// Defines an associative array
     /// </summary>
-    public readonly struct Index<K,V> : Traits.Index<K,V>, IEnumerable<KeyedValue<K,V>>
+    public readonly struct Index<K,V> : Contain.DiscreteContainer<Index<K,V>,KeyedValue<K,V>>, IEnumerable<KeyedValue<K,V>>
     {
         IReadOnlyDictionary<K,V> _items {get;}
         
@@ -86,12 +56,32 @@ namespace Z0
         /// <returns></returns>
         public Index<K,V> merge(IEnumerable<KeyedValue<K,V>> kvals)
             => new Index<K,V>(this.Union(kvals));
+
+        public int hash()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool eq(Index<K, V> rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool neq(Index<K, V> rhs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Equals(Index<K, V> other)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     /// <summary>
     /// Defines an integrally-indexed associative array
     /// </summary>
-    public readonly struct Index<V> : Traits.Index<int,V>, IEnumerable<V>
+    public readonly struct Index<V> :  IEnumerable<V>
     {
         IReadOnlyList<V> _items {get;}        
 

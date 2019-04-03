@@ -211,11 +211,11 @@ public static class ToRealX
 
     [MethodImpl(Inline)]   
     public static real<double> ToReal<T>(this intg<T> src)
-        => convert<double>(src.data);
+        => convert<double>(unwrap(src));
 
     [MethodImpl(Inline)]   
     public static real<float> ToReal32<T>(this intg<T> src)
-        => convert<float>(src.data);
+        => convert<float>(unwrap(src));
 
     [MethodImpl(Inline)]   
     public static IEnumerable<real<byte>> ToReal(this IEnumerable<byte> src)

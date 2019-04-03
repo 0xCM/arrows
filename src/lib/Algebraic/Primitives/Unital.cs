@@ -8,10 +8,10 @@ namespace Z0
     partial class Operative
     {
         /// <summary>
-        /// Characterizes a type for which a multiplicative unit exists
+        /// Characterizes operations over a unital type
         /// </summary>
         /// <typeparam name="T">The characterized type</typeparam>
-        public interface Unital<T>
+        public interface Unital<T> : Multiplicative<T>
         {
             /// <summary>
             /// The unital value
@@ -22,23 +22,19 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
-        public interface Unital<S>
+        /// <summary>
+        /// Characterizes an multiplicative structure S for which there exists a
+        /// distinguished element 1:S such that for every s:S, 1*s = s*1 = s
+        /// </summary>
+        /// <typeparam name="S">The reification type</typeparam>
+        public interface Unital<S> : Multiplicative<S>
+            where S : Unital<S>, new()
         {
             S one {get;}
         }
 
-        /// <summary>
-        /// Characterizes a unital structure, that is, a structure
-        /// that defines a unit as a particular instance of itself
-        /// </summary>
-        /// <typeparam name="T">The unit type</typeparam>
-        public interface Unital<S,T> : Unital<S>, Structural<S,T>
-            where S : Unital<S,T>, new()
-        {
-
-        }
     }
 
 }

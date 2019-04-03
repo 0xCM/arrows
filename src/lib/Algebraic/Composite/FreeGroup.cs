@@ -7,23 +7,20 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
-    partial class Structure
+    partial class Structures
     {
-        public interface FreeGroup<S> : Group<S>, FreeMonoid<S>
+        public interface FreeGroup<S> : GroupA<S>, FreeMonoid<S>
+            where S : FreeGroup<S>, new()
         {
             
         }
-        public interface FreeGroup<S,T> : FreeGroup<S>, Group<S,T>, FreeMonoid<S,T>
+        
+        public interface FreeGroup<S,T> : FreeGroup<S>
             where S : FreeGroup<S,T>, new()
         {
             
         }
 
-        public interface FreeAbelianGroup<S,T> : FreeGroup<S,T>, GroupA<S,T>,  FreeMonoid<S,T>
-            where S : FreeAbelianGroup<S,T>, new()
-        {
-            
-        }
 
     }
 

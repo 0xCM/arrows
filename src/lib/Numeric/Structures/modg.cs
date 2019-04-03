@@ -17,7 +17,7 @@ namespace Z0
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct modg<N, T> : Structure.ModN<N, modg<N, T>, T>
+    public readonly struct modg<N, T> : Structures.ModN<N, modg<N, T>, T>
         where T : IConvertible
         where N : TypeNat, new()
     {
@@ -97,18 +97,15 @@ namespace Z0
             => Ops.nonzero(data);
 
         [MethodImpl(Inline)]
-        bool Equality<modg<N,T>>.eq(modg<N, T> lhs, modg<N, T> rhs)
-            => lhs.eq(rhs);
+        public int hash()
+            => data.GetHashCode();
 
-        [MethodImpl(Inline)]
-        bool Equality<modg<N,T>>.neq(modg<N, T> lhs, modg<N, T> rhs)
-            => lhs.neq(rhs); 
-
+ 
         public override bool Equals(object rhs)
             => data.Equals(rhs);
 
         public override int GetHashCode()
-            => data.GetHashCode();
+            => hash();
 
         public override string ToString()
             => $"{data} (mod {@base})";

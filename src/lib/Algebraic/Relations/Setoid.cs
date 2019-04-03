@@ -12,7 +12,7 @@ namespace Z0
     using static zcore;
     using static Reify;
 
-    partial class Structure
+    partial class Structures
     {
         /// <summary>
         /// Characterizes a discrete partition over a discrete set and, consequently, 
@@ -20,19 +20,18 @@ namespace Z0
         /// is a collection of mutually disjoint subsets of a given set whose union
         /// is recovers the original set
         /// </summary>
-        /// </summary>
         /// <typeparam name="T">The element type</typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Setoid</remarks>
         public interface Setoid<C,T> : QuotientSet<C,T>
             where C : DiscreteEqivalenceClass<C,T>, new()
-            where T : Equality<T>, new()
+            where T : Structure<T>, new()
         {
 
         }
     }
 
-    public class Setoid<T> : Structure.Setoid<FiniteEquivalenceClass<T>, T>, Structure.FiniteSet<Setoid<T>>
-        where T : Equality<T>, new()
+    public class Setoid<T> : Structures.Setoid<FiniteEquivalenceClass<T>, T>
+        where T : Structure<T>, new()
     {
         
         readonly FiniteSet<T> membership;
@@ -50,7 +49,7 @@ namespace Z0
         {
             this.membership = data;
             this.equivalence = equivalence;
-            this.parts = equivalence.Partition(data.members().stream()).ToArray();
+            this.parts = equivalence.Partition(data.members().content).ToArray();
 
         }
         
@@ -63,10 +62,8 @@ namespace Z0
         public bool discrete
             => true;
 
-        public bool Equals(Setoid<T> other)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Equals(Setoid<T> rhs)
+            => membership.eq(rhs.membership);
 
         public bool member(T candidate)
             => membership.member(candidate);
@@ -74,8 +71,8 @@ namespace Z0
         public bool member(object candidate)
             => membership.member(candidate);
 
-        public Seq<FiniteEquivalenceClass<T>> partition()
-            => parts.ToSeq();
+        public IEnumerable<FiniteEquivalenceClass<T>> partition()
+            => parts;
     
         public FiniteEquivalenceClass<T> project(T x)
             => parts.First(c => related(c.representative,x));

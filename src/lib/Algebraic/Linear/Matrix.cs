@@ -15,7 +15,7 @@ namespace Z0
     public readonly struct Matrix<M, N, T>  : Equatable<Matrix<M,N,T>>
             where M : TypeNat, new()
             where N : TypeNat, new()
-            where T : Structure.Semiring<T>, new()
+            where T : Structures.Semiring<T>, new()
     {
         static readonly Dim<M,N> Dim = default;        
         
@@ -174,7 +174,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Matrix<M,N,Y> transform<Y>(Func<T,Y> f)
-            where Y : Structure.Semiring<Y>, new()
+            where Y : Structures.Semiring<Y>, new()
             => Ops.transform(this,f);
         
         [MethodImpl(Inline)]
@@ -186,16 +186,20 @@ namespace Z0
             => Ops.neq(this,rhs);
 
         [MethodImpl(Inline)]
-        bool Equality<Matrix<M, N, T>>.eq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
+        public bool eq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
             => Ops.eq(lhs,rhs);
 
         [MethodImpl(Inline)] 
-        bool Equality<Matrix<M, N, T>>.neq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
+        public bool neq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
             => Ops.neq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public string format()
             => Ops.format(this);
+
+        [MethodImpl(Inline)]
+        public int hash()
+            => data.GetHashCode();
 
         public override string ToString() 
             => format();
@@ -204,7 +208,7 @@ namespace Z0
             => eq((Matrix<M,N,T>?)rhs ?? Zero);
 
         public override int GetHashCode()
-            => data.GetHashCode();
+            => hash();
 
     } 
 }

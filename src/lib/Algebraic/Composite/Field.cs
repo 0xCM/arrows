@@ -5,20 +5,24 @@
 namespace Z0
 {
 
-    partial class Structure
+    partial class Operative
+    {
+        public interface Field<T> : CommutativeRing<T>, DivisionRing<T>
+        {
+
+        }
+
+
+    }
+    partial class Structures
     {
         
         public interface Field<S> : CommutativeRing<S>, DivisionRing<S>
+            where S : Field<S>, new()
         {
 
         }
         
-        public interface Field<S,T> : CommutativeRing<S,T>, DivisionRing<S,T>
-            where S : Field<S,T>,  new()
-        {
-
-
-        }
 
     }
 

@@ -155,14 +155,6 @@ namespace Z0
         public operand abs(operand x)
             => Math.Abs(x);
 
-        [MethodImpl(Inline)]   
-        public Sign sign(operand x)
-            => x switch
-            {
-                operand t when t > 0 => Sign.Positive,
-                operand t when t < 0 => Sign.Negative,
-                _                    => Sign.Neutral                    
-            };
 
         [MethodImpl(Inline)]   
         public operand distribute(operand lhs, (operand x, operand y) rhs)
@@ -248,6 +240,17 @@ namespace Z0
         [MethodImpl(Inline)]   
         public BitString bitstring(operand x)
             => BitString.define(x);
+ 
+         [MethodImpl(Inline)]   
+        public Sign sign(operand x)
+            => x == 0 ? Sign.Neutral :
+               x > 0 ? Sign.Positive :
+               Sign.Negative;
+
+        [MethodImpl(Inline)]   
+        public operand sign(operand x, Sign s)
+            => (operand)(x != 0 && s != Sign.Neutral && sign(x) != s ? -x : x);    
+
     }
  
 }

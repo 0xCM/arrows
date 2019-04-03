@@ -12,18 +12,6 @@ namespace Z0
 
     
     /// <summary>
-    /// Characterizes structural reification of type S over a data type T
-    /// </summary>
-    /// <typeparam name="S">The structure type</typeparam>
-    /// <typeparam name="T">The underlying data type</typeparam>
-    public interface Structural<S,T> :  IEquatable<S>
-        where S : Structural<S,T>, new()
-    {
-
-    }    
-
-
-    /// <summary>
     /// Identifies a typeclass instance
     /// </summary>
     [AttributeUsage(AttributeTargets.Struct)]
@@ -50,6 +38,4 @@ namespace Z0
         /// </summary>
         public Type OperandType{get;}
     }
-    
-
 }

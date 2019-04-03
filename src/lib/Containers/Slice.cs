@@ -12,9 +12,9 @@ namespace Z0
 
     using static zcore;
 
-    partial class Structure
+    partial class Structures
     {
-        public interface Slice<T> :  Formattable, Hashable, IEnumerable<T> 
+        public interface Slice<T> :  Formattable,  IEnumerable<T> 
         {
             intg<uint> length {get;}
 
@@ -38,10 +38,10 @@ namespace Z0
     /// <summary>
     /// Encapsulates a linear data segment with length determined at runtime
     /// </summary>
-    public readonly struct Slice<T> : Structure.Slice<Slice<T>, T>
+    public readonly struct Slice<T> : Structures.Slice<Slice<T>, T>
         where T : Equatable<T>, new()        
     {                    
-        static readonly Equality<T> Equatable = new T();
+        static readonly Equatable<T> Equatable = new T();
         
         [MethodImpl(Inline)]   
         public static Slice<T> operator + (Slice<T> lhs, Slice<T> rhs)
@@ -132,7 +132,7 @@ namespace Z0
                 return false;
             for(var i = 0; i<length; i++)
             {
-                if(Equatable.neq(lhs[i],rhs[i]))
+                if(lhs[i].neq(rhs[i]))
                     return false;
             }
             return true;            
@@ -177,7 +177,7 @@ namespace Z0
     /// <summary>
     /// Encapsulates a linear data segment with naturally-typed length
     /// </summary>
-    public readonly struct Slice<N,T> : Structure.Slice<Slice<N,T>,T>
+    public readonly struct Slice<N,T> : Structures.Slice<Slice<N,T>,T>
         where N : TypeNat, new()
         where T : Equatable<T>, new()        
     {                    

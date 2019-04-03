@@ -9,7 +9,7 @@ namespace Z0
     partial class Operative
     {
 
-        public interface Natural<T> : Integer<T>, Unsigned<T> {}
+        public interface Natural<T> : Integer<T>, NonNegative<T> {}
 
 
         /// <summary>
@@ -27,27 +27,19 @@ namespace Z0
             where R : FiniteNatural<R,T>, new() {  }
     }
 
-    partial class Structure
+    partial class Structures
     {
         /// <summary>
-        /// Characterizes a structured natural
+        /// Characterizes a reification structure over natural types S where
+        /// s:S => s ∈ {1, … n} where n is some natural number subject to the
+        /// bounds implied by the underlying data structure
         /// </summary>
-        /// <typeparam name="S">The reification type</typeparam>
-        public interface Natural<S> : Integer<S>, Unsigned<S>
+        /// <typeparam name="S">The type of the realizing structure</typeparam>
+        public interface Natural<S> : Integer<S>, NonNegative<S>
+            where S : Natural<S>, new()
         {
 
         }            
-
-
-        /// <summary>
-        /// Characterizes a reification structure over natural types T where
-        /// t:T => t ∈ {1, … n} where n is some natural number subject to the
-        /// bounds implied by the underlying primitive
-        /// </summary>
-        /// <typeparam name="S">The type of the realizing structure</typeparam>
-        /// <typeparam name="T">The type of the underlying primitive</typeparam>
-        public interface Natural<S,T> : Natural<S>
-            where S : Natural<S,T>, new() { }
 
     }
 }

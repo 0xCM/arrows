@@ -41,19 +41,19 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vector<N,T> add<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
             where N : TypeNat, new() 
-            where T : Structure.Semiring<T>, new()
+            where T : Structures.Semiring<T>, new()
                 => new Vector<N,T>(fuse(lhs,rhs, (x,y) => x.add(y)));
 
         [MethodImpl(Inline)]
         public static Vector<N,T> mul<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
             where N : TypeNat, new() 
-            where T : Structure.Semiring<T>, new()
+            where T : Structures.Semiring<T>, new()
                 =>  new Vector<N,T>(fuse(lhs,rhs, (x,y) => x.add(y)));
 
         [MethodImpl(Inline)]
         public static T sum<N,T>(Vector<N,T> x) 
             where N : TypeNat, new() 
-            where T : Structure.Semiring<T>, new()
+            where T : Structures.Semiring<T>, new()
                 => Slice.sum(x.cells);
 
         [MethodImpl(Inline)]

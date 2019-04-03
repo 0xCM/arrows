@@ -15,6 +15,45 @@ using static zcore;
 
 partial class zcore
 {
+    /// <summary>
+    /// Explicit alternative to implicit destructuring
+    /// </summary>
+    /// <param name="src">The source structure</param>
+    /// <typeparam name="T">The underlying type</typeparam>
+    /// <returns>The destructured (underlying) value</returns>
+    [MethodImpl(Inline)]   
+    public static T unwrap<T>(intg<T> src)
+        => src;
+
+    /// <summary>
+    /// Explicit alternative to implicit destructuring
+    /// </summary>
+    /// <param name="src">The source structure</param>
+    /// <typeparam name="T">The underlying type</typeparam>
+    /// <returns>The destructured (underlying) value</returns>
+    [MethodImpl(Inline)]   
+    public static T unwrap<T>(real<T> src)
+        => src;
+
+    /// <summary>
+    /// Explicit alternative to implicit destructuring
+    /// </summary>
+    /// <param name="src">The source structure</param>
+    /// <typeparam name="T">The underlying type</typeparam>
+    /// <returns>The destructured (underlying) value</returns>
+    [MethodImpl(Inline)]   
+    public static T unwrap<T>(floatg<T> src)
+        => src;
+
+    /// <summary>
+    /// Explicitly invokes the (T) implicit destructuring
+    /// </summary>
+    /// <param name="src">The source structure</param>
+    /// <typeparam name="T">The underlying type</typeparam>
+    /// <returns>The destructured (underlying) value</returns>
+    [MethodImpl(Inline)]   
+    public static T unwrap<T>(num<T> src)
+        => src;
     
     /// <summary>
     /// Effects T[] => intg[T][]
@@ -826,7 +865,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<byte> uint8(real<sbyte> x)
-        => (byte)x.data;
+        => (byte)unwrap(x);
 
     /// <summary>
     /// Effects real[short] => real[byte]
@@ -834,7 +873,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<byte> uint8(real<short> x)
-        => (byte)x.data;
+        => (byte)unwrap(x);
 
     /// <summary>
     /// Effects real[ushort] => real[byte]
@@ -842,7 +881,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<byte> uint8(real<ushort> x)
-        => (byte)x.data;
+        => (byte)unwrap(x);
 
     /// <summary>
     /// Effects real[int] => real[byte]
@@ -850,7 +889,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<byte> uint8(real<int> x)
-        => (byte)x.data;
+        => (byte)unwrap(x);
 
     /// <summary>
     /// Effects real[uint] => real[byte]
@@ -858,7 +897,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<byte> uint8(real<uint> x)
-        => (byte)x.data;
+        => (byte)unwrap(x);
 
     /// <summary>
     /// Effects real[long] => real[byte]
@@ -866,7 +905,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<byte> uint8(real<long> x)
-        => (byte)x.data;
+        => (byte)unwrap(x);
 
     /// <summary>
     /// Effects real[ulong] => real[byte]
@@ -874,7 +913,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<byte> uint8(real<ulong> x)
-        => (byte)x.data;
+        => (byte)unwrap(x);
 
     /// <summary>
     /// Effects real[float] => real[byte]
@@ -882,7 +921,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<byte> uint8(real<float> x)
-        => (byte)x.data;
+        => (byte)unwrap(x);
 
     /// <summary>
     /// Effects real[double] => real[byte]
@@ -890,7 +929,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<byte> uint8(real<double> x)
-        => (byte)x.data;
+        => (byte)unwrap(x);
 
     /// <summary>
     /// Effects real[decimal] => real[byte]
@@ -898,7 +937,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<byte> uint8(real<decimal> x)
-        => (byte)x.data;
+        => (byte)unwrap(x);
 
     #endregion
 
@@ -913,7 +952,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<sbyte> int8(real<byte> x)
-        => (sbyte)x.data;
+        => (sbyte)unwrap(x);
 
     /// <summary>
     /// Effects identity transformation
@@ -929,7 +968,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<sbyte> int8(real<short> x)
-        => (sbyte)x.data;
+        => (sbyte)unwrap(x);
 
     /// <summary>
     /// Effects real[ushort] => real[sbyte]
@@ -937,7 +976,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<sbyte> int8(real<ushort> x)
-        => (sbyte)x.data;
+        => (sbyte)unwrap(x);
 
     /// <summary>
     /// Effects real[int] => real[sbyte]
@@ -945,7 +984,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<sbyte> int8(real<int> x)
-        => (sbyte)x.data;
+        => (sbyte)unwrap(x);
 
     /// <summary>
     /// Effects real[uint] => real[sbyte]
@@ -953,7 +992,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<sbyte> int8(real<uint> x)
-        => (sbyte)x.data;
+        => (sbyte)unwrap(x);
 
     /// <summary>
     /// Effects real[long] => real[sbyte]
@@ -961,7 +1000,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<sbyte> int8(real<long> x)
-        => (sbyte)x.data;
+        => (sbyte)unwrap(x);
 
     /// <summary>
     /// Effects real[ulong] => real[sbyte]
@@ -969,7 +1008,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<sbyte> int8(real<ulong> x)
-        => (sbyte)x.data;
+        => (sbyte)unwrap(x);
 
     /// <summary>
     /// Effects real[float] => real[sbyte]
@@ -977,7 +1016,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<sbyte> int8(real<float> x)
-        => (sbyte)x.data;
+        => (sbyte)unwrap(x);
 
     /// <summary>
     /// Effects real[double] => real[sbyte]
@@ -985,7 +1024,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<sbyte> int8(real<double> x)
-        => (sbyte)x.data;
+        => (sbyte)unwrap(x);
 
     /// <summary>
     /// Effects real[decimal] => real[sbyte]
@@ -993,7 +1032,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<sbyte> int8(real<decimal> x)
-        => (sbyte)x.data;
+        => (sbyte)unwrap(x);
 
     #endregion
 
@@ -1008,7 +1047,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<short> int16(real<byte> x)
-        => (short)x.data;
+        => (short)unwrap(x);
 
     /// <summary>
     /// Effects real[sbyte] => real[short]
@@ -1016,7 +1055,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<short> int16(real<sbyte> x)
-        => (short)x.data;
+        => (short)unwrap(x);
 
     /// <summary>
     /// Effects real[short] => real[short], the identity transformation
@@ -1032,7 +1071,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<short> int16(real<ushort> x)
-        => (short)x.data;
+        => (short)unwrap(x);
 
     /// <summary>
     /// Effects real[int] => real[short]
@@ -1040,7 +1079,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<short> int16(real<int> x)
-        => (short)x.data;
+        => (short)unwrap(x);
 
     /// <summary>
     /// Effects real[uint] => real[short]
@@ -1048,7 +1087,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<short> int16(real<uint> x)
-        => (short)x.data;
+        => (short)unwrap(x);
 
     /// <summary>
     /// Effects real[long] => real[short]
@@ -1056,7 +1095,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<short> int16(real<long> x)
-        => (short)x.data;
+        => (short)unwrap(x);
 
     /// <summary>
     /// Effects real[ulong] => real[short]
@@ -1064,7 +1103,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<short> int16(real<ulong> x)
-        => (short)x.data;
+        => (short)unwrap(x);
 
     /// <summary>
     /// Effects real[float] => real[short]
@@ -1072,7 +1111,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<short> int16(real<float> x)
-        => (short)x.data;
+        => (short)unwrap(x);
 
     /// <summary>
     /// Effects real[double] => real[short]
@@ -1080,7 +1119,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<short> int16(real<double> x)
-        => (short)x.data;
+        => (short)unwrap(x);
 
     /// <summary>
     /// Effects real[decimal] => real[short]
@@ -1088,7 +1127,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<short> int16(real<decimal> x)
-        => (short)x.data;
+        => (short)unwrap(x);
 
     #endregion 
     
@@ -1103,7 +1142,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ushort> uint16(real<byte> x)
-        => (ushort)x.data;
+        => (ushort)unwrap(x);
 
     /// <summary>
     /// Effects real[sbyte] => real[short]
@@ -1111,7 +1150,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ushort> uint16(real<sbyte> x)
-        => (ushort)x.data;
+        => (ushort)unwrap(x);
 
     /// <summary>
     /// Effects real[short] => real[short], the identity transformation
@@ -1119,7 +1158,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ushort> uint16(real<short> x)
-        => (ushort)x.data;
+        => (ushort)unwrap(x);
 
     /// <summary>
     /// Effects real[ushort] => real[short], the identity transformation
@@ -1135,7 +1174,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ushort> uint16(real<int> x)
-        => (ushort)x.data;
+        => (ushort)unwrap(x);
 
     /// <summary>
     /// Effects real[uint] => real[short]
@@ -1143,7 +1182,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ushort> uint16(real<uint> x)
-        => (ushort)x.data;
+        => (ushort)unwrap(x);
 
     /// <summary>
     /// Effects real[long] => real[short]
@@ -1151,7 +1190,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ushort> uint16(real<long> x)
-        => (ushort)x.data;
+        => (ushort)unwrap(x);
 
     /// <summary>
     /// Effects real[ulong] => real[short]
@@ -1159,7 +1198,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ushort> uint16(real<ulong> x)
-        => (ushort)x.data;
+        => (ushort)unwrap(x);
 
     /// <summary>
     /// Effects real[float] => real[short]
@@ -1167,7 +1206,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ushort> uint16(real<float> x)
-        => (ushort)x.data;
+        => (ushort)unwrap(x);
 
     /// <summary>
     /// Effects real[double] => real[short]
@@ -1175,7 +1214,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ushort> uint16(real<double> x)
-        => (ushort)x.data;
+        => (ushort)unwrap(x);
 
     /// <summary>
     /// Effects real[decimal] => real[short]
@@ -1183,7 +1222,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ushort> uint16(real<decimal> x)
-        => (ushort)x.data;
+        => (ushort)unwrap(x);
 
     #endregion
     
@@ -1198,7 +1237,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<uint> uint32(real<byte> x)
-        => (uint)x.data;
+        => (uint)unwrap(x);
 
     /// <summary>
     /// Effects real[sbyte] => real[uint]
@@ -1206,7 +1245,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<uint> uint32(real<sbyte> x)
-        => (uint)x.data;
+        => (uint)unwrap(x);
 
     /// <summary>
     /// Effects real[uint] => real[uint]
@@ -1214,7 +1253,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<uint> uint32(real<short> x)
-        => (uint)x.data;
+        => (uint)unwrap(x);
 
     /// <summary>
     /// Effects real[ushort] => real[uint]
@@ -1222,7 +1261,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<uint> uint32(real<ushort> x)
-        => (uint)x.data;
+        => (uint)unwrap(x);
 
     /// <summary>
     /// Effects real[int] => real[uint]
@@ -1230,7 +1269,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<uint> uint32(real<int> x)
-        => (uint)x.data;
+        => (uint)unwrap(x);
 
     /// <summary>
     /// Effects real[uint] => real[uint]
@@ -1246,7 +1285,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<uint> uint32(real<long> x)
-        => (uint)x.data;
+        => (uint)unwrap(x);
 
     /// <summary>
     /// Effects real[ulong] => real[uint]
@@ -1254,7 +1293,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<uint> uint32(real<ulong> x)
-        => (uint)x.data;
+        => (uint)unwrap(x);
 
     /// <summary>
     /// Effects real[float] => real[uint]
@@ -1262,7 +1301,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<uint> uint32(real<float> x)
-        => (uint)x.data;
+        => (uint)unwrap(x);
 
     /// <summary>
     /// Effects real[double] => real[uint]
@@ -1270,7 +1309,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<uint> uint32(real<double> x)
-        => (uint)x.data;
+        => (uint)unwrap(x);
 
     /// <summary>
     /// Effects real[decimal] => real[uint]
@@ -1278,7 +1317,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<uint> uint32(real<decimal> x)
-        => (uint)x.data;
+        => (uint)unwrap(x);
 
     #endregion
 
@@ -1293,7 +1332,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<long> int64(real<byte> x)
-        => (long)x.data;
+        => (long)unwrap(x);
 
     /// <summary>
     /// Effects real[sbyte] => real[int]
@@ -1301,7 +1340,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<long> int64(real<sbyte> x)
-        => (long)x.data;
+        => (long)unwrap(x);
 
     /// <summary>
     /// Effects real[short] => real[int]
@@ -1309,7 +1348,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<long> int64(real<short> x)
-        => (long)x.data;
+        => (long)unwrap(x);
 
     /// <summary>
     /// Effects real[ushort] => real[int]
@@ -1317,7 +1356,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<long> int64(real<ushort> x)
-        => (long)x.data;
+        => (long)unwrap(x);
 
     /// <summary>
     /// Effects real[int] => real[int]
@@ -1325,7 +1364,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<long> int64(real<int> x)
-        => (long)x.data;
+        => (long)unwrap(x);
 
     /// <summary>
     /// Effects real[uint] => real[int]
@@ -1333,7 +1372,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<long> int64(real<uint> x)
-        => (long)x.data;
+        => (long)unwrap(x);
 
     /// <summary>
     /// Effects real[long] => real[int]
@@ -1341,7 +1380,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<long> int64(real<long> x)
-        => (long)x.data;
+        => (long)unwrap(x);
 
     /// <summary>
     /// Effects real[ulong] => real[int]
@@ -1349,7 +1388,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<long> int64(real<ulong> x)
-        => (long)x.data;
+        => (long)unwrap(x);
 
     /// <summary>
     /// Effects real[float] => real[int]
@@ -1357,7 +1396,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<long> int64(real<float> x)
-        => (long)x.data;
+        => (long)unwrap(x);
 
     /// <summary>
     /// Effects real[double] => real[int]
@@ -1365,7 +1404,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<long> int64(real<double> x)
-        => (long)x.data;
+        => (long)unwrap(x);
 
     /// <summary>
     /// Effects real[decimal] => real[int]
@@ -1373,7 +1412,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<long> int64(real<decimal> x)
-        => (long)x.data;
+        => (long)unwrap(x);
 
     #endregion
 
@@ -1389,7 +1428,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ulong> uint64(real<byte> x)
-        => (ulong)x.data;
+        => (ulong)unwrap(x);
 
     /// <summary>
     /// Effects real[sbyte] => real[int]
@@ -1397,7 +1436,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ulong> uint64(real<sbyte> x)
-        => (ulong)x.data;
+        => (ulong)unwrap(x);
 
     /// <summary>
     /// Effects real[short] => real[int]
@@ -1405,7 +1444,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ulong> uint64(real<short> x)
-        => (ulong)x.data;
+        => (ulong)unwrap(x);
 
     /// <summary>
     /// Effects real[ushort] => real[int]
@@ -1413,7 +1452,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ulong> uint64(real<ushort> x)
-        => (ulong)x.data;
+        => (ulong)unwrap(x);
 
     /// <summary>
     /// Effects real[int] => real[int]
@@ -1421,7 +1460,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ulong> uint64(real<int> x)
-        => (ulong)x.data;
+        => (ulong)unwrap(x);
 
     /// <summary>
     /// Effects real[uint] => real[int]
@@ -1429,7 +1468,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ulong> uint64(real<uint> x)
-        => (ulong)x.data;
+        => (ulong)unwrap(x);
 
     /// <summary>
     /// Effects real[long] => real[int]
@@ -1437,7 +1476,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ulong> uint64(real<long> x)
-        => (ulong)x.data;
+        => (ulong)unwrap(x);
 
     /// <summary>
     /// Effects real[ulong] => real[int]
@@ -1445,7 +1484,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ulong> uint64(real<ulong> x)
-        => (ulong)x.data;
+        => (ulong)unwrap(x);
 
     /// <summary>
     /// Effects real[float] => real[int]
@@ -1453,7 +1492,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ulong> uint64(real<float> x)
-        => (ulong)x.data;
+        => (ulong)unwrap(x);
 
     /// <summary>
     /// Effects real[double] => real[int]
@@ -1461,7 +1500,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ulong> uint64(real<double> x)
-        => (ulong)x.data;
+        => (ulong)unwrap(x);
 
     /// <summary>
     /// Effects real[decimal] => real[int]
@@ -1469,7 +1508,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<ulong> uint64(real<decimal> x)
-        => (ulong)x.data;
+        => (ulong)unwrap(x);
 
     #endregion
 
@@ -1485,7 +1524,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<int> int32(real<byte> x)
-        => (int)x.data;
+        => (int)unwrap(x);
 
     /// <summary>
     /// Effects real[sbyte] => real[int]
@@ -1493,7 +1532,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<int> int32(real<sbyte> x)
-        => (int)x.data;
+        => (int)unwrap(x);
 
     /// <summary>
     /// Effects real[short] => real[int]
@@ -1501,7 +1540,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<int> int32(real<short> x)
-        => (int)x.data;
+        => (int)unwrap(x);
 
     /// <summary>
     /// Effects real[ushort] => real[int]
@@ -1509,7 +1548,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<int> int32(real<ushort> x)
-        => (int)x.data;
+        => (int)unwrap(x);
 
     /// <summary>
     /// Effects real[int] => real[int]
@@ -1525,7 +1564,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<int> int32(real<uint> x)
-        => (int)x.data;
+        => (int)unwrap(x);
 
     /// <summary>
     /// Effects real[long] => real[int]
@@ -1533,7 +1572,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<int> int32(real<long> x)
-        => (int)x.data;
+        => (int)unwrap(x);
 
     /// <summary>
     /// Effects real[ulong] => real[int]
@@ -1541,7 +1580,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<int> int32(real<ulong> x)
-        => (int)x.data;
+        => (int)unwrap(x);
 
     /// <summary>
     /// Effects real[float] => real[int]
@@ -1549,7 +1588,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<int> int32(real<float> x)
-        => (int)x.data;
+        => (int)unwrap(x);
 
     /// <summary>
     /// Effects real[double] => real[int]
@@ -1557,7 +1596,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<int> int32(real<double> x)
-        => (int)x.data;
+        => (int)unwrap(x);
 
     /// <summary>
     /// Effects real[decimal] => real[int]
@@ -1565,7 +1604,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<int> int32(real<decimal> x)
-        => (int)x.data;
+        => (int)unwrap(x);
 
     #endregion
 
@@ -1579,7 +1618,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<float> float32(real<byte> x)
-        => (float)x.data;
+        => (float)unwrap(x);
 
     /// <summary>
     /// Effects real[sbyte] => real[float]
@@ -1587,7 +1626,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<float> float32(real<sbyte> x)
-        => (float)x.data;
+        => (float)unwrap(x);
 
     /// <summary>
     /// Effects real[short] => real[float]
@@ -1595,7 +1634,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<float> float32(real<short> x)
-        => (float)x.data;
+        => (float)unwrap(x);
 
     /// <summary>
     /// Effects real[ushort] => real[float]
@@ -1603,7 +1642,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<float> float32(real<ushort> x)
-        => (float)x.data;
+        => (float)unwrap(x);
 
     /// <summary>
     /// Effects real[float] => real[float]
@@ -1611,7 +1650,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<float> float32(real<int> x)
-        => (float)x.data;
+        => (float)unwrap(x);
 
     /// <summary>
     /// Effects real[uint] => real[float]
@@ -1619,7 +1658,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<float> float32(real<uint> x)
-        => (float)x.data;
+        => (float)unwrap(x);
 
     /// <summary>
     /// Effects real[long] => real[float]
@@ -1627,7 +1666,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<float> float32(real<long> x)
-        => (float)x.data;
+        => (float)unwrap(x);
 
     /// <summary>
     /// Effects real[ulong] => real[float]
@@ -1635,7 +1674,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<float> float32(real<ulong> x)
-        => (float)x.data;
+        => (float)unwrap(x);
 
     /// <summary>
     /// Effects real[float] => real[float]
@@ -1643,7 +1682,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<float> float32(real<float> x)
-        => (float)x.data;
+        => (float)unwrap(x);
 
     /// <summary>
     /// Effects real[double] => real[float]
@@ -1651,7 +1690,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<float> float32(real<double> x)
-        => (float)x.data;
+        => (float)unwrap(x);
 
     /// <summary>
     /// Effects real[decimal] => real[float]
@@ -1659,7 +1698,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<float> float32(real<decimal> x)
-        => (float)x.data;
+        => (float)unwrap(x);
 
     #endregion
 
@@ -1673,7 +1712,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<double> float64(real<byte> x)
-        => (double)x.data;
+        => (double)unwrap(x);
 
     /// <summary>
     /// Effects real[sbyte] => real[double]
@@ -1681,7 +1720,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<double> float64(real<sbyte> x)
-        => (double)x.data;
+        => (double)unwrap(x);
 
     /// <summary>
     /// Effects real[short] => real[double]
@@ -1689,7 +1728,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<double> float64(real<short> x)
-        => (double)x.data;
+        => (double)unwrap(x);
 
     /// <summary>
     /// Effects real[ushort] => real[double]
@@ -1697,7 +1736,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<double> float64(real<ushort> x)
-        => (double)x.data;
+        => (double)unwrap(x);
 
     /// <summary>
     /// Effects real[double] => real[double]
@@ -1705,7 +1744,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<double> float64(real<int> x)
-        => (double)x.data;
+        => (double)unwrap(x);
 
     /// <summary>
     /// Effects real[uint] => real[double]
@@ -1713,7 +1752,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<double> float64(real<uint> x)
-        => (double)x.data;
+        => (double)unwrap(x);
 
     /// <summary>
     /// Effects real[long] => real[double]
@@ -1721,7 +1760,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<double> float64(real<long> x)
-        => (double)x.data;
+        => (double)unwrap(x);
 
     /// <summary>
     /// Effects real[ulong] => real[double]
@@ -1729,7 +1768,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<double> float64(real<ulong> x)
-        => (double)x.data;
+        => (double)unwrap(x);
 
     /// <summary>
     /// Effects real[float] => real[double]
@@ -1737,7 +1776,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<double> float64(real<float> x)
-        => (double)x.data;
+        => (double)unwrap(x);
 
     /// <summary>
     /// Effects real[double] => real[double]
@@ -1745,7 +1784,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<double> float64(real<double> x)
-        => (double)x.data;
+        => (double)unwrap(x);
 
     /// <summary>
     /// Effects real[decimal] => real[double]
@@ -1753,7 +1792,7 @@ partial class zcore
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
     public static real<double> float64(real<decimal> x)
-        => (double)x.data;
+        => (double)unwrap(x);
     #endregion
 
     // !!! [x] => [real[x]]

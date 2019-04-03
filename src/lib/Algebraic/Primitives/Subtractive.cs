@@ -27,10 +27,11 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
 
         public interface Subtractive<S> : Negatable<S>
+            where S : Subtractive<S>, new()
         {
             /// <summary>
             /// Structural subtraction
@@ -39,16 +40,6 @@ namespace Z0
             S sub(S rhs);
         }
 
-        /// <summary>
-        /// Characterizes structural unary negation and subtraction
-        /// </summary>
-        /// <typeparam name="T">The individual type</typeparam>
-        /// <typeparam name="S">The structure/self type</typeparam>
-        public interface Subtractive<S,T> : Negatable<S,T>, Subtractive<S>
-            where S : Subtractive<S,T>, new()
-        {
-
-        }
 
     }
 

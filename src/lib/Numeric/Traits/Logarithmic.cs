@@ -37,9 +37,10 @@ namespace Z0
         }
 
     }
-    partial class Structure
+    partial class Structures
     {
         public interface Logarithmic<S>
+            where S : Logarithmic<S>, new()
         {
             /// <summary>
             /// Computes the natural logarithm 

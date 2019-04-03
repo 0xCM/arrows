@@ -4,6 +4,13 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    using System;
+    using System.Numerics;
+    using System.Runtime.CompilerServices;
+    using static zcore;
+
+    using static Operative;
+
     partial class Operative
     {
 
@@ -13,16 +20,16 @@ namespace Z0
             /// Unary negation of input
             /// </summary>
             /// <param name="x">The input value</param>
-            /// <returns></returns>
             T negate(T x);
 
         }
 
     }
 
-    partial class Structure
+    partial class Structures
     {
         public interface Negatable<S>
+            where S : Negatable<S>, new()
         {
             /// <summary>
             /// Unary structural negation
@@ -33,17 +40,47 @@ namespace Z0
 
         }
 
+    }
 
-        /// <summary>
-        /// Characterizes structural unary negation and subtraction
-        /// </summary>
-        /// <typeparam name="T">The individual type</typeparam>
-        /// <typeparam name="S">The structure/self type</typeparam>
-        public interface Negatable<S,T> : Negatable<S>, Structural<S,T>
-            where S : Negatable<S,T>, new()
-        {
+    public readonly struct Negatable 
+        : Negatable<sbyte>, Negatable<short>, 
+          Negatable<int>, Negatable<long>, 
+          Negatable<BigInteger>,
+          Negatable<float>, Negatable<double>, 
+          Negatable<decimal>
+    {
+        public static readonly Negatable Inhabitant = default;
 
-        }        
+        [MethodImpl(Inline)]
+        public sbyte negate(sbyte x)
+            => (sbyte)-x;
 
+        [MethodImpl(Inline)]
+        public short negate(short x)
+            => (short)-x;
+
+        [MethodImpl(Inline)]
+        public int negate(int x)
+            => -x;
+
+        [MethodImpl(Inline)]
+        public long negate(long x)
+            => -x;
+
+        [MethodImpl(Inline)]
+        public BigInteger negate(BigInteger x)
+            => -x;
+
+        [MethodImpl(Inline)]
+        public float negate(float x)
+            => -x;
+
+        [MethodImpl(Inline)]
+        public decimal negate(decimal x)
+            => -x;
+
+        [MethodImpl(Inline)]
+        public double negate(double x)
+            => -x;
     }
 }

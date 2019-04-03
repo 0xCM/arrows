@@ -68,7 +68,13 @@ namespace Z0
         public static readonly Atom h = "h";
         public static readonly Atom i = "i";
         public static readonly Atom j = "j";
-
+        public static readonly Atom k = "k";
+        public static readonly Atom l = "l";
+        public static readonly Atom m = "m";
+        public static readonly Atom n = "n";
+        public static readonly Atom o = "o";
+        public static readonly Atom p = "p";
+        public static readonly Atom q = "q";
 
     }
 
@@ -84,7 +90,13 @@ namespace Z0
         public static readonly Atom H = "H";
         public static readonly Atom I = "I";
         public static readonly Atom J = "J";
-    }
+        public static readonly Atom L = "L";
+        public static readonly Atom M = "M";
+        public static readonly Atom N = "N";
+        public static readonly Atom O = "O";
+        public static readonly Atom P = "P";
+        public static readonly Atom Q = "Q";
+   }
 
     public static class AsciDigits
     {

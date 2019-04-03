@@ -62,20 +62,16 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
-        public interface NormalSubgroup<S> : Group<S>
-        {
-
-        }
         /// <summary>
         /// Characterizes normal subgroup structure
         /// </summary>
-        /// <typeparam name="T">The structural type</typeparam>
-        public interface NormalSubgroup<S,T> : NormalSubgroup<S>, Group<S,T>
-            where S : NormalSubgroup<S,T>, new()
+        /// <typeparam name="S">The structural type</typeparam>
+        public interface NormalSubgroup<S> : Group<S>
+            where S : NormalSubgroup<S>, new()
         {
-            
+
         }
 
     }

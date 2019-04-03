@@ -13,7 +13,7 @@ namespace Z0
     /// <summary>
     /// Represents the set that contains all potential values of a specified type
     /// </summary>
-    public readonly struct TotalSet<T> : Structure.Set<TotalSet<T>,T>
+    public readonly struct TotalSet<T> : Structures.Set<TotalSet<T>,T>
         where T : IEquatable<T>
     {
         public static readonly TotalSet<T> Inhabitant = default;
@@ -39,12 +39,20 @@ namespace Z0
         public bool Equals(TotalSet<T> other)
             => true;
 
+        public int hash()
+            => 0;
+
+        public bool eq(TotalSet<T> rhs)
+            => true;
+
+        public bool neq(TotalSet<T> rhs)
+            => false;
     }
 
     /// <summary>
     /// Represents the universal empty set
     /// </summary>
-    public readonly struct EmptySet : Structure.Set
+    public readonly struct EmptySet : Contain.Set
     {
         public static readonly EmptySet Inhabitant = default;
 
@@ -67,7 +75,7 @@ namespace Z0
     /// <summary>
     /// Represents the set that contains no values of a specified type
     /// </summary>
-    public readonly struct EmptySet<T> : Structure.Set<EmptySet<T>, T>
+    public readonly struct EmptySet<T> : Structures.Set<EmptySet<T>, T>
         where T : IEquatable<T>
     {
         public static readonly EmptySet<T> Inhabitant = default;
@@ -84,8 +92,16 @@ namespace Z0
         public bool discrete
             => true;
 
+        public bool eq(EmptySet<T> rhs)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Equals(EmptySet<T> other)
             => true;
+
+        public int hash()
+            => 0;
 
         public bool member(T item) 
             => false;
@@ -94,12 +110,15 @@ namespace Z0
             => (candidate is T) 
              ? member((T)candidate) 
              : false;
+
+        public bool neq(EmptySet<T> rhs)
+            => false;
     }
 
     /// <summary>
     /// Represents the set of natural numbers
     /// </summary>
-    public readonly struct N : Structure.DiscreteSet<N,bigint>
+    public readonly struct N : Structures.DiscreteSet<N,bigint>
     {
         internal static readonly N Inhabitant = default;
 
@@ -137,12 +156,21 @@ namespace Z0
 
         public bool Equals(N other)
             => true;
+
+        public int hash()
+            => 0;
+
+        public bool eq(N rhs)
+            => true;
+
+        public bool neq(N rhs)
+            => false;
     }
 
     /// <summary>
     /// Represents the set of integers
     /// </summary>
-    public readonly struct Z : Structure.DiscreteSet<Z>, Operative.GroupA<bigint>
+    public readonly struct Z : Contain.DiscreteSet<Z>, Operative.GroupA<bigint>
     {
         internal static readonly Z Inhabitant = default;
     
@@ -212,7 +240,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of rational numbers
     /// </summary>
-    public readonly struct Q : Structure.Set<Q>
+    public readonly struct Q : Contain.Set<Q>
     {
         internal static readonly Q Inhabitant = default(Q);
 
@@ -241,7 +269,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of real numbers
     /// </summary>
-    public readonly struct R : Structure.Set<R>
+    public readonly struct R : Contain.Set<R>
     {
         internal static readonly R Inhabitant = default(R);
     

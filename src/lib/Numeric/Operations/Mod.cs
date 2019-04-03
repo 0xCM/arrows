@@ -34,7 +34,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public bool nonzero(T x)
-            => Ops.eq(x,zero);
+            => Ops.nonzero(x);
 
 
         [MethodImpl(Inline)]
@@ -54,10 +54,6 @@ namespace Z0
             => reduce(Ops.distribute(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public bool eq(T lhs, T rhs)
-            => Ops.eq(reduce(lhs), reduce(rhs));
-
-        [MethodImpl(Inline)]
         public T mul(T a, T b)
             => Ops.mul(a,b);
 
@@ -69,13 +65,15 @@ namespace Z0
         public T invert(T x)
             => negate(x);
 
-        [MethodImpl(Inline)]
-        public bool neq(T lhs, T rhs)
-            => Ops.neq(reduce(lhs), reduce(rhs));
-
 
         [MethodImpl(Inline)]
         public T sub(T lhs, T rhs)
-            => Ops.mod(Ops.sub(lhs,rhs), @base);        
+            => Ops.mod(Ops.sub(lhs,rhs), @base);
+
+        public bool eq(T lhs, T rhs)
+            => Ops.eq(lhs,rhs);
+ 
+        public bool neq(T lhs, T rhs)
+            => Ops.neq(lhs,rhs);
     }
 }

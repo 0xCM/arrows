@@ -23,12 +23,13 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
         public interface EquivalenceClass<T>
         {
             T representative {get;}
         }
+
 
         /// <summary>
         /// Characterizes an equivalence class, i.e. a segment of a partition effected via 
@@ -46,7 +47,7 @@ namespace Z0
         /// with enumerable content
         /// </summary>
         /// <typeparam name="T">The content type</typeparam>
-        public interface DiscreteEqivalenceClass<S,T> : EquivalenceClass<S,T>, DiscreteSet<S> 
+        public interface DiscreteEqivalenceClass<S,T> : EquivalenceClass<S,T>, DiscreteSet<S,T> 
             where S : DiscreteEqivalenceClass<S,T>, new() { }
 
         /// <summary>
@@ -54,7 +55,7 @@ namespace Z0
         /// an equivalence relation
         /// </summary>
         /// <typeparam name="T">The classified type</typeparam>
-        public interface FiniteEquivalenceClass<S,T> : DiscreteEqivalenceClass<S,T>, FiniteSet<S> 
+        public interface FiniteEquivalenceClass<S,T> : DiscreteEqivalenceClass<S,T>//, FiniteSet<S,T> 
             where S : FiniteEquivalenceClass<S,T>, new()
         { }
 
@@ -68,10 +69,9 @@ namespace Z0
         /// Defines the canonical reification of a discrete equivalence class
         /// </summary>
         public readonly struct FiniteEquivalenceClass<T> 
-            : Structure.DiscreteEqivalenceClass<FiniteEquivalenceClass<T>,T>,  
-              Z0.Equality<FiniteEquivalenceClass<T>>, 
-              IEquatable<FiniteEquivalenceClass<T>>
-                where T : Z0.Equality<T>, new()
+            : Structures.DiscreteEqivalenceClass<FiniteEquivalenceClass<T>,T>,  
+              Z0.Equatable<FiniteEquivalenceClass<T>>
+                where T : Z0.Structure<T>, new()
         {
                     
             Operative.Equivalence<T> equivalence {get;}
@@ -98,9 +98,7 @@ namespace Z0
 
             public int count 
                 => membership.count;
-
-            
-
+        
             public bool member(T candidate)
                 => equivalence.related(representative, candidate);
 
@@ -119,6 +117,14 @@ namespace Z0
             public bool Equals(FiniteEquivalenceClass<T> rhs)
                 => eq(this, rhs);
 
+            public bool eq(FiniteEquivalenceClass<T> rhs)
+                => membership.eq(rhs.membership);
+            
+            public bool neq(FiniteEquivalenceClass<T> rhs)
+                => ! membership.eq(rhs.membership);
+
+            public int hash()
+                => membership.GetHashCode();
         }
 
     }

@@ -14,9 +14,8 @@ namespace Z0
     /// Implementation of a basic multiset
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Multiset</remarks>
-    public readonly struct Multiset<T>  : Structure.FiniteSet<Multiset<T>>
-        where T : Operative.Ordered<T>,  new()        
-        
+    public readonly struct Multiset<T> 
+        where T : Operative.Ordered<T>,  new()                
     {
         static Operative.Ordered<T> Ops = new T();
         
@@ -56,8 +55,8 @@ namespace Z0
         public IEnumerable<(T item, int multiplicity)> multiplicities()
             => data.Select(x => (x.Key,x.Value));
 
-        public Seq<T> members()
-            => data.Keys.ToSeq();
+        public IEnumerable<T> members()
+            => data.Keys;
 
         public bool Equals(Multiset<T> other)
             => throw new NotImplementedException();

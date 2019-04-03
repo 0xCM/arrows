@@ -5,32 +5,61 @@
 namespace Z0
 {
     using System;
+    using System.Numerics;
     using System.Runtime.CompilerServices;
     using static zcore;
 
-    using static Traits;
+    using static Operative;
 
-
-    public static class Addition 
+    partial class Operative
     {
-        public static Addition<T> define<T>(Operative.Additive<T> x)
-            => Addition<T>.define(x);
+        /// <summary>
+        /// Characterizes a type that defines a notion of commutative additivity
+        /// </summary>
+        /// <typeparam name="T">The type subject to addition</typeparam>
+        public interface Additive<T>
+        {
+
+            /// <summary>
+            /// Alias for commutative semigroup composition operator
+            /// </summary>
+            /// <param name="lhs">The first element</param>
+            /// <param name="rhs">The second element</param>
+            T add(T lhs, T rhs);                    
+        }
     }
 
+    partial class Structures
+    {
+        /// <summary>
+        /// Characterizes a structure that supports semigroup additivity
+        /// </summary>
+        /// <typeparam name="S">The structure type</typeparam>
+        public interface Additive<S> : Structure<S>
+            where S : Additive<S>, new()
+        {
+            S add(S rhs);
+        }
+
+        /// <summary>
+        /// Characterizes an additive structure S parameterized by 
+        /// a type T 
+        /// </summary>
+        /// <typeparam name="S">The structure type</typeparam>
+        public interface Additive<S,T> : Additive<S>
+            where S : Additive<S,T>, new()
+        {
+        }
+    }
+ 
     /// <summary>
     /// Reification of addition as a binary applicative
     /// </summary>
-    public readonly struct Addition<T> : Operative.Additive<T>, Operative.BinaryApply<T>
+    public readonly struct Addition<T> : Additive<T>, BinaryApply<T>
+        where T : Operative.Additive<T>, new()
     {
-        [MethodImpl(Inline)]
-        public static Addition<T> define(Operative.Additive<T> effector)
-            => new Addition<T>(effector);
-
-        readonly Operative.Additive<T> effector;
+        static readonly Addition<T> effector = default;
         
-        [MethodImpl(Inline)]    
-        public Addition(Operative.Additive<T> effector)
-            => this.effector = effector;
 
         [MethodImpl(Inline)]    
         public T add(T lhs, T rhs)
@@ -41,43 +70,65 @@ namespace Z0
             => effector.add(lhs,rhs);
     }
 
-    partial class Operative
-    {
-        /// <summary>
-        /// Characterizes a type that defines a notion of additivity
-        /// </summary>
-        /// <typeparam name="T">The type subject to addition</typeparam>
-        public interface Additive<T> : BinaryOp<T>
-        {
 
-            /// <summary>
-            /// Alias for the group composition operator in the commutative context
-            /// </summary>
-            /// <param name="lhs">The first element</param>
-            /// <param name="rhs">The second element</param>
-            /// <returns></returns>
-            T add(T lhs, T rhs);
+    public readonly struct Additive 
+        : Additive<sbyte>, Additive<byte>, 
+            Additive<short>, Additive<ushort>, 
+            Additive<int>, Additive<uint>,
+            Additive<long>, Additive<ulong>,
+            Additive<BigInteger>,
+            Additive<float>, Additive<double>, 
+            Additive<decimal>
             
-            
-        }
-
-
-    }
-
-    partial class Structure
     {
-        public interface Additive<S>
-        {
-            S add(S rhs);
+        public static Additive Inhabitant = default;
 
-        }
+        [MethodImpl(Inline)]
+        public byte add(byte lhs, byte rhs)
+            => (byte)(lhs + rhs);
 
-        public interface Additive<S,T> : Additive<S>, Structural<S,T>
-            where S : Additive<S,T>, new()
-        {
-        }
+        [MethodImpl(Inline)]
+        public sbyte add(sbyte lhs, sbyte rhs)
+            => (sbyte)(lhs + rhs);
 
+        [MethodImpl(Inline)]
+        public ushort add(ushort lhs, ushort rhs)
+            => (ushort)(lhs + rhs);
+
+        [MethodImpl(Inline)]
+        public short add(short lhs, short rhs)
+            => (short)(lhs + rhs);
+
+        [MethodImpl(Inline)]
+        public int add(int lhs, int rhs)
+            => lhs + rhs;
+
+        [MethodImpl(Inline)]
+        public uint add(uint lhs, uint rhs)
+            => lhs + rhs;
+
+        [MethodImpl(Inline)]
+        public ulong add(ulong lhs, ulong rhs)
+            => lhs + rhs;
+
+        [MethodImpl(Inline)]
+        public decimal add(decimal lhs, decimal rhs)
+            => lhs + rhs;
+
+        [MethodImpl(Inline)]
+        public double add(double lhs, double rhs)
+            => lhs + rhs;
+
+        [MethodImpl(Inline)]
+        public float add(float lhs, float rhs)
+            => lhs + rhs;
+
+        [MethodImpl(Inline)]
+        public BigInteger add(BigInteger lhs, BigInteger rhs)
+            => lhs + rhs;
+
+        [MethodImpl(Inline)]
+        public long add(long lhs, long rhs)
+            => lhs + rhs;
     }
-
-
 }

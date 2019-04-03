@@ -12,65 +12,68 @@ namespace Z0
 
     using static zcore;
 
-    partial class Structure
+    public interface FiniteSeq<S,T> : Contain.Seq<S,T>, Contain.FiniteContainer<S,T>
+        where S : FiniteSeq<S,T>, new()
     {
-        public interface FiniteSeq<T> : Seq<T>
-        {
-            /// <summary>
-            /// Retrieves the 0-based i'th element of the sequence
-            /// </summary>
-            /// <value></value>
-            T this[int i] {get;}
+        /// <summary>
+        /// Retrieves the 0-based i'th element of the sequence
+        /// </summary>
+        /// <value></value>
+        T this[int i] {get;}
 
-            uint count {get;}
-        }
     }
 
-
-    public readonly struct FiniteSeq<T> : Structure.FiniteSeq<FiniteSeq<T>,T>
-        where T : IEquatable<T>
+    public readonly struct FiniteSeq<T> : FiniteSeq<FiniteSeq<T>,T>
     {
         public static readonly FiniteSeq<T> Empty = default;
-
 
         /// <summary>
         /// Implicitly constructs a sequence from an array
         /// </summary>
-        /// <param name="src"></param>
+        /// <param name="src">The source array</param>
         public static implicit operator FiniteSeq<T>(T[] src)
             => new FiniteSeq<T>(src);
-
 
         [MethodImpl(Inline)]
         public FiniteSeq(IEnumerable<T> src)
         {
-            this.src = src.ToArray();
+            this.data = src.ToReadOnlyList();
             this.nonempty = true;
         }
-
-        readonly T[] src;
-
         readonly bool nonempty;
+
+        readonly IReadOnlyList<T> data;
+
+        public IEnumerable<T> content
+            => data;
+
+        public uint count 
+            => (uint)data.Count;
 
         public bool empty()
             => not(nonempty);
 
         public T this[int i] 
-            => src[i];
-
-        public uint count 
-            => (uint)src.Length;        
+            => data[i];
 
         [MethodImpl(Inline)]
         public FiniteSeq<T> redefine(IEnumerable<T> src)
             => new FiniteSeq<T>(src);                
 
-        public IEnumerable<T> stream()
-            => src;
+        [MethodImpl(Inline)]
+        public bool eq(FiniteSeq<T> rhs)
+            => data.ContentEquals(rhs.data);
 
-        public bool Equals(FiniteSeq<T> other)
-            =>throw new NotImplementedException();
+        [MethodImpl(Inline)]
+        public bool Equals(FiniteSeq<T> rhs)
+            =>eq(rhs);
+
+        [MethodImpl(Inline)]
+        public int hash()
+            => data.HashCode();
+
+        [MethodImpl(Inline)]
+        public bool neq(FiniteSeq<T> rhs)
+            => not(eq(rhs));
     }
-
-
 }

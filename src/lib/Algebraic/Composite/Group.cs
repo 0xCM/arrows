@@ -39,20 +39,23 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
 
         public interface Group<S> : Invertive<S>, Monoid<S>
+            where S : Group<S>, new()
         {
 
         }
 
         public interface GroupM<S> : Group<S>, MonoidM<S>
+            where S : GroupM<S>, new()
         {
             
         }
 
         public interface GroupA<S> : Group<S>, MonoidA<S>
+            where S : GroupA<S>, new()
         {
 
         }
@@ -61,7 +64,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The type over which the structure is defind</typeparam>
         /// <typeparam name="S">The structure type</typeparam>
-        public interface Group<S,T> : Invertive<S,T>, Monoid<S,T>
+        public interface Group<S,T> : Group<S>
             where S : Group<S,T>, new()
         {
             

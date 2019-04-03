@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
-    partial class Structure
+    partial class Structures
     {
 
         /// <summary>
@@ -18,14 +18,13 @@ namespace Z0
         /// <typeparam name="C">The equivalence class type</typeparam>
         /// <typeparam name="T">The set domain</typeparam>
         public interface QuotientSet<C,T> 
-            where C : Structure.EquivalenceClass<C,T>, new()
-            where T : Equality<T>, new()
+            where C : Structures.EquivalenceClass<C,T>, new()
+            where T : Equatable<T>, new()
         {
             /// <summary>
             /// Effects a partition via the equivalence
             /// </summary>
-            /// <returns></returns>
-            Z0.Seq<C> partition();
+            IEnumerable<C> partition();
 
             /// <summary>
             /// The canonical surjective projection from the underlying set to the equivalence 

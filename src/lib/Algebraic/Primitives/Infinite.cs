@@ -4,13 +4,19 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    public enum OrientedInfinity
+    {
+        NegativeInfinity = Orientation.Left,
+
+        PositiveInfinity = Orientation.Right
+    }
 
     partial class Operative
     {
         /// <summary>
-        /// Characterizs operations over a type that has infinitely many refications
+        /// Characterizes operations over operands for which a given reification may be infinite
         /// </summary>
-        /// <typeparam name="T">The type over which operations are defined</typeparam>
+        /// <typeparam name="T">The operand type</typeparam>
         public interface Infinite<T>
         
         {
@@ -19,25 +25,6 @@ namespace Z0
 
     }
 
-    partial class Structure
-    {
-
-        public interface Infinite<S> 
-        {
-
-        }    
-
-        /// <summary>
-        /// Characterizes a Unbounded structural number
-        /// </summary>
-        /// <typeparam name="S">The structure type</typeparam>
-        /// <typeparam name="T">The individual type</typeparam>
-        public interface Infinite<S,T> : Infinite<S>, Structural<S,T>
-            where S : Infinite<S,T>, new()
-        {
-
-        }    
-    }
 
 
 }

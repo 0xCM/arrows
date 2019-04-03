@@ -9,12 +9,12 @@ namespace Z0
 
     partial class Operative
     {
-        public interface Decrementable<T>
+        public interface Decrementable<T> : Ordered<T>
         {
             T dec(T x);        
         }
 
-        public interface Incrementable<T>
+        public interface Incrementable<T> : Ordered<T>
         {
             T inc(T x);        
         }
@@ -32,45 +32,30 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
-        public interface Decrementable<S>
+        public interface Decrementable<S> : Ordered<S>
+            where S : Decrementable<S>, new()
         {
             S dec();
         }
 
-        public interface Incrementable<S>
+        public interface Incrementable<S> : Ordered<S>
+            where S : Incrementable<S>, new()
         {
             S inc();        
         }
-
-        public interface Stepwise<S> : Incrementable<S>, Decrementable<S>
-        {
-
-        }
-        
-        public interface Decrementable<S,T> : Decrementable<S>, Structural<S,T>
-            where S : Decrementable<S,T>, new()
-        {
-        }
-
-
-        public interface Incrementable<S,T> : Incrementable<S>, Structural<S,T>
-            where S : Incrementable<S,T>, new()
-        {
-        }
-
 
         /// <summary>
         /// Characterizes a structure over which both incrementing and decrementing 
         /// operations are defined
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
-        /// <typeparam name="T">The underlying type</typeparam>
-        public interface Stepwise<S,T> : Stepwise<S>, Incrementable<S,T>, Decrementable<S,T>
-            where S : Stepwise<S,T>, new()
+        public interface Stepwise<S> : Incrementable<S>, Decrementable<S>
+            where S : Stepwise<S>, new()
         {
 
         }
+        
     }
 }

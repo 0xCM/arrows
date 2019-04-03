@@ -71,8 +71,6 @@ namespace Z0
         public Covector<N, T> tranpose()
             => new Covector<N,T>(cells);
 
-        public override string ToString()
-            => format();
 
         [MethodImpl(Inline)]   
         public IEnumerator<T> GetEnumerator()
@@ -82,25 +80,35 @@ namespace Z0
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
 
+        [MethodImpl(Inline)]
         public string format()
             => cells.format();
 
+        [MethodImpl(Inline)]
         public bool eq(Vector<N, T> rhs)
             => cells.eq(rhs);
 
+        [MethodImpl(Inline)]
         public bool neq(Vector<N, T> rhs)
             => cells.neq(rhs);
 
+        [MethodImpl(Inline)]
         public bool Equals(Vector<N, T> rhs)
-            => eq(rhs);
-
-        public bool eq(Vector<N, T> lhs, Vector<N, T> rhs)
-            => lhs.eq(rhs);
-
-        public bool neq(Vector<N, T> lhs, Vector<N, T> rhs)
-            => lhs.neq(rhs);
-    }
-
+            => eq(rhs); 
  
+        [MethodImpl(Inline)]
+        public int hash()
+            => cells.hash();
+
+        public override int GetHashCode()
+            => hash();
+
+        public override bool Equals(object rhs)
+            => rhs is Covector<N,T> ? eq((Vector<N,T>)rhs) : false;
+ 
+         public override string ToString()
+            => format();
+
+    }
 
 }

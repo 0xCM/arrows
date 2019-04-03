@@ -136,29 +136,8 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static T min<T>(T x, T y)
-        where T : Structure.Ordered<T>, new()
+        where T : Structures.Ordered<T>, new()
             => x.lt(y) ? x : y;
-
-    /// <summary>
-    /// Computes the sign of the product of two numbers
-    /// </summary>
-    /// <param name="lhs">The left number</param>
-    /// <param name="rhs">The right number</param>
-    /// <typeparam name="T">The underlying type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Sign sigmul<T>(T lhs,T rhs)
-        where T : Operative.Number<T>, new()
-            => (Resolver.number<T>().sign(lhs),Resolver.number<T>().sign(rhs)) switch   
-                {
-                    (Sign.Negative, Sign.Positive) => Sign.Negative,
-                    (Sign.Positive, Sign.Negative) => Sign.Negative,
-                    (Sign.Positive, Sign.Positive) => Sign.Positive,
-                    (Sign.Negative, Sign.Negative) => Sign.Positive,
-                    (Sign.Neutral, _) => Sign.Neutral,
-                    (_, Sign.Neutral) => Sign.Neutral,
-                    _ => Sign.Neutral
-                };
-
 
     /// <summary>
     /// Raises each element of the source sequence to a specified power
@@ -169,19 +148,19 @@ partial class zcore
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static IEnumerable<T> pow<T>(IEnumerable<T> src, int exp)
-        where T : Structure.Powered<T>, new() 
+        where T : Structures.Powered<T>, new() 
             => map(src, x => x.pow(exp));
     
     [MethodImpl(Inline)]
     static Ordering compare<T>(T lhs, T rhs)
-        where T: Structure.Ordered<T>, new()
+        where T: Structures.Ordered<T>, new()
             => lhs.gt(rhs) ? Ordering.GT :
                lhs.lt(rhs) ? Ordering.LT :
                Ordering.EQ; 
 
     [MethodImpl(Inline)]
     public static IEnumerable<(T lhs, Ordering, T rhs)> compare<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
-        where T: Structure.Ordered<T>, new()
+        where T: Structures.Ordered<T>, new()
             => fuse(lhs,rhs, (l,r) =>  (l, compare(l,r), r));
 
 
@@ -193,7 +172,7 @@ partial class zcore
     /// <returns></returns>    
     [MethodImpl(Inline)]
     public static IEnumerable<T> sqrt<T>(IEnumerable<T> src)
-        where T: Structure.Floating<T>, new()
+        where T: Structures.Floating<T>, new()
             => map(src,x => x.sqrt());
 
 
@@ -204,7 +183,7 @@ partial class zcore
     /// <returns></returns>    
     [MethodImpl(Inline)]
     public static IEnumerable<T> abs<T>(IEnumerable<T> src)
-        where T: Structure.Number<T>, new()
+        where T: Structures.Number<T>, new()
             => map(src,x => x.abs());
 
 
@@ -216,7 +195,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static IEnumerable<T> add<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
-        where T: Structure.Additive<T>, new()
+        where T: Structures.Additive<T>, new()
             => fuse(lhs,rhs, (l,r) =>  l.add(r));
 
     /// <summary>
@@ -227,7 +206,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static IEnumerable<T> sub<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
-        where T: Structure.Subtractive<T>, new()
+        where T: Structures.Subtractive<T>, new()
             => fuse(lhs,rhs, (l,r) =>  l.sub(r));
 
     /// <summary>
@@ -238,7 +217,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static IEnumerable<T> mul<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
-        where T: Structure.Multiplicative<T>, new()
+        where T: Structures.Multiplicative<T>, new()
             => fuse(lhs,rhs, (l,r) =>  l.mul(r));
 
     /// <summary>
@@ -249,7 +228,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static IEnumerable<T> div<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
-        where T: Structure.Divisive<T>, new()
+        where T: Structures.Divisive<T>, new()
             => fuse(lhs,rhs, (l,r) =>  l.div(r));
 
     /// <summary>
@@ -259,7 +238,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static T min<T>(IEnumerable<T> src)
-        where T : struct, Structure.Ordered<T>
+        where T : struct, Structures.Ordered<T>
     {
         T min = src.FirstOrDefault();
         foreach(var item in src)
@@ -274,17 +253,17 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static T min<T>(params T[] src)
-        where T : struct, Structure.Ordered<T>
+        where T : struct, Structures.Ordered<T>
         => min((IEnumerable<T>)src);
 
     [MethodImpl(Inline)]
     public static T max<T>(T x, T y)
-        where T : Structure.Ordered<T>, new()
+        where T : Structures.Ordered<T>, new()
             => x.gt(y) ? x : y;
 
     [MethodImpl(Inline)]
     public static T max<T>(IEnumerable<T> src)
-        where T : struct, Structure.Ordered<T>
+        where T : struct, Structures.Ordered<T>
     {
         T max = src.FirstOrDefault();
         foreach(var item in src)
@@ -294,7 +273,7 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static T max<T>(params T[] src)
-        where T : struct, Structure.Ordered<T>
+        where T : struct, Structures.Ordered<T>
         => max((IEnumerable<T>)src);
 
     /// <summary>
@@ -304,7 +283,7 @@ partial class zcore
     /// <typeparam name="T"></typeparam>
     [MethodImpl(Inline)]
     public static T sum<T>(IEnumerable<T> src)
-        where T : Structure.Additive<T>, Structure.Nullary<T>, new()
+        where T : Structures.Additive<T>, Structures.Nullary<T>, new()
     {
         var s = new T().zero;
         iter(src, x => s = x.add(s));
@@ -312,7 +291,7 @@ partial class zcore
     }
 
     public static T avg<T>(IEnumerable<T> src)
-        where T : Structure.RealNumber<T>,new()
+        where T : Structures.RealNumber<T>,new()
     {
         var prototype = new T();
         var result = prototype.zero;

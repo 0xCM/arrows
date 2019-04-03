@@ -12,7 +12,7 @@ namespace Z0
 
     
     using static zcore;
-    using static Structure;
+    using static Structures;
 
     public readonly struct num<T> : OrderedNumber<num<T>,T>
     {
@@ -102,7 +102,7 @@ namespace Z0
         public num(T src)
             => this.data = src;
 
-        public T data {get;}
+        readonly T data;
 
         public num<T> zero 
             => Zero;
@@ -158,7 +158,9 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Sign sign()
-            => Ops.sign(this);
+            => nonzero() ? Sign.Neutral : 
+               this < Zero ? Sign.Negative :
+               Sign.Positive;
 
         [MethodImpl(Inline)]
         public num<T> inc()
@@ -223,18 +225,14 @@ namespace Z0
             => Ops.pow(data, exp);
  
         [MethodImpl(Inline)]
-        bool Equality<num<T>>.eq(num<T> lhs, num<T> rhs)
-            => lhs.eq(rhs);
-
-        [MethodImpl(Inline)]
-        bool Equality<num<T>>.neq(num<T> lhs, num<T> rhs)
-            => lhs.neq(rhs);
+        public int hash()
+            => data.GetHashCode();
 
         public override bool Equals(object rhs)
             => data.Equals(rhs);
 
         public override int GetHashCode()
-            => data.GetHashCode();
+            => hash();
 
         public override string ToString()
             => data.ToString();

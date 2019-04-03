@@ -9,7 +9,7 @@ namespace Z0
 
     partial class Operative
     {
-        public interface Ordered<T> : Stepwise<T>, Equality<T>
+        public interface Ordered<T> 
         {
             bool lt(T lhs, T rhs);
             
@@ -23,29 +23,41 @@ namespace Z0
         
     }
 
-    partial class Structure
+    partial class Structures
     {
-        public interface Ordered<S> : Stepwise<S>
+        /// <summary>
+        /// Characterizes a totally ordered structure
+        /// </summary>
+        /// <typeparam name="S">The structure reification type</typeparam>
+        public interface Ordered<S> : Structure<S>
+            where S : Ordered<S>, new()
         {   
+            /// <summary>
+            /// Determines whether this:S & rhs:S => this < rhs
+            /// </summary>
+            /// <param name="rhs">The operand to compare</param>
             bool lt(S rhs);
             
+            /// <summary>
+            /// Determines whether this:S & rhs:S => this <= rhs
+            /// </summary>
+            /// <param name="rhs">The operand to compare</param>
             bool lteq(S rhs);
             
+            /// <summary>
+            /// Determines whether this:S & rhs:S => this > rhs
+            /// </summary>
+            /// <param name="rhs">The operand to compare</param>
             bool gt(S rhs);                
             
+            /// <summary>
+            /// Determines whether this:S & rhs:S => this >= rhs
+            /// </summary>
+            /// <param name="rhs">The operand to compare</param>
             bool gteq(S rhs);              
         }    
 
-        /// <summary>
-        /// Characterizes a structural number that can be ordered
-        /// </summary>
-        /// <typeparam name="S">The type of the realizing structure</typeparam>
-        /// <typeparam name="T">The type of the underling primitive</typeparam>
-        public interface Ordered<S,T> : Ordered<S>, Stepwise<S,T>, Equatable<S,T>, IComparable<S>
-            where S : Ordered<S,T>, new()
-        {   
 
-        }    
     }
 
 }

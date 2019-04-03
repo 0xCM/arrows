@@ -290,7 +290,7 @@ namespace Z0
         /// <param name="candidate">the type to test</param>
         /// <returns></returns>
         public static bool IsOption(this Type candidate)
-            => candidate.Realizes<Traits.IOption>();
+            => candidate.Realizes<IOption>();
 
         /// <summary>
         /// Determines whether a type has a name

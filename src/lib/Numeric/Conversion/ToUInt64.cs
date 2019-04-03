@@ -14,7 +14,6 @@ using Z0;
 using static zcore;
 
 
-
 /// <summary>
 /// Defines extensions to convert various types of values to System.Int32
 /// </summary>
@@ -27,7 +26,7 @@ public static class ToUInt64X
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static ulong ToUInt64(this intg<byte> src)
-        => (ulong)src.data;
+        => (ulong)src;
 
     /// <summary>
     /// x:intg[sbyte] => x:int
@@ -35,7 +34,7 @@ public static class ToUInt64X
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static ulong ToUInt64(this intg<sbyte> src)
-        => (ulong)src.data;
+        => (ulong)src;
 
     /// <summary>
     /// x:intg[short] => x:int
@@ -43,7 +42,7 @@ public static class ToUInt64X
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static ulong ToUInt64(this intg<short> src)
-        => (ulong)src.data;
+        => (ulong)src;
 
     /// <summary>
     /// x:intg[ushort] => x:int
@@ -59,19 +58,19 @@ public static class ToUInt64X
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
     public static ulong ToUInt64(this intg<int> src)
-        => (ulong)src.data;
+        => (ulong)src;
 
     [MethodImpl(Inline)]   
     public static ulong ToUInt64(this intg<uint> src)
-        => (ulong)src.data;
+        => (ulong)src;
 
     [MethodImpl(Inline)]   
     public static ulong ToUInt64(this intg<long> src)
-        => (ulong)src.data;
+        => (ulong)src;
 
     [MethodImpl(Inline)]   
     public static ulong ToUInt64(this intg<ulong> src)
-        => (ulong)src.data;
+        => src;
 
    [MethodImpl(Inline)]   
     public static ulong ToUInt64(this double src)
@@ -79,7 +78,7 @@ public static class ToUInt64X
 
    [MethodImpl(Inline)]   
     public static ulong ToUInt64(this floatg<double> src)
-        => (ulong)src.data;
+        => (ulong)src;
 
    [MethodImpl(Inline)]   
     public static ulong ToUInt64(this float src)
@@ -87,7 +86,7 @@ public static class ToUInt64X
 
    [MethodImpl(Inline)]   
     public static ulong ToUInt64(this floatg<float> src)
-        => (ulong)src.data;
+        => (ulong)src;
 
    [MethodImpl(Inline)]   
     public static ulong ToUInt64(this decimal src)
@@ -95,6 +94,6 @@ public static class ToUInt64X
 
    [MethodImpl(Inline)]   
     public static int ToInt<T>(this floatg<T> src)
-        => convert<int>(src.data);
+        => convert<int>(unwrap(src));
 
 }

@@ -9,6 +9,7 @@ namespace Z0
     using System.Linq;
     using System.Runtime.CompilerServices;
 
+    using static Reify;
     partial class xcore
     {
         /// <summary>
@@ -18,7 +19,7 @@ namespace Z0
         /// <typeparam name="T">The set member type</typeparam>
         /// <returns></returns>
         public static FiniteSet<T> ToFiniteSet<T>(this IEnumerable<T> src)
-            where T : Equality<T>, new()
+            where T : Structure<T>, new()
                 => new FiniteSet<T>(src);
     }
 

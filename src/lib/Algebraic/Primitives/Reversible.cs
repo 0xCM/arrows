@@ -20,24 +20,19 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
 
         /// <summary>
         /// Characterizes a reversible structure
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
-        /// <typeparam name="T">The underlying type</typeparam>
         public interface Reversible<S>
+            where S : Reversible<S>, new()
         {
             S reverse();
         }    
 
-        public interface Reversible<S,T> : Reversible<S>
-            where S : Reversible<S,T>, new()
-        {
-                        
-        }    
 
     }
 

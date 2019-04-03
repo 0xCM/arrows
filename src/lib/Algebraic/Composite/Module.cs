@@ -6,10 +6,11 @@ namespace Z0
 {
     using static Traits;
 
-    partial class Structure
+    partial class Structures
     {
         public interface LeftModule<R,G>  : GroupA<G>
             where R : Ring<R>, new()
+            where G : GroupA<G>, new()
         {
 
             /// <summary>
@@ -23,6 +24,7 @@ namespace Z0
 
         public interface RightModule<G,R>  : GroupA<G>
             where R : Ring<R>, new()
+            where G : GroupA<G>, new()
         {
 
             /// <summary>
@@ -37,6 +39,7 @@ namespace Z0
         public interface LeftModule<S,R,G> : LeftModule<R,G>
             where S : LeftModule<S,R,G>, new()
             where R : CommutativeRing<R>, new()
+            where G : GroupA<G>, new()
         {
 
         }
@@ -44,6 +47,7 @@ namespace Z0
         public interface RightModule<S,G,R> : RightModule<G,R>
             where S : RightModule<S,G,R>, new()
             where R : CommutativeRing<R>, new()
+            where G : GroupA<G>, new()
         {
 
         }

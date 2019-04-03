@@ -13,22 +13,22 @@ namespace Z0
     using static zcore;
 
 
-    partial class Structure
+    partial class Structures
     {
-        public interface BitString :  Formattable, Lengthwise, Hashable
+        public interface BitString :  Formattable, Lengthwise
         {
             
 
         }
         
-        public interface BitString<S> : BitString, FreeMonoid<S, bit>
+        public interface BitString<S> : BitString, FreeMonoid<S>
             where S : BitString<S>, new()
         {
 
 
         }
 
-        public interface BitString<S,N> : BitString, Equatable<S>
+        public interface BitString<S,N> : BitString<S>
             where S : BitString<S,N>, new()
             where N : TypeNat, new()
         {
@@ -38,7 +38,7 @@ namespace Z0
 
     }
 
-    public readonly struct BitString : Structure.BitString<BitString>
+    public readonly struct BitString : Structures.BitString<BitString>
     {
         [MethodImpl(Inline)]   
         public static BitString Parse(string src)
@@ -112,8 +112,14 @@ namespace Z0
 
         public Slice<bit> bits {get;}
 
-        public BitString empty 
+        public BitString zero 
             => Empty;
+
+
+        [MethodImpl(Inline)]
+        public bool nonzero()
+            => bits.length != 0;
+
 
         [MethodImpl(Inline)]
         public BitString(params bit[] src)
@@ -219,7 +225,7 @@ namespace Z0
 
         public override int GetHashCode()
             => hash();
-        
+
     }
 
  

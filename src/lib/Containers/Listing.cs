@@ -6,62 +6,162 @@ namespace Z0
 {
     using System;
     using System.Collections;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
+    using System.Diagnostics;
 
+
+
+    using static Z0.Bibliography;
     using static zcore;
+    using static Structures;
 
-
-    /// <summary>
-    /// Characterizes an enumerable with a known length as specified
-    /// by a natural type parameter
-    /// </summary>
-    public interface Enumerable<N,I> : IEnumerable<I>
-        where N : TypeNat, new()
+    public interface Listed<S> : Equatable<S>, Nullary<S>, Reversible<S>, Lengthwise<S>
+        where S : Listed<S>, new()
     {
+        /// <summary>
+        /// Returns the elements following the head, if any; otherwise, returns the zero element of S
+        /// </summary>
+        S tail();
+
+    }
+
+    public interface Listed<S,T> : Listed<S>
+        where S : Listed<S,T>, new()
+        where T : Nullary<T>, new()
+    {
+        /// <summary>
+        /// Returns the first constituent if it exits; otherwise, the zero element of T
+        /// </summary>
+        T head();
 
         /// <summary>
-        /// The value of the natural parameter
+        /// Returns the last constituent if it exits; otherwise, the zero element of T
         /// </summary>
-        uint length {get;}
+        T last();
+
+        S redefine(IEnumerable<T> src);
     }
 
-    /// <summary>
-    /// Characterizes an immutable list whose length is specified via a typenat
-    /// </summary>
-    public interface Listed<N,T> : Enumerable<N,T>, IReadOnlyList<T>
-        where N : TypeNat, new()
-    {
-    
-    }
 
-    /// <summary>
-    /// Defines an immutable list whose length is specified via a typenat
-    /// </summary>
-    public readonly struct Listing<N,T> : Listed<N,T>
-        where N : TypeNat, new()
+    public static class Listing
     {
-        readonly IReadOnlyList<T> data;
+        // public static Listing<T> define<T>(IEnumerable<T> src)
+        //     =>
+    }
+    public readonly struct Listing<T> : Listed<Listing<T>, T>
+        where T : Equatable<T>, Structures.Nullary<T>, new()
+    {
+
+        [MethodImpl(Inline)]
+        public static bool operator ==(Listing<T> lhs, Listing<T> rhs)
+            => lhs.eq(rhs);
+
+        [MethodImpl(Inline)]
+        public static bool operator !=(Listing<T> lhs, Listing<T> rhs)
+            => lhs.neq(rhs);
+   
+        public static readonly Listing<T>  Empty = default;
         
-        public uint length {get;}
+        static readonly T EmptyElement = new T().zero;
+        
+        readonly Lazy<Slice<T>> _data;
 
-        int IReadOnlyCollection<T>.Count 
-            => data.Count;
+        Slice<T> data
+            => _data.Value;
 
-        T IReadOnlyList<T>.this[int index] 
-            => data[index];
+        readonly IEnumerable<T> src;
+        
+        public Listing<T> zero 
+            => Empty;
 
-        public Listing(IEnumerable<T> src)
+        public Listing(IEnumerable<T> items)
         {
-            this.data = src.ToList();
-            this.length = Prove.claim<N>(data.Length());
+            this.src = items;            
+            _data = defer(() => items.Freeze());
         }
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-            => data.GetEnumerator();
+        public Listing(Slice<T> items)
+        {
+            this.src = items;            
+            _data = defer(() => items);
+        }
 
-        IEnumerator IEnumerable.GetEnumerator()
-            => data.GetEnumerator();
+        public Listing(params T[] items)
+        {
+            this.src = items;            
+            _data = defer(() => slice(items));
+        }
+        
+        public uint length 
+            => data.length;
+
+        [MethodImpl(Inline)]
+        public bool eq(Listing<T> rhs)
+            => data.eq(rhs.data);
+
+        [MethodImpl(Inline)]
+        public bool eq(Listing<T> lhs, Listing<T> rhs)
+            => lhs.eq(rhs);
+
+        [MethodImpl(Inline)]
+        public bool Equals(Listing<T> rhs)
+            => this.eq(rhs);
+
+        [MethodImpl(Inline)]
+        public bool neq(Listing<T> rhs)
+            => data.neq(rhs.data);
+
+        [MethodImpl(Inline)]
+        public bool neq(Listing<T> lhs, Listing<T> rhs)
+            => lhs.neq(rhs);
+
+        [MethodImpl(Inline)]
+        public T head()
+            => data.FirstOrDefault(EmptyElement);
+
+        [MethodImpl(Inline)]
+        public Listing<T> tail()
+            => data.length > 1 ? redefine(data.Skip(1)) : Empty;
+
+        [MethodImpl(Inline)]
+        public T last()
+            => data.LastOrDefault(EmptyElement);
+
+        [MethodImpl(Inline)]
+        public bool nonzero()
+            => length != 0;
+
+        [MethodImpl(Inline)]
+        public Listing<T> redefine(IEnumerable<T> content)
+            => new Listing<T>(content);
+
+        [MethodImpl(Inline)]
+        public Listing<U> redefine<U>(IEnumerable<T> content, Func<T,U> f)
+            where U :Structures.Nullary<U>, Equatable<U>, new()
+            => new Listing<U>(content.Select(f));
+
+        [MethodImpl(Inline)]
+        public Listing<T> reverse()
+            => new Listing<T>(src.Reverse());
+ 
+        [MethodImpl(Inline)]
+        public int hash()
+            => data.GetHashCode();
+
+        [MethodImpl(Inline)]
+        public string format()
+            => data.format();
+
+        public override string ToString() 
+            => format();
+
+        public override bool Equals(Object rhs)
+            => rhs is Symbol ? eq((Listing<T>)rhs) : false;
+
+        public override int GetHashCode() 
+            => hash();
     }
-
 }

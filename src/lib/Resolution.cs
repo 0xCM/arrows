@@ -19,8 +19,8 @@ partial class zcore
     /// Retrieves semigroup operations for a specified type
     /// </summary>
     [MethodImpl(Inline)]
-    public static Equality<T> equatable<T>() 
-        where T : Equality<T>, new()
+    public static Equatable<T> equatable<T>() 
+        where T : Equatable<T>, new()
             => new T();
 
     /// <summary>

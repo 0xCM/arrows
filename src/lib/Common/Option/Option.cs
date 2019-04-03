@@ -104,7 +104,7 @@ namespace Z0
         /// <typeparam name="K">A constraint to which all supplied options conform</typeparam>
         /// <param name="options">To options to search</param>
         /// <returns></returns>
-        public static K first<K>(params Traits.IOption[] options)
+        public static K first<K>(params IOption[] options)
             => (K)options.First(o => o.IsSome).Value;
     }
 }

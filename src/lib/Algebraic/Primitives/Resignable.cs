@@ -7,36 +7,42 @@ namespace Z0
 
     partial class Operative
     {    
+
         /// <summary>
-        /// Characterizes a sign adjudication operation
+        /// Characterizes a sign-reversal operation
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Signed<T>
+        public interface Resignable<T> : Signed<T>, Negatable<T>
         {
             /// <summary>
-            /// Determines the sign of the supplied value
+            /// Aligns the value with a specified sign
             /// </summary>
-            Sign sign(T x);
+            T resign(T x, Sign s);
 
         }
+
+
 
     }
 
     partial class Structures
     {
+
+
         /// <summary>
-        /// Characterizes a structure for which a sign can be adjudicated
+        /// Characterizes a structure whose sign can be reversed
         /// </summary>
-        /// <typeparam name="S">The signed structure</typeparam>
-        public interface Signed<S>
-            where S : Signed<S>, new()
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface Resignable<S> : Signed<S>, Negatable<S>
+            where S : Resignable<S>, new()
         {
             /// <summary>
-            /// Specifies the sign of the structure
+            /// Aligns the structure with a specified sign
             /// </summary>
-            Sign sign();
+            S resign(Sign sign);
 
         }
+
 
     }
 }

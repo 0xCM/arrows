@@ -12,34 +12,17 @@ namespace Z0
 
     using static zcore;
 
-   public static class Seq
+    public static class Seq
     {
         public static Seq<T> define<T>(IEnumerable<T> src)
                 => new Seq<T>(src); 
 
         public static FiniteSeq<T> finite<T>(IEnumerable<T> src)
-            where T : IEquatable<T>
                 => new FiniteSeq<T>(src); 
 
 
         public static Seq<T> define<T>(params T[] src)
-            where T : IEquatable<T>
                 => new Seq<T>(src); 
-
-    }
-
-    partial class Structure
-    {
-        public interface Seq<T> 
-        {
-            
-        }
-
-
-        public interface FiniteSeq<S,T> : FiniteSeq<T>
-            where S : FiniteSeq<S,T>, new()
-        {
-        }
 
     }
 
@@ -47,7 +30,7 @@ namespace Z0
     /// Provides a layer of indirection for, and gives a concrete type to, 
     /// an IEnumerable instance
     /// </summary>
-    public readonly struct Seq<T> : Structure.Seq<Seq<T>> 
+    public readonly struct Seq<T> : Contain.Seq<Seq<T>,T>
     {
         public static readonly Seq<T> Empty = default;
 
@@ -68,15 +51,16 @@ namespace Z0
         
         readonly bool nonempty;
 
+        public IEnumerable<T> content 
+            => src;
 
         public bool empty()
             => not(nonempty);
 
-        public IEnumerable<T> stream()
-            => src;
-
         public Seq<T> redefine(IEnumerable<T> src)
-            => new Seq<T>(src);        
+            => new Seq<T>(src);
+
+
     }
     
 

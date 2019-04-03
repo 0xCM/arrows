@@ -22,18 +22,21 @@ namespace Z0
     
     }
 
-    partial class Structure
+    partial class Structures
     {
-        public interface Powered<S> : Equatable<S>
+        public interface Powered<B,E>
+            where B : Powered<B,E>, new()
+        {
+            
+        }
+
+        public interface Powered<S> : Powered<S, int>, Equatable<S>
+            where S : Powered<S>, new()
         {
             S pow(int exp);
         }
 
-        public interface Powered<S,T> : Powered<S>
-            where S : Powered<S,T>, new()
-        {
 
-        }
     }
 
 }

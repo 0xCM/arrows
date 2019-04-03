@@ -31,7 +31,6 @@ namespace Z0
         }
 
 
-
         public interface DivisionRing<T> : Ring<T>, Divisive<T>, Reciprocative<T>
         {
 
@@ -39,16 +38,13 @@ namespace Z0
         }
 
 
-        public interface Field<T> : CommutativeRing<T>, DivisionRing<T>
-        {
-
-        }
     }
 
-    partial class Structure
+    partial class Structures
     {
         
         public interface Ring<S> : GroupA<S>, MonoidM<S>, Distributive<S>
+            where S : Ring<S>, new()
         {
 
         }
@@ -60,30 +56,18 @@ namespace Z0
         }
 
         public interface CommutativeRing<S> : Ring<S>
+            where S : CommutativeRing<S>, new()
         {
 
         }
 
-        /// <summary>
-        /// Characterizes a commutative, unital ring
-        /// </summary>
-        public interface CommutativeRing<S,T> : CommutativeRing<S>, Ring<S,T>
-            where S : CommutativeRing<S,T>, new()
-        {
-            
-        }
 
         public interface DivisionRing<S> : Ring<S>, Divisive<S>, Reciprocative<S>
+            where S : DivisionRing<S>, new()
         {
 
         }
 
-        public interface DivisionRing<S,T> : Ring<S,T>, Divisive<S,T>, Reciprocative<S,T>
-            where S : DivisionRing<S,T>, new()
-        {
-
-
-        }
 
     }
 }

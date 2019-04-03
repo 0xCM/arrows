@@ -14,7 +14,7 @@ namespace Z0
         /// Characterizes an operation provider for floating point values
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface Floating<T> : RealNumber<T>, Fractional<T>, Signed<T>, Subtractive<T>, Trigonmetric<T>
+        public interface Floating<T> : RealNumber<T>, Fractional<T>, Resignable<T>, Subtractive<T>, Trigonmetric<T>
         {
             /// <summary>
             /// The minimal resolution of the data type
@@ -51,10 +51,11 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
 
-        public interface Floating<S> : RealNumber<S>, Fractional<S>, Signed<S>, Subtractive<S>, Trigonmetric<S>
+        public interface Floating<S> : RealNumber<S>, Fractional<S>, Resignable<S>, Subtractive<S>, Trigonmetric<S>
+            where S : Floating<S>, new()
         {
             S sqrt();
         }
@@ -63,7 +64,7 @@ namespace Z0
         /// Characterizes a structure for a floating point number
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface Floating<S,T> : Floating<S>,  Structural<S,T>
+        public interface Floating<S,T> : Floating<S>
             where S : Floating<S,T>, new()
         {
 

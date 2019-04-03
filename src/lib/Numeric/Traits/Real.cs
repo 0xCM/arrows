@@ -28,18 +28,20 @@ namespace Z0
 
     }
 
-    partial class Structure
+    partial class Structures
     {
         /// <summary>
         /// Characterizes a structured real
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
         public interface RealNumber<S> : OrderedNumber<S>, Trigonmetric<S>, IComparable<S>
+            where S : RealNumber<S>, new()
         {
 
         }
 
         public interface BoundReal<S> :  RealNumber<S>
+            where S : BoundReal<S>, new()
         {
 
         }

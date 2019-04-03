@@ -11,15 +11,15 @@ namespace Z0
     public static class Polynomial
     {
         public static PolynomialTerm<T> term<T>(T coefficient, intg<uint> power)
-            where  T: Equality<T>, new()
+            where  T: Equatable<T>, new()
                 => new PolynomialTerm<T>(coefficient,power);
     }
     
-    public readonly struct PolynomialTerm<T> : Equatable<PolynomialTerm<T>>, Equality<PolynomialTerm<T>>
-        where  T: Equality<T>, new()
+    public readonly struct PolynomialTerm<T> : Equatable<PolynomialTerm<T>>
+        where  T: Equatable<T>, new()
     {
         
-        static readonly Equality<T> eqops = new T();
+        static readonly Equatable<T> eqops = new T();
         public static readonly PolynomialTerm<T> Zero = default;
 
 
@@ -43,7 +43,7 @@ namespace Z0
             => $"{coefficient}X^{power}";
 
         public bool eq(PolynomialTerm<T> lhs, PolynomialTerm<T> rhs)
-            => eqops.eq(lhs.coefficient,rhs.coefficient) && lhs.power == rhs.power;
+            => lhs.coefficient.eq(rhs.coefficient) && lhs.power == rhs.power;
 
         public bool neq(PolynomialTerm<T> lhs, PolynomialTerm<T> rhs)
             => not(eq(lhs,rhs));
@@ -56,10 +56,13 @@ namespace Z0
 
         public bool Equals(PolynomialTerm<T> rhs)
             => eq(rhs);
+
+        public int hash()
+            => coefficient.hash() & power.GetHashCode();
     }
 
     public readonly struct Polynomial<T>
-        where T : Operative.MonoidA<T>, Equality<T>, new()
+        where T : Operative.MonoidA<T>, Equatable<T>, new()
     {
         static readonly Operative.MonoidA<T> Ops = new T();
         
@@ -78,10 +81,11 @@ namespace Z0
 
         public intg<uint> degree()
             => nonzero 
-            ? terms.reverse().filter(t => Ops.neq(t.coefficient, FZero)).data.First().power : 0;
+            ? terms.reverse().filter(t => t.coefficient.neq(FZero)).data.First().power 
+            : 0;
 
         public bool nonzero
-            => any(terms, t => Ops.neq(t.coefficient, FZero));
+            => any(terms, t => t.coefficient.neq(FZero));
 
         public Polynomial<T> add(Polynomial<T> rhs)
         {

@@ -55,7 +55,7 @@ namespace Z0
         }
     }
 
-    public readonly partial struct BitVector<T> : Structure.Bitwise<BitVector<T>>, Lengthwise,  Formattable, Hashable, Equatable<BitVector<T>>
+    public readonly partial struct BitVector<T> : Structures.Bitwise<BitVector<T>>, Lengthwise,  Formattable, Equatable<BitVector<T>>
     {
         static readonly intg<T> One = intg<T>.One;
         

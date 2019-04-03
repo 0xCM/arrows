@@ -11,7 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;    
 
     using static zcore;
-    using static Structure;
+    using static Structures;
 
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
@@ -154,8 +154,6 @@ namespace Z0
         public static intg<T> operator << (intg<T> lhs, int rhs) 
             => Ops.lshift(lhs, rhs);
 
-        public T data {get;}
-
         public intg<T> zero 
         {
             [MethodImpl(Inline)]
@@ -174,6 +172,8 @@ namespace Z0
         public NumberInfo<intg<T>> numinfo 
             => new NumberInfo<intg<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);
 
+        readonly T data;
+
         [MethodImpl(Inline)]
         public intg (T x) 
             => data = x;
@@ -185,8 +185,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public intg<T> dec() 
             => Ops.dec(data);
-
-
 
         [MethodImpl(Inline)]
         public intg<T> negate()
@@ -286,7 +284,9 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Sign sign()
-            => Ops.sign(data);
+            => nonzero() ? Sign.Neutral : 
+               this < Zero ? Sign.Negative :
+               Sign.Positive;
 
         [MethodImpl(Inline)]
         public intg<T> gcd(intg<T> rhs)
@@ -308,26 +308,10 @@ namespace Z0
         public bool nonzero()
             => Ops.nonzero(data);
 
-        /// <summary>
-        /// Represents the integer as a sequence of 10-based digits
-        /// </summary>
         [MethodImpl(Inline)]
         public byte[] digits()
             => (from c in data.ToString() select byte.Parse(c.ToString())).ToArray();
-
         
-        public bool Equals(intg<T> rhs)
-            => this == rhs;
-
-        public override bool Equals(object rhs)
-            => data.Equals(rhs);
-
-        public override int GetHashCode()
-            => data.GetHashCode();
-
-        public override string ToString()
-            => data.ToString();
-
         [MethodImpl(Inline)]
         public intg<T> muladd(intg<T> y, intg<T> z)
             => Ops.muladd(this, y, z);
@@ -397,7 +381,24 @@ namespace Z0
             => rhs < this ? rhs : this;
 
         [MethodImpl(Inline)]
-        public intg<T> max(intg<T> rhs)
+        public intg<T> max(intg<T> rhs) 
             => rhs > this ? rhs : this;
+
+        [MethodImpl(Inline)]
+        public bool Equals(intg<T> rhs)
+                => this == rhs;
+
+        [MethodImpl(Inline)]
+        public int hash()
+            => data.GetHashCode();
+
+        public override int GetHashCode()
+            => hash();
+
+        public override bool Equals(object rhs)
+            => data.Equals(rhs);
+        
+        public override string ToString()
+            => data.ToString(); 
     }
 }

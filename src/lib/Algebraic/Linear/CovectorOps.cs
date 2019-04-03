@@ -25,7 +25,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static T apply<N,T>(Covector<N,T> cv, Vector<N,T> v)
             where N : TypeNat, new()        
-            where T : Structure.Semiring<T>, new()
+            where T : Structures.Semiring<T>, new()
         {
             var sr = Reify.Semiring<T>.Inhabitant;
             var result = sr.zero;
@@ -75,7 +75,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Covector<N,T> add<N,T>(Covector<N,T> lhs, Covector<N,T> rhs) 
             where N : TypeNat, new() 
-            where T : Structure.Semiring<T>, new()
+            where T : Structures.Semiring<T>, new()
                 => new Covector<N,T>(Slice.add(lhs.cells,rhs.cells));
 
         // [MethodImpl(Inline)]
@@ -87,7 +87,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T sum<N,T>(Covector<N,T> x) 
             where N : TypeNat, new() 
-            where T : Structure.Semiring<T>, new()
+            where T : Structures.Semiring<T>, new()
                 => Slice.sum(x.cells);
     }
 }

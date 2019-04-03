@@ -24,7 +24,7 @@ namespace Z0
             
     }
 
-    partial class Structure
+    partial class Structures
     {
 
     

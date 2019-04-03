@@ -18,11 +18,11 @@ namespace Z0
         /// </summary>
         public readonly struct VectorSemiring<N, T> : Operative.Semiring<Vector<N,T>>
             where N : TypeNat, new()
-            where T : Structure.Semiring<T>, new()
+            where T : Structures.Semiring<T>, new()
         {
             static VectorSemiring<N, T> Inhabitant = default;
 
-            static readonly Structure.Semiring<T> SR = new T();            
+            static readonly Structures.Semiring<T> SR = new T();            
 
             static readonly Func<T,T,T> srAdd = (x, y) => x.add(y);
 
@@ -64,7 +64,7 @@ namespace Z0
 
             [MethodImpl(Inline)]   
             public bool eq(Vector<N, T> lhs, Vector<N, T> rhs)
-                => any(zip(lhs,rhs), SR.neq);
+                => any(zip(lhs,rhs), x =>  x.left.neq(x.right));
 
             [MethodImpl(Inline)]   
             public bool neq(Vector<N, T> lhs, Vector<N, T> rhs)
@@ -73,6 +73,9 @@ namespace Z0
             [MethodImpl(Inline)]   
             public Covector<N, T> tranpose(Vector<N, T> src)
                 => src.tranpose();
+
+            public Vector<N, T> muladd(Vector<N, T> x, Vector<N, T> y, Vector<N, T> z)
+                =>add(mul(x,y), z);
         }
 
     }
