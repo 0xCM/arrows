@@ -116,9 +116,6 @@ namespace Z0
         public NumberInfo<num<T>> numinfo 
             => new NumberInfo<num<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);
 
-        [MethodImpl(Inline)]
-        public bool nonzero()
-            => Ops.nonzero(data);
 
         [MethodImpl(Inline)]
         public num<T> add(num<T> rhs)
@@ -158,7 +155,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Sign sign()
-            => nonzero() ? Sign.Neutral : 
+            => this != Zero ? Sign.Neutral : 
                this < Zero ? Sign.Negative :
                Sign.Positive;
 

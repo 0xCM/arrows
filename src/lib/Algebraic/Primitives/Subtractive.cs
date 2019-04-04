@@ -12,7 +12,7 @@ namespace Z0
         /// Characterizes operational negation and subtraction
         /// </summary>
         /// <typeparam name="T">The individual type</typeparam>
-        public interface Subtractive<T> : Negatable<T>
+        public interface Subtractive<T> 
         {
 
             /// <summary>
@@ -23,14 +23,12 @@ namespace Z0
             /// <returns></returns>
             T sub(T lhs, T rhs);
         }
-
-
     }
 
     partial class Structures
     {
 
-        public interface Subtractive<S> : Negatable<S>
+        public interface Subtractive<S> 
             where S : Subtractive<S>, new()
         {
             /// <summary>

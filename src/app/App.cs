@@ -242,9 +242,9 @@ namespace App04
         {
             print($"long Sum(n = {n})");
             long count = n;
-            var v1 = range<long>(1, n).Unwrap();
-            var v2 = range<long>(1, n).Unwrap();
-            var v3 = range<long>(1, n).Unwrap();
+            var v1 = range<long>(1, n).Unwrap().Freeze();
+            var v2 = range<long>(1, n).Unwrap().Freeze();
+            var v3 = range<long>(1, n).Unwrap().Freeze();
             var v4 = array<long>(n);
             var sw = stopwatch();
             for(int i=0; i < count; i++)
@@ -270,9 +270,9 @@ namespace App04
             void system()
             {
                 print($"long SumMul(n = {vecLen})");
-                var v1 = range<long>(1, vecLen).Unwrap();
-                var v2 = range<long>(1, vecLen).Unwrap();
-                var v3 = range<long>(1, vecLen).Unwrap();
+                var v1 = range<long>(1, vecLen).Unwrap().Freeze();
+                var v2 = range<long>(1, vecLen).Unwrap().Freeze();
+                var v3 = range<long>(1, vecLen).Unwrap().Freeze();
                 var v4 = array<long>(vecLen);
                 var sw = stopwatch();
                 for(int i=0; i < vecLen; i++)

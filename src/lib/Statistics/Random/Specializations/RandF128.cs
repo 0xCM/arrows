@@ -24,26 +24,21 @@ namespace Z0
         public prim one(prim min, prim max)
             => (decimal) random.one((long)min,(long)max);
 
-        public IEnumerable<real<prim>> stream(real<prim> min, real<prim> max)
-        {
-            while(true)
-                yield return one(min,max);
-        }
-
-        public IEnumerable<prim> many(ulong count, prim min, prim max)
-        {
-            var width = max - min;
-            for(var j = 0UL; j<count; j++)
-                yield return one(min,max)/width;
-        }
-
         [MethodImpl(Inline)]
         real<prim> Rand<prim>.one(real<prim> min, real<prim> max)
              => one(min,max);
 
-        [MethodImpl(Inline)]
-        IEnumerable<real<prim>> Rand<prim>.many(ulong count, real<prim> min, real<prim> max)
-            => reals(many(count,min,max));
+        public IEnumerable<prim> stream(prim min, prim max)
+        {
+            foreach(var item in random.stream(min, max))
+                yield return item;
+        }
+
+        public IEnumerable<real<prim>> stream(real<prim> min, real<prim> max)
+        {
+            foreach(var item in stream(min.unwrap(), max.unwrap()))
+                yield return item;
+        }
 
     }
 }

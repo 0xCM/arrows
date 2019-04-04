@@ -47,7 +47,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Symbol(IEnumerable<Atom> data)
         {
-            this.atoms = data.Freeze();
+            this.atoms = data.ToSlice();
         }
 
         [MethodImpl(Inline)]

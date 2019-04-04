@@ -17,10 +17,12 @@ namespace Z0
     {
         readonly Randomizer random;
 
+        [MethodImpl(Inline)]
         public RandU64(Randomizer random)
             => this.random = random;
 
-        prim one(prim min, prim max)
+        [MethodImpl(Inline)]
+        public prim one(prim min, prim max)
             => random.one(min, max);
 
         public IEnumerable<real<prim>> stream(real<prim> min, real<prim> max)
@@ -33,8 +35,5 @@ namespace Z0
         real<prim> Rand<prim>.one(real<prim> min, real<prim> max)
              => one(min,max);
 
-        [MethodImpl(Inline)]
-        IEnumerable<real<prim>> Rand<prim>.many(ulong count, real<prim> min, real<prim> max)
-             => stream(min,max).Take((int)count);
    }
 }

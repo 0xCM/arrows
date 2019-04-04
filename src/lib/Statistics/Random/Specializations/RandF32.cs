@@ -23,20 +23,29 @@ namespace Z0
 
         [MethodImpl(Inline)]
         sprim one(prim min, prim max)
-            => (float)random.one( (uint)min,(uint)max);
+            => (float)random.one((uint)min,(uint)max);
+
+        [MethodImpl(Inline)]
+        prim one(prim width, prim min, prim max)
+            => (prim) random.one((int)min,(int)max);
+
+        public IEnumerable<prim> stream(prim min, prim max)
+        {
+            var width = max - min;
+            while(true)
+                yield return one(width, min,max);
+        }
 
         public IEnumerable<real<prim>> stream(real<prim> min, real<prim> max)
         {
+            var width = max - min;
             while(true)
-                yield return one(min,max);
+                yield return one(width, min,max);
         }
 
         [MethodImpl(Inline)]
         real<prim> Rand<prim>.one(real<prim> min, real<prim> max)
              => one(min,max);
 
-        [MethodImpl(Inline)]
-        public IEnumerable<real<prim>> many(ulong count, real<prim> min, real<prim> max)
-             => stream(min,max).Take((int)count);
    }
 }

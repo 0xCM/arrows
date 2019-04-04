@@ -8,15 +8,19 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
 
+    public interface Hashable<S> : IEquatable<S>
+    {
+        int hash();
+        
+    }
 
     /// <summary>
     /// Characterizes structural equality
     /// </summary>
     /// <typeparam name="S">The structure type</typeparam>
-    public interface Equatable<S> : IEquatable<S>
+    public interface Equatable<S> : Hashable<S> 
         where S : Equatable<S>, new()
     {
-        int hash();
 
         bool eq(S rhs);
 
@@ -34,6 +38,12 @@ namespace Z0
 
 
     }    
+
+    public  interface Structure<S,T> : Structure<S>
+        where S : Structure<S,T>, new()
+    {
+
+    }
 
     partial class Operative
     {

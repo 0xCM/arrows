@@ -23,10 +23,6 @@ namespace Z0
         {
             T zero {get;}
 
-            /// <summary>
-            /// Determines whether the source has some value other than 0
-            /// </summary>
-            bool nonzero(T x);
 
         }
 
@@ -56,10 +52,6 @@ namespace Z0
             /// </summary>
             S zero {get;}
         
-            /// <summary>
-            /// Determines whether the source has some value other than 0
-            /// </summary>
-            bool nonzero();
         }
 
 

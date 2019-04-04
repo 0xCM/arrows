@@ -226,9 +226,17 @@ namespace Z0
         public bool odd()
             => not(even());
 
+        // [MethodImpl(Inline)]
+        // public Quorem<intg<T>> divrem(intg<T> rhs)
+        //     => apply(Ops.divrem(data,rhs), x => Quorem.define<intg<T>>(x.q,x.r));
+
         [MethodImpl(Inline)]
         public Quorem<intg<T>> divrem(intg<T> rhs)
-            => apply(Ops.divrem(data,rhs), x => Quorem.define<intg<T>>(x.q,x.r));
+        {
+            var quo = this/rhs;
+            var rem = this - quo * rhs;
+            return Quorem.define(quo, rem);
+        }
 
         [MethodImpl(Inline)]
         public intg<T> and(intg<T> rhs)
@@ -284,7 +292,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Sign sign()
-            => nonzero() ? Sign.Neutral : 
+            => this != Zero ? Sign.Neutral : 
                this < Zero ? Sign.Negative :
                Sign.Positive;
 
@@ -304,10 +312,7 @@ namespace Z0
         public intg<T> distributeR((intg<T> x, intg<T> y) rhs)
             => rhs.x * this + rhs.y * this;
 
-        [MethodImpl(Inline)]
-        public bool nonzero()
-            => Ops.nonzero(data);
-
+ 
         [MethodImpl(Inline)]
         public byte[] digits()
             => (from c in data.ToString() select byte.Parse(c.ToString())).ToArray();

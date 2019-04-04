@@ -29,7 +29,7 @@ namespace Z0
         /// Characterizes operations over a signed interal type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface SignedInt<T> : Integer<T>, Signed<T>, Subtractive<T> { }
+        public interface SignedInt<T> : Integer<T>, Signable<T>, Subtractive<T> { }
 
 
         /// <summary>

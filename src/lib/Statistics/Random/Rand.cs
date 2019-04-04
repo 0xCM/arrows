@@ -16,8 +16,7 @@ namespace Z0
         real<T> one(real<T> min, real<T> max);
         
         IEnumerable<real<T>> stream(real<T> min, real<T> max);
-    
-        IEnumerable<real<T>> many(ulong count, real<T> min, real<T> max);
+        
     }
 
 
@@ -61,7 +60,7 @@ namespace Z0
             var rand = random<T>();
             while(true)
             {                    
-                var entries = rand.many(len, bounds.left, bounds.right);
+                var entries = rand.stream(bounds.left, bounds.right).Take((int)len);
                 yield return Matrix.define(dim, entries);
                 
             }                
@@ -69,7 +68,7 @@ namespace Z0
 
 
         /// <summary>
-        /// Constructs a stream of random vectors
+        /// Constructs a stream of uniformly distributed values
         /// </summary>
         /// <param name="dim">The dimension value; exits as a type inference aid</param>
         /// <param name="bounds">The interval constraining the entries</param>
@@ -82,16 +81,29 @@ namespace Z0
             var rand = random<T>();
             while(true)
             {                    
-                var entries = rand.many(len, bounds.left, bounds.right);
+                var entries = rand.stream(bounds.left, bounds.right).Take((int)len);
                 yield return Vector.define(dim, entries);
             }                
         }  
 
+        /// <summary>
+        /// Constructs a stream of uniformly distributed values
+        /// </summary>
+        /// <typeparam name="T">The underlying numeric type</typeparam>
         public static IEnumerable<real<T>> values<T>(real<T> min, real<T> max)
                 => random<T>().stream(min,max);
 
+        /// <summary>
+        /// Constructs a stream of uniformly distributed 2-tuples
+        /// </summary>
+        /// <param name="left">The left tuple component</param>
+        /// <param name="right">The right tuple component</param>
+        /// <typeparam name="T">The underlying numeric type</typeparam>
+        public static IEnumerable<(real<T> left, real<T> right)> pairs<T>(real<T> min, real<T> max)
+                => zip(random<T>().stream(min,max), random<T>().stream(min,max));
+
         public static Slice<real<T>> values<T>(int count, real<T> min, real<T> max)
-                => random<T>().stream(min,max).Take(count).Freeze();
+                => random<T>().stream(min,max).Take(count).ToSlice();
 
         public static IEnumerable<Matrix<M,N,real<T>>> matrices<M,N,T>(real<T> min, real<T> max)
             where M : TypeNat, new()

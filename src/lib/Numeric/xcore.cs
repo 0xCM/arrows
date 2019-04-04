@@ -14,13 +14,20 @@ namespace Z0
 
     partial class xcore
     {
-        [MethodImpl(Inline)]   
-        public static IReadOnlyList<T> Unwrap<T>(this IEnumerable<intg<T>> src)
-            => src.Select(unwrap).ToList();
+
 
         [MethodImpl(Inline)]   
-        public static IReadOnlyList<T> Unwrap<T>(this IEnumerable<real<T>> src)
-            => src.Select(unwrap).ToList();
+        public static T[] Unwrap<T>(this intg<T>[] src)
+            => src.Select(unwrap).ToArray();
+
+
+        [MethodImpl(Inline)]   
+        public static IEnumerable<T> Unwrap<T>(this IEnumerable<intg<T>> src)
+            => src.Select(unwrap);
+
+        [MethodImpl(Inline)]   
+        public static IEnumerable<T> Unwrap<T>(this IEnumerable<real<T>> src)
+            => src.Select(unwrap);
 
         [MethodImpl(Inline)]
         public static T Sum<T>(this IEnumerable<T> src)
@@ -41,6 +48,11 @@ namespace Z0
         public static IEnumerable<T> Pow<T>(this IEnumerable<T> src, int exp)
             where T : Structures.Powered<T>, new() 
                 => pow(src,exp);
+
+        [MethodImpl(Inline)]
+        public static Slice<T> Pow<T>(this Slice<T> src, int exp)
+            where T : Structures.Powered<T>, new() 
+                => slice(pow(src,exp));
 
         [MethodImpl(Inline)]
         public static T Avg<T>(this IEnumerable<T> src)

@@ -11,7 +11,7 @@ namespace Z0
         /// Characterizes a sign adjudication operation
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Signed<T>
+        public interface Signable<T>
         {
             /// <summary>
             /// Determines the sign of the supplied value
@@ -28,8 +28,8 @@ namespace Z0
         /// Characterizes a structure for which a sign can be adjudicated
         /// </summary>
         /// <typeparam name="S">The signed structure</typeparam>
-        public interface Signed<S>
-            where S : Signed<S>, new()
+        public interface Signable<S>
+            where S : Signable<S>, new()
         {
             /// <summary>
             /// Specifies the sign of the structure

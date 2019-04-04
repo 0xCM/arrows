@@ -80,7 +80,7 @@ namespace Z0
         public Listing(IEnumerable<T> items)
         {
             this.src = items;            
-            _data = defer(() => items.Freeze());
+            _data = defer(() => items.ToSlice());
         }
 
         public Listing(Slice<T> items)

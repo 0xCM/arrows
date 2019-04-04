@@ -106,14 +106,8 @@ namespace Z0
             seed[3] = s3;
         }          
 
-        public byte one(byte min, byte max)
-        {
-            var width = (ulong)(max - min);
-            var offset = (ulong)(min + 1);
-            var result = unwrap(one()) % width + offset;
-            return (byte)result;            
-        }
 
+        [MethodImpl(Inline)]
         public double one(double min, double max)
         {
             var width = max - min;
@@ -122,6 +116,21 @@ namespace Z0
             return (@base % width + offset)/width;
         }
 
+
+        [MethodImpl(Inline)]
+        public byte one(byte min, byte max)
+        {
+            var width = (ulong)(max - min);
+            var offset = (ulong)(min + 1);
+            var result = unwrap(one()) % width + offset;
+            return (byte)result;            
+        }
+
+        [MethodImpl(Inline)]
+        public sbyte one(sbyte min, sbyte max)
+            => (sbyte)one((byte)(min),(byte)max);
+
+        [MethodImpl(Inline)]
         public ushort one(ushort min, ushort max)
         {
             var width = (ulong)(max - min);
@@ -130,6 +139,11 @@ namespace Z0
             return (ushort)result;            
         }
 
+        [MethodImpl(Inline)]
+        public short one(short min, short max)
+            => (short)one((ushort)(min),(ushort)max);
+
+        [MethodImpl(Inline)]
         public uint one(uint min, uint max)
         {
             var width = (ulong)(max - min);
@@ -138,6 +152,12 @@ namespace Z0
             return (uint)result;            
         }
 
+        [MethodImpl(Inline)]
+        public int one(int min, int max)
+            => (int)one((uint)(min),(uint)max);
+
+
+        [MethodImpl(Inline)]
         public ulong one(ulong min, ulong max)
         {
             var width = max - min;
@@ -146,29 +166,68 @@ namespace Z0
             return result;            
         }
 
-        public IEnumerable<ulong> many(ulong count)
+        [MethodImpl(Inline)]
+        public long one(long min, long max)
+            => (long)one((ulong)(min),(ulong)max);
+
+        IEnumerable<ulong> stream()
         {
-            for(var j = 0u; j<count; j++)
+            while(true)
                 yield return one();
         }
 
-        public IEnumerable<ulong> many(ulong count, ulong min, ulong max)
+        public IEnumerable<ulong> stream(ulong min, ulong max)
         {
             var width = max - min;
             var offset = min + 1;
-            foreach(var n in many(count))
+            foreach(var n in stream())
                 yield return (n % width + offset);
         }
 
-        public IEnumerable<uint> many(ulong count, uint min, uint max)
-            => many(count, (ulong)min, (ulong)max).Cast<uint>();
+        public IEnumerable<byte> stream(byte min, byte max)
+            => stream((ulong)min, (ulong)max).Cast<byte>();
 
-        public IEnumerable<ushort> many(ulong count, ushort min, ushort max)
-            => many(count, (ulong)min, (ulong)max).Cast<ushort>();
+        public IEnumerable<ushort> stream(ushort min, ushort max)
+            => stream((ulong)min, (ulong)max).Cast<ushort>();
 
-        public IEnumerable<byte> many(ulong count, byte min, byte max)
-            => many(count, (ulong)min, (ulong)max).Cast<byte>();
+        public IEnumerable<uint> stream(uint min, uint max)
+            => stream((ulong)min, (ulong)max).Cast<uint>();
 
+        public IEnumerable<double> stream(double min, double max)
+        {
+            var width = max - min;
+            var offset = min + 1;
+            while(true)
+            {
+                var @base = (double)unwrap(one());
+                yield return (@base % width + offset)/width;
+            }
+
+        }
+
+        public IEnumerable<float> stream(float min, float max)
+        {
+            var width = max - min;
+            var offset = min + 1;
+            while(true)
+            {
+                var @base = (float)unwrap(one());
+                yield return (@base % width + offset)/width;
+            }
+
+        }
+
+        public IEnumerable<decimal> stream(decimal min, decimal max)
+        {
+            var width = max - min;
+            var offset = min + 1m;
+            while(true)
+            {
+                var @base = (decimal)unwrap(one());
+                yield return (@base % width + offset)/width;
+            }
+
+        }
 
     }
 

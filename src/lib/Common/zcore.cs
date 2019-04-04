@@ -143,7 +143,7 @@ public static partial class zcore
     public static Slice<T> map<S,T>(Slice<S> src, Func<S,T> f)
         where S : Equatable<S>, new()     
         where T : Equatable<T>, new()     
-            => src.Select(x => f(x)).Freeze();
+            => src.Select(x => f(x)).ToSlice();
 
 
     /// <summary>
@@ -406,14 +406,40 @@ public static partial class zcore
         => criterion ? onTrue(value) : value;
 
 
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="min">The inclusive lower bound of the sequence</param>
+    /// <param name="max"></param>
+    /// <param name="f"></param>
+    /// <typeparam name="T"></typeparam>
     [MethodImpl(Inline)]
-    public static void iter<T>(intg<T> min, intg<T> max, Action<T> f)
+    public static void iterg<T>(intg<T> min, intg<T> max, Action<intg<T>> f)
     {
        for(var i = min; i< max; i++) 
             f(i);
     }
 
+    /// <summary>
+    /// Aplies an action to the sequence of integers 0,2,...,max - 1
+    /// </summary>
+    /// <param name="max">The non-inclusive upper bound of the sequence
+    /// over intergers over which iteration will occur</param>
+    /// <param name="f">The action to be applied to each  value</param>
+    [MethodImpl(Inline)]
+    public static void iterg<T>(intg<T> max, Action<intg<T>> f)
+    {
+       for(var i = max.zero; i< max; i++) 
+            f(i);
+    }
+
+    /// <summary>
+    /// Aplies an action to the sequence of integers min,min+1,...,max - 1
+    /// </summary>
+    /// <param name="min">The inclusive lower bound of the sequence</param>
+    /// <param name="max">The non-inclusive upper bound of the sequence
+    /// over intergers over which iteration will occur</param>
+    /// <param name="f">The action to be applied to each  value</param>
     [MethodImpl(Inline)]
     public static void iter(int min, int max, Action<int> f)
     {
@@ -421,6 +447,13 @@ public static partial class zcore
             f(i);
     }
 
+    /// <summary>
+    /// Aplies an action to the sequence of integers min,min+1,...,max - 1
+    /// </summary>
+    /// <param name="min">The inclusive lower bound of the sequence</param>
+    /// <param name="max">The non-inclusive upper bound of the sequence
+    /// over intergers over which iteration will occur</param>
+    /// <param name="f">The action to be applied to each  value</param>
     [MethodImpl(Inline)]
     public static void iter(long min, long max, Action<long> f)
     {
@@ -428,10 +461,17 @@ public static partial class zcore
             f(i);
     }
 
+    /// <summary>
+    /// Aplies an action to the sequence of integers 0,2,...,max - 1
+    /// </summary>
+    /// <param name="min">The inclusive lower bound of the sequence</param>
+    /// <param name="max">The non-inclusive upper bound of the sequence
+    /// over intergers over which iteration will occur</param>
+    /// <param name="f">The action to be applied to each  value</param>
     [MethodImpl(Inline)]
-    public static void iter(ulong min, ulong max, Action<ulong> f)
+    public static void iter(int max, Action<int> f)
     {
-       for(var i = min; i< max; i++) 
+       for(var i = 0; i< max; i++) 
             f(i);
     }
 
@@ -444,5 +484,4 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static bit bit<T>(intg<T> x, int pos)
         => Bits.bit(x, pos);
-
 }

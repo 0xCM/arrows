@@ -154,6 +154,11 @@ namespace Z0
         public NumberInfo<real<T>> numinfo
             => new NumberInfo<real<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);                 
 
+        public real<T> zero 
+            => Ops.zero;
+
+        public real<T> one 
+            => Ops.zero;
 
         [MethodImpl(Inline)]
         public real<Y> convert<Y>()    
@@ -168,18 +173,12 @@ namespace Z0
             => Ops.dec(data);
 
         [MethodImpl(Inline)]
-        public real<T> negate()
-            => Ops.negate(data);
-
-        [MethodImpl(Inline)]
-        public Sign sign()
-            => nonzero() ? Sign.Neutral : 
-               this < Zero ? Sign.Negative :
-               Sign.Positive;
-
-        [MethodImpl(Inline)]
         public real<T> add(real<T> rhs)
             => Ops.add(data, rhs.data);
+
+        [MethodImpl(Inline)]
+        public real<T> sub(real<T> rhs)
+            => Ops.sub(data, rhs.data);
 
         [MethodImpl(Inline)]
         public real<T> mul(real<T> rhs)
@@ -193,19 +192,23 @@ namespace Z0
         public real<T> mod(real<T> rhs)
             => Ops.mod(data,rhs);
 
-
         [MethodImpl(Inline)]
         public Quorem<real<T>> divrem(real<T> rhs)
             => Quorem.define<real<T>>(Ops.div(data, rhs), Ops.mod(data, rhs));
 
         [MethodImpl(Inline)]
-        public real<T> abs()
-            => Ops.abs(data);
-
+        public real<T> negate()
+            => Ops.negate(data);
 
         [MethodImpl(Inline)]
-        public BitString bitstring()
-            => Ops.bitstring(data);
+        public Sign sign()
+            => nonzero() ? Sign.Neutral : 
+               this < Zero ? Sign.Negative :
+               Sign.Positive;
+
+        [MethodImpl(Inline)]
+        public real<T> abs()
+            => Ops.abs(data);
 
         [MethodImpl(Inline)]
         public real<T> distributeL((real<T> x, real<T> y) rhs)
@@ -231,7 +234,6 @@ namespace Z0
         public bool neq(real<T> lhs, real<T> rhs)
             => lhs.neq(rhs);
 
-
         [MethodImpl(Inline)]
         public real<T> gcd(real<T> rhs)
             => Ops.gcd(data,rhs);
@@ -252,22 +254,15 @@ namespace Z0
         public bool lteq(real<T> rhs)
             => Ops.lteq(data,rhs);
 
-
         [MethodImpl(Inline)]
         public bool Equals(real<T> rhs)
-        => Ops.eq(this.data, rhs.data);
+            => Ops.eq(this.data, rhs.data);
 
         [MethodImpl(Inline)]
         public int CompareTo(real<T> rhs)
             => this < rhs ? -1
              : this > rhs ? 1
              : 0;
-
-        public real<T> zero 
-            => Ops.zero;
-
-        public real<T> one 
-            => Ops.zero;
 
         [MethodImpl(Inline)]
         public real<T> muladd(real<T> y, real<T> z)
@@ -321,6 +316,7 @@ namespace Z0
         public real<T> atanh()
             => Ops.atanh(this);
 
+        [MethodImpl(Inline)]
         public real<T> pow(int exp)
             => Ops.pow(data, exp);
 
@@ -332,6 +328,14 @@ namespace Z0
         public int hash()
             => data.GetHashCode();
 
+        [MethodImpl(Inline)]
+        public BitString bitstring()
+            => Ops.bitstring(data);
+
+        [MethodImpl(Inline)]
+        public T unwrap()
+            => data;
+
         public override bool Equals(object rhs)
             => data.Equals(rhs);
 
@@ -340,6 +344,5 @@ namespace Z0
 
         public override string ToString()
             => data.ToString();
-
     }
 }

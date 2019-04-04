@@ -281,5 +281,69 @@ public static class ToIntGX
     [MethodImpl(Inline)]   
     public static intg<T> ToIntG<T>(this Enum src)    
         => (T)Convert.ChangeType(src, type<T>());    
+
+    [MethodImpl(Inline)]   
+    public static intg<byte> ToIntG(this real<byte> src)
+        => src.unwrap();
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<byte>> ToIntG(this IEnumerable<real<byte>> src)
+        => src.Select(x => x.unwrap().ToIntG());
+
+    [MethodImpl(Inline)]   
+    public static intg<sbyte> ToIntG(this real<sbyte> src)
+        => src.unwrap();
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<sbyte>> ToIntG(this IEnumerable<real<sbyte>> src)
+        => src.Select(x => x.unwrap().ToIntG());
+
+    [MethodImpl(Inline)]   
+    public static intg<short> ToIntG(this real<short> src)
+        => src.unwrap();
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<short>> ToIntG(this IEnumerable<real<short>> src)
+        => src.Select(x => x.unwrap().ToIntG());
+
+    [MethodImpl(Inline)]   
+    public static intg<ushort> ToIntG(this real<ushort> src)
+        => src.unwrap();
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<ushort>> ToIntG(this IEnumerable<real<ushort>> src)
+        => src.Select(x => x.unwrap().ToIntG());
+
+    [MethodImpl(Inline)]   
+    public static intg<int> ToIntG(this real<int> src)
+        => src.unwrap();
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<int>> ToIntG(this IEnumerable<real<int>> src)
+        => src.Select(x => x.unwrap().ToIntG());
+
+    [MethodImpl(Inline)]   
+    public static intg<uint> ToIntG(this real<uint> src)
+        => src.unwrap();
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<uint>> ToIntG(this IEnumerable<real<uint>> src)
+        => src.Select(x => x.unwrap().ToIntG());
+
+    [MethodImpl(Inline)]   
+    public static intg<long> ToIntG(this real<long> src)
+        => src.unwrap();
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<long>> ToIntG(this IEnumerable<real<long>> src)
+        => src.Select(x => x.unwrap().ToIntG());
+
+    [MethodImpl(Inline)]   
+    public static intg<ulong> ToIntG(this real<ulong> src)
+        => src.unwrap();
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<ulong>> ToIntG(this IEnumerable<real<ulong>> src)
+        => src.Select(x => x.unwrap().ToIntG());
 }
 

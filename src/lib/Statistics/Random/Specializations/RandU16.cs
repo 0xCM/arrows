@@ -33,8 +33,5 @@ namespace Z0
         real<prim> Rand<prim>.one(real<prim> min, real<prim> max)
              => one(min,max);
 
-        [MethodImpl(Inline)]
-        public IEnumerable<real<prim>> many(ulong count, real<prim> min, real<prim> max)
-            => stream(min,max).Take((int)count);
    }
 }

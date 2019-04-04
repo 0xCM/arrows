@@ -301,8 +301,9 @@ partial class zcore
             result = result.add(val);
             count = count.inc();
         }
-        return count.nonzero() ? result.div(count) : result;
+        return count.neq(count.zero) ? result.div(count) : result;
     }
+
 
 }
 

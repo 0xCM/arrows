@@ -129,9 +129,6 @@ namespace Z0
         public floatg<T> bitsize 
             => BitSize;
 
-        [MethodImpl(Inline)]   
-        public bool nonzero()
-            => Ops.nonzero(data);
 
         [MethodImpl(Inline)]
         public floatg<T> add(floatg<T> rhs)

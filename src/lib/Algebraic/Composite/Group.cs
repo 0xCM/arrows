@@ -30,7 +30,7 @@ namespace Z0
         /// <summary>
         /// Characterizes additive/abelian group operations
         /// </summary>
-        public interface GroupA<T> : Group<T>, MonoidA<T>, Subtractive<T> 
+        public interface GroupA<T> : Group<T>, MonoidA<T>, Negatable<T> 
         {
 
         }
@@ -54,7 +54,7 @@ namespace Z0
             
         }
 
-        public interface GroupA<S> : Group<S>, MonoidA<S>
+        public interface GroupA<S> : Group<S>, MonoidA<S>, Negatable<S>
             where S : GroupA<S>, new()
         {
 

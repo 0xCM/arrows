@@ -18,6 +18,16 @@ using static zcore;
 /// </summary>
 public static class ToRealX
 {
+    [MethodImpl(Inline)]   
+    public static real<T>[] ToReals<T>(this T[] src)
+        where T : IConvertible
+        => src.Select(x => real<T>(x)).ToArray();        
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<real<T>> ToReals<T>(this IEnumerable<T> src)
+        where T : IConvertible
+        => src.Select(x => real<T>(x));
+
     /// <summary>
     /// x:byte => x:real[double]
     /// </summary>
@@ -216,6 +226,7 @@ public static class ToRealX
     [MethodImpl(Inline)]   
     public static real<float> ToReal32<T>(this intg<T> src)
         => convert<float>(unwrap(src));
+
 
     [MethodImpl(Inline)]   
     public static IEnumerable<real<byte>> ToReal(this IEnumerable<byte> src)

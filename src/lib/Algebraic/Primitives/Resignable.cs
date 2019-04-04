@@ -12,7 +12,7 @@ namespace Z0
         /// Characterizes a sign-reversal operation
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Resignable<T> : Signed<T>, Negatable<T>
+        public interface Resignable<T> : Signable<T>, Negatable<T>
         {
             /// <summary>
             /// Aligns the value with a specified sign
@@ -33,7 +33,7 @@ namespace Z0
         /// Characterizes a structure whose sign can be reversed
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Resignable<S> : Signed<S>, Negatable<S>
+        public interface Resignable<S> : Signable<S>, Negatable<S>
             where S : Resignable<S>, new()
         {
             /// <summary>

@@ -37,9 +37,18 @@ namespace Z0
         /// <param name="src">The source sequence</param>
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
-        public static Slice<T> Freeze<T>(this IEnumerable<T> src)
+        public static IReadOnlyList<T> Freeze<T>(this IEnumerable<T> src)
+                => src.ToReadOnlyList();
+
+        /// <summary>
+        /// Constructs a slice from a supplied sequence
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static Slice<T> ToSlice<T>(this IEnumerable<T> src)
             where T : Equatable<T>, new()
-                => Z0.Slice.define(src);
+                => new Slice<T>(src);
 
         /// <summary>
         /// Constructs a slice with natural length from a sequence of elements

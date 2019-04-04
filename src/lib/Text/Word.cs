@@ -34,7 +34,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Word(IEnumerable<Symbol> data)
-            => this.symbols = data.Freeze();
+            => this.symbols = data.ToSlice();
 
         [MethodImpl(Inline)]
         public Word(string data)

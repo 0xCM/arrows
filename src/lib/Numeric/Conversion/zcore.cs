@@ -15,6 +15,7 @@ using static zcore;
 
 partial class zcore
 {
+
     /// <summary>
     /// Explicit alternative to implicit destructuring
     /// </summary>
@@ -102,11 +103,19 @@ partial class zcore
     /// Converts an integer to a sequence of digits
     /// </summary>
     /// <param name="x">The source value</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static byte[] digits(ulong x)
         => x.ToIntG<ulong>().digits();
 
+    [MethodImpl(Inline)]
+    public static IEnumerable<real<T>> reals<T>(IEnumerable<T> src)
+        where T : IConvertible
+            => src.ToReals();
+
+    [MethodImpl(Inline)]
+    public static real<T>[] reals<T>(params T[] src)
+        where T : IConvertible
+            => src.ToReals();
 
     // !!! x : unsigned => intg[x]
     // !!! --------------------------------------------------------------------
@@ -646,7 +655,6 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(byte x)
-        where T: IConvertible
             => convert<T>(x);
 
     /// <summary>
@@ -656,7 +664,6 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(sbyte x)
-        where T: IConvertible
             => convert<T>(x);
 
     /// <summary>
@@ -666,7 +673,6 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(short x)
-        where T: IConvertible
             => convert<T>(x);
 
     /// <summary>
@@ -676,7 +682,6 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(ushort x)
-        where T: IConvertible
             => convert<T>(x);
 
     /// <summary>
@@ -686,7 +691,6 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(int x)
-        where T: IConvertible
             => convert<T>(x);
 
     /// <summary>
@@ -696,7 +700,6 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(uint x)
-        where T: IConvertible
             => convert<T>(x);
 
     /// <summary>
@@ -706,7 +709,6 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(long x)
-        where T: IConvertible
             => convert<T>(x);
 
     /// <summary>
@@ -716,7 +718,6 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(ulong x)
-        where T: IConvertible
             => convert<T>(x);
 
     /// <summary>
@@ -726,7 +727,6 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(float x)
-        where T: IConvertible
             => convert<T>(x);
 
     /// <summary>
@@ -736,7 +736,6 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(double x)
-        where T: IConvertible
             => convert<T>(x);
 
     /// <summary>
@@ -746,7 +745,6 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(decimal x)
-        where T: IConvertible
             => convert<T>(x);
 
     #endregion

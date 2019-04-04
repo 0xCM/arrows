@@ -28,7 +28,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The element type</typeparam>
         /// <typeparam name="S">The type of the reifying structure</typeparam>
-        public interface Slice<S,T> : Slice<T>, Reversible<S>, Equatable<S>
+        public interface Slice<S,T> : Structure<S,T>, Slice<T>, Reversible<S>, Equatable<S>
             where S : Slice<S,T>, new()
         {
 
@@ -84,8 +84,23 @@ namespace Z0
 
         public intg<uint> length {get;}
     
+        public T this[short i] 
+            => data[i];
+
+        public T this[ushort i] 
+            => data[(int)i];
+
         public T this[int i] 
             => data[i];
+
+        public T this[uint i] 
+            => data[(int)i];
+
+        public T this[long i] 
+            => data[(int)i];
+
+        public T this[ulong i] 
+            => data[(int)i];
 
         public (Slice<T> lhs, Slice<T> rhs) conform(Slice<T> rhs, T filler)
         {

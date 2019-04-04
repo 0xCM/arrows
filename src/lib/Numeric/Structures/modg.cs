@@ -92,9 +92,6 @@ namespace Z0
         public bool Equals(modg<N, T> rhs)
             => eq(rhs);
  
-        [MethodImpl(Inline)]
-        public bool nonzero()
-            => Ops.nonzero(data);
 
         [MethodImpl(Inline)]
         public int hash()
@@ -110,5 +107,14 @@ namespace Z0
         public override string ToString()
             => $"{data} (mod {@base})";
 
+        public modg<N, T> negate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public modg<N, T> sub(modg<N, T> rhs)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -35,20 +35,20 @@ namespace Z0.Tests
 
         }
 
-        const long IterCount = 75000;
+        const int IterCount = 75000;
 
         public static intg<long>[] iterG()
         {
             long len = IterCount;
             var squares = new intg<long>[len];
-            iter<long>(0L,len, i => squares[i] = i * i);            
+            iterg<long>(0L,len, i => squares[i] = i * i);            
             return squares;
         }
 
 
         public static long[] iterDirect()
         {
-            long len = IterCount;
+            var len = IterCount;
             var squares = new long[len];
             for(var i = 0L; i<len; i++)
                 squares[i] = i*i;
@@ -68,7 +68,7 @@ namespace Z0.Tests
 
         public static void iterRight()
         {
-            var i1 = iterG().Unwrap();
+            var i1 = iterG().Unwrap().Freeze();
             var i2 = iterDirect();
             var i3 = iterL();
             var result = true;

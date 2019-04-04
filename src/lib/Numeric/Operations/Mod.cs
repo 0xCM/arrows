@@ -32,9 +32,6 @@ namespace Z0
         public T zero 
             => @base.zero;
 
-        [MethodImpl(Inline)]   
-        public bool nonzero(T x)
-            => Ops.nonzero(x);
 
 
         [MethodImpl(Inline)]
@@ -59,7 +56,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public T negate(T x)
-            => Ops.abs(reduce(Ops.negate(x)));
+            => Ops.abs(reduce(Ops.sub(Ops.zero, x)));
 
         [MethodImpl(Inline)]
         public T invert(T x)

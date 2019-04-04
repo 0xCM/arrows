@@ -29,7 +29,7 @@ namespace Z0.Tests
         public static void pow()
         {
             var src = Rand.values(5,real(-5000m), real(5000m));
-            var p1 = src.Pow(2).Freeze();
+            var p1 = src.Pow(2);
             var p2 = map(src, x => x*x);            
             Claim.eq(p1,p2);
             tell($"{src}^2 = {p1}");
