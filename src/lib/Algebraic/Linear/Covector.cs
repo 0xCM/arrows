@@ -16,7 +16,7 @@ namespace Z0
     /// </summary>
     public readonly struct Covector<N, T> : Equatable<Covector<N,T>>, IEnumerable<T>, Formattable, Lengthwise
         where N : TypeNat, new() 
-        where T : Equatable<T>, new()       
+        //where T : Equatable<T>, new()       
     {
         /// <summary>
         /// Vector => Slice

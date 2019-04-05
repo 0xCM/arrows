@@ -125,6 +125,23 @@ namespace Z0
 
     partial class Reify
     {
+        public readonly struct Semigroup<T> : Operative.Semigroup<T>
+            where T : Structures.Semigroup<T>, new()
+        {    
+
+            public static Semigroup<T> Inhabitant = default;
+            
+
+            [MethodImpl(Inline)]
+            public bool eq(T lhs, T rhs) 
+                => lhs.eq(rhs);
+
+            [MethodImpl(Inline)]
+            public bool neq(T lhs, T rhs) 
+                => lhs.neq(rhs);
+        }
+
+
         public readonly struct SemigroupM<T> : Operative.SemigroupM<T>
             where T : Structures.SemigroupM<T>, new()
         {    

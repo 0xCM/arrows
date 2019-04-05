@@ -167,8 +167,10 @@ namespace Z0
         }
 
         public intg<T> bitsize 
-            => BitSize;
-
+        {
+            [MethodImpl(Inline)]
+            get{return BitSize;}
+        }
         public NumberInfo<intg<T>> numinfo 
             => new NumberInfo<intg<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);
 
@@ -177,6 +179,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public intg (T x) 
             => data = x;
+
+        [MethodImpl(Inline)]
+        public T unwrap()
+            => data;
 
         [MethodImpl(Inline)]
         public intg<T> inc()
@@ -226,9 +232,17 @@ namespace Z0
         public bool odd()
             => not(even());
 
-        // [MethodImpl(Inline)]
-        // public Quorem<intg<T>> divrem(intg<T> rhs)
-        //     => apply(Ops.divrem(data,rhs), x => Quorem.define<intg<T>>(x.q,x.r));
+        /// <summary>
+        /// Tests whether the bit in an specific position is set
+        /// </summary>
+        /// <param name="src">The source integer</param>
+        /// <param name="pos">The bit position to test</param>
+        /// <typeparam name="T">The underlying integral type</typeparam>
+        /// <returns>Returns true if the identified bit is set, false otherwise</returns>
+        [MethodImpl(Inline)]
+        public bool testbit(int pos)            
+            => (this & (intg<T>.One << pos)) != intg<T>.Zero;
+
 
         [MethodImpl(Inline)]
         public Quorem<intg<T>> divrem(intg<T> rhs)
@@ -404,6 +418,7 @@ namespace Z0
             => data.Equals(rhs);
         
         public override string ToString()
-            => data.ToString(); 
+            => data.ToString();
+
     }
 }

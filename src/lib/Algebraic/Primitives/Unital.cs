@@ -11,7 +11,7 @@ namespace Z0
         /// Characterizes operations over a unital type
         /// </summary>
         /// <typeparam name="T">The characterized type</typeparam>
-        public interface Unital<T> : Multiplicative<T>
+        public interface Unital<T> 
         {
             /// <summary>
             /// The unital value
@@ -29,7 +29,7 @@ namespace Z0
         /// distinguished element 1:S such that for every s:S, 1*s = s*1 = s
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
-        public interface Unital<S> : Multiplicative<S>
+        public interface Unital<S> 
             where S : Unital<S>, new()
         {
             S one {get;}

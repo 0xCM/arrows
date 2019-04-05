@@ -12,7 +12,7 @@ namespace Z0
         /// <summary>
         /// Specifies the value of the associated natural number
         /// </summary>
-        uint value {get;}
+        ulong value {get;}
 
         /// <summary>
         /// Specifies the associated base-10 digits 

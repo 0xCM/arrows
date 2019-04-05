@@ -12,7 +12,7 @@ namespace Z0
     partial class Traits
     {
 
-        public interface NatInterval<K1,K2> : Traits.DiscreteInterval<uint>, Traits.ClosedInterval<uint>
+        public interface NatInterval<K1,K2> : Traits.DiscreteInterval<ulong>, Traits.ClosedInterval<ulong>
             where K1: TypeNat, Demands.Smaller<K1,K2>, new()
             where K2: TypeNat, new()
         {
@@ -40,7 +40,7 @@ namespace Z0
         public static Option<Between<T,K1,K2>> contains<T>()
             where T : TypeNat, new() => Prove.tryBetween<T,K1,K2>();
                  
-        public static IEnumerable<uint> values()
+        public static IEnumerable<ulong> values()
         {
             for(var n = natval<K1>(); n <= natval<K2>(); n++)
                 yield return n;
@@ -54,7 +54,7 @@ namespace Z0
             rightclosed = true;
             valid = demand(left < right);
         }
-        public Seq<uint> members()
+        public Seq<ulong> members()
             => Seq.define(values());
 
         public bool member(uint candidate)
@@ -67,11 +67,11 @@ namespace Z0
 
         public bool valid {get;}
 
-        public uint left {get;}
+        public ulong left {get;}
 
         public bool leftclosed {get;}
 
-        public uint right {get;}
+        public ulong right {get;}
 
         public bool rightclosed {get;}
             
@@ -84,8 +84,8 @@ namespace Z0
         public bool discrete 
             => true;
 
-        public Interval<uint> canonical()
-            => new Interval<uint>(left,leftclosed,right,rightclosed);
+        public Interval<ulong> canonical()
+            => new Interval<ulong>(left,leftclosed,right,rightclosed);
 
         public string format()
             => canonical().format();

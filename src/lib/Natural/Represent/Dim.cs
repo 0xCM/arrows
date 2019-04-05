@@ -11,7 +11,7 @@ namespace Z0
     {
         public interface Dim : Formattable
         {
-            Z0.Slice<intg<uint>> components {get;}
+            Z0.Slice<intg<ulong>> components {get;}
         }
 
     }
@@ -58,19 +58,19 @@ namespace Z0
     {
         public static readonly Dim<K> Rep = default;
 
-        public static implicit operator uint(Dim<K> x)
+        public static implicit operator ulong(Dim<K> x)
             => x.i;
     
         /// <summary>
         /// Specifies the value of the dimension component
         /// </summary>
-        public intg<uint> i 
+        public intg<ulong> i 
             => natval<K>();
 
-        public uint volume()
+        public ulong volume()
             => i;
 
-        public Slice<intg<uint>> components 
+        public Slice<intg<ulong>> components 
             => slice(i);
 
         public string format()
@@ -96,25 +96,25 @@ namespace Z0
     {
         public static readonly Dim<K1,K2> Rep = default;
 
-        public static implicit operator (uint i, uint j)(Dim<K1,K2> x)
+        public static implicit operator (ulong i, ulong j)(Dim<K1,K2> x)
             => Nat.pair<K1,K2>();
     
        /// <summary>
         /// Specifies the first component of the dimension
         /// </summary>
-        public intg<uint> i 
+        public intg<ulong> i 
             => natval<K1>();
         
         /// <summary>
         /// Specifies the second component of the dimension
         /// </summary>
-        public intg<uint> j 
+        public intg<ulong> j 
             => natval<K2>();
 
-        public uint volume()
+        public ulong volume()
             => i*j;
 
-        public Slice<intg<uint>> components 
+        public Slice<intg<ulong>> components 
             => slice(i,j);
 
         public string format()
@@ -144,25 +144,25 @@ namespace Z0
         /// <summary>
         /// Specifies the first component of the dimension
         /// </summary>
-        public intg<uint> i 
+        public intg<ulong> i 
             => natval<M>();
         
         /// <summary>
         /// Specifies the second component of the dimension
         /// </summary>
-        public intg<uint> j 
+        public intg<ulong> j 
             => natval<N>();
 
         /// <summary>
         /// Specifies the third component of the dimension
         /// </summary>
-        public intg<uint> k 
+        public intg<ulong> k 
             => natval<P>();
 
-        public intg<uint> volume()
+        public intg<ulong> volume()
             => i*j*k;
 
-        public Slice<intg<uint>> components 
+        public Slice<intg<ulong>> components 
             => slice(i,j,k);
 
         public string format()

@@ -189,7 +189,7 @@ namespace Z0
         public Array(params T[] data)
         {
             if(data.Length == 0)
-                this.data = array<T>(natval<N>());
+                this.data = array<T>((uint)natval<N>());
             else
             {
                 Prove.claim<N>(data.Length());
@@ -221,7 +221,7 @@ namespace Z0
         
         public Array(IEnumerable<T> src)
         {
-            dim = (natval<K1>(), natval<K2>());
+            dim = ((uint)natval<K1>(), (uint)natval<K2>());
             data = new T[dim.k1,dim.k2];
             foreach(var axis0 in src.Partition<K1,T>().Iteri())
             foreach(var axis1 in axis0.value.Iteri())
@@ -276,7 +276,7 @@ namespace Z0
 
         public Array(IEnumerable<T> src)
         {
-            dim = (natval<K1>(), natval<K2>(), natval<K3>());
+            dim = ((uint)natval<K1>(), (uint)natval<K2>(), (uint)natval<K3>());
             data = new T[dim.k1,dim.k2,dim.k3];
             foreach(var axis0 in src.Partition<K1,T>().Iteri())
             foreach(var axis1 in src.Partition<K2,T>().Iteri())
@@ -285,6 +285,10 @@ namespace Z0
         }
 
         public T this[int i, int j, int k] => data[i,j,k];
+
+        public T this[uint i, uint j, uint k] => data[i,j,k];
+
+        public T this[ulong i, ulong j, ulong k] => data[i,j,k];
 
         public IEnumerable<(int i, int j, int k, T value)> content 
         {

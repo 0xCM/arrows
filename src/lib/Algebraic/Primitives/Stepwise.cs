@@ -34,13 +34,13 @@ namespace Z0
 
     partial class Structures
     {
-        public interface Decrementable<S> : Ordered<S>
+        public interface Decrementable<S> : Orderable<S>
             where S : Decrementable<S>, new()
         {
             S dec();
         }
 
-        public interface Incrementable<S> : Ordered<S>
+        public interface Incrementable<S> : Orderable<S>
             where S : Incrementable<S>, new()
         {
             S inc();        

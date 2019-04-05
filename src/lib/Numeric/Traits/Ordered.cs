@@ -18,7 +18,7 @@ namespace Z0
 
     partial class Structures
     {
-        public interface OrderedNumber<S> :  Stepwise<S>,  Ordered<S>,  Number<S>
+        public interface OrderedNumber<S> :  Stepwise<S>,  Orderable<S>,  Number<S>
             where S : OrderedNumber<S>, new() {}
         
         /// <summary>
@@ -26,7 +26,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface OrderedNumber<S,T> : OrderedNumber<S>
+        public interface OrderedNumber<S,T> : OrderedNumber<S>, Wrapped<T>
             where S : OrderedNumber<S,T>, new() {}
     }
 

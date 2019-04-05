@@ -10,9 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
 using Z0;
-using static Z0.Bibliography;
 using static zcore;
-
 
 public static partial class zcore
 {
@@ -20,33 +18,35 @@ public static partial class zcore
     /// Constructs a vector characterized by length and component type
     /// </summary>
     /// <param name="components"></param>
-    /// <typeparam name="N">The length</typeparam>
+    /// <typeparam name="N">The vector length</typeparam>
     /// <typeparam name="T">The component type</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(params T[] components)
         where N : TypeNat, new()
-        where T : Equatable<T>, new()            
             => new Z0.Vector<N,T>(components);
 
+    /// <summary>
+    /// Constructs a vector where each component has the same value
+    /// </summary>
+    /// <param name="component">The value assigned to each component</param>
+    /// <typeparam name="N">The vector length</typeparam>
+    /// <typeparam name="T">The component type</typeparam>
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(T component)
         where N : TypeNat, new()
-        where T : Equatable<T>, new()            
             => new Vector<N,T>(repeat<N,T>(component));
 
     /// <summary>
     /// Constructs a vector characterized by length and component type
     /// </summary>
-    /// <param name="components"></param>
-    /// <typeparam name="N">The length</typeparam>
+    /// <param name="components">The components with which to construct the vector</param>
+    /// <typeparam name="N">The vector length</typeparam>
     /// <typeparam name="T">The component type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(IEnumerable<T> components)
         where N : TypeNat, new()
-        where T : Equatable<T>, new()            
-            => Vector.define(dim<N>(),components);
+            => Vector.define(dim<N>(), components);
 
     /// <summary>
     /// Constructs a vector characterized by length and component type
@@ -58,7 +58,6 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(Dim<N> dim, IEnumerable<T> components)
         where N : TypeNat, new()
-        where T : Equatable<T>, new()            
             => Vector.define(dim,components);
 
     /// <summary>
@@ -70,34 +69,38 @@ public static partial class zcore
     /// <remarks>No allocation occurs during construction</remarks>
     public static Vector<N,T> vector<N,T>(Dim<N> dim, IReadOnlyList<T> components)
         where N : TypeNat, new()
-        where T : Equatable<T>, new()            
             => Vector.define(dim,components);
 
-
     /// <summary>
-    /// Constructs a covector characterized by length and component type
+    /// Constructs a covector from sequence of components
     /// </summary>
     /// <param name="components"></param>
-    /// <typeparam name="N">The length</typeparam>
+    /// <typeparam name="N">The covector length</typeparam>
     /// <typeparam name="T">The component type</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
     public static Covector<N,T> covector<N,T>(Dim<N> dim, params T[] components)
         where N : TypeNat, new()
-        where T : Equatable<T>, new()            
             => Covector.define<N,T>(dim, components);
 
     /// <summary>
-    /// Constructs a covector characterized by length and component type
+    /// Constructs a covector from a sequence of components
     /// </summary>
     /// <param name="components"></param>
-    /// <typeparam name="N">The length</typeparam>
+    /// <typeparam name="N">The covector length</typeparam>
     /// <typeparam name="T">The component type</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Covector<N,T> covector<N,T>(IReadOnlyList<T> components)
+    public static Covector<N,T> covector<N,T>(IEnumerable<T> components)
         where N : TypeNat, new()
-        where T : Equatable<T>, new()            
             => Covector.define<N,T>(components);
 
+    /// <summary>
+    /// Constructs a covector from a component parameter array
+    /// </summary>
+    /// <param name="components"></param>
+    /// <typeparam name="N">The covector length</typeparam>
+    /// <typeparam name="T">The component type</typeparam>
+    [MethodImpl(Inline)]   
+    public static Covector<N,T> covector<N,T>(params T[] components)
+        where N : TypeNat, new()
+            => Covector.define<N,T>(components);
 }

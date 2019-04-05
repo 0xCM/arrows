@@ -75,5 +75,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool neq(FiniteSeq<T> rhs)
             => not(eq(rhs));
+
+        public FiniteSeq<T> concat(FiniteSeq<T> rhs)
+            => new FiniteSeq<T>(data.Concat(rhs.data));
     }
 }

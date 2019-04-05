@@ -8,17 +8,18 @@ namespace Z0
 
     partial class Structures
     {
-        public interface DiscreteGroup<S> : Group<S>, DiscreteSet<S>
+        public interface DiscreteGroup<S> : Group<S>
             where S : DiscreteGroup<S>, new()
         {
             
         }
+
         /// <summary>
         /// Characterizes a discrete group structure
         /// </summary>
         /// <typeparam name="T">The operational type</typeparam>
         /// <typeparam name="S">The structure type</typeparam>
-        public interface DiscreteGroup<S,T> : Group<S,T>, DiscreteSet<S,T>
+        public interface DiscreteGroup<S,T> : Group<S,T>, Contain.DiscreteSet<S,T>
             where S : DiscreteGroup<S,T>, new()
             where T : IEquatable<T>
         {
@@ -33,7 +34,7 @@ namespace Z0
 
         }
 
-        public interface FiniteAbelianGroup<S,T> : DiscreteAbelianGroup<S,T>, FiniteSet<S,T>
+        public interface FiniteAbelianGroup<S,T> : DiscreteAbelianGroup<S,T>, Contain.FiniteSet<S,T>
             where S : FiniteAbelianGroup<S,T>, new()
             where T : IEquatable<T>
         {
@@ -41,7 +42,7 @@ namespace Z0
 
         }
 
-        public interface DiscreteAbelianGroup<S,T> : GroupA<S,T>, DiscreteSet<S,T>
+        public interface DiscreteAbelianGroup<S,T> : GroupA<S,T>, Contain.DiscreteSet<S,T>
             where S : DiscreteAbelianGroup<S,T>, new()
             where T : IEquatable<T>
         {

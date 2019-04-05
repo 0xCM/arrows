@@ -17,7 +17,6 @@ namespace Z0
     using static Z0.Bibliography;
     using static zcore;
 
-
     partial class xcore
     {
 

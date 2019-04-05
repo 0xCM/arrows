@@ -60,7 +60,8 @@ namespace Z0
         public Seq<T> redefine(IEnumerable<T> src)
             => new Seq<T>(src);
 
-
+        public Seq<T> concat(Seq<T> rhs)
+            => new Seq<T>(content.Concat(rhs.content));
     }
     
 

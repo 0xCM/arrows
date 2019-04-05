@@ -25,9 +25,9 @@ namespace Z0
         /// <param name="expected">The expected natural value</param>
         /// <typeparam name="K">The natural type</typeparam>
         [MethodImpl(Inline)]   
-        public static uint claim<K>(uint expected)
+        public static ulong claim<K>(ulong expected)
             where K : TypeNat, new()
-                => natval<K>() == expected  ? expected : failure<K,uint>("eq", expected);
+                => natval<K>() == expected  ? expected : failure<K,ulong>("eq", expected);
 
         /// <summary>
         /// Retrieves the value of the natural number associated with a typenat
@@ -38,9 +38,9 @@ namespace Z0
         /// <param name="expected">The expected natural value</param>
         /// <typeparam name="K">The natural type</typeparam>
         [MethodImpl(Inline)]   
-        public static uint claim<K>(K k, uint expected)
+        public static ulong claim<K>(K k, ulong expected)
                 where K : TypeNat, new()
-                    => k.value == expected  ? expected : failure<K,uint>("eq", expected);
+                    => k.value == expected  ? expected : failure<K,ulong>("eq", expected);
 
         /// <summary>
         /// Attempts to prove that k:K => k == expected

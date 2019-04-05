@@ -16,7 +16,7 @@ namespace Z0
 
         public static readonly Pow<P,E> Seq = default;
 
-        public static readonly uint Value = Seq.value;
+        public static readonly ulong Value = Seq.value;
 
         public TypeNat rep 
             => Rep;
@@ -24,7 +24,7 @@ namespace Z0
         public NatSeq seq 
             => Seq.seq;
 
-        public uint value 
+        public ulong value 
             => Seq.value;
 
         public byte[] digits() 

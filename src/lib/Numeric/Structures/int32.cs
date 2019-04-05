@@ -187,6 +187,10 @@ namespace Z0
             => data = x;
 
         [MethodImpl(Inline)]
+        public int unwrap()
+            => data;
+
+        [MethodImpl(Inline)]
         public reify inc()
             => this + One;
 

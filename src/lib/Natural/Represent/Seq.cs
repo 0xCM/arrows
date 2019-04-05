@@ -40,13 +40,13 @@ namespace Z0
     {
         public static readonly NatSeq1<K1> Rep = default;
         
-        public static readonly uint Value 
+        public static readonly ulong Value 
             = Nat.nat<K1>().value;
         
         public static readonly byte[] Digits 
             = zcore.digits(Value);
         
-        public uint value 
+        public ulong value 
             => Value;
 
         public TypeNat rep
@@ -76,14 +76,14 @@ namespace Z0
     {
         public static readonly NatSeq<K1,K2> Rep = default;
 
-        public static readonly uint Value 
+        public static readonly ulong Value 
             = Nat.nat<K1>().value * 10
             + Nat.nat<K2>().value;
 
         public static readonly byte[] Digits 
             = zcore.digits(Value);
 
-        public uint value 
+        public ulong value 
             => Value;
 
         public TypeNat rep
@@ -115,7 +115,7 @@ namespace Z0
     {
         public static readonly NatSeq<K1,K2,K3> Rep = default;
         
-        public static readonly uint Value 
+        public static readonly ulong Value 
             = Nat.nat<K1>().value * 100
             + Nat.nat<K2>().value * 10
             + Nat.nat<K3>().value;
@@ -123,7 +123,7 @@ namespace Z0
         public static readonly byte[] Digits 
             = zcore.digits(Value);
 
-        public uint value 
+        public ulong value 
             => Value;
 
         public byte[] digits() 
@@ -157,7 +157,7 @@ namespace Z0
     {
         public static readonly NatSeq<K1,K2,K3,K4> Rep = default;
 
-        public static readonly uint Value 
+        public static readonly ulong Value 
             = Nat.nat<K1>().value * 1000
             + Nat.nat<K2>().value * 100
             + Nat.nat<K3>().value * 10
@@ -166,7 +166,7 @@ namespace Z0
         public static readonly byte[] Digits 
             = zcore.digits(Value);
 
-        public uint value 
+        public ulong value 
             => Value;
 
         public TypeNat rep
@@ -202,7 +202,7 @@ namespace Z0
     {
         public static readonly NatSeq<K1,K2,K3,K4,K5> Rep = default;
 
-        public static readonly uint Value 
+        public static readonly ulong Value 
             = Nat.nat<K1>().value * 10000
             + Nat.nat<K2>().value * 1000
             + Nat.nat<K3>().value * 100
@@ -212,7 +212,7 @@ namespace Z0
         public static readonly byte[] Digits 
             = zcore.digits(Value);
 
-        public uint value 
+        public ulong value 
             => Value;
 
         public TypeNat rep
@@ -244,7 +244,7 @@ namespace Z0
     {
         public static readonly NatSeq<K1,K2,K3,K4,K5,K6> Rep = default;
 
-        public static readonly uint Value 
+        public static readonly ulong Value 
             = Nat.nat<K1>().value * 100000
             + Nat.nat<K2>().value * 10000
             + Nat.nat<K3>().value * 1000
@@ -255,7 +255,7 @@ namespace Z0
         public static readonly byte[] Digits 
             = zcore.digits(Value);
     
-        public uint value 
+        public ulong value 
             => Value;
 
         public TypeNat rep
@@ -295,7 +295,7 @@ namespace Z0
     {
         public static readonly NatSeq<K1,K2,K3,K4,K5,K6,K7> Rep = default;
 
-        public static readonly uint Value 
+        public static readonly ulong Value 
             = Nat.nat<K1>().value * 1000000
             + Nat.nat<K2>().value * 100000
             + Nat.nat<K3>().value * 10000
@@ -307,7 +307,7 @@ namespace Z0
         public static readonly byte[] Digits 
             = zcore.digits(Value);
 
-        public uint value 
+        public ulong value 
             => Value;
 
         public TypeNat rep
@@ -349,7 +349,7 @@ namespace Z0
     {
         public static readonly NatSeq<K1,K2,K3,K4,K5,K6,K7,K8> Rep = default;
 
-        public static readonly uint Value 
+        public static readonly ulong Value 
             = Nat.nat<K1>().value * 10000000
             + Nat.nat<K2>().value * 1000000
             + Nat.nat<K3>().value * 100000
@@ -362,7 +362,7 @@ namespace Z0
         public static readonly byte[] Digits 
             = zcore.digits(Value);
 
-        public uint value 
+        public ulong value 
             => Value;
 
         public TypeNat rep
@@ -406,7 +406,7 @@ namespace Z0
     {
         public static readonly NatSeq<K1,K2,K3,K4,K5,K6,K7,K8,K9> Rep = default;
 
-        public static readonly uint Value 
+        public static readonly ulong Value 
             = Nat.nat<K1>().value * 100000000
             + Nat.nat<K2>().value * 10000000
             + Nat.nat<K3>().value * 1000000
@@ -420,7 +420,7 @@ namespace Z0
         public static readonly byte[] Digits 
             = zcore.digits(Value);
 
-        public uint value 
+        public ulong value 
             => Value;
 
         public TypeNat rep

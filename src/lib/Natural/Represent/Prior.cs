@@ -24,7 +24,7 @@ namespace Z0
 
         public static readonly Prior<K> Rep = default;
 
-        public static readonly uint Value
+        public static readonly ulong Value
             = k.value - 1u;
 
         static readonly string description = $"--{k} = {Value}";
@@ -41,7 +41,7 @@ namespace Z0
         public NatSeq seq
             => Seq;
 
-        public uint value 
+        public ulong value 
             => Value;
 
 

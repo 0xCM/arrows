@@ -13,7 +13,7 @@ namespace Z0
     /// <summary>
     /// Represents the set that contains all potential values of a specified type
     /// </summary>
-    public readonly struct TotalSet<T> : Structures.Set<TotalSet<T>,T>
+    public readonly struct TotalSet<T> : Contain.Set<TotalSet<T>,T>
         where T : IEquatable<T>
     {
         public static readonly TotalSet<T> Inhabitant = default;
@@ -75,7 +75,7 @@ namespace Z0
     /// <summary>
     /// Represents the set that contains no values of a specified type
     /// </summary>
-    public readonly struct EmptySet<T> : Structures.Set<EmptySet<T>, T>
+    public readonly struct EmptySet<T> : Contain.Set<EmptySet<T>, T>
         where T : IEquatable<T>
     {
         public static readonly EmptySet<T> Inhabitant = default;
@@ -118,7 +118,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of natural numbers
     /// </summary>
-    public readonly struct N : Structures.DiscreteSet<N,bigint>
+    public readonly struct N : Contain.DiscreteSet<N,bigint>
     {
         internal static readonly N Inhabitant = default;
 
@@ -129,8 +129,7 @@ namespace Z0
         {
             var p = new bigint(0);
             for(;;)               
-                yield return p++;
-    
+                yield return p++;    
         }
 
         public bool empty 
@@ -144,6 +143,9 @@ namespace Z0
 
         public N inhabitant 
             => Inhabitant;
+
+        public IEnumerable<bigint> content 
+            => peano();
 
         public Seq<bigint> members()
             => peano().ToSeq();
@@ -170,7 +172,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of integers
     /// </summary>
-    public readonly struct Z : Contain.DiscreteSet<Z>, Operative.GroupA<bigint>
+    public readonly struct Z : Contain.DiscreteSet<Z,bigint>, Operative.GroupA<bigint>
     {
         internal static readonly Z Inhabitant = default;
     
@@ -189,7 +191,7 @@ namespace Z0
         public bigint zero 
             => bigint.Zero;
 
-        public IEnumerable<bigint> integers()
+        IEnumerable<bigint> integers()
         {
             var p = new bigint(0);
             var n = new bigint(0);
@@ -200,9 +202,9 @@ namespace Z0
             }
         }
 
-        public Seq<bigint> members()
-            => integers().ToSeq();
-
+        public IEnumerable<bigint> content 
+            => integers();
+        
         public bigint add(bigint lhs, bigint rhs)
             => lhs + rhs;
 

@@ -84,7 +84,7 @@ namespace Z0
 
         public NatSeq seq => Seq;
 
-        public uint value => Seq.value;
+        public ulong value => Seq.value;
 
         public byte[] digits() => Seq.digits();
 
@@ -104,7 +104,7 @@ namespace Z0
 
         public NatSeq seq => Seq;
 
-        public uint value => Seq.value;
+        public ulong value => Seq.value;
 
         public byte[] digits() => Seq.digits();
 
@@ -124,7 +124,7 @@ namespace Z0
         
         public NatSeq seq => Seq;
         
-        public uint value => Seq.value;
+        public ulong value => Seq.value;
         
         public byte[] digits() => Seq.digits();
         
@@ -143,7 +143,7 @@ namespace Z0
         
         public NatSeq seq => Seq;
         
-        public uint value => Seq.value;
+        public ulong value => Seq.value;
         
         public byte[] digits() => Seq.digits();
         
@@ -163,7 +163,7 @@ namespace Z0
 
         public NatSeq seq => Seq.seq;
 
-        public uint value => Seq.value;
+        public ulong value => Seq.value;
 
         public byte[] digits() => Seq.digits();
 
@@ -183,7 +183,7 @@ namespace Z0
 
         public NatSeq seq => Seq.seq;
 
-        public uint value => Seq.value;
+        public ulong value => Seq.value;
 
         public byte[] digits() => Seq.digits();
 

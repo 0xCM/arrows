@@ -148,6 +148,7 @@ namespace Z0
 
         readonly T data;
 
+
         public bool infinite 
             => false;
 
@@ -159,6 +160,10 @@ namespace Z0
 
         public real<T> one 
             => Ops.zero;
+
+        [MethodImpl(Inline)]
+        public T unwrap()
+            => data;
 
         [MethodImpl(Inline)]
         public real<Y> convert<Y>()    
@@ -332,9 +337,6 @@ namespace Z0
         public BitString bitstring()
             => Ops.bitstring(data);
 
-        [MethodImpl(Inline)]
-        public T unwrap()
-            => data;
 
         public override bool Equals(object rhs)
             => data.Equals(rhs);

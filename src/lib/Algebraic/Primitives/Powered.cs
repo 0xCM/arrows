@@ -27,15 +27,14 @@ namespace Z0
         public interface Powered<B,E>
             where B : Powered<B,E>, new()
         {
+            B pow(int exp);
             
         }
 
-        public interface Powered<S> : Powered<S, int>, Equatable<S>
+        public interface Powered<S> : Powered<S, int>
             where S : Powered<S>, new()
         {
-            S pow(int exp);
         }
-
 
     }
 

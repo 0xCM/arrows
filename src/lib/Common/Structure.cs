@@ -11,6 +11,12 @@ namespace Z0
     using static zcore;
 
     
+    public interface Wrapped<T>
+
+    {
+        T unwrap();
+    }
+
     /// <summary>
     /// Identifies a typeclass instance
     /// </summary>

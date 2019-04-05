@@ -59,7 +59,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface Integer<S,T> : Integer<S>
+        public interface Integer<S,T> : Integer<S>, Wrapped<T>
             where S : Integer<S,T>, new() { }
 
         

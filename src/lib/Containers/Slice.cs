@@ -39,9 +39,7 @@ namespace Z0
     /// Encapsulates a linear data segment with length determined at runtime
     /// </summary>
     public readonly struct Slice<T> : Structures.Slice<Slice<T>, T>
-        where T : Equatable<T>, new()        
     {                    
-        static readonly Equatable<T> Equatable = new T();
         
         [MethodImpl(Inline)]   
         public static Slice<T> operator + (Slice<T> lhs, Slice<T> rhs)
@@ -147,7 +145,7 @@ namespace Z0
                 return false;
             for(var i = 0; i<length; i++)
             {
-                if(lhs[i].neq(rhs[i]))
+                if(lhs[i].Equals(rhs[i]))
                     return false;
             }
             return true;            
@@ -194,7 +192,7 @@ namespace Z0
     /// </summary>
     public readonly struct Slice<N,T> : Structures.Slice<Slice<N,T>,T>
         where N : TypeNat, new()
-        where T : Equatable<T>, new()        
+        //where T : Equatable<T>, new()        
     {                    
         
         /// <summary>
@@ -205,7 +203,7 @@ namespace Z0
         public static implicit operator Slice<N,T>(T[] src)
             => new Slice<N,T>(src);
         
-        static readonly uint Length = natval<N>();
+        static readonly uint Length = (uint)natval<N>();
 
         public Slice<T> data {get;}
 
@@ -216,24 +214,30 @@ namespace Z0
         public Slice(params T[] src)
         {
              this.data = src;
-             this.length = Prove.claim<N>(data.length);
+             this.length = (uint)Prove.claim<N>(data.length);
         }
 
         [MethodImpl(Inline)]
         public Slice(IReadOnlyList<T> src)
         {
             this.data = new Slice<T>(src);
-            this.length = Prove.claim<N>(data.length);
+            this.length = (uint)Prove.claim<N>(data.length);
         }
 
         [MethodImpl(Inline)]
         public Slice(IEnumerable<T> src)
         {
             this.data = src.Take((int)natval<N>()).ToArray();
-            this.length = Prove.claim<N>(data.length);
+            this.length = (uint)Prove.claim<N>(data.length);
         }
 
         public T this[int i] 
+            => data[i];
+
+        public T this[ulong i] 
+            => data[i];
+
+        public T this[uint i] 
             => data[i];
 
         /// <summary>
@@ -276,13 +280,10 @@ namespace Z0
 
         public IEnumerator<T> GetEnumerator()
             => data.GetEnumerator();
-
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
  
         public override string ToString()
             => format();
-
     }        
-
 }

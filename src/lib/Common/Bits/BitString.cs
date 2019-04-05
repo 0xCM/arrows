@@ -47,12 +47,16 @@ namespace Z0
         public static readonly BitString Empty = default;
 
         [MethodImpl(Inline)]   
+        public static BitString define(IEnumerable<bit> src)
+            => new BitString(src);
+
+        [MethodImpl(Inline)]   
         public static BitString defineG<T>(intg<T> src)
         {
             var len = (int)src.bitsize;
             var bits = new bit[len];
             for(var i = 0; i < len; i++)
-                bits[i] = Bits.test(src,i);
+                bits[i] = src.testbit(i);
             return new BitString(bits);
         }
 
@@ -128,6 +132,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitString(Slice<bit> src)
             => this.bits = src;
+
+        [MethodImpl(Inline)]
+        public BitString(IEnumerable<bit> src)
+            => this.bits = slice(src);
 
         [MethodImpl(Inline)]
         static Slice<bit> parse(string src)

@@ -120,15 +120,23 @@ namespace Z0
         }
 
         public floatg<T> epsilon 
-            => Epsilon;
+        {
+            [MethodImpl(Inline)]
+            get{return Epsilon;}
+        }
+        public floatg<T> bitsize 
+        {
+            [MethodImpl(Inline)]
+            get{return BitSize;}
+        }
 
         [MethodImpl(Inline)]
         public floatg (T x) 
             => data = x;
 
-        public floatg<T> bitsize 
-            => BitSize;
-
+        [MethodImpl(Inline)]
+        public T unwrap()
+            => data;
 
         [MethodImpl(Inline)]
         public floatg<T> add(floatg<T> rhs)

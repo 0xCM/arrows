@@ -15,7 +15,7 @@ namespace Z0
     public readonly struct Matrix<M, N, T>  : Equatable<Matrix<M,N,T>>
             where M : TypeNat, new()
             where N : TypeNat, new()
-            where T : Structures.Semiring<T>, new()
+            //where T : Structures.Semiring<T>, new()
     {
         static readonly Dim<M,N> Dim = default;        
         
@@ -42,14 +42,14 @@ namespace Z0
         public Matrix(params T[] src)
         {
             data = src;
-            demand(Dim.i * Dim.j == data.Length);
+            demand(Dim.i * Dim.j == (ulong)data.Length);
         }
 
         [MethodImpl(Inline)]
         public Matrix(IEnumerable<T> src)
         {
             data = src.ToArray();
-            demand(Dim.i * Dim.j == data.Length);
+            demand(Dim.i * Dim.j == (ulong)data.Length);
         }
 
         [MethodImpl(Inline)]   

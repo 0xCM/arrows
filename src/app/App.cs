@@ -207,7 +207,7 @@ namespace App04
             var v1 = range<long>(1, n).ToArray();
             var v2 = range<long>(1, n).ToArray();
             var v3 = range<long>(1, n).ToArray();
-            var v4 = array<intg<long>>(n);
+            var v4 = array<long>(n);
             var v1u = v1.Unwrap();
             var v2u = v2.Unwrap();
             var v3u = v3.Unwrap();
@@ -224,28 +224,28 @@ namespace App04
 
         }
 
-        static void Sum(intg<long> n)
+        static void Sum(long n)
         {
             print($"intg<long> Sum(n = {n})");
             long count = n;
             var v1 = range<long>(1, n).ToArray();
             var v2 = range<long>(1, n).ToArray();
             var v3 = range<long>(1, n).ToArray();
-            var v4 = array<intg<long>>(n);
+            var v4 = array<long>(n);
             var sw = stopwatch();
             for(int i=0; i < count; i++)
                 v4[i] = v1[i]+v2[i]+v3[i];
             print($"intg<long> Sum(finished): {elapsed(sw)}ms");
         }
 
-        static void Sum(long n)
+        static void Sum(real<long> n)
         {
             print($"long Sum(n = {n})");
             long count = n;
-            var v1 = range<long>(1, n).Unwrap().Freeze();
-            var v2 = range<long>(1, n).Unwrap().Freeze();
-            var v3 = range<long>(1, n).Unwrap().Freeze();
-            var v4 = array<long>(n);
+            var v1 = reals<long>(1, n).Unwrap().Freeze();
+            var v2 = reals<long>(1, n).Unwrap().Freeze();
+            var v3 = reals<long>(1, n).Unwrap().Freeze();
+            var v4 = array<real<long>>(n);
             var sw = stopwatch();
             for(int i=0; i < count; i++)
                 v4[i] = v1[i]+v2[i]+v3[i];
@@ -260,7 +260,7 @@ namespace App04
                 var v1 = range<long>(1, vecLen).ToArray();
                 var v2 = range<long>(1, vecLen).ToArray();
                 var v3 = range<long>(1, vecLen).ToArray();
-                var v4 = array<intg<long>>(vecLen);
+                var v4 = array<long>(vecLen);
                 var sw = stopwatch();
                 for(int i=0; i < vecLen; i++)
                     v4[i] = v1[i]+v2[i]+v3[i] + v1[i]*v2[i]*v3[i];
@@ -485,15 +485,15 @@ namespace App04
 
         public static void BitVectors()
         {
-            var bv16fixed = BitVector.define(u(0b1010000001010110));
-            var bv16var = BitVector.define(bigint(0b1010000001010110));
+            var bv16fixed = BitVector.define(Nats.N16, u(0b1010000001010110));
+            var bv16var = BitVector.define(Nats.N16, bigint(0b1010000001010110));
 
             print($"bv16var  : bitstring={bv16var}, bitcount={bv16var.length}");
             print($"bv16fixed: bitstring={bv16fixed}, bitcount={bv16fixed.length}");
 
 
-            var bv32fixed = BitVector.define(u(0b00100000010101101010000001010110));
-            var bv32var = BitVector.define(bigint(0b00100000010101101010000001010110));
+            var bv32fixed = BitVector.define(Nats.N32, u(0b00100000010101101010000001010110));
+            var bv32var = BitVector.define(Nats.N32, bigint(0b00100000010101101010000001010110));
 
             print($"bv32var  : bitstring={bv32var}, bitcount={bv32var.length}");
             print($"bv32fixed: bitstring={bv32fixed}, bitcount={bv32fixed.length}");
@@ -523,13 +523,33 @@ namespace App04
         {     
             SysInit.initialize<Program>();
 
+            Func<byte,int,bool> t1 = (x,i) => Bits.xtest<byte>(x, i);
+            Func<sbyte,int,bool> t2 = (x,i) => Bits.test(x, i);
+            Func<sbyte,int,bool> t3 = (x,i) => Bits.xtest<sbyte>(x, i);
+            Func<byte,int,bool> t4 = (x,i) => Bits.test(x, i);
 
+            byte b1 = 0b110010;
+            var b1Bits = slice(t4(b1,5), t4(b1,4), t4(b1,3),t4(b1,2), t4(b1,1), t4(b1,0));
+            var b1Bits2 = slice(Bit.read(b1,5), Bit.read(b1,4), Bit.read(b1,3),Bit.read(b1,2), Bit.read(b1,1), Bit.read(b1,0));
+            var b1BitString = b1Bits.ToBitString();
+            //print($"b1: value - {b1}, bits = {b1Bits2.ToBitString()}");
 
-            // print(BitVector.parse<byte>("0b11000"));
-            // print(BitVector.parse<uint>("0b11100011001"));
+            sbyte b2 = 0b110010;
+            var b2Bits = slice(t2(b2,5), t2(b2,4), t2(b2,3), t2(b2,2), t2(b2,1), t2(b2,0));
+            var b2BitString = b2Bits.ToBitString();
+            //print($"b2: value - {b2}, bits = {b2BitString}");
             
-
-            TestRunner.RunTests();
+            var v8 = BitVector.parse(Nats.N8,"0b00110010");
+            var v16 = BitVector.parse(Nats.N16,"0b0011001000110010");
+            var v32 = BitVector.parse(Nats.N32,"0b00110010001100100011001000110010");
+            var v64 = BitVector.parse(Nats.N64,"0b0011001000110010001100100011001000110010001100100011001000110010");
+             print($"v8: bits - {v8}, value - {v8.unwrap()}");
+             print($"v16: bits - {v16}, value - {v16.unwrap()}");
+             print($"v32: bits - {v32}, value - {v32.unwrap()}");
+             print($"v64: bits - {v64}, value - {v64.unwrap()}");
+            
+            
+            //TestRunner.RunTests();
             
         }
     }

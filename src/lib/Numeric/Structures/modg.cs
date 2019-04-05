@@ -17,8 +17,7 @@ namespace Z0
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct modg<N, T> : Structures.ModN<N, modg<N, T>, T>
-        where T : IConvertible
+    public readonly struct modg<N, T> : Structures.ModN<N, modg<N, T>, T>, Wrapped<T>
         where N : TypeNat, new()
     {
 
@@ -56,6 +55,10 @@ namespace Z0
 
         IEnumerable<T> members 
             => Ops.members;
+
+        [MethodImpl(Inline)]
+        public T unwrap()
+            => data;
 
         public modg<N, T> zero 
             => new modg<N,T>(Ops.zero);

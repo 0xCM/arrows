@@ -13,22 +13,45 @@ namespace Z0
 
     partial class xcore
     {
+        /// <summary>
+        /// Constructs a semi-sequence from a stream
+        /// </summary>
+        /// <param name="src">The element source</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static SemiSeq<T> ToSemiSeq<T>(this IEnumerable<T> src)
+            where T : Structures.Semigroup<T>, new()
+                => semiseq(src);
+
+        /// <summary>
+        /// Constructs a semi-sequence from a parameter array
+        /// </summary>
+        /// <param name="src">The element source</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static SemiSeq<T> ToSemiSeq<T>(this T[] src)
+            where T : Structures.Semigroup<T>, new()
+                => semiseq(src);
+
         [MethodImpl(Inline)]
         public static Slice<N,T> NatSlice<N,T>(this Z0.TypeNat<N> n, IEnumerable<T> src)
             where N : TypeNat, new()
-            where T : Equatable<T>, new()
                 => new Slice<N, T>(src);
 
         [MethodImpl(Inline)]
         public static Slice<N,T> NatSlice<N,T>(this Z0.TypeNat<N> n, params T[] src)
             where N : TypeNat, new()
-            where T : Equatable<T>, new()
                 => new Slice<N, T>(src);
 
+        /// <summary>
+        /// Constructs a vector from the components of a slice
+        /// </summary>
+        /// <param name="src">The component source</param>
+        /// <typeparam name="N">The natural lenth type</typeparam>
+        /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N,T> ToVector<N,T>(this Slice<N,T> src)
             where N : TypeNat, new()
-            where T : Equatable<T>, new()
                 => vector<N,T>(src.data);
 
         /// <summary>
@@ -41,7 +64,7 @@ namespace Z0
                 => src.ToReadOnlyList();
 
         /// <summary>
-        /// Constructs a slice from a supplied sequence
+        /// Constructs a slice from a sequence
         /// </summary>
         /// <param name="src">The source sequence</param>
         /// <typeparam name="T">The item type</typeparam>
@@ -51,7 +74,7 @@ namespace Z0
                 => new Slice<T>(src);
 
         /// <summary>
-        /// Constructs a slice with natural length from a sequence of elements
+        /// Constructs a slice with natural length from a sequence
         /// </summary>
         /// <param name="src">The source sequence</param>
         /// <typeparam name="T">The item type</typeparam>
@@ -62,7 +85,6 @@ namespace Z0
             where T : Equatable<T>, new()
                 => Z0.Slice.define<N,T>(src);
 
-
         /// <summary>
         /// Creates a transformed array
         /// </summary>
@@ -70,7 +92,6 @@ namespace Z0
         /// <typeparam name="T">The target item type</typeparam>
         /// <param name="src">The source sequence</param>
         /// <param name="transform">The transformation function</param>
-        /// <returns></returns>
         public static T[] ToArray<S, T>(this IEnumerable<S> src, Func<S, T> transform)
             => src.Select(transform).ToArray();
 
@@ -97,6 +118,17 @@ namespace Z0
         public static IReadOnlyList<T> Segment<T>(this T[] src, uint start, uint len)
             => new ArraySegment<T>(src, (int)start, (int)len);
 
+        /// <summary>
+        /// Defines a window over a 1-d array beginning at a specified index 
+        /// for a specified length
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <param name="start">The 0-based starting index</param>
+        /// <param name="len">The length of the segment</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<T> Segment<T>(this T[] src, ulong start, ulong len)
+            => new ArraySegment<T>(src, (int)start, (int)len);
 
         /// <summary>
         /// Reifies a Seq[T] value from an enumerable
@@ -105,10 +137,9 @@ namespace Z0
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
         public static Seq<T> ToSeq<T>(this IEnumerable<T> src)
-            where T : Structure<T>, new()
                 => Seq.define(src);
     
-            /// <summary>
+        /// <summary>
         /// Reifies an enumerable as a finite sequence
         /// </summary>
         /// <param name="src">The source sequence</param>
@@ -117,7 +148,5 @@ namespace Z0
         public static FiniteSeq<T> ToFiniteSeq<T>(this IEnumerable<T> src)
             where T : Structure<T>, new()
                 => Seq.finite(src);
-
-
     }
 }    

@@ -43,6 +43,15 @@ public static partial class zcore
     public static uint pow(uint @base, uint exp)
         => fold(repeat(@base, exp), (x,y) => x*y);
 
+    /// <summary>
+    /// Raises a baise to a power
+    /// </summary>
+    /// <param name="@base">The base value</param>
+    /// <param name="exp">The exponent value</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static ulong pow(ulong @base, ulong exp)
+        => fold(repeat(@base, exp), (x,y) => x*y);
 
     /// <summary>
     /// Constructs a pair enumerator from two distict enumerables

@@ -90,6 +90,20 @@ namespace Z0
         public static ulong mul(int exp, ulong factor)
             => pow(exp)*factor;
 
+        /// <summary>
+        /// Computes 2^i * rhs
+        /// </summary>
+        /// <param name="exp">The exponent</param>
+        public static uint mul(int exp, uint factor)
+            => (uint)pow(exp)*factor;
+
+        /// <summary>
+        /// Computes 2^i * rhs
+        /// </summary>
+        /// <param name="exp">The exponent</param>
+        public static int mul(int exp, int factor)
+            => (int)pow(exp)*factor;
+
         public static intg<T> mul<T>(int exp, intg<T> factor)
             => 2.ToIntG<T>().pow(exp) * factor;
 

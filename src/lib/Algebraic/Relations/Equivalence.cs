@@ -36,7 +36,7 @@ namespace Z0
         /// an equivalence relation
         /// </summary>
         /// <typeparam name="T">The classified type</typeparam>
-        public interface EquivalenceClass<S,T> : EquivalenceClass<T>, NonempySet<S>
+        public interface EquivalenceClass<S,T> : EquivalenceClass<T>, Contain.NonempySet<S>
             where S : EquivalenceClass<S,T>, new()
         {
             
@@ -47,7 +47,7 @@ namespace Z0
         /// with enumerable content
         /// </summary>
         /// <typeparam name="T">The content type</typeparam>
-        public interface DiscreteEqivalenceClass<S,T> : EquivalenceClass<S,T>, DiscreteSet<S,T> 
+        public interface DiscreteEqivalenceClass<S,T> : EquivalenceClass<S,T>, Contain.DiscreteSet<S,T> 
             where S : DiscreteEqivalenceClass<S,T>, new() { }
 
         /// <summary>
@@ -98,15 +98,18 @@ namespace Z0
 
             public int count 
                 => membership.count;
-        
+
+            public IEnumerable<T> content 
+                => membership.content;
+
             public bool member(T candidate)
                 => equivalence.related(representative, candidate);
 
             public bool member(object candidate)
                 => candidate is T ? member((T)candidate) : false;
 
-            public Seq<T> members()
-                => membership.members();
+            public IEnumerable<T> members()
+                => membership.content;
 
             public bool eq(FiniteEquivalenceClass<T> lhs, FiniteEquivalenceClass<T> rhs)
                 => lhs.membership.Equals(rhs.membership);

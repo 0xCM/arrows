@@ -16,7 +16,6 @@ namespace Z0
     {        
         [MethodImpl(Inline)]
         public static Slice<T> define<T>(params T[] data)
-            where T : Equatable<T>, new()
                 => new Slice<T>(data);
 
         [MethodImpl(Inline)]
@@ -26,24 +25,20 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Slice<T> define<T>(IReadOnlyList<T> data)
-            where T : Equatable<T>, new()
                 => new Slice<T>(data);
 
         [MethodImpl(Inline)]
         public static Slice<N,T> define<N,T>(params T[] data)
             where N : TypeNat, new() 
-            where T : Equatable<T>, new()
               => new Slice<N,T>(data);
 
         [MethodImpl(Inline)]
         public static Slice<N,T> define<N,T>(IEnumerable<T> data)
             where N : TypeNat, new() 
-            where T : Equatable<T>, new()
             => new Slice<N,T>(data);
 
         [MethodImpl(Inline)]
         public static Slice<T> concat<T>(Slice<T> s1, Slice<T> s2)
-            where T : Equatable<T>, new()
             => s1 + s2;
 
         /// <summary>
@@ -55,8 +50,7 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]
         public static Slice<T> define<T>(T value, uint count)
-            where T : Equatable<T>, new()
-                => new Slice<T>(repeat(value,count));
+            => new Slice<T>(repeat(value,count));
 
         /// <summary>
         /// Calculates the component-wise sum of two slices 
@@ -86,7 +80,7 @@ namespace Z0
         /// <param name="s1">The first slice</param>
         [MethodImpl(Inline)]
         public static Slice<T> pow<T>(Slice<T> s1, int exp)
-            where T : Structures.Powered<T>, new()     
+            where T : Structures.Powered<T>, Equatable<T>, new()     
                 => map(s1, x => x.pow(exp));
 
 
@@ -133,8 +127,8 @@ namespace Z0
             where U : Operative.Semiring<U>, Equatable<U>, new()     
         {
             var len = natval<N>();
-            var result = array<U>(len);
-            for(var i=0; i< len; i++)
+            var result = array<U>((uint)len);
+            for(var i=0UL; i< len; i++)
                 result[i] = f(s1[i], s2[i]);
             return slice<N,U>(result);
         }
@@ -172,6 +166,5 @@ namespace Z0
                 where N : Z0.TypeNat, new()
                 where T : Operative.Semiring<T>, Equatable<T>, new()      
                     => new Slice<N,T>(apply(s1,s2,semiring<T>().mul));
-
     } 
 }

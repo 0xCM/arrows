@@ -15,7 +15,6 @@ namespace Z0
 
     partial class Prove
     {
-
         /// <summary>
         /// Attempts to prove that the k:K => src.length = k
         /// Registers success by returning src
@@ -27,7 +26,8 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static IReadOnlyList<T> length<K,T>(IReadOnlyList<T> src)
             where K : TypeNat, new()
-                => natval<K>() == src.Count ? src : failure<K,IReadOnlyList<T>>(nameof(length), src);
+                => natval<K>() == (ulong)src.Count 
+                ? src : failure<K,IReadOnlyList<T>>(nameof(length), src);
 
         /// <summary>
         /// Attempts to prove that the k:K => src.length = k
@@ -40,7 +40,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static IReadOnlyList<T> length<K,T>(K k, IReadOnlyList<T> src)
             where K : TypeNat, new()
-                => k.value == src.Count ? src : failure<K,IReadOnlyList<T>>(nameof(length), src);
+                => k.value == (ulong)src.Count ? src : failure<K,IReadOnlyList<T>>(nameof(length), src);
 
         /// <summary>
         /// Attempts to prove that the k:K => src.length = k
@@ -53,7 +53,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static T[] length<K,T>(K k, params T[] src)
             where K : TypeNat, new()
-                => k.value == src.Length ? src : failure<K,T[]>(nameof(length),src); 
+                => k.value == (ulong)src.Length ? src : failure<K,T[]>(nameof(length),src); 
 
         /// <summary>
         /// Attempts to prove that the k:K => src.length = k
@@ -66,8 +66,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static T[] length<K,T>(params T[] src)
             where K : TypeNat, new()
-                => natval<K>() == src.Length ? src : failure<K,T[]>(nameof(length), src); 
-
+                => natval<K>() == (ulong)src.Length ? src : failure<K,T[]>(nameof(length), src); 
     }
 
 }

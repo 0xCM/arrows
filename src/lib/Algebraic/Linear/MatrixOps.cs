@@ -16,7 +16,7 @@ namespace Z0
         public interface MatrixOps<M,N,T>
                 where M : TypeNat, new()
                 where N : TypeNat, new()
-                where T : Structures.Semiring<T>,  new()
+                //where T : Structures.Semiring<T>,  new()
         {
 
             Matrix<M,N,T> zero();
@@ -46,7 +46,6 @@ namespace Z0
             Z0.Slice<M,Vector<M, T>> vectors(Matrix<M, N, T> src);
             
             Z0.Slice<N, Covector<N, T>> covectors(Matrix<M,N,T> src);
-
 
             IEnumerable<Covector<N, T>> rows(Matrix<M, N, T> src);
             
@@ -90,9 +89,9 @@ namespace Z0
     public readonly struct MatrixOps<M,N,T> : Operative.MatrixOps<M,N,T>
             where M : TypeNat, new()
             where N : TypeNat, new()
-            where T : Structures.Semiring<T>, Equatable<T>, new()
+            //where T : Structures.Semiring<T>, Equatable<T>, new()
     {
-        static readonly Operative.Semiring<T> SR =  new Reify.Semiring<T>();
+        static readonly Operative.Semiring<T> SR =  Resolver.semiring<T>();
         static readonly Dim<M,N> Dim = default;
         
         public static readonly MatrixOps<M,N,T> Inhabitant = default;
@@ -105,6 +104,10 @@ namespace Z0
 
         [MethodImpl(Inline)]        
         public T cell(Matrix<M,N,T> src, uint i, uint j)
+            => src.data[Dim.i*i + j];
+
+        [MethodImpl(Inline)]        
+        public T cell(Matrix<M,N,T> src, ulong i, ulong j)
             => src.data[Dim.i*i + j];
 
         [MethodImpl(Inline)]
@@ -124,14 +127,22 @@ namespace Z0
             var n = Dim.i;
             var col = (int)j;
             var v = new T[n];
-            for(var r = 0; r < n; r++)
+            for(var r = 0u; r < n; r++)
                 v[r] = data[r + col];
             return Slice.define<M,T>(data);
         }
 
         [MethodImpl(Inline)]        
+        public Z0.Slice<M,T> col(Matrix<M,N,T> src, ulong j)
+            => col(src,(uint)j);
+
+        [MethodImpl(Inline)]        
         public Vector<M, T> vector(Matrix<M, N, T> src, uint j)
             => col(src,j);
+
+        [MethodImpl(Inline)]        
+        public Vector<M, T> vector(Matrix<M, N, T> src, ulong j)
+            => col(src,(uint)j);
 
 
         [MethodImpl(Inline)]
@@ -166,8 +177,12 @@ namespace Z0
             => row(src, i);
 
         [MethodImpl(Inline)]
+        public Covector<N, T> covector(Matrix<M, N, T> src, ulong i)
+            => row(src, (uint)i);
+
+        [MethodImpl(Inline)]
         public Matrix<M, N, T> add(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
-            => Matrix.define(dim<M,N>(), fuse(lhs.data, rhs.data, (x,y) =>  SR.add(x,y)));
+            => Matrix.define<M,N,T>(fuse(lhs.data, rhs.data, (x,y) =>  SR.add(x,y)));
 
         [MethodImpl(Inline)]
         public bool eq(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
@@ -176,7 +191,7 @@ namespace Z0
             var n = natval<N>();
             for(var i = 0u; i< m; i++)                
                 for(var j = 0u; j < n; j++)
-                    if(lhs[i,j].neq(rhs[i,j]))
+                    if(!lhs[i,j].Equals(rhs[i,j]))
                         return(false);
             return true;
         }

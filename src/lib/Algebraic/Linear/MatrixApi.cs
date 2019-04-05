@@ -11,7 +11,6 @@ namespace Z0
     using static zcore;
     using static Traits;
 
-
     public static class Matrix
     {
         
@@ -20,7 +19,6 @@ namespace Z0
             where M : TypeNat, new()
             where N : TypeNat, new()
             where P : TypeNat, new()
-            where T : Structures.Semiring<T>, new()
         {            
             var m = Prove.claim<M>(rhs.dim().i);
             var p = Prove.claim<P>(rhs.dim().j);
@@ -44,7 +42,6 @@ namespace Z0
         public static Matrix<M, N, T> define<M,N,T>(Dim<M,N> dim, IEnumerable<T> src)
             where M : TypeNat, new()
             where N : TypeNat, new()
-            where T : Structures.Semiring<T>, new()
                 => new Matrix<M,N,T>(src);
 
         /// <summary>
@@ -59,7 +56,6 @@ namespace Z0
         public static Matrix<M, N, T> define<M,N,T>(params T[] src)
             where M : TypeNat, new()
             where N : TypeNat, new()
-            where T : Structures.Semiring<T>, new()
                 => new Matrix<M,N,T>(src);
 
 
@@ -76,9 +72,7 @@ namespace Z0
         public static Matrix<M, N, T> define<M,N,T>(Dim<M,N> dim, params T[] src)
             where M : TypeNat, new()
             where N : TypeNat, new()
-            where T : Structures.Semiring<T>, new()
                 => new Matrix<M,N,T>(src);
-
 
         /// <summary>
         /// Defines a matrix from a sequence whose elements are in row-major form
@@ -92,14 +86,12 @@ namespace Z0
         public static Matrix<M, N, T> define<M,N,T>(IEnumerable<T> src)
             where M : TypeNat, new()
             where N : TypeNat, new()
-            where T : Structures.Semiring<T>, new()
                 => new Matrix<M,N,T>(src);
 
         [MethodImpl(Inline)]
         public static Z0.MatrixOps<M,N,T> ops<M,N,T>()
             where M : TypeNat, new()
             where N : TypeNat, new()
-            where T : Structures.Semiring<T>, new()
                 => Z0.MatrixOps<M,N,T>.Inhabitant;
 
 

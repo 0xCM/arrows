@@ -85,6 +85,13 @@ namespace Z0
             this.Actual = string.Empty;
         }
 
+        public DemandException(string constraint, (ulong x, ulong y) relation )
+        {
+            this.Constraint = constraint;
+            this.Expect = $"({relation.x}, {relation.y})";            
+            this.Actual = string.Empty;
+        }
+
         public override string Message 
             => Actual != string.Empty 
              ? $"Natural number {Constraint} failed. Expected: {Expect} | Actual: {Actual}"

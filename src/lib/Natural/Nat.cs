@@ -142,7 +142,7 @@ namespace Z0
         /// <typeparam name="K1">The first nat type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         [MethodImpl(Inline)]   
-        public static (uint k1, uint k2) pair<K1,K2>()
+        public static (ulong k1, ulong k2) pair<K1,K2>()
             where K2 : TypeNat, new()
             where K1 : TypeNat, new()
                 => (natval<K1>(), natval<K2>());            
@@ -154,7 +154,7 @@ namespace Z0
         /// <typeparam name="K2">The second type</typeparam>
         /// <typeparam name="K3">The thrid type</typeparam>
         [MethodImpl(Inline)]   
-        public static (uint k1, uint k2, uint k3) triple<K1,K2,K3>()
+        public static (ulong k1, ulong k2, ulong k3) triple<K1,K2,K3>()
             where K2 : TypeNat, new()
             where K1 : TypeNat, new()
             where K3 : TypeNat, new()
@@ -363,6 +363,5 @@ namespace Z0
             where K5 : NatPrimitive<K5>, new()
             where K6 : NatPrimitive<K6>, new()
                 => default;
-
     }
 }

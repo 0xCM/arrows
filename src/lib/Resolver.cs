@@ -96,6 +96,14 @@ namespace Z0
             => resolve<T, Operative.OrderedNumber<T>>();
 
         /// <summary>
+        /// Resolves a reification of the OrderedNumber[T] trait
+        /// </summary>
+        /// <typeparam name="T">The operand type</typeparam>
+        [MethodImpl(Inline)]
+        public static Operative.Semiring<T> semiring<T>()
+            => resolve<T, Operative.Semiring<T>>();
+
+        /// <summary>
         /// Resolves a reification of the Real[T] trait
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>

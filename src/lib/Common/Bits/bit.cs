@@ -10,20 +10,53 @@ namespace Z0
 
     using static zcore;
 
-    partial class Structures
+    public interface Bit<S> : IComparable<S>, Equatable<S>, Formattable
+        where S : Bit<S>, new()
     {
-        public interface bit<S> : IComparable<S>, Equatable<S>, Formattable
-            where S : bit<S>, new()
-        {
 
-        }
+    }
+
+    public static class Bit
+    {
+        [MethodImpl(Inline)]
+        public static bit read(byte src, int pos)
+            => Bits.test(src,pos);
+
+        [MethodImpl(Inline)]
+        public static bit read(sbyte src, int pos)
+            => Bits.test(src,pos);
+
+        [MethodImpl(Inline)]
+        public static bit read(short src, int pos)
+            => Bits.test(src,pos);
+
+        [MethodImpl(Inline)]
+        public static bit read(ushort src, int pos)
+            => Bits.test(src,pos);
+
+        [MethodImpl(Inline)]
+        public static bit read(int src, int pos)
+            => Bits.test(src,pos);
+
+        [MethodImpl(Inline)]
+        public static bit read(uint src, int pos)
+            => Bits.test(src,pos);
+
+        [MethodImpl(Inline)]
+        public static bit read(long src, int pos)
+            => Bits.test(src,pos);
+
+        [MethodImpl(Inline)]
+        public static bit read(ulong src, int pos)
+            => Bits.test(src,pos);
+
     }
 
     /// <summary>
     /// Represents a numeric or logical bit
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Boolean_algebra</remarks>
-    public readonly struct bit : Structures.bit<bit>
+    public readonly struct bit : Bit<bit>
     {
 
         public static bit Parse(char c)
@@ -134,7 +167,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public bit(byte value, int pos = 0)        
-            => this.value = Bits.test<byte>(value,pos);
+            => this.value = Bits.test(value,pos);
 
         [MethodImpl(Inline)]
         public int CompareTo(bit rhs)

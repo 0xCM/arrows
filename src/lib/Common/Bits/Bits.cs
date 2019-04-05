@@ -35,6 +35,24 @@ namespace Z0
 
     public static class Bits
     {
+
+        /// <summary>
+        /// Parses the bits from a string representation of a bitstring
+        /// </summary>
+        /// <param name="src">The representation to parse</param>
+        /// <typeparam name="N">The natural length type</typeparam>
+        [MethodImpl(Inline)]
+        public static Slice<N,bit> parse<N>(string src)
+            where N : TypeNat, new()
+        {
+            Prove.claim<N>(src.Length);
+            var digits = new bit[src.Length];
+            for(var i = 0; i< digits.Length; i++)
+                digits[i] = src[i] == '0' ? BinaryDigit.B0 : BinaryDigit.B0;        
+            return digits;
+        }
+
+
         /// <summary>
         /// Tests whether the bit in an specific position is set
         /// </summary>
@@ -43,9 +61,41 @@ namespace Z0
         /// <typeparam name="T">The underlying integral type</typeparam>
         /// <returns>Returns true if the identified bit is set, false otherwise</returns>
         [MethodImpl(Inline)]
-        public static bool test<T>(intg<T> src, int pos)            
+        public static bool xtest<T>(intg<T> src, int pos)            
             => (src & (intg<T>.One << pos)) != intg<T>.Zero;
 
+
+        [MethodImpl(Inline)]
+        public static bool test(byte src, int pos)
+            => (src & (1 << pos)) != 0;
+
+        [MethodImpl(Inline)]
+        public static bool test(sbyte src, int pos)
+            => (src & (1 << pos)) != 0;
+
+        [MethodImpl(Inline)]
+        public static bool test(short src, int pos)
+            => (src & (1 << pos)) != 0;
+
+        [MethodImpl(Inline)]
+        public static bool test(ushort src, int pos)
+            => (src & (1 << pos)) != 0;
+
+        [MethodImpl(Inline)]
+        public static bool test(int src, int pos)
+            => (src & (1 << pos)) != 0;
+
+        [MethodImpl(Inline)]
+        public static bool test(uint src, int pos)
+            => (src & (1u << pos)) != 0u;
+
+        [MethodImpl(Inline)]
+        public static bool test(long src, int pos)
+            => (src & (1L << pos)) != 0L;
+
+        [MethodImpl(Inline)]
+        public static bool test(ulong src, int pos)
+            => (src & (1ul << pos)) != 0ul;
 
         /// <summary>
         /// Determines the binary digit in an integral value at a specified position
@@ -55,7 +105,7 @@ namespace Z0
         /// <typeparam name="T">The underlying integral type</typeparam>
         [MethodImpl(Inline)]
         public static BinaryDigit digit<T>(intg<T> src, int pos)
-            => test(src,pos) switch 
+            => src.testbit(pos) switch 
                 {
                     true => BinaryDigit.B0,
                     false => BinaryDigit.B1
@@ -69,7 +119,7 @@ namespace Z0
         /// <typeparam name="T">The underlying integral type</typeparam>
         [MethodImpl(Inline)]
         public static bit bit<T>(intg<T> src, int pos)
-            => new bit(test(src,pos));
+            => new bit(src.testbit(pos));
 
         /// <summary>
         /// Extracts the high-order bits from a uint to produce a ushort
@@ -184,7 +234,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static short lo(int src)
             => (short)src;
-
 
         /// <summary>
         /// Extracts the highest order byte from a 32-bit signed integer, i.e.,

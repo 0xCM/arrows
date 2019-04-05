@@ -93,9 +93,9 @@ namespace Z0
             public bool member(object candidate)
                 => candidate is T ? member((T)candidate) :false;
 
-            [MethodImpl(Inline)]   
-            public Seq<T> members()
-                => Seq.define<T>(data);
+            
+            public IEnumerable<T> content
+                => data;
 
             /// <summary>
             /// Determines whether the current set is a subset of a specified set.
@@ -182,6 +182,7 @@ namespace Z0
             [MethodImpl(Inline)]   
             public int hash()
                 => data.GetHashCode();
+
         }
     }
 }

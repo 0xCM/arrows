@@ -13,7 +13,7 @@ namespace Z0
 
     public readonly struct Vector<N, T> : IEnumerable<T>, Equatable<Vector<N,T>>, Formattable, Lengthwise
         where N : TypeNat, new()    
-        where T : Equatable<T>, new()    
+        //where T : Equatable<T>, new()    
     {
 
         /// <summary>

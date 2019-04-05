@@ -19,14 +19,12 @@ namespace Z0.Tests
     [DisplayName("c")]
     public class CTests
     {
-        static readonly int DefaultSampleCount = 500;
-
-        static void absTest<T>(int count, T min, T max)
+        static void absTestOld<T>(int count, T min, T max)
+            where T : C.RealNum<T>, new()
         {
             var inputs = Rand.values<T>(count, min, max).Freeze();
             var expect = map(inputs, s => s.abs()).Freeze();
-            var signable = C.signable<T>();
-            var actual = map(inputs, s => signable.abs(s)).Freeze();
+            var actual = map(inputs, s => s.abs()).Freeze();
 
             iter(inputs.Count, i => 
                 require(actual[i] == expect[i], inputs[i], expect[i], actual[i]));
@@ -39,8 +37,7 @@ namespace Z0.Tests
             var src2 = Rand.values<T>(min, max).Where(x => x.neq(x.zero)).Take(count).Freeze();
             var inputs = zip(src1,src2).Freeze();
             var expect = map(inputs, x => x.left.divrem(x.right)).Freeze();
-            var signable = C.signable<T>();
-            var actual = map(inputs, x => signable.divrem(x.left, x.right)).Freeze();
+            var actual = map(inputs, x => x.left.divrem(x.right)).Freeze();
                 
 
             iter(inputs.Count, i => 
@@ -48,72 +45,27 @@ namespace Z0.Tests
                     inputs[i], expect[i], actual[i]));
         }
 
+        public static void absTest<T>(T input, T expect)
+            where T : C.SInt<T>, new()
+        {
+            var actual = input.abs();
+            require(actual.eq(expect), input, expect, actual);
+        }
+
+        public static void divRemTest()
+        {
+            var count = 5000;
+            
+            divRemTest(count, -250000,250000);
+            divRemTest(count, -250000L,250000L);
+            divRemTest(count, 0UL,5000000UL);
+        }
         public static void absTests()
         {
-            absTest(DefaultSampleCount, Int32.MinValue, Int32.MaxValue);
-            absTest(DefaultSampleCount, Int16.MinValue, Int16.MaxValue);
-            absTest(DefaultSampleCount, Int32.MinValue, Int32.MaxValue);
-            absTest(DefaultSampleCount, Int64.MinValue, Int64.MaxValue);
-        }
+            var src = Rand.primal<int>().stream(-250000,250000).Take(500).Freeze();
+            var inputs = C.int32.define(src).Freeze();
+            iter(inputs, x => absTest<C.int32>(x, Math.Abs(x)));            
 
-        public static void divRemTests()
-        {
-            divRemTest(DefaultSampleCount, Int32.MinValue, Int32.MaxValue);
-            divRemTest(DefaultSampleCount, Int16.MinValue, Int16.MaxValue);
-            divRemTest(DefaultSampleCount, Int32.MinValue, Int32.MaxValue);
-            divRemTest(DefaultSampleCount, Int64.MinValue, Int64.MaxValue);
-        }
-
-        const int PerfIter = 5*10*10*10*10*10*2;
-
-        public static void divRemPerfUnwrapped()
-        {
-            var count = PerfIter; 
-            var min = Int32.MinValue;
-            var max = Int32.MaxValue;
-            var src1 = Rand.values<int>(min, max).Take(count).Freeze();
-            var src2 = Rand.values<int>(min, max).Where(x => x.neq(x.zero)).Take(count).Freeze();
-            var inputs = zip(src1,src2).Freeze();
-            var signable = C.signable<int>();
-            var actual = map(inputs, x => signable.divrem(x.left, x.right)).Freeze();
-            tell($"Executed {actual.Count} unwrapped divrem operations");
-
-        }
-
-        public static void divRemPerfWrappedA()
-        {
-            var count = PerfIter; 
-            var min = Int32.MinValue;
-            var max = Int32.MaxValue;
-            var src1 = Rand.values<int>(min, max).Take(count).Freeze();
-            var src2 = Rand.values<int>(min, max).Where(x => x.neq(x.zero)).Take(count).Freeze();
-            var inputs = zip(src1.Select(x => C.num(x)),src2.Select(x => C.num(x))).Freeze();
-            var actual = map(inputs, x => C.Inhabitant.divrem(x.left, x.right)).Freeze();
-            tell($"Executed {actual.Count} wrapped divrem operations");
-        }
-
-        public static void divRemPerfWrappedB()
-        {
-            var count = PerfIter; 
-            var min = Int32.MinValue;
-            var max = Int32.MaxValue;
-            var src1 = Rand.values<int>(min, max).Take(count).Freeze();
-            var src2 = Rand.values<int>(min, max).Where(x => x.neq(x.zero)).Take(count).Freeze();
-            var inputs = zip(src1.Select(x => Z0.int32.define(x)),src2.Select(x => Z0.int32.define(x))).Freeze();            
-            var actual = map(inputs, x => x.left.divrem(x.right)).Freeze();
-            tell($"Executed {actual.Count} wrapped divrem operations");
-        }
-
-        public static void divRemPerfG()
-        {
-            var count = PerfIter; 
-            var min = Int32.MinValue;
-            var max = Int32.MaxValue;
-            var src1 = Rand.values<int>(min, max).Take(count).Freeze();
-            var src2 = Rand.values<int>(min, max).Where(x => x.neq(x.zero)).Take(count).Freeze();
-            var inputs = zip(src1.ToIntG(),src2.ToIntG()).Freeze();            
-            var actual = map(inputs, x => x.left.divrem(x.right)).Freeze();
-            tell($"Executed {actual.Count} wrapped divrem operations");
         }
 
     }

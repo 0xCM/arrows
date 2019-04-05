@@ -70,17 +70,6 @@ namespace Z0
     /// </remarks>
     public partial class C
     {
-        public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
-
-        public static readonly C Inhabitant = new C();
-        
-        static readonly object ops = Inhabitant;
-
-        public static Number<T> number<T>()
-            => (Number<T>)ops;
-
-        public static SignableNumber<T> signable<T>()
-            => (SignableNumber<T>)ops;        
         private C()
         {
 

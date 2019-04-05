@@ -56,7 +56,7 @@ namespace Z0
         public static readonly Pow<B,E> Rep = default;
 
         public static readonly TypeNat[] Operands = {new B(), new E()};            
-        public static readonly uint Value
+        public static readonly ulong Value
             = pow(Nat.nat<B>().value, Nat.nat<E>().value);
             
         public static readonly byte[] Digits 
@@ -71,7 +71,7 @@ namespace Z0
         public NatSeq seq
             => Seq;
 
-        public uint value 
+        public ulong value 
             => Value;
 
         public byte[] digits()

@@ -102,6 +102,10 @@ namespace Z0
         public num(T src)
             => this.data = src;
 
+        [MethodImpl(Inline)]
+        public T unwrap()
+            => data;
+
         readonly T data;
 
         public num<T> zero 

@@ -35,7 +35,7 @@ namespace Z0
         /// Characterizes a structure that supports semigroup additivity
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
-        public interface Additive<S> : Structure<S>
+        public interface Additive<S> 
             where S : Additive<S>, new()
         {
             S add(S rhs);

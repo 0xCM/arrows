@@ -68,9 +68,9 @@ partial class zcore
         if(src != zero && src != one)
         {
             var upper = (src/two).inc();
-            var candidates = range(two, upper);
+            var candidates = range<T>(two, upper);
             foreach(var c in candidates)
-                if(src.mod(c) == zero )
+                if(src % c == zero )
                     yield return c;
         }    
     }
@@ -89,26 +89,56 @@ partial class zcore
     }                
 
     /// <summary>
-    /// Enumerates generic integers inclusively between specified first and last values.
+    /// Enumerates generic reals, with unit spacing, inclusively between specified bounds
     /// If the first value is greater than the last, the range will be constructed
     /// in descending order.
     /// </summary>
-    /// <param name="first">The first integer to yeild</param>
+    /// <param name="first">The first number to yeild</param>
+    /// <param name="last">The last number to yield</param>
+    /// <typeparam name="T">The underlying numeric type</typeparam>
+    public static IEnumerable<real<T>> reals<T>(real<T> first, real<T> last)
+    {
+        var current = first;
+        if(first < last)
+        {
+            while(current<= last)
+            {
+                yield return current++;
+            }                
+        }
+        else
+        {
+            while(current >= last)
+            {
+                yield return current--;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Constructs a contiguous range of integers inclusively between specified bounds
+    /// If the first value is greater than the last, the range will be constructed
+    /// in descending order.
+    /// </summary>
+    /// <param name="first">The first integer to yield</param>
     /// <param name="last">The last integer to yield</param>
-    /// <typeparam name="T">The underlying integral type</typeparam>
-    /// <returns></returns>
+    /// <typeparam name="T">The underlying integer type</typeparam>
     public static IEnumerable<intg<T>> range<T>(intg<T> first, intg<T> last)
     {
         var current = first;
         if(first < last)
         {
-            while(current <= last)
+            while(current<= last)
+            {
                 yield return current++;
+            }                
         }
         else
         {
             while(current >= last)
+            {
                 yield return current--;
+            }
         }
     }
 
@@ -118,10 +148,8 @@ partial class zcore
     /// </summary>
     /// <typeparam name="N">The modulus type</typeparam>
     /// <typeparam name="T">The integral type</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static modg<N,T> modring<N,T>(T lhs)
-        where T : IConvertible
+    public static modg<N,T> modring<N,T>(intg<T> lhs)
         where N : TypeNat, new()
             => new modg<N,T>(lhs);
 
@@ -136,7 +164,7 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static T min<T>(T x, T y)
-        where T : Structures.Ordered<T>, new()
+        where T : Structures.Orderable<T>, new()
             => x.lt(y) ? x : y;
 
     /// <summary>
@@ -153,14 +181,14 @@ partial class zcore
     
     [MethodImpl(Inline)]
     static Ordering compare<T>(T lhs, T rhs)
-        where T: Structures.Ordered<T>, new()
+        where T: Structures.Orderable<T>, new()
             => lhs.gt(rhs) ? Ordering.GT :
                lhs.lt(rhs) ? Ordering.LT :
                Ordering.EQ; 
 
     [MethodImpl(Inline)]
     public static IEnumerable<(T lhs, Ordering, T rhs)> compare<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
-        where T: Structures.Ordered<T>, new()
+        where T: Structures.Orderable<T>, new()
             => fuse(lhs,rhs, (l,r) =>  (l, compare(l,r), r));
 
 
@@ -238,7 +266,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static T min<T>(IEnumerable<T> src)
-        where T : struct, Structures.Ordered<T>
+        where T : struct, Structures.Orderable<T>
     {
         T min = src.FirstOrDefault();
         foreach(var item in src)
@@ -253,17 +281,17 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static T min<T>(params T[] src)
-        where T : struct, Structures.Ordered<T>
+        where T : struct, Structures.Orderable<T>
         => min((IEnumerable<T>)src);
 
     [MethodImpl(Inline)]
     public static T max<T>(T x, T y)
-        where T : Structures.Ordered<T>, new()
+        where T : Structures.Orderable<T>, new()
             => x.gt(y) ? x : y;
 
     [MethodImpl(Inline)]
     public static T max<T>(IEnumerable<T> src)
-        where T : struct, Structures.Ordered<T>
+        where T : struct, Structures.Orderable<T>
     {
         T max = src.FirstOrDefault();
         foreach(var item in src)
@@ -273,7 +301,7 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static T max<T>(params T[] src)
-        where T : struct, Structures.Ordered<T>
+        where T : struct, Structures.Orderable<T>
         => max((IEnumerable<T>)src);
 
     /// <summary>
@@ -304,6 +332,51 @@ partial class zcore
         return count.neq(count.zero) ? result.div(count) : result;
     }
 
+    [MethodImpl(Inline)]
+    public static string hexstring(byte src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(sbyte src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(short src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(ushort src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(int src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(uint src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(long src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(ulong src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]   
+    public static string hexstring(BigInteger x)
+        => x.ToString("X");
+
+    [MethodImpl(Inline)]   
+    public static string hexstring(decimal src)
+        => apply(Bits.split(src), parts =>
+            append(
+                parts.hihi.ToString("X8"),
+                parts.hilo.ToString("X8"),
+                parts.lohi.ToString("X8"),
+                parts.lolo.ToString("X8")
+            ));
 
 }
 

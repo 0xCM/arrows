@@ -24,14 +24,13 @@ namespace Z0
         static readonly intg<T> @base =  natval<N>().ToIntG<T>();
 
         public IEnumerable<T> members 
-            => range<T>(@base.zero, @base.dec()).Unwrap();
+            => range<T>(@base.zero.unwrap(), @base.dec().unwrap()).Unwrap();
 
         public T one 
             => @base.one;
 
         public T zero 
             => @base.zero;
-
 
 
         [MethodImpl(Inline)]

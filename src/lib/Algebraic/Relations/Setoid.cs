@@ -49,7 +49,7 @@ namespace Z0
         {
             this.membership = data;
             this.equivalence = equivalence;
-            this.parts = equivalence.Partition(data.members().content).ToArray();
+            this.parts = equivalence.Partition(data.content).ToArray();
 
         }
         

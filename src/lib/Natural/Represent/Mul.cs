@@ -28,7 +28,7 @@ namespace Z0
         
         public static readonly TypeNat[] Operands = {k1, k2};
 
-        public static readonly uint Value
+        public static readonly ulong Value
             = k1.value * k2.value;
 
         static readonly string description = $"{k1} * {k2} = {Value}";
@@ -45,7 +45,7 @@ namespace Z0
         public NatSeq seq
             => Seq;
 
-        public uint value 
+        public ulong value 
             => Value;
 
         [MethodImpl(Inline)]

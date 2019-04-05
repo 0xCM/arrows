@@ -25,9 +25,8 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static T apply<N,T>(Covector<N,T> cv, Vector<N,T> v)
             where N : TypeNat, new()        
-            where T : Structures.Semiring<T>, new()
         {
-            var sr = Reify.Semiring<T>.Inhabitant;
+            var sr = Resolver.semiring<T>();
             var result = sr.zero;
             for(var i = 0u; i<cv.length; i++)
                 result = sr.add(result, sr.mul(cv.cell(i), v.cell(i)));
@@ -42,7 +41,6 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(Dim<N> dim, params T[] src) 
-            where T : Equatable<T>, new()
             where N : TypeNat, new() 
                 => new Covector<N,T>(src);
 
@@ -54,11 +52,9 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(IEnumerable<T> src) 
-            where T : Equatable<T>, new()
             where N : TypeNat, new() 
                 => new Covector<N,T>(src);
         
-
         /// <summary>
         /// Constructs a covector from a parameter array
         /// </summary>
@@ -67,27 +63,32 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(params T[] src) 
-            where T : Equatable<T>, new()
             where N : TypeNat, new() 
                 => new Covector<N,T>(src);
 
-
+        /// <summary>
+        /// Constructs a covector from the some of two others
+        /// </summary>
+        /// <param name="lhs">The the first covector</param>
+        /// <param name="rhs">The the second covector</param>
+        /// <typeparam name="N">The covector length type</typeparam>
+        /// <typeparam name="T">The convector component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> add<N,T>(Covector<N,T> lhs, Covector<N,T> rhs) 
             where N : TypeNat, new() 
             where T : Structures.Semiring<T>, new()
                 => new Covector<N,T>(Slice.add(lhs.cells,rhs.cells));
 
-        // [MethodImpl(Inline)]
-        // public static Covector<N,T> mul<N,T>(Covector<N,T> lhs, Covector<N,T> rhs) 
-        //     where N : TypeNat, new() 
-        //     where T : Structure.Semiring<T>, new()
-        //         => new Covector<N,T>(Slice.mul(lhs.cells,rhs.cells));
-
+        /// <summary>
+        /// Sums the covector components
+        /// </summary>
+        /// <param name="src">The source covector</param>
+        /// <typeparam name="N">The covector length type</typeparam>
+        /// <typeparam name="T">The convector component type</typeparam>
         [MethodImpl(Inline)]
-        public static T sum<N,T>(Covector<N,T> x) 
+        public static T sum<N,T>(Covector<N,T> src) 
             where N : TypeNat, new() 
             where T : Structures.Semiring<T>, new()
-                => Slice.sum(x.cells);
+                => Slice.sum(src.cells);
     }
 }

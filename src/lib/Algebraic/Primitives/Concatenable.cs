@@ -26,7 +26,7 @@ namespace Z0
 
     partial class Structures
     {
-        public interface Concatenable<S> : Structure<S>, Formattable 
+        public interface Concatenable<S> 
             where S : Concatenable<S>, new()
         {
             S concat(S rhs);

@@ -20,6 +20,9 @@ namespace Z0
         public static T[] Unwrap<T>(this intg<T>[] src)
             => src.Select(unwrap).ToArray();
 
+        [MethodImpl(Inline)]   
+        public static T[] Unwrap<T>(this real<T>[] src)
+            => src.Select(unwrap).ToArray();
 
         [MethodImpl(Inline)]   
         public static IEnumerable<T> Unwrap<T>(this IEnumerable<intg<T>> src)
@@ -29,6 +32,7 @@ namespace Z0
         public static IEnumerable<T> Unwrap<T>(this IEnumerable<real<T>> src)
             => src.Select(unwrap);
 
+
         [MethodImpl(Inline)]
         public static T Sum<T>(this IEnumerable<T> src)
             where T : Structures.Additive<T>, Structures.Nullary<T>, new()
@@ -36,12 +40,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T Sup<T>(this IEnumerable<T> src)
-            where T : struct, Structures.Ordered<T>
+            where T : struct, Structures.Orderable<T>
                 => max(src);
 
         [MethodImpl(Inline)]
         public static T Inf<T>(this IEnumerable<T> src)
-            where T : struct, Structures.Ordered<T>
+            where T : struct, Structures.Orderable<T>
                 => min(src);
 
         [MethodImpl(Inline)]
@@ -51,12 +55,53 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Slice<T> Pow<T>(this Slice<T> src, int exp)
-            where T : Structures.Powered<T>, new() 
+            where T : Structures.Powered<T>, Equatable<T>, new() 
                 => slice(pow(src,exp));
 
         [MethodImpl(Inline)]
         public static T Avg<T>(this IEnumerable<T> src)
             where T : Structures.RealNumber<T>,new()
                 => avg(src);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this byte x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this sbyte x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this short x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this ushort x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this int x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this uint x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this long x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this ulong x)
+            => hexstring(x);
+
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this BigInteger x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this decimal src)
+            => hexstring(src);
    }
 }

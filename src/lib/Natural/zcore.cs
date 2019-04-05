@@ -19,7 +19,7 @@ partial class zcore
     /// <typeparam name="N">The nat type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static uint natval<N>() 
+    public static ulong natval<N>() 
         where N : TypeNat, new()
             => new N().value; 
 
@@ -29,7 +29,7 @@ partial class zcore
     /// <typeparam name="N">The nat type</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static intg<uint> natvalg<N>() 
+    public static intg<ulong> natvalg<N>() 
         where N : TypeNat, new()
             => new N().value;
 

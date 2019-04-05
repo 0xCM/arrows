@@ -33,7 +33,7 @@ namespace Z0
         public bool valid 
             => true;
 
-        public uint value 
+        public ulong value 
             => 0;
 
         public TypeNat rep 
@@ -75,7 +75,7 @@ namespace Z0
         public byte[] digits() 
             => Digits;
 
-        public uint value 
+        public ulong value 
             => 1;
 
         public string format()
@@ -102,7 +102,7 @@ namespace Z0
         public NatSeq seq
             => this;
 
-        public uint value 
+        public ulong value 
             => 2;
 
         public bool valid 
@@ -139,7 +139,7 @@ namespace Z0
         public bool valid 
             => true;
         
-        public uint value 
+        public ulong value 
             => 3;
 
         public byte[] digits() 
@@ -169,7 +169,7 @@ namespace Z0
         public NatSeq seq
             => this;
 
-        public uint value 
+        public ulong value 
             => 4;
 
         public bool valid 
@@ -205,7 +205,7 @@ namespace Z0
         public bool valid 
             => true;
 
-        public uint value 
+        public ulong value 
             => 5;
                 
         public byte[] digits() 
@@ -237,7 +237,7 @@ namespace Z0
         public bool valid 
             => true;
 
-        public uint value 
+        public ulong value 
             => 6;
         
         public byte[] digits() 
@@ -270,7 +270,7 @@ namespace Z0
         public bool valid 
             => true;
 
-        public uint value 
+        public ulong value 
             => 7;
             
         public byte[] digits() 
@@ -303,7 +303,7 @@ namespace Z0
         public bool valid 
             => true;
 
-        public uint value  
+        public ulong value  
             => 8;
 
         public byte[] digits() 
@@ -336,7 +336,7 @@ namespace Z0
         public bool valid 
             => true;
 
-        public uint value 
+        public ulong value 
             => 9;
          
         public byte[] digits() 

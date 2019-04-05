@@ -29,7 +29,7 @@ namespace Z0
 
     partial class Structures
     {
-        public interface Divisive<S> : Structure<S>
+        public interface Divisive<S>
             where S : Divisive<S>, new()
         {
 
