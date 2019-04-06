@@ -13,15 +13,10 @@ namespace Z0
 
     partial class Operative
     {
-
-
         public interface Concatenable<T>
         {
             T concat(T lhs, T rhs);
-
         }
-
-
     }
 
     partial class Structures
@@ -30,7 +25,6 @@ namespace Z0
             where S : Concatenable<S>, new()
         {
             S concat(S rhs);
-
         }
 
         public interface Concatenable<S,T> : Concatenable<S>
@@ -38,14 +32,5 @@ namespace Z0
         {
 
         }
-
     }
-
-    public readonly struct Concatenable : Concatenable<string>
-    {
-        [MethodImpl(Inline)]
-        public string concat(string lhs, string rhs)
-            => lhs + rhs;
-    }
-
 }

@@ -232,7 +232,7 @@ namespace Z0
             public structure abs()
             {
                 var m = this >> bitsize - 1;
-                return (this + m)  ^ m;
+                return (this + m) ^ m;
             }
             
             [MethodImpl(Inline)]

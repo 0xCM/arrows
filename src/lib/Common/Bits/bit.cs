@@ -56,15 +56,15 @@ namespace Z0
     /// Represents a numeric or logical bit
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Boolean_algebra</remarks>
-    public readonly struct bit : Bit<bit>
+    public readonly struct bit : Bit<bit>, Wrapped<bool>
     {
 
         public static bit Parse(char c)
             => c != '0' ? One : Zero;
         
-        public static bit Zero = false;
+        public static readonly bit Zero = false;
 
-        public static bit One = true;
+        public static readonly bit One = true;
 
         [MethodImpl(Inline)]
         public static implicit operator bool(bit src)
@@ -77,7 +77,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static explicit operator byte(bit src)
             => src.value ? (byte)1 : (byte)0;
-
 
         [MethodImpl(Inline)]
         public static explicit operator ushort(bit src)
@@ -150,20 +149,13 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static bit operator - (bit x) 
-            => !x;
-
-        [MethodImpl(Inline)]
-        public static bit operator ~ (bit x) 
-            => ~ x;
-
-        [MethodImpl(Inline)]
-        public static bit operator ! (bit x) 
-            => ! x;
-
-        [MethodImpl(Inline)]
         public bit(bool value)        
             => this.value = value;
+
+
+        [MethodImpl(Inline)]
+        public bool unwrap()
+            => value;
 
         [MethodImpl(Inline)]
         public bit(byte value, int pos = 0)        
@@ -173,27 +165,27 @@ namespace Z0
         public int CompareTo(bit rhs)
             => value.CompareTo(rhs);
 
-        public bool value {get;}
+        readonly bool value;
 
         [MethodImpl(Inline)]
         public bool eq(bit rhs)
-            => this.value == rhs.value;
+            => value == rhs.value;
 
         [MethodImpl(Inline)]
         public bool neq(bit rhs)
-            => not(eq(rhs));
+            => value != rhs.value;
 
         [MethodImpl(Inline)]
         public bool eq(bit lhs, bit rhs)
-            => lhs.eq(rhs);
+            => lhs.value == rhs.value;
 
         [MethodImpl(Inline)]
         public bool neq(bit lhs, bit rhs)
-            => lhs.neq(rhs);
+            => lhs.value != rhs.value;
 
         [MethodImpl(Inline)]
         public string format()
-            => $"{(byte)this}";
+            => value == true ? "1" : "0";
 
         [MethodImpl(Inline)]
         public intg<T> ToIntG<T>()
@@ -201,7 +193,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public int hash()
-            => (byte)this;
+            => value == true ? 1 : 0;
 
         [MethodImpl(Inline)]
         public bool Equals(bit rhs)
@@ -215,6 +207,5 @@ namespace Z0
     
         public override string ToString()
             => format();
-        
     }
 }

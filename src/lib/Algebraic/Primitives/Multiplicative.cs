@@ -11,10 +11,8 @@ namespace Z0
 
     using static Operative;
 
-
     partial class Operative
     {
-
         /// <summary>
         /// Characterizes operational multiplication
         /// </summary>
@@ -27,7 +25,6 @@ namespace Z0
 
     partial class Structures
     {
-
         public interface Multiplicative<S>
             where S : Multiplicative<S>, new()
         {
@@ -45,7 +42,6 @@ namespace Z0
             
         }
     }
-
 
     public static class Multiplication 
     {
@@ -75,68 +71,5 @@ namespace Z0
         [MethodImpl(Inline)]    
         public T apply(T lhs, T rhs)
             => effector.mul(lhs,rhs); 
-    }
-
- 
-   public readonly struct Multiplicative 
-        : Multiplicative<sbyte>, Multiplicative<byte>, 
-            Multiplicative<short>, Multiplicative<ushort>, 
-            Multiplicative<int>, Multiplicative<uint>,
-            Multiplicative<long>, Multiplicative<ulong>,
-            Multiplicative<BigInteger>,
-            Multiplicative<float>, Multiplicative<double>, 
-            Multiplicative<decimal>
-            
-    {
-        public static Additive Inhabitant = default;
-
-       [MethodImpl(Inline)]
-        public sbyte mul(sbyte lhs, sbyte rhs)
-            => (sbyte)(lhs * rhs);
-
-        [MethodImpl(Inline)]
-        public byte mul(byte lhs, byte rhs)
-            => (byte)(lhs * rhs);
-
-        [MethodImpl(Inline)]
-        public short mul(short lhs, short rhs)
-            => (short)(lhs * rhs);
-     
-        [MethodImpl(Inline)]
-        public ushort mul(ushort lhs, ushort rhs)
-            => (ushort)(lhs * rhs);
-
-        [MethodImpl(Inline)]
-        public int mul(int lhs, int rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public uint mul(uint lhs, uint rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public long mul(long lhs, long rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public ulong mul(ulong lhs, ulong rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public float mul(float lhs, float rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public double mul(double lhs, double rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public decimal mul(decimal lhs, decimal rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public BigInteger mul(BigInteger lhs, BigInteger rhs)
-            => lhs * rhs;
-
-    }
+    } 
 } 

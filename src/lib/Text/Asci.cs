@@ -4,9 +4,17 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    using static zcore;
  
-    public static class AsciSym
+    public static class Asci
     {
+        public static readonly Atoms All = AsciSym.All + AsciDigits.All + AsciLower.All + AsciUpper.All;
+    }
+
+    public class AsciSym
+    {
+        public static readonly Atoms All =  type<AsciSym>().StaticFields().Values<Atom>().Contain();
+
         public static readonly Atom Pipe = "|";
 
         public static readonly Atom Plus = "+";
@@ -31,9 +39,9 @@ namespace Z0
 
         public static readonly Atom RParen = ")";        
         
-        public static readonly Atom Lbrace = "{";
+        public static readonly Atom LBrace = "{";
 
-        public static readonly Atom Rbrace = "}";
+        public static readonly Atom RBrace = "}";
 
         public static readonly Atom LBracket = "[";
 
@@ -56,8 +64,10 @@ namespace Z0
         public static readonly Atom EOL = new Atom("\r\n");
     }
 
-    public static class AsciLower
+    public class AsciLower
     {
+        public static readonly Atoms All =  type<AsciLower>().StaticFields().Values<Atom>().Contain();
+
         public static readonly Atom a = "a";
         public static readonly Atom b = "b";
         public static readonly Atom c = "c";
@@ -75,11 +85,22 @@ namespace Z0
         public static readonly Atom o = "o";
         public static readonly Atom p = "p";
         public static readonly Atom q = "q";
+        public static readonly Atom r = "r";
+        public static readonly Atom s = "s";
+        public static readonly Atom t = "t";
+        public static readonly Atom u = "u";
+        public static readonly Atom v = "v";
+        public static readonly Atom w = "w";
+        public static readonly Atom x = "x";
+        public static readonly Atom y = "y";
+        public static readonly Atom z = "z";
 
     }
 
-    public static class AsciUpper
-    {
+    public class AsciUpper
+    {        
+        public static readonly Atoms All =  type<AsciUpper>().StaticFields().Values<Atom>().Contain();
+        
         public static readonly Atom A = "A";
         public static readonly Atom B = "B";
         public static readonly Atom C = "C";
@@ -96,10 +117,23 @@ namespace Z0
         public static readonly Atom O = "O";
         public static readonly Atom P = "P";
         public static readonly Atom Q = "Q";
+        public static readonly Atom R = "R";
+        public static readonly Atom S = "S";
+        public static readonly Atom T = "T";
+        public static readonly Atom U = "U";
+        public static readonly Atom V = "V";
+        public static readonly Atom W = "W";
+        public static readonly Atom X = "X";
+        public static readonly Atom Y = "Y";
+        public static readonly Atom Z = "Z";
+
+
    }
 
-    public static class AsciDigits
+    public class AsciDigits
     {
+        public static readonly Atoms All =  type<AsciDigits>().StaticFields().Values<Atom>().Contain();
+
         public static readonly Atom A0 = "1";
         public static readonly Atom A1 = "1";
         public static readonly Atom A2 = "2";

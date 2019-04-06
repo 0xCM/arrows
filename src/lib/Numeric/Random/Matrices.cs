@@ -18,7 +18,6 @@ namespace Z0
         IEnumerable<Matrix<M,N,T>> stream(T min, T max);
     }
 
-
     public readonly struct MatrixSource<M,N,T> : RandomMatrixSource<M,N,T>
         where N : TypeNat, new()
         where M : TypeNat, new()
@@ -40,13 +39,9 @@ namespace Z0
         public IEnumerable<Matrix<M, N,T>> stream(T min, T max)
         {
             var len = natval<M>() * natval<N>();
-            var rand = Rand.primal<T>();
+            var primitives = Rand.primal(min,max);
             while(true)
-            {                    
-                var entries = rand.stream(min, max).Take((int)len);
-                yield return Matrix.define(dim, entries);
-                
-            }                
+                yield return Matrix.define(dim, primitives.Take((int)len));                
         }  
 
     }

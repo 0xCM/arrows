@@ -70,7 +70,7 @@ namespace Z0
         /// <summary>
         /// Characterizes bitwise operations over an operand
         /// </summary>
-        public interface Bitwise<T> : BitLogic<T>, Shifty<T> { }
+        public interface Bitwise<T> : BitLogic<T>, Shifty<T> ,BitSource<T> { }
 
 
     }

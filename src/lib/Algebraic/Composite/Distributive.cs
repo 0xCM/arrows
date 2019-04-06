@@ -70,10 +70,10 @@ namespace Z0
             where S : Distributive<S>, new()
         {}
 
-        public interface LeftDistributive<S,T>  : LeftDistributive<S>, Multiplicative<S,T>, Additive<S,T>
+        public interface LeftDistributive<S,T>  : LeftDistributive<S>, Multiplicative<S,T>, Additive<S>
             where S : LeftDistributive<S,T>, new() { }
 
-        public interface RightDistributive<S,T>  : RightDistributive<S>, Multiplicative<S,T>, Additive<S,T>
+        public interface RightDistributive<S,T>  : RightDistributive<S>, Multiplicative<S,T>, Additive<S>
             where S : RightDistributive<S,T>, new() { }
 
         public interface Distributive<S,T> : Distributive<S>, LeftDistributive<S,T>, RightDistributive<S,T>

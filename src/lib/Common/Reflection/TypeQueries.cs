@@ -18,7 +18,22 @@ namespace Z0
     partial class Reflections
     {
         static readonly ConcurrentDictionary<Type, IReadOnlyList<ValueMember>> ValueMemberCache
-        = new ConcurrentDictionary<Type, IReadOnlyList<ValueMember>>();
+            = new ConcurrentDictionary<Type, IReadOnlyList<ValueMember>>();
+
+
+        /// <summary>
+        /// Retrieves all public instance Fields declared or inherited by a type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        public static IEnumerable<FieldInfo> GetAllFields(this Type t)
+            => t.GetFields(BF_AllInstance | BF_AllStatic);
+
+        /// <summary>
+        /// Retrieves all public instance Fields declared or inherited by a type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        public static IEnumerable<FieldInfo> GetPublicFields(this Type t)
+            => t.GetInheritedPublicFields().Union(t.GetFields());
 
         /// <summary>
         /// If a reference type, returns the type; if a value type and not an enum, returns 
@@ -65,16 +80,81 @@ namespace Z0
             => p.GetGetMethod() ?? p.GetGetMethod(true);
 
         /// <summary>
-        /// Retrieves the public immutable  fields defined by he type
+        /// Retrieves all instance/static and public/non-public fields declared by the type
+        /// </summary>
+        /// <param name="t"></param>
+        public static IEnumerable<FieldInfo> Fields(this Type t, bool declared = true)
+            => t.GetFields(declared ? BF_Declared : BF_All);
+
+        public static IEnumerable<FieldInfo> StaticFields(this Type t, bool declared = true)
+            => t.GetFields(declared ? BF_DeclaredStatic : BF_AllStatic);
+
+        public static IEnumerable<FieldInfo> InstanceFields(this Type t, bool declared = true)
+            => t.GetFields(declared ? BF_DeclaredInstance : BF_AllInstance);
+
+        public static IEnumerable<FieldInfo> Static(this IEnumerable<FieldInfo> src)
+            => src.Where(x => x.IsStatic);
+
+
+        public static IEnumerable<FieldInfo> Instance(this IEnumerable<FieldInfo> src)
+            => src.Where(x => !x.IsStatic);
+
+        public static IEnumerable<FieldInfo> Immutable(this IEnumerable<FieldInfo> src)
+            => src.Where(x => x.IsInitOnly || x.IsLiteral);
+
+        public static IEnumerable<FieldInfo> Mutable(this IEnumerable<FieldInfo> src)
+            => src.Where(x => !(x.IsInitOnly || x.IsLiteral));
+
+        public static IEnumerable<FieldInfo> Public(this IEnumerable<FieldInfo> src)
+            => src.Where(x => x.IsPublic);
+
+        public static IEnumerable<FieldInfo> NonPublic(this IEnumerable<FieldInfo> src)
+            => src.Where(x => !x.IsPublic);
+
+        public static IEnumerable<object> Values(this IEnumerable<FieldInfo> src, object o = null)
+            => src.Select(x => x.GetValue(o));
+
+        public static IEnumerable<T> Values<T>(this IEnumerable<FieldInfo> src, object o = null)
+            => src.Select(x => x.GetValue(o)).Where(x => x is T).Cast<T>();
+
+        /// <summary>
+        /// Retrieves the public immutable  fields defined by the type
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
         public static IEnumerable<FieldInfo> GetDeclaredPublicImmutableFields(this Type t, MemberInstanceType mit)
             => from f in (mit.IsStaticType() 
                     ? t.GetFields(BF_DeclaredPublicStatic) 
                     : t.GetFields(BF_DeclaredPublicInstance))
             where f.IsInitOnly || f.IsLiteral
             select f;
+
+        /// <summary>
+        /// Retrieves the public, staticic and immutable fields defined by the type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        public static IEnumerable<FieldInfo> GetDeclaredPublicStaticImmutableFields(this Type t)
+            => t.GetDeclaredPublicImmutableFields(MemberInstanceType.Static);
+
+        /// <summary>
+        /// Retrieves the values of the public, staticic and immutable fields defined by the type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        public static IEnumerable<object> GetDeclaredPublicStaticImmutableFieldValues(this Type t)
+            => t.GetDeclaredPublicImmutableFields(MemberInstanceType.Static).Select(f => f.GetValue(null));
+
+        /// <summary>
+        /// Retrieves the T-values of the public, static and immutable fields defined by the type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        public static IEnumerable<T> GetDeclaredPublicStaticImmutableFieldValues<T>(this Type t)
+            =>  t.GetDeclaredPublicStaticImmutableFieldValues().Where(v => v is T).Cast<T>();
+
+        /// <summary>
+        /// Retrieves the public, staticic and immutable fields defined by the type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        public static IEnumerable<FieldInfo> GetDeclaredPublicInstanceImmutableFields(this Type t)
+            => t.GetDeclaredPublicImmutableFields(MemberInstanceType.Instance);
 
         /// <summary>
         /// Retrieves the nonpublic immutable fields defined by the type
@@ -198,8 +278,6 @@ namespace Z0
                 .Concat(t.GetDeclaredPublicProperties(MemberInstanceType.Instance, requireSetters))
                 .Concat(t.GetDeclaredPublicProperties(MemberInstanceType.Static, requireSetters));
             
-
-
         /// <summary>
         /// Searches for non-public methods delcared by the type
         /// </summary>
@@ -276,12 +354,18 @@ namespace Z0
         }
 
         /// <summary>
-        /// Retrieves the public instance Fields declared by a type
+        /// Retrieves the public fields declared by a type
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
         public static IEnumerable<FieldInfo> GetDeclaredPublicFields(this Type t)
-            => t.GetFields();
+            => t.GetFields(BF_DeclaredPublic);
+
+        /// <summary>
+        /// Retrieves the non-public fields declared by a type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        public static IEnumerable<FieldInfo> GetDeclaredRestrictedFields(this Type t)
+            => t.GetFields(BF_DeclaredPublic);
 
         /// <summary>
         /// Retrieves the public instance Fields declared by a supertype
@@ -291,24 +375,16 @@ namespace Z0
         public static IEnumerable<FieldInfo> GetInheritedPublicFields(this Type t)
             => t.BaseType?.GetFields(BF_AllPublicInstance) ?? new FieldInfo[] { };
 
-        /// <summary>
-        /// Retrieves all public instance Fields declared or inherited by a type
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        public static IEnumerable<FieldInfo> GetPublicFields(this Type t)
-            => t.GetInheritedPublicFields().Union(t.GetFields());
 
         /// <summary>
         /// Gets the public methods inherited by a type
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <param name="InstanceType">The instance type classification</param>
-        /// <returns></returns>
         public static IEnumerable<MethodInfo> GetInheritedPublicMethods(this Type t, MemberInstanceType InstanceType)
             => (InstanceType.IsStaticType()
-                ? t.BaseType?.GetMethods(BF_PublicStatic)
-                : t.BaseType?.GetMethods(BF_PublicInstance)) 
+                ? t.BaseType?.GetMethods(BF_AllPublicStatic)
+                : t.BaseType?.GetMethods(BF_AllPublicInstance)) 
                 ?? new MethodInfo[] { };
 
         /// <summary>
@@ -363,6 +439,13 @@ namespace Z0
         /// <returns></returns>
         public static IEnumerable<MethodInfo> GetDeclaredStaticMethods(this Type t)
             => t.GetMethods(BF_DeclaredStatic);
+
+        /// <summary>
+        /// Retrieves the public and non-public static fields declared by a type
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        public static IEnumerable<FieldInfo> GetDeclaredStaticFields(this Type t)
+            => t.GetFields(BF_DeclaredStatic);
 
         /// <summary>
         /// Retrieves the public and non-public static methods declared by a type that have a specific name

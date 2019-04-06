@@ -13,6 +13,16 @@ namespace Z0
 
     using static zcore;
 
+    partial class Operative
+    {
+
+        public interface BitVectored<N,T>
+            where N : TypeNat, new()
+        {
+            BitVector<N,T> bitvector(T src);
+        }
+    }
+
     /// <summary>
     /// Defines an integrally and naturally typed bitvector
     /// </summary>
@@ -69,7 +79,7 @@ namespace Z0
             this.bits = slice<N,bit>(src.bitstring().bits);
         }
 
-        public Slice<N,bit> bits {get;}
+        readonly Slice<N,bit> bits;
 
         public uint length 
             => Length;
@@ -98,15 +108,9 @@ namespace Z0
         public BitVector<N,T> rshift(int rhs)
             => data.rshift(rhs);
 
-
         [MethodImpl(Inline)]
         public BitString bitstring()
             => data.bitstring();
-
-
-        [MethodImpl(Inline)]
-        public string format()
-            => data.bitstring().format();
 
         [MethodImpl(Inline)]
         public int hash()
@@ -132,11 +136,17 @@ namespace Z0
         public bool Equals(BitVector<N,T> rhs)
             => data.eq(rhs.data);
 
+        public bit this[int pos]
+        {
+            [MethodImpl(Inline)]
+            get => bits[pos];
+        }
  
         /// <summary>
         /// Turns off the rightmost nonzero bit, e.g.,
         /// 01110110 => 01110100
         /// </summary>
+        [MethodImpl(Inline)]
         public BitVector<N,T> rightmostOnToOff()
             => data & (data - One);
 
@@ -144,6 +154,7 @@ namespace Z0
         /// Turns on the rightmost zero bit, e.g.,
         /// 01110111 => 01111111
         /// </summary>
+        [MethodImpl(Inline)]
         public BitVector<N,T> rightmostOffToOn()
             => data | (data + One);
 
@@ -151,6 +162,7 @@ namespace Z0
         /// Turns off trailing nonzero bits, e.g.,
         /// 01110111 => 01110000
         /// </summary>
+        [MethodImpl(Inline)]
         public BitVector<N,T> trailingOnToOff()
             => data & (data + One);
 
@@ -158,6 +170,7 @@ namespace Z0
         /// Turns on trailing zero bits, e.g.,
         /// 01111000 => 01111111
         /// </summary>
+        [MethodImpl(Inline)]
         public BitVector<N,T> trailingOffToOn()
             => data & (data + One);
 
@@ -172,6 +185,27 @@ namespace Z0
         public bool test(int pos)            
             => (data & (One << pos)) != Zero;
 
+        [MethodImpl(Inline)]
+        public intg<T> unwrap()
+            => data;
+
+        [MethodImpl(Inline)]
+        public string format()
+            => data.bitstring().format();
+
+        /// <summary>
+        /// Returns the position of the highest on-bit
+        /// </summary>
+        [MethodImpl(Inline)]
+        public int hipos()
+        {
+            var start = (int)length - 1;
+            for(var i = start; i>= 0; i--)
+                if(bits[i])
+                    return start - i;
+            return 0;
+        }            
+
         public override string ToString()
             => format();
 
@@ -180,8 +214,5 @@ namespace Z0
 
         public override bool Equals(object rhs)
             => rhs is BitVector<N,T> ? Equals((BitVector<N,T>)rhs) : false;
-
-        public intg<T> unwrap()
-            => data;
     }
 }

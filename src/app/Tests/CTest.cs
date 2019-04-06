@@ -19,22 +19,11 @@ namespace Z0.Tests
     [DisplayName("c")]
     public class CTests
     {
-        static void absTestOld<T>(int count, T min, T max)
-            where T : C.RealNum<T>, new()
-        {
-            var inputs = Rand.values<T>(count, min, max).Freeze();
-            var expect = map(inputs, s => s.abs()).Freeze();
-            var actual = map(inputs, s => s.abs()).Freeze();
-
-            iter(inputs.Count, i => 
-                require(actual[i] == expect[i], inputs[i], expect[i], actual[i]));
-        }
-
         static void divRemTest<T>(int count, T min, T max)
             where T : IComparable<T>
         {
-            var src1 = Rand.values<T>(min, max).Take(count).Freeze();
-            var src2 = Rand.values<T>(min, max).Where(x => x.neq(x.zero)).Take(count).Freeze();
+            var src1 = Rand.stream<T>(min, max).Take(count).Freeze();
+            var src2 = Rand.stream<T>(min, max).Where(x => x.neq(x.zero)).Take(count).Freeze();
             var inputs = zip(src1,src2).Freeze();
             var expect = map(inputs, x => x.left.divrem(x.right)).Freeze();
             var actual = map(inputs, x => x.left.divrem(x.right)).Freeze();
@@ -62,7 +51,7 @@ namespace Z0.Tests
         }
         public static void absTests()
         {
-            var src = Rand.primal<int>().stream(-250000,250000).Take(500).Freeze();
+            var src = Rand.primal(-250000,250000).Take(500).Freeze();
             var inputs = C.int32.define(src).Freeze();
             iter(inputs, x => absTest<C.int32>(x, Math.Abs(x)));            
 

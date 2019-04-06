@@ -9,7 +9,6 @@ using System.Runtime.CompilerServices;
 
 using Z0;
 
-
 partial class zcore
 {
 
@@ -17,21 +16,46 @@ partial class zcore
     /// Retrieves the value of the natural number associated with a typenat
     /// </summary>
     /// <typeparam name="N">The nat type</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
     public static ulong natval<N>() 
         where N : TypeNat, new()
             => new N().value; 
 
     /// <summary>
+    /// Retrieves the value of a type natural represented as an integer
+    /// </summary>
+    /// <typeparam name="N">The nat type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int nati<N>() 
+        where N : TypeNat, new()
+            => (int)natval<N>();
+
+    /// <summary>
+    /// Retrieves the value of a type natural represented as an integer
+    /// </summary>
+    /// <typeparam name="N">The nat type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int nati<N>(N rep) 
+        where N : TypeNat, new()
+            => (int)rep.value;
+
+    /// <summary>
     /// Retrieves a typenat value as a generic int
     /// </summary>
     /// <typeparam name="N">The nat type</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static intg<ulong> natvalg<N>() 
+    public static intg<int> natg<N>() 
         where N : TypeNat, new()
-            => new N().value;
+            => nati<N>();
+
+    /// <summary>
+    /// Retrieves a typenat value as a generic int
+    /// </summary>
+    /// <typeparam name="N">The nat type</typeparam>
+    [MethodImpl(Inline)]   
+    public static intg<int> natg<N>(N rep) 
+        where N : TypeNat, new()
+            => natg<N>();
 
     /// <summary>
     /// Constructs a natural representative

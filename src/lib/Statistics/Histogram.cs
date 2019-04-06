@@ -43,7 +43,6 @@ namespace Z0
         public void distribute(IEnumerable<real<T>> values)
         {
             var lower = range.left;
-            var last = points.Last();
             foreach(var value in values)
             {
                 foreach(var point in points)                
@@ -58,18 +57,19 @@ namespace Z0
             }
         }
 
-        public IEnumerable<(Interval<T> bin, real<double> ratio)> ratios()
+        public IEnumerable<(Interval<real<T>> bin, real<double> ratio)> ratios()
         {
-            var count = real(points.Count);
-            var current = points.First();            
-            foreach(var next in points.Skip(1))
-            {                
-                var ratio = next.convert<double>()/real<double>(count);
-                var interval = Interval.leftclosed<T>(current, next).canonical(); 
-                yield return (interval, ratio);
+            var count = Z0.real<T>.Zero;
+            foreach(var bin in bins)
+                count += bin.Value;
 
-                current = next;
-            }
+            var rcount = count.convert<double>();
+            foreach(var bin in bins)
+            {
+                var interval = Interval.leftclosed(bin.Key.sub(binwidth), bin.Key).canonical();
+                var ratio = (bin.Value.convert<double>() / rcount);
+                yield return (interval,ratio);                
+            }                
         }
 
         public string format()

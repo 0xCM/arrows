@@ -8,24 +8,6 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
 
-    public interface Hashable<S> : IEquatable<S>
-    {
-        int hash();
-        
-    }
-
-    /// <summary>
-    /// Characterizes structural equality
-    /// </summary>
-    /// <typeparam name="S">The structure type</typeparam>
-    public interface Equatable<S> : Hashable<S> 
-        where S : Equatable<S>, new()
-    {
-
-        bool eq(S rhs);
-
-        bool neq(S rhs);
-    }
 
     /// <summary>
     /// Characterizes a structure which is, by definition,
@@ -39,11 +21,6 @@ namespace Z0
 
     }    
 
-    public  interface Structure<S,T> : Structure<S>
-        where S : Structure<S,T>, new()
-    {
-
-    }
 
     partial class Operative
     {
@@ -109,7 +86,7 @@ namespace Z0
             
         }            
 
-        public interface SemigroupA<S,T> : SemigroupA<S>, Semigroup<S,T>, Additive<S,T>
+        public interface SemigroupA<S,T> : Semigroup<S,T>, SemigroupA<S>,  Additive<S>
             where S : SemigroupA<S,T>, new()
         {
 

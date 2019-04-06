@@ -176,7 +176,7 @@ partial class zcore
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static IEnumerable<T> pow<T>(IEnumerable<T> src, int exp)
-        where T : Structures.Powered<T>, new() 
+        where T : Structures.NaturallyPowered<T>, new() 
             => map(src, x => x.pow(exp));
     
     [MethodImpl(Inline)]
@@ -378,5 +378,45 @@ partial class zcore
                 parts.lolo.ToString("X8")
             ));
 
+
+    [MethodImpl(Inline)]   
+    public static sbyte abs(sbyte x)
+    {
+        var m = (sbyte)(x >> 8 - 1);
+        return (sbyte) ((x + m) ^ m);
+    }
+
+    [MethodImpl(Inline)]   
+    public static short abs(short x)
+    {
+        var m = (short)(x >> 16 - 1);
+        return (short) ((x + m) ^ m);
+    }
+
+    [MethodImpl(Inline)]   
+    public static double abs(double x)
+        => Math.Abs(x);
+
+    [MethodImpl(Inline)]   
+    public static float abs(float x)
+        => MathF.Abs(x);
+
+    [MethodImpl(Inline)]   
+    public static decimal abs(decimal x)
+        => Math.Abs(x);
+
+    [MethodImpl(Inline)]   
+    public static int abs(int x)
+    {
+        var m = x >> 32 - 1;
+        return (x + m) ^ m;
+    }
+
+    [MethodImpl(Inline)]   
+    public static long abs(long x)
+    {
+        var m = (x >> 64 - 1);
+        return (x + m) ^ m;
+    }
 }
 

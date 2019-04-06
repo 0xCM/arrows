@@ -15,7 +15,7 @@ namespace Z0
         /// by any underlying primitive numeric type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Number<T> : Absolutive<T>, GroupA<T>,  SemigroupM<T>, Semiring<T>, Divisive<T>, Powered<T,int>, BitSource<T> 
+        public interface Number<T> : Subtractive<T>, Absolutive<T>, GroupA<T>,  SemigroupM<T>, Semiring<T>, Divisive<T>, Powered<T,int>, BitSource<T> 
         {                                
             NumberInfo<T> numinfo {get;}
         }
@@ -29,7 +29,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
         /// <typeparam name="T">The underlying operand type</typeparam>
-        public interface Number<S> : Absolitive<S>, Equatable<S>, GroupA<S>, SemigroupM<S>, Semiring<S>, Divisive<S>, Powered<S>, BitSource<S>
+        public interface Number<S> : Subtractive<S>, Absolitive<S>, Equatable<S>, GroupA<S>, SemigroupM<S>, Semiring<S>, Divisive<S>, NaturallyPowered<S>, BitSource<S>
             where S : Number<S>, new()
         {
             

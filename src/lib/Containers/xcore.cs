@@ -55,13 +55,23 @@ namespace Z0
                 => vector<N,T>(src.data);
 
         /// <summary>
-        /// Constructs a slice from a supplied sequence
+        /// Constructs a readonly list from from the entirety of a stream
         /// </summary>
-        /// <param name="src">The source sequence</param>
+        /// <param name="src">The source stream</param>
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> Freeze<T>(this IEnumerable<T> src)
                 => src.ToReadOnlyList();
+
+        /// <summary>
+        /// Constructs a readonly list from from the a specified number of
+        /// elmements from of a stream
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<T> Freeze<T>(this IEnumerable<T> src, int count)
+                => src.Take(count).Freeze();
 
         /// <summary>
         /// Constructs a slice from a sequence
@@ -70,8 +80,17 @@ namespace Z0
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<T> ToSlice<T>(this IEnumerable<T> src)
-            where T : Equatable<T>, new()
                 => new Slice<T>(src);
+
+        /// <summary>
+        /// Constructs a slice of natural length from a sequence
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]        
+        public static Slice<N,T> ToSlice<N,T>(this IEnumerable<T> src, N natrep = default)
+            where N : TypeNat, new()
+                => new Slice<N,T>(src.Take(nati<N>()));
 
         /// <summary>
         /// Constructs a slice with natural length from a sequence
@@ -82,7 +101,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Slice<N,T> Freeze<N,T>(this IEnumerable<T> src)
             where N : TypeNat, new()
-            where T : Equatable<T>, new()
                 => Z0.Slice.define<N,T>(src);
 
         /// <summary>
@@ -148,5 +166,26 @@ namespace Z0
         public static FiniteSeq<T> ToFiniteSeq<T>(this IEnumerable<T> src)
             where T : Structure<T>, new()
                 => Seq.finite(src);
+
+        /// <summary>
+        /// Formats a stream of formattable things
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="sep">The item separator</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static string Format<T>(this IEnumerable<T> src, string sep = ", ")
+            where T : Formattable
+                => embrace(string.Join(sep, src.Select(x => x.format())).TrimEnd());
+
+        /// <summary>
+        /// Defines missing Take(stream,n:uint) method
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="count">The number of elements to remove from the from of the stream</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static IEnumerable<T> Take<T>(this IEnumerable<T> src, uint count)
+            => src.Take((int)count);
     }
 }    

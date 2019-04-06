@@ -14,10 +14,10 @@ namespace Z0
     partial class Operative
     {
         /// <summary>
-        /// Characterizes a type that defines a notion of commutative additivity
+        /// Characterizes a type for which commutative additivity can be defined
         /// </summary>
-        /// <typeparam name="T">The type subject to addition</typeparam>
-        public interface Additive<T>
+        /// <typeparam name="T">The operand type</typeparam>
+        public interface Additive<T> : Commutative<T>
         {
 
             /// <summary>
@@ -35,23 +35,14 @@ namespace Z0
         /// Characterizes a structure that supports semigroup additivity
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
-        public interface Additive<S> 
+        public interface Additive<S> : Commutative<S>
             where S : Additive<S>, new()
         {
             S add(S rhs);
         }
 
-        /// <summary>
-        /// Characterizes an additive structure S parameterized by 
-        /// a type T 
-        /// </summary>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface Additive<S,T> : Additive<S>
-            where S : Additive<S,T>, new()
-        {
-        }
     }
- 
+
     /// <summary>
     /// Reification of addition as a binary applicative
     /// </summary>
@@ -68,67 +59,5 @@ namespace Z0
         [MethodImpl(Inline)]    
         public T apply(T lhs, T rhs)
             => effector.add(lhs,rhs);
-    }
-
-
-    public readonly struct Additive 
-        : Additive<sbyte>, Additive<byte>, 
-            Additive<short>, Additive<ushort>, 
-            Additive<int>, Additive<uint>,
-            Additive<long>, Additive<ulong>,
-            Additive<BigInteger>,
-            Additive<float>, Additive<double>, 
-            Additive<decimal>
-            
-    {
-        public static Additive Inhabitant = default;
-
-        [MethodImpl(Inline)]
-        public byte add(byte lhs, byte rhs)
-            => (byte)(lhs + rhs);
-
-        [MethodImpl(Inline)]
-        public sbyte add(sbyte lhs, sbyte rhs)
-            => (sbyte)(lhs + rhs);
-
-        [MethodImpl(Inline)]
-        public ushort add(ushort lhs, ushort rhs)
-            => (ushort)(lhs + rhs);
-
-        [MethodImpl(Inline)]
-        public short add(short lhs, short rhs)
-            => (short)(lhs + rhs);
-
-        [MethodImpl(Inline)]
-        public int add(int lhs, int rhs)
-            => lhs + rhs;
-
-        [MethodImpl(Inline)]
-        public uint add(uint lhs, uint rhs)
-            => lhs + rhs;
-
-        [MethodImpl(Inline)]
-        public ulong add(ulong lhs, ulong rhs)
-            => lhs + rhs;
-
-        [MethodImpl(Inline)]
-        public decimal add(decimal lhs, decimal rhs)
-            => lhs + rhs;
-
-        [MethodImpl(Inline)]
-        public double add(double lhs, double rhs)
-            => lhs + rhs;
-
-        [MethodImpl(Inline)]
-        public float add(float lhs, float rhs)
-            => lhs + rhs;
-
-        [MethodImpl(Inline)]
-        public BigInteger add(BigInteger lhs, BigInteger rhs)
-            => lhs + rhs;
-
-        [MethodImpl(Inline)]
-        public long add(long lhs, long rhs)
-            => lhs + rhs;
     }
 }

@@ -57,7 +57,7 @@ namespace Z0.Tests
         {
             
             var reflected = Nat.reflect(500, 600);
-            var sumActual = fold(map(reflected, x => x.value), (x,y) => x+ y).ToUIntG();
+            var sumActual = fold(map(reflected, x => x.value), (x,y) => x+ y).ToIntG();
             var sumExpect = range<uint>(500, 600).Sum();
             demand(sumActual == sumExpect, $"{sumActual} != {sumExpect}");
             demand(range<uint>(1, 50).Sup() == 50, $"{range<uint>(1, 50).Sup()} != 50");

@@ -12,7 +12,7 @@ namespace Z0
     using static zcore;
 
     /// <summary>
-    /// Represents a Atom
+    /// Defines an indivisible sequence of characters
     /// </summary>
     public readonly struct Atom : Equatable<Atom>, Structures.Nullary<Atom>, Formattable
     {
@@ -83,8 +83,31 @@ namespace Z0
 
         public override bool Equals(Object rhs)
             => rhs is Atom ? Equals((Atom)rhs) : false;
-
-
     }
-   
+
+    /// <summary>
+    /// Defines an atom sequence container
+    /// </summary>
+    public readonly struct Atoms : Contain.Seq<Atoms, Atom>
+    {
+        public static Atoms contain(IEnumerable<Atom> src)
+            => new Atoms(src);
+
+        public static Atoms operator + (Atoms lhs, Atoms rhs)
+            => lhs.concat(rhs);
+                
+        public Atoms(IEnumerable<Atom> src)
+            => content = src;
+        
+        public IEnumerable<Atom> content {get;}
+
+        public Atoms concat(Atoms rhs)
+            => contain(content.Concat(rhs.content));
+    }
+
+    partial class xcore
+    {
+        public static Atoms Contain(this IEnumerable<Atom> src)
+            => Atoms.contain(src);
+    }
 }

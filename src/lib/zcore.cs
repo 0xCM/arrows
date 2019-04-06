@@ -19,6 +19,31 @@ partial class zcore
 {
     public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
 
+    /// <summary>
+    /// Calculates the time required to execute a specified action
+    /// </summary>
+    /// <param name="f">The action for which a running time will be calculated</param>
+    /// <returns>The number of milliseconds elaplsed during execution</returns>
+    public static long duration(Action f)
+    {
+        var sw = stopwatch();
+        f();
+        return sw.ElapsedMilliseconds;
+    }
+
+    /// <summary>
+    /// Calculates the time required to execute a specified function
+    /// </summary>
+    /// <param name="f">The function for which a running time will be calculated</param>
+    /// <returns>The number of milliseconds elaplsed during execution</returns>
+    public static T duration<T>(Func<T> f, out long ms)
+    {
+        var sw = stopwatch();
+        var result = f();
+        ms = sw.ElapsedMilliseconds;
+        return result;
+    }
+
 
     /// <summary>
     /// Specifies the generic type definition for a specified generic type

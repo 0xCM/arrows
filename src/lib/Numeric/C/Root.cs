@@ -59,7 +59,7 @@ namespace Z0
                 Structures.Divisive<S>,
                 Structures.Unital<S>, 
                 Structures.Nullary<S>,
-                Structures.Powered<S>
+                Structures.NaturallyPowered<S>
             where S : Number<S>, new()
         {
             /// <summary>

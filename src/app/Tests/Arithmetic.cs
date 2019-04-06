@@ -19,7 +19,7 @@ namespace Z0.Tests
     {
         public static void avg()
         {
-            var src = slice(Rand.values(real(-500000L), real(500000L)).Take(5000000));
+            var src = slice(Rand.stream(real(-500000L), real(500000L)).Take(5000000));
             var avg1 = src.Avg();
             var avg2 = real((long)src.Unwrap().Average());
             Claim.eq(avg1, avg2);
@@ -28,7 +28,7 @@ namespace Z0.Tests
 
         public static void pow()
         {
-            var src = Rand.values(5,real(-5000m), real(5000m));
+            var src = Rand.slice(5,real(-5000m), real(5000m));
             var p1 = src.Pow(2);
             var p2 = map(src, x => x*x);            
             Claim.eq(p1,p2);

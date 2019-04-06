@@ -151,7 +151,7 @@ namespace Z0
         /// <returns>Returns true if the identified bit is set, false otherwise</returns>
         [MethodImpl(Inline)]
         public bool test(int pos)            
-            => bits[pos].value;
+            => bits[pos];
 
         public override string ToString()
             => format();

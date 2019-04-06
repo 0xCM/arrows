@@ -113,16 +113,16 @@ namespace Z0
         /// <param name="exp">The exponent</param>
         public static ulong pow(int exp)
             => exp switch {
-                0 => T0,
-                1 => T1,
-                2 => T2,
-                3 => T3,
-                4 => T4,
-                5 => T5,
-                6 => T6,
-                7 => T7,
-                8 => T8,
-                9 => T9,
+                0 => T00,
+                1 => T01,
+                2 => T02,
+                3 => T03,
+                4 => T04,
+                5 => T05,
+                6 => T06,
+                7 => T07,
+                8 => T08,
+                9 => T09,
                 10 => T10,
                 11 => T11,
                 12 => T12,
@@ -141,32 +141,132 @@ namespace Z0
             };
 
 
-        public const byte T0 = 0; //1
-        public const byte T1 = 2; //2
-        public const byte T2 = 2*2; //4
-        public const byte T3 = 2*T2; //8
-        public const byte T4 = 2*T3; //16
-        public const byte T5 = 2*T4; //32
-        public const byte T6 = 2*T5; //64
-        public const byte T7 = 2*T6; //128
-        public const ulong T8 = 2*T7; //256
-        public const ulong T9 = 2*T8; //512
-        public const ulong T10 = 2*T9; //1024
-        public const ulong T11 = 2*T10; //2056
-        public const ulong T12 = 2*T11;
-        public const ulong T13 = 2*T12;
-        public const ulong T14 = 2*T13;
-        public const ulong T15 = 2*T14;
-        public const ulong T16 = 2*T15;
-        public const ulong T17 = 2*T16;
-        public const ulong T18 = 2*T17;
-        public const ulong T19 = 2*T18;
-        public const ulong T20 = 2*T19;
-        public const ulong T21 = 2*T20;
-        public const ulong T22 = 2*T21;
-        public const ulong T23 = 2*T22;
-        public const ulong T24 = 2*T23;
-        public const ulong T25 = 2*T24;
+        /// <summary>
+        /// 2^0 = 1
+        /// </summary>
+        public const byte T00 = 0;
+
+        /// <summary>
+        /// 2^1 = 2
+        /// </summary>
+        public const byte T01 = 2;
+
+        /// <summary>
+        /// 2^2 = 4
+        /// </summary>
+        public const byte T02 = 2*2;
+
+        /// <summary>
+        /// 2^3 = 8
+        /// </summary>
+        public const byte T03 = 2*T02;
+
+        /// <summary>
+        /// 2^4 = 16
+        /// </summary>
+        public const byte T04 = 2*T03;
+
+        /// <summary>
+        /// 2^5 = 32
+        /// </summary>
+        public const byte T05 = 2*T04;
+
+        /// <summary>
+        /// 2^6 = 64
+        /// </summary>
+        public const byte T06 = 2*T05;
+
+        /// <summary>
+        /// 2^7 = 128
+        /// </summary>
+        public const byte T07 = 2*T06;
+
+        /// <summary>
+        /// 2^8 = 256
+        /// </summary>
+        public const ushort T08 = 2*T07;
+
+        /// <summary>
+        /// 2^9 = 512
+        /// </summary>
+        public const ushort T09 = 2*T08;
+
+        /// <summary>
+        /// 2^10 = 1024
+        /// </summary>
+        public const ushort T10 = 2*T09;
+        
+        /// <summary>
+        /// 2^11 = 2056
+        /// </summary>
+        public const ushort T11 = 2*T10;
+        
+        /// <summary>
+        /// 2^12 = 4096
+        /// </summary>
+        public const ushort T12 = 2*T11;
+
+        /// <summary>
+        /// 2^13 = 8192
+        /// </summary>
+        public const ushort T13 = 2*T12;
+
+        /// <summary>
+        /// 2^14 = 16,384
+        /// </summary>
+        public const ushort T14 = 2*T13;
+        
+        /// <summary>
+        /// 2^15 = 32,768
+        /// </summary>
+        public const ushort T15 = 2*T14;
+
+        /// <summary>
+        /// 2^16 = 65,536
+        /// </summary>
+        public const uint T16 = 2*T15;
+        
+        /// <summary>
+        /// 2^17 = 131,072
+        /// </summary>
+        public const uint T17 = 2*T16;
+
+        /// <summary>
+        /// 2^18 = 262,144
+        /// </summary>
+        public const uint T18 = 2*T17;
+
+        /// <summary>
+        /// 2^19 = 524,288
+        /// </summary>
+        public const uint T19 = 2*T18;
+
+        /// <summary>
+        /// 2^20 = 1,048,576
+        /// </summary>
+        public const uint T20 = 2*T19;
+        
+        /// <summary>
+        /// 2^21 = 2,097,152
+        /// </summary>
+        public const uint T21 = 2*T20;
+
+        /// <summary>
+        /// 2^22 = 4,194,304
+        /// </summary>
+        public const uint T22 = 2*T21;
+
+        /// <summary>
+        /// 2^23 = 8,388,608
+        /// </summary>
+        public const uint T23 = 2*T22;
+        
+        /// <summary>
+        /// 2^24 = 16,777,216
+        /// </summary>
+        public const uint T24 = 2*T23;
+
+        public const uint T25 = 2*T24;
         public const ulong T26 = 2*T25;
         public const ulong T27 = 2*T26;
         public const ulong T28 = 2*T27;
@@ -177,8 +277,11 @@ namespace Z0
         public const ulong T33 = 2*T32;
         public const ulong T34 = 2*T33;
         public const ulong T35 = 2*T34;
+        public const ulong T36 = 2*T35;
+        public const ulong T37 = 2*T36;
+        public const ulong T38 = 2*T37;
+
     }
 
-    
 
 }

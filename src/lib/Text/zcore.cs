@@ -116,8 +116,7 @@ partial class zcore
     /// <param name="content">The content to be embraced</param>
     /// <returns></returns>
     public static string embrace(object content)      
-        => $"{AsciSym.Lbrace}{content}{AsciSym.Rbrace}";
-
+        => $"{AsciSym.LBrace}{content}{AsciSym.RBrace}";
 
     /// <summary>
     /// Left-Pads the input string with an optionally-specified character.
@@ -194,6 +193,29 @@ partial class zcore
     public static void printeach<T>(IEnumerable<T> items)
         => iter(items, print) ;
 
+
+    /// <summary>
+    /// Prints a separator between items an emits and EOL after the last item
+    /// </summary>
+    /// <param name="items">The items to render</param>
+    /// <param name="sep">The separator</param>
+    /// <typeparam name="T">The item type</typeparam>
+    [MethodImpl(Inline)]   
+    public static void printsep<T>(IEnumerable<T> items, string sep = ",")
+    {
+        var written = false;
+        foreach(var item in items)
+        {
+            if(!written)
+                written = true;
+            else
+                Console.Write(sep);
+
+            Console.Write($"{item}");
+        }
+        Console.WriteLine();
+    }
+
     /// <summary>
     /// Invokes the print operation for each item in the sequence
     /// </summary>
@@ -204,7 +226,8 @@ partial class zcore
         print(msg);
         printeach(items);
     }
-     
+
+
     /// <summary>
     /// Invokes the print operation for each item in the sequence
     /// </summary>
@@ -826,14 +849,6 @@ partial class zcore
     public static string bracket(string content)
         => enclose(content, lbracket(), rbracket());
 
-    /// <summary>
-    /// Encloses text between '{' and '}' characters
-    /// </summary>
-    /// <param name="content"></param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static string embrace(string content)
-        => wrap(lbrace(), content, rbrace());
 
     /// <summary>
     /// Encloses text between less than and greater than characters

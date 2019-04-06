@@ -16,7 +16,6 @@ namespace Z0
 
         }
 
-
         /// <summary>
         /// Characterizes operational multiplicative inversion
         /// </summary>
@@ -74,7 +73,6 @@ namespace Z0
             /// </summary>
             S invertA();
         }
-
     }
 }
  

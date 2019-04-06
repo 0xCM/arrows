@@ -58,10 +58,6 @@ namespace Z0
             => lhs + rhs;
 
         [MethodImpl(Inline)]   
-        public operand and(operand a, operand b) 
-            => a & b;
-
-        [MethodImpl(Inline)]   
         public operand div(operand lhs, operand rhs)
             => lhs/rhs;
 
@@ -96,6 +92,10 @@ namespace Z0
         [MethodImpl(Inline)]   
         public operand negate(operand a) 
             => -a;
+
+        [MethodImpl(Inline)]   
+        public operand and(operand a, operand b) 
+            => a & b;
 
         [MethodImpl(Inline)]   
         public operand or(operand a, operand b) 

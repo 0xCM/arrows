@@ -50,12 +50,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static IEnumerable<T> Pow<T>(this IEnumerable<T> src, int exp)
-            where T : Structures.Powered<T>, new() 
+            where T : Structures.NaturallyPowered<T>, new() 
                 => pow(src,exp);
 
         [MethodImpl(Inline)]
         public static Slice<T> Pow<T>(this Slice<T> src, int exp)
-            where T : Structures.Powered<T>, Equatable<T>, new() 
+            where T : Structures.NaturallyPowered<T>, Equatable<T>, new() 
                 => slice(pow(src,exp));
 
         [MethodImpl(Inline)]

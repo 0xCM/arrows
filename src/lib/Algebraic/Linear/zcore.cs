@@ -46,7 +46,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(IEnumerable<T> components)
         where N : TypeNat, new()
-            => Vector.define(dim<N>(), components);
+            => Vector.define(natrep<N>(), components);
 
     /// <summary>
     /// Constructs a vector characterized by length and component type
@@ -54,11 +54,10 @@ public static partial class zcore
     /// <param name="components"></param>
     /// <typeparam name="N">The length</typeparam>
     /// <typeparam name="T">The component type</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static Vector<N,T> vector<N,T>(Dim<N> dim, IEnumerable<T> components)
+    public static Vector<N,T> vector<N,T>(N len, IEnumerable<T> components)
         where N : TypeNat, new()
-            => Vector.define(dim,components);
+            => Vector.define(len,components);
 
     /// <summary>
     /// Constructs a vector characterized by length and component type
@@ -67,9 +66,9 @@ public static partial class zcore
     /// <typeparam name="N">The length</typeparam>
     /// <typeparam name="T">The component type</typeparam>
     /// <remarks>No allocation occurs during construction</remarks>
-    public static Vector<N,T> vector<N,T>(Dim<N> dim, IReadOnlyList<T> components)
+    public static Vector<N,T> vector<N,T>(N len, IReadOnlyList<T> components)
         where N : TypeNat, new()
-            => Vector.define(dim,components);
+            => Vector.define(len,components);
 
     /// <summary>
     /// Constructs a covector from sequence of components

@@ -161,7 +161,7 @@ partial class zcore
         => o == null
          ? array<PropertyInfo>()
          : _propsCache.GetOrAdd(o.GetType(),
-             t => t.GetProperties(BF_PublicInstance));
+             t => t.GetProperties(BF_AllPublicInstance));
 
     /// <summary>
     /// Retrieves the public properties declared on a type
@@ -169,17 +169,17 @@ partial class zcore
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static IReadOnlyList<PropertyInfo> props(Type type)
-        => _propsCache.GetOrAdd(type, t => t.GetProperties(BF_PublicInstance));
+        => _propsCache.GetOrAdd(type, t => t.GetProperties(BF_AllPublicInstance));
 
     /// <summary>
-    /// Gets the public properties defined on the supplied type
+    /// Gets the public properties defined on, or inherited by, the supplied type
     /// </summary>
     /// <typeparam name="T">The type to examine</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static IReadOnlyList<PropertyInfo> props<T>()
         => _propsCache.GetOrAdd(typeof(T),
-                t => t.GetProperties(BF_PublicInstance));
+                t => t.GetProperties(BF_AllPublicInstance));
 
     /// <summary>
     /// Attempts the retrieve a named property declared on a type

@@ -80,7 +80,7 @@ namespace Z0
         /// <param name="s1">The first slice</param>
         [MethodImpl(Inline)]
         public static Slice<T> pow<T>(Slice<T> s1, int exp)
-            where T : Structures.Powered<T>, Equatable<T>, new()     
+            where T : Structures.NaturallyPowered<T>, Equatable<T>, new()     
                 => map(s1, x => x.pow(exp));
 
 

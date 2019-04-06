@@ -401,7 +401,7 @@ namespace App04
             var r = new Randomizer();
             var current = 0ul;
             while(++current <= count)
-                write($"{r.one()}, ");
+                write($"{r.next()}, ");
         }
 
 
@@ -519,10 +519,8 @@ namespace App04
         }
 
     
-        static void Main(string[] args)
-        {     
-            SysInit.initialize<Program>();
-
+        static void bitplay()
+        {
             Func<byte,int,bool> t1 = (x,i) => Bits.xtest<byte>(x, i);
             Func<sbyte,int,bool> t2 = (x,i) => Bits.test(x, i);
             Func<sbyte,int,bool> t3 = (x,i) => Bits.xtest<sbyte>(x, i);
@@ -548,7 +546,68 @@ namespace App04
              print($"v32: bits - {v32}, value - {v32.unwrap()}");
              print($"v64: bits - {v64}, value - {v64.unwrap()}");
             
-            
+
+        }
+
+
+        static void PrimSpeed(ulong count)
+        {
+            var min = -250;
+            var max = 250;
+            var input = Rand.primal(min,max).Freeze((int)count);
+
+            int baseline()
+            {
+                var sum = 0;
+                foreach(var item in input)
+                    sum += item;
+                return sum;
+            }
+
+
+            int operators()
+            {
+                var ops = primops<int>();
+                var sum = ops.zero;
+                foreach(var item in input)
+                    sum = ops.add(sum,item);
+                return sum; 
+            }
+
+            var r1 = duration(baseline, out long basetime);
+            var r2 = duration(operators, out long optime);
+            demand(r1 == r2);
+            print($"Result ={r1}; baseline time = {basetime}ms; operator time = {optime}ms");
+
+        }
+
+        static void Main(string[] args)
+        {     
+            SysInit.initialize<Program>();
+
+
+            var input = Rand.primal(-50,50).Freeze((int)Pow2.T21);
+            var pos = (double)input.Where(x => x > 0).Count();
+            var neg = (double)input.Where(x => x < 0).Count();
+            var quo = pos/neg;
+            // print($"pos::neg = {quo}");
+            // var sum = input.Sum();
+            // print($"sum = {sum}");
+
+            var h = Histogram.define(-50, 50, 1);
+            h.distribute(input.ToReal());
+            printeach(h.ratios());
+
+        
+            // var bits = Rand.bits().Take(Pow2.T21).Freeze();
+            // var count = bits.Count;
+            // print(count);
+            // var on = (double)bits.Where(b => b).Count();
+            // var off = (double)bits.Where(b => !b).Count();
+            // print($"on::off = {on/off}");
+
+            //PrimSpeed(Pow2.T21);        
+
             //TestRunner.RunTests();
             
         }

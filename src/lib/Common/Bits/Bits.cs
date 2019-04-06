@@ -215,8 +215,6 @@ namespace Z0
         public static byte lolo(uint src)
             => lo(lo(src));
 
-
-
         /// <summary>
         /// int => (short, .)
         /// </summary>
@@ -617,5 +615,7 @@ namespace Z0
 
             return (negative ? Sign.Negative : Sign.Positive, exponent,mantissa);
         }
+
+
      }
 }

@@ -9,12 +9,12 @@ namespace Z0
 
     partial class Operative
     {
-        public interface Decrementable<T> : Ordered<T>
+        public interface Decrementable<T> 
         {
             T dec(T x);        
         }
 
-        public interface Incrementable<T> : Ordered<T>
+        public interface Incrementable<T>
         {
             T inc(T x);        
         }

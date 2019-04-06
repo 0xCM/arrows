@@ -14,7 +14,7 @@ using Z0;
 using static zcore;
 
 /// <summary>
-/// Defines extensions to convert various types of values to floatg values
+/// Defines conversion extensions
 /// </summary>
 public static class ToIntGX
 {
@@ -25,13 +25,24 @@ public static class ToIntGX
         => src;
 
     [MethodImpl(Inline)]   
+    public static IEnumerable<intg<byte>> ToIntG(this IEnumerable<byte> src)
+        => src.Select(x => x.ToIntG());
+
+    [MethodImpl(Inline)]   
     public static intg<sbyte> ToIntG(this sbyte src)
         => src;
 
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<sbyte>> ToIntG(this IEnumerable<sbyte> src)
+        => src.Select(x => x.ToIntG());
 
     [MethodImpl(Inline)]   
     public static intg<short> ToIntG(this short src)
         => src;
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<short>> ToIntG(this IEnumerable<short> src)
+        => src.Select(x => x.ToIntG());
 
 
     [MethodImpl(Inline)]   
@@ -39,69 +50,74 @@ public static class ToIntGX
         => src;
 
     [MethodImpl(Inline)]   
+    public static IEnumerable<intg<ushort>> ToIntG(this IEnumerable<ushort> src)
+        => src.Select(x => x.ToIntG());
+
+    [MethodImpl(Inline)]   
     public static intg<int> ToIntG(this int src)
         => src;
 
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<int>> ToIntG(this IEnumerable<int> src)
+        => src.Select(x => x.ToIntG());
 
     [MethodImpl(Inline)]   
     public static intg<uint> ToIntG(this uint src)
         => src;
 
     [MethodImpl(Inline)]   
+    public static IEnumerable<intg<uint>> ToIntG(this IEnumerable<uint> src)
+        => src.Select(x => x.ToIntG());
+
+    [MethodImpl(Inline)]   
     public static intg<long> ToIntG(this long src)
         => src;
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<long>> ToIntG(this IEnumerable<long> src)
+        => src.Select(x => x.ToIntG());
 
     [MethodImpl(Inline)]   
     public static intg<ulong> ToIntG(this ulong src)
         => src;
 
     [MethodImpl(Inline)]   
+    public static IEnumerable<intg<ulong>> ToIntG(this IEnumerable<ulong> src)
+        => src.Select(x => x.ToIntG());
+
+    [MethodImpl(Inline)]   
     public static intg<BigInteger> ToIntG(this BigInteger src)
         => src;
 
     [MethodImpl(Inline)]   
+    public static IEnumerable<intg<BigInteger>> ToIntG(this IEnumerable<BigInteger> src)
+        => src.Select(x => x.ToIntG());
+    
+    [MethodImpl(Inline)]   
     public static intg<int> ToIntG(this float src)
         => (int)src;
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<intg<int>> ToIntG(this IEnumerable<float> src)
+        => src.Select(x => x.ToIntG());
 
     [MethodImpl(Inline)]   
     public static intg<long> ToIntG(this double src)
         => (long)src;
 
     [MethodImpl(Inline)]   
+    public static IEnumerable<intg<long>> ToIntG(this IEnumerable<double> src)
+        => src.Select(x => x.ToIntG());
+    
+    [MethodImpl(Inline)]   
     public static intg<long> ToIntG(this decimal src)
         => (long)src;
 
-    /// <summary>
-    /// effects byte => intg[byte]
-    /// </summary>
-    /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
-    public static intg<byte> ToUIntG(this byte src)
-        => src;
+    public static IEnumerable<intg<long>> ToIntG(this IEnumerable<decimal> src)
+        => src.Select(x => x.ToIntG());
 
-    /// <summary>
-    /// effects ushort => intg[ushort]
-    /// </summary>
-    /// <param name="src">The source value</param>
-    [MethodImpl(Inline)]   
-    public static intg<ushort> ToUIntG(this ushort src)
-        => src;
 
-    /// <summary>
-    /// effects uint => intg[ulong]
-    /// </summary>
-    /// <param name="src">The source value</param>
-    [MethodImpl(Inline)]   
-    public static intg<uint> ToUIntG(this uint src)
-        => src;
-
-    /// <summary>
-    /// effects ulong => intg[ulong]
-    /// </summary>
-    /// <param name="src">The source value</param>
-    [MethodImpl(Inline)]   
-    public static intg<ulong> ToUIntG(this ulong src)
-        => src;
 
     /// <summary>
     /// effects byte => intg[T]

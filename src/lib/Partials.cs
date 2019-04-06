@@ -23,6 +23,11 @@ namespace Z0
 
     }
 
+    static partial class PrimOps
+    {
+        
+    }
+
     /// <summary>
     /// Constituents responsible for defining constraints
     /// that, when proof is given, allows access to a

@@ -19,12 +19,12 @@ using static zcore;
 public static class ToRealX
 {
     [MethodImpl(Inline)]   
-    public static real<T>[] ToReals<T>(this T[] src)
+    public static real<T>[] ToReal<T>(this T[] src)
         where T : IConvertible
         => src.Select(x => real<T>(x)).ToArray();        
 
     [MethodImpl(Inline)]   
-    public static IEnumerable<real<T>> ToReals<T>(this IEnumerable<T> src)
+    public static IEnumerable<real<T>> ToReal<T>(this IEnumerable<T> src)
         where T : IConvertible
         => src.Select(x => real<T>(x));
 

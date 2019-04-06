@@ -110,12 +110,12 @@ partial class zcore
     [MethodImpl(Inline)]
     public static IEnumerable<real<T>> reals<T>(IEnumerable<T> src)
         where T : IConvertible
-            => src.ToReals();
+            => src.ToReal();
 
     [MethodImpl(Inline)]
     public static real<T>[] reals<T>(params T[] src)
         where T : IConvertible
-            => src.ToReals();
+            => src.ToReal();
 
     // !!! x : unsigned => intg[x]
     // !!! --------------------------------------------------------------------

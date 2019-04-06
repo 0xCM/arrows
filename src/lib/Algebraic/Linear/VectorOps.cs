@@ -21,7 +21,7 @@ namespace Z0
         /// <typeparam name="N">The vector length</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> define<N,T>(Dim<N> dim, params T[] src) 
+        public static Vector<N,T> define<N,T>(N len, params T[] src) 
             where N : TypeNat, new() 
                 => new Vector<N,T>(src);
 
@@ -33,7 +33,7 @@ namespace Z0
         /// <typeparam name="N">The vector length</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> define<N,T>(Dim<N> dim, IEnumerable<T> src) 
+        public static Vector<N,T> define<N,T>(N len, IEnumerable<T> src) 
             where N : TypeNat, new() 
                 => new Vector<N,T>(src);
 
@@ -46,7 +46,7 @@ namespace Z0
         /// <typeparam name="N">The vector length</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> define<N,T>(Dim<N> dim, IReadOnlyList<T> src) 
+        public static Vector<N,T> define<N,T>(N len, IReadOnlyList<T> src) 
             where N : TypeNat, new() 
                 => new Vector<N,T>(src);
 
