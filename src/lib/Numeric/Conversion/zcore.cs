@@ -15,6 +15,10 @@ using static zcore;
 
 partial class zcore
 {
+    [MethodImpl(Inline)]
+    public static IEnumerable<T> convert<S,T>(IEnumerable<S> src, Operative.Conversion<S,T> converter, bool pll = false)
+        => pll ? from x in src.AsParallel() select converter.convert(x) 
+                : map(src, converter.convert);
 
     /// <summary>
     /// Explicit alternative to implicit destructuring

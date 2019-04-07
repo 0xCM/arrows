@@ -15,11 +15,32 @@ namespace Z0
 
     partial class Reflections
     {
+        [MethodImpl(Inline)]
+        public static IEnumerable<Type> Concrete(this IEnumerable<Type> src)
+            => src.Where(t => !t.IsAbstract);
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<Type> Abstract(this IEnumerable<Type> src)
+            => src.Where(t => t.IsAbstract);
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<Type> Public(this IEnumerable<Type> src)
+            => src.Where(t => t.IsPublic);
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<Type> NonPublic(this IEnumerable<Type> src)
+            => src.Where(t => !t.IsPublic);
+
+        [MethodImpl(Inline)]
+        public static bool IsStatic(this PropertyInfo p)
+            => p.GetGetMethod()?.IsStatic == true 
+            || p.GetSetMethod().IsStatic == true;
+
         /// <summary>
         /// Determines whether a type has a public default constructor
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static bool HasDefaultPublicConstructor(this Type t)
             => t.GetConstructor(new Type[] { }) != null;
 
@@ -27,7 +48,7 @@ namespace Z0
         /// Determines whether a type has a public default constructor
         /// </summary>
         /// <typeparam name="T">The type to examine</typeparam>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static bool HasDefaultPublicConstructor<T>()
             where T : class 
                 => typeof(T).GetConstructor(new Type[] { }) != null;
@@ -37,7 +58,7 @@ namespace Z0
         /// </summary>
         /// <param name="mit">The instance classification</param>
         /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsStaticType(this MemberInstanceType mit)
             => mit == MemberInstanceType.Static;
 
@@ -46,7 +67,7 @@ namespace Z0
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <param name="interfaceType">The interface type</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static bool Realizes(this Type t, Type interfaceType)
             => interfaceType.IsInterface && t.GetInterfaces().Contains(interfaceType);
 
@@ -55,7 +76,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The interface type</typeparam>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static bool Realizes<T>(this Type t)
             => typeof(T).IsInterface && t.GetInterfaces().Contains(typeof(T));
 
@@ -64,7 +85,7 @@ namespace Z0
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsNullableType(this Type t)
             => t.IsGenericType
                 && t.GetGenericTypeDefinition() == typeof(Nullable<>);
@@ -75,7 +96,7 @@ namespace Z0
         /// <typeparam name="T">The type to match</typeparam>
         /// <param name="t">The type to examine</param>
         /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         internal static bool IsTypeOf<T>(this Type t)
             => t == typeof(T) || t.IsNullableType<T>();
 
@@ -83,8 +104,7 @@ namespace Z0
         /// Determines whether a supplied type is either a <see cref="DateTime"/> or a <see cref="Nullable{DateTime}"/>
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsDateTime(this Type t)
             => t.IsTypeOf<DateTime>();
 
@@ -92,8 +112,7 @@ namespace Z0
         /// Determines whether a supplied type is either a <see cref="Int16"/> or a <see cref="Nullable{Int16}"/>
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsInt16(this Type t)
             => t.IsTypeOf<Int16>();
 
@@ -101,8 +120,7 @@ namespace Z0
         /// Determines whether a supplied type is either a <see cref="Int32"/> or a <see cref="Nullable{Int32}"/>
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsInt32(this Type t)
             => t.IsTypeOf<Int32>();
 
@@ -111,7 +129,7 @@ namespace Z0
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsInt64(this Type t)
             => t.IsTypeOf<Int64>();
 
@@ -119,8 +137,7 @@ namespace Z0
         /// Determines whether a supplied type is either a <see cref="UInt16"/> or a <see cref="Nullable{UInt16}"/>
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsUInt16(this Type t)
             => t.IsTypeOf<UInt16>();
 
@@ -128,54 +145,51 @@ namespace Z0
         /// Determines whether a supplied type is either a <see cref="UInt32"/> or a <see cref="Nullable{UInt32}"/>
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsUInt32(this Type t)
             => t.IsTypeOf<UInt32>();
 
         /// <summary>
         /// Determines whether a supplied type is either a <see cref="UInt64"/> or a <see cref="Nullable{UInt64}"/>
         /// </summary>
-        /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsUInt64(this Type t)
-            => t.IsTypeOf<UInt64>();
+        /// <param name="src">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static bool IsUInt64(this Type src)
+            => src.IsTypeOf<UInt64>();
 
         /// <summary>
         /// Determines whether a supplied type is either a <see cref="Byte"/> or a <see cref="Nullable{Byte}"/>
         /// </summary>
-        /// <param name="t">The type to examine</param>
+        /// <param name="src">The type to examine</param>
         /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsUInt8(this Type t)
-            => t.IsTypeOf<Byte>();
+        [MethodImpl(Inline)]
+        public static bool IsUInt8(this Type src)
+            => src.IsTypeOf<Byte>();
 
         /// <summary>
         /// Determines whether a supplied type is either a <see cref="SByte"/> or a <see cref="Nullable{SByte}"/>
         /// </summary>
-        /// <param name="t">The type to examine</param>
+        /// <param name="src">The type to examine</param>
         /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsInt8(this Type t)
-            => t.IsTypeOf<SByte>();
+        [MethodImpl(Inline)]
+        public static bool IsInt8(this Type src)
+            => src.IsTypeOf<SByte>();
 
         /// <summary>
         /// Determines whether a supplied type is one of the intrinsic integral types or a nullable type thereof
         /// </summary>
-        /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsInteger(this Type t)
-            => t.IsInt32() || t.IsInt64() || t.IsInt8() || t.IsInt16()
-            || t.IsUInt8() || t.IsUInt32() || t.IsUInt64() || t.IsUInt16();
+        /// <param name="src">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static bool IsInteger(this Type src)
+            => src.IsInt32() || src.IsInt64() || src.IsInt8() || src.IsInt16()
+            || src.IsUInt8() || src.IsUInt32() || src.IsUInt64() || src.IsUInt16();
 
         /// <summary>
         /// Determines whether a supplied type is DBNull
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsDbNull(this Type t)
             => t.IsTypeOf<DBNull>();
 
@@ -183,8 +197,7 @@ namespace Z0
         /// Determines whether a supplied type is either a <see cref="TimeSpan"/> or a <see cref="Nullable{TimeSpan}"/>
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsTimeSpan(this Type t)
             => t.IsTypeOf<TimeSpan>();
 
@@ -193,8 +206,7 @@ namespace Z0
         /// Determines whether a supplied type is either a <see cref="Boolean"/> or a <see cref="Nullable{Boolean}"/>
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsBool(this Type t)
             => t.IsTypeOf<Boolean>();
 
@@ -202,8 +214,7 @@ namespace Z0
         /// Determines whether a supplied type is either a <see cref="Decimal"/> or a nullable <see cref="Nullable{Decimal}"/>
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsDecimal(this Type t)
             => t.IsTypeOf<Decimal>();
 
@@ -212,7 +223,7 @@ namespace Z0
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsString(this Type t)
             => t == typeof(string);
 
@@ -220,8 +231,7 @@ namespace Z0
         /// Determines whether a supplied type is either a <see cref="Char"/> or a nullable <see cref="Nullable{Char}"/>
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsChar(this Type t)
             => t.IsTypeOf<Char>();
 
@@ -229,8 +239,7 @@ namespace Z0
         /// Determines whether a supplied type is either a <see cref="Guid"/> or a nullable <see cref="Nullable{Guid}"/>
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsGuid(this Type t)
             => t.IsTypeOf<Guid>();
 
@@ -242,7 +251,7 @@ namespace Z0
         /// <returns>
         /// Returns true if t is both a nullable type and is of type T
         /// </returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsNullableType<T>(this Type t)
             => t.IsNullableType() && Nullable.GetUnderlyingType(t) == typeof(T);
 
@@ -250,7 +259,6 @@ namespace Z0
         /// Determines whether a type is an intrinsic numeric type
         /// </summary>
         /// <param name="type">The type to evaluate</param>
-        /// <returns></returns>
         public static bool IsIntrinsicNumber(this Type type)
         {
             switch (Type.GetTypeCode(type))
@@ -271,24 +279,23 @@ namespace Z0
         /// <summary>
         /// Determines whether a type is anonymous
         /// </summary>
-        /// <param name="type">The type to test</param>
-        /// <returns></returns>
+        /// <param name="src">The type to test</param>
         /// <remarks>
         /// Lifted from: https://github.com/NancyFx/Nancy/blob/master/src/Nancy/ViewEngines/Extensions.cs
         /// </remarks>
-        public static bool IsAnonymous(this Type type)
-            => type == null ? false : type.GetTypeInfo().IsGenericType
-                    && (type.GetTypeInfo().Attributes & TypeAttributes.NotPublic) == TypeAttributes.NotPublic
-                    && (type.Name.StartsWith("<>", StringComparison.OrdinalIgnoreCase) || type.Name.StartsWith("VB$", StringComparison.OrdinalIgnoreCase))
-                    && (type.Name.Contains("AnonymousType") || type.Name.Contains("AnonType"))
-                    && type.GetTypeInfo().GetCustomAttributes(typeof(CompilerGeneratedAttribute)).Any();
+        public static bool IsAnonymous(this Type src)
+            => src == null ? false : src.GetTypeInfo().IsGenericType
+                    && (src.GetTypeInfo().Attributes & TypeAttributes.NotPublic) == TypeAttributes.NotPublic
+                    && (src.Name.StartsWith("<>", StringComparison.OrdinalIgnoreCase) || src.Name.StartsWith("VB$", StringComparison.OrdinalIgnoreCase))
+                    && (src.Name.Contains("AnonymousType") || src.Name.Contains("AnonType"))
+                    && src.GetTypeInfo().GetCustomAttributes(typeof(CompilerGeneratedAttribute)).Any();
 
         /// <summary>
         /// Determines whether the type is an option type and if so returns the underlying option
         /// type encapsulated within an option ( ! ). Otherwise, none
         /// </summary>
         /// <param name="candidate">the type to test</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static bool IsOption(this Type candidate)
             => candidate.Realizes<IOption>();
 
@@ -296,7 +303,7 @@ namespace Z0
         /// Determines whether a type has a name
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static bool IsNamed(this Type t)
             => !t.IsAnonymous();
 
@@ -304,8 +311,7 @@ namespace Z0
         /// Determines whether a type is static
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsStatic(this Type t)
             => t.IsAbstract && t.IsSealed;
 
@@ -313,8 +319,7 @@ namespace Z0
         /// Determines whether a type is a struct
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [DebuggerStepThrough, MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(Inline)]
         public static bool IsStruct(this Type t)
             => t.IsValueType && !t.IsEnum;
 
@@ -322,7 +327,7 @@ namespace Z0
         /// Determines whether the specified type is a delegate type
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static bool IsDelegate(this Type t)
             => t.IsSubclassOf(typeof(Delegate));
 

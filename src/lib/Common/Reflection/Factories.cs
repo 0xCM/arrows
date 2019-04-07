@@ -13,6 +13,8 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
+    using static zcore;
+    
     partial class Reflections
     {
         /// <summary>
@@ -21,7 +23,7 @@ namespace Z0
         /// <typeparam name="T">The cast instance type</typeparam>
         /// <param name="t">The type for which an instance will be created</param>
         /// <param name="args">Arguments matched with/passed to an instance constructor defined by the type</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static T CreateInstance<T>(this Type t, params object[] args)
             => (T)Activator.CreateInstance(t, args);
 

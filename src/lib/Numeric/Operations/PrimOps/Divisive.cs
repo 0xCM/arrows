@@ -8,10 +8,10 @@ namespace Z0
     using System.Numerics;
     using System.Runtime.CompilerServices;
     using static zcore;
+
     using static Operative;
-    
-    partial class PrimOps
-    {
+
+    partial class PrimOps { partial class Reify {
         public readonly struct Divisive : 
             Divisive<byte>, 
             Divisive<sbyte>, 
@@ -335,4 +335,4 @@ namespace Z0
         }    
 
     }
-}
+}}

@@ -22,8 +22,8 @@ namespace Z0.Tests
         static void divRemTest<T>(int count, T min, T max)
             where T : IComparable<T>
         {
-            var src1 = Rand.stream<T>(min, max).Take(count).Freeze();
-            var src2 = Rand.stream<T>(min, max).Where(x => x.neq(x.zero)).Take(count).Freeze();
+            var src1 = Rand.reals<T>(min, max).Take(count).Freeze();
+            var src2 = Rand.reals<T>(min, max).Where(x => x.neq(x.zero)).Take(count).Freeze();
             var inputs = zip(src1,src2).Freeze();
             var expect = map(inputs, x => x.left.divrem(x.right)).Freeze();
             var actual = map(inputs, x => x.left.divrem(x.right)).Freeze();
@@ -34,7 +34,7 @@ namespace Z0.Tests
                     inputs[i], expect[i], actual[i]));
         }
 
-        public static void absTest<T>(T input, T expect)
+        static void absTest<T>(T input, T expect)
             where T : C.SInt<T>, new()
         {
             var actual = input.abs();

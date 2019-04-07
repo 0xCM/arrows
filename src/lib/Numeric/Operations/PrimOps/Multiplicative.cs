@@ -7,12 +7,11 @@ namespace Z0
     using System;
     using System.Numerics;
     using System.Runtime.CompilerServices;
-    
     using static zcore;
+
     using static Operative;
 
-    partial class PrimOps
-    {
+    partial class PrimOps { partial class Reify {
         public readonly struct Multiplicative : 
             Multiplicative<byte>, 
             Multiplicative<sbyte>, 
@@ -83,4 +82,4 @@ namespace Z0
         }
 
     }
-}
+}}

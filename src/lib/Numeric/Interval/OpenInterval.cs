@@ -12,7 +12,7 @@ namespace Z0
     using static zcore;
 
 
-    public readonly struct OpenInterval<T> : Traits.OpenInterval<T>
+    public readonly struct OpenInterval<T> : Traits.OpenInterval<OpenInterval<T>,T>
     {
 
         public static implicit operator Interval<T>(OpenInterval<T> x)

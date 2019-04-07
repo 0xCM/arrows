@@ -13,7 +13,7 @@ namespace Z0
 
     public class AsciSym
     {
-        public static readonly Atoms All =  type<AsciSym>().StaticFields().Values<Atom>().Contain();
+        public static readonly Atoms All =  type<AsciSym>().DeclaredFields().Static().Values<Atom>().Contain();
 
         public static readonly Atom Pipe = "|";
 
@@ -66,7 +66,7 @@ namespace Z0
 
     public class AsciLower
     {
-        public static readonly Atoms All =  type<AsciLower>().StaticFields().Values<Atom>().Contain();
+        public static readonly Atoms All =  type<AsciLower>().DeclaredFields().Static().Values<Atom>().Contain();
 
         public static readonly Atom a = "a";
         public static readonly Atom b = "b";
@@ -99,7 +99,7 @@ namespace Z0
 
     public class AsciUpper
     {        
-        public static readonly Atoms All =  type<AsciUpper>().StaticFields().Values<Atom>().Contain();
+        public static readonly Atoms All =  type<AsciUpper>().DeclaredFields().Static().Values<Atom>().Contain();
         
         public static readonly Atom A = "A";
         public static readonly Atom B = "B";
@@ -132,7 +132,7 @@ namespace Z0
 
     public class AsciDigits
     {
-        public static readonly Atoms All =  type<AsciDigits>().StaticFields().Values<Atom>().Contain();
+        public static readonly Atoms All =  type<AsciDigits>().DeclaredFields().Static().Values<Atom>().Contain();
 
         public static readonly Atom A0 = "1";
         public static readonly Atom A1 = "1";

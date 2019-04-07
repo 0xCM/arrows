@@ -18,20 +18,25 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static T[] Unwrap<T>(this intg<T>[] src)
-            => src.Select(unwrap).ToArray();
+            => map(src,unwrap);
 
-        [MethodImpl(Inline)]   
-        public static T[] Unwrap<T>(this real<T>[] src)
-            => src.Select(unwrap).ToArray();
 
         [MethodImpl(Inline)]   
         public static IEnumerable<T> Unwrap<T>(this IEnumerable<intg<T>> src)
-            => src.Select(unwrap);
+            => map(src,unwrap);
+
 
         [MethodImpl(Inline)]   
         public static IEnumerable<T> Unwrap<T>(this IEnumerable<real<T>> src)
-            => src.Select(unwrap);
+            => map(src,unwrap);
 
+        [MethodImpl(Inline)]   
+        public static T[] Unwrap<T>(this real<T>[] src)
+            => map(src,unwrap);
+
+        [MethodImpl(Inline)]   
+        public static IReadOnlyList<T> Unwrap<T>(this IReadOnlyList<real<T>> src)
+            => map(src, unwrap);
 
         [MethodImpl(Inline)]
         public static T Sum<T>(this IEnumerable<T> src)

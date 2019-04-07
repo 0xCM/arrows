@@ -10,8 +10,9 @@ namespace Z0
     using static zcore;
 
     using static Operative;
-    partial class PrimOps
-    {
+
+    partial class PrimOps { partial class Reify {
+
         public readonly struct Subtractive : 
             Subtractive<byte>, 
             Subtractive<sbyte>, 
@@ -82,4 +83,4 @@ namespace Z0
         }
 
     }
-}
+}}

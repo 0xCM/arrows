@@ -45,6 +45,13 @@ namespace Z0
         public static void fail(string msg)
             => throw new Exception(msg);
 
+        public static void equals<T>(T expect, T actual)
+        {
+            if(!Object.Equals(expect,actual))
+                fail($"{expect} != {actual}" );
+        }
+
+
         public static string eq<T>(T x, T y)
             where T : Equatable<T>, new()        
                 => define(x,y,"==",  (a,b) => a.eq(b)).demand();

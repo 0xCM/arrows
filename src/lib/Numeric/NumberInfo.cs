@@ -11,7 +11,6 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Text;
 
-
     public readonly struct NumberInfo<T>
     {
         public NumberInfo((T min, T max) range, bool signed, T zero, T one, T bitsize, bool infinite = false)

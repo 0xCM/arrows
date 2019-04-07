@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Testing
 {
     using System;
     using System.Linq;
@@ -26,8 +26,14 @@ namespace Z0
         static void failure(string info, string member)
             => error($"{member}: test failed - {info}");
 
-        static void success(string member, long ms)
-            => inform($"succeeded {ms}ms",member);
+        static void success(string member, long ms, int reps)
+        {
+            if(reps == 1)
+                inform($"succeeded {ms}ms",member);
+            else
+                inform($"succeeded {ms}ms | {reps} reps",member); 
+        }
+            
 
         public TestRunner()
         {
@@ -35,39 +41,43 @@ namespace Z0
         }            
 
         public IEnumerable<Type> Hosts()
-            => from t in assembly<Initalizer>().GetTypes()
-               where t.Namespace == typeof(Tests.TestInfo).Namespace
-                select t;
+            => assembly<Initalizer>().Types()
+                    .InNamespace(typeof(Z0.Tests.TestInfo).Namespace)
+                    .Concrete();
     
         public IEnumerable<MethodInfo> Tests(Type host)
-            => from m in host.GetDeclaredStaticMethods()
-            where m.GetParameters().Length == 0
-            select m;
+            =>  host.DeclaredMethods()
+                    .Public()
+                    .WithParameterCount(0);
 
-        public IEnumerable<MethodInfo> Tests()
-            => from h in Hosts() from m in Tests(h) select m;
-
-        public void Run(MethodInfo test)
+        public void Run(object host, MethodInfo test)
         {
             try
             {
                 var name = $"{test.DeclaringType.DisplayName()}/{test.Name}";
-                hilite("executing",  name);
+                hilite("executing",  name); 
+                var reps = RepeatAttribute.Repetitions(test);                               
                 var sw = stopwatch();
-                test.Invoke(null,null);                    
-                success(name,sw.ElapsedMilliseconds);
+                for(var i = 0; i<reps; i++)
+                    test.Invoke(host,null);                    
+                success(name,sw.ElapsedMilliseconds,reps);
             }
             catch(Exception e)
             {
                 failure(e.ToString(), test.Name);                    
-            }
-            
+            }            
         }
 
         public void Run(Type host)
-            => iter(Tests(host), Run);
+        {
+            if(!host.ContainsGenericParameters)
+            {
+                var instance = host.CreateInstance<object>();
+                iter(Tests(host), t =>  Run(instance, t));
+            }
+        }
     
         public void Run()
-            => iter(Tests(),Run);
+            => iter(Hosts(), Run);
     }
 }

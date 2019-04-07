@@ -11,8 +11,7 @@ namespace Z0
 
     using static Operative;
 
-    partial class PrimOps
-    {
+    partial class PrimOps { partial class Reify {
         public readonly struct Bitwise : 
             Bitwise<byte>, 
             Bitwise<sbyte>, 
@@ -412,4 +411,4 @@ namespace Z0
         }
 
     }
-}
+}}

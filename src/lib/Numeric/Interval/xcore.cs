@@ -15,55 +15,122 @@ namespace Z0
 
     public static class Interval
     {
-        public static IEnumerable<real<T>> partition<T>(Traits.Interval<real<T>> src, real<T> width)
-            where T: IConvertible
+        /// <summary>
+        /// Partitions an interval into a specified number of pieces
+        /// </summary>
+        /// <param name="src">The source interval</param>
+        /// <param name="parts">The number of partition points</param>
+        /// <typeparam name="T">The underlying interval type</typeparam>
+        public static IEnumerable<floatg<T>> partition<T>(Traits.Interval<floatg<T>> src, floatg<T> parts)
         {
-            if(width.neq(real<T>.Zero))
+            
+            if(parts.neq(floatg<T>.Zero))
             {            
-                if(src.leftclosed)
-                    yield return src.left;
+                var width = (src.right - src.left)/parts;
+                var current = src.left;
                 
-                var prior = src.left;
-                var current = src.left + width;
-                while(current < src.right)
+                yield return src.left;
+                for(var i = floatg<T>.Zero; i < parts - floatg<T>.One; i++)
                 {
-                    yield return current;
-                    prior = current;
                     current += width;
-
-                    //Detects overlow
-                    if(current < prior)
-                        break;
+                    yield return current;
                 }
+                yield return src.right;
             }
         }
         
+        /// <summary>
+        /// Constructs the closed interval [left,right]
+        /// </summary>
+        /// <param name="left">The left end point</param>
+        /// <param name="right">The right endpoint</param>
+        /// <typeparam name="T">The underlying type</typeparam>
+        [MethodImpl(Inline)]
         public static ClosedInterval<T> closed<T>(T left, T right)
             => new ClosedInterval<T>(left,right);
 
+        /// <summary>
+        /// Constructs the left-open(or right-closed interval) interval (left,right]
+        /// </summary>
+        /// <param name="left">The left end point</param>
+        /// <param name="right">The right endpoint</param>
+        /// <typeparam name="T">The underlying type</typeparam>
+        [MethodImpl(Inline)]
         public static LeftOpenInterval<T> leftopen<T>(T left, T right)
             => new LeftOpenInterval<T>(left,right);
 
+        /// <summary>
+        /// Constructs the left-closed (or right-open interval) interval [left,right)
+        /// </summary>
+        /// <param name="left">The left end point</param>
+        /// <param name="right">The right endpoint</param>
+        /// <typeparam name="T">The underlying type</typeparam>
+        [MethodImpl(Inline)]
         public static LeftClosedInterval<T> leftclosed<T>(T left, T right)
             => new LeftClosedInterval<T>(left,right);
 
+        /// <summary>
+        /// Constructs the open interval (left,right)
+        /// </summary>
+        /// <param name="left">The left end point</param>
+        /// <param name="right">The right endpoint</param>
+        /// <typeparam name="T">The underlying type</typeparam>
+        [MethodImpl(Inline)]
         public static OpenInterval<T> open<T>(T left, T right)
             => new OpenInterval<T>(left,right);
         
     }
 
-    public static class IntervalX
+    partial class xcore
     {
+        /// <summary>
+        /// Constructs the closed interval [left,right]
+        /// </summary>
+        /// <param name="left">The left end point</param>
+        /// <param name="right">The right endpoint</param>
+        /// <typeparam name="T">The underlying type</typeparam>
+        [MethodImpl(Inline)]
         public static ClosedInterval<T> ToClosedInterval<T>(this (T left, T right) x)
             => Interval.closed(x.left,x.right);
 
+        /// <summary>
+        /// Constructs the left-open(or right-closed interval) interval (left,right]
+        /// </summary>
+        /// <param name="left">The left end point</param>
+        /// <param name="right">The right endpoint</param>
+        /// <typeparam name="T">The underlying type</typeparam>
+        [MethodImpl(Inline)]
         public static LeftOpenInterval<T> ToLeftOpenInterval<T>(this (T left, T right) x)
             => Interval.leftopen(x.left,x.right);
 
+        /// <summary>
+        /// Constructs the left-closed (or right-open interval) interval [left,right)
+        /// </summary>
+        /// <param name="left">The left end point</param>
+        /// <param name="right">The right endpoint</param>
+        /// <typeparam name="T">The underlying type</typeparam>
+        [MethodImpl(Inline)]
         public static LeftClosedInterval<T> ToRightOpenInterval<T>(this (T left, T right) x)
             => Interval.leftclosed(x.left,x.right);
 
+        /// <summary>
+        /// Constructs the open interval (left,right)
+        /// </summary>
+        /// <param name="left">The left end point</param>
+        /// <param name="right">The right endpoint</param>
+        /// <typeparam name="T">The underlying type</typeparam>
+        [MethodImpl(Inline)]
         public static OpenInterval<T> ToOpenInterval<T>(this (T left, T right) x)
-            => Interval.open(x.left,x.right);        
+            => Interval.open(x.left,x.right);     
+
+        /// <summary>
+        /// Partitions an interval into a specified number of pieces
+        /// </summary>
+        /// <param name="src">The source interval</param>
+        /// <param name="parts">The number of partition points</param>
+        /// <typeparam name="T">The underlying interval type</typeparam>
+        [MethodImpl(Inline)]
+        public static IEnumerable<floatg<T>> Partition<T>(this Traits.Interval<floatg<T>> src, floatg<T> parts)   
+            => Interval.partition(src, parts);
     }
 }

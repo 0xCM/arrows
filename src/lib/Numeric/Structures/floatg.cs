@@ -178,9 +178,9 @@ namespace Z0
         public bool odd()
             => not(even());
 
-        [MethodImpl(Inline)]
-        public Quorem<floatg<T>> divrem(floatg<T> rhs)
-            => apply(Ops.divrem(data,rhs), x => Quorem.define<floatg<T>>(x.q,x.r));
+        // [MethodImpl(Inline)]
+        // public Quorem<floatg<T>> divrem(floatg<T> rhs)
+        //     => apply(Ops.divrem(data,rhs), x => Quorem.define<floatg<T>>(x.q,x.r));
 
         [MethodImpl(Inline)]
         public bool eq(floatg<T> rhs)

@@ -51,7 +51,7 @@ namespace Z0
         /// <param name="min">The lower bound</param>
         /// <param name="max">The upper bound</param>
         /// <typeparam name="T">The underlying type</typeparam>
-        public static IEnumerable<real<T>> stream<T>(real<T> min, real<T> max)
+        public static IEnumerable<real<T>> reals<T>(real<T> min, real<T> max)
             => random<T>().stream(min,max);
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace Z0
             where N : TypeNat, new()
         {
             var len = rep.value;
-            var src = stream(min,max);
+            var src = reals(min,max);
             while(true)
             {                    
                 var entries = src.Take((int)len);
@@ -195,7 +195,7 @@ namespace Z0
         /// <param name="right">The right tuple component</param>
         /// <typeparam name="T">The underlying numeric type</typeparam>
         public static IEnumerable<(real<T> left, real<T> right)> pairs<T>(real<T> min, real<T> max)
-                => zip(stream(min,max), stream(min,max));
+                => zip(reals(min,max), reals(min,max));
 
         /// <summary>
         /// Yields a slice of random real[t] values
@@ -204,7 +204,7 @@ namespace Z0
         /// <param name="max">The maximum value</param>
         /// <typeparam name="T">The underlying type</typeparam>
         public static Slice<real<T>> slice<T>(int count, real<T> min, real<T> max)
-                => stream(min,max).Take(count).ToSlice();
+                => reals(min,max).Take(count).ToSlice();
  
     }
 }

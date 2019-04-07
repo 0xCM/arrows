@@ -17,7 +17,7 @@ namespace Z0
     public readonly struct ValueMember
     {    
         public static IReadOnlyList<ValueMember> Get<T>()
-            => (typeof(T)).GetValueMembers();
+            => (typeof(T)).ValueMembers();
 
         public static implicit operator ValueMember(PropertyInfo Member) 
             => new ValueMember(Member);

@@ -7,6 +7,7 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using System.Numerics;
 
     using static zcore;
 
@@ -52,7 +53,6 @@ namespace Z0
             return digits;
         }
 
-
         /// <summary>
         /// Tests whether the bit in an specific position is set
         /// </summary>
@@ -64,38 +64,234 @@ namespace Z0
         public static bool xtest<T>(intg<T> src, int pos)            
             => (src & (intg<T>.One << pos)) != intg<T>.Zero;
 
-
+        /// <summary>
+        /// Determines whether a position-specified bit in the source is on
+        /// </summary>
+        /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static bool test(byte src, int pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a position-specified bit in the source is on
+        /// </summary>
+        /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static bool test(sbyte src, int pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a position-specified bit in the source is on
+        /// </summary>
+        /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static bool test(short src, int pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a position-specified bit in the source is on
+        /// </summary>
+        /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static bool test(ushort src, int pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a position-specified bit in the source is on
+        /// </summary>
+        /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static bool test(int src, int pos)
             => (src & (1 << pos)) != 0;
 
+        /// <summary>
+        /// Determines whether a position-specified bit in the source is on
+        /// </summary>
+        /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static bool test(uint src, int pos)
             => (src & (1u << pos)) != 0u;
 
+        /// <summary>
+        /// Determines whether a position-specified bit in the source is on
+        /// </summary>
+        /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static bool test(long src, int pos)
             => (src & (1L << pos)) != 0L;
 
+        /// <summary>
+        /// Determines whether a position-specified bit in the source is on
+        /// </summary>
+        /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static bool test(ulong src, int pos)
             => (src & (1ul << pos)) != 0ul;
+
+        /// <summary>
+        /// Counts the number of leading zero bits in the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static int countLeadingOff(byte src)
+            => countLeadingOff((ushort)src) - 8;
+
+        /// <summary>
+        /// Counts the number of leading zero bits in the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static int countLeadingOff(ushort src)
+            => countLeadingOff((uint)src) - 16;
+
+        /// <summary>
+        /// Counts the number of leading zero bits in the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static int countLeadingOff(uint src)
+            => BitOperations.LeadingZeroCount(src);
+
+        /// <summary>
+        /// Counts the number of leading zero bits in the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static int countLeadingOff(ulong src)
+            => BitOperations.LeadingZeroCount(src);
+
+
+        /// <summary>
+        /// Counts the number of trailing zero bits in the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static int countTrailingOff(sbyte src)
+            => countTrailingOff((int)src);
+
+        /// <summary>
+        /// Counts the number of trailing zero bits in the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static int countTrailingOff(byte src)
+            => countTrailingOff((uint)src);
+
+        /// <summary>
+        /// Counts the number of trailing zero bits in the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static int countTrailingOff(short src)
+            => countTrailingOff((int)src);
+
+        /// <summary>
+        /// Counts the number of trailing zero bits in the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static int countTrailingOff(ushort src)
+            => countTrailingOff((uint)src);
+
+        /// <summary>
+        /// Counts the number of trailing zero bits in the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static int countTrailingOff(int src)
+            => BitOperations.TrailingZeroCount(src);
+
+        /// <summary>
+        /// Counts the number of trailing zero bits in the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static int countTrailingOff(uint src)
+            => BitOperations.TrailingZeroCount(src);
+
+        /// <summary>
+        /// Counts the number of trailing zero bits in the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static int countTrailingOff(long src)
+            => BitOperations.TrailingZeroCount(src);
+
+        /// <summary>
+        /// Counts the number of trailing zero bits in the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static int countTrailingOff(ulong src)
+            => BitOperations.TrailingZeroCount(src);
+
+        /// <summary>
+        /// Calculates the base-2 log of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static int log2(byte src)
+            => log2((uint)src);
+
+        /// <summary>
+        /// Calculates the base-2 log of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static int log2(ushort src)
+            => log2((uint)src);
+
+        /// <summary>
+        /// Calculates the base-2 log of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static int log2(uint src)
+            => BitOperations.Log2(src);
+
+        /// <summary>
+        /// Calculates the base-2 log of the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static int log2(ulong src)
+            => BitOperations.Log2(src);
+
+        /// <summary>
+        /// Rotates the source bits leftward
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The rotation magnitude</param>
+        [MethodImpl(Inline)]
+        public static uint lrot(uint src, int offset)            
+            => BitOperations.RotateLeft(src,offset);
+
+        /// <summary>
+        /// Rotates the source bits leftward
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The rotation magnitude</param>
+        [MethodImpl(Inline)]
+        public static ulong lrot(ulong src, int offset)            
+            => BitOperations.RotateLeft(src,offset);
+
+        /// <summary>
+        /// Rotates the source bits rightward
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The rotation magnitude</param>
+        [MethodImpl(Inline)]
+        public static uint rrot(uint src, int offset)            
+            => BitOperations.RotateLeft(src,offset);
+
+        /// <summary>
+        /// Rotates the source bits rightward
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The rotation magnitude</param>
+        [MethodImpl(Inline)]
+        public static ulong rrot(ulong src, int offset)            
+            => BitOperations.RotateLeft(src,offset);
 
         /// <summary>
         /// Determines the binary digit in an integral value at a specified position
@@ -142,7 +338,6 @@ namespace Z0
         /// Extracts the high-order bits from a uint to produce a ushort
         /// </summary>
         /// <param name="src">The source value</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static byte hi(short src)
             => (byte)(src >> 8);
@@ -151,11 +346,9 @@ namespace Z0
         /// Extracts the low-order bits from a ushort to produce a byte
         /// </summary>
         /// <param name="src">The source value</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static byte lo(short src)
             => (byte)src;
-
 
         /// <summary>
         /// Extracts the high-order bits from a uint to produce a ushort
@@ -169,11 +362,9 @@ namespace Z0
         /// Extracts the low-order bits from a uint to produce a ushort
         /// </summary>
         /// <param name="src">The source value</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static ushort lo(uint src)
             => (ushort)src;
-
 
         /// <summary>
         /// Extracts the highest-order byte from the source, i.e.,
@@ -273,7 +464,6 @@ namespace Z0
         public static byte lolo(int src)
             => lo(lo(src));
 
-
         /// <summary>
         /// int => (short, .)
         /// </summary>
@@ -304,7 +494,6 @@ namespace Z0
         /// Extracts the low-order bits from a ulong to produce a uint
         /// </summary>
         /// <param name="src">The source value</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static uint lo(ulong src)
             => (uint)src;
@@ -314,7 +503,6 @@ namespace Z0
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static short concat(sbyte hi, sbyte lo)
             => (short)((int)hi << 8 | (int)(byte)(lo));
@@ -324,18 +512,15 @@ namespace Z0
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static ushort concat(byte hi, byte lo)
             => (ushort) ((ushort)hi << 8 | (ushort)lo);
-
 
         /// <summary>
         /// Constructs a int value from two short values
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static int concat(short hi, short lo)
             => (int)hi << 16 | (int)(ushort)lo;
@@ -345,7 +530,6 @@ namespace Z0
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static uint concat(ushort hi, ushort lo)
             => (uint)hi << 16 | (uint)lo;
@@ -355,7 +539,6 @@ namespace Z0
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static long concat(int hi, int lo)
             => (long)hi << 32 | (long)(uint)lo;
@@ -365,7 +548,6 @@ namespace Z0
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static ulong concat(uint hi, uint lo)
             => (ulong)hi << 32 | (ulong)lo;
@@ -375,7 +557,6 @@ namespace Z0
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static uint concat(byte x1, byte x2, byte x3, byte x4)
             => BitConverter.ToUInt32(array(x1,x2,x3,x4));
@@ -385,7 +566,6 @@ namespace Z0
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static ulong concat(byte x1, byte x2, byte x3, byte x4, byte x5, byte x6, byte x7, byte x8)
             => BitConverter.ToUInt64(array(x1,x2,x3,x4,x5,x6,x7,x8));
@@ -395,7 +575,6 @@ namespace Z0
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static long concat(short x1, short x2, short x3, short x4)
             => concat(concat(x1,x2), concat(x3,x4));
@@ -405,7 +584,6 @@ namespace Z0
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static ulong concat(ushort x1, ushort x2, ushort x3, ushort x4)
             => concat(concat(x1,x2), concat(x3,x4));
@@ -415,7 +593,6 @@ namespace Z0
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static (byte hi, byte lo) split(short src)
             => (hi(src),lo(src));
@@ -430,13 +607,11 @@ namespace Z0
         public static (byte hi, byte lo) split(ushort src)
             => (hi(src),lo(src));
 
-
         /// <summary>
         /// uint => (ushort,ushort)
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static (short hi, short lo) split(int src)
             => (hi(src),lo(src));
@@ -446,18 +621,15 @@ namespace Z0
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static (ushort hi, ushort lo) split(uint src)
             => (hi(src),lo(src));
 
-
-       /// <summary>
+        /// <summary>
         /// long => (int,int)
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static (int hi, int lo) split(long src)
             => (hi(src),lo(src));
@@ -467,7 +639,6 @@ namespace Z0
         /// </summary>
         /// <param name="hi">The high-order bits</param>
         /// <param name="lo">The low-order bits</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static (uint hi, uint lo) split(ulong src)
             => (hi(src),lo(src));
@@ -479,7 +650,6 @@ namespace Z0
         /// <param name="hilo">The lo bits of the hi half</param>
         /// <param name="lohi">The hi bits of the lo half</param>
         /// <param name="lolo">The lo bits of the lo half</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static (int hihi, int hilo, int lohi, int lolo) split(decimal src)
             => apply(Decimal.GetBits(src), x => (x[3],x[2],x[1],x[0]));
@@ -615,7 +785,5 @@ namespace Z0
 
             return (negative ? Sign.Negative : Sign.Positive, exponent,mantissa);
         }
-
-
      }
 }

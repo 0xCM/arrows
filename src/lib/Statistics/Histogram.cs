@@ -14,7 +14,7 @@ namespace Z0
 
     public static class Histogram
     {
-        public static Histogram<T> define<T>(T min, T max, T? binwidth = null)
+        public static Histogram<T> define<T>(T min, T max, T binwidth)
             where T : struct, IConvertible 
              => new Histogram<T>(min,max,binwidth);
     }
@@ -23,24 +23,24 @@ namespace Z0
         where T: IConvertible
     {
         
-        public Histogram(real<T> min, real<T> max, real<T>? binwidth = null)
+        public Histogram(floatg<T> min, floatg<T> max, floatg<T> bincount)
         {
             this.range = Interval.leftclosed(min,max);
-            this.binwidth = binwidth ?? (max - min)/real(convert<T>(20));
-            this.points =  new SortedSet<real<T>>(Interval.partition(range, this.binwidth));
-            this.bins = map(points, point => (point, real<T>.Zero)).ToDictionary();
+            this.binwidth = bincount;
+            this.points =  new SortedSet<floatg<T>>(Interval.partition(range, bincount));
+            this.bins = map(points, point => (point, floatg<T>.Zero)).ToDictionary();
         }
 
 
-        Dictionary<real<T>,real<T>> bins {get;}
+        Dictionary<floatg<T>,floatg<T>> bins {get;}
         
-        SortedSet<real<T>> points {get;}
+        SortedSet<floatg<T>> points {get;}
 
-        public Interval<real<T>> range;
+        public Interval<floatg<T>> range;
 
         public T binwidth {get;}
 
-        public void distribute(IEnumerable<real<T>> values)
+        public void distribute(IEnumerable<floatg<T>> values)
         {
             var lower = range.left;
             foreach(var value in values)
@@ -57,17 +57,16 @@ namespace Z0
             }
         }
 
-        public IEnumerable<(Interval<real<T>> bin, real<double> ratio)> ratios()
+        public IEnumerable<(Interval<floatg<T>> bin, floatg<T> ratio)> ratios()
         {
-            var count = Z0.real<T>.Zero;
+            var count = Z0.floatg<T>.Zero;
             foreach(var bin in bins)
                 count += bin.Value;
 
-            var rcount = count.convert<double>();
             foreach(var bin in bins)
             {
                 var interval = Interval.leftclosed(bin.Key.sub(binwidth), bin.Key).canonical();
-                var ratio = (bin.Value.convert<double>() / rcount);
+                var ratio = bin.Value / count;
                 yield return (interval,ratio);                
             }                
         }

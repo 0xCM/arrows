@@ -49,7 +49,7 @@ namespace Z0
         /// <param name="a">The assembly to examine</param>
         /// <returns></returns>
         public static bool HasAttribute<T>(this Assembly a) where T : Attribute
-            => Attribute.IsDefined(a, typeof(T));
+            => System.Attribute.IsDefined(a, typeof(T));
 
         /// <summary>
         /// Gets the identified assembly attribute if present, otherwise NULL
@@ -58,7 +58,7 @@ namespace Z0
         /// <param name="a">The assembly to examine</param>
         /// <returns></returns>
         public static A GetAttribute<A>(this Assembly a) where A : Attribute
-            => (A)Attribute.GetCustomAttribute(a, typeof(A));
+            => (A)System.Attribute.GetCustomAttribute(a, typeof(A));
 
         /// <summary>
         /// Gets the identified assembly attribute if present, otherwise None
@@ -110,8 +110,23 @@ namespace Z0
         /// Gets the simple name of an assembly
         /// </summary>
         /// <param name="a">The assembly to examine</param>
-        /// <returns></returns>
         public static string GetSimpleName(this Assembly a)
             => a?.GetName()?.Name ?? string.Empty;
+ 
+        public static IEnumerable<Type> Types(this Assembly a)
+            => a.GetTypes();
+
+        public static IEnumerable<Type> Interfaces(this Assembly a)
+            => a.GetTypes().Where(t => t.IsInterface);
+
+        public static IEnumerable<Type> Classes(this Assembly a)
+            => a.GetTypes().Where(t => t.IsClass);
+        
+        public static IEnumerable<Type> Enums(this Assembly a)
+            => a.GetTypes().Where(t => t.IsEnum);
+
+        public static IEnumerable<Type> Structs(this Assembly a)
+            => a.GetTypes().Where(t => t.IsStruct());
+
     }
 }

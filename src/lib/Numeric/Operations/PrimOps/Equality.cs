@@ -11,8 +11,7 @@ namespace Z0
 
     using static Operative;
 
-    partial class PrimOps
-    {
+    partial class PrimOps { partial class Reify {
         public readonly struct Equality : 
             Semigroup<byte>, 
             Semigroup<sbyte>, 
@@ -146,4 +145,4 @@ namespace Z0
 
     }
 
-}
+}}

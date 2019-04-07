@@ -4,8 +4,6 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -25,7 +23,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="A">The attribute type</typeparam>
         /// <param name="a">The assembly to search</param>
-        /// <returns></returns>
         public static IDictionary<Type, A> GetTypeAttributions<A>(this Assembly a, Func<Type,bool> pred = null)
             where A : Attribute
         {
@@ -64,7 +61,6 @@ namespace Z0
             return attributions;
         }
 
-
         /// <summary>
         /// Retrieves type attribution values from a stream of types
         /// </summary>
@@ -84,7 +80,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="A">The attribute type</typeparam>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
         public static IReadOnlyDictionary<PropertyInfo, A> GetPropertyAttributions<A>(this Type t) where A : Attribute
         {
             var q = from p in t.GetProperties(BF_Instance)
@@ -103,7 +98,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="A">The attribute type</typeparam>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
         public static IDictionary<FieldInfo, A> GetFieldAttributions<A>(this Type t)
             where A : Attribute
         {
@@ -124,7 +118,6 @@ namespace Z0
         /// <typeparam name="A">The attribute type</typeparam>
         /// <param name="t">The type to examine</param>
         /// <param name="InstanceType">The member instance type</param>
-        /// <returns></returns>
         public static IDictionary<MethodInfo, A> GetMethodAttributions<A>(this Type t,
                 MemberInstanceType InstanceType = MemberInstanceType.Instance)
                     where A : Attribute
@@ -146,10 +139,10 @@ namespace Z0
         /// <typeparam name="A">The attribute type</typeparam>
         /// <param name="m">The member</param>
         /// <returns></returns>
-        [DebuggerStepThrough]
-        public static Option<A> GetOptionalAttribute<A>(this MemberInfo m) where A : Attribute
+        [MethodImpl(Inline)]
+        public static Option<A> CustomAttribute<A>(this MemberInfo m) where A : Attribute
             => m.GetCustomAttribute<A>();
 
-
+        
 }
 }

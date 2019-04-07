@@ -201,7 +201,7 @@ partial class zcore
     /// <param name="sep">The separator</param>
     /// <typeparam name="T">The item type</typeparam>
     [MethodImpl(Inline)]   
-    public static void printsep<T>(IEnumerable<T> items, string sep = ",")
+    public static void printline<T>(IEnumerable<T> items, string sep = ",")
     {
         var written = false;
         foreach(var item in items)

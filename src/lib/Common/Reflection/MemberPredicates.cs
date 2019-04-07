@@ -26,7 +26,7 @@ namespace Z0
         /// <param name="p"></param>
         /// <returns></returns>
         public static bool HasSetter(this PropertyInfo p)
-            => p.TryGetSetter().Exists;
+            => p.Setter().Exists;
 
         /// <summary>
         /// Determines whether the property has a public or non-public getter
@@ -34,7 +34,7 @@ namespace Z0
         /// <param name="p"></param>
         /// <returns></returns>
         public static bool HasGetter(this PropertyInfo p)
-            => p.TryGetGetter().Exists;
+            => p.Getter().Exists;
 
         /// <summary>
         /// Attempts to determine whether a method is sporting the "new" keyword
@@ -99,7 +99,7 @@ namespace Z0
         /// <param name="m">The member to examine</param>
         /// <returns></returns>
         public static bool HasAttribute<A>(this MemberInfo m) where A : Attribute
-            => Attribute.IsDefined(m, typeof(A));
+            => System.Attribute.IsDefined(m, typeof(A));
 
     }
 }

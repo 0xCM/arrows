@@ -8,10 +8,10 @@ namespace Z0
     using System.Numerics;
     using System.Runtime.CompilerServices;
     using static zcore;
+
     using static Operative;
-    
-    partial class PrimOps
-    {
+
+    partial class PrimOps { partial class Reify {
         public readonly struct Unital :
             Unital<byte>,
             Unital<sbyte>,
@@ -107,4 +107,4 @@ namespace Z0
         }
 
     }
-}
+}}

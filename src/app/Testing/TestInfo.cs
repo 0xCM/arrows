@@ -2,34 +2,34 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Tests
+namespace Z0.Testing
 {
     using System;
     using System.Linq;
     using System.Reflection;
-    using System.ComponentModel;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
 
     using static Nats;
     using static zcore;
-    using static ztest;
 
-    [DisplayName("matrix")]
-    public class MatrixTest
+
+
+    public class RepeatAttribute  : Attribute
     {
+        public static int Repetitions(MethodBase method) 
+            => method.CustomAttribute<RepeatAttribute>().Map(a => a.Count, () => 1);
 
-        static readonly Randomizer random = Context.Random;
-
-            
-        public static void equality()
+        public RepeatAttribute()
         {
-            var src = Rand.matrices(dim<N5,N5>(), Int16.MinValue, Int16.MaxValue).Take(5);
-            iter(src, m =>  Claim.eq(m,m));
+            Count = 1;
         }
 
+        public RepeatAttribute(int Repetitions)
+            => this.Count = Repetitions;
 
+        public int Count {get;}
     }
 
 }

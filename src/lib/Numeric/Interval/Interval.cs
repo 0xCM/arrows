@@ -20,7 +20,7 @@ namespace Z0
     /// Note that extended real numbers may also serve as endpoints,
     /// enabling representations such as (-∞,3] and (-3, ∞).
     /// </remarks>
-    public readonly struct Interval<T> : Traits.Interval<T>
+    public readonly struct Interval<T> : Traits.Interval<Interval<T>,T>
     {
         
         public Interval(T left, bool leftclosed, T right, bool rightclosed)

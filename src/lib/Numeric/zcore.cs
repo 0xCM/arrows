@@ -84,7 +84,7 @@ partial class zcore
     public static bool prime<T>(intg<T> x)
         where T : IConvertible
     {
-        var upperBound = x.ToFloatG().sqrt().ceiling().ToIntG<T>();   
+        var upperBound = x.ToFloatG64().sqrt().ceiling().ToIntG<T>();   
         return divisors(x).Count() == 0;
     }                
 

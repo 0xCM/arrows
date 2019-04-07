@@ -5,13 +5,14 @@
 namespace Z0
 {
     using System;
+    using System.Collections.Generic;
     using System.Numerics;
     using System.Runtime.CompilerServices;
     using static zcore;
 
     using static Operative;
 
-    partial class PrimOps
+    partial class PrimOps { partial class Reify
     {
         public readonly struct Absolutive : 
             Absolutive<byte>, 
@@ -68,7 +69,7 @@ namespace Z0
             [MethodImpl(Inline)]
             public byte abs(byte x)
                 => x;
- 
+
             [MethodImpl(Inline)]
             public ushort abs(ushort x)
                 => x;
@@ -81,5 +82,7 @@ namespace Z0
             public ulong abs(ulong x)
                 => x;
         }        
+
     }
-}
+
+}}

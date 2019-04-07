@@ -74,6 +74,16 @@ namespace Z0
                 => src.Take(count).Freeze();
 
         /// <summary>
+        /// Constructs a readonly list from from the a specified number of
+        /// elmements from of a stream
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<T> Freeze<T>(this IEnumerable<T> src, uint count)
+                => src.Take(count).Freeze();
+
+        /// <summary>
         /// Constructs a slice from a sequence
         /// </summary>
         /// <param name="src">The source sequence</param>
@@ -187,5 +197,22 @@ namespace Z0
         [MethodImpl(Inline)]
         public static IEnumerable<T> Take<T>(this IEnumerable<T> src, uint count)
             => src.Take((int)count);
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<(T left,T right)> Enumerate<T>(this (IEnumerable<T> left, IEnumerable<T> right) src)
+        {        
+            var lenum = src.left.GetEnumerator();
+            var renum = src.right.GetEnumerator();
+            var lnext = lenum.MoveNext();
+            var rnext = renum.MoveNext();
+            while(lnext && rnext)
+            {
+                yield return (lenum.Current, renum.Current);
+                lnext = lenum.MoveNext();
+                rnext = renum.MoveNext();
+            }
+
+
+        }
     }
 }    

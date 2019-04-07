@@ -21,36 +21,36 @@ namespace Z0.Tests
 
         public static void equality()
         {
-            tell(Prove.eq<N16>(16));
-            tell(Prove.eq<N512>(512));
-            tell(Prove.eq<NatSeq<N8,N2,N1>>(821));
+            Prove.eq<N16>(16);
+            Prove.eq<N512>(512);
+            Prove.eq<NatSeq<N8,N2,N1>>(821);
         }
         public static void smaller()
         {
-            tell(Prove.smaller(N11, N12));
-            tell(Prove.smaller(N512, N1024));
+            Prove.smaller(N11, N12);
+            Prove.smaller(N512, N1024);
         }
 
         public static void larger()
         {
-            tell(Prove.larger(N12,N11));
-            tell(Prove.larger(N1024,N512));
+            Prove.larger(N12,N11);
+            Prove.larger(N1024,N512);
 
         }
 
         public static void nonzero()
         {
-            tell(Prove.nonzero(N12));
-            tell(Prove.nonzero(N4));
-            tell(Prove.nonzero(N1));
+            Prove.nonzero(N12);
+            Prove.nonzero(N4);
+            Prove.nonzero(N1);
 
         }
 
         public static void sum()
         {
-            tell(Prove.sum(N5,N5, N10.value));
-            tell(Prove.sum(N13,N0, N13.value));
-            tell(Prove.sum(N512,N10, 522));
+            Prove.sum(N5,N5, N10.value);
+            Prove.sum(N13,N0, N13.value);
+            Prove.sum(N512,N10, 522);
         }
 
         public static void reflect()
@@ -65,23 +65,23 @@ namespace Z0.Tests
 
         public static void product()
         {
-            tell(Prove.product(N5,N5, 25));
-            tell(Prove.product(N13,N10, 130));
-            tell(Prove.product(N512,N10, 5120));
+            Prove.product(N5,N5, 25);
+            Prove.product(N13,N10, 130);
+            Prove.product(N512,N10, 5120);
         }
 
         public static void next()
         {
-            tell(Prove.next(N0,N1));            
-            tell(Prove.next(N5,N6));            
-            tell(Prove.next(N15,N16));
+            Prove.next(N0,N1);            
+            Prove.next(N5,N6);            
+            Prove.next(N15,N16);
             
             var n11 = Nat.next(N10);
             var n12 = Nat.next(n11);
             var n13 = Nat.next(n12);
-            tell(Prove.next(N10,n11));
-            tell(Prove.next(n11,n12));
-            tell(Prove.next(n12,n13));
+            Prove.next(N10,n11);
+            Prove.next(n11,n12);
+            Prove.next(n12,n13);
 
         }
 
@@ -95,8 +95,8 @@ namespace Z0.Tests
            var n16 = Nat.next(n15);
            var n17 = Nat.next(n16);
            var n18 = Nat.next(n17);
-           var n19 = Nat.next(n17);
-           tell($"n18: {n19}");
+           var n19 = Nat.next(n18);
+           demand(n19.value == 19);
         }
 
     }

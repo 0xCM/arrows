@@ -11,6 +11,8 @@ namespace Z0.Tests
     using System.Runtime.CompilerServices;
     using System.ComponentModel;
 
+    using Z0.Testing;
+
     using static Nats;
     using static zcore;
     using static ztest;
@@ -25,13 +27,13 @@ namespace Z0.Tests
         public static void equality()
         {
             var src1 = Rand.slice(5, ureal(50),  ureal(150));
-            tell(Claim.eq(src1, src1));
+            Claim.eq(src1, src1);
 
-            var  src2 = Rand.slice(5, real(-150), real(-250));
-            tell(Claim.eq(src2, src2));
+            var  src2 = Rand.slice(5, real(-150), real(250));
+            Claim.eq(src2, src2);
 
             var  src3 = Rand.slice(5, Z0.real<uint>.MinVal, Z0.real<uint>.MaxVal);
-            tell(Claim.eq(src3, src3));
+            Claim.eq(src3, src3);
 
         }
 

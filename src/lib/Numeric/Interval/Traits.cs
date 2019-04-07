@@ -52,43 +52,63 @@ namespace Z0
 
         }
 
+        public interface Interval<S,T> : Interval<T>
+            where S : Interval<S,T>, new()
+        {
+
+        }
         /// <summary>
         /// Characterizes a discrete interval
         /// </summary>
         /// <typeparam name="T">The value type</typeparam>
-        public interface DiscreteInterval<T> : Interval<T> { }
+        public interface DiscreteInterval<T> : Interval<T> 
+            { }
 
         /// <summary>
         /// Characterizes an interval that does not contain its lower bound
         /// </summary>
-        public interface LeftOpenInterval<T> : Interval<T> { }
+        public interface LeftOpenInterval<T> : Interval<T> 
+            { }
 
         /// <summary>
         /// Characterizes an interval that does not contain its upper bound
         /// </summary>
-        public interface RightOpenInterval<T> : Interval<T> { }
+        public interface RightOpenInterval<T> : Interval<T> 
+            { }
 
 
         /// <summary>
         /// Characterizes an interval that contains its lower bound
         /// </summary>
-        public interface LeftClosedInterval<T> : Interval<T> { }
+        public interface LeftClosedInterval<T> : Interval<T> 
+            { }
 
         /// <summary>
         /// Characterizes an interval that contains its upper bound
         /// </summary>
-        public interface RightClosedInterval<T> : Interval<T> { }
+        public interface RightClosedInterval<T> : Interval<T>
+            { }
+
 
         /// <summary>
         /// Characterizes an interval that contains neither  of its endpoints
         /// </summary>
-        public interface OpenInterval<T> : LeftOpenInterval<T>, RightOpenInterval<T> { }
+        public interface OpenInterval<T> : LeftOpenInterval<T>, RightOpenInterval<T> 
+            { }
+
+        public interface OpenInterval<S,T> : OpenInterval<T>, Interval<S,T>
+            where S : OpenInterval<S,T>, new()
+            { }
 
         /// <summary>
         /// Characterizes an interval that contains its endpoints
         /// </summary>
-        public interface ClosedInterval<T> : LeftClosedInterval<T>, RightClosedInterval<T> {}
+        public interface ClosedInterval<T> : LeftClosedInterval<T>, RightClosedInterval<T> 
+            { }
 
+        public interface ClosedInterval<S,T> : ClosedInterval<T>, Interval<S,T>
+            where S : ClosedInterval<S,T>, new()
+            { }
         
     }
 

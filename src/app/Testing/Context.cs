@@ -1,6 +1,11 @@
-namespace Z0
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
+namespace Z0.Testing
 {
     using System;
+
 
     public static class Context
     {

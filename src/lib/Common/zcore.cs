@@ -99,8 +99,21 @@ public static partial class zcore
     /// <param name="rhs">The second sequence</param>
     /// <param name="f">A binary operator that composes pairs of elements from the input sequences</param>
     /// <typeparam name="T">The sequence element type</typeparam>
+    [MethodImpl(Inline)]   
     public static IEnumerable<Y> fuse<T,Y>(IEnumerable<T> lhs, IEnumerable<T> rhs, Func<T,T,Y> f)
         => from pair in zip(lhs,rhs) select f(pair.left, pair.right);
+
+    [MethodImpl(Inline)]   
+    public static IReadOnlyList<Y> fuse<T,Y>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs, Func<T,T,Y> f)
+    {
+        if(lhs.Count != rhs.Count)
+            throw new ArgumentException($"The left count {lhs.Count} does not match the right count {rhs.Count}");
+            
+        var dst = array<Y>(lhs.Count);
+        for(var i = 0; i< dst.Length; i++)
+            dst[i] = f(lhs[i], rhs[i]);
+        return dst;
+    }    
 
     
     /// <summary>
@@ -147,6 +160,32 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static IEnumerable<T> map<S,T>(IEnumerable<S> src, Func<S,T> f)
         => src.Select(x => f(x));
+
+    /// <summary>
+    /// Applies a function f:S->T over an input list [S] to obtain 
+    /// a target list [T]
+    /// </summary>
+    /// <param name="f">The function to be applied</param>
+    /// <param name="src">The source list</param>
+    /// <typeparam name="S">The source element type</typeparam>
+    /// <typeparam name="T">The target element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static IReadOnlyList<T> map<S,T>(IReadOnlyList<S> src, Func<S,T> f)
+    {
+        var dst = array<T>(src.Count);
+        for(var i = 0; i<src.Count; i++)
+            dst[i] = f(src[i]);
+        return dst;
+    }    
+
+    [MethodImpl(Inline)]   
+    public static T[] map<S,T>(S[] src, Func<S,T> f)
+    {
+        var dst = array<T>(src.Length);
+        for(var i = 0; i<src.Length; i++)
+            dst[i] = f(src[i]);
+        return dst;
+    }    
 
     [MethodImpl(Inline)]   
     public static Slice<T> map<S,T>(Slice<S> src, Func<S,T> f)
@@ -416,12 +455,12 @@ public static partial class zcore
 
 
     /// <summary>
-    /// 
+    /// Aplies an action to the sequence of generic integers min,min+1,...,max - 1
     /// </summary>
     /// <param name="min">The inclusive lower bound of the sequence</param>
-    /// <param name="max"></param>
-    /// <param name="f"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="max">The non-inclusive upper bound of the sequence
+    /// over intergers over which iteration will occur</param>
+    /// <param name="f">The action to be applied to each  value</param>
     [MethodImpl(Inline)]
     public static void iterg<T>(intg<T> min, intg<T> max, Action<intg<T>> f)
     {
@@ -430,7 +469,7 @@ public static partial class zcore
     }
 
     /// <summary>
-    /// Aplies an action to the sequence of integers 0,2,...,max - 1
+    /// Aplies an action to the sequence of generic integers 0,2,...,max - 1
     /// </summary>
     /// <param name="max">The non-inclusive upper bound of the sequence
     /// over intergers over which iteration will occur</param>
@@ -464,6 +503,21 @@ public static partial class zcore
     /// over intergers over which iteration will occur</param>
     /// <param name="f">The action to be applied to each  value</param>
     [MethodImpl(Inline)]
+    public static void iter(uint min, uint max, Action<uint> f)
+    {
+       for(var i = min; i< max; i++) 
+            f(i);
+    }
+
+
+    /// <summary>
+    /// Aplies an action to the sequence of integers min,min+1,...,max - 1
+    /// </summary>
+    /// <param name="min">The inclusive lower bound of the sequence</param>
+    /// <param name="max">The non-inclusive upper bound of the sequence
+    /// over intergers over which iteration will occur</param>
+    /// <param name="f">The action to be applied to each  value</param>
+    [MethodImpl(Inline)]
     public static void iter(long min, long max, Action<long> f)
     {
        for(var i = min; i< max; i++) 
@@ -471,16 +525,26 @@ public static partial class zcore
     }
 
     /// <summary>
-    /// Aplies an action to the sequence of integers 0,2,...,max - 1
+    /// Applies an action to the increasing sequence of integers 0,1,2,...,count - 1
     /// </summary>
-    /// <param name="min">The inclusive lower bound of the sequence</param>
-    /// <param name="max">The non-inclusive upper bound of the sequence
-    /// over intergers over which iteration will occur</param>
-    /// <param name="f">The action to be applied to each  value</param>
+    /// <param name="count">The number of times the action will be invoked
+    /// <param name="f">The action to be applied to each value</param>
     [MethodImpl(Inline)]
-    public static void iter(int max, Action<int> f)
+    public static void iter(int count, Action<int> f)
     {
-       for(var i = 0; i< max; i++) 
+       for(var i = 0; i< count; i++) 
+            f(i);
+    }
+
+    /// <summary>
+    /// Applies an action to the increasing sequence of integers 0,1,2,...,count - 1
+    /// </summary>
+    /// <param name="count">The number of times the action will be invoked
+    /// <param name="f">The action to be applied to each value</param>
+    [MethodImpl(Inline)]
+    public static void iter(uint count, Action<uint> f)
+    {
+       for(var i = 0u; i< count; i++) 
             f(i);
     }
 

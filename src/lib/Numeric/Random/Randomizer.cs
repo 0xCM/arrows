@@ -118,6 +118,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public byte one(byte min, byte max)
         {
+            if(!(min < max))
+                throw new ArgumentException($"{min} !< {max}");
+
             var width = (ulong)(max - min);
             var offset = (ulong)(min + 1);
             var result = next() % width + offset;
@@ -131,6 +134,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public ushort one(ushort min, ushort max)
         {
+            // if(!(min < max))
+            //     throw new ArgumentException($"{min} !< {max}");
+
             var width = (ulong)(max - min);
             var offset = (ulong)(min + 1);
             var result = next() % width + offset;
@@ -144,6 +150,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public uint one(uint min, uint max)
         {
+            // if(!(min < max))
+            //     throw new ArgumentException($"{min} !< {max}");
+
             var width = (ulong)(max - min);
             var offset = (ulong)(min + 1);
             var result = next() % width + offset;
@@ -158,6 +167,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public ulong one(ulong min, ulong max)
         {
+            // if(!(min < max))
+            //     throw new ArgumentException($"{min} !< {max}");
+
             var width = max - min;
             var offset = min + 1;
             var result = next() % width + offset;
@@ -171,6 +183,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public double one(double min, double max)
         {
+            // if(!(min < max))
+            //     throw new ArgumentException($"{min} !< {max}");
+
             var value = next();
             var part = ((double) value)/((double)UInt64.MaxValue) - Double.Epsilon;
             var whole = one((long)min, (long)max);
@@ -180,6 +195,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public float one(float min, float max)
         {
+            if(!(min < max))
+                throw new ArgumentException($"{min} !< {max}");
+
             var value = next();
             var part = ((float) value)/((float)UInt64.MaxValue) - Single.Epsilon;
             var whole = one((int)min, (int)max);
@@ -199,6 +217,9 @@ namespace Z0
         /// <param name="max">The maximum value</param>
         public IEnumerable<ulong> stream(ulong min, ulong max)
         {
+            if(!(min < max))
+                throw new ArgumentException($"{min} !< {max}");
+
             var width = max - min;
             var offset = min + 1;
             foreach(var n in stream())
@@ -220,6 +241,8 @@ namespace Z0
         /// <param name="max">The maximum value</param>
         public IEnumerable<sbyte> stream(sbyte min, sbyte max)
         {
+            if(!(min < max))
+                throw new ArgumentException($"{min} !< {max}");
             while(true)
                 yield return one(min,max);
         }
@@ -239,6 +262,9 @@ namespace Z0
         /// <param name="max">The maximum value</param>
         public IEnumerable<short> stream(short min, short max)
         {
+            if(!(min < max))
+                throw new ArgumentException($"{min} !< {max}");
+            
             while(true)
                 yield return one(min,max);
         }
@@ -258,6 +284,9 @@ namespace Z0
         /// <param name="max">The maximum value</param>
         public IEnumerable<int> stream(int min, int max)
         {
+            if(!(min < max))
+                throw new ArgumentException($"{min} !< {max}");
+
             while(true)
                 yield return one(min,max);
         }
@@ -269,6 +298,9 @@ namespace Z0
         /// <param name="max">The maximum value</param>
         public IEnumerable<long> stream(long min, long max)
         {
+            if(!(min < max))
+                throw new ArgumentException($"{min} !< {max}");
+
             while(true)
                 yield return one(min,max);
         }
@@ -280,6 +312,9 @@ namespace Z0
         /// <param name="max">The maximum value</param>
         public IEnumerable<double> stream(double min, double max)
         {
+            if(!(min < max))
+                throw new ArgumentException($"{min} !< {max}");
+
             while(true)
                 yield return one(min,max);
 
@@ -292,6 +327,9 @@ namespace Z0
         /// <param name="max">The maximum value</param>
         public IEnumerable<float> stream(float min, float max)
         {
+            if(!(min < max))
+                throw new ArgumentException($"{min} !< {max}");
+
             while(true)
                 yield return one(min,max);
 
@@ -304,6 +342,9 @@ namespace Z0
         /// <param name="max">The maximum value</param>
         public IEnumerable<decimal> stream(decimal min, decimal max)
         {
+            if(!(min < max))
+                throw new ArgumentException($"{min} !< {max}");
+
             var width = max - min;
             var offset = min + 1m;
             while(true)

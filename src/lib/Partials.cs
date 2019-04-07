@@ -4,12 +4,12 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    using System;
-    using System.Numerics;
-    using System.Linq;
-    using System.Collections.Generic;
-    using System.Runtime.CompilerServices;    
-    
+
+    public static partial class ClrConverters
+    {
+
+    }
+
     public static partial class Traits
     {
 
@@ -23,7 +23,7 @@ namespace Z0
 
     }
 
-    static partial class PrimOps
+    public static partial class PrimOps
     {
         
     }
