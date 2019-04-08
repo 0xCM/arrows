@@ -463,6 +463,7 @@ public static partial class zcore
     /// <param name="f">The action to be applied to each  value</param>
     [MethodImpl(Inline)]
     public static void iterg<T>(intg<T> min, intg<T> max, Action<intg<T>> f)
+        where T : struct, IEquatable<T>
     {
        for(var i = min; i< max; i++) 
             f(i);
@@ -476,6 +477,7 @@ public static partial class zcore
     /// <param name="f">The action to be applied to each  value</param>
     [MethodImpl(Inline)]
     public static void iterg<T>(intg<T> max, Action<intg<T>> f)
+        where T : struct, IEquatable<T>
     {
        for(var i = max.zero; i< max; i++) 
             f(i);
@@ -556,5 +558,6 @@ public static partial class zcore
     /// <typeparam name="T">The underlying integral type</typeparam>
     [MethodImpl(Inline)]   
     public static bit bit<T>(intg<T> x, int pos)
-        => Bits.bit(x, pos);
+        where T : struct, IEquatable<T>
+            => Bits.bit(x, pos);
 }

@@ -105,7 +105,8 @@ namespace Z0
             => (int)pow(exp)*factor;
 
         public static intg<T> mul<T>(int exp, intg<T> factor)
-            => 2.ToIntG<T>().pow(exp) * factor;
+            where T : struct, IEquatable<T>
+                => 2.ToIntG<T>().pow(exp) * factor;
 
         /// <summary>
         /// Computes 2^i 

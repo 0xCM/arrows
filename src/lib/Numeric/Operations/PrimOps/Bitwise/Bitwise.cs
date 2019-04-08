@@ -18,7 +18,8 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public static Bitwise<T> Operator<T>() 
-                => cast<Bitwise<T>>(Inhabitant);
+                where T : struct, IEquatable<T>
+                    => cast<Bitwise<T>>(Inhabitant);
     
       }
 

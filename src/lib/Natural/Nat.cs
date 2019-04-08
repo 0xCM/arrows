@@ -167,6 +167,7 @@ namespace Z0
         /// <typeparam name="Z">The underlying integral type</typeparam>
         [MethodImpl(Inline)]   
         public static intg<Z> natvalg<K,Z>()
+            where Z : struct, IEquatable<Z>
             where K : TypeNat, new()
                 => new K().value.ToIntG<Z>(); 
 

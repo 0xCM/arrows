@@ -17,6 +17,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         public interface Number<T> : Subtractive<T>, Absolutive<T>, GroupA<T>,  SemigroupM<T>, Semiring<T>, Divisive<T>, Powered<T,int>, BitSource<T> 
+            where T : struct, IEquatable<T>
+
         {                                
             NumberInfo<T> numinfo {get;}
         }

@@ -105,7 +105,6 @@ partial class zcore
     /// <param name="x2">The second coordinate</param>
     /// <typeparam name="X1">The first coordinate type</typeparam>
     /// <typeparam name="X1">The second coordinate type</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string format<X1,X2>((X1 x1, X2 x2) x)
         => $"({x.x1}, {x.x2})";

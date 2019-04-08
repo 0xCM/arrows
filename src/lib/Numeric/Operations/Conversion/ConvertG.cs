@@ -22,7 +22,8 @@ namespace Z0
         /// <typeparam name="T">The underlying target type</typeparam>
         [MethodImpl(Inline)]
         public static real<T> toReal<S,T>(S src)
-            => ClrConvert.apply<S,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<S,T>(src);
 
 
         /// <summary>
@@ -33,7 +34,8 @@ namespace Z0
         /// <typeparam name="T">The underlying target type</typeparam>
         [MethodImpl(Inline)]
         public static IReadOnlyList<real<T>> toReal<S,T>(IReadOnlyList<S> src)
-            => map(ClrConvert.apply<S,T>(src), x => real(x));
+            where T : struct, IEquatable<T>
+                => map(ClrConvert.apply<S,T>(src), x => real(x));
 
         /// <summary>
         /// Converts a primitive s:S  to an integer t:intg[T]
@@ -43,7 +45,8 @@ namespace Z0
         /// <typeparam name="T">The underlying target type</typeparam>
         [MethodImpl(Inline)]
         public static intg<T> toInt<S,T>(S src)
-            => ClrConvert.apply<S,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<S,T>(src);
 
         /// <summary>
         /// Converts a list of primitives s:list[S] to a list of integers t:list[intg[T]]
@@ -53,7 +56,8 @@ namespace Z0
         /// <typeparam name="T">The underlying target type</typeparam>
         [MethodImpl(Inline)]
         public static IReadOnlyList<intg<T>> toInt<S,T>(IReadOnlyList<S> src)
-            => map(ClrConvert.apply<S,T>(src), x => intg(x));
+            where T : struct, IEquatable<T>
+                => map(ClrConvert.apply<S,T>(src), x => intg(x));
 
         /// <summary>
         /// Converts a primitive s:S to a float t:floatg[T]
@@ -62,7 +66,8 @@ namespace Z0
         /// <typeparam name="S">The source type</typeparam>
         /// <typeparam name="T">The underlying target type</typeparam>
         public static floatg<T> toFloat<S,T>(S src)
-            => ClrConvert.apply<S,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<S,T>(src);
 
         /// <summary>
         /// Converts a list of primitive s:list[S] to a list of floats t:list[floatg[T]]
@@ -72,7 +77,8 @@ namespace Z0
         /// <typeparam name="T">The underlying target type</typeparam>
         [MethodImpl(Inline)]
         public static IReadOnlyList<floatg<T>> toFloat<S,T>(IReadOnlyList<S> src)
-            => map(ClrConvert.apply<S,T>(src), x => floatg(x));
+            where T : struct, IEquatable<T>
+                => map(ClrConvert.apply<S,T>(src), x => floatg(x));
 
     }
 }

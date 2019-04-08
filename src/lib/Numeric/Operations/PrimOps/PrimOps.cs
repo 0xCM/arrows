@@ -17,34 +17,35 @@ namespace Z0
     {
 
         public interface PrimOps<T> :
-            Additive<T>, 
-            Additive<IReadOnlyList<T>>,            
+                Additive<T>, 
+                Additive<IReadOnlyList<T>>,            
 
-            Subtractive<T>,
-            Subtractive<IReadOnlyList<T>>,
-            
-            Multiplicative<T>, 
-            Multiplicative<IReadOnlyList<T>>,            
+                Subtractive<T>,
+                Subtractive<IReadOnlyList<T>>,
+                
+                Multiplicative<T>, 
+                Multiplicative<IReadOnlyList<T>>,            
 
-            Negatable<T>, 
-            Negatable<IReadOnlyList<T>>,             
+                Negatable<T>, 
+                Negatable<IReadOnlyList<T>>,             
 
-            Absolutive<T>, 
-            Absolutive<IReadOnlyList<T>>,             
+                Absolutive<T>, 
+                Absolutive<IReadOnlyList<T>>,             
 
-            Stepwise<T>,
-            Stepwise<IReadOnlyList<T>>,            
+                Stepwise<T>,
+                Stepwise<IReadOnlyList<T>>,            
 
-            Bitwise<T>,            
-            BitLogic<IReadOnlyList<T>>,
-            
-            Divisive<T>, 
-            Nullary<T>, 
-            Unital<T>,
-            Ordered<T>,
-            Semigroup<T>,
-            Trigonmetric<T>,
-            Special<T>
+                Bitwise<T>,            
+                //BitLogic<IReadOnlyList<T>>,
+                
+                Divisive<T>, 
+                Nullary<T>, 
+                Unital<T>,
+                Ordered<T>,
+                Semigroup<T>,
+                Trigonmetric<T>,
+                Special<T>
+            where T : struct, IEquatable<T>
         {
             /// <summary>
             /// Computes component-wise equality between two lists of equal length
@@ -159,6 +160,8 @@ namespace Z0
     partial class Reify
     {
         public readonly struct PrimOps<T> : Operative.PrimOps<T>
+            where T : struct, IEquatable<T>
+
         {
             public static readonly PrimOps<T> Inhabitant = default;
             static readonly Operative.Additive<T> Additive = Primal.Additive.Operator<T>();

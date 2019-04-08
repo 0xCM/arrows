@@ -18,13 +18,13 @@ namespace Z0
     {
         [MethodImpl(Inline)]   
         public static real<T>[] ToReal<T>(this T[] src)
-            where T : IConvertible
-            => src.Select(x => real<T>(x)).ToArray();        
+            where T : struct, IEquatable<T>
+                => src.Select(x => real<T>(x)).ToArray();        
 
         [MethodImpl(Inline)]   
         public static IEnumerable<real<T>> ToReal<T>(this IEnumerable<T> src)
-            where T : IConvertible
-            => src.Select(x => real<T>(x));
+            where T : struct, IEquatable<T>
+                => src.Select(x => real<T>(x));
 
         /// <summary>
         /// x:byte => x:real[double]
@@ -141,7 +141,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static real<T> ToReal<T>(this sbyte src)
-            => ClrConvert.apply<sbyte,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<sbyte,T>(src);
 
         /// <summary>
         /// x:byte => x:real[T]
@@ -149,7 +150,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static real<T> ToReal<T>(this byte src)
-            => ClrConvert.apply<byte,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<byte,T>(src);
 
         /// <summary>
         /// x:short => x:real[T]
@@ -157,7 +159,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static real<T> ToReal<T>(this short src)
-            => ClrConvert.apply<short,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<short,T>(src);
 
         /// <summary>
         /// x:ushort => x:real[T]
@@ -165,7 +168,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static real<T> ToReal<T>(this ushort src)
-            => ClrConvert.apply<ushort,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<ushort,T>(src);
 
         /// <summary>
         /// x:int => x:real[T]
@@ -173,44 +177,53 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static real<T> ToReal<T>(this int src)
+            where T : struct, IEquatable<T>
             => ClrConvert.apply<int,T>(src);
 
         [MethodImpl(Inline)]   
         public static real<T> ToReal<T>(this uint src)
-            => ClrConvert.apply<uint,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<uint,T>(src);
 
         [MethodImpl(Inline)]   
         public static real<T> ToReal<T>(this long src)    
-            => ClrConvert.apply<long,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<long,T>(src);
 
         [MethodImpl(Inline)]   
         public static real<T> ToReal<T>(this ulong src)
-            => ClrConvert.apply<ulong,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<ulong,T>(src);
 
         [MethodImpl(Inline)]   
         public static real<T> ToReal<T>(this BigInteger src)
-            => ClrConvert.apply<BigInteger,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<BigInteger,T>(src);
 
         [MethodImpl(Inline)]   
         public static real<T> ToReal<T>(this float src)
-            => ClrConvert.apply<float,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<float,T>(src);
 
         [MethodImpl(Inline)]   
         public static real<T> ToReal<T>(this double src)
-            => ClrConvert.apply<double,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<double,T>(src);
 
         [MethodImpl(Inline)]   
         public static real<T> ToReal<T>(this decimal src)
-            => ClrConvert.apply<decimal,T>(src);
-
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<decimal,T>(src);
 
         [MethodImpl(Inline)]   
         public static real<double> ToReal<T>(this intg<T> src)
-            => ClrConvert.apply<T,double>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<T,double>(src);
 
         [MethodImpl(Inline)]   
         public static real<float> ToReal32<T>(this intg<T> src)
-            => ClrConvert.apply<T,float>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<T,float>(src);
 
         [MethodImpl(Inline)]   
         public static IEnumerable<real<byte>> ToReal(this IEnumerable<byte> src)

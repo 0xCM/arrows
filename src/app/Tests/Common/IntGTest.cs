@@ -18,6 +18,7 @@ namespace Z0.Tests
 
 
     public abstract class IntGTest<T> : GenericNumericTest<T>
+        where T : struct, IEquatable<T>            
     {
         protected static IReadOnlyList<intg<T>> reals(intg<T> min, intg<T> max)
             => Rand.integers(min,max).Freeze(VectorSize);
@@ -31,6 +32,7 @@ namespace Z0.Tests
     }
 
     public abstract class IntGBinOpTest<T> : IntGTest<T>
+        where T : struct, IEquatable<T>            
     {
         
         protected readonly IReadOnlyList<intg<T>> LeftIntSrc;

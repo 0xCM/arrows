@@ -17,6 +17,7 @@ namespace Z0.Tests
     using static ztest;
 
     public abstract class ClrPrimOpsTest<T>
+        where T : struct, IEquatable<T>
     {
         protected const uint VectorSize = Pow2.T20;
     
@@ -61,6 +62,7 @@ namespace Z0.Tests
     }
 
     public abstract class ClrBinaryPrimOpsTest<T> : ClrPrimOpsTest<T>
+        where T : struct, IEquatable<T>
     {
         protected IReadOnlyList<T> LeftSrc;
         

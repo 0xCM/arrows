@@ -53,6 +53,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static BitString defineG<T>(intg<T> src)
+            where T : struct, IEquatable<T>
         {
             var len = (int)src.bitsize;
             var bits = new bit[len];

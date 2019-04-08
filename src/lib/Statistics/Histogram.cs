@@ -15,12 +15,12 @@ namespace Z0
     public static class Histogram
     {
         public static Histogram<T> define<T>(T min, T max, T binwidth)
-            where T : struct, IConvertible 
+            where T : struct, IEquatable<T>
              => new Histogram<T>(min,max,binwidth);
     }
     
     public class Histogram<T> : Formattable
-        where T: IConvertible
+        where T : struct, IEquatable<T>
     {
         
         public Histogram(floatg<T> min, floatg<T> max, floatg<T> bincount)
@@ -76,7 +76,5 @@ namespace Z0
 
         public override string ToString()
             => format();                       
-
     }
-
 }

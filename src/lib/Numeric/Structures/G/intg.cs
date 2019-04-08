@@ -17,6 +17,7 @@ namespace Z0
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
     public readonly struct intg<T> : Integer<intg<T>,T>
+        where T : struct, IEquatable<T>
     {
         static readonly Operative.PrimOps<T> Prim = primops.type<T>();
 
@@ -410,7 +411,6 @@ namespace Z0
         public bool Equals(intg<T> rhs)
                 => this == rhs;
 
-
         [MethodImpl(Inline)]
         public int hash()
             => data.GetHashCode();
@@ -426,14 +426,17 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public real<R> ToRealG<R>()
+            where R : struct, IEquatable<R>
             => ConvertG.toReal<T,R>(data);
 
         [MethodImpl(Inline)]
         public floatg<R> ToFloatG<R>()
-            => ConvertG.toFloat<T,R>(data);
+             where R : struct, IEquatable<R>
+           => ConvertG.toFloat<T,R>(data);
 
         [MethodImpl(Inline)]   
         public C ToClr<C>()
+            where C : struct, IEquatable<R>
             => ClrConvert.apply<T,C>(data);
 
     }

@@ -21,10 +21,12 @@ namespace Z0.Tests
         protected const int RepeatCount = 5;
         
         protected static IReadOnlyList<T> primal<T>(T min, T max)
-            => Rand.primal(min,max).Freeze(VectorSize);
+            where T : struct, IEquatable<T>            
+                => Rand.primal(min,max).Freeze(VectorSize);
     }
 
     public abstract class GenericNumericTest<T>
+            where T : struct, IEquatable<T>            
     {
         protected const uint VectorSize = Pow2.T20;
     
@@ -45,6 +47,7 @@ namespace Z0.Tests
     }
 
     public abstract class GenericBinOpTest<T> : GenericNumericTest<T>
+        where T : struct, IEquatable<T>            
     {
 
 

@@ -18,6 +18,7 @@ namespace Z0
 
         public interface BitVectored<N,T>
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
         {
             BitVector<N,T> bitvector(T src);
         }
@@ -27,6 +28,7 @@ namespace Z0
     /// Defines an integrally and naturally typed bitvector
     /// </summary>
     public readonly struct BitVector<N,T> : Wrapped<intg<T>>, Structures.Bitwise<BitVector<N,T>>, Lengthwise,  Formattable, Equatable<BitVector<N,T>>
+        where T : struct, IEquatable<T>
         where N : TypeNat, new()
     {
         static readonly intg<T> One = intg<T>.One;

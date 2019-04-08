@@ -16,6 +16,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         public interface Fractional<T> : RealNumber<T> 
+            where T : struct, IEquatable<T>
         {
             T ceiling(T x);
             
@@ -31,7 +32,10 @@ namespace Z0
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="R"></typeparam>
         public interface Rational<T,R> : Reciprocative<R>, Fractional<R>
-            where T : Integer<T>
+            where T : struct, IEquatable<T>, Integer<T>
+            where R : struct, IEquatable<R>
+
+
         {
             T over(R x);
 

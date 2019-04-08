@@ -37,7 +37,7 @@ namespace App04
 
         static T dot<N,T>(Z0.Slice<N,T> s1, Z0.Slice<N,T> s2)
             where N : TypeNat, new()
-            where T : Equatable<T>, new()
+            where T : struct, Equatable<T>
             {
                 var ops = primops.type<T>();
                 var result = ops.zero;
@@ -435,6 +435,7 @@ namespace App04
         }
 
         static real<T> sum<T>(params real<T>[] values)
+            where T : struct, IEquatable<T>
         {
             var total = Z0.real<T>.Zero;
             foreach(var v in values)
@@ -459,25 +460,30 @@ namespace App04
         }
 
         static void ShowBit<T>(intg<T> x, int pos)
-            => print($"value: {x}, bits = {x.bitstring()} bit[{pos}] = {bit(x,pos)}");
+            where T : struct, IEquatable<T>
+                => print($"value: {x}, bits = {x.bitstring()} bit[{pos}] = {bit(x,pos)}");
         
         public static void PrintBits<T>(intg<T> src)
+            where T : struct, IEquatable<T>
         {
             for(var i = 0; i < (int)src.bitsize; i ++)
                 ShowBit(src, i);
         }
 
         public static void ShowBits<T>(intg<T> src)
-            => print(src.bitstring());
+            where T : struct, IEquatable<T>
+                => print(src.bitstring());
 
 
         public static void GenRandMatrices<T>(uint count, real<T> min, real<T> max)
+            where T : struct, IEquatable<T>
         {
             var stream = Rand.matrices<N2,N2,T>(min,max);
             printeach(stream.Take((int)count));
         }
 
         public static void GenRandVectors<T>(uint count, real<T> min, real<T> max)
+            where T : struct, IEquatable<T>
         {
             var stream = Rand.vectors<N5,T>(min,max);
             printeach(stream.Take((int)count));

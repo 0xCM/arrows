@@ -22,7 +22,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static floatg<float> ToFloatG32<T>(this intg<T> src)
-            => ConvertG.toFloat<T,float>(src);
+            where T : struct, IEquatable<T>
+                => ConvertG.toFloat<T,float>(src);
 
         /// <summary>
         /// x:intg[x] => x:floatg[double]
@@ -30,7 +31,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static floatg<double> ToFloatG64<T>(this intg<T> src)
-            => ConvertG.toFloat<T,double>(src);
+            where T : struct, IEquatable<T>
+                => ConvertG.toFloat<T,double>(src);
 
         /// <summary>
         /// x:ushort => x:floatg[T]
@@ -38,7 +40,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static floatg<T> ToFloatG<T>(this ushort src)
-            => ConvertG.toFloat<ushort,T>(src);
+            where T : struct, IEquatable<T>
+                => ConvertG.toFloat<ushort,T>(src);
 
         /// <summary>
         /// x:int => x:floatg[T]
@@ -46,7 +49,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static floatg<T> ToFloatG<T>(this int src)
-            => ConvertG.toFloat<int,T>(src);
+            where T : struct, IEquatable<T>
+                => ConvertG.toFloat<int,T>(src);
 
         /// <summary>
         /// x:uint => floatg[T]
@@ -55,7 +59,8 @@ namespace Z0
         /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]   
         public static floatg<T> ToFloatG<T>(this uint src)
-            => ConvertG.toFloat<uint,T>(src);
+            where T : struct, IEquatable<T>
+                => ConvertG.toFloat<uint,T>(src);
 
         /// <summary>
         /// x:long => floatg[T]
@@ -64,8 +69,8 @@ namespace Z0
         /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]   
         public static floatg<T> ToFloatG<T>(this long src)    
-            => ConvertG.toFloat<long,T>(src);
-
+            where T : struct, IEquatable<T>
+                => ConvertG.toFloat<long,T>(src);
 
         /// <summary>
         /// x:long => floatg[T]
@@ -74,6 +79,7 @@ namespace Z0
         /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]   
         public static floatg<T> ToFloatG<T>(this ulong src)
+            where T : struct, IEquatable<T>
             => ConvertG.toFloat<ulong,T>(src);
 
         /// <summary>
@@ -83,6 +89,7 @@ namespace Z0
         /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]   
         public static floatg<T> ToFloatG<T>(this BigInteger src)
+            where T : struct, IEquatable<T>
             => ConvertG.toFloat<BigInteger,T>(src);
 
         /// <summary>
@@ -92,7 +99,8 @@ namespace Z0
         /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]   
         public static floatg<T> ToFloatG<T>(this float src)
-            => ConvertG.toFloat<float,T>(src);
+            where T : struct, IEquatable<T>
+                => ConvertG.toFloat<float,T>(src);
 
         /// <summary>
         /// x:double => floatg[T]
@@ -101,7 +109,8 @@ namespace Z0
         /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]   
         public static floatg<T> ToFloatG<T>(this double src)
-            => ConvertG.toFloat<double,T>(src);
+            where T : struct, IEquatable<T>
+                => ConvertG.toFloat<double,T>(src);
 
         /// <summary>
         /// x:decimal => floatg[T]
@@ -110,7 +119,8 @@ namespace Z0
         /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]   
         public static floatg<T> ToFloatG<T>(this decimal src)
-            => ConvertG.toFloat<decimal,T>(src);
+            where T : struct, IEquatable<T>
+                => ConvertG.toFloat<decimal,T>(src);
 
         /// <summary>
         /// x:sbyte => x:floatg[T]
@@ -119,7 +129,8 @@ namespace Z0
         /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]   
         public static floatg<T> ToFloatG<T>(this sbyte src)
-            => ConvertG.toFloat<sbyte,T>(src);
+            where T : struct, IEquatable<T>
+                => ConvertG.toFloat<sbyte,T>(src);
 
         /// <summary>
         /// x:byte => x:floatg[T]
@@ -128,7 +139,8 @@ namespace Z0
         /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]   
         public static floatg<T> ToFloatG<T>(this byte src)
-            => ConvertG.toFloat<byte,T>(src);
+            where T : struct, IEquatable<T>
+                => ConvertG.toFloat<byte,T>(src);
 
         /// <summary>
         /// x:short => x:floatg[T]
@@ -136,7 +148,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static floatg<T> ToFloatG<T>(this short src)
-            => ConvertG.toFloat<short,T>(src);
+            where T : struct, IEquatable<T>
+                => ConvertG.toFloat<short,T>(src);
 
         /// <summary>
         /// x:byte => x:floatg[double]

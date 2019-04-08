@@ -9,14 +9,18 @@ namespace Z0
     partial class Operative
     {
 
-        public interface Natural<T> : Integer<T>, NonNegative<T> {}
+        public interface Natural<T> : Integer<T>, NonNegative<T> 
+            where T : struct, IEquatable<T>
+        {}
 
 
         /// <summary>
         /// Characterizes an operation provider for bounded natural types
         /// </summary>
         /// <typeparam name="T">The type over which operations are defined</typeparam>
-        public interface FiniteNatural<T> : Natural<T>, BoundReal<T> { }
+        public interface FiniteNatural<T> : Natural<T>, BoundReal<T> 
+            where T : struct, IEquatable<T>
+        { }
 
         /// <summary>
         /// Characterizes operational reifications of RealFiniteUInt 
@@ -24,7 +28,10 @@ namespace Z0
         /// <typeparam name="R">The reification type</typeparam>
         /// <typeparam name="T">The operand type</typeparam>
         public interface FiniteNatural<R,T> : FiniteNatural<T>
-            where R : FiniteNatural<R,T>, new() {  }
+            where R : FiniteNatural<R,T>, new() 
+            where T : struct, IEquatable<T>
+
+            {  }
     }
 
     partial class Structures

@@ -23,7 +23,8 @@ partial class zcore
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]   
     public static intg<T> intg<T>(T value)
-        => new intg<T>(value);
+        where T : struct, IEquatable<T>
+            => new intg<T>(value);
 
     /// <summary>
     /// Constructs a generic number
@@ -32,7 +33,8 @@ partial class zcore
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]   
     public static num<T> numg<T>(T x)
-        => new num<T>(x);
+        where T : struct, IEquatable<T>
+            => new num<T>(x);
 
     /// <summary>
     /// Constructs a real number
@@ -41,8 +43,8 @@ partial class zcore
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]   
     public static real<T> real<T>(T x)
+        where T : struct, IEquatable<T>
             => new real<T>(x);
-
 
     /// <summary>
     /// Constructs a generic float
@@ -51,8 +53,8 @@ partial class zcore
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]   
     public static floatg<T> floatg<T>(T x)
+        where T : struct, IEquatable<T>
             => new floatg<T>(x);
-
 
     /// <summary>
     /// Explicit alternative to implicit destructuring
@@ -62,7 +64,8 @@ partial class zcore
     /// <returns>The destructured (underlying) value</returns>
     [MethodImpl(Inline)]   
     public static T unwrap<T>(intg<T> src)
-        => src;
+        where T : struct, IEquatable<T>
+            => src;
 
     /// <summary>
     /// Explicit alternative to implicit destructuring
@@ -72,7 +75,8 @@ partial class zcore
     /// <returns>The destructured (underlying) value</returns>
     [MethodImpl(Inline)]   
     public static T unwrap<T>(real<T> src)
-        => src;
+        where T : struct, IEquatable<T>
+            => src;
 
     /// <summary>
     /// Explicit alternative to implicit destructuring
@@ -82,7 +86,8 @@ partial class zcore
     /// <returns>The destructured (underlying) value</returns>
     [MethodImpl(Inline)]   
     public static T unwrap<T>(floatg<T> src)
-        => src;
+        where T : struct, IEquatable<T>
+            => src;
 
     /// <summary>
     /// Explicitly invokes the (T) implicit destructuring
@@ -92,7 +97,8 @@ partial class zcore
     /// <returns>The destructured (underlying) value</returns>
     [MethodImpl(Inline)]   
     public static T unwrap<T>(num<T> src)
-        => src;
+        where T : struct, IEquatable<T>
+            => src;
     
     /// <summary>
     /// Effects T[] => intg[T][]
@@ -101,6 +107,7 @@ partial class zcore
     /// <typeparam name="T">The underlying integral type</typeparam>
     [MethodImpl(Inline)]
     public static intg<T>[] ints<T>(params T[] src)
+        where T : struct, IEquatable<T>
     {
         var dst = new intg<T>[src.Length];
         for(var i = 0; i<src.Length; i++)
@@ -110,7 +117,8 @@ partial class zcore
 
     [MethodImpl(Inline)]   
     public static IReadOnlyList<real<T>> reals<T>(IReadOnlyList<T> src)
-        => map(src, x => real<T>(x));
+        where T : struct, IEquatable<T>
+            => map(src, x => real<T>(x));
 
     /// <summary>
     /// Effects T[] => realg[T][]
@@ -119,6 +127,7 @@ partial class zcore
     /// <typeparam name="T">The underlying integral type</typeparam>
     [MethodImpl(Inline)]
     public static real<T>[] reals<T>(params T[] src)
+        where T : struct, IEquatable<T>
     {
         var dst = new real<T>[src.Length];
         for(var i = 0; i<src.Length; i++)
@@ -133,6 +142,7 @@ partial class zcore
     /// <typeparam name="T">The underlying integral type</typeparam>
     [MethodImpl(Inline)]
     public static floatg<T>[] floats<T>(params T[] src)
+        where T : struct, IEquatable<T>
     {
         var dst = new floatg<T>[src.Length];
         for(var i = 0; i<src.Length; i++)
@@ -142,6 +152,7 @@ partial class zcore
 
     [MethodImpl(Inline)]   
     public static IReadOnlyList<floatg<T>> floats<T>(IReadOnlyList<T> src)
+        where T : struct, IEquatable<T>
         => map(src, x => floatg<T>(x));
 
     /// <summary>
@@ -157,7 +168,6 @@ partial class zcore
     /// Converts an integer to a sequence of digits
     /// </summary>
     /// <param name="x">The source value</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static byte[] digits(ushort x)
         => x.ToIntG<ushort>().digits();
@@ -181,7 +191,7 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static IEnumerable<real<T>> reals<T>(IEnumerable<T> src)
-        where T : IConvertible
+        where T : struct, IEquatable<T>
             => src.ToReal();
 
     /// <summary>
@@ -255,7 +265,8 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(byte x)
-        => ClrConvert.apply<byte,T>(x);
+        where T : struct, IEquatable<T>
+            => ClrConvert.apply<byte,T>(x);
 
     /// <summary>
     /// Effects sbyte => real[T]
@@ -264,7 +275,8 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(sbyte x)
-        => ClrConvert.apply<sbyte,T>(x);
+        where T : struct, IEquatable<T>
+            => ClrConvert.apply<sbyte,T>(x);
 
     /// <summary>
     /// Effects short => real[T]
@@ -273,7 +285,8 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(short x)
-        => ClrConvert.apply<short,T>(x);
+        where T : struct, IEquatable<T>
+            => ClrConvert.apply<short,T>(x);
 
     /// <summary>
     /// Effects ushort => real[T]
@@ -282,7 +295,8 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(ushort x)
-        => ClrConvert.apply<ushort,T>(x);
+        where T : struct, IEquatable<T>
+            => ClrConvert.apply<ushort,T>(x);
 
     /// <summary>
     /// Effects int => real[T]
@@ -291,7 +305,8 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(int x)
-        => ClrConvert.apply<int,T>(x);
+        where T : struct, IEquatable<T>
+            => ClrConvert.apply<int,T>(x);
 
     /// <summary>
     /// Effects uint => real[T]
@@ -300,7 +315,8 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(uint x)
-        => ClrConvert.apply<uint,T>(x);
+        where T : struct, IEquatable<T>
+            => ClrConvert.apply<uint,T>(x);
 
     /// <summary>
     /// Effects long => real[T]
@@ -309,7 +325,8 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(long x)
-        => ClrConvert.apply<long,T>(x);
+        where T : struct, IEquatable<T>
+            => ClrConvert.apply<long,T>(x);
 
     /// <summary>
     /// Effects ulong => real[T]
@@ -318,7 +335,8 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(ulong x)
-        => ClrConvert.apply<ulong,T>(x);
+        where T : struct, IEquatable<T>
+            => ClrConvert.apply<ulong,T>(x);
 
     /// <summary>
     /// Effects float => real[T]
@@ -327,7 +345,8 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(float x)
-        => ClrConvert.apply<float,T>(x);
+        where T : struct, IEquatable<T>
+            => ClrConvert.apply<float,T>(x);
 
     /// <summary>
     /// Effects double => real[T]
@@ -336,7 +355,8 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(double x)
-        => ClrConvert.apply<double,T>(x);
+        where T : struct, IEquatable<T>
+            => ClrConvert.apply<double,T>(x);
 
     /// <summary>
     /// Effects decimal => real[T]
@@ -345,7 +365,8 @@ partial class zcore
     /// <typeparam name="T">The underlying target type</typeparam>
     [MethodImpl(Inline)]
     public static real<T> real<T>(decimal x)
-        => ClrConvert.apply<decimal,T>(x);
+        where T : struct, IEquatable<T>
+            => ClrConvert.apply<decimal,T>(x);
 
 
     [MethodImpl(Inline)]

@@ -62,6 +62,7 @@ namespace Z0
         /// <returns>Returns true if the identified bit is set, false otherwise</returns>
         [MethodImpl(Inline)]
         public static bool xtest<T>(intg<T> src, int pos)            
+            where T : struct, IEquatable<T>
             => (src & (intg<T>.One << pos)) != intg<T>.Zero;
 
         /// <summary>
@@ -105,11 +106,12 @@ namespace Z0
         /// <typeparam name="T">The underlying integral type</typeparam>
         [MethodImpl(Inline)]
         public static BinaryDigit digit<T>(intg<T> src, int pos)
-            => src.testbit(pos) switch 
-                {
-                    true => BinaryDigit.B0,
-                    false => BinaryDigit.B1
-                };
+            where T : struct, IEquatable<T>
+                => src.testbit(pos) switch 
+                    {
+                        true => BinaryDigit.B0,
+                        false => BinaryDigit.B1
+                    };
 
         /// <summary>
         /// Constructs a bit from the data in an integral value at a specified position
@@ -119,7 +121,8 @@ namespace Z0
         /// <typeparam name="T">The underlying integral type</typeparam>
         [MethodImpl(Inline)]
         public static bit bit<T>(intg<T> src, int pos)
-            => new bit(src.testbit(pos));
+            where T : struct, IEquatable<T>
+                => new bit(src.testbit(pos));
 
         /// <summary>
         /// Extracts the high-order bits from a uint to produce a ushort

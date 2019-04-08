@@ -25,6 +25,7 @@ namespace Z0
         /// <typeparam name="T">The underlying integral type</typeparam>
         public static BitVector<N,T> define<N,T>(N nat, intg<T> src)
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
                 => new BitVector<N,T>(src);
 
         /// <summary>
@@ -34,6 +35,7 @@ namespace Z0
         /// <typeparam name="T">The bitvector integral type</typeparam>
         public static BitVector<N,T> parse<N,T>(string src)
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
         {
             var result = intg<T>.Zero;    
             var chars = reorient(remove(src.Trim(), "0b"));

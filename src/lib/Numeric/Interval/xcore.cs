@@ -22,6 +22,7 @@ namespace Z0
         /// <param name="parts">The number of partition points</param>
         /// <typeparam name="T">The underlying interval type</typeparam>
         public static IEnumerable<floatg<T>> partition<T>(Traits.Interval<floatg<T>> src, floatg<T> parts)
+            where T : struct, IEquatable<T>
         {
             
             if(parts.neq(floatg<T>.Zero))
@@ -131,6 +132,7 @@ namespace Z0
         /// <typeparam name="T">The underlying interval type</typeparam>
         [MethodImpl(Inline)]
         public static IEnumerable<floatg<T>> Partition<T>(this Traits.Interval<floatg<T>> src, floatg<T> parts)   
-            => Interval.partition(src, parts);
+            where T : struct, IEquatable<T>
+                => Interval.partition(src, parts);
     }
 }

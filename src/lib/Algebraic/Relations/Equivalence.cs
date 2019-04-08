@@ -36,7 +36,7 @@ namespace Z0
         /// an equivalence relation
         /// </summary>
         /// <typeparam name="T">The classified type</typeparam>
-        public interface EquivalenceClass<S,T> : EquivalenceClass<T>, Contain.NonempySet<S>
+        public interface EquivalenceClass<S,T> : Semigroup<S,T>, EquivalenceClass<T>, Contain.NonempySet<S>
             where S : EquivalenceClass<S,T>, new()
         {
             
@@ -70,8 +70,8 @@ namespace Z0
         /// </summary>
         public readonly struct FiniteEquivalenceClass<T> 
             : Structures.DiscreteEqivalenceClass<FiniteEquivalenceClass<T>,T>,  
-              Z0.Equatable<FiniteEquivalenceClass<T>>
-                where T : Z0.Structure<T>, new()
+              Structures.Semigroup<FiniteEquivalenceClass<T>>
+                where T : Structures.Semigroup<T>, new()
         {
                     
             Operative.Equivalence<T> equivalence {get;}

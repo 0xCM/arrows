@@ -12,6 +12,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The primitive type</typeparam>
         public interface Currency<T> : BoundReal<T>, Fractional<T> 
+            where T : struct, IEquatable<T>
+
         {
 
         }

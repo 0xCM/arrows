@@ -20,6 +20,7 @@ partial class zcore
     /// </summary>
     /// <param name="src">The source value</param>
     public static IEnumerable<intg<T>> divisors<T>(intg<T> src)
+        where T : struct, IEquatable<T>
     {        
         var zero = Z0.intg<T>.Zero;
         var one = Z0.intg<T>.One;
@@ -41,6 +42,7 @@ partial class zcore
     /// <typeparam name="T">The underlying integer type</typeparam>
     [MethodImpl(Inline)]   
     public static bool prime<T>(intg<T> x)
+        where T : struct, IEquatable<T>
     {
         var upperBound = x.ToFloatG64().sqrt().ceiling().ToIntG<T>();   
         return divisors(x).Count() == 0;
@@ -55,6 +57,7 @@ partial class zcore
     /// <param name="last">The last number to yield</param>
     /// <typeparam name="T">The underlying numeric type</typeparam>
     public static IEnumerable<real<T>> reals<T>(real<T> first, real<T> last)
+        where T : struct, IEquatable<T>
     {
         var current = first;
         if(first < last)
@@ -82,6 +85,7 @@ partial class zcore
     /// <param name="last">The last integer to yield</param>
     /// <typeparam name="T">The underlying integer type</typeparam>
     public static IEnumerable<intg<T>> range<T>(intg<T> first, intg<T> last)
+        where T : struct, IEquatable<T>
     {
         var current = first;
         if(first < last)
@@ -109,6 +113,7 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static modg<N,T> modring<N,T>(intg<T> lhs)
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
             => new modg<N,T>(lhs);
 
 

@@ -18,29 +18,35 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static T[] Unwrap<T>(this intg<T>[] src)
-            => map(src,unwrap);
+            where T : struct, IEquatable<T>
+                => map(src,unwrap);
 
 
         [MethodImpl(Inline)]   
         public static IEnumerable<T> Unwrap<T>(this IEnumerable<intg<T>> src)
-            => map(src,unwrap);
+            where T : struct, IEquatable<T>
+                => map(src,unwrap);
 
         [MethodImpl(Inline)]   
         public static IReadOnlyList<T> Unwrap<T>(this IReadOnlyList<intg<T>> src)
-            => map(src,unwrap);
+            where T : struct, IEquatable<T>
+                => map(src,unwrap);
 
 
         [MethodImpl(Inline)]   
         public static IEnumerable<T> Unwrap<T>(this IEnumerable<real<T>> src)
-            => map(src,unwrap);
+            where T : struct, IEquatable<T>
+                => map(src,unwrap);
 
         [MethodImpl(Inline)]   
         public static T[] Unwrap<T>(this real<T>[] src)
-            => map(src,unwrap);
+            where T : struct, IEquatable<T>
+                => map(src,unwrap);
 
         [MethodImpl(Inline)]   
         public static IReadOnlyList<T> Unwrap<T>(this IReadOnlyList<real<T>> src)
-            => map(src, unwrap);
+            where T : struct, IEquatable<T>
+                => map(src, unwrap);
 
         [MethodImpl(Inline)]
         public static T Sum<T>(this IEnumerable<T> src)

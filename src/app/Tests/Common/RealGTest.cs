@@ -18,6 +18,7 @@ namespace Z0.Tests
 
 
     public abstract class RealGTest<T> : GenericNumericTest<T>
+        where T : struct, IEquatable<T>            
     {
         protected static IReadOnlyList<real<T>> reals(real<T> min, real<T> max)
             => Rand.reals(min,max).Freeze(VectorSize);
@@ -31,6 +32,7 @@ namespace Z0.Tests
     }
 
     public abstract class RealGBinOpTest<T> : RealGTest<T>
+            where T : struct, IEquatable<T>            
     {
         
         protected readonly IReadOnlyList<real<T>> LeftRealSrc;

@@ -34,10 +34,12 @@ namespace Z0
         };
 
         static Rand<T> random<T>()
-            => (Rand<T>)randomizers[type<T>()];
+            where T : struct, IEquatable<T>
+                => (Rand<T>)randomizers[type<T>()];
 
         static PrimalRand<T> primrand<T>()
-            => (PrimalRand<T>)randomizers[type<T>()];
+            where T : struct, IEquatable<T>
+                => (PrimalRand<T>)randomizers[type<T>()];
 
         static readonly Randomizer freerand = new Randomizer();
         
@@ -52,7 +54,8 @@ namespace Z0
         /// <param name="max">The upper bound</param>
         /// <typeparam name="T">The underlying type</typeparam>
         public static IEnumerable<real<T>> reals<T>(real<T> min, real<T> max)
-            => random<T>().stream(min,max);
+            where T : struct, IEquatable<T>
+                => random<T>().stream(min,max);
 
         /// <summary>
         /// Yields a stream of uniformly distributed integer[t] values that
@@ -62,7 +65,8 @@ namespace Z0
         /// <param name="max">The upper bound</param>
         /// <typeparam name="T">The underlying type</typeparam>
         public static IEnumerable<intg<T>> integers<T>(intg<T> min, intg<T> max)
-            => primal<T>(min,max).Select(x => intg<T>(x));
+            where T : struct, IEquatable<T>
+                => primal<T>(min,max).Select(x => intg<T>(x));
 
         /// <summary>
         /// Yields a stream of uniformly distributed primitive values that
@@ -72,7 +76,8 @@ namespace Z0
         /// <param name="max">The upper bound</param>
         /// <typeparam name="T">The primitive type</typeparam>
         public static IEnumerable<T> primal<T>(T min, T max)
-            => primrand<T>().stream(min,max);
+            where T : struct, IEquatable<T>
+                => primrand<T>().stream(min,max);
 
         /// <summary>
         /// Yields a slice of random primitives
@@ -82,7 +87,8 @@ namespace Z0
         /// <param name="max">The maximum value</param>
         /// <typeparam name="T">The primitive type</typeparam>
         public static Slice<T> slice<T>(int len, T min, T max)
-            => primal(min,max).Take(len).ToSlice();
+            where T : struct, IEquatable<T>
+                => primal(min,max).Take(len).ToSlice();
 
         /// <summary>
         /// Yields a natrural length slice of random primitives
@@ -92,6 +98,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         public static Slice<N,T> slice<N,T>(T min, T max)
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
                 => primal(min,max).ToSlice(natrep<N>());
 
         /// <summary>
@@ -102,6 +109,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         public static Slice<N,T> slice<N,T>(N rep, T min, T max)
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
                 => primal(min,max).ToSlice(rep);
 
         /// <summary>
@@ -112,6 +120,7 @@ namespace Z0
         /// <param name="min">The maximum value of each cell</param>
         /// <typeparam name="T">The cell type</typeparam>
         public static IEnumerable<Slice<T>> slices<T>(int len, T min, T max)
+            where T : struct, IEquatable<T>
         {
             Slice<T> slice(IEnumerable<T> src)
                 => Slice.define<T>(src.Freeze(len));
@@ -130,6 +139,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         public static IEnumerable<Vector<N,T>> vectors<N,T>(T min, T max)
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
         {
             static Vector<N,T> vector(N len, IEnumerable<T> src)
                 => Vector.define(len, (src.Take((int)natval<N>())));
@@ -149,6 +159,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         public static IEnumerable<Vector<N,T>> vectors<N,T>(N rep, T min, T max)
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
                 => vectors<N,T>(min,max);
 
         /// <summary>
@@ -160,8 +171,9 @@ namespace Z0
         /// <typeparam name="N">The column dimension</typeparam>
         /// <typeparam name="T">The entry type</typeparam>
         public static IEnumerable<Matrix<M,N,T>> matrices<M,N,T>(T min, T max)
-             where M : TypeNat, new()
-             where N : TypeNat, new()
+            where M : TypeNat, new()
+            where N : TypeNat, new()
+            where T : struct, IEquatable<T>
                 => MatrixSource<M,N,T>.Inhabitant.stream(min, max);
 
         /// <summary>
@@ -176,6 +188,7 @@ namespace Z0
         public static IEnumerable<Matrix<M,N,T>> matrices<M,N,T>(Dim<M,N> dim, T min, T max)
              where M : TypeNat, new()
              where N : TypeNat, new()
+             where T : struct, IEquatable<T>
                 => MatrixSource<M,N,T>.Inhabitant.stream(min, max);
 
 
@@ -188,6 +201,7 @@ namespace Z0
         /// <typeparam name="T">The underlying numeric type</typeparam>
         public static IEnumerable<Vector<N,real<T>>> vectors<N,T>(N rep, real<T> min, real<T> max)
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
         {
             var len = rep.value;
             var src = reals(min,max);
@@ -205,6 +219,7 @@ namespace Z0
         /// <param name="right">The right tuple component</param>
         /// <typeparam name="T">The underlying numeric type</typeparam>
         public static IEnumerable<(real<T> left, real<T> right)> pairs<T>(real<T> min, real<T> max)
+            where T : struct, IEquatable<T>
                 => zip(reals(min,max), reals(min,max));
 
         /// <summary>
@@ -214,6 +229,7 @@ namespace Z0
         /// <param name="max">The maximum value</param>
         /// <typeparam name="T">The underlying type</typeparam>
         public static Slice<real<T>> slice<T>(int count, real<T> min, real<T> max)
+            where T : struct, IEquatable<T>
                 => reals(min,max).Take(count).ToSlice();
  
     }

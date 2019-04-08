@@ -20,7 +20,7 @@ namespace Z0.Tests
     public class CTests
     {
         static void divRemTest<T>(int count, T min, T max)
-            where T : IComparable<T>
+            where T : struct, IEquatable<T>
         {
             var src1 = Rand.reals<T>(min, max).Take(count).Freeze();
             var src2 = Rand.reals<T>(min, max).Where(x => x.neq(x.zero)).Take(count).Freeze();

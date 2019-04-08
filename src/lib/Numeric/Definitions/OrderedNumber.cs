@@ -12,7 +12,9 @@ namespace Z0
         /// Characterizes numeric operations in the presence of order
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public interface OrderedNumber<T> : Stepwise<T>,  Ordered<T>, Number<T> { }
+        public interface OrderedNumber<T> : Stepwise<T>,  Ordered<T>, Number<T> 
+            where T : struct, IEquatable<T>
+            { }
 
     }
 

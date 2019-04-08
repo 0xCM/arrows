@@ -208,7 +208,8 @@ namespace Z0
               Orderer<T>,
               Operative.Multiplicative<T>, 
               Operative.Divisive<T>, 
-              Operative.Bitwise<T> 
+              Operative.Bitwise<T>
+            where T : struct, IEquatable<T>
         {
             
             NumberInfo<T> numinfo(T x);

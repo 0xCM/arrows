@@ -33,9 +33,11 @@ namespace Z0
         public Index(IEnumerable<KeyedValue<K,V>> kvals)
             => this._items = kvals.ToDictionary(x => x.key, x => x.value);
 
-        public V this[K key] => _items[key];   
+        public V this[K key] 
+            => _items[key];   
 
-        public V item(K key) => this[key];   
+        public V item(K key) 
+            => this[key];   
 
         /// <summary>
         /// Returns the value matching a specified key if it exists; otherwise,

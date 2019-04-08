@@ -14,32 +14,78 @@ namespace Z0
     /// </summary>
     public static class Slice
     {        
+        /// <summary>
+        /// Constructs a slice from a parameter array
+        /// </summary>
+        /// <param name="src">The source data</param>
+        /// <typeparam name="T">The individual type</typeparam>
         [MethodImpl(Inline)]
-        public static Slice<T> define<T>(params T[] data)
-                => new Slice<T>(data);
+        public static Slice<T> define<T>(params T[] src)
+                => new Slice<T>(src);
 
+        /// <summary>
+        /// Constructs a slice from a stream
+        /// </summary>
+        /// <param name="src">The source data</param>
+        /// <typeparam name="T">The individual type</typeparam>
         [MethodImpl(Inline)]
-        public static Slice<T> define<T>(IEnumerable<T> data)
+        public static Slice<T> define<T>(IEnumerable<T> src)
             where T : Equatable<T>, new()
-                => new Slice<T>(data);
+                => new Slice<T>(src);
 
+        /// <summary>
+        /// Constructs a slice from a readonly list
+        /// </summary>
+        /// <param name="src">The source data</param>
+        /// <typeparam name="T">The individual type</typeparam>
         [MethodImpl(Inline)]
-        public static Slice<T> define<T>(IReadOnlyList<T> data)
-                => new Slice<T>(data);
+        public static Slice<T> define<T>(IReadOnlyList<T> src)
+                => new Slice<T>(src);
 
+        /// <summary>
+        /// Constructs a slice of natural length from a parameter array
+        /// </summary>
+        /// <param name="src">The source data</param>
+        /// <typeparam name="T">The individual type</typeparam>
+        /// <typeparam name="N">The natural length type</typeparam>
         [MethodImpl(Inline)]
-        public static Slice<N,T> define<N,T>(params T[] data)
+        public static Slice<N,T> define<N,T>(params T[] src)
             where N : TypeNat, new() 
-              => new Slice<N,T>(data);
+              => new Slice<N,T>(src);
 
+
+        /// <summary>
+        /// Constructs a slice of natural length from a stream
+        /// </summary>
+        /// <param name="src">The source data</param>
+        /// <typeparam name="T">The individual type</typeparam>
+        /// <typeparam name="N">The natural length type</typeparam>
         [MethodImpl(Inline)]
-        public static Slice<N,T> define<N,T>(IEnumerable<T> data)
+        public static Slice<N,T> define<N,T>(IEnumerable<T> src)
             where N : TypeNat, new() 
-            => new Slice<N,T>(data);
+            => new Slice<N,T>(src);
 
+        /// <summary>
+        /// Constructs a new slice by appending the second to the first
+        /// </summary>
+        /// <param name="s1">The first slice</param>
+        /// <param name="s2">The second slice</param>
+        /// <typeparam name="T">The individual type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<T> concat<T>(Slice<T> s1, Slice<T> s2)
             => s1 + s2;
+
+        /// <summary>
+        /// Constructs a new slice by appending the second to the first
+        /// </summary>
+        /// <param name="s1">The first slice</param>
+        /// <param name="s2">The second slice</param>
+        /// <typeparam name="T">The individual type</typeparam>
+        [MethodImpl(Inline)]
+        public static Slice<Add<M,N>,T> concat<N,M,T>(Slice<N,T> s1, Slice<M,T> s2)
+            where N : TypeNat, new() 
+            where M : TypeNat, new() 
+                => define<Add<M,N>,T>(s1.data + s2.data);
 
         /// <summary>
         /// Constructs a slice from sequence of repetitions of a specified value
@@ -132,7 +178,6 @@ namespace Z0
                 result[i] = f(s1[i], s2[i]);
             return slice<N,U>(result);
         }
-
 
         [MethodImpl(Inline)]
         public static T sum<N,T>(Slice<N,T> x)

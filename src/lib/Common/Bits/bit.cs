@@ -145,7 +145,8 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public intg<T> ToIntG<T>()
-            => value ? intg<T>.One : intg<T>.Zero;
+            where T : struct, IEquatable<T>
+                => value ? intg<T>.One : intg<T>.Zero;
 
         [MethodImpl(Inline)]
         public int hash()

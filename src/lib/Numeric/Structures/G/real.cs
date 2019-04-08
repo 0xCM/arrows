@@ -13,6 +13,7 @@ namespace Z0
     using static Structures;
 
     public readonly struct real<T> : RealNumber<real<T>, T>
+        where T : struct, IEquatable<T>
     {
         static readonly Operative.PrimOps<T> Prim = primops.type<T>();
         
@@ -157,14 +158,9 @@ namespace Z0
             get{return One;}
         }
 
-
         [MethodImpl(Inline)]
         public T unwrap()
             => data;
-
-        [MethodImpl(Inline)]
-        public real<Y> convert<Y>()    
-            => ClrConvert.apply<T,Y>(data);
 
         [MethodImpl(Inline)]
         public real<T> inc()
@@ -351,15 +347,18 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public intg<I> ToIntG<I>()
-            => ConvertG.toInt<T,I>(data);
+             where I : struct, IEquatable<I>
+                => ConvertG.toInt<T,I>(data);
 
         [MethodImpl(Inline)]   
         public floatg<F> ToFloatG<F>()
-            => ConvertG.toFloat<T,F>(data);
+            where F : struct, IEquatable<F>
+                => ConvertG.toFloat<T,F>(data);
 
         [MethodImpl(Inline)]   
         public C ToClr<C>()
-            => ClrConvert.apply<T,C>(data);
+            where C : struct, IEquatable<C>
+                => ClrConvert.apply<T,C>(data);
 
     }
 }

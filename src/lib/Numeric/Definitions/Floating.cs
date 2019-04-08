@@ -15,6 +15,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
         public interface Floating<T> : RealNumber<T>, Fractional<T>, Resignable<T>, Subtractive<T>, Trigonmetric<T>
+            where T : struct, IEquatable<T>
         {
             /// <summary>
             /// The minimal resolution of the data type
@@ -38,6 +39,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
         public interface FiniteFloat<T> : Floating<T>, BoundReal<T> 
+            where T : struct, IEquatable<T>
+
         { }
             
 
@@ -47,6 +50,7 @@ namespace Z0
         /// <typeparam name="R">The reification type</typeparam>
         /// <typeparam name="T">The operand type</typeparam>
         public interface FiniteFloat<R,T> : FiniteFloat<T>
+            where T : struct, IEquatable<T>
             where R : FiniteFloat<R,T>, new() { }
 
     }

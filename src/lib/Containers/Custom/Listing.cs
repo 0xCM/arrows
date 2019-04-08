@@ -11,10 +11,7 @@ namespace Z0
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
-
-
-
-    using static Z0.Bibliography;
+    
     using static zcore;
     using static Structures;
 
@@ -30,7 +27,7 @@ namespace Z0
 
     public interface Listed<S,T> : Listed<S>
         where S : Listed<S,T>, new()
-        where T : Nullary<T>, new()
+        where T : MonoidA<T>, new()
     {
         /// <summary>
         /// Returns the first constituent if it exits; otherwise, the zero element of T
@@ -42,17 +39,22 @@ namespace Z0
         /// </summary>
         T last();
 
+        /// <summary>
+        /// Replaces the existing list with a new list with specified content
+        /// </summary>
+        /// <param name="src"></param>
         S redefine(IEnumerable<T> src);
     }
 
-
     public static class Listing
     {
-        // public static Listing<T> define<T>(IEnumerable<T> src)
-        //     =>
+        public static Listing<T> define<T>(IEnumerable<T> src)
+            where T : MonoidA<T>, new()
+                => new Listing<T>(src);
     }
+
     public readonly struct Listing<T> : Listed<Listing<T>, T>
-        where T : Equatable<T>, Structures.Nullary<T>, new()
+            where T : MonoidA<T>, new()
     {
 
         [MethodImpl(Inline)]
@@ -140,7 +142,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Listing<U> redefine<U>(IEnumerable<T> content, Func<T,U> f)
-            where U :Structures.Nullary<U>, Equatable<U>, new()
+            where U :MonoidA<U>, new()
             => new Listing<U>(content.Select(f));
 
         [MethodImpl(Inline)]

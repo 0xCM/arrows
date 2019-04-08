@@ -62,7 +62,7 @@ namespace Z0
     partial class Structures
     {
         
-        public interface Semigroup<S> : Structure<S>
+        public interface Semigroup<S> : Equatable<S>
             where S : Semigroup<S>, new()
         {
 

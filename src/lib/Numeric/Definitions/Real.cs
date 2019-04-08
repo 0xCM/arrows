@@ -11,6 +11,8 @@ namespace Z0
     {
 
         public interface RealNumber<T> : OrderedNumber<T>, Trigonmetric<T>
+            where T : struct, IEquatable<T>
+
         {
 
         }
@@ -21,6 +23,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         public interface BoundReal<T> : RealNumber<T>
+            where T : struct, IEquatable<T>
         {
 
         }

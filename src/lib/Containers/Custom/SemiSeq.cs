@@ -65,8 +65,8 @@ namespace Z0
             => this._content = defer(() => (IReadOnlyList<T>)src);        
 
         [MethodImpl(Inline)]   
-        public SemiSeq(IEnumerable<T> content)
-            => this._content = defer(() => content.ToReadOnlyList());        
+        public SemiSeq(IEnumerable<T> src)
+            => this._content = defer(() => src.ToReadOnlyList());        
 
         readonly Lazy<IReadOnlyList<T>> _content;
 

@@ -21,6 +21,7 @@ namespace Z0
     public readonly struct MatrixSource<M,N,T> : RandomMatrixSource<M,N,T>
         where N : TypeNat, new()
         where M : TypeNat, new()
+        where T : struct, IEquatable<T>
     {
         public static MatrixSource<M,N,T> Inhabitant = default;
 

@@ -12,6 +12,7 @@ namespace Z0
     using static zcore;
 
     public interface PrimalRand<T>
+        where T : struct, IEquatable<T>
     {
         IEnumerable<T> stream(T min, T max);        
 
@@ -20,8 +21,8 @@ namespace Z0
     }
 
     public interface Rand<T>
+        where T : struct, IEquatable<T>
     {
-        //real<T> one(real<T> min, real<T> max);
         
         IEnumerable<real<T>> stream(real<T> min, real<T> max);
 

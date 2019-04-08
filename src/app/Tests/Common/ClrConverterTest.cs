@@ -19,6 +19,8 @@ namespace Z0.Tests
     using target = System.Int32;
 
     public abstract class ClrConverterTest<S,T>
+        where T : struct, IEquatable<T>
+        where S : struct, IEquatable<S>
     {
         protected const uint VectorSize = Pow2.T20;
     

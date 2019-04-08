@@ -8,7 +8,6 @@ namespace Z0
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-
     
     using static zcore;
 
@@ -16,19 +15,14 @@ namespace Z0
     /// Correlates a value with a key that uniquely identifies
     /// the value within some context
     /// </summary>
-    public readonly struct KeyedValue<K,V> 
+    public readonly struct KeyedValue<K,V> : Formattable
     {
-        /// <summary>
-        /// The key that identifies the value
-        /// </summary>
-        /// <value></value>
-        public K key {get;}
 
-        /// <summary>
-        /// The value identified by the key
-        /// </summary>
-        /// <value></value>
-        public V value {get;}
+        public static implicit operator KeyedValue<K,V>((K key, V value) src)
+            => new KeyedValue<K,V>(src);
+
+        public static implicit operator (K key, V value)(KeyedValue<K,V> src)
+            => src.tuple;
 
         public KeyedValue(K key, V value)
         {
@@ -40,5 +34,21 @@ namespace Z0
             this.key = kv.key;
             this.value = kv.value;
         }        
+
+        /// <summary>
+        /// The key that identifies the value
+        /// </summary>
+        public readonly K key;
+
+        /// <summary>
+        /// The value identified by the key
+        /// </summary>
+        public readonly V value;
+
+        public (K key, V value) tuple
+            => this;
+
+        public string format()
+            => tuple.Format();
     }
 }

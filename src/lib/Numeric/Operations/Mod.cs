@@ -16,6 +16,8 @@ namespace Z0
     /// </summary>
     public readonly struct ModOps<N,T> : Operative.ModN<N,T>
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
+
     {
         public static readonly ModOps<N,T> Inhabitant = default;
         

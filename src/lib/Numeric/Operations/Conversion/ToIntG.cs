@@ -122,6 +122,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this byte src)
+            where T : struct, IEquatable<T>
             => ClrConvert.apply<byte,T>(src);
 
         /// <summary>
@@ -130,6 +131,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this sbyte src)
+            where T : struct, IEquatable<T>
             => ClrConvert.apply<sbyte,T>(src);
 
 
@@ -139,6 +141,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this short src)
+            where T : struct, IEquatable<T>
             => ClrConvert.apply<short,T>(src);
         
         /// <summary>
@@ -147,6 +150,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]       
         public static intg<T> ToIntG<T>(this ushort src)
+            where T : struct, IEquatable<T>
             => ClrConvert.apply<ushort,T>(src);
 
         /// <summary>
@@ -155,6 +159,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this int src)
+            where T : struct, IEquatable<T>
             => ClrConvert.apply<int,T>(src);
 
         /// <summary>
@@ -163,6 +168,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this uint src)
+            where T : struct, IEquatable<T>
             => ClrConvert.apply<uint,T>(src);
 
         /// <summary>
@@ -171,6 +177,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this long src)    
+            where T : struct, IEquatable<T>
             => ClrConvert.apply<long,T>(src);
 
         /// <summary>
@@ -179,6 +186,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this ulong src)
+            where T : struct, IEquatable<T>
             => ClrConvert.apply<ulong,T>(src);
 
         /// <summary>
@@ -187,6 +195,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this float src)
+            where T : struct, IEquatable<T>
             => ClrConvert.apply<float,T>(src);
 
         /// <summary>
@@ -195,6 +204,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this double src)
+            where T : struct, IEquatable<T>
             => ClrConvert.apply<double,T>(src);
 
         /// <summary>
@@ -202,6 +212,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         public static intg<T> ToIntG<T>(this decimal src)
+            where T : struct, IEquatable<T>
             => ClrConvert.apply<decimal,T>(src);
 
         /// <summary>
@@ -210,7 +221,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this intg<byte> src)
-            => ClrConvert.apply<byte,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<byte,T>(src);
 
         /// <summary>
         /// x:intg[sbyte] => x:intg[T]
@@ -218,7 +230,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this intg<sbyte> src)
-            => ClrConvert.apply<sbyte,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<sbyte,T>(src);
 
 
         /// <summary>
@@ -227,7 +240,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this intg<short> src)
-            => ClrConvert.apply<short,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<short,T>(src);
         
         /// <summary>
         /// x:intg[ushort] => x:intg[T]
@@ -235,7 +249,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]       
         public static intg<T> ToIntG<T>(this intg<ushort> src)
-            => ClrConvert.apply<ushort,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<ushort,T>(src);
 
         /// <summary>
         /// x:intg[int] => x:intg[T]
@@ -243,7 +258,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this intg<int> src)
-            => ClrConvert.apply<int,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<int,T>(src);
 
         /// <summary>
         /// x:intg[uint] => x:intg[T]
@@ -251,7 +267,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this intg<uint> src)
-            => ClrConvert.apply<uint,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<uint,T>(src);
 
         /// <summary>
         /// x:intg[long] => x:intg[T]
@@ -259,7 +276,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this intg<long> src)    
-            => ClrConvert.apply<long,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<long,T>(src);
 
         /// <summary>
         /// x:intg[ulong] => x:intg[T]
@@ -267,8 +285,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this intg<ulong> src)
-            => ClrConvert.apply<ulong,T>(src);
-
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<ulong,T>(src);
         
         /// <summary>
         /// x:floatg[float] => x:intg[T]
@@ -276,7 +294,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this floatg<float> src)
-            => ClrConvert.apply<float,T>(src);
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<float,T>(src);
 
         /// <summary>
         /// x:floatg[float] => x:intg[T]
@@ -284,8 +303,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this floatg<double> src)
-            => ClrConvert.apply<double,T>(src);
-
+            where T : struct, IEquatable<T>
+                => ClrConvert.apply<double,T>(src);
 
         /// <summary>
         /// x:Enum => x:intg[T]
@@ -293,12 +312,12 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this Enum src)    
-            => (T)Convert.ChangeType(src, type<T>());    
-
+            where T : struct, IEquatable<T>
+                => (T)Convert.ChangeType(src, type<T>());    
 
         [MethodImpl(Inline)]   
         public static IReadOnlyList<intg<T>> ToIntG<T>(this IReadOnlyList<real<T>> src)
-            => map(src, x =>  intg<T>(x.unwrap()));
-
+            where T : struct, IEquatable<T>
+                => map(src, x =>  intg<T>(x.unwrap()));
     }
 }

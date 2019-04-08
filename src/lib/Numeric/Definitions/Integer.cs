@@ -14,35 +14,47 @@ namespace Z0
         /// Characterizes operations over an integer type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Integer<T> : RealNumber<T>, Stepwise<T>, Bitwise<T> { }
+        public interface Integer<T> : RealNumber<T>, Stepwise<T>, Bitwise<T> 
+            where T : struct, IEquatable<T>
+        { }
 
-        public interface FiniteInt<T> : Integer<T>, BoundReal<T> { }
+        public interface FiniteInt<T> : Integer<T>, BoundReal<T> 
+            where T : struct, IEquatable<T>
+        { }
 
 
         /// <summary>
         /// Characterizes operations over unbound integers
         /// </summary>
-        public interface InfiniteInt<T> : Integer<T>, Infinite<T> { }
+        public interface InfiniteInt<T> : Integer<T>, Infinite<T> 
+            where T : struct, IEquatable<T>
+        { }
 
 
         /// <summary>
         /// Characterizes operations over a signed interal type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface SignedInt<T> : Integer<T>, Signable<T>, Subtractive<T> { }
+        public interface SignedInt<T> : Integer<T>, Signable<T>, Subtractive<T> 
+            where T : struct, IEquatable<T>
+        { }
 
 
         /// <summary>
         /// Characterizes operations over a signed, finite interal type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface FiniteSignedInt<T> : SignedInt<T>, BoundReal<T> { } 
+        public interface FiniteSignedInt<T> : SignedInt<T>, BoundReal<T> 
+            where T : struct, IEquatable<T>
+        { } 
 
         /// <summary>
         /// Characterizes operations over an unbound signed integral type
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface InfiniteSignedInt<T> : InfiniteInt<T>, SignedInt<T> {}
+        public interface InfiniteSignedInt<T> : InfiniteInt<T>, SignedInt<T> 
+            where T : struct, IEquatable<T>
+        {}
 
 
     }
@@ -61,8 +73,5 @@ namespace Z0
         /// <typeparam name="T">The underlying type</typeparam>
         public interface Integer<S,T> : Integer<S>, Wrapped<T>
             where S : Integer<S,T>, new() { }
-
-        
-
     }
 }

@@ -17,6 +17,7 @@ namespace Z0
     /// Represents an floateger predicated on (and constrained by) an underlying type
     /// </summary>
     public readonly struct floatg<T> : Floating<floatg<T>,T>
+            where T : struct, IEquatable<T>
     {        
         static readonly Operative.PrimOps<T> Prim = primops.type<T>();
 
@@ -347,14 +348,17 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public intg<I> ToIntG<I>()
-            => ConvertG.toInt<T,I>(data);
+             where I : struct, IEquatable<I>
+           => ConvertG.toInt<T,I>(data);
 
         [MethodImpl(Inline)]
         public real<R> ToRealG<R>()
+            where R : struct, IEquatable<R>
             => ConvertG.toReal<T,R>(data);
 
         [MethodImpl(Inline)]   
         public C ToClr<C>()
+            where C : struct, IEquatable<C>
             => ClrConvert.apply<T,C>(data);
 
 

@@ -39,7 +39,7 @@ namespace Z0.Tests
             => fuse(LeftSrc,RightSrc, Prim.and);
 
         public override IReadOnlyList<operand> Vectorized()
-            => Prim.and(LeftSrc,RightSrc);
+            => fuse(LeftSrc,RightSrc, Prim.and);
 
 
     } 

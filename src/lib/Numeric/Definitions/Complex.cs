@@ -8,22 +8,6 @@ namespace Z0
     using System.Numerics;
 
 
-    partial class Operative
-    {
-
-        /// <summary>
-        /// Characterizes operations over complex numbers
-        /// </summary>
-        /// <typeparam name="T">The component type</typeparam>
-        /// <typeparam name="C">The operand type</typeparam>
-        public interface Complex<T,C> : Number<C>
-        {
-            
-        }
-
-    }
-
-
     partial class Structures
     {
         /// <summary>
@@ -33,7 +17,7 @@ namespace Z0
         /// <typeparam name="T">The underlying numeric component type</typeparam>
         /// <typeparam name="C">The complex number type</typeparam>
         public interface Complex<S,T,C> : Number<S>
-            where S : Complex<S,T,C>,  new()
+            where S : struct, Complex<S,T,C>, IEquatable<S>  
         {
             /// <summary>
             /// The real part

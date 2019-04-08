@@ -15,6 +15,7 @@ namespace Z0
     using static Structures;
 
     public readonly struct num<T> : OrderedNumber<num<T>,T>
+        where T : struct, IEquatable<T>
     {
         static readonly Operative.PrimOps<T> Prim = primops.type<T>();
 
