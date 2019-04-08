@@ -13,7 +13,6 @@ namespace Z0
 
     public readonly struct Vector<N, T> : IEnumerable<T>, Equatable<Vector<N,T>>, Formattable, Lengthwise
         where N : TypeNat, new()    
-        //where T : Equatable<T>, new()    
     {
 
         /// <summary>
@@ -71,7 +70,6 @@ namespace Z0
         public Covector<N, T> tranpose()
             => new Covector<N,T>(cells);
 
-
         [MethodImpl(Inline)]   
         public IEnumerator<T> GetEnumerator()
             => cells.data.GetEnumerator();
@@ -106,9 +104,12 @@ namespace Z0
         public override bool Equals(object rhs)
             => rhs is Covector<N,T> ? eq((Vector<N,T>)rhs) : false;
  
-         public override string ToString()
+        public override string ToString()
             => format();
 
+        [MethodImpl(Inline)]   
+        public IReadOnlyList<T> unwrap()
+            => cells.unwrap();
     }
 
 }

@@ -35,15 +35,13 @@ namespace Z0
         }
 
         /// <summary>
-        /// Characterizes a conversion operation, x:S => x:T that
-        /// also supports stream-based conversions of the form
-        /// x:Stream[S] =>  x:Stream[T]
+        /// Characterizes conversion operations from one
+        /// clr-defined primitive to another
         /// </summary>
         /// <typeparam name="S">The source type</typeparam>
         /// <typeparam name="T">The target value</typeparam>
-        public interface StreamConversion<S,T> : Conversion<S,T>
+        public interface ClrConverter<S,T> : Conversion<S,T>
         {
-            IEnumerable<T> convert(IEnumerable<S> src, bool pll = false);
             
             IReadOnlyList<T> convert(IReadOnlyList<S> src);
         }

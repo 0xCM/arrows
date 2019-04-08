@@ -150,7 +150,7 @@ namespace Z0
         /// <typeparam name="T">The underlying integral type</typeparam>
         /// <returns>Returns true if the identified bit is set, false otherwise</returns>
         [MethodImpl(Inline)]
-        public bool test(int pos)            
+        public bool testbit(int pos)            
             => bits[pos];
 
         public override string ToString()
@@ -161,5 +161,119 @@ namespace Z0
 
         public override bool Equals(object rhs)
             => rhs is BitVector<N> ? Equals((BitVector<N>)rhs) : false;
+
+        public byte[] bytes()
+        {
+            var len = (bits.length / 8) + 1;            
+            var dst = new byte[]{};
+            foreach(var part in bits.Partition(8))
+            {
+                var segment = part.ToArray();
+                if(segment.Length != 8)
+                {
+                    var padding = repeat(bit.Zero, 8 - part.Count);                    
+                    segment = concat(padding,segment.ToArray());
+                }                                    
+            }
+            throw new NotImplementedException();
+
+        }
     }
+
+    partial class xcore
+    {
+
+        /// <summary>
+        /// Constructs a bitvector from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitVector<N8,byte> ToBitVector(this byte src)
+            => bitvector(src);
+
+        /// <summary>
+        /// Constructs a bitvector from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitVector<N8,sbyte> ToBitVector(this sbyte src)
+            => bitvector(src);
+
+        /// <summary>
+        /// Constructs a bitvector from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitVector<N16,short> ToBitVector(this short src)
+            => bitvector(src);
+
+        /// <summary>
+        /// Constructs a bitvector from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitVector<N16,ushort> ToBitVector(this ushort src)
+            => bitvector(src);
+
+        /// <summary>
+        /// Constructs a bitvector from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitVector<N32,int> ToBitVector(this int src)
+            => bitvector(src);
+
+        /// <summary>
+        /// Constructs a bitvector from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitVector<N32,uint>  ToBitVector(this uint src)
+            => bitvector(src);
+
+        /// <summary>
+        /// Constructs a bitvector from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitVector<N64,long> ToBitVector(this long src)
+            => bitvector(src);
+
+        /// <summary>
+        /// Constructs a bitvector from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitVector<N64,ulong> ToBitVector(this ulong src)
+            => bitvector(src);
+
+        /// <summary>
+        /// Constructs a bitvector from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitVector<N32,int> ToBitVector(this float src)
+            => bitvector(BitConverter.SingleToInt32Bits(src));
+
+        /// <summary>
+        /// Constructs a bitvector from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitVector<N64,long> ToBitVector(this double src)
+            => bitvector(BitConverter.DoubleToInt64Bits(src));
+
+        /// <summary>
+        /// Constructs an IEE bitstring from a double
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static string ToIeeeBitString(this double x)
+            => lpadZ(apply(Bits.split(x), 
+                ieee => append(ieee.sign == Sign.Negative ? "1" : "0",
+                            ieee.exponent.ToBitString().format(),
+                            ieee.mantissa.ToBitString().format()                        
+                    )), primops.bitsize<double>());
+ 
+    }    
 }

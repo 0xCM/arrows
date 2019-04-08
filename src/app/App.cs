@@ -39,7 +39,7 @@ namespace App04
             where N : TypeNat, new()
             where T : Equatable<T>, new()
             {
-                var ops = Resolver.integer<T>();
+                var ops = primops.type<T>();
                 var result = ops.zero;
                 for(var i=0; i< s1.length; i++)
                     result = ops.add(result, ops.mul(s1[i],s2[i]));
@@ -293,11 +293,11 @@ namespace App04
 
         static void DisplayBits()
         {
-            print(bitstring(numg<byte>(155)));
-            print(bitstring(numg<short>(888)));
-            print(bitstring(numg(132593u)));
-            print(bitstring(numg(132593.34m)));
-            print(bitstring(numg(7.00)));
+            print(primops.bitstring(numg<byte>(155)));
+            print(primops.bitstring(numg<short>(888)));
+            print(primops.bitstring(numg(132593u)));
+            print(primops.bitstring(numg(132593.34m)));
+            print(primops.bitstring(numg(7.00)));
 
         }
 
@@ -435,9 +435,8 @@ namespace App04
         }
 
         static real<T> sum<T>(params real<T>[] values)
-            where T: IConvertible
         {
-            var total = Resolver.real<T>().zero;
+            var total = Z0.real<T>.Zero;
             foreach(var v in values)
                 total += v;
             return total;
@@ -519,13 +518,23 @@ namespace App04
             }    
         }
 
-    
+
+        static void ConverterSpeed()
+        {
+
+            var vectors = Rand.vectors(Nats.N10, -250000L, 250000L);
+            var sample = vectors.Take(Pow2.T20).Freeze();
+            var sw = stopwatch();
+            var realvecs = map(sample, 
+                v => vector(Nats.N0, ConvertG.toReal<long,double>(v.unwrap())));
+            print($"Converted {realvecs.Count} long vectors to double vectors in {sw.ElapsedMilliseconds}ms");
+        }    
         static void bitplay()
         {
-            Func<byte,int,bool> t1 = (x,i) => Bits.xtest<byte>(x, i);
-            Func<sbyte,int,bool> t2 = (x,i) => Bits.test(x, i);
-            Func<sbyte,int,bool> t3 = (x,i) => Bits.xtest<sbyte>(x, i);
-            Func<byte,int,bool> t4 = (x,i) => Bits.test(x, i);
+
+
+            Func<sbyte,int,bool> t2 = (x,i) => primops.testbit(x,i);
+            Func<byte,int,bool> t4 = (x,i) => primops.testbit(x,i);
 
             byte b1 = 0b110010;
             var b1Bits = slice(t4(b1,5), t4(b1,4), t4(b1,3),t4(b1,2), t4(b1,1), t4(b1,0));
@@ -551,40 +560,9 @@ namespace App04
         }
 
 
-        static void PrimSpeed(ulong count)
-        {
-            var min = -250;
-            var max = 250;
-            var input = Rand.primal(min,max).Freeze((int)count);
-
-            int baseline()
-            {
-                var sum = 0;
-                foreach(var item in input)
-                    sum += item;
-                return sum;
-            }
-
-
-            int operators()
-            {
-                var ops = primops<int>();
-                var sum = ops.zero;
-                foreach(var item in input)
-                    sum = ops.add(sum,item);
-                return sum; 
-            }
-
-            var r1 = duration(baseline, out long basetime);
-            var r2 = duration(operators, out long optime);
-            demand(r1 == r2);
-            print($"Result ={r1}; baseline time = {basetime}ms; operator time = {optime}ms");
-
-        }
-
         static void Main(string[] args)
         {     
-            SysInit.initialize<Program>();
+            //SysInit.initialize<Program>();
             TestRunner.RunTests();
 
             // var input = Rand.primal(-50,50).Freeze((int)Pow2.T21);

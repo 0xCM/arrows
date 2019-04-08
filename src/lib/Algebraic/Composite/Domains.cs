@@ -43,6 +43,7 @@ namespace Z0
 
             T gcd(T lhs, T rhs);
 
+            Quorem<T> divrem(T lhs, T rhs);
         }
 
         /// <summary>

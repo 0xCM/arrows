@@ -12,22 +12,17 @@ namespace Z0
     using static Traits;
 
     public readonly struct MatMul<M,N,P,T> 
-            where M : TypeNat, new()
-            where N : TypeNat, new()
-            where P : TypeNat, new()
-            //where T : Structures.Semiring<T>, new()
+        where M : TypeNat, new()
+        where N : TypeNat, new()
+        where P : TypeNat, new()
+        where T : Operative.Semiring<T>, new()
     {
         
         readonly Matrix<M,N,T> lhs;
         
         public MatMul(Matrix<M,N,T> lhs)
             => this.lhs = lhs;
-
-        [MethodImpl(Inline)]
-        public static Matrix<M, P, T> operator * (MatMul<M,N,P,T> lhs, Matrix<N,P,T> rhs)             
-            => lhs.lhs.mul(rhs);
         
-    
         [MethodImpl(Inline)]
         public Matrix<M, P, T> mul(Matrix<N, P, T> rhs)
         {            

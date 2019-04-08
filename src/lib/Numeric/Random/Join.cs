@@ -55,6 +55,16 @@ namespace Z0
             => random<T>().stream(min,max);
 
         /// <summary>
+        /// Yields a stream of uniformly distributed integer[t] values that
+        /// are bounded within a specified range
+        /// </summary>
+        /// <param name="min">The lower bound</param>
+        /// <param name="max">The upper bound</param>
+        /// <typeparam name="T">The underlying type</typeparam>
+        public static IEnumerable<intg<T>> integers<T>(intg<T> min, intg<T> max)
+            => primal<T>(min,max).Select(x => intg<T>(x));
+
+        /// <summary>
         /// Yields a stream of uniformly distributed primitive values that
         /// are bounded within a specified range
         /// </summary>

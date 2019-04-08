@@ -11,7 +11,6 @@ using Z0;
 
 partial class zcore
 {
-
     /// <summary>
     /// Retrieves the value of the natural number associated with a typenat
     /// </summary>
@@ -22,13 +21,22 @@ partial class zcore
             => new N().value; 
 
     /// <summary>
-    /// Retrieves the value of a type natural represented as an integer
+    /// Retrieves the value of a type natural represented as a signed integer
     /// </summary>
     /// <typeparam name="N">The nat type</typeparam>
     [MethodImpl(Inline)]   
     public static int nati<N>() 
         where N : TypeNat, new()
             => (int)natval<N>();
+
+    /// <summary>
+    /// Retrieves the value of a type natural represented as an usigned int
+    /// </summary>
+    /// <typeparam name="N">The nat type</typeparam>
+    [MethodImpl(Inline)]   
+    public static uint natui<N>() 
+        where N : TypeNat, new()
+            => (uint)natval<N>();
 
     /// <summary>
     /// Retrieves the value of a type natural represented as an integer

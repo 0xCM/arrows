@@ -185,6 +185,10 @@ namespace Z0
 
         public override string ToString()
             => format();
+    
+        [MethodImpl(Inline)]   
+        public IReadOnlyList<T> unwrap()
+            => data;
     }        
 
     /// <summary>
@@ -192,7 +196,6 @@ namespace Z0
     /// </summary>
     public readonly struct Slice<N,T> : Structures.Slice<Slice<N,T>,T>
         where N : TypeNat, new()
-        //where T : Equatable<T>, new()        
     {                    
         
         /// <summary>
@@ -270,6 +273,10 @@ namespace Z0
         [MethodImpl(Inline)]   
         public bool Equals(Slice<N, T> rhs)
             => eq(rhs);
+
+        [MethodImpl(Inline)]   
+        public IReadOnlyList<T> unwrap()
+            => data.unwrap();
 
         /// <summary>
         /// Renders the slice as a comma-delimted parenthetical value

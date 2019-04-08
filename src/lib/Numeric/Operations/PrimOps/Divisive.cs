@@ -80,49 +80,101 @@ namespace Z0
             public long div(long lhs, long rhs)
                 => lhs / rhs;
 
-            [MethodImpl(Inline)]   
+            [MethodImpl(Inline)]
             public Quorem<sbyte> divrem(sbyte lhs, sbyte rhs)
-                => Quorem.define((sbyte) (lhs / rhs), (sbyte)(lhs % rhs));
+            {
+                var x = Math.Abs(lhs);
+                var y = Math.Abs(rhs);
+                var quo = div(x, y);
+                var rem = (sbyte)(x - quo*y);
+                return Quorem.define(quo, rem);                   
+            }
 
             [MethodImpl(Inline)]
             public Quorem<byte> divrem(byte lhs, byte rhs)
-                => Quorem.define((byte) (lhs / rhs), (byte)(lhs % rhs));
+            {
+                var quo = div(lhs, rhs);
+                var rem = (byte)(lhs - quo*rhs);
+                return Quorem.define(quo, rem);                   
+            }
 
             [MethodImpl(Inline)]
             public Quorem<short> divrem(short lhs, short rhs)
-                => Quorem.define((short)(lhs / rhs), (short)(lhs % rhs));
+            {
+                var x = Math.Abs(lhs);
+                var y = Math.Abs(rhs);
+                var quo = div(x, y);
+                var rem = (short)(x - quo*y);
+                return Quorem.define(quo, rem);                   
+            }
 
             [MethodImpl(Inline)]
             public Quorem<ushort> divrem(ushort lhs, ushort rhs)
-                => Quorem.define((ushort) (lhs / rhs), (ushort)(lhs % rhs));
+            {
+                var quo = div(lhs, rhs);
+                var rem = (ushort)(lhs - quo*rhs);
+                return Quorem.define(quo, rem);                   
+            }
 
             [MethodImpl(Inline)]
             public Quorem<int> divrem(int lhs, int rhs)
-                => Quorem.define((lhs / rhs), (lhs % rhs));
+            {
+                var x = Math.Abs(lhs);
+                var y = Math.Abs(rhs);
+                var quo = div(x, y);
+                var rem = x - quo*y;
+                return Quorem.define(quo, rem);                   
+            }
 
             [MethodImpl(Inline)]
             public Quorem<uint> divrem(uint lhs, uint rhs)
-                => Quorem.define((lhs / rhs), (lhs % rhs));
+            {
+                var quo = div(lhs, rhs);
+                var rem = lhs - quo*rhs;
+                return Quorem.define(quo, rem);                   
+            }
 
             [MethodImpl(Inline)]
             public Quorem<long> divrem(long lhs, long rhs)
-                => Quorem.define((lhs / rhs), (lhs % rhs));
+            {
+                var x = Math.Abs(lhs);
+                var y = Math.Abs(rhs);
+                var quo = div(x, y);
+                var rem = x - quo*y;
+                return Quorem.define(quo, rem);                   
+            }
 
             [MethodImpl(Inline)]
             public Quorem<ulong> divrem(ulong lhs, ulong rhs)
-                => Quorem.define((lhs / rhs), (lhs % rhs));
+            {
+                var quo = div(lhs, rhs);
+                var rem = lhs - quo*rhs;
+                return Quorem.define(quo, rem);                   
+            }
 
             [MethodImpl(Inline)]
             public Quorem<float> divrem(float lhs, float rhs)
-                => Quorem.define((lhs / rhs), (lhs % rhs));
+            {
+                var quo = div(lhs, rhs);
+                var rem = lhs - quo*rhs;
+                return Quorem.define(quo, rem);                   
+            }
 
             [MethodImpl(Inline)]
             public Quorem<double> divrem(double lhs, double rhs)
-                => Quorem.define((lhs / rhs), (lhs % rhs));
+            {
+                var quo = div(lhs, rhs);
+                var rem = lhs - quo*rhs;
+                return Quorem.define(quo, rem);                   
+            }
 
             [MethodImpl(Inline)]
             public Quorem<decimal> divrem(decimal lhs, decimal rhs)
-                => Quorem.define((lhs / rhs), (lhs % rhs));
+            {
+                var quo = div(lhs, rhs);
+                var rem = lhs - quo*rhs;
+                return Quorem.define(quo, rem);                   
+            }
 
             [MethodImpl(Inline)]
             public Quorem<BigInteger> divrem(BigInteger lhs, BigInteger rhs)

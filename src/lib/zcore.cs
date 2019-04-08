@@ -84,17 +84,6 @@ partial class zcore
         => (T)Activator.CreateInstance(t,args);
 
     /// <summary>
-    /// Coreces the source value to the target type, if possible; otherwise
-    /// raises an error
-    /// </summary>
-    /// <param name="src">The source value</param>
-    /// <typeparam name="T">The target type</typeparam>
-    [MethodImpl(Inline)]   
-    public static T convert<T>(object src)
-        => (T)Convert.ChangeType(src, type<T>());
-
-
-    /// <summary>
     /// Explicitly casts a source value to value of the indicated type, raising
     /// an exception if operation fails
     /// </summary>

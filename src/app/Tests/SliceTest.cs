@@ -26,7 +26,7 @@ namespace Z0.Tests
 
         public static void equality()
         {
-            var src1 = Rand.slice(5, ureal(50),  ureal(150));
+            var src1 = Rand.slice(5, real(50),  real(150));
             Claim.eq(src1, src1);
 
             var  src2 = Rand.slice(5, real(-150), real(250));

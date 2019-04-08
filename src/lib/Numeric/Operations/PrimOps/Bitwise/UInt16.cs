@@ -1,0 +1,90 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
+namespace Z0
+{
+    using System;
+    using System.Numerics;
+    using System.Runtime.CompilerServices;
+    using static zcore;
+
+    using static Operative;
+
+    partial class PrimOps { partial class Reify {
+        public readonly partial struct Bitwise : 
+            Bitwise<ushort> 
+
+
+        {
+
+
+            // !! ushort
+            // !! -------------------------------------------------------------
+            
+            [MethodImpl(Inline)]   
+            public ushort and(ushort a, ushort b) 
+                => (ushort)(a & b);
+
+            [MethodImpl(Inline)]   
+            public ushort or(ushort a, ushort b) 
+                => (ushort)(a | b);
+
+            [MethodImpl(Inline)]   
+            public ushort xor(ushort a, ushort b) 
+                => (ushort)(a ^ b);
+
+            [MethodImpl(Inline)]   
+            public ushort lshift(ushort a, int shift) 
+                => (ushort)(a << shift);
+
+            [MethodImpl(Inline)]   
+            public ushort rshift(ushort a, int shift) 
+                => (ushort)(a >> shift);
+
+            [MethodImpl(Inline)]   
+            public ushort flip(ushort a) 
+                => (ushort)~ a;
+
+            [MethodImpl(Inline)]   
+            public BitString bitstring(ushort src) 
+                => BitString.define(src);
+
+            /// <summary>
+            /// Determines whether a position-specified bit in the source is on
+            /// </summary>
+            /// <param name="src">The bit source</param>
+            [MethodImpl(Inline)]
+            public bool testbit(ushort src, int pos)
+                => (src & (1 << pos)) != 0;
+
+            /// <summary>
+            /// Interprets the source as an array of bytes
+            /// </summary>
+            /// <param name="src">The source value</param>
+            [MethodImpl(Inline)]
+            public byte[] bytes(ushort src)
+                => BitConverter.GetBytes(src);
+
+            /// <summary>
+            /// Counts the number of leading zero bits in the source
+            /// </summary>
+            /// <param name="src">The bit source</param>
+            [MethodImpl(Inline)]
+            public static int countLeadingOff(ushort src)
+                => countLeadingOff((uint)src) - 16;
+
+
+            /// <summary>
+            /// Counts the number of trailing zero bits in the source
+            /// </summary>
+            /// <param name="src">The bit source</param>
+            [MethodImpl(Inline)]
+            public static int countTrailingOff(ushort src)
+                => countTrailingOff((uint)src);
+
+
+        }
+    }
+}}
+

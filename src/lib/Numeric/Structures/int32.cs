@@ -12,21 +12,25 @@ namespace Z0
 
     using static zcore;
     using static Structures;
-    using reify = int32;
-    using operand = System.Int32;
+    using structure = int32;
+    using primitive = System.Int32;
 
-    public readonly struct int32 : Structures.Integer<reify, operand>, Formattable
+    public readonly struct int32 : Structures.Integer<structure, primitive>, Formattable
     {
     
-        public static readonly reify Zero = 0;
+        static readonly Operative.PrimOps<primitive> Prim = primops.type<primitive>();
+        
+        static readonly NumberInfo<primitive> NumInfo = Prim.numinfo;
 
-        public static readonly reify One = 1;
+        public static readonly structure Zero = NumInfo.Zero;
 
-        public static readonly reify MinVal = operand.MinValue;
+        public static readonly structure One = NumInfo.One;
 
-        public static readonly reify MaxVal = operand.MaxValue;
+        public static readonly structure MinVal = NumInfo.MinVal;
 
-        public const int BitSize = sizeof(operand) * 8;
+        public static readonly structure MaxVal = NumInfo.MaxVal;
+
+        public static readonly uint BitSize = NumInfo.BitSize;
         
         public const bool Signed = true;
 
@@ -39,151 +43,148 @@ namespace Z0
             => x ? 1 : 0;
 
         [MethodImpl(Inline)]
-        public static implicit operator reify(int src)
-            => new reify(src);
+        public static implicit operator structure(int src)
+            => new structure(src);
 
         [MethodImpl(Inline)]
-        public static implicit operator int(reify src)
+        public static implicit operator int(structure src)
             => src.data;
 
         [MethodImpl(Inline)]
-        public static explicit operator byte(reify src)
+        public static explicit operator byte(structure src)
             => (byte)src.data;
 
         [MethodImpl(Inline)]
-        public static explicit operator sbyte(reify src)
+        public static explicit operator sbyte(structure src)
             => (sbyte)src.data;
 
         [MethodImpl(Inline)]
-        public static explicit operator short(reify src)
+        public static explicit operator short(structure src)
             => (short)src.data;
 
         [MethodImpl(Inline)]
-        public static explicit operator ushort(reify src)
+        public static explicit operator ushort(structure src)
             => (ushort)src.data;
 
         [MethodImpl(Inline)]
-        public static explicit operator uint(reify src)
+        public static explicit operator uint(structure src)
             => (uint)src.data;
 
         [MethodImpl(Inline)]
-        public static explicit operator long(reify src)
+        public static explicit operator long(structure src)
             => src.data;
 
         [MethodImpl(Inline)]
-        public static explicit operator ulong(reify src)
+        public static explicit operator ulong(structure src)
             => (ulong)src.data;
 
         [MethodImpl(Inline)]    
-        public static bool operator true(reify x)
+        public static bool operator true(structure x)
             => x.data != 0;
 
         [MethodImpl(Inline)]    
-        public static bool operator false(reify x)
+        public static bool operator false(structure x)
             => x.data == 0;
 
         [MethodImpl(Inline)]
-        public static bool operator == (reify lhs, reify rhs) 
+        public static bool operator == (structure lhs, structure rhs) 
             => lhs.data == rhs.data;
 
         [MethodImpl(Inline)]
-        public static bool operator != (reify lhs, reify rhs) 
+        public static bool operator != (structure lhs, structure rhs) 
             => lhs.data != rhs.data;
 
         [MethodImpl(Inline)]
-        public static reify operator + (reify lhs, reify rhs) 
+        public static structure operator + (structure lhs, structure rhs) 
             => lhs.data + rhs.data;
 
         [MethodImpl(Inline)]
-        public static reify operator - (reify lhs, reify rhs) 
+        public static structure operator - (structure lhs, structure rhs) 
             => lhs.data - rhs.data;
 
         [MethodImpl(Inline)]
-        public static reify operator -- (reify x) 
+        public static structure operator -- (structure x) 
             =>  x.data - 1;
 
         [MethodImpl(Inline)]
-        public static reify operator ++ (reify x) 
+        public static structure operator ++ (structure x) 
             =>  x.data + 1;
 
         [MethodImpl(Inline)]
-        public static reify operator - (reify x) 
+        public static structure operator - (structure x) 
             => -x.data;
 
         [MethodImpl(Inline)]
-        public static reify operator * (reify lhs, reify rhs) 
+        public static structure operator * (structure lhs, structure rhs) 
             => lhs.data * rhs.data;
 
         [MethodImpl(Inline)]
-        public static reify operator / (reify lhs, reify rhs) 
+        public static structure operator / (structure lhs, structure rhs) 
             => lhs.data / rhs.data;
 
         [MethodImpl(Inline)]
-        public static reify operator % (reify lhs, reify rhs)
+        public static structure operator % (structure lhs, structure rhs)
             => lhs.data % rhs.data;
 
         [MethodImpl(Inline)]
-        public static bool operator < (reify lhs, reify rhs) 
+        public static bool operator < (structure lhs, structure rhs) 
             => lhs.data < rhs.data;
 
         [MethodImpl(Inline)]
-        public static bool operator <= (reify lhs, reify rhs) 
+        public static bool operator <= (structure lhs, structure rhs) 
             => lhs.data <= rhs.data;
 
         [MethodImpl(Inline)]
-        public static bool operator > (reify lhs, reify rhs) 
+        public static bool operator > (structure lhs, structure rhs) 
             => lhs.data > rhs.data;
 
         [MethodImpl(Inline)]
-        public static bool operator >= (reify lhs, reify rhs) 
+        public static bool operator >= (structure lhs, structure rhs) 
             => lhs.data >= rhs.data;
 
         [MethodImpl(Inline)]
-        public static reify operator & (reify lhs, reify rhs) 
+        public static structure operator & (structure lhs, structure rhs) 
             => lhs.data & rhs.data;
 
         [MethodImpl(Inline)]
-        public static reify operator | (reify lhs, reify rhs) 
+        public static structure operator | (structure lhs, structure rhs) 
             => lhs.data | rhs.data;
 
         [MethodImpl(Inline)]
-        public static reify operator ^ (reify lhs, reify rhs) 
+        public static structure operator ^ (structure lhs, structure rhs) 
             => lhs.data ^ rhs.data;
 
         [MethodImpl(Inline)]
-        public static reify operator ~ (reify x) 
+        public static structure operator ~ (structure x) 
             => ~ x.data;
 
         [MethodImpl(Inline)]
-        public static reify operator >> (reify lhs, int rhs) 
+        public static structure operator >> (structure lhs, int rhs) 
             => lhs.data >> rhs;
 
         [MethodImpl(Inline)]
-        public static reify operator << (reify lhs, int rhs) 
+        public static structure operator << (structure lhs, int rhs) 
             => lhs.data << rhs;
 
-        public reify zero 
+        public structure zero 
         {
             [MethodImpl(Inline)]
             get{return Zero;}
         }
 
-        public reify one 
+        public structure one 
         {
             [MethodImpl(Inline)]
             get{return One;}
         }
 
-        public reify bitsize 
-            => BitSize;
-
-        public NumberInfo<reify> numinfo 
-            => new NumberInfo<reify>((MinVal, MaxVal),Signed,Zero, One, BitSize);
+        public NumberInfo<structure> numinfo 
+            => new NumberInfo<structure>((MinVal, MaxVal),Signed,Zero, One, BitSize);
 
         readonly int data;
 
         [MethodImpl(Inline)]
-        public int32(operand x) 
+        public int32(primitive x) 
             => data = x;
 
         [MethodImpl(Inline)]
@@ -191,43 +192,43 @@ namespace Z0
             => data;
 
         [MethodImpl(Inline)]
-        public reify inc()
+        public structure inc()
             => this + One;
 
         [MethodImpl(Inline)]
-        public reify dec() 
+        public structure dec() 
             => this - One;
 
         [MethodImpl(Inline)]
-        public reify negate()
+        public structure negate()
             => -this;
 
         [MethodImpl(Inline)]
-        public reify add(reify rhs)
+        public structure add(structure rhs)
             => this + rhs;
 
         [MethodImpl(Inline)]
-        public reify sub(reify rhs)
+        public structure sub(structure rhs)
             => this - rhs;
 
         [MethodImpl(Inline)]
-        public reify mul(reify rhs)
+        public structure mul(structure rhs)
             => this * rhs;
         
         [MethodImpl(Inline)]
-        public reify div(reify rhs)
+        public structure div(structure rhs)
             => this / rhs;
 
         [MethodImpl(Inline)]
-        public reify mod(reify rhs)
+        public structure mod(structure rhs)
             => this % rhs;
 
         [MethodImpl(Inline)]
-        public bool divides(reify lhs)
+        public bool divides(structure lhs)
             => lhs % this == Zero;
 
         [MethodImpl(Inline)]
-        public reify pow(int exp)
+        public structure pow(int exp)
             => fold(repeat(data,exp), (x,y) => x*y ,One);        
         
         [MethodImpl(Inline)]
@@ -239,7 +240,7 @@ namespace Z0
             => not(even());
 
         [MethodImpl(Inline)]
-        public Quorem<reify> divrem(reify rhs)
+        public Quorem<structure> divrem(structure rhs)
         {
             var quo = this/rhs;
             var rem = this - quo * rhs;
@@ -247,87 +248,83 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public reify and(reify rhs)
+        public BitString bitstring()
+            => Prim.bitstring(data);
+
+        [MethodImpl(Inline)]
+        public byte[] bytes()
+            => Prim.bytes(data);
+
+        [MethodImpl]
+        public bool testbit(int pos)
+            => Prim.testbit(data,pos);
+
+        [MethodImpl(Inline)]
+        public structure and(structure rhs)
             => this & rhs;
 
         [MethodImpl(Inline)]
-        public reify or(reify rhs)
+        public structure or(structure rhs)
             => this | rhs;
 
         [MethodImpl(Inline)]
-        public reify xor(reify rhs)
+        public structure xor(structure rhs)
             => this ^ rhs;
 
         [MethodImpl(Inline)]
-        public reify flip()
+        public structure flip()
             => ~ this;
 
         [MethodImpl(Inline)]
-        public reify lshift(int rhs)
+        public structure lshift(int rhs)
             => this << rhs;
 
         [MethodImpl(Inline)]
-        public reify rshift(int rhs)
+        public structure rshift(int rhs)
             => this >> rhs;
 
         [MethodImpl(Inline)]
-        public bool eq(reify rhs)
+        public bool eq(structure rhs)
             => this == rhs;
 
         [MethodImpl(Inline)]
-        public bool neq(reify rhs)
+        public bool neq(structure rhs)
             => this != rhs;
  
         [MethodImpl(Inline)]
-        public bool lteq(reify rhs) 
+        public bool lteq(structure rhs) 
             => this <= rhs;
 
         [MethodImpl(Inline)]
-        public bool gteq(reify rhs) 
+        public bool gteq(structure rhs) 
             => this >= rhs;
 
         [MethodImpl(Inline)]
-        public bool lt(reify rhs) 
+        public bool lt(structure rhs) 
             => this < rhs;
 
         [MethodImpl(Inline)]
-        public bool gt(reify rhs) 
+        public bool gt(structure rhs) 
             => this > rhs;
 
         [MethodImpl(Inline)]
-        public reify abs()
+        public structure abs()
             => data < Zero ? -data : data;
 
         [MethodImpl(Inline)]
         public Sign sign()
-            => nonzero() ? Sign.Neutral : 
-               this < Zero ? Sign.Negative :
-               Sign.Positive;
+            => Prim.sign(data);
 
         [MethodImpl(Inline)]
-        public reify gcd(reify other)
-        {
-            var lhs = abs().data;
-            var rhs = other.abs().data;
-            while (rhs != Zero)
-            {
-                var rem = lhs % rhs;
-                lhs = rhs;
-                rhs = rem;
-            }
-            return lhs;
-        }
+        public structure gcd(structure rhs)
+            => Prim.gcd(data, rhs.data); 
 
         [MethodImpl(Inline)]
-        public BitString bitstring()
-            => BitString.define(data);
-
-        [MethodImpl(Inline)]
-        public reify distributeL((reify x, reify y) rhs)
+        public structure distributeL((structure x, structure y) rhs)
             => this * rhs.x + this * rhs.y;
  
         [MethodImpl(Inline)]
-        public reify distributeR((reify x, reify y) rhs)
+        public structure distributeR((structure x, structure y) rhs)
             => rhs.x * this + rhs.y * this;
 
         [MethodImpl(Inline)]
@@ -340,79 +337,79 @@ namespace Z0
                     select byte.Parse(c.ToString())).ToArray();
         
         [MethodImpl(Inline)]
-        public reify muladd(reify y, reify z)
+        public structure muladd(structure y, structure z)
             => this * y + z;
 
         [MethodImpl(Inline)]
-        public reify sin()
-            => (operand)MathF.Sin(this.data);
+        public structure sin()
+            => Prim.sin(data);
 
         [MethodImpl(Inline)]
-        public reify sinh()
-            => (operand)MathF.Sinh(this.data);
+        public structure sinh()
+            => Prim.sinh(data);
 
         [MethodImpl(Inline)]
-        public reify asin()
-            => (operand)MathF.Asin(this.data);
+        public structure asin()
+            => Prim.asin(data);
 
         [MethodImpl(Inline)]
-        public reify asinh()
-            => (operand)MathF.Asinh(this.data);
+        public structure asinh()
+            => Prim.asinh(data);
 
         [MethodImpl(Inline)]
-        public reify cos()
-            => (operand)MathF.Cos(this.data);
+        public structure cos()
+            => Prim.cos(data);
 
         [MethodImpl(Inline)]
-        public reify cosh()
-            => (operand)MathF.Cosh(this.data);
+        public structure cosh()
+            => Prim.cosh(data);
 
         [MethodImpl(Inline)]
-        public reify acos()
-            => (operand)MathF.Acos(this.data);
+        public structure acos()
+            => Prim.acos(data);
 
         [MethodImpl(Inline)]
-        public reify acosh()
-            => (operand)MathF.Acosh(this.data);
+        public structure acosh()
+            => Prim.acosh(data);
 
         [MethodImpl(Inline)]
-        public reify tan()
-            => (operand)MathF.Tan(this.data);
+        public structure tan()
+            => Prim.tan(data);
 
         [MethodImpl(Inline)]
-        public reify tanh()
-            => (operand)MathF.Tanh(this.data);
+        public structure tanh()
+            => Prim.tanh(data);
 
         [MethodImpl(Inline)]
-        public reify atan()
-            => (operand)MathF.Atan(this.data);
+        public structure atan()
+            => Prim.atan(data);
 
         [MethodImpl(Inline)]
-        public reify atanh()
-            => (operand)MathF.Atanh(this.data);
+        public structure atanh()
+            => Prim.atanh(data);
 
         [MethodImpl(Inline)]
-        public int CompareTo(reify other)
+        public int CompareTo(structure other)
             => data.CompareTo(other.data);
 
         [MethodImpl(Inline)]
-        public bool eq(reify lhs, reify rhs)
+        public bool eq(structure lhs, structure rhs)
             => lhs == rhs;
  
         [MethodImpl(Inline)]
-        public bool neq(reify lhs, reify rhs)
+        public bool neq(structure lhs, structure rhs)
             => lhs != rhs;
  
         [MethodImpl(Inline)]
-        public reify min(reify rhs)
+        public structure min(structure rhs)
             => rhs < this ? rhs : this;
 
         [MethodImpl(Inline)]
-        public reify max(reify rhs) 
+        public structure max(structure rhs) 
             => rhs > this ? rhs : this;
 
         [MethodImpl(Inline)]
-        public bool Equals(reify rhs)
+        public bool Equals(structure rhs)
                 => this == rhs;
 
         [MethodImpl(Inline)]

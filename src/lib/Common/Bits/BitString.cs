@@ -7,6 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using System.Numerics;
     using System.Runtime.CompilerServices;
 
@@ -77,7 +78,6 @@ namespace Z0
         public static BitString define(ushort src)
             => new BitString(src);
 
-
         [MethodImpl(Inline)]   
         public static BitString define(int src)
             => new BitString(src);
@@ -109,6 +109,128 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static BitString define(BigInteger src)
             => new BitString(src);
+
+        /// <summary>
+        /// Renders a number as a base-2 formatted string
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]
+        public static string bitchars(byte src)
+            => lpadZ(Convert.ToString(src,2), primops.bitsize<byte>());
+
+        /// <summary>
+        /// Renders a number as a base-2 formatted string
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]
+        public static string bitchars(sbyte src)
+            => lpadZ(Convert.ToString(src,2), primops.bitsize<sbyte>());
+
+        /// <summary>
+        /// Renders a number as a base-2 formatted string
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]
+        public static string bitchars(short src)
+            => lpadZ(Convert.ToString(src,2), primops.bitsize<short>());
+
+        /// <summary>
+        /// Renders a number as a base-2 formatted string
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]
+        public static string bitchars(ushort src)
+            => lpadZ(Convert.ToString(src,2), primops.bitsize<ushort>());
+
+        /// <summary>
+        /// Renders a number as a base-2 formatted string
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]
+        public static string bitchars(int src)
+            => lpadZ(Convert.ToString(src,2), primops.bitsize<int>());
+        
+        /// <summary>
+        /// Renders a number as a base-2 formatted string
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]
+        public static string bitchars(uint src)
+            => lpadZ(Convert.ToString(src,2), primops.bitsize<uint>());
+
+        /// <summary>
+        /// Renders a number as a base-2 formatted string
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]
+        public static string bitchars(long src)
+            => lpadZ(Convert.ToString(src,2), primops.bitsize<long>());
+
+        /// <summary>
+        /// Renders a number as a base-2 formatted string
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]
+        public static string bitchars(ulong src)
+            => apply(Bits.split(src), parts 
+                => bitchars(parts.hi) + bitchars(parts.lo));
+
+        /// <summary>
+        /// Renders a number as a base-2 formatted string
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]
+        public static string bitchars(double src)
+            => lpadZ(Convert.ToString(BitConverter.DoubleToInt64Bits(src), 2), primops.bitsize<long>());
+
+        /// <summary>
+        /// Renders a number as a base-2 formatted string
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]
+        public static string bitchars(float src)
+            => lpadZ(Convert.ToString(BitConverter.SingleToInt32Bits(src), 2), primops.bitsize<int>());
+
+        /// <summary>
+        /// Renders a number as a base-2 formatted string
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]
+        public static string bitchars(decimal src)
+            => zcore.apply(Bits.split(src), 
+                parts => bitchars(parts.hihi) + bitchars(parts.hilo)
+                    + bitchars(parts.lohi) + bitchars(parts.lolo));
+
+        /// <summary>
+        /// Renders a number as a base-2 formatted string
+        /// <remarks>
+        /// Taken from https://stackoverflow.com/questions/14048476/biginteger-to-hex-decimal-octal-binary-strings
+        /// </remarks>
+        public static string bitchars(BigInteger x)
+        {
+            var bytes = x.ToByteArray();
+            var idx = bytes.Length - 1;
+
+            // Create a StringBuilder having appropriate capacity.
+            var base2 = new StringBuilder(bytes.Length * 8);
+
+            // Convert first byte to binary.
+            var binary = Convert.ToString(bytes[idx], 2);
+
+            // Ensure leading zero exists if value is positive.
+            if (binary[0] != '0' && x.Sign == 1)
+                base2.Append('0');
+
+            // Append binary string to StringBuilder.
+            base2.Append(binary);
+
+            // Convert remaining bytes adding leading zeros.
+            for (idx--; idx >= 0; idx--)
+                base2.Append(Convert.ToString(bytes[idx], 2).PadLeft(8, '0'));
+
+            return base2.ToString().Substring(1);
+        }
+
 
         [MethodImpl(Inline)]
         public static BitString operator + (BitString lhs, BitString rhs) 
@@ -238,4 +360,87 @@ namespace Z0
     }
 
  
+    partial class xcore
+    {
+        /// <summary>
+        /// Constructs a bitstring from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitString ToBitString(this byte src)
+            => primops.bitstring(src);
+
+        /// <summary>
+        /// Constructs a bitstring from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitString ToBitString(this sbyte src)
+            => primops.bitstring(src);
+
+        /// <summary>
+        /// Constructs a bitstring from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitString ToBitString(this short src)
+            => primops.bitstring(src);
+
+        /// <summary>
+        /// Constructs a bitstring from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitString ToBitString(this ushort src)
+            => primops.bitstring(src);
+
+        /// <summary>
+        /// Constructs a bitstring from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitString ToBitString(this int src)
+            => primops.bitstring(src);
+
+        /// <summary>
+        /// Constructs a bitstring from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitString ToBitString(this uint src)
+            => primops.bitstring(src);
+
+        /// <summary>
+        /// Constructs a bitstring from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitString ToBitString(this long src)
+            => primops.bitstring(src);
+
+        /// <summary>
+        /// Constructs a bitstring from a number
+        /// </summary>
+        /// <param name="src">The source number</param>
+        [MethodImpl(Inline)]   
+        public static BitString ToBitString(this ulong src)
+            => primops.bitstring(src);
+
+        /// <summary>
+        /// Consructs a bitstring from a stream of bool
+        /// </summary>
+        /// <param name="src">The bitstring source</param>
+        [MethodImpl(Inline)]   
+        public static BitString ToBitString(this IEnumerable<bool> src)
+            => BitString.define(src.ToBits());
+
+        /// <summary>
+        /// Consructs a bitstring from bitslice
+        /// </summary>
+        /// <param name="src">The bitstring source</param>
+        [MethodImpl(Inline)]   
+        public static BitString ToBitString(this Slice<bit> src)
+            => BitString.define(src);
+
+    }
 }

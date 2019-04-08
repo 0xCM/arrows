@@ -117,11 +117,11 @@ public static partial class zcore
 
 
     /// <summary>
-    /// Concatentates two byte arrays
+    /// Concatentates two arrays
     /// </summary>
     /// <param name="lhs">The first array of bytes</param>
     /// <param name="rhs">The second array of bytes</param>
-    public static byte[] concat(byte[] lhs, byte[] rhs)
+    public static T[] concat<T>(T[] lhs, T[] rhs)
         => Array.concat(lhs,rhs);
 
     /// <summary>

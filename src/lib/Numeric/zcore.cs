@@ -15,47 +15,6 @@ using static Z0.Traits;
 
 partial class zcore
 {
-
-    /// <summary>
-    /// Constructs a generic integer
-    /// </summary>
-    /// <param name="value">The source value</param>
-    /// <typeparam name="T">The underlying type</typeparam>
-    [MethodImpl(Inline)]   
-    public static intg<T> intg<T>(T value)
-        where T : IConvertible
-            => new intg<T>(value);
-
-    /// <summary>
-    /// Constructs a generic number
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The underlying type</typeparam>
-    [MethodImpl(Inline)]   
-    public static num<T> numg<T>(T x)
-        => new num<T>(x);
-
-    /// <summary>
-    /// Constructs a real number
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The underlying type</typeparam>
-    [MethodImpl(Inline)]   
-    public static real<T> real<T>(T x)
-        where T: IConvertible
-            => new real<T>(x);
-
-    /// <summary>
-    /// Constructs a generic float
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="T">The underlying type</typeparam>
-    [MethodImpl(Inline)]   
-    public static floatg<T> floatg<T>(T x)
-        where T : IConvertible
-            => new floatg<T>(x);
-
-
     /// <summary>
     /// Computes the integral divisors of a number, exluding 1 and the number itself
     /// </summary>
@@ -82,7 +41,6 @@ partial class zcore
     /// <typeparam name="T">The underlying integer type</typeparam>
     [MethodImpl(Inline)]   
     public static bool prime<T>(intg<T> x)
-        where T : IConvertible
     {
         var upperBound = x.ToFloatG64().sqrt().ceiling().ToIntG<T>();   
         return divisors(x).Count() == 0;

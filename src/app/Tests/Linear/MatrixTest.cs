@@ -27,8 +27,8 @@ namespace Z0.Tests
             
         public static void equality()
         {
-            var src = Rand.matrices(dim<N5,N5>(), Int16.MinValue, Int16.MaxValue).Take(5);
-            iter(src, m =>  Claim.eq(m,m));
+            // var src = Rand.matrices(dim<N5,N5>(), Int16.MinValue, Int16.MaxValue).Take(5);
+            // iter(src, m =>  Claim.eq(m,m));
         }
 
 

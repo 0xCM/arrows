@@ -13,7 +13,7 @@ namespace Z0
 
     partial class Operative
     {
-        public interface Negatable<T> //: Subtractive<T>
+        public interface Negatable<T>
         {
             /// <summary>
             /// Unary negation of input
@@ -27,7 +27,7 @@ namespace Z0
 
     partial class Structures
     {
-        public interface Negatable<S> //: Subtractive<S>
+        public interface Negatable<S>
             where S : Negatable<S>, new()
         {
             /// <summary>

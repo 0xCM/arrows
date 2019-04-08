@@ -25,6 +25,10 @@ namespace Z0
         public static IEnumerable<T> Unwrap<T>(this IEnumerable<intg<T>> src)
             => map(src,unwrap);
 
+        [MethodImpl(Inline)]   
+        public static IReadOnlyList<T> Unwrap<T>(this IReadOnlyList<intg<T>> src)
+            => map(src,unwrap);
+
 
         [MethodImpl(Inline)]   
         public static IEnumerable<T> Unwrap<T>(this IEnumerable<real<T>> src)

@@ -82,5 +82,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVector<N64,ulong> parse(N64 n, string src)
             => parse<N64, ulong>(src);
+    
     }  
 }

@@ -5,52 +5,12 @@
 namespace Z0
 {
     using System;
+    using System.Numerics;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
     using static zcore;
 
-    public interface Bit<S> : IComparable<S>, Equatable<S>, Formattable
-        where S : Bit<S>, new()
-    {
-
-    }
-
-    public static class Bit
-    {
-        [MethodImpl(Inline)]
-        public static bit read(byte src, int pos)
-            => Bits.test(src,pos);
-
-        [MethodImpl(Inline)]
-        public static bit read(sbyte src, int pos)
-            => Bits.test(src,pos);
-
-        [MethodImpl(Inline)]
-        public static bit read(short src, int pos)
-            => Bits.test(src,pos);
-
-        [MethodImpl(Inline)]
-        public static bit read(ushort src, int pos)
-            => Bits.test(src,pos);
-
-        [MethodImpl(Inline)]
-        public static bit read(int src, int pos)
-            => Bits.test(src,pos);
-
-        [MethodImpl(Inline)]
-        public static bit read(uint src, int pos)
-            => Bits.test(src,pos);
-
-        [MethodImpl(Inline)]
-        public static bit read(long src, int pos)
-            => Bits.test(src,pos);
-
-        [MethodImpl(Inline)]
-        public static bit read(ulong src, int pos)
-            => Bits.test(src,pos);
-
-    }
 
     /// <summary>
     /// Represents a numeric or logical bit
@@ -58,7 +18,6 @@ namespace Z0
     /// <remarks>See https://en.wikipedia.org/wiki/Boolean_algebra</remarks>
     public readonly struct bit : Bit<bit>, Wrapped<bool>
     {
-
         public static bit Parse(char c)
             => c != '0' ? One : Zero;
         
@@ -157,9 +116,6 @@ namespace Z0
         public bool unwrap()
             => value;
 
-        [MethodImpl(Inline)]
-        public bit(byte value, int pos = 0)        
-            => this.value = Bits.test(value,pos);
 
         [MethodImpl(Inline)]
         public int CompareTo(bit rhs)
@@ -207,5 +163,33 @@ namespace Z0
     
         public override string ToString()
             => format();
+    }
+
+    partial class xcore
+    {
+        /// <summary>
+        /// Converts a bool to a bit
+        /// </summary>
+        /// <param name="src">The source value to convert</param>
+        [MethodImpl(Inline)]   
+        public static bit ToBit(this bool src)
+            => src;
+
+        /// <summary>
+        /// Converts a bit to a bool
+        /// </summary>
+        /// <param name="src">The source value to convert</param>
+        [MethodImpl(Inline)]   
+        public static bit ToBool(this bit src)
+            => src;
+
+       /// <summary>
+        /// Consructs a bit sream from a stream of bools
+        /// </summary>
+        /// <param name="src">The bitstring source</param>
+        [MethodImpl(Inline)]   
+        public static IEnumerable<bit> ToBits(this IEnumerable<bool> src)
+            => map(src,x => x.ToBit());
+ 
     }
 }

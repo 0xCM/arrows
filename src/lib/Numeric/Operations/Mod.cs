@@ -19,7 +19,7 @@ namespace Z0
     {
         public static readonly ModOps<N,T> Inhabitant = default;
         
-        static readonly Operative.Integer<T> Ops = Resolver.integer<T>();
+        static readonly Operative.PrimOps<T> Ops = primops.type<T>();
         
         static readonly intg<T> @base =  natval<N>().ToIntG<T>();
 
@@ -43,11 +43,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public T distribute(T lhs, (T x, T y) rhs)
-            => reduce(Ops.distribute(lhs, rhs));
+            => Ops.add(Ops.mul(lhs, rhs.x), Ops.mul(lhs, rhs.y));
 
         [MethodImpl(Inline)]
         public T distribute((T x, T y) lhs, T rhs)
-            => reduce(Ops.distribute(lhs, rhs));
+            => Ops.add(Ops.mul(rhs, lhs.x), Ops.mul(rhs, lhs.y));
 
         [MethodImpl(Inline)]
         public T mul(T a, T b)

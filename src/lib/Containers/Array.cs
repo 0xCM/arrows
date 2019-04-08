@@ -117,6 +117,32 @@ namespace Z0
             }
             return ret;
         }
+
+        /// <summary>
+        /// Partitions an array into a sequence of subarrays
+        /// </summary>
+        /// <typeparam name="T">The array element type</typeparam>
+        /// <param name="items">The source array</param>
+        /// <param name="width">The width of each subarray</param>
+        public static IEnumerable<T[]> Partition<T>(this T[] items, int width)
+        {
+            var dst = array<T>(width);
+            var idx = 0;
+            foreach (var item in items)
+            {
+                dst[idx++] = item;
+                if (width - idx == 1)
+                {
+                    yield return dst;
+                    dst = array<T>(width);
+                    idx = 0;
+                }
+            }
+            
+            if (idx != 0)
+                yield return dst;
+        }
+
     }
 
     public static class NArray

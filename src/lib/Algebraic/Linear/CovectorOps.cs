@@ -24,9 +24,11 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]   
         public static T apply<N,T>(Covector<N,T> cv, Vector<N,T> v)
+            where T : Operative.Semiring<T>, new()
             where N : TypeNat, new()        
+
         {
-            var sr = Resolver.semiring<T>();
+            var sr = new T();
             var result = sr.zero;
             for(var i = 0u; i<cv.length; i++)
                 result = sr.add(result, sr.mul(cv.cell(i), v.cell(i)));

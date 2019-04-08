@@ -33,7 +33,9 @@ namespace Z0
         
         static readonly intg<T> Zero = intg<T>.Zero;
 
-        static readonly intg<T> BitSize = intg<T>.BitSize;
+        static readonly Operative.PrimOps<T> Prim = primops.type<T>();
+
+        static readonly uint BitSize = intg<T>.BitSize;
                 
         public static readonly uint Length = (uint)natval<N>();        
         
@@ -182,7 +184,7 @@ namespace Z0
         /// <typeparam name="T">The underlying integral type</typeparam>
         /// <returns>Returns true if the identified bit is set, false otherwise</returns>
         [MethodImpl(Inline)]
-        public bool test(int pos)            
+        public bool testbit(int pos)            
             => (data & (One << pos)) != Zero;
 
         [MethodImpl(Inline)]
@@ -192,6 +194,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public string format()
             => data.bitstring().format();
+
+        [MethodImpl(Inline)]
+        public byte[] bytes()
+            => data.bytes();
 
         /// <summary>
         /// Returns the position of the highest on-bit
@@ -214,5 +220,6 @@ namespace Z0
 
         public override bool Equals(object rhs)
             => rhs is BitVector<N,T> ? Equals((BitVector<N,T>)rhs) : false;
+
     }
 }
