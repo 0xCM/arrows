@@ -231,5 +231,19 @@ namespace Z0
         }
 
 
+        public interface FixedContainer<S,T> : Structures.ImplicitSemigroup<S,T>
+            where S : FixedContainer<S,T>, new()
+            where T : struct, IEquatable<T>
+        {
+            
+        }
+        
+        public interface FixedContainer<S,C,T> : Container<S>, FixedContainer<S,T>
+            where S : FixedContainer<S,C,T>, new()
+            where T : struct, IEquatable<T>
+        {
+            C release();
+        }
+
     } 
 }

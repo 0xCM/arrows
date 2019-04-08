@@ -19,21 +19,47 @@ namespace Z0
                 => new ImplicitSemigroup<T>(src);
     }
     
-    public interface ImplicitSemigroup<S,T> : 
-        Wrapped<T>, 
-        Structures.Nullary<S>, 
-        Operative.Nullary<T>, 
-        Structures.Semigroup<S>, 
-        Operative.Semigroup<T>,
-        Formattable
-    where S : ImplicitSemigroup<S,T>, new()
-    where T : struct, IEquatable<T>
-    
+    partial class Structures
     {
 
+        public interface ImplicitSemigroup<S,T> : 
+            Structures.Nullary<S>, 
+            Structures.Semigroup<S>, 
+            Wrapped<T>, 
+            Operative.Nullary<T>, 
+            Operative.Semigroup<T>,
+            Formattable
+        where S : ImplicitSemigroup<S,T>, new()
+        where T : struct, IEquatable<T>
+        
+        {
+            IEqualityComparer<T> comparer(Func<T,int> hasher = null);
+        }
     }
 
-    public readonly struct ImplicitSemigroup<T> : ImplicitSemigroup<ImplicitSemigroup<T>,T>
+
+    public readonly struct Equality<T> : IEqualityComparer<T>
+        where T : IEquatable<T>
+    {
+        public static Equality<T> Inhabitant = default;
+
+        readonly Option<Func<T,int>> hasher;
+
+        public Equality(Func<T,int> hasher)
+        {
+            this.hasher = hasher;
+        }
+        
+        [MethodImpl(Inline)]
+        public bool Equals(T x, T y)
+            => x.Equals(y);
+
+        [MethodImpl(Inline)]
+        public int GetHashCode(T x)
+            => hasher.Map(h => h(x), () => x.GetHashCode());
+    }
+
+    public readonly struct ImplicitSemigroup<T> : Structures.ImplicitSemigroup<ImplicitSemigroup<T>,T>
         where T : struct, IEquatable<T>
     {
         public static readonly ImplicitSemigroup<T> Inhabitant = default;
@@ -82,6 +108,9 @@ namespace Z0
             get => Inhabitant.data;
         }
             
+        public IEqualityComparer<T> comparer(Func<T,int> hasher = null)
+            => hasher is null ?  Equality<T>.Inhabitant : new Equality<T>(hasher);
+
         ImplicitSemigroup<T> Nullary<ImplicitSemigroup<T>>.zero 
         {
             [MethodImpl(Inline)]

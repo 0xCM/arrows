@@ -1,0 +1,16 @@
+J:\dev\projects\z0\src\test\bin\Debug\netcoreapp3.0\z0.test.exe
+J:\dev\projects\z0\src\test\bin\Debug\netcoreapp3.0\z0.test.deps.json
+J:\dev\projects\z0\src\test\bin\Debug\netcoreapp3.0\z0.test.runtimeconfig.json
+J:\dev\projects\z0\src\test\bin\Debug\netcoreapp3.0\z0.test.runtimeconfig.dev.json
+J:\dev\projects\z0\src\test\bin\Debug\netcoreapp3.0\z0.test.dll
+J:\dev\projects\z0\src\test\bin\Debug\netcoreapp3.0\z0.test.pdb
+J:\dev\projects\z0\src\test\bin\Debug\netcoreapp3.0\MathNet.Numerics.dll
+J:\dev\projects\z0\src\test\bin\Debug\netcoreapp3.0\z0.dll
+J:\dev\projects\z0\src\test\bin\Debug\netcoreapp3.0\z0.pdb
+J:\dev\projects\z0\src\test\obj\Debug\netcoreapp3.0\z0.test.csprojAssemblyReference.cache
+J:\dev\projects\z0\src\test\obj\Debug\netcoreapp3.0\z0.test.csproj.CoreCompileInputs.cache
+J:\dev\projects\z0\src\test\obj\Debug\netcoreapp3.0\z0.test.AssemblyInfoInputs.cache
+J:\dev\projects\z0\src\test\obj\Debug\netcoreapp3.0\z0.test.AssemblyInfo.cs
+J:\dev\projects\z0\src\test\obj\Debug\netcoreapp3.0\z0.test.csproj.CopyComplete
+J:\dev\projects\z0\src\test\obj\Debug\netcoreapp3.0\z0.test.dll
+J:\dev\projects\z0\src\test\obj\Debug\netcoreapp3.0\z0.test.pdb

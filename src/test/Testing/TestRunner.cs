@@ -41,7 +41,7 @@ namespace Z0.Testing
         }            
 
         public IEnumerable<Type> Hosts()
-            => assembly<Initalizer>().Types()
+            => ZTest.DefiningAssembly.Types()
                     .InNamespace(typeof(Z0.Tests.TestInfo).Namespace)
                     .Concrete();
     

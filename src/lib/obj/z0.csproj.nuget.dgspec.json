@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "J:\\dev\\projects\\z0\\z0.csproj": {}
+    "J:\\dev\\projects\\z0\\src\\lib\\z0.csproj": {}
   },
   "projects": {
-    "J:\\dev\\projects\\z0\\z0.csproj": {
+    "J:\\dev\\projects\\z0\\src\\lib\\z0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\dev\\projects\\z0\\z0.csproj",
+        "projectUniqueName": "J:\\dev\\projects\\z0\\src\\lib\\z0.csproj",
         "projectName": "z0",
-        "projectPath": "J:\\dev\\projects\\z0\\z0.csproj",
+        "projectPath": "J:\\dev\\projects\\z0\\src\\lib\\z0.csproj",
         "packagesPath": "J:\\cache\\nuget\\cache",
-        "outputPath": "J:\\dev\\projects\\z0\\obj\\",
+        "outputPath": "J:\\dev\\projects\\z0\\src\\lib\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "j:\\tools\\netsdk\\sdk\\NuGetFallbackFolder"
+          "J:\\tools\\netsdk\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",

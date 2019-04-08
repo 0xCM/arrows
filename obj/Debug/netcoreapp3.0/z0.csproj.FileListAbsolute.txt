@@ -1,14 +1,4 @@
-J:\dev\projects\z0\bin\Debug\netcoreapp3.0\z0.exe
-J:\dev\projects\z0\bin\Debug\netcoreapp3.0\z0.deps.json
-J:\dev\projects\z0\bin\Debug\netcoreapp3.0\z0.runtimeconfig.json
-J:\dev\projects\z0\bin\Debug\netcoreapp3.0\z0.runtimeconfig.dev.json
-J:\dev\projects\z0\bin\Debug\netcoreapp3.0\z0.dll
-J:\dev\projects\z0\bin\Debug\netcoreapp3.0\z0.pdb
-J:\dev\projects\z0\bin\Debug\netcoreapp3.0\MathNet.Numerics.dll
 J:\dev\projects\z0\obj\Debug\netcoreapp3.0\z0.csprojAssemblyReference.cache
 J:\dev\projects\z0\obj\Debug\netcoreapp3.0\z0.csproj.CoreCompileInputs.cache
 J:\dev\projects\z0\obj\Debug\netcoreapp3.0\z0.AssemblyInfoInputs.cache
 J:\dev\projects\z0\obj\Debug\netcoreapp3.0\z0.AssemblyInfo.cs
-J:\dev\projects\z0\obj\Debug\netcoreapp3.0\z0.csproj.CopyComplete
-J:\dev\projects\z0\obj\Debug\netcoreapp3.0\z0.dll
-J:\dev\projects\z0\obj\Debug\netcoreapp3.0\z0.pdb
