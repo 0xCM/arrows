@@ -4,8 +4,31 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    using System;
     using System.Runtime.CompilerServices;
     using static zcore;
+
+    public static class Monoid
+    {
+        /// <summary>
+        /// Reifies a monoidal operator predicated on additive monoidal structure
+        /// </summary>
+        /// <typeparam name="T">The reification type of an additive monoid</typeparam>
+        [MethodImpl(Inline)]
+        public static Operative.Monoidal<T> additive<T>()
+            where T : struct, Structures.MonoidA<T> 
+                => new Reify.Monoidal<T>((x,y) => x.add(y), default(T).zero);
+
+        /// <summary>
+        /// Reifies a monoidal operator predicated on multiplicative monoidal structure
+        /// </summary>
+        /// <typeparam name="T">The reification type of a multiplicative monoid</typeparam>
+        [MethodImpl(Inline)]
+        public static Operative.Monoidal<T> multiplicative<T>()
+            where T : struct, Structures.MonoidM<T> 
+                => new Reify.Monoidal<T>((x,y) => x.mul(y), default(T).one);
+
+    }
 
     partial class Operative
     {
@@ -18,6 +41,13 @@ namespace Z0
         {
 
 
+        }
+
+        public interface Monoidal<T> : Monoid<T>
+        {
+            T identity {get;}
+            
+            T compose(T lhs, T rhs);
         }
 
 
@@ -64,6 +94,7 @@ namespace Z0
             
         }            
 
+        
         public interface MonoidM<S> : Monoid<S>, SemigroupM<S>, Unital<S>
             where S: MonoidM<S>, new()
         {
@@ -102,13 +133,46 @@ namespace Z0
 
     partial class Reify
     {
-        public readonly struct MonoidM<T> : Operative.MonoidM<T>
+
+        public readonly struct Monoidal<T> : Operative.Monoidal<T>
+            where T : struct, IEquatable<T> 
+        {
+
+            readonly Func<T,T,T> composer;
+ 
+            public Monoidal(Func<T,T,T> composer, T identity)
+            {
+                this.composer = composer;
+                this.identity = identity;
+            }
+
+            public T identity {get;}
+
+            [MethodImpl(Inline)]
+            public T compose(T lhs, T rhs)
+                => composer(lhs,rhs);
+
+            [MethodImpl(Inline)]
+            public bool eq(T lhs, T rhs)
+                => lhs.Equals(rhs);
+
+            [MethodImpl(Inline)]
+            public bool neq(T lhs, T rhs)
+                => !lhs.Equals(rhs);
+
+        }
+
+
+        public readonly struct MonoidM<T> : Operative.MonoidM<T>, Operative.Monoidal<T>
             where T : Structures.MonoidM<T>, new()
         {    
 
             static readonly Structures.MonoidM<T>  exemplar = default;
 
             public T one 
+                => exemplar.one;
+
+            public T identity 
                 => exemplar.one;
 
             [MethodImpl(Inline)]
@@ -123,15 +187,20 @@ namespace Z0
             public bool neq(T lhs, T rhs) 
                 => lhs.neq(rhs);
 
-
+            [MethodImpl(Inline)]
+            public T compose(T lhs, T rhs)
+                => lhs.mul(rhs);
         }
 
-        public readonly struct MonoidA<T> : Operative.MonoidA<T>
+        public readonly struct MonoidA<T> : Operative.MonoidA<T>, Operative.Monoidal<T>
             where T : Structures.MonoidA<T>, new()
         {    
             static readonly Structures.MonoidA<T> exemplar = default;
 
             public T zero 
+                => exemplar.zero;
+
+            public T identity 
                 => exemplar.zero;
 
             [MethodImpl(Inline)]
@@ -149,6 +218,10 @@ namespace Z0
             [MethodImpl(Inline)]
             public bool neq(T lhs, T rhs) 
                 => lhs.neq(rhs);
+
+            [MethodImpl(Inline)]
+            public T compose(T lhs, T rhs)
+                => lhs.add(rhs);
 
         }
     }

@@ -22,7 +22,7 @@ namespace Z0
        [MethodImpl(Inline)]
         public static Vector<N,T> NatVec<N,T>(this Z0.TypeNat<N> n, IEnumerable<T> components)
             where N : TypeNat, new()
-            where T : Equatable<T>, new()                                
+            where T :struct, IEquatable<T>
                 => new Vector<N, T>(components);
  
     }

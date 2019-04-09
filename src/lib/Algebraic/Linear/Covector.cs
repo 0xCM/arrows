@@ -16,7 +16,7 @@ namespace Z0
     /// </summary>
     public readonly struct Covector<N, T> : Equatable<Covector<N,T>>, IEnumerable<T>, Formattable, Lengthwise
         where N : TypeNat, new() 
-        //where T : Equatable<T>, new()       
+        where T : struct, IEquatable<T>    
     {
         /// <summary>
         /// Vector => Slice
@@ -97,6 +97,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool Equals(Covector<N, T> rhs)
             => eq(rhs);
+
+        [MethodImpl(Inline)]   
+        public IReadOnlyList<T> unwrap()
+            => cells.unwrap();
 
         public IEnumerator<T> GetEnumerator()
             => cells.data.GetEnumerator();

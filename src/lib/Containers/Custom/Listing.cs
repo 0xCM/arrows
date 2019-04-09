@@ -27,7 +27,7 @@ namespace Z0
 
     public interface Listed<S,T> : Listed<S>
         where S : Listed<S,T>, new()
-        where T : MonoidA<T>, new()
+        where T : struct, MonoidA<T>
     {
         /// <summary>
         /// Returns the first constituent if it exits; otherwise, the zero element of T
@@ -49,12 +49,12 @@ namespace Z0
     public static class Listing
     {
         public static Listing<T> define<T>(IEnumerable<T> src)
-            where T : MonoidA<T>, new()
+            where T : struct,MonoidA<T>
                 => new Listing<T>(src);
     }
 
     public readonly struct Listing<T> : Listed<Listing<T>, T>
-            where T : MonoidA<T>, new()
+        where T : struct, MonoidA<T>
     {
 
         [MethodImpl(Inline)]
@@ -142,7 +142,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Listing<U> redefine<U>(IEnumerable<T> content, Func<T,U> f)
-            where U :MonoidA<U>, new()
+            where U : struct, MonoidA<U>
             => new Listing<U>(content.Select(f));
 
         [MethodImpl(Inline)]

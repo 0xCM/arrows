@@ -83,25 +83,28 @@ namespace Z0
     /// <summary>
     /// Defines an integrally-indexed associative array
     /// </summary>
-    public readonly struct Index<V> :  IEnumerable<V>
+    public readonly struct Index<V> :  IReadOnlyList<V>
     {
-        IReadOnlyList<V> _items {get;}        
+        IReadOnlyList<V> data {get;}        
 
-        public Index(IEnumerable<V> values)
-            => this._items = values.ToList();
+        public Index(IEnumerable<V> src)
+            => this.data = src.ToList();
 
         public V item(int key) => this[key];
 
         IEnumerator<V> IEnumerable<V>.GetEnumerator()
-            => _items.GetEnumerator();
+            => data.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator()
-            => _items.GetEnumerator();
+            => data.GetEnumerator();
 
-        public V this[int key] => _items[key];   
+        public V this[int key] => data[key];   
 
         public IEnumerable<KeyedValue<int,V>> content
-            => mapi((k,v) => kvp(k,v), _items);        
+            => mapi((k,v) => kvp(k,v), data);
+
+        public int Count 
+            => data.Count;
     }
 }
 

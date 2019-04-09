@@ -25,7 +25,7 @@ public static partial class zcore
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]   
     public static SemiSeq<T> semiseq<T>(IEnumerable<T> src)
-        where T : Structures.Semigroup<T>, new()
+        where T : struct, Structures.Semigroup<T>
             => new SemiSeq<T>(src);
 
     /// <summary>
@@ -35,7 +35,7 @@ public static partial class zcore
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]   
     public static SemiSeq<T> semiseq<T>(params T[] src)
-        where T : Structures.Semigroup<T>, new()
+        where T : struct, Structures.Semigroup<T>
             => new SemiSeq<T>(src);
 
 
@@ -46,6 +46,7 @@ public static partial class zcore
     /// <typeparam name="T">The element type </typeparam>
     [MethodImpl(Inline)]   
     public static Z0.Slice<T> slice<T>(params T[] src)
+        where T : struct, IEquatable<T>
             => new Slice<T>(src);
 
     /// <summary>
@@ -55,6 +56,7 @@ public static partial class zcore
     /// <typeparam name="T">The element type </typeparam>
     [MethodImpl(Inline)]   
     public static Z0.Slice<T> slice<T>(IEnumerable<T> src)
+        where T : struct, IEquatable<T>
             => new Slice<T>(src);
 
     /// <summary>
@@ -66,6 +68,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Z0.Slice<N,T> slice<N,T>(IEnumerable<T> src)
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
             => new Slice<N,T>(src);
 
     /// <summary>
@@ -77,6 +80,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Z0.Slice<N,T> slice<N,T>(params T[] src)
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
             => new Slice<N,T>(src);
 
     /// <summary>
@@ -404,7 +408,7 @@ public static partial class zcore
     /// <param name="f">The predicate used to test values from the input sequence</param>
     /// <typeparam name="T">The input sequence type</typeparam>
     public static Slice<T> filter<T>(Slice<T> src, Func<T,bool> f)
-        where T : Equatable<T>, new()
+        where T : struct, IEquatable<T>
             => slice(src.Where(f));        
 
     /// <summary>

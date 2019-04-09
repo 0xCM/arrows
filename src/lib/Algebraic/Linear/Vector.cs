@@ -11,10 +11,17 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zcore;
 
-    public readonly struct Vector<N, T> : IEnumerable<T>, Equatable<Vector<N,T>>, Formattable, Lengthwise
-        where N : TypeNat, new()    
+    public readonly struct Vector<N, T> : Equatable<Vector<N,T>>, Formattable, Lengthwise
+        where N : TypeNat, new()
+        where T : struct, IEquatable<T>    
     {
 
+        public static bool operator ==(Vector<N,T> lhs, Vector<N,T> rhs)
+            => lhs.eq(rhs);
+
+        public static bool operator !=(Vector<N,T> lhs, Vector<N,T> rhs)
+            => lhs.neq(rhs);
+        
         /// <summary>
         /// Vector => Slice
         /// </summary>
@@ -38,18 +45,18 @@ namespace Z0
         /// <summary>
         /// The underlying data
         /// </summary>
-        public Slice<N,T> cells {get;}
+        Slice<N,T> cells {get;}
 
         [MethodImpl(Inline)]   
         public Vector(params T[] src)
             => cells = slice<N,T>(src);
 
         [MethodImpl(Inline)]   
-        public Vector(IEnumerable<T> src)
+        public Vector(IReadOnlyList<T> src)
             => cells = slice<N,T>(src);
 
         [MethodImpl(Inline)]   
-        public Vector(IReadOnlyList<T> src)
+        public Vector(IEnumerable<T> src)
             => cells = slice<N,T>(src);
 
         [MethodImpl(Inline)]   
@@ -70,17 +77,39 @@ namespace Z0
         public Covector<N, T> tranpose()
             => new Covector<N,T>(cells);
 
-        [MethodImpl(Inline)]   
-        public IEnumerator<T> GetEnumerator()
-            => cells.data.GetEnumerator();
+        // [MethodImpl(Inline)]   
+        // public IEnumerator<T> GetEnumerator()
+        //     => cells.data.GetEnumerator();
 
-        [MethodImpl(Inline)]   
-        IEnumerator IEnumerable.GetEnumerator()
-            => GetEnumerator();
+        // [MethodImpl(Inline)]   
+        // IEnumerator IEnumerable.GetEnumerator()
+        //     => GetEnumerator();
 
         [MethodImpl(Inline)]
         public string format()
             => cells.format();
+
+        [MethodImpl(Inline)]   
+        public bool any(Func<T,bool> predicate)
+            => cells.unwrap().Any(predicate);
+
+        [MethodImpl(Inline)]   
+        public T reduce(Operative.Monoidal<T> monoid)
+            =>  fold(cells.unwrap(),monoid);
+
+        [MethodImpl(Inline)]   
+        public Vector<N,Y> fuse<Y>(Vector<N,T> rhs, Func<T,T,Y> composer)
+            where Y : struct, IEquatable<Y>    
+                => new Vector<N,Y>(zcore.fuse(unwrap(), rhs.unwrap(), composer));
+
+        [MethodImpl(Inline)]   
+        public Vector<N,Y> map<Y>(Func<T,Y> f)
+            where Y : struct, IEquatable<Y>    
+                => new Vector<N, Y>(cells.Select(x => f(x)));
+
+        [MethodImpl(Inline)]   
+        public IReadOnlyList<T> unwrap()
+            => cells.unwrap();
 
         [MethodImpl(Inline)]
         public bool eq(Vector<N, T> rhs)
@@ -107,9 +136,6 @@ namespace Z0
         public override string ToString()
             => format();
 
-        [MethodImpl(Inline)]   
-        public IReadOnlyList<T> unwrap()
-            => cells.unwrap();
     }
 
 }

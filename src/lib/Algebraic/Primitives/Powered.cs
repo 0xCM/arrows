@@ -24,7 +24,7 @@ namespace Z0
 
     partial class Structures
     {
-        public interface Powered<B,E>
+        public interface Powered<B,E> : IEquatable<B>
             where B : Powered<B,E>, new()
         {
             B pow(E exp);

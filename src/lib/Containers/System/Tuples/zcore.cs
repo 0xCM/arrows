@@ -443,31 +443,31 @@ partial class zcore
            from x6 in try_parse<X6>(components[5])
            select (x1, x2, x3, x4, x5, x6);
 
-        /// <summary>
-        /// Converts a 3-vector to a 3-tuple
-        /// </summary>
-        /// <param name="x1">The first coorinate</param>
-        /// <param name="x2">The second coordinate</param>
-        /// <param name="x4">The fourth coordinate</param>
-        /// <param name="x3">The third coordinate</param>
-        /// <typeparam name="T">The coordinate type</typeparam>
-        [MethodImpl(Inline)]
-        public static (T x1, T x2, T x3, T x4) tuple<T>(Vector<N4,T> v)
-            where T : Equatable<T>, new()
-                => (v[0], v[1], v[2], v[3]);
+    /// <summary>
+    /// Converts a 3-vector to a 3-tuple
+    /// </summary>
+    /// <param name="x1">The first coorinate</param>
+    /// <param name="x2">The second coordinate</param>
+    /// <param name="x4">The fourth coordinate</param>
+    /// <param name="x3">The third coordinate</param>
+    /// <typeparam name="T">The coordinate type</typeparam>
+    [MethodImpl(Inline)]
+    public static (T x1, T x2, T x3, T x4) tuple<T>(Vector<N4,T> v)
+        where T : struct, IEquatable<T>
+            => (v[0], v[1], v[2], v[3]);
 
-        /// <summary>
-        /// Converts an homogenous 4-tuple to a 4-vector
-        /// </summary>
-        /// <param name="x1">The first coorinate</param>
-        /// <param name="x2">The second coordinate</param>
-        /// <param name="x3">The third coordinate</param>
-        /// <param name="x4">The fourth coordinate</param>
-        /// <typeparam name="T">The coordinate type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vector<N4,T> vector<T>((T x1, T x2, T x3, T x4) x)
-            where T : Equatable<T>, new()
-                => vector<N4,T>(x.x1, x.x2,x.x3,x.x4);
+    /// <summary>
+    /// Converts an homogenous 4-tuple to a 4-vector
+    /// </summary>
+    /// <param name="x1">The first coorinate</param>
+    /// <param name="x2">The second coordinate</param>
+    /// <param name="x3">The third coordinate</param>
+    /// <param name="x4">The fourth coordinate</param>
+    /// <typeparam name="T">The coordinate type</typeparam>
+    [MethodImpl(Inline)]
+    public static Vector<N4,T> vector<T>((T x1, T x2, T x3, T x4) x)
+        where T : struct, IEquatable<T>
+            => vector<N4,T>(x.x1, x.x2,x.x3,x.x4);
 
     /// <summary>
     /// Transforms a sequence of key-value pairs into a sequence of tuples
@@ -488,7 +488,7 @@ partial class zcore
     /// <typeparam name="T">The coordinate type</typeparam>
     [MethodImpl(Inline)]
     public static Vector<N2,T> vector<T>((T x1, T x2) x)
-        where T : Equatable<T>, new()
+        where T : struct, IEquatable<T>
             => vector<N2,T>(x.x1, x.x2);
 
 }

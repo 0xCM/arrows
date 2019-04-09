@@ -23,6 +23,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(params T[] components)
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
             => new Z0.Vector<N,T>(components);
 
     /// <summary>
@@ -34,6 +35,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(T component)
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
             => new Vector<N,T>(repeat<N,T>(component));
 
     /// <summary>
@@ -46,6 +48,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(IEnumerable<T> components)
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
             => Vector.define(natrep<N>(), components);
 
     /// <summary>
@@ -57,6 +60,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(N len, IEnumerable<T> components)
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
             => Vector.define(len,components);
 
     /// <summary>
@@ -68,6 +72,7 @@ public static partial class zcore
     /// <remarks>No allocation occurs during construction</remarks>
     public static Vector<N,T> vector<N,T>(N len, IReadOnlyList<T> components)
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
             => Vector.define(len,components);
 
     /// <summary>
@@ -79,6 +84,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Covector<N,T> covector<N,T>(Dim<N> dim, params T[] components)
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
             => Covector.define<N,T>(dim, components);
 
     /// <summary>
@@ -90,6 +96,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Covector<N,T> covector<N,T>(IEnumerable<T> components)
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
             => Covector.define<N,T>(components);
 
     /// <summary>
@@ -101,5 +108,6 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static Covector<N,T> covector<N,T>(params T[] components)
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
             => Covector.define<N,T>(components);
 }

@@ -16,6 +16,17 @@ using static Z0.Traits;
 partial class zcore
 {
     /// <summary>
+    /// Constructs a bit from the data in an integral value at a specified position
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <param name="pos">The bit position</param>
+    /// <typeparam name="T">The underlying integral type</typeparam>
+    [MethodImpl(Inline)]   
+    public static bit bit<T>(intg<T> x, int pos)
+        where T : struct, IEquatable<T>
+            => Bits.bit(x, pos);
+
+    /// <summary>
     /// Computes the integral divisors of a number, exluding 1 and the number itself
     /// </summary>
     /// <param name="src">The source value</param>

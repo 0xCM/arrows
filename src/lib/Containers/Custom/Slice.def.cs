@@ -16,6 +16,7 @@ namespace Z0
     /// Encapsulates a linear data segment with length determined at runtime
     /// </summary>
     public readonly struct Slice<T> : Structures.Slice<Slice<T>, T>
+        where T : struct, IEquatable<T>
     {                    
         
         [MethodImpl(Inline)]   
@@ -120,9 +121,10 @@ namespace Z0
         {
             if(lhs.length != rhs.length)
                 return false;
+
             for(var i = 0; i<length; i++)
             {
-                if(lhs[i].Equals(rhs[i]))
+                if(!lhs[i].Equals(rhs[i]))
                     return false;
             }
             return true;            
@@ -173,6 +175,7 @@ namespace Z0
     /// </summary>
     public readonly struct Slice<N,T> : Structures.Slice<Slice<N,T>,T>
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
     {                    
         
         /// <summary>

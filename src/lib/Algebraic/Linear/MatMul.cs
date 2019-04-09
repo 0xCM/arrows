@@ -15,7 +15,7 @@ namespace Z0
         where M : TypeNat, new()
         where N : TypeNat, new()
         where P : TypeNat, new()
-        where T : Operative.Semiring<T>, new()
+        where T : struct, Operative.Semiring<T>, IEquatable<T>
     {
         
         readonly Matrix<M,N,T> lhs;

@@ -30,7 +30,7 @@ namespace Z0.Tests
         public override IReadOnlyList<operand> Baseline()
         {
             var dst = target();
-            iter((int)VectorSize, i =>
+            iter((int)SampleSize, i =>
                 dst[i] = LeftSrc[i] * RightSrc[i]);
             return dst;
         }

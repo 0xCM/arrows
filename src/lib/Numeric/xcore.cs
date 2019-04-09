@@ -70,7 +70,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Slice<T> Pow<T>(this Slice<T> src, int exp)
-            where T : Structures.NaturallyPowered<T>, Equatable<T>, new() 
+            where T : struct, Structures.NaturallyPowered<T>
                 => slice(pow(src,exp));
 
         [MethodImpl(Inline)]

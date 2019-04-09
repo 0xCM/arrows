@@ -10,7 +10,7 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
 
-
+  
   <ItemGroup>
     <PackageReference Include="mathnet.numerics" Version="4.7.0" />
   </ItemGroup>

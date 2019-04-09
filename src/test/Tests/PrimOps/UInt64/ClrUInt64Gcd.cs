@@ -22,7 +22,7 @@ namespace Z0.Tests
     public class ClrUInt64Gcd : ClrBinaryPrimOpsTest<operand>
     {        
         public ClrUInt64Gcd()
-            : base(0,500000)
+            : base(0,500000, Pow2.T10)
                 {
 
                 }
@@ -33,7 +33,7 @@ namespace Z0.Tests
         public override IReadOnlyList<operand> Baseline()
         {
             var dst = target();
-            iter((int)VectorSize, i =>
+            iter((int)SampleSize, i =>
                 dst[i] = (operand)BigInteger.GreatestCommonDivisor(LeftSrc[i],RightSrc[i]));
             return dst;
         }

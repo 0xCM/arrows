@@ -11,7 +11,6 @@ namespace Z0
     using static zcore;
     using static Traits;
 
-
     public static class MatrixOps<M,N>
         where M : TypeNat, new()
         where N : TypeNat, new()
@@ -19,23 +18,18 @@ namespace Z0
         public static readonly Dim<M,N> dim = Dim.define<M,N>();
 
         [MethodImpl(Inline)]
-        static Operative.Semiring<T> SR<T>()
-            where T : Operative.Semiring<T>, new()
-                => new T();
-
-
-        [MethodImpl(Inline)]
         static IEnumerable<T> zeros<T>()
-            where T : Operative.Semiring<T>, new()
-                => repeat(SR<T>().zero, dim<M,N>().i * dim<M,N>().j);
+            where T : struct, IEquatable<T>    
+                => repeat(default(T), dim<M,N>().i * dim<M,N>().j);
 
         [MethodImpl(Inline)]
         public static Matrix<M,N,T> zero<T>()
-            where T : Operative.Semiring<T>, new()
+            where T : struct, IEquatable<T>    
                 => Matrix.define<M,N,T>(zeros<T>());
 
         [MethodImpl(Inline)]
         public static Z0.Slice<M,T> col<T>(Matrix<M,N,T> src, uint j)
+            where T : struct, IEquatable<T>    
         {
             var d = dim<M,N>();
             var data = src.data;
@@ -49,10 +43,12 @@ namespace Z0
 
         [MethodImpl(Inline)]        
         public static Z0.Slice<M,T> col<T>(Matrix<M,N,T> src, ulong j)
-            => col(src,(uint)j);
+            where T : struct, IEquatable<T>    
+                => col(src,(uint)j);
 
         [MethodImpl(Inline)]
         public static IEnumerable<Vector<M, T>> cols<T>(Matrix<M, N, T> src)
+            where T : struct, IEquatable<T>    
         {
             for(var j =0u; j < dim.j; j++)
                 yield return vector(src,j);
@@ -60,10 +56,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Z0.Slice<N,T> row<T>(Matrix<M, N, T> src, uint i)
+            where T : struct, IEquatable<T>    
             => Slice.define<N,T>(src.data.Segment(dim.j*i,dim.j));
 
         [MethodImpl(Inline)]
         public static IEnumerable<Covector<N, T>> rows<T>(Matrix<M, N, T> src)
+            where T : struct, IEquatable<T>    
         {
             for(var i = 0u; i < dim.i; i++)
                 yield return covector(src, i);
@@ -72,66 +70,74 @@ namespace Z0
 
         [MethodImpl(Inline)]        
         public static T cell<T>(Matrix<M,N,T> src, uint i, uint j)
+            where T : struct, IEquatable<T>    
             => src.data[dim.i*i + j];
 
         [MethodImpl(Inline)]        
         public static T cell<T>(Matrix<M,N,T> src, ulong i, ulong j)
+            where T : struct, IEquatable<T>    
             => src.data[dim.i*i + j];
 
         [MethodImpl(Inline)]
         public static T cell<I,J,T>(Matrix<M,N,T> src)
             where I : TypeNat, new()
             where J : TypeNat, new()
+            where T : struct, IEquatable<T>    
                 => cell(src,natui<I>(), natui<J>());
 
         [MethodImpl(Inline)]        
         public static Vector<M, T> vector<T>(Matrix<M, N, T> src, ulong j)
+            where T : struct, IEquatable<T>    
             => col(src,(uint)j);
 
         [MethodImpl(Inline)]        
         public static Vector<M, T> vector<T>(Matrix<M, N, T> src, uint j)
+            where T : struct, IEquatable<T>    
             => col(src,j);
 
         [MethodImpl(Inline)]
         public static Vector<M, T> vector<J,T>(Matrix<M, N, T> src) 
+            where T : struct, IEquatable<T>    
             where J : TypeNat, new()
                 => vector(src,natval<J>());
 
 
         [MethodImpl(Inline)]
         public static Covector<N, T> covector<T>(Matrix<M, N, T> src, uint i)
+            where T : struct, IEquatable<T>    
             => row(src, i);
 
         [MethodImpl(Inline)]
         public static Covector<N, T> covector<T>(Matrix<M, N, T> src, ulong i)
+            where T : struct, IEquatable<T>    
             => row(src, (uint)i);
 
         [MethodImpl(Inline)]
         public static Covector<N, T> covector<I,T>(Matrix<M, N, T> src) 
             where I : TypeNat, new()
+            where T : struct, IEquatable<T>    
                 => covector(src,natval<I>());
 
-
         [MethodImpl(Inline)]
-        public static Z0.Slice<M,Vector<M, T>> vectors<T>(Matrix<M, N, T> src)
-            => Slice.define<M, Vector<M, T>>(cols(src));
-
+        public static Z0.Slice<N,Vector<M, T>> vectors<T>(Matrix<M, N, T> src)
+            where T : struct, IEquatable<T>    
+            => Slice.define<N, Vector<M, T>>(cols(src));
 
         [MethodImpl(Inline)]
         public static Z0.Slice<N, Covector<N, T>> covectors<T>(Matrix<M,N,T> src)
+            where T : struct, IEquatable<T>    
             => rows(src).Freeze<N,Covector<N,T>>();        
-
 
         [MethodImpl(Inline)]   
         public static string format<T>(Matrix<M,N,T> src)
+            where T : struct, IEquatable<T>    
             => rows(src).Format();
-
 
         [MethodImpl(Inline)]
         public static bool eq<T>(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
-            where T : Operative.Semiring<T>, new()
+            where T : struct, IEquatable<T>    
         {
-            var sr = SR<T>();
+            var sr = ImplicitSemigroup<T>.Inhabitant;
             for(var i = 0u; i< dim.i; i++)                
                 for(var j = 0u; j < dim.j; j++)
                     if(sr.neq(lhs[i,j], rhs[i,j]))
@@ -140,6 +146,7 @@ namespace Z0
         }
 
         public static Matrix<Prior<M>, Prior<N>,T> delete<T>(Matrix<M,N,T> src, uint rowix, uint colix)
+            where T : struct, IEquatable<T>    
         {            
             var dstdim = dim<Prior<M>, Prior<N>>();
             var dstmem = new T[dstdim.volume()];
@@ -157,11 +164,13 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Matrix<N, M, T> tranpose<T>(Matrix<M,N,T> src)
-            => new Matrix<N,M,T>(src.vectors().data.SelectMany(x => x).ToArray());
+            where T : struct, IEquatable<T>    
+                => new Matrix<N,M,T>(map(src.vectors(), v => v.tranpose()));
 
         public static Matrix<I,J,T> submatrix<I,J,T>(Matrix<M,N,T> src, Dim<I,J> dstdim, (uint r, uint c) origin)
             where I : TypeNat, new()
             where J : TypeNat, new()
+            where T : struct, IEquatable<T>    
         {            
             var  dst = new T[dstdim.volume()];
             var curidx = 0;
@@ -174,6 +183,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void update<T>(Matrix<M,N,T> src, Func<T,T> f)
+            where T : struct, IEquatable<T>    
         {
             var data = src.data;
             for(var k = 0; k< data.Length; k++)
@@ -182,6 +192,8 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Matrix<M,N,Y> transform<T,Y>(Matrix<M,N,T> src, Func<T,Y> f)
+            where T : struct, IEquatable<T>    
+            where Y : struct, IEquatable<Y>    
         {                
             var data = src.data;
             var dst = new Y[data.Length];
@@ -201,6 +213,7 @@ namespace Z0
         public static Matrix<I, J, T> reinterpret<I,J,T>(Matrix<M,N,T> src)
             where I : TypeNat, new()
             where J : TypeNat, new()
+            where T : struct, IEquatable<T>    
         {
             Prove.equal<I,J>();
             return new Matrix<I, J, T>(src.data);        
@@ -217,6 +230,7 @@ namespace Z0
         public static Matrix<I, J, T> reinterpret<I,J,T>(Matrix<M,N,T> src, Dim<I,J> equivalent)
             where I : TypeNat, new()
             where J : TypeNat, new()
+            where T : struct, IEquatable<T>    
         {
             Prove.equal<I,J>();
             return new Matrix<I, J, T>(src.data);
@@ -224,7 +238,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Matrix<M, N, T> add<T>(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
-            where T : Operative.Semiring<T>, new()
+            where T : struct, Operative.Semiring<T>, IEquatable<T>
             {
                 var sr = new T();
                 return Matrix.define<M,N,T>(fuse(lhs.data, rhs.data, sr.add));
@@ -234,7 +248,6 @@ namespace Z0
 
     public static class Matrix
     {
-
         /// <summary>
         /// Constructs the zero matrix of natural dimension m x n
         /// </summary>
@@ -245,7 +258,7 @@ namespace Z0
         public static Matrix<M,N,T> zero<M,N,T>()
             where M : TypeNat, new()
             where N : TypeNat, new()
-            where T : Operative.Semiring<T>, new()
+            where T : struct, IEquatable<T>    
                 => MatrixOps<M,N>.zero<T>();
        
         /// <summary>
@@ -262,7 +275,7 @@ namespace Z0
             where M : TypeNat, new()
             where N : TypeNat, new()
             where P : TypeNat, new()
-            where T : Operative.Semiring<T>, new()
+            where T : struct, Operative.Semiring<T>, IEquatable<T>
         {            
             var m = Prove.claim<M>(rhs.dim().i);
             var p = Prove.claim<P>(rhs.dim().j);
@@ -278,6 +291,7 @@ namespace Z0
         public static Z0.Slice<N,T> row<M,N,T>(Matrix<M, N, T> src, uint i)
                 where M : TypeNat, new()
                 where N : TypeNat, new()
+                where T : struct, IEquatable<T>    
                     => Slice.define<N,T>(src.data.Segment(natval<N>()*i, natval<N>()));
 
         [MethodImpl(Inline)]
@@ -286,6 +300,7 @@ namespace Z0
             where N : TypeNat, new()
             where I : TypeNat, new()
             where J : TypeNat, new()
+            where T : struct, IEquatable<T>    
                 => MatrixOps<M,N>.submatrix(src,dstdim,origin);
 
         /// <summary>
@@ -301,6 +316,7 @@ namespace Z0
         public static Matrix<Prior<M>, Prior<N>,T> delete<M,N,T>(Matrix<M,N,T> src, uint rowix, uint colix)
             where M : TypeNat, new()
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>    
                 => MatrixOps<M,N>.delete(src,rowix,colix);
 
         /// <summary>
@@ -315,11 +331,14 @@ namespace Z0
         public static void update<M,N,T>(Matrix<M,N,T> src, Func<T,T> f)
             where M : TypeNat, new()
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>    
                 => MatrixOps<M,N>.update(src,f);
 
         public static Matrix<M,N,Y> transform<M,N,T,Y>(Matrix<M,N,T> src, Func<T,Y> f)
             where M : TypeNat, new()
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>    
+            where Y : struct, IEquatable<Y>    
                 => MatrixOps<M,N>.transform(src,f);
 
         /// <summary>
@@ -335,6 +354,7 @@ namespace Z0
         public static Matrix<M, N, T> define<M,N,T>(Dim<M,N> dim, IEnumerable<T> src)
             where M : TypeNat, new()
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>    
                 => new Matrix<M,N,T>(src);
 
         /// <summary>
@@ -349,8 +369,8 @@ namespace Z0
         public static Matrix<M, N, T> define<M,N,T>(params T[] src)
             where M : TypeNat, new()
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>    
                 => new Matrix<M,N,T>(src);
-
 
         /// <summary>
         /// Defines a matrix from a sequence whose elements are in row-major form
@@ -365,7 +385,8 @@ namespace Z0
         public static Matrix<M, N, T> define<M,N,T>(Dim<M,N> dim, params T[] src)
             where M : TypeNat, new()
             where N : TypeNat, new()
-                => new Matrix<M,N,T>(src);
+            where T : struct, IEquatable<T>    
+               => new Matrix<M,N,T>(src);
 
         /// <summary>
         /// Defines a matrix from a sequence whose elements are in row-major form
@@ -379,7 +400,8 @@ namespace Z0
         public static Matrix<M, N, T> define<M,N,T>(IEnumerable<T> src)
             where M : TypeNat, new()
             where N : TypeNat, new()
-                => new Matrix<M,N,T>(src);
+            where T : struct, IEquatable<T>    
+               => new Matrix<M,N,T>(src);
 
 
     }

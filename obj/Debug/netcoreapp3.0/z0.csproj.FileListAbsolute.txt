@@ -1,4 +1,0 @@
-J:\dev\projects\z0\obj\Debug\netcoreapp3.0\z0.csprojAssemblyReference.cache
-J:\dev\projects\z0\obj\Debug\netcoreapp3.0\z0.csproj.CoreCompileInputs.cache
-J:\dev\projects\z0\obj\Debug\netcoreapp3.0\z0.AssemblyInfoInputs.cache
-J:\dev\projects\z0\obj\Debug\netcoreapp3.0\z0.AssemblyInfo.cs

@@ -20,7 +20,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static SemiSeq<T> ToSemiSeq<T>(this IEnumerable<T> src)
-            where T : Structures.Semigroup<T>, new()
+            where T : struct, Structures.Semigroup<T>
                 => semiseq(src);
 
         /// <summary>
@@ -30,17 +30,19 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static SemiSeq<T> ToSemiSeq<T>(this T[] src)
-            where T : Structures.Semigroup<T>, new()
+            where T : struct, Structures.Semigroup<T>
                 => semiseq(src);
 
         [MethodImpl(Inline)]
         public static Slice<N,T> NatSlice<N,T>(this Z0.TypeNat<N> n, IEnumerable<T> src)
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
                 => new Slice<N, T>(src);
 
         [MethodImpl(Inline)]
         public static Slice<N,T> NatSlice<N,T>(this Z0.TypeNat<N> n, params T[] src)
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
                 => new Slice<N, T>(src);
 
         /// <summary>
@@ -52,6 +54,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vector<N,T> ToVector<N,T>(this Slice<N,T> src)
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
                 => vector<N,T>(src.data);
 
         /// <summary>
@@ -90,6 +93,7 @@ namespace Z0
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<T> ToSlice<T>(this IEnumerable<T> src)
+            where T : struct, IEquatable<T>
                 => new Slice<T>(src);
 
         /// <summary>
@@ -100,6 +104,7 @@ namespace Z0
         [MethodImpl(Inline)]        
         public static Slice<N,T> ToSlice<N,T>(this IEnumerable<T> src, N natrep = default)
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
                 => new Slice<N,T>(src.Take(nati<N>()));
 
         /// <summary>
@@ -111,6 +116,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Slice<N,T> Freeze<N,T>(this IEnumerable<T> src)
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>
                 => Z0.Slice.define<N,T>(src);
 
         /// <summary>
@@ -174,7 +180,7 @@ namespace Z0
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
         public static FiniteSeq<T> ToFiniteSeq<T>(this IEnumerable<T> src)
-            where T : Structure<T>, new()
+            where T : struct, IEquatable<T>
                 => Seq.finite(src);
 
         /// <summary>
@@ -211,8 +217,6 @@ namespace Z0
                 lnext = lenum.MoveNext();
                 rnext = renum.MoveNext();
             }
-
-
         }
     }
 }    

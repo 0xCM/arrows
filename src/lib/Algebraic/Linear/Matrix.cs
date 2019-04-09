@@ -15,6 +15,7 @@ namespace Z0
     public readonly struct Matrix<M, N, T>
             where M : TypeNat, new()
             where N : TypeNat, new()
+            where T : struct, IEquatable<T>    
     {
         static readonly Dim<M,N> Dim = default;        
             
@@ -28,10 +29,25 @@ namespace Z0
             demand(Dim.i * Dim.j == (ulong)data.Length);
         }
 
+
         [MethodImpl(Inline)]
         public Matrix(IEnumerable<T> src)
         {
             data = src.ToArray();
+            demand(Dim.i * Dim.j == (ulong)data.Length);
+        }
+
+        [MethodImpl(Inline)]
+        public Matrix(IEnumerable<Vector<M,T>> src)
+        {
+            data = src.Select(x => x.unwrap()).SelectMany(x => x).ToArray();
+            demand(Dim.i * Dim.j == (ulong)data.Length);
+        }
+
+        [MethodImpl(Inline)]
+        public Matrix(IEnumerable<Covector<N,T>> src)
+        {
+            data = src.Select(x => x.unwrap()).SelectMany(x => x).ToArray();
             demand(Dim.i * Dim.j == (ulong)data.Length);
         }
 
@@ -41,7 +57,7 @@ namespace Z0
             => Dim;
 
         [MethodImpl(Inline)]
-        public Slice<M,Vector<M, T>> vectors()
+        public Slice<N,Vector<M, T>> vectors()
             => MatrixOps<M,N>.vectors(this);
 
         [MethodImpl(Inline)]

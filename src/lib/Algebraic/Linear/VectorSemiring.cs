@@ -18,7 +18,7 @@ namespace Z0
         /// </summary>
         public readonly struct VectorSemiring<N, T> : Operative.Semiring<Vector<N,T>>
             where N : TypeNat, new()
-            where T : Structures.Semiring<T>, new()
+            where T : struct, Structures.Semiring<T> 
         {
             static VectorSemiring<N, T> Inhabitant = default;
 
@@ -47,11 +47,11 @@ namespace Z0
 
             [MethodImpl(Inline)]   
             public Vector<N, T> add(Vector<N, T> lhs, Vector<N, T> rhs)
-                => vector(natrep<N>(), fuse(lhs, rhs, srAdd));
+                =>  lhs.fuse(rhs, srAdd);
 
             [MethodImpl(Inline)]   
             public Vector<N, T> mul(Vector<N, T> lhs, Vector<N, T> rhs)
-                => vector(natrep<N>(), fuse(lhs,rhs, srMul));
+                =>  lhs.fuse(rhs, srMul);
 
             [MethodImpl(Inline)]   
             public Vector<N, T> distribute(Vector<N, T> lhs, (Vector<N, T> x, Vector<N, T> y) rhs)
@@ -64,7 +64,7 @@ namespace Z0
 
             [MethodImpl(Inline)]   
             public bool eq(Vector<N, T> lhs, Vector<N, T> rhs)
-                => any(zip(lhs,rhs), x =>  x.left.neq(x.right));
+                => lhs.fuse(rhs, (x,y) => x.eq(y)).any(x => x != true); 
 
             [MethodImpl(Inline)]   
             public bool neq(Vector<N, T> lhs, Vector<N, T> rhs)

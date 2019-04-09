@@ -23,6 +23,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vector<N,T> define<N,T>(N len, params T[] src) 
             where N : TypeNat, new() 
+            where T : struct, IEquatable<T>    
                 => new Vector<N,T>(src);
 
         /// <summary>
@@ -35,6 +36,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vector<N,T> define<N,T>(N len, IEnumerable<T> src) 
             where N : TypeNat, new() 
+            where T : struct, IEquatable<T>    
                 => new Vector<N,T>(src);
 
 
@@ -48,6 +50,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vector<N,T> define<N,T>(N len, IReadOnlyList<T> src) 
             where N : TypeNat, new() 
+            where T : struct, IEquatable<T>    
                 => new Vector<N,T>(src);
 
         /// <summary>
@@ -59,6 +62,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vector<N,T> define<N,T>(params T[] src) 
             where N : TypeNat, new() 
+            where T : struct, IEquatable<T>    
                 => new Vector<N,T>(src);
 
         /// <summary>
@@ -71,8 +75,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vector<N,T> add<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
             where N : TypeNat, new() 
-            where T : Structures.Semiring<T>, new()
-                => new Vector<N,T>(fuse(lhs,rhs, (x,y) => x.add(y)));
+            where T : struct, Structures.Semiring<T>
+                =>  lhs.fuse(rhs, (x,y) => x.add(y));
 
         /// <summary>
         /// Constructs a vector from the componentwise-product of two others
@@ -84,8 +88,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vector<N,T> mul<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
             where N : TypeNat, new() 
-            where T : Structures.Semiring<T>, new()
-                =>  new Vector<N,T>(fuse(lhs,rhs, (x,y) => x.add(y)));
+            where T : struct, Structures.Semiring<T>
+                =>  lhs.fuse(rhs, (x,y) => x.mul(y));
 
         /// <summary>
         /// Sums the components of a vector to yield a scalar
@@ -96,9 +100,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T sum<N,T>(Vector<N,T> src) 
             where N : TypeNat, new() 
-            where T : Structures.Semiring<T>, new()
-                => Slice.sum(src.cells);
-
+            where T : struct, Structures.Semiring<T>
+                => src.reduce(Monoid.additive<T>());
+ 
     }
 
 }

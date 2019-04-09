@@ -14,6 +14,8 @@ namespace Z0
     public interface RandomMatrixSource<M,N,T>
         where M : TypeNat, new()
         where N : TypeNat, new()
+        where T : struct, IEquatable<T>
+
     {
         IEnumerable<Matrix<M,N,T>> stream(T min, T max);
     }
