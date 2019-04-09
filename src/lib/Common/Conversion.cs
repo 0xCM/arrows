@@ -15,10 +15,11 @@ namespace Z0
     partial class Operative
     {
         /// <summary>
-        /// Characterizes a conversion operation, x:S => x:T
+        /// Characterizes conversion operations from a value s:S to 
+        /// to a value t:T. such that the operation convert:S -> T always succeeds.
         /// </summary>
         /// <typeparam name="S">The source type</typeparam>
-        /// <typeparam name="T">The target value</typeparam>
+        /// <typeparam name="T">The target type</typeparam>
         public interface Conversion<S,T>
         {
             /// <summary>

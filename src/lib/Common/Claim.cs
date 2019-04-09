@@ -51,14 +51,13 @@ namespace Z0
                 fail($"{expect} != {actual}" );
         }
 
-
         public static string eq<T>(T x, T y)
-            where T : Equatable<T>, new()        
-                => define(x,y,"==",  (a,b) => a.eq(b)).demand();
+            where T : struct, IEquatable<T> 
+                => define(x,y,"==",  (a,b) => a.Equals(b)).demand();
                     
         public static string neq<T>(T x, T y)
-            where T : Equatable<T>, new()
-                => define(x,y,"!=", (a,b) => a.neq(b)).demand();
+            where T : struct, IEquatable<T> 
+                => define(x,y,"!=", (a,b) => a.Equals(b)).demand();
 
         public static string lt<T>(T x, T y)
             where T : Operative.Ordered<T>, new()
