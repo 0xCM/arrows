@@ -138,7 +138,7 @@ namespace Z0
         /// <param name="endpos">The position of the last element of the source array</param>
         /// <returns></returns>
         public static T[] Subset<T>(this T[] src, int startpos, int endpos)
-            => array.subset(src,startpos,endpos);
+            => Arr.subset(src,startpos,endpos);
 
         /// <summary>
         /// Defines a window over a 1-d array beginning at a specified index 

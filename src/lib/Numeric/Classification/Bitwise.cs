@@ -18,6 +18,13 @@ namespace Z0
 
         {
             /// <summary>
+            /// Extracts the character bits from the falue
+            /// </summary>
+            /// <param name="src"></param>
+            /// <returns></returns>
+            string bitchars(T src);
+
+            /// <summary>
             /// Formats the source value a sequence of base-2 digits
             /// </summary>
             Z0.BitString bitstring(T src);

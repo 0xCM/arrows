@@ -27,7 +27,7 @@ namespace Z0
 
         public static readonly intg<T> One = BaseInfo.One;
 
-        static readonly intg<T> Two = Prim.inc(One.data);
+        public static readonly intg<T> Two = Prim.inc(One.data);
 
         public static readonly bool Signed = BaseInfo.Signed;
 
@@ -174,9 +174,7 @@ namespace Z0
             [MethodImpl(Inline)]
             get{return BitSize;}
         }
-        public NumberInfo<intg<T>> numinfo 
-            => new NumberInfo<intg<T>>((MinVal, MaxVal),Signed,Zero, One, BitSize);
-
+        
         readonly T data;
 
         [MethodImpl(Inline)]
@@ -235,16 +233,9 @@ namespace Z0
         public bool odd()
             => not(even());
 
-        /// <summary>
-        /// Tests whether the bit in an specific position is set
-        /// </summary>
-        /// <param name="src">The source integer</param>
-        /// <param name="pos">The bit position to test</param>
-        /// <typeparam name="T">The underlying integral type</typeparam>
-        /// <returns>Returns true if the identified bit is set, false otherwise</returns>
         [MethodImpl(Inline)]
         public bool testbit(int pos)            
-            => (this & (intg<T>.One << pos)) != intg<T>.Zero;
+            => Prim.testbit(data,pos);
 
         [MethodImpl(Inline)]
         public intg<T> and(intg<T> rhs)

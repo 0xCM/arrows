@@ -342,7 +342,7 @@ namespace Z0
             
             [MethodImpl(Inline)]
             public BitString bitstring()
-                => BitString.define(data);       
+                => Prim.bitstring(data);
 
             [MethodImpl(Inline)]
             public int hash()

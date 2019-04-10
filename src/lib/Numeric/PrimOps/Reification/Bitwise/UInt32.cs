@@ -46,9 +46,25 @@ namespace Z0
             public uint flip(uint src) 
                 => ~ src;
 
+            /// <summary>
+            /// Renders a number as a base-2 formatted string
+            /// </summary>
+            /// <param name="src">The source number</param>
+            [MethodImpl(Inline)]
+            static string bitcharsu32(uint src)
+                => lpadZ(Convert.ToString(src,2), primops.bitsize<uint>());
+
+            /// <summary>
+            /// Renders a number as a base-2 formatted string
+            /// </summary>
+            /// <param name="src">The source number</param>
+            [MethodImpl(Inline)]
+            public string bitchars(uint src)
+                => bitcharsu32(src);
+
             [MethodImpl(Inline)]   
             public BitString bitstring(uint src) 
-                => BitString.define(src);
+                => BitString.define(Bits.parse(bitchars(src)));
 
             /// <summary>
             /// Extracts the data contained in the source as an array of bytes

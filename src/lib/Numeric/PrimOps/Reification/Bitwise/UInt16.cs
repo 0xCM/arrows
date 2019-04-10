@@ -14,14 +14,9 @@ namespace Z0
     partial class PrimOps { partial class Reify {
         public readonly partial struct Bitwise : 
             Bitwise<ushort> 
-
-
         {
 
 
-            // !! ushort
-            // !! -------------------------------------------------------------
-            
             [MethodImpl(Inline)]   
             public ushort and(ushort a, ushort b) 
                 => (ushort)(a & b);
@@ -46,9 +41,17 @@ namespace Z0
             public ushort flip(ushort a) 
                 => (ushort)~ a;
 
+            /// <summary>
+            /// Renders a number as a base-2 formatted string
+            /// </summary>
+            /// <param name="src">The source number</param>
+            [MethodImpl(Inline)]
+            public string bitchars(ushort src)
+                => lpadZ(Convert.ToString(src,2), primops.bitsize<ushort>());
+
             [MethodImpl(Inline)]   
             public BitString bitstring(ushort src) 
-                => BitString.define(src);
+                => BitString.define(Bits.parse(bitchars(src)));
 
             /// <summary>
             /// Determines whether a position-specified bit in the source is on

@@ -58,11 +58,6 @@ namespace Z0
         Positive = 1
     }
 
-    public enum BinaryDigit : byte
-    {
-        B0 = 0,
-        B1 = 1
-    }
 
  
     public static class Pow2

@@ -14,10 +14,25 @@ namespace Z0
 
     partial class Operative
     {
+        /// <summary>
+        /// Function grab-bag
+        /// </summary>
+        /// <typeparam name="T">The operand type</typeparam>
         public interface Special<T>
         {
+            /// <summary>
+            /// Computes the square root of the operand, truncating as 
+            /// necessary to conform to the characteristics of the 
+            /// primitive
+            /// </summary>
+            /// <param name="src">The source value</param>
             T sqrt(T src);
 
+            /// <summary>
+            /// Given x:T, computes the smallest whole number y:T  such that x >= y
+            /// </summary>
+            /// <param name="src">The source value</param>
+            /// <returns></returns>
             T floor(T src);
 
             T ceiling(T src);
@@ -49,6 +64,7 @@ namespace Z0
                 => cast<Special<T>>(Inhabitant);
 
             // ! sbyte
+            // ! --------------------------------------------------------------
 
             [MethodImpl(Inline)]   
             public sbyte sqrt(sbyte x)
@@ -62,12 +78,18 @@ namespace Z0
             public sbyte floor(sbyte x)
                 => x;
 
-            [MethodImpl(Inline)]   
-            public sbyte pow(sbyte b, int exp) 
-                => fold(repeat(b,exp),(x,y) => (sbyte) (x*y), (sbyte)1);
+            [MethodImpl(Inline)]
+            public sbyte pow(sbyte @base, int exp)
+            {
+                var result = 1;
+                for(var i= 0; i<exp; i++)
+                    result =  result * @base;
+                return (sbyte)result;
+            }
 
 
-            // ! sbyte
+            // ! byte
+            // ! --------------------------------------------------------------
 
             [MethodImpl(Inline)]   
             public byte sqrt(byte x)
@@ -81,12 +103,18 @@ namespace Z0
             public byte floor(byte x)
                 => x;
 
-            [MethodImpl(Inline)]   
-            public byte pow(byte b, int exp) 
-                => fold(repeat(b,exp),(x,y) => (byte) (x*y), (byte)1);
+            [MethodImpl(Inline)]
+            public byte pow(byte @base, int exp)
+            {
+                var result = 1;
+                for(var i= 0; i<exp; i++)
+                    result =  result * @base;
+                return (byte)result;
+            }
 
 
             // ! short
+            // ! --------------------------------------------------------------
 
             [MethodImpl(Inline)]   
             public short sqrt(short x)
@@ -100,12 +128,18 @@ namespace Z0
             public short floor(short x)
                 => x;
 
-            [MethodImpl(Inline)]   
-            public short pow(short b, int exp) 
-                => fold(repeat(b,exp),(x,y) => (short) (x*y), (short)1);
+            [MethodImpl(Inline)]
+            public short pow(short @base, int exp)
+            {
+                var result = 1;
+                for(var i= 0; i<exp; i++)
+                    result =  result * @base;
+                return (short)result;
+            }
 
 
             // ! ushort
+            // ! --------------------------------------------------------------
 
             [MethodImpl(Inline)]   
             public ushort sqrt(ushort x)
@@ -119,12 +153,18 @@ namespace Z0
             public ushort floor(ushort x)
                 => x;
 
-            [MethodImpl(Inline)]   
-            public ushort pow(ushort b, int exp) 
-                => fold(repeat(b,exp),(x,y) => (ushort) (x*y), (ushort)1);
+            [MethodImpl(Inline)]
+            public ushort pow(ushort @base, int exp)
+            {
+                var result = 1;
+                for(var i= 0; i<exp; i++)
+                    result =  result * @base;
+                return (ushort)result;
+            }
 
 
             // ! int
+            // ! --------------------------------------------------------------
 
             [MethodImpl(Inline)]   
             public int sqrt(int x)
@@ -138,12 +178,18 @@ namespace Z0
             public int floor(int x)
                 => x;
 
-            [MethodImpl(Inline)]   
-            public int pow(int b, int exp) 
-                => fold(repeat(b,exp),(x,y) => x*y, 1);
+            [MethodImpl(Inline)]
+            public int pow(int @base, int exp)
+            {
+                var result = 1;
+                for(var i= 0; i<exp; i++)
+                    result = result * @base;
+                return result;
+            }
 
 
             // ! uint
+            // ! --------------------------------------------------------------
 
             [MethodImpl(Inline)]   
             public uint sqrt(uint x)
@@ -157,11 +203,17 @@ namespace Z0
             public uint floor(uint x)
                 => x;
 
-            [MethodImpl(Inline)]   
-            public uint pow(uint b, int exp) 
-                => fold(repeat(b,exp),(x,y) => x*y, 1u);
+            [MethodImpl(Inline)]
+            public uint pow(uint @base, int exp)
+            {
+                var result = 1u;
+                for(var i= 0; i<exp; i++)
+                    result = result * @base;
+                return result;
+            }
 
             // ! long
+            // ! --------------------------------------------------------------
 
             [MethodImpl(Inline)]   
             public long sqrt(long x)
@@ -175,11 +227,18 @@ namespace Z0
             public long floor(long x)
                 => x;
 
-            [MethodImpl(Inline)]   
-            public long pow(long b, int exp) 
-                => fold(repeat(b,exp),(x,y) => x*y, 1L);
+            [MethodImpl(Inline)]
+            public long pow(long @base, int exp)
+            {
+                var result = 1L;
+                for(var i= 0; i<exp; i++)
+                    result = result * @base;
+                return result;
+            }
+
 
             // ! ulong
+            // ! --------------------------------------------------------------
 
             [MethodImpl(Inline)]   
             public ulong sqrt(ulong x)
@@ -193,20 +252,21 @@ namespace Z0
             public ulong floor(ulong x)
                 => x;
 
-            [MethodImpl(Inline)]   
-            public ulong pow(ulong b, int exp) 
-                => fold(repeat(b,exp),(x,y) => x*y, 1UL);
-
+            [MethodImpl(Inline)]
+            public ulong pow(ulong @base, int exp)
+            {
+                var result = 1UL;
+                for(var i= 0; i<exp; i++)
+                    result = result * @base;
+                return result;
+            }
 
             // ! float
+            // ! --------------------------------------------------------------
 
             [MethodImpl(Inline)]
             public float sqrt(float src)
                 => MathF.Sqrt(src);
-
-            [MethodImpl(Inline)]
-            public float pow(float src, int exp)
-                => MathF.Pow(src,exp);
 
             [MethodImpl(Inline)]
             public float ceiling(float src)
@@ -216,14 +276,16 @@ namespace Z0
             public float floor(float src)
                 => MathF.Floor(src);
 
+            [MethodImpl(Inline)]
+            public float pow(float src, int exp)
+                => MathF.Pow(src,exp);
+
             // ! double
+            // ! --------------------------------------------------------------
+
             [MethodImpl(Inline)]
             public double sqrt(double src)
                 => Math.Sqrt(src);
-
-            [MethodImpl(Inline)]
-            public double pow(double src, int exp)
-                => Math.Pow(src,exp);
 
             [MethodImpl(Inline)]
             public double ceiling(double src)
@@ -233,16 +295,17 @@ namespace Z0
             public double floor(double src)
                 => Math.Floor(src);
 
+            [MethodImpl(Inline)]
+            public double pow(double src, int exp)
+                => Math.Pow(src,exp);
+
 
             // ! decimal
-
+            // ! --------------------------------------------------------------
+            
             [MethodImpl(Inline)]   
             public decimal sqrt(decimal x)
                 => (decimal)Math.Sqrt((double)x);
-
-            [MethodImpl(Inline)]
-            public decimal pow(decimal b, int exp)
-                => (decimal)Math.Pow((double)b, exp);
 
             [MethodImpl(Inline)]   
             public decimal ceiling(decimal x)
@@ -252,8 +315,12 @@ namespace Z0
             public decimal floor(decimal x)
                 => decimal.Floor(x);
 
+            [MethodImpl(Inline)]
+            public decimal pow(decimal b, int exp)
+                => (decimal)Math.Pow((double)b, exp);
 
             // ! BigInteger
+            // ! --------------------------------------------------------------
 
             [MethodImpl(Inline)]   
             public BigInteger sqrt(BigInteger x)
@@ -269,7 +336,7 @@ namespace Z0
 
             [MethodImpl(Inline)]   
             public BigInteger pow(BigInteger b, int exp) 
-                => fold(repeat(b,exp),(x,y) => x*y, BigInteger.One);
+                => BigInteger.Pow(b,exp);
 
         }
 

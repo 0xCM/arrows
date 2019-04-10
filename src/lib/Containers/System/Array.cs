@@ -12,9 +12,26 @@ namespace Z0
 
     using static zcore;
 
-
-    public static partial class array
+    /// <summary>
+    /// Defines varies array-related operations
+    /// </summary>
+    public static partial class Arr
     {
+
+        [MethodImpl(Inline)]
+        public static bool equals<T>(T[] lhs, T[] rhs)
+            where T: IEquatable<T>
+        {
+            if(lhs.Length != rhs.Length)
+                return false;
+            for(var i = 0; i<lhs.Length; i++)
+            {
+                if(!lhs[i].Equals(rhs[i]))
+                    return false;
+            }
+            return true;
+        }
+
         /// <summary>
         /// Creates a new array from a (contiguous) subset of an existing array
         /// </summary>

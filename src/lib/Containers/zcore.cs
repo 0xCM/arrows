@@ -13,7 +13,7 @@ using System.Diagnostics;
 
 using Z0;
 using static zcore;
-using Array = Z0.array;
+using Array = Z0.Arr;
 
 public static partial class zcore
 {
@@ -119,6 +119,25 @@ public static partial class zcore
     public static T[] array<T>(long len = 0)
         => new T[len];
 
+    /// <summary>
+    /// Constructs an array from a stream
+    /// </summary>
+    /// <param name="src">The source stream</param>
+    /// <typeparam name="T">The array element type</typeparam>
+    [MethodImpl(Inline)]
+    public static T[] array<T>(IEnumerable<T> src)
+        => src.ToArray();
+
+    /// <summary>
+    /// Constructs an array from a stream and a transformation function
+    /// </summary>
+    /// <param name="src">The source stream</param>
+    /// <param name="f">The transfomer</param>
+    /// <typeparam name="S">The source element type</typeparam>
+    /// <typeparam name="T">The target element type</typeparam>
+    [MethodImpl(Inline)]
+    public static T[] array<S,T>(IEnumerable<S> src, Func<S,T> f)
+        => array<T>(src.Select(f));
 
     /// <summary>
     /// Concatentates two arrays
@@ -163,7 +182,7 @@ public static partial class zcore
     /// <typeparam name="T">The array element type</typeparam>
     [MethodImpl(Inline)]
     public static T[] array<T>(params T[] src)
-        => src;
+         => src;
 
     /// <summary>
     /// Constructs an N-array from a parameter array

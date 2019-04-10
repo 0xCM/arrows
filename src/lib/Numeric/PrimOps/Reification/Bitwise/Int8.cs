@@ -46,12 +46,20 @@ namespace Z0
                 => (sbyte)~ a;
             
             /// <summary>
+            /// Renders a number as a base-2 formatted string
+            /// </summary>
+            /// <param name="src">The source number</param>
+            [MethodImpl(Inline)]
+            public string bitchars(sbyte src)
+                => lpadZ(Convert.ToString(src,2), primops.bitsize<sbyte>());
+
+            /// <summary>
             /// Converts the source value to a sequence of bits
             /// </summary>
             /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]   
             public BitString bitstring(sbyte src) 
-                => BitString.define(src);
+                => BitString.define(Bits.parse(bitchars(src)));
 
             /// <summary>
             /// Interprets the source as an array of bytes

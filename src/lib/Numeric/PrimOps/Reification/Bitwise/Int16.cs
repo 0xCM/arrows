@@ -45,9 +45,18 @@ namespace Z0
             public short flip(short a) 
                 => (short)~ a;
 
+
+            /// <summary>
+            /// Renders a number as a base-2 formatted string
+            /// </summary>
+            /// <param name="src">The source number</param>
+            [MethodImpl(Inline)]
+            public string bitchars(short src)
+                => lpadZ(Convert.ToString(src,2), primops.bitsize<short>());
+
             [MethodImpl(Inline)]   
             public BitString bitstring(short src) 
-                => BitString.define(src);
+                => BitString.define(Bits.parse(bitchars(src)));
 
             /// <summary>
             /// Extracts the data contained in the source as an array of bytes

@@ -54,7 +54,19 @@ namespace Z0
         public static string eq<T>(T x, T y)
             where T : struct, IEquatable<T> 
                 => define(x,y,"==",  (a,b) => a.Equals(b)).demand();
-                    
+
+        /// <summary>
+        /// Demands that the first string is equal to the second
+        /// </summary>
+        /// <param name="lhs">The first string</param>
+        /// <param name="rhs">The Second string</param>
+        public static string eq(string lhs, string rhs)
+            => define(lhs,rhs,"==",  (a,b) => a.Equals(b)).demand();
+
+        public static string enumeq<T>(T x, T y)
+            where T : Enum
+                => define(x,y,"==",  (a,b) => a.Equals(b)).demand();
+
         public static string neq<T>(T x, T y)
             where T : struct, IEquatable<T> 
                 => define(x,y,"!=", (a,b) => a.Equals(b)).demand();

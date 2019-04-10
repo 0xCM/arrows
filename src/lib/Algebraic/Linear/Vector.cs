@@ -30,7 +30,7 @@ namespace Z0
         /// <typeparam name="T">THe component type</typeparam>
         [MethodImpl(Inline)]   
         public static implicit operator Slice<N,T>(Vector<N,T> src)
-            => src.cells;
+            => src.data;
 
         /// <summary>
         /// Slice => Vector
@@ -45,79 +45,106 @@ namespace Z0
         /// <summary>
         /// The underlying data
         /// </summary>
-        Slice<N,T> cells {get;}
+        Slice<N,T> data {get;}
 
         [MethodImpl(Inline)]   
         public Vector(params T[] src)
-            => cells = slice<N,T>(src);
+            => data = slice<N,T>(src);
 
         [MethodImpl(Inline)]   
         public Vector(IReadOnlyList<T> src)
-            => cells = slice<N,T>(src);
+            => data = slice<N,T>(src);
 
         [MethodImpl(Inline)]   
         public Vector(IEnumerable<T> src)
-            => cells = slice<N,T>(src);
+            => data = slice<N,T>(src);
 
         [MethodImpl(Inline)]   
         public Vector(Slice<N,T> src)
-            => cells = src;
+            => data = src;
 
         public T this[int index] 
-            => cells[index];
+            => data[index];
 
+        /// <summary>
+        /// Selects an index-identified component
+        /// </summary>
+        /// <param name="index">The 0-based component index</param>
         [MethodImpl(Inline)]   
         public T cell(uint index)
-            => cells[(int)index];
+            => data[(int)index];
+
+        /// <summary>
+        /// Selects predicate-identified components
+        /// </summary>
+        /// <param name="index">The 0-based component index</param>
+        [MethodImpl(Inline)]
+        public IEnumerable<T> cells(Func<T,bool> predicate)
+            => data.Where(predicate);
 
         public uint length 
-            => cells.length;
+            => data.length;
 
         [MethodImpl(Inline)]   
         public Covector<N, T> tranpose()
-            => new Covector<N,T>(cells);
-
-        // [MethodImpl(Inline)]   
-        // public IEnumerator<T> GetEnumerator()
-        //     => cells.data.GetEnumerator();
-
-        // [MethodImpl(Inline)]   
-        // IEnumerator IEnumerable.GetEnumerator()
-        //     => GetEnumerator();
+            => new Covector<N,T>(data);
 
         [MethodImpl(Inline)]
         public string format()
-            => cells.format();
+            => data.format();
 
+        /// <summary>
+        /// Retrurns true if a predicate holds for any components
+        /// </summary>
+        /// <param name="predicate">The adjudicating predicate</param>
         [MethodImpl(Inline)]   
         public bool any(Func<T,bool> predicate)
-            => cells.unwrap().Any(predicate);
+            => data.Any(predicate);
+
+        /// <summary>
+        /// Retrurns true if a predicate holds for all components
+        /// </summary>
+        /// <param name="predicate">The adjudicating predicate</param>
+        [MethodImpl(Inline)]   
+        public bool all(Func<T,bool> predicate)
+            => data.all(predicate);
+
+        /// <summary>
+        /// Reduces the cells via a monoid
+        /// </summary>
+        /// <param name="monoid">The monoid to use</param>
 
         [MethodImpl(Inline)]   
         public T reduce(Operative.Monoidal<T> monoid)
-            =>  fold(cells.unwrap(),monoid);
+            =>  data.reduce(monoid);
 
         [MethodImpl(Inline)]   
         public Vector<N,Y> fuse<Y>(Vector<N,T> rhs, Func<T,T,Y> composer)
             where Y : struct, IEquatable<Y>    
                 => new Vector<N,Y>(zcore.fuse(unwrap(), rhs.unwrap(), composer));
 
+        /// <summary>
+        /// Transforms Vector[N,T] => Vector[Y,T] via component transformation f:T->Y
+        /// </summary>
+        /// <param name="f">The component transformation function</param>
+        /// <typeparam name="Y">The transformation codomain</typeparam>
         [MethodImpl(Inline)]   
         public Vector<N,Y> map<Y>(Func<T,Y> f)
             where Y : struct, IEquatable<Y>    
-                => new Vector<N, Y>(cells.Select(x => f(x)));
+                => new Vector<N, Y>(data.map(f));
 
         [MethodImpl(Inline)]   
         public IReadOnlyList<T> unwrap()
-            => cells.unwrap();
+            => data.unwrap();
 
         [MethodImpl(Inline)]
         public bool eq(Vector<N, T> rhs)
-            => cells.eq(rhs);
+            => data.eq(rhs);
+
 
         [MethodImpl(Inline)]
         public bool neq(Vector<N, T> rhs)
-            => cells.neq(rhs);
+            => data.neq(rhs);
 
         [MethodImpl(Inline)]
         public bool Equals(Vector<N, T> rhs)
@@ -125,7 +152,7 @@ namespace Z0
  
         [MethodImpl(Inline)]
         public int hash()
-            => cells.hash();
+            => data.hash();
 
         public override int GetHashCode()
             => hash();

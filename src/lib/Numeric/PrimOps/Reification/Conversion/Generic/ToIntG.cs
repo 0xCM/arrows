@@ -313,7 +313,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this Enum src)    
             where T : struct, IEquatable<T>
-                => (T)Convert.ChangeType(src, type<T>());    
+                => enumg<T>(src);
 
         [MethodImpl(Inline)]   
         public static IReadOnlyList<intg<T>> ToIntG<T>(this IReadOnlyList<real<T>> src)

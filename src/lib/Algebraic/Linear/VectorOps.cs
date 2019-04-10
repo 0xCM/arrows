@@ -39,7 +39,6 @@ namespace Z0
             where T : struct, IEquatable<T>    
                 => new Vector<N,T>(src);
 
-
         /// <summary>
         /// Defines a vector of natural length from a llist
         /// </summary>
@@ -102,7 +101,19 @@ namespace Z0
             where N : TypeNat, new() 
             where T : struct, Structures.Semiring<T>
                 => src.reduce(Monoid.additive<T>());
- 
+
+        [MethodImpl(Inline)]
+        public static Vector<N,bool> equality<N,T>(Vector<N,T> lhs, Vector<N,T> rhs)
+            where N : TypeNat, new() 
+            where T : struct, IEquatable<T>
+                => vector<N,bool>(lhs == rhs);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<Vector<N,bool>> equality<N,T>(IReadOnlyList<Vector<N,T>> lhs, IReadOnlyList<Vector<N,T>> rhs)
+            where N : TypeNat, new() 
+            where T : struct, IEquatable<T>
+                => fuse(lhs, rhs, (v1,v2) =>  vector<N,bool>(v1 == v2));
+
     }
 
 }

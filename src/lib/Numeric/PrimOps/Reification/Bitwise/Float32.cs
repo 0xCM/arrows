@@ -15,10 +15,6 @@ namespace Z0
         public readonly partial struct Bitwise : 
             Bitwise<float> 
         {
-
-            // !! float
-            // !! -------------------------------------------------------------
-
             [MethodImpl(Inline)]   
             public float and(float lhs, float rhs)
                 => (int)lhs & (int)rhs;
@@ -42,10 +38,18 @@ namespace Z0
             [MethodImpl(Inline)]   
             public float rshift(float lhs, int rhs)
                 => (int)lhs >> rhs;
-
+        
+            /// <summary>
+            /// Renders a number as a base-2 formatted string
+            /// </summary>
+            /// <param name="src">The source number</param>
+            [MethodImpl(Inline)]
+            public string bitchars(float src)
+                => bitchars(BitConverter.SingleToInt32Bits(src));
+         
             [MethodImpl(Inline)]   
             public BitString bitstring(float src) 
-                => BitString.define(src);
+                => BitString.define(Bits.parse(bitchars(src)));
 
             /// <summary>
             /// Interprets the source as an array of bytes

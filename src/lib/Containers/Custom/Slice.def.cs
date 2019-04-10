@@ -217,11 +217,12 @@ namespace Z0
         public T this[int i] 
             => data[i];
 
+        public T this[uint i] 
+            => data[i];
+
         public T this[ulong i] 
             => data[i];
 
-        public T this[uint i] 
-            => data[i];
 
         /// <summary>
         /// Reverses the slice elements
@@ -254,9 +255,48 @@ namespace Z0
         public bool Equals(Slice<N, T> rhs)
             => eq(rhs);
 
+        /// <summary>
+        /// Retrurns true if a predicate holds for any components
+        /// </summary>
+        /// <param name="predicate">The adjudicating predicate</param>
+        [MethodImpl(Inline)]   
+        public bool any(Func<T,bool> predicate)
+            => data.Any(predicate);
+
+        /// <summary>
+        /// Retrurns true if a predicate holds for all components
+        /// </summary>
+        /// <param name="predicate">The adjudicating predicate</param>
+        [MethodImpl(Inline)]   
+        public bool all(Func<T,bool> predicate)
+            => data.All(predicate);
+
+        /// <summary>
+        /// Reduces the cells via a monoid
+        /// </summary>
+        /// <param name="monoid">The monoid to use</param>
+        [MethodImpl(Inline)]   
+        public T reduce(Operative.Monoidal<T> monoid)
+            =>  fold(data,monoid);
+
         [MethodImpl(Inline)]   
         public IReadOnlyList<T> unwrap()
             => data.unwrap();
+
+        [MethodImpl(Inline)]   
+        public Slice<N,Y> fuse<Y>(Slice<N,T> rhs, Func<T,T,Y> composer)
+            where Y : struct, IEquatable<Y>    
+                => new Slice<N,Y>(zcore.fuse(data, rhs, composer));
+
+        /// <summary>
+        /// Transforms slice[T] to slice[Y] via component transformation f:T->Y
+        /// </summary>
+        /// <param name="f">The component transformation function</param>
+        /// <typeparam name="Y">The transformation codomain</typeparam>
+        [MethodImpl(Inline)]   
+        public Slice<N,Y> map<Y>(Func<T,Y> f)
+            where Y : struct, IEquatable<Y>    
+                => new Slice<N, Y>(data.Select(x => f(x)));
 
         /// <summary>
         /// Renders the slice as a comma-delimted parenthetical value

@@ -12,14 +12,10 @@ namespace Z0
     using static Operative;
 
     partial class PrimOps { partial class Reify {
+        
         public readonly partial struct Bitwise : 
             Bitwise<decimal> 
-
-
         {
-
-            // !! decimal
-            // !! -------------------------------------------------------------
 
             [MethodImpl(Inline)]   
             public decimal and(decimal lhs, decimal rhs)
@@ -45,9 +41,21 @@ namespace Z0
             public decimal rshift(decimal lhs, int rhs)
                 => (long)lhs >> rhs;
 
+
+            [MethodImpl(Inline)]
+            public static string bitchars128(decimal src)
+                => zcore.apply(Bits.split(src), 
+                    parts => bitchars32(parts.hihi) + bitchars32(parts.hilo)
+                        + bitchars32(parts.lohi) + bitchars32(parts.lolo));
+
+            [MethodImpl(Inline)]
+            public string bitchars(decimal src)
+                => bitchars128(src);
+
+            
             [MethodImpl(Inline)]   
             public BitString bitstring(decimal src) 
-                => BitString.define(src);
+                => BitString.define(Bits.parse(bitchars(src)));
 
             /// <summary>
             /// Determines whether a position-specified bit in the source is on
@@ -75,8 +83,6 @@ namespace Z0
             [MethodImpl(Inline)]
             public byte[] bytes(decimal src)
                 => zcore.concat(map(Decimal.GetBits(src), bytes));
-
-
         }
     }
 }}

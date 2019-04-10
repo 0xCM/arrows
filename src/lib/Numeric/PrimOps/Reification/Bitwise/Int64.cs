@@ -14,13 +14,7 @@ namespace Z0
     partial class PrimOps { partial class Reify {
         public readonly partial struct Bitwise : 
             Bitwise<long> 
-
-
         {
-
-            // !! long
-            // !! -------------------------------------------------------------
-
             [MethodImpl(Inline)]   
             public long and(long a, long b) 
                 => a & b;
@@ -45,9 +39,17 @@ namespace Z0
             public long flip(long a) 
                 => ~ a;
 
+            /// <summary>
+            /// Renders a number as a base-2 formatted string
+            /// </summary>
+            /// <param name="src">The source number</param>
+            [MethodImpl(Inline)]
+            public string bitchars(long src)
+                => lpadZ(Convert.ToString(src,2), primops.bitsize<long>());
+
             [MethodImpl(Inline)]   
             public BitString bitstring(long src) 
-                => BitString.define(src);
+                => BitString.define(Bits.parse(bitchars(src)));
 
             /// <summary>
             /// Extracts the data contained in the source as an array of bytes

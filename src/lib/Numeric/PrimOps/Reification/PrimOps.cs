@@ -397,6 +397,11 @@ namespace Z0
             }
 
             [MethodImpl(Inline)]
+            public string bitchars(T x)
+                => Bitwise.bitchars(x);
+
+
+            [MethodImpl(Inline)]
             public BitString bitstring(T x)
                 => Bitwise.bitstring(x);
 

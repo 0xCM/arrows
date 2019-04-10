@@ -14,13 +14,7 @@ namespace Z0
     partial class PrimOps { partial class Reify {
         public readonly partial struct Bitwise : 
             Bitwise<ulong> 
-
-
         {
-
-            // !! ulong
-            // !! -------------------------------------------------------------
-
             [MethodImpl(Inline)]   
             public ulong and(ulong a, ulong b) 
                 => a & b;
@@ -45,9 +39,24 @@ namespace Z0
             public ulong flip(ulong src) 
                 => ~ src;
 
+
+            /// <summary>
+            /// Renders a number as a base-2 formatted string
+            /// </summary>
+            /// <param name="src">The source number</param>
+            [MethodImpl(Inline)]
+            public static string bitchars64(ulong src)
+                => apply(Bits.split(src), parts 
+                    => bitcharsu32(parts.hi) + bitcharsu32(parts.lo));
+
+
+            [MethodImpl(Inline)]
+            public string bitchars(ulong src)
+                => bitchars64(src);
+
             [MethodImpl(Inline)]   
             public BitString bitstring(ulong src) 
-                => BitString.define(src);
+                => BitString.define(Bits.parse(bitchars(src)));
 
             /// <summary>
             /// Extracts the data contained in the source as an array of bytes

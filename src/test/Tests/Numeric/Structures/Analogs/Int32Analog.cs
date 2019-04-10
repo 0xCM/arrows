@@ -21,11 +21,13 @@ namespace Z0.Tests
 
     using analog = int32;
     using AnaVect = Vector<N128,int32>;
+    using P = Paths;
 
-
-    [DisplayName("analogs/int32")]
+    [DisplayName(Path)]
     public class Int32Analog : BinOpTest<primitive>
     {
+        public const string Path = P.analogs + P.int32;
+        
         IReadOnlyList<PrimVec> LeftPrimVecs {get;}
 
         IReadOnlyList<PrimVec> RightPrimVecs {get;}
@@ -48,20 +50,39 @@ namespace Z0.Tests
         {
             var expect = BaselineSum();
             var actual = map(AnalogSum(), v => v.map(x => (int)x));
-            var compare = fuse(expect, actual, (v1,v2) =>  vector<N128,bool>(v1 == v2));
-            var result = compare.Where(v => v.any(x => x == false)).Count();
-            Claim.eq(result,0);
-                
+            var equality = Vector.equality(expect,actual);
+            var result = equality.Where(v => v.CountFalse() != 0).Count();
+            Claim.eq(result,0);                
+        }
+
+
+
+        public void VerifyMul()
+        {
+            var expect = BaselineMul();
+            var actual = map(AnalogMul(), v => v.map(x => (int)x));
+            var equality = Vector.equality(expect,actual);
+            var result = equality.Where(v => v.CountFalse() != 0).Count();
+            Claim.eq(result,0);                
         }
 
         [Repeat(5)]
         public IReadOnlyList<Vector<N128,int32>> AnalogSum()
-            => fuse(LeftAnaVecs,RightAnaVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x + y));
+            => fuse(LeftAnaVecs, RightAnaVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x + y));
+
 
         [Repeat(5)]
         public IReadOnlyList<Vector<N128,int>> BaselineSum()
             => fuse(LeftPrimVecs, RightPrimVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x + y));
-    
+
+        [Repeat(5)]
+        public IReadOnlyList<Vector<N128,int32>> AnalogMul()
+            => fuse(LeftAnaVecs, RightAnaVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x * y));
+
+        [Repeat(5)]
+        public IReadOnlyList<Vector<N128,int>> BaselineMul()
+            => fuse(LeftPrimVecs, RightPrimVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x * y));
+
 
     }
 

@@ -44,9 +44,18 @@ namespace Z0
             public byte flip(byte a) 
                 => (byte)~ a;
 
+            /// <summary>
+            /// Renders a number as a base-2 formatted string
+            /// </summary>
+            /// <param name="src">The source number</param>
+            [MethodImpl(Inline)]
+            public string bitchars(byte src)
+                => lpadZ(Convert.ToString(src,2), primops.bitsize<byte>());
+
+
             [MethodImpl(Inline)]   
             public BitString bitstring(byte src) 
-                => BitString.define(src);
+                => BitString.define(Bits.parse(bitchars(src)));
 
             /// <summary>
             /// Determines whether a position-specified bit in the source is on

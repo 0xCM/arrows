@@ -13,15 +13,11 @@ namespace Z0.Testing
 
     using static Nats;
     using static zcore;
-    using static Z0.Tests.ztest;
 
     public class TestRunner
     {
-        public static void RunTests()
-        {
-            new TestRunner().Run();
-        }
-
+        public static void RunTests(string filter = "")
+            => new TestRunner().Run(filter);
 
         static void failure(string info, string member)
             => error($"{member}: test failed - {info}");
@@ -34,7 +30,6 @@ namespace Z0.Testing
                 inform($"succeeded {ms}ms | {reps} reps",member); 
         }
             
-
         public TestRunner()
         {
         
@@ -43,24 +38,23 @@ namespace Z0.Testing
         public IEnumerable<Type> Hosts()
             => ZTest.DefiningAssembly.Types()
                     .InNamespace(typeof(Z0.Tests.TestInfo).Namespace)
-                    .Concrete();
-    
-        public IEnumerable<MethodInfo> Tests(Type host)
+                    .Concrete();    
+        IEnumerable<MethodInfo> Tests(Type host)
             =>  host.DeclaredMethods()
                     .Public()
                     .WithParameterCount(0);
 
-        public void Run(object host, MethodInfo test)
+        void Run(object host, string hostpath, MethodInfo test)
         {
             try
             {
-                var name = $"{test.DeclaringType.DisplayName()}/{test.Name}";
-                hilite("executing",  name); 
+                var testName = $"{hostpath}{test.Name}";
+                hilite("executing",  testName); 
                 var reps = RepeatAttribute.Repetitions(test);                               
                 var sw = stopwatch();
                 for(var i = 0; i<reps; i++)
                     test.Invoke(host,null);                    
-                success(name,sw.ElapsedMilliseconds,reps);
+                success(testName,sw.ElapsedMilliseconds,reps);
             }
             catch(Exception e)
             {
@@ -68,16 +62,20 @@ namespace Z0.Testing
             }            
         }
 
-        public void Run(Type host)
+        public void Run(Type host, string filter = "")
         {
             if(!host.ContainsGenericParameters)
             {
+                var hostpath = host.DisplayName();
+                if(!string.IsNullOrWhiteSpace(filter) && !hostpath.Contains(filter))
+                    return;
+
                 var instance = host.CreateInstance<object>();
-                iter(Tests(host), t =>  Run(instance, t));
+                iter(Tests(host), t =>  Run(instance, hostpath, t));
             }
         }
     
-        public void Run()
-            => iter(Hosts(), Run);
+        public void Run(string filter = "")
+            => iter(Hosts(), h =>  Run(h,filter));
     }
 }

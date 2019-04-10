@@ -15,12 +15,7 @@ namespace Z0
         public readonly partial struct Bitwise : 
             Bitwise<int> 
 
-
         {
-
-
-            // !! int
-            // !! -------------------------------------------------------------
 
             [MethodImpl(Inline)]   
             public int and(int lhs, int rhs) 
@@ -46,9 +41,17 @@ namespace Z0
             public int flip(int src) 
                 => ~ src;
 
+            [MethodImpl(Inline)]
+            public static string bitchars32(int src)
+                => lpadZ(Convert.ToString(src,2), primops.bitsize<int>());
+
+            [MethodImpl(Inline)]
+            public string bitchars(int src)
+                => bitchars32(src);
+
             [MethodImpl(Inline)]   
             public BitString bitstring(int src) 
-                => BitString.define(src);
+                => BitString.define(Bits.parse(bitchars(src)));
 
             /// <summary>
             /// Extracts the data contained in the source as an array of bytes

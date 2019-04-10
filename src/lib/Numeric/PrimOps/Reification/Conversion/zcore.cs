@@ -30,15 +30,29 @@ partial class zcore
             => ClrConversion.convert<S,T>(src);
 
     /// <summary>
+    /// Vectorized conversion
+    /// </summary>
+    /// <typeparam name="S">The source type</typeparam>
+    /// <typeparam name="T">The target type</typeparam>
+    /// <param name="src">The source array</param>
+    public static IReadOnlyList<T> convert<S,T>(IReadOnlyList<S> src)
+        => ClrConversion.convert<S,T>(src);
+
+    /// <summary>
     /// Constructs a generic integer
     /// </summary>
-    /// <param name="value">The source value</param>
+    /// <param name="src">The source value</param>
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]   
-    public static intg<T> intg<T>(T value)
+    public static intg<T> intg<T>(T src)
         where T : struct, IEquatable<T>
-            => new intg<T>(value);
+            => new intg<T>(src);
 
+    [MethodImpl(Inline)]   
+    public static intg<T> enumg<T>(Enum src)
+        where T : struct, IEquatable<T>
+            => (T)Convert.ChangeType(src, type<T>());    
+    
     /// <summary>
     /// Constructs a generic number
     /// </summary>

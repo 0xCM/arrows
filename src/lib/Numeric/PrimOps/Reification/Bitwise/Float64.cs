@@ -14,12 +14,7 @@ namespace Z0
     partial class PrimOps { partial class Reify {
         public readonly partial struct Bitwise : 
             Bitwise<double> 
-
-
         {
-            // !! double
-            // !! -------------------------------------------------------------
-
             [MethodImpl(Inline)]   
             public double and(double lhs, double rhs)
                 => (long)lhs & (long)rhs;
@@ -44,9 +39,17 @@ namespace Z0
             public double rshift(double lhs, int rhs)
                 => (long)lhs >> rhs;
 
+            /// <summary>
+            /// Renders a number as a base-2 formatted string
+            /// </summary>
+            /// <param name="src">The source number</param>
+            [MethodImpl(Inline)]
+            public string bitchars(double src)
+                => bitchars(BitConverter.DoubleToInt64Bits(src));
+
             [MethodImpl(Inline)]   
             public BitString bitstring(double src) 
-                => BitString.define(src);
+                => BitString.define(Bits.parse(bitchars(src)));
 
             /// <summary>
             /// Interprets the source as an array of bytes

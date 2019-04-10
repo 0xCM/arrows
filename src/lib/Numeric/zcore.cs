@@ -22,9 +22,46 @@ partial class zcore
     /// <param name="pos">The bit position</param>
     /// <typeparam name="T">The underlying integral type</typeparam>
     [MethodImpl(Inline)]   
-    public static bit bit<T>(intg<T> x, int pos)
+    public static bit bitat<T>(intg<T> x, int pos)
         where T : struct, IEquatable<T>
             => Bits.bit(x, pos);
+
+    /// <summary>
+    /// Constructs a bit vector from a bit parameter array
+    /// </summary>
+    /// <param name="src">The bit source</param>
+
+    [MethodImpl(Inline)]   
+    public static BitVector<N> bitvector<N>(params bit[] src)
+        where N : TypeNat, new()
+            => BitVector.define<N>(src);
+
+    /// <summary>
+    /// Constructs a bit vector from a parameter array of integers
+    /// </summary>
+    /// <param name="src">The bit source</param>
+    [MethodImpl(Inline)]   
+    public static BitVector<N> bitvector<N>(params uint[] src)
+        where N : TypeNat, new()
+            => BitVector.define<N>(map(src, x => x == 0 ? bit.off() : bit.on()));
+
+    /// <summary>
+    /// Constructs a bit vector of natural length 8 from a parameter array of integers
+    /// where there constructed vector is left-padded with zeros should there be
+    /// fewer than 8 bits specified
+    /// </summary>
+    /// <param name="src">The bit source</param>
+    [MethodImpl(Inline)]   
+    public static BitVector<N8> bytevector(params uint[] src)
+        => BitVector.define<N8>(map(src, x => x == 0 ? bit.off() : bit.on()));
+
+    /// <summary>
+    /// Defines a bitvector of natural length 8 from a parameter array of binary digits
+    /// </summary>
+    /// <param name="src">The source digits</param>
+    [MethodImpl(Inline)]   
+    public static BitVector<N8> bytevector(params BinaryDigit[] src)
+        => BitVector.define<N8>(map(src, x => x == 0 ? bit.off() : bit.on()));
 
     /// <summary>
     /// Computes the integral divisors of a number, exluding 1 and the number itself

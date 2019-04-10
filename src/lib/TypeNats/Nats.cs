@@ -2,7 +2,6 @@ namespace Z0
 {
     using N1024 = NatSeq<N1,N0,N2,N4>;
     using N2048 = NatSeq<N2,N0,N4,N8>;
-    using N10 = NatSeq<N1,N0>;
     using N11 = NatSeq<N1,N1>;
     using N12 = NatSeq<N1,N2>;
     using N13 = NatSeq<N1,N3>;
@@ -71,6 +70,25 @@ namespace Z0
 
         public static N2048 N2048 = default;
 
+    }
+
+    public readonly struct N10 : NatSeq<N10>
+    {
+        public static readonly N10 Rep = default;
+
+        public static readonly NatSeq<N1,N0> Seq = default;
+
+        public TypeNat rep => Rep;
+
+        public NatSeq seq => Seq;
+
+        public ulong value => Seq.value;
+
+        public byte[] digits() => Seq.digits();
+
+        public string format() => Seq.format();
+
+        public override string ToString() => format();
     }
 
 
