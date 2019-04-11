@@ -120,6 +120,16 @@ public static partial class zcore
         => new T[len];
 
     /// <summary>
+    /// Reflects variable number of arguments from a parms array back as
+    /// a standard array
+    /// </summary>
+    /// <param name="src">The element source</param>
+    /// <typeparam name="T">The array element type</typeparam>
+    [MethodImpl(Inline)]
+    public static T[] array<T>(params T[] src)
+         => src;
+
+    /// <summary>
     /// Constructs an array from a stream
     /// </summary>
     /// <param name="src">The source stream</param>
@@ -173,16 +183,6 @@ public static partial class zcore
     /// <param name="src">The source arrays</param>
     public static T[] concat<T>(IEnumerable<T[]> src)
         => Array.concat(src);
-
-    /// <summary>
-    /// Reflects variable number of arguments from a parms array back as
-    /// a standard array
-    /// </summary>
-    /// <param name="src">The element source</param>
-    /// <typeparam name="T">The array element type</typeparam>
-    [MethodImpl(Inline)]
-    public static T[] array<T>(params T[] src)
-         => src;
 
     /// <summary>
     /// Constructs an N-array from a parameter array
@@ -362,7 +362,7 @@ public static partial class zcore
     /// <param name="value">The value to replicate</param>
     /// <param name="count">The number of replicants</param>
     /// <typeparam name="T">The replicant type</typeparam>
-    /// <returns></returns>
+    [MethodImpl(Inline)]   
     public static T[] repeat<T>(T value, ulong count)
     {
         var dst = array<T>((uint)count);
@@ -371,21 +371,13 @@ public static partial class zcore
         return dst;            
     }
 
+    [MethodImpl(Inline)]   
     public static T[] repeat<T>(T value, int count)
-    {
-        var dst = array<T>(count);
-        for(var idx = 0; idx < count; idx ++)
-            dst[idx] = value;
-        return dst;            
-    }
+        => repeat(value, (ulong)count);
 
+    [MethodImpl(Inline)]   
     public static T[] repeat<T>(T value, uint count)
-    {
-        var dst = array<T>(count);
-        for(var idx = 0; idx < count; idx ++)
-            dst[idx] = value;
-        return dst;            
-    }
+        => repeat(value, (ulong)count);
 
     /// <summary>
     /// Replicates a given value a specified number of times
@@ -407,7 +399,6 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static IEnumerable<T> reverse<T>(IEnumerable<T> src)
         => src.Reverse();
-
 
     /// <summary>
     /// Filters the input sequence via a supplied predicate

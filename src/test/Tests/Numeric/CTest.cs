@@ -15,20 +15,21 @@ namespace Z0.Tests
     using static zcore;
     using static ztest;
 
+    using Z0.Testing;
     
     [DisplayName("c")]
-    public class CTests
+    public class CTests : UnitTest<CTests>
     {
         static void divRemTest<T>(int count, T min, T max)
             where T : struct, IEquatable<T>
         {
-            var src1 = Rand.reals<T>(min, max).Take(count).Freeze();
-            var src2 = Rand.reals<T>(min, max).Where(x => x.neq(x.zero)).Take(count).Freeze();
-            var inputs = zip(src1,src2).Freeze();
-            var expect = map(inputs, x => x.left.divrem(x.right)).Freeze();
-            var actual = map(inputs, x => x.left.divrem(x.right)).Freeze();
+            var rand = Context.Random<T>();
+            var src1 = reals(rand.stream(min, max).Take(count).Freeze());
+            var src2 = reals(rand.stream(min, max)).Where(x => x.neq(x.zero)).Take(count).Freeze();
+            var inputs = zip(src1,src2);
+            var expect = map(inputs, x => x.left.divrem(x.right));
+            var actual = map(inputs, x => x.left.divrem(x.right));
                 
-
             iter(inputs.Count, i => 
                 require(actual[i].q == expect[i].q && actual[i].r == expect[i].r, 
                     inputs[i], expect[i], actual[i]));
@@ -51,7 +52,8 @@ namespace Z0.Tests
         }
         public static void absTests()
         {
-            var src = Rand.primal(-250000,250000).Take(500).Freeze();
+            var rand = Context.Random<int>();
+            var src = rand.stream(-250000,250000).Take(500).Freeze();
             var inputs = C.int32.define(src).Freeze();
             iter(inputs, x => absTest<C.int32>(x, Math.Abs(x)));            
 

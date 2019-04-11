@@ -11,6 +11,13 @@ namespace Z0
 
     using static zcore;
 
+    public interface Bit<S> : IComparable<S>, Equatable<S>, Formattable
+        where S : Bit<S>, new()
+    {
+
+    }
+
+
 
     /// <summary>
     /// Represents a numeric or logical bit
@@ -66,9 +73,36 @@ namespace Z0
             => src.value ? 1ul : 0ul;
 
         [MethodImpl(Inline)]
+        public static implicit operator bit(sbyte src)
+            => src == 0 ? Off : On;
+
+        [MethodImpl(Inline)]
+        public static implicit operator bit(byte src)
+            => src == 0 ? Off : On;
+
+        [MethodImpl(Inline)]
+        public static implicit operator bit(short src)
+            => src == 0 ? Off : On;
+
+        [MethodImpl(Inline)]
+        public static implicit operator bit(ushort src)
+            => src == 0 ? Off : On;
+
+        [MethodImpl(Inline)]
         public static implicit operator bit(int src)
             => src == 0 ? Off : On;
 
+        [MethodImpl(Inline)]
+        public static implicit operator bit(uint src)
+            => src == 0 ? Off : On;
+
+        [MethodImpl(Inline)]
+        public static implicit operator bit(long src)
+            => src == 0 ? Off : On;
+
+        [MethodImpl(Inline)]
+        public static implicit operator bit(ulong src)
+            => src == 0 ? Off : On;
 
         [MethodImpl(Inline)]
         public static implicit operator BinaryDigit(bit src)

@@ -21,13 +21,15 @@ namespace Z0.Tests
 
 
     [DisplayName(Path)]
-    public class UInt64And : BinaryPrimOpsTest<operand>
+    public class UInt64And : BinaryPrimOpsTest<UInt64And,operand>
     {        
         public const string Path = P.primops + P.uint64 + P.and;
 
         public UInt64And()
-            : base(0,500000)
-                {}
+            : base(Defaults.UInt64Range)
+        {
+            
+        }
 
         public override void Verify()
             => base.Verify();
@@ -40,13 +42,8 @@ namespace Z0.Tests
             return dst;
         }
 
-        public override IReadOnlyList<operand> Discretized()
+        public override IReadOnlyList<operand> Compute()
             => fuse(LeftSrc,RightSrc, Prim.and);
-
-        public override IReadOnlyList<operand> Vectorized()
-            => fuse(LeftSrc,RightSrc, Prim.and);
-
-
     } 
 
 }

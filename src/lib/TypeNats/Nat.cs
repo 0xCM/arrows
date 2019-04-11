@@ -64,6 +64,10 @@ namespace Z0
         public static NatSeq reflect(uint value)        
             => reflect(digits(value));
 
+        public static int require<N>(int value)
+            where N : TypeNat, new()
+                => nati<N>() == value ? value : throw new Exception();
+
         /// <summary>
         /// Consstructs the canonical sequence representatives for the natural numbers
         /// within an inclusive range

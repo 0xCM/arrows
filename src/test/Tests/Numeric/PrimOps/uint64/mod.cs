@@ -21,13 +21,15 @@ namespace Z0.Tests
 
 
     [DisplayName(Path)]
-    public class UInt64Mod : BinaryPrimOpsTest<operand>
+    public class UInt64Mod : BinaryPrimOpsTest<UInt64Mod,operand>
     {        
         public const string Path = P.primops + P.uint64 + P.mod;
 
         public UInt64Mod()
-            : base(0,500000)
-                {}
+            : base(Defaults.UInt64Range)
+        {
+            
+        }
 
         public override void Verify()
             => base.Verify();
@@ -40,10 +42,8 @@ namespace Z0.Tests
             return dst;
         }
 
-        public override IReadOnlyList<operand> Discretized()
-            => fuse(LeftSrc,RightSrc, Prim.mod);
 
-        public override IReadOnlyList<operand> Vectorized()
+        public override IReadOnlyList<operand> Compute()
             => Prim.mod(LeftSrc,RightSrc);
 
 

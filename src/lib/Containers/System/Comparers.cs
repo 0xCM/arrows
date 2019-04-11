@@ -11,8 +11,7 @@ namespace  Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    using static Structures;
-    
+    using static Structures;    
 
     /// <summary>
     /// Reifies an IComparable instance from an ordered value

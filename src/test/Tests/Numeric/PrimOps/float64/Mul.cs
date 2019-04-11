@@ -19,17 +19,17 @@ namespace Z0.Tests
     using operand = System.Double;
     using P = Paths;
 
-
     [DisplayName(Path)]
-    public class ClrFloat64Mul : BinaryPrimOpsTest<operand>
+    public class Float64Mul : BinaryPrimOpsTest<Float64Mul,operand>
     {
-
         public const string Path = P.primops + P.float64 + P.mul;
 
-        public ClrFloat64Mul()
-            : base(-250000,250000)
-                {}
-        
+        public Float64Mul()
+            : base(Defaults.Float64Range)
+        {
+
+        }   
+
         public override void Verify()
             => base.Verify();
 
@@ -41,13 +41,7 @@ namespace Z0.Tests
             return dst;
         }
 
-        public override IReadOnlyList<operand> Discretized()
-            => fuse(LeftSrc,RightSrc, Prim.mul);
-
-        public override IReadOnlyList<operand> Vectorized()
+        public override IReadOnlyList<operand> Compute()
             => Prim.mul(LeftSrc,RightSrc);
-
-
     } 
-
 }

@@ -21,7 +21,7 @@ namespace Z0
     public readonly struct int32 : Structures.Integer<analog, primitive>, Formattable
     {
     
-        static readonly Operative.PrimOps<primitive> Prim = primops.type<primitive>();
+        static readonly Operative.PrimOps<primitive> Prim = primops.typeops<primitive>();
         
         static readonly NumberInfo<primitive> NumInfo = Prim.numinfo;
 

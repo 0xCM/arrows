@@ -20,11 +20,11 @@ namespace Z0.Tests
     using P = Paths;
 
     [DisplayName(Path)]
-    public class UInt64Mul : BinaryPrimOpsTest<operand>
+    public class UInt64Mul : BinaryPrimOpsTest<UInt64Mul,operand>
     {        
         public const string Path = P.primops + P.uint64 + P.mul;
         public UInt64Mul()
-            : base(0,500000)
+            : base(Defaults.UInt64Range)
             {}
 
         public override void Verify()
@@ -38,10 +38,7 @@ namespace Z0.Tests
             return dst;
         }
 
-        public override IReadOnlyList<operand> Discretized()
-            => fuse(LeftSrc,RightSrc, Prim.mul);
-
-        public override IReadOnlyList<operand> Vectorized()
+        public override IReadOnlyList<operand> Compute()
             => Prim.mul(LeftSrc,RightSrc);
 
     } 

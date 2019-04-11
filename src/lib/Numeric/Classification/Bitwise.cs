@@ -40,6 +40,12 @@ namespace Z0
             /// <param name="src">The source value</param>
             byte[] bytes(T src);
 
+            /// <summary>
+            /// Interprets the source as an array of bits
+            /// </summary>
+            /// <param name="src">The source value</param>
+            bit[] bits(T src);
+
         }
      
         /// <summary>

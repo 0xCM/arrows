@@ -20,11 +20,11 @@ namespace Z0.Tests
     using P = Paths;
 
     [DisplayName(Path)]
-    public class UInt64Pow : UnaryPrimOpsTest<operand>
+    public class UInt64Pow : UnaryPrimOpsTest<UInt64Pow,operand>
     {        
         public const string Path = P.primops + P.uint64 + P.pow;
         public UInt64Pow()
-            : base(Defaults.UInt64Min,Defaults.UInt64Max)
+            : base(Defaults.UInt64Range)
             {}
 
         public override void Verify()
@@ -33,7 +33,7 @@ namespace Z0.Tests
         public override IReadOnlyList<operand> Baseline()
             => map(PrimSrc, x => RefCalc.pow(x,3));
 
-        public override IReadOnlyList<operand> Vectorized()
+        public override IReadOnlyList<operand> Compute()
             => map(PrimSrc, x => Prim.pow(x,3));
 
     } 

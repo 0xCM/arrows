@@ -22,15 +22,15 @@ namespace Z0.Tests
 
 
     [DisplayName(Path)]
-    public class UInt64Gcd : BinaryPrimOpsTest<operand>
+    public class UInt64Gcd : BinaryPrimOpsTest<UInt64Gcd,operand>
     {        
         public const string Path = P.primops + P.uint64 + P.gcd;
         
         public UInt64Gcd()
-            : base(0,500000, Pow2.T10)
-                {
+            : base(Defaults.UInt64Range, x => x != 0, Pow2.T10)
+        {
 
-                }
+        }
 
         public override void Verify()
             => base.Verify();
@@ -45,11 +45,7 @@ namespace Z0.Tests
         }
 
         [Repeat(1)]
-        public override IReadOnlyList<operand> Discretized()
-            => fuse(LeftSrc,RightSrc, Prim.gcd);
-
-        [Repeat(1)]
-        public override IReadOnlyList<operand> Vectorized()
+        public override IReadOnlyList<operand> Compute()
             => Prim.gcd(LeftSrc,RightSrc);
 
 

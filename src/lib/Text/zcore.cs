@@ -13,14 +13,12 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Reflection;
 
-
 using Z0;
 using static Z0.Bibliography;
 using static zcore;
 using static Z0.Traits;
 using static Z0.ReflectionFlags;
 
-// safelight auto glass 417 powerhouse 75071 972-379-2704 1:00 friday
 partial class zcore
 {
 
@@ -41,35 +39,6 @@ partial class zcore
     public static string format(Formattable first, params Formattable[] rest)
         => first.format() + append(rest.Select(x => x.format()));
 
-    /// <summary>
-    /// Concatenates an arbitrary number of strings
-    /// </summary>
-    /// <param name="src">The strings to be concatenated</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static string append(params string[] src) 
-        => string.Concat(src);
-    
-    /// <summary>
-    /// Concatenates an arbitrary number of string representations
-    /// </summary>
-    /// <param name="src">The strings to be concatenated</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static string append<T>(IEnumerable<T> src) 
-        => string.Concat(src);
-
-    /// <summary>
-    /// Concatenates an arbitrary number of string representations,
-    /// separated by a specified delimiter
-    /// </summary>
-    /// <param name="delimiter">The separator</param>
-    /// <param name="src">The values for which string representations will
-    /// be formed</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static string append<T>(string delimiter, IEnumerable<T> src) 
-        => string.Join(delimiter, src.Select(x => x.ToString()));
 
     /// <summary>
     /// Renders an end-of-line marker
@@ -159,191 +128,12 @@ partial class zcore
     public static string rpadZ(string src, uint width)
         => src.PadRight((int)width,'0');
 
-    /// <summary>
-    /// Renders the supplied value to the console followed by a carriage return
-    /// </summary>
-    /// <param name="x">The value to reveal</param>
-    [MethodImpl(Inline)]   
-    public static void print<T>(T x)
-        => Console.WriteLine(x);
-
-    /// <summary>
-    /// Renders the supplied value to the console with no carriage return
-    /// </summary>
-    /// <param name="x"></param>
-    /// <typeparam name="T"></typeparam>
-    [MethodImpl(Inline)]   
-    public static void write<T>(T x)
-        => Console.Write(x);
-
-    /// <summary>
-    /// Writes an empty line to the console
-    /// </summary>
-    /// <param name="x">The value to reveal</param>
-    [MethodImpl(Inline)]   
-    public static void print()
-        => Console.WriteLine();
-
-    /// <summary>
-    /// Invokes the print operation for each item in the sequence
-    /// </summary>
-    /// <param name="x">The value to reveal</param>
-    [MethodImpl(Inline)]   
-    public static void printeach<T>(IEnumerable<T> items)
-        => iter(items, print) ;
-
-
-    /// <summary>
-    /// Prints a separator between items an emits and EOL after the last item
-    /// </summary>
-    /// <param name="items">The items to render</param>
-    /// <param name="sep">The separator</param>
-    /// <typeparam name="T">The item type</typeparam>
-    [MethodImpl(Inline)]   
-    public static void printline<T>(IEnumerable<T> items, string sep = ",")
-    {
-        var written = false;
-        foreach(var item in items)
-        {
-            if(!written)
-                written = true;
-            else
-                Console.Write(sep);
-
-            Console.Write($"{item}");
-        }
-        Console.WriteLine();
-    }
-
-    /// <summary>
-    /// Invokes the print operation for each item in the sequence
-    /// </summary>
-    /// <param name="x">The value to reveal</param>
-    [MethodImpl(Inline)]   
-    public static void printeach<T>(string msg, IEnumerable<T> items)
-    {
-        print(msg);
-        printeach(items);
-    }
-
-
-    /// <summary>
-    /// Invokes the print operation for each item in the sequence
-    /// </summary>
-    /// <param name="x">The value to reveal</param>
-    [MethodImpl(Inline)]   
-    public static void print<T>(string msg, IEnumerable<T> items)
-    {
-        var text = append(string.Join(',',items));
-        print($"{msg}: {text}");       
-    }
-
-
-    public static void colorize(ConsoleColor color, Action action)
-    {
-        var fg = Console.ForegroundColor;
-        Console.ForegroundColor = color;
-        action();
-        Console.ForegroundColor = fg;
-    }
-
-    /// <summary>
-    /// Emits an information-level message
-    /// </summary>
-    /// <param name="msg">The message to emit</param>
-    /// <param name="member">The calling member</param>
-    public static void inform(object msg, [CallerMemberName] string member = null)
-        => colorize(ConsoleColor.Green, () => print($"{member}: {msg}"));
-
-    /// <summary>
-    /// Emits a highlighted information-level message
-    /// </summary>
-    /// <param name="msg">The message to emit</param>
-    /// <param name="member">The calling member</param>
-    public static void hilite(object msg, [CallerMemberName] string member = null)
-        => colorize(ConsoleColor.Blue, () => print($"{member}: {msg}"));
-
-    /// <summary>
-    /// Emits a verbose-level message
-    /// </summary>
-    /// <param name="msg">The message to emit</param>
-    /// <param name="member">The calling member</param>
-    public static void babble(object msg, [CallerMemberName] string member = null)
-        => colorize(ConsoleColor.DarkGray, () => print($"{member}: {msg}"));
-
-    /// <summary>
-    /// Emits an error-level message
-    /// </summary>
-    /// <param name="msg">The message to emit</param>
-    /// <param name="member">The calling member</param>
-    public static void error(object msg, [CallerMemberName] string member = null)
-        => colorize(ConsoleColor.Red, () => print($"{member}: {msg}"));
-
     static readonly ConcurrentDictionary<string, Regex> _regexCache
         = new ConcurrentDictionary<string, Regex>();
-
-    static readonly NumberStyles NumberStyleOptions =
-        NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign |
-        NumberStyles.AllowCurrencySymbol | NumberStyles.AllowThousands;
-
-    static readonly HashSet<string> TrueValues
-        = new HashSet<string>(new[] { "true", "t", "1", "y", "+" });
-
-    static readonly HashSet<string> FalseValues
-        = new HashSet<string>(new[] { "false", "f", "0", "n", "-" });
-
-    /// <summary>
-    /// Indexes default set of primitive parsers
-    /// </summary>
-    static IDictionary<Type, Func<string, object>> parsers = new Dictionary<Type, Func<string, object>>
-    {
-        [typeof(Date)] = s => Date.Parse(s),
-
-        [typeof(Date?)] = s => TryParseDate(s),
-
-        [typeof(DateTime)] = s => DateTime.Parse(s),
-
-        [typeof(DateTime?)] = s => TryParseDateTime(s),
-
-        [typeof(Guid)] = s => Guid.Parse(s),
-
-        [typeof(Guid?)] = s => TryParseGuid(s),
-
-        [typeof(decimal)] = s => decimal.Parse(s, NumberStyleOptions, CultureInfo.InvariantCulture),
-
-        [typeof(decimal?)] = s => TryParseDecimal(s),
-
-        [typeof(TimeSpan)] = s => TimeSpan.Parse(s),
-
-        [typeof(TimeSpan?)] = s => TryParseTimeSpan(s),
-
-        [typeof(bool)] = s => ParseBool(s),
-
-        [typeof(bool?)] = s => isBlank(s) ? null : (bool?)ParseBool(s),
-
-        [typeof(int)] = s => int.Parse(s),
-
-        [typeof(int?)] = s => TryParseInt32(s),
-
-        [typeof(short)] = s => short.Parse(s),
-
-        [typeof(short?)] = s => TryParseInt16(s),
-
-        [typeof(long)] = s => long.Parse(s),
-
-        [typeof(long?)] = s => TryParseInt64(s),
-
-        [typeof(double)] = s => double.Parse(s),
-
-        [typeof(double?)] = s => TryParseDouble(s),
-
-        [typeof(string)] = s => s
-    };
-
+    
     /// <summary>
     /// Produces the empty string
     /// </summary>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string emptys()
         => string.Empty;
@@ -351,7 +141,6 @@ partial class zcore
     /// <summary>
     /// Produces a left parenthesis character
     /// </summary>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string lparen()
         => "(";
@@ -520,7 +309,6 @@ partial class zcore
     /// <param name="tail">The last part of the string</param>
     /// <param name="onlyIfMissing">Indicated whether the head should be suffixed with the tail only if the head
     /// does not end with the tail</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string append(string head, string tail, bool onlyIfMissing)
         => onlyIfMissing
@@ -549,7 +337,6 @@ partial class zcore
     /// Shorthand for the <see cref="string.IsNullOrEmpty(string)"/> method
     /// </summary>
     /// <param name="subject">The string to evaluate</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static bool isBlank(string subject)
         => String.IsNullOrWhiteSpace(subject);
@@ -558,7 +345,6 @@ partial class zcore
     /// Shorthand for the negation of the <see cref="string.IsNullOrEmpty(string)"/> method
     /// </summary>
     /// <param name="subject">The string to evaluate</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static bool isNotBlank(string subject)
         => not(isBlank(subject));
@@ -586,7 +372,6 @@ partial class zcore
     /// </summary>
     /// <param name="subject">The subject string</param>
     /// <param name="replace">The replacement value if input is not blank</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string ifNotBlank(string subject, string replace)
         => isNotBlank(subject) ? replace : subject;
@@ -596,7 +381,6 @@ partial class zcore
     /// </summary>
     /// <param name="head">The first part of the string</param>
     /// <param name="tail">The last part of the string</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string appendl(string head, string tail)
         => head + Environment.NewLine + tail;
@@ -614,7 +398,6 @@ partial class zcore
     /// If input is not blank, returns the input; otherwise, returns an empty string or a supplied marker
     /// </summary>
     /// <param name="subject">The subject</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     static string toString(string subject, string ifBlank = null)
         => isNotBlank(subject) ? subject : ifBlank ?? String.Empty;
@@ -624,9 +407,8 @@ partial class zcore
     /// </summary>
     /// <typeparam name="T">The subject type</typeparam>
     /// <param name="subject">The subject</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
-    public static string show<T>(T subject, string ifMissing)
+    public static string toString<T>(T subject, string ifMissing)
         => (subject is string)
             ? toString(subject as string, ifMissing)
             : (subject != null ? subject.ToString() : ifMissing ?? emptys());
@@ -643,50 +425,6 @@ partial class zcore
             ? toString(subject as string, emptys())
             : (subject != null ? subject.ToString() : emptys());
 
-    /// <summary>
-    /// If subject is not null, invokes its ToString() method; otherwise, returns an empty string or a supplied marker
-    /// </summary>
-    /// <typeparam name="T">The subject type</typeparam>
-    /// <param name="subject">The subject</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static string toString<T>(T subject, string ifMissing = null)
-        => (subject is string)
-            ? toString(subject as string, ifMissing)
-            : (subject != null ? subject.ToString() : ifMissing ?? String.Empty);
-
-    /// <summary>
-    /// Functional equivalalent of <see cref="string.Join(string, object[])"/>
-    /// </summary>
-    /// <param name="values">The values to be rendered as text</param>
-    /// <param name="sep">The item delimiter</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static string join<T>(string sep, IEnumerable<T> values)
-        => string.Join(sep, values);
-
-    // public static string concat(IEnumerable<object> items, string separator = ",")
-    //     => string.Join(separator, items);
-
-    /// <summary>
-    /// Does what you would expect when supplying a sequence of characters to a 
-    /// concatenation function (!)
-    /// </summary>
-    /// <param name="chars">The characters to concatenate</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static string concat(IEnumerable<char> chars)
-        => new string(chars.ToArray());
-
-    /// <summary>
-    /// Does what you would expect when supplying a sequence of characters to a 
-    /// concatenation function (!)
-    /// </summary>
-    /// <param name="chars">The characters to concatenate</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static string concat(this char[] chars)
-        => new string(chars);
 
     
     /// <summary>
@@ -813,19 +551,17 @@ partial class zcore
         => string.Join(separator, content);
 
     /// <summary>
-    /// Renders a sequence of items as a comma-separated list of values
+    /// Renders a stream as a comma-separated list of values
     /// </summary>
-    /// <param name="content"></param>
+    /// <param name="src">The source items</param>
     [MethodImpl(Inline)]
-    public static string csv<T>(IEnumerable<T> content)
-        => string.Join(',', content);
-
-
+    public static string csv<T>(IEnumerable<T> src)
+        => string.Join(',', src);
 
     /// <summary>
     /// Renders each item from a sequence as list of values, delimited by end-of-line
     /// </summary>
-    /// <param name="content">The source items</param>
+    /// <param name="content">The content to enclose</param>
     [MethodImpl(Inline)]
     public static string eol(IEnumerable<object> content)
         => string.Join(eol(), content);
@@ -833,27 +569,23 @@ partial class zcore
     /// <summary>
     /// Renders a content array as a space-separated list of values
     /// </summary>
-    /// <param name="content"></param>
+    /// <param name="content">The content to enclose</param>
     [MethodImpl(Inline)]
     public static string space(params object[] content)
         => string.Join(' ', content);
-
     
     /// <summary>
     /// Encloses text between '[' and ']' characters
     /// </summary>
-    /// <param name="content"></param>
-    /// <returns></returns>
+    /// <param name="content">The content to enclose</param>
     [MethodImpl(Inline)]
     public static string bracket(string content)
         => enclose(content, lbracket(), rbracket());
 
-
     /// <summary>
     /// Encloses text between less than and greater than characters
     /// </summary>
-    /// <param name="content"></param>
-    /// <returns></returns>
+    /// <param name="content">The content to enclose</param>
     [MethodImpl(Inline)]
     public static string angled(string content)
         => wrap("<", content, ">");
@@ -862,7 +594,6 @@ partial class zcore
     /// Produces a string containing a specified number of tab characters
     /// </summary>
     /// <param name="count">The number of tab characters the output string should contain</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string tabs(int count)
         => count == 0
@@ -908,7 +639,6 @@ partial class zcore
     /// <summary>
     /// Separates each item with a space
     /// </summary>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string spaced(IEnumerable<object> items)
         => join(space(), items);
@@ -916,7 +646,6 @@ partial class zcore
     /// <summary>
     /// Removes a substring from the subject
     /// </summary>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string remove(string text, string substring)
         => text.Replace(substring, String.Empty);
@@ -933,81 +662,75 @@ partial class zcore
     /// Encloses the potential text in quotation marks
     /// </summary>
     /// <param name="text">The text to be quoted</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string enquote(Option<string> text)
         => enquote(text ? text.ValueOrDefault() ?? String.Empty : String.Empty);
 
-
     /// <summary>
     /// Trims leading characters when matched
     /// </summary>
-    /// <param name="text">The text to manipulate</param>
+    /// <param name="src">The text to manipulate</param>
     /// <param name="chars">The leading characters to remove</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
-    public static string ltrim(string text, params char[] chars)
-        => isBlank(text) ? string.Empty : text.TrimStart(chars);
+    public static string ltrim(string src, params char[] chars)
+        => isBlank(src) ? string.Empty : src.TrimStart(chars);
 
     /// <summary>
     /// Trims trailing characters when matched
     /// </summary>
-    /// <param name="text">The text to manipulate</param>
+    /// <param name="src">The text to manipulate</param>
     /// <param name="chars">The leading characters to remove</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
-    public static string rtrim(string text, params char[] chars)
-        => isBlank(text) ? string.Empty : text.TrimEnd(chars);
+    public static string rtrim(string src, params char[] chars)
+        => isBlank(src) ? string.Empty : src.TrimEnd(chars);
 
     /// <summary>
     /// Splits the string into delimited and nonempy parts
     /// </summary>
-    /// <param name="text">The text to split</param>
+    /// <param name="src">The text to split</param>
     /// <param name="c">The delimiter</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
-    public static IReadOnlyList<string> split(string text, char c)
-        => isBlank(text)
+    public static IReadOnlyList<string> split(string src, char c)
+        => isBlank(src)
         ? array<string>()
-        : text.Split(new char[] { c }, StringSplitOptions.RemoveEmptyEntries);
+        : src.Split(new char[] { c }, StringSplitOptions.RemoveEmptyEntries);
 
     /// <summary>
     /// Returns the substring [0,chars-1]
     /// </summary>
     /// <returns></returns>
     [MethodImpl(Inline)]
-    public static string left(string text, int chars)
-        => isBlank(text)
-        ? text
-        : text.Substring(0, text.Length < chars ? text.Length : chars);
+    public static string left(string src, int chars)
+        => isBlank(src)
+        ? src
+        : src.Substring(0, src.Length < chars ? src.Length : chars);
 
     /// <summary>
     /// Returns the substring [0,chars-1]
     /// </summary>
-    /// <returns></returns>
     [MethodImpl(Inline)]
-    public static string reverse(string text)
+    public static string reverse(string src)
     {
-        if (isBlank(text))
-            return text;
+        if (isBlank(src))
+            return src;
 
-        var dst = new char[text.Length];
+        var dst = new char[src.Length];
         int j = 0;
-        for (var i = text.Length - 1; i >= 0; i--)
-            dst[j++] = text[i];
+        for (var i = src.Length - 1; i >= 0; i--)
+            dst[j++] = src[i];
         return new string(dst);
     }
 
     [MethodImpl(Inline)]
-    public static string right(string text, int chars)
+    public static string right(string src, int chars)
     {
-        if (isBlank(text))
-            return text;
+        if (isBlank(src))
+            return src;
 
-        var len = text.Length < chars ? text.Length : chars;
+        var len = src.Length < chars ? src.Length : chars;
         var dst = new char[len];
         for (var i = 0; i < len; i++)
-            dst[i] = text[text.Length - len + i];
+            dst[i] = src[src.Length - len + i];
         return new string(dst);
     }
 
@@ -1020,304 +743,4 @@ partial class zcore
     [MethodImpl(Inline)]
     public static bool equals(string x, string y)
         => ifBlank(x, string.Empty).Equals(y, StringComparison.OrdinalIgnoreCase);
-
-    /// <summary>
-    /// Computes the lenth of the string
-    /// </summary>
-    /// <param name="s"></param>
-    /// <returns></returns>
-    public static int len(string s)
-        => s.Length;
-
-    public static string trim(string s)
-        => s?.Trim() ?? string.Empty;
-
-
-    /// <summary>
-    /// Helper to parse a boolean value in a more reasonable fashion than the intrinsic <see cref="bool.Parse(string)"/> method
-    /// </summary>
-    /// <param name="s">The text to parse</param>
-    /// <returns></returns>
-    static bool ParseBool(string s)
-    {
-        var key = s.ToLower();
-        if (TrueValues.Contains(key))
-            return true;
-        else if (FalseValues.Contains(key))
-            return false;
-        else
-            throw new ArgumentException($"Could not interpret {s} as a boolean value");
-    }
-
-    /// <summary>
-    /// Parses an <see cref="Int32"/> value if possible, otherwise returns null
-    /// </summary>
-    /// <param name="s">The text to parse</param>
-    /// <returns></returns>
-    static int? TryParseInt32(string s)
-    {
-        if (Int32.TryParse(s, out int result))
-            return result;
-        else
-            return null;
-    }
-
-    /// <summary>
-    /// Parses an <see cref="Int64"/> value if possible, otherwise returns null
-    /// </summary>
-    /// <param name="s">The text to parse</param>
-    /// <returns></returns>
-    static long? TryParseInt64(string s)
-    {
-        if (Int64.TryParse(s, out long result))
-            return result;
-        else
-            return null;
-    }
-
-    /// <summary>
-    /// Parses a <see cref="Byte"/> value if possible, otherwise returns null
-    /// </summary>
-    /// <param name="s">The text to parse</param>
-    /// <returns></returns>
-    static byte? TryParseUInt8(string s)
-    {
-        var result = (byte)0;
-        if (Byte.TryParse(s, out result))
-            return result;
-        else
-            return null;
-    }
-
-    /// <summary>
-    /// Parses a <see cref="Date"/> value if possible, otherwise returns null
-    /// </summary>
-    /// <param name="s">The text to parse</param>
-    /// <returns></returns>
-    static Date? TryParseDate(string s)
-    {
-        if (Date.TryParse(s, out Date result))
-            return result;
-        else
-            return null;
-    }
-
-    /// <summary>
-    /// Parses a <see cref="DateTime"/> value if possible, otherwise returns null
-    /// </summary>
-    /// <param name="s">The text to parse</param>
-    /// <returns></returns>
-    static DateTime? TryParseDateTime(string s)
-    {
-        if (DateTime.TryParse(s, out DateTime result))
-            return result;
-        else
-            return null;
-    }
-
-    /// <summary>
-    /// Parses a <see cref="Guid"/> value if possible, otherwise returns null
-    /// </summary>
-    /// <param name="s">The text to parse</param>
-    /// <returns></returns>
-    static Guid? TryParseGuid(string s)
-    {
-        if (Guid.TryParse(s, out Guid result))
-            return result;
-        else
-            return null;
-    }
-
-    /// <summary>
-    /// Parses an <see cref="Int16"/> value if possible, otherwise returns null
-    /// </summary>
-    /// <param name="s">The text to parse</param>
-    /// <returns></returns>
-    static Int16? TryParseInt16(string s)
-    {
-        if (Int16.TryParse(s, out Int16 result))
-            return result;
-        else
-            return null;
-    }
-
-    /// <summary>
-    /// Parses a <see cref="Double"/> value if possible, otherwise returns null
-    /// </summary>
-    /// <param name="s">The text to parse</param>
-    /// <returns></returns>
-    static double? TryParseDouble(string s)
-    {
-        if (double.TryParse(s, out double result))
-            return result;
-        else
-            return null;
-    }
-
-    /// <summary>
-    /// Parses a <see cref="TimeSpan"/> value if possible, otherwise returns null
-    /// </summary>
-    /// <param name="s">The text to parse</param>
-    /// <returns></returns>
-    static TimeSpan? TryParseTimeSpan(string s)
-    {
-        if (TimeSpan.TryParse(s, out TimeSpan result))
-            return result;
-        else
-            return null;
-    }
-
-    /// <summary>
-    /// Parses a <see cref="decimal"/> value if possible, otherwise returns null
-    /// </summary>
-    /// <param name="s">The text to parse</param>
-    /// <returns></returns>
-    static decimal? TryParseDecimal(string s)
-    {
-        if (decimal.TryParse(s, NumberStyleOptions, CultureInfo.InvariantCulture, out decimal result))
-            return result;
-        else
-            return null;
-    }
-
-    /// <summary>
-    /// Retrieves the value of the identified field
-    /// </summary>
-    /// <typeparam name="T">The value type</typeparam>
-    /// <param name="o">The object on which the field is defined</param>
-    /// <param name="fieldName">The name of the field</param>
-    /// <returns></returns>
-    static T GetDeclaredFieldValue<T>(object o, string fieldName)
-    {
-        var f = o.GetType().GetField(fieldName, BF_DeclaredInstance);
-        return (T)(f != null ? f.GetValue(o) : null);
-    }
-
-    /// <summary>
-    /// Determines whether the supplied value conforms to the pattern encoded by a regular expression
-    /// </summary>
-    /// <param name="value">The test value</param>
-    /// <param name="regex">The regular expression</param>
-    /// <returns></returns>
-    [DebuggerStepThrough]
-    public static Option<string> validate(string value, Regex regex, Action<string> error = null)
-    {
-        if (not(regex.Match(value).Success))
-        {
-            error?.Invoke($"The value '{value}' did not satisfy the expression {GetDeclaredFieldValue<string>(regex,"pattern")}");
-            return none<string>();
-        }
-        else
-            return value;
-    }
-
-    /// <summary>
-    /// Attempts to parse the supplied value
-    /// </summary>
-    public static object parse(Type t, string s)
-        => parsers[t](s);
-
-    /// <summary>
-    /// Attempts to parse the supplied value
-    /// </summary>
-    /// <typeparam name="T">The target type</typeparam>
-    /// <param name="s">The value to parse</param>
-    /// <returns></returns>
-    public static T parse<T>(string s)
-        => ifvalue(s, _ => (T)parsers[typeof(T)](s), () => default(T));
-
-    /// <summary>
-    /// Attempts to parse the supplied value
-    /// </summary>
-    /// <typeparam name="T">The target type</typeparam>
-    /// <param name="s">The value to parse</param>
-    /// <returns></returns>
-    public static Option<T> try_parse<T>(string s, Action<Exception> error = null)
-    {
-        try
-        {
-            return ifvalue(s, _ => (T)parsers[typeof(T)](s), () => none<T>());
-        }
-        catch (Exception e)
-        {
-            error?.Invoke(e);
-            return none<T>();
-        }
-    }
-
-    
-    /// <summary>
-    /// Returns a parsed value if successful, otherwise none
-    /// </summary>
-    /// <param name="t">The type to be hydrated</param>
-    /// <param name="s">The text to be parsed</param>
-    /// <returns></returns>
-    public static Option<object> try_parse(Type t, string s, Action<Exception> error = null)
-    {
-        try
-        {
-            return s != null  ? parsers[t](s) : null;
-        
-        }
-        catch (Exception e)
-        {
-            error?.Invoke(e);
-            return none<object>();
-        }
-    }
-
-    /// <summary>
-    /// Parses a list of name-value pairs and hydrates a conforming type
-    /// </summary>
-    /// <typeparam name="T">The type to materialize from the sequence of (name,value) pairs</typeparam>
-    /// <param name="values">The values to parse</param>
-    /// <returns></returns>
-    public static T parse<T>(IReadOnlyList<(string name, string value)> values)
-        where T : new()
-    {
-        var element = new T();
-        var properties = props(element).ToDictionary(x => x.Name);
-        iter(values,
-            kvp => properties.TryFind(kvp.name)
-                             .OnSome(p => p.SetValue(element, parse(p.PropertyType, kvp.value))));
-        return element;
-    }
-
-    /// <summary>
-    /// Parses a collection of name-value pair sequences to hydrate a set of corresponding orjectes
-    /// </summary>
-    /// <typeparam name="T">The type to materialize from each (name,value) pair sequence</typeparam>
-    /// <param name="values"></param>
-    /// <returns></returns>
-    public static IReadOnlyList<T> parse<T>(IEnumerable<IReadOnlyList<(string name, string value)>> values)
-        where T : new()
-    {
-        var results = new ConcurrentBag<T>();
-        values.AsParallel().ForAll(v => results.Add(parse<T>(v)));
-        return results.ToList();
-    }
-
-    /// <summary>
-    /// Parse an enum or returns a default value if parsing fails
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="text"></param>
-    /// <param name="default"></param>
-    /// <returns></returns>
-    public static T parseEnum<T>(string text, T @default)
-        where T : struct
-    {
-        var result = @default;
-        Enum.TryParse(text, true, out result);
-        return result;
-    }
-
-    /// <summary>
-    /// Parses an enumeration
-    /// </summary>
-    /// <typeparam name="T">The enumeration type</typeparam>
-    /// <param name="value">The value of the enumeration</param>
-    /// <returns></returns>
-    public static T parseEnum<T>(string value)
-        => (T)Enum.Parse(typeof(T), value, true);
 }

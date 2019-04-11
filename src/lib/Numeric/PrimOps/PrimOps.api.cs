@@ -24,7 +24,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The type for which primitive operations are desired</typeparam>
         [MethodImpl(Inline)]    
-        public static Operative.PrimOps<T> type<T>()
+        public static Operative.PrimOps<T> typeops<T>()
             where T : struct, IEquatable<T>
                 => Z0.Reify.PrimOps<T>.Inhabitant;
 
@@ -35,7 +35,7 @@ namespace Z0
         /// <param name="specimen">A value of the type to drive type inference</param>
         /// <typeparam name="T">The type for which primitive operations are desired</typeparam>
         [MethodImpl(Inline)]    
-        public static Operative.PrimOps<T> type<T>(T specimen)
+        public static Operative.PrimOps<T> typeops<T>(T specimen)
             where T : struct, IEquatable<T>
                 => Z0.Reify.PrimOps<T>.Inhabitant;
 
@@ -46,7 +46,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T zero<T>()        
             where T : struct, IEquatable<T>
-                => type<T>().zero;
+                => typeops<T>().zero;
 
         /// <summary>
         /// Returns a primitive's zero value
@@ -56,7 +56,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T zero<T>(T any)        
             where T : struct, IEquatable<T>
-                => type<T>().zero;
+                => typeops<T>().zero;
 
         /// <summary>
         /// Returns a primitive's one value
@@ -65,7 +65,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T one<T>()        
             where T : struct, IEquatable<T>
-                => type<T>().one;
+                => typeops<T>().one;
 
         /// <summary>
         /// Returns a primitive's one value
@@ -75,7 +75,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T one<T>(T any)        
             where T : struct, IEquatable<T>
-                => type<T>().one;
+                => typeops<T>().one;
 
         /// <summary>
         /// For fixed-size types, returns the number of storage bits required;
@@ -85,7 +85,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static uint bitsize<T>()        
             where T : struct, IEquatable<T>
-                => type<T>().bitsize;
+                => typeops<T>().bitsize;
 
         /// <summary>
         /// For fixed-size types, returns the number of storage bits required;
@@ -96,225 +96,256 @@ namespace Z0
         [MethodImpl(Inline)]
         public static uint bitsize<T>(T any)        
             where T : struct, IEquatable<T>
-                => type<T>().bitsize;
+                => typeops<T>().bitsize;
 
         /// <summary>
         /// Negates the source value for signable types; for unsignable types,
         /// reverses the bits in the underlying representation
         /// </summary>
         /// <param name="src">The source value</param>
-        /// <typeparam name="T">The primitive type</typeparam>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
         public static T negate<T>(T src)        
             where T : struct, IEquatable<T>
-                => type<T>().negate(src);
-
+                => typeops<T>().negate(src);
 
         /// <summary>
         /// Negates the source value sfor signable types; for unsignable types,
         /// reverses the bits in the underlying representations
         /// </summary>
         /// <param name="src">The source values</param>
-        /// <typeparam name="T">The primitive type</typeparam>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> negate<T>(IReadOnlyList<T> src)        
             where T : struct, IEquatable<T>
-                => type<T>().negate(src);
+                => typeops<T>().negate(src);
 
+        /// <summary>
+        /// Calculates the absolute value of the operand
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
         public static T abs<T>(T src)        
             where T : struct, IEquatable<T>
-                => type<T>().abs(src);
-
+                => typeops<T>().abs(src);
+        
+        /// <summary>
+        /// Calculates the absolute value of each item in a list
+        /// </summary>
+        /// <param name="src">The source values</param>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> abs<T>(IReadOnlyList<T> src)        
             where T : struct, IEquatable<T>
-                => type<T>().abs(src);
+                => typeops<T>().abs(src);
 
+        /// <summary>
+        /// Calculates the value of the operand incremented by one
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
         public static T inc<T>(T src)        
             where T : struct, IEquatable<T>
-                => type<T>().inc(src);
+                => typeops<T>().inc(src);
 
+
+        /// <summary>
+        /// Calculates the value of each item incremented by one
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> inc<T>(IReadOnlyList<T> src)        
             where T : struct, IEquatable<T>
-                => type<T>().inc(src);
+                => typeops<T>().inc(src);
 
+
+        /// <summary>
+        /// Calculates the value of the operand decremented by one
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
         public static T dec<T>(T src)        
             where T : struct, IEquatable<T>
-                => type<T>().dec(src);
+                => typeops<T>().dec(src);
 
+        /// <summary>
+        /// Calculates the value of each item decremented by one
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> dec<T>(IReadOnlyList<T> src)        
             where T : struct, IEquatable<T>
-                => type<T>().dec(src);
+                => typeops<T>().dec(src);
 
         [MethodImpl(Inline)]
         public static T add<T>(T lhs, T rhs)        
             where T : struct, IEquatable<T>
-                => type<T>().add(lhs,rhs);
+                => typeops<T>().add(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> add<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
             where T : struct, IEquatable<T>
-            => type<T>().add(lhs,rhs);
+            => typeops<T>().add(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static T sub<T>(T lhs, T rhs)        
             where T : struct, IEquatable<T>
-            => type<T>().sub(lhs,rhs);
+            => typeops<T>().sub(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> sub<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
             where T : struct, IEquatable<T>
-                => type<T>().sub(lhs,rhs);
+                => typeops<T>().sub(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static T mul<T>(T lhs, T rhs)        
             where T : struct, IEquatable<T>
-                => type<T>().mul(lhs,rhs);
+                => typeops<T>().mul(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> mul<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
             where T : struct, IEquatable<T>
-                => type<T>().mul(lhs,rhs);
+                => typeops<T>().mul(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static T div<T>(T lhs, T rhs)        
             where T : struct, IEquatable<T>
-                => type<T>().div(lhs,rhs);
+                => typeops<T>().div(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> div<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
             where T : struct, IEquatable<T>
-                => type<T>().div(lhs,rhs);
+                => typeops<T>().div(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static T mod<T>(T lhs, T rhs)        
             where T : struct, IEquatable<T>
-                => type<T>().mod(lhs,rhs);
+                => typeops<T>().mod(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> mod<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
             where T : struct, IEquatable<T>
-                => type<T>().mod(lhs,rhs);
+                => typeops<T>().mod(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static T gcd<T>(T lhs, T rhs)        
             where T : struct, IEquatable<T>
-                => type<T>().gcd(lhs,rhs);
+                => typeops<T>().gcd(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> gcd<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
             where T : struct, IEquatable<T>
-                => type<T>().gcd(lhs,rhs);
+                => typeops<T>().gcd(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static bool eq<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
-                => type<T>().eq(lhs,rhs);
+                => typeops<T>().eq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<bool> eq<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
             where T : struct, IEquatable<T>
-                => type<T>().eq(lhs,rhs);
+                => typeops<T>().eq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static bool neq<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
-                => type<T>().neq(lhs,rhs);
+                => typeops<T>().neq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<bool> neq<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
             where T : struct, IEquatable<T>
-                => type<T>().eq(lhs,rhs);
+                => typeops<T>().eq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static bool lt<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
-                => type<T>().lt(lhs,rhs);
+                => typeops<T>().lt(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<bool> lt<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
             where T : struct, IEquatable<T>
-                => type<T>().lt(lhs,rhs);
+                => typeops<T>().lt(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static bool lteq<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
-                => type<T>().lteq(lhs,rhs);
+                => typeops<T>().lteq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<bool> lteq<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
             where T : struct, IEquatable<T>
-            => type<T>().lteq(lhs,rhs);
+            => typeops<T>().lteq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static bool gt<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
-            => type<T>().gt(lhs,rhs);
+            => typeops<T>().gt(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<bool> gt<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
             where T : struct, IEquatable<T>
-            => type<T>().gt(lhs,rhs);
+            => typeops<T>().gt(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static bool gteq<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
-            => type<T>().gteq(lhs,rhs);
+            => typeops<T>().gteq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<bool> gteq<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
             where T : struct, IEquatable<T>
-            => type<T>().gteq(lhs,rhs);
+            => typeops<T>().gteq(lhs,rhs);
                 
         [MethodImpl(Inline)]   
         public static T and<T>(T lhs, T rhs) 
             where T : struct, IEquatable<T>
-            => type<T>().and(lhs,rhs);
+            => typeops<T>().and(lhs,rhs);
 
         [MethodImpl(Inline)]   
         public static T or<T>(T lhs, T rhs) 
             where T : struct, IEquatable<T>
-            => type<T>().or(lhs,rhs);
+            => typeops<T>().or(lhs,rhs);
 
         [MethodImpl(Inline)]   
         public static T xor<T>(T lhs, T rhs) 
             where T : struct, IEquatable<T>
-            => type<T>().xor(lhs,rhs);
+            => typeops<T>().xor(lhs,rhs);
 
         [MethodImpl(Inline)]   
         public static T lshift<T>(T lhs, int rhs) 
             where T : struct, IEquatable<T>
-            => type<T>().lshift(lhs,rhs);
+            => typeops<T>().lshift(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> lshift<T>(IReadOnlyList<T> src, int rhs)
             where T : struct, IEquatable<T>
-                => type<T>().lshift(src,rhs);
+                => typeops<T>().lshift(src,rhs);
 
         [MethodImpl(Inline)]   
         public static T rshift<T>(T lhs, int rhs) 
             where T : struct, IEquatable<T>
-                => type<T>().rshift(lhs,rhs);
+                => typeops<T>().rshift(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> rshift<T>(IReadOnlyList<T> src, int rhs)
             where T : struct, IEquatable<T>
-                => type<T>().rshift(src,rhs);
+                => typeops<T>().rshift(src,rhs);
 
         [MethodImpl(Inline)]   
         public static T flip<T>(T src) 
             where T : struct, IEquatable<T>
-                => type<T>().flip(src);
+                => typeops<T>().flip(src);
 
         [MethodImpl(Inline)]   
         public static BitString bitstring<T>(T src) 
             where T : struct, IEquatable<T>
-                => type<T>().bitstring(src);
+                => typeops<T>().bitstring(src);
 
         [MethodImpl(Inline)]   
         public static IReadOnlyList<BitString> bitstring<T>(IReadOnlyList<T> src) 
@@ -324,96 +355,101 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool testbit<T>(T src, int pos)
             where T : struct, IEquatable<T>
-                => type<T>().testbit(src,pos);
+                => typeops<T>().testbit(src,pos);
 
         [MethodImpl(Inline)]
         public static IReadOnlyList<bool> testbit<T>(IReadOnlyList<T> src, int pos)
             where T : struct, IEquatable<T>
-                => type<T>().testbit(src,pos);
+                => typeops<T>().testbit(src,pos);
+
+        [MethodImpl(Inline)]
+        public static bit[] bits<T>(T src)
+            where T : struct, IEquatable<T>
+                => typeops<T>().bits(src);
 
         [MethodImpl(Inline)]
         public static T sqrt<T>(T src)
             where T : struct, IEquatable<T>
-                => type<T>().sqrt(src);
+                => typeops<T>().sqrt(src);
 
         [MethodImpl(Inline)]
         public static T floor<T>(T src)
             where T : struct, IEquatable<T>
-                => type<T>().floor(src);
+                => typeops<T>().floor(src);
 
         [MethodImpl(Inline)]
         public static T ceiling<T>(T src)
             where T : struct, IEquatable<T>
-                => type<T>().ceiling(src);
+                => typeops<T>().ceiling(src);
 
         [MethodImpl(Inline)]
         public static T pow<T>(T src, int exp)
             where T : struct, IEquatable<T>
-                => type<T>().pow(src,exp);
+                => typeops<T>().pow(src,exp);
  
         [MethodImpl(Inline)]
         public static bool even<T>(T src)
             where T : struct, IEquatable<T>
-                => type<T>().even(src);
+                => typeops<T>().even(src);
 
         [MethodImpl(Inline)]
         public static T sin<T>(T x)
             where T : struct, IEquatable<T>
-                => type<T>().sin(x);
+                => typeops<T>().sin(x);
 
         [MethodImpl(Inline)]
         public static T sinh<T>(T x)
             where T : struct, IEquatable<T>
-                => type<T>().sinh(x);
+                => typeops<T>().sinh(x);
 
         [MethodImpl(Inline)]
         public static T asin<T>(T x)
             where T : struct, IEquatable<T>
-                => type<T>().asin(x);
+                => typeops<T>().asin(x);
 
         [MethodImpl(Inline)]
         public static T asinh<T>(T x)
             where T : struct, IEquatable<T>
-                => type<T>().asinh(x);
+                => typeops<T>().asinh(x);
 
         [MethodImpl(Inline)]
         public static T cos<T>(T x)
             where T : struct, IEquatable<T>
-                => type<T>().cos(x);
+                => typeops<T>().cos(x);
 
         [MethodImpl(Inline)]
         public static T cosh<T>(T x)
             where T : struct, IEquatable<T>
-                => type<T>().cosh(x);
+                => typeops<T>().cosh(x);
 
         [MethodImpl(Inline)]
         public static T acos<T>(T x)
             where T : struct, IEquatable<T>
-                => type<T>().acos(x);
+                => typeops<T>().acos(x);
 
         [MethodImpl(Inline)]
         public static T acosh<T>(T x)
             where T : struct, IEquatable<T>
-                => type<T>().acosh(x);
+                => typeops<T>().acosh(x);
 
         [MethodImpl(Inline)]
         public static T tan<T>(T x)
             where T : struct, IEquatable<T>
-                => type<T>().tan(x);
+                => typeops<T>().tan(x);
 
         [MethodImpl(Inline)]
         public static T tanh<T>(T x)
             where T : struct, IEquatable<T>
-                => type<T>().tanh(x);
+                => typeops<T>().tanh(x);
 
         [MethodImpl(Inline)]
         public static T atan<T>(T x)
             where T : struct, IEquatable<T>
-                => type<T>().atan(x);
+                => typeops<T>().atan(x);
 
         [MethodImpl(Inline)]
         public static T atanh<T>(T x)
             where T : struct, IEquatable<T>
-                => type<T>().atanh(x); 
+                => typeops<T>().atanh(x); 
     }
 }

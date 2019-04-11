@@ -20,12 +20,12 @@ namespace Z0.Tests
     using P = Paths;
 
     [DisplayName(Path)]
-    public class FromInt32ToFloat64 : ClrConverterTest<source,target>
+    public class FromInt32ToFloat64 : ClrConverterTest<FromInt32ToFloat64,source,target>
     {
         public const string Path = P.primconv + P.int32 + P.float64;
 
         public FromInt32ToFloat64()
-            : base(-250000, 250000)
+            : base(Defaults.Int32Range)
             {}
 
         public override void Verify()
@@ -34,16 +34,12 @@ namespace Z0.Tests
         public override IReadOnlyList<target> Baseline()
             => map(Src, x => (target)x);
 
-    
-        [Repeat(RepeatCount)]
+        [Repeat(Defaults.Reps)]
         public IReadOnlyList<target> SystemConvert()
             => map(Src, Convert.ToDouble);
 
-        public override IReadOnlyList<target> Vectorized()
+        public override IReadOnlyList<target> Compute()
             => convert<source,target>(Src);
-
-        public override IReadOnlyList<target> Discretized()
-            => map(Src, convert<source,target>);
             
     }
 

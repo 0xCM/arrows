@@ -1,0 +1,62 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
+namespace Z0.Testing
+{
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using System.ComponentModel;
+    using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
+
+    using Z0.Testing;
+
+    using static zcore;
+
+    public abstract class PrimOpsTest<S,T> : UnitTest<S>
+        where S : PrimOpsTest<S,T>
+        where T : struct, IEquatable<T>
+    {
+        protected static readonly Operative.PrimOps<T> Prim = primops.typeops<T>();
+
+        protected uint SampleSize {get;}
+            
+        protected T MinPrimVal {get;}
+
+        protected T MaxPrimVal {get;}
+
+        protected Func<T,bool> Filter {get;}
+
+        protected PrimOpsTest(Interval<T> bounds, Func<T,bool> filter, uint? sampleSize = null)
+        {
+            this.MinPrimVal = bounds.left;
+            this.MaxPrimVal = bounds.right;
+            this.SampleSize = sampleSize ?? Defaults.SampleSize;
+            this.Filter = filter ?? (x => true);            
+        }
+
+        protected T[] target() => array<T>(SampleSize);
+        
+        protected IReadOnlyList<T> sample()
+            => Context.Random<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Freeze(SampleSize);
+
+      
+        [Repeat(Defaults.Reps)]
+        public abstract IReadOnlyList<T> Compute();
+      
+        [Repeat(Defaults.Reps)]
+        public abstract IReadOnlyList<T> Baseline();        
+
+        public virtual void Verify()
+        {
+            var expect = Baseline();
+            var actual = Compute();            
+            iter((int)SampleSize, i => Claim.equals(expect[i], actual[i]));
+        }
+
+    }
+
+
+}

@@ -19,7 +19,7 @@ namespace Z0
     public readonly struct floatg<T> : Floating<floatg<T>,T>
             where T : struct, IEquatable<T>
     {        
-        static readonly Operative.PrimOps<T> Prim = primops.type<T>();
+        static readonly Operative.PrimOps<T> Prim = primops.typeops<T>();
 
         static readonly NumberInfo<T> NumInfo = Prim.numinfo;
 

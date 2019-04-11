@@ -11,14 +11,115 @@ namespace Z0
 
     using static zcore;
 
+    public interface IRandomizer
+    {
+        /// <summary>
+        /// Obtains the next ulong random value
+        /// </summary>
+        ulong next();
 
+        /// <summary>
+        /// Obtains a random stream of ulong values
+        /// </summary>
+        IEnumerable<ulong> stream();
+
+        /// <summary>
+        /// Obtains a random bitstream
+        /// </summary>
+        IEnumerable<bit> bits();
+
+        /// <summary>
+        /// Obtains a random stream whose values are between a specified min and max.
+        /// </summary>
+        /// <param name="min">The smallest number to yield</param>
+        /// <param name="max">The largest number to yield</param>
+        IEnumerable<byte> stream(byte min, byte max);
+
+        /// <summary>
+        /// Obtains a random stream whose values are between a specified min and max.
+        /// </summary>
+        /// <param name="min">The smallest number to yield</param>
+        /// <param name="max">The largest number to yield</param>
+        IEnumerable<sbyte> stream(sbyte min, sbyte max);
+
+        /// <summary>
+        /// Obtains a random stream whose values are between a specified min and max.
+        /// </summary>
+        /// <param name="min">The smallest number to yield</param>
+        /// <param name="max">The largest number to yield</param>
+        IEnumerable<short> stream(short min, short max);
+
+        /// <summary>
+        /// Obtains a random stream whose values are between a specified min and max.
+        /// </summary>
+        /// <param name="min">The smallest number to yield</param>
+        /// <param name="max">The largest number to yield</param>
+        IEnumerable<ushort> stream(ushort min, ushort max);
+
+        /// <summary>
+        /// Obtains a random stream whose values are between a specified min and max.
+        /// </summary>
+        /// <param name="min">The smallest number to yield</param>
+        /// <param name="max">The largest number to yield</param>
+        IEnumerable<int> stream(int min, int max);
+
+        /// <summary>
+        /// Obtains a random stream whose values are between a specified min and max.
+        /// </summary>
+        /// <param name="min">The smallest number to yield</param>
+        /// <param name="max">The largest number to yield</param>
+        IEnumerable<uint> stream(uint min, uint max);
+
+        /// <summary>
+        /// Obtains a random stream whose values are between a specified min and max.
+        /// </summary>
+        /// <param name="min">The smallest number to yield</param>
+        /// <param name="max">The largest number to yield</param>
+        IEnumerable<long> stream(long min, long max);
+
+
+        /// <summary>
+        /// Obtains a random stream whose values are between a specified min and max.
+        /// </summary>
+        /// <param name="min">The smallest number to yield</param>
+        /// <param name="max">The largest number to yield</param>
+        IEnumerable<ulong> stream(ulong min, ulong max);
+
+        /// <summary>
+        /// Obtains a random stream whose values are between a specified min and max.
+        /// </summary>
+        /// <param name="min">The smallest number to yield</param>
+        /// <param name="max">The largest number to yield</param>
+        IEnumerable<float> stream(float min, float max);
+        
+        /// <summary>
+        /// Obtains a random stream whose values are between a specified min and max.
+        /// </summary>
+        /// <param name="min">The smallest number to yield</param>
+        /// <param name="max">The largest number to yield</param>
+        IEnumerable<double> stream(double min, double max);
+        
+        /// <summary>
+        /// Obtains a random stream whose values are between a specified min and max.
+        /// </summary>
+        /// <param name="min">The smallest number to yield</param>
+        /// <param name="max">The largest number to yield</param>
+        IEnumerable<decimal> stream(decimal min, decimal max);
+    }
 
     /// <summary>
     /// Defines pseudorandom number generator
     /// </summary>
     /// <remarks> Adapted from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
-    public class Randomizer 
+    public class Randomizer : IRandomizer
     {
+        /// <summary>
+        /// Constructs a randomizer using a specific seed
+        /// </summary>
+        /// <param name="seed">The seed upon which generation is predicated</param>
+        public static IRandomizer define(ulong[] seed)
+            => new Randomizer(seed);
+
         /* When supplied to the jump function, it is equivalent
         to 2^128 calls to next(); it can be used to generate 2^128
         non-overlapping subsequences for parallel computations. */
@@ -134,9 +235,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public ushort one(ushort min, ushort max)
         {
-            // if(!(min < max))
-            //     throw new ArgumentException($"{min} !< {max}");
-
             var width = (ulong)(max - min);
             var offset = (ulong)(min + 1);
             var result = next() % width + offset;
@@ -150,9 +248,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public uint one(uint min, uint max)
         {
-            // if(!(min < max))
-            //     throw new ArgumentException($"{min} !< {max}");
-
             var width = (ulong)(max - min);
             var offset = (ulong)(min + 1);
             var result = next() % width + offset;
@@ -167,9 +262,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public ulong one(ulong min, ulong max)
         {
-            // if(!(min < max))
-            //     throw new ArgumentException($"{min} !< {max}");
-
             var width = max - min;
             var offset = min + 1;
             var result = next() % width + offset;
@@ -183,9 +275,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public double one(double min, double max)
         {
-            // if(!(min < max))
-            //     throw new ArgumentException($"{min} !< {max}");
-
             var value = next();
             var part = ((double) value)/((double)UInt64.MaxValue) - Double.Epsilon;
             var whole = one((long)min, (long)max);
@@ -204,7 +293,7 @@ namespace Z0
             return whole + part;
         }
 
-        IEnumerable<ulong> stream()
+        public IEnumerable<ulong> stream()
         {
             while(true)
                 yield return next();
@@ -354,5 +443,4 @@ namespace Z0
             }
         }
     }
-
 }

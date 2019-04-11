@@ -15,7 +15,7 @@ namespace Z0
     public readonly struct real<T> : RealNumber<real<T>, T>
         where T : struct, IEquatable<T>
     {
-        static readonly Operative.PrimOps<T> Prim = primops.type<T>();
+        static readonly Operative.PrimOps<T> Prim = primops.typeops<T>();
         
         static readonly NumberInfo<T> NumInfo = Prim.numinfo;
 
@@ -34,47 +34,47 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static explicit operator byte(real<T> src)
-            => ClrConversion.convert<T,byte>(src.data);
+            => ClrConverter.convert<T,byte>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator sbyte(real<T> src)
-            => ClrConversion.convert<T,sbyte>(src.data);
+            => ClrConverter.convert<T,sbyte>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator short(real<T> src)
-            => ClrConversion.convert<T,short>(src.data);
+            => ClrConverter.convert<T,short>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator ushort(real<T> src)
-            => ClrConversion.convert<T,ushort>(src.data);
+            => ClrConverter.convert<T,ushort>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator int(real<T> src)
-            => ClrConversion.convert<T,int>(src.data);
+            => ClrConverter.convert<T,int>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator uint(real<T> src)
-            => ClrConversion.convert<T,uint>(src.data);
+            => ClrConverter.convert<T,uint>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator long(real<T> src)
-            => ClrConversion.convert<T,long>(src.data);
+            => ClrConverter.convert<T,long>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(real<T> src)
-            => ClrConversion.convert<T,ulong>(src.data);
+            => ClrConverter.convert<T,ulong>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator float(real<T> src)
-            => ClrConversion.convert<T,float>(src.data);
+            => ClrConverter.convert<T,float>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator double(real<T> src)
-            => ClrConversion.convert<T,double>(src.data);
+            => ClrConverter.convert<T,double>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator decimal(real<T> src)
-            => ClrConversion.convert<T,decimal>(src.data);
+            => ClrConverter.convert<T,decimal>(src.data);
 
         [MethodImpl(Inline)]
         public static implicit operator real<T>(T src)

@@ -22,9 +22,9 @@ namespace Z0.Tests
 
 
     [DisplayName(Path)]
-    public class ByteVector : NumericTest
+    public class ByteVector : UnitTest<ByteVector>
     {
-        public const string Path = P.numeric + P.bits + "byte-vector";
+        public const string Path = P.numeric + P.bits + "byte-vector/";
         
         static intg<T> toIntG<T>(bit b)
             where T : struct, IEquatable<T>
@@ -41,42 +41,48 @@ namespace Z0.Tests
             Claim.eq(intg<uint>(1), toIntG<uint>(bit.on())); 
             Claim.eq(intg<uint>(0), toIntG<uint>(bit.off())); 
         }
-
-
-        public void IntegerConversion()
+        public void BitExtraction1()
         {
-
-            
-            Claim.eq(8u, BV000.length);                        
-            Claim.eq(8u, BV001.length);                        
-            Claim.eq(8u, BV002.length);            
-
-            
-            print($"B002 = {B002.ToByteVector()}");
-            print($"B003 = {B003.ToByteVector()}");
-            print($"B004 = {B004.ToByteVector()}");
-            
-            // Claim.eq(digits(B1,B0).ToByteVector(), B002.ToByteVector());
-            // Claim.eq(digits(B1,B1).ToByteVector(), B003.ToByteVector());
-
-
-            // Claim.eq(8u, BV003.length);            
-            // Claim.eq(intg(B003), BV003.ToIntG<byte>());                
-
-            // Claim.eq(8u, BV004.length);            
-            // Claim.eq(intg(B004), BV004.ToIntG<byte>());                
-
-            // Claim.eq(8u, BV005.length);            
-            // Claim.eq(intg(B005), BV005.ToIntG<byte>());                
-
-            // Claim.eq(8u, BV006.length);            
-            // Claim.eq(intg(B006), BV006.ToIntG<byte>());                
-
-            // Claim.eq(8u, BV007.length);            
-            // Claim.eq(intg(B007), BV007.ToIntG<byte>());                
-
+            var x0 = (byte)0b10100111;
+            var x1 = BitVector.define<N8>(bits(1,0,1,0,0,1,1,1));
+            var x2 = BitVector.define<N8>(x0.ToBits());
+            Claim.equals(x1,x2);
 
         }
+
+        public void BitExtraction2()
+        {
+            var x = (byte)0b00010110;
+            var expect = BitVector.define<N8>(x.ToBits());
+            var actual= BitVector.define<N8>(bits(0,0,0,1,0,1,1,0));
+            Claim.equals(expect,actual);
+        }
+
+        public void BitConstruction()
+        {
+            var bsref = "10100111001110001110010110101000";
+            var hihi = (byte)0b10100111;
+            var hilo = (byte)0b00111000;
+            var lohi = (byte)0b11100101;
+            var lolo = (byte)0b10101000;
+            var intval = Bits.concat(hihi,hilo,lohi,lolo);
+
+            var y2 = Bits.concat(hihi,hilo);
+            var y1 = Bits.concat(lohi,lolo);
+            var y0 = Bits.concat(y2,y1);
+            Claim.equals(intval, y0);
+
+            var bv1 = BitVector.define<N32>(intval.ToBits());
+            var bv2 = BitVector.Parse<N32>(bsref);
+            Claim.eq(bv2, bv1);
+
+            var bs1 = bv1.bitstring().format();
+            Claim.equals(bsref,bs1);
+
+            var bs2 = intval.ToBitString().format();
+            Claim.equals(bsref,bs2);
+        }
+
 
     }
 }

@@ -21,21 +21,7 @@ namespace Z0.Tests
     [DisplayName("slice")]
     public class SliceTest    
     {
-        static readonly Randomizer Random = Context.Random;
 
-
-        public static void equality()
-        {
-            var src1 = Rand.slice(5, real(50),  real(150));
-            Claim.eq(src1, src1);
-
-            var  src2 = Rand.slice(5, real(-150), real(250));
-            Claim.eq(src2, src2);
-
-            var  src3 = Rand.slice(5, Z0.real<uint>.MinVal, Z0.real<uint>.MaxVal);
-            Claim.eq(src3, src3);
-
-        }
 
         const int IterCount = 75000;
 

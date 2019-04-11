@@ -140,6 +140,16 @@ public static partial class zcore
     }
 
     /// <summary>
+    /// Constructs a readonly list of pairs from a pair of readonly lists
+    /// </summary>
+    /// <param name="left">The left list</param>
+    /// <param name="right">The right list</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static IReadOnlyList<(T left, T right)> zip<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+        => zip((IEnumerable<T>)lhs,(IEnumerable<T>)rhs).Freeze();
+
+    /// <summary>
     /// Combines two input sequences to form a single target sequence
     /// </summary>
     /// <param name="lhs">The first sequence</param>

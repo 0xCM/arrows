@@ -360,8 +360,8 @@ partial class zcore
         => from style in style(text)
            let components = text.Trim(bounds(style)).Split(',')
            where components.Length == 3
-           from x1 in try_parse<X1>(components[0])
-           from x2 in try_parse<X2>(components[1])
+           from x1 in tryParse<X1>(components[0])
+           from x2 in tryParse<X2>(components[1])
            select (x1, x2);
 
     /// <summary>
@@ -376,9 +376,9 @@ partial class zcore
         => from style in style(text)
            let components = text.Trim(bounds(style)).Split(',')
            where components.Length == 3
-           from x1 in try_parse<X1>(components[0])
-           from x2 in try_parse<X2>(components[1])
-           from x3 in try_parse<X3>(components[2])
+           from x1 in tryParse<X1>(components[0])
+           from x2 in tryParse<X2>(components[1])
+           from x3 in tryParse<X3>(components[2])
            select (x1, x2, x3);
 
     /// <summary>
@@ -394,10 +394,10 @@ partial class zcore
         => from style in style(text)
            let components = text.Trim(bounds(style)).Split(',')
            where components.Length == 4
-           from x1 in try_parse<X1>(components[0])
-           from x2 in try_parse<X2>(components[1])
-           from x3 in try_parse<X3>(components[2])
-           from x4 in try_parse<X4>(components[3])
+           from x1 in tryParse<X1>(components[0])
+           from x2 in tryParse<X2>(components[1])
+           from x3 in tryParse<X3>(components[2])
+           from x4 in tryParse<X4>(components[3])
            select (x1, x2, x3, x4);
 
     /// <summary>
@@ -414,11 +414,11 @@ partial class zcore
         => from style in style(text)
            let components = text.Trim(bounds(style)).Split(',')
            where components.Length == 5           
-           from x1 in try_parse<X1>(components[0])
-           from x2 in try_parse<X2>(components[1])
-           from x3 in try_parse<X3>(components[2])
-           from x4 in try_parse<X4>(components[3])
-           from x5 in try_parse<X5>(components[4])
+           from x1 in tryParse<X1>(components[0])
+           from x2 in tryParse<X2>(components[1])
+           from x3 in tryParse<X3>(components[2])
+           from x4 in tryParse<X4>(components[3])
+           from x5 in tryParse<X5>(components[4])
            select (x1, x2, x3, x4, x5);
 
     /// <summary>
@@ -435,12 +435,12 @@ partial class zcore
         => from style in style(text)
            let components = text.Trim(bounds(style)).Split(',')
            where components.Length == 5
-           from x1 in try_parse<X1>(components[0])
-           from x2 in try_parse<X2>(components[1])
-           from x3 in try_parse<X3>(components[2])
-           from x4 in try_parse<X4>(components[3])
-           from x5 in try_parse<X5>(components[4])
-           from x6 in try_parse<X6>(components[5])
+           from x1 in tryParse<X1>(components[0])
+           from x2 in tryParse<X2>(components[1])
+           from x3 in tryParse<X3>(components[2])
+           from x4 in tryParse<X4>(components[3])
+           from x5 in tryParse<X5>(components[4])
+           from x6 in tryParse<X6>(components[5])
            select (x1, x2, x3, x4, x5, x6);
 
     /// <summary>

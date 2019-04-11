@@ -45,6 +45,9 @@ namespace Z0
         public static void fail(string msg)
             => throw new Exception(msg);
 
+        public static T fail<T>(string msg)
+            => throw new Exception(msg);
+
         public static void equals<T>(T expect, T actual)
         {
             if(!Object.Equals(expect,actual))
@@ -86,5 +89,9 @@ namespace Z0
         public static void gteq<T>(T x, T y)
             where T : Operative.Ordered<T>, new()
                 => define(x,y,">=", new T().gteq).demand();    
+        
+        public static bool @true(bool x, string msg = null)
+            => x ? true : fail<bool>(msg  ?? "Claim is not true");
+            
     }
 }

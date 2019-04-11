@@ -361,22 +361,22 @@ namespace Z0
             => (ulong)hi << 32 | (ulong)lo;
 
         /// <summary>
-        /// (byte,byte,byte,byte) => uint
+        /// Concatenates four bytes, directed from the MSB to the LSB,
+        /// to form an unsigned int
         /// </summary>
-        /// <param name="hi">The high-order bits</param>
-        /// <param name="lo">The low-order bits</param>
+        /// <param name="hihi">Bit indices [31 .. 24]</param>
+        /// <param name="hilo">Bit indices [23 .. 16]</param>
+        /// <param name="lohi">Bit indices [15 .. 8]</param>
+        /// <param name="lolo">Bit indices [7 .. 0] </param>
+        /// <returns></returns>
         [MethodImpl(Inline)]
-        public static uint concat(byte x1, byte x2, byte x3, byte x4)
-            => BitConverter.ToUInt32(array(x1,x2,x3,x4));
+        public static uint concat(byte hihi, byte hilo, byte lohi, byte lolo)
+            => BitConverter.ToUInt32(array(lolo,lohi,hilo,hihi));
 
-        /// <summary>
-        /// (byte,byte,byte,byte,byte,byte,byte,byte) => ulong
-        /// </summary>
-        /// <param name="hi">The high-order bits</param>
-        /// <param name="lo">The low-order bits</param>
+
         [MethodImpl(Inline)]
-        public static ulong concat(byte x1, byte x2, byte x3, byte x4, byte x5, byte x6, byte x7, byte x8)
-            => BitConverter.ToUInt64(array(x1,x2,x3,x4,x5,x6,x7,x8));
+        public static ulong concat(byte x7, byte x6, byte x5, byte x4, byte x3, byte x2, byte x1, byte x0)
+            => BitConverter.ToUInt64(array(x7,x6,x5,x4,x3,x2,x1,x0));
 
         /// <summary>
         /// (short,short,short,short) => long

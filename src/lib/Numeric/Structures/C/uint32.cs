@@ -22,7 +22,7 @@ namespace Z0
             public static IEnumerable<structure> define(IEnumerable<primitive> src)
                 => src.Select(num);
 
-            static readonly Operative.PrimOps<primitive> Prim = primops.type<primitive>();
+            static readonly Operative.PrimOps<primitive> Prim = primops.typeops<primitive>();
 
             public static readonly structure Zero = 0;
             

@@ -197,8 +197,6 @@ namespace Z0
             T  this[I ix] {get;}
         }
 
-
-
         /// <summary>
         /// Characteriizes a reified set for which there are a countable number of members
         /// </summary>

@@ -21,7 +21,7 @@ namespace Z0
     {
         public static readonly ModOps<N,T> Inhabitant = default;
         
-        static readonly Operative.PrimOps<T> Ops = primops.type<T>();
+        static readonly Operative.PrimOps<T> Ops = primops.typeops<T>();
         
         static readonly intg<T> @base =  natval<N>().ToIntG<T>();
 

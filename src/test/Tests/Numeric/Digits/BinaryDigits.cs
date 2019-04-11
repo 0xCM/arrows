@@ -21,7 +21,7 @@ namespace Z0.Tests
 
 
     [DisplayName(Path)]
-    public class BinaryDigits : NumericTest
+    public class BinaryDigits : UnitTest<BinaryDigits>
     {
         public const string Path = P.digits + P.binary;
         static IEnumerable<Digit<N2,BinaryDigit>> bindigits<T>(intg<T> src)
@@ -63,7 +63,14 @@ namespace Z0.Tests
             samedec<byte>("101", 101);
             samedec<byte>("255", 255);
         }
+
+        public void UInt64ToDecimalDigits()
+        {
+            for(var i = 0UL; i< Pow2.T20; i++)
+                samedec<ulong>(i.ToString(), i);
+        }
         
+
         public void IntToDecimalDigits()
         {
             samedec<int>("0", 0);

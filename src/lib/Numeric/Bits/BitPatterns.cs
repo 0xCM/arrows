@@ -152,7 +152,27 @@ namespace Z0
         public static readonly ByteVector BV063 = BV032 | BV031;
 
         public static readonly ByteVector  BV064 = pattern(0, 1, 0, 0, 0, 0, 0, 0);
-        
+
+        public static readonly ByteVector BV065 = BV064 | BV001;
+
+        public static readonly ByteVector BV066 = BV064 | BV002;
+
+        public static readonly ByteVector BV067 = BV064 | BV003;
+
+        public static readonly ByteVector BV068 = BV064 | BV004;
+
+        public static readonly ByteVector BV069 = BV064 | BV005;
+
+        public static readonly ByteVector BV070 = BV064 | BV006;
+
+        public static readonly ByteVector BV071 = BV064 | BV007;
+
+        public static readonly ByteVector BV072 = BV064 | BV008;
+
+        public static readonly ByteVector BV073 = BV064 | BV009;
+
+        public static readonly ByteVector BV074 = BV064 | BV010;
+
         public static readonly ByteVector  BV128 = pattern(1, 0, 0, 0, 0, 0, 0, 0);
         
         public static readonly ByteVector  BV255 = pattern(1, 1, 1, 1, 1, 1, 1, 1);

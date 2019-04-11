@@ -109,55 +109,6 @@ namespace Z0
             => t.IsTypeOf<DateTime>();
 
         /// <summary>
-        /// Determines whether a supplied type is either a <see cref="Int16"/> or a <see cref="Nullable{Int16}"/>
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsInt16(this Type t)
-            => t.IsTypeOf<Int16>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="Int32"/> or a <see cref="Nullable{Int32}"/>
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsInt32(this Type t)
-            => t.IsTypeOf<Int32>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="Int64"/> or a <see cref="Nullable{Int64}"/>
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [MethodImpl(Inline)]
-        public static bool IsInt64(this Type t)
-            => t.IsTypeOf<Int64>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="UInt16"/> or a <see cref="Nullable{UInt16}"/>
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsUInt16(this Type t)
-            => t.IsTypeOf<UInt16>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="UInt32"/> or a <see cref="Nullable{UInt32}"/>
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsUInt32(this Type t)
-            => t.IsTypeOf<UInt32>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="UInt64"/> or a <see cref="Nullable{UInt64}"/>
-        /// </summary>
-        /// <param name="src">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsUInt64(this Type src)
-            => src.IsTypeOf<UInt64>();
-
-        /// <summary>
         /// Determines whether a supplied type is either a <see cref="Byte"/> or a <see cref="Nullable{Byte}"/>
         /// </summary>
         /// <param name="src">The type to examine</param>
@@ -174,6 +125,79 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool IsInt8(this Type src)
             => src.IsTypeOf<SByte>();
+
+        /// <summary>
+        /// Determines whether a supplied type is either a <see cref="Int16"/> or a <see cref="Nullable{Int16}"/>
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static bool IsInt16(this Type t)
+            => t.IsTypeOf<Int16>();
+
+        /// <summary>
+        /// Determines whether a supplied type is either a <see cref="UInt16"/> or a <see cref="Nullable{UInt16}"/>
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static bool IsUInt16(this Type t)
+            => t.IsTypeOf<UInt16>();
+
+        /// <summary>
+        /// Determines whether a supplied type is either a <see cref="Int32"/> or a <see cref="Nullable{Int32}"/>
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static bool IsInt32(this Type t)
+            => t.IsTypeOf<Int32>();
+
+        /// <summary>
+        /// Determines whether a supplied type is either a <see cref="UInt32"/> or a <see cref="Nullable{UInt32}"/>
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static bool IsUInt32(this Type t)
+            => t.IsTypeOf<UInt32>();
+
+        /// <summary>
+        /// Determines whether a supplied type is either a <see cref="Int64"/> or a <see cref="Nullable{Int64}"/>
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public static bool IsInt64(this Type t)
+            => t.IsTypeOf<Int64>();
+
+        /// <summary>
+        /// Determines whether a supplied type is either a <see cref="UInt64"/> or a <see cref="Nullable{UInt64}"/>
+        /// </summary>
+        /// <param name="src">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static bool IsUInt64(this Type src)
+            => src.IsTypeOf<UInt64>();
+
+        /// <summary>
+        /// Determines whether a supplied type is either a <see cref="Double"/> or a <see cref="Nullable{Double}"/>
+        /// </summary>
+        /// <param name="src">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static bool IsDouble(this Type src)
+            => src.IsTypeOf<Double>();
+
+        /// <summary>
+        /// Determines whether a supplied type is either a <see cref="Single"/> or a <see cref="Nullable{Single}"/>
+        /// </summary>
+        /// <param name="src">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static bool IsSingle(this Type src)
+            => src.IsTypeOf<Single>();
+
+        /// <summary>
+        /// Determines whether a supplied type is either a <see cref="Decimal"/> or a nullable <see cref="Nullable{Decimal}"/>
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static bool IsDecimal(this Type t)
+            => t.IsTypeOf<Decimal>();
 
         /// <summary>
         /// Determines whether a supplied type is one of the intrinsic integral types or a nullable type thereof
@@ -201,7 +225,6 @@ namespace Z0
         public static bool IsTimeSpan(this Type t)
             => t.IsTypeOf<TimeSpan>();
 
-
         /// <summary>
         /// Determines whether a supplied type is either a <see cref="Boolean"/> or a <see cref="Nullable{Boolean}"/>
         /// </summary>
@@ -209,14 +232,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool IsBool(this Type t)
             => t.IsTypeOf<Boolean>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="Decimal"/> or a nullable <see cref="Nullable{Decimal}"/>
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsDecimal(this Type t)
-            => t.IsTypeOf<Decimal>();
 
         /// <summary>
         /// Determines whether a supplied type is of type string

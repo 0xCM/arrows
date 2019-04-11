@@ -19,7 +19,7 @@ namespace Z0
     public readonly struct intg<T> : Integer<intg<T>,T>
         where T : struct, IEquatable<T>
     {
-        static readonly Operative.PrimOps<T> Prim = primops.type<T>();
+        static readonly Operative.PrimOps<T> Prim = primops.typeops<T>();
 
         static readonly NumberInfo<T> BaseInfo = Prim.numinfo;
 
@@ -39,35 +39,35 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static explicit operator byte(intg<T> src)
-            =>  ClrConversion.convert<T,byte>(src.data);
+            =>  ClrConverter.convert<T,byte>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator sbyte(intg<T> src)
-            => ClrConversion.convert<T,sbyte>(src.data);
+            => ClrConverter.convert<T,sbyte>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator short(intg<T> src)
-            => ClrConversion.convert<T,short>(src.data);
+            => ClrConverter.convert<T,short>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator ushort(intg<T> src)
-            => ClrConversion.convert<T,ushort>(src.data);
+            => ClrConverter.convert<T,ushort>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator int(intg<T> src)
-            => ClrConversion.convert<T,int>(src.data);
+            => ClrConverter.convert<T,int>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator uint(intg<T> src)
-            => ClrConversion.convert<T,uint>(src.data);
+            => ClrConverter.convert<T,uint>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator long(intg<T> src)
-            => ClrConversion.convert<T,long>(src.data);
+            => ClrConverter.convert<T,long>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(intg<T> src)
-            => ClrConversion.convert<T,ulong>(src.data);
+            => ClrConverter.convert<T,ulong>(src.data);
 
         [MethodImpl(Inline)]
         public static implicit operator intg<T>(T src)
