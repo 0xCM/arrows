@@ -36,7 +36,7 @@ namespace Latex
         /// <param name="expression">Formal or informal description depending on context/needs</param>
         /// <returns></returns>
         [MethodImpl(Inline)]   
-        public static Syntax syntax(string identifier, string expression)
+        public static Syntax syntax(Atom identifier, string expression)
             => new Syntax(identifier,cmd(expression), expression);
 
     }

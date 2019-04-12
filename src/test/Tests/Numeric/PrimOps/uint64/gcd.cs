@@ -46,7 +46,7 @@ namespace Z0.Tests
 
         [Repeat(1)]
         public override IReadOnlyList<operand> Compute()
-            => Prim.gcd(LeftSrc,RightSrc);
+            => fuse(LeftSrc,RightSrc, Prim.gcd);
 
 
     } 

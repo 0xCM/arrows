@@ -75,7 +75,17 @@ partial class zcore
 
             write($"{item}");
         }
+        if(!written)
+            write(emptyset());            
         print();
+    }
+
+    [MethodImpl(Inline)]   
+    public static void printline<T>(string title, IEnumerable<T> items, string sep = ",")
+    {
+        write($"{title} = ");
+    
+        printline(items,sep);      
     }
 
     /// <summary>

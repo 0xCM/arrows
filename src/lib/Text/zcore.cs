@@ -135,7 +135,7 @@ partial class zcore
     /// Produces the empty string
     /// </summary>
     [MethodImpl(Inline)]
-    public static string emptys()
+    public static string estring()
         => string.Empty;
 
     /// <summary>
@@ -271,7 +271,7 @@ partial class zcore
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string cmdFlag(bool value, string flag, string arg = null)
-        => not(value) ? emptys() : flag + arg ?? emptys();
+        => not(value) ? estring() : flag + arg ?? estring();
 
     /// <summary>
     /// Conditionally emits the value of a command flag predicated on the evaluation of a given value
@@ -281,7 +281,7 @@ partial class zcore
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string cmdFlag(string value, string flag, string arg = null)
-        => isBlank(value) ? emptys() : flag + arg ?? emptys();
+        => isBlank(value) ? estring() : flag + arg ?? estring();
 
     /// <summary>
     /// Conditionally emits the value of a command option predicated on its nullity
@@ -411,7 +411,7 @@ partial class zcore
     public static string toString<T>(T subject, string ifMissing)
         => (subject is string)
             ? toString(subject as string, ifMissing)
-            : (subject != null ? subject.ToString() : ifMissing ?? emptys());
+            : (subject != null ? subject.ToString() : ifMissing ?? estring());
 
     /// <summary>
     /// If subject is not null, invokes its ToString() method; otherwise, returns an empty string or a supplied marker
@@ -422,8 +422,8 @@ partial class zcore
     [MethodImpl(Inline)]
     public static string show<T>(T subject)
         => (subject is string)
-            ? toString(subject as string, emptys())
-            : (subject != null ? subject.ToString() : emptys());
+            ? toString(subject as string, estring())
+            : (subject != null ? subject.ToString() : estring());
 
 
     
@@ -591,13 +591,19 @@ partial class zcore
         => wrap("<", content, ">");
 
     /// <summary>
+    /// Constructs a depiction of the empty set, {∅}
+    /// </summary>
+    [MethodImpl(Inline)]
+    public static string emptyset()
+        => embrace(MathSym.emptyset);
+    /// <summary>
     /// Produces a string containing a specified number of tab characters
     /// </summary>
     /// <param name="count">The number of tab characters the output string should contain</param>
     [MethodImpl(Inline)]
     public static string tabs(int count)
         => count == 0
-        ? emptys()
+        ? estring()
         : new string('\t', count);
 
     /// <summary>
@@ -626,7 +632,7 @@ partial class zcore
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string spaces(int count)
-        => count == 0 ? emptys() : new string(' ', count);
+        => count == 0 ? estring() : new string(' ', count);
 
     /// <summary>
     /// Separates each item with a space
@@ -743,4 +749,6 @@ partial class zcore
     [MethodImpl(Inline)]
     public static bool equals(string x, string y)
         => ifBlank(x, string.Empty).Equals(y, StringComparison.OrdinalIgnoreCase);
+
+
 }

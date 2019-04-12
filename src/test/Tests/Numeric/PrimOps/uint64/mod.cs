@@ -44,7 +44,14 @@ namespace Z0.Tests
 
 
         public override IReadOnlyList<operand> Compute()
-            => Prim.mod(LeftSrc,RightSrc);
+        {
+            var dst = target();
+
+            iter((int)SampleSize, i =>
+                dst[i] = Prim.mod(LeftSrc[i], RightSrc[i]));
+            return dst;
+
+        }
 
 
     } 

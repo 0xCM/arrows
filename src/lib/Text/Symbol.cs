@@ -55,6 +55,7 @@ namespace Z0
             => this.atoms = slice(new Atom(data));
 
         readonly Slice<Atom> atoms;
+    
 
         public Symbol zero 
             => Empty;

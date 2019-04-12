@@ -17,6 +17,17 @@ namespace Z0
     /// </summary>
     public static partial class Arr
     {
+        /// <summary>
+        /// Reverses an array in-place
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static T[] reverse<T>(T[] src)
+        {
+            Array.Reverse(src);
+            return src;
+        }
 
         [MethodImpl(Inline)]
         public static bool equals<T>(T[] lhs, T[] rhs)

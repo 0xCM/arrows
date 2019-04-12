@@ -38,6 +38,8 @@ namespace Z0
             T ceiling(T src);
 
             T pow(T src, int exp);
+
+            T fact(T src);
         }
     }
     
@@ -57,7 +59,7 @@ namespace Z0
             Special<decimal>,
             Special<BigInteger>
         {
-            static readonly Special Inhabitant = default;
+            public static readonly Special Inhabitant = default;
             
             [MethodImpl(Inline)]
             public static Special<T> Operator<T>() 
@@ -87,6 +89,14 @@ namespace Z0
                 return (sbyte)result;
             }
 
+            [MethodImpl(Inline)]
+            public sbyte fact(sbyte src)
+            {
+                var result = (sbyte)1;
+                for(var i = src; i>=1; i--)
+                    result *=i;
+                return result;
+            }
 
             // ! byte
             // ! --------------------------------------------------------------
@@ -112,6 +122,14 @@ namespace Z0
                 return (byte)result;
             }
 
+            [MethodImpl(Inline)]
+            public byte fact(byte src)
+            {
+                var result = (byte)1;
+                for(var i = src; i>=1; i--)
+                    result *=i;
+                return result;
+            }
 
             // ! short
             // ! --------------------------------------------------------------
@@ -137,6 +155,14 @@ namespace Z0
                 return (short)result;
             }
 
+            [MethodImpl(Inline)]
+            public short fact(short src)
+            {
+                var result = (short)1;
+                for(var i = src; i>=1; i--)
+                    result *=i;
+                return result;
+            }
 
             // ! ushort
             // ! --------------------------------------------------------------
@@ -162,6 +188,14 @@ namespace Z0
                 return (ushort)result;
             }
 
+            [MethodImpl(Inline)]
+            public ushort fact(ushort src)
+            {
+                var result = (ushort)1;
+                for(var i = src; i>=1; i--)
+                    result *=i;
+                return result;
+            }
 
             // ! int
             // ! --------------------------------------------------------------
@@ -187,6 +221,14 @@ namespace Z0
                 return result;
             }
 
+            [MethodImpl(Inline)]
+            public int fact(int src)
+            {
+                var result = 1;
+                for(var i = src; i>=1; i--)
+                    result *=i;
+                return result;
+            }
 
             // ! uint
             // ! --------------------------------------------------------------
@@ -212,6 +254,15 @@ namespace Z0
                 return result;
             }
 
+            [MethodImpl(Inline)]
+            public uint fact(uint src)
+            {
+                var result = 1u;
+                for(var i = src; i>=1; i--)
+                    result *=i;
+                return result;
+            }
+
             // ! long
             // ! --------------------------------------------------------------
 
@@ -233,6 +284,15 @@ namespace Z0
                 var result = 1L;
                 for(var i= 0; i<exp; i++)
                     result = result * @base;
+                return result;
+            }
+
+            [MethodImpl(Inline)]
+            public long fact(long src)
+            {
+                var result = 1L;
+                for(var i = src; i>=1; i--)
+                    result *=i;
                 return result;
             }
 
@@ -261,6 +321,15 @@ namespace Z0
                 return result;
             }
 
+            [MethodImpl(Inline)]
+            public ulong fact(ulong src)
+            {
+                var result = 1UL;
+                for(var i = src; i>=1; i--)
+                    result *=i;
+                return result;
+            }
+
             // ! float
             // ! --------------------------------------------------------------
 
@@ -280,6 +349,16 @@ namespace Z0
             public float pow(float src, int exp)
                 => MathF.Pow(src,exp);
 
+            [MethodImpl(Inline)]
+            public float fact(float src)
+            {
+                var result = 1f;
+                for(var i = src; i>=1; i--)
+                    result *=i;
+                return result;
+            }
+
+
             // ! double
             // ! --------------------------------------------------------------
 
@@ -298,6 +377,15 @@ namespace Z0
             [MethodImpl(Inline)]
             public double pow(double src, int exp)
                 => Math.Pow(src,exp);
+
+            [MethodImpl(Inline)]
+            public double fact(double src)
+            {
+                var result = 1d;
+                for(var i = src; i>=1; i--)
+                    result *=i;
+                return result;
+            }
 
 
             // ! decimal
@@ -319,6 +407,16 @@ namespace Z0
             public decimal pow(decimal b, int exp)
                 => (decimal)Math.Pow((double)b, exp);
 
+            [MethodImpl(Inline)]
+            public decimal fact(decimal src)
+            {
+                var result = 1m;
+                for(var i = src; i>=1; i--)
+                    result *=i;
+                return result;
+            }
+
+
             // ! BigInteger
             // ! --------------------------------------------------------------
 
@@ -337,6 +435,16 @@ namespace Z0
             [MethodImpl(Inline)]   
             public BigInteger pow(BigInteger b, int exp) 
                 => BigInteger.Pow(b,exp);
+
+            [MethodImpl(Inline)]
+            public BigInteger fact(BigInteger src)
+            {
+                var result = BigInteger.One;
+                for(var i = src; i>=1; i--)
+                    result *=i;
+                return result;
+            }
+
 
         }
 

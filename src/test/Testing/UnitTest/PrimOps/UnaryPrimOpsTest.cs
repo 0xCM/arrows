@@ -21,7 +21,7 @@ namespace Z0.Testing
     {
         protected IReadOnlyList<T> PrimSrc;
         
-        protected UnaryPrimOpsTest(Interval<T> bounds, Func<T,bool> filter = null, uint sampleSize = Pow2.T20)
+        protected UnaryPrimOpsTest(Interval<T> bounds, Func<T,bool> filter = null, uint? sampleSize = null)
             : base(bounds, filter, sampleSize)
         {
             this.PrimSrc = sample();

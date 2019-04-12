@@ -44,10 +44,13 @@ namespace Z0.Testing
 
       
         [Repeat(Defaults.Reps)]
-        public abstract IReadOnlyList<T> Compute();
+        public virtual IReadOnlyList<T> Compute() 
+            => new T[]{};
       
         [Repeat(Defaults.Reps)]
-        public abstract IReadOnlyList<T> Baseline();        
+        public virtual IReadOnlyList<T> Baseline()
+            => new T[]{};
+
 
         public virtual void Verify()
         {

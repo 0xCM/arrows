@@ -19,17 +19,13 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K">The key type</typeparam>
     /// <typeparam name="V">Tye value type</typeparam>
-    public class ConcurrentIndex<K,V> 
+    public class ConcurrentIndex<K,V> : Lengthwise
     {
         /// <summary>
         /// The backing store
         /// </summary>
         readonly ConcurrentDictionary<K,V> storage;
 
-        /// <summary>
-        /// Creates a new index
-        /// </summary>
-        /// <param name="storage">The optionally populated storage</param>
         public ConcurrentIndex(ConcurrentDictionary<K,V> storage = null)
             => this.storage = storage ?? new ConcurrentDictionary<K, V>();
 
@@ -38,9 +34,8 @@ namespace Z0
         /// by invoking the supplied producer; in the latter case, the
         /// newly-created value is added to the index prior to return
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="producer"></param>
-        /// <returns></returns>
+        /// <param name="key">The key</param>
+        /// <param name="producer">A function to produce the value assoicated with a key</param>
         [MethodImpl(Inline)]
         public V GetOrAdd(K key, Func<K,V> producer)
             => storage.GetOrAdd(key,producer);
@@ -54,6 +49,9 @@ namespace Z0
         public bool TryAdd(K key, Func<K,V> producer)
             => storage.TryAdd(key, producer(key));
 
+        [MethodImpl(Inline)]
+        public bool TryAdd(K key, V value)
+            => storage.TryAdd(key, value);
 
         /// <summary>
         /// Determines whether the index has an entry for a specified key
@@ -104,9 +102,14 @@ namespace Z0
             return new ConcurrentIndex<K,V>(current);
         }
 
+        public ICollection<V> Values
+            => storage.Values;
+
         public IEnumerable<(K key,V value)> KeyedValues
             => from item in storage select (item.Key, item.Value);
 
+        public uint length 
+            => (uint)storage.Count;
     }
 
     partial class xcore

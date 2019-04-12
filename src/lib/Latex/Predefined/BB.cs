@@ -12,14 +12,21 @@ namespace Latex
 
     public static class BB
     {
-        public static readonly Syntax Zero = syntax("𝟘","Bbbzero");
-        public static readonly Syntax One = syntax("𝟙","Bbbone");
-        public static readonly Syntax Two = syntax("𝟚","Bbbtwo");
-        public static readonly Syntax Three = syntax("𝟛","Bbbthree");
-        public static readonly Syntax A = syntax("𝔸","BbbA");
-        public static readonly Syntax T = syntax("𝕋", "BbbT");
-        public static readonly Syntax Q = syntax("ℚ","BbbQ");
-        public static readonly Syntax R = syntax("ℝ","BbbR");            
+        public static readonly Syntax Zero = syntax(BBSym.Zero,"Bbbzero");
+        
+        public static readonly Syntax One = syntax(BBSym.One,"Bbbone");
+        
+        public static readonly Syntax Two = syntax(BBSym.Two,"Bbbtwo");
+        
+        public static readonly Syntax Three = syntax(BBSym.Three,"Bbbthree");
+        
+        public static readonly Syntax A = syntax(BBSym.A,"BbbA");
+        
+        public static readonly Syntax T = syntax(BBSym.T, "BbbT");
+        
+        public static readonly Syntax Q = syntax(BBSym.Q,"BbbQ");
+        
+        public static readonly Syntax R = syntax(BBSym.R,"BbbR");            
     }
 
 }

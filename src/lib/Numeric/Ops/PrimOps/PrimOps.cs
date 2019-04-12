@@ -43,7 +43,8 @@ namespace Z0
                 Ordered<T>,
                 Semigroup<T>,
                 Trigonmetric<T>,
-                Special<T>
+                Special<T>,
+                Parser<T>
             where T : struct, IEquatable<T>
         {
             /// <summary>
@@ -192,6 +193,8 @@ namespace Z0
             static readonly Operative.Special<T> Special = Primal.Special.Operator<T>();
 
             static readonly NumInfoProvider<T> NumInfo = Primal.NumInfo.Operator<T>();
+
+            static readonly Parser<T> Parser = Primal.Parser.Operator<T>();
 
             public T zero
             {
@@ -516,7 +519,7 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public bool even(T src)
-                => eq(mod(src,  inc(Unital.one)), Nullary.zero);
+                => eq(mod(src, inc(Unital.one)), Nullary.zero);
 
             [MethodImpl(Inline)]
             public T sqrt(T src)
@@ -537,6 +540,18 @@ namespace Z0
             [MethodImpl(Inline)]
             public bit[] bits(T src)
                 => Bitwise.bits(src);
+
+            [MethodImpl(Inline)]
+            public T fact(T src)
+                => Special.fact(src);
+
+            [MethodImpl(Inline)]
+            public Option<T> tryParse(string src)
+                => Parser.tryParse(src);
+
+            [MethodImpl(Inline)]
+            public T parse(string src)
+                => Parser.parse(src);
         }    
     }
 }

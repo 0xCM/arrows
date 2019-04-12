@@ -262,10 +262,6 @@ namespace Z0.Tests
         /// </summary>
         public const string realdec = "realg/decimal/";
 
-        /// <summary>
-        /// Identifies an equality operation
-        /// </summary>
-        public const string eq = "eq/";
 
         /// <summary>
         /// Identifies an add operation
@@ -298,6 +294,11 @@ namespace Z0.Tests
         public const string pow = "pow/";
 
         /// <summary>
+        /// Identifies a factorial operation
+        /// </summary>
+        public const string fact = "fact/";
+
+        /// <summary>
         /// Identifies a bitwise and operation
         /// </summary>
         public const string and = "and/";
@@ -316,6 +317,49 @@ namespace Z0.Tests
         /// Identifies a bitwise flip (two's complement) operation
         /// </summary>
         public const string flip = "flip/";
+
+        /// <summary>
+        /// Identifies an increment operation
+        /// </summary>
+        public const string inc = "inc/";
+
+
+        /// <summary>
+        /// Identifies an decrement operation
+        /// </summary>
+        public const string dec = "dec/";
+
+        /// <summary>
+        /// Identifies an equality operation
+        /// </summary>
+        public const string eq = "eq/";
+
+        /// <summary>
+        /// Identifies a non-equality comparison operation
+        /// </summary>
+        public const string neq = "neq/";
+
+        /// <summary>
+        /// Identifies an less-than operation
+        /// </summary>
+        public const string lt = "lt/";
+
+        /// <summary>
+        /// Identifies an greate-than operation
+        /// </summary>
+        public const string gt = "gt/";
+
+        /// <summary>
+        /// Identifies an greater-than-or-equal operation
+        /// </summary>
+        public const string gteq = "gteq/";
+
+
+        /// <summary>
+        /// Identifies an less-than-or-equal operation
+        /// </summary>
+        public const string lteq = "lteq/";
+
 
     }
 }

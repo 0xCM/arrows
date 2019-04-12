@@ -99,6 +99,26 @@ namespace Z0
                 => typeops<T>().bitsize;
 
         /// <summary>
+        /// Returns the smallest value that can be attained via the type
+        /// </summary>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline)]
+        public static T minval<T>()
+            where T : struct, IEquatable<T>
+                => typeops<T>().numinfo.MinVal;
+ 
+
+        /// <summary>
+        /// Returns the greatest value that can be attained via the type
+        /// </summary>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline)]
+        public static T maxval<T>()
+            where T : struct, IEquatable<T>
+                => typeops<T>().numinfo.MaxVal;
+ 
+
+        /// <summary>
         /// Negates the source value for signable types; for unsignable types,
         /// reverses the bits in the underlying representation
         /// </summary>

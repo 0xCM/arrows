@@ -44,6 +44,6 @@ namespace Z0.Tests
 
         public override IReadOnlyList<operand> Compute()
             => fuse(LeftSrc,RightSrc, Prim.or);
-    } 
+   } 
 
 }

@@ -6,6 +6,8 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
+    using System.Numerics;
+    using MathNet.Numerics;
 
     using static zcore;
 
@@ -32,6 +34,13 @@ namespace Z0
                 result = result * @base;
             return result;
         }
+
+
+        [MethodImpl(Inline)]
+        public static ulong fact(ulong src)        
+            => (ulong)SpecialFunctions.Factorial(src);
+
+        
 
     }
 

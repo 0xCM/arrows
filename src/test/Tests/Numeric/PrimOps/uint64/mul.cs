@@ -39,7 +39,7 @@ namespace Z0.Tests
         }
 
         public override IReadOnlyList<operand> Compute()
-            => Prim.mul(LeftSrc,RightSrc);
+            => fuse(LeftSrc,RightSrc, Prim.mul);
 
     } 
 
