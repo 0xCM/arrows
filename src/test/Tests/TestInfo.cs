@@ -91,6 +91,12 @@ namespace Z0.Tests
         /// </summary>
         public const string analogs = numstructs + "analogs/";
 
+
+        /// <summary>
+        /// Identifies structs with explicit layout
+        /// </summary>
+        public const string explicits = numstructs + "explicits/";
+
         /// <summary>
         /// Identifies a binary digit
         /// </summary>

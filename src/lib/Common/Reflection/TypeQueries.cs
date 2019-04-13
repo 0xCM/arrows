@@ -136,12 +136,23 @@ namespace Z0
         public static IEnumerable<PropertyInfo> DeclaredProperties(this Type t)
             => t.GetProperties(BF_Declared);
 
+        public static IEnumerable<PropertyInfo> AllProperties(this Type t)
+            => t.GetProperties(BF_All);
+
         /// <summary>
-        /// Retrieves all instance/static and public/non-public properties declared by a stream of types
+        /// Retrieves all instance/static and public/non-public properties 
         /// </summary>
         /// <param name="src">The types to examine</param>
-        public static IEnumerable<PropertyInfo> DeclaredProperties(this IEnumerable<Type> src)
-            =>src.Select(DeclaredProperties).SelectMany(x => x);
+        public static IEnumerable<PropertyInfo> Properties(this IEnumerable<Type> src, bool declared = true)
+            => (declared ? src.Select(DeclaredProperties) : src.Select(AllProperties)).SelectMany(x => x);
+
+        /// <summary>
+        /// Retrieves all instance/static and public/non-public properties 
+        /// </summary>
+        /// <param name="src">The type to examine</param>
+        public static IEnumerable<PropertyInfo> Properties(this Type src, bool declared = true)
+            => src.GetProperties(declared ? BF_Declared : BF_All);
+
 
         /// <summary>
         /// Selects the properties with set methods from the stream

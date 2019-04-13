@@ -13,6 +13,8 @@ using static zcore;
 
 partial class zcore
 {
+    public static ReadOnlySpan<T> rospan<T>(params T[] src)
+        => src;
 
     /// <summary>
     /// Constructs a span from an array

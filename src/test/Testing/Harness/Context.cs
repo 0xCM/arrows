@@ -7,9 +7,11 @@ namespace Z0.Testing
     using System;
 
 
+
+
     public abstract class Context<T>
     {                
-        static readonly IRandomizer random = Z0.Randomizer.define(RandSeeds.Seed002);
+        //static readonly IRandomizer random = Z0.Randomizer.define(RandSeeds.Seed002);
 
         IRandomizer Randomizer {get;}
 
@@ -19,7 +21,7 @@ namespace Z0.Testing
         /// <typeparam name="R">The primal type</typeparam>
         public PrimalRand<R> Random<R>()
             where R : struct, IEquatable<R>
-            => random.Primal<R>();
+            => Randomizer.Primal<R>();
         
         protected Context(ulong[] seed)
         {

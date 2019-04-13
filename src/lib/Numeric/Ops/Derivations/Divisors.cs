@@ -28,33 +28,33 @@ namespace Z0
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> divisors<T>(T src)
             where T : struct, IEquatable<T>
-                => Divisors<T>.Inhabitant.divisors(src);
+                => DivisorOps<T>.Inhabitant.divisors(src);
         
         [MethodImpl(Inline)]
         public static IEnumerable<T> range<T>(Interval<T> src)        
             where T : struct, IEquatable<T>
-                => Divisors<T>.Inhabitant.range(src);
+                => DivisorOps<T>.Inhabitant.range(src);
 
         [MethodImpl(Inline)]
         public static IEnumerable<T> range<T>(T first, T last)
             where T : struct, IEquatable<T>
-                => Divisors<T>.Inhabitant.range(first,last);
+                => DivisorOps<T>.Inhabitant.range(first,last);
 
         [MethodImpl(Inline)]
         public static DivisorIndex<T> divisors<T>(Interval<T> interval)
             where T : struct, IEquatable<T>
-                => Divisors<T>.Inhabitant.divisors(interval);
+                => DivisorOps<T>.Inhabitant.divisors(interval);
 
         [MethodImpl(Inline)]
         public static IEnumerable<DivisorIndex<T>> divisors<T>(Interval<T> interval, T step)        
             where T : struct, IEquatable<T>
-                => Divisors<T>.Inhabitant.divisors(interval,step);
+                => DivisorOps<T>.Inhabitant.divisors(interval,step);
     }
 
-    public readonly struct Divisors<T> : Operative.Divisors<T>
+    public readonly struct DivisorOps<T> : Operative.Divisors<T>
         where T : struct, IEquatable<T>
     {
-        public static readonly Divisors<T> Inhabitant = default;
+        public static readonly DivisorOps<T> Inhabitant = default;
 
         static readonly Operative.Divisors<T> AlgOps = Reify.Divisors.Operator<T>();
         
@@ -140,8 +140,8 @@ namespace Z0
     partial class Reify
     {
         public class Divisors : 
-            Operative.Divisors<ulong>,
-            Operative.Divisors<uint>
+            Divisors<ulong>,
+            Divisors<uint>
         {
             static readonly Divisors Inhabitant = new Divisors();
 
@@ -151,7 +151,7 @@ namespace Z0
                     => cast<Divisors<T>>(Inhabitant);
 
 
-            IReadOnlyList<ulong> Operative.Divisors<ulong>.divisors(ulong src)
+            public IReadOnlyList<ulong> divisors(ulong src)
             {
                 var result = new List<ulong>();
                 
@@ -171,7 +171,7 @@ namespace Z0
                 return result;
             }
 
-            IReadOnlyList<uint> Operative.Divisors<uint>.divisors(uint src)
+            public IReadOnlyList<uint> divisors(uint src)
             {
                 var result = new List<uint>();
                 

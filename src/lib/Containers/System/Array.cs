@@ -17,6 +17,22 @@ namespace Z0
     /// </summary>
     public static partial class Arr
     {
+        public static void copy<T>(T[] src, T[] dst)
+        {
+            if(src.Length > dst.Length)
+                throw new ArgumentException("The source array is bigger than the target array");
+
+            Array.Copy(src,dst,src.Length);
+        }
+
+        public static void copy<T>(IReadOnlyList<T> src, T[] dst)
+        {
+            if(src.Count > dst.Length)
+                throw new ArgumentException("The source list is bigger than the target array");
+            for(var i=0; i< src.Count; i++)
+                dst[i] = src[i];
+        }
+
         /// <summary>
         /// Reverses an array in-place
         /// </summary>

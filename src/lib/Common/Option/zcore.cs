@@ -149,16 +149,6 @@ public static partial class zcore
     }
 
 
-    /// <summary>
-    /// Applies a function to a potential value
-    /// </summary>
-    /// <param name="src">The potential value</param>
-    /// <param name="f">The function to apply</param>
-    /// <typeparam name="X">The source type</typeparam>
-    /// <typeparam name="Y">The target type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Option<Y> map<X,Y>(Option<X> src, Func<X,Y> f)
-        => src.TryMap(f);
 
 
 }

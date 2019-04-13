@@ -37,6 +37,7 @@ partial class zcore
     public static Assembly assembly<T>()
         => typeof(T).Assembly;
 
+
     /// <summary>
     /// Searches a type for an instance constructor that matches a specified signature
     /// </summary>

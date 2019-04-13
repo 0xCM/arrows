@@ -35,12 +35,20 @@ namespace Z0
                 => cast<Absolutive<T>>(Inhabitant);
 
             [MethodImpl(Inline)]
+            public byte abs(byte x)
+                => x;
+
+            [MethodImpl(Inline)]
             public sbyte abs(sbyte x)
                 => (sbyte)(x >= 0 ? x : -x);
 
             [MethodImpl(Inline)]
             public short abs(short x)
                 => Math.Abs(x);
+
+            [MethodImpl(Inline)]
+            public ushort abs(ushort x)
+                => x;
 
             [MethodImpl(Inline)]
             public int abs(int x)
@@ -65,14 +73,6 @@ namespace Z0
             [MethodImpl(Inline)]
             public double abs(double x)
                 => Math.Abs(x);
-
-            [MethodImpl(Inline)]
-            public byte abs(byte x)
-                => x;
-
-            [MethodImpl(Inline)]
-            public ushort abs(ushort x)
-                => x;
 
             [MethodImpl(Inline)]
             public uint abs(uint x)

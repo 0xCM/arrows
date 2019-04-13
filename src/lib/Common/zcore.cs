@@ -155,13 +155,13 @@ public static partial class zcore
     /// <param name="lhs">The first sequence</param>
     /// <param name="rhs">The second sequence</param>
     /// <param name="f">A binary operator that composes pairs of elements from the input sequences</param>
-    /// <typeparam name="T">The sequence element type</typeparam>
+    /// <typeparam name="X">The sequence element type</typeparam>
     [MethodImpl(Inline)]   
-    public static IEnumerable<Y> fuse<T,Y>(IEnumerable<T> lhs, IEnumerable<T> rhs, Func<T,T,Y> f)
+    public static IEnumerable<Y> fuse<X,Y>(IEnumerable<X> lhs, IEnumerable<X> rhs, Func<X,X,Y> f)
         => from pair in zip(lhs,rhs) select f(pair.left, pair.right);
 
     [MethodImpl(Inline)]   
-    public static IReadOnlyList<Y> fuse<T,Y>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs, Func<T,T,Y> f)
+    public static IReadOnlyList<Y> fuse<X,Y>(IReadOnlyList<X> lhs, IReadOnlyList<X> rhs, Func<X,X,Y> f)
     {
         if(lhs.Count != rhs.Count)
             throw new ArgumentException($"The left count {lhs.Count} does not match the right count {rhs.Count}");
@@ -172,6 +172,29 @@ public static partial class zcore
         return dst;
     }    
 
+    [MethodImpl(Inline)]   
+    public static IReadOnlyList<Y> fuse<X,Y>(IReadOnlyList<X> x0, IReadOnlyList<X> x1, IReadOnlyList<X> x2, Func<X,X,X,Y> f)
+    {
+        if(x0.Count != x1.Count || x0.Count != x2.Count)
+            throw new ArgumentException($"The input list item counts do not match");
+            
+        var dst = array<Y>(x0.Count);
+        for(var i = 0; i< dst.Length; i++)
+            dst[i] = f(x0[i], x1[i], x2[i]);
+        return dst;
+    }    
+
+    [MethodImpl(Inline)]   
+    public static IReadOnlyList<Y> fuse<X,Y>(IReadOnlyList<X> x0, IReadOnlyList<X> x1, IReadOnlyList<X> x2, IReadOnlyList<X> x3, Func<X,X,X,X,Y> f)
+    {
+        if(x0.Count != x1.Count || x0.Count != x2.Count || x0.Count != x3.Count)
+            throw new ArgumentException($"The input list item counts do not match");
+            
+        var dst = array<Y>(x0.Count);
+        for(var i = 0; i< dst.Length; i++)
+            dst[i] = f(x0[i], x1[i], x2[i], x3[i]);
+        return dst;
+    }    
     
     /// <summary>
     /// Evaluates a binary predicate over a sequence of pairs and returns true if any

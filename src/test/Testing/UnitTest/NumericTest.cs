@@ -50,7 +50,7 @@ namespace Z0.Testing
             => Context.Random<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Freeze(SampleSize);  
 
         /// <summary>
-        /// Creates primitie vectors from a supplied stream
+        /// Creates vectors from a stream of values
         /// </summary>
         /// <param name="src">The source strem</param>
         /// <typeparam name="N">The vector length</typeparam>
@@ -59,6 +59,16 @@ namespace Z0.Testing
             => from x in src.Partition(nati<N>())
                 where x.Count == nati<N>()
                 select vector<N,T>(x);
+
+        /// <summary>
+        /// Creates arrays from a stream of values
+        /// </summary>
+        /// <param name="src">The source strem</param>
+        /// <typeparam name="N">The vector length</typeparam>
+        protected IEnumerable<T[]> MakeArrays(IEnumerable<T> src, int len)
+            => from x in src.Partition(len)
+                where x.Count == len
+                select x.ToArray();
 
         protected Func<T,bool> Filter {get;}
 

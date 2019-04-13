@@ -101,5 +101,11 @@ namespace Z0
         public static IEnumerable<(K key, V value)> ToTuples<K,V>(this IEnumerable<KeyValuePair<K,V>> pairs)
             => tuples(pairs);
 
+        [MethodImpl(Inline)]
+        public static string Format<X,Y>(this (X x,Y y) src)
+            => paren(src.x.ToString(), ",", src.y.ToString());
+        
+        public static string Format<X,Y>(this IEnumerable<(X x,Y y)> src)
+            => string.Join(", ", src.Select(x => x.Format()));
     }
 }

@@ -89,11 +89,18 @@ partial class zcore
     /// </summary>
     /// <param name="src">The source value</param>
     /// <typeparam name="T">The target type</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
     public static T cast<T>(object src) 
         => (T) src;
 
+    /// <summary>
+    /// Envisions (reimagines?) a block of memory
+    /// </summary>
+    /// <param name="src">The memory location to be interpreted as a T-value</param>
+    /// <typeparam name="T">The lens through which a memory block is interpreted</typeparam>
+    [MethodImpl(Inline)]
+    public static unsafe T castref<T>(void* src)
+        => Unsafe.AsRef<T>(src);
  
     /// <summary>
     /// The univeral identity function that returns the source value
