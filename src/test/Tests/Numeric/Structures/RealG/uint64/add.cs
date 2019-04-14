@@ -25,7 +25,7 @@ namespace Z0.Tests
         public const string Path = P.realu64 + P.add;
 
         public RealGUInt64Add()
-            : base(Defaults.UInt64Range)
+            : base(Defaults.UInt64Domaim)
         {
         }
 

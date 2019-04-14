@@ -61,6 +61,15 @@ namespace Z0.Tests
         /// </summary>
         public const string structures = "structures/";
 
+        /// <summary>
+        /// Identifies intrinsic-related data structures and operations
+        /// </summary>
+        public const string InX = "intrinsics/";
+
+        public const string InX128 = InX + "128/";
+
+        public const string InX256 = InX + "256/";
+
         public const string digits = numeric + "digits/";
 
         public const string bits = numeric + "bits/";
@@ -367,5 +376,9 @@ namespace Z0.Tests
         public const string lteq = "lteq/";
 
 
+        /// <summary>
+        /// Identifies a construction/specification operation
+        /// </summary>
+        public const string define = "define/";
     }
 }

@@ -6,6 +6,7 @@ namespace Z0
 {
     using System;
     using System.Numerics;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using static zcore;
 
@@ -83,5 +84,58 @@ namespace Z0
                 => lhs + rhs;
         }
 
+    }}
+
+    partial class PrimalList
+    {
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<sbyte> Add(this IReadOnlyList<sbyte> lhs, IReadOnlyList<sbyte> rhs)
+            => fuse(lhs,rhs,(x,y) => (sbyte)(x + y));
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<byte> Add(this IReadOnlyList<byte> lhs, IReadOnlyList<byte> rhs)
+            => fuse(lhs,rhs,(x,y) => (byte)(x + y));
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<short> Add(this IReadOnlyList<short> lhs, IReadOnlyList<short> rhs)
+            => fuse(lhs,rhs,(x,y) => (short)(x + y));
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<ushort> Add(this IReadOnlyList<ushort> lhs, IReadOnlyList<ushort> rhs)
+            => fuse(lhs,rhs,(x,y) => (ushort)(x + y));
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<int> Add(this IReadOnlyList<int> lhs, IReadOnlyList<int> rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<uint> Add(this IReadOnlyList<uint> lhs, IReadOnlyList<uint> rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<long> Add(this IReadOnlyList<long> lhs, IReadOnlyList<long> rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<ulong> Add(this IReadOnlyList<ulong> lhs, IReadOnlyList<ulong> rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<float> Add(this IReadOnlyList<float> lhs, IReadOnlyList<float> rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<double> Add(this IReadOnlyList<double> lhs, IReadOnlyList<double> rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<decimal> Add(this IReadOnlyList<decimal> lhs, IReadOnlyList<decimal> rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<BigInteger> Add(this IReadOnlyList<BigInteger> lhs, IReadOnlyList<BigInteger> rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
     }
-}}
+}

@@ -46,7 +46,7 @@ namespace Z0.Tests
             var x0 = (byte)0b10100111;
             var x1 = BitVector.define<N8>(bits(1,0,1,0,0,1,1,1));
             var x2 = BitVector.define<N8>(x0.ToBits());
-            Claim.equals(x1,x2);
+            Claim.eq(x1,x2);
 
         }
 
@@ -55,7 +55,7 @@ namespace Z0.Tests
             var x = (byte)0b00010110;
             var expect = BitVector.define<N8>(x.ToBits());
             var actual= BitVector.define<N8>(bits(0,0,0,1,0,1,1,0));
-            Claim.equals(expect,actual);
+            Claim.eq(expect,actual);
         }
 
         public void BitConstruction()
@@ -70,17 +70,17 @@ namespace Z0.Tests
             var y2 = Bits.concat(hihi,hilo);
             var y1 = Bits.concat(lohi,lolo);
             var y0 = Bits.concat(y2,y1);
-            Claim.equals(intval, y0);
+            Claim.eq(intval, y0);
 
             var bv1 = BitVector.define<N32>(intval.ToBits());
             var bv2 = BitVector.Parse<N32>(bsref);
             Claim.eq(bv2, bv1);
 
             var bs1 = bv1.bitstring().format();
-            Claim.equals(bsref,bs1);
+            Claim.eq(bsref,bs1);
 
             var bs2 = intval.ToBitString().format();
-            Claim.equals(bsref,bs2);
+            Claim.eq(bsref,bs2);
         }
 
 

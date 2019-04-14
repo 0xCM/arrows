@@ -24,7 +24,7 @@ namespace Z0.Tests
     {
         public const string Path = P.int64g + P.mod;
         public Int64GMod()
-            : base(Defaults.Int64Range, x => x != 0)
+            : base(Defaults.Int64Domain, x => x != 0)
         {
         }
 

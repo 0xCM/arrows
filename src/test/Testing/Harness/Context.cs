@@ -6,20 +6,15 @@ namespace Z0.Testing
 {
     using System;
 
-
-
-
     public abstract class Context<T>
     {                
-        //static readonly IRandomizer random = Z0.Randomizer.define(RandSeeds.Seed002);
-
         IRandomizer Randomizer {get;}
 
         /// <summary>
         /// Constructs a context-specific/local randomizer that should not be shared across threads
         /// </summary>
         /// <typeparam name="R">The primal type</typeparam>
-        public PrimalRand<R> Random<R>()
+        public IRandom<R> Random<R>()
             where R : struct, IEquatable<R>
             => Randomizer.Primal<R>();
         

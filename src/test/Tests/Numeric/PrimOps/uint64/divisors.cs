@@ -27,7 +27,7 @@ namespace Z0.Tests
         
 
         public UInt64Divisors()
-            : base(Defaults.UInt64Range, x => x != 0)
+            : base(Defaults.UInt64Domaim, x => x != 0)
         {
             
         }

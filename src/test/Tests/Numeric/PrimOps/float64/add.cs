@@ -25,7 +25,7 @@ namespace Z0.Tests
         public const string Path = P.primops + P.float64 + P.add;
 
         public Float64Add()
-            : base(Defaults.Float64Range)
+            : base(Defaults.Float64Domain)
         {
 
         }   

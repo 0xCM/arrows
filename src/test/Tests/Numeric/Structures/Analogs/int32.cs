@@ -38,7 +38,7 @@ namespace Z0.Tests
 
 
         public Int32Analog()
-            : base(Defaults.Int32Range)
+            : base(Defaults.Int32Domain)
         {
             LeftPrimVecs = MakeVectors<N128>(LeftPrimSrc).Freeze();
             RightPrimVecs = MakeVectors<N128>(RightPrimSrc).Freeze();

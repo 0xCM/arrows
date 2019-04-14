@@ -23,7 +23,7 @@ namespace Z0.Tests
         public const string Path = P.nla + P.vectors + P.primitive + P.int64 + P.eq;        
     
         public Int64VectorEq()
-            : base(Defaults.Int64Range)
+            : base(Defaults.Int64Domain)
         {}
 
         public override void Verify()

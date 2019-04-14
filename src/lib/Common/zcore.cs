@@ -579,21 +579,6 @@ public static partial class zcore
     /// over intergers over which iteration will occur</param>
     /// <param name="f">The action to be applied to each  value</param>
     [MethodImpl(Inline)]
-    public static void iter(uint min, uint max, Action<uint> f)
-    {
-       for(var i = min; i< max; i++) 
-            f(i);
-    }
-
-
-    /// <summary>
-    /// Aplies an action to the sequence of integers min,min+1,...,max - 1
-    /// </summary>
-    /// <param name="min">The inclusive lower bound of the sequence</param>
-    /// <param name="max">The non-inclusive upper bound of the sequence
-    /// over intergers over which iteration will occur</param>
-    /// <param name="f">The action to be applied to each  value</param>
-    [MethodImpl(Inline)]
     public static void iter(long min, long max, Action<long> f)
     {
        for(var i = min; i< max; i++) 
@@ -612,16 +597,5 @@ public static partial class zcore
             f(i);
     }
 
-    /// <summary>
-    /// Applies an action to the increasing sequence of integers 0,1,2,...,count - 1
-    /// </summary>
-    /// <param name="count">The number of times the action will be invoked
-    /// <param name="f">The action to be applied to each value</param>
-    [MethodImpl(Inline)]
-    public static void iter(uint count, Action<uint> f)
-    {
-       for(var i = 0u; i< count; i++) 
-            f(i);
-    }
 
 }

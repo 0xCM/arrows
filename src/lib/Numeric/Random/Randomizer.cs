@@ -310,9 +310,8 @@ namespace Z0
                 throw new ArgumentException($"{min} !< {max}");
 
             var width = max - min;
-            var offset = min + 1;
             foreach(var n in stream())
-                yield return (n % width + offset);
+                yield return ( n % width + min);
         }
 
         /// <summary>
@@ -364,7 +363,7 @@ namespace Z0
         /// <param name="min">The minimum value</param>
         /// <param name="max">The maximum value</param>
         public IEnumerable<uint> stream(uint min, uint max)
-            => from x in stream((ulong)min, (ulong)max) select (uint)x;
+            => stream((ulong)min, ((ulong)max)).Select(x => (uint)x);
 
         /// <summary>
         /// Streams a uniformly random sequence of bounded int values

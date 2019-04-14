@@ -16,12 +16,18 @@ namespace Z0.Testing
     public abstract class UnitTest
     {
 
+        protected virtual string OpName 
+            => string.Empty;
     }
 
     public abstract class UnitTest<T> : UnitTest
         where T : UnitTest<T>
     {
-        protected static TestContext<T> Context = TestContext.define<T>(RandSeeds.TestSeed);
+        protected static readonly TestContext<T> Context = TestContext.define<T>(RandSeeds.TestSeed);
+
+
+        protected virtual int StreamLength
+            => (int)Defaults.StreamLength;
     }
 
 }

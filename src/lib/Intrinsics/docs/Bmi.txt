@@ -1,0 +1,127 @@
+Bmi1
+-------------------------------------------------------------------------------
+
+
+docs: unsigned int _andn_u32 (unsigned int a, unsigned int b) ANDN r32a, r32b, reg/m32
+clr-sig: uint AndNot(uint left, uint right);
+
+
+docs: unsigned int _bextr_u32 (unsigned int a, unsigned int start, unsigned int len)
+docs: BEXTR r32a, reg/m32, r32b
+clr-sig: uint BitFieldExtract(uint value, byte start, byte length);
+
+
+docs: unsigned int _bextr2_u32 (unsigned int a, unsigned int control) BEXTR r32a, reg/m32,
+docs: r32b
+clr-sig: uint BitFieldExtract(uint value, ushort control);
+
+
+docs: unsigned int _blsi_u32 (unsigned int a) BLSI reg, reg/m32
+clr-sig: uint ExtractLowestSetBit(uint value);
+
+
+docs: unsigned int _blsmsk_u32 (unsigned int a) BLSMSK reg, reg/m32
+clr-sig: uint GetMaskUpToLowestSetBit(uint value);
+
+
+docs: unsigned int _blsr_u32 (unsigned int a) BLSR reg, reg/m32
+clr-sig: uint ResetLowestSetBit(uint value);
+
+
+docs: int _mm_tzcnt_32 (unsigned int a) TZCNT reg, reg/m32
+clr-sig: uint TrailingZeroCount(uint value);
+
+Bmi1.X64
+-------------------------------------------------------------------------------
+
+docs: unsigned __int64 _andn_u64 (unsigned __int64 a, unsigned __int64 b) ANDN r64a,
+docs: r64b, reg/m64 This intrinisc is only available on 64-bit processes
+clr-sig: ulong AndNot(ulong left, ulong right);
+
+
+docs: unsigned __int64 _bextr_u64 (unsigned __int64 a, unsigned int start, unsigned
+docs: int len) BEXTR r64a, reg/m64, r64b This intrinisc is only available on 64-bit
+docs: processes
+clr-sig: ulong BitFieldExtract(ulong value, byte start, byte length);
+
+
+docs: unsigned __int64 _bextr2_u64 (unsigned __int64 a, unsigned __int64 control) BEXTR
+docs: r64a, reg/m64, r64b This intrinisc is only available on 64-bit processes
+clr-sig: ulong BitFieldExtract(ulong value, ushort control);
+
+
+docs: unsigned __int64 _blsi_u64 (unsigned __int64 a) BLSI reg, reg/m64 This intrinisc
+docs: is only available on 64-bit processes
+clr-sig: ulong ExtractLowestSetBit(ulong value);
+
+
+docs: unsigned __int64 _blsmsk_u64 (unsigned __int64 a) BLSMSK reg, reg/m64 This intrinisc
+docs: is only available on 64-bit processes
+clr-sig: ulong GetMaskUpToLowestSetBit(ulong value);
+
+
+docs: unsigned __int64 _blsr_u64 (unsigned __int64 a) BLSR reg, reg/m64 This intrinisc
+docs: is only available on 64-bit processes
+clr-sig: ulong ResetLowestSetBit(ulong value);
+
+
+docs: __int64 _mm_tzcnt_64 (unsigned __int64 a) TZCNT reg, reg/m64 This intrinisc is
+docs: only available on 64-bit processes
+clr-sig: ulong TrailingZeroCount(ulong value);
+
+
+Bmi2
+-------------------------------------------------------------------------------
+docs: unsigned int _mulx_u32 (unsigned int a, unsigned int b, unsigned int* hi) MULX
+docs: r32a, r32b, reg/m32 The above native signature does not directly correspond to
+docs: the managed signature.
+clr-sig: uint MultiplyNoFlags(uint left, uint right);
+
+
+docs: unsigned int _mulx_u32 (unsigned int a, unsigned int b, unsigned int* hi) MULX
+docs: r32a, r32b, reg/m32 The above native signature does not directly correspond to
+docs: the managed signature.
+clr-sig: uint MultiplyNoFlags(uint left, uint right, uint* low);
+
+
+docs: unsigned int _pdep_u32 (unsigned int a, unsigned int mask) PDEP r32a, r32b, reg/m32
+clr-sig: uint ParallelBitDeposit(uint value, uint mask);
+
+
+docs: unsigned int _pext_u32 (unsigned int a, unsigned int mask) PEXT r32a, r32b, reg/m32
+clr-sig: uint ParallelBitExtract(uint value, uint mask);
+
+
+docs: unsigned int _bzhi_u32 (unsigned int a, unsigned int index) BZHI r32a, reg/m32,
+docs: r32b
+clr-sig: uint ZeroHighBits(uint value, uint index);
+
+Bmi2.X64
+
+docs: unsigned __int64 _mulx_u64 (unsigned __int64 a, unsigned __int64 b, unsigned
+docs: __int64* hi) MULX r64a, r64b, reg/m64 The above native signature does not directly
+docs: correspond to the managed signature. This intrinisc is only available on 64-bit
+docs: processes
+clr-sig: ulong MultiplyNoFlags(ulong left, ulong right);
+
+
+docs: unsigned __int64 _mulx_u64 (unsigned __int64 a, unsigned __int64 b, unsigned
+docs: __int64* hi) MULX r64a, r64b, reg/m64 The above native signature does not directly
+docs: correspond to the managed signature. This intrinisc is only available on 64-bit
+docs: processes
+clr-sig: ulong MultiplyNoFlags(ulong left, ulong right, ulong* low);
+
+
+docs: unsigned __int64 _pdep_u64 (unsigned __int64 a, unsigned __int64 mask) PDEP r64a,
+docs: r64b, reg/m64 This intrinisc is only available on 64-bit processes
+clr-sig: ulong ParallelBitDeposit(ulong value, ulong mask);
+
+
+docs: unsigned __int64 _pext_u64 (unsigned __int64 a, unsigned __int64 mask) PEXT r64a,
+docs: r64b, reg/m64 This intrinisc is only available on 64-bit processes
+clr-sig: ulong ParallelBitExtract(ulong value, ulong mask);
+
+
+docs: unsigned __int64 _bzhi_u64 (unsigned __int64 a, unsigned int index) BZHI r64a,
+docs: reg/m32, r64b This intrinisc is only available on 64-bit processes
+clr-sig: ulong ZeroHighBits(ulong value, ulong index);

@@ -24,7 +24,7 @@ namespace Z0.Tests
         public const string Path = P.nla + P.vectors + P.realf64 + P.add;
         
         public RealF64VectorAdd()
-            : base(Defaults.Float64Range)
+            : base(Defaults.Float64Domain)
         {}
 
         public override void Verify()

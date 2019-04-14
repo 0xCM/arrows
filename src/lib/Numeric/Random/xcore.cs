@@ -15,41 +15,41 @@ namespace Z0
 
     partial class xcore
     {
-        public static PrimalRand<T> Primal<T>(this IRandomizer random)
+        public static IRandom<T> Primal<T>(this IRandomizer random)
             where T : struct, IEquatable<T>
         {
             if(type<T>().IsInt8())
-                return cast<PrimalRand<T>>(new Rand8((Randomizer)random));
+                return cast<IRandom<T>>(new Rand8((Randomizer)random));
 
             if(type<T>().IsUInt8())
-                return cast<PrimalRand<T>>(new RandU8((Randomizer)random));
+                return cast<IRandom<T>>(new RandU8((Randomizer)random));
 
             if(type<T>().IsInt16())
-                return cast<PrimalRand<T>>(new Rand16((Randomizer)random));
+                return cast<IRandom<T>>(new Rand16((Randomizer)random));
 
             if(type<T>().IsUInt16())
-                return cast<PrimalRand<T>>(new RandU16((Randomizer)random));
+                return cast<IRandom<T>>(new RandU16((Randomizer)random));
 
             if(type<T>().IsInt32())
-                return cast<PrimalRand<T>>(new Rand32((Randomizer)random));
+                return cast<IRandom<T>>(new Rand32((Randomizer)random));
 
             if(type<T>().IsUInt32())
-                return cast<PrimalRand<T>>(new RandU32((Randomizer)random));
+                return cast<IRandom<T>>(new RandU32((Randomizer)random));
 
             if(type<T>().IsInt64())
-                return cast<PrimalRand<T>>(new Rand64((Randomizer)random));
+                return cast<IRandom<T>>(new Rand64((Randomizer)random));
 
             if(type<T>().IsUInt64())
-                return cast<PrimalRand<T>>(new RandU64((Randomizer)random));
+                return cast<IRandom<T>>(new RandU64((Randomizer)random));
 
             if(type<T>().IsDouble())
-                return cast<PrimalRand<T>>(new RandF64((Randomizer)random));
+                return cast<IRandom<T>>(new RandF64((Randomizer)random));
 
             if(type<T>().IsSingle())
-                return cast<PrimalRand<T>>(new RandF32((Randomizer)random));
+                return cast<IRandom<T>>(new RandF32((Randomizer)random));
 
             if(type<T>().IsDecimal())
-                return cast<PrimalRand<T>>(new RandF128((Randomizer)random));
+                return cast<IRandom<T>>(new RandF128((Randomizer)random));
 
             throw new NotSupportedException();
         }

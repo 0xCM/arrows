@@ -14,7 +14,7 @@ namespace Z0
     using uprim = System.UInt32;
     using prim = System.Int32;
     
-    class Rand32 : Rand<prim>, PrimalRand<prim>
+    class Rand32 : IRandom<prim>
     {
         readonly Randomizer random;
 
@@ -27,12 +27,6 @@ namespace Z0
             => random.one(min,max);
 
         public IEnumerable<prim> stream(prim min, prim max)
-            => random.stream(min,max);
-
-        public IEnumerable<real<prim>> stream(real<prim> min, real<prim> max)
-            => from value in stream(min.unwrap(), max.unwrap()) select real(value);
-        
-
-
+            => random.stream(min,max);    
     }
 }

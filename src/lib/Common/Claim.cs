@@ -48,15 +48,33 @@ namespace Z0
         public static T fail<T>(string msg)
             => throw new Exception(msg);
 
-        public static void equals<T>(T expect, T actual)
+        public static void eq<T>(IReadOnlyList<T> l1, IReadOnlyList<T> l2)
+            where T : struct, IEquatable<T> 
         {
-            if(!Object.Equals(expect,actual))
-                fail($"{expect} != {actual}" );
+            if (l1.Count != l2.Count)
+                fail($"The reference list has length {l1.Count} while the other has {l2.Count}");
+
+            for (var i = 0; i < l2.Count; i++)
+            {
+                var left = l1[i];
+                var right = l2[i];
+                var same = Equals(left, right);
+                if (!same)
+                    fail($"Item {i} = {left} from the reference list does not mach item {i} = {right} from the other");
+            }
         }
 
         public static string eq<T>(T x, T y)
             where T : struct, IEquatable<T> 
                 => define(x,y,"==",  (a,b) => a.Equals(b)).demand();
+
+        public static string eq<T>(T x, T y, string msg, bool tell = true)
+            where T : struct, IEquatable<T> 
+        {
+            if(tell)
+                zcore.inform(msg);            
+            return eq(x,y);
+        }
 
         /// <summary>
         /// Demands that the first string is equal to the second

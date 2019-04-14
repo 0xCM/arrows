@@ -26,7 +26,7 @@ namespace Z0.Tests
         public const string Path = P.primops + P.uint32 + P.neq;
 
         public UInt32NEq()
-            : base(Defaults.UInt32Range)
+            : base(Defaults.UInt32Domain)
         {
             
         }

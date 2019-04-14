@@ -25,7 +25,7 @@ namespace Z0.Tests
         public const string Path = P.reali32 + P.add;        
         
         public RealGInt32Add()
-            : base(Defaults.Int32Range)
+            : base(Defaults.Int32Domain)
         {
         }
 

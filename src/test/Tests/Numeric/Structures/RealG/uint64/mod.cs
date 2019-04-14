@@ -25,7 +25,7 @@ namespace Z0.Tests
         public const string Path = P.realu64 + P.mod;
 
         public RealGUInt64Mod()
-            : base(Defaults.UInt64Range, x => x != 0)
+            : base(Defaults.UInt64Domaim, x => x != 0)
         {
         }
 

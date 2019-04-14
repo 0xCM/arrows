@@ -68,13 +68,23 @@ namespace Z0
 
         /// <summary>
         /// Constructs a readonly list from from the a specified number of
-        /// elmements from of a stream
+        /// elmements from the head of a stream
         /// </summary>
         /// <param name="src">The source stream</param>
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> Freeze<T>(this IEnumerable<T> src, int count)
                 => src.Take(count).Freeze();
+
+        /// <summary>
+        /// Constructs a readonly list from from the a specified number of
+        /// elmements from stream after a skip
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<T> Freeze<T>(this IEnumerable<T> src, int skip, int count)
+                => src.Skip(skip).Take(count).Freeze();
 
         /// <summary>
         /// Constructs a readonly list from from the a specified number of

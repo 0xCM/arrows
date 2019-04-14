@@ -6,6 +6,7 @@ namespace Z0
 {
     using System;
     using System.Numerics;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using static zcore;
 
@@ -81,5 +82,58 @@ namespace Z0
                 => lhs * rhs;
         }
 
-    }
-}}
+    }}
+
+    partial class PrimalList
+    {
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<sbyte> Mul(this IReadOnlyList<sbyte> lhs, IReadOnlyList<sbyte> rhs)
+            => fuse(lhs,rhs,(x,y) => (sbyte)(x * y));
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<byte> Mul(this IReadOnlyList<byte> lhs, IReadOnlyList<byte> rhs)
+            => fuse(lhs,rhs,(x,y) => (byte)(x * y));
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<short> Mul(this IReadOnlyList<short> lhs, IReadOnlyList<short> rhs)
+            => fuse(lhs,rhs,(x,y) => (short)(x * y));
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<ushort> Mul(this IReadOnlyList<ushort> lhs, IReadOnlyList<ushort> rhs)
+            => fuse(lhs,rhs,(x,y) => (ushort)(x * y));
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<int> Mul(this IReadOnlyList<int> lhs, IReadOnlyList<int> rhs)
+            => fuse(lhs,rhs,(x,y) => x * y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<uint> Mul(this IReadOnlyList<uint> lhs, IReadOnlyList<uint> rhs)
+            => fuse(lhs,rhs,(x,y) => x * y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<long> Mul(this IReadOnlyList<long> lhs, IReadOnlyList<long> rhs)
+            => fuse(lhs,rhs,(x,y) => x * y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<ulong> Mul(this IReadOnlyList<ulong> lhs, IReadOnlyList<ulong> rhs)
+            => fuse(lhs,rhs,(x,y) => x * y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<float> Mul(this IReadOnlyList<float> lhs, IReadOnlyList<float> rhs)
+            => fuse(lhs,rhs,(x,y) => x * y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<double> Mul(this IReadOnlyList<double> lhs, IReadOnlyList<double> rhs)
+            => fuse(lhs,rhs,(x,y) => x * y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<decimal> Mul(this IReadOnlyList<decimal> lhs, IReadOnlyList<decimal> rhs)
+            => fuse(lhs,rhs,(x,y) => x * y);
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<BigInteger> Mul(this IReadOnlyList<BigInteger> lhs, IReadOnlyList<BigInteger> rhs)
+            => fuse(lhs,rhs,(x,y) => x * y);
+
+    }    
+}

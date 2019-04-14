@@ -25,7 +25,7 @@ namespace Z0.Tests
         public const string Path = P.realf64 + P.add;
         
         public RealGFloat64Add()
-            : base(Defaults.Float64Range)
+            : base(Defaults.Float64Domain)
         {
         }
 

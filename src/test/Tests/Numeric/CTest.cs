@@ -26,13 +26,16 @@ namespace Z0.Tests
             var rand = Context.Random<T>();
             var src1 = reals(rand.stream(min, max).Take(count).Freeze());
             var src2 = reals(rand.stream(min, max)).Where(x => x.neq(x.zero)).Take(count).Freeze();
-            var inputs = zip(src1,src2);
+            var inputs = zip(src1,src2).ToList();
             var expect = map(inputs, x => x.left.divrem(x.right));
             var actual = map(inputs, x => x.left.divrem(x.right));
-                
-            iter(inputs.Count, i => 
+
+            for(var i = 0; i< inputs.Count; i++)
+            {
                 require(actual[i].q == expect[i].q && actual[i].r == expect[i].r, 
-                    inputs[i], expect[i], actual[i]));
+                    inputs[i], expect[i], actual[i]);
+
+            }
         }
 
         static void absTest<T>(T input, T expect)

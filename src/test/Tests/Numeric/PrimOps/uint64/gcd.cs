@@ -27,7 +27,7 @@ namespace Z0.Tests
         public const string Path = P.primops + P.uint64 + P.gcd;
         
         public UInt64Gcd()
-            : base(Defaults.UInt64Range, x => x != 0, Pow2.T10)
+            : base(Defaults.UInt64Domaim, x => x != 0, Pow2.T10)
         {
 
         }

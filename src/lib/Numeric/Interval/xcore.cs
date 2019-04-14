@@ -134,5 +134,27 @@ namespace Z0
         public static IEnumerable<floatg<T>> Partition<T>(this Traits.Interval<floatg<T>> src, floatg<T> parts)   
             where T : struct, IEquatable<T>
                 => Interval.partition(src, parts);
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<T> Discretize<T>(this Traits.Interval<T> src, T? step = null)
+            where T : struct, IEquatable<T>
+        {            
+            var ops = primops.typeops<T>();
+
+            var width = step ?? ops.one;
+
+            if(src.leftclosed)
+                yield return src.left;
+            
+            var next = ops.add(src.left, width);
+            while(ops.lt(next,src.right))
+            {
+                yield return next;
+                next = ops.add(next, width);
+            }
+
+            if(src.rightclosed)
+                yield return src.right;
+        }
     }
 }

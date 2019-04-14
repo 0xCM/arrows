@@ -25,7 +25,7 @@ namespace Z0.Tests
         public const string Path = P.primconv + P.int32 + P.float64;
 
         public FromInt32ToFloat64()
-            : base(Defaults.Int32Range)
+            : base(Defaults.Int32Domain)
             {}
 
         public override void Verify()

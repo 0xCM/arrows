@@ -45,26 +45,6 @@ namespace Z0
             
         }
 
-        static void v128f64()
-        {
-            var v01 = Vec128.define(new double[]{1.5,2.6});
-            var v02 = Vec128.define(new double[]{3,4});
-            print($"{v01} + {v02} = {Vec128.add(v01,v02)}");
-        }
-
-        static void v128u64()
-        {
-            var v1 = Vec128.define(10, (ulong)20);
-            var v2 = Vec128.define(30,(ulong)40);
-            print($"{v1} + {v2} = {Vec128.add(v1,v2)}");
-
-        }
-        void V128Intrinsics()
-        {
-            v128f64();
-            v128u64();
-        }
-
         Task V128Stream(Func<bool> stop, uint batchSize = Pow2.T18, int delay = 0, bool diagnostic = false)
         {   
             void worker()
@@ -75,9 +55,9 @@ namespace Z0
                     var batch = Random<long>().stream(Defaults.Int64Min, Defaults.Int64Max).Freeze(batchSize);
                     foreach(var v in Vec128.stream<long>(batch))
                     {
-                        var sum = Vec128.add(v,v);
-                        var vAnd = Vec128.and(v, sum);
-                        var vOr = Vec128.or(v, sum);
+                        var sum = InX.add(v,v);
+                        var vAnd = InX.and(v, sum);
+                        var vOr = InX.or(v, sum);
                         
                         if(diagnostic)
                             print($"{v} + {v} = {sum}");
@@ -96,17 +76,16 @@ namespace Z0
             return Task.Factory.StartNew(worker);                
         }
 
-        void RunTests()
+        void RunTests(string filter)
         {
-            TestRunner.RunTests();
+            TestRunner.RunTests(filter);
         }
 
-        static void Main(string[] args)
-        {     
-            var app = new App();
-            var stop = false;
-            app.V128Intrinsics();
-            var task = app.V128Stream(() =>{
+        void RunStream()
+        {
+           var stop = false;
+ 
+            var task = V128Stream(() =>{
                 return stop;
             });
 
@@ -114,6 +93,31 @@ namespace Z0
             stop = true;
             task.Wait();
 
+        }
+
+        void Random()
+        {
+            var random = Randomizer.define(RandSeeds.TestSeed);
+            var stream = random.stream(10u,30u);
+            var data = stream.Freeze(Pow2.T20);
+            var histo = new Dictionary<uint, uint>();
+            foreach(var datum in data)
+            {
+                if(histo.ContainsKey(datum))
+                    histo[datum] = histo[datum] + 1u;
+                else
+                    histo[datum] = 1u;
+            }
+
+            foreach(var key in histo.Keys.OrderBy(x => x))
+                print($"{key}: {histo[key]}");
+
+        }
+        static void Main(string[] args)
+        {     
+            var app = new App();
+            app.RunTests(Paths.InX);
+            //app.Random();
 
         }
     }

@@ -24,7 +24,7 @@ namespace Z0.Tests
     {        
         public const string Path = P.primops + P.uint64 + P.pow;
         public UInt64Pow()
-            : base(Defaults.UInt64Range)
+            : base(Defaults.UInt64Domaim)
             {}
 
         public override void Verify()

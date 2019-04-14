@@ -26,7 +26,7 @@ namespace Z0.Tests
         public const string Path = P.primops + P.uint32 + P.div;
 
         public UInt32Div()
-            : base(Defaults.UInt32Range, x => x != 0)
+            : base(Defaults.UInt32Domain, x => x != 0)
         {
             
         }

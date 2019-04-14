@@ -25,7 +25,7 @@ namespace Z0.Tests
         public const string Path = P.int64g + P.and;
         
         public Int64GAnd()
-            : base(Defaults.Int64Range)
+            : base(Defaults.Int64Domain)
         {
         }
 

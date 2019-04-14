@@ -13,7 +13,7 @@ namespace Z0
     using prim = System.UInt64;
 
 
-    class RandU64 : Rand<prim>, PrimalRand<prim>
+    class RandU64 : IRandom<prim>
     {
         readonly Randomizer random;
 
@@ -32,7 +32,5 @@ namespace Z0
         public IEnumerable<prim> stream(prim min, prim max)
             => random.stream(min,max);
 
-        public IEnumerable<real<prim>> stream(real<prim> min, real<prim> max)
-             => from value in stream(min.unwrap(), max.unwrap()) select real(value);
    }
 }

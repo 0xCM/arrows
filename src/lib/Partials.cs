@@ -5,6 +5,11 @@
 namespace Z0
 {
 
+    public partial class InX
+    {
+
+    }
+
     public static partial class ClrConverters
     {
 

@@ -44,7 +44,7 @@ namespace Z0.Testing
         {
             var expect = Baseline();
             var actual = Applied().Unwrap();            
-            iter((int)SampleSize, i => Claim.equals(expect[i], actual[i]));
+            iter((int)SampleSize, i => Claim.eq(expect[i], actual[i]));
         }
     }
 }

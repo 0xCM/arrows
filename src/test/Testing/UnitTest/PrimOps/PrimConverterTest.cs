@@ -49,7 +49,7 @@ namespace Z0.Testing
         {
             var expect = Baseline();
             var actual = Compute();            
-            iter((int)VectorSize, i => Claim.equals(expect[i], actual[i]));
+            iter((int)VectorSize, i => Claim.eq(expect[i], actual[i]));
         }
     }
 }

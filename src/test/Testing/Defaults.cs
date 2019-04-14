@@ -16,10 +16,13 @@ namespace Z0.Testing
         uint SampleSize {get;}
 
         int Reps {get;}
+
+        int StreamLength {get;}
     }
+    
     public interface Default<T> : Default
     {
-        Interval<T> Range {get;}
+        Interval<T> Domain {get;}
     }
 
     public interface IPolyProp<T>
@@ -269,9 +272,14 @@ namespace Z0.Testing
 
         public const int Reps = 1;
 
+        public const uint StreamLength = Pow2.T20;
+
         public const uint SampleSize = Pow2.T20;
 
         public const uint BigVector = Pow2.T20;
+
+        int Default.StreamLength
+            => (int)StreamLength;
 
         uint Default.SampleSize 
             => SampleSize;
@@ -279,25 +287,27 @@ namespace Z0.Testing
         int Default.Reps 
             => Reps;
 
+
+
         // ! Int8
         public const sbyte Int8Min = SByte.MinValue;
 
         public const sbyte Int8Max = SByte.MaxValue;
 
-        public static readonly Interval<sbyte> Int8Range = Interval.closed(Int8Max,Int8Min);
+        public static readonly Interval<sbyte> Int8Domain = Interval.closed(Int8Max,Int8Min);
 
-        Interval<sbyte> Default<sbyte>.Range 
-            => Int8Range;
+        Interval<sbyte> Default<sbyte>.Domain 
+            => Int8Domain;
 
         // ! UInt8
         public const byte UInt8Min = Byte.MinValue;
 
         public const byte UInt8Max = Byte.MaxValue;
 
-        public static readonly Interval<byte> UInt8Range = Interval.closed(UInt8Max,UInt8Min);
+        public static readonly Interval<byte> UInt8Domain = Interval.closed(UInt8Max,UInt8Min);
 
-        Interval<byte> Default<byte>.Range 
-            => UInt8Range;
+        Interval<byte> Default<byte>.Domain 
+            => UInt8Domain;
 
         // ! Int16
 
@@ -305,10 +315,10 @@ namespace Z0.Testing
         
         public const short Int16Max = 500;
 
-        public static readonly Interval<short> Int16Range = Interval.closed(Int16Min,Int16Max);
+        public static readonly Interval<short> Int16Domain = Interval.closed(Int16Min,Int16Max);
 
-        Interval<short> Default<short>.Range 
-            => Int16Range;
+        Interval<short> Default<short>.Domain 
+            => Int16Domain;
 
         // ! Int16
 
@@ -318,7 +328,7 @@ namespace Z0.Testing
 
         public static readonly Interval<ushort> UInt16Range = Interval.closed(UInt16Min,UInt16Max);
 
-        Interval<ushort> Default<ushort>.Range 
+        Interval<ushort> Default<ushort>.Domain 
             => UInt16Range;
 
         // ! Int32
@@ -327,10 +337,10 @@ namespace Z0.Testing
         
         public const int Int32Max = 250000;
 
-        public static readonly Interval<int> Int32Range = Interval.closed(Int32Min,Int32Max);
+        public static readonly Interval<int> Int32Domain = Interval.closed(Int32Min,Int32Max);
 
-        Interval<int> Default<int>.Range 
-            => Int32Range;
+        Interval<int> Default<int>.Domain 
+            => Int32Domain;
 
         // ! UInt32
 
@@ -338,10 +348,10 @@ namespace Z0.Testing
         
         public const uint UInt32Max = 500000;
 
-        public static readonly Interval<uint> UInt32Range = Interval.closed(UInt32Min,UInt32Max);
+        public static readonly Interval<uint> UInt32Domain = Interval.closed(UInt32Min,UInt32Max);
 
-        Interval<uint> Default<uint>.Range 
-            => UInt32Range;
+        Interval<uint> Default<uint>.Domain 
+            => UInt32Domain;
  
         // ! Int64
 
@@ -349,10 +359,10 @@ namespace Z0.Testing
         
         public const long Int64Max = 250000;
 
-        public static readonly Interval<long> Int64Range = Interval.closed(Int64Min,Int64Max);
+        public static readonly Interval<long> Int64Domain = Interval.closed(Int64Min,Int64Max);
 
-       Interval<long> Default<long>.Range 
-            => Int64Range;
+       Interval<long> Default<long>.Domain 
+            => Int64Domain;
 
         // ! UInt64
 
@@ -360,10 +370,10 @@ namespace Z0.Testing
         
         public const ulong UInt64Max = 500000;
 
-        public static readonly Interval<ulong> UInt64Range = Interval.closed(UInt64Min,UInt64Max);
+        public static readonly Interval<ulong> UInt64Domaim = Interval.closed(UInt64Min,UInt64Max);
 
-        Interval<ulong> Default<ulong>.Range 
-            => UInt64Range;
+        Interval<ulong> Default<ulong>.Domain 
+            => UInt64Domaim;
 
        // ! Float32
 
@@ -371,10 +381,10 @@ namespace Z0.Testing
         
         public const float Float32Max = 250000.00f;
 
-        public static readonly Interval<float> Float32Range = Interval.closed(Float32Min,Float32Max);
+        public static readonly Interval<float> Float32Domain = Interval.closed(Float32Min,Float32Max);
 
-        Interval<float> Default<float>.Range 
-            => Float32Range;
+        Interval<float> Default<float>.Domain 
+            => Float32Domain;
 
         // ! Float64
 
@@ -382,10 +392,10 @@ namespace Z0.Testing
         
         public const double Float64Max = 250000.00;
 
-        public static readonly Interval<double> Float64Range = Interval.closed(Float64Min,Float64Max);
+        public static readonly Interval<double> Float64Domain = Interval.closed(Float64Min,Float64Max);
 
-        Interval<double> Default<double>.Range 
-            => Float64Range;
+        Interval<double> Default<double>.Domain 
+            => Float64Domain;
 
        // ! Float64
 
@@ -395,7 +405,7 @@ namespace Z0.Testing
 
         public static readonly Interval<BigInteger> BigIntRange = Interval.closed(BigIntMin,BigIntMax);
 
-        Interval<BigInteger> Default<BigInteger>.Range 
+        Interval<BigInteger> Default<BigInteger>.Domain 
             => BigIntRange;
 
     }

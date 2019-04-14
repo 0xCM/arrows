@@ -26,7 +26,7 @@ namespace Z0.Tests
         public const string Path = P.primops + P.uint64 + P.and;
 
         public UInt64And()
-            : base(Defaults.UInt64Range)
+            : base(Defaults.UInt64Domaim)
         {
             
         }
