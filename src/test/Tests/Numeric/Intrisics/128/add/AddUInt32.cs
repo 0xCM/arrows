@@ -28,7 +28,7 @@ namespace Z0.Tests
 
         }
 
-        public void Compute()
+        public void Validate()
         {            
             var v1 = RandomVector(); 
             var v2 = RandomVector(); 
@@ -40,7 +40,7 @@ namespace Z0.Tests
             Claim.eq(e1,r1.Freeze());
         }
 
-        public void Compare()
+        public void ValidateStream()
         {
             var lPrior = RandomList();
             var vPrior = lPrior.ToVec128();
@@ -49,7 +49,7 @@ namespace Z0.Tests
                 var vCurrent = lCurrent.ToVec128();
 
                 var lResult = lPrior.Add(lCurrent);
-                var vResult = InX.add(vPrior, vCurrent);
+                var vResult = vPrior.Add(vCurrent);
 
                 Claim.eq(lResult.ToVec128(),vResult);
             }
@@ -58,9 +58,10 @@ namespace Z0.Tests
 
         public void ProcessVectors()
         {
+            var op = InX128G.Add<uint>();
             var prior = RandomVector();
             foreach(var v in RandomVectors())
-                prior = InX.add(prior, v);
+                prior = op.add(prior, v);
         }
 
         public void ProcessLists()

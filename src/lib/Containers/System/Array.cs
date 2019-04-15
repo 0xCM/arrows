@@ -165,7 +165,7 @@ namespace Z0
         /// <param name="width">The width of each subarray</param>
         public static IEnumerable<T[]> Partition<T>(this T[] items, int width)
         {
-            var dst = array<T>(width);
+            var dst = alloc<T>(width);
             var idx = 0;
             foreach (var item in items)
             {
@@ -173,7 +173,7 @@ namespace Z0
                 if (width - idx == 1)
                 {
                     yield return dst;
-                    dst = array<T>(width);
+                    dst = alloc<T>(width);
                     idx = 0;
                 }
             }

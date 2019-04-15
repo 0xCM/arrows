@@ -13,7 +13,7 @@ namespace Z0
     using static zcore;
     using static x86;
 
-   public readonly struct Vec128<T> : IEquatable<Vec128<T>>
+   public struct Vec128<T> : IEquatable<Vec128<T>>
         where T : struct, IEquatable<T>
     {
         public const int BitCount = 128;
@@ -24,7 +24,7 @@ namespace Z0
         
         public static readonly int ComponentBitCount = BitCount / (Length * 8);
         
-        readonly Vector128<T> data;        
+        Vector128<T> data;        
     
 
         [MethodImpl(Inline)]

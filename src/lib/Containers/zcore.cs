@@ -116,7 +116,34 @@ public static partial class zcore
     /// <param name="len">The length of the array</param>
     /// <typeparam name="T">The array element type</typeparam>
     [MethodImpl(Inline)]
-    public static T[] array<T>(long len = 0)
+    public static T[] array<T>(long len)
+        => new T[len];
+
+    /// <summary>
+    /// Creates, but does not populate, a mutable array
+    /// </summary>
+    /// <param name="len">The length of the array</param>
+    /// <typeparam name="T">The array element type</typeparam>
+    [MethodImpl(Inline)]
+    public static T[] alloc<T>(uint len)
+        => new T[len];
+
+    /// <summary>
+    /// Creates, but does not populate, a mutable array
+    /// </summary>
+    /// <param name="len">The length of the array</param>
+    /// <typeparam name="T">The array element type</typeparam>
+    [MethodImpl(Inline)]
+    public static T[] alloc<T>(long len)
+        => new T[len];
+
+    /// <summary>
+    /// Creates, but does not populate, a mutable array
+    /// </summary>
+    /// <param name="len">The length of the array</param>
+    /// <typeparam name="T">The array element type</typeparam>
+    [MethodImpl(Inline)]
+    public static T[] alloc<T>(int len)
         => new T[len];
 
     /// <summary>
@@ -365,7 +392,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static T[] repeat<T>(T value, ulong count)
     {
-        var dst = array<T>((uint)count);
+        var dst = alloc<T>((uint)count);
         for(var idx = 0U; idx < count; idx ++)
             dst[idx] = value;
         return dst;            

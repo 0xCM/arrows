@@ -39,7 +39,7 @@ namespace Z0
             where N : TypeNat, new()
         {
             var len = Nat.require<N>(src.Length);
-            var bits = array<bit>(src.Length);
+            var bits = alloc<bit>(src.Length);
             for(var i=0; i< len; i++)
                 bits[i] = bit.Parse(src[i]);
             return define<N>(bits);

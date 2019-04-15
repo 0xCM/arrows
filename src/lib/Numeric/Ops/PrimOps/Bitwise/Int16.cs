@@ -62,7 +62,7 @@ namespace Z0
             {
                 var bitsize = 16;
                 var maxidx = bitsize - 1;
-                var dst = array<bit>(bitsize); 
+                var dst = alloc<bit>(bitsize); 
                 for(var i=0; i<= maxidx; i++)               
                     dst[maxidx-i] = src & (1 << i);
                 return dst;

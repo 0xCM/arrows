@@ -272,7 +272,7 @@ namespace Z0.Testing
 
         public const int Reps = 1;
 
-        public const uint StreamLength = Pow2.T20;
+        public const uint StreamLength = Pow2.T12;
 
         public const uint SampleSize = Pow2.T20;
 

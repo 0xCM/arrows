@@ -63,8 +63,8 @@ partial class zcore
 
 
     [MethodImpl(Inline)]
-    public static MethodBase method()
-        => MethodBase.GetCurrentMethod();
+    public static string method([CallerMemberName] string name = null)
+        => name;
 
     /// <summary>
     /// If non-nullable, returns the supplied type. If nullable, returns the underlying type

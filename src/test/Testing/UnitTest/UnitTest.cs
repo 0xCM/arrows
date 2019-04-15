@@ -25,6 +25,11 @@ namespace Z0.Testing
     {
         protected static readonly TestContext<T> Context = TestContext.define<T>(RandSeeds.TestSeed);
 
+        protected void trace(string msg, [CallerMemberName] string caller = null)
+        {
+            var location = GetType().DisplayName() + caller;
+            inform(msg, location);
+        }
 
         protected virtual int StreamLength
             => (int)Defaults.StreamLength;

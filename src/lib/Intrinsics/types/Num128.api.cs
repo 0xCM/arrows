@@ -8,6 +8,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
 
     using static zcore;
     using static x86;
@@ -35,6 +36,92 @@ namespace Z0
 
             return castref<Vector128<T>>(scalar);                    
          }
+
+        /// <summary>
+        /// Presents a vectorized mutable view over an array element
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <param name="startpos">The array index of the first element</param>
+        [MethodImpl(Inline)]
+        public static unsafe Num128<long> load(long[] src, int pos)
+        {
+            fixed (long* psrc = &src[pos])
+                return Avx2.LoadScalarVector128(psrc);
+        }
+
+
+        /// <summary>
+        /// Presents a vectorized mutable view over an array element
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <param name="startpos">The array index of the first element</param>
+        [MethodImpl(Inline)]
+        public static unsafe Num128<ulong> load(ulong[] src, int pos)
+        {
+            fixed (ulong* psrc = &src[pos])
+                return Avx2.LoadScalarVector128(psrc);
+        }
+
+        /// <summary>
+        /// Presents a vectorized mutable view over an array element
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <param name="startpos">The array index of the first element</param>
+        [MethodImpl(Inline)]
+        public static unsafe Num128<float> load(float[] src, int pos)
+        {
+            fixed (float* psrc = &src[pos])
+                return Avx2.LoadScalarVector128(psrc);
+        }
+
+        /// <summary>
+        /// Presents a vectorized mutable view over an array element
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <param name="startpos">The array index of the first element</param>
+        [MethodImpl(Inline)]
+        public static unsafe Num128<double> load(double[] src, int pos)
+        {
+            fixed (double* psrc = &src[pos])
+                return Avx2.LoadScalarVector128(psrc);
+        }
+
+
+
+        /// <summary>
+        /// Writes a scalar value to an array segment
+        /// </summary>
+        /// <param name="src">The soruce vector</param>
+        /// <param name="dst">The target array</param>
+        /// <param name="startpos">The array index of the first element</param>
+        [MethodImpl(Inline)]
+        public static unsafe float[] store(Num128<float> src, float[] dst, int startpos)
+        {
+            fixed (float* pdst = &dst[startpos])
+            {                
+                Avx2.StoreScalar(pdst,src);
+                return dst;
+            }                
+        }
+
+
+        /// <summary>
+        /// Writes a scalar value to an array segment
+        /// </summary>
+        /// <param name="src">The soruce vector</param>
+        /// <param name="dst">The target array</param>
+        /// <param name="startpos">The array index of the first element</param>
+        [MethodImpl(Inline)]
+        public static unsafe double[] store(Num128<double> src, double[] dst, int startpos)
+        {
+            fixed (double* pdst = &dst[startpos])
+            {                
+                Avx2.StoreScalar(pdst,src);
+                return dst;
+            }                
+        }
+
+
 
     }
 

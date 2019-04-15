@@ -8,6 +8,8 @@
     <NullableReferenceTypes>true</NullableReferenceTypes>
     <NullableContextOptions>disable</NullableContextOptions>
     <Optimize>true</Optimize>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
   </PropertyGroup>
 
   

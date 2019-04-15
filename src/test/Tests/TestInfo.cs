@@ -62,6 +62,11 @@ namespace Z0.Tests
         public const string structures = "structures/";
 
         /// <summary>
+        /// Identifies performance-related testing
+        /// </summary>
+        public const string perf = "perf/";
+        
+        /// <summary>
         /// Identifies intrinsic-related data structures and operations
         /// </summary>
         public const string InX = "intrinsics/";
@@ -379,6 +384,6 @@ namespace Z0.Tests
         /// <summary>
         /// Identifies a construction/specification operation
         /// </summary>
-        public const string define = "define/";
+        public const string create = "create/";
     }
 }

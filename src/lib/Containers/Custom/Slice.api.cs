@@ -172,7 +172,7 @@ namespace Z0
         {
             var len = s1.length;
             demand(s1.length == s2.length, $"The slice lengths {s1.length} and {s2.length} must match");
-            var result = array<U>(len);
+            var result = alloc<U>(len);
             for(var i=0; i< len; i++)
                 result[i] = f(s1[i], s2[i]);
             return slice<U>(result);
@@ -185,7 +185,7 @@ namespace Z0
             where U : struct, Operative.Semiring<U>, IEquatable<U>
         {
             var len = natval<N>();
-            var result = array<U>((uint)len);
+            var result = alloc<U>((uint)len);
             for(var i=0UL; i< len; i++)
                 result[i] = f(s1[i], s2[i]);
             return slice<N,U>(result);

@@ -6,6 +6,7 @@ namespace Z0.Tests
 {
     using System;
     using System.Linq;
+    using System.Threading;
     using System.Reflection;
     using System.ComponentModel;
     using System.Collections.Generic;
@@ -17,10 +18,178 @@ namespace Z0.Tests
     
     using P = Paths;
 
+
     [DisplayName(Path)]
-    public class InX128Define : UnitTest<InX128Define>
+    public class InX128Define : InXTest<InX128Define>
     {
-        public const string Path = P.InX128 + P.define;
+        public const string Path = P.InX128 + P.create;
+
+        
+        IEnumerable<Vec128<uint>> Vec128UInt32Stream(uint min, uint max, uint vecCount)
+        {
+            var vecLen = (uint)Vec128<uint>.Length;
+            var cellCount = vecLen*vecCount;
+            var srcList = Random(min, max).Freeze(cellCount);  
+            var srcArray = array<uint>(srcList);
+            return InX.stream128v(srcArray);
+        }
+
+        IEnumerable<Vec128<uint>> Vec128UInt32Stream(IEnumerable<uint> cells)
+            => cells.Partition(Vec128<uint>.Length).Select(Vec128.define);
+
+        public void StreamUInt32Vecs()
+        {
+            var veclen = (uint)Vec128<uint>.Length;
+            Claim.eq(4u,veclen);
+            
+            var vecTypeName = type<Vec128<uint>>().DisplayName();
+            var vecCount = veclen * Pow2.T16;
+            trace($"Streaming {vecCount} {vecTypeName} vectors");
+            
+
+            var srcList = Random<uint>(250, 50000).Freeze(vecCount);  
+            var srcArray = array<uint>(srcList);
+            var srcStream = InX.stream128v(srcArray);
+            var it = srcStream.GetEnumerator();
+            for(var i = 0; i<srcList.Count; i += 4)
+            {   
+                Claim.@true(it.MoveNext());
+                var listVec = Vec128.define(srcList[i], srcList[i+1], srcList[i+2], srcList[i + 3]);
+                Claim.eq(listVec, it.Current);
+            }                
+        }
+
+
+        public void StoreUInt32Vecs()
+        {
+            var vecCount = Pow2.T16;
+            var mem = MemoryPartition.define((int)vecCount * Vec128<uint>.Length, Vec128<uint>.Length);
+
+            trace($"Storing data from {mem.PartCount} {type<Vec128<uint>>().DisplayName()} vectors");
+
+            var dst = alloc<uint>(mem.TotalLength); 
+            var src = RandomList(10u,500u,mem.TotalLength);
+            var vectors = Vec128UInt32Stream(src).ToReadOnlyList();
+            InX.store(vectors,dst);
+
+            void ValidatePart(int cix, int pix)
+            {
+                var v = vectors[pix];
+                iter(mem.PartLength, 
+                    i => Claim.eq(src[cix + i], v[i]));
+            }
+            
+            mem.GetIndex().IterateParts(ValidatePart);
+
+        }
+
+        public void LoadInt32Vec()
+        {
+            var src = new int[]{-50,-25,25,50};
+            var v1 = Vec128.define(src);
+            var v2 = Vec128.load(src,0);
+            Claim.eq(v1,v2);
+        }
+
+        public void StoreInt32Vec()
+        {
+            var src = new int[]{-50,-25,25,50};
+            var dst = new int[src.Length];
+            var v1 = Vec128.define(src);
+            InX.store(v1, dst, 0);
+            var v2 = Vec128.define(dst);
+            Claim.eq(v1,v2);
+        }
+
+        public void LoadAllInt32Vec()
+        {
+            var src = new int[]{
+                -50,-25, 25, 50,
+                -51,-26, 26, 51,                
+                };
+
+            var v1 = Vec128.load(src,0);
+            Claim.eq(v1, Vec128.define(src[0],src[1],src[2],src[3]));
+
+            var v2 = Vec128.load(src,4);
+            Claim.eq(v2, Vec128.define(src[4],src[5],src[6],src[7]));
+
+            var vecs = src.LoadAllVec128();
+            Claim.eq(v1,vecs[0]);
+            Claim.eq(v2,vecs[1]);
+        }
+
+        public void LoadAllInt64Vec()
+        {
+            var src = new long[]{-50,-25, 25, 50};
+
+            var v1 = Vec128.load(src,0);
+            Claim.eq(v1, Vec128.define(src[0],src[1]));
+
+            var v2 = Vec128.load(src,2);
+            Claim.eq(v2, Vec128.define(src[2],src[3]));
+
+            var vecs = src.LoadAllVec128();
+            Claim.eq(v1,vecs[0]);
+            Claim.eq(v2,vecs[1]);
+        }
+
+        public void LoadAllUInt64Vec()
+        {
+            var src = new ulong[]{50,25, 75, 85};
+
+            var v1 = Vec128.load(src,0);
+            Claim.eq(v1, Vec128.define(src[0],src[1]));
+
+            var v2 = Vec128.load(src,2);
+            Claim.eq(v2, Vec128.define(src[2],src[3]));
+
+            var vecs = src.LoadAllVec128();
+            Claim.eq(v1,vecs[0]);
+            Claim.eq(v2,vecs[1]);
+        }
+
+        public void LoadUInt32Vec()
+        {
+            var src = new uint[]{50,25,25,50};
+            var v1 = Vec128.define(src);
+            var v2 = Vec128.load(src,0);
+            Claim.eq(v1,v2);
+        }
+
+        public void LoadInt64Vec()
+        {
+            var src = new long[]{50,25};
+            var v1 = Vec128.define(src);
+            var v2 = Vec128.load(src,0);
+            Claim.eq(v1,v2);
+        }
+
+        public void LoadUInt64Vec()
+        {
+            var src = new ulong[]{50,25};
+            var v1 = Vec128.define(src);
+            var v2 = Vec128.load(src,0);
+            Claim.eq(v1,v2);
+        }
+
+
+        public void LoadFloat32Vec()
+        {
+            var src = new float[]{-50,-25,25,50};
+            var v1 = Vec128.define(src);
+            var v2 = Vec128.load(src,0);
+            Claim.eq(v1,v2);
+        }
+
+        public void LoadFloat64Vec()
+        {
+            var src = new double[]{50,25};
+            var v1 = Vec128.define(src);
+            var v2 = Vec128.load(src,0);
+            Claim.eq(v1,v2);
+        }
+
 
         public void DefineInt8Vec()
         {

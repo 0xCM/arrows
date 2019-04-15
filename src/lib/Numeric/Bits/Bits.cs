@@ -25,7 +25,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static IReadOnlyList<bit> parse(string src)
         {
-            var dst = array<bit>(len: src.Length);            
+            var dst = alloc<bit>(src.Length);            
             for(var i = 0; i< src.Length; i++)
                 dst[i] = Z0.bit.Parse(src[i]);
             return dst;

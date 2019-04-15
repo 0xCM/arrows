@@ -166,7 +166,7 @@ public static partial class zcore
         if(lhs.Count != rhs.Count)
             throw new ArgumentException($"The left count {lhs.Count} does not match the right count {rhs.Count}");
             
-        var dst = array<Y>(lhs.Count);
+        var dst = alloc<Y>(lhs.Count);
         for(var i = 0; i< dst.Length; i++)
             dst[i] = f(lhs[i], rhs[i]);
         return dst;
@@ -178,7 +178,7 @@ public static partial class zcore
         if(x0.Count != x1.Count || x0.Count != x2.Count)
             throw new ArgumentException($"The input list item counts do not match");
             
-        var dst = array<Y>(x0.Count);
+        var dst = alloc<Y>(x0.Count);
         for(var i = 0; i< dst.Length; i++)
             dst[i] = f(x0[i], x1[i], x2[i]);
         return dst;
@@ -190,7 +190,7 @@ public static partial class zcore
         if(x0.Count != x1.Count || x0.Count != x2.Count || x0.Count != x3.Count)
             throw new ArgumentException($"The input list item counts do not match");
             
-        var dst = array<Y>(x0.Count);
+        var dst = alloc<Y>(x0.Count);
         for(var i = 0; i< dst.Length; i++)
             dst[i] = f(x0[i], x1[i], x2[i], x3[i]);
         return dst;
@@ -252,7 +252,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static IReadOnlyList<T> map<S,T>(IReadOnlyList<S> src, Func<S,T> f)
     {
-        var dst = array<T>(src.Count);
+        var dst = alloc<T>(src.Count);
         for(var i = 0; i<src.Count; i++)
             dst[i] = f(src[i]);
         return dst;
@@ -261,7 +261,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static T[] map<S,T>(S[] src, Func<S,T> f)
     {
-        var dst = array<T>(src.Length);
+        var dst = alloc<T>(src.Length);
         for(var i = 0; i<src.Length; i++)
             dst[i] = f(src[i]);
         return dst;
