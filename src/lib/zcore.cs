@@ -24,11 +24,26 @@ partial class zcore
     /// </summary>
     /// <param name="f">The action for which a running time will be calculated</param>
     /// <returns>The number of milliseconds elaplsed during execution</returns>
+    [MethodImpl(Inline)]
     public static long duration(Action f)
     {
         var sw = stopwatch();
         f();
         return sw.ElapsedMilliseconds;
+    }
+
+    [MethodImpl(Inline)]
+    public static void iter(int start, int limit, int step, Action<int> f)
+    {
+        for(var i = start; i < limit; i += step)   
+            f(i);             
+    }
+
+    [MethodImpl(Inline)]
+    public static IEnumerable<int> range(int start, int limit, int step)
+    {
+        for(var i = start; i< limit; i += step)
+            yield return i;
     }
 
     /// <summary>
@@ -72,7 +87,6 @@ partial class zcore
     [MethodImpl(Inline)]
     public static Type type<T>() 
         => typeof(T);
-
 
     /// <summary>
     /// Creates an instance of a specified type

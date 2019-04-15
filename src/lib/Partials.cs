@@ -10,6 +10,22 @@ namespace Z0
 
     }
 
+    public partial class InX128
+    {
+        
+
+    }
+
+    public static partial class InX128G
+    {
+
+    }
+
+    public partial class InX256
+    {
+
+    }
+
     public static partial class InXX
     {
 

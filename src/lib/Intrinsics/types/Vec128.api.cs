@@ -219,134 +219,51 @@ namespace Z0
             
         }
 
-        /// <summary>
-        /// Presents an array of vectorized mutable views over an array
-        /// </summary>
-        /// <param name="src">The source array</param>
+
         [MethodImpl(Inline)]
-        public static Vec128<sbyte>[] load(sbyte[] src)
-            => InX.load128v(src);
+        public static Vec128<byte> load(byte[] src, int startpos = 0)
+            => InX.load(src,startpos);
 
-
-        /// <summary>
-        /// Presents an array of vectorized mutable views over an array
-        /// </summary>
-        /// <param name="src">The source array</param>
         [MethodImpl(Inline)]
-        public static Vec128<long>[] load(long[] src)
-            => InX.load128v(src);
+        public static Vec128<byte> load(Span128<byte> src, int startpos = 0)
+            => InX.load(src,startpos);
 
-        /// <summary>
-        /// Presents an array of vectorized mutable views over an array
-        /// </summary>
-        /// <param name="src">The source array</param>
+
         [MethodImpl(Inline)]
-        public static Vec128<int>[] load(int[] src)
-            => InX.load128v(src);
+        public static Vec128<int> load(int[] src, int startpos = 0)
+            => InX.load(src,startpos);
 
-        /// <summary>
-        /// Presents an array of vectorized mutable views over an array
-        /// </summary>
-        /// <param name="src">The source array</param>
         [MethodImpl(Inline)]
-        public static Vec128<ulong>[] load(ulong[] src)
-            => InX.load128v(src);
+        public static Vec128<int> load(Span128<int> src, int startpos = 0)
+            => InX.load(src,startpos);
 
-        /// <summary>
-        /// Presents a vectorized mutable view over an array segment
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <param name="startpos">The array index of the first element</param>
         [MethodImpl(Inline)]
-        public static unsafe Vec128<byte> load(byte[] src, int startpos)
-            => InX.load128v(src,startpos);
+        public static Vec128<uint> load(Span128<uint> src, int startpos = 0)
+            => InX.load(src,startpos);
 
-        /// <summary>
-        /// Presents a vectorized mutable view over an array segment
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <param name="startpos">The array index of the first element</param>
+
         [MethodImpl(Inline)]
-        public static unsafe Vec128<sbyte> load(sbyte[] src, int startpos)
-            => InX.load128v(src,startpos);
+        public static Vec128<long> load(Span128<long> src, int startpos = 0)
+            => InX.load(src,startpos);
 
-        /// <summary>
-        /// Presents a vectorized mutable view over an array segment
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <param name="startpos">The array index of the first element</param>
+
         [MethodImpl(Inline)]
-        public static unsafe Vec128<short> load(short[] src, int startpos)
-            => InX.load128v(src,startpos);
+        public static Vec128<ulong> load(Span128<ulong> src, int startpos = 0)
+            => InX.load(src,startpos);
 
-        /// <summary>
-        /// Presents a vectorized mutable view over an array segment
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <param name="startpos">The array index of the first element</param>
+
         [MethodImpl(Inline)]
-        public static unsafe Vec128<ushort> load(ushort[] src, int startpos)
-            => InX.load128v(src,startpos);
+        public static Vec128<float> load(Span128<float> src, int startpos = 0)
+            => InX.load(src,startpos);
 
-        /// <summary>
-        /// Presents a vectorized mutable view over an array segment
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <param name="startpos">The array index of the first element</param>
         [MethodImpl(Inline)]
-        public static unsafe Vec128<int> load(int[] src, int startpos)
-            => InX.load128v(src,startpos);
+        public static Vec128<double> load(double[] src, int startpos)
+            => InX.load(src,startpos);
 
-        /// <summary>
-        /// Presents a vectorized mutable view over an array segment
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <param name="startpos">The array index of the first element</param>
         [MethodImpl(Inline)]
-        public static unsafe Vec128<uint> load(uint[] src, int startpos)
-            => InX.load128v(src,startpos);
+        public static Vec128<double> load(Span128<double> src, int startpos = 0)
+            => InX.load(src,startpos);
 
-        /// <summary>
-        /// Presents a vectorized mutable view over an array segment
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <param name="startpos">The array index of the first element</param>
-        [MethodImpl(Inline)]
-        public static unsafe Vec128<long> load(long[] src, int startpos)
-            => InX.load128v(src,startpos);
-
-        /// <summary>
-        /// Presents a vectorized mutable view over an array segment
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <param name="startpos">The array index of the first element</param>
-        [MethodImpl(Inline)]
-        public static unsafe Vec128<ulong> load(ulong[] src, int startpos)
-            => InX.load128v(src,startpos);
-
-        /// <summary>
-        /// Presents a vectorized mutable view over an array segment
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <param name="startpos">The array index of the first element</param>
-        [MethodImpl(Inline)]
-        public static unsafe Vec128<float> load(float[] src, int startpos)
-            => InX.load128v(src,startpos);
-
-        /// <summary>
-        /// Presents a vectorized mutable view over an array segment
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <param name="startpos">The array index of the first element</param>
-        [MethodImpl(Inline)]
-        public static unsafe Vec128<double> load(double[] src, int startpos)
-            => InX.load128v(src,startpos);
-
-        /// <summary>
-        /// Defines a vector stream predicated on a stream of component values
-        /// </summary>
-        /// <param name="src">The component source</param>
-        /// <typeparam name="T">The component type</typeparam>
         public static IEnumerable<Vec128<T>> stream<T>(IEnumerable<T> src)
             where T : struct, IEquatable<T>
         {
@@ -363,38 +280,6 @@ namespace Z0
 
     partial class xcore
     {
-
-        /// <summary>
-        ///  Constructs an array of vectors from an array of components
-        /// </summary>
-        /// <param name="src">The source array</param>
-        [MethodImpl(Inline)]
-        public static Vec128<sbyte>[] LoadAllVec128(this sbyte[] src)
-            => InX.load128v(src);
-
-        /// <summary>
-        ///  Constructs an array of vectors from an array of components
-        /// </summary>
-        /// <param name="src">The source array</param>
-        [MethodImpl(Inline)]
-        public static Vec128<int>[] LoadAllVec128(this int[] src)
-            => InX.load128v(src);
-
-        /// <summary>
-        ///  Constructs an array of vectors from an array of components
-        /// </summary>
-        /// <param name="src">The source array</param>
-        [MethodImpl(Inline)]
-        public static Vec128<long>[] LoadAllVec128(this long[] src)
-            => InX.load128v(src);
-
-        /// <summary>
-        ///  Constructs an array of vectors from an array of components
-        /// </summary>
-        /// <param name="src">The source array</param>
-        [MethodImpl(Inline)]
-        public static Vec128<ulong>[] LoadAllVec128(this ulong[] src)
-            => InX.load128v(src);
 
         /// <summary>
         ///  Constructs a 128-bit vector from components taken from the head of a stream

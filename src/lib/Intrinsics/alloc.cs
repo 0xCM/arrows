@@ -22,10 +22,25 @@ namespace Z0
             if(src.Count != count)
                 throw new Exception($"The actual value was {src.Count} but the expected value was {count}");
             return src;
-
         }
-            
-        
+
+        [MethodImpl(Inline)]
+        public static Exception segerror<T>(T[] src)
+            => new Exception($"The source array of {typename<int>()} values with length {src.Length} is not segmented properly");                
+
+
+        public static int alloc<T>(T[] src, out Vec128<T>[] dst)
+            where T : struct, IEquatable<T>
+        {
+            var vecLen = Vec128<T>.Length;
+            var vecCount = src.Length / vecLen;
+            if(src.Length % vecCount != 0)
+               throw segerror(src);
+
+            dst = new Vec128<T>[vecCount];
+            return vecLen;
+        }
+
 
         [MethodImpl(Inline)]
         public static unsafe void* i8num(object value, int count)
@@ -36,7 +51,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* i8vec(object data, int count)
+        public static unsafe sbyte* i8vec(object data, int count)
         {
             var src = datasource<sbyte>(data,count);
             var dst =  stackalloc sbyte[count];
@@ -44,7 +59,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* u8num(object value, int count)
+        public static unsafe byte* u8num(object value, int count)
         {
             var dst =  stackalloc byte[count];
             dst[0] = cast<byte>(value);
@@ -52,7 +67,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* u8vec(object data, int count)
+        public static unsafe byte* u8vec(object data, int count)
         {
             var src = datasource<byte>(data,count);
             var dst =  stackalloc byte[count];
@@ -60,7 +75,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* i16vec(object data, int count)
+        public static unsafe short* i16vec(object data, int count)
         {
             var src = datasource<short>(data,count);
             var dst =  stackalloc short[count];
@@ -68,7 +83,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* i16num(object value, int count)
+        public static unsafe short* i16num(object value, int count)
         {
             var dst =  stackalloc short[count];
             dst[0] = cast<short>(value);
@@ -76,7 +91,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* u16num(object value, int count)
+        public static unsafe ushort* u16num(object value, int count)
         {
             var dst =  stackalloc ushort[count];
             dst[0] = cast<ushort>(value);
@@ -84,7 +99,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* u16vec(object data, int count)
+        public static unsafe ushort* u16vec(object data, int count)
         {
             var src = datasource<ushort>(data,count);
             var dst =  stackalloc ushort[count];
@@ -92,7 +107,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* i32num(object value, int count)
+        public static unsafe int* i32num(object value, int count)
         {
             var dst =  stackalloc int[count];
             dst[0] = cast<int>(value);
@@ -100,7 +115,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* i32vec(object data, int count)
+        public static unsafe int* i32vec(object data, int count)
         {
             var src = datasource<int>(data,count);
             var dst =  stackalloc int[count];
@@ -156,7 +171,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* f32num(object value, int count)
+        public static unsafe float* f32num(object value, int count)
         {
             var dst =  stackalloc float[count];
             dst[0] = cast<float>(value);
@@ -164,7 +179,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* f32vec(object data, int count)
+        public static unsafe float* f32vec(object data, int count)
         {
             var src = datasource<float>(data,count);
             var dst =  stackalloc float[count];
@@ -172,7 +187,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* f64num(object value, int count)
+        public static unsafe double* f64num(object value, int count)
         {
             var dst =  stackalloc double[count];
             dst[0] = cast<double>(value);
@@ -180,7 +195,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* f64vec(object data, int count)
+        public static unsafe double* f64vec(object data, int count)
         {
             var src = datasource<double>(data,count);
             var dst =  stackalloc double[count];

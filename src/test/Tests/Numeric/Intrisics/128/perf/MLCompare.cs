@@ -64,7 +64,7 @@ namespace Z0.Tests
             for(var i = 0; i< src.Length; i += 4)
             {
                 //var dst = Vec128.define(data[i], data[i + 1], data[i + 2], data[i + 3]);
-                var inVec = Vec128.load(src,i);
+                var inVec = Vec128.load(src.ToSpan128(),i);
                 var outVec = InX.add(inVec,scalar);
                 //Vec128.store(outVec, dst, i);
             }

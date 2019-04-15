@@ -26,17 +26,11 @@ namespace Z0
         public static Vec128<float> compare(Vec128<float> lhs, Vec128<float> rhs, FloatComparisonMode mode)
             => Avx2.Compare(lhs,rhs,mode);
 
-        [MethodImpl(Inline)]
-        public static Vec256<float> compare(Vec256<float> lhs, Vec256<float> rhs, FloatComparisonMode mode)
-            => Avx2.Compare(lhs,rhs,mode);
-
+        
         [MethodImpl(Inline)]
         public static Vec128<double> compare(Vec128<double> lhs, Vec128<double> rhs, FloatComparisonMode mode)
             => Avx2.Compare(lhs,rhs,mode);
 
-        [MethodImpl(Inline)]
-        public static Vec256<double> compare(Vec256<double> lhs, Vec256<double> rhs, FloatComparisonMode mode)
-            => Avx2.Compare(lhs,rhs,mode);
 
 
     }

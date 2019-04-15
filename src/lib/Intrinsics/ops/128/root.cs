@@ -14,4 +14,12 @@ namespace Z0
     using static Operative;
 
 
+
+    public interface InX128Op<T>
+        where T : struct, IEquatable<T>
+    {
+
+    }
+
+
 }

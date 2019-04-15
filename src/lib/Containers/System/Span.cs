@@ -82,6 +82,16 @@ namespace Z0
             => span(src);
 
         /// <summary>
+        /// Constructs a span from the entireity of a sequence
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span128<T> ToSpan128<T>(this T[] src, int startpos = 0)
+            where T : struct, IEquatable<T>
+                => Span128.define(src,startpos);
+
+        /// <summary>
         /// Constructs a span from a sequence selection
         /// </summary>
         /// <param name="src">The source sequence</param>

@@ -58,7 +58,7 @@ namespace Z0.Tests
 
         public void ProcessVectors()
         {
-            var op = InX128G.Add<uint>();
+            var op = InX128G.add<uint>();
             var prior = RandomVector();
             foreach(var v in RandomVectors())
                 prior = op.add(prior, v);

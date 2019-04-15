@@ -77,6 +77,16 @@ namespace Z0
                 => src.Take(count).Freeze();
 
         /// <summary>
+        /// Constructs an array from the stream
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static T[] TakeArray<T>(this IEnumerable<T> src, int count)
+            => src.Take(count).ToArray();
+                
+
+        /// <summary>
         /// Constructs a readonly list from from the a specified number of
         /// elmements from stream after a skip
         /// </summary>

@@ -32,6 +32,21 @@ namespace Z0.Testing
             where T : struct, IEquatable<T>
                 => Random(domain.left,domain.right);
 
+        protected T[] RandomArray<T>(T min, T max, int len)
+            where T : struct, IEquatable<T>
+                => Random(min,max).TakeArray(len);
+
+        protected IEnumerable<T[]> RandomArrays<T>(T min, T max, int len)
+            where T : struct, IEquatable<T>
+        {
+            while(true)
+                yield return RandomArray(min,max,len);
+        }
+
+        protected Slice<T> RandomSlice<T>(T min, T max, int len)
+            where T : struct, IEquatable<T>
+                => RandomArray<T>(min,max,len);
+
         protected IReadOnlyList<T> RandomList<T>(T min, T max, int len)
             where T : struct, IEquatable<T>
                 => Random(min,max).Freeze(len);

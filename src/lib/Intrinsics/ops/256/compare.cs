@@ -11,7 +11,18 @@ namespace Z0
     
     using static zcore;
     using static x86;
-    using static Operative;
 
+    partial class InX256
+    {
+
+        [MethodImpl(Inline)]
+        public static Vec256<float> compare(Vec256<float> lhs, Vec256<float> rhs, FloatComparisonMode mode)
+            => Avx2.Compare(lhs,rhs,mode);
+        
+        [MethodImpl(Inline)]
+        public static Vec256<double> compare(Vec256<double> lhs, Vec256<double> rhs, FloatComparisonMode mode)
+            => Avx2.Compare(lhs,rhs,mode);
+
+    }
 
 }

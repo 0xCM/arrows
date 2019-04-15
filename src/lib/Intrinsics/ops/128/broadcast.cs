@@ -55,49 +55,6 @@ namespace Z0
         public static Vec128<double> broadcast(Num128<double> src)
             => Avx2.BroadcastScalarToVector128(src);
 
-
-        [MethodImpl(Inline)]
-        public static unsafe Vec256<byte> broadcast(byte* src)
-            => Avx2.BroadcastScalarToVector256(src);
-
-        [MethodImpl(Inline)]
-        public static unsafe Vec256<sbyte> broadcast(sbyte* src)
-            => Avx2.BroadcastScalarToVector256(src);
-
-        [MethodImpl(Inline)]
-        public static unsafe Vec256<short> broadcast(short* src)
-            => Avx2.BroadcastScalarToVector256(src);
-
-        [MethodImpl(Inline)]
-        public static unsafe Vec256<ushort> broadcast(ushort* src)
-            => Avx2.BroadcastScalarToVector256(src);
-
-
-        [MethodImpl(Inline)]
-        public static unsafe Vec256<int> broadcast(int* src)
-            => Avx2.BroadcastScalarToVector256(src);
-
-        [MethodImpl(Inline)]
-        public static unsafe Vec256<uint> broadcast(uint* src)
-            => Avx2.BroadcastScalarToVector256(src);
-
-        [MethodImpl(Inline)]
-        public static unsafe Vec256<long> broadcast(long* src)
-            => Avx2.BroadcastScalarToVector256(src);
-
-        [MethodImpl(Inline)]
-        public static unsafe Vec256<ulong> broadcast(ulong* src)
-            => Avx2.BroadcastScalarToVector256(src);
-
-        [MethodImpl(Inline)]
-        public static unsafe Vec256<float> broadcast(float* src)
-            => Avx2.BroadcastScalarToVector256(src);
-
-        [MethodImpl(Inline)]
-        public static unsafe Vec256<double> broadcast(double* src)
-            => Avx2.BroadcastScalarToVector256(src);
-
-
     }
 
 }
