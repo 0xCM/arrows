@@ -25,8 +25,8 @@ namespace Z0.Testing
 
         protected readonly IReadOnlyList<intg<T>> RightIntSrc;
 
-        protected IntGBinOpTest(Interval<T> bounds, Func<T,bool> filter = null, uint sampleSize = Pow2.T20)
-            : base(bounds,filter,sampleSize)
+        protected IntGBinOpTest(Interval<T> domain, Func<T,bool> filter = null, int? sampleSize = null)
+            : base(domain,filter,sampleSize)
         {
             LeftPrimSrc = sample();
             RightPrimSrc = sample();

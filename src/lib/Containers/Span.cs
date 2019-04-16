@@ -11,73 +11,65 @@ namespace Z0
     
     using static zcore;
 
-    public static class Span128
+    public static class Span
     {
         [MethodImpl(Inline)]
-        public static Span128<T> define<T>(T[] src, int startpos = 0)
+        public static Span<N,T> define<N,T>(T[] src, int startpos = 0)
+            where N : TypeNat, new()
             where T : struct, IEquatable<T>
-                => new Span128<T>(src,startpos);
+                => new Span<N,T>(src,startpos);
 
         [MethodImpl(Inline)]
-        public static Span128<T> define<T>(Span<T> src)
+        public static Span<N,T> define<N,T>(Span<T> src)
+            where N : TypeNat, new()
             where T : struct, IEquatable<T>
-                => new Span128<T>(src);
+                => new Span<N,T>(src);
 
-    }
+        [MethodImpl(Inline)]
+        public static Span<N,T> define<N,T>(Array<N,T> src)
+            where N : TypeNat, new()
+            where T : struct, IEquatable<T>
+                => new Span<N,T>(src);
 
-    readonly struct SizeOf<T>
-    {
-        public static readonly int Size = GetSize();
-        static int GetSize()
-        {
-            if(typematch<T,byte>() || typematch<T,sbyte>())
-                return 1;
-            else if (typematch<T,short>() || typematch<T,ushort>())
-                return 2;
-            else if (typematch<T,int>() || typematch<T,uint>() || typematch<T,float>())
-                return 4;
-            else if (typematch<T,long>() || typematch<T,ulong>() || typematch<T,double>())
-                return 8;
-            return -1;
-        }
     }
 
     /// <summary>
     /// A selective clone/wrapper of System.Span[T] where the the 
     /// encasulated data is always of lenth 16 bytes = 128 bits
     /// </summary>
-    public ref struct Span128<T>
+    public ref struct Span<N,T>
+        where N : TypeNat, new()
         where T : struct, IEquatable<T>
     {
-        public static implicit operator Span<T>(Span128<T> src)
+        public static implicit operator Span<T>(Span<N,T> src)
             => src.data;
 
-        public static implicit operator ReadOnlySpan<T> (Span128<T> src)
+        public static implicit operator ReadOnlySpan<T> (Span<N,T> src)
             => src.data;
 
-        public static bool operator == (Span128<T> lhs, Span128<T> rhs)
+        public static implicit operator Span<N,T> (Array<N,T> src)
+            => new Span<N,T>(src);
+    
+        public static bool operator == (Span<N,T> lhs, Span<N,T> rhs)
             => lhs.data == rhs.data;
 
-        public static bool operator != (Span128<T> lhs, Span128<T> rhs)
+        public static bool operator != (Span<N,T> lhs, Span<N,T> rhs)
             => lhs.data != rhs.data;
 
-        Span<T> data;
-        
-        static readonly int ComponentByteSize = SizeOf<T>.Size;
-
-        static readonly int ComponentBitSize = ComponentByteSize * 8;
-
-        static readonly int SpanLength = 128 / ComponentBitSize;
+        static readonly int SpanLength = nati<N>();
 
         static Exception sizerr(int actual)
             => new ArgumentException($"Length mismatch: {actual}");
 
+        Span<T> data;
+
+
         [MethodImpl(Inline)]
-        public unsafe Span128(void* src)    
+        public unsafe Span(void* src)    
             => data = new Span<T>(src, SpanLength);  
 
         [MethodImpl(Inline)]
-        public Span128(T[] src, int startpos = 0)
+        public Span(T[] src, int startpos = 0)
         {
             if((src.Length - startpos) < SpanLength)
                 throw sizerr(src.Length);
@@ -86,7 +78,12 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public Span128(T value)
+        public Span(Array<N,T> value)
+            => this.data = value.unwrap();
+
+
+        [MethodImpl(Inline)]
+        public Span(T value)
         {
          
             this.data = new Span<T>(new T[SpanLength]);
@@ -94,13 +91,17 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public Span128(Span<T> src)
+        public Span(Span<T> src)
         {
             if(src.Length != SpanLength)
                 throw sizerr(src.Length);
          
             this.data = src;
         }
+
+        [MethodImpl(Inline)]
+        public Span(Array<N128,T> src)
+            => this.data = src.unwrap();
 
         public ref T this[int ix] 
         {

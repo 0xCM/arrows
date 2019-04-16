@@ -220,7 +220,7 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(params T[] src)
         where N : TypeNat, new()
-            => NArray.define<N,T>(src);
+            => Arr.define<N, T>(src);
 
     /// <summary>
     /// Constructs an N-array from a parameter array
@@ -232,7 +232,7 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(N len, params T[] src)
         where N : TypeNat, new()
-            => NArray.define(len,src);
+            => Arr.define(len, src);
 
     /// <summary>
     /// Constructs an array of natural length from an enumerable
@@ -243,7 +243,7 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(IEnumerable<T> src)
         where N : TypeNat, new()
-            => NArray.define<N,T>(src);
+            => Z0.Arr.define<N, T>(src);
 
     /// <summary>
     /// Constructs an array of natural length from an enumerable
@@ -254,7 +254,7 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(N len, IEnumerable<T> src)
         where N : TypeNat, new()
-            => NArray.define(len,src);
+            => Z0.Arr.define(len, src);
 
     /// <summary>
     /// Constructs a mutable dictionary 

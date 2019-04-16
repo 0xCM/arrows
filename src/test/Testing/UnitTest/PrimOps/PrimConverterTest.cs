@@ -21,7 +21,7 @@ namespace Z0.Testing
         where T : struct, IEquatable<T>
         where S : struct, IEquatable<S>
     {
-        protected const uint VectorSize = Defaults.BigVector;
+        protected const uint VectorSize = Defaults.SampleSize;
                 
         protected S MinPrimVal {get;}
 

@@ -74,6 +74,9 @@ namespace Z0
                 yield return list;
         }
 
+        public static IEnumerable<ArraySegment<T>> Partition<T>(this T[] src, int width)
+            => Arr.partition(src,width);
+        
         /// <summary>
         /// Applies a function to an input sequence to yield a transformed output sequence
         /// </summary>

@@ -19,7 +19,7 @@ namespace Z0.Testing
     {
 
 
-        protected IntGTest(Interval<T> bounds, Func<T,bool> filter = null, uint? sampleSize = null)
+        protected IntGTest(Interval<T> bounds, Func<T,bool> filter = null, int? sampleSize = null)
             : base(bounds,filter,sampleSize)
         {
 

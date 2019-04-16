@@ -173,6 +173,18 @@ public static partial class zcore
     }    
 
     [MethodImpl(Inline)]   
+    public static Y[] fuse<X,Y>(X[] lhs, X[] rhs, Func<X,X,Y> f)
+    {
+        if(lhs.Length != rhs.Length)
+            throw new ArgumentException($"The left count {lhs.Length} does not match the right count {rhs.Length}");
+            
+        var dst = alloc<Y>(lhs.Length);
+        for(var i = 0; i< dst.Length; i++)
+            dst[i] = f(lhs[i], rhs[i]);
+        return dst;
+    }    
+
+    [MethodImpl(Inline)]   
     public static IReadOnlyList<Y> fuse<X,Y>(IReadOnlyList<X> x0, IReadOnlyList<X> x1, IReadOnlyList<X> x2, Func<X,X,X,Y> f)
     {
         if(x0.Count != x1.Count || x0.Count != x2.Count)

@@ -4,6 +4,13 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    /// <summary>
+    /// Namescope for types supporting the Stateless Singleton Reification pattern
+    /// </summary>
+    partial class SSR
+    {
+
+    }
 
     public partial class InX
     {

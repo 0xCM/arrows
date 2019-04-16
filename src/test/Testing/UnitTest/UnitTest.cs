@@ -13,7 +13,11 @@ namespace Z0.Testing
 
     using static zcore;
     
-    public abstract class UnitTest
+    public interface IUnitTest
+    {
+        
+    }
+    public abstract class UnitTest : IUnitTest
     {
 
         protected virtual string OpName 
@@ -25,14 +29,19 @@ namespace Z0.Testing
     {
         protected static readonly TestContext<T> Context = TestContext.define<T>(RandSeeds.TestSeed);
 
-        protected void trace(string msg, [CallerMemberName] string caller = null)
+        protected virtual void trace(string msg, [CallerMemberName] string caller = null)
         {
             var location = GetType().DisplayName() + caller;
             inform(msg, location);
         }
 
-        protected virtual int StreamLength
-            => (int)Defaults.StreamLength;
+        protected int SampleSize {get;}
+
+        protected UnitTest(int? SampleSize = null)            
+        {
+            this.SampleSize = SampleSize ?? Defaults.SampleSize;
+        }
+            
     }
 
 }

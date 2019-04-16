@@ -22,7 +22,7 @@ namespace Z0.Testing
         where T : struct, IEquatable<T>
     {
 
-        protected VectorAdd(Interval<T> bounds, Func<T,bool> filter = null, uint? sampleSize = null)
+        protected VectorAdd(Interval<T> bounds, Func<T,bool> filter = null, int? sampleSize = null)
             : base(bounds, filter, sampleSize)
         {
 

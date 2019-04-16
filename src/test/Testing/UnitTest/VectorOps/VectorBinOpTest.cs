@@ -45,7 +45,7 @@ namespace Z0.Testing
         /// </summary>
         protected int VectorLength {get;}  = nati<N>();
 
-        protected VectorBinOpTest(Interval<T> bounds, Func<T,bool> filter = null, uint? SampleSize = null)
+        protected VectorBinOpTest(Interval<T> bounds, Func<T,bool> filter = null, int? SampleSize = null)
             : base(bounds, filter, SampleSize)
         {
             LeftPrimVecSrc =  MakeVectors<N>(LeftPrimSrc).Freeze();

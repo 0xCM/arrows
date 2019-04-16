@@ -86,6 +86,58 @@ namespace Z0
 
     }}
 
+    public static partial class PrimalArray
+    {
+
+        [MethodImpl(Inline)]
+        public static sbyte[] Add(this sbyte[] lhs, sbyte[] rhs)
+            => fuse(lhs,rhs,(x,y) => (sbyte)(x + y));
+
+        [MethodImpl(Inline)]
+        public static byte[] Add(this byte[] lhs, byte[] rhs)
+            => fuse(lhs,rhs,(x,y) => (byte)(x + y));
+
+        [MethodImpl(Inline)]
+        public static short[] Add(this short[] lhs, short[] rhs)
+            => fuse(lhs,rhs,(x,y) => (short)(x + y));
+
+        [MethodImpl(Inline)]
+        public static ushort[] Add(this ushort[] lhs, ushort[] rhs)
+            => fuse(lhs,rhs,(x,y) => (ushort)(x + y));
+
+        [MethodImpl(Inline)]
+        public static int[] Add(this int[] lhs, int[] rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static uint[] Add(this uint[] lhs, uint[] rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static long[] Add(this long[] lhs, long[] rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static ulong[] Add(this ulong[] lhs, ulong[] rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static float[] Add(this float[] lhs, float[] rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static double[] Add(this double[] lhs, double[] rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static decimal[] Add(this decimal[] lhs, decimal[] rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static BigInteger[] Add(this BigInteger[] lhs, BigInteger[] rhs)
+            => fuse(lhs,rhs,(x,y) => x + y);
+
+    }
     partial class PrimalList
     {
 

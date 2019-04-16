@@ -52,7 +52,7 @@ namespace Z0
                 var counter = 1;
                 while(!stop())
                 {
-                    var batch = Random<long>().stream(Defaults.Int64Min, Defaults.Int64Max).Freeze(batchSize);
+                    var batch = Random<long>().stream(Defaults.Int64Min, Defaults.Int64Max).TakeArray((int)batchSize);
                     foreach(var v in Vec128.stream<long>(batch))
                     {
                         var sum = InX.add(v,v);
@@ -76,9 +76,9 @@ namespace Z0
             return Task.Factory.StartNew(worker);                
         }
 
-        void RunTests(string filter)
+        void RunTests(string filter, bool pll = true)
         {
-            TestRunner.RunTests(filter);
+            TestRunner.RunTests(filter,pll);
         }
 
         void RunStream()
@@ -116,8 +116,13 @@ namespace Z0
         static void Main(string[] args)
         {     
             var app = new App();
-            app.RunTests(Paths.InX);
-            //app.Random();
+            var paths = new[]
+            {
+                Paths.InX
+            };
+            var pll = false;
+            foreach(var path in paths)
+                app.RunTests(path,pll);
 
         }
     }

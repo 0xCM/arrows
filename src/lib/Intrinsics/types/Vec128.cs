@@ -21,7 +21,9 @@ namespace Z0
         const int ByteCount = 16;
 
         public static readonly int Length = Vector128<T>.Count;
-        
+
+        public static readonly int PrimSize = SizeOf<T>.Size;
+
         public static readonly int ComponentBitCount = BitCount / (Length * 8);
         
         Vector128<T> data;        
@@ -55,7 +57,6 @@ namespace Z0
             get => component(data,idx);
         }
 
-
         /// <summary>
         /// Copies the vector components to a supplied array
         /// </summary>
@@ -71,8 +72,9 @@ namespace Z0
         /// Extracts the components from the vector
         /// </summary>
         [MethodImpl(Inline)]
-        public IReadOnlyList<T> Freeze()
+        public T[] ToArray()
         {
+            
             var dst = new T[Length];
             for(var i = 0; i<Length; i++)
                 dst[i] = component(data,i);

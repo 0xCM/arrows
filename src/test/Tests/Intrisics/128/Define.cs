@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Tests
+namespace Z0.Tests.InX128
 {
     using System;
     using System.Linq;
@@ -35,11 +35,13 @@ namespace Z0.Tests
             var cellCount = vecLen*vecCount;
             var srcList = Random(min, max).Freeze(cellCount);  
             var srcArray = array<uint>(srcList);
-            return InX.load(srcArray);
+            return InX.stream(srcArray);
         }
 
-        IEnumerable<Vec128<uint>> Vec128UInt32Stream(IEnumerable<uint> cells)
-            => cells.Partition(Vec128<uint>.Length).Select(Vec128.define);
+        IEnumerable<Vec128<uint>> Vec128UInt32Stream(uint[] cells)
+            => from v in Arr.partition(cells, Vec128<uint>.Length) 
+                select Vec128.define(v);
+                 //cells.Partition(Vec128<uint>.Length).Select(Vec128.define);
 
         public void StreamUInt32Vecs()
         {
@@ -53,7 +55,7 @@ namespace Z0.Tests
 
             var srcList = Random<uint>(250, 50000).Freeze(vecCount);  
             var srcArray = array<uint>(srcList);
-            var srcStream = InX.load(srcArray);
+            var srcStream = InX.stream(srcArray);
             var it = srcStream.GetEnumerator();
             for(var i = 0; i<srcList.Count; i += 4)
             {   
@@ -72,7 +74,7 @@ namespace Z0.Tests
             trace($"Storing data from {mem.PartCount} {type<Vec128<uint>>().DisplayName()} vectors");
 
             var dst = alloc<uint>(mem.TotalLength); 
-            var src = RandomList(10u,500u,mem.TotalLength);
+            var src = RandomArray(10u,500u,mem.TotalLength);
             var vectors = Vec128UInt32Stream(src).ToReadOnlyList();
             InX.store(vectors,dst);
 
@@ -92,7 +94,7 @@ namespace Z0.Tests
             var src = RandomArray<byte>(0,155, Vec128<byte>.Length);
             Claim.eq(Vec128<byte>.Length, src.Length);
 
-            var v1 = Vec128.load(src.ToSpan128(),0);
+            var v1 = Vec128.define(src.ToSpan128());
             var i = 0;
             var v2 = Vec128.define(
                 src[i++], src[i++],src[i++], src[i++],
@@ -110,8 +112,8 @@ namespace Z0.Tests
             foreach(var arr in src)
             {
                 Claim.eq(Vec128<byte>.Length, arr.Length);
-                var v1 = Vec128.load(arr.ToSpan128());
-                var v2 = Vec128.load(arr);                
+                var v1 = Vec128.define(arr.ToSpan128());
+                var v2 = Vec128.define(arr);                
                 Claim.eq(v1,v2);
 
             }
@@ -121,8 +123,8 @@ namespace Z0.Tests
         public void LoadInt32Vec()
         {
             var src = new int[]{-50,-25,25,50};
-            var v1 = Vec128.define(src);
-            var v2 = Vec128.load(src);
+            var v1 = Vec128.define(src[0],src[1],src[2],src[3]);
+            var v2 = Vec128.define(src);
             Claim.eq(v1,v2);
         }
 
@@ -132,31 +134,13 @@ namespace Z0.Tests
             foreach(var arr in src)
             {
                 Claim.eq(Vec128<int>.Length, arr.Length);
-                var v1 = Vec128.load(arr.ToSpan128());
+                var v1 = Vec128.define(arr.ToSpan128());
                 var v2 = Vec128.define(arr);                
                 Claim.eq(v1,v2);
 
             }
             
         }
-
-        // public void LoadInt32Vecs()
-        // {
-        //     var src = new int[]{
-        //         -50,-25, 25, 50,
-        //         -51,-26, 26, 51,                
-        //         };
-
-        //     var v1 = Vec128.load(src,0);
-        //     Claim.eq(v1, Vec128.define(src[0],src[1],src[2],src[3]));
-
-        //     var v2 = Vec128.load(src,4);
-        //     Claim.eq(v2, Vec128.define(src[4],src[5],src[6],src[7]));
-
-        //     var vecs = InX.load(src).ToList();
-        //     Claim.eq(v1,vecs[0]);
-        //     Claim.eq(v2,vecs[1]);
-        // }
 
         public void StoreInt32Vec()
         {
@@ -172,7 +156,7 @@ namespace Z0.Tests
         {
             var src = new long[]{50,25};
             var v1 = Vec128.define(src);
-            var v2 = Vec128.load(src.ToSpan128(),0);
+            var v2 = Vec128.define(src.ToSpan128());
             Claim.eq(v1,v2);
         }
 
@@ -180,13 +164,13 @@ namespace Z0.Tests
         {
             var src = new long[]{-50,-25, 25, 50};
 
-            var v1 = Vec128.load(src.ToSpan128(),0);
+            var v1 = Vec128.define(src.ToSpan128(0));
             Claim.eq(v1, Vec128.define(src[0],src[1]));
 
-            var v2 = Vec128.load(src.ToSpan128(),2);
+            var v2 = Vec128.define(src.ToSpan128(2));
             Claim.eq(v2, Vec128.define(src[2],src[3]));
 
-            var vecs = InX.load(src).ToList();
+            var vecs = InX.stream(src).ToList();
             Claim.eq(v1,vecs[0]);
             Claim.eq(v2,vecs[1]);
         }
@@ -195,7 +179,7 @@ namespace Z0.Tests
         {
             var src = new ulong[]{50,25};
             var v1 = Vec128.define(src);
-            var v2 = Vec128.load(src.ToSpan128());
+            var v2 = Vec128.define(src.ToSpan128());
             Claim.eq(v1,v2);
         }
 
@@ -203,13 +187,13 @@ namespace Z0.Tests
         {
             var src = new ulong[]{50,25, 75, 85};
 
-            var v1 = Vec128.load(src.ToSpan128(),0);
+            var v1 = Vec128.define(src.ToSpan128(0));
             Claim.eq(v1, Vec128.define(src[0],src[1]));
 
-            var v2 = Vec128.load(src.ToSpan128(),2);
+            var v2 = Vec128.define(src.ToSpan128(2));
             Claim.eq(v2, Vec128.define(src[2],src[3]));
 
-            var vecs = InX.load(src).ToList();
+            var vecs = InX.stream(src).ToList();
             Claim.eq(v1,vecs[0]);
             Claim.eq(v2,vecs[1]);
         }
@@ -218,7 +202,7 @@ namespace Z0.Tests
         {
             var src = new uint[]{50,25,25,50};
             var v1 = Vec128.define(src);
-            var v2 = Vec128.load(src.ToSpan128(),0);
+            var v2 = Vec128.define(src.ToSpan128());
             Claim.eq(v1,v2);
         }
 
@@ -228,7 +212,7 @@ namespace Z0.Tests
         {
             var src = new float[]{-50,-25,25,50};
             var v1 = Vec128.define(src);
-            var v2 = Vec128.load(src.ToSpan128(),0);
+            var v2 = Vec128.define(src.ToSpan128());
             Claim.eq(v1,v2);
         }
 
@@ -236,7 +220,7 @@ namespace Z0.Tests
         {
             var src = new double[]{50,25};
             var v1 = Vec128.define(src);
-            var v2 = Vec128.load(src,0);
+            var v2 = Vec128.define(src,0);
             Claim.eq(v1,v2);
         }
     }

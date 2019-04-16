@@ -171,7 +171,7 @@ namespace Z0
             /// <summary>
             /// Specifies or retrieves an array value via an unchecked index
             /// </summary>
-            T this[int ix] {get; set;}
+            ref T this[int ix] {get;}
         }
 
         /// <summary>

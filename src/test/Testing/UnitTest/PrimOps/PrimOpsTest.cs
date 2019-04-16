@@ -21,7 +21,6 @@ namespace Z0.Testing
     {
         protected static readonly Operative.PrimOps<T> Prim = primops.typeops<T>();
 
-        protected uint SampleSize {get;}
             
         protected T MinPrimVal {get;}
 
@@ -29,11 +28,11 @@ namespace Z0.Testing
 
         protected Func<T,bool> Filter {get;}
 
-        protected PrimOpsTest(Interval<T> bounds, Func<T,bool> filter, uint? sampleSize = null)
+        protected PrimOpsTest(Interval<T> bounds, Func<T,bool> filter, int? sampleSize = null)
+            : base(sampleSize)
         {
             this.MinPrimVal = bounds.left;
             this.MaxPrimVal = bounds.right;
-            this.SampleSize = sampleSize ?? Defaults.SampleSize;
             this.Filter = filter ?? (x => true);            
         }
 

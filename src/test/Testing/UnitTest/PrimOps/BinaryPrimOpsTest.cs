@@ -24,7 +24,7 @@ namespace Z0.Testing
         protected IReadOnlyList<T> RightSrc;
 
 
-        protected BinaryPrimOpsTest(Interval<T> Bounds, Func<T,bool> filter = null, uint? SampleSize = null)
+        protected BinaryPrimOpsTest(Interval<T> Bounds, Func<T,bool> filter = null, int? SampleSize = null)
             : base(Bounds,filter,SampleSize)
         {
             this.LeftSrc = sample();

@@ -31,7 +31,7 @@ namespace Z0.Testing
         /// </summary>
         protected  IReadOnlyList<Vector<N,real<T>>> RightRealVecSrc {get;}
 
-        protected RealVectorBinOpTest(Interval<T> bounds, Func<T,bool> filter = null,  uint? SampleSize = null)
+        protected RealVectorBinOpTest(Interval<T> bounds, Func<T,bool> filter = null,  int? SampleSize = null)
             : base(bounds, filter, SampleSize)
         {
             LeftRealVecSrc = map(LeftPrimVecSrc,v => v.map(real));

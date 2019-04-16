@@ -15,31 +15,34 @@ namespace Z0
     
     public static partial class x86
     {
+        static Exception badlen(int datalen, int veclen, int startpos, int maxpos, int finalpos)
+            => new Exception($"Length mismatch: length of data source = " 
+                + $"{datalen}, veclen = {veclen}, startpos = {startpos}, " 
+                + $"maxpos = {maxpos}, finalpos = {finalpos}");
+
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> datasource<T>(object data, int count)
+        public static void checklen128<T>(IReadOnlyList<T> src, int startpos)
+            where T : struct, IEquatable<T>
+        {
+            var maxpos = src.Count - 1;
+            var finalpos = startpos + Vec128<T>.Length - 1;
+
+            if(finalpos > maxpos)
+                throw badlen(src.Count, Vec128<T>.Length, startpos, maxpos, finalpos);
+        }
+
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<T> datasource<T>(object data, int count, int startpos = 0)
+            where T : struct, IEquatable<T>
         {
             var src = (IReadOnlyList<T>)data;
-            if(src.Count != count)
-                throw new Exception($"The actual value was {src.Count} but the expected value was {count}");
+            checklen128(src, startpos);
             return src;
         }
 
         [MethodImpl(Inline)]
         public static Exception segerror<T>(T[] src)
             => new Exception($"The source array of {typename<int>()} values with length {src.Length} is not segmented properly");                
-
-
-        public static int alloc<T>(T[] src, out Vec128<T>[] dst)
-            where T : struct, IEquatable<T>
-        {
-            var vecLen = Vec128<T>.Length;
-            var vecCount = src.Length / vecLen;
-            if(src.Length % vecCount != 0)
-               throw segerror(src);
-
-            dst = new Vec128<T>[vecCount];
-            return vecLen;
-        }
 
 
         [MethodImpl(Inline)]

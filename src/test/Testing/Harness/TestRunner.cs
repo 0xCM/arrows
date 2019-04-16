@@ -16,8 +16,8 @@ namespace Z0.Testing
 
     public class TestRunner
     {
-        public static void RunTests(string filter = "")
-            => new TestRunner().Run(filter);
+        public static void RunTests(string filter = "", bool pll = true)
+            => new TestRunner().Run(filter,pll);
 
         static void failure(string info, string member)
             => error($"{member}: test failed - {info}");
@@ -37,7 +37,7 @@ namespace Z0.Testing
 
         public IEnumerable<Type> Hosts()
             => ZTest.DefiningAssembly.Types()
-                    .InNamespace(typeof(Z0.Tests.Paths).Namespace)
+                    .Realizes<IUnitTest>()
                     .Concrete();    
         IEnumerable<MethodInfo> Tests(Type host)
             =>  host.DeclaredMethods()
@@ -75,7 +75,7 @@ namespace Z0.Testing
             }
         }
     
-        public void Run(string filter = "")
-            => iter(Hosts(), h =>  Run(h,filter));
+        public void Run(string filter = "", bool concurrent = true)
+            => iter(Hosts(), h =>  Run(h,filter),concurrent);
     }
 }

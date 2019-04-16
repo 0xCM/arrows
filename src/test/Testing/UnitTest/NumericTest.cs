@@ -38,10 +38,6 @@ namespace Z0.Testing
         /// </summary>
         protected T MaxPrimVal {get;}
 
-        /// <summary>
-        /// The size of the primitive sample
-        /// </summary>
-        protected uint SampleSize {get;}
 
         /// <summary>
         /// Pulls a sample of random primitives 
@@ -72,12 +68,12 @@ namespace Z0.Testing
 
         protected Func<T,bool> Filter {get;}
 
-        protected NumericTest(Interval<T> Bounds, Func<T,bool> filter = null, uint? sampleSize = null)
+        protected NumericTest(Interval<T> Bounds, Func<T,bool> filter = null, int? sampleSize = null)
+            : base(sampleSize)
         {
             
             this.MinPrimVal = Bounds.left;
-            this.MaxPrimVal = Bounds.right;
-            this.SampleSize = sampleSize ?? Defaults.SampleSize;
+            this.MaxPrimVal = Bounds.right;            
             this.Filter = filter ?? (x => true);
         }
     }

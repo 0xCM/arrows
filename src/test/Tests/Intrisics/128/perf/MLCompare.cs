@@ -1,4 +1,8 @@
-namespace Z0.Tests
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
+namespace Z0.Tests.InX128
 {
     using System;
     using System.Linq;
@@ -15,7 +19,7 @@ namespace Z0.Tests
     using P = Paths;
 
     [DisplayName(Path)]
-    public class MLCompare : InX128Test<MLCompare,float>
+    public class MLCompare : InXTest<MLCompare,float>
     {
 
         public const string Path = P.InX128 + P.perf + "mlcompare/";
@@ -63,10 +67,8 @@ namespace Z0.Tests
             var scalar = Num128.define(255.50f);
             for(var i = 0; i< src.Length; i += 4)
             {
-                //var dst = Vec128.define(data[i], data[i + 1], data[i + 2], data[i + 3]);
-                var inVec = Vec128.load(src.ToSpan128(),i);
+                var inVec = Vec128.define(src.ToSpan128(i));
                 var outVec = InX.add(inVec,scalar);
-                //Vec128.store(outVec, dst, i);
             }
             return src;
 

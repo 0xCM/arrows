@@ -65,14 +65,30 @@ namespace Z0.Tests
         /// Identifies performance-related testing
         /// </summary>
         public const string perf = "perf/";
-        
+
+        /// <summary>
+        /// Identifies stream-related testing
+        /// </summary>
+        public const string streams = "streams/";
+
+        /// <summary>
+        /// Identifies the stream operator
+        /// </summary>
+        public const string stream = "streams/";
+
         /// <summary>
         /// Identifies intrinsic-related data structures and operations
         /// </summary>
         public const string InX = "intrinsics/";
 
+        /// <summary>
+        /// Identifies 128-bit intrinsic-related data structures and operations
+        /// </summary>
         public const string InX128 = InX + "128/";
 
+        /// <summary>
+        /// Identifies 256-bit intrinsic-related data structures and operations
+        /// </summary>
         public const string InX256 = InX + "256/";
 
         public const string digits = numeric + "digits/";

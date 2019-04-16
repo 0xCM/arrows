@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Tests
+namespace Z0.Tests.InX128
 {
     using System;
     using System.Linq;
@@ -18,7 +18,7 @@ namespace Z0.Tests
     using P = Paths;
 
     [DisplayName(Path)]
-    public class InX128AndUInt32 : InX128Test<InX128AndUInt32,uint>
+    public class InX128AndUInt32 : InXTest<InX128AndUInt32,uint>
     {
         public const string Path = P.InX128 + P.and;
 
@@ -50,15 +50,15 @@ namespace Z0.Tests
 
         public void ProcessVectors()
         {
-            var prior = RandomVector();
-            foreach(var v in RandomVectors())
+            var prior = RandVec128();
+            foreach(var v in RandVecs128())
                 prior = InX.and(prior, v);
         }
 
         public void ProcessLists()
         {
-            var prior = RandomList();
-            foreach(var v in RandomLists())
+            var prior = RandList128();
+            foreach(var v in RandLists128())
                 prior = prior.And(v);
 
         }

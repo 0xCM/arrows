@@ -12,6 +12,13 @@ namespace Z0
     using static zcore;
     using static x86;
 
+    public interface InX128Eq<T> : InX128Op<T>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> eq(Vec128<T> lhs, Vec128<T> rhs);
+    }
+
+    
     partial class InX
     {
         [MethodImpl(Inline)]
@@ -27,15 +34,7 @@ namespace Z0
             => Avx2.CompareEqual(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<byte> eq(Vec256<byte> lhs, Vec256<byte> rhs)
-            => Avx2.CompareEqual(lhs, rhs);
-
-        [MethodImpl(Inline)]
         public static Vec128<sbyte> eq(Vec128<sbyte> lhs, Vec128<sbyte> rhs)
-            => Avx2.CompareEqual(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static Vec256<sbyte> eq(Vec256<sbyte> lhs, Vec256<sbyte> rhs)
             => Avx2.CompareEqual(lhs, rhs);
 
         [MethodImpl(Inline)]
@@ -43,15 +42,7 @@ namespace Z0
             => Avx2.CompareEqual(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<short> eq(Vec256<short> lhs, Vec256<short> rhs)
-            => Avx2.CompareEqual(lhs, rhs);
-
-        [MethodImpl(Inline)]
         public static Vec128<ushort> eq(Vec128<ushort> lhs, Vec128<ushort> rhs)
-            => Avx2.CompareEqual(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static Vec256<ushort> eq(Vec256<ushort> lhs, Vec256<ushort> rhs)
             => Avx2.CompareEqual(lhs, rhs);
 
         [MethodImpl(Inline)]
@@ -59,15 +50,7 @@ namespace Z0
             => Avx2.CompareEqual(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<int> eq(Vec256<int> lhs, Vec256<int> rhs)
-            => Avx2.CompareEqual(lhs, rhs);
-
-        [MethodImpl(Inline)]
         public static Vec128<uint> eq(Vec128<uint> lhs, Vec128<uint> rhs)
-            => Avx2.CompareEqual(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static Vec256<uint> eq(Vec256<uint> lhs, Vec256<uint> rhs)
             => Avx2.CompareEqual(lhs, rhs);
 
         [MethodImpl(Inline)]
@@ -77,9 +60,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<double> eq(Vec128<double> lhs, Vec128<double> rhs)
             => Avx2.CompareEqual(lhs, rhs);
-
-
- 
-
     }
 }

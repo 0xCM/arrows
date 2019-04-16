@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Testing
+namespace Z0.Tests.InX128
 {
     using System;
     using System.Linq;
@@ -11,12 +11,17 @@ namespace Z0.Testing
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
+    using Z0.Testing;
+    
     using static zcore;
 
     public abstract class InXTest<S> : UnitTest<S>
         where S : InXTest<S>
     {
-        protected InXTest()    
+
+
+        protected InXTest(int? sampleSize = null)
+            : base(sampleSize)    
         {
         }
 
@@ -36,6 +41,18 @@ namespace Z0.Testing
             where T : struct, IEquatable<T>
                 => Random(min,max).TakeArray(len);
 
+        protected T[] RandomArray<T>(T min, T max, uint len)
+            where T : struct, IEquatable<T>
+                => Random(min,max).TakeArray((int)len);
+
+        protected T[] RandomArray<T>(Interval<T> domain, int len)
+            where T : struct, IEquatable<T>
+                => Random(domain).TakeArray(len);
+
+        protected T[] RandomArray<T>(Interval<T> domain, uint len)
+            where T : struct, IEquatable<T>
+                => Random(domain).TakeArray((int)len);
+
         protected IEnumerable<T[]> RandomArrays<T>(T min, T max, int len)
             where T : struct, IEquatable<T>
         {
@@ -43,13 +60,17 @@ namespace Z0.Testing
                 yield return RandomArray(min,max,len);
         }
 
-        protected Slice<T> RandomSlice<T>(T min, T max, int len)
+        protected IEnumerable<T[]> RandomArrays<T>(Interval<T> domain, int len)
             where T : struct, IEquatable<T>
-                => RandomArray<T>(min,max,len);
+        {
+            while(true)
+                yield return RandomArray(domain,len);
+        }
 
         protected IReadOnlyList<T> RandomList<T>(T min, T max, int len)
             where T : struct, IEquatable<T>
                 => Random(min,max).Freeze(len);
+
         protected IReadOnlyList<T> RandomList<T>(T min, T max, uint len)
             where T : struct, IEquatable<T>
                 => RandomList<T>(min,max,(int)len);
@@ -64,14 +85,17 @@ namespace Z0.Testing
         where S : InXTest<S,T>
         where T : struct, IEquatable<T>
     {
+        protected static readonly int PrimSize = Vec128<T>.PrimSize;
 
-        protected abstract int VecLen {get;}
-
-        protected abstract int VecBitCount {get;}
+        protected static readonly int VecLength = Vec128<T>.Length;
 
         protected override string OpName {get;}
 
-        protected InXTest(string opname, Interval<T>? domain = null)    
+        protected int VecCount
+            => SampleSize / VecLength;
+
+        protected InXTest(string opname, Interval<T>? domain = null, int? sampleSize = null)
+            :base(sampleSize)
         {
             this.OpName = opname;
             this.Domain = domain ?? Defaults.get<T>().Domain;            
@@ -88,75 +112,52 @@ namespace Z0.Testing
         protected IEnumerable<T> Random()
             => Random(Domain);
 
-        protected IReadOnlyList<T> RandomList(int len)
-            => RandomList<T>(Domain,len);
-        protected IReadOnlyList<T> RandomList(uint len)
-            => Random(Domain).Freeze(len);
+        protected IEnumerable<T> Random(int count)
+            => Random(Domain).Take(count);
+
+        protected T[] RandomArray(int? len = null)
+            => RandomArray(Domain,len ?? SampleSize);
+
+        protected IReadOnlyList<T> RandomList(int? len = null)
+            => RandomList<T>(Domain,len ?? SampleSize);
+        protected IReadOnlyList<T> RandomList(uint? len = null)
+            => RandomList<T>(Domain, (int) (len ?? (uint)SampleSize));
 
         protected IEnumerable<T> Partition(T? step = null)
             => Partition(Domain,step);
 
         protected string OpInfo<X,Y,Z>(X lhs, Y rhs, Z result)
             => $"{lhs} {OpName} {rhs} = {result}";
-        
 
-    }    
+        protected IReadOnlyList<T> RandList128()
+            => RandomList(VecLength);
 
-    public abstract class InX128Test<S,T> : InXTest<S,T>
-        where S : InX128Test<S,T>
-        where T : struct, IEquatable<T>
-    {
-        protected override int VecLen {get;}
+        protected T[] RandArray128()
+            => RandomArray(VecLength);
 
-        protected override int VecBitCount {get;}
-        
-        protected InX128Test(string opname, Interval<T>? domain = null)
-            : base(opname,domain)
+        protected Vec128<T> RandVec128()        
+            => Vec128.define(RandomArray(VecLength));
+
+        protected IEnumerable<T[]> RandArrays128(int? count = null)
         {
-            this.VecLen = Vec128<T>.Length;
-            this.VecBitCount = Vec128<T>.BitCount;
+            for(var i = 0; i< (count ?? SampleSize); i++)
+                 yield return RandArray128();
         }
 
-        protected IReadOnlyList<T> RandomList()
-            => RandomList(VecLen);
-
-        protected Vec128<T> RandomVector()        
-            => Vec128.define(RandomList());
-
-        protected IEnumerable<IReadOnlyList<T>> RandomLists(int? count = null)
+        protected IEnumerable<IReadOnlyList<T>> RandLists128(int? count = null)
         {
-            for(var i = 0; i< (count ?? StreamLength); i++)
-                 yield return RandomList();
+            for(var i = 0; i< (count ?? SampleSize); i++)
+                 yield return RandList128();
         }
             
-        protected IEnumerable<Vec128<T>> RandomVectors(int? count = null)        
+        protected IEnumerable<Vec128<T>> RandVecs128(int? count = null)        
         {
-            for(var i = 0; i< (count ?? StreamLength); i++)
-                 yield return RandomVector();
+            for(var i = 0; i< (count ?? SampleSize); i++)
+                 yield return RandVec128();
         }        
+
+
     }    
 
-    public abstract class InX256Test<S,T> : InXTest<S,T>
-        where S : InX256Test<S,T>
-        where T : struct, IEquatable<T>
-    {
-        protected override int VecLen {get;}
 
-        protected override int VecBitCount {get;}
-
-
-        protected InX256Test(string opname, Interval<T> bounds)
-            : base(opname,bounds)
-        {
-            this.VecLen = Vec256<T>.Length;
-            this.VecBitCount = Vec256<T>.BitCount;
-
-        }
-        
-        protected IEnumerable<Vec256<T>> RandomVectors(int count)        
-        {
-            for(var i = 0; i< count; i++)
-                 yield return Vec256.define(Random().Freeze(VecLen));
-        }
-    }    
 }

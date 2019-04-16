@@ -32,6 +32,7 @@ namespace Z0
         static readonly int datalen = (int)dim.volume();
 
         readonly IRandomizer rand;
+        
         public MatrixSource(IRandomizer rand)
         {
             this.rand = rand;

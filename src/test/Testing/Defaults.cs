@@ -13,241 +13,16 @@ namespace Z0.Testing
 
     public interface Default
     {
-        uint SampleSize {get;}
+        int SampleSize {get;}
 
         int Reps {get;}
 
-        int StreamLength {get;}
     }
     
     public interface Default<T> : Default
     {
         Interval<T> Domain {get;}
     }
-
-    public interface IPolyProp<T>
-    {
-        T Value {get; set;}
-        TypeCode ValueType {get;}
-    }
-
-    public interface IPolyProp :
-        IPolyProp<sbyte>,
-        IPolyProp<byte>,
-        IPolyProp<short>,
-        IPolyProp<ushort>,
-        IPolyProp<int>,
-        IPolyProp<uint>,
-        IPolyProp<long>,
-        IPolyProp<ulong>,
-        IPolyProp<float>,
-        IPolyProp<double>
-        
-
-    {
-        T get<T>();
-        void set<T>(T value);
-    }
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct PolyProp : IPolyProp
-    {
-        public static PolyProp define<T>(T value)
-        {
-            var prop = new PolyProp();
-            prop.set(value);
-            return prop;
-        }
-        
-        [FieldOffset(0)]
-        byte type;
-
-        [FieldOffset(1)]
-        sbyte _sbyte;
-
-        [FieldOffset(1)]
-        byte _byte;
-
-        [FieldOffset(1)]
-        short _short;
-
-        [FieldOffset(1)]
-        ushort _ushort;
-
-        [FieldOffset(1)]
-        int _int;
-
-        [FieldOffset(1)]
-        uint _uint;
-
-        [FieldOffset(1)]
-        long _long;
-
-        [FieldOffset(1)]
-        ulong _ulong;
-
-        [FieldOffset(1)]
-        double _double;
-
-        [FieldOffset(1)]
-        float _float;
-
-        sbyte IPolyProp<sbyte>.Value 
-        {
-            [MethodImpl(Inline)]
-            get => _sbyte; 
-
-            [MethodImpl(Inline)]
-            set {
-                _sbyte = value;
-                type = (byte)TypeCode.SByte;
-            }
-        }
-
-        byte IPolyProp<byte>.Value 
-        {
-            [MethodImpl(Inline)]
-            get => _byte; 
-
-            [MethodImpl(Inline)]
-            set {
-                _byte = value;
-                type = (byte)TypeCode.Byte;
-            }
-        }
-
-        short IPolyProp<short>.Value 
-        {
-            [MethodImpl(Inline)]
-            get => _short; 
-
-            [MethodImpl(Inline)]
-            set {
-                _short = value;
-                type = (byte)TypeCode.Int16;
-            }
-        }
-
-        ushort IPolyProp<ushort>.Value 
-        {
-            [MethodImpl(Inline)]
-            get => _ushort; 
-
-            [MethodImpl(Inline)]
-            set {
-                _ushort = value;
-                type = (byte)TypeCode.UInt16;
-            }
-        }
-
-        int IPolyProp<int>.Value 
-        {
-            [MethodImpl(Inline)]
-            get => _int; 
-
-            [MethodImpl(Inline)]
-            set {
-                _int = value;
-                type = (byte)TypeCode.Int32;
-            }
-        }
-
-        uint IPolyProp<uint>.Value 
-        {
-            [MethodImpl(Inline)]
-            get => _uint; 
-
-            [MethodImpl(Inline)]
-            set {
-                _uint = value;
-                type = (byte)TypeCode.UInt32;
-            }
-        }
-
-        long IPolyProp<long>.Value 
-        {
-            [MethodImpl(Inline)]
-            get => _long; 
-
-            [MethodImpl(Inline)]
-            set {
-                _long = value;
-                type = (byte)TypeCode.Int64;
-            }
-        }
-
-        ulong IPolyProp<ulong>.Value 
-        {
-            [MethodImpl(Inline)]
-            get => _ulong; 
-
-            [MethodImpl(Inline)]
-            set {
-                _ulong = value;
-                type = (byte)TypeCode.UInt64;
-            }
-        }
-
-        float IPolyProp<float>.Value 
-        {
-            [MethodImpl(Inline)]
-            get => _float; 
-
-            [MethodImpl(Inline)]
-            set {
-                _float = value;
-                type = (byte)TypeCode.Single;
-            }
-        }
-
-        double IPolyProp<double>.Value 
-        {
-            [MethodImpl(Inline)]
-            get => _double; 
-
-            [MethodImpl(Inline)]
-            set {
-                _double = value;
-                type = (byte)TypeCode.Double;
-            }
-        }
-
-        public TypeCode ValueType 
-            => (TypeCode)type;
-
-        public T get<T>()
-            => cast<IPolyProp<T>>(this).Value;
-
-        public void set<T>(T value)
-            => cast<IPolyProp<T>>(this).Value = value;
-        
-        public override string ToString() 
-        {
-            switch((TypeCode)type)
-            {
-                case TypeCode.SByte:
-                case TypeCode.Int16:
-                case TypeCode.Int32:
-                case TypeCode.Int64:
-                    return _long.ToString();
-
-                case TypeCode.Byte:
-                case TypeCode.UInt16:
-                case TypeCode.UInt32:
-                case TypeCode.UInt64:
-                    return _ulong.ToString();
-
-                case TypeCode.Single:
-                    return _float.ToString();
-
-                case TypeCode.Double:
-                    return _double.ToString();                    
-            }
-            return ($"type={type}; value={_long.ToString()}");
-        }
-    
-    }
-
 
 
     public readonly struct Defaults : 
@@ -265,55 +40,48 @@ namespace Z0.Testing
 
     {
 
-        static readonly Defaults Inhabitant = default;
+        static readonly Defaults TheOnly = default;
 
         public static Default<T> get<T>()
-            => cast<Default<T>>(Inhabitant);
+            => cast<Default<T>>(TheOnly);
 
         public const int Reps = 1;
 
-        public const uint StreamLength = Pow2.T12;
+        public const int SampleSize = (int)Pow2.T16;
 
-        public const uint SampleSize = Pow2.T20;
 
-        public const uint BigVector = Pow2.T20;
 
-        int Default.StreamLength
-            => (int)StreamLength;
-
-        uint Default.SampleSize 
+        int Default.SampleSize 
             => SampleSize;
 
         int Default.Reps 
             => Reps;
-
-
 
         // ! Int8
         public const sbyte Int8Min = SByte.MinValue;
 
         public const sbyte Int8Max = SByte.MaxValue;
 
-        public static readonly Interval<sbyte> Int8Domain = Interval.closed(Int8Max,Int8Min);
+        public static readonly Interval<sbyte> Int8Domain = Interval.closed(Int8Min,Int8Max);
 
         Interval<sbyte> Default<sbyte>.Domain 
             => Int8Domain;
 
         // ! UInt8
-        public const byte UInt8Min = Byte.MinValue;
+        public const byte UInt8Min = byte.MinValue;
 
-        public const byte UInt8Max = Byte.MaxValue;
+        public const byte UInt8Max = byte.MaxValue;
 
-        public static readonly Interval<byte> UInt8Domain = Interval.closed(UInt8Max,UInt8Min);
+        public static readonly Interval<byte> UInt8Domain = Interval.closed(UInt8Min,UInt8Max);
 
         Interval<byte> Default<byte>.Domain 
             => UInt8Domain;
 
         // ! Int16
 
-        public const short Int16Min = -500;
+        public const short Int16Min = -1500;
         
-        public const short Int16Max = 500;
+        public const short Int16Max = 1500;
 
         public static readonly Interval<short> Int16Domain = Interval.closed(Int16Min,Int16Max);
 
@@ -324,7 +92,7 @@ namespace Z0.Testing
 
         public const ushort UInt16Min = 0;
         
-        public const ushort UInt16Max = 500;
+        public const ushort UInt16Max = 30000;
 
         public static readonly Interval<ushort> UInt16Range = Interval.closed(UInt16Min,UInt16Max);
 
