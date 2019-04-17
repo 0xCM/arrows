@@ -35,10 +35,15 @@ namespace Z0.Testing
         
         }            
 
+        IEnumerable<Type> CandidateTypes()
+            => ZTest.DefiningAssembly.Types().Realizes<IUnitTest>();
+        
+        IEnumerable<Type> Nested()
+            => CandidateTypes().Nested();
+        
         public IEnumerable<Type> Hosts()
-            => ZTest.DefiningAssembly.Types()
-                    .Realizes<IUnitTest>()
-                    .Concrete();    
+            => CandidateTypes().Concrete().OrderBy(t => t.DisplayName());
+                    
         IEnumerable<MethodInfo> Tests(Type host)
             =>  host.DeclaredMethods()
                     .Public()

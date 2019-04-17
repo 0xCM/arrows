@@ -28,32 +28,34 @@ namespace Z0.Tests.InX128
             : base(P.stream, domain ?? Defaults.get<T>().Domain, 
                 sampleSize: (int)(VecLength* (VecCount ?? Pow2.T16)))
         {
-            this.Src = RandomArray(Domain, SampleSize);
+
         }
         
-        protected T[] Src {get;}
+        IEnumerable<Vec128<T>> DefineStream()
+            => InXG.stream<T>(SrcArray);
 
-        protected IEnumerable<Vec128<T>> DefineStream()
-            => InX128G.stream<T>(Src);
-
-        protected void IterateStream()
+        public virtual void TraverseStream()
         {
             var i = 0;
             iter(DefineStream(), _ => i++);            
-            trace($"Interated a stream of {i} vectors");
+            trace($"Iterated a stream of {i} vectors");
+            Claim.eq(i, VecCount);
         }
 
-        protected void ValidateStream()
+        public virtual void ValidateStream()
         {
             var vectors = DefineStream().ToReadOnlyList();
             Claim.eq(VecCount, vectors.Count);                    
 
-            for(int i = 0, pos = 0; i< VecCount; i++, pos += VecLength)
-            {
-                var v0 = Vec128.define(Src, pos);
+
+            var i = 0;
+            IterOffsets(offset =>{
+                var v0 = Vec128.define(SrcArray, offset);
                 var v1 = vectors[i];
                 Claim.eq(v0,v1);
-            }            
+                i++;
+            });
+
         }
 
     }

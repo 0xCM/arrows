@@ -28,7 +28,7 @@ namespace Z0.Tests.InX128
             : base("+=")
         {
 
-            DataSrc = RandomList(Pow2.T22);
+            DataSrc = RandList(Pow2.T22);
         }
 
         IReadOnlyList<float> DataSrc {get;}

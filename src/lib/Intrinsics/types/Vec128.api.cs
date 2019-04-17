@@ -14,56 +14,56 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     using static zcore;
-    using static x86;
+    using static inX;
 
     public partial class Vec128
     {
+        [MethodImpl(Inline)]
         public static Vec128<T> zero<T>()
             where T : struct, IEquatable<T>                    
             => Vector128<T>.Zero;
 
-
-
+        [MethodImpl(Inline)]
         public static Vec128<T> define<T>(Vector128<T> src)
             where T : struct, IEquatable<T>            
                 => src;
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<T> define<T>(T[] src, int startpos = 0)
+        public static unsafe Vec128<T> define<T>(T[] src, int offset = 0)
             where T : struct, IEquatable<T>
         {            
 
-            var i = startpos;
+            var i = offset;
             
             if(typematch<T,sbyte>())            
-                return vInt8(src,startpos);
+                return vInt8(src,offset);
 
             if(typematch<T,byte>())            
-                return vUInt8(src,startpos);
+                return vUInt8(src,offset);
 
             if(typematch<T,short>())            
-                return vInt16(src,startpos);
+                return vInt16(src,offset);
 
             if(typematch<T,ushort>())            
-                return VUint16(src,startpos);
+                return VUint16(src,offset);
 
             if(typematch<T,int>())            
-                return vInt32(src,startpos);
+                return vInt32(src,offset);
 
             if(typematch<T,uint>())            
-                return vUInt32(src,startpos);
+                return vUInt32(src,offset);
 
             if(typematch<T,long>())            
-                return vInt64(src,startpos);
+                return vInt64(src,offset);
 
             if(typematch<T,ulong>())            
-                return vUInt64(src,startpos);
+                return vUInt64(src,offset);
 
             if(typematch<T,float>())            
-                return vFloat32(src,startpos);
+                return vFloat32(src,offset);
 
             if(typematch<T,double>())            
-                return vFloat64(src,startpos);
+                return vFloat64(src,offset);
 
             throw new NotSupportedException();
 

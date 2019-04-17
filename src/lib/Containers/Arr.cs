@@ -101,14 +101,13 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The array element type</typeparam>
         /// <param name="src">The source array</param>
-        /// <param name="startpos">The position of the first element of the source array </param>
-        /// <param name="endpos">The position of the last element of the source array</param>
+        /// <param name="offset">The position of the first element of the source array </param>
+        /// <param name="count">The number of elements to take from the source array following the offset</param>
         /// <returns></returns>
-        public static T[] SubArray<T>(this T[] src, int startpos, int endpos)
+        public static T[] SubArray<T>(this T[] src, int offset, int count)
         {
-            var len = endpos - startpos + 1;
-            var dst = new T[len];
-            Array.Copy(src, startpos, dst, 0, len);
+            var dst = new T[count];
+            Array.Copy(src, offset, dst, 0, count);
             return dst;
         } 
 

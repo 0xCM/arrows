@@ -11,7 +11,7 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     using static zcore;
-    using static x86;
+    using static inX;
 
     public static class Num128
     {

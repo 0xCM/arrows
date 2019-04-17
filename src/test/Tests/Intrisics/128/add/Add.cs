@@ -21,7 +21,7 @@ namespace Z0.Tests.InX128
     {
         protected const string BasePath = P.InX128 + P.add;        
         
-        protected static readonly InX128Add<T> InXOp = InX128G.add<T>();
+        protected static readonly InXAdd<T> InXOp = InXG.add<T>();
         
         protected static readonly Operative.PrimOps<T> PrimOps = primops.typeops<T>();
         
@@ -35,8 +35,8 @@ namespace Z0.Tests.InX128
         protected AddTest(Interval<T>? domain = null, int? streamlen = null)
             : base("+",domain,streamlen)        
         {
-            this.LeftDataSrc = RandomArray(SampleSize);
-            this.RightDataSrc = RandomArray(SampleSize);
+            this.LeftDataSrc = RandArray(SampleSize);
+            this.RightDataSrc = RandArray(SampleSize);
             this.LeftVecSrc = Vec128.stream(LeftDataSrc).ToReadOnlyList();
             this.RightVecSrc = Vec128.stream(RightDataSrc).ToReadOnlyList();
         }

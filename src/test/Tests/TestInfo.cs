@@ -74,7 +74,22 @@ namespace Z0.Tests
         /// <summary>
         /// Identifies the stream operator
         /// </summary>
-        public const string stream = "streams/";
+        public const string stream = "stream/";
+
+        /// <summary>
+        /// Identifies the load operator
+        /// </summary>
+        public const string load = "load/";
+
+        /// <summary>
+        /// Identifies a store operator
+        /// </summary>
+        public const string store = "store/";
+
+        /// <summary>
+        /// Identifies the load operator
+        /// </summary>
+        public const string define = "define/";
 
         /// <summary>
         /// Identifies intrinsic-related data structures and operations

@@ -36,6 +36,10 @@ namespace Z0
             => src.Where(t => !t.IsPublic);
 
         [MethodImpl(Inline)]
+        public static IEnumerable<Type> Nested(this IEnumerable<Type> src)
+            => src.Where(t => t.IsNested);
+
+        [MethodImpl(Inline)]
         public static bool IsStatic(this PropertyInfo p)
             => p.GetGetMethod()?.IsStatic == true 
             || p.GetSetMethod().IsStatic == true;

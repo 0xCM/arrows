@@ -25,10 +25,10 @@ namespace Z0.Tests.InX128
         {
         }
 
-        public void Validate()
-            => ValidateStream();
+        public override void ValidateStream()
+            => base.ValidateStream();
 
-        public void Iterate()
-            => IterateStream();
+        public override void TraverseStream()
+            => base.TraverseStream();
     }
 }

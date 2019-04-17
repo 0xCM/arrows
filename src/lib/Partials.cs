@@ -23,7 +23,7 @@ namespace Z0
 
     }
 
-    public static partial class InX128G
+    public static partial class InXG
     {
 
     }

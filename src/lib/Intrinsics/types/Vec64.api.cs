@@ -13,7 +13,7 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
     using static zcore;
-    using static x86;
+    using static inX;
 
     using NumVec = System.Numerics.Vector;
 

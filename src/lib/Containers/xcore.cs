@@ -154,11 +154,11 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The array element type</typeparam>
         /// <param name="src">The source array</param>
-        /// <param name="startpos">The position of the first element of the source array </param>
-        /// <param name="endpos">The position of the last element of the source array</param>
+        /// <param name="offset">The position of the first element of the source array </param>
+        /// <param name="length">The position of the last element of the source array</param>
         /// <returns></returns>
-        public static T[] Subset<T>(this T[] src, int startpos, int endpos)
-            => Arr.SubArray(src,startpos,endpos);
+        public static T[] Subset<T>(this T[] src, int offset, int length)
+            => Arr.SubArray(src,offset,length);
 
         /// <summary>
         /// Defines a window over a 1-d array beginning at a specified index 
