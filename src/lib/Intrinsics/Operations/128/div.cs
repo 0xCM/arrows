@@ -17,11 +17,11 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static Vec128<float> div(Num128<float> lhs, Num128<float> rhs)
+        public static Num128<float> div(Num128<float> lhs, Num128<float> rhs)
             => Avx2.DivideScalar(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> div(Num128<double> lhs, Num128<double> rhs)
+        public static Num128<double> div(Num128<double> lhs, Num128<double> rhs)
             => Avx2.DivideScalar(lhs, rhs);
 
         [MethodImpl(Inline)]

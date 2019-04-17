@@ -58,9 +58,9 @@ namespace Z0.Testing
             => Reps;
 
         // ! Int8
-        public const sbyte Int8Min = SByte.MinValue;
+        public const sbyte Int8Min = sbyte.MinValue;
 
-        public const sbyte Int8Max = SByte.MaxValue;
+        public const sbyte Int8Max = sbyte.MaxValue;
 
         public static readonly Interval<sbyte> Int8Domain = Interval.closed(Int8Min,Int8Max);
 
@@ -79,9 +79,9 @@ namespace Z0.Testing
 
         // ! Int16
 
-        public const short Int16Min = -1500;
+        public const short Int16Min = short.MinValue;
         
-        public const short Int16Max = 1500;
+        public const short Int16Max = short.MaxValue;
 
         public static readonly Interval<short> Int16Domain = Interval.closed(Int16Min,Int16Max);
 

@@ -6,6 +6,7 @@ namespace Z0
 {
     using System;
     using System.Numerics;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using static zcore;
@@ -35,8 +36,9 @@ namespace Z0
                 Stepwise<T>,
                 Stepwise<IReadOnlyList<T>>,            
 
-                Bitwise<T>,            
-                
+                Bitwise<T>, 
+                Bitwise<IReadOnlyList<T>>,           
+
                 Divisive<T>, 
                 Nullary<T>, 
                 Unital<T>,
@@ -71,11 +73,7 @@ namespace Z0
             
             IReadOnlyList<bool> gteq(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs);
             
-            IReadOnlyList<bool> testbit(IReadOnlyList<T> src, int pos);
-            
-            IReadOnlyList<T> lshift(IReadOnlyList<T> src, int pos);
-            
-            IReadOnlyList<T> rshift(IReadOnlyList<T> src, int pos);
+            IReadOnlyList<bool> testbits(IReadOnlyList<T> src, int pos);            
 
             /// <summary>
             /// Computes the component-wise gcd between two lists of equal length
@@ -421,7 +419,7 @@ namespace Z0
                 => Bitwise.testbit(src,pos);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<bool> testbit(IReadOnlyList<T> src, int pos)
+            public IReadOnlyList<bool> testbits(IReadOnlyList<T> src, int pos)
                 => map(src, x => Bitwise.testbit(x,pos));
 
             [MethodImpl(Inline)]
@@ -552,6 +550,25 @@ namespace Z0
             [MethodImpl(Inline)]
             public T parse(string src)
                 => Parser.parse(src);
+
+            [MethodImpl(Inline)]
+            public string bitchars(IReadOnlyList<T> src)
+                => string.Join("",map(src,bitchars));
+
+            BitString BitSource<IReadOnlyList<T>>.bitstring(IReadOnlyList<T> src)            
+            {
+                var allbits = Arr.concat(src.Select(bits).ToArray());
+                return BitString.define(allbits);
+            }                            
+
+            bool BitSource<IReadOnlyList<T>>.testbit(IReadOnlyList<T> src, int pos)
+                => throw new NotImplementedException();
+
+            public byte[] bytes(IReadOnlyList<T> src)
+                => Arr.concat(map(src,bytes));
+
+            public bit[] bits(IReadOnlyList<T> src)
+                => Arr.concat(map(src,bits));
         }    
     }
 }

@@ -10,7 +10,6 @@ namespace Z0.Testing
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-
     using static Nats;
     using static zcore;
 
@@ -22,24 +21,21 @@ namespace Z0.Testing
         static void failure(string info, string member)
             => error($"{member}: test failed - {info}");
 
-        static void success(string member, long ms, int reps)
-        {
-            if(reps == 1)
-                inform($"succeeded {ms}ms",member);
-            else
-                inform($"succeeded {ms}ms | {reps} reps",member); 
-        }
             
+        static AppMsg succeeded(string testName, long ms, int reps)
+        {
+            var content = reps == 1 ?$"succeeded {ms}ms" : $"succeeded {ms}ms | {reps} reps";
+            return AppMsg.Define(content, SeverityLevel.Info, testName);
+        }
+
+
         public TestRunner()
         {
         
         }            
 
         IEnumerable<Type> CandidateTypes()
-            => ZTest.DefiningAssembly.Types().Realizes<IUnitTest>();
-        
-        IEnumerable<Type> Nested()
-            => CandidateTypes().Nested();
+            => ZTest.DefiningAssembly.Types().Realizes<IUnitTest>();        
         
         public IEnumerable<Type> Hosts()
             => CandidateTypes().Concrete().OrderBy(t => t.DisplayName());
@@ -49,38 +45,45 @@ namespace Z0.Testing
                     .Public()
                     .WithParameterCount(0);
 
-        void Run(object host, string hostpath, MethodInfo test)
+        void Run(IUnitTest host, string hostpath, MethodInfo test)
         {
+            var messages = new List<AppMsg>();
             try
             {
                 var testName = $"{hostpath}{test.Name}";
-                hilite("executing",  testName); 
+                messages.Add(AppMsg.Define("executing", SeverityLevel.Hilite, testName));
+                
+                //hilite("executing",  testName); 
                 var reps = RepeatAttribute.Repetitions(test);                               
                 var sw = stopwatch();
                 for(var i = 0; i<reps; i++)
                     test.Invoke(host,null);                    
-                success(testName,sw.ElapsedMilliseconds,reps);
+                var ms = sw.ElapsedMilliseconds;
+                messages.AddRange(host.DequeueMessages());
+                messages.Add(succeeded(testName,ms,reps));
+
+                print(messages);
+
+                //success(testName,ms,reps);
             }
             catch(Exception e)
             {
+                print(messages);
                 failure(e.ToString(), test.Name);                    
             }            
         }
 
         public void Run(Type host, string filter = "")
         {
-            if(!host.ContainsGenericParameters)
-            {
-                var hostpath = host.DisplayName();
-                if(!string.IsNullOrWhiteSpace(filter) && !hostpath.Contains(filter))
-                    return;
+            var hostpath = host.DisplayName();
+            if(!string.IsNullOrWhiteSpace(filter) && !hostpath.Contains(filter))
+                return;
 
-                var instance = host.CreateInstance<object>();
-                iter(Tests(host), t =>  Run(instance, hostpath, t));
-            }
+            var instance = host.CreateInstance<IUnitTest>();
+            iter(Tests(host), t =>  Run(instance, hostpath, t));
         }
     
         public void Run(string filter = "", bool concurrent = true)
-            => iter(Hosts(), h =>  Run(h,filter),concurrent);
+            => iter(Hosts(), h =>  Run(h,filter), concurrent);
     }
 }

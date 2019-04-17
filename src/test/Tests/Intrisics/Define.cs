@@ -18,66 +18,6 @@ namespace Z0.Tests.InX128
     
     using P = Paths;
 
-    public abstract class DefineTest<S,T> : InXTest<S,T>
-        where S : DefineTest<S,T>
-        where T : struct, IEquatable<T>
-    {
-        public const string BasePath = P.InX128 + P.define;
-
-
-        public DefineTest()
-            : base(P.define)
-        {
-
-        }
-
-
-        public virtual void Define()
-        {
-
-        }
-    }
-
-    public abstract class StoreTestOld<S,T> : InXTest<S,T>
-        where S : DefineTest<S,T>
-        where T : struct, IEquatable<T>
-    {
-        public const string BasePath = P.InX128 + P.define;
-
-
-        public StoreTestOld()
-            : base(P.define)
-        {
-
-        }
-
-
-        public virtual void Store()
-        {
-            var vecCount = Pow2.T16;
-            var mem = MemoryPartition.define((int)vecCount * Vec128<uint>.Length, Vec128<uint>.Length);
-
-            trace($"Storing data from {mem.PartCount} {type<Vec128<uint>>().DisplayName()} vectors");
-
-            var dst = alloc<T>(mem.TotalLength); 
-            var src = RandArray(mem.TotalLength);
-            var vectors = SrcVectors.ToReadOnlyList();
-            //InX.store(vectors,dst);
-
-            void ValidatePart(int cix, int pix)
-            {
-                var v = vectors[pix];
-                iter(mem.PartLength, 
-                    i => Claim.eq(src[cix + i], v[i]));
-            }
-            
-            mem.GetIndex().IterateParts(ValidatePart);
-
-
-        }
-    }
-
-
 
     [DisplayName(Path)]
     public class InX128Define : UnitTest<InX128Define>
@@ -156,32 +96,6 @@ namespace Z0.Tests.InX128
                 var v2 = Vec128.define(arr);                
                 Claim.eq(v1,v2);
             }            
-        }
-
-        public void DefineInt32Vec()
-        {
-            var src = new int[]{-50,-25,25,50};
-            var v1 = Vec128.define(src[0],src[1],src[2],src[3]);
-            var v2 = Vec128.define(src);
-            Claim.eq(v1,v2);
-        }
-
-
-        public void DefineInt64Vec()
-        {
-            var src = new long[]{50,25};
-            var v1 = Vec128.define(src);
-            var v2 = Vec128.define(src.ToSpan128());
-            Claim.eq(v1,v2);
-        }
-
-
-        public void DefineUInt64Vec()
-        {
-            var src = new ulong[]{50,25};
-            var v1 = Vec128.define(src);
-            var v2 = Vec128.define(src.ToSpan128());
-            Claim.eq(v1,v2);
         }
 
         public void DefineInt32Vecs()

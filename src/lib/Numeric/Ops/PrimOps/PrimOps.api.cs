@@ -327,6 +327,11 @@ namespace Z0
             where T : struct, IEquatable<T>
             => typeops<T>().and(lhs,rhs);
 
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<T> and<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
+            where T : struct, IEquatable<T>
+            => typeops<T>().and(lhs,rhs);
+
         [MethodImpl(Inline)]   
         public static T or<T>(T lhs, T rhs) 
             where T : struct, IEquatable<T>
@@ -380,7 +385,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static IReadOnlyList<bool> testbit<T>(IReadOnlyList<T> src, int pos)
             where T : struct, IEquatable<T>
-                => typeops<T>().testbit(src,pos);
+                => typeops<T>().testbits(src,pos);
 
         [MethodImpl(Inline)]
         public static bit[] bits<T>(T src)

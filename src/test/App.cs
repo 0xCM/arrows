@@ -31,7 +31,7 @@ namespace Z0
             var interval = Interval.closed(0UL,UInt32.MaxValue - step);
             foreach(var d in divisors(interval,step))
             {
-                print($"{d.Range}, count = {d.Lists.Count()} {sw.ElapsedMilliseconds}ms");
+                inform($"{d.Range}, count = {d.Lists.Count()} {sw.ElapsedMilliseconds}ms");
                 NumberFile.save(d, FolderPath.Define(@"C:\temp"));
                 sw.Restart();
             }
@@ -41,7 +41,7 @@ namespace Z0
         static void V64Intrinsics()
         {
             var vec = Vec64.define(0, 1,2,3,4,5,6,7);
-            print(vec.ToString());
+            inform(vec.ToString());
             
         }
 
@@ -60,7 +60,7 @@ namespace Z0
                         var vOr = InX.or(v, sum);
                         
                         if(diagnostic)
-                            print($"{v} + {v} = {sum}");
+                            inform($"{v} + {v} = {sum}");
                     }
 
                     if(diagnostic)
@@ -89,7 +89,7 @@ namespace Z0
                 return stop;
             });
 
-            Console.ReadLine();
+            read();
             stop = true;
             task.Wait();
 
@@ -110,7 +110,7 @@ namespace Z0
             }
 
             foreach(var key in histo.Keys.OrderBy(x => x))
-                print($"{key}: {histo[key]}");
+                inform($"{key}: {histo[key]}");
 
         }
         static void Main(string[] args)

@@ -15,33 +15,41 @@ namespace Z0.Testing
     
     public interface IUnitTest
     {
-        
+        IEnumerable<AppMsg> DequeueMessages();
     }
-    public abstract class UnitTest : IUnitTest
+    public abstract class UnitTest
     {
 
         protected virtual string OpName 
             => string.Empty;
     }
 
-    public abstract class UnitTest<T> : UnitTest
+    public abstract class UnitTest<T> : UnitTest, IUnitTest
         where T : UnitTest<T>
     {
         protected static readonly TestContext<T> Context = TestContext.define<T>(RandSeeds.TestSeed);
 
-        protected virtual void trace(string msg, [CallerMemberName] string caller = null)
-        {
-            var location = GetType().DisplayName() + caller;
-            inform(msg, location);
-        }
-
+        List<AppMsg> Messages {get;} = new List<AppMsg>();
+        
         protected int SampleSize {get;}
 
         protected UnitTest(int? SampleSize = null)            
         {
             this.SampleSize = SampleSize ?? Defaults.SampleSize;
         }
+
+        protected void trace(string msg, [CallerMemberName] string caller = null)
+            => Messages.Add(AppMsg.Define(msg, SeverityLevel.Info, GetType().DisplayName() + caller));            
             
+
+        IEnumerable<AppMsg> IUnitTest.DequeueMessages()
+        {
+            var copy = new List<AppMsg>(Messages);
+            Messages.Clear();
+            return copy;
+        }
+             
+
     }
 
 }

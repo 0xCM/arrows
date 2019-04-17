@@ -18,7 +18,7 @@ namespace Z0
     partial class InXG
     {
         /// <summary>
-        /// Obtains the generic add operator for a specified primitive type
+        /// Obtains the add operator bundle for a specified primitive type
         /// </summary>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
@@ -38,7 +38,28 @@ namespace Z0
                 => SSR.InXAddG<T>.TheOnly.add(lhs,rhs);
 
         /// <summary>
-        /// Obtains the generic and operator for a specified primitive type
+        /// Obtains the div operator bundle for a specified primitive type
+        /// </summary>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
+        public static InXDiv<T> div<T>()
+            where T : struct, IEquatable<T>
+                => SSR.InXDivG<T>.Operator;
+
+
+        [MethodImpl(Inline)]
+        public static Vec128<T> div<T>(Vec128<T> lhs, Vec128<T> rhs)
+            where T : struct, IEquatable<T>
+                => SSR.InXDivG<T>.TheOnly.div(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static Num128<T> div<T>(Num128<T> lhs, Num128<T> rhs)
+            where T : struct, IEquatable<T>
+                => SSR.InXDivG<T>.TheOnly.div(lhs,rhs);
+
+
+        /// <summary>
+        /// Obtains the and operator bundle for a specified primitive type
         /// </summary>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
@@ -59,7 +80,7 @@ namespace Z0
 
 
         /// <summary>
-        /// Obtains the generic bittest operator (set) for a parametric primitive type
+        /// Obtains the bittest operator bundle for a specified primitive type
         /// </summary>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]

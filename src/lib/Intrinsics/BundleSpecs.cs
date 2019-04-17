@@ -21,6 +21,14 @@ namespace Z0
 
     }
 
+    public interface InXDiv<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> div(Vec128<T> lhs, Vec128<T> rhs);
+        
+        Num128<T> div(Num128<T> lhs, Num128<T> rhs);
+    }
+
 
     public interface InXAdd<T> : InXOp<T>
         where T : struct, IEquatable<T>

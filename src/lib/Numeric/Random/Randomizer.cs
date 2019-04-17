@@ -230,7 +230,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public sbyte one(sbyte min, sbyte max)
-            => (sbyte)one((byte)(min),(byte)max);
+        {
+            var width = (byte)(max - min);
+            var uVal = one((byte)0, width);
+            return (sbyte)(max - uVal);
+        }
 
         [MethodImpl(Inline)]
         public ushort one(ushort min, ushort max)
@@ -243,7 +247,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public short one(short min, short max)
-            => (short)one((ushort)(min),(ushort)max);
+        {
+            var width = (ushort)(max - min);
+            var uVal = one((ushort)0, width);
+            return (short)(max - uVal);
+        }
 
         [MethodImpl(Inline)]
         public uint one(uint min, uint max)

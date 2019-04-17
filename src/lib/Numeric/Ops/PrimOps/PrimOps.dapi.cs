@@ -20,7 +20,7 @@ namespace Z0
     {
         static T announce<T>(T x, Func<T,string> f)
         {
-            print(f(x));
+            inform(f(x));
             return x;
         }
 

@@ -244,7 +244,7 @@ namespace Z0
                 => enquote(Guid.NewGuid().ToString());
             
             for(var i = 0; i< 200; i++)
-                print($"Guid.Parse({guid()}),");
+                inform($"Guid.Parse({guid()}),");
         }
 
         static ulong[] guidseed(Guid guid1, Guid guid2)

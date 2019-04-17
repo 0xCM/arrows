@@ -24,9 +24,6 @@ namespace Z0.Tests.InX128
     {
         protected static readonly InXStore<T> InXOp = InXG.store<T>();
 
-        public const string BasePath = P.InX128 + P.store;
-
-
         public StoreTest()
             : base(P.store)
         {
@@ -36,35 +33,34 @@ namespace Z0.Tests.InX128
         public virtual void StoreVector()
         {   
             var dst = alloc<T>(VecLength);
-            foreach(var v0 in SrcVectors)
+            foreach(var v0 in UnarySrcVectors)
             {                
                 InXOp.store(v0,dst);
                 var v1 = Vec128.define(dst);
                 Claim.eq(v0,v1);
                 
             }
-
         }
 
         public virtual void StoreVectors()
         {   
             var dst = alloc<T>(VecLength*VecCount);
-            var src = SrcVectors.ToReadOnlyList();
+            var src = UnarySrcVectors.ToReadOnlyList();
             InXOp.store(src,dst);
             IterOffsets((c,i) => Claim.eq(src[c],Vec128.define(dst,i)));
 
         }
 
-
     }
 
     public class StoreTests
     {
+        public const string BasePath = P.InX128 + P.store;
 
         [DisplayName(Path)]
         public sealed class StoreInt64 : StoreTest<StoreInt64, long>
         {
-            public const string Path = StoreInt64.BasePath + P.int64;
+            public const string Path = BasePath + P.int64;
                 
             public override void StoreVector()
                 => base.StoreVector();
@@ -73,11 +69,10 @@ namespace Z0.Tests.InX128
                 => base.StoreVectors();
         }
 
-
         [DisplayName(Path)]
         public sealed class StoreUInt64 : StoreTest<StoreUInt64, ulong>
         {
-            public const string Path = StoreUInt64.BasePath + P.uint64;
+            public const string Path = BasePath + P.uint64;
                 
             public override void StoreVector()
                 => base.StoreVector();
@@ -89,7 +84,7 @@ namespace Z0.Tests.InX128
         [DisplayName(Path)]
         public sealed class StoreFloat32 : StoreTest<StoreFloat32, float>
         {
-            public const string Path = StoreFloat32.BasePath + P.float32;
+            public const string Path = BasePath + P.float32;
                 
             public override void StoreVector()
                 => base.StoreVector();
@@ -101,7 +96,7 @@ namespace Z0.Tests.InX128
         [DisplayName(Path)]
         public sealed class StoreFloat64 : StoreTest<StoreFloat64, double>
         {
-            public const string Path = StoreFloat64.BasePath + P.float64;
+            public const string Path = BasePath + P.float64;
                 
             public override void StoreVector()
                 => base.StoreVector();

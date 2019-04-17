@@ -68,13 +68,6 @@ namespace Z0
             where T : struct, IEquatable<T> 
                 => define(x,y,"==",  (a,b) => a.Equals(b)).demand();
 
-        public static string eq<T>(T x, T y, string msg, bool tell = true)
-            where T : struct, IEquatable<T> 
-        {
-            if(tell)
-                zcore.inform(msg);            
-            return eq(x,y);
-        }
 
         /// <summary>
         /// Demands that the first string is equal to the second

@@ -14,7 +14,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         public interface BitSource<T>
-            where T : struct, IEquatable<T>
 
         {
             /// <summary>
@@ -53,7 +52,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         public interface BitShifty<T> 
-            where T : struct, IEquatable<T>
         {
             T lshift(T lhs, int rhs);
 
@@ -67,7 +65,6 @@ namespace Z0
         /// <typeparam name="T">The operand type</typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Circular_shift</remarks>
         public interface BitCylce<T>
-            where T : struct, IEquatable<T>
         {
             /// <summary>
             /// Rotates bits rightwards, from MSB -> LSB
@@ -89,7 +86,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
         public interface BitLogic<T>
-            where T : struct, IEquatable<T>
         {
             /// <summary>
             /// Computes the bitwise and from the supplied values
@@ -128,8 +124,6 @@ namespace Z0
         /// Characterizes bitwise operations over an operand
         /// </summary>
         public interface Bitwise<T> : BitLogic<T>, BitShifty<T> ,BitSource<T> 
-            where T : struct, IEquatable<T>
-
         { }
 
 

@@ -37,14 +37,14 @@ namespace Z0
         protected abstract void ExecInit();
         public void Initialize()
         {
-            print($"Executing  {GetType().Name} initializer");
+            inform($"Executing  {GetType().Name} initializer");
             try
             {
                 ExecInit();
             }
             catch(Exception e)
             {
-                print($"{GetType().Name} initializer failed: {e}");
+                inform($"{GetType().Name} initializer failed: {e}");
                 throw;
             }
         }
@@ -71,18 +71,18 @@ namespace Z0
             var ass = assembly<T>();
             var sw = stopwatch();
 
-            print($"Initalizing {ass}");
+            inform($"Initalizing {ass}");
 
             var types = ass.GetTypeAttributions<SysInitAttribute>(t => !t.IsAbstract).Select(x => x.Key).ToList(); 
-            print($"Found {types.Count} type initializers");
+            inform($"Found {types.Count} type initializers");
 
             foreach(var t in types)
             {
-                print($"Initializing {t.Name}");
+                inform($"Initializing {t.Name}");
                 yield return instance<ISysInit>(t);
             }
 
-            print($"Finished {ass} initialization {sw.ElapsedMilliseconds}ms");
+            inform($"Finished {ass} initialization {sw.ElapsedMilliseconds}ms");
 
         }
         

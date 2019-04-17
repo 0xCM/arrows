@@ -118,5 +118,9 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static string ToHexString(this decimal src)
             => hexstring(src);
+ 
+        public static IEnumerable<T> Collapse<T>(IEnumerable<IEnumerable<T>> src)
+            => src.SelectMany(x => x);
+
    }
 }

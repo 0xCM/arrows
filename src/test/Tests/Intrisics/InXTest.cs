@@ -23,6 +23,8 @@ namespace Z0.Tests.InX128
 
         protected static readonly int VecLength = Vec128<T>.Length;
 
+        protected static readonly Operative.PrimOps<T> PrimOps = primops.typeops<T>();
+
         protected override string OpName {get;}
 
         protected int VecCount
@@ -33,15 +35,87 @@ namespace Z0.Tests.InX128
         {
             this.OpName = opname;
             this.Domain = domain ?? Defaults.get<T>().Domain;       
-            this.SrcArray = RandArray();
-            Claim.eq(SrcArray.Length, SampleSize);
+            
+            this.UnarySrc = RandArray();
+            Claim.eq(UnarySrc.Length, SampleSize);
             Claim.eq(VecLength,  16 / PrimSize);
+
+            this.LeftDataSrc = RandArray(SampleSize);
+            this.RightDataSrc = RandArray(SampleSize);
+            this.LeftVecSrc = Vec128.stream(LeftDataSrc).ToReadOnlyList();
+            this.RightVecSrc = Vec128.stream(RightDataSrc).ToReadOnlyList();
 
         }
 
         protected Interval<T> Domain {get;}
 
-        protected T[] SrcArray {get;}
+        protected T[] UnarySrc {get;}
+
+        protected T[] LeftDataSrc {get;}
+
+        protected T[] RightDataSrc {get;}
+
+        protected IReadOnlyList<Vec128<T>> LeftVecSrc {get;}
+
+        protected IReadOnlyList<Vec128<T>> RightVecSrc {get;}
+
+        protected IEnumerable<Vec128<T>> Results(Func<Vec128<T>, Vec128<T>, Vec128<T>> vecop)
+        {
+            for(var i = 0; i< VecCount; i++)
+                yield return vecop(LeftVecSrc[i], RightVecSrc[i]);            
+        }
+
+        /// <summary>
+        /// Applies a specified intrinsic binary operator the the left and right source vectors and
+        /// compares the respective result vectors to the values obtained by applying a specified
+        /// primtive operator over the source vectors
+        /// </summary>
+        /// <param name="vecop">The intrinsic vector operator</param>
+        /// <param name="primop">The primitive operator</param>
+        protected void Verify(Func<Vec128<T>, Vec128<T>, Vec128<T>> vecop, Func<IReadOnlyList<T>,IReadOnlyList<T>,IReadOnlyList<T>> primop)
+        {
+            var result = Results(vecop).ToReadOnlyList();
+            var left = Arr.partition(LeftDataSrc, VecLength).ToReadOnlyList();
+            var right = Arr.partition(RightDataSrc, VecLength).ToReadOnlyList();
+            for(var i = 0; i<VecCount; i++)
+            {
+                var expect = Vec128.define(primop(left[i],right[i]));
+                var actual = result[i];
+                Claim.eq(expect, actual);
+            }                
+        }
+
+        /// <summary>
+        /// Partitions the source array into array segments with vector length
+        /// </summary>
+        protected IEnumerable<ArraySegment<T>> UnarySrcSegments
+            =>  Arr.partition(UnarySrc, VecLength);
+
+        /// <summary>
+        /// Defines a stream of vectors over the source array
+        /// </summary>
+        protected IEnumerable<Vec128<T>> UnarySrcVectors
+            => UnarySrcSegments.Select(seg => Vec128.define(seg));
+
+        /// <summary>
+        /// Iterates the source segments into a receiver
+        /// </summary>
+        /// <param name="receiver">The segment receiver</param>
+        protected void IterUnarySegments(Action<ArraySegment<T>> receiver)
+        {
+            foreach(var seg in UnarySrcSegments)
+                receiver(seg);
+        }
+
+        /// <summary>
+        /// Iterates the source vectors into a receiver
+        /// </summary>
+        /// <param name="receiver">The vector receiver</param>
+        protected void IterUnaryVectors(Action<Vec128<T>> receiver)
+        {
+            foreach(var vec in UnarySrcVectors)
+                receiver(vec);
+        }
 
         /// <summary>
         /// Interates the array indexes that are multiples of vector length into a receiver
@@ -57,7 +131,6 @@ namespace Z0.Tests.InX128
             }
             Claim.eq(offCount, VecCount);
             return offCount;
-
         }
 
         /// <summary>
@@ -74,41 +147,8 @@ namespace Z0.Tests.InX128
             }
             Claim.eq(offCount, VecCount);
             return offCount;
-
         }
-
-        /// <summary>
-        /// Partitions the source array into array segments with vector length
-        /// </summary>
-        protected IEnumerable<ArraySegment<T>> SrcSegments
-            =>  Arr.partition(SrcArray, VecLength);
-
-        /// <summary>
-        /// Defines a stream of vectors over the source array
-        /// </summary>
-        protected IEnumerable<Vec128<T>> SrcVectors
-            => SrcSegments.Select(seg => Vec128.define(seg));
                 
-        /// <summary>
-        /// Iterates the source segments into a receiver
-        /// </summary>
-        /// <param name="receiver">The segment receiver</param>
-        protected void IterSegments(Action<ArraySegment<T>> receiver)
-        {
-            foreach(var seg in SrcSegments)
-                receiver(seg);
-        }
-
-        /// <summary>
-        /// Iterates the source vectors into a receiver
-        /// </summary>
-        /// <param name="receiver">The vector receiver</param>
-        protected void IterVectors(Action<Vec128<T>> receiver)
-        {
-            foreach(var vec in SrcVectors)
-                receiver(vec);
-        }
-
         protected string OpInfo<X,Y,Z>(X lhs, Y rhs, Z result)
             => $"{lhs} {OpName} {rhs} = {result}";
 
@@ -256,5 +296,9 @@ namespace Z0.Tests.InX128
             for(var i = 0; i< (count ?? VecCount); i++)
                  yield return RandVec128();
         }        
+
+        protected void trace(int count, [CallerMemberName] string caller = null)
+            => base.trace($"Applied the {OpName} operator over {count} vectors", caller);
+
     }    
 }
