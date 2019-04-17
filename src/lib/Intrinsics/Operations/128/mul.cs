@@ -28,13 +28,9 @@ namespace Z0
         public static Vec128<long> mul(Vec128<int> lhs, Vec128<int> rhs)
             => Avx2.Multiply(lhs, rhs);
 
-
-
-
         [MethodImpl(Inline)]
         public static Vec128<ulong> mul(Vec128<uint> lhs, Vec128<uint> rhs)
             => Avx2.Multiply(lhs, rhs);
-
 
         [MethodImpl(Inline)]
         public static Vec128<float> mul(Vec128<float> lhs, Vec128<float> rhs)
@@ -43,7 +39,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<double> mul(Vec128<double> lhs, Vec128<double> rhs)
             => Avx2.Multiply(lhs, rhs);
-
     }
-
 }

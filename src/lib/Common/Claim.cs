@@ -103,6 +103,9 @@ namespace Z0
         
         public static bool @true(bool x, string msg = null)
             => x ? true : fail<bool>(msg  ?? "Claim is not true");
-            
+
+        public static bool @false(bool x, string msg = null)
+            => !x ? true : fail<bool>(msg  ?? "Claim is not false");
+
     }
 }

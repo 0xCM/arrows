@@ -106,6 +106,7 @@ namespace Z0.Tests
         /// </summary>
         public const string InX256 = InX + "256/";
 
+        public const string bittest = "bittest/";
         public const string digits = numeric + "digits/";
 
         public const string bits = numeric + "bits/";
