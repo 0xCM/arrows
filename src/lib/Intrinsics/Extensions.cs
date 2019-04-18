@@ -47,7 +47,7 @@ namespace Z0
         /// <param name="mode">The comparison algorithm</param>
         /// <typeparam name="T">The primitive float type, either single or double</typeparam>
         [MethodImpl(Inline)]
-        public static Num128<T> CmpF<T>(this Num128<T> lhs, Num128<T> rhs, FloatComparisonMode mode)
+        public static bool CmpF<T>(this Num128<T> lhs, Num128<T> rhs, FloatComparisonMode mode)
             where T : struct, IEquatable<T>
                 => InXG.cmpf(lhs,rhs,mode);
 
@@ -59,7 +59,7 @@ namespace Z0
         /// <param name="mode">The comparison algorithm</param>
         /// <typeparam name="T">The primitive float type, either single or double</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> CmpF<T>(this Vec128<T> lhs, Vec128<T> rhs, FloatComparisonMode mode)
+        public static bool[] CmpF<T>(this Vec128<T> lhs, Vec128<T> rhs, FloatComparisonMode mode)
             where T : struct, IEquatable<T>
                 => InXG.cmpf(lhs,rhs,mode);
  

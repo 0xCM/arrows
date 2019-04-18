@@ -235,8 +235,9 @@ namespace Z0
         where T : struct, IEquatable<T>
 
     {
-        Num128<T> cmpf(Num128<T> lhs, Num128<T> rhs, FloatComparisonMode mode);
-        Vec128<T> cmpf(Vec128<T> lhs, Vec128<T> rhs, FloatComparisonMode mode);
+        bool cmpf(Num128<T> lhs, Num128<T> rhs, FloatComparisonMode mode);
+        
+        bool[] cmpf(Vec128<T> lhs, Vec128<T> rhs, FloatComparisonMode mode);
     }
 
     public interface InXSqrt<T> : InXOp<T>
@@ -249,6 +250,14 @@ namespace Z0
         Vec256<T> sqrt(Vec256<T> lhs);        
 
     }
+
+    public interface InXConvert<S,T> : InXOp<S,T>
+        where T : struct, IEquatable<T>
+        where S : struct, IEquatable<S>
+    {
+        Vec128<T> convert(Vec128<S> src, out Vec128<T> dst);
+    }
+
 
     public interface InXStream<T> : InXOp<T>
         where T : struct, IEquatable<T>

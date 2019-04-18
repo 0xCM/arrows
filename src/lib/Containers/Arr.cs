@@ -29,7 +29,11 @@ namespace Z0
         /// <param name="src">The source array</param>
         /// <typeparam name="N">The natural length type</typeparam>
         /// <typeparam name="T">Then element type</typeparam>
-        public static Array<N,T> define<N,T>(T[] src)
+        public static Array<N,T> define<N,T>(params T[] src)
+            where N : TypeNat, new()
+                => new Array<N,T>(src);
+
+        public static Array<N,T> define<N,T>(N len, params T[] src)
             where N : TypeNat, new()
                 => new Array<N,T>(src);
 

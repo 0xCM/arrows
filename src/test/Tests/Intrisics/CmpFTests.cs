@@ -32,15 +32,26 @@ namespace Z0.Tests.InXTests
 
         }
 
+        protected virtual IReadOnlyList<bool[]> Results(FloatComparisonMode mode)
+            => fuse(LeftVecSrc,RightVecSrc, (x,y) =>  InXOp.cmpf(x,y,mode));
 
-        protected virtual IEnumerable<Vec128<T>> Results(FloatComparisonMode mode)
-            => Results((x,y) => InXOp.cmpf(x,y,mode));
-
-        protected abstract IReadOnlyList<T> Cmp(IReadOnlyList<T> x, IReadOnlyList<T> y, FloatComparisonMode mode);
+        protected abstract bool[] Cmp(IReadOnlyList<T> x, IReadOnlyList<T> y, FloatComparisonMode mode);
 
 
         public virtual void Verify(FloatComparisonMode mode)
-            => base.Verify((x,y) => InXOp.cmpf(x,y,mode), (x,y) =>  Cmp(x,y,mode));
+        {
+            for(var i=0; i < VecCount; i++)
+            {
+                var lVec = LeftVecSrc[i];
+                var rVec = RightVecSrc[i];
+
+                var lArr = lVec.ToArray();
+                var rArr = rVec.ToArray();
+                var actual = InXOp.cmpf(lVec,rVec,mode);
+                var expect = Cmp(lArr,rArr,mode);
+            }
+        }
+            //=> base.Verify((x,y) => InXOp.cmpf(x,y,mode), (x,y) =>  Cmp(x,y,mode));
         
     }
 
@@ -53,7 +64,7 @@ namespace Z0.Tests.InXTests
         {
             const string Path = BasePath + P.float64;
 
-            static double cmp(double x, double y, FloatComparisonMode mode)
+            static bool cmp(double x, double y, FloatComparisonMode mode)
             {
                 var result = mode switch{
 
@@ -94,12 +105,12 @@ namespace Z0.Tests.InXTests
                     _ => throw new NotSupportedException()
                 };
                                 
-                return result ? -1 : 0;
+                return result; 
             }
             
-            protected override IReadOnlyList<double> Cmp(IReadOnlyList<double> x, IReadOnlyList<double> y, FloatComparisonMode mode)
+            protected override bool[] Cmp(IReadOnlyList<double> x, IReadOnlyList<double> y, FloatComparisonMode mode)
             {
-                var result = alloc<double>(VecLength);
+                var result = alloc<bool>(VecLength);
                 for(var i = 0; i< VecLength; i++)
                     result[i] = cmp(x[i],y[i],mode);
                 return result;

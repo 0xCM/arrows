@@ -126,7 +126,7 @@ namespace Z0
             => isNaN(x) ? replacement : x;
 
         /// <summary>
-        /// Replaces an identified NaN component with 0
+        /// Replaces an identified NaN component with a specified value
         /// </summary>
         /// <param name="src">The source vector to sanitize</param>
         [MethodImpl(Inline)]
@@ -134,7 +134,7 @@ namespace Z0
             => src.WithElement(ix,clearNaN(src.GetElement(ix), replacement));
 
         /// <summary>
-        /// Replaces any NaN components with 0
+        /// Replaces any NaN components with a specified value
         /// </summary>
         /// <param name="src">The source vector to sanitize</param>
         [MethodImpl(Inline)]
@@ -165,6 +165,40 @@ namespace Z0
             var lo = clearNaN(src.GetElement(0),replacement);
             var hi = clearNaN(src.GetElement(1),replacement);
             return Vector128.Create(lo,hi);
+        }
+
+
+        /// <summary>
+        /// Replaces any NaN components with -1
+        /// </summary>
+        /// <param name="src">The source vector to sanitize</param>
+        [MethodImpl(Inline)]
+        public static Vec256<double> clearNaN(Vector256<double> src, double replacement = -1)
+        {
+            var x0 = clearNaN(src.GetElement(0),replacement);
+            var x1 = clearNaN(src.GetElement(1),replacement);
+            var x2 = clearNaN(src.GetElement(2),replacement);
+            var x3 = clearNaN(src.GetElement(3),replacement);
+            return Vector256.Create(x0,x1,x2,x3);
+        }
+
+
+        /// <summary>
+        /// Replaces any NaN components with -1
+        /// </summary>
+        /// <param name="src">The source vector to sanitize</param>
+        [MethodImpl(Inline)]
+        public static Vec256<float> clearNaN(Vector256<float> src, float replacement = -1)
+        {
+            var x0 = clearNaN(src.GetElement(0),replacement);
+            var x1 = clearNaN(src.GetElement(1),replacement);
+            var x2 = clearNaN(src.GetElement(2),replacement);
+            var x3 = clearNaN(src.GetElement(3),replacement);
+            var x4 = clearNaN(src.GetElement(4),replacement);
+            var x5 = clearNaN(src.GetElement(5),replacement);
+            var x6 = clearNaN(src.GetElement(6),replacement);
+            var x7 = clearNaN(src.GetElement(7),replacement);
+            return Vector256.Create(x0,x1,x2,x3,x4,x5,x6,x7);
         }
 
         /// <summary>

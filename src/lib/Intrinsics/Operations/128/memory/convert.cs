@@ -15,43 +15,44 @@ namespace Z0
     partial class InX
     {
 
-
-
-        [MethodImpl(Inline)]
-        public static Vec128<short> toInt16v(Vec128<byte> src)
-            =>  Avx2.ConvertToVector128Int16(src);
-
         [MethodImpl(Inline)]
         public static Vec128<short> toInt16v(Vec128<sbyte> src)
             => Avx2.ConvertToVector128Int16(src);
-
-        [MethodImpl(Inline)]
-        public static Vec128<int> toInt32v(Vec128<byte> src)
-            => Avx2.ConvertToVector128Int32(src);
 
         [MethodImpl(Inline)]
         public static Vec128<int> toInt32v(Vec128<sbyte> src)
             => Avx2.ConvertToVector128Int32(src);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> toInt32v(Vec128<short> src)
-            => Avx2.ConvertToVector128Int32(src);
+        public static Vec128<long> toInt64v(Vec128<sbyte> src)
+            => Avx2.ConvertToVector128Int64(src);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> toInt32v(Vec128<ushort> src)
+        public static Vec128<short> toInt16v(Vec128<byte> src)
+            =>  Avx2.ConvertToVector128Int16(src);
+
+        [MethodImpl(Inline)]
+        public static Vec128<int> toInt32v(Vec128<byte> src)
             => Avx2.ConvertToVector128Int32(src);
 
         [MethodImpl(Inline)]
         public static Vec128<long> toInt64v(Vec128<byte> src)
             => Avx2.ConvertToVector128Int64(src);
 
+
         [MethodImpl(Inline)]
-        public static Vec128<long> toInt64v(Vec128<sbyte> src)
-            => Avx2.ConvertToVector128Int64(src);
+        public static Vec128<int> toInt32v(Vec128<short> src)
+            => Avx2.ConvertToVector128Int32(src);
+
 
         [MethodImpl(Inline)]
         public static Vec128<long> toInt64v(Vec128<short> src)
             => Avx2.ConvertToVector128Int64(src);
+
+
+        [MethodImpl(Inline)]
+        public static Vec128<int> toInt32v(Vec128<ushort> src)
+            => Avx2.ConvertToVector128Int32(src);
 
         [MethodImpl(Inline)]
         public static Vec128<long> toInt64v(Vec128<ushort> src)
