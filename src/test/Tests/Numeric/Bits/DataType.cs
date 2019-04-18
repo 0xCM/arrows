@@ -50,9 +50,9 @@ namespace Z0.Tests
 
         }
 
+
         public void BitOps()
         {
-
 
             //parse
             Claim.eq(off, Z0.bit.Parse('0'));

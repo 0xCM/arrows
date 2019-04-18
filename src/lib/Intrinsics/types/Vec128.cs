@@ -11,7 +11,7 @@ namespace Z0
     using System.Runtime.Intrinsics;
 
     using static zcore;
-    using static inX;
+    using static inxfunc;
 
    public struct Vec128<T> : IEquatable<Vec128<T>>
         where T : struct, IEquatable<T>
@@ -51,10 +51,11 @@ namespace Z0
         /// <summary>
         /// Extracts a component via its 0-based index
         /// </summary>
-        public T this[int idx]
+        public  T this[int idx]
         {
             [MethodImpl(Inline)]
-            get => component(data,idx);
+            get => Vector128.GetElement(data,idx);
+
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace Z0
         public T[] components(ref T[] dst)
         {
             for(var i = 0; i< Length; i++)
-                dst[i] = component(data,i);
+                dst[i] = Vector128.GetElement(data,i);
             return dst;
         }    
 
@@ -73,12 +74,9 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)]
         public T[] ToArray()
-        {
-            
+        {            
             var dst = new T[Length];
-            for(var i = 0; i<Length; i++)
-                dst[i] = component(data,i);
-            return dst;
+            return components(ref dst);
         }
 
         [MethodImpl(Inline)]

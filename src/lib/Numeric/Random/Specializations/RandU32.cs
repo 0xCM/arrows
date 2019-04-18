@@ -6,12 +6,11 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    using prim = System.UInt32;
 
+    using prim = System.UInt32;
 
     class RandU32 : IRandom<prim>
     {

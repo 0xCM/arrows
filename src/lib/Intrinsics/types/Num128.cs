@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.Intrinsics;
 
     using static zcore;
-    using static inX;
+    using static inxfunc;
 
    public readonly struct Num128<T> : IEquatable<Num128<T>>
         where T : struct, IEquatable<T>

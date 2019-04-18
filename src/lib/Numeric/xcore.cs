@@ -122,5 +122,53 @@ namespace Z0
         public static IEnumerable<T> Collapse<T>(IEnumerable<IEnumerable<T>> src)
             => src.SelectMany(x => x);
 
+
+        /// <summary>
+        /// Determines whether a double value is equivalent to the NaN representative
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]   
+        public static bool IsNaN(this float src)
+            => NaN(src);
+
+        /// <summary>
+        /// Determines whether a value is equivalent to the NaN representative
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]   
+        public static bool IsNaN(this double src)
+            => NaN(src);
+
+        /// <summary>
+        /// Determines whether a double value is bounded 
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]   
+        public static bool IsFinite(this double src)
+            => finite(src);
+
+        /// <summary>
+        /// Determines whether a value is negative
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]   
+        public static bool IsNegative(this double src)
+            => double.IsNegative(src);
+
+        /// <summary>
+        /// Determines whether a value is positive
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]   
+        public static bool IsPositive(this double src)
+            => src > 0;
+
+        /// <summary>
+        /// Determines whether a value is nonzero
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]   
+        public static bool IsNonzero(this double src)
+            => nonzero(src);
    }
 }

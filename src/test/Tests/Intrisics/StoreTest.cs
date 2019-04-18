@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Tests.InX128
+namespace Z0.Tests.InXTests
 {
     using System;
     using System.Linq;

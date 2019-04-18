@@ -19,25 +19,25 @@ namespace Z0
             where T : struct, IEquatable<T>
         {
             if(type<T>().IsInt8())
-                return cast<IRandom<T>>(new Rand8((Randomizer)random));
+                return cast<IRandom<T>>(new RandI8((Randomizer)random));
 
             if(type<T>().IsUInt8())
                 return cast<IRandom<T>>(new RandU8((Randomizer)random));
 
             if(type<T>().IsInt16())
-                return cast<IRandom<T>>(new Rand16((Randomizer)random));
+                return cast<IRandom<T>>(new RandI16((Randomizer)random));
 
             if(type<T>().IsUInt16())
                 return cast<IRandom<T>>(new RandU16((Randomizer)random));
 
             if(type<T>().IsInt32())
-                return cast<IRandom<T>>(new Rand32((Randomizer)random));
+                return cast<IRandom<T>>(new RandI32((Randomizer)random));
 
             if(type<T>().IsUInt32())
                 return cast<IRandom<T>>(new RandU32((Randomizer)random));
 
             if(type<T>().IsInt64())
-                return cast<IRandom<T>>(new Rand64((Randomizer)random));
+                return cast<IRandom<T>>(new RandI64((Randomizer)random));
 
             if(type<T>().IsUInt64())
                 return cast<IRandom<T>>(new RandU64((Randomizer)random));

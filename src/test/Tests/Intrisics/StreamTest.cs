@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Tests.InX128
+namespace Z0.Tests.InXTests
 {
     using System;
     using System.Linq;
@@ -30,7 +30,7 @@ namespace Z0.Tests.InX128
         }
         
         IEnumerable<Vec128<T>> DefineStream()
-            => InXG.stream<T>(UnarySrc);
+            => UnarySrc.Stream128();
 
         public virtual void TraverseStream()
         {

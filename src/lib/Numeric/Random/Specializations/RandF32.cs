@@ -10,6 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    
     using prim = System.Single;
     
     class RandF32 : IRandom<prim>
@@ -22,11 +23,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public prim one(prim min, prim max)
-            => (prim)random.one((uint)min,(uint)max);
-
-        [MethodImpl(Inline)]
-        prim one(prim width, prim min, prim max)
-            => (prim) random.one((int)min,(int)max);
+            => random.one(min,max);
 
         public IEnumerable<prim> stream(prim min, prim max)
             => random.stream(min,max);

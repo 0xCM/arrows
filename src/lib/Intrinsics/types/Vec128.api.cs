@@ -14,7 +14,7 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     using static zcore;
-    using static inX;
+    using static inxfunc;
 
     public partial class Vec128
     {
@@ -87,7 +87,7 @@ namespace Z0
             var vecLen = Vec128<T>.Length;
             var vecCount = src.Length / vecLen;
             if(src.Length % vecCount != 0)
-               throw segerror(src);
+               throw errseglen(src);
             var segments = src.Partition(vecLen);
             dst = new Vec128<T>[vecCount];
 

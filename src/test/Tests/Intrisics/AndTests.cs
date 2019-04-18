@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Tests.InX128
+namespace Z0.Tests.InXTests
 {
     using System;
     using System.Linq;
@@ -17,26 +17,22 @@ namespace Z0.Tests.InX128
     
     using P = Paths;
 
-    public abstract class AndTest<S,T> : InXTest<S,T>
+    public abstract class AndTest<S,T> : InXBinOpTest<S,T>
         where S : AndTest<S,T>
         where T : struct, IEquatable<T>
     {        
         protected static readonly InXAnd<T> InXOp = InXG.and<T>();
         
-        protected AndTest(Interval<T>? domain = null, int? streamlen = null)
-            : base("add", domain, streamlen)        
+        protected AndTest(Interval<T>? domain = null, int? sampleSize = null)
+            : base("add", domain, sampleSize)        
         {
 
         }
 
+        protected override Vec128BinOp<T> VecOp {get;} = InXOp.and;
 
-        protected IEnumerable<Vec128<T>> Results()
-            => Results(InXOp.and);
+        protected override ListBinOp<T> ListOp {get;} = PrimOps.and;
 
-        
-        public virtual void Verify()
-            => Verify(InXOp.and, PrimOps.and);
-        
     }
 
     public class AndTests
@@ -44,7 +40,7 @@ namespace Z0.Tests.InX128
         const string BasePath = P.InX128 + P.and;
 
         [DisplayName(Path)]
-        public class AndInt8 : AndTest<AndInt8, byte>
+        public class AndInt8 : AndTest<AndInt8, sbyte>
         {
             public const string Path = BasePath + P.int8;
 
@@ -61,11 +57,29 @@ namespace Z0.Tests.InX128
                 => base.Verify();
         }
 
+        [DisplayName(Path)]
+        public class AndInt16 : AndTest<AndInt16, short>
+        {
+            public const string Path = BasePath + P.int16;
+
+            public override void Verify()
+                => base.Verify();
+        }
+
 
         [DisplayName(Path)]
         public class AndUInt16 : AndTest<AndUInt16, ushort>
         {
             public const string Path = BasePath + P.uint16;
+
+            public override void Verify()
+                => base.Verify();
+        }
+
+        [DisplayName(Path)]
+        public class AndInt32 : AndTest<AndInt32, int>
+        {
+            public const string Path = BasePath + P.int32;
 
             public override void Verify()
                 => base.Verify();
@@ -80,14 +94,6 @@ namespace Z0.Tests.InX128
                 => base.Verify();
         }
 
-        [DisplayName(Path)]
-        public class AndInt16 : AndTest<AndInt16, short>
-        {
-            public const string Path = BasePath + P.int16;
-
-            public override void Verify()
-                => base.Verify();
-        }
 
         [DisplayName(Path)]
         public class AndInt64 : AndTest<AndInt64, long>
@@ -105,11 +111,6 @@ namespace Z0.Tests.InX128
 
             public override void Verify()
                 => base.Verify();
-        }
-
- 
-    }
-
-
- 
+        } 
+    } 
 }

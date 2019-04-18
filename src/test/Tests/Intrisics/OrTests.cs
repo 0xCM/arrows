@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Tests.InX128
+namespace Z0.Tests.InXTests
 {
     using System;
     using System.Linq;
@@ -17,25 +17,21 @@ namespace Z0.Tests.InX128
     
     using P = Paths;
 
-    public abstract class OrTest<S,T> : InXTest<S,T>
+    public abstract class OrTest<S,T> : InXBinOpTest<S,T>
         where S : OrTest<S,T>
         where T : struct, IEquatable<T>
     {        
-        protected static readonly InXOr<T> InXOp = InXG.or<T>();
-        
-        protected OrTest(Interval<T>? domain = null, int? streamlen = null)
-            : base("add", domain, streamlen)        
+        protected OrTest(Interval<T>? domain = null, int? sampleSize = null)
+            : base("or", domain, sampleSize)        
         {
 
         }
 
+        protected override Vec128BinOp<T> VecOp {get;} 
+            = InXG.or;
 
-        protected IEnumerable<Vec128<T>> Results()
-            => Results(InXOp.or);
-
-        
-        public virtual void Verify()
-            => Verify(InXOp.or, PrimOps.or);
+        protected override ListBinOp<T> ListOp {get;} 
+            = PrimOps.or;
         
     }
 
@@ -43,19 +39,20 @@ namespace Z0.Tests.InX128
     {
         const string BasePath = P.InX128 + P.or;
 
+
         [DisplayName(Path)]
-        public class OrUInt8 : OrTest<OrUInt8, byte>
+        public class OrInt8 : OrTest<OrInt8, sbyte>
         {
-            public const string Path = BasePath + P.uint8;
+            public const string Path = BasePath + P.int8;
 
             public override void Verify()
                 => base.Verify();
         }
 
         [DisplayName(Path)]
-        public class OrInt8 : OrTest<OrInt8, sbyte>
+        public class OrUInt8 : OrTest<OrUInt8, byte>
         {
-            public const string Path = BasePath + P.int8;
+            public const string Path = BasePath + P.uint8;
 
             public override void Verify()
                 => base.Verify();
@@ -108,17 +105,15 @@ namespace Z0.Tests.InX128
         }
 
         [DisplayName(Path)]
-        public class OrUInt64 : OrTest<OrUInt64, long>
+        public class OrUInt64 : OrTest<OrUInt64, ulong>
         {
             public const string Path = BasePath + P.uint64;
 
             public override void Verify()
                 => base.Verify();
-        }
+        } 
 
- 
+
     }
-
-
  
 }

@@ -408,6 +408,7 @@ partial class zcore
     public static double abs(double x)
         => Math.Abs(x);
 
+
     [MethodImpl(Inline)]   
     public static float abs(float x)
         => MathF.Abs(x);
@@ -429,5 +430,52 @@ partial class zcore
         var m = (x >> 64 - 1);
         return (x + m) ^ m;
     }
-}
 
+    /// <summary>
+    /// Determines whether a value is equivalent to the NaN representative
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
+    public static bool NaN(double src)
+        => double.IsNaN(src);
+
+    /// <summary>
+    /// Determines whether a value is equivalent to the NaN representative
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
+    public static bool NaN(float src)
+        => float.IsNaN(src);
+
+    /// <summary>
+    /// Determines whether a double value is bounded 
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
+    public static bool finite(float src)
+        => float.IsFinite(src);
+
+    /// <summary>
+    /// Determines whether a double value is bounded 
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
+    public static bool finite(double src)
+        => double.IsFinite(src);
+
+    /// <summary>
+    /// Determines whether a value is nonzero
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
+    public static bool nonzero(double src)
+        => src != 0;
+
+    /// <summary>
+    /// Determines whether a value is nonzero
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]   
+    public static bool nonzero(float src)
+        => src != 0;
+}

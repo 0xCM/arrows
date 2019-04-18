@@ -6,10 +6,10 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.CompilerServices;
 
     using static zcore;
+
     using prim = System.Double;
     
     class RandF64 : IRandom<prim>
@@ -22,7 +22,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public prim one(prim min, prim max)
-            => (double) random.one((long)min,(long)max);
+            => random.one(min,max);
 
         public IEnumerable<prim> stream(prim min, prim max)
             => random.stream(min,max);

@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
     
     using static zcore;
-    using static inX;
+    using static inxfunc;
 
     public partial class InX
     {

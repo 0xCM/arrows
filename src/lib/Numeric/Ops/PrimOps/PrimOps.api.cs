@@ -207,6 +207,7 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => typeops<T>().add(lhs,rhs);
 
+
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> add<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
             where T : struct, IEquatable<T>

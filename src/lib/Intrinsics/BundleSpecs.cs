@@ -11,15 +11,54 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
     
     using static zcore;
-    using static inX;
+    using static inxfunc;
     using static Operative;
 
+    public interface InXOp
+    {
 
-    public interface InXOp<T>
+    }
+
+
+    public interface InXOp<T> : InXOp
         where T : struct, IEquatable<T>
     {
 
     }
+
+    public interface InXOp<S,T>
+        where S : struct, IEquatable<S>
+        where T : struct, IEquatable<T>
+    {
+
+    }
+
+    public interface InXAnd<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> and(Vec128<T> lhs, Vec128<T> rhs);        
+    }
+
+    public interface InXAbs<S,T> : InXOp<S,T>
+        where S : struct, IEquatable<S>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> abs(Vec128<S> src);
+    }
+
+    public interface InXAdd<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> add(Vec128<T> lhs, Vec128<T> rhs);
+    }
+
+    public interface InXAvg<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> avg(Vec128<T> lhs, Vec128<T> rhs);
+        Vec256<T> avg(Vec256<T> lhs, Vec256<T> rhs);
+    }
+
 
     public interface InXDiv<T> : InXOp<T>
         where T : struct, IEquatable<T>
@@ -30,10 +69,11 @@ namespace Z0
     }
 
 
-    public interface InXAdd<T> : InXOp<T>
+
+    public interface InXSub<T> : InXOp<T>
         where T : struct, IEquatable<T>
     {
-        Vec128<T> add(Vec128<T> lhs, Vec128<T> rhs);
+        Vec128<T> sub(Vec128<T> lhs, Vec128<T> rhs);
     }
 
     public interface InXBitTest<T> : InXOp<T>
@@ -54,11 +94,43 @@ namespace Z0
         Vec128<T> eq(Vec128<T> lhs, Vec128<T> rhs);
     }
 
-    public interface InXAnd<T> : InXOp<T>
+    public interface InXGt<T> : InXOp<T>
         where T : struct, IEquatable<T>
     {
-        Vec128<T> and(Vec128<T> lhs, Vec128<T> rhs);        
+        Vec128<T> gt(Vec128<T> lhs, Vec128<T> rhs);
     }
+
+    public interface InXNgt<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> ngt(Vec128<T> lhs, Vec128<T> rhs);
+    }
+
+    public interface InXGtEq<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> gteq(Vec128<T> lhs, Vec128<T> rhs);
+    }
+
+    public interface InXLt<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> lt(Vec128<T> lhs, Vec128<T> rhs);
+    }
+
+    public interface InXNlt<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> nlt(Vec128<T> lhs, Vec128<T> rhs);
+    }
+
+    public interface InXLtEq<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> gteq(Vec128<T> lhs, Vec128<T> rhs);
+    }
+
+
 
     /// <summary>
     /// Defines data transfer operations from  arrays and spans to vectors
@@ -84,6 +156,36 @@ namespace Z0
         /// </summary>
         /// <param name="src">the source values</param>
         Vec128<T> load(T[] src, int offset = 0);
+    }
+
+    public interface InXMin<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> min(Vec128<T> lhs, Vec128<T> rhs);
+    }
+
+    public interface InXFloor<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Num128<T> floor(Num128<T> src);
+
+        Vec128<T> floor(Vec128<T> src);
+
+    }
+
+    public interface InXCeiling<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Num128<T> ceiling(Num128<T> src);
+        
+        Vec128<T> ceiling(Vec128<T> src);
+
+    }
+
+    public interface InXMax<T> : InXOp<T>
+        where T : struct, IEquatable<T>
+    {
+        Vec128<T> max(Vec128<T> lhs, Vec128<T> rhs);
     }
 
     /// <summary>
@@ -125,12 +227,27 @@ namespace Z0
         void store(IReadOnlyList<Vec128<T>> src, T[] dst, int offset = 0);
     }
 
+    /// <summary>
+    /// Defines floating-point comparison operations
+    /// </summary>
+    /// <typeparam name="T">The primitive floating-point type, either single or double</typeparam>
+    public interface InXCmpF<T> : InXOp
+        where T : struct, IEquatable<T>
+
+    {
+        Num128<T> cmpf(Num128<T> lhs, Num128<T> rhs, FloatComparisonMode mode);
+        Vec128<T> cmpf(Vec128<T> lhs, Vec128<T> rhs, FloatComparisonMode mode);
+    }
 
     public interface InXSqrt<T> : InXOp<T>
         where T : struct, IEquatable<T>
     {
         Num128<T> sqrt(Num128<T> lhs);
+     
         Vec128<T> sqrt(Vec128<T> lhs);        
+
+        Vec256<T> sqrt(Vec256<T> lhs);        
+
     }
 
     public interface InXStream<T> : InXOp<T>

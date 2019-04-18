@@ -111,6 +111,8 @@ namespace Z0.Tests
 
         public const string bits = numeric + "bits/";
 
+        public const string cmpf = "cmpf/";
+
         /// <summary>
         /// Identifies primitive data structures and/or operations
         /// </summary>
@@ -411,6 +413,13 @@ namespace Z0.Tests
         /// Identifies an less-than-or-equal operation
         /// </summary>
         public const string lteq = "lteq/";
+
+        public const string avg = "avg/";
+
+
+        public const string min = "min/";
+
+        public const string max = "max/";
 
 
         /// <summary>

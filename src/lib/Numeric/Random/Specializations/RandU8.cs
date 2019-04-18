@@ -6,10 +6,10 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    
     using prim = System.Byte;
     
     class RandU8 : IRandom<prim>
@@ -25,13 +25,6 @@ namespace Z0
             => random.one(min, max);
 
         public IEnumerable<prim> stream(prim min, prim max)
-            => random.stream(min,max);
-
-
-
- 
+            => random.stream(min,max); 
     }
-
-
-
 }

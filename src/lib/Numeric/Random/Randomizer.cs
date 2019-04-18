@@ -236,22 +236,7 @@ namespace Z0
             return (sbyte)(max - uVal);
         }
 
-        [MethodImpl(Inline)]
-        public ushort one(ushort min, ushort max)
-        {
-            var width = (ulong)(max - min);
-            var offset = (ulong)(min + 1);
-            var result = next() % width + offset;
-            return (ushort)result;            
-        }
 
-        [MethodImpl(Inline)]
-        public short one(short min, short max)
-        {
-            var width = (ushort)(max - min);
-            var uVal = one((ushort)0, width);
-            return (short)(max - uVal);
-        }
 
         [MethodImpl(Inline)]
         public uint one(uint min, uint max)
@@ -262,44 +247,16 @@ namespace Z0
             return (uint)result;            
         }
 
-        [MethodImpl(Inline)]
-        public int one(int min, int max)
-            => (int)one((uint)(min),(uint)max);
-
 
         [MethodImpl(Inline)]
         public ulong one(ulong min, ulong max)
         {
             var width = max - min;
             var offset = min + 1;
-            var result = next() % width + offset;
-            return result;            
+            return next() % width + offset;
+            
         }
 
-        [MethodImpl(Inline)]
-        public long one(long min, long max)
-            => (long)one((ulong)(min),(ulong)max);
-
-        [MethodImpl(Inline)]
-        public double one(double min, double max)
-        {
-            var value = next();
-            var part = ((double) value)/((double)UInt64.MaxValue) - Double.Epsilon;
-            var whole = one((long)min, (long)max);
-            return whole + part;
-        }
-
-        [MethodImpl(Inline)]
-        public float one(float min, float max)
-        {
-            if(!(min < max))
-                throw new ArgumentException($"{min} !< {max}");
-
-            var value = next();
-            var part = ((float) value)/((float)UInt64.MaxValue) - Single.Epsilon;
-            var whole = one((int)min, (int)max);
-            return whole + part;
-        }
 
         public IEnumerable<ulong> stream()
         {
@@ -343,13 +300,36 @@ namespace Z0
                 yield return one(min,max);
         }
 
+        [MethodImpl(Inline)]
+        public ushort one(ushort min, ushort max)
+        {
+            var width = (ulong)(max - min);
+            var offset = (ulong)(min + 1);
+            var result = next() % width + offset;
+            return (ushort)result;            
+        }
+
         /// <summary>
         /// Streams a uniformly random sequence of bounded ushort values
         /// </summary>
         /// <param name="min">The minimum value</param>
         /// <param name="max">The maximum value</param>
         public IEnumerable<ushort> stream(ushort min, ushort max)
-            => from x in stream((ulong)min, (ulong)max) select (ushort)x;
+        {
+            if(!(min < max))
+                throw new ArgumentException($"{min} !< {max}");
+            
+            while(true)
+                yield return one(min,max);
+        }
+
+        [MethodImpl(Inline)]
+        public short one(short min, short max)
+        {
+            var width = (ushort)(max - min);
+            var uVal = one((ushort)0, width);
+            return (short)(max - uVal);
+        }
 
         /// <summary>
         /// Streams a uniformly random sequence of bounded short values
@@ -373,6 +353,14 @@ namespace Z0
         public IEnumerable<uint> stream(uint min, uint max)
             => stream((ulong)min, ((ulong)max)).Select(x => (uint)x);
 
+        [MethodImpl(Inline)]
+        public int one(int min, int max)
+        {
+            var width = (uint)(max - min);
+            var uVal = one((uint)0, width);
+            return (int)(max - uVal);
+        }
+
         /// <summary>
         /// Streams a uniformly random sequence of bounded int values
         /// </summary>
@@ -385,6 +373,14 @@ namespace Z0
 
             while(true)
                 yield return one(min,max);
+        }
+
+        [MethodImpl(Inline)]
+        public long one(long min, long max)
+        {
+            var width = (ulong)(max - min);
+            var uVal = one((ulong)0, width);
+            return max - (long)uVal;
         }
 
         /// <summary>
@@ -401,6 +397,19 @@ namespace Z0
                 yield return one(min,max);
         }
 
+        [MethodImpl(Inline)]
+        double nextf64n()
+            => ((double) one(uint.MinValue, uint.MaxValue))/(double)(uint.MaxValue);
+
+        [MethodImpl(Inline)]
+        public double one(double min, double max)
+        {
+            var width = (ulong)(max - min);
+            var whole = max - one(0ul, width);
+            var part = nextf64n();
+            return whole + part;        
+        }
+
         /// <summary>
         /// Streams a uniformly random sequence of bounded double values
         /// </summary>
@@ -411,11 +420,29 @@ namespace Z0
             if(!(min < max))
                 throw new ArgumentException($"{min} !< {max}");
 
+            var wMax = Math.Floor(max);
+            var width = (ulong)(max - min);
+
             while(true)
-                yield return one(min,max);
+                yield return (wMax - next() % width) + nextf64n();        
 
         }
 
+        [MethodImpl(Inline)]
+        float nextf32n()
+            =>((float) one(ushort.MinValue, ushort.MaxValue))/((float)ushort.MaxValue);
+        
+
+        [MethodImpl(Inline)]
+        public float one(float min, float max)
+        {
+            var width = (uint)(max - min);
+            var whole = max - one(0u, width);
+            var part = nextf32n();
+            var result = whole + part;       
+            return result;
+        }
+ 
         /// <summary>
         /// Streams a uniformly random sequence of bounded float values
         /// </summary>

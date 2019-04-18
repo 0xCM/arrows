@@ -98,5 +98,36 @@ namespace Z0
                 => countTrailingOff((uint)src);
         }
     }
-}}
+}
+    public static partial class BitwiseX
+    {
+        [MethodImpl(Inline)]
+        public static byte LShift(this byte src, int shift)
+            => (byte)(src << shift);
+
+        [MethodImpl(Inline)]
+        public static byte RShift(this byte src, int shift)
+            => (byte)(src >> shift);
+
+        [MethodImpl(Inline)]
+        public static byte And(this byte lhs, byte rhs)
+            => (byte)(lhs & rhs);
+            
+        [MethodImpl(Inline)]
+        public static byte Or(this byte lhs, byte rhs)
+            => (byte)(lhs | rhs);
+
+        [MethodImpl(Inline)]
+        public static byte XOr(this byte lhs, byte rhs)
+            => (byte)(lhs ^ rhs);
+
+        [MethodImpl(Inline)]
+        public static byte Flip(this byte src)
+            => (byte)(~src);
+
+        [MethodImpl(Inline)]
+        public static bool TestBit(this byte src, int pos)
+            => (src & (1 << pos)) != 0;
+    }
+}
 

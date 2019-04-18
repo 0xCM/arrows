@@ -6,10 +6,10 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.CompilerServices;
 
     using static zcore;
+
     using prim = System.Decimal;
     
     class RandF128 : IRandom<prim>

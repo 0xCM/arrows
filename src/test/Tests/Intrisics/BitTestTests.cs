@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Tests.InX128
+namespace Z0.Tests.InXTests
 {
     using System;
     using System.Linq;
@@ -34,7 +34,7 @@ namespace Z0.Tests.InX128
 
     }
 
-    public class BitTestTests
+    public class BitTestTests 
     {
         const string BasePath = P.InX128 + P.bittest;        
 
@@ -43,17 +43,14 @@ namespace Z0.Tests.InX128
         {
             public const string Path = BasePath + P.uint32;
 
-
             public void TestAllOn()
             {
                 var v1 = Vec128.define(uint.MaxValue, uint.MaxValue,uint.MaxValue,uint.MaxValue);
                 Claim.@true(InXOp.allOn(v1));
 
                 var v2 = Vec128.define(uint.MaxValue, uint.MaxValue - 1,uint.MaxValue,uint.MaxValue);
-                Claim.@false(InXOp.allOn(v1));
-                
+                Claim.@false(InXOp.allOn(v2));                
             }     
-
         }
 
     }

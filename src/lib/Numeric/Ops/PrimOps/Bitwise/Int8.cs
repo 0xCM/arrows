@@ -94,5 +94,37 @@ namespace Z0
 
         }
     }
-}}
+}
+    public static partial class BitwiseX
+    {
+        [MethodImpl(Inline)]
+        public static sbyte LShift(this sbyte src, int shift)
+            => (sbyte)(src << shift);
+
+        [MethodImpl(Inline)]
+        public static sbyte RShift(this sbyte src, int shift)
+            => (sbyte)(src >> shift);
+
+        [MethodImpl(Inline)]
+        public static sbyte And(this sbyte lhs, sbyte rhs)
+            => (sbyte)(lhs & rhs);
+            
+        [MethodImpl(Inline)]
+        public static sbyte Or(this sbyte lhs, sbyte rhs)
+            => (sbyte)(lhs | rhs);
+
+        [MethodImpl(Inline)]
+        public static sbyte XOr(this sbyte lhs, sbyte rhs)
+            => (sbyte)(lhs ^ rhs);
+
+        [MethodImpl(Inline)]
+        public static sbyte Flip(this sbyte src)
+            => (sbyte)(~src);
+
+        [MethodImpl(Inline)]
+        public static bool TestBit(this sbyte src, int pos)
+            => (src & (1 << pos)) != 0;
+    }
+
+}
 

@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Tests.InX128
+namespace Z0.Tests.InXTests
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace Z0.Tests.InX128
     
     using P = Paths;
 
-    public abstract class DivTest<S,T> : InXTest<S,T>
+    public abstract class DivTest<S,T> : InXBinOpTest<S,T>
         where S : DivTest<S,T>
         where T : struct, IEquatable<T>
     {        
@@ -28,14 +28,10 @@ namespace Z0.Tests.InX128
 
         }
 
-        protected IEnumerable<Vec128<T>> Results()
-            => Results(InXOp.div);
+        protected override Vec128BinOp<T> VecOp {get;} = InXOp.div;
 
-        public virtual void Verify()
-            => Verify(InXOp.div, PrimOps.div);        
+        protected override ListBinOp<T> ListOp {get;} = PrimOps.div;
     
-        public virtual void Apply()
-            => Results().ToList();
     }
 
     public class DivTests
