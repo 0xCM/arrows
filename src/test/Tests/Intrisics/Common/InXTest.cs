@@ -84,7 +84,7 @@ namespace Z0.Tests.InXTests
                 var rvec = RightVecSrc[i];
                 var actual = vecop(lvec, rvec);                
                 var expect = Vec128.define(listop(leftVals[i],rightVals[i]));
-                ClaimEq(lvec,rvec, expect, actual,i);
+                ClaimEq(lvec, rvec, expect, actual,i);
             }                
         }
 

@@ -39,7 +39,7 @@ namespace Z0.Testing
         }
 
         public new virtual IReadOnlyList<Vector<N,real<R>>> Applied() 
-            => list<Vector<N,real<R>>>();
+            => index<Vector<N,real<R>>>();
 
         public virtual new void Verify()
         {

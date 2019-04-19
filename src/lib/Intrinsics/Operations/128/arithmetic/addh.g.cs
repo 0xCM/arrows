@@ -12,7 +12,6 @@ namespace Z0
     using static zcore;
     using static inxfunc;
 
-
     partial class InXG
     {
 

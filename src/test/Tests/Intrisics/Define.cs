@@ -55,7 +55,7 @@ namespace Z0.Tests.InX128
 
             var dst = alloc<uint>(mem.TotalLength); 
             var src = Context.RandArray(10u,500u,mem.TotalLength);
-            var vectors = Vec128UInt32Stream(src).ToReadOnlyList();
+            var vectors = Vec128UInt32Stream(src).ToArray();
             InX.store(vectors,dst);
 
             void ValidatePart(int cix, int pix)

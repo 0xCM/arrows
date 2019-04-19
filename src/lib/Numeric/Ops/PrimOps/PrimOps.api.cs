@@ -348,20 +348,12 @@ namespace Z0
             where T : struct, IEquatable<T>
             => typeops<T>().lshift(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public static IReadOnlyList<T> lshift<T>(IReadOnlyList<T> src, int rhs)
-            where T : struct, IEquatable<T>
-                => typeops<T>().lshift(src,rhs);
 
         [MethodImpl(Inline)]   
         public static T rshift<T>(T lhs, int rhs) 
             where T : struct, IEquatable<T>
                 => typeops<T>().rshift(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public static IReadOnlyList<T> rshift<T>(IReadOnlyList<T> src, int rhs)
-            where T : struct, IEquatable<T>
-                => typeops<T>().rshift(src,rhs);
 
         [MethodImpl(Inline)]   
         public static T flip<T>(T src) 

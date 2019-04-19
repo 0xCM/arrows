@@ -23,7 +23,7 @@ namespace Z0
         /// <param name="rhs">The divisor</param>
         /// <typeparam name="T">The primitive type, either single or double</typeparam>
         [MethodImpl(Inline)]
-        public static Num128<T> DivF<T>(this Num128<T> lhs, Num128<T> rhs)
+        public static Num128<T> DivF<T>(this in Num128<T> lhs, in Num128<T> rhs)
             where T : struct, IEquatable<T>
                 => InXG.divf(lhs,rhs);
         
@@ -34,10 +34,9 @@ namespace Z0
         /// <param name="rhs">The second vector</param>
         /// <typeparam name="T">The primitive type, either single or double</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> DivF<T>(this Vec128<T> lhs, Vec128<T> rhs)
+        public static Vec128<T> DivF<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
                 => InXG.divf(lhs,rhs);
-
 
         /// <summary>
         /// Compares two floating-point scalars
@@ -47,7 +46,7 @@ namespace Z0
         /// <param name="mode">The comparison algorithm</param>
         /// <typeparam name="T">The primitive float type, either single or double</typeparam>
         [MethodImpl(Inline)]
-        public static bool CmpF<T>(this Num128<T> lhs, Num128<T> rhs, FloatComparisonMode mode)
+        public static bool CmpF<T>(this in Num128<T> lhs, in Num128<T> rhs, FloatComparisonMode mode)
             where T : struct, IEquatable<T>
                 => InXG.cmpf(lhs,rhs,mode);
 
@@ -59,7 +58,7 @@ namespace Z0
         /// <param name="mode">The comparison algorithm</param>
         /// <typeparam name="T">The primitive float type, either single or double</typeparam>
         [MethodImpl(Inline)]
-        public static bool[] CmpF<T>(this Vec128<T> lhs, Vec128<T> rhs, FloatComparisonMode mode)
+        public static bool[] CmpF<T>(this in Vec128<T> lhs, in Vec128<T> rhs, FloatComparisonMode mode)
             where T : struct, IEquatable<T>
                 => InXG.cmpf(lhs,rhs,mode);
  
@@ -70,7 +69,7 @@ namespace Z0
         /// <param name="rhs">The second vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> Add<T>(this Vec128<T> lhs, Vec128<T> rhs)
+        public static Vec128<T> Add<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
              => InXG.add(lhs,rhs);
 
@@ -81,7 +80,7 @@ namespace Z0
         /// <param name="rhs">The second vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> And<T>(this Vec128<T> lhs, Vec128<T> rhs)
+        public static Vec128<T> And<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
                 => SSR.InXAndG<T>.TheOnly.and(lhs,rhs);
 
@@ -92,7 +91,7 @@ namespace Z0
         /// <param name="rhs">The second vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> Or<T>(this Vec128<T> lhs, Vec128<T> rhs)
+        public static Vec128<T> Or<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
                 => InXG.or(lhs,rhs);
 
@@ -104,7 +103,7 @@ namespace Z0
         /// <param name="offset">The position in the target array where receipt of source data can begin</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static void Store<T>(this Vec128<T> src, T[] dst, int offset = 0)
+        public static void Store<T>(this in Vec128<T> src, T[] dst, int offset = 0)
             where T : struct, IEquatable<T>
                 => InXG.store(src, dst, offset);
 
@@ -116,7 +115,7 @@ namespace Z0
         /// <param name="offset">The position in the target array where receipt of source data can begin</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static void Store<T>(this IReadOnlyList<Vec128<T>> src, T[] dst, int offset = 0)
+        public static void Store<T>(this in Index<Vec128<T>> src, T[] dst, int offset = 0)
             where T : struct, IEquatable<T>
                 => InXG.store(src, dst, offset);
 
@@ -137,7 +136,7 @@ namespace Z0
         /// <param name="rhs">The second vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> XOr<T>(this Vec128<T> lhs, Vec128<T> rhs)
+        public static Vec128<T> XOr<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
                 => InXG.xor(lhs,rhs);
     }

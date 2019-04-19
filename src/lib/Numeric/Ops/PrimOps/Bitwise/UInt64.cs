@@ -7,119 +7,92 @@ namespace Z0
     using System;
     using System.Numerics;
     using System.Runtime.CompilerServices;
+    using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
+    
     using static zcore;
-
     using static Operative;
+
+    using target = System.UInt64;
+    using targets = System.Collections.Generic.IReadOnlyList<ulong>;
 
     partial class PrimOps { partial class Reify {
         
         public readonly partial struct Bitwise : 
-            Bitwise<ulong> 
+            Bitwise<target> 
         {
         
             [MethodImpl(Inline)]   
-            public ulong and(ulong a, ulong b) 
-                => a & b;
+            public target and(target lhs, target rhs) 
+                => lhs & rhs;
 
             [MethodImpl(Inline)]   
-            public ulong or(ulong a, ulong b) 
-                => a | b;
+            public targets and(targets lhs, targets rhs)
+                => fuse(lhs,rhs, and, out target[] dst);
 
             [MethodImpl(Inline)]   
-            public ulong xor(ulong a, ulong b) 
-                => a ^ b;
+            public target or(target a, target b) 
+                => (target)(a | b);
+
+            [MethodImpl(Inline)]
+            public targets or(targets lhs, targets rhs)
+                => fuse(lhs,rhs, or, out target[] dst);
 
             [MethodImpl(Inline)]   
-            public ulong lshift(ulong lhs, int rhs) 
+            public target xor(target a, target b) 
+                => (target)(a ^ b);
+
+            [MethodImpl(Inline)]
+            public targets xor(targets lhs, targets rhs)
+                => fuse(lhs,rhs, xor, out target[] dst);
+
+            [MethodImpl(Inline)]   
+            public target lshift(target lhs, int rhs) 
                 => lhs << rhs;
 
             [MethodImpl(Inline)]   
-            public ulong rshift(ulong lhs, int rhs) 
+            public target rshift(target lhs, int rhs) 
                 => lhs >> rhs;
 
             [MethodImpl(Inline)]   
-            public ulong flip(ulong src) 
+            public target flip(target src) 
                 => ~ src;
 
-
-            /// <summary>
-            /// Renders a number as a base-2 formatted string
-            /// </summary>
-            /// <param name="src">The source number</param>
             [MethodImpl(Inline)]
-            public static string bitchars64(ulong src)
-                => apply(Bits.split(src), parts 
-                    => bitcharsu32(parts.hi) + bitcharsu32(parts.lo));
-
+            public targets flip(targets lhs)
+                => map(lhs,flip);
 
             [MethodImpl(Inline)]
-            public string bitchars(ulong src)
+            public static string bitchars64(target src)
+                => apply(Bits.unpack(src), parts 
+                    => bitcharsu32(parts.x0) + bitcharsu32(parts.x1));
+
+            [MethodImpl(Inline)]
+            public string bitchars(target src)
                 => bitchars64(src);
 
             [MethodImpl(Inline)]   
-            public BitString bitstring(ulong src) 
-                => BitString.define(Bits.parse(bitchars(src)));
+            public BitString bitstring(target src) 
+                => BitString.define(bit.parse(bitchars(src)));
 
-            /// <summary>
-            /// Extracts the data contained in the source as an array of bytes
-            /// </summary>
-            /// <param name="src">The source value</param>
             [MethodImpl(Inline)]
-            public byte[] bytes(ulong src)
+            public byte[] bytes(target src)
                 => BitConverter.GetBytes(src);
 
-            /// <summary>
-            /// Determines whether a position-specified bit in the source is on
-            /// </summary>
-            /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public bool testbit(ulong src, int pos)
+            public bool testbit(target src, int pos)
                 => (src & (1ul << pos)) != 0ul;
 
             [MethodImpl(Inline)]
-            public bit[] bits(ulong src)
+            public bit[] bits(target src)
             {
-                var bitsize = 64;
-                var maxidx = bitsize - 1;
-                var dst = array<bit>(bitsize); 
-                for(var i=0; i<= maxidx; i++)               
-                    dst[maxidx-i] = src & (1UL << i);
-                return dst;
+                var dst = array<bit>(SizeOf<target>.BitSize);
+                for(var i = 0; i < SizeOf<target>.BitSize; i++)
+                    dst[i] = testbit(src,i);
+                return dst; 
             }
 
-            /// <summary>
-            /// Rotates the source bits leftward
-            /// </summary>
-            /// <param name="src">The source value</param>
-            /// <param name="offset">The rotation magnitude</param>
-            [MethodImpl(Inline)]
-            public static ulong lrot(ulong src, int offset)            
-                => BitOperations.RotateLeft(src,offset);
 
-            /// <summary>
-            /// Rotates the source bits rightward
-            /// </summary>
-            /// <param name="src">The source value</param>
-            /// <param name="offset">The rotation magnitude</param>
-            [MethodImpl(Inline)]
-            public static ulong rrot(ulong src, int offset)            
-                => BitOperations.RotateLeft(src,offset);
-
-            /// <summary>
-            /// Counts the number of leading zero bits in the source
-            /// </summary>
-            /// <param name="src">The bit source</param>
-            [MethodImpl(Inline)]
-            public static int countLeadingOff(ulong src)
-                => BitOperations.LeadingZeroCount(src);
-
-            /// <summary>
-            /// Counts the number of trailing zero bits in the source
-            /// </summary>
-            /// <param name="src">The bit source</param>
-            [MethodImpl(Inline)]
-            public static int countTrailingOff(ulong src)
-                => BitOperations.TrailingZeroCount(src);
         }
     }
 }}

@@ -16,27 +16,22 @@ namespace Z0
    public readonly struct Vec256<T> : IEquatable<Vec256<T>>
         where T : struct, IEquatable<T>
     {
-        public const int BitCount = 256;
-
-        const int ByteCount = 32;
 
         public static readonly int Length = Vector256<T>.Count;
-        
-        public static readonly int ComponentBitCount = BitCount / (Length * 8);
-        
+                
         readonly Vector256<T> data;        
     
 
         [MethodImpl(Inline)]
-        public static implicit operator Vec256<T>(Vector256<T> src)
+        public static implicit operator Vec256<T>(in Vector256<T> src)
             => new Vec256<T>(src);
 
         [MethodImpl(Inline)]
-        public static implicit operator Vector256<T>(Vec256<T> src)
-            => src.data;
+        public static implicit operator Vector256<T>(in Vec256<T> src)
+            => src.As<T>();
 
         [MethodImpl(Inline)]
-        public Vec256(Vector256<T> src)
+        public Vec256(in Vector256<T> src)
             => this.data = src;
 
         [MethodImpl(Inline)]
@@ -78,6 +73,11 @@ namespace Z0
             return dst;
         }    
 
+
+        [MethodImpl(Inline)]
+        public Vector256<U> As<U>() 
+            where U : struct        
+                => Unsafe.As<Vector256<T>, Vector256<U>>(ref Unsafe.AsRef(in data));        
 
         [MethodImpl(Inline)]
         public bool Equals(Vec256<T> rhs)

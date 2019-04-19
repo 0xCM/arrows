@@ -17,6 +17,41 @@ using Array = Z0.Arr;
 
 public static partial class zcore
 {
+    /// <summary>
+    /// Zips two lists via a binary operator into a target array
+    /// </summary>
+    /// <param name="lhs">The first list</param>
+    /// <param name="rhs">The second list</param>
+    /// <param name="f">The binary operator</param>
+    /// <param name="dst">The target array</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static T[] fuse<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs, Func<T,T,T> f, out T[] dst)
+    {
+        var count = countmatch(lhs,rhs);
+        dst = alloc<T>(count);
+        for(var i = 0; i<count; i++)
+            dst[i] = f(lhs[i], rhs[i]);            
+        return dst;
+    }
+
+    /// <summary>
+    /// Produces an array that contains the results of the element-wise application
+    /// of a unary operator
+    /// </summary>
+    /// <param name="src">The source list</param>
+    /// <param name="f">The undar operator</param>
+    /// <param name="dst"></param>
+    /// <param name="dst">The target array</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static T[] apply<T>(IReadOnlyList<T> src, Func<T,T> f, out T[] dst)
+    {
+        dst = alloc<T>(src.Count);
+        for(var i = 0; i<src.Count; i++)
+            dst[i] = f(src[i]);            
+        return dst;
+    }
 
     /// <summary>
     /// Populates a semigroup seqeunce container
@@ -107,7 +142,8 @@ public static partial class zcore
     /// <param name="src">The source elements</param>
     /// <typeparam name="T">The element type/typeparam>
     [MethodImpl(Inline)]
-    public static Index<T> list<T>(params T[] src)
+    public static Index<T> index<T>(params T[] src)
+        where T : IEquatable<T>
         => new Index<T>(src);
 
     /// <summary>
@@ -265,14 +301,6 @@ public static partial class zcore
     public static Dictionary<K,V> dict<K,V>(params (K key, V value)[] src)
         => new Dictionary<K, V>();
 
-    /// <summary>
-    /// Constructs integrally-keyed associative array
-    /// </summary>
-    /// <param name="src">The source values</param>
-    /// <typeparam name="T">The item type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Index<T> index<T>(IEnumerable<T> src)
-        => new Index<T>(src);
 
     /// <summary>
     /// Constructs an empty concurrent index 

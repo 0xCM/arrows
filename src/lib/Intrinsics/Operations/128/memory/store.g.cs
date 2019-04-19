@@ -46,7 +46,7 @@ namespace Z0
         /// <param name="offset">The position in the target array where receipt of source data can begin</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static void store<T>(IReadOnlyList<Vec128<T>> src, T[] dst, int offset = 0)
+        public static void store<T>(Index<Vec128<T>> src, T[] dst, int offset = 0)
             where T : struct, IEquatable<T>
                 => SSR.InXStoreG<T>.TheOnly.store(src, dst, offset);
 
@@ -67,11 +67,11 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public void store(Vec128<T> src, T[] dst, int offset = 0)
+            public void store(in Vec128<T> src, T[] dst, int offset = 0)
                 => Operator.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public void store(IReadOnlyList<Vec128<T>> src, T[] dst, int offset = 0)
+            public void store(in Index<Vec128<T>> src, T[] dst, int offset = 0)
                 => Operator.store(src,dst,offset);
         }
 
@@ -92,85 +92,83 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public unsafe void store(Vec128<sbyte> src, sbyte[] dst, int offset = 0)
+            public unsafe void store(in Vec128<sbyte> src, sbyte[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(IReadOnlyList<Vec128<sbyte>> src, sbyte[] dst, int offset = 0)
+            public unsafe void store(in Index<Vec128<sbyte>> src, sbyte[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(Vec128<byte> src, byte[] dst, int offset = 0)
+            public unsafe void store(in Vec128<byte> src, byte[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(IReadOnlyList<Vec128<byte>> src, byte[] dst, int offset = 0)
+            public unsafe void store(in Index<Vec128<byte>> src, byte[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(Vec128<short> src, short[] dst, int offset = 0)
+            public unsafe void store(in Vec128<short> src, short[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(IReadOnlyList<Vec128<short>> src, short[] dst, int offset = 0)
+            public unsafe void store(in Index<Vec128<short>> src, short[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(Vec128<ushort> src, ushort[] dst, int offset = 0)
-                => InX.store(src,dst,offset);
-
-
-            [MethodImpl(Inline)]
-            public unsafe void store(IReadOnlyList<Vec128<ushort>> src, ushort[] dst, int offset = 0)
+            public unsafe void store(in Vec128<ushort> src, ushort[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(Vec128<int> src, int[] dst, int offset = 0)
+            public unsafe void store(in Index<Vec128<ushort>> src, ushort[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(IReadOnlyList<Vec128<int>> src, int[] dst, int offset = 0)
+            public unsafe void store(in Vec128<int> src, int[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(Vec128<uint> src, uint[] dst, int offset = 0)
-                => InX.store(src,dst,offset);
-            
-
-            [MethodImpl(Inline)]
-            public unsafe void store(IReadOnlyList<Vec128<uint>> src, uint[] dst, int offset = 0)
+            public unsafe void store(in Index<Vec128<int>> src, int[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(Vec128<long> src, long[] dst, int offset = 0)
+            public unsafe void store(in Vec128<uint> src, uint[] dst, int offset = 0)
+                => InX.store(src,dst,offset);            
+
+            [MethodImpl(Inline)]
+            public unsafe void store(in Index<Vec128<uint>> src, uint[] dst, int offset = 0)
+                => InX.store(src,dst,offset);
+
+            [MethodImpl(Inline)]
+            public unsafe void store(in Vec128<long> src, long[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
             
             [MethodImpl(Inline)]
-            public unsafe void store(IReadOnlyList<Vec128<long>> src, long[] dst, int offset = 0)
+            public unsafe void store(in Index<Vec128<long>> src, long[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(Vec128<ulong> src, ulong[] dst, int offset = 0)
+            public unsafe void store(in Vec128<ulong> src, ulong[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(IReadOnlyList<Vec128<ulong>> src, ulong[] dst, int offset = 0)
+            public unsafe void store(in Index<Vec128<ulong>> src, ulong[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(Vec128<float> src, float[] dst, int offset = 0)
+            public unsafe void store(in Vec128<float> src, float[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(IReadOnlyList<Vec128<float>> src, float[] dst, int offset = 0)
+            public unsafe void store(in Index<Vec128<float>> src, float[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(Vec128<double> src, double[] dst, int offset = 0)
+            public unsafe void store(in Vec128<double> src, double[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
             [MethodImpl(Inline)]
-            public unsafe void store(IReadOnlyList<Vec128<double>> src, double[] dst, int offset = 0)
+            public unsafe void store(in Index<Vec128<double>> src, double[] dst, int offset = 0)
                 => InX.store(src,dst,offset);
 
  

@@ -54,13 +54,13 @@ namespace Z0.Testing
         }
 
         public virtual IReadOnlyList<Vector<N,R>> Baseline() 
-            => list<Vector<N,R>>();
+            => index<Vector<N,R>>();
 
         public virtual IReadOnlyList<Vector<N,R>> Applied()
-            => list<Vector<N,R>>();
+            => index<Vector<N,R>>();
 
         public virtual IReadOnlyList<Vector<N,R>> Raw() 
-            => list<Vector<N,R>>();
+            => index<Vector<N,R>>();
 
         public virtual void Verify()
         {

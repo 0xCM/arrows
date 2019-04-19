@@ -5,9 +5,10 @@
 namespace Z0.Tests.InXTests
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using System.ComponentModel;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
     using Z0.Testing;
@@ -16,29 +17,33 @@ namespace Z0.Tests.InXTests
     
     using P = Paths;
 
-    public abstract class AddTest<S,T> : InXBinOpTest<S,T>
-        where S : AddTest<S,T>
+    public abstract class AndTest<S,T> : InXBinOpTest<S,T>
+        where S : AndTest<S,T>
         where T : struct, IEquatable<T>
-    {                
-        protected AddTest(Interval<T>? domain = null, int? streamlen = null)
-            : base(P.add, domain, streamlen)        
+    {        
+        protected AndTest(Interval<T>? domain = null, int? sampleSize = null)
+            : base("and", domain, sampleSize)        
         {
 
         }
 
+        static Vec128<T> and(Vec128<T> lhs, Vec128<T> rhs)
+            => InXG.and(lhs,rhs);
+        
         protected override Vec128BinOp<T> VecOp {get;} 
-            = InXG.add<T>;
+            = and;
 
         protected override ListBinOp<T> ListOp {get;} 
-            = PrimOps.add;
+            = PrimOps.and;
+        
     }
 
-    public class AddTests
+    public class AndTests
     {
-        const string BasePath = P.InX128 + P.add;        
+        const string BasePath = P.InX128 + P.bits + P.and;
 
         [DisplayName(Path)]
-        public class AddInt8 : AddTest<AddInt8,sbyte>
+        public class AndInt8 : AndTest<AndInt8, sbyte>
         {
             public const string Path = BasePath + P.int8;
 
@@ -47,16 +52,16 @@ namespace Z0.Tests.InXTests
         }
 
         [DisplayName(Path)]
-        public class AddUInt8 : AddTest<AddUInt8,byte>
+        public class AndUInt8 : AndTest<AndUInt8, byte>
         {
             public const string Path = BasePath + P.uint8;
-                
+
             public override void Verify()
-                => base.Verify();                
+                => base.Verify();
         }
 
         [DisplayName(Path)]
-        public class AddInt16 : AddTest<AddInt16,short>
+        public class AndInt16 : AndTest<AndInt16, short>
         {
             public const string Path = BasePath + P.int16;
 
@@ -64,8 +69,9 @@ namespace Z0.Tests.InXTests
                 => base.Verify();
         }
 
+
         [DisplayName(Path)]
-        public class AddUInt16 : AddTest<AddUInt16,ushort>
+        public class AndUInt16 : AndTest<AndUInt16, ushort>
         {
             public const string Path = BasePath + P.uint16;
 
@@ -74,7 +80,7 @@ namespace Z0.Tests.InXTests
         }
 
         [DisplayName(Path)]
-        public class AddInt32 : AddTest<AddInt32,uint>
+        public class AndInt32 : AndTest<AndInt32, int>
         {
             public const string Path = BasePath + P.int32;
 
@@ -83,7 +89,7 @@ namespace Z0.Tests.InXTests
         }
 
         [DisplayName(Path)]
-        public class AddUInt32 : AddTest<AddUInt32,uint>
+        public class AndUInt32 : AndTest<AndUInt32, uint>
         {
             public const string Path = BasePath + P.uint32;
 
@@ -93,42 +99,23 @@ namespace Z0.Tests.InXTests
 
 
         [DisplayName(Path)]
-        public class AddInt64 : AddTest<AddInt64,long>
+        public class AndInt64 : AndTest<AndInt64, long>
         {
             public const string Path = BasePath + P.int64;
-                
+
             public override void Verify()
                 => base.Verify();
-                
         }
 
         [DisplayName(Path)]
-        public class AddUInt64 : AddTest<AddUInt64,ulong>
+        public class AndUInt64 : AndTest<AndUInt64, long>
         {
             public const string Path = BasePath + P.uint64;
-                
+
+  
             public override void Verify()
                 => base.Verify();
-        }        
-
-        [DisplayName(Path)]
-        public class AddFloat32 : AddTest<AddFloat32,float>
-        {
-            public const string Path = BasePath + P.float64;
-
-            public override void Verify()
-                => base.Verify();
-        }
-
-        [DisplayName(Path)]
-        public class AddFloat64 : AddTest<AddFloat64,double>
-        {
-            public const string Path = BasePath + P.float64;
-
-            public override void Verify()
-                => base.Verify();
-        }
-
-    }
-
+            
+        } 
+    } 
 }

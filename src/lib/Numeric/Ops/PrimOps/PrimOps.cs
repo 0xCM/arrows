@@ -37,8 +37,6 @@ namespace Z0
                 Stepwise<IReadOnlyList<T>>,            
 
                 Bitwise<T>, 
-                Bitwise<IReadOnlyList<T>>,           
-
                 Divisive<T>, 
                 Nullary<T>, 
                 Unital<T>,
@@ -344,7 +342,7 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public IReadOnlyList<T> and(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
-                =>  fuse(lhs,rhs,and);
+                =>  fuse(lhs,rhs, and);
 
             [MethodImpl(Inline)]
             public T or(T lhs, T rhs)
@@ -555,20 +553,21 @@ namespace Z0
             public string bitchars(IReadOnlyList<T> src)
                 => string.Join("",map(src,bitchars));
 
-            BitString BitSource<IReadOnlyList<T>>.bitstring(IReadOnlyList<T> src)            
-            {
-                var allbits = Arr.concat(src.Select(bits).ToArray());
-                return BitString.define(allbits);
-            }                            
+            // BitString BitSource<IReadOnlyList<T>>.bitstring(IReadOnlyList<T> src)            
+            // {
+            //     var allbits = Arr.concat(src.Select(bits).ToArray());
+            //     return BitString.define(allbits);
+            // }                            
 
-            bool BitSource<IReadOnlyList<T>>.testbit(IReadOnlyList<T> src, int pos)
-                => throw new NotImplementedException();
+            // bool BitSource<IReadOnlyList<T>>.testbit(IReadOnlyList<T> src, int pos)
+            //     => throw new NotImplementedException();
 
             public byte[] bytes(IReadOnlyList<T> src)
                 => Arr.concat(map(src,bytes));
 
             public bit[] bits(IReadOnlyList<T> src)
                 => Arr.concat(map(src,bits));
+
         }    
     }
 }

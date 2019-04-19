@@ -34,7 +34,19 @@ namespace Z0
         {            
 
             var i = offset;
-            
+
+            if(typematch<T,float>())            
+                return vFloat32(src,offset);
+
+            if(typematch<T,double>())            
+                return vFloat64(src,offset);
+
+            if(typematch<T,int>())            
+                return vInt32(src,offset);
+
+            if(typematch<T,long>())            
+                return vInt64(src,offset);
+
             if(typematch<T,sbyte>())            
                 return vInt8(src,offset);
 
@@ -47,28 +59,20 @@ namespace Z0
             if(typematch<T,ushort>())            
                 return VUint16(src,offset);
 
-            if(typematch<T,int>())            
-                return vInt32(src,offset);
 
             if(typematch<T,uint>())            
                 return vUInt32(src,offset);
 
-            if(typematch<T,long>())            
-                return vInt64(src,offset);
 
             if(typematch<T,ulong>())            
                 return vUInt64(src,offset);
 
-            if(typematch<T,float>())            
-                return vFloat32(src,offset);
-
-            if(typematch<T,double>())            
-                return vFloat64(src,offset);
 
             throw new NotSupportedException();
 
         }        
 
+        
 
         [MethodImpl(Inline)]
         public static Vec128<T> define<T>(IReadOnlyList<T> src, int startpos = 0)
@@ -98,6 +102,10 @@ namespace Z0
             return dst.Length;
         }
 
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<byte> define(byte x0)
+            => Vector128.Create(x0);
+
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<byte> define(
@@ -108,6 +116,11 @@ namespace Z0
                 =>  Vector128.Create(x0, x1, x2, x3, x4, x5, x6, x7, 
                     x8, x9, x10, x11,x12, x13, x14, x15);
 
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<sbyte> define(sbyte x0)
+            => Vector128.Create(x0);
+
         [MethodImpl(Inline)]
         public static unsafe Vec128<sbyte> define(sbyte x0, sbyte x1, sbyte x2, sbyte x3, 
                 sbyte x4, sbyte x5, sbyte x6, sbyte x7,
@@ -116,37 +129,73 @@ namespace Z0
                     => Vector128.Create(x0, x1, x2, x3, x4, x5, x6, x7, 
                         x8, x9, x10, x11,x12, x13, x14, x15);
 
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<short> define(short x0)
+            => Vector128.Create(x0);
+
         [MethodImpl(Inline)]
         public static unsafe Vec128<short> define(
                 short x0, short x1, short x2, short x3, 
                 short x4, short x5, short x6, short x7) 
                     => Vector128.Create(x0,x1,x2,x3,x4,x5,x6,x7);
 
+        
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ushort> define(ushort x0)
+            => Vector128.Create(x0);
+        
         [MethodImpl(Inline)]
         public static unsafe Vec128<ushort> define(ushort x0, ushort x1, ushort x2, ushort x3, 
                 ushort x4, ushort x5, ushort x6, ushort x7)
                     => Vector128.Create(x0,x1,x2,x3,x4,x5,x6,x7);
 
         [MethodImpl(Inline)]
+        public static unsafe Vec128<int> define(int x0)
+            => Vector128.Create(x0);
+
+        [MethodImpl(Inline)]
         public static unsafe Vec128<int> define(int x0, int x1, int x2, int x3)
             => Vector128.Create(x0,x1,x2,x3);
 
+        
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<uint> define(uint x0)
+            => Vector128.Create(x0);
+        
         [MethodImpl(Inline)]
         public static unsafe Vec128<uint> define(uint x0, uint x1, uint x2, uint x3)
             => Vector128.Create(x0,x1,x2,x3);
 
+        
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<long> define(long x0)
+            => Vector128.Create(x0);
+        
         [MethodImpl(Inline)]
         public static unsafe Vec128<long> define(long x0, long x1)
             => Vector128.Create(x0,x1);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ulong> define(ulong x0)
+            => Vector128.Create(x0);
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<ulong> define(ulong x0, ulong x1)
             => Vector128.Create(x0,x1);
 
         [MethodImpl(Inline)]
+        public static unsafe Vec128<float> define(float x0)
+            => Vector128.Create(x0);
+        
+        [MethodImpl(Inline)]
         public static unsafe Vec128<float> define(float x0, float x1, float x2, float x3)
             => Vector128.Create(x0,x1,x2,x3);
     
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<double> define(double x0)
+            => Vector128.Create(x0);
+
         [MethodImpl(Inline)]
         public static unsafe Vec128<double> define(double x0, double x1)
             => Vector128.Create(x0,x1);
@@ -302,8 +351,20 @@ namespace Z0
 
         }
 
+        static Vec128<T> vFloat32x<T>(T[] data, int offset = 0)
+            where T : struct, IEquatable<T>            
+        {
+            var src = datasource<float>(data,data.Length,offset);            
+            var result = Vector128.CreateScalarUnsafe(src[0]);
+            result = Sse41.Insert(result, Vector128.CreateScalarUnsafe(src[1]), 0x10);
+            result = Sse41.Insert(result, Vector128.CreateScalarUnsafe(src[2]), 0x20);
+            result = Sse41.Insert(result, Vector128.CreateScalarUnsafe(src[3]), 0x30);
+            return cast<Vector128<T>>(result);
+
+        }
+
         [MethodImpl(Inline)]
-        static Vec128<T> vFloat32<T>(T[] data,int startpos)
+        static Vec128<T> vFloat32<T>(T[] data, int startpos)
             where T : struct, IEquatable<T>            
         {
             var i = startpos;

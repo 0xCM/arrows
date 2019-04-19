@@ -14,6 +14,26 @@ namespace Z0
     partial class xcore
     {
         /// <summary>
+        /// Wraps an array within an index
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static Index<T> ToIndex<T>(in T[] src)
+            where T : IEquatable<T>
+                => src;
+
+        /// <summary>
+        /// Wraps an array within an index
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static Index<T> ToIndex<T>(in IEnumerable<T> src)
+            where T : IEquatable<T>
+                => src.ToArray();
+
+        /// <summary>
         /// Constructs a semi-sequence from a stream
         /// </summary>
         /// <param name="src">The element source</param>

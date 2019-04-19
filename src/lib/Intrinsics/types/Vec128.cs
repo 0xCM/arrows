@@ -13,32 +13,26 @@ namespace Z0
     using static zcore;
     using static inxfunc;
 
-   public struct Vec128<T> : IEquatable<Vec128<T>>
+   public readonly struct Vec128<T> : IEquatable<Vec128<T>>
         where T : struct, IEquatable<T>
     {
-        public const int BitCount = 128;
-
-        const int ByteCount = 16;
-
         public static readonly int Length = Vector128<T>.Count;
 
         public static readonly int PrimSize = SizeOf<T>.Size;
-
-        public static readonly int ComponentBitCount = BitCount / (Length * 8);
         
-        Vector128<T> data;        
+        readonly Vector128<T> data;        
     
 
         [MethodImpl(Inline)]
-        public static implicit operator Vec128<T>(Vector128<T> src)
+        public static implicit operator Vec128<T>(in Vector128<T> src)
             => new Vec128<T>(src);
 
         [MethodImpl(Inline)]
-        public static implicit operator Vector128<T>(Vec128<T> src)
-            => src.data;
+        public static implicit operator Vector128<T>(in Vec128<T> src)
+            => src.As<T>();
 
         [MethodImpl(Inline)]
-        public Vec128(Vector128<T> src)
+        public Vec128(in Vector128<T> src)
             => this.data = src;
 
         [MethodImpl(Inline)]
@@ -73,15 +67,20 @@ namespace Z0
         /// Extracts the components from the vector
         /// </summary>
         [MethodImpl(Inline)]
-        public T[] ToArray()
-        {            
-            var dst = new T[Length];
-            return components(ref dst);
+        public unsafe T[] ToArray()
+        {      
+             var dst = new T[Length];
+             return components(ref dst);
         }
+
 
         [MethodImpl(Inline)]
         public Vec256<T> ToVec256()
             => data.ToVector256Unsafe();
+
+        [MethodImpl(Inline)]
+        public Num128<T> ToNum128()
+            => data;
 
         [MethodImpl(Inline)]
         public bool Equals(Vec128<T> rhs)
@@ -89,5 +88,10 @@ namespace Z0
 
         public override string ToString()
             => data.ToString();
+ 
+        [MethodImpl(Inline)]
+        public Vector128<U> As<U>() 
+            where U : struct        
+                => Unsafe.As<Vector128<T>, Vector128<U>>(ref Unsafe.AsRef(in data));        
     }     
 }

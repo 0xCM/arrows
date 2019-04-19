@@ -36,7 +36,7 @@ namespace Z0
     public interface InXAnd<T> : InXOp<T>
         where T : struct, IEquatable<T>
     {
-        Vec128<T> and(Vec128<T> lhs, Vec128<T> rhs);        
+        Vec128<T> and(in Vec128<T> lhs, in Vec128<T> rhs);        
     }
 
     public interface InXAbs<S,T> : InXOp<S,T>
@@ -49,7 +49,7 @@ namespace Z0
     public interface InXAdd<T> : InXOp<T>
         where T : struct, IEquatable<T>
     {
-        Vec128<T> add(Vec128<T> lhs, Vec128<T> rhs);
+        Vec128<T> add(in Vec128<T> lhs, in Vec128<T> rhs);
     }
 
     public interface InXAvg<T> : InXOp<T>
@@ -216,7 +216,7 @@ namespace Z0
         /// <param name="src">The data source</param>
         /// <param name="dst">The target array</param>
         /// <param name="offset">The position in the target array where receipt of source data can begin</param>
-        void store(Vec128<T> src, T[] dst, int offset = 0);
+        void store(in Vec128<T> src, T[] dst, int offset = 0);
 
         /// <summary>
         /// Writes data data in a list of source vectors to a target array
@@ -224,7 +224,7 @@ namespace Z0
         /// <param name="src">The data source</param>
         /// <param name="dst">The target array</param>
         /// <param name="offset">The position in the target array where receipt of source data can begin</param>
-        void store(IReadOnlyList<Vec128<T>> src, T[] dst, int offset = 0);
+        void store(in Index<Vec128<T>> src, T[] dst, int offset = 0);
     }
 
     /// <summary>

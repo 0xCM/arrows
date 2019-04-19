@@ -18,7 +18,7 @@ namespace Z0
         readonly Vector128<T> data;            
 
         [MethodImpl(Inline)]
-        public static implicit operator Num128<T>(Vector128<T> src)
+        public static implicit operator Num128<T>(in Vector128<T> src)
             => new Num128<T>(src);
 
         [MethodImpl(Inline)]
@@ -26,11 +26,11 @@ namespace Z0
             => new Num128<T>(Num128.define(src));
 
         [MethodImpl(Inline)]
-        public static implicit operator Vector128<T>(Num128<T> src)
-            => src.data;
+        public static implicit operator Vector128<T>(in Num128<T> src)
+            => src.As<T>();
 
         [MethodImpl(Inline)]
-        public Num128(Vector128<T> src)
+        public Num128(in Vector128<T> src)
             => this.data = src;
 
         [MethodImpl(Inline)]
@@ -53,5 +53,9 @@ namespace Z0
         public override string ToString()
             => value.ToString();
 
+        [MethodImpl(Inline)]
+        public Vector128<U> As<U>() 
+            where U : struct        
+                => Unsafe.As<Vector128<T>, Vector128<U>>(ref Unsafe.AsRef(in data));        
     }     
 }

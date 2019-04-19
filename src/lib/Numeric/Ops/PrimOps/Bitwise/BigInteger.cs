@@ -8,39 +8,49 @@ namespace Z0
     using System.Numerics;
     using System.Runtime.CompilerServices;
     using System.Text;
+
     using static zcore;
-
-
     using static Operative;
+
+    using target = System.Numerics.BigInteger;
+    using targets = System.Collections.Generic.IReadOnlyList<System.Numerics.BigInteger>;
 
     partial class PrimOps { partial class Reify {
         
         public readonly partial struct Bitwise : 
-            Bitwise<BigInteger> 
+            Bitwise<target> 
         {
             
             [MethodImpl(Inline)]   
-            public BigInteger and(BigInteger lhs, BigInteger rhs) 
+            public target and(target lhs, target rhs) 
                 => lhs & rhs;
 
             [MethodImpl(Inline)]   
-            public BigInteger or(BigInteger lhs, BigInteger rhs) 
+            public targets and(targets lhs, targets rhs)
+                => fuse(lhs,rhs, and, out target[] dst);
+
+            [MethodImpl(Inline)]   
+            public target or(target lhs, target rhs) 
                 => lhs | rhs;
 
             [MethodImpl(Inline)]   
-            public BigInteger xor(BigInteger lhs, BigInteger rhs) 
+            public targets or(targets lhs, targets rhs)
+                => fuse(lhs,rhs, or, out target[] dst);
+
+            [MethodImpl(Inline)]   
+            public target xor(target lhs, target rhs) 
                 => lhs ^ rhs;
 
             [MethodImpl(Inline)]   
-            public BigInteger lshift(BigInteger lhs, int rhs) 
+            public target lshift(target lhs, int rhs) 
                 => lhs << rhs;
 
             [MethodImpl(Inline)]   
-            public BigInteger rshift(BigInteger lhs, int rhs) 
+            public target rshift(target lhs, int rhs) 
                 => lhs >> rhs;
 
             [MethodImpl(Inline)]   
-            public BigInteger flip(BigInteger x) 
+            public target flip(target x) 
                 => ~ x;
 
             /// <summary>
@@ -48,7 +58,7 @@ namespace Z0
             /// <remarks>
             /// Taken from https://stackoverflow.com/questions/14048476/biginteger-to-hex-decimal-octal-binary-strings
             /// </remarks>
-            public string bitchars(BigInteger x)
+            public string bitchars(target x)
             {
                 var bytes = x.ToByteArray();
                 var idx = bytes.Length - 1;
@@ -75,39 +85,35 @@ namespace Z0
 
 
             [MethodImpl(Inline)]   
-            public BitString bitstring(BigInteger src) 
-                => BitString.define(Bits.parse(bitchars(src)));
+            public BitString bitstring(target src) 
+                => BitString.define(bit.parse(bitchars(src)));
 
-            /// <summary>
-            /// Interprets the source as an array of bytes
-            /// </summary>
-            /// <param name="src">The soruce value</param>
             [MethodImpl(Inline)]
-            public byte[] bytes(BigInteger src)
+            public byte[] bytes(target src)
                 => src.ToByteArray();
 
-
-            /// <summary>
-            /// Determines whether a position-specified bit in the source is on
-            /// </summary>
-            /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public bool testbit(BigInteger src, int pos)
+            public bool testbit(target src, int pos)
                 => (src & (1 << pos)) != 0;
 
-            [MethodImpl(Inline)]
-            public bit[] bits(BigInteger src)
-                => throw new NotImplementedException();
 
-            /// <summary>
-            /// Counts the number of trailing zero bits in the source
-            /// </summary>
-            /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
             public static int countTrailingOff(int src)
                 => BitOperations.TrailingZeroCount(src);
 
+            [MethodImpl(Inline)]
+            public bit[] bits(target src)
+                => throw new NotImplementedException();
 
+            public targets xor(targets lhs, targets rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public targets flip(targets lhs)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }}

@@ -19,6 +19,13 @@ partial class zcore
 {
     public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
 
+    public static int countmatch<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+    {
+        if(lhs.Count == rhs.Count)
+            return lhs.Count;
+        throw new Exception($"List count mismatch: lhs.Count= {lhs.Count}, rhs.Count = {rhs.Count}");
+    }
+
     /// <summary>
     /// Calculates the time required to execute a specified action
     /// </summary>

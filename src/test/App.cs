@@ -118,11 +118,15 @@ namespace Z0
             var app = new App();
             var paths = new[]
             {
-                Paths.InX
+                //Paths.InX,
+                //Paths.numeric + Paths.bits
+                //Paths.bits,
+                Paths.InX,
             };
-            var pll = false;
+            var pll = true;
             foreach(var path in paths)
                 app.RunTests(path,pll);
+            
 
         }
     }

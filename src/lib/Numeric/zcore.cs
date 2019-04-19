@@ -15,6 +15,7 @@ using static Z0.Traits;
 
 partial class zcore
 {
+
     /// <summary>
     /// Constructs a bit from the data in an integral value at a specified position
     /// </summary>
@@ -383,10 +384,10 @@ partial class zcore
     public static string hexstring(decimal src)
         => apply(Bits.split(src), parts =>
             append(
-                parts.hihi.ToString("X8"),
-                parts.hilo.ToString("X8"),
-                parts.lohi.ToString("X8"),
-                parts.lolo.ToString("X8")
+                parts.x0.ToString("X8"),
+                parts.x1.ToString("X8"),
+                parts.x2.ToString("X8"),
+                parts.x3.ToString("X8")
             ));
 
 

@@ -356,7 +356,8 @@ namespace Z0.Tests
         /// Identifies a bitwise and operation
         /// </summary>
         public const string and = "and/";
-        
+                
+
         /// <summary>
         /// Identifies a bitwise or operation
         /// </summary>

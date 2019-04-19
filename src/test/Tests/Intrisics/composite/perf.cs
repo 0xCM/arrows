@@ -33,18 +33,26 @@ namespace Z0.Tests.InXTests
 
         IReadOnlyList<float> DataSrc {get;}
         
-        public void Warmup()
+
+        const float ScalarVal = 255.50f;
+
+        public void Validate()
         {
             var r0 = RunBaseline();
             var r1 = RunMSML();
-            var r2 = RunVec128();
+            var r2 = RunVec128MSML();
+            var r3 = RunVec128Naive();
             for(var i = 0; i<r1.Length; i++)
             {
-                if(r1[i] != r0[i])
-                    Claim.fail($"Divergence from baseline, r1{i} = {r1[i]} != r0[{i}] = {r0[i]}");
 
-                // if(r2[i] != r0[i])
-                //     Claim.fail($"Divergence from baseline, r2{i} = {r2[i]} != r0[{i}] = {r0[i]}");
+                if(r1[i] != r0[i])
+                    Claim.fail($"r1[{i}] = {r1[i]} != r0[{i}] = {r0[i]}");
+
+                if(r2[i] != r0[i])
+                    Claim.fail($"r2[{i}] = {r2[i]} != r0[{i}] = {r0[i]}");
+
+                if(r3[i] != r0[i])
+                    Claim.fail($"r3[{i}] = {r3[i]} != r0[{i}] = {r0[i]}");
 
             }
         }
@@ -55,22 +63,25 @@ namespace Z0.Tests.InXTests
             var data = DataSrc.ToArray();
             Span<float> dst = new Span<float>(data);
             for(var i = 0; i < dst.Length; i++)
-                dst[i] = dst[i] + 255.50f;
+                dst[i] = dst[i] + ScalarVal;
             return data;
         }
 
         [Repeat(10)]
-        public float[] RunVec128()
+        public float[] RunVec128Naive()
         {
             var src = DataSrc.ToArray();
-            //var dst = array<float>(src.Length);
-            var scalar = Num128.define(255.50f);
-            for(var i = 0; i< src.Length; i += 4)
+            var scalar = Vec128.define(ScalarVal);
+            var vecLen = Vec128<float>.Length;
+            var dst = new float[src.Length];
+            for(var i = 0; i< src.Length; i += vecLen)
             {
                 var inVec = Vec128.define(src.ToSpan128(i));
                 var outVec = InX.add(inVec,scalar);
+                for(var j = 0; j < vecLen; j++)
+                    dst[i + j] = outVec[j];
             }
-            return src;
+            return dst;
 
         }
 
@@ -79,7 +90,17 @@ namespace Z0.Tests.InXTests
         {
             var data = DataSrc.ToArray();
             Span<float> dst = new Span<float>(data);
-            Testing.MSML.AddScalarU(255.50f, dst);
+            Testing.MSML.AddScalarU(ScalarVal, dst);
+            return data;
+
+        }
+
+        [Repeat(10)]
+        public float[] RunVec128MSML()
+        {
+            var data = DataSrc.ToArray();
+            Span<float> dst = new Span<float>(data);
+            InXComposites.addScalar(dst,ScalarVal);
             return data;
 
         }

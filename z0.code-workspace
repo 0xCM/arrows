@@ -1,0 +1,15 @@
+{
+	
+	"folders": [
+		{
+			"path": "src/test"
+		},
+		{
+			"path": "src/lib"
+		}
+	],
+
+
+	"settings": {}
+
+}

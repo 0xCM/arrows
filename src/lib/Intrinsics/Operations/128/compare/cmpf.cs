@@ -16,19 +16,19 @@ namespace Z0
     partial class InX
     {
         [MethodImpl(Inline)]
-        public static Num128<float> cmpf(Num128<float> lhs, Num128<float> rhs, FloatComparisonMode mode)
+        public static Num128<float> cmpf(in Num128<float> lhs, in Num128<float> rhs, FloatComparisonMode mode)
             => Avx2.CompareScalar(lhs,rhs,mode);
 
         [MethodImpl(Inline)]
-        public static Num128<double> cmpf(Num128<double> lhs, Num128<double> rhs, FloatComparisonMode mode)
+        public static Num128<double> cmpf(in Num128<double> lhs, in Num128<double> rhs, FloatComparisonMode mode)
             => Avx2.CompareScalar(lhs,rhs,mode);
 
         [MethodImpl(Inline)]
-        public static Vec128<float> cmpf(Vec128<float> lhs, Vec128<float> rhs, FloatComparisonMode mode)
+        public static Vec128<float> cmpf(in Vec128<float> lhs, in Vec128<float> rhs, FloatComparisonMode mode)
             => Avx2.Compare(lhs,rhs,mode);
         
         [MethodImpl(Inline)]
-        public static Vec128<double> cmpf(Vec128<double> lhs, Vec128<double> rhs, FloatComparisonMode mode)
+        public static Vec128<double> cmpf(in Vec128<double> lhs, in Vec128<double> rhs, FloatComparisonMode mode)
             => Avx2.Compare(lhs,rhs,mode);
     }
 

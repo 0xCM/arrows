@@ -53,5 +53,10 @@ namespace Z0
         public override string ToString()
             => value.ToString();
 
+        [MethodImpl(Inline)]
+        public Vector256<U> As<U>() 
+            where U : struct        
+                => Unsafe.As<Vector256<T>, Vector256<U>>(ref Unsafe.AsRef(in data));        
+
     }     
 }

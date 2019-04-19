@@ -22,6 +22,7 @@ namespace Z0
         // ! Array load operators
         // ! ------------------------------------------------------------------
 
+
         [MethodImpl(Inline)]
         public static unsafe Vec128<byte> load(byte[] src, int offset = 0)
         {
@@ -96,6 +97,7 @@ namespace Z0
             fixed (double* psrc = &src[startpos])
                 return Avx2.LoadVector128(psrc);
         }
+
 
 
         // ! Span128 load operators
@@ -267,6 +269,72 @@ namespace Z0
             fixed(float* psrc = & src[0])
                 return Avx2.LoadVector128(psrc);
         }
+
+        //! Loads from pointers
+        //! -------------------------------------------------------------------
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<float> load128v(float* src)
+                => Avx2.LoadVector128(src);
+
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<byte> load(byte* src, out Vec128<byte> dst)
+            => dst = Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<sbyte> load(sbyte* src, out Vec128<sbyte> dst)
+            => dst = Avx2.LoadVector128(src);
+
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<short> load(short* src, out Vec128<short> dst)
+            => dst = Avx2.LoadVector128(src);
+
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ushort> load(ushort* src, out Vec128<ushort> dst)
+            => dst = Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Num128<int> load(int* src, out Num128<int> dst)
+            => dst = Avx2.LoadScalarVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<int> load(int* src, out Vec128<int> dst)
+            => dst = Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Num128<uint> load(uint* src, out Num128<uint> dst)
+            => dst = Avx2.LoadScalarVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<uint> load(uint* src, out Vec128<uint> dst)
+            => dst = Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Num128<ulong> load(ulong* src, out Num128<ulong> dst)
+            => dst = Avx2.LoadScalarVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ulong> load(ulong* src, out Vec128<ulong> dst)
+            => dst = Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Num128<float> load(float* src, out Num128<float> dst)
+            => dst = Avx2.LoadScalarVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<float> load(float* src, out Vec128<float> dst)
+            => dst = Avx2.LoadVector128(src);
+ 
+        [MethodImpl(Inline)]
+        public static unsafe Num128<double> load(double* src, out Num128<double> dst)
+            => dst = Avx2.LoadScalarVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<double> load(double* src, out Vec128<double> dst)
+            => dst = Avx2.LoadVector128(src);
 
     }
 }

@@ -33,28 +33,7 @@ namespace Z0
             for(var i = 0; i < dst.Length ; i++)
                 dst[i] = f(lhs[i], rhs[i]);
             return dst;
-
         }
-
-        [MethodImpl(Inline)]
-        public static IReadOnlyList<int> add(IReadOnlyList<int> lhs, IReadOnlyList<int> rhs)
-            => fuse(lhs,rhs,(x,y) => x + y);
-
-        [MethodImpl(Inline)]
-        public static IReadOnlyList<int> sub(IReadOnlyList<int> lhs, IReadOnlyList<int> rhs)
-            => fuse(lhs,rhs,(x,y) => x - y);
-
-        [MethodImpl(Inline)]
-        public static IReadOnlyList<int> mul(IReadOnlyList<int> lhs, IReadOnlyList<int> rhs)
-            => fuse(lhs,rhs,(x,y) => x * y);
-
-        [MethodImpl(Inline)]
-        public static IReadOnlyList<int> div(IReadOnlyList<int> lhs, IReadOnlyList<int> rhs)
-            => fuse(lhs,rhs,(x,y) => x / y);
-
-        [MethodImpl(Inline)]
-        public static IReadOnlyList<int> mod(IReadOnlyList<int> lhs, IReadOnlyList<int> rhs)
-            => fuse(lhs,rhs,(x,y) => x % y);
 
     }
 }

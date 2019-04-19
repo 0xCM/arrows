@@ -45,7 +45,7 @@ namespace Z0.Tests.InXTests
         public virtual void StoreVectors()
         {   
             var dst = alloc<T>(VecLength*VecCount);
-            var src = UnarySrcVectors.ToReadOnlyList();
+            var src = UnarySrcVectors.ToArray();
             InXOp.store(src,dst);
             IterOffsets((c,i) => Claim.eq(src[c],Vec128.define(dst,i)));
 

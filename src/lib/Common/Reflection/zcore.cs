@@ -41,6 +41,10 @@ partial class zcore
     public static bool typematch<S,T>()
         => typeof(T) == typeof(S);
 
+    [MethodImpl(Inline)]
+    public static T onTypematch<S,T>(Func<S,T> f, S value)
+        => typeof(T) == typeof(S) ? f(value) : default;
+
     /// <summary>
     /// Searches a type for an instance constructor that matches a specified signature
     /// </summary>

@@ -5,6 +5,7 @@
 namespace Z0
 {
     using System;
+    using System.Collections.Generic;
 
     partial class Operative
     {
@@ -96,27 +97,54 @@ namespace Z0
             T and(T lhs, T rhs);
 
             /// <summary>
+            /// Computes the bitwise and between corresponding components in the supplied lists
+            /// </summary>
+            /// <param name="lhs">The first list</param>
+            /// <param name="rhs">The second list</param>
+            IReadOnlyList<T> and(IReadOnlyList<T>  lhs, IReadOnlyList<T>  rhs);
+
+            /// <summary>
             /// Computes the bitwise or from the supplied values
             /// </summary>
             /// <param name="lhs">The left value</param>
             /// <param name="rhs">The right value</param>
-            /// <returns></returns>
             T or(T lhs, T rhs);
+
+            /// <summary>
+            /// Computes the bitwise or between corresponding components in the supplied lists
+            /// </summary>
+            /// <param name="lhs">The first list</param>
+            /// <param name="rhs">The second list</param>
+            IReadOnlyList<T> or(IReadOnlyList<T>  lhs, IReadOnlyList<T>  rhs);
+
 
             /// <summary>
             /// Computes the bitwise exlusive or from the supplied values
             /// </summary>
             /// <param name="lhs">The left value</param>
             /// <param name="rhs">The right value</param>
-            /// <returns></returns>
             T xor(T lhs, T rhs);
+
+            /// <summary>
+            /// Computes the bitwise xor between corresponding components in the supplied lists
+            /// </summary>
+            /// <param name="lhs">The first list</param>
+            /// <param name="rhs">The second list</param>
+            IReadOnlyList<T> xor(IReadOnlyList<T>  lhs, IReadOnlyList<T>  rhs);
 
             /// <summary>
             /// Calculates the bitwise two's-complement of the input
             /// </summary>
             /// <param name="x">The source value</param>
-            /// <returns></returns>
             T flip(T x);
+
+            /// <summary>
+            /// computes the bitwise two's-complement of each element in a list
+            /// </summary>
+            /// <param name="lhs">The first list</param>
+            /// <param name="rhs">The second list</param>
+            IReadOnlyList<T> flip(IReadOnlyList<T> lhs);
+
         }
 
 
@@ -200,7 +228,7 @@ namespace Z0
             /// <param name="rhs">The right value</param>
             /// <returns></returns>
             S and(S rhs);
-
+            
             /// <summary>
             /// Computes the bitwise or
             /// </summary>

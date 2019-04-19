@@ -7,80 +7,79 @@ namespace Z0
     using System;
     using System.Numerics;
     using System.Runtime.CompilerServices;
+    using System.Collections.Generic;
+    
     using static zcore;
-
     using static Operative;
+    
+    using target = System.SByte;
+    using targets = System.Collections.Generic.IReadOnlyList<sbyte>;
 
     partial class PrimOps { partial class Reify {
         
         public readonly partial struct Bitwise : 
-            Bitwise<sbyte> 
+            Bitwise<target> 
         {
         
             [MethodImpl(Inline)]   
-            public sbyte and(sbyte lhs, sbyte rhs) 
-                => (sbyte)(lhs & rhs);
+            public target and(target lhs, target rhs) 
+                => (target)(lhs & rhs);
+
+            [MethodImpl(Inline)]
+            public targets and(targets lhs, targets rhs)
+                => fuse(lhs,rhs, and, out target[] dst);
 
             [MethodImpl(Inline)]   
-            public sbyte or(sbyte a, sbyte b) 
-                => (sbyte)(a | b);
+            public target or(target lhs, target rhs) 
+                => (target)(lhs | rhs);
+
+            [MethodImpl(Inline)]
+            public targets or(targets lhs, targets rhs)
+                => fuse(lhs,rhs, or, out target[] dst);
 
             [MethodImpl(Inline)]   
-            public sbyte xor(sbyte a, sbyte b) 
-                => (sbyte)(a ^ b);
+            public target xor(target a, target b) 
+                => (target)(a ^ b);
+
+            [MethodImpl(Inline)]
+            public targets xor(targets lhs, targets rhs)
+                => fuse(lhs,rhs, xor, out target[] dst);
 
             [MethodImpl(Inline)]   
-            public sbyte lshift(sbyte a, int shift) 
-                => (sbyte)(a << shift);
+            public target lshift(target a, int shift) 
+                => (target)(a << shift);
 
             [MethodImpl(Inline)]   
-            public sbyte rshift(sbyte a, int shift) 
-                => (sbyte)(a >> shift);
+            public target rshift(target a, int shift) 
+                => (target)(a >> shift);
 
             [MethodImpl(Inline)]   
-            public sbyte flip(sbyte a) 
-                => (sbyte)~ a;
+            public target flip(target a) 
+                => (target)~ a;
             
-            /// <summary>
-            /// Renders a number as a base-2 formatted string
-            /// </summary>
-            /// <param name="src">The source number</param>
             [MethodImpl(Inline)]
-            public string bitchars(sbyte src)
-                => lpadZ(Convert.ToString(src,2), primops.bitsize<sbyte>());
+            public string bitchars(target src)
+                => lpadZ(Convert.ToString(src,2), primops.bitsize<target>());
 
-            /// <summary>
-            /// Converts the source value to a sequence of bits
-            /// </summary>
-            /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]   
-            public BitString bitstring(sbyte src) 
-                => BitString.define(Bits.parse(bitchars(src)));
+            public BitString bitstring(target src) 
+                => BitString.define(bit.parse(bitchars(src)));
 
-            /// <summary>
-            /// Interprets the source as an array of bytes
-            /// </summary>
-            /// <param name="src">The source value</param>
             [MethodImpl(Inline)]
-            public byte[] bytes(sbyte src)
+            public byte[] bytes(target src)
                 => array((byte)src);
 
-            /// <summary>
-            /// Determines whether a position-specified bit in the source is on
-            /// </summary>
-            /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public bool testbit(sbyte src, int pos)
+            public bool testbit(target src, int pos)
                 => (src & (1 << pos)) != 0;
 
             [MethodImpl(Inline)]
-            public bit[] bits(sbyte src)
+            public bit[] bits(target src)
             {
-                var bitsize = 8;
-                var maxidx = 7;
+                var bitsize = SizeOf<target>.BitSize;
                 var dst = array<bit>(bitsize);
                 for(var i = 0; i < bitsize; i++)
-                    dst[maxidx - i] = testbit(src,i);
+                    dst[i] = testbit(src,i);
                 return dst; 
             }
 
@@ -89,42 +88,14 @@ namespace Z0
             /// </summary>
             /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public static int countTrailingOff(sbyte src)
+            public static int countTrailingOff(target src)
                 => countTrailingOff((int)src);
 
-        }
+
+            [MethodImpl(Inline)]
+            public targets flip(targets lhs)
+                => map(lhs,flip);
     }
-}
-    public static partial class BitwiseX
-    {
-        [MethodImpl(Inline)]
-        public static sbyte LShift(this sbyte src, int shift)
-            => (sbyte)(src << shift);
-
-        [MethodImpl(Inline)]
-        public static sbyte RShift(this sbyte src, int shift)
-            => (sbyte)(src >> shift);
-
-        [MethodImpl(Inline)]
-        public static sbyte And(this sbyte lhs, sbyte rhs)
-            => (sbyte)(lhs & rhs);
-            
-        [MethodImpl(Inline)]
-        public static sbyte Or(this sbyte lhs, sbyte rhs)
-            => (sbyte)(lhs | rhs);
-
-        [MethodImpl(Inline)]
-        public static sbyte XOr(this sbyte lhs, sbyte rhs)
-            => (sbyte)(lhs ^ rhs);
-
-        [MethodImpl(Inline)]
-        public static sbyte Flip(this sbyte src)
-            => (sbyte)(~src);
-
-        [MethodImpl(Inline)]
-        public static bool TestBit(this sbyte src, int pos)
-            => (src & (1 << pos)) != 0;
     }
-
-}
+}}
 

@@ -31,7 +31,7 @@ namespace Z0
         /// <param name="rhs">The second vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> add<T>(Vec128<T> lhs, Vec128<T> rhs)
+        public static Vec128<T> add<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
                 => SSR.InXAddG<T>.TheOnly.add(lhs,rhs);
 
@@ -51,7 +51,7 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public Vec128<T> add(Vec128<T> lhs, Vec128<T> rhs)
+            public Vec128<T> add(in Vec128<T> lhs, in Vec128<T> rhs)
                 => Operator.add(lhs,rhs);
         }
 
@@ -71,43 +71,43 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public Vec128<byte> add(Vec128<byte> lhs, Vec128<byte> rhs)
+            public Vec128<byte> add(in Vec128<byte> lhs, in Vec128<byte> rhs)
                 => Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<sbyte> add(Vec128<sbyte> lhs, Vec128<sbyte> rhs)
+            public Vec128<sbyte> add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
                 => Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<short> add(Vec128<short> lhs, Vec128<short> rhs)
+            public Vec128<short> add(in Vec128<short> lhs, in Vec128<short> rhs)
                 => Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<ushort> add(Vec128<ushort> lhs, Vec128<ushort> rhs)
+            public Vec128<ushort> add(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
                 => Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<int> add(Vec128<int> lhs, Vec128<int> rhs)
+            public Vec128<int> add(in Vec128<int> lhs, in Vec128<int> rhs)
                 => Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<uint> add(Vec128<uint> lhs, Vec128<uint> rhs)
+            public Vec128<uint> add(in Vec128<uint> lhs, in Vec128<uint> rhs)
                 => Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<long> add(Vec128<long> lhs, Vec128<long> rhs)
+            public Vec128<long> add(in Vec128<long> lhs, in Vec128<long> rhs)
                 => Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<ulong> add(Vec128<ulong> lhs, Vec128<ulong> rhs)
+            public Vec128<ulong> add(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
                 => Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<double> add(Vec128<double> lhs, Vec128<double> rhs)
+            public Vec128<double> add(in Vec128<double> lhs, in Vec128<double> rhs)
                 => Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<float> add(Vec128<float> lhs, Vec128<float> rhs)
+            public Vec128<float> add(in Vec128<float> lhs, in Vec128<float> rhs)
                 => Avx2.Add(lhs, rhs);
         }
     }

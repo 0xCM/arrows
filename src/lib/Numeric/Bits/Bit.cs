@@ -17,14 +17,28 @@ namespace Z0
 
     }
 
-
-
     /// <summary>
     /// Represents a numeric or logical bit
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Boolean_algebra</remarks>
     public readonly struct bit : Bit<bit>, Wrapped<bool>
     {
+
+        /// <summary>
+        /// Parses the bits from a string of bit characters
+        /// </summary>
+        /// <param name="src"></param>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public static IReadOnlyList<bit> parse(string src)
+        {
+            var dst = alloc<bit>(src.Length);            
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = Z0.bit.Parse(src[i]);
+            return dst;
+            
+        }
+
         /// <summary>
         /// Parses a bit from a character
         /// </summary>

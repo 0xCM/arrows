@@ -15,10 +15,122 @@ namespace Z0
 
     public static class Num128
     {
+        [MethodImpl(Inline)]
+        static unsafe Num128<T> scalar<T>(byte src)
+            where T : struct, IEquatable<T>
+        {
+            var dst = stackalloc byte[16];            
+            dst[0] = src;
+            return Unsafe.AsRef<Num128<T>>(dst);
+        }
+
+
+        [MethodImpl(Inline)]
+        static unsafe Num128<T> scalar<T>(sbyte src)
+            where T : struct, IEquatable<T>
+        {
+            var dst = stackalloc sbyte[16];            
+            dst[0] = src;
+            return Unsafe.AsRef<Num128<T>>(dst);
+        }
+
+        [MethodImpl(Inline)]
+        static unsafe Num128<T> scalar<T>(short src)
+            where T : struct, IEquatable<T>
+        {
+            var dst = stackalloc short[8];            
+            dst[0] = src;
+            return Unsafe.AsRef<Num128<T>>(dst);
+        }
+
+        [MethodImpl(Inline)]
+        static unsafe Num128<T> scalar<T>(ushort src)
+            where T : struct, IEquatable<T>
+        {
+            var dst = stackalloc ushort[8];            
+            dst[0] = src;
+            return Unsafe.AsRef<Num128<T>>(dst);
+        }
+
+
+        [MethodImpl(Inline)]
+        static unsafe Num128<T> scalar<T>(int src)
+            where T : struct, IEquatable<T>
+        {
+            var dst = stackalloc int[4];            
+            dst[0] = src;
+            return Unsafe.AsRef<Num128<T>>(dst);
+        }
+
+
+        [MethodImpl(Inline)]
+        static unsafe Num128<T> scalar<T>(uint src)
+            where T : struct, IEquatable<T>
+        {
+            var dst = stackalloc uint[4];            
+            dst[0] = src;
+            return Unsafe.AsRef<Num128<T>>(dst);
+        }
+
+
+        [MethodImpl(Inline)]
+        static unsafe Num128<T> scalar<T>(long src)
+            where T : struct, IEquatable<T>
+        {
+            var dst = stackalloc long[2];            
+            dst[0] = src;
+            return Unsafe.AsRef<Num128<T>>(dst);
+        }
+
+        [MethodImpl(Inline)]
+        static unsafe Num128<T> scalar<T>(ulong src)
+            where T : struct, IEquatable<T>
+        {
+            var dst = stackalloc ulong[2];            
+            dst[0] = src;
+            return Unsafe.AsRef<Num128<T>>(dst);
+        }
+
+        [MethodImpl(Inline)]
+        static unsafe Num128<T> scalar<T>(float src)
+            where T : struct, IEquatable<T>
+        {
+            var dst = stackalloc float[4];            
+            dst[0] = src;
+            return Unsafe.AsRef<Num128<T>>(dst);
+        }
+
+        [MethodImpl(Inline)]
+        static unsafe Num128<T> scalar<T>(double src)
+            where T : struct, IEquatable<T>
+        {
+            var dst = stackalloc double[2];            
+            dst[0] = src;
+            return Unsafe.AsRef<Num128<T>>(dst);
+        }
+
+
        [MethodImpl(Inline)]
         public static unsafe Num128<T> define<T>(T value)
             where T : struct, IEquatable<T>
         {
+
+            // return typecode<T>() switch
+            // {
+            //     TypeCode.SByte => scalar<T>(cast<sbyte>(value)),
+            //     TypeCode.Byte => scalar<T>(cast<byte>(value)),
+            //     TypeCode.Int16 => scalar<T>(cast<short>(value)),
+            //     TypeCode.UInt16 => scalar<T>(cast<ushort>(value)),
+            //     TypeCode.Int32 => scalar<T>(cast<int>(value)),
+            //     TypeCode.UInt32 => scalar<T>(cast<uint>(value)),
+            //     TypeCode.Int64 => scalar<T>(cast<long>(value)),
+            //     TypeCode.UInt64 => scalar<T>(cast<ulong>(value)),
+            //     TypeCode.Single => scalar<T>(cast<float>(value)),
+            //     TypeCode.Double => scalar<T>(cast<double>(value)),
+            //     _ => throw new NotSupportedException()
+
+            // };
+
             void* scalar = typecode<T>() switch 
             {
                 TypeCode.SByte => i8num(value, 16),

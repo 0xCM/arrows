@@ -36,7 +36,6 @@ namespace Z0
 
 
         }
-
     }
 
     public readonly struct BitString : Structures.BitString<BitString>
@@ -119,72 +118,4 @@ namespace Z0
     }
 
  
-    partial class xcore
-    {
-        /// <summary>
-        /// Constructs a bitstring from a number
-        /// </summary>
-        /// <param name="src">The source number</param>
-        [MethodImpl(Inline)]   
-        public static BitString ToBitString(this byte src)
-            => primops.bitstring(src);
-
-        /// <summary>
-        /// Constructs a bitstring from a number
-        /// </summary>
-        /// <param name="src">The source number</param>
-        [MethodImpl(Inline)]   
-        public static BitString ToBitString(this sbyte src)
-            => primops.bitstring(src);
-
-        /// <summary>
-        /// Constructs a bitstring from a number
-        /// </summary>
-        /// <param name="src">The source number</param>
-        [MethodImpl(Inline)]   
-        public static BitString ToBitString(this short src)
-            => primops.bitstring(src);
-
-        /// <summary>
-        /// Constructs a bitstring from a number
-        /// </summary>
-        /// <param name="src">The source number</param>
-        [MethodImpl(Inline)]   
-        public static BitString ToBitString(this ushort src)
-            => primops.bitstring(src);
-
-        /// <summary>
-        /// Constructs a bitstring from a number
-        /// </summary>
-        /// <param name="src">The source number</param>
-        [MethodImpl(Inline)]   
-        public static BitString ToBitString(this int src)
-            => primops.bitstring(src);
-
-        /// <summary>
-        /// Constructs a bitstring from a number
-        /// </summary>
-        /// <param name="src">The source number</param>
-        [MethodImpl(Inline)]   
-        public static BitString ToBitString(this uint src)
-            => primops.bitstring(src);
-
-        /// <summary>
-        /// Constructs a bitstring from a number
-        /// </summary>
-        /// <param name="src">The source number</param>
-        [MethodImpl(Inline)]   
-        public static BitString ToBitString(this long src)
-            => primops.bitstring(src);
-
-        /// <summary>
-        /// Constructs a bitstring from a number
-        /// </summary>
-        /// <param name="src">The source number</param>
-        [MethodImpl(Inline)]   
-        public static BitString ToBitString(this ulong src)
-            => primops.bitstring(src);
-
-
-    }
 }

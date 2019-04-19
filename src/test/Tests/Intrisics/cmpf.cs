@@ -150,13 +150,13 @@ namespace Z0.Tests.InXTests
 
             public void BitPack()
             {
-                Claim.eq((byte)0b01110011,bitpack(1,1,0,0,1,1,1,0));
+                Claim.eq((byte)0b01110011,Bits.pack8(1,1,0,0,1,1,1,0));
 
-                Claim.eq((byte)0b00000001,bitpack(1,0,0,0,0,0,0,0));
+                Claim.eq((byte)0b00000001,Bits.pack8(1,0,0,0,0,0,0,0));
 
-                Claim.eq((byte)0b00000010,bitpack(0,1,0,0,0,0,0,0));
+                Claim.eq((byte)0b00000010,Bits.pack8(0,1,0,0,0,0,0,0));
 
-                Claim.eq((byte)0b11111111,bitpack(1,1,1,1,1,1,1,1));
+                Claim.eq((byte)0b11111111,Bits.pack8(1,1,1,1,1,1,1,1));
 
             }
 

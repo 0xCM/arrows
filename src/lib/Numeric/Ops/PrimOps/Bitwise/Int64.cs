@@ -7,87 +7,88 @@ namespace Z0
     using System;
     using System.Numerics;
     using System.Runtime.CompilerServices;
+    
     using static zcore;
-
     using static Operative;
+
+    using target = System.Int64;
+    using targets = System.Collections.Generic.IReadOnlyList<long>;
 
     partial class PrimOps { partial class Reify {
 
         public readonly partial struct Bitwise : 
-            Bitwise<long> 
+            Bitwise<target> 
         {
 
             [MethodImpl(Inline)]   
-            public long and(long a, long b) 
+            public target and(target a, target b) 
                 => a & b;
 
+            [MethodImpl(Inline)]
+            public targets and(targets lhs, targets rhs)
+                => fuse(lhs,rhs, and, out target[] dst);
+
             [MethodImpl(Inline)]   
-            public long or(long a, long b) 
+            public target or(target a, target b) 
                 => a | b;
 
-            [MethodImpl(Inline)]   
-            public long xor(long a, long b) 
-                => a ^ b;
+            [MethodImpl(Inline)]
+            public targets or(targets lhs, targets rhs)
+                => fuse(lhs,rhs, or, out target[] dst);
 
             [MethodImpl(Inline)]   
-            public long lshift(long a, int shift) 
+            public target xor(target a, target b) 
+                => a ^ b;
+
+            [MethodImpl(Inline)]
+            public targets xor(targets lhs, targets rhs)
+                => fuse(lhs,rhs, xor, out target[] dst);
+
+            [MethodImpl(Inline)]   
+            public target lshift(target a, int shift) 
                 => a << shift;
 
             [MethodImpl(Inline)]   
-            public long rshift(long a, int shift) 
+            public target rshift(target a, int shift) 
                 => a >> shift;
 
             [MethodImpl(Inline)]   
-            public long flip(long a) 
+            public target flip(target a) 
                 => ~ a;
 
-            /// <summary>
-            /// Renders a number as a base-2 formatted string
-            /// </summary>
-            /// <param name="src">The source number</param>
             [MethodImpl(Inline)]
-            public string bitchars(long src)
-                => lpadZ(Convert.ToString(src,2), primops.bitsize<long>());
+            public targets flip(targets lhs)
+                => map(lhs,flip);
+
+            [MethodImpl(Inline)]
+            public string bitchars(target src)
+                => lpadZ(Convert.ToString(src,2), primops.bitsize<target>());
 
             [MethodImpl(Inline)]   
-            public BitString bitstring(long src) 
-                => BitString.define(Bits.parse(bitchars(src)));
+            public BitString bitstring(target src) 
+                => BitString.define(bit.parse(bitchars(src)));
 
-            /// <summary>
-            /// Extracts the data contained in the source as an array of bytes
-            /// </summary>
-            /// <param name="src">The source value</param>
             [MethodImpl(Inline)]
-            public byte[] bytes(long src)
+            public byte[] bytes(target src)
                 => BitConverter.GetBytes(src);
 
-            /// <summary>
-            /// Determines whether a position-specified bit in the source is on
-            /// </summary>
-            /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public bool testbit(long src, int pos)
+            public bool testbit(target src, int pos)
                 => (src & (1L << pos)) != 0L;
 
-
             [MethodImpl(Inline)]
-            public bit[] bits(long src)
+            public bit[] bits(target src)
             {
-                var bitsize = 64;
-                var maxidx = bitsize - 1;
-                var dst = array<bit>(bitsize); 
-                for(var i=0; i<= maxidx; i++)               
-                    dst[maxidx-i] = src & (1L << i);
-                return dst;
+                var dst = array<bit>(SizeOf<target>.BitSize);
+                for(var i = 0; i < SizeOf<target>.BitSize; i++)
+                    dst[i] = testbit(src,i);
+                return dst; 
             }
-
-            /// <summary>
-            /// Counts the number of trailing zero bits in the source
-            /// </summary>
-            /// <param name="src">The bit source</param>
+            
             [MethodImpl(Inline)]
-            public static int countTrailingOff(long src)
+            public static int countTrailingOff(target src)
                 => BitOperations.TrailingZeroCount(src);
+
 
         }
     }

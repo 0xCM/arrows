@@ -8,70 +8,89 @@ namespace Z0
     using System.Numerics;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    
     using static zcore;
-
     using static Operative;
-
     using static Bits;
+
+    using target = System.UInt32;
+    using targets = System.Collections.Generic.IReadOnlyList<uint>;
+
     partial class PrimOps { partial class Reify {
         
         public readonly partial struct Bitwise : 
-            Bitwise<uint> 
+            Bitwise<target> 
         {
             [MethodImpl(Inline)]   
-            public uint and(uint a, uint b) 
-                => a & b;
+            public target and(target lhs, target rhs) 
+                => lhs & rhs;
 
             [MethodImpl(Inline)]   
-            public uint or(uint a, uint b) 
-                => a | b;
+            public targets and(targets lhs, targets rhs)
+                => fuse(lhs,rhs, and, out target[] dst);
+
 
             [MethodImpl(Inline)]   
-            public uint xor(uint a, uint b) 
-                => a ^ b;
+            public target or(target a, target b) 
+                => (target)(a | b);
+
+            [MethodImpl(Inline)]
+            public targets or(targets lhs, targets rhs)
+                => fuse(lhs,rhs, or, out target[] dst);
 
             [MethodImpl(Inline)]   
-            public uint lshift(uint a, int shift) 
+            public target xor(target a, target b) 
+                => (target)(a ^ b);
+
+            [MethodImpl(Inline)]
+            public targets xor(targets lhs, targets rhs)
+                => fuse(lhs,rhs, xor, out target[] dst);
+
+            [MethodImpl(Inline)]   
+            public target lshift(target a, int shift) 
                 => a << shift;
 
             [MethodImpl(Inline)]   
-            public uint rshift(uint lhs, int rhs) 
+            public target rshift(target lhs, int rhs) 
                 => lhs >> rhs;
 
             [MethodImpl(Inline)]   
-            public uint flip(uint src) 
+            public target flip(target src) 
                 => ~ src;
 
             [MethodImpl(Inline)]
-            static string bitcharsu32(uint src)
-                => lpadZ(Convert.ToString(src,2), primops.bitsize<uint>());
+            public targets flip(targets lhs)
+                => map(lhs,flip);
 
             [MethodImpl(Inline)]
-            public string bitchars(uint src)
+            static string bitcharsu32(target src)
+                => lpadZ(Convert.ToString(src,2), primops.bitsize<target>());
+
+            [MethodImpl(Inline)]
+            public string bitchars(target src)
                 => bitcharsu32(src);
 
             [MethodImpl(Inline)]   
-            public BitString bitstring(uint src) 
-                => BitString.define(Bits.parse(bitchars(src)));
+            public BitString bitstring(target src) 
+                => BitString.define(bit.parse(bitchars(src)));
 
             [MethodImpl(Inline)]
-            public byte[] bytes(uint src)
+            public byte[] bytes(target src)
                 => BitConverter.GetBytes(src);
 
             [MethodImpl(Inline)]
-            public bool testbit(uint src, int pos)
+            public bool testbit(target src, int pos)
                 => (src & (1u << pos)) != 0u;
 
             [MethodImpl(Inline)]
-            public bit[] bits(uint src)
+            public bit[] bits(target src)
             {
-                var bitsize = 32;
-                var maxidx = bitsize - 1;
-                var dst = array<bit>(bitsize); 
-                for(var i=0; i<= maxidx; i++)               
-                    dst[maxidx-i] = src & (1u << i);
-                return dst;
+                var dst = array<bit>(SizeOf<target>.BitSize);
+                for(var i = 0; i < SizeOf<target>.BitSize; i++)
+                    dst[i] = testbit(src,i);
+                return dst; 
             }
+
 
             /// <summary>
             /// Rotates the source bits leftward
@@ -79,7 +98,7 @@ namespace Z0
             /// <param name="src">The source value</param>
             /// <param name="offset">The rotation magnitude</param>
             [MethodImpl(Inline)]
-            public static uint lrot(uint src, int offset)            
+            public static target lrot(target src, int offset)            
                 => BitOperations.RotateLeft(src,offset);
 
             /// <summary>
@@ -88,7 +107,7 @@ namespace Z0
             /// <param name="src">The source value</param>
             /// <param name="offset">The rotation magnitude</param>
             [MethodImpl(Inline)]
-            public static uint rrot(uint src, int offset)            
+            public static target rrot(target src, int offset)            
                 => BitOperations.RotateLeft(src,offset);
 
             /// <summary>
@@ -96,7 +115,7 @@ namespace Z0
             /// </summary>
             /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public static int countLeadingOff(uint src)
+            public static int countLeadingOff(target src)
                 => BitOperations.LeadingZeroCount(src);
 
             /// <summary>
@@ -104,7 +123,7 @@ namespace Z0
             /// </summary>
             /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public static int countTrailingOff(uint src)
+            public static int countTrailingOff(target src)
                 => BitOperations.TrailingZeroCount(src);
 
         }

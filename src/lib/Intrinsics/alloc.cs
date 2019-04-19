@@ -317,9 +317,6 @@ namespace Z0
         }
 
 
-
-        
-
         [MethodImpl(Inline)]
         public static void checklen128<T>(T[] src, int offset = 0)
             where T : struct, IEquatable<T>
@@ -512,6 +509,9 @@ namespace Z0
             var dst =  stackalloc double[count];
             return copy(src,dst);
         }
- 
+    
+        [MethodImpl(Inline)]
+        public static unsafe void* pointer<T>(ref T src)
+            => Unsafe.AsPointer(ref src);
     }
 }

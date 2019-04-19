@@ -30,7 +30,7 @@ namespace Z0
         /// <param name="rhs">The second vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> and<T>(Vec128<T> lhs, Vec128<T> rhs)
+        public static Vec128<T> and<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
                 => SSR.InXAndG<T>.TheOnly.and(lhs,rhs);
 
@@ -47,12 +47,11 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public Vec128<T> and(Vec128<T> lhs, Vec128<T> rhs)
+            public Vec128<T> and(in Vec128<T> lhs, in Vec128<T> rhs)
                 => Operator.and(lhs,rhs);
         }
 
         public readonly struct InXAnd :
-
             InXAnd<byte>,
             InXAnd<sbyte>,
             InXAnd<short>,
@@ -68,48 +67,44 @@ namespace Z0
             public static readonly InXAnd TheOnly = default;
 
             [MethodImpl(Inline)]
-            public Vec128<byte> and(Vec128<byte> lhs, Vec128<byte> rhs)
+            public Vec128<byte> and(in Vec128<byte> lhs, in Vec128<byte> rhs)
                 => Avx2.And(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<short> and(Vec128<short> lhs, Vec128<short> rhs)
+            public Vec128<short> and(in Vec128<short> lhs, in Vec128<short> rhs)
                 => Avx2.And(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<sbyte> and(Vec128<sbyte> lhs, Vec128<sbyte> rhs)
+            public Vec128<sbyte> and(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
                 => Avx2.And(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<ushort> and(Vec128<ushort> lhs, Vec128<ushort> rhs)
+            public Vec128<ushort> and(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
                 => Avx2.And(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<int> and(Vec128<int> lhs, Vec128<int> rhs)
+            public Vec128<int> and(in Vec128<int> lhs, in Vec128<int> rhs)
                 => Avx2.And(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<uint> and(Vec128<uint> lhs, Vec128<uint> rhs)
+            public Vec128<uint> and(in Vec128<uint> lhs, in Vec128<uint> rhs)
                 => Avx2.And(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<long> and(Vec128<long> lhs, Vec128<long> rhs)
+            public Vec128<long> and(in Vec128<long> lhs, in Vec128<long> rhs)
                 => Avx2.And(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<ulong> and(Vec128<ulong> lhs, Vec128<ulong> rhs)
+            public Vec128<ulong> and(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
                 => Avx2.And(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<float> and(Vec128<float> lhs, Vec128<float> rhs)
+            public Vec128<float> and(in Vec128<float> lhs, in Vec128<float> rhs)
                 => Avx2.And(lhs, rhs);
             
             [MethodImpl(Inline)]
-            public Vec128<double> and(Vec128<double> lhs, Vec128<double> rhs)
+            public Vec128<double> and(in Vec128<double> lhs, in Vec128<double> rhs)
                 => Avx2.And(lhs, rhs);   
-
         }
-
-
     }
-
 }

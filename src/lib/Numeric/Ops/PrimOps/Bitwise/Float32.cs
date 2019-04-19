@@ -7,70 +7,99 @@ namespace Z0
     using System;
     using System.Numerics;
     using System.Runtime.CompilerServices;
+    
     using static zcore;
-
     using static Operative;
 
+    using target = System.Single;
+    using targets = System.Collections.Generic.IReadOnlyList<float>;
+
     partial class PrimOps { partial class Reify {
-        
-        public readonly partial struct Bitwise : 
-            Bitwise<float> 
+
+        [MethodImpl(Inline)]   
+        static targets rshift(targets src, int shift)
         {
+            target unaryShift(target x) => bitsf(bitsf(x) >> shift);
+            return apply(src,unaryShift, out target[] dst);
+        }
+
+        [MethodImpl(Inline)]   
+        static targets lshift(targets src, int shift)
+        {
+            target unaryShift(target x) => bitsf(bitsf(x) << shift);            
+            return apply(src,unaryShift, out target[] dst);
+        }
+
+        public readonly partial struct Bitwise : 
+            Bitwise<target> 
+        {
+            [MethodImpl(Inline)]   
+            public target and(target lhs, target rhs)
+                => bitsf(bitsf(lhs) & bitsf(rhs));
+
+            [MethodImpl(Inline)]   
+            public targets and(targets lhs, targets rhs)
+                => fuse(lhs,rhs, and, out target[] dst);
+
+            [MethodImpl(Inline)]   
+            public target or(target lhs, target rhs)
+                => bitsf(bitsf(lhs) | bitsf(rhs));
+
+            [MethodImpl(Inline)]   
+            public targets or(targets lhs, targets rhs)
+                => fuse(lhs,rhs, or, out target[] dst);
+
+            [MethodImpl(Inline)]   
+            public target xor(target lhs, target rhs)
+                => bitsf(bitsf(lhs) ^ bitsf(rhs));
+
+            [MethodImpl(Inline)]   
+            public targets xor(targets lhs, targets rhs)
+                => fuse(lhs,rhs, xor, out target[] dst);
+
+            [MethodImpl(Inline)]   
+            public target flip(target x)
+                => bitsf(~bitsf(x));
+
+            [MethodImpl(Inline)]   
+            public targets flip(targets src)
+                => map(src,flip);
+
+            [MethodImpl(Inline)]   
+            public target lshift(target lhs, int rhs)
+                => bitsf(bitsf(lhs) << rhs);
+
+            [MethodImpl(Inline)]   
+            public targets lshift(targets src, int shift)
+                => Reify.lshift(src,shift);
+
+            [MethodImpl(Inline)]   
+            public target rshift(target lhs, int rhs)
+                => bitsf(bitsf(lhs) >> rhs);
+
+            [MethodImpl(Inline)]   
+            public targets rshift(targets src, int shift)
+                => Reify.rshift(src,shift);
         
-            [MethodImpl(Inline)]   
-            public float and(float lhs, float rhs)
-                => (int)lhs & (int)rhs;
-
-            [MethodImpl(Inline)]   
-            public float or(float lhs, float rhs)
-                => (int)lhs | (int)rhs;
-
-            [MethodImpl(Inline)]   
-            public float xor(float lhs, float rhs)
-                => (int)lhs ^ (int)rhs;
-
-            [MethodImpl(Inline)]   
-            public float flip(float x)
-                => ~(int)x;
-
-            [MethodImpl(Inline)]   
-            public float lshift(float lhs, int rhs)
-                => (int)lhs << rhs;
-
-            [MethodImpl(Inline)]   
-            public float rshift(float lhs, int rhs)
-                => (int)lhs >> rhs;
-        
-            /// <summary>
-            /// Renders a number as a base-2 formatted string
-            /// </summary>
-            /// <param name="src">The source number</param>
             [MethodImpl(Inline)]
-            public string bitchars(float src)
+            public string bitchars(target src)
                 => bitchars(BitConverter.SingleToInt32Bits(src));
          
             [MethodImpl(Inline)]   
-            public BitString bitstring(float src) 
-                => BitString.define(Bits.parse(bitchars(src)));
+            public BitString bitstring(target src) 
+                => BitString.define(bit.parse(bitchars(src)));
 
-            /// <summary>
-            /// Interprets the source as an array of bytes
-            /// </summary>
-            /// <param name="src">The soruce value</param>
+
             [MethodImpl(Inline)]
-            public byte[] bytes(float src)
+            public byte[] bytes(target src)
                 => BitConverter.GetBytes(src);
 
-            /// <summary>
-            /// Determines whether a position-specified bit in the source is on
-            /// </summary>
-            /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public bool testbit(float src, int pos)
+            public bool testbit(target src, int pos)
                 => testbit(BitConverter.SingleToInt32Bits(src),pos);
 
             [MethodImpl(Inline)]
-            public bit[] bits(float src)
+            public bit[] bits(target src)
                 => bits(BitConverter.SingleToInt32Bits(src));
 
 

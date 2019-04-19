@@ -4,6 +4,13 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+
+    public static partial class BitwiseX 
+    {
+        static readonly PrimOps.Reify.Bitwise Ops = default;
+
+    }
+
     /// <summary>
     /// Namescope for types supporting the Stateless Singleton Reification pattern
     /// </summary>

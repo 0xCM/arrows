@@ -7,64 +7,69 @@ namespace Z0
     using System;
     using System.Numerics;
     using System.Runtime.CompilerServices;
-    using static zcore;
 
+    using static zcore;
     using static Operative;
+
+    using target = System.Decimal;
+    using targets = System.Collections.Generic.IReadOnlyList<decimal>;
 
     partial class PrimOps { partial class Reify {
         
         public readonly partial struct Bitwise : 
-            Bitwise<decimal> 
+            Bitwise<target> 
         {
 
             [MethodImpl(Inline)]   
-            public decimal and(decimal lhs, decimal rhs)
+            public target and(target lhs, target rhs)
                 => (long)lhs & (long)rhs;
 
             [MethodImpl(Inline)]   
-            public decimal or(decimal lhs, decimal rhs)
+            public targets and(targets lhs, targets rhs)
+                => fuse(lhs,rhs, and, out target[] dst);
+
+            [MethodImpl(Inline)]   
+            public target or(target lhs, target rhs)
                 => (long)lhs | (long)rhs;
 
             [MethodImpl(Inline)]   
-            public decimal xor(decimal lhs, decimal rhs)
+            public target xor(target lhs, target rhs)
                 => (long)lhs ^ (long)rhs;
 
             [MethodImpl(Inline)]   
-            public decimal flip(decimal x)
+            public target flip(target x)
                 => ~(long)x;
 
             [MethodImpl(Inline)]   
-            public decimal lshift(decimal lhs, int rhs)
+            public target lshift(target lhs, int rhs)
                 => (long)lhs << rhs;
 
             [MethodImpl(Inline)]   
-            public decimal rshift(decimal lhs, int rhs)
+            public target rshift(target lhs, int rhs)
                 => (long)lhs >> rhs;
 
-
             [MethodImpl(Inline)]
-            public static string bitchars128(decimal src)
+            public static string bitchars128(target src)
                 => zcore.apply(Bits.split(src), 
-                    parts => bitchars32(parts.hihi) + bitchars32(parts.hilo)
-                        + bitchars32(parts.lohi) + bitchars32(parts.lolo));
+                        parts => append(
+                            bitchars32(parts.x0), 
+                            bitchars32(parts.x1),
+                            bitchars32(parts.x2), 
+                            bitchars32(parts.x3))
+                            );
 
             [MethodImpl(Inline)]
-            public string bitchars(decimal src)
+            public string bitchars(target src)
                 => bitchars128(src);
-
             
             [MethodImpl(Inline)]   
-            public BitString bitstring(decimal src) 
-                => BitString.define(Bits.parse(bitchars(src)));
+            public BitString bitstring(target src) 
+                => BitString.define(bit.parse(bitchars(src)));
 
-            /// <summary>
-            /// Determines whether a position-specified bit in the source is on
-            /// </summary>
-            /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public bool testbit(decimal src, int pos)
+            public bool testbit(target src, int pos)
             {
-                var bits = Decimal.GetBits(src);
+                var bits = target.GetBits(src);
                 if(pos < 32)
                     return testbit(bits[0], pos);
                 if(pos < 64)
@@ -76,17 +81,30 @@ namespace Z0
                 throw new ArgumentException($"Bit position {pos} out of range");
             }
 
-            /// <summary>
-            /// Interprets the source as an array of bytes
-            /// </summary>
-            /// <param name="src">The soruce value</param>
             [MethodImpl(Inline)]
-            public byte[] bytes(decimal src)
-                => zcore.concat(map(Decimal.GetBits(src), bytes));
+            public byte[] bytes(target src)
+                => zcore.concat(map(target.GetBits(src), bytes));
 
             [MethodImpl(Inline)]
-            public bit[] bits(decimal src)
-                => Arr.concat(map(Decimal.GetBits(src),bits));                                        
+            public bit[] bits(target src)
+            {
+                var dst = array<bit>(SizeOf<target>.BitSize);
+                for(var i = 0; i < SizeOf<target>.BitSize; i++)
+                    dst[i] = testbit(src,i);
+                return dst; 
+            }
+
+            [MethodImpl(Inline)]
+            public targets or(targets lhs, targets rhs)
+                => fuse(lhs,rhs, or, out target[] dst);
+
+            [MethodImpl(Inline)]
+            public targets xor(targets lhs, targets rhs)
+                => fuse(lhs,rhs, xor, out target[] dst);
+
+            [MethodImpl(Inline)]
+            public targets flip(targets lhs)
+                => map(lhs,flip);
         }
     }
 }}

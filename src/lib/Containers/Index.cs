@@ -7,9 +7,66 @@ namespace Z0
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
     using System.Linq;
 
     using static zcore;
+
+    /// <summary>
+    /// Defines an integrally-indexed associative array
+    /// </summary>
+    public readonly struct Index<T> : IReadOnlyList<T>, IEquatable<Index<T>>
+        where T : IEquatable<T>
+    {
+        readonly T[] data;
+
+        [MethodImpl(Inline)]
+        public static implicit operator Index<T>(in T[] src)
+            => new Index<T>(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator T[](in Index<T> src)
+            => src.data;
+
+        [MethodImpl(Inline)]
+        public Index(in T[] src)
+            => this.data = src;
+        
+        [MethodImpl(Inline)]
+        public T item(int key) 
+            => data[key];
+            
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+            => (data as IReadOnlyList<T>).GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
+            => data.GetEnumerator();
+
+        public bool Equals(Index<T> rhs)
+        {
+            if(rhs.Length != this.Length)
+                return false;
+            
+            for(var i= 0; i< Length; i++)
+                if(!data[i].Equals(rhs[i])) 
+                    return false;
+            return true;
+        }
+
+        public T this[int key] 
+        {
+            [MethodImpl(Inline)]
+            get => data[key];
+        }
+            
+        public int Length
+            => data.Length;
+
+        public int Count 
+            => data.Length;
+    }
+
+
 
     /// <summary>
     /// Defines an associative array
@@ -80,31 +137,5 @@ namespace Z0
         }
     }
 
-    /// <summary>
-    /// Defines an integrally-indexed associative array
-    /// </summary>
-    public readonly struct Index<V> :  IReadOnlyList<V>
-    {
-        IReadOnlyList<V> data {get;}        
-
-        public Index(IEnumerable<V> src)
-            => this.data = src.ToList();
-
-        public V item(int key) => this[key];
-
-        IEnumerator<V> IEnumerable<V>.GetEnumerator()
-            => data.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator()
-            => data.GetEnumerator();
-
-        public V this[int key] => data[key];   
-
-        public IEnumerable<KeyedValue<int,V>> content
-            => mapi((k,v) => kvp(k,v), data);
-
-        public int Count 
-            => data.Count;
-    }
 }
 
