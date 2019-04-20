@@ -32,7 +32,7 @@ namespace Z0
         /// <param name="rhs">The second vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> or<T>(Vec128<T> lhs, Vec128<T> rhs)
+        public static Vec128<T> or<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
                 => SSR.InXOrG<T>.TheOnly.or(lhs,rhs);
     }
@@ -49,7 +49,7 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public Vec128<T> or(Vec128<T> lhs, Vec128<T> rhs)
+            public Vec128<T> or(in Vec128<T> lhs, in Vec128<T> rhs)
                 => Operator.or(lhs,rhs);
         }
 
@@ -70,44 +70,44 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public Vec128<sbyte> or(Vec128<sbyte> lhs, Vec128<sbyte> rhs)
+            public Vec128<sbyte> or(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
                 => Avx2.Or(lhs, rhs);
 
 
             [MethodImpl(Inline)]
-            public Vec128<byte> or(Vec128<byte> lhs, Vec128<byte> rhs)
+            public Vec128<byte> or(in Vec128<byte> lhs, in Vec128<byte> rhs)
                 => Avx2.Or(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<short> or(Vec128<short> lhs, Vec128<short> rhs)
+            public Vec128<short> or(in Vec128<short> lhs, in Vec128<short> rhs)
                 => Avx2.Or(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<ushort> or(Vec128<ushort> lhs, Vec128<ushort> rhs)
+            public Vec128<ushort> or(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
                 => Avx2.Or(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<int> or(Vec128<int> lhs, Vec128<int> rhs)
+            public Vec128<int> or(in Vec128<int> lhs, in Vec128<int> rhs)
                 => Avx2.Or(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<uint> or(Vec128<uint> lhs, Vec128<uint> rhs)
+            public Vec128<uint> or(in Vec128<uint> lhs, in Vec128<uint> rhs)
                 => Avx2.Or(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<long> or(Vec128<long> lhs, Vec128<long> rhs)
+            public Vec128<long> or(in Vec128<long> lhs, in Vec128<long> rhs)
                 => Avx2.Or(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<ulong> or(Vec128<ulong> lhs, Vec128<ulong> rhs)
+            public Vec128<ulong> or(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
                 => Avx2.Or(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<float> or(Vec128<float> lhs, Vec128<float> rhs)
+            public Vec128<float> or(in Vec128<float> lhs, in Vec128<float> rhs)
                 => Avx2.Or(lhs, rhs);
     
             [MethodImpl(Inline)]
-            public Vec128<double> or(Vec128<double> lhs, Vec128<double> rhs)
+            public Vec128<double> or(in Vec128<double> lhs, in Vec128<double> rhs)
                 => Avx2.Or(lhs, rhs);
 
         }

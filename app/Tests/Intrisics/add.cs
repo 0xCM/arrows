@@ -35,7 +35,7 @@ namespace Z0.Tests.InXTests
         protected override Vec128BinOpOut<T> VecOpOut
             => InXG.add;
 
-        protected override ListBinOp<T> ListOp {get;} 
+        protected override IndexBinOp<T> IndexOp {get;} 
             = PrimOps.add;        
     }
 

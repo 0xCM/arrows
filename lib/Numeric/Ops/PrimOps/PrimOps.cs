@@ -19,7 +19,7 @@ namespace Z0
 
         public interface PrimOps<T> :
                 Additive<T>, 
-                Additive<IReadOnlyList<T>>,            
+                Additive<Index<T>>,            
 
                 Subtractive<T>,
                 Subtractive<IReadOnlyList<T>>,
@@ -87,7 +87,7 @@ namespace Z0
             /// <param name="lhs">The first list</param>
             /// <param name="rhs">The second list</param>
             /// <returns>A list r whose i'th entry is deterimed by r[i] = lhs[i] / rhs[i] </returns>
-            IReadOnlyList<T> div(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs);
+            Index<T> div(Index<T> lhs, Index<T> rhs);
 
             /// <summary>
             /// Computes the component-wise modulus between two lists of equal length
@@ -221,7 +221,7 @@ namespace Z0
                 => Additive.add(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> add(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<T> add(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,add);
 
             [MethodImpl(Inline)]
@@ -237,7 +237,7 @@ namespace Z0
                 => Divisive.div(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> div(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<T> div(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,div);
 
             [MethodImpl(Inline)]
@@ -341,7 +341,7 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> and(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<T> and(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs, and);
 
             [MethodImpl(Inline)]
@@ -350,7 +350,7 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> or(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<T> or(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,or);
 
             [MethodImpl(Inline)]
@@ -359,7 +359,7 @@ namespace Z0
             
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> xor(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<T> xor(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,xor);
 
             [MethodImpl(Inline)]
@@ -368,7 +368,7 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> flip(IReadOnlyList<T> src)
+            public Index<T> flip(Index<T> src)
                 =>  map(src,flip);
 
             [MethodImpl(Inline)]

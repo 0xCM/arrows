@@ -61,7 +61,7 @@ namespace Z0.Tests.InXTests
 
         protected IReadOnlyList<Vec128<T>> RightVecSrc {get;}
 
-        protected IEnumerable<Vec128<T>> Results(Vec128BinOpOld<T> vecop)
+        protected IEnumerable<Vec128<T>> Results(Vec128BinOp<T> vecop)
         {
             for(var i = 0; i< VecCount; i++)
                 yield return vecop(LeftVecSrc[i], RightVecSrc[i]);            
@@ -74,7 +74,7 @@ namespace Z0.Tests.InXTests
         /// </summary>
         /// <param name="vecop">The intrinsic vector operator</param>
         /// <param name="listop">The primitive operator</param>
-        protected void Verify(Vec128BinOpOld<T> vecop, ListBinOp<T> listop)
+        protected void Verify(Vec128BinOp<T> vecop, IndexBinOp<T> listop)
         {
             var leftVals = Arr.partition(LeftDataSrc, VecLength).ToReadOnlyList();
             var rightVals = Arr.partition(RightDataSrc, VecLength).ToReadOnlyList();

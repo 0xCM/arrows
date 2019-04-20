@@ -76,17 +76,17 @@ namespace Z0
     public interface InXAvg<T> : InXOp<T>
         where T : struct, IEquatable<T>
     {
-        Vec128<T> avg(Vec128<T> lhs, Vec128<T> rhs);
-        Vec256<T> avg(Vec256<T> lhs, Vec256<T> rhs);
+        Vec128<T> avg(in Vec128<T> lhs, in Vec128<T> rhs);
+        Vec256<T> avg(in Vec256<T> lhs, in Vec256<T> rhs);
     }
 
 
     public interface InXDiv<T> : InXOp<T>
         where T : struct, IEquatable<T>
     {
-        Vec128<T> div(Vec128<T> lhs, Vec128<T> rhs);
+        Vec128<T> div(in Vec128<T> lhs, in Vec128<T> rhs);
         
-        Num128<T> div(Num128<T> lhs, Num128<T> rhs);
+        Num128<T> div(in Num128<T> lhs, in Num128<T> rhs);
     }
 
 
@@ -220,7 +220,7 @@ namespace Z0
         /// </summary>
         /// <param name="lhs">The first vector</param>
         /// <param name="rhs">The second vector</param>
-        Vec128<T> or(Vec128<T> lhs, Vec128<T> rhs);        
+        Vec128<T> or(in Vec128<T> lhs, in Vec128<T> rhs);        
     }
 
     /// <summary>
@@ -239,12 +239,26 @@ namespace Z0
         void store(in Vec128<T> src, T[] dst, int offset = 0);
 
         /// <summary>
+        /// Writes data data in a source vector to a target span
+        /// </summary>
+        /// <param name="src">The data source</param>
+        /// <param name="dst">The target span</param>
+        /// <param name="offset">The position in the target span where receipt of source data can begin</param>
+        void store(in Vec128<T> src, Span<T> dst, int offset = 0);
+
+        unsafe void store(in Vec128<T> src, void* dst);
+
+        /// <summary>
         /// Writes data data in a list of source vectors to a target array
         /// </summary>
         /// <param name="src">The data source</param>
         /// <param name="dst">The target array</param>
         /// <param name="offset">The position in the target array where receipt of source data can begin</param>
         void store(in Index<Vec128<T>> src, T[] dst, int offset = 0);
+
+        
+
+
     }
 
     /// <summary>

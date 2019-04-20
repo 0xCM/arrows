@@ -13,7 +13,7 @@ namespace Z0
     using static Bits;
 
     using target = System.Int16;
-    using targets = System.Collections.Generic.IReadOnlyList<short>;
+    using targets = Index<short>;
 
     partial class PrimOps { partial class Reify {
 

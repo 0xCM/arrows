@@ -29,14 +29,14 @@ namespace Z0.Tests.InXTests
 
         }
 
-        protected override Vec128BinOpOld<T> VecOpOld {get;} 
-            = InXG.xor<T>;
+        protected override Vec128BinOp<T> VecOp {get;}
+             = InXG.xor<T>;
 
-        protected override ListBinOp<T> ListOp {get;} 
+        protected override IndexBinOp<T> IndexOp {get;} 
             = PrimOps.xor;        
     }
 
-    public class XOrTests
+    class XOrTests
     {
         const string BasePath = P.InX128 + P.xor;
 

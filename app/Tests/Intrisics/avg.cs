@@ -29,7 +29,7 @@ namespace Z0.Tests.InXTests
 
         }
 
-        protected abstract IReadOnlyList<T> avg(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs);
+        protected abstract Index<T> avg(Index<T> lhs, Index<T> rhs);
 
 
         protected IEnumerable<Vec128<T>> Results()
@@ -57,7 +57,7 @@ namespace Z0.Tests.InXTests
             public override void Verify()
                 => base.Verify();
 
-            protected override IReadOnlyList<byte> avg(IReadOnlyList<byte> lhs, IReadOnlyList<byte> rhs)
+            protected override Index<byte> avg(Index<byte> lhs, Index<byte> rhs)
             {
                 var dst = alloc<byte>(VecLength);
                 iter(VecLength, i => dst[i] = lhs[i].Add(rhs[i],1).RShift(1));
@@ -79,7 +79,7 @@ namespace Z0.Tests.InXTests
             public override void Verify()
                 => base.Verify();
 
-            protected override IReadOnlyList<ushort> avg(IReadOnlyList<ushort> lhs, IReadOnlyList<ushort> rhs)
+            protected override Index<ushort> avg(Index<ushort> lhs, Index<ushort> rhs)
             {
                 var dst = alloc<ushort>(VecLength);
                 iter(VecLength, i => dst[i] = lhs[i].Add(rhs[i],1).RShift(1));

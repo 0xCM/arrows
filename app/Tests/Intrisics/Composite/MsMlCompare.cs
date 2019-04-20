@@ -44,7 +44,7 @@ namespace Z0.Tests.InXTests
         {
             var r0 = RunBaseline();
             var r1 = RunMSML();
-            var r2 = RunVec128A();
+            var r2 = RunVec128();
             var r3 = RunVec128Naive();
             for(var i = 0; i<r1.Length; i++)
             {
@@ -87,7 +87,7 @@ namespace Z0.Tests.InXTests
             return dst;
         }
 
-        float[] RunVec128A()
+        float[] RunVec128()
         {
             var dst = Data();
             InXComposites.addScalar(dst,ScalarVal);
@@ -107,20 +107,20 @@ namespace Z0.Tests.InXTests
         public void Measure()
         {
             long msml = 0, v128 = 0;
-            v128 += Measure(() => RunVec128A(), "z0/addscalar");
+            v128 += Measure(() => RunVec128(), "z0/addscalar");
             msml += Measure(() => RunMSML(), "msml/addscalar");
-            v128 += Measure(() => RunVec128A(), "z0/addscalar");
+            v128 += Measure(() => RunVec128(), "z0/addscalar");
             msml += Measure(() => RunMSML(), "msml/addscalar");
-            v128 += Measure(() => RunVec128A(), "z0/addscalar");
+            v128 += Measure(() => RunVec128(), "z0/addscalar");
             msml += Measure(() => RunMSML(), "msml/addscalar");
             msml += Measure(() => RunMSML(), "msml/addscalar");
-            v128 += Measure(() => RunVec128A(), "z0/addscalar");
+            v128 += Measure(() => RunVec128(), "z0/addscalar");
             msml += Measure(() => RunMSML(), "msml/addscalar");
-            v128 += Measure(() => RunVec128A(), "z0/addscalar");
+            v128 += Measure(() => RunVec128(), "z0/addscalar");
             msml += Measure(() => RunMSML(), "msml/addscalar");
-            v128 += Measure(() => RunVec128A(), "z0/addscalar");
+            v128 += Measure(() => RunVec128(), "z0/addscalar");
             msml += Measure(() => RunMSML(), "msml/addscalar");
-            v128 += Measure(() => RunVec128A(), "z0/addscalar");
+            v128 += Measure(() => RunVec128(), "z0/addscalar");
             trace($"z0: {v128}ms | msml: {msml}ms");
         }
     }

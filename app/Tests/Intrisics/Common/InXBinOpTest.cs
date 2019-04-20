@@ -31,7 +31,6 @@ namespace Z0.Tests.InXTests
 
         }
 
-        protected virtual Vec128BinOpOld<T> VecOpOld {get;}       
 
         protected virtual Vec128BinOp<T> VecOp {get;}
 
@@ -39,10 +38,10 @@ namespace Z0.Tests.InXTests
 
         protected virtual Vec128BinOpStore<T> VecOpStore {get;}
 
-        protected virtual ListBinOp<T> ListOp {get;}
+        protected virtual IndexBinOp<T> IndexOp {get;}
 
         protected IEnumerable<Vec128<T>> Results()
-            => Results(VecOpOld);
+            => Results(VecOp);
 
         protected IEnumerable<ArraySegment<T>> LeftSegments
             => Arr.partition(LeftDataSrc, VecLength);
@@ -50,14 +49,12 @@ namespace Z0.Tests.InXTests
         protected IEnumerable<ArraySegment<T>> RightSegments
             => Arr.partition(RightDataSrc, VecLength);
 
-
-
         IEnumerable<Vec128<T>> Expected()
         {
-            var leftSeg = LeftSegments.ToIndex();
-            var rightSeg = RightSegments.ToIndex();
+            var leftSeg = LeftSegments.ToArray();
+            var rightSeg = RightSegments.ToArray();
             for(var i =0; i< VecCount; i++)
-                yield return Vec128.define(ListOp(leftSeg[i],rightSeg[i]));
+                yield return Vec128.define(IndexOp(leftSeg[i],rightSeg[i]));
         }
 
         Lazy<Index<Vec128<T>>> _Expect;
@@ -87,7 +84,6 @@ namespace Z0.Tests.InXTests
                 vecop(LeftVecSrc[i], RightVecSrc[i], out results[i]);                
             return results;        
         }
-
 
         protected void Measure(Vec128BinOp<T> vecop, int? reps = null)
         {
@@ -165,16 +161,6 @@ namespace Z0.Tests.InXTests
             VerifyOutOp();
         }
 
-        
-
-        protected void Measure(ListBinOp<T> op, int? reps = null)
-        {
-            var repeat = reps ?? Defaults.OpApplyReps;
-            var statsMsg = $"{VecCount} vector pairs | {reps} reps";
-
-        }
-
-
         protected void ApplyAll(int? reps = null)
         {
             var repeat = reps ?? Defaults.OpApplyReps;
@@ -205,7 +191,7 @@ namespace Z0.Tests.InXTests
         }
 
         public virtual void Verify()
-            => Verify(VecOpOld, ListOp);        
+            => Verify(VecOp, IndexOp);        
 
         public virtual void Apply()
             => Results().ToList();

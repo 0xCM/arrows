@@ -14,7 +14,7 @@ namespace Z0
     using static Operative;
 
     using target = System.UInt64;
-    using targets = System.Collections.Generic.IReadOnlyList<ulong>;
+    using targets = Index<ulong>;
 
     partial class PrimOps { partial class Reify {
         

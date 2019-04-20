@@ -118,11 +118,11 @@ namespace Z0
             var app = new App();
             var paths = new[]
             {
-                //Paths.InX,
+                Paths.InX128 + Paths.and
                 //Paths.numeric + Paths.bits
                 //Paths.bits,
                 //Paths.InX,
-                Paths.perf
+                //Paths.perf,
 
             };
             var pll = false;

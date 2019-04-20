@@ -36,12 +36,12 @@ namespace Z0.Tests.InXTests
         protected override Vec128BinOpOut<T> VecOpOut
             => InXG.and;
 
-        protected override ListBinOp<T> ListOp {get;} 
+        protected override IndexBinOp<T> IndexOp {get;} 
             = PrimOps.and;
         
     }
 
-    public class AndTests
+    class AndTests
     {
         const string BasePath = P.InX128 + P.and;
 

@@ -101,7 +101,7 @@ namespace Z0
             /// </summary>
             /// <param name="lhs">The first list</param>
             /// <param name="rhs">The second list</param>
-            IReadOnlyList<T> and(IReadOnlyList<T>  lhs, IReadOnlyList<T>  rhs);
+            Index<T> and(Index<T>  lhs, Index<T>  rhs);
 
             /// <summary>
             /// Computes the bitwise or from the supplied values
@@ -115,7 +115,7 @@ namespace Z0
             /// </summary>
             /// <param name="lhs">The first list</param>
             /// <param name="rhs">The second list</param>
-            IReadOnlyList<T> or(IReadOnlyList<T>  lhs, IReadOnlyList<T>  rhs);
+            Index<T> or(Index<T>  lhs, Index<T>  rhs);
 
 
             /// <summary>
@@ -130,7 +130,7 @@ namespace Z0
             /// </summary>
             /// <param name="lhs">The first list</param>
             /// <param name="rhs">The second list</param>
-            IReadOnlyList<T> xor(IReadOnlyList<T>  lhs, IReadOnlyList<T>  rhs);
+            Index<T> xor(Index<T>  lhs, Index<T>  rhs);
 
             /// <summary>
             /// Calculates the bitwise two's-complement of the input
@@ -143,7 +143,7 @@ namespace Z0
             /// </summary>
             /// <param name="lhs">The first list</param>
             /// <param name="rhs">The second list</param>
-            IReadOnlyList<T> flip(IReadOnlyList<T> lhs);
+            Index<T> flip(Index<T> lhs);
 
         }
 

@@ -10,7 +10,8 @@ namespace Z0
     using static zcore;
 
     using target = System.SByte;
-    using targets = System.Collections.Generic.IReadOnlyList<sbyte>;
+    using targets = Index<sbyte>;
+
 
 
     partial class BitwiseX

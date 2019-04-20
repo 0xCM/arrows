@@ -27,15 +27,15 @@ namespace Z0.Tests.InXTests
 
         }
 
-        protected override Vec128BinOpOld<T> VecOpOld {get;} 
+        protected override Vec128BinOp<T> VecOp {get;} 
             = InXG.or;
 
-        protected override ListBinOp<T> ListOp {get;} 
+        protected override IndexBinOp<T> IndexOp {get;} 
             = PrimOps.or;
         
     }
 
-    public class OrTests
+    class OrTests
     {
         const string BasePath = P.InX128 + P.or;
 

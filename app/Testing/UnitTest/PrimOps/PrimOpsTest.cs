@@ -38,8 +38,8 @@ namespace Z0.Testing
 
         protected T[] target() => array<T>(SampleSize);
         
-        protected IReadOnlyList<T> sample()
-            => Context.Random<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Freeze(SampleSize);
+        protected Index<T> sample()
+            => Context.Random<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Take(SampleSize).ToIndex();
 
       
         [Repeat(Defaults.Reps)]

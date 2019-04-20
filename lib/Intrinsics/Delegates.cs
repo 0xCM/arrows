@@ -41,6 +41,16 @@ namespace Z0
         where T : struct, IEquatable<T>;
 
     /// <summary>
+    /// Characterizes the signature of an unsafe data transfer from a 
+    /// source vector to a pointer-identified memory location
+    /// </summary>
+    /// <param name="src">The source data</param>
+    /// <param name="dst">The target pointer</param>
+    /// <typeparam name="T">The primitive type</typeparam>
+    public unsafe delegate void Vec128StoreOp<T>(in Vec128<T> src, void* dst)
+        where T : struct, IEquatable<T>;
+
+    /// <summary>
     /// Characterizes the signature of a 128-bit vector instrinsic binary operator that
     /// stores the computation result in an output parameter
     /// </summary>
@@ -60,14 +70,6 @@ namespace Z0
     public delegate void Vec128BinOpStore<T>(in Vec128<T> lhs,  in Vec128<T> rhs, T[] dst, int offset = 0)
         where T : struct, IEquatable<T>;    
     
-    /// <summary>
-    /// Characterizes the signature of a 128-bit vector instrinsic binary operator
-    /// </summary>
-    /// <param name="lhs">The left operand</param>
-    /// <param name="rhs">The right operand</param>
-    /// <typeparam name="T">The primitive type</typeparam>
-    public delegate Vec128<T> Vec128BinOpOld<T>(Vec128<T> lhs, Vec128<T> rhs)
-        where T : struct, IEquatable<T>;
 
     /// <summary>
     /// Characterizes the signature of a 128-bit vector intrinsic unary operator
@@ -91,6 +93,9 @@ namespace Z0
     /// <param name="src">The operand</param>
     /// <typeparam name="T">The primitive type</typeparam>
     public delegate Vec256<T> Vec256UnaryOp<T>(Vec256<T> src)
+        where T : struct, IEquatable<T>;
+
+    public delegate Index<T> IndexBinOp<T>(Index<T> lhs, Index<T> rhs)
         where T : struct, IEquatable<T>;
 
     public delegate IReadOnlyList<T> ListBinOp<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)

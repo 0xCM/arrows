@@ -328,7 +328,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe void load(float* src, out Vec128<float> dst)
-            => dst = Avx2.LoadVector128(src);
+           => dst = Avx2.LoadVector128(src);
 
         [MethodImpl(Inline)]
         public static unsafe void load(float* src, out Vector128<float> dst)

@@ -63,11 +63,11 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public Vec128<T> div(Vec128<T> lhs, Vec128<T> rhs)
+            public Vec128<T> div(in Vec128<T> lhs, in Vec128<T> rhs)
                 => Operator.div(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public Num128<T> div(Num128<T> lhs, Num128<T> rhs)
+            public Num128<T> div(in Num128<T> lhs, in Num128<T> rhs)
                 => Operator.div(lhs,rhs);
 
         }
@@ -80,19 +80,19 @@ namespace Z0
 
             
             [MethodImpl(Inline)]
-            public Num128<float> div(Num128<float> lhs, Num128<float> rhs)
+            public Num128<float> div(in Num128<float> lhs, in Num128<float> rhs)
                 => Avx2.DivideScalar(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Num128<double> div(Num128<double> lhs, Num128<double> rhs)
+            public Num128<double> div(in Num128<double> lhs, in Num128<double> rhs)
                 => Avx2.DivideScalar(lhs, rhs);
             
             [MethodImpl(Inline)]
-            public Vec128<float> div(Vec128<float> lhs, Vec128<float> rhs)
+            public Vec128<float> div(in Vec128<float> lhs, in Vec128<float> rhs)
                 => Avx2.Divide(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public Vec128<double> div(Vec128<double> lhs, Vec128<double> rhs)
+            public Vec128<double> div(in Vec128<double> lhs, in Vec128<double> rhs)
                 => Avx2.Divide(lhs, rhs);
         }
 

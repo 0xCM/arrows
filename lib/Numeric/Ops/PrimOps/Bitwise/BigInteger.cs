@@ -13,7 +13,7 @@ namespace Z0
     using static Operative;
 
     using target = System.Numerics.BigInteger;
-    using targets = System.Collections.Generic.IReadOnlyList<System.Numerics.BigInteger>;
+    using targets = Index<System.Numerics.BigInteger>;
 
     partial class PrimOps { partial class Reify {
         

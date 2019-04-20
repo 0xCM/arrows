@@ -83,11 +83,8 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void add(in Num128<float> lhs, in Num128<float> rhs, out Num128<float> dst)
-            => dst = Avx2.AddScalar(lhs, rhs);
+            => addNumOp.add(lhs,rhs, out dst);
 
-        [MethodImpl(Inline)]
-        public static void add128s(in Vector128<float> lhs, in Vector128<float> rhs, out Vector128<float> dst)
-            => dst = Avx2.AddScalar(lhs, rhs);
 
         [MethodImpl(Inline)]
         public static void add(in Num128<double> lhs, in Num128<double> rhs, out Num128<double> dst)
@@ -127,11 +124,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void add(in Vec128<float> lhs, in Vec128<float> rhs, out Vec128<float> dst)
-            => dst = Avx2.Add(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static void add(in Vector128<float> lhs, in Vector128<float> rhs, out Vector128<float> dst)
-            => dst = Avx2.Add(lhs, rhs);
+            => addVecOp.add(lhs,rhs, out dst);  
 
         [MethodImpl(Inline)]
         public static void add(in Vec128<double> lhs, in Vec128<double> rhs, out Vec128<double> dst)
@@ -219,7 +212,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public unsafe static void add(in Vec128<int> lhs, in Vec128<int> rhs, int* dst)
-            => Avx2.Store(dst, Avx2.Add(lhs, rhs));
+            => addVecOp.add(in lhs, in rhs, dst);
 
         [MethodImpl(Inline)]
         public unsafe static void add(in Vec128<uint> lhs, in Vec128<uint> rhs, uint* dst)

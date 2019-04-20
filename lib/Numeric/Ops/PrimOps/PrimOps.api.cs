@@ -107,7 +107,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => typeops<T>().numinfo.MinVal;
  
-
         /// <summary>
         /// Returns the greatest value that can be attained via the type
         /// </summary>
@@ -117,7 +116,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => typeops<T>().numinfo.MaxVal;
  
-
         /// <summary>
         /// Negates the source value for signable types; for unsignable types,
         /// reverses the bits in the underlying representation
@@ -181,7 +179,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => typeops<T>().inc(src);
 
-
         /// <summary>
         /// Calculates the value of the operand decremented by one
         /// </summary>
@@ -207,9 +204,8 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => typeops<T>().add(lhs,rhs);
 
-
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> add<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
+        public static Index<T> add<T>(Index<T> lhs, Index<T> rhs)        
             where T : struct, IEquatable<T>
             => typeops<T>().add(lhs,rhs);
 
@@ -239,7 +235,7 @@ namespace Z0
                 => typeops<T>().div(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> div<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
+        public static Index<T> div<T>(Index<T> lhs, Index<T> rhs)        
             where T : struct, IEquatable<T>
                 => typeops<T>().div(lhs,rhs);
 
@@ -329,19 +325,29 @@ namespace Z0
             => typeops<T>().and(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> and<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
+        public static Index<T> and<T>(Index<T> lhs, Index<T> rhs)        
             where T : struct, IEquatable<T>
-            => typeops<T>().and(lhs,rhs);
+                => typeops<T>().and(lhs,rhs);
 
         [MethodImpl(Inline)]   
         public static T or<T>(T lhs, T rhs) 
             where T : struct, IEquatable<T>
             => typeops<T>().or(lhs,rhs);
 
+        [MethodImpl(Inline)]
+        public static Index<T> or<T>(Index<T> lhs, Index<T> rhs)        
+            where T : struct, IEquatable<T>
+                => typeops<T>().or(lhs,rhs);
+
         [MethodImpl(Inline)]   
         public static T xor<T>(T lhs, T rhs) 
             where T : struct, IEquatable<T>
             => typeops<T>().xor(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static Index<T> xor<T>(Index<T> lhs, Index<T> rhs)        
+            where T : struct, IEquatable<T>
+                => typeops<T>().xor(lhs,rhs);
 
         [MethodImpl(Inline)]   
         public static T lshift<T>(T lhs, int rhs) 
@@ -354,9 +360,13 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => typeops<T>().rshift(lhs,rhs);
 
-
         [MethodImpl(Inline)]   
         public static T flip<T>(T src) 
+            where T : struct, IEquatable<T>
+                => typeops<T>().flip(src);
+
+        [MethodImpl(Inline)]
+        public static Index<T> flip<T>(Index<T> src)        
             where T : struct, IEquatable<T>
                 => typeops<T>().flip(src);
 

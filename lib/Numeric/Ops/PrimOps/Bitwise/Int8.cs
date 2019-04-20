@@ -13,7 +13,7 @@ namespace Z0
     using static Operative;
     
     using target = System.SByte;
-    using targets = System.Collections.Generic.IReadOnlyList<sbyte>;
+    using targets = Index<sbyte>;
 
     partial class PrimOps { partial class Reify {
         

@@ -32,7 +32,7 @@ namespace Z0
         /// <param name="rhs">The second vector</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> xor<T>(Vec128<T> lhs, Vec128<T> rhs)
+        public static Vec128<T> xor<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
                 => SSR.InXXOrG<T>.TheOnly.xor(lhs,rhs);
 

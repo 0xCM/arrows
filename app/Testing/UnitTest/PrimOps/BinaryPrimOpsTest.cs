@@ -19,9 +19,9 @@ namespace Z0.Testing
         where S : BinaryPrimOpsTest<S,T>
         where T : struct, IEquatable<T>
     {
-        protected IReadOnlyList<T> LeftSrc;
+        protected Index<T> LeftSrc;
         
-        protected IReadOnlyList<T> RightSrc;
+        protected Index<T> RightSrc;
 
 
         protected BinaryPrimOpsTest(Interval<T> Bounds, Func<T,bool> filter = null, int? SampleSize = null)

@@ -21,37 +21,51 @@ namespace Z0
         
         readonly T[] data;
 
+        readonly ArraySegment<T>? segment;
+
         [MethodImpl(Inline)]
         public static implicit operator Index<T>(in T[] src)
             => new Index<T>(src);
 
         [MethodImpl(Inline)]
+        public static implicit operator Index<T>(in ArraySegment<T> src)
+            => new Index<T>(src);
+
+        [MethodImpl(Inline)]
         public static implicit operator Index<T>(in List<T> src)
-            => new Index<T>();
+            => new Index<T>(src);
 
         [MethodImpl(Inline)]
         public static implicit operator T[](in Index<T> src)
-            => src.data ?? new T[]{};
+            => src.AsArray();
 
         [MethodImpl(Inline)]
         public Index(in T[] src)
         {
             this.data = src;
+            this.segment = null;
         }
             
+        [MethodImpl(Inline)]
+        public Index(in ArraySegment<T> src)
+        {
+            this.data = null;
+            this.segment = src;
+        }
 
         [MethodImpl(Inline)]
         public Index(in List<T> src)
         {
             this.data = src.ToArray();
+            this.segment = null;
         }
 
         [MethodImpl(Inline)]
         public T item(int key) 
-            => data[key];
+            => segment.HasValue ? segment.Value[key] : data[key];
             
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
-            => (data as IReadOnlyList<T>).GetEnumerator();
+            => ( (data ?? segment ?? new T[]{}) as IReadOnlyList<T>).GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator()
             => data.GetEnumerator();
@@ -65,7 +79,7 @@ namespace Z0
                 return true;
 
             for(var i= 0; i< Length; i++)
-                if(!data[i].Equals(rhs[i])) 
+                if(!item(i).Equals(rhs.item(i))) 
                     return false;
             return true;
         }
@@ -73,7 +87,7 @@ namespace Z0
         public T this[int key] 
         {
             [MethodImpl(Inline)]
-            get => data[key];
+            get => item(key);
         }
             
         public int Length
@@ -84,7 +98,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public T[] AsArray()
-            => data ?? new T[]{};
+            => data ?? segment?.ToArray() ?? new T[]{};
 
         public bool IsEmpty
             => Count == 0;            

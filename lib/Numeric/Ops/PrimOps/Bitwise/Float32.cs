@@ -12,7 +12,7 @@ namespace Z0
     using static Operative;
 
     using target = System.Single;
-    using targets = System.Collections.Generic.IReadOnlyList<float>;
+    using targets = Index<float>;
 
     partial class PrimOps { partial class Reify {
 

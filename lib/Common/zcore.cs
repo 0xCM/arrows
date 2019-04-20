@@ -173,6 +173,18 @@ public static partial class zcore
     }    
 
     [MethodImpl(Inline)]   
+    public static Index<Y> fuse<X,Y>(Index<X> lhs, Index<X> rhs, Func<X,X,Y> f)
+    {
+        if(lhs.Count != rhs.Count)
+            throw new ArgumentException($"The left count {lhs.Count} does not match the right count {rhs.Count}");
+            
+        var dst = alloc<Y>(lhs.Count);
+        for(var i = 0; i< dst.Length; i++)
+            dst[i] = f(lhs[i], rhs[i]);
+        return dst;
+    }    
+
+    [MethodImpl(Inline)]   
     public static Y[] fuse<X,Y>(X[] lhs, X[] rhs, Func<X,X,Y> f)
     {
         if(lhs.Length != rhs.Length)
@@ -263,6 +275,15 @@ public static partial class zcore
     /// <typeparam name="T">The target element type</typeparam>
     [MethodImpl(Inline)]   
     public static IReadOnlyList<T> map<S,T>(IReadOnlyList<S> src, Func<S,T> f)
+    {
+        var dst = alloc<T>(src.Count);
+        for(var i = 0; i<src.Count; i++)
+            dst[i] = f(src[i]);
+        return dst;
+    }    
+
+    [MethodImpl(Inline)]   
+    public static Index<T> map<S,T>(Index<S> src, Func<S,T> f)
     {
         var dst = alloc<T>(src.Count);
         for(var i = 0; i<src.Count; i++)

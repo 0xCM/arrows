@@ -60,10 +60,10 @@ namespace Z0
 
             public static readonly InXAvgG<T> TheOnly = default;
 
-            public Vec128<T> avg(Vec128<T> lhs, Vec128<T> rhs)
+            public Vec128<T> avg(in Vec128<T> lhs, in Vec128<T> rhs)
                 => Operator.avg(lhs,rhs);
 
-            public Vec256<T> avg(Vec256<T> lhs, Vec256<T> rhs)
+            public Vec256<T> avg(in Vec256<T> lhs, in Vec256<T> rhs)
                 => Operator.avg(lhs,rhs);
         }
 
@@ -75,19 +75,19 @@ namespace Z0
             public static readonly InXAvg TheOnly = default;
 
             [MethodImpl(Inline)]          
-            public Vec128<byte> avg(Vec128<byte> lhs, Vec128<byte> rhs)
+            public Vec128<byte> avg(in Vec128<byte> lhs, in Vec128<byte> rhs)
                 => Avx2.Average(lhs,rhs);
 
             [MethodImpl(Inline)]          
-            public Vec256<byte> avg(Vec256<byte> lhs, Vec256<byte> rhs)
+            public Vec256<byte> avg(in Vec256<byte> lhs, in Vec256<byte> rhs)
                 => Avx2.Average(lhs,rhs);
 
             [MethodImpl(Inline)]          
-            public Vec128<ushort> avg(Vec128<ushort> lhs, Vec128<ushort> rhs)
+            public Vec128<ushort> avg(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
                 => Avx2.Average(lhs,rhs);
 
             [MethodImpl(Inline)]          
-            public Vec256<ushort> avg(Vec256<ushort> lhs, Vec256<ushort> rhs)
+            public Vec256<ushort> avg(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
                 => Avx2.Average(lhs,rhs);
         }
 
