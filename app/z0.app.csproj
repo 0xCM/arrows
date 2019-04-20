@@ -19,7 +19,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\lib\z0.csproj" />
+    <ProjectReference Include="..\lib\z0.lib.csproj" />
   </ItemGroup>
 
 
