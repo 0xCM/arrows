@@ -42,8 +42,8 @@ namespace Z0.Tests.InXTests
 
             this.LeftDataSrc = RandArray(SampleSize);
             this.RightDataSrc = RandArray(SampleSize);
-            this.LeftVecSrc = Vec128.stream(LeftDataSrc).ToReadOnlyList();
-            this.RightVecSrc = Vec128.stream(RightDataSrc).ToReadOnlyList();
+            this.LeftVecSrc = Vec128.stream(LeftDataSrc).ToIndex();
+            this.RightVecSrc = Vec128.stream(RightDataSrc).ToIndex();
 
         }
 
@@ -57,9 +57,9 @@ namespace Z0.Tests.InXTests
 
         protected T[] RightDataSrc {get;}
 
-        protected IReadOnlyList<Vec128<T>> LeftVecSrc {get;}
+        protected Index<Vec128<T>> LeftVecSrc {get;}
 
-        protected IReadOnlyList<Vec128<T>> RightVecSrc {get;}
+        protected Index<Vec128<T>> RightVecSrc {get;}
 
         protected IEnumerable<Vec128<T>> Results(Vec128BinOp<T> vecop)
         {
@@ -201,8 +201,8 @@ namespace Z0.Tests.InXTests
         /// </summary>
         /// <param name="domain">The interval from which the values are selected</param>
         /// <param name="count">The number of values in the produced list</param>
-        protected IReadOnlyList<T> RandList(Interval<T> domain, int count)
-            => Context.Rand(domain).Freeze(count);
+        protected Index<T> RandList(Interval<T> domain, int count)
+            => Context.Rand(domain).TakeArray(count);
 
         /// <summary>
         /// Produces an interminable stream of random values
@@ -246,21 +246,21 @@ namespace Z0.Tests.InXTests
         /// Produces a list of random values
         /// </summary>
         /// <param name="count">The number of values in the produced list</param>
-        protected IReadOnlyList<T> RandList(int? count = null)
+        protected Index<T> RandIndex(int? count = null)
             => RandList(Domain,count ?? SampleSize);
 
         /// <summary>
         /// Produces a list of random values
         /// </summary>
         /// <param name="count">The number of values in the produced list</param>
-        protected IReadOnlyList<T> RandList(uint? count = null)
+        protected Index<T> RandIndex(uint? count = null)
             => RandList(Domain, (int) (count ?? (uint)SampleSize));
 
         /// <summary>
         /// Produces a random list that occupies 128 bits = 16 bytes of memory
         /// </summary>
-        protected IReadOnlyList<T> RandList128()
-            => RandList(VecLength);
+        protected Index<T> RandIndex128()
+            => RandIndex(VecLength);
 
         /// <summary>
         /// Produces a random array that occupies 128 bits = 16 bytes of memory
@@ -289,10 +289,10 @@ namespace Z0.Tests.InXTests
         /// Produces a stream of random lists where each list occupies 128 bits = 16 bytes of memory
         /// </summary>
         /// <param name="count">The number of lists to produce</param>
-        protected IEnumerable<IReadOnlyList<T>> RandLists128(int? count = null)
+        protected IEnumerable<Index<T>> RandIndexes128(int? count = null)
         {
             for(var i = 0; i< (count ?? VecCount); i++)
-                 yield return RandList128();
+                 yield return RandIndex128();
         }
             
         /// <summary>
@@ -317,9 +317,5 @@ namespace Z0.Tests.InXTests
             return end($"Applied {name} operator | {statsMsg}", sw);                        
 
         }
-
     }    
-
-    
-
 }

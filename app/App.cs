@@ -8,9 +8,15 @@ namespace Z0
     using Testing;
     using Tests;
     using System.IO;
+    using System.Runtime.CompilerServices;
+
+    using Z0.Bench;
+
     using static zcore;
     using static primops;
     using static algorithms;
+
+
     public sealed class ZTest : ZTest<ZTest>
     {
         
@@ -45,55 +51,6 @@ namespace Z0
             
         }
 
-        Task V128Stream(Func<bool> stop, uint batchSize = Pow2.T18, int delay = 0, bool diagnostic = false)
-        {   
-            void worker()
-            {
-                var counter = 1;
-                while(!stop())
-                {
-                    var batch = Random<long>().stream(Defaults.Int64Min, Defaults.Int64Max).TakeArray((int)batchSize);
-                    foreach(var v in Vec128.stream<long>(batch))
-                    {
-                        var sum = InX.add(v,v);
-                        var vAnd = InX.and(v, sum);
-                        var vOr = InX.or(v, sum);
-                        
-                        if(diagnostic)
-                            inform($"{v} + {v} = {sum}");
-                    }
-
-                    if(diagnostic)
-                        inform($"Completed batch {counter++}");
-                    else
-                        write(".");
-
-                    if(delay != 0)
-                        Task.Delay(delay).Wait();
-                }}
-            ;
-            
-            return Task.Factory.StartNew(worker);                
-        }
-
-        void RunTests(string filter, bool pll = true)
-        {
-            TestRunner.RunTests(filter,pll);
-        }
-
-        void RunStream()
-        {
-           var stop = false;
- 
-            var task = V128Stream(() =>{
-                return stop;
-            });
-
-            read();
-            stop = true;
-            task.Wait();
-
-        }
 
         void Random()
         {
@@ -113,23 +70,38 @@ namespace Z0
                 inform($"{key}: {histo[key]}");
 
         }
+        void RunTests(string[] paths, bool pll)
+        {
+            iter(paths, path => TestRunner.RunTests(path,pll));
+        }
+
+        void MeasureDelegates()
+        {
+            new DelegateBench().Run();
+        }
+
+        long Benchmark()
+        {
+            var runner = AddBaseline.Runner();
+            
+            var duration = runner.Run<long>();            
+            duration += Benchmarks.Run<long>();
+            
+            return duration;
+        }
+
         static void Main(string[] args)
         {     
             var app = new App();
-            var paths = new[]
-            {
-                Paths.InX128 + Paths.and
-                //Paths.numeric + Paths.bits
-                //Paths.bits,
-                //Paths.InX,
-                //Paths.perf,
 
-            };
-            var pll = false;
-            foreach(var path in paths)
-                app.RunTests(path,pll);
+            //app.MeasureDelegates();
+            app.Benchmark();
+
+            // var paths = new[]{Paths.perf,};            
+            // var pll = true;
+            // app.RunTests(paths,pll);
+
             
-
         }
     }
 

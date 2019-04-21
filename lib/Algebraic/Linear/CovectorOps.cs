@@ -71,18 +71,6 @@ namespace Z0
             where N : TypeNat, new() 
                 => new Covector<N,T>(src);
 
-        /// <summary>
-        /// Constructs a covector from the some of two others
-        /// </summary>
-        /// <param name="lhs">The the first covector</param>
-        /// <param name="rhs">The the second covector</param>
-        /// <typeparam name="N">The covector length type</typeparam>
-        /// <typeparam name="T">The convector component type</typeparam>
-        [MethodImpl(Inline)]
-        public static Covector<N,T> add<N,T>(Covector<N,T> lhs, Covector<N,T> rhs) 
-            where N : TypeNat, new() 
-            where T : struct, Structures.Semiring<T>
-                => new Covector<N,T>(Slice.add(lhs.cells,rhs.cells));
 
         /// <summary>
         /// Sums the covector components

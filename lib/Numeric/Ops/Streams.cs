@@ -13,13 +13,13 @@ namespace Z0
     using static Operative;
 
 
-    public static partial class PrimalList
+    public static partial class PrimalIndex
     {
-        static ArgumentException mismatched<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+        static ArgumentException mismatched<T>(Index<T> lhs, Index<T> rhs)
             => new ArgumentException($"The left item count {lhs.Count} does not match the right item count {rhs.Count}");
         
         [MethodImpl(Inline)]
-        static int matchedCount<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+        static int matchedCount<T>(Index<T> lhs, Index<T> rhs)
             => lhs.Count != rhs.Count ? throw mismatched(lhs,rhs) : lhs.Count;
 
         [MethodImpl(Inline)]
@@ -27,7 +27,7 @@ namespace Z0
             => array<T>(count);
 
         [MethodImpl(Inline)]
-        static T[] fuse<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs, Func<T,T,T> f)
+        static Index<T> fuse<T>(Index<T> lhs, Index<T> rhs, Func<T,T,T> f)
         {
             var dst = target<T>(matchedCount(lhs,rhs));
             for(var i = 0; i < dst.Length ; i++)

@@ -51,8 +51,6 @@ namespace Z0.Testing
 
         public const int SampleSize = (int)Pow2.T16;
 
-
-
         int Default.SampleSize 
             => SampleSize;
 

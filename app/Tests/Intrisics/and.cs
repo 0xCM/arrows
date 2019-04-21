@@ -30,10 +30,10 @@ namespace Z0.Tests.InXTests
         protected override Vec128BinOp<T> VecOp
             => InXG.and;
 
-        protected override Vec128BinOpStore<T> VecOpStore
+        protected override Vec128BinAOut<T> VecOpAOut
             => InXG.and;
 
-        protected override Vec128BinOpOut<T> VecOpOut
+        protected override Vec128BinOut<T> VecOpOut
             => InXG.and;
 
         protected override IndexBinOp<T> IndexOp {get;} 

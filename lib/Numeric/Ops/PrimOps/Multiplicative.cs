@@ -84,55 +84,55 @@ namespace Z0
 
     }}
 
-    partial class PrimalList
+    partial class PrimalIndex
     {
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<sbyte> Mul(this IReadOnlyList<sbyte> lhs, IReadOnlyList<sbyte> rhs)
+        public static Index<sbyte> Mul(this Index<sbyte> lhs, Index<sbyte> rhs)
             => fuse(lhs,rhs,(x,y) => (sbyte)(x * y));
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<byte> Mul(this IReadOnlyList<byte> lhs, IReadOnlyList<byte> rhs)
+        public static Index<byte> Mul(this Index<byte> lhs, Index<byte> rhs)
             => fuse(lhs,rhs,(x,y) => (byte)(x * y));
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<short> Mul(this IReadOnlyList<short> lhs, IReadOnlyList<short> rhs)
+        public static Index<short> Mul(this Index<short> lhs, Index<short> rhs)
             => fuse(lhs,rhs,(x,y) => (short)(x * y));
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<ushort> Mul(this IReadOnlyList<ushort> lhs, IReadOnlyList<ushort> rhs)
+        public static Index<ushort> Mul(this Index<ushort> lhs, Index<ushort> rhs)
             => fuse(lhs,rhs,(x,y) => (ushort)(x * y));
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<int> Mul(this IReadOnlyList<int> lhs, IReadOnlyList<int> rhs)
+        public static Index<int> Mul(this Index<int> lhs, Index<int> rhs)
             => fuse(lhs,rhs,(x,y) => x * y);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<uint> Mul(this IReadOnlyList<uint> lhs, IReadOnlyList<uint> rhs)
+        public static Index<uint> Mul(this Index<uint> lhs, Index<uint> rhs)
             => fuse(lhs,rhs,(x,y) => x * y);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<long> Mul(this IReadOnlyList<long> lhs, IReadOnlyList<long> rhs)
+        public static Index<long> Mul(this Index<long> lhs, Index<long> rhs)
             => fuse(lhs,rhs,(x,y) => x * y);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<ulong> Mul(this IReadOnlyList<ulong> lhs, IReadOnlyList<ulong> rhs)
+        public static Index<ulong> Mul(this Index<ulong> lhs, Index<ulong> rhs)
             => fuse(lhs,rhs,(x,y) => x * y);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<float> Mul(this IReadOnlyList<float> lhs, IReadOnlyList<float> rhs)
+        public static Index<float> Mul(this Index<float> lhs, Index<float> rhs)
             => fuse(lhs,rhs,(x,y) => x * y);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<double> Mul(this IReadOnlyList<double> lhs, IReadOnlyList<double> rhs)
+        public static Index<double> Mul(this Index<double> lhs, Index<double> rhs)
             => fuse(lhs,rhs,(x,y) => x * y);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<decimal> Mul(this IReadOnlyList<decimal> lhs, IReadOnlyList<decimal> rhs)
+        public static Index<decimal> Mul(this Index<decimal> lhs, Index<decimal> rhs)
             => fuse(lhs,rhs,(x,y) => x * y);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<BigInteger> Mul(this IReadOnlyList<BigInteger> lhs, IReadOnlyList<BigInteger> rhs)
+        public static Index<BigInteger> Mul(this Index<BigInteger> lhs, Index<BigInteger> rhs)
             => fuse(lhs,rhs,(x,y) => x * y);
 
     }    

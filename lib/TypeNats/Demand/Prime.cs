@@ -58,7 +58,7 @@ namespace Z0
         static readonly K k = default;
 
         public Prime(K n)
-            => valid = demand(prime<ulong>(n.value));
+            => valid = demand(prime(u(n.value)));
 
         public bool valid {get;}
 

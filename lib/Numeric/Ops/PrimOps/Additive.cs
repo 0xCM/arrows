@@ -218,55 +218,56 @@ namespace Z0
             => fuse(lhs,rhs,(x,y) => x + y);
 
     }
-    partial class PrimalList
+
+    partial class PrimalIndex
     {
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<sbyte> Add(this IReadOnlyList<sbyte> lhs, IReadOnlyList<sbyte> rhs)
-            => fuse(lhs,rhs,(x,y) => (sbyte)(x + y));
+        public static Index<sbyte> Add(this Index<sbyte> lhs, Index<sbyte> rhs)
+            => fuse(lhs, rhs,(x,y) => (sbyte)(x + y));
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<byte> Add(this IReadOnlyList<byte> lhs, IReadOnlyList<byte> rhs)
+        public static Index<byte> Add(this Index<byte> lhs, Index<byte> rhs)
             => fuse(lhs,rhs,(x,y) => (byte)(x + y));
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<short> Add(this IReadOnlyList<short> lhs, IReadOnlyList<short> rhs)
+        public static Index<short> Add(this Index<short> lhs, Index<short> rhs)
             => fuse(lhs,rhs,(x,y) => (short)(x + y));
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<ushort> Add(this IReadOnlyList<ushort> lhs, IReadOnlyList<ushort> rhs)
+        public static Index<ushort> Add(this Index<ushort> lhs, Index<ushort> rhs)
             => fuse(lhs,rhs,(x,y) => (ushort)(x + y));
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<int> Add(this IReadOnlyList<int> lhs, IReadOnlyList<int> rhs)
+        public static Index<int> Add(this Index<int> lhs, Index<int> rhs)
             => fuse(lhs,rhs,(x,y) => x + y);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<uint> Add(this IReadOnlyList<uint> lhs, IReadOnlyList<uint> rhs)
+        public static Index<uint> Add(this Index<uint> lhs, Index<uint> rhs)
             => fuse(lhs,rhs,(x,y) => x + y);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<long> Add(this IReadOnlyList<long> lhs, IReadOnlyList<long> rhs)
+        public static Index<long> Add(this Index<long> lhs, Index<long> rhs)
+            => fuse(lhs, rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static Index<ulong> Add(this Index<ulong> lhs, Index<ulong> rhs)
+            => fuse(lhs, rhs,(x,y) => x + y);
+
+        [MethodImpl(Inline)]
+        public static Index<float> Add(this Index<float> lhs, Index<float> rhs)
             => fuse(lhs,rhs,(x,y) => x + y);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<ulong> Add(this IReadOnlyList<ulong> lhs, IReadOnlyList<ulong> rhs)
+        public static Index<double> Add(this Index<double> lhs, Index<double> rhs)
             => fuse(lhs,rhs,(x,y) => x + y);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<float> Add(this IReadOnlyList<float> lhs, IReadOnlyList<float> rhs)
+        public static Index<decimal> Add(this Index<decimal> lhs, Index<decimal> rhs)
             => fuse(lhs,rhs,(x,y) => x + y);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<double> Add(this IReadOnlyList<double> lhs, IReadOnlyList<double> rhs)
-            => fuse(lhs,rhs,(x,y) => x + y);
-
-        [MethodImpl(Inline)]
-        public static IReadOnlyList<decimal> Add(this IReadOnlyList<decimal> lhs, IReadOnlyList<decimal> rhs)
-            => fuse(lhs,rhs,(x,y) => x + y);
-
-        [MethodImpl(Inline)]
-        public static IReadOnlyList<BigInteger> Add(this IReadOnlyList<BigInteger> lhs, IReadOnlyList<BigInteger> rhs)
+        public static Index<BigInteger> Add(this Index<BigInteger> lhs, Index<BigInteger> rhs)
             => fuse(lhs,rhs,(x,y) => x + y);
 
     }

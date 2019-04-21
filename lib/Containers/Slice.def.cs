@@ -283,10 +283,6 @@ namespace Z0
         public IReadOnlyList<T> unwrap()
             => data.unwrap();
 
-        [MethodImpl(Inline)]   
-        public Slice<N,Y> fuse<Y>(Slice<N,T> rhs, Func<T,T,Y> composer)
-            where Y : struct, IEquatable<Y>    
-                => new Slice<N,Y>(zcore.fuse(data, rhs, composer));
 
         /// <summary>
         /// Transforms slice[T] to slice[Y] via component transformation f:T->Y

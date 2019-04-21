@@ -59,7 +59,7 @@ namespace Z0
                 => max(src);
 
         [MethodImpl(Inline)]
-        public static T Inf<T>(this IEnumerable<T> src)
+        public static T Inf<T>(this Index<T> src)
             where T : struct, Structures.Orderable<T>
                 => min(src);
 

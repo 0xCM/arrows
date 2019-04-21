@@ -22,19 +22,19 @@ namespace Z0
                 Additive<Index<T>>,            
 
                 Subtractive<T>,
-                Subtractive<IReadOnlyList<T>>,
+                Subtractive<Index<T>>,
                 
                 Multiplicative<T>, 
-                Multiplicative<IReadOnlyList<T>>,            
+                Multiplicative<Index<T>>,            
 
                 Negatable<T>, 
-                Negatable<IReadOnlyList<T>>,             
+                Negatable<Index<T>>,             
 
                 Absolutive<T>, 
-                Absolutive<IReadOnlyList<T>>,             
+                Absolutive<Index<T>>,             
 
                 Stepwise<T>,
-                Stepwise<IReadOnlyList<T>>,            
+                Stepwise<Index<T>>,            
 
                 Bitwise<T>, 
                 Divisive<T>, 
@@ -53,7 +53,7 @@ namespace Z0
             /// <param name="lhs">The first list</param>
             /// <param name="rhs">The second list</param>
             /// <returns>A list r whose i'th entry is deterimed by r[i] = eq(lhs[i], rhs[i]) </returns>
-            IReadOnlyList<bool> eq(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs);
+            Index<bool> eq(Index<T> lhs, Index<T> rhs);
             
             /// <summary>
             /// Computes component-wise inequality between two lists of equal length
@@ -61,17 +61,17 @@ namespace Z0
             /// <param name="lhs">The first list</param>
             /// <param name="rhs">The second list</param>
             /// <returns>A list r whose i'th entry is deterimed by r[i] = neq(lhs[i], rhs[i]) </returns>
-            IReadOnlyList<bool> neq(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs);
+            Index<bool> neq(Index<T> lhs, Index<T> rhs);
             
-            IReadOnlyList<bool> lt(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs);
+            Index<bool> lt(Index<T> lhs, Index<T> rhs);
             
-            IReadOnlyList<bool> lteq(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs);
+            Index<bool> lteq(Index<T> lhs, Index<T> rhs);
             
-            IReadOnlyList<bool> gt(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs);
+            Index<bool> gt(Index<T> lhs, Index<T> rhs);
             
-            IReadOnlyList<bool> gteq(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs);
+            Index<bool> gteq(Index<T> lhs, Index<T> rhs);
             
-            IReadOnlyList<bool> testbits(IReadOnlyList<T> src, int pos);            
+            Index<bool> testbits(Index<T> src, int pos);            
 
             /// <summary>
             /// Computes the component-wise gcd between two lists of equal length
@@ -79,7 +79,7 @@ namespace Z0
             /// <param name="lhs">The first list</param>
             /// <param name="rhs">The second list</param>
             /// <returns>A list r whose i'th entry is deterimed by r[i] = gcd(lhs[i], rhs[i]) </returns>
-            IReadOnlyList<T> gcd(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs);
+            Index<T> gcd(Index<T> lhs, Index<T> rhs);
 
             /// <summary>
             /// Computes the component-wise division between two lists of equal length
@@ -95,7 +95,7 @@ namespace Z0
             /// <param name="lhs">The first list</param>
             /// <param name="rhs">The second list</param>
             /// <returns>A list r whose i'th entry is deterimed by r[i] = lhs[i] % rhs[i] </returns>
-            IReadOnlyList<T> mod(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs);
+            Index<T> mod(Index<T> lhs, Index<T> rhs);
         
             /// <summary>
             /// Implements .net-style comparison for compatibility
@@ -229,7 +229,7 @@ namespace Z0
                 => Multiplicative.mul(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> mul(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<T> mul(Index<T> lhs, Index<T> rhs)
                 => fuse(lhs,rhs,mul);
 
             [MethodImpl(Inline)]
@@ -245,7 +245,7 @@ namespace Z0
                 => Divisive.mod(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> mod(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<T> mod(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,mod);
 
             [MethodImpl(Inline)]
@@ -253,19 +253,16 @@ namespace Z0
                 => Divisive.gcd(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> gcd(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<T> gcd(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,gcd);
             
             [MethodImpl(Inline)]
             public T negate(T x)
                 => Negatable.negate(x);
 
-            [MethodImpl(Inline)]
-            public IEnumerable<T> negate(IEnumerable<T> src)
-                =>  map(src,negate);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> negate(IReadOnlyList<T> src)
+            public Index<T> negate(Index<T> src)
                 =>  map(src,negate);
 
             [MethodImpl(Inline)]
@@ -274,7 +271,7 @@ namespace Z0
 
             
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> sub(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<T> sub(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,sub);
 
             [MethodImpl(Inline)]
@@ -283,7 +280,7 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> abs(IReadOnlyList<T> src)
+            public Index<T> abs(Index<T> src)
                 =>  map(src,abs);
 
             [MethodImpl(Inline)]
@@ -292,7 +289,7 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<bool> lt(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<bool> lt(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,lt);
 
             [MethodImpl(Inline)]
@@ -300,7 +297,7 @@ namespace Z0
                 => Ordered.lteq(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<bool> lteq(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<bool> lteq(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,lteq);
 
             [MethodImpl(Inline)]
@@ -308,7 +305,7 @@ namespace Z0
                 => Ordered.gt(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<bool> gt(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<bool> gt(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,gt);
 
             [MethodImpl(Inline)]
@@ -316,7 +313,7 @@ namespace Z0
                 => Ordered.gteq(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<bool> gteq(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<bool> gteq(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,gteq);
 
             [MethodImpl(Inline)]
@@ -324,7 +321,7 @@ namespace Z0
                 => Stepwise.inc(x);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> inc(IReadOnlyList<T> src)
+            public Index<T> inc(Index<T> src)
                 =>  map(src,inc);
 
             [MethodImpl(Inline)]
@@ -332,7 +329,7 @@ namespace Z0
                 => Stepwise.dec(x);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> dec(IReadOnlyList<T> src)
+            public Index<T> dec(Index<T> src)
                 =>  map(src,dec);
 
             [MethodImpl(Inline)]
@@ -376,7 +373,7 @@ namespace Z0
                 => Bitwise.lshift(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> lshift(IReadOnlyList<T> lhs, int rhs)
+            public Index<T> lshift(Index<T> lhs, int rhs)
             {
                 var dst = array<T>(lhs.Count);
                 iter(lhs.Count, i => dst[i] = Bitwise.lshift(lhs[i],rhs));
@@ -388,7 +385,7 @@ namespace Z0
                 => Bitwise.rshift(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<T> rshift(IReadOnlyList<T> lhs, int rhs)
+            public Index<T> rshift(Index<T> lhs, int rhs)
             {
                 var dst = array<T>(lhs.Count);
                 iter(lhs.Count, i => dst[i] = Bitwise.rshift(lhs[i],rhs));
@@ -405,7 +402,7 @@ namespace Z0
                 => Bitwise.bitstring(x);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<BitString> bitstring(IReadOnlyList<T> src)
+            public Index<BitString> bitstring(Index<T> src)
                 => map(src,bitstring);
 
             [MethodImpl(Inline)]
@@ -417,7 +414,7 @@ namespace Z0
                 => Bitwise.testbit(src,pos);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<bool> testbits(IReadOnlyList<T> src, int pos)
+            public Index<bool> testbits(Index<T> src, int pos)
                 => map(src, x => Bitwise.testbit(x,pos));
 
             [MethodImpl(Inline)]
@@ -425,7 +422,7 @@ namespace Z0
                 => Equality.eq(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<bool> eq(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<bool> eq(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,eq);
 
             [MethodImpl(Inline)]
@@ -433,7 +430,7 @@ namespace Z0
                 => Equality.neq(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public IReadOnlyList<bool> neq(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+            public Index<bool> neq(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,neq);
 
             [MethodImpl(Inline)]
@@ -550,22 +547,22 @@ namespace Z0
                 => Parser.parse(src);
 
             [MethodImpl(Inline)]
-            public string bitchars(IReadOnlyList<T> src)
+            public string bitchars(Index<T> src)
                 => string.Join("",map(src,bitchars));
 
-            // BitString BitSource<IReadOnlyList<T>>.bitstring(IReadOnlyList<T> src)            
+            // BitString BitSource<Index<T>>.bitstring(Index<T> src)            
             // {
             //     var allbits = Arr.concat(src.Select(bits).ToArray());
             //     return BitString.define(allbits);
             // }                            
 
-            // bool BitSource<IReadOnlyList<T>>.testbit(IReadOnlyList<T> src, int pos)
+            // bool BitSource<Index<T>>.testbit(Index<T> src, int pos)
             //     => throw new NotImplementedException();
 
-            public byte[] bytes(IReadOnlyList<T> src)
+            public byte[] bytes(Index<T> src)
                 => Arr.concat(map(src,bytes));
 
-            public bit[] bits(IReadOnlyList<T> src)
+            public bit[] bits(Index<T> src)
                 => Arr.concat(map(src,bits));
 
         }    

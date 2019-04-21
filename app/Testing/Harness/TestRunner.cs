@@ -8,37 +8,55 @@ namespace Z0.Testing
     using System.Linq;
     using System.Reflection;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
     using static Nats;
     using static zcore;
 
+    [DisplayName("testrunner")]
     public class TestRunner
     {
-        public static void RunTests(string filter = "", bool pll = true)
+        public static void RunTests(string filter, bool pll)
             => new TestRunner().Run(filter,pll);
-
-        static void failure(string info, string member)
-            => error($"{member}: test failed - {info}");
-
-            
-
-
-        public TestRunner()
-        {
-        
-        }            
 
         IEnumerable<Type> CandidateTypes()
             => ZTest.DefiningAssembly.Types().Realizes<IUnitTest>();        
         
-        public IEnumerable<Type> Hosts()
+        IEnumerable<Type> Hosts()
             => CandidateTypes().Concrete().OrderBy(t => t.DisplayName());
-                    
+
+        void Run(string filter, bool concurrent)
+            => iter(Hosts(), h =>  Run(h,filter), concurrent);
+
         IEnumerable<MethodInfo> Tests(Type host)
-            =>  host.DeclaredMethods()
-                    .Public()
-                    .WithParameterCount(0);
+            =>  host.DeclaredMethods().Public().WithParameterCount(0);
+
+        void Run(Type host, string filter)
+        {        
+            var hostpath = host.DisplayName();
+            if(!string.IsNullOrWhiteSpace(filter) && !hostpath.Contains(filter))
+                return;
+
+            try
+            {
+                babble($"Creating host type {host.Name}", this);
+                var instance = host.CreateInstance<IUnitTest>();
+                iter(Tests(host), t =>  Run(instance, hostpath, t));
+            }
+            catch(Exception e)
+            {
+                error($"Host execution failed: {e}", this);
+            }
+            
+        }
+    
+
+        TestRunner()
+        {
+        
+        }            
+
 
         void Run(IUnitTest host, string hostpath, MethodInfo test)
         {
@@ -62,21 +80,9 @@ namespace Z0.Testing
             catch(Exception e)
             {
                 print(messages);
-                failure(e.ToString(), test.Name);                    
+                error($"{test.Name}: test failed - {e.ToString()}");
             }            
         }
 
-        public void Run(Type host, string filter = "")
-        {
-            var hostpath = host.DisplayName();
-            if(!string.IsNullOrWhiteSpace(filter) && !hostpath.Contains(filter))
-                return;
-
-            var instance = host.CreateInstance<IUnitTest>();
-            iter(Tests(host), t =>  Run(instance, hostpath, t));
-        }
-    
-        public void Run(string filter = "", bool concurrent = true)
-            => iter(Hosts(), h =>  Run(h,filter), concurrent);
     }
 }

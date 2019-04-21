@@ -105,27 +105,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => new Slice<T>(repeat(value,count));
 
-        /// <summary>
-        /// Calculates the component-wise sum of two slices 
-        /// </summary>
-        /// <param name="s1">The first slice</param>
-        /// <param name="s2">the second slice</param>
-        /// <typeparam name="T">The semigroup-conforming element type</typeparam>
-        [MethodImpl(Inline)]
-        public static Slice<T> add<T>(Structures.Slice<T> s1, Structures.Slice<T> s2)
-            where T : struct, Structures.Semiring<T>
-                => slice(fuse(s1,s2, (x,y) =>  x.add(y)));
-
-        /// <summary>
-        /// Calculates the component-wise sum of two slices 
-        /// </summary>
-        /// <param name="s1">The first slice</param>
-        /// <param name="s2">the second slice</param>
-        /// <typeparam name="T">The semigroup-conforming element type</typeparam>
-        [MethodImpl(Inline)]
-        public static Slice<T> mul<T>(Slice<T> s1, Slice<T> s2)
-            where T : struct, Structures.Semiring<T>
-                => slice(fuse(s1,s2, (x,y) =>  x.mul(y)));
 
         [MethodImpl(Inline)]   
         public static Slice<T> map<S,T>(Slice<S> src, Func<S,T> f)
@@ -153,11 +132,6 @@ namespace Z0
                 where T : struct, Operative.Semiring<T>, IEquatable<T>
                     => apply(s1,s2,semiring<T>().mul);
 
-        [MethodImpl(Inline)]
-        public static Slice<N,T> square<N,T>(Slice<N,T> x)
-            where N : Z0.TypeNat, new() 
-            where T : struct, Structures.Semiring<T>
-                => new Slice<N,T>(fuse(x,x, (a,b) => a.mul(b)));
 
         [MethodImpl(Inline)]
         public static T reduce<N,T>(Slice<N,T> s, Func<T,T,T> reducer)

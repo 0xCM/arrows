@@ -134,7 +134,7 @@ namespace Z0
         /// <param name="src">The source values</param>
         /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> negate<T>(IReadOnlyList<T> src)        
+        public static Index<T> negate<T>(Index<T> src)        
             where T : struct, IEquatable<T>
                 => typeops<T>().negate(src);
 
@@ -154,7 +154,7 @@ namespace Z0
         /// <param name="src">The source values</param>
         /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> abs<T>(IReadOnlyList<T> src)        
+        public static Index<T> abs<T>(Index<T> src)        
             where T : struct, IEquatable<T>
                 => typeops<T>().abs(src);
 
@@ -175,7 +175,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> inc<T>(IReadOnlyList<T> src)        
+        public static Index<T> inc<T>(Index<T> src)        
             where T : struct, IEquatable<T>
                 => typeops<T>().inc(src);
 
@@ -195,7 +195,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> dec<T>(IReadOnlyList<T> src)        
+        public static Index<T> dec<T>(Index<T> src)        
             where T : struct, IEquatable<T>
                 => typeops<T>().dec(src);
 
@@ -215,7 +215,7 @@ namespace Z0
             => typeops<T>().sub(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> sub<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
+        public static Index<T> sub<T>(Index<T> lhs, Index<T> rhs)        
             where T : struct, IEquatable<T>
                 => typeops<T>().sub(lhs,rhs);
 
@@ -225,7 +225,7 @@ namespace Z0
                 => typeops<T>().mul(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> mul<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
+        public static Index<T> mul<T>(Index<T> lhs, Index<T> rhs)        
             where T : struct, IEquatable<T>
                 => typeops<T>().mul(lhs,rhs);
 
@@ -245,7 +245,7 @@ namespace Z0
                 => typeops<T>().mod(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> mod<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
+        public static Index<T> mod<T>(Index<T> lhs, Index<T> rhs)        
             where T : struct, IEquatable<T>
                 => typeops<T>().mod(lhs,rhs);
 
@@ -255,7 +255,7 @@ namespace Z0
                 => typeops<T>().gcd(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> gcd<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)        
+        public static Index<T> gcd<T>(Index<T> lhs, Index<T> rhs)        
             where T : struct, IEquatable<T>
                 => typeops<T>().gcd(lhs,rhs);
 
@@ -265,7 +265,7 @@ namespace Z0
                 => typeops<T>().eq(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<bool> eq<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+        public static Index<bool> eq<T>(Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T>
                 => typeops<T>().eq(lhs,rhs);
 
@@ -275,7 +275,7 @@ namespace Z0
                 => typeops<T>().neq(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<bool> neq<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+        public static Index<bool> neq<T>(Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T>
                 => typeops<T>().eq(lhs,rhs);
 
@@ -285,7 +285,7 @@ namespace Z0
                 => typeops<T>().lt(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<bool> lt<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+        public static Index<bool> lt<T>(Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T>
                 => typeops<T>().lt(lhs,rhs);
 
@@ -295,7 +295,7 @@ namespace Z0
                 => typeops<T>().lteq(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<bool> lteq<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+        public static Index<bool> lteq<T>(Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T>
             => typeops<T>().lteq(lhs,rhs);
 
@@ -305,7 +305,7 @@ namespace Z0
             => typeops<T>().gt(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<bool> gt<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+        public static Index<bool> gt<T>(Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T>
             => typeops<T>().gt(lhs,rhs);
 
@@ -315,7 +315,7 @@ namespace Z0
             => typeops<T>().gteq(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<bool> gteq<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+        public static Index<bool> gteq<T>(Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T>
             => typeops<T>().gteq(lhs,rhs);
                 
@@ -376,7 +376,7 @@ namespace Z0
                 => typeops<T>().bitstring(src);
 
         [MethodImpl(Inline)]   
-        public static IReadOnlyList<BitString> bitstring<T>(IReadOnlyList<T> src) 
+        public static Index<BitString> bitstring<T>(Index<T> src) 
             where T : struct, IEquatable<T>
                 => map(src,bitstring);
             
@@ -386,7 +386,7 @@ namespace Z0
                 => typeops<T>().testbit(src,pos);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<bool> testbit<T>(IReadOnlyList<T> src, int pos)
+        public static Index<bool> testbit<T>(Index<T> src, int pos)
             where T : struct, IEquatable<T>
                 => typeops<T>().testbits(src,pos);
 

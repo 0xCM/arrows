@@ -9,6 +9,16 @@ namespace Z0
 
     using static zcore;
 
+    public interface IPrimal
+    {
+        PrimKind PrimalKind {get;}
+
+    }
+    public interface IPrimal<T> : IPrimal
+    {
+
+    }
+
     public enum PrimKind : byte
     {
         none = 0,
@@ -38,6 +48,11 @@ namespace Z0
         last = float64      
     }
 
+    public readonly struct PrimKind<T>
+    {
+        public static readonly PrimKind Kind = PrimKinds.kind(typeof(T));
+    }
+
     public static class PrimKinds
     {
         static readonly Type[] Kinds = 
@@ -54,6 +69,40 @@ namespace Z0
                 typeof(float),      // 9 = float32
                 typeof(double),     // 10 = float64
                 };
+
+        [MethodImpl(Inline)]
+        public static T[] index<T>(
+            T @sbyte = default(T), 
+            T @byte = default(T), 
+            T @short = default(T), 
+            T @ushort = default(T), 
+            T @int = default(T), 
+            T @uint = default(T), 
+            T @long = default(T), 
+            T @ulong = default(T), 
+            T @float = default(T), 
+            T @double = default(T))
+                => array<T>(default(T), 
+                @sbyte, @byte, @short, @ushort, @int, 
+                @uint, @long, @ulong, @float, @double
+                );
+
+        [MethodImpl(Inline)]
+        public static object[] index<I8,U8,I16,U16,I32,U32,I64,U64,F32,F64>(
+            I8 @sbyte = default(I8), 
+            U8 @byte = default(U8), 
+            I16 @short = default(I16), 
+            U16 @ushort = default(U16), 
+            I32 @int = default(I32), 
+            U32  @uint = default(U32), 
+            I64 @long = default(I64), 
+            U64 @ulong = default(U64), 
+            F32 @float = default(F32), 
+            F64 @double = default(F64))
+                => array<object>(typeof(void), 
+                @sbyte, @byte, @short, @ushort, @int, 
+                @uint, @long, @ulong, @float, @double
+                );
 
         [MethodImpl(Inline)]
         public static Type type(PrimKind kind)
@@ -76,73 +125,14 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static PrimKind kind<T>()
-            => kind(typeof(T));
-
-    }
-
-    partial class xcore
-    {
-        [MethodImpl(Inline)]
-        public static PrimKind PrimKind(this Type src)
-            => PrimKinds.kind(src);
+            => PrimKind<T>.Kind;
 
         [MethodImpl(Inline)]
-        public static Type PrimType(this PrimKind src)
-            => PrimKinds.type(src);
-    }
-
-    public readonly struct PrimAction<T>
-        where T : struct, IEquatable<T>
-    {
+        public static int index<T>()
+            => (int)PrimKind<T>.Kind;
 
     }
 
-    public static class PrimFunc
-    {
-        public static PrimFunc<P> define<P>(Func<P> f)
-            where P : struct, IEquatable<P>
-                => new PrimFunc<P>(f);
 
-        public static PrimFunc<R,P> define<P>(Func<R,P> f)
-            where P : struct, IEquatable<P>
-                => new PrimFunc<R,P>(f);
 
-        public static PrimFunc<R,P1,P2> define<R,P1,P2>(Func<R,P1,P2> f)
-            where P1 : struct, IEquatable<P1>
-            where P2 : struct, IEquatable<P2>
-                => new PrimFunc<R,P1,P2>(f);
-
-    }
- 
-    public readonly struct PrimFunc<P>
-        where P : struct, IEquatable<P>
-    {
-
-        public PrimFunc(Func<P> src)
-            => apply = src;
-
-        public readonly Func<P> apply;
-
-    }
-
-    public readonly struct PrimFunc<R,P>
-        where P : struct, IEquatable<P>
-    {
-        public PrimFunc(Func<R,P> src)
-            => apply = src;
-
-        public readonly Func<R,P> apply;
-
-    }
-
-    public readonly struct PrimFunc<R,P1,P2>
-        where P1 : struct, IEquatable<P1>
-        where P2 : struct, IEquatable<P2>
-    {
-        public PrimFunc(Func<R,P1,P2> src)
-            => apply = src;
-
-        public readonly Func<R,P1,P2> apply;
-
-    }
 }

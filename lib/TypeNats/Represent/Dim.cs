@@ -65,7 +65,7 @@ namespace Z0
         /// Specifies the value of the dimension component
         /// </summary>
         public intg<ulong> i 
-            => natval<K>();
+            => u(natval<K>());
 
         public ulong volume()
             => i;
@@ -103,13 +103,13 @@ namespace Z0
         /// Specifies the first component of the dimension
         /// </summary>
         public intg<ulong> i 
-            => natval<K1>();
+            => natg<K1>();
         
         /// <summary>
         /// Specifies the second component of the dimension
         /// </summary>
         public intg<ulong> j 
-            => natval<K2>();
+            => natg<K2>();
 
         public ulong volume()
             => i*j;
@@ -145,19 +145,19 @@ namespace Z0
         /// Specifies the first component of the dimension
         /// </summary>
         public intg<ulong> i 
-            => natval<M>();
+            => natg<M>();
         
         /// <summary>
         /// Specifies the second component of the dimension
         /// </summary>
         public intg<ulong> j 
-            => natval<N>();
+            => natg<N>();
 
         /// <summary>
         /// Specifies the third component of the dimension
         /// </summary>
         public intg<ulong> k 
-            => natval<P>();
+            => natg<P>();
 
         public intg<ulong> volume()
             => i*j*k;

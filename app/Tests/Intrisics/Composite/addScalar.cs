@@ -88,10 +88,7 @@ namespace Z0.Tests.InXTests
             => ref MemoryMarshal.GetReference(span);
 
 
-        static readonly SSR.InXAdd addVecOp = SSR.InXAdd.TheOnly;
-        static readonly SSR.InXStore storeOp = SSR.InXStore.TheOnly;
-
-
+        static readonly InXAdd AddOps = InXAdd.TheOnly;
         public static unsafe void addScalar(Span<float> src, float value)
         {
             var vLen = Vec128<float>.Length;
@@ -112,9 +109,12 @@ namespace Z0.Tests.InXTests
 
                     InX.add(dstVector, vScalar, out Vec128<float> result);
                     InX.store(result, buffer);
-                    // addVecOp.add(dstVector, vScalar, out Vec128<float> result);
-                    // storeOp.store(result, buffer);
-                    
+                    // Ops.add(dstVector,vScalar, out Vec128<float> result);
+                    // Ops.store(result, buffer);
+
+                    // InXG.add(dstVector,vScalar, out Vec128<float> result);
+                    // InXG.store(result, buffer);                              
+
                     buffer += vLen;
                     offset += vLen;
                 }

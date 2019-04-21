@@ -20,9 +20,6 @@ namespace Z0
         public RandF64(Randomizer random)
             => this.random = random;
 
-        [MethodImpl(Inline)]
-        public prim one(prim min, prim max)
-            => random.one(min,max);
 
         public IEnumerable<prim> stream(prim min, prim max)
             => random.stream(min,max);

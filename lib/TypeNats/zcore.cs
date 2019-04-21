@@ -20,6 +20,11 @@ partial class zcore
         where N : TypeNat, new()
             => new N().value; 
 
+    [MethodImpl(Inline)]   
+    public static intg<ulong> natg<N>() 
+        where N : TypeNat, new()
+            => u(new N().value); 
+
     /// <summary>
     /// Retrieves the value of a type natural represented as a signed integer
     /// </summary>
@@ -46,24 +51,6 @@ partial class zcore
     public static int nati<N>(N rep) 
         where N : TypeNat, new()
             => (int)rep.value;
-
-    /// <summary>
-    /// Retrieves a typenat value as a generic int
-    /// </summary>
-    /// <typeparam name="N">The nat type</typeparam>
-    [MethodImpl(Inline)]   
-    public static intg<int> natg<N>() 
-        where N : TypeNat, new()
-            => nati<N>();
-
-    /// <summary>
-    /// Retrieves a typenat value as a generic int
-    /// </summary>
-    /// <typeparam name="N">The nat type</typeparam>
-    [MethodImpl(Inline)]   
-    public static intg<int> natg<N>(N rep) 
-        where N : TypeNat, new()
-            => natg<N>();
 
     /// <summary>
     /// Constructs a natural representative
@@ -139,8 +126,5 @@ partial class zcore
         where K2 : TypeNat, new()
         where K3 : TypeNat, new()
             => Dim.define<K1,K2,K3>();
-
-
-
 
 }

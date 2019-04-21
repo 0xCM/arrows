@@ -31,7 +31,9 @@ namespace Z0
 
         HiliteMD = ConsoleColor.DarkMagenta,
 
-        HiliteML = ConsoleColor.Magenta
+        HiliteML = ConsoleColor.Magenta,
+
+        Perform = ConsoleColor.Magenta
 
     }
 
@@ -62,7 +64,7 @@ namespace Z0
             => String.IsNullOrWhiteSpace(Content);
 
         public override string ToString()
-            => $"{Caller}: {Content}";
+            => String.IsNullOrWhiteSpace(Caller) ? Content : $"{Caller}: {Content}";
     }
 
 }

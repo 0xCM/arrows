@@ -16,8 +16,14 @@ namespace Z0
 
     public partial class InX
     {
-        static readonly SSR.InXAdd addVecOp = SSR.InXAdd.TheOnly;
+        static readonly InXAdd addVecOp = InXG.AddOps;
+
         static readonly SSR.InXAddScalar addNumOp = SSR.InXAddScalar.TheOnly;
+
+
+        public static InXAdd AddOps = InXAdd.TheOnly;
+
+        
 
         //! add: vec -> vec -> vec
         //! -------------------------------------------------------------------

@@ -225,7 +225,7 @@ namespace Z0
         
         public static ulong[] AppSeed = guidseed(guids[2],guids[3]);
         
-        public static ulong[] Seed004 = guidseed(guids[4],guids[5]);
+        public static ulong[] BenchSeed = guidseed(guids[4],guids[5]);
         
         public static ulong[] Seed006 = guidseed(guids[6],guids[7]);
         

@@ -62,22 +62,25 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public SemiSeq(params T[] src)
-            => this._content = defer(() => (IReadOnlyList<T>)src);        
+            => this._content = defer(() => src.ToIndex());        
 
         [MethodImpl(Inline)]   
         public SemiSeq(IEnumerable<T> src)
-            => this._content = defer(() => src.ToReadOnlyList());        
+            => this._content = defer(() => src.ToIndex());        
 
-        readonly Lazy<IReadOnlyList<T>> _content;
+        readonly Lazy<Index<T>> _content;
 
         uint length 
             => (uint)_content.Value.Count;
 
-        public IEnumerable<T> content 
+        public Index<T> content 
             => _content.Value;
 
         public SemiSeq<T> zero 
             => Empty;
+
+        IEnumerable<T> Contain.DiscreteContainer<SemiSeq<T>, T>.content 
+            => content;
 
         [MethodImpl(Inline)]   
         public bool eq(SemiSeq<T> rhs)

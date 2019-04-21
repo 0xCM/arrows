@@ -12,16 +12,32 @@ namespace Z0
 
     using static zcore;
 
+    public static class IndexT
+    {
+        [MethodImpl(Inline)]
+        public static Index<T> define<T>(T[] src)
+            => new Index<T>(src);
+    }
+
     /// <summary>
     /// Defines an integrally-indexed associative array
     /// </summary>
     public readonly struct Index<T> : IReadOnlyList<T>, IEquatable<Index<T>>
     {
-        public static readonly Index<T> Empty = new Index<T>(new T[]{});
+        static readonly T[] EmptyArray = new T[]{};
         
+        static readonly ArraySegment<T> EmptySegment = new ArraySegment<T>(EmptyArray);
+
+        public static readonly Index<T> Empty = new Index<T>(EmptyArray);
+
         readonly T[] data;
 
-        readonly ArraySegment<T>? segment;
+        readonly ArraySegment<T> segment;
+
+        readonly int DataLength;
+
+        readonly bool IsArrayAssigned;
+
 
         [MethodImpl(Inline)]
         public static implicit operator Index<T>(in T[] src)
@@ -43,32 +59,44 @@ namespace Z0
         public Index(in T[] src)
         {
             this.data = src;
-            this.segment = null;
+            this.IsArrayAssigned = true;
+            this.DataLength = src.Length;
+            this.segment = EmptySegment;
         }
             
         [MethodImpl(Inline)]
         public Index(in ArraySegment<T> src)
         {
-            this.data = null;
+            this.data = EmptyArray;
             this.segment = src;
+            this.DataLength = src.Count;
+            this.IsArrayAssigned = false;
+
         }
 
         [MethodImpl(Inline)]
         public Index(in List<T> src)
         {
             this.data = src.ToArray();
-            this.segment = null;
+            this.segment = EmptySegment;
+            this.DataLength = src.Count;
+            this.IsArrayAssigned = true;
         }
 
         [MethodImpl(Inline)]
         public T item(int key) 
-            => segment.HasValue ? segment.Value[key] : data[key];
-            
+            => IsArrayAssigned ? data[key] : segment[key];
+
+
+        IEnumerator<T> enumerator
+            => (IsArrayAssigned 
+                            ? (data as IReadOnlyList<T>) 
+                            : (segment  as IReadOnlyList<T>)).GetEnumerator();
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
-            => ( (data ?? segment ?? new T[]{}) as IReadOnlyList<T>).GetEnumerator();
+            => enumerator;
 
         IEnumerator IEnumerable.GetEnumerator()
-            => data.GetEnumerator();
+            => enumerator;
 
         public bool Equals(Index<T> rhs)
         {        
@@ -91,20 +119,20 @@ namespace Z0
         }
             
         public int Length
-            => data?.Length ?? 0;
+            => DataLength;
 
         public int Count 
-            => data?.Length ?? 0;
+            => DataLength;
 
         [MethodImpl(Inline)]
         public T[] AsArray()
-            => data ?? segment?.ToArray() ?? new T[]{};
+            => IsArrayAssigned ? data : segment.ToArray();
 
         public bool IsEmpty
-            => Count == 0;            
+            => DataLength == 0;            
 
         public bool IsNonEmpty
-            => Count != 0;            
+            => DataLength != 0;            
 
     }
 

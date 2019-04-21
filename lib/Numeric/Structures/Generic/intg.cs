@@ -53,7 +53,44 @@ namespace Z0
                 bits[i] = src.testbit(i);
             return new BitString(bits);
         }
+
+        [MethodImpl(Inline)]
+        public static explicit operator intg<T>(sbyte src)
+            =>  ClrConverter.convert<sbyte,T>(src);
+
+        [MethodImpl(Inline)]
+        public static explicit operator intg<T>(byte src)
+            =>  ClrConverter.convert<byte,T>(src);
+
+        [MethodImpl(Inline)]
+        public static explicit operator intg<T>(short src)
+            =>  ClrConverter.convert<short,T>(src);
+
+        [MethodImpl(Inline)]
+        public static explicit operator intg<T>(ushort src)
+            =>  ClrConverter.convert<ushort,T>(src);
+
         
+        [MethodImpl(Inline)]
+        public static explicit operator intg<T>(int src)
+            =>  ClrConverter.convert<int,T>(src);
+
+        [MethodImpl(Inline)]
+        public static explicit operator intg<T>(uint src)
+            =>  ClrConverter.convert<uint,T>(src);
+
+        [MethodImpl(Inline)]
+        public static explicit operator intg<T>(long src)
+            =>  ClrConverter.convert<long,T>(src);
+
+        [MethodImpl(Inline)]
+        public static explicit operator intg<T>(ulong src)
+            =>  ClrConverter.convert<ulong,T>(src);
+
+        [MethodImpl(Inline)]
+        public static explicit operator intg<T>(BigInteger src)
+            =>  ClrConverter.convert<BigInteger,T>(src);
+
         [MethodImpl(Inline)]
         public static explicit operator byte(intg<T> src)
             =>  ClrConverter.convert<T,byte>(src.data);

@@ -131,13 +131,13 @@ public static partial class zcore
     public static (T left, T right) current<T>((IEnumerator<T> left, IEnumerator<T> right) enumerator)
         => (enumerator.left.Current, enumerator.right.Current);
 
-    [MethodImpl(Inline)]   
-    public static IEnumerable<(T left, T right)> zip<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
-    {
-        var e = enumerator<T>(lhs,rhs);
-        while(next(e))
-            yield return current(e);                
-    }
+    // [MethodImpl(Inline)]   
+    // public static IEnumerable<(T left, T right)> zip<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
+    // {
+    //     var e = enumerator<T>(lhs,rhs);
+    //     while(next(e))
+    //         yield return current(e);                
+    // }
 
     /// <summary>
     /// Constructs a readonly list of pairs from a pair of readonly lists
@@ -146,8 +146,12 @@ public static partial class zcore
     /// <param name="right">The right list</param>
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]   
-    public static IReadOnlyList<(T left, T right)> zip<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
-        => zip((IEnumerable<T>)lhs,(IEnumerable<T>)rhs).Freeze();
+    public static Index<(T left, T right)> zip<T>(Index<T> lhs, Index<T> rhs)
+        => zip(lhs,rhs).ToArray();
+
+    // [MethodImpl(Inline)]   
+    // public static Index<(Index<T> left, Index<T> right)> zip<T>(Index<T>[] lhs, Index<T>[] rhs)
+    //     => zip(lhs,rhs).ToArray();
 
     /// <summary>
     /// Combines two input sequences to form a single target sequence
@@ -156,9 +160,9 @@ public static partial class zcore
     /// <param name="rhs">The second sequence</param>
     /// <param name="f">A binary operator that composes pairs of elements from the input sequences</param>
     /// <typeparam name="X">The sequence element type</typeparam>
-    [MethodImpl(Inline)]   
-    public static IEnumerable<Y> fuse<X,Y>(IEnumerable<X> lhs, IEnumerable<X> rhs, Func<X,X,Y> f)
-        => from pair in zip(lhs,rhs) select f(pair.left, pair.right);
+    // [MethodImpl(Inline)]   
+    // public static IEnumerable<Y> fuse<X,Y>(IEnumerable<X> lhs, IEnumerable<X> rhs, Func<X,X,Y> f)
+    //     => from pair in zip(lhs,rhs) select f(pair.left, pair.right);
 
     [MethodImpl(Inline)]   
     public static IReadOnlyList<Y> fuse<X,Y>(IReadOnlyList<X> lhs, IReadOnlyList<X> rhs, Func<X,X,Y> f)
@@ -197,7 +201,7 @@ public static partial class zcore
     }    
 
     [MethodImpl(Inline)]   
-    public static IReadOnlyList<Y> fuse<X,Y>(IReadOnlyList<X> x0, IReadOnlyList<X> x1, IReadOnlyList<X> x2, Func<X,X,X,Y> f)
+    public static Index<Y> fuse<X,Y>(Index<X> x0, Index<X> x1, Index<X> x2, Func<X,X,X,Y> f)
     {
         if(x0.Count != x1.Count || x0.Count != x2.Count)
             throw new ArgumentException($"The input list item counts do not match");
@@ -209,7 +213,7 @@ public static partial class zcore
     }    
 
     [MethodImpl(Inline)]   
-    public static IReadOnlyList<Y> fuse<X,Y>(IReadOnlyList<X> x0, IReadOnlyList<X> x1, IReadOnlyList<X> x2, IReadOnlyList<X> x3, Func<X,X,X,X,Y> f)
+    public static Index<Y> fuse<X,Y>(Index<X> x0, Index<X> x1, Index<X> x2, Index<X> x3, Func<X,X,X,X,Y> f)
     {
         if(x0.Count != x1.Count || x0.Count != x2.Count || x0.Count != x3.Count)
             throw new ArgumentException($"The input list item counts do not match");

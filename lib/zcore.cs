@@ -32,11 +32,23 @@ partial class zcore
     /// <param name="f">The action for which a running time will be calculated</param>
     /// <returns>The number of milliseconds elaplsed during execution</returns>
     [MethodImpl(Inline)]
-    public static long duration(Action f)
+    public static long measure(Action f, string name, int reps = 1, bool announce = true)
     {
+        if(announce)
+             print($"Measuring {name} execution time", SeverityLevel.HiliteML);
+        
         var sw = stopwatch();
-        f();
-        return sw.ElapsedMilliseconds;
+        for(var i = 0; i<reps; i++)
+            f();
+
+        var duration = sw.ElapsedMilliseconds;
+        
+        if(announce)
+             print($"Measured {name} execution time" +
+                    (reps != 1 ? $" over {reps} repetitions" : string.Empty) +
+                    $": {duration}ms", SeverityLevel.HiliteML);
+
+        return duration;
     }
 
     [MethodImpl(Inline)]
@@ -81,11 +93,14 @@ partial class zcore
     /// </summary>
     /// <param name="full">Whether the full name should be returned</param>
     /// <typeparam name="T">The type to examine</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
     public static string typename<T>(bool full = false)
-        => typeof(T).Name;
+        => full ? typeof(T).FullName : typeof(T).Name;
 
+    [MethodImpl(Inline)]   
+    public static string name<T>(bool full = false)
+        => typeof(T).DisplayName();
+    
     /// <summary>
     /// Returns the System.Type of the supplied parametric type
     /// </summary>

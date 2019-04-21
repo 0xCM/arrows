@@ -82,8 +82,8 @@ namespace Z0
         /// <param name="src">The source stream</param>
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> Freeze<T>(this IEnumerable<T> src)
-                => src.ToReadOnlyList();
+        public static Index<T> Freeze<T>(this IEnumerable<T> src)
+                => src.ToArray();
 
         /// <summary>
         /// Constructs a readonly list from from the a specified number of
@@ -92,18 +92,17 @@ namespace Z0
         /// <param name="src">The source stream</param>
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> Freeze<T>(this IEnumerable<T> src, int count)
-                => src.Take(count).Freeze();
+        public static Index<T> Freeze<T>(this IEnumerable<T> src, int length)
+                => src.TakeArray(length);
 
         /// <summary>
-        /// Constructs an array from the stream
+        /// Constructs an index of specified length from a stream
         /// </summary>
         /// <param name="src">The source stream</param>
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
-        public static T[] TakeArray<T>(this IEnumerable<T> src, int count)
-            => src.Take(count).ToArray();
-                
+        public static Index<T> Freeze<T>(this IEnumerable<T> src, uint count)
+                => src.TakeArray((int)count);
 
         /// <summary>
         /// Constructs a readonly list from from the a specified number of
@@ -112,18 +111,18 @@ namespace Z0
         /// <param name="src">The source stream</param>
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> Freeze<T>(this IEnumerable<T> src, int skip, int count)
-                => src.Skip(skip).Take(count).Freeze();
+        public static Index<T> Freeze<T>(this IEnumerable<T> src, int skip, int count)
+            => src.Skip(skip).TakeArray(count);
 
         /// <summary>
-        /// Constructs a readonly list from from the a specified number of
-        /// elmements from of a stream
+        /// Constructs an array of specified length from a stream
         /// </summary>
         /// <param name="src">The source stream</param>
+        /// <param name="length">The length of the index</param>
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> Freeze<T>(this IEnumerable<T> src, uint count)
-                => src.Take(count).Freeze();
+        public static T[] TakeArray<T>(this IEnumerable<T> src, int length)
+            => src.Take(length).ToArray();
 
         /// <summary>
         /// Constructs a slice from a sequence
@@ -188,7 +187,7 @@ namespace Z0
         /// <param name="len">The length of the segment</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> Segment<T>(this T[] src, uint start, uint len)
+        public static Index<T> Segment<T>(this T[] src, uint start, uint len)
             => new ArraySegment<T>(src, (int)start, (int)len);
 
         /// <summary>
@@ -200,7 +199,7 @@ namespace Z0
         /// <param name="len">The length of the segment</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> Segment<T>(this T[] src, ulong start, ulong len)
+        public static Index<T> Segment<T>(this T[] src, ulong start, ulong len)
             => new ArraySegment<T>(src, (int)start, (int)len);
 
         /// <summary>
