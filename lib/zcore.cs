@@ -181,22 +181,19 @@ partial class zcore
     /// Returns true if the input is false, false otherwise
     /// </summary>
     /// <param name="a">The value to test</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
     public static bool not(bool a) 
-        => a ? true : false;
+        => !a;
 
     /// <summary>
     /// Raises a NotImplemented exception
     /// </summary>
-    /// <returns></returns>
     public static T noimpl<T>() 
         => throw new NotImplementedException();
 
     /// <summary>
     /// Raises a NotImplemented exception
     /// </summary>
-    /// <returns></returns>
     public static void noimpl() 
         => throw new NotImplementedException();
 

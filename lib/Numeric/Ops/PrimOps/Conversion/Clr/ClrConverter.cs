@@ -15,51 +15,6 @@ namespace Z0
     using static ClrConverters;
 
     /// <summary>
-    /// Defines primary primitive conversion api
-    /// </summary>
-    public static class ClrConverter
-    {
-        /// <summary>
-        /// Fetches the S => T converter
-        /// </summary>
-        /// <typeparam name="S">The source type</typeparam>
-        /// <typeparam name="T">The target type</typeparam>        
-        [MethodImpl(Inline)]
-        static ClrConverter<S,T> singleton<S,T>()
-            => ClrConverter<S,T>.Inhabitant;
-
-        /// <summary>
-        /// Effects x:S => convert(x):T
-        /// </summary>
-        /// <typeparam name="S">The source type</typeparam>
-        /// <typeparam name="T">The target type</typeparam>        
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static T convert<S,T>(S src)
-            => singleton<S,T>().convert(src);
-
-        /// <summary>
-        /// Applies s:S => convert(s):T
-        /// </summary>
-        /// <typeparam name="S">The source type</typeparam>
-        /// <typeparam name="T">The target type</typeparam>
-        /// <param name="src">The source value</param>
-        /// <param name="dst">The target value</param>
-        [MethodImpl(Inline)]
-        public static T convert<S,T>(S src, out T dst)
-            => singleton<S,T>().convert(src, out dst);
-
-        /// <summary>
-        /// Effects x:array[S] => convert(x):array[T]
-        /// </summary>
-        /// <typeparam name="S">The source type</typeparam>
-        /// <typeparam name="T">The target type</typeparam>
-        /// <param name="src">The source array</param>
-        public static IReadOnlyList<T> convert<S,T>(IReadOnlyList<S> src)
-            => singleton<S,T>().convert(src);
-    }
-
-    /// <summary>
     /// Defines conversion operations from a clr numeric primitive s:S
     /// to another clr primitive t:T. The operation convert:S -> T always succeeds
     /// as the source values are truncated as necessary.
@@ -73,7 +28,7 @@ namespace Z0
         static readonly Conversion<S,T> Convert = choose();
 
         [MethodImpl(Inline)]
-        public IReadOnlyList<T> convert(IReadOnlyList<S> src)
+        public Index<T> convert(Index<S> src)
         {
             var dst = array<T>(src.Count);
             iter(src.Count, i => dst[i] = Convert.convert(src[i]));

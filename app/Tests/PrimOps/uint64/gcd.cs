@@ -36,7 +36,7 @@ namespace Z0.Tests
             => base.Verify();
 
         [Repeat(1)]
-        public override IReadOnlyList<operand> Baseline()
+        public override Index<operand> Baseline()
         {
             var dst = target();
             iter((int)SampleSize, i =>
@@ -45,7 +45,7 @@ namespace Z0.Tests
         }
 
         [Repeat(1)]
-        public override IReadOnlyList<operand> Compute()
+        public override Index<operand> Compute()
             => fuse(LeftSrc,RightSrc, Prim.gcd);
 
 

@@ -39,15 +39,15 @@ namespace Z0.Testing
         protected T[] target() => array<T>(SampleSize);
         
         protected Index<T> sample()
-            => Context.Random<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Take(SampleSize).ToIndex();
+            => Context.Rand<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Take(SampleSize).ToIndex();
 
       
         [Repeat(Defaults.Reps)]
-        public virtual IReadOnlyList<T> Compute() 
+        public virtual Index<T> Compute() 
             => new T[]{};
       
         [Repeat(Defaults.Reps)]
-        public virtual IReadOnlyList<T> Baseline()
+        public virtual Index<T> Baseline()
             => new T[]{};
 
 

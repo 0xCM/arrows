@@ -66,6 +66,15 @@ partial class zcore
                 AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Info, caller));
 
     /// <summary>
+    /// Emits a warning-level message
+    /// </summary>
+    /// <param name="msg">The message to emit</param>
+    /// <param name="caller">The calling member</param>
+    public static void warn(object msg, [CallerMemberName] string caller = null)
+        => terminal.WriteMessage(
+                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Warning, caller));
+
+    /// <summary>
     /// Emits a highlighted information-level message
     /// </summary>
     /// <param name="msg">The message to emit</param>

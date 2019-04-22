@@ -27,10 +27,10 @@ namespace Z0.Testing
 
         protected S MaxPrimVal {get;}
 
-        protected IReadOnlyList<S> Src; 
+        protected Index<S> Src; 
 
-        protected static IReadOnlyList<S> source(S min, S max)
-            =>  Context.Random<S>().stream(min,max).Freeze(VectorSize);
+        protected static Index<S> source(S min, S max)
+            =>  Context.Rand<S>().stream(min,max).Freeze(VectorSize);
 
         protected ClrConverterTest(Interval<S> bounds)
         {
@@ -40,10 +40,10 @@ namespace Z0.Testing
         }
       
         [Repeat(Defaults.Reps)]
-        public abstract IReadOnlyList<T> Compute();
+        public abstract Index<T> Compute();
       
         [Repeat(Defaults.Reps)]
-        public abstract IReadOnlyList<T> Baseline();        
+        public abstract Index<T> Baseline();        
 
         public virtual void Verify()
         {

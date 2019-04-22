@@ -19,7 +19,7 @@ namespace Z0.Testing
         where S : UnaryPrimOpsTest<S,T>
         where T : struct, IEquatable<T>
     {
-        protected IReadOnlyList<T> PrimSrc;
+        protected Index<T> PrimSrc;
         
         protected UnaryPrimOpsTest(Interval<T> bounds, Func<T,bool> filter = null, int? sampleSize = null)
             : base(bounds, filter, sampleSize)
@@ -27,8 +27,5 @@ namespace Z0.Testing
             this.PrimSrc = sample();
 
         }
-
     }
-
-
 }

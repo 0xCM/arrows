@@ -10,11 +10,9 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
 using Z0;
-using static Z0.Bibliography;
 using static Z0.Traits;
 
-
-public static partial class zcore
+partial class zcore
 {
     /// <summary>
     /// Reduces a stream to a single value via an additive monoid
@@ -40,8 +38,7 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static T foldM<T>(IEnumerable<T> src)
         where T : struct, Structures.MonoidM<T>
-    {
-        
+    {        
         var cumulant = default(T).one;
         foreach(var item in src)
             cumulant = cumulant.mul(item);            
@@ -81,26 +78,6 @@ public static partial class zcore
     }
 
     /// <summary>
-    /// Raises a baise to a power
-    /// </summary>
-    /// <param name="@base">The base value</param>
-    /// <param name="exp">The exponent value</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static uint pow(uint @base, uint exp)
-        => fold(repeat(@base, exp), (x,y) => x*y);
-
-    /// <summary>
-    /// Raises a baise to a power
-    /// </summary>
-    /// <param name="@base">The base value</param>
-    /// <param name="exp">The exponent value</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static ulong pow(ulong @base, ulong exp)
-        => fold(repeat(@base, exp), (x,y) => x*y);
-
-    /// <summary>
     /// Constructs a pair enumerator from two distict enumerables
     /// </summary>
     /// <param name="left">The left sequence</param>
@@ -130,99 +107,6 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static (T left, T right) current<T>((IEnumerator<T> left, IEnumerator<T> right) enumerator)
         => (enumerator.left.Current, enumerator.right.Current);
-
-    // [MethodImpl(Inline)]   
-    // public static IEnumerable<(T left, T right)> zip<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
-    // {
-    //     var e = enumerator<T>(lhs,rhs);
-    //     while(next(e))
-    //         yield return current(e);                
-    // }
-
-    /// <summary>
-    /// Constructs a readonly list of pairs from a pair of readonly lists
-    /// </summary>
-    /// <param name="left">The left list</param>
-    /// <param name="right">The right list</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Index<(T left, T right)> zip<T>(Index<T> lhs, Index<T> rhs)
-        => zip(lhs,rhs).ToArray();
-
-    // [MethodImpl(Inline)]   
-    // public static Index<(Index<T> left, Index<T> right)> zip<T>(Index<T>[] lhs, Index<T>[] rhs)
-    //     => zip(lhs,rhs).ToArray();
-
-    /// <summary>
-    /// Combines two input sequences to form a single target sequence
-    /// </summary>
-    /// <param name="lhs">The first sequence</param>
-    /// <param name="rhs">The second sequence</param>
-    /// <param name="f">A binary operator that composes pairs of elements from the input sequences</param>
-    /// <typeparam name="X">The sequence element type</typeparam>
-    // [MethodImpl(Inline)]   
-    // public static IEnumerable<Y> fuse<X,Y>(IEnumerable<X> lhs, IEnumerable<X> rhs, Func<X,X,Y> f)
-    //     => from pair in zip(lhs,rhs) select f(pair.left, pair.right);
-
-    [MethodImpl(Inline)]   
-    public static IReadOnlyList<Y> fuse<X,Y>(IReadOnlyList<X> lhs, IReadOnlyList<X> rhs, Func<X,X,Y> f)
-    {
-        if(lhs.Count != rhs.Count)
-            throw new ArgumentException($"The left count {lhs.Count} does not match the right count {rhs.Count}");
-            
-        var dst = alloc<Y>(lhs.Count);
-        for(var i = 0; i< dst.Length; i++)
-            dst[i] = f(lhs[i], rhs[i]);
-        return dst;
-    }    
-
-    [MethodImpl(Inline)]   
-    public static Index<Y> fuse<X,Y>(Index<X> lhs, Index<X> rhs, Func<X,X,Y> f)
-    {
-        if(lhs.Count != rhs.Count)
-            throw new ArgumentException($"The left count {lhs.Count} does not match the right count {rhs.Count}");
-            
-        var dst = alloc<Y>(lhs.Count);
-        for(var i = 0; i< dst.Length; i++)
-            dst[i] = f(lhs[i], rhs[i]);
-        return dst;
-    }    
-
-    [MethodImpl(Inline)]   
-    public static Y[] fuse<X,Y>(X[] lhs, X[] rhs, Func<X,X,Y> f)
-    {
-        if(lhs.Length != rhs.Length)
-            throw new ArgumentException($"The left count {lhs.Length} does not match the right count {rhs.Length}");
-            
-        var dst = alloc<Y>(lhs.Length);
-        for(var i = 0; i< dst.Length; i++)
-            dst[i] = f(lhs[i], rhs[i]);
-        return dst;
-    }    
-
-    [MethodImpl(Inline)]   
-    public static Index<Y> fuse<X,Y>(Index<X> x0, Index<X> x1, Index<X> x2, Func<X,X,X,Y> f)
-    {
-        if(x0.Count != x1.Count || x0.Count != x2.Count)
-            throw new ArgumentException($"The input list item counts do not match");
-            
-        var dst = alloc<Y>(x0.Count);
-        for(var i = 0; i< dst.Length; i++)
-            dst[i] = f(x0[i], x1[i], x2[i]);
-        return dst;
-    }    
-
-    [MethodImpl(Inline)]   
-    public static Index<Y> fuse<X,Y>(Index<X> x0, Index<X> x1, Index<X> x2, Index<X> x3, Func<X,X,X,X,Y> f)
-    {
-        if(x0.Count != x1.Count || x0.Count != x2.Count || x0.Count != x3.Count)
-            throw new ArgumentException($"The input list item counts do not match");
-            
-        var dst = alloc<Y>(x0.Count);
-        for(var i = 0; i< dst.Length; i++)
-            dst[i] = f(x0[i], x1[i], x2[i], x3[i]);
-        return dst;
-    }    
     
     /// <summary>
     /// Evaluates a binary predicate over a sequence of pairs and returns true if any
@@ -258,83 +142,6 @@ public static partial class zcore
         => src.FirstOrDefault(predicate);
 
     /// <summary>
-    /// Applies a function f:S->T over an input sequence [S] to obtain 
-    /// a target sequence [T]
-    /// </summary>
-    /// <param name="f">The function to be applied</param>
-    /// <param name="src">The source sequence</param>
-    /// <typeparam name="S">The source element type</typeparam>
-    /// <typeparam name="T">The target element type</typeparam>
-    [MethodImpl(Inline)]   
-    public static IEnumerable<T> map<S,T>(IEnumerable<S> src, Func<S,T> f)
-        => src.Select(x => f(x));
-
-    /// <summary>
-    /// Applies a function f:S->T over an input list [S] to obtain 
-    /// a target list [T]
-    /// </summary>
-    /// <param name="f">The function to be applied</param>
-    /// <param name="src">The source list</param>
-    /// <typeparam name="S">The source element type</typeparam>
-    /// <typeparam name="T">The target element type</typeparam>
-    [MethodImpl(Inline)]   
-    public static IReadOnlyList<T> map<S,T>(IReadOnlyList<S> src, Func<S,T> f)
-    {
-        var dst = alloc<T>(src.Count);
-        for(var i = 0; i<src.Count; i++)
-            dst[i] = f(src[i]);
-        return dst;
-    }    
-
-    [MethodImpl(Inline)]   
-    public static Index<T> map<S,T>(Index<S> src, Func<S,T> f)
-    {
-        var dst = alloc<T>(src.Count);
-        for(var i = 0; i<src.Count; i++)
-            dst[i] = f(src[i]);
-        return dst;
-    }    
-
-    [MethodImpl(Inline)]   
-    public static T[] map<S,T>(S[] src, Func<S,T> f)
-    {
-        var dst = alloc<T>(src.Length);
-        for(var i = 0; i<src.Length; i++)
-            dst[i] = f(src[i]);
-        return dst;
-    }    
-
-
-    /// <summary>
-    /// Applies a function to a value
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <param name="f">The function to apply</param>
-    /// <typeparam name="X">The source value type</typeparam>
-    /// <typeparam name="Y">The output value type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static Y apply<X,Y>(X x,Func<X,Y> f)
-        => f(x);
-
-    /// <summary>
-    /// Applies a function to elements of an input sequence to produce 
-    /// a transformed output sequence
-    /// </summary>
-    /// <param name="f">The function to be applied</param>
-    /// <param name="src">The source sequence</param>
-    /// <typeparam name="A">The source value type</typeparam>
-    /// <typeparam name="B">The target value type</typeparam>
-    /// <returns>The transformed sequence</returns>
-    public static IEnumerable<B> mapi<A,B>(Func<int,A,B> f, IEnumerable<A> src)
-    {
-        var i = 0;
-        foreach(var item in src)
-            yield return f(i++,item);
-    }
-
-
-    /// <summary>
     /// Transforms a function (S,T) -> U to a function S -> (T -> U)
     /// </summary>
     /// <typeparam name="S">The first argument type</typeparam>
@@ -360,7 +167,6 @@ public static partial class zcore
         return g;
     }
 
-
     /// <summary>
     /// Creates a deferred value
     /// </summary>
@@ -368,271 +174,6 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static Lazy<T> defer<T>(Func<T> factory)
         => new Lazy<T>(factory);
-
-    /// <summary>
-    /// Evaluates a predicate and then brances based on the outcome of the evaluation
-    /// </summary>
-    /// <typeparam name="X">The type of value to evaluate and subsequently process</typeparam>
-    /// <typeparam name="Y">The output type</typeparam>
-    /// <param name="test">The input value</param>
-    /// <param name="predicate">The predicate that will determine the branch to invoke</param>
-    /// <param name="true">The function to execute when the predicate evaulates to true</param>
-    /// <param name="false">The function to evaluate when the predicate evaluates to false</param>
-    [MethodImpl(Inline)]
-    public static Y when<X, Y>(X test, Predicate<X> predicate, Func<X, Y> @true, Func<X, Y> @false)
-        => predicate(test) ? @true(test) : @false(test);
-
-    /// <summary>
-    /// Returns the supplied value if not null, otherwise invokes a function to provide
-    /// a non-null value as a replacement
-    /// </summary>
-    /// <typeparam name="T">The object type</typeparam>
-    /// <param name="x">The object to test</param>
-    /// <param name="replace">The function that yields a replacement value in the event that the supplied value is null</param>
-    [MethodImpl(Inline)]
-    public static T coalesce<T>(T x, Func<T> replace)
-        where T : class => x ?? replace();
-
-    /// <summary>
-    /// Returns the source value if not null; otherwise returns the fallback value
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <param name="fallback">The value to return when the source is null</param>
-    /// <typeparam name="T">The source value type</typeparam>
-    [MethodImpl(Inline)]
-    public static T coalesce<T>(T x, T replace)
-        where T : class => x ?? replace;
-
-    /// <summary>
-    /// Returns the source value if not null; otherwise result of fallback invocation
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <param name="fallback">A function that produces a value if needed</param>
-    /// <typeparam name="T">The source value type</typeparam>
-    [MethodImpl(Inline)]
-    public static T coalesce<T>(T? x, Func<T> fallback)
-        where T : struct
-            => x == null ? fallback() : x.Value;
-
-    /// <summary>
-    /// Returns the source value if not null; otherwise returns the fallback value
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <param name="fallback">The value to return when the source is null</param>
-    /// <typeparam name="T">The source value type</typeparam>
-    [MethodImpl(Inline)]
-    public static T coalesce<T>(T? x, T fallback)
-        where T : struct
-            => x == null ? fallback : x.Value;
-
-    /// <summary>
-    /// Maps the source <paramref name="x"/> to a value in the target space <typeparamref name="Y"/>
-    /// </summary>
-    /// <typeparam name="X"></typeparam>
-    /// <typeparam name="Y"></typeparam>
-    /// <param name="x"></param>
-    /// <param name="null"></param>
-    /// <param name="else"></param>
-    [MethodImpl(Inline)]
-    public static Y ifnull<X, Y>(X x, Func<Y> @null, Func<X, Y> @else)
-        => x == null ? @null() : @else(x);
-
-    /// <summary>
-    /// Evaluates a function over a value if the value is not null; otherwise,
-    /// returns the default result value
-    /// </summary>
-    /// <typeparam name="S"></typeparam>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="x"></param>
-    /// <param name="f1"></param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static T ifvalue<S, T>(S x, Func<S, T> f1, T @default = default)
-        => x != null ? f1(x) : @default;
-
-    /// <summary>
-    /// Evaluates a function over a value if the value is not null; otherwise invokes
-    /// a function that will produce a value that is within the expected range
-    /// </summary>
-    /// <typeparam name="S">The object type</typeparam>
-    /// <typeparam name="T">The function result type</typeparam>
-    /// <param name="x">The object to test</param>
-    /// <param name="f1">The non-null evaluator</param>
-    /// <param name="f2">The null evaluator</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static T ifvalue<S, T>(S x, Func<S, T> f1, Func<T> f2)
-        where S : class => (x != null) ? f1(x) : f2();
-
-
-    /// <summary>
-    /// Executes one action if a condition is true and another should it be false
-    /// </summary>
-    /// <param name="condition">Specifies whether some condition is true</param>
-    /// <param name="true">The action to invoke when condition is true</param>
-    /// <param name="false">The action to invoke when condition is false</param>
-    [MethodImpl(Inline)]
-    public static Unit on(bool condition, Action @true, Action @false = null)
-    {
-        if (condition)
-            @true();
-        else
-            @false?.Invoke();
-
-        return Unit.Value;
-    }
-
-    /// <summary>
-    /// Executes an action if condition is false
-    /// </summary>
-    /// <param name="condition">Specifies whether some condition is true</param>
-    /// <param name="@false">The action to invoke when condition is false</param>
-    [MethodImpl(Inline)]
-    public static Unit onFalse(bool condition, Action @false)
-    {
-        if(!condition)
-            @false();
-        return Unit.Value;
-    }
-
-    /// <summary>
-    /// Executes an action if condition is true
-    /// </summary>
-    /// <param name="condition">Specifies whether some condition is true</param>
-    /// <param name="@false">The action to invoke when condition is false</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static Unit onTrue(bool condition, Action @true)
-    {
-        if(condition)
-            @true();
-        return Unit.Value;
-    }
-
-    /// <summary>
-    /// Invokes an action if the supplied value is not null
-    /// </summary>
-    /// <typeparam name="V">The value type</typeparam>
-    /// <param name="value">The potentially null value</param>
-    /// <param name="a">The action to invoke if possible</param>
-    [MethodImpl(Inline)]
-    public static Unit onValue<V>(V value, Action<V> a)
-    {
-        if (value != null)
-            a(value);
-
-        return Unit.Value;
-    }
-
-
-
-    /// <summary>
-    /// Executes one of two functions depending on the evaulation criterion
-    /// </summary>
-    /// <typeparam name="X">The function input type</typeparam>
-    /// <typeparam name="Y">The function output type</typeparam>
-    /// <param name="criterion">The criterion on which to branch</param>
-    /// <param name="value">The value to supply to the chosen function</param>
-    /// <param name="onTrue">The function to evaulate when the criterion is true</param>
-    /// <param name="onFalse">The function to evaulate when the criterion is false</param>
-    /// <returns></returns>
-    [DebuggerStepperBoundary, MethodImpl(Inline)]
-    public static Y ifelse<X, Y>(bool criterion, X value, Func<X, Y> onTrue, Func<X, Y> onFalse)
-        => criterion ? onTrue(value) : onFalse(value);
-
-    /// <summary>
-    /// Executes one of two functions depending on the evaulation criterion
-    /// </summary>
-    /// <typeparam name="X">The function input type</typeparam>
-    /// <param name="criterion">The criterion on which to branch</param>
-    /// <param name="true">The function to evaulate when the criterion is true</param>
-    /// <param name="false">The function to evaulate when the criterion is false</param>
-    /// <returns></returns>
-    [DebuggerStepperBoundary, MethodImpl(Inline)]
-    public static X ifelse<X>(bool criterion, Func<X> @true, Func<X> @false)
-        => criterion ? @true() : @false();
-
-    /// <summary>
-    /// Executes a function if the criterion is true, otherwise returns the supplied value
-    /// </summary>
-    /// <typeparam name="T">The function input/output type</typeparam>
-    /// <param name="criterion">The criterion on which to branch</param>
-    /// <param name="value">The value to supply to the chosen function</param>
-    /// <param name="onTrue">The function to evaulate when the criterion is true</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static T ifTrue<T>(bool criterion, T value, Func<T, T> onTrue)
-        => criterion ? onTrue(value) : value;
-
-
-    /// <summary>
-    /// Aplies an action to the sequence of generic integers min,min+1,...,max - 1
-    /// </summary>
-    /// <param name="min">The inclusive lower bound of the sequence</param>
-    /// <param name="max">The non-inclusive upper bound of the sequence
-    /// over intergers over which iteration will occur</param>
-    /// <param name="f">The action to be applied to each  value</param>
-    [MethodImpl(Inline)]
-    public static void iterg<T>(intg<T> min, intg<T> max, Action<intg<T>> f)
-        where T : struct, IEquatable<T>
-    {
-       for(var i = min; i< max; i++) 
-            f(i);
-    }
-
-    /// <summary>
-    /// Aplies an action to the sequence of generic integers 0,2,...,max - 1
-    /// </summary>
-    /// <param name="max">The non-inclusive upper bound of the sequence
-    /// over intergers over which iteration will occur</param>
-    /// <param name="f">The action to be applied to each  value</param>
-    [MethodImpl(Inline)]
-    public static void iterg<T>(intg<T> max, Action<intg<T>> f)
-        where T : struct, IEquatable<T>
-    {
-       for(var i = max.zero; i< max; i++) 
-            f(i);
-    }
-
-    /// <summary>
-    /// Aplies an action to the sequence of integers min,min+1,...,max - 1
-    /// </summary>
-    /// <param name="min">The inclusive lower bound of the sequence</param>
-    /// <param name="max">The non-inclusive upper bound of the sequence
-    /// over intergers over which iteration will occur</param>
-    /// <param name="f">The action to be applied to each  value</param>
-    [MethodImpl(Inline)]
-    public static void iter(int min, int max, Action<int> f)
-    {
-       for(var i = min; i< max; i++) 
-            f(i);
-    }
-
-    /// <summary>
-    /// Aplies an action to the sequence of integers min,min+1,...,max - 1
-    /// </summary>
-    /// <param name="min">The inclusive lower bound of the sequence</param>
-    /// <param name="max">The non-inclusive upper bound of the sequence
-    /// over intergers over which iteration will occur</param>
-    /// <param name="f">The action to be applied to each  value</param>
-    [MethodImpl(Inline)]
-    public static void iter(long min, long max, Action<long> f)
-    {
-       for(var i = min; i< max; i++) 
-            f(i);
-    }
-
-    /// <summary>
-    /// Applies an action to the increasing sequence of integers 0,1,2,...,count - 1
-    /// </summary>
-    /// <param name="count">The number of times the action will be invoked
-    /// <param name="f">The action to be applied to each value</param>
-    [MethodImpl(Inline)]
-    public static void iter(int count, Action<int> f)
-    {
-       for(var i = 0; i< count; i++) 
-            f(i);
-    }
 
 
 }

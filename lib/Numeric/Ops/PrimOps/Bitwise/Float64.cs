@@ -20,14 +20,14 @@ namespace Z0
         static targets rshift(targets src, int shift)
         {
             target unaryShift(target x) => bitsf(bitsf(x) >> shift);
-            return apply(src,unaryShift, out target[] dst);
+            return mapto(src,unaryShift, out target[] dst);
         }
 
         [MethodImpl(Inline)]   
         static targets lshift(targets src, int shift)
         {
             target unaryShift(target x) => bitsf(bitsf(x) << shift);            
-            return apply(src,unaryShift, out target[] dst);
+            return mapto(src,unaryShift, out target[] dst);
         }
 
         public readonly partial struct Bitwise : 
@@ -64,7 +64,7 @@ namespace Z0
 
             [MethodImpl(Inline)]   
             public targets flip(targets src)
-                => apply(src,flip, out target[] dst);
+                => mapto(src,flip, out target[] dst);
 
             [MethodImpl(Inline)]   
             public target lshift(target lhs, int rhs)

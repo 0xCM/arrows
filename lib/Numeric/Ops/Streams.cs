@@ -18,9 +18,14 @@ namespace Z0
         static ArgumentException mismatched<T>(Index<T> lhs, Index<T> rhs)
             => new ArgumentException($"The left item count {lhs.Count} does not match the right item count {rhs.Count}");
         
+        
+                
         [MethodImpl(Inline)]
         static int matchedCount<T>(Index<T> lhs, Index<T> rhs)
             => lhs.Count != rhs.Count ? throw mismatched(lhs,rhs) : lhs.Count;
+
+
+
 
         [MethodImpl(Inline)]
         static T[] target<T>(int count)
@@ -34,6 +39,5 @@ namespace Z0
                 dst[i] = f(lhs[i], rhs[i]);
             return dst;
         }
-
     }
 }

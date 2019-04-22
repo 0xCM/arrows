@@ -5,25 +5,16 @@
 namespace Z0
 {
     using System;
+    using System.Numerics;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-
     using static zcore;
 
-    using prim = System.Decimal;
-    
-    class RandF128 : IRandom<prim>
-    {
-        readonly Randomizer random;
+    public delegate T PrimalBinOp<T>(T lhs, T rhs)
+        where T : struct, IEquatable<T>;
 
-        [MethodImpl(Inline)]
-        public RandF128(Randomizer random)
-            => this.random = random;
+    public delegate Index<T> IndexBinOp<T>(Index<T> lhs, Index<T> rhs)
+        where T : struct, IEquatable<T>;
 
 
-        public IEnumerable<prim> stream(prim min, prim max)
-            => random.stream(min,max);
-
-
-    }
 }

@@ -15,176 +15,19 @@ namespace Z0
         where T : struct, IEquatable<T>
     {
         IEnumerable<T> stream(Interval<T> domain);
+        
+        IEnumerable<T> stream(T min, T max); 
+
+        IEnumerable<T> stream();       
     }
     
 
-    public interface IRandom<T>
-        where T : struct, IEquatable<T>
-    {
-        
-        IEnumerable<T> stream(T min, T max);        
-    }
 
     public interface IRandomizer
     {
-        /// <summary>
-        /// Obtains the next ulong random value
-        /// </summary>
-        ulong next();
-
-        /// <summary>
-        /// Obtains a random stream of ulong values
-        /// </summary>
-        IEnumerable<ulong> stream();
-
-        /// <summary>
-        /// Obtains a random bitstream
-        /// </summary>
         IEnumerable<bit> bits();
 
-        /// <summary>
-        /// Obtains a random stream whose values are between a specified min and max.
-        /// </summary>
-        /// <param name="min">The smallest number to yield</param>
-        /// <param name="max">The largest number to yield</param>
-        IEnumerable<byte> stream(byte min, byte max);
-
-        /// <summary>
-        /// Obtains a random stream whose values are within a specified interval.
-        /// </summary>
-        /// <param name="domain">The random value domain</param>
-        IEnumerable<byte> stream(Interval<byte> domain);
-
-        /// <summary>
-        /// Obtains a random stream whose values are between a specified min and max.
-        /// </summary>
-        /// <param name="min">The smallest number to yield</param>
-        /// <param name="max">The largest number to yield</param>
-        IEnumerable<sbyte> stream(sbyte min, sbyte max);
-
-        /// <summary>
-        /// Obtains a random stream whose values are within a specified interval.
-        /// </summary>
-        /// <param name="domain">The random value domain</param>
-        IEnumerable<sbyte> stream(Interval<sbyte> domain);
-
-        /// <summary>
-        /// Obtains a random stream whose values are between a specified min and max.
-        /// </summary>
-        /// <param name="min">The smallest number to yield</param>
-        /// <param name="max">The largest number to yield</param>
-        IEnumerable<short> stream(short min, short max);
-
-        /// <summary>
-        /// Obtains a random stream whose values are within a specified interval.
-        /// </summary>
-        /// <param name="domain">The random value domain</param>
-        IEnumerable<short> stream(Interval<short> domain);
-
-        /// <summary>
-        /// Obtains a random stream whose values are between a specified min and max.
-        /// </summary>
-        /// <param name="min">The smallest number to yield</param>
-        /// <param name="max">The largest number to yield</param>
-        IEnumerable<ushort> stream(ushort min, ushort max);
-
-        /// <summary>
-        /// Obtains a random stream whose values are within a specified interval.
-        /// </summary>
-        /// <param name="domain">The random value domain</param>
-        IEnumerable<ushort> stream(Interval<ushort> domain);
-
-        /// <summary>
-        /// Obtains a random stream whose values are between a specified min and max.
-        /// </summary>
-        /// <param name="min">The smallest number to yield</param>
-        /// <param name="max">The largest number to yield</param>
-        IEnumerable<int> stream(int min, int max);
-
-        /// <summary>
-        /// Obtains a random stream whose values are within a specified interval.
-        /// </summary>
-        /// <param name="domain">The random value domain</param>
-        IEnumerable<int> stream(Interval<int> domain);
-
-        /// <summary>
-        /// Obtains a random stream whose values are between a specified min and max.
-        /// </summary>
-        /// <param name="min">The smallest number to yield</param>
-        /// <param name="max">The largest number to yield</param>
-        IEnumerable<uint> stream(uint min, uint max);
-
-        /// <summary>
-        /// Obtains a random stream whose values are within a specified interval.
-        /// </summary>
-        /// <param name="domain">The random value domain</param>
-        IEnumerable<uint> stream(Interval<uint> domain);
-
-        /// <summary>
-        /// Obtains a random stream whose values are between a specified min and max.
-        /// </summary>
-        /// <param name="min">The smallest number to yield</param>
-        /// <param name="max">The largest number to yield</param>
-        IEnumerable<long> stream(long min, long max);
-
-        /// <summary>
-        /// Obtains a random stream whose values are within a specified interval.
-        /// </summary>
-        /// <param name="domain">The random value domain</param>
-        IEnumerable<long> stream(Interval<long> domain);
-
-        /// <summary>
-        /// Obtains a random stream whose values are between a specified min and max.
-        /// </summary>
-        /// <param name="min">The smallest number to yield</param>
-        /// <param name="max">The largest number to yield</param>
-        IEnumerable<ulong> stream(ulong min, ulong max);
-
-        /// <summary>
-        /// Obtains a random stream whose values are within a specified interval.
-        /// </summary>
-        /// <param name="domain">The random value domain</param>
-        IEnumerable<ulong> stream(Interval<ulong> domain);
-
-        /// <summary>
-        /// Obtains a random stream whose values are between a specified min and max.
-        /// </summary>
-        /// <param name="min">The smallest number to yield</param>
-        /// <param name="max">The largest number to yield</param>
-        IEnumerable<float> stream(float min, float max);
         
-        /// <summary>
-        /// Obtains a random stream whose values are within a specified interval.
-        /// </summary>
-        /// <param name="domain">The random value domain</param>
-        IEnumerable<float> stream(Interval<float> domain);
-
-
-        /// <summary>
-        /// Obtains a random stream whose values are between a specified min and max.
-        /// </summary>
-        /// <param name="min">The smallest number to yield</param>
-        /// <param name="max">The largest number to yield</param>
-        IEnumerable<double> stream(double min, double max);
-
-        /// <summary>
-        /// Obtains a random stream whose values are within a specified interval.
-        /// </summary>
-        /// <param name="domain">The random value domain</param>
-        IEnumerable<double> stream(Interval<double> domain);
-
-        /// <summary>
-        /// Obtains a random stream whose values are between a specified min and max.
-        /// </summary>
-        /// <param name="min">The smallest number to yield</param>
-        /// <param name="max">The largest number to yield</param>
-        IEnumerable<decimal> stream(decimal min, decimal max);
- 
-         /// <summary>
-        /// Obtains a random stream whose values are within a specified interval.
-        /// </summary>
-        /// <param name="domain">The random value domain</param>
-        IEnumerable<decimal> stream(Interval<decimal> domain);
    }
 
     /// <summary>
@@ -261,25 +104,6 @@ namespace Z0
             jump(J128);
         }
 
-
-        [MethodImpl(Inline)]
-        public ulong next()
-        {
-            var next = rotl(seed[1] * 5, 7) * 9;
-            var t = seed[1] << 17;
-
-            seed[2] ^= seed[0];
-            seed[3] ^= seed[1];
-            seed[1] ^= seed[2];
-            seed[0] ^= seed[3];
-
-            seed[2] ^= t;
-
-            seed[3] = rotl(seed[3], 45);
-
-            return next;
-        }
-
         void jump(ulong[] J) 
         {            
             var s0 = 0UL;
@@ -306,6 +130,38 @@ namespace Z0
             seed[3] = s3;
         }          
 
+        [MethodImpl(Inline)]
+        ulong next()
+        {
+            var next = rotl(seed[1] * 5, 7) * 9;
+            var t = seed[1] << 17;
+
+            seed[2] ^= seed[0];
+            seed[3] ^= seed[1];
+            seed[1] ^= seed[2];
+            seed[0] ^= seed[3];
+
+            seed[2] ^= t;
+
+            seed[3] = rotl(seed[3], 45);
+
+            return next;
+        }
+
+        static T mod<T>(ulong lhs, ulong rhs)
+            where T : struct, IEquatable<T>
+                => convert<ulong,T>(lhs % rhs);
+
+        static ulong width<T>(Interval<T> domain)
+            where T : struct, IEquatable<T>
+                => convert<T,ulong>(domain.right) - convert<T,ulong>(domain.left);
+
+        IEnumerable<ulong> stream()
+        {
+            while(true)
+                yield return next();
+        }
+
         public IEnumerable<bit> bits()
         {
             while(true)
@@ -316,183 +172,95 @@ namespace Z0
             }
         }
 
-        [MethodImpl(Inline)]
-        public byte one(byte min, byte max)
+        public IEnumerable<byte> stream(Interval<byte> domain)        
         {
-            if(!(min < max))
-                throw new ArgumentException($"{min} !< {max}");
-
-            var width = (ulong)(max - min);
-            var offset = (ulong)(min + 1);
-            var result = next() % width + offset;
-            return (byte)result;            
-        }
-
-        [MethodImpl(Inline)]
-        public sbyte one(sbyte min, sbyte max)
-        {
-            var width = (byte)(max - min);
-            var uVal = one((byte)0, width);
-            return (sbyte)(max - uVal);
-        }
-
-
-
-        [MethodImpl(Inline)]
-        public uint one(uint min, uint max)
-        {
-            var width = (ulong)(max - min);
-            var offset = (ulong)(min + 1);
-            var result = next() % width + offset;
-            return (uint)result;            
-        }
-
-
-        [MethodImpl(Inline)]
-        public ulong one(ulong min, ulong max)
-        {
-            var width = max - min;
-            var offset = min + 1;
-            return next() % width + offset;
-            
-        }
-
-
-        public IEnumerable<ulong> stream()
-        {
+            var w = width(domain);
             while(true)
-                yield return next();
+                yield return (byte)(mod<int>(next(), w) + domain.left);                
         }
-
-        public IEnumerable<ulong> stream(ulong min, ulong max)
-        {
-            if(!(min < max))
-                throw new ArgumentException($"{min} !< {max}");
-
-            var width = max - min;
-            foreach(var n in stream())
-                yield return ( n % width + min);
-        }
-
-        public IEnumerable<ulong> stream(Interval<ulong> domain)        
-            => stream(domain.left, domain.right);
 
         public IEnumerable<byte> stream(byte min, byte max)
-            => from x in stream((ulong)min, (ulong)max) select (byte)x;
-
-        public IEnumerable<byte> stream(Interval<byte> domain)        
-            => stream(domain.left, domain.right);
-
-        public IEnumerable<sbyte> stream(sbyte min, sbyte max)
-        {
-            if(!(min < max))
-                throw new ArgumentException($"{min} !< {max}");
-            while(true)
-                yield return one(min,max);
-        }
+            => stream(Interval.leftclosed(min,max)); 
 
         public IEnumerable<sbyte> stream(Interval<sbyte> domain)        
-            => stream(domain.left, domain.right);
-
-        [MethodImpl(Inline)]
-        public ushort one(ushort min, ushort max)
         {
-            var width = (ulong)(max - min);
-            var offset = (ulong)(min + 1);
-            var result = next() % width + offset;
-            return (ushort)result;            
+            var w = width(domain);
+            while(true)
+                yield return (sbyte)(mod<int>(next(), w) + domain.left);
+        }
+
+        public IEnumerable<sbyte> stream(sbyte min, sbyte max)
+            => stream(Interval.leftclosed(min,max));
+
+        public IEnumerable<ushort> stream(Interval<ushort> domain)        
+        {
+            var w = width(domain);
+            while(true)
+                yield return (ushort) (mod<int>(next(), w) + domain.left);                
         }
 
         public IEnumerable<ushort> stream(ushort min, ushort max)
+            => stream(Interval.leftclosed(min,max));
+
+        public IEnumerable<short> stream(Interval<short> domain)        
         {
-            if(!(min < max))
-                throw new ArgumentException($"{min} !< {max}");
-            
+            var w = width(domain);
             while(true)
-                yield return one(min,max);
-        }
-
-        public IEnumerable<ushort> stream(Interval<ushort> domain)        
-            => stream(domain.left, domain.right);
-
-
-        [MethodImpl(Inline)]
-        public short one(short min, short max)
-        {
-            var width = (ushort)(max - min);
-            var uVal = one((ushort)0, width);
-            return (short)(max - uVal);
+                yield return (short)(mod<int>(next(),w) + domain.left);                
         }
 
         public IEnumerable<short> stream(short min, short max)
+            => stream(Interval.leftclosed(min,max));
+
+        public IEnumerable<int> stream(Interval<int> domain)
         {
-            if(!(min < max))
-                throw new ArgumentException($"{min} !< {max}");
-            
+            var w = width(domain);
             while(true)
-                yield return one(min,max);
-        }
-
-        public IEnumerable<short> stream(Interval<short> domain)        
-            => stream(domain.left, domain.right);
-
-        public IEnumerable<uint> stream(uint min, uint max)
-            => stream((ulong)min, ((ulong)max)).Select(x => (uint)x);
-
-        public IEnumerable<uint> stream(Interval<uint> domain)        
-            => stream(domain.left, domain.right);
-
-        [MethodImpl(Inline)]
-        public int one(int min, int max)
-        {
-            var width = (uint)(max - min);
-            var uVal = one((uint)0, width);
-            return (int)(max - uVal);
+                yield return (int)(mod<long>(next(),w) + domain.left);                
         }
 
         public IEnumerable<int> stream(int min, int max)
-        {
-            if(!(min < max))
-                throw new ArgumentException($"{min} !< {max}");
+            => stream(Interval.leftclosed(min,max));
 
+        public IEnumerable<uint> stream(Interval<uint> domain)
+        {
+            var w = width(domain);
             while(true)
-                yield return one(min,max);
+                yield return mod<uint>(next(), w) + domain.left;                
         }
 
-        public IEnumerable<int> stream(Interval<int> domain)        
-            => stream(domain.left, domain.right);
+        public IEnumerable<uint> stream(uint min, uint max)
+            => stream(Interval.closed(min,max));
 
-        [MethodImpl(Inline)]
-        public long one(long min, long max)
+        public IEnumerable<long> stream(Interval<long> domain)        
         {
-            var width = (ulong)(max - min);
-            var uVal = one((ulong)0, width);
-            return max - (long)uVal;
+            var w = width(domain);
+            while(true)
+                yield return mod<long>(next(), w) + domain.left;                
         }
 
         public IEnumerable<long> stream(long min, long max)
-        {
-            if(!(min < max))
-                throw new ArgumentException($"{min} !< {max}");
+            => stream(Interval.leftclosed(min,max));
 
+        public IEnumerable<ulong> stream(Interval<ulong> domain)        
+        {
+            var w = width(domain);
+            //var offset = domain.left - 1;
             while(true)
-                yield return one(min,max);
+                yield return next() % w + domain.left;
         }
 
-        public IEnumerable<long> stream(Interval<long> domain)        
-            => stream(domain.left, domain.right);
+        public IEnumerable<ulong> stream(ulong min, ulong max)
+            => stream(Interval.leftclosed(min,max));
 
         [MethodImpl(Inline)]
-        double nextf64n()
-            => ((double) one(uint.MinValue, uint.MaxValue))/(double)(uint.MaxValue);
+        double nextF64()
+            => ((double)next()/(double)ulong.MaxValue);
 
-        [MethodImpl(Inline)]
-        public double one(double min, double max)
+        IEnumerable<double> IRandomStream<double>.stream()
         {
-            var width = (ulong)(max - min);
-            var whole = max - one(0ul, width);
-            var part = nextf64n();
-            return whole + part;        
+            while(true)
+                yield return nextF64();
         }
 
         public IEnumerable<double> stream(double min, double max)
@@ -504,34 +272,36 @@ namespace Z0
             var width = (ulong)(max - min);
 
             while(true)
-                yield return (wMax - next() % width) + nextf64n();        
-
+                yield return (wMax - next() % width) + nextF64();        
         }
 
         public IEnumerable<double> stream(Interval<double> domain)        
             => stream(domain.left, domain.right);
 
         [MethodImpl(Inline)]
-        float nextf32n()
-            =>((float) one(ushort.MinValue, ushort.MaxValue))/((float)ushort.MaxValue);
+        float nextF32()        
+            => (float)((double)next()/(double)ulong.MaxValue);                                    
         
-        [MethodImpl(Inline)]
-        public float one(float min, float max)
+        IEnumerable<float> IRandomStream<float>.stream()
         {
-            var width = (uint)(max - min);
-            var whole = max - one(0u, width);
-            var part = nextf32n();
-            var result = whole + part;       
-            return result;
+            while(true)
+                yield return nextF32();
         }
- 
+
         public IEnumerable<float> stream(float min, float max)
         {
             if(!(min < max))
                 throw new ArgumentException($"{min} !< {max}");
 
+            var width = max - min;
+            var offset = min + 1;
+            
             while(true)
-                yield return one(min,max);
+            {
+                var ratio = nextF32() + 1;
+                var sign = bits().Take(1).Single() ? -1.0f : 1.0f;
+                yield return sign *(max - ratio * width - 1);
+            }
         }
 
         public IEnumerable<float> stream(Interval<float> domain)        
@@ -553,5 +323,32 @@ namespace Z0
 
         public IEnumerable<decimal> stream(Interval<decimal> domain)        
             => stream(domain.left, domain.right);
+
+        IEnumerable<sbyte> IRandomStream<sbyte>.stream()
+            => stream(sbyte.MinValue,sbyte.MaxValue);
+
+        IEnumerable<int> IRandomStream<int>.stream()
+            => stream(int.MinValue,int.MaxValue);
+
+        IEnumerable<byte> IRandomStream<byte>.stream()
+            => stream(byte.MinValue,byte.MaxValue);
+
+        IEnumerable<short> IRandomStream<short>.stream()
+            => stream(short.MinValue,short.MaxValue);
+
+        IEnumerable<long> IRandomStream<long>.stream()
+            => stream(long.MinValue,long.MaxValue);
+
+        IEnumerable<ulong> IRandomStream<ulong>.stream()
+            => stream();
+
+        IEnumerable<ushort> IRandomStream<ushort>.stream()
+            => stream(ushort.MinValue,ushort.MaxValue);
+
+        IEnumerable<uint> IRandomStream<uint>.stream()
+            => stream(uint.MinValue, uint.MaxValue);
+
+        IEnumerable<decimal> IRandomStream<decimal>.stream()
+            => stream(0m, 1m);
     }
 }

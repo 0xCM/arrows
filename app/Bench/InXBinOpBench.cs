@@ -21,8 +21,6 @@ namespace Z0.Bench
 
         protected static readonly int VecLength = Vec128<T>.Length;
 
-
-
         protected InXBinOpBench(string OpName, BenchConfig config)
             : base(config)
         {
@@ -147,7 +145,6 @@ namespace Z0.Bench
             var duration = end($"Applied binary storage operator | {statsMsg}", sw);
             PrintMsgQueue();
             return duration;
-
         }
 
         protected unsafe long Measure(Vec128BinPOut<T> vecop, void* dst, int? reps = null)

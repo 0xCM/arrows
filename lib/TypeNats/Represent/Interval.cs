@@ -84,6 +84,9 @@ namespace Z0
         public bool discrete 
             => true;
 
+        public IntervalKind kind 
+            => IntervalKind.Closed;
+
         public Interval<ulong> canonical()
             => new Interval<ulong>(left,leftclosed,right,rightclosed);
 

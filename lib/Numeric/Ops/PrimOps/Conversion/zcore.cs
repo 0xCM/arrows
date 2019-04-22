@@ -15,7 +15,6 @@ using static zcore;
 
 partial class zcore
 {
-
     /// <summary>
     /// Converts from one value to another, provided the 
     /// required conversion operation is defined; otherwise,
@@ -24,10 +23,42 @@ partial class zcore
     /// <param name="src">The source value</param>
     /// <typeparam name="S">The source type</typeparam>
     /// <typeparam name="T">The target type</typeparam>
+    [MethodImpl(Inline)]   
     public static T convert<S,T>(S src)
         where T : struct, IEquatable<T>
         where S : struct, IEquatable<S>
             => ClrConverter.convert<S,T>(src);
+
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(int src)
+        where T : struct, IEquatable<T>
+            => ClrConverter.convert<int,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(uint src)
+        where T : struct, IEquatable<T>
+            => ClrConverter.convert<uint,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(long src)
+        where T : struct, IEquatable<T>
+            => ClrConverter.convert<long,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(ulong src)
+        where T : struct, IEquatable<T>
+            => ClrConverter.convert<ulong,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(float src)
+        where T : struct, IEquatable<T>
+            => ClrConverter.convert<float,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(double src)
+        where T : struct, IEquatable<T>
+            => ClrConverter.convert<double,T>(src);
 
     /// <summary>
     /// Vectorized conversion
@@ -35,7 +66,8 @@ partial class zcore
     /// <typeparam name="S">The source type</typeparam>
     /// <typeparam name="T">The target type</typeparam>
     /// <param name="src">The source array</param>
-    public static IReadOnlyList<T> convert<S,T>(IReadOnlyList<S> src)
+    [MethodImpl(Inline)]   
+    public static Index<T> convert<S,T>(Index<S> src)
         => ClrConverter.convert<S,T>(src);
 
     /// <summary>
@@ -138,7 +170,7 @@ partial class zcore
     }
 
     [MethodImpl(Inline)]   
-    public static IReadOnlyList<floatg<T>> floats<T>(IReadOnlyList<T> src)
+    public static Index<floatg<T>> floats<T>(Index<T> src)
         where T : struct, IEquatable<T>
         => map(src, x => floatg<T>(x));
 
@@ -163,7 +195,6 @@ partial class zcore
     /// Converts an integer to a sequence of digits
     /// </summary>
     /// <param name="x">The source value</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static byte[] digits(uint x)
         => x.ToIntG<uint>().digits();

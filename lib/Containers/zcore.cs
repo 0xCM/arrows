@@ -17,41 +17,6 @@ using Array = Z0.Arr;
 
 public static partial class zcore
 {
-    /// <summary>
-    /// Zips two lists via a binary operator into a target array
-    /// </summary>
-    /// <param name="lhs">The first list</param>
-    /// <param name="rhs">The second list</param>
-    /// <param name="f">The binary operator</param>
-    /// <param name="dst">The target array</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]   
-    public static T[] fuse<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs, Func<T,T,T> f, out T[] dst)
-    {
-        var count = countmatch(lhs,rhs);
-        dst = alloc<T>(count);
-        for(var i = 0; i<count; i++)
-            dst[i] = f(lhs[i], rhs[i]);            
-        return dst;
-    }
-
-    /// <summary>
-    /// Produces an array that contains the results of the element-wise application
-    /// of a unary operator
-    /// </summary>
-    /// <param name="src">The source list</param>
-    /// <param name="f">The undar operator</param>
-    /// <param name="dst"></param>
-    /// <param name="dst">The target array</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]   
-    public static T[] apply<T>(IReadOnlyList<T> src, Func<T,T> f, out T[] dst)
-    {
-        dst = alloc<T>(src.Count);
-        for(var i = 0; i<src.Count; i++)
-            dst[i] = f(src[i]);            
-        return dst;
-    }
 
     /// <summary>
     /// Populates a semigroup seqeunce container
@@ -487,38 +452,4 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static IEnumerable<T> reverse<S,T>(IEnumerable<S> src, Func<S,T> f)
         => map(reverse(src),f);
-
-
-    /// <summary>
-    /// Iterates over the supplied items, invoking a receiver for each
-    /// </summary>
-    /// <param name="src">The source items</param>
-    /// <param name="f">The receiver</param>
-    /// <typeparam name="T">The item type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Unit iter<T>(IEnumerable<T> items, Action<T> action, bool pll = false)
-    {
-        if (pll)
-            items.AsParallel().ForAll(item => action(item));
-        else
-            foreach (var item in items)
-                action(item);
-        return Unit.Value;
-    }
-
-    /// <summary>
-    /// Attaches a 0-based integer sequence to the input value sequence and
-    /// yield the paired sequence elements
-    /// </summary>
-    /// <param name="i">The index of the paired value</param>
-    /// <param name="value">The indexed value</param>
-    /// <typeparam name="T">The item type</typeparam>
-    [MethodImpl(Inline)]   
-    public static IEnumerable<(int i, T value)> iteri<T>(IEnumerable<T> items)
-    {
-        var idx = 0;
-        foreach(var item in items)
-            yield return (idx++, item);
-    }
-
 }

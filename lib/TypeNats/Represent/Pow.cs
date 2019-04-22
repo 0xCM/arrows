@@ -56,6 +56,16 @@ namespace Z0
         public static readonly Pow<B,E> Rep = default;
 
         public static readonly TypeNat[] Operands = {new B(), new E()};            
+
+        /// <summary>
+        /// Raises a baise to a power
+        /// </summary>
+        /// <param name="@base">The base value</param>
+        /// <param name="exp">The exponent value</param>
+        [MethodImpl(Inline)]   
+        static ulong pow(ulong @base, ulong exp)
+            => fold(repeat(@base, exp), (x,y) => x*y);
+
         public static readonly ulong Value
             = pow(Nat.nat<B>().value, Nat.nat<E>().value);
             

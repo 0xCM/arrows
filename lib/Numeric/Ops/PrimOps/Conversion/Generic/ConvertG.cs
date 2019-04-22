@@ -25,7 +25,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => ClrConverter.convert<S,T>(src);
 
-
         /// <summary>
         /// Converts a list of primitives s:list[S] to a list of reals t:list[real[T]]
         /// </summary>
@@ -33,7 +32,7 @@ namespace Z0
         /// <typeparam name="S">The source type</typeparam>
         /// <typeparam name="T">The underlying target type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<real<T>> toReal<S,T>(IReadOnlyList<S> src)
+        public static Index<real<T>> toReal<S,T>(Index<S> src)
             where T : struct, IEquatable<T>
                 => map(ClrConverter.convert<S,T>(src), x => real(x));
 
@@ -55,7 +54,7 @@ namespace Z0
         /// <typeparam name="S">The source type</typeparam>
         /// <typeparam name="T">The underlying target type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<intg<T>> toInt<S,T>(IReadOnlyList<S> src)
+        public static Index<intg<T>> toInt<S,T>(Index<S> src)
             where T : struct, IEquatable<T>
                 => map(ClrConverter.convert<S,T>(src), x => intg(x));
 
@@ -76,9 +75,8 @@ namespace Z0
         /// <typeparam name="S">The source type</typeparam>
         /// <typeparam name="T">The underlying target type</typeparam>
         [MethodImpl(Inline)]
-        public static IReadOnlyList<floatg<T>> toFloat<S,T>(IReadOnlyList<S> src)
+        public static Index<floatg<T>> toFloat<S,T>(Index<S> src)
             where T : struct, IEquatable<T>
                 => map(ClrConverter.convert<S,T>(src), x => floatg(x));
-
     }
 }

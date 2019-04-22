@@ -12,69 +12,100 @@ namespace Z0
 
     using static zcore;
 
-    public static class Histogram
+    public class Histogram
     {
-        public static Histogram<T> define<T>(T min, T max, T binwidth)
+        public static Histogram<T> define<T>(Interval<T> domain, T grain)            
             where T : struct, IEquatable<T>
-             => new Histogram<T>(min,max,binwidth);
+                => new Histogram<T>(domain,grain);
+
+        public static Func<Interval<T>,T, Histogram<T>> factory<T>()
+            where T : struct, IEquatable<T> => define;        
+
     }
-    
-    public class Histogram<T> : Formattable
+
+
+    public class Histogram<T>
         where T : struct, IEquatable<T>
     {
-        
-        public Histogram(floatg<T> min, floatg<T> max, floatg<T> bincount)
+        public Histogram(Interval<T> Domain, T Grain)
         {
-            this.range = Interval.leftclosed(min,max);
-            this.binwidth = bincount;
-            this.points =  new SortedSet<floatg<T>>(Interval.partition(range, bincount));
-            this.bins = map(points, point => (point, floatg<T>.Zero)).ToDictionary();
+            this.Domain =Domain;
+            this.Grain = Grain;
+            this.Partitions = Domain.canonical().Discretize(Grain);
+            this.Counts = alloc<int>(Partitions.Count);
         }
 
-
-        Dictionary<floatg<T>,floatg<T>> bins {get;}
+        public Interval<T> Domain {get;}
         
-        SortedSet<floatg<T>> points {get;}
+        public T Grain {get;}
 
-        public Interval<floatg<T>> range;
+        public Index<T> Partitions {get;}
 
-        public T binwidth {get;}
+        int[] Counts {get;}
 
-        public void distribute(IEnumerable<floatg<T>> values)
+        int BucketSize(int ix)
+            => Counts[ix-1];
+        
+        Interval<T> PartitionDomain(int ix)
+            => ix == Partitions.Length - 1 
+             ? Interval.closed(Partitions[ix-1], Partitions[ix]).canonical() 
+             : Interval.leftclosed(Partitions[ix-1], Partitions[ix]).canonical();
+                    
+        /// <summary>
+        /// Distribute a single value to the histogram
+        /// </summary>
+        /// <param name="value">The source value</param>
+        public void Deposit(T value)
         {
-            var lower = range.left;
-            foreach(var value in values)
+
+            var deposited = false;
+            for(int i = 1; i< Partitions.Length; i++)                    
             {
-                foreach(var point in points)                
+                if(PartitionDomain(i).Contains(value))
                 {
-                    if(value >= lower && value < point)
-                    {
-                        bins[point] = ++bins[point];
-                        break;
-                    }
-                    lower = point;
+                    Counts[i-1] = primops.inc(Counts[i-1]);
+                    deposited = true;
+                    break;
                 }
+                
             }
+            
+            if(!deposited)
+                throw new Exception($"No bucket found for the value {value} since the histogram domain is {Domain}");
         }
 
-        public IEnumerable<(Interval<floatg<T>> bin, floatg<T> ratio)> ratios()
+        int FindBucketIndex(T value)
         {
-            var count = Z0.floatg<T>.Zero;
-            foreach(var bin in bins)
-                count += bin.Value;
-
-            foreach(var bin in bins)
-            {
-                var interval = Interval.leftclosed(bin.Key.sub(binwidth), bin.Key).canonical();
-                var ratio = bin.Value / count;
-                yield return (interval,ratio);                
-            }                
+            for(int i = 1; i< Partitions.Length; i++)                    
+                if(PartitionDomain(i).Contains(value))
+                    return i;
+            return -1;
         }
 
-        public string format()
-            => eol(map(tuples(bins), t => t.Format()));
+        /// <summary>
+        /// Distribute an index of values to the histogram
+        /// </summary>
+        /// <param name="value">The source value</param>
+        public void Deposit(IEnumerable<T> src)
+        {
+            var indices = src.AsParallel().Select(FindBucketIndex).GroupBy(x => x).ToList();            
+            foreach(var i in indices)
+                Counts[i.Key - 1] = Counts[i.Key - 1] + i.Count();
+        }
+        
+        /// <summary>
+        /// Describes the current state of the histogram
+        /// </summary>
+        /// 
+        public Index<SampleCount<T>> Buckets()            
+        {
+            var buckets = alloc<SampleCount<T>>(Partitions.Length - 1);
+            for(var i = 1; i< Partitions.Length; i++)
+                buckets[i-1] = SampleCount.define(PartitionDomain(i), BucketSize(i));
+            return buckets;
+        }
+        
 
-        public override string ToString()
-            => format();                       
     }
+
 }

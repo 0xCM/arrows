@@ -52,8 +52,7 @@ namespace Z0
         /// </summary>
         /// <param name="count">The sample count</param>
         public Index<T> sample(uint count)
-            => stream.Freeze(count);
-
+            => stream.Freeze(count); 
 
         /// <summary>
         /// Samples an arbitrary number of values

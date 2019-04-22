@@ -31,14 +31,14 @@ namespace Z0.Tests
         public override void Verify()
             => base.Verify();
 
-        public override IReadOnlyList<target> Baseline()
+        public override Index<target> Baseline()
             => map(Src, x => (target)x);
 
         [Repeat(Defaults.Reps)]
-        public IReadOnlyList<target> SystemConvert()
+        public Index<target> SystemConvert()
             => map(Src, Convert.ToDouble);
 
-        public override IReadOnlyList<target> Compute()
+        public override Index<target> Compute()
             => convert<source,target>(Src);
             
     }

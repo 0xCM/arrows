@@ -210,7 +210,7 @@ namespace Z0.Tests.InXTests
         /// <param name="min">The lower bound for produced values</param>
         /// <param name="max">The upper bound for produced values</param>
         protected IEnumerable<T> RandStream(T min, T max)
-            => Context.Random<T>().stream(min,max);
+            => Context.Rand<T>().stream(min,max);
 
         /// <summary>
         /// Produces an interminable stream of random values 

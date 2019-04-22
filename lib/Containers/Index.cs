@@ -56,6 +56,15 @@ namespace Z0
             => src.AsArray();
 
         [MethodImpl(Inline)]
+        public Index(IEnumerable<T> src)
+        {
+            this.data = src.ToArray();
+            this.IsArrayAssigned = true;
+            this.DataLength = data.Length;
+            this.segment = EmptySegment;
+        }
+
+        [MethodImpl(Inline)]
         public Index(in T[] src)
         {
             this.data = src;
@@ -86,7 +95,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public T item(int key) 
             => IsArrayAssigned ? data[key] : segment[key];
-
 
         IEnumerator<T> enumerator
             => (IsArrayAssigned 
@@ -134,6 +142,8 @@ namespace Z0
         public bool IsNonEmpty
             => DataLength != 0;            
 
+        public Index<T> Where(Func<T,bool> predicate)
+            => new Index<T>(data.Where(predicate));
     }
 
 

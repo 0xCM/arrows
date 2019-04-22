@@ -15,45 +15,10 @@ namespace Z0
 
     partial class xcore
     {
-        public static IRandom<T> Primal<T>(this IRandomizer random)
+        public static IRandomStream<T> Primal<T>(this IRandomizer random)
             where T : struct, IEquatable<T>
-        {
-            if(type<T>().IsInt8())
-                return cast<IRandom<T>>(new RandI8((Randomizer)random));
-
-            if(type<T>().IsUInt8())
-                return cast<IRandom<T>>(new RandU8((Randomizer)random));
-
-            if(type<T>().IsInt16())
-                return cast<IRandom<T>>(new RandI16((Randomizer)random));
-
-            if(type<T>().IsUInt16())
-                return cast<IRandom<T>>(new RandU16((Randomizer)random));
-
-            if(type<T>().IsInt32())
-                return cast<IRandom<T>>(new RandI32((Randomizer)random));
-
-            if(type<T>().IsUInt32())
-                return cast<IRandom<T>>(new RandU32((Randomizer)random));
-
-            if(type<T>().IsInt64())
-                return cast<IRandom<T>>(new RandI64((Randomizer)random));
-
-            if(type<T>().IsUInt64())
-                return cast<IRandom<T>>(new RandU64((Randomizer)random));
-
-            if(type<T>().IsDouble())
-                return cast<IRandom<T>>(new RandF64((Randomizer)random));
-
-            if(type<T>().IsSingle())
-                return cast<IRandom<T>>(new RandF32((Randomizer)random));
-
-            if(type<T>().IsDecimal())
-                return cast<IRandom<T>>(new RandF128((Randomizer)random));
-
-            throw new NotSupportedException();
-        }
-
+                => cast<IRandomStream<T>>(random);
+        
         /// <summary>
         /// Yields a stream of primal random vectors
         /// </summary>

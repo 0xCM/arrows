@@ -12,7 +12,32 @@ namespace Z0
 
     using static zcore;
 
+    partial class Traits
+    {   
+
+        /// <summary>
+        /// Characterizes an interval that does not contain its upper bound
+        /// </summary>
+        public interface RightOpenInterval<T> : Interval<T> 
+            where T : struct, IEquatable<T>
+        {
+
+        }
+
+        /// <summary>
+        /// Characterizes an interval that contains its lower bound
+        /// </summary>
+        public interface LeftClosedInterval<T> : Interval<T> 
+            where T : struct, IEquatable<T>
+        {
+
+        }
+
+    }
+
     public readonly struct LeftClosedInterval<T> : Traits.LeftClosedInterval<T>, Traits.RightOpenInterval<T> 
+        where T : struct, IEquatable<T>
+
     {
 
         public static implicit operator Interval<T>(LeftClosedInterval<T> x)
@@ -36,6 +61,9 @@ namespace Z0
 
         public bool rightclosed 
             => false;
+
+        public IntervalKind kind
+            => IntervalKind.LeftClosed;
 
         public Interval<T> canonical()
             =>new Interval<T>(left,leftclosed, right,rightclosed);

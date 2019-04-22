@@ -20,6 +20,7 @@ namespace Z0.Bench
     }
     
     public interface Setting<T> : Setting
+        where T : struct, IEquatable<T>
     {
         Interval<T> Domain {get;}
     }
@@ -43,7 +44,8 @@ namespace Z0.Bench
         static readonly Settings TheOnly = default;
 
         static Setting<T> get<T>()
-            => cast<Setting<T>>(TheOnly);
+            where T : struct, IEquatable<T>
+                => cast<Setting<T>>(TheOnly);
         
         public static int Cycles()
             => 10;
@@ -64,38 +66,42 @@ namespace Z0.Bench
             => Reps();
 
         public static Interval<T> Domain<T>()
-            => get<T>().Domain;
+            where T : struct, IEquatable<T>
+                => get<T>().Domain;
 
         public static int Reps<T>()
-            => get<T>().Reps;
+            where T : struct, IEquatable<T>
+                => get<T>().Reps;
 
         public static int Cycles<T>()
-            => get<T>().Cycles;
+            where T : struct, IEquatable<T>
+                => get<T>().Cycles;
 
         public static int SampleSize<T>()
-            => get<T>().SampleSize;
+            where T : struct, IEquatable<T>
+                => get<T>().SampleSize;
 
 
         static readonly Interval<sbyte> Int8Domain 
-            = Interval.closed(sbyte.MinValue,sbyte.MaxValue);
+            = Interval.closed<sbyte>(sbyte.MinValue + 1, sbyte.MaxValue - 1);
 
         Interval<sbyte> Setting<sbyte>.Domain 
             => Int8Domain;
 
         static readonly Interval<byte> UInt8Domain 
-            = Interval.closed(byte.MinValue,byte.MaxValue);
+            = Interval.closed<byte>(byte.MinValue + 1, byte.MaxValue - 1);
 
         Interval<byte> Setting<byte>.Domain 
             => UInt8Domain;
 
         static readonly Interval<short> Int16Domain 
-            = Interval.closed(short.MinValue,short.MaxValue);
+            = Interval.closed<short>(short.MinValue + 1, short.MaxValue - 1);
 
         Interval<short> Setting<short>.Domain 
             => Int16Domain;
 
         static readonly Interval<ushort> UInt16Range 
-            = Interval.closed<ushort>(0,30000);
+            = Interval.closed<ushort>(ushort.MinValue + 1, ushort.MaxValue - 1);
 
         Interval<ushort> Setting<ushort>.Domain 
             => UInt16Range;

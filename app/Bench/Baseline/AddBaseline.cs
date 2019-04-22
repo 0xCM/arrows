@@ -81,8 +81,6 @@ namespace Z0.Bench
             where T : struct, IEquatable<T>
         {            
             var duration = 0L;
-            var benchmark = new InXAddBench<T>(config);
-
             hilite($"Executing {config.Cycles} cycles", SeverityLevel.HiliteCL);
             for(var i = 0; i < config.Cycles; i ++)
             {

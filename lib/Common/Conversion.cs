@@ -44,7 +44,7 @@ namespace Z0
         public interface ClrConverter<S,T> : Conversion<S,T>
         {
             
-            IReadOnlyList<T> convert(IReadOnlyList<S> src);
+            Index<T> convert(Index<S> src);
         }
          
     }

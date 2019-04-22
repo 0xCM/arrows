@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Numerics;
     using System.Collections.Generic;
-
+    using static zcore;
 
     public readonly struct Claim<T>
     {
@@ -69,6 +69,13 @@ namespace Z0
                 => define(x,y,"==",  (a,b) => a.Equals(b)).demand();
 
 
+        public static void eq<T>(T x, T y, string msg)
+            where T : struct, IEquatable<T> 
+        {
+            if(not(x.Equals(y)))
+                fail($"{x} != {y}: {msg}");
+        }
+
         /// <summary>
         /// Demands that the first string is equal to the second
         /// </summary>
@@ -97,10 +104,19 @@ namespace Z0
             where T : Operative.Ordered<T>, new()
                 => define(x,y,">", new T().gt).demand();
 
+
         public static void gteq<T>(T x, T y)
             where T : Operative.Ordered<T>, new()
                 => define(x,y,">=", new T().gteq).demand();    
-        
+
+        public static void between<T>(T value, T min, T max)
+            where T : struct, IEquatable<T>
+        {
+            if(primops.lt(value, min) || primops.gt(value, max))
+                fail($"{value} is not between {min} and {max}");
+        }
+
+
         public static bool @true(bool x, string msg = null)
             => x ? true : fail<bool>(msg  ?? "Claim is not true");
 

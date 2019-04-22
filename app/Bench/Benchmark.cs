@@ -28,7 +28,7 @@ namespace Z0.Bench
                 while(!stop())
                 {
                     var domain = Settings.Domain<long>();
-                    var batch = Random<long>().stream(domain.left, domain.right).TakeArray((int)batchSize);
+                    var batch = Rand<long>().stream(domain.left, domain.right).TakeArray((int)batchSize);
                     foreach(var v in Vec128.stream<long>(batch))
                     {
                         var sum = InX.add(v,v);

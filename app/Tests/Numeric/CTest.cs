@@ -26,7 +26,7 @@ namespace Z0.Tests
         void divRemTest<T>(int count, T min, T max)
             where T : struct, IEquatable<T>
         {
-            var rand = context.Random<T>();
+            var rand = context.Rand<T>();
             var src1 = reals(rand.stream(min, max)).Freeze(count);
             var src2 = reals(rand.stream(min, max)).Where(x => x.neq(x.zero)).Freeze(count);
             var inputs = zip(src1,src2).ToIndex();
@@ -59,7 +59,7 @@ namespace Z0.Tests
         
         public void absTests()
         {
-            var rand = context.Random<int>();
+            var rand = context.Rand<int>();
             var src = rand.stream(-250000,250000).Take(500).Freeze();
             var inputs = C.int32.define(src).Freeze();
             iter(inputs, x => absTest<C.int32>(x, Math.Abs(x)));            

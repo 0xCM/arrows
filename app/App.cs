@@ -51,25 +51,81 @@ namespace Z0
             
         }
 
-
-        void Random()
+        void CheckRandomBounds<T>(Interval<T> domain)
+            where T : struct, IEquatable<T>
         {
-            var random = Randomizer.define(RandSeeds.TestSeed);
-            var stream = random.stream(10u,30u);
-            var data = stream.Freeze(Pow2.T20);
-            var histo = new Dictionary<uint, uint>();
-            foreach(var datum in data)
+            var stream = Rand(domain);
+            var samples = stream.Freeze(Pow2.T20);
+            var underflow = samples.Where(x => primops.lt(x,domain.left) );
+            var overflow = samples.Where(x => primops.gteq(x, domain.right));
+            if(underflow.Count != 0)
             {
-                if(histo.ContainsKey(datum))
-                    histo[datum] = histo[datum] + 1u;
-                else
-                    histo[datum] = 1u;
+                foreach(var i in underflow)
+                    warn(i);
             }
 
-            foreach(var key in histo.Keys.OrderBy(x => x))
-                inform($"{key}: {histo[key]}");
+            if(overflow.Count != 0)
+            {
+                foreach(var i in overflow)
+                    warn(i);
+            }
+
+            Claim.eq(0, underflow.Count, $"Generation underflow: numbers should be greater than or equal to {domain.left}");
+            Claim.eq(0, overflow.Count, $"Generation overlfow: numbers should be less than {domain.right}");
 
         }
+
+
+        void HistoTest<T>(Interval<T> domain, T? grain = null)
+            where T : struct, IEquatable<T>
+        {            
+            CheckRandomBounds(domain);
+
+            var width = primops.sub(domain.right, domain.left);
+            var stream = Rand(domain);
+            var data = stream.Freeze(Pow2.T20);
+            var histo = new Histogram<T>(domain, grain ?? (primops.div(width,convert<T>(100))));
+            histo.Deposit(data);  
+
+            var buckets = histo.Buckets().Freeze();
+            
+            var total = 0;
+            iter(buckets.Count, i => {
+                total += buckets[i].Count;
+                inform(buckets[i]);
+            });
+
+            inform($"Histogram domain: {histo.Domain}");
+            inform($"Histogram grain: {histo.Grain}");
+            inform($"Histogram bucket count: {buckets.Count}");
+            
+            inform($"Total number of samples: {data.Length}");
+            inform($"Sum of bucket counts: {total}");
+            Claim.eq(total, data.Length);
+
+        }
+
+        void DiscretizeTestT<T>(Interval<T> domain, T step)
+            where T : struct, IEquatable<T>
+        {
+            var discretized = domain.Discretize(step);
+            inform($"Discretized the interval {domain}");
+            for(var i=0; i< discretized.Length; i++)
+                inform($"Index {i} = {discretized[i]}");
+        }
+
+
+        void RandomTests()
+        {
+            HistoTest(Interval.closed(-(short)25021,1538).canonical());
+            HistoTest(Interval.closed((ushort)2000, 25000).canonical());
+            HistoTest(Interval.closed(-250000,250000).canonical());
+            HistoTest(Interval.closed(7500u,250000u).canonical());
+            HistoTest(Interval.closed(-300000L,250000L).canonical());
+            HistoTest(Interval.closed(250000ul,500000ul).canonical());
+            //DiscretizeTestT(Interval.closed<short>(-5000,5000).canonical(),(short)250);        
+        }
+
         void RunTests(string[] paths, bool pll)
         {
             iter(paths, path => TestRunner.RunTests(path,pll));
@@ -90,16 +146,29 @@ namespace Z0
             return duration;
         }
 
+
+        void RunTests()
+        {
+            var paths = new[]{Paths.perf,};            
+            var pll = true;
+            RunTests(paths,pll);
+
+        }
         static void Main(string[] args)
         {     
-            var app = new App();
+            try
+            {
+                var app = new App();
 
-            //app.MeasureDelegates();
-            app.Benchmark();
+                //app.Benchmark();
+                //app.RunTests();
+                app.RandomTests();
+            }
+            catch(Exception e)
+            {
+                error(e);
+            }
 
-            // var paths = new[]{Paths.perf,};            
-            // var pll = true;
-            // app.RunTests(paths,pll);
 
             
         }

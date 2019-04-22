@@ -20,6 +20,7 @@ namespace Z0.Testing
     }
     
     public interface Default<T> : Default
+        where T : struct, IEquatable<T>
     {
         Interval<T> Domain {get;}
     }
@@ -43,7 +44,8 @@ namespace Z0.Testing
         static readonly Defaults TheOnly = default;
 
         public static Default<T> get<T>()
-            => cast<Default<T>>(TheOnly);
+            where T : struct, IEquatable<T>
+                => cast<Default<T>>(TheOnly);
 
         public const int Reps = 1;
 

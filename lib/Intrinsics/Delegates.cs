@@ -114,14 +114,6 @@ namespace Z0
     public delegate Vec256<T> Vec256UnaryOp<T>(Vec256<T> src)
         where T : struct, IEquatable<T>;
 
-    public delegate Index<T> IndexBinOp<T>(Index<T> lhs, Index<T> rhs)
-        where T : struct, IEquatable<T>;
-
-    public delegate T[] ArrayBinOp<T>(T[] lhs, T[] rhs)
-        where T : struct, IEquatable<T>;
-
-    public delegate T[] ArrayUnaryOp<T>(T[] src)
-        where T : struct, IEquatable<T>;
-
+ 
 
 }

@@ -13,7 +13,7 @@ namespace Z0
 
     public abstract class Context<T>
     {                
-        IRandomizer Randomizer {get;}
+        protected IRandomizer Random {get;}
 
         List<AppMsg> Messages {get;} = new List<AppMsg>();
 
@@ -22,13 +22,13 @@ namespace Z0
         /// Constructs a context-specific/local randomizer that should not be shared across threads
         /// </summary>
         /// <typeparam name="R">The primal type</typeparam>
-        public IRandom<R> Random<R>()
+        public IRandomStream<R> Rand<R>()
             where R : struct, IEquatable<R>
-            => Randomizer.Primal<R>();
+            => Random.Primal<R>();
         
         public IEnumerable<R> Rand<R>(R min, R max)
             where R : struct, IEquatable<R>
-                => Random<R>().stream(min,max);
+                => Rand<R>().stream(min,max);
 
         public IEnumerable<R> Rand<R>(Interval<R> domain)
             where R : struct, IEquatable<R>
@@ -51,7 +51,7 @@ namespace Z0
 
         protected Context(ulong[] seed)
         {
-            Randomizer = Z0.Randomizer.define(seed);
+            Random = Z0.Randomizer.define(seed);
         }
 
         protected Stopwatch begin(string msg, [CallerMemberName] string caller = null)

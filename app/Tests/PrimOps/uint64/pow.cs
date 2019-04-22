@@ -30,10 +30,10 @@ namespace Z0.Tests
         public override void Verify()
             => base.Verify();
 
-        public override IReadOnlyList<operand> Baseline()
+        public override Index<operand> Baseline()
             => map(PrimSrc, x => RefCalc.pow(x,3));
 
-        public override IReadOnlyList<operand> Compute()
+        public override Index<operand> Compute()
             => map(PrimSrc, x => Prim.pow(x,3));
 
     } 

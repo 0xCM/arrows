@@ -33,7 +33,7 @@ namespace Z0.Tests
         public override void Verify()
             => base.Verify();
 
-        public override IReadOnlyList<operand> Baseline()
+        public override Index<operand> Baseline()
         {
             var dst = target();
             iter((int)SampleSize, i =>
@@ -41,7 +41,7 @@ namespace Z0.Tests
             return dst;
         }
 
-        public override IReadOnlyList<operand> Compute()
+        public override Index<operand> Compute()
             => Prim.mul(LeftSrc,RightSrc);
     } 
 }
