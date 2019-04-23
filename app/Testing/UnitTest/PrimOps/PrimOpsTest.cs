@@ -39,7 +39,7 @@ namespace Z0.Testing
         protected T[] target() => array<T>(SampleSize);
         
         protected Index<T> sample()
-            => Context.Rand<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Take(SampleSize).ToIndex();
+            => Randomizer<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Take(SampleSize).ToIndex();
 
       
         [Repeat(Defaults.Reps)]

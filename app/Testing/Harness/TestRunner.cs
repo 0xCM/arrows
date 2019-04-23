@@ -71,7 +71,8 @@ namespace Z0.Testing
                 for(var i = 0; i<reps; i++)
                     test.Invoke(host,null);                    
                 var ms = sw.ElapsedMilliseconds;
-                messages.AddRange(host.DequeueMessages());
+                
+                messages.AddRange(host.FlushMessages());
                 messages.Add(AppMsg.Define(reps == 1 ?$"succeeded {ms}ms" : $"succeeded {ms}ms | {reps} reps", SeverityLevel.Info, testName));
 
                 print(messages);

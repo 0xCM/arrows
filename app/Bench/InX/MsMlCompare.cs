@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Tests.InXTests
+namespace Z0.Bench
 {
     using System;
     using System.Linq;
@@ -17,19 +17,15 @@ namespace Z0.Tests.InXTests
 
     using static zcore;
 
-    using P = Paths;
-
-    [DisplayName(Path)]
-    public class MLCompare : InXTest<MLCompare,float>
+    public class AddScalarBench : InXBinOpBenchmark<float>
     {
 
-        public const string Path = P.InX128 + P.perf + "mlcompare/";
 
-        public MLCompare()
-            : base("+=")
+        public AddScalarBench(BenchConfig config)
+            :base("addScalar",config)
         {
 
-            RawDataSrc = RandArray((int)Pow2.T22);
+            RawDataSrc = RandomIndex<float>(Settings.Domain<float>(), config.SampleSize);
         }
 
         float[] RawDataSrc {get;}
@@ -60,7 +56,6 @@ namespace Z0.Tests.InXTests
 
             }
         }
-
 
         float[] RunVec128Naive()
         {
@@ -103,8 +98,8 @@ namespace Z0.Tests.InXTests
             return dst;
         }
 
-
-        public void Measure()
+    
+        public override long Run()
         {
             long msml = 0, v128 = 0;
             v128 += Measure(() => RunVec128(), "z0/addscalar");
@@ -122,7 +117,9 @@ namespace Z0.Tests.InXTests
             msml += Measure(() => RunMSML(), "msml/addscalar");
             v128 += Measure(() => RunVec128(), "z0/addscalar");
             trace($"z0: {v128}ms | msml: {msml}ms");
+            return v128;
         }
+
     }
 
 }

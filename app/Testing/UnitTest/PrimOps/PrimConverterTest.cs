@@ -29,8 +29,8 @@ namespace Z0.Testing
 
         protected Index<S> Src; 
 
-        protected static Index<S> source(S min, S max)
-            =>  Context.Rand<S>().stream(min,max).Freeze(VectorSize);
+        protected Index<S> source(S min, S max)
+            =>  Randomizer<S>().stream(min,max).Freeze(VectorSize);
 
         protected ClrConverterTest(Interval<S> bounds)
         {

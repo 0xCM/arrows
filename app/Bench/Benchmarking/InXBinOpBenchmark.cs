@@ -12,16 +12,15 @@ namespace Z0.Bench
     using System.IO;
 
     using static zcore;
-
-
-    public abstract class InXBinOpBench<T> : BinOpBench<T>
+    
+    public abstract class InXBinOpBenchmark<T> : BinOpBenchmark<T>
         where T : struct, IEquatable<T>
     {
         protected static readonly int PrimSize = Vec128<T>.PrimSize;
 
         protected static readonly int VecLength = Vec128<T>.Length;
 
-        protected InXBinOpBench(string OpName, BenchConfig config)
+        protected InXBinOpBenchmark(string OpName, BenchConfig config)
             : base(config)
         {
             this.OpName = OpName;
@@ -57,7 +56,6 @@ namespace Z0.Bench
 
         protected virtual IndexBinOp<T> IndexOp {get;}
 
-
         protected string OpName {get;}
 
 
@@ -65,12 +63,14 @@ namespace Z0.Bench
 
         protected Index<Vec128<T>> RightVecSrc {get;}
 
-        protected virtual Index<Vec128<T>> Apply(Vec128BinOp<T> vecop)
+
+        protected virtual long Apply(Vec128BinOp<T> vecop, Vec128<T>[] dst)
         {
             var results = new Vec128<T>[VecCount];
+            var sw = stopwatch();
             for(var i = 0; i<VecCount; i++)
-                 results[i] = vecop(LeftVecSrc[i], RightVecSrc[i]);                    
-            return results;
+                 dst[i] = vecop(LeftVecSrc[i], RightVecSrc[i]);                    
+            return elapsed(sw);
         }
 
         protected virtual Index<Vec128<T>> Apply(Vec128BinAOut<T> vecop)
@@ -101,64 +101,86 @@ namespace Z0.Bench
 
         protected long Measure(Action f, string name)
         {
-            PrintMsgQueue();
+            print(FlushMessages());
             var repeat = Settings.Reps<T>();
             var statsMsg = $"{VecCount} vector pairs | {repeat} reps";
             var sw = begin($"Applying {name} | {statsMsg}");
             iter(repeat, i => f());
             var duration = end($"Applied {name} operator | {statsMsg}", sw);                        
-            PrintMsgQueue();
+            print(FlushMessages());
             return duration;
         }
 
-        protected long Measure(Vec128BinOp<T> vecop)
+        
+        protected long Measure(Vec128BinOp<T> binop)
         {
-            PrintMsgQueue();
-            var repeat = Settings.Reps<T>();
-            var statsMsg = $"{VecCount} vector pairs | {repeat} reps";
-            var sw = begin($"Applying binary operator | {statsMsg}");
-            iter(repeat, i => Apply(vecop));
-            var duration = end($"Applied binary operator | {statsMsg}", sw);                        
-            PrintMsgQueue();
-            return duration;
+            var msTotal = 0L;
+            var kind = PrimKinds.kind<T>();
+            var opinfo = $"{OpName}/{kind}";    
+            var dst = new Vec128<T>[VecCount];
+
+            print(FlushMessages());
+            hilite($"{opinfo} Executing {Config.Cycles} cycles");
+            for(var i = 0; i< Config.Cycles; i++)
+            {
+                var statsMsg = $"Cycle = {i} | Samples = {Config.SampleSize} | Reps = {Config.Reps}";
+                begin($"{opinfo} Start  {statsMsg}");
+                var msCycle = 0L;
+                for(var j = 0; j < Config.Reps; j++)
+                    msCycle += Apply(binop,dst);
+                msTotal += msCycle;
+                end($"{opinfo} Finish {statsMsg}", msCycle);                        
+                
+                print(FlushMessages());
+            }
+            hilite($"{opinfo} Summary: Cycles = {Config.Cycles}, Reps = {Config.Reps} | Duration = {msTotal}ms");
+            print(FlushMessages());
+            return msTotal;
         }
 
         protected long Measure(Vec128BinOut<T> vecop, int? reps = null)
         {
-            PrintMsgQueue();
+            print(FlushMessages());
             var repeat = reps ?? Settings.Reps<T>();
             var statsMsg = $"{VecCount} vector pairs | {repeat} reps";
             var sw = begin($"Applying binary out operator | {statsMsg}");
             iter(repeat, i => Apply(vecop));
             var duration = end($"Applied binary out operator | {statsMsg}", sw);                        
-            PrintMsgQueue();
+            print(FlushMessages());
             return duration;
         }
 
         protected long Measure(Vec128BinAOut<T> vecop, int? reps = null)
         {
-            PrintMsgQueue();
+            print(FlushMessages());
             var repeat = reps ?? Settings.Reps<T>();
             var statsMsg = $"{VecCount} vector pairs | {repeat} reps";
             var sw = begin($"Applying binary storage operator | {statsMsg}");
             iter(repeat, i => Apply(vecop));
             var duration = end($"Applied binary storage operator | {statsMsg}", sw);
-            PrintMsgQueue();
+            print(FlushMessages());
             return duration;
         }
 
         protected unsafe long Measure(Vec128BinPOut<T> vecop, void* dst, int? reps = null)
         {
-            PrintMsgQueue();
+            print(FlushMessages());
             var repeat = reps ?? Settings.Reps<T>();
             var statsMsg = $"{VecCount} vector pairs | {repeat} reps";
             var sw = begin($"Applying binary storage operator | {statsMsg}");
             iter(repeat, i => Apply(vecop,dst));
             var duration = end($"Applied binary storage operator | {statsMsg}", sw);                        
-            PrintMsgQueue();
+            print(FlushMessages());
             return duration;
         }
 
+        protected long Measure(Action f, string name, int? reps = null)
+        {
+            var repeat = reps ?? Settings.Reps<T>();
+            var statsMsg = $"{VecCount} vector pairs | {reps} reps";
+            var sw = begin($"Applying {name} | {statsMsg}");
+            iter(repeat, i => f());
+            return end($"Applied {name} operator | {statsMsg}", sw);                        
+        }
     }
-
 }

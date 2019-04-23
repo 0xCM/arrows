@@ -11,7 +11,7 @@ namespace Z0
     using static zcore;
 
 
-   partial class PrimalIndex
+    public static class ModX
     {
 
         [MethodImpl(Inline)]

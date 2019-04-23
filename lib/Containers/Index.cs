@@ -53,7 +53,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator T[](in Index<T> src)
-            => src.AsArray();
+            => src.ToArray();
 
         [MethodImpl(Inline)]
         public Index(IEnumerable<T> src)
@@ -132,8 +132,9 @@ namespace Z0
         public int Count 
             => DataLength;
 
+
         [MethodImpl(Inline)]
-        public T[] AsArray()
+        public T[] ToArray()
             => IsArrayAssigned ? data : segment.ToArray();
 
         public bool IsEmpty

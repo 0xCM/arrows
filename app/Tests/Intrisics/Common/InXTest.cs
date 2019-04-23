@@ -182,27 +182,16 @@ namespace Z0.Tests.InXTests
         /// </summary>
         /// <param name="count">The number of values in the produced array</param>
         protected T[] RandArray(Interval<T> domain, int? count = null)
-            => Context.RandArray(domain, count ?? SampleSize);
+            => RandomIndex(domain, count ?? SampleSize);
 
-        /// <summary>
-        /// Produces a stream of random-valued arrays
-        /// </summary>
-        /// <param name="min">The lower bound for produced values</param>
-        /// <param name="max">The upper bound for produced values</param>
-        /// <param name="count">The number of values in the produced array</param>
-        protected IEnumerable<T[]> RandArrays(T min, T max, int count)
-        {
-            while(true)
-                yield return Context.RandArray(min,max,count);
-        }
 
         /// <summary>
         /// Produces a list of random values
         /// </summary>
         /// <param name="domain">The interval from which the values are selected</param>
         /// <param name="count">The number of values in the produced list</param>
-        protected Index<T> RandList(Interval<T> domain, int count)
-            => Context.Rand(domain).TakeArray(count);
+        protected Index<T> RandIndex(Interval<T> domain, int? count = null)
+            => RandomStream(domain).TakeArray(count ?? SampleSize);
 
         /// <summary>
         /// Produces an interminable stream of random values
@@ -210,7 +199,7 @@ namespace Z0.Tests.InXTests
         /// <param name="min">The lower bound for produced values</param>
         /// <param name="max">The upper bound for produced values</param>
         protected IEnumerable<T> RandStream(T min, T max)
-            => Context.Rand<T>().stream(min,max);
+            => Randomizer<T>().stream(min,max);
 
         /// <summary>
         /// Produces an interminable stream of random values 
@@ -233,28 +222,20 @@ namespace Z0.Tests.InXTests
         protected T[] RandArray(int? count = null)
             => RandArray(Domain, count ?? SampleSize);
 
-        /// <summary>
-        /// Produces an array of random values
-        /// </summary>
-        /// <param name="min">The minimum entry value</param>
-        /// <param name="max">The maximum entry value</param>
-        /// <param name="len">The length of the produced array</param>
-        protected T[] RandArray(T min, T max, uint len)
-            => RandStream(min,max).TakeArray((int)len);
 
         /// <summary>
         /// Produces a list of random values
         /// </summary>
         /// <param name="count">The number of values in the produced list</param>
         protected Index<T> RandIndex(int? count = null)
-            => RandList(Domain,count ?? SampleSize);
+            => RandIndex(Domain,count ?? SampleSize);
 
         /// <summary>
         /// Produces a list of random values
         /// </summary>
         /// <param name="count">The number of values in the produced list</param>
         protected Index<T> RandIndex(uint? count = null)
-            => RandList(Domain, (int) (count ?? (uint)SampleSize));
+            => RandIndex(Domain, (int) (count ?? (uint)SampleSize));
 
         /// <summary>
         /// Produces a random list that occupies 128 bits = 16 bytes of memory

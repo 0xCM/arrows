@@ -42,8 +42,8 @@ namespace Z0.Testing
         /// <summary>
         /// Pulls a sample of random primitives 
         /// </summary>
-        protected IReadOnlyList<T> sample()
-            => Context.Rand<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Freeze(SampleSize);  
+        protected Index<T> sample()
+            => Randomizer<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Freeze(SampleSize);  
 
         /// <summary>
         /// Creates vectors from a stream of values

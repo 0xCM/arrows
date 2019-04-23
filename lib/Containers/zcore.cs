@@ -59,6 +59,11 @@ public static partial class zcore
         where T : struct, IEquatable<T>
             => new Slice<T>(src);
 
+    [MethodImpl(Inline)]   
+    public static Z0.Slice<T> slice<T>(Index<T> src)
+        where T : struct, IEquatable<T>
+            => new Slice<T>(src);
+
     /// <summary>
     /// Constructs a slice of natural lengh from a stream
     /// </summary>
@@ -67,6 +72,12 @@ public static partial class zcore
     /// <typeparam name="T">The element type </typeparam>
     [MethodImpl(Inline)]   
     public static Z0.Slice<N,T> slice<N,T>(IEnumerable<T> src)
+        where N : TypeNat, new()
+        where T : struct, IEquatable<T>
+            => new Slice<N,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static Z0.Slice<N,T> slice<N,T>(Index<T> src)
         where N : TypeNat, new()
         where T : struct, IEquatable<T>
             => new Slice<N,T>(src);

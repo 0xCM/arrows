@@ -11,7 +11,12 @@ namespace Z0
 
     using static zcore;
 
-    public interface IRandomStream<T>
+    public interface IRandomizer 
+    {
+        IEnumerable<bit> bits();
+    }
+
+    public interface IRandomizer<T> : IRandomizer
         where T : struct, IEquatable<T>
     {
         IEnumerable<T> stream(Interval<T> domain);
@@ -22,39 +27,31 @@ namespace Z0
     }
     
 
-
-    public interface IRandomizer
-    {
-        IEnumerable<bit> bits();
-
-        
-   }
-
     /// <summary>
     /// Defines pseudorandom number generator
     /// </summary>
-    /// <remarks> Adapted from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
-    public class Randomizer : IRandomizer,
-        IRandomStream<byte>,
-        IRandomStream<sbyte>,
-        IRandomStream<short>,
-        IRandomStream<ushort>,
-        IRandomStream<int>,
-        IRandomStream<uint>,
-        IRandomStream<long>,
-        IRandomStream<ulong>,
-        IRandomStream<float>,
-        IRandomStream<double>,
-        IRandomStream<decimal>
+    /// <remarks> Core algorithm taken from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
+    public class Randomizer :
+        IRandomizer<byte>,
+        IRandomizer<sbyte>,
+        IRandomizer<short>,
+        IRandomizer<ushort>,
+        IRandomizer<int>,
+        IRandomizer<uint>,
+        IRandomizer<long>,
+        IRandomizer<ulong>,
+        IRandomizer<float>,
+        IRandomizer<double>,
+        IRandomizer<decimal>
     {
         
         /// <summary>
         /// Constructs a random stream using a specific seed
         /// </summary>
         /// <param name="seed">The seed upon which generation is predicated</param>
-        public static IRandomStream<T> define<T>(ulong[] seed)
+        public static IRandomizer<T> define<T>(ulong[] seed)
             where T : struct, IEquatable<T>
-                => (IRandomStream<T>)new Randomizer(seed);
+                => (IRandomizer<T>)new Randomizer(seed);
 
         /// <summary>
         /// Constructs a randomizer using a specific seed
@@ -245,7 +242,6 @@ namespace Z0
         public IEnumerable<ulong> stream(Interval<ulong> domain)        
         {
             var w = width(domain);
-            //var offset = domain.left - 1;
             while(true)
                 yield return next() % w + domain.left;
         }
@@ -253,102 +249,99 @@ namespace Z0
         public IEnumerable<ulong> stream(ulong min, ulong max)
             => stream(Interval.leftclosed(min,max));
 
-        [MethodImpl(Inline)]
-        double nextF64()
-            => ((double)next()/(double)ulong.MaxValue);
-
-        IEnumerable<double> IRandomStream<double>.stream()
-        {
-            while(true)
-                yield return nextF64();
-        }
-
-        public IEnumerable<double> stream(double min, double max)
-        {
-            if(!(min < max))
-                throw new ArgumentException($"{min} !< {max}");
-
-            var wMax = Math.Floor(max);
-            var width = (ulong)(max - min);
-
-            while(true)
-                yield return (wMax - next() % width) + nextF64();        
-        }
-
-        public IEnumerable<double> stream(Interval<double> domain)        
-            => stream(domain.left, domain.right);
-
-        [MethodImpl(Inline)]
+       [MethodImpl(Inline)]
         float nextF32()        
             => (float)((double)next()/(double)ulong.MaxValue);                                    
         
-        IEnumerable<float> IRandomStream<float>.stream()
+        IEnumerable<float> IRandomizer<float>.stream()
         {
             while(true)
                 yield return nextF32();
         }
 
-        public IEnumerable<float> stream(float min, float max)
+        public IEnumerable<float> stream(Interval<float> domain)        
         {
-            if(!(min < max))
-                throw new ArgumentException($"{min} !< {max}");
-
-            var width = max - min;
-            var offset = min + 1;
-            
+            var width = domain.right - domain.left;            
             while(true)
             {
                 var ratio = nextF32() + 1;
                 var sign = bits().Take(1).Single() ? -1.0f : 1.0f;
-                yield return sign *(max - ratio * width - 1);
+                yield return sign * (domain.right - (ratio * width)/2.0f);
             }
         }
 
-        public IEnumerable<float> stream(Interval<float> domain)        
-            => stream(domain.left, domain.right);
+        public IEnumerable<float> stream(float min, float max)
+            => stream(Interval.leftclosed(min,max));
 
-        public IEnumerable<decimal> stream(decimal min, decimal max)
+        [MethodImpl(Inline)]
+        double nextF64()
+            => ((double)next()/(double)ulong.MaxValue);
+
+        [MethodImpl(Inline)]
+        int nextSign()
+            => bits().Take(1).Single() ? -1 : 1;
+
+        public IEnumerable<double> stream(Interval<double> domain)        
         {
-            if(!(min < max))
-                throw new ArgumentException($"{min} !< {max}");
-
-            var width = max - min;
-            var offset = min + 1m;
+            var width = domain.right - domain.left;            
             while(true)
             {
-                var @base = (decimal)next();
-                yield return (@base % width + offset)/width;
+                var ratio = nextF64() + 1;
+                var sign =  nextSign();
+                yield return sign * (domain.right - (ratio * width)/2.0);
             }
         }
 
-        public IEnumerable<decimal> stream(Interval<decimal> domain)        
-            => stream(domain.left, domain.right);
+        public IEnumerable<double> stream(double min, double max)
+            => stream(Interval.closed(min,max));
 
-        IEnumerable<sbyte> IRandomStream<sbyte>.stream()
+
+        public IEnumerable<decimal> stream(Interval<decimal> domain)        
+        {
+            var width = domain.right - domain.left;            
+            while(true)
+            {
+                var ratio = (decimal)nextF64() + 1;
+                var sign = bits().Take(1).Single() ? -1.0m : 1.0m;
+                yield return sign * (domain.right - (ratio * width)/2.0m);
+            }
+        }
+ 
+        public IEnumerable<decimal> stream(decimal min, decimal max)
+            => stream(Interval.leftclosed(min,max));
+                    
+        IEnumerable<sbyte> IRandomizer<sbyte>.stream()
             => stream(sbyte.MinValue,sbyte.MaxValue);
 
-        IEnumerable<int> IRandomStream<int>.stream()
+        IEnumerable<int> IRandomizer<int>.stream()
             => stream(int.MinValue,int.MaxValue);
 
-        IEnumerable<byte> IRandomStream<byte>.stream()
+        IEnumerable<byte> IRandomizer<byte>.stream()
             => stream(byte.MinValue,byte.MaxValue);
 
-        IEnumerable<short> IRandomStream<short>.stream()
+        IEnumerable<short> IRandomizer<short>.stream()
             => stream(short.MinValue,short.MaxValue);
 
-        IEnumerable<long> IRandomStream<long>.stream()
+        IEnumerable<long> IRandomizer<long>.stream()
             => stream(long.MinValue,long.MaxValue);
 
-        IEnumerable<ulong> IRandomStream<ulong>.stream()
+        IEnumerable<ulong> IRandomizer<ulong>.stream()
             => stream();
 
-        IEnumerable<ushort> IRandomStream<ushort>.stream()
+        IEnumerable<ushort> IRandomizer<ushort>.stream()
             => stream(ushort.MinValue,ushort.MaxValue);
 
-        IEnumerable<uint> IRandomStream<uint>.stream()
+        IEnumerable<uint> IRandomizer<uint>.stream()
             => stream(uint.MinValue, uint.MaxValue);
 
-        IEnumerable<decimal> IRandomStream<decimal>.stream()
-            => stream(0m, 1m);
+        IEnumerable<double> IRandomizer<double>.stream()
+        {
+            while(true)
+                yield return nextF64();
+        }
+
+        IEnumerable<decimal> IRandomizer<decimal>.stream()
+            => from x in stream(0m, 1m)
+                select x * nextSign();
     }
 }

@@ -9,8 +9,8 @@ namespace Z0
     
     using static zcore;
 
-    using target = System.UInt64;
-    using targets = System.Collections.Generic.IReadOnlyList<ulong>;
+    using target = System.UInt32;
+    using targets = Index<uint>;
 
     partial class BitwiseX
     {
@@ -109,4 +109,5 @@ namespace Z0
         public static byte[] ToBytes(this target src)
             => Ops.bytes(src);
     }
+
 }

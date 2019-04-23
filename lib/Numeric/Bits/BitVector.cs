@@ -88,10 +88,10 @@ namespace Z0
         public BitVector(params bit[] src)
             => bits = src.Length == Length ? src : throw error(src.Length);
 
-        public BitVector(IReadOnlyList<bit> src)
+        public BitVector(Index<bit> src)
             => bits = src.Count == Length ? src : throw error(src.Count);
 
-        public IReadOnlyList<bit> bits {get;}
+        public Index<bit> bits {get;}
         
         public uint length 
             => Length;

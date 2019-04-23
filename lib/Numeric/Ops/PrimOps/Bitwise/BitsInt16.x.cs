@@ -6,16 +6,14 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
-    using System.Collections.Generic;
     
     using static zcore;
 
-    using target = System.Byte;
-    using targets = System.Collections.Generic.IReadOnlyList<byte>;
+    using target = System.Int16;
+    using targets = Index<short>;
 
     partial class BitwiseX
     {
-
         /// <summary>
         /// Computes a correctly-typed bitwise and of the operands
         /// </summary>
@@ -24,21 +22,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static target And(this target lhs, target rhs)
-            => (target)(lhs & rhs);
-
-        /// <summary>
-        /// Computes and returns the bitwise and of corresponding operand entries
-        /// </summary>
-        /// <param name="lhs">The first list of values</param>
-        /// <param name="rhs">The second list of values</param>
-        [MethodImpl(Inline)]
-        public static targets And(this targets lhs, targets rhs)
-        {
-            var count = countmatch(lhs,rhs);
-            var dst = alloc<target>(lhs.Count);
-            iter(count, i => dst[i] = lhs[i].And(rhs[i]));
-            return dst;
-        }
+            => (target)(lhs & rhs);            
 
         /// <summary>
         /// Computes a correctly-typed bitwise or of the operands
@@ -98,7 +82,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static string BitChars(this target src)
+        public static string ToBitChars(this target src)
             => Ops.bitchars(src);
 
         /// <summary>
@@ -106,7 +90,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]   
-        public static BitString BitString(this target src) 
+        public static BitString ToBitString(this target src) 
             => Ops.bitstring(src);
 
         /// <summary>
@@ -125,5 +109,4 @@ namespace Z0
         public static byte[] ToBytes(this target src)
             => Ops.bytes(src);
     }
-
 }

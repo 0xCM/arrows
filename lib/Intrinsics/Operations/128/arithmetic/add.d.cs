@@ -46,7 +46,7 @@ namespace Z0
 
         readonly struct AddOp
         {
-            static readonly Index<object> Delegates = PrimKinds.index<object>
+            static readonly PrimalIndex Delegates = PrimKinds.index<object>
                 (@sbyte: binop<sbyte>(add),
                 @byte: binop<byte>(add),
                 @short: binop<short>(add),
@@ -61,7 +61,7 @@ namespace Z0
 
             public static Vec128BinOp<T> Operator<T>()
                 where T : struct, IEquatable<T>
-                    => (Vec128BinOp<T>) Delegates[PrimKinds.index<T>()];
+                    => Delegates.lookup<T,Vec128BinOp<T>>();
 
             [MethodImpl(Inline)]
             public static Vec128<byte> add(in Vec128<byte> lhs, in Vec128<byte> rhs)
@@ -107,7 +107,7 @@ namespace Z0
 
         readonly struct AddOut
         {
-            static readonly Index<object> Delegates = PrimKinds.index<object>
+            static readonly PrimalIndex Delegates = PrimKinds.index<object>
                 (@sbyte: binout<sbyte>(add),
                 @byte: binout<byte>(add),
                 @short: binout<short>(add),
@@ -122,7 +122,7 @@ namespace Z0
 
             public static Vec128BinOut<T> Operator<T>()
                 where T : struct, IEquatable<T>
-                    => (Vec128BinOut<T>) Delegates[PrimKinds.index<T>()];
+                    => Delegates.lookup<T,Vec128BinOut<T>>();
 
 
             [MethodImpl(Inline)]
@@ -170,7 +170,7 @@ namespace Z0
         unsafe readonly struct AddPOut
         {
 
-            static readonly Index<object> Delegates = PrimKinds.index<object>
+            static readonly PrimalIndex Delegates = PrimKinds.index<object>
                 (@sbyte: binpout<sbyte>(add),
                 @byte: binpout<byte>(add),
                 @short: binpout<short>(add),
@@ -185,7 +185,7 @@ namespace Z0
 
             public static Vec128BinPOut<T> Operator<T>()
                 where T : struct, IEquatable<T>
-                    => (Vec128BinPOut<T>) Delegates[PrimKinds.index<T>()];
+                    => Delegates.lookup<T,Vec128BinPOut<T>>();
 
             [MethodImpl(Inline)]
             public static unsafe void add(in Vec128<byte> lhs, in Vec128<byte> rhs, void* dst)
@@ -232,7 +232,7 @@ namespace Z0
 
         readonly struct AddAOut
         {
-            static readonly Index<object> Delegates = PrimKinds.index<object>
+            static readonly PrimalIndex Delegates = PrimKinds.index<object>
                 (@sbyte: binaout<sbyte>(add),
                 @byte: binaout<byte>(add),
                 @short: binaout<short>(add),
@@ -247,7 +247,7 @@ namespace Z0
 
             public static Vec128BinAOut<T> Operator<T>()
                 where T : struct, IEquatable<T>
-                    => (Vec128BinAOut<T>) Delegates[PrimKinds.index<T>()];
+                    => Delegates.lookup<T,Vec128BinAOut<T>>();
 
             [MethodImpl(Inline)]
             public static unsafe void add(in Vec128<byte> lhs, in Vec128<byte> rhs, byte[] dst, int offset = 0)

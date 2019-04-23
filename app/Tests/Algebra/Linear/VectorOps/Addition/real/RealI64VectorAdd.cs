@@ -34,7 +34,7 @@ namespace Z0.Tests
             => base.Verify();
 
             
-        public override IReadOnlyList<Vector<N8,operand>> Baseline()        
+        public override Index<Vector<N8,operand>> Baseline()        
         {
             
             var dst = array<Vector<N8,operand>>(VectorCount);
@@ -53,7 +53,7 @@ namespace Z0.Tests
         }
 
         
-        public override IReadOnlyList<Vector<N8,real<operand>>> Applied()        
+        public override Index<Vector<N8,real<operand>>> Applied()        
             => fuse(LeftRealVecSrc,RightRealVecSrc, (v1,v2) =>
                     v1.fuse(v2, (x,y) => x + y));
     }

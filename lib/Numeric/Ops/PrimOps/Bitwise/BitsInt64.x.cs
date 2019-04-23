@@ -9,8 +9,8 @@ namespace Z0
     
     using static zcore;
 
-    using target = System.Int32;
-    using targets = System.Collections.Generic.IReadOnlyList<int>;
+    using target = System.Int64;
+    using targets = Index<long>;
 
     partial class BitwiseX
     {
@@ -23,7 +23,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static target And(this target lhs, target rhs)
             => lhs & rhs;            
-
 
         /// <summary>
         /// Computes a bitwise or of the operands
@@ -110,4 +109,5 @@ namespace Z0
         public static byte[] ToBytes(this target src)
             => Ops.bytes(src);
     }
+
 }

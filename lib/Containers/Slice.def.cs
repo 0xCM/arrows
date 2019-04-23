@@ -31,7 +31,7 @@ namespace Z0
         public static bool operator != (Slice<T> lhs, Slice<T> rhs)
             => not(lhs == rhs);
 
-        public IReadOnlyList<T> data {get;}
+        public Index<T> data {get;}
 
         [MethodImpl(Inline)]   
         public static implicit operator Slice<T>(T[] src)
@@ -45,7 +45,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]   
-        public Slice(IReadOnlyList<T> src)
+        public Slice(Index<T> src)
         {
             this.data = src;
             this.length = this.data.Length();
@@ -60,11 +60,6 @@ namespace Z0
 
         public intg<uint> length {get;}
     
-        public T this[short i] 
-            => data[i];
-
-        public T this[ushort i] 
-            => data[(int)i];
 
         public T this[int i] 
             => data[i];
@@ -72,8 +67,6 @@ namespace Z0
         public T this[uint i] 
             => data[(int)i];
 
-        public T this[long i] 
-            => data[(int)i];
 
         public T this[ulong i] 
             => data[(int)i];
@@ -112,7 +105,7 @@ namespace Z0
             => slice(data.Where(predicate));
 
         public IEnumerator<T> GetEnumerator()
-            => data.GetEnumerator();
+            => (data as IReadOnlyList<T>).GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
@@ -166,7 +159,7 @@ namespace Z0
             => format();
     
         [MethodImpl(Inline)]   
-        public IReadOnlyList<T> unwrap()
+        public Index<T> unwrap()
             => data;
     }        
 
@@ -280,7 +273,7 @@ namespace Z0
             =>  fold(data,monoid);
 
         [MethodImpl(Inline)]   
-        public IReadOnlyList<T> unwrap()
+        public Index<T> unwrap()
             => data.unwrap();
 
 

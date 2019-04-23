@@ -15,9 +15,9 @@ namespace Z0
 
     partial class xcore
     {
-        public static IRandomStream<T> Primal<T>(this IRandomizer random)
+        public static IRandomizer<T> Primal<T>(this IRandomizer random)
             where T : struct, IEquatable<T>
-                => cast<IRandomStream<T>>(random);
+                => cast<IRandomizer<T>>(random);
         
         /// <summary>
         /// Yields a stream of primal random vectors

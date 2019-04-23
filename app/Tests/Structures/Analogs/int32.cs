@@ -28,13 +28,13 @@ namespace Z0.Tests
     {
         public const string Path = P.structures + P.analogs + P.int32;
         
-        IReadOnlyList<PrimVec> LeftPrimVecs {get;}
+        Index<PrimVec> LeftPrimVecs {get;}
 
-        IReadOnlyList<PrimVec> RightPrimVecs {get;}
+        Index<PrimVec> RightPrimVecs {get;}
 
-        IReadOnlyList<AnaVect> LeftAnaVecs {get;}
+        Index<AnaVect> LeftAnaVecs {get;}
 
-        IReadOnlyList<AnaVect> RightAnaVecs {get;}
+        Index<AnaVect> RightAnaVecs {get;}
 
 
         public Int32Analog()
@@ -65,20 +65,20 @@ namespace Z0.Tests
         }
 
         [Repeat(Defaults.Reps)]
-        public IReadOnlyList<Vector<N128,int32>> AnalogSum()
+        public Index<Vector<N128,int32>> AnalogSum()
             => fuse(LeftAnaVecs, RightAnaVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x + y));
 
 
         [Repeat(Defaults.Reps)]
-        public IReadOnlyList<Vector<N128,int>> BaselineSum()
+        public Index<Vector<N128,int>> BaselineSum()
             => fuse(LeftPrimVecs, RightPrimVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x + y));
 
         [Repeat(Defaults.Reps)]
-        public IReadOnlyList<Vector<N128,int32>> AnalogMul()
+        public Index<Vector<N128,int32>> AnalogMul()
             => fuse(LeftAnaVecs, RightAnaVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x * y));
 
         [Repeat(Defaults.Reps)]
-        public IReadOnlyList<Vector<N128,int>> BaselineMul()
+        public Index<Vector<N128,int>> BaselineMul()
             => fuse(LeftPrimVecs, RightPrimVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x * y));
 
 

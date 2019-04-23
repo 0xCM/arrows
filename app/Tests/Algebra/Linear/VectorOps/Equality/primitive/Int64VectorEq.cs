@@ -30,7 +30,7 @@ namespace Z0.Tests
             => base.Verify();
 
             
-        public override IReadOnlyList<Vector<N8,bool>> Baseline()        
+        public override Index<Vector<N8,bool>> Baseline()        
         {
             var results = array<Vector<N8,bool>>(VectorCount);
             for(var i = 0; i< VectorCount; i++)
@@ -46,7 +46,7 @@ namespace Z0.Tests
         }
  
         
-        public override IReadOnlyList<Vector<N8,bool>> Applied()        
+        public override Index<Vector<N8,bool>> Applied()        
             => fuse(LeftPrimVecSrc,LeftPrimVecSrc, 
                     (v1,v2) => vector<N8,bool>(v1 == v2));
     }

@@ -223,7 +223,7 @@ partial class zcore
 
     [MethodImpl(Inline)]   
     public static long elapsed(Stopwatch sw) 
-        => sw.ElapsedMilliseconds;
+        => sw.ElapsedTicks;
 
     /// <summary>
     /// Demands truth that is enforced with an exeption upon false

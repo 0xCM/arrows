@@ -9,23 +9,23 @@ namespace Z0
     
     using static zcore;
 
-    using target = System.Int16;
-    using targets = System.Collections.Generic.IReadOnlyList<short>;
+    using target = System.UInt64;
+    using targets = Index<ulong>;
 
     partial class BitwiseX
     {
         /// <summary>
-        /// Computes a correctly-typed bitwise and of the operands
+        /// Computes a bitwise and of the operands
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
 
         [MethodImpl(Inline)]
         public static target And(this target lhs, target rhs)
-            => (target)(lhs & rhs);            
+            => lhs & rhs;            
 
         /// <summary>
-        /// Computes a correctly-typed bitwise or of the operands
+        /// Computes a bitwise or of the operands
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
@@ -34,39 +34,39 @@ namespace Z0
             => (target)(lhs | rhs);
 
         /// <summary>
-        /// Computes a correctly-typed bitwise xor of the operands
+        /// Computes a bitwise xor of the operands
         /// </summary>
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
         public static target XOr(this target lhs, target rhs)
-            => (target)(lhs ^ rhs);
+            => lhs ^ rhs;
 
         /// <summary>
-        /// Computes a correctly-typed left shift of the source value
+        /// Computes a left shift of the source value
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="shift">The magnitude of the shift</param>
         [MethodImpl(Inline)]
         public static target LShift(this target src, int shift)
-            => (target)(src << shift);
+            => src << shift;
 
         /// <summary>
-        /// Computes a correctly-typed right shift of the source value
+        /// Computes a right shift of the source value
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="shift">The magnitude of the shift</param>
         [MethodImpl(Inline)]
         public static target RShift(this target src, int shift)
-            => (target)(src >> shift);
+            => src >> shift;
 
         /// <summary>
-        /// Computes a correctly-typed twos-complement of the source value
+        /// Computes a two's-complement of the source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static target Flip(this target src)
-            => (target)(~src);
+            => ~src;
 
         /// <summary>
         /// Determines whether a bit in a specified position is on
@@ -86,7 +86,7 @@ namespace Z0
             => Ops.bitchars(src);
 
         /// <summary>
-        /// Converts the source value to a sequence of bits
+        /// Converts the source value to a BitString
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]   

@@ -24,12 +24,12 @@ namespace Z0.Testing
         /// <summary>
         /// The source for left real vectors
         /// </summary>
-        protected  IReadOnlyList<Vector<N,real<T>>> LeftRealVecSrc {get;}
+        protected  Index<Vector<N,real<T>>> LeftRealVecSrc {get;}
         
         /// <summary>
         /// The source for right real vectors
         /// </summary>
-        protected  IReadOnlyList<Vector<N,real<T>>> RightRealVecSrc {get;}
+        protected  Index<Vector<N,real<T>>> RightRealVecSrc {get;}
 
         protected RealVectorBinOpTest(Interval<T> bounds, Func<T,bool> filter = null,  int? SampleSize = null)
             : base(bounds, filter, SampleSize)
@@ -38,7 +38,7 @@ namespace Z0.Testing
             RightRealVecSrc = map(RightPrimVecSrc,v => v.map(real));
         }
 
-        public new virtual IReadOnlyList<Vector<N,real<R>>> Applied() 
+        public new virtual Index<Vector<N,real<R>>> Applied() 
             => index<Vector<N,real<R>>>();
 
         public virtual new void Verify()

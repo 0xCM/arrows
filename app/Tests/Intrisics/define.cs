@@ -54,7 +54,7 @@ namespace Z0.Tests.InX128
             trace($"Storing data from {mem.PartCount} {type<Vec128<uint>>().DisplayName()} vectors");
 
             var dst = alloc<uint>(mem.TotalLength); 
-            var src = Context.RandArray(10u,500u,mem.TotalLength);
+            var src = Context.RandomArray<uint>(Interval.closed(10u,500u), mem.TotalLength);
             var vectors = Vec128UInt32Stream(src).ToArray();
             InX.store(vectors,dst);
 
@@ -71,7 +71,7 @@ namespace Z0.Tests.InX128
 
         public void DefineUInt8Vec()
         {
-            var src = Context.RandArray<byte>(0,155, Vec128<byte>.Length);
+            var src = Context.RandomArray<byte>(Interval.closed<byte>(0,155), Vec128<byte>.Length);
             Claim.eq(Vec128<byte>.Length, src.Length);
 
             var v1 = Vec128.define(src.ToSpan128());
@@ -88,7 +88,8 @@ namespace Z0.Tests.InX128
 
         public void DefineUInt8Vecs()
         {
-            var src = Context.RandArrays<byte>(0,155, Vec128<byte>.Length).Take(Pow2.T15);
+            var domain = Interval.closed<byte>(0,155);
+            var src = Context.RandomArrays<byte>(domain, Vec128<byte>.Length).Take(Pow2.T15);
             foreach(var arr in src)
             {
                 Claim.eq(Vec128<byte>.Length, arr.Length);
@@ -100,7 +101,8 @@ namespace Z0.Tests.InX128
 
         public void DefineInt32Vecs()
         {
-            var src = Context.RandArrays<int>(-250000,250000, Vec128<int>.Length).Take(Pow2.T15);
+            var domain = Interval.closed(-250000,250000);
+            var src = Context.RandomArrays<int>(domain, Vec128<int>.Length).Take(Pow2.T15);
             foreach(var arr in src)
             {
                 Claim.eq(Vec128<int>.Length, arr.Length);

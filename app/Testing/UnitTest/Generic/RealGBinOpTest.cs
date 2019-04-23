@@ -19,13 +19,13 @@ namespace Z0.Testing
         where C : RealGBinOpTest<C,T>
         where T : struct, IEquatable<T>            
     {       
-        protected readonly IReadOnlyList<real<T>> LeftRealSrc;
+        protected readonly Index<real<T>> LeftRealSrc;
      
-        protected readonly IReadOnlyList<real<T>> RightRealSrc;
+        protected readonly Index<real<T>> RightRealSrc;
 
-        protected readonly IReadOnlyList<T> LeftPrimSrc;
+        protected readonly Index<T> LeftPrimSrc;
         
-        protected readonly IReadOnlyList<T> RightPrimSrc;
+        protected readonly Index<T> RightPrimSrc;
 
         protected RealGBinOpTest(Interval<T> bounds, Func<T,bool> filter = null)
             : base(bounds,filter)
@@ -37,10 +37,10 @@ namespace Z0.Testing
         }
 
         [Repeat(Defaults.Reps)]
-        public abstract IReadOnlyList<T> Baseline();
+        public abstract Index<T> Baseline();
 
         [Repeat(Defaults.Reps)]
-        public abstract IReadOnlyList<real<T>> Applied();
+        public abstract Index<real<T>> Applied();
 
         public virtual void Verify()
         {

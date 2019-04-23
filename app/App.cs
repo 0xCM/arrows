@@ -9,6 +9,8 @@ namespace Z0
     using Tests;
     using System.IO;
     using System.Runtime.CompilerServices;
+    using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
 
     using Z0.Bench;
 
@@ -54,21 +56,18 @@ namespace Z0
         void CheckRandomBounds<T>(Interval<T> domain)
             where T : struct, IEquatable<T>
         {
-            var stream = Rand(domain);
+            var stream = RandomStream(domain);
             var samples = stream.Freeze(Pow2.T20);
             var underflow = samples.Where(x => primops.lt(x,domain.left) );
             var overflow = samples.Where(x => primops.gteq(x, domain.right));
+            
             if(underflow.Count != 0)
-            {
                 foreach(var i in underflow)
-                    warn(i);
-            }
+                    babble(i);
 
             if(overflow.Count != 0)
-            {
                 foreach(var i in overflow)
-                    warn(i);
-            }
+                    babble(i);
 
             Claim.eq(0, underflow.Count, $"Generation underflow: numbers should be greater than or equal to {domain.left}");
             Claim.eq(0, overflow.Count, $"Generation overlfow: numbers should be less than {domain.right}");
@@ -82,23 +81,16 @@ namespace Z0
             CheckRandomBounds(domain);
 
             var width = primops.sub(domain.right, domain.left);
-            var stream = Rand(domain);
-            var data = stream.Freeze(Pow2.T20);
+            var data = RandomIndex(domain, Pow2.T20);
             var histo = new Histogram<T>(domain, grain ?? (primops.div(width,convert<T>(100))));
             histo.Deposit(data);  
 
             var buckets = histo.Buckets().Freeze();
-            
-            var total = 0;
-            iter(buckets.Count, i => {
-                total += buckets[i].Count;
-                inform(buckets[i]);
-            });
+            var total = (int)buckets.TotalCount();
 
             inform($"Histogram domain: {histo.Domain}");
             inform($"Histogram grain: {histo.Grain}");
-            inform($"Histogram bucket count: {buckets.Count}");
-            
+            inform($"Histogram bucket count: {buckets.Count}");            
             inform($"Total number of samples: {data.Length}");
             inform($"Sum of bucket counts: {total}");
             Claim.eq(total, data.Length);
@@ -133,23 +125,60 @@ namespace Z0
 
         void MeasureDelegates()
         {
-            new DelegateBench().Run();
+            new DelegateBaselines().Run();
         }
 
-        long Benchmark()
+
+        void RunBenchmarks()
         {
-            var runner = AddBaseline.Runner();
+            var sw = stopwatch();
+            var primal = 0L;
+            var intrinsic = 0L;
+            iter(BaselineBench.PrimalAddRunners(), runner => primal += runner.Run());
+            iter(BaselineBench.InXAddRunners(), runner =>  intrinsic += runner.Run());
+
+            inform($"Total Runtime          = {sw.ElapsedMilliseconds}ms");
+            inform($"Total Benchtime        = {primal + intrinsic}ms");
+            inform($"Primal Benchmark       = {primal}ms");
+            inform($"Intrinsics Benchmark   = {intrinsic}ms");            
+        }
+
+        void TestRandomFloat()
+        {
+            var domain = Interval.leftclosed(-150.0d, 150.0d).canonical();
+            CheckRandomBounds(domain);            
+            var stream = RandomStream(domain);
+            var samples = stream.Freeze(Pow2.T20);
             
-            var duration = runner.Run<long>();            
-            duration += Benchmarks.Run<long>();
-            
-            return duration;
+            inform($"Domain = {domain} | Min = {samples.Min()} | Max = {samples.Max()}");
+
+            var pos = samples.Where(x => x > 0).Count;
+            var neg = samples.Where(x => x < 0).Count;
+            inform($"(+) = {pos} | (-) = {neg}");
+
+                       
+          
+        }
+
+        void TestInXAdd()
+        {
+            var domain = Interval.leftclosed(-150.0d, 150.0d).canonical();
+            var stream = RandomStream(domain);
+            var lhs = stream.Freeze(Pow2.T20);
+            var rhs = stream.Freeze(Pow2.T20);
+            var sum1 = lhs.InXAdd(rhs);
+            var sum2 = lhs.Add(rhs);
+            Claim.eq(sum1,sum2);
+
+
+
+
         }
 
 
         void RunTests()
         {
-            var paths = new[]{Paths.perf,};            
+            var paths = new[]{""};            
             var pll = true;
             RunTests(paths,pll);
 
@@ -159,10 +188,10 @@ namespace Z0
             try
             {
                 var app = new App();
+                // app.RunTests();
+                app.RunBenchmarks();
+                
 
-                //app.Benchmark();
-                //app.RunTests();
-                app.RandomTests();
             }
             catch(Exception e)
             {

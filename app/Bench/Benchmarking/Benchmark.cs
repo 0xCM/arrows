@@ -10,8 +10,9 @@ namespace Z0.Bench
 
     using static zcore;
 
-    public class Benchmark : Context<Benchmark>
+    public abstract class Benchmark : Context<Benchmark>, IBenchmarkRunner
     {
+
 
          public Benchmark()
          : base(RandSeeds.BenchSeed)
@@ -19,7 +20,9 @@ namespace Z0.Bench
 
          
          }
-         
+
+        public abstract long Run();
+
         Task V128Stream(Func<bool> stop, uint batchSize = Pow2.T18, int delay = 0, bool diagnostic = false)
         {   
             void worker()
@@ -28,7 +31,7 @@ namespace Z0.Bench
                 while(!stop())
                 {
                     var domain = Settings.Domain<long>();
-                    var batch = Rand<long>().stream(domain.left, domain.right).TakeArray((int)batchSize);
+                    var batch = Randomizer<long>().stream(domain.left, domain.right).TakeArray((int)batchSize);
                     foreach(var v in Vec128.stream<long>(batch))
                     {
                         var sum = InX.add(v,v);
@@ -73,7 +76,7 @@ namespace Z0.Bench
 
         protected Benchmark(BenchConfig config, Interval<T>? Domain = null)
         {
-            this.Config = config;
+            this.Config = config ?? BenchConfig.Default;
             this.Domain = Domain ?? Settings.Domain<T>();
             this.RVar = Z0.RVar.define<T>(this.Domain, RandSeeds.BenchSeed);
         }

@@ -69,6 +69,18 @@ namespace Z0
                 => define(x,y,"==",  (a,b) => a.Equals(b)).demand();
 
 
+        public static void eq<T>(Index<T> lhs, Index<T> rhs)
+            where T : struct, IEquatable<T> 
+        {
+            if(lhs.Count != rhs.Count)
+                fail($"Left and right element counts do not match: lhs = {lhs.Count} | rhs = {rhs.Count}");
+            
+            for(var i = 0; i< lhs.Count; i++)
+            {
+                if(!lhs[i].Equals(rhs[i]))
+                    fail($"lhs[{i}] = {lhs[i]} != rhs[{i}] = {rhs[i]}");
+            }
+        }
         public static void eq<T>(T x, T y, string msg)
             where T : struct, IEquatable<T> 
         {

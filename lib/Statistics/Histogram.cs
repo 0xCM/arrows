@@ -14,13 +14,14 @@ namespace Z0
 
     public class Histogram
     {
-        public static Histogram<T> define<T>(Interval<T> domain, T grain)            
+        public static Histogram<T> define<T>(Interval<T> domain, T? grain = null)            
             where T : struct, IEquatable<T>
-                => new Histogram<T>(domain,grain);
-
-        public static Func<Interval<T>,T, Histogram<T>> factory<T>()
-            where T : struct, IEquatable<T> => define;        
-
+        {
+            var width = primops.sub(domain.right, domain.left);
+            var histo = new Histogram<T>(domain, 
+                grain ?? primops.div(width,convert<T>(100)));
+            return histo;
+        }
     }
 
 
@@ -82,13 +83,17 @@ namespace Z0
             return -1;
         }
 
+
         /// <summary>
         /// Distribute an index of values to the histogram
         /// </summary>
         /// <param name="value">The source value</param>
-        public void Deposit(IEnumerable<T> src)
+        public void Deposit(IEnumerable<T> src, bool pll = true)
         {
-            var indices = src.AsParallel().Select(FindBucketIndex).GroupBy(x => x).ToList();            
+            var indices = pll 
+                ? src.AsParallel().Select(FindBucketIndex).GroupBy(x => x).Freeze() 
+                : src.Select(FindBucketIndex).GroupBy(x => x).Freeze(); 
+
             foreach(var i in indices)
                 Counts[i.Key - 1] = Counts[i.Key - 1] + i.Count();
         }

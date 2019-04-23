@@ -14,7 +14,7 @@ namespace Z0.Bench
     using static primops;
 
 
-    public class DelegateBench : Benchmark
+    public class DelegateBaselines : Benchmark
     {
         [MethodImpl(Inline)]
         public static int add(int x, int y)
@@ -28,15 +28,15 @@ namespace Z0.Bench
         public static double add(double x, double y)
             => x + y;
 
-        public void Run()
+        public override long Run()
         {
            Func<float,float,float> f = add;
            Func<double, double, double> d = add; 
            Func<int,int,int> i = add;
            var ix = PrimKinds.index<object>(@int : i, @float: f, @double : d); 
-           var addi32 = (Func<int,int,int>)ix[PrimKinds.index<int>()];
-           var addf32 = (Func<float,float,float>)ix[PrimKinds.index<float>()];
-           var addf64 = (Func<double,double,double>)ix[PrimKinds.index<double>()];
+           var addi32 = ix.lookup<int,Func<int,int,int>>();
+           var addf32 = ix.lookup<float,Func<float,float,float>>();
+           var addf64 = ix.lookup<double,Func<double,double,double>>();
 
             var rVari32 = RVar.define(Settings.Domain<int>());
             var rVarf32 = RVar.define(Settings.Domain<float>());
@@ -127,6 +127,7 @@ namespace Z0.Bench
             
             measureAll();
 
+            return 0;
         }
 
     }

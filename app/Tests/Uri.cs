@@ -16,6 +16,8 @@ namespace Z0.Tests
     public static class Paths
     {
 
+        public const string stats = "stats/";
+
         /// <summary>
         /// Identifies primitive operations
         /// </summary>

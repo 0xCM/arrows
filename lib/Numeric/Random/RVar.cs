@@ -22,7 +22,7 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => define(domain, Randomizer.define<T>(seed));
 
-        public static RVar<T> define<T>(Interval<T> domain, IRandomStream<T> random)
+        public static RVar<T> define<T>(Interval<T> domain, IRandomizer<T> random)
             where T : struct, IEquatable<T>
                 => new RVar<T>(domain,random);
     }
@@ -34,7 +34,7 @@ namespace Z0
 
         public readonly Interval<T> domain;
         
-        public RVar(Interval<T> domain, IRandomStream<T> random)
+        public RVar(Interval<T> domain, IRandomizer<T> random)
         {
             this.domain = domain;
             this.stream = random.stream(domain);

@@ -32,10 +32,10 @@ namespace Z0.Tests
         public override void Verify()
             => base.Verify();
 
-        public override IReadOnlyList<operand> Baseline()
+        public override Index<operand> Baseline()
             => fuse(LeftPrimSrc, RightPrimSrc, (x,y) => x + y);
 
-        public override IReadOnlyList<intg<operand>> Applied()
+        public override Index<intg<operand>> Applied()
             => fuse(LeftIntSrc,RightIntSrc, (x,y) => x + y );
 
     }

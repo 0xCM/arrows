@@ -17,13 +17,13 @@ namespace Z0.Testing
         where C : IntGBinOpTest<C,T>
         where T : struct, IEquatable<T>            
     {
-        protected readonly IReadOnlyList<T> LeftPrimSrc;
+        protected readonly Index<T> LeftPrimSrc;
         
-        protected readonly IReadOnlyList<T> RightPrimSrc;
+        protected readonly Index<T> RightPrimSrc;
         
-        protected readonly IReadOnlyList<intg<T>> LeftIntSrc;
+        protected readonly Index<intg<T>> LeftIntSrc;
 
-        protected readonly IReadOnlyList<intg<T>> RightIntSrc;
+        protected readonly Index<intg<T>> RightIntSrc;
 
         protected IntGBinOpTest(Interval<T> domain, Func<T,bool> filter = null, int? sampleSize = null)
             : base(domain,filter,sampleSize)
@@ -35,10 +35,10 @@ namespace Z0.Testing
         }
 
         [Repeat(Defaults.Reps)]
-        public abstract IReadOnlyList<T> Baseline();
+        public abstract Index<T> Baseline();
 
         [Repeat(Defaults.Reps)]
-        public abstract IReadOnlyList<intg<T>> Applied();
+        public abstract Index<intg<T>> Applied();
 
         public virtual void Verify()
         {

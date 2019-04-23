@@ -54,7 +54,7 @@ namespace Z0.Bench
             => 100;
 
         public static int SampleSize()
-            => (int)Pow2.T18;
+            => (int)Pow2.T19;
 
         int Setting.Cycles
             => Cycles();

@@ -19,6 +19,31 @@ namespace Z0
 
     }
 
+    public readonly struct PrimalIndex
+    {
+        readonly Index<object> index;
+
+        public PrimalIndex(Index<object> src)
+            => index = src;
+        public V lookup<K,V>()
+            where K : struct, IEquatable<K>
+            => (V)index[PrimKinds.key<K>()];
+    }
+
+
+    public readonly struct PrimalIndex<T>
+    {
+        readonly Index<object> index;
+
+        public PrimalIndex(Index<object> src)
+            => index = src;
+
+        public T lookup<P>()
+            where P : struct, IEquatable<P>
+            => (T)index[PrimKinds.key<P>()];
+
+    }
+
     public enum PrimKind : byte
     {
         none = 0,
@@ -45,7 +70,11 @@ namespace Z0
 
         float128 = 11,
 
-        last = float64      
+        decimal128 = 12,
+
+        bigint = 13,
+        
+        last = bigint      
     }
 
     public readonly struct PrimKind<T>
@@ -57,21 +86,24 @@ namespace Z0
     {
         static readonly Type[] Kinds = 
             new Type[]{
-                typeof(void),       // 0 = none
-                typeof(sbyte),      // 1 = int8
-                typeof(byte),       // 2 = uint8
-                typeof(short),      // 3 = int16
-                typeof(ushort),     // 4 = uint16
-                typeof(int),        // 5 = int32
-                typeof(uint),       // 6 = uint32
-                typeof(long),       // 7 = int64
-                typeof(ulong),      // 8 = uint64
-                typeof(float),      // 9 = float32
-                typeof(double),     // 10 = float64
+                typeof(void),       
+                typeof(sbyte),      
+                typeof(byte),       
+                typeof(short),      
+                typeof(ushort),     
+                typeof(int),        
+                typeof(uint),       
+                typeof(long),       
+                typeof(ulong),      
+                typeof(float),      
+                typeof(double),     
+                typeof(decimal),    
+                typeof(System.Numerics.BigInteger),
                 };
 
+
         [MethodImpl(Inline)]
-        public static T[] index<T>(
+        public static PrimalIndex index<T>(
             T @sbyte = default(T), 
             T @byte = default(T), 
             T @short = default(T), 
@@ -81,14 +113,18 @@ namespace Z0
             T @long = default(T), 
             T @ulong = default(T), 
             T @float = default(T), 
-            T @double = default(T))
-                => array<T>(default(T), 
+            T @double = default(T),
+            T @decimal = default(T),
+            T @bigint = default(T)
+            )
+                => new PrimalIndex(array<object>(default(T), 
                 @sbyte, @byte, @short, @ushort, @int, 
-                @uint, @long, @ulong, @float, @double
-                );
+                @uint, @long, @ulong, @float, @double,
+                @decimal, @bigint
+                ));
 
         [MethodImpl(Inline)]
-        public static object[] index<I8,U8,I16,U16,I32,U32,I64,U64,F32,F64>(
+        public static PrimalIndex index<I8,U8,I16,U16,I32,U32,I64,U64,F32,F64>(
             I8 @sbyte = default(I8), 
             U8 @byte = default(U8), 
             I16 @short = default(I16), 
@@ -98,19 +134,21 @@ namespace Z0
             I64 @long = default(I64), 
             U64 @ulong = default(U64), 
             F32 @float = default(F32), 
-            F64 @double = default(F64))
-                => array<object>(typeof(void), 
+            F64 @double = default(F64)
+            )
+                => new PrimalIndex(array<object>(typeof(void), 
                 @sbyte, @byte, @short, @ushort, @int, 
-                @uint, @long, @ulong, @float, @double
-                );
+                @uint, @long, @ulong, @float, @double,
+                typeof(decimal), typeof(System.Numerics.BigInteger)
+                ));
 
         [MethodImpl(Inline)]
-        public static Type type(PrimKind kind)
-            => Kinds[(int)kind];
+        public static Type type(PrimKind key)
+            => Kinds[(int)key];
 
         [MethodImpl(Inline)]
-        public static Type type(int kind)
-            => Kinds[kind];            
+        public static Type type(int key)
+            => Kinds[key];            
 
         [MethodImpl(Inline)]
         public static PrimKind kind(Type t)
@@ -128,7 +166,7 @@ namespace Z0
             => PrimKind<T>.Kind;
 
         [MethodImpl(Inline)]
-        public static int index<T>()
+        public static int key<T>()
             => (int)PrimKind<T>.Kind;
 
     }

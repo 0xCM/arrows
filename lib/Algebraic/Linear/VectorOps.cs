@@ -47,7 +47,7 @@ namespace Z0
         /// <typeparam name="N">The vector length</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> define<N,T>(N len, IReadOnlyList<T> src) 
+        public static Vector<N,T> define<N,T>(N len, Index<T> src) 
             where N : TypeNat, new() 
             where T : struct, IEquatable<T>    
                 => new Vector<N,T>(src);
@@ -109,7 +109,7 @@ namespace Z0
                 => vector<N,bool>(lhs == rhs);
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<Vector<N,bool>> equality<N,T>(IReadOnlyList<Vector<N,T>> lhs, IReadOnlyList<Vector<N,T>> rhs)
+        public static Index<Vector<N,bool>> equality<N,T>(Index<Vector<N,T>> lhs, Index<Vector<N,T>> rhs)
             where N : TypeNat, new() 
             where T : struct, IEquatable<T>
                 => fuse(lhs, rhs, (v1,v2) =>  vector<N,bool>(v1 == v2));

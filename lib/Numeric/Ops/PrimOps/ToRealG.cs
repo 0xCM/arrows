@@ -308,7 +308,7 @@ namespace Z0
         /// <param name="src">The primitive source</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]   
-        public static IReadOnlyList<real<T>> ToReal<T>(this IReadOnlyList<T> src)
+        public static Index<real<T>> ToReal<T>(this Index<T> src)
             where T : struct, IEquatable<T>
                 => map(src,x => real<T>(x));
 

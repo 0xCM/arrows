@@ -52,7 +52,7 @@ namespace Z0
             => data = slice<N,T>(src);
 
         [MethodImpl(Inline)]   
-        public Vector(IReadOnlyList<T> src)
+        public Vector(Index<T> src)
             => data = slice<N,T>(src);
 
         [MethodImpl(Inline)]   
@@ -121,7 +121,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public Vector<N,Y> fuse<Y>(Vector<N,T> rhs, Func<T,T,Y> composer)
             where Y : struct, IEquatable<Y>    
-                => new Vector<N,Y>(zcore.fuse(unwrap(), rhs.unwrap(), composer));
+                => new Vector<N,Y>(zcore.fuse(data.unwrap(), rhs.data.unwrap(), composer));
 
         /// <summary>
         /// Transforms Vector[N,T] => Vector[Y,T] via component transformation f:T->Y

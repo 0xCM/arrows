@@ -28,12 +28,12 @@ namespace Z0.Testing
         /// <summary>
         /// The source for left primitive vectors
         /// </summary>
-        protected  IReadOnlyList<Vector<N,T>> LeftPrimVecSrc {get;}
+        protected  Index<Vector<N,T>> LeftPrimVecSrc {get;}
         
         /// <summary>
         /// The source for right primitive vectors
         /// </summary>
-        protected  IReadOnlyList<Vector<N,T>> RightPrimVecSrc {get;}
+        protected  Index<Vector<N,T>> RightPrimVecSrc {get;}
 
         /// <summary>
         /// The number of vectors in the sample
@@ -53,13 +53,13 @@ namespace Z0.Testing
             VectorCount = LeftPrimVecSrc.Count;
         }
 
-        public virtual IReadOnlyList<Vector<N,R>> Baseline() 
+        public virtual Index<Vector<N,R>> Baseline() 
             => index<Vector<N,R>>();
 
-        public virtual IReadOnlyList<Vector<N,R>> Applied()
+        public virtual Index<Vector<N,R>> Applied()
             => index<Vector<N,R>>();
 
-        public virtual IReadOnlyList<Vector<N,R>> Raw() 
+        public virtual Index<Vector<N,R>> Raw() 
             => index<Vector<N,R>>();
 
         public virtual void Verify()
