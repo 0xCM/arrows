@@ -16,5 +16,4 @@ namespace Z0
     public delegate Index<T> IndexBinOp<T>(Index<T> lhs, Index<T> rhs)
         where T : struct, IEquatable<T>;
 
-
 }

@@ -18,6 +18,7 @@ namespace Z0.Tests
     [DisplayName("natural")]
     public class NaturalTest
     {
+        
 
         public static void equality()
         {

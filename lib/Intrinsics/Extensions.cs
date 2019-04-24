@@ -62,16 +62,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => InXG.cmpf(lhs,rhs,mode);
  
-        /// <summary>
-        /// Computes the component-wise sum of two vectors
-        /// </summary>
-        /// <param name="lhs">The first vector</param>
-        /// <param name="rhs">The second vector</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vec128<T> Add<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
-            where T : struct, IEquatable<T>
-             => InXG.add(lhs,rhs);
 
         /// <summary>
         /// Computes the bitwise and of two vectors

@@ -18,43 +18,52 @@ namespace Z0.Bench
     
     partial class BaselineBench
     {
-        public static IBenchmarkRunner InXAddRunner<T>(BenchConfig config = null)
+        static TimedIndexBinOp<T> InXAddOp<T>()
                 where T : struct, IEquatable<T>
-                    => InXAddBaseline.Runner<T>(config);
+                    => InXAddBaseline.Operator<T>();    
 
-        public static TimedIndexBinOp<T> InXAddOp<T>()
+        static TimedIndexBinOp<T> InXAddOpG<T>()
                 where T : struct, IEquatable<T>
-                    => InXAddBaseline.Operator<T>();
+                    => InXAddBaseline.OperatorG<T>();    
 
-        public static IEnumerable<IBenchmarkRunner> InXAddRunners(BenchConfig config = null)
-            => InXAddBaseline.Runners(config);
+        static BenchResult RunInXAdd<T>(BenchConfig config = null)
+            where T : struct, IEquatable<T>        
+                => InXAddBaseline.Runner<T>("intrinsics/add", config).Run(InXAddOp<T>());
+
+        static BenchResult RunInXAddG<T>(BenchConfig config = null)
+            where T : struct, IEquatable<T>        
+                => InXAddBaseline.Runner<T>("intrinsics-g/add",config).Run(InXAddOpG<T>());
+
+        static IEnumerable<BenchResult> RunInXAdd(BenchConfig config = null)
+        {
+            yield return RunInXAdd<sbyte>(config);
+            yield return RunInXAdd<byte>(config);
+            yield return RunInXAdd<short>(config);
+            yield return RunInXAdd<ushort>(config);
+            yield return RunInXAdd<int>(config);
+            yield return RunInXAdd<uint>(config);
+            yield return RunInXAdd<long>(config);
+            yield return RunInXAdd<ulong>(config);
+            yield return RunInXAdd<float>(config);
+            yield return RunInXAdd<double>(config);
+        }
+
+        static IEnumerable<BenchResult> RunInXAddG(BenchConfig config = null)
+        {
+            yield return RunInXAddG<sbyte>(config);
+            yield return RunInXAddG<byte>(config);
+            yield return RunInXAddG<short>(config);
+            yield return RunInXAddG<ushort>(config);
+            yield return RunInXAddG<int>(config);
+            yield return RunInXAddG<uint>(config);
+            yield return RunInXAddG<long>(config);
+            yield return RunInXAddG<ulong>(config);
+            yield return RunInXAddG<float>(config);
+            yield return RunInXAddG<double>(config);
+        }
 
         class InXAddBaseline 
-        {
-            
-            public static IEnumerable<IBenchmarkRunner> Runners(BenchConfig config = null)
-            {
-                yield return Runner<sbyte>(config);
-                yield return Runner<byte>(config);
-                yield return Runner<short>(config);
-                yield return Runner<ushort>(config);
-                yield return Runner<int>(config);
-                yield return Runner<uint>(config);
-                yield return Runner<long>(config);
-                yield return Runner<ulong>(config);
-                yield return Runner<float>(config);
-                yield return Runner<double>(config);
-            }
-            
-            public static IBenchmarkRunner Runner<T>(BenchConfig config = null)
-                where T : struct, IEquatable<T>
-                    => new BinOpRunner<T>(Operator<T>(), "intrisics/add", config);
-
-            public static TimedIndexBinOp<T> Operator<T>()
-                where T : struct, IEquatable<T>
-                    => Operators.lookup<T, TimedIndexBinOp<T>>();
-
-
+        {        
             public static readonly PrimalIndex Operators 
                 = PrimKinds.index
                     (@sbyte: new TimedIndexBinOp<sbyte>(Add),
@@ -68,6 +77,29 @@ namespace Z0.Bench
                     @float: new TimedIndexBinOp<float>(Add),
                     @double:new TimedIndexBinOp<double>(Add)
                     );
+
+            public static IBenchMark<TimedIndexBinOp<T>> Runner<T>(string OpName, BenchConfig config = null)
+                where T : struct, IEquatable<T>
+                    => new BinOpBenchmark<T>(OpName, config);
+
+
+            public static TimedIndexBinOp<T> Operator<T>()
+                where T : struct, IEquatable<T>
+                    => Operators.lookup<T, TimedIndexBinOp<T>>();
+
+            public static TimedIndexBinOp<T> OperatorG<T>()
+                where T : struct, IEquatable<T>
+                    => AddG;
+
+
+            static long AddG<T>(Index<T> lhs, Index<T> rhs, out Index<T> dst)
+                where T : struct, IEquatable<T>
+            {
+                var sw = stopwatch();
+                dst = lhs.AddG(rhs);
+                return elapsed(sw);
+            }
+                    //=> Operator<T>()(lhs,rhs, out dst);
 
             static long Add(Index<sbyte> lhs, Index<sbyte> rhs, out Index<sbyte> dst)
             {
@@ -136,11 +168,7 @@ namespace Z0.Bench
                 var sw = stopwatch();
                 dst = lhs.InXAdd(rhs);
                 return elapsed(sw);
-            }
-            
-
+            }        
         }
-
     }
-
 }

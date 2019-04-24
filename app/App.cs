@@ -130,18 +130,7 @@ namespace Z0
 
 
         void RunBenchmarks()
-        {
-            var sw = stopwatch();
-            var primal = 0L;
-            var intrinsic = 0L;
-            iter(BaselineBench.PrimalAddRunners(), runner => primal += runner.Run());
-            iter(BaselineBench.InXAddRunners(), runner =>  intrinsic += runner.Run());
-
-            inform($"Total Runtime          = {sw.ElapsedMilliseconds}ms");
-            inform($"Total Benchtime        = {primal + intrinsic}ms");
-            inform($"Primal Benchmark       = {primal}ms");
-            inform($"Intrinsics Benchmark   = {intrinsic}ms");            
-        }
+            => BaselineBench.Run();
 
         void TestRandomFloat()
         {
@@ -175,6 +164,16 @@ namespace Z0
 
         }
 
+        void TestInXGAdd()
+        {
+            var domain = Interval.leftclosed(-150.0d, 150.0d).canonical();
+            var stream = RandomStream(domain);
+            var lhs = stream.Freeze(Pow2.T20);
+            var rhs = stream.Freeze(Pow2.T20);
+            var result = lhs.AddG(rhs);
+            inform("Ok");
+
+        }
 
         void RunTests()
         {

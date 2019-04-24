@@ -86,14 +86,12 @@ namespace Z0.Bench
         public static ref T spanref<T>(Span<T> span)
             => ref MemoryMarshal.GetReference(span);
 
-
-        static readonly InXAdd AddOps = InXAdd.TheOnly;
         public static unsafe void addScalar(Span<float> src, float value)
         {
             var vLen = Vec128<float>.Length;
             var vScalar = Vec128.define(value);
             var numScalar = vScalar.ToNum128();
-            var offset = 0;
+            //var offset = 0;
 
             fixed (float* dst = &spanref(src))
             {
@@ -101,77 +99,24 @@ namespace Z0.Bench
                 var buffer = dst;
                 var vLimit = limit - vLen;
 
-                while (buffer <= vLimit)
-                {
-                    InX.load(buffer, out Vec128<float> dstVector); 
-                    
+                // while (buffer <= vLimit)
+                // {
+                //     InX.load(buffer, out Vec128<float> dstVector);                     
+                //     InX.add(dstVector, vScalar, out Vec128<float> result);
+                //     InX.store(result, buffer);
+                //     buffer += vLen;
+                //     offset += vLen;
+                // }
 
-                    InX.add(dstVector, vScalar, out Vec128<float> result);
-                    InX.store(result, buffer);
-                    // Ops.add(dstVector,vScalar, out Vec128<float> result);
-                    // Ops.store(result, buffer);
-
-                    // InXG.add(dstVector,vScalar, out Vec128<float> result);
-                    // InXG.store(result, buffer);                              
-
-                    buffer += vLen;
-                    offset += vLen;
-                }
-
-                while (buffer < limit)
-                {
-                    InX.load(buffer, out Num128<float> dstVector);
-                    InX.add(dstVector, numScalar, out Num128<float> result);
-                    InX.store(result, buffer);
-                    buffer++;
-                    offset++;
-                }
-
+                // while (buffer < limit)
+                // {
+                //     InX.load(buffer, out Num128<float> dstVector);
+                //     InX.add(dstVector, numScalar, out Num128<float> result);
+                //     InX.store(result, buffer);
+                //     buffer++;
+                //     offset++;
+                // }
             }
-
-        }
-
-        static float[] target;
-        public static unsafe void addScalar2(Span<float> src, float value)
-        {
-            var vLen = Vec128<float>.Length;
-            var vScalar = Vec128.define(value);
-            var numScalar = vScalar.ToNum128();
-
-
-            var srcLen = src.Length;
-            if(target == null)
-                target = array<float>(srcLen);
-
-            var offset = 0;
-            fixed (float* dst = &spanref(src))
-            {
-                var limit = dst + srcLen;
-                var buffer = dst;
-                var vLimit = limit - vLen;
-
-                while (buffer <= vLimit)
-                {
-                    InX.load(buffer, out Vec128<float> dstVector); 
-                    InX.add(dstVector, vScalar, out Vec128<float> result);
-                    InX.store(result, target, offset);
-                    buffer += vLen;
-                    offset += vLen;
-                }
-
-                while (buffer < limit)
-                {
-                    InX.load(buffer, out Num128<float> dstVector);
-                    InX.add(dstVector, numScalar, out Num128<float> result);
-                    InX.store(result,target, offset);
-                    buffer++;
-                    offset++;
-                }
-
-            }
-        }
-
-        
+        }       
     }
-
 }

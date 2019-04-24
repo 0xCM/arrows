@@ -58,7 +58,7 @@ namespace Z0
         /// <typeparam name="T"></typeparam>
         /// <param name="items"></param>
         /// <param name="max"></param>
-        public static IEnumerable<IReadOnlyList<T>> Partition<T>(this IEnumerable<T> items, int max)
+        public static IEnumerable<Index<T>> Partition<T>(this IEnumerable<T> items, int max)
         {
             var list = new List<T>();
             foreach (var item in items)
@@ -71,7 +71,7 @@ namespace Z0
                 }
             }
             if (list.Count != 0)
-                yield return list;
+                yield return list.ToIndex();
         }
 
         public static IEnumerable<ArraySegment<T>> Partition<T>(this T[] src, int width)

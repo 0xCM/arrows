@@ -17,7 +17,7 @@ namespace Z0.Bench
 
     using static zcore;
 
-    public class AddScalarBench : InXBinOpBenchmark<float>
+    public class AddScalarBench : BinOpBenchmark<float>
     {
 
 
@@ -57,18 +57,25 @@ namespace Z0.Bench
             }
         }
 
-        float[] RunVec128Naive()
+        unsafe float[] RunVec128Naive()
         {
             var scalar = Vec128.define(ScalarVal);
             var vecLen = Vec128<float>.Length;
             var src = Data();
             var dst = src;
-            for(var i = 0; i< src.Length; i += vecLen)
+            fixed(float* pDst = &dst[0])
             {
-                var inVec = Vec128.define(src,i);
-                InX.add(inVec,scalar, out Vec128<float> outVec);
-                for(var j = 0; j < vecLen; j++)
-                    dst[i + j] = outVec[j];
+                float* pDstWalker = pDst;
+                for(var i = 0; i< src.Length; i += vecLen, pDstWalker += vecLen)
+                {
+                    var inVec = Vec128.define(src,i);
+                    var outVec = Avx2.Add(inVec,scalar);
+                    Avx2.Store(pDstWalker, outVec);
+
+                    //InX.add(inVec,scalar, out Vec128<float> outVec);
+                    // for(var j = 0; j < vecLen; j++)
+                    //     dst[i + j] = outVec[j];
+                }
             }
             return dst;
 
@@ -99,23 +106,23 @@ namespace Z0.Bench
         }
 
     
-        public override long Run()
+        public long Run()
         {
             long msml = 0, v128 = 0;
-            v128 += Measure(() => RunVec128(), "z0/addscalar");
-            msml += Measure(() => RunMSML(), "msml/addscalar");
-            v128 += Measure(() => RunVec128(), "z0/addscalar");
-            msml += Measure(() => RunMSML(), "msml/addscalar");
-            v128 += Measure(() => RunVec128(), "z0/addscalar");
-            msml += Measure(() => RunMSML(), "msml/addscalar");
-            msml += Measure(() => RunMSML(), "msml/addscalar");
-            v128 += Measure(() => RunVec128(), "z0/addscalar");
-            msml += Measure(() => RunMSML(), "msml/addscalar");
-            v128 += Measure(() => RunVec128(), "z0/addscalar");
-            msml += Measure(() => RunMSML(), "msml/addscalar");
-            v128 += Measure(() => RunVec128(), "z0/addscalar");
-            msml += Measure(() => RunMSML(), "msml/addscalar");
-            v128 += Measure(() => RunVec128(), "z0/addscalar");
+            // v128 += Measure(() => RunVec128(), "z0/addscalar");
+            // msml += Measure(() => RunMSML(), "msml/addscalar");
+            // v128 += Measure(() => RunVec128(), "z0/addscalar");
+            // msml += Measure(() => RunMSML(), "msml/addscalar");
+            // v128 += Measure(() => RunVec128(), "z0/addscalar");
+            // msml += Measure(() => RunMSML(), "msml/addscalar");
+            // msml += Measure(() => RunMSML(), "msml/addscalar");
+            // v128 += Measure(() => RunVec128(), "z0/addscalar");
+            // msml += Measure(() => RunMSML(), "msml/addscalar");
+            // v128 += Measure(() => RunVec128(), "z0/addscalar");
+            // msml += Measure(() => RunMSML(), "msml/addscalar");
+            // v128 += Measure(() => RunVec128(), "z0/addscalar");
+            // msml += Measure(() => RunMSML(), "msml/addscalar");
+            // v128 += Measure(() => RunVec128(), "z0/addscalar");
             trace($"z0: {v128}ms | msml: {msml}ms");
             return v128;
         }

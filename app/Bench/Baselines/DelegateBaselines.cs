@@ -28,7 +28,7 @@ namespace Z0.Bench
         public static double add(double x, double y)
             => x + y;
 
-        public override long Run()
+        public long Run()
         {
            Func<float,float,float> f = add;
            Func<double, double, double> d = add; 

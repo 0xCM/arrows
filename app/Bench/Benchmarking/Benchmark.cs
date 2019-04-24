@@ -10,18 +10,26 @@ namespace Z0.Bench
 
     using static zcore;
 
-    public abstract class Benchmark : Context<Benchmark>, IBenchmarkRunner
+    public interface IBenchMark
     {
 
+    }
 
+    public interface IBenchMark<D> : IBenchMark
+        where D : Delegate
+    {
+        BenchResult Run(D Op);
+
+    }
+
+    public abstract class Benchmark : Context<Benchmark>
+    {
          public Benchmark()
          : base(RandSeeds.BenchSeed)
          {
 
          
          }
-
-        public abstract long Run();
 
         Task V128Stream(Func<bool> stop, uint batchSize = Pow2.T18, int delay = 0, bool diagnostic = false)
         {   
@@ -34,12 +42,12 @@ namespace Z0.Bench
                     var batch = Randomizer<long>().stream(domain.left, domain.right).TakeArray((int)batchSize);
                     foreach(var v in Vec128.stream<long>(batch))
                     {
-                        var sum = InX.add(v,v);
-                        var vAnd = InX.and(v, sum);
-                        var vOr = InX.or(v, sum);
+                        //var sum = InX.add(v,v);
+                        //var vAnd = InX.and(v, sum);
+                        //var vOr = InX.or(v, sum);
                         
-                        if(diagnostic)
-                            inform($"{v} + {v} = {sum}");
+                        // if(diagnostic)
+                        //     inform($"{v} + {v} = {sum}");
                     }
 
                     if(diagnostic)
@@ -55,7 +63,6 @@ namespace Z0.Bench
             return Task.Factory.StartNew(worker);                
         }
 
-
         void RunStream()
         {
             var stop = false;
@@ -67,14 +74,13 @@ namespace Z0.Bench
             task.Wait();
 
         }
-
     }
 
-    public abstract class Benchmark<T> : Benchmark, IPrimal<T>
+    public abstract class Benchmark<T> : Context<Benchmark<T>>, IBenchMark
         where T : struct, IEquatable<T>
     {
-
         protected Benchmark(BenchConfig config, Interval<T>? Domain = null)
+            : base(RandSeeds.BenchSeed)
         {
             this.Config = config ?? BenchConfig.Default;
             this.Domain = Domain ?? Settings.Domain<T>();

@@ -20,7 +20,7 @@ namespace Z0.Bench
         
     }
 
-    public static partial class InXRunners
+    public static partial class InXGRunners
     {
         
     }

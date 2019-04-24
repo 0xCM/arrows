@@ -18,37 +18,35 @@ namespace Z0.Bench
     
     partial class BaselineBench
     {
-        public static IBenchmarkRunner PrimalAddRunner<T>(BenchConfig config = null)
-                where T : struct, IEquatable<T>
-                    => PrimalAddBaseline.Runner<T>(config);
-
-        public static TimedIndexBinOp<T> PrimalAddOp<T>()
+        static TimedIndexBinOp<T> PrimalAddOp<T>()
                 where T : struct, IEquatable<T>
                     => PrimalAddBaseline.Operator<T>();
 
-        public static IEnumerable<IBenchmarkRunner> PrimalAddRunners(BenchConfig config = null)
-            => PrimalAddBaseline.Runners(config);
+        static BenchResult RunPrimalAdd<T>(BenchConfig config = null)
+            where T : struct, IEquatable<T>        
+                => PrimalAddBaseline.Runner<T>(config).Run(PrimalAddOp<T>());
+
+        static IEnumerable<BenchResult> RunPrimalAdd(BenchConfig config = null)
+        {
+            yield return RunPrimalAdd<sbyte>(config);
+            yield return RunPrimalAdd<byte>(config);
+            yield return RunPrimalAdd<short>(config);
+            yield return RunPrimalAdd<ushort>(config);
+            yield return RunPrimalAdd<int>(config);
+            yield return RunPrimalAdd<uint>(config);
+            yield return RunPrimalAdd<long>(config);
+            yield return RunPrimalAdd<ulong>(config);
+            yield return RunPrimalAdd<float>(config);
+            yield return RunPrimalAdd<double>(config);
+        }
 
         class PrimalAddBaseline 
         {
 
-            public static IBenchmarkRunner Runner<T>(BenchConfig config = null)
+            public static IBenchMark<TimedIndexBinOp<T>> Runner<T>(BenchConfig config = null)
                 where T : struct, IEquatable<T>
-                    => new BinOpRunner<T>(Operators.lookup<T,TimedIndexBinOp<T>>(), "primal/add", config);
+                    => new BinOpBenchmark<T>("primal/add", config);
 
-            public static IEnumerable<IBenchmarkRunner> Runners(BenchConfig config = null)
-            {
-                yield return Runner<sbyte>(config);
-                yield return Runner<byte>(config);
-                yield return Runner<short>(config);
-                yield return Runner<ushort>(config);
-                yield return Runner<int>(config);
-                yield return Runner<uint>(config);
-                yield return Runner<long>(config);
-                yield return Runner<ulong>(config);
-                yield return Runner<float>(config);
-                yield return Runner<double>(config);
-            }
 
             public static TimedIndexBinOp<T> Operator<T>()
                 where T : struct, IEquatable<T>

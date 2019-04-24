@@ -18,51 +18,9 @@ namespace Z0
         public static InXAdd AddOps = InXAdd.TheOnly;
 
 
-        [MethodImpl(Inline)]
-        public static Vec128BinOp<T> Add<T>()
-            where T : struct, IEquatable<T>
-                => InXD.AddD<T>.Add;
-
-        [MethodImpl(Inline)]
-        public static Vec128BinOut<T> AddOut<T>()
-            where T : struct, IEquatable<T>
-                => InXD.AddD<T>.AddOut;
-
-        [MethodImpl(Inline)]
-        public static Vec128BinPOut<T> AddPOut<T>()
-            where T : struct, IEquatable<T>
-                => InXD.AddD<T>.AddPOut;
-
-        [MethodImpl(Inline)]
-        public static Vec128BinAOut<T> AddAOut<T>()
-            where T : struct, IEquatable<T>
-                => InXD.AddD<T>.AddAOut;
-
-        [MethodImpl(Inline)]
-        public static Vec128<T> add<T>(in Vec128<T> lhs, in Vec128<T> rhs)
-            where T : struct, IEquatable<T>
-            => InXD.AddD<T>.Add(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public static void add<T>(in Vec128<T> lhs, in Vec128<T> rhs, out Vec128<T> dst)
-            where T : struct, IEquatable<T>
-                => InXD.AddD<T>.AddOut(lhs,rhs, out dst);
-        
-        [MethodImpl(Inline)]
-        public static unsafe void add<T>(in Vec128<T> lhs, in Vec128<T> rhs, void* dst)
-            where T : struct, IEquatable<T>
-                => InXD.AddD<T>.AddPOut(lhs,rhs, dst);
-
-        [MethodImpl(Inline)]
-        public static void add<T>(in Vec128<T> lhs, in Vec128<T> rhs, T[] dst, int offset = 0)
-            where T : struct, IEquatable<T>
-                    => InXD.AddD<T>.AddAOut(lhs,rhs, dst, offset);
 
 
-        [MethodImpl(Inline)]
-        public static Num128<T> add<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
-                => SSR.InXAddG<T>.TheOnly.add(lhs,rhs);
+
 
 
     }
@@ -105,11 +63,8 @@ namespace Z0
             [MethodImpl(Inline)]
             public static void add(in Num128<T> lhs, in Num128<T> rhs, out Num128<T> dst)
                     => cast<InXAddScalar<T>>(InXAdd.TheOnly).add(lhs,rhs, out dst);
-
         }
-
     }
-
 
     public readonly struct InXAdd : 
         InXAdd<byte>,

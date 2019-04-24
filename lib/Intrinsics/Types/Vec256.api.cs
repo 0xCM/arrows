@@ -26,7 +26,7 @@ namespace Z0
         /// <param name="src">The source list</param>
         /// <typeparam name="T">The primitive type</typeparam>        
         [MethodImpl(Inline)]
-        public static unsafe Vec256<T> define<T>(IReadOnlyList<T> data)
+        public static unsafe Vec256<T> define<T>(Index<T> data)
             where T : struct, IEquatable<T>
         {            
 
@@ -276,7 +276,7 @@ namespace Z0
         /// <param name="src">The source lit</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<sbyte> ToVec256(this IReadOnlyList<sbyte> src)
+        public static Vec256<sbyte> ToVec256(this Index<sbyte> src)
                 => Vec256.define(src);
 
         /// <summary>
@@ -295,7 +295,7 @@ namespace Z0
         /// <param name="src">The source lit</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<short> ToVec256(this IReadOnlyList<short> src)
+        public static Vec256<short> ToVec256(this Index<short> src)
                 => Vec256.define(src);
 
        /// <summary>
@@ -314,7 +314,7 @@ namespace Z0
         /// <param name="src">The source lit</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<ushort> ToVec256(this IReadOnlyList<ushort> src)
+        public static Vec256<ushort> ToVec256(this Index<ushort> src)
                 => Vec256.define(src);
 
  
@@ -334,7 +334,7 @@ namespace Z0
         /// <param name="src">The source lit</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<int> ToVec256(this IReadOnlyList<int> src)
+        public static Vec256<int> ToVec256(this Index<int> src)
                 => Vec256.define(src);
 
         /// <summary>
@@ -353,7 +353,7 @@ namespace Z0
         /// <param name="src">The source lit</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<uint> ToVec256(this IReadOnlyList<uint> src)
+        public static Vec256<uint> ToVec256(this Index<uint> src)
                 => Vec256.define(src);
 
         /// <summary>
@@ -372,7 +372,7 @@ namespace Z0
         /// <param name="src">The source lit</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<long> ToVec256(this IReadOnlyList<long> src)
+        public static Vec256<long> ToVec256(this Index<long> src)
                 => Vec256.define(src);
 
         /// <summary>
@@ -391,7 +391,7 @@ namespace Z0
         /// <param name="src">The source lit</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<float> ToVec256(this IReadOnlyList<float> src)
+        public static Vec256<float> ToVec256(this Index<float> src)
                 => Vec256.define(src);
 
        /// <summary>
@@ -410,7 +410,7 @@ namespace Z0
         /// <param name="src">The source lit</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<double> ToVec256(this IReadOnlyList<double> src)
+        public static Vec256<double> ToVec256(this Index<double> src)
                 => Vec256.define(src);
 
  

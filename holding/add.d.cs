@@ -15,6 +15,23 @@ namespace Z0
 
     public static partial class InXD
     {
+
+        [MethodImpl(Inline)]
+        public static Vec128<T> add<T>(in Vec128<T> lhs, in Vec128<T> rhs)
+            where T : struct, IEquatable<T>
+            => InXD.AddD<T>.Add(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static void add<T>(in Vec128<T> lhs, in Vec128<T> rhs, out Vec128<T> dst)
+            where T : struct, IEquatable<T>
+                => InXD.AddD<T>.AddOut(lhs,rhs, out dst);
+        
+
+        [MethodImpl(Inline)]
+        public static void add<T>(in Vec128<T> lhs, in Vec128<T> rhs, T[] dst, int offset = 0)
+            where T : struct, IEquatable<T>
+                    => InXD.AddD<T>.AddAOut(lhs,rhs, dst, offset);
+
         public readonly struct AddD<T>
             where T : struct, IEquatable<T>
         {
@@ -46,6 +63,9 @@ namespace Z0
 
         readonly struct AddOp
         {
+
+
+
             static readonly PrimalIndex Delegates = PrimKinds.index<object>
                 (@sbyte: binop<sbyte>(add),
                 @byte: binop<byte>(add),
@@ -126,43 +146,43 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public static void add(in Vec128<byte> lhs, in Vec128<byte> rhs, out Vec128<byte> dst)
+            static void add(in Vec128<byte> lhs, in Vec128<byte> rhs, out Vec128<byte> dst)
                 => dst = Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public static void add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, out Vec128<sbyte> dst)
+            static void add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, out Vec128<sbyte> dst)
                 => dst = Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public static void add(in Vec128<short> lhs, in Vec128<short> rhs, out Vec128<short> dst)
+            static void add(in Vec128<short> lhs, in Vec128<short> rhs, out Vec128<short> dst)
                 => dst = Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public static void add(in Vec128<ushort> lhs, in Vec128<ushort> rhs, out Vec128<ushort> dst)
+            static void add(in Vec128<ushort> lhs, in Vec128<ushort> rhs, out Vec128<ushort> dst)
                 => dst = Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public static void add(in Vec128<int> lhs, in Vec128<int> rhs, out Vec128<int> dst)
+            static void add(in Vec128<int> lhs, in Vec128<int> rhs, out Vec128<int> dst)
                 => dst = Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public static void add(in Vec128<uint> lhs, in Vec128<uint> rhs, out Vec128<uint> dst)
+            static void add(in Vec128<uint> lhs, in Vec128<uint> rhs, out Vec128<uint> dst)
                 => dst = Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public static void add(in Vec128<long> lhs, in Vec128<long> rhs, out Vec128<long> dst)
+            static void add(in Vec128<long> lhs, in Vec128<long> rhs, out Vec128<long> dst)
                 => dst = Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public static void add(in Vec128<ulong> lhs, in Vec128<ulong> rhs, out Vec128<ulong> dst)
+            static void add(in Vec128<ulong> lhs, in Vec128<ulong> rhs, out Vec128<ulong> dst)
                 => dst = Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public static void add(in Vec128<float> lhs, in Vec128<float> rhs, out Vec128<float> dst)
+            static void add(in Vec128<float> lhs, in Vec128<float> rhs, out Vec128<float> dst)
                 => dst = Avx2.Add(lhs, rhs);
 
             [MethodImpl(Inline)]
-            public static void add(in Vec128<double> lhs, in Vec128<double> rhs, out Vec128<double> dst)
+            static void add(in Vec128<double> lhs, in Vec128<double> rhs, out Vec128<double> dst)
                 => dst = Avx2.Add(lhs, rhs);
 
         }
@@ -250,70 +270,70 @@ namespace Z0
                     => Delegates.lookup<T,Vec128BinAOut<T>>();
 
             [MethodImpl(Inline)]
-            public static unsafe void add(in Vec128<byte> lhs, in Vec128<byte> rhs, byte[] dst, int offset = 0)
+            static unsafe void add(in Vec128<byte> lhs, in Vec128<byte> rhs, byte[] dst, int offset = 0)
             {
                 fixed(byte* pDst = &dst[offset])
                     Avx.Store(pDst, Avx2.Add(lhs, rhs));
             }
 
             [MethodImpl(Inline)]
-            public static unsafe void add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, sbyte[] dst, int offset = 0)
+            static unsafe void add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, sbyte[] dst, int offset = 0)
             {
                 fixed(sbyte* pDst = &dst[offset])
                     Avx.Store(pDst, Avx2.Add(lhs, rhs));
             }
 
             [MethodImpl(Inline)]
-            public static unsafe void add(in Vec128<short> lhs, in Vec128<short> rhs, short[] dst, int offset = 0)
+            static unsafe void add(in Vec128<short> lhs, in Vec128<short> rhs, short[] dst, int offset = 0)
             {
                 fixed(short* pDst = &dst[offset])
                     Avx.Store(pDst, Avx2.Add(lhs, rhs));
             }
 
             [MethodImpl(Inline)]
-            public static unsafe void add(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ushort[] dst, int offset = 0)
+            static unsafe void add(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ushort[] dst, int offset = 0)
             {
                 fixed(ushort* pDst = &dst[offset])
                     Avx.Store(pDst, Avx2.Add(lhs, rhs));
             }
 
             [MethodImpl(Inline)]
-            public static unsafe void add(in Vec128<int> lhs, in Vec128<int> rhs, int[] dst, int offset = 0)
+            static unsafe void add(in Vec128<int> lhs, in Vec128<int> rhs, int[] dst, int offset = 0)
             {
                 fixed(int* pDst = &dst[offset])
                     Avx.Store(pDst, Avx2.Add(lhs, rhs));
             }
 
             [MethodImpl(Inline)]
-            public static unsafe void add(in Vec128<uint> lhs, in Vec128<uint> rhs, uint[] dst, int offset = 0)
+            static unsafe void add(in Vec128<uint> lhs, in Vec128<uint> rhs, uint[] dst, int offset = 0)
             {
                 fixed(uint* pDst = &dst[offset])
                     Avx.Store(pDst, Avx2.Add(lhs, rhs));
             }
                     
             [MethodImpl(Inline)]
-            public static unsafe void add(in Vec128<long> lhs, in Vec128<long> rhs, long[] dst, int offset = 0)
+            static unsafe void add(in Vec128<long> lhs, in Vec128<long> rhs, long[] dst, int offset = 0)
             {
                 fixed(long* pDst = &dst[offset])
                     Avx.Store(pDst, Avx2.Add(lhs, rhs));
             }
 
             [MethodImpl(Inline)]
-            public static unsafe void add(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ulong[] dst, int offset = 0)
+            static unsafe void add(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ulong[] dst, int offset = 0)
             {
                 fixed(ulong* pDst = &dst[offset])
                     Avx.Store(pDst, Avx2.Add(lhs, rhs));
             }
 
             [MethodImpl(Inline)]
-            public static unsafe void add(in Vec128<float> lhs, in Vec128<float> rhs, float[] dst, int offset = 0)
+            static unsafe void add(in Vec128<float> lhs, in Vec128<float> rhs, float[] dst, int offset = 0)
             {
                 fixed(float* pDst = &dst[offset])
                     Avx.Store(pDst, Avx2.Add(lhs, rhs));
             }
 
             [MethodImpl(Inline)]
-            public static unsafe void add(in Vec128<double> lhs, in Vec128<double> rhs, double[] dst, int offset = 0)
+            static unsafe void add(in Vec128<double> lhs, in Vec128<double> rhs, double[] dst, int offset = 0)
             {
                 fixed(double* pDst = &dst[offset])
                     Avx.Store(pDst, Avx2.Add(lhs, rhs));

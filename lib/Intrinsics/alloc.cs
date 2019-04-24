@@ -209,7 +209,7 @@ namespace Z0
         /// <param name="offset">The index at which source data may start in the target</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static void checkTarget<T>(IReadOnlyList<Vec128<T>> src, T[] dst, int offset)
+        public static void checkTarget<T>(Index<Vec128<T>> src, T[] dst, int offset)
             where T : struct, IEquatable<T>
         {
             var required = Vec128<T>.Length * src.Count;                
@@ -218,99 +218,99 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe byte* copy<T>(IReadOnlyList<T> src, byte* dst)
+        public static unsafe void* copy<T>(T[] src, byte* dst)
         {
             var p = dst;
-            for (var i = 0; i < src.Count; ++i, p++)
+            for (var i = 0; i < src.Length; ++i, p++)
                 *p = (byte)(object)(src[i]);                                    
             return dst;
         }
 
         [MethodImpl(Inline)]
-        public static unsafe sbyte* copy<T>(IReadOnlyList<T> src, sbyte* dst)
+        public static unsafe void* copy<T>(T[] src, sbyte* dst)
         {
             var p = dst;
-            for (var i = 0; i < src.Count; ++i, p++)
+            for (var i = 0; i < src.Length; ++i, p++)
                 *p = (sbyte)(object)(src[i]);                            
             
             return dst;
         }        
 
         [MethodImpl(Inline)]
-        public static unsafe short* copy<T>(IReadOnlyList<T> src, short* dst)
+        public static unsafe void* copy<T>(T[] src, short* dst)
         {
             var p = dst;
-            for (var i = 0; i < src.Count; ++i, p++)
+            for (var i = 0; i < src.Length; ++i, p++)
                 *p = (short)(object)(src[i]);     
 
             return dst;                       
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ushort* copy<T>(IReadOnlyList<T> src, ushort* dst)
+        public static unsafe void* copy<T>(T[] src, ushort* dst)
         {
             var p = dst;
-            for (var i = 0; i < src.Count; ++i, p++)
+            for (var i = 0; i < src.Length; ++i, p++)
                 *p = (ushort)(object)(src[i]);                            
 
             return dst;                
         }
 
         [MethodImpl(Inline)]
-        public static unsafe int* copy<T>(IReadOnlyList<T> src, int* dst)
+        public static unsafe void* copy<T>(T[] src, int* dst)
         {
             var p = dst;
-            for (var i = 0; i < src.Count; ++i, p++)
+            for (var i = 0; i < src.Length; ++i, p++)
                 *p = (int)(object)(src[i]);                            
 
             return dst;                
         }
 
         [MethodImpl(Inline)]
-        public static unsafe uint* copy<T>(IReadOnlyList<T> src, uint* dst)
+        public static unsafe void* copy<T>(T[] src, uint* dst)
         {
             var p = dst;
-            for (var i = 0; i < src.Count; ++i, p++)
+            for (var i = 0; i < src.Length; ++i, p++)
                 *p = (uint)(object)(src[i]);                            
             
             return dst;
         }
 
         [MethodImpl(Inline)]
-        public static unsafe long* copy<T>(IReadOnlyList<T> src, long* dst)
+        public static unsafe void* copy<T>(T[] src, long* dst)
         {
             var p = dst;
-            for (var i = 0; i < src.Count; ++i, p++)
+            for (var i = 0; i < src.Length; ++i, p++)
                 *p = (long)(object)(src[i]);                            
 
             return dst;
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ulong* copy<T>(IReadOnlyList<T> src, ulong* dst)
+        public static unsafe void* copy<T>(T[] src, ulong* dst)
         {
             var p = dst;
-            for (var i = 0; i < src.Count; ++i, p++)
+            for (var i = 0; i < src.Length; ++i, p++)
                 *p = (ulong)(object)(src[i]);                            
         
             return dst;
         }
 
         [MethodImpl(Inline)]
-        public static unsafe float* copy<T>(IReadOnlyList<T> src, float* dst)
+        public static unsafe void* copy<T>(T[] src, float* dst)
         {
             var p = dst;
-            for (var i = 0; i < src.Count; ++i, p++)
+            for (var i = 0; i < src.Length; ++i, p++)
                 *p = (float)(object)(src[i]);                            
             
             return dst;
         }
 
         [MethodImpl(Inline)]
-        public static unsafe double* copy<T>(IReadOnlyList<T> src, double* dst)
+        public static unsafe void* copy<T>(T[] src, double* dst)
         {
             var p = dst;
-            for (var i = 0; i < src.Count; ++i, p++)
+            for (var i = 0; i < src.Length; ++i, p++)
                 *p = (double)(object)(src[i]);     
             
             return dst;                                       
@@ -328,22 +328,12 @@ namespace Z0
                 throw errlen(src.Length, Vec128<T>.Length, offset, maxpos, finalpos);
         }
 
-        [MethodImpl(Inline)]
-        public static void checklen128<T>(IReadOnlyList<T> src, int offset = 0)
-            where T : struct, IEquatable<T>
-        {
-            var maxpos = src.Count - 1;
-            var finalpos = offset + Vec128<T>.Length - 1;
-
-            if(finalpos > maxpos)
-                throw errlen(src.Count, Vec128<T>.Length, offset, maxpos, finalpos);
-        }
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> datasource<T>(object data, int count, int startpos = 0)
+        public static T[] datasource<T>(object data, int count, int startpos = 0)
             where T : struct, IEquatable<T>
         {
-            var src = (IReadOnlyList<T>)data;
+            var src = (T[])data;
             checklen128(src, startpos);
             return src;
         }
@@ -359,7 +349,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe sbyte* i8vec(object data, int count)
+        public static unsafe void* i8vec(object data, int count)
         {
             var src = datasource<sbyte>(data,count);
             var dst =  stackalloc sbyte[count];
@@ -367,7 +357,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe byte* u8num(object value, int count)
+        public static unsafe void* u8num(object value, int count)
         {
             var dst =  stackalloc byte[count];
             dst[0] = cast<byte>(value);
@@ -375,7 +365,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe byte* u8vec(object data, int count)
+        public static unsafe void* u8vec(object data, int count)
         {
             var src = datasource<byte>(data,count);
             var dst =  stackalloc byte[count];
@@ -383,7 +373,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe short* i16vec(object data, int count)
+        public static unsafe void* i16vec(object data, int count)
         {
             var src = datasource<short>(data,count);
             var dst =  stackalloc short[count];
@@ -391,7 +381,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe short* i16num(object value, int count)
+        public static unsafe void* i16num(object value, int count)
         {
             var dst =  stackalloc short[count];
             dst[0] = cast<short>(value);
@@ -399,7 +389,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ushort* u16num(object value, int count)
+        public static unsafe void* u16num(object value, int count)
         {
             var dst =  stackalloc ushort[count];
             dst[0] = cast<ushort>(value);
@@ -407,7 +397,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ushort* u16vec(object data, int count)
+        public static unsafe void* u16vec(object data, int count)
         {
             var src = datasource<ushort>(data,count);
             var dst =  stackalloc ushort[count];
@@ -415,7 +405,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe int* i32num(object value, int count)
+        public static unsafe void* i32num(object value, int count)
         {
             var dst =  stackalloc int[count];
             dst[0] = cast<int>(value);
@@ -423,7 +413,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe int* i32vec(object data, int count)
+        public static unsafe void* i32vec(object data, int count)
         {
             var src = datasource<int>(data,count);
             var dst =  stackalloc int[count];
@@ -431,7 +421,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe uint* u32num(object value, int count)
+        public static unsafe void* u32num(object value, int count)
         {
             var dst =  stackalloc uint[count];
             dst[0] = cast<uint>(value);
@@ -439,7 +429,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe uint* u32vec(object data, int count)
+        public static unsafe void* u32vec(object data, int count)
         {
             var src = datasource<uint>(data,count);
             var dst =  stackalloc uint[count];
@@ -447,7 +437,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe long* i64num(object value, int count)
+        public static unsafe void* i64num(object value, int count)
         {
             var dst =  stackalloc long[count];
             dst[0] = cast<long>(value);
@@ -455,7 +445,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe long* i64vec(object data, int count)
+        public static unsafe void* i64vec(object data, int count)
         {
             var src = datasource<long>(data,count);
             var dst =  stackalloc long[count];
@@ -463,7 +453,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ulong* u64num(object value, int count)
+        public static unsafe void* u64num(object value, int count)
         {
             var dst =  stackalloc ulong[count];
             dst[0] = cast<ulong>(value);
@@ -471,7 +461,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ulong* u64vec(object data, int count)
+        public static unsafe void* u64vec(object data, int count)
         {
             var src = datasource<ulong>(data,count);
             var dst =  stackalloc ulong[count];
@@ -479,7 +469,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe float* f32num(object value, int count)
+        public static unsafe void* f32num(object value, int count)
         {
             var dst =  stackalloc float[count];
             dst[0] = cast<float>(value);
@@ -487,7 +477,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe float* f32vec(object data, int count)
+        public static unsafe void* f32vec(object data, int count)
         {
             var src = datasource<float>(data,count);
             var dst =  stackalloc float[count];
@@ -495,7 +485,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe double* f64num(object value, int count)
+        public static unsafe void* f64num(object value, int count)
         {
             var dst =  stackalloc double[count];
             dst[0] = cast<double>(value);
@@ -503,7 +493,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe double* f64vec(object data, int count)
+        public static unsafe void* f64vec(object data, int count)
         {
             var src = datasource<double>(data,count);
             var dst =  stackalloc double[count];

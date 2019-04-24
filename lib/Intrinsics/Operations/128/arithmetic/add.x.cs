@@ -11,11 +11,72 @@ namespace Z0
     
     using static zcore;
     using static inxfunc;
-    using static Operative;
+    using static vec128;
 
 
     partial class InXX
     {
+
+
+        static readonly PrimalIndex AddOps 
+            = PrimKinds.index
+                (@sbyte: new IndexBinOp<sbyte>(InXAdd),
+                @byte: new IndexBinOp<byte>(InXAdd),
+                @short: new IndexBinOp<short>(InXAdd),
+                @ushort: new IndexBinOp<ushort>(InXAdd),
+                @int: new IndexBinOp<int>(InXAdd),
+                @uint: new IndexBinOp<uint>(InXAdd),
+                @long: new IndexBinOp<long>(InXAdd),
+                @ulong: new IndexBinOp<ulong>(InXAdd),
+                @float: new IndexBinOp<float>(InXAdd),
+                @double:new IndexBinOp<double>(InXAdd)
+                );
+
+        static IndexBinOp<T> AddOp<T>()
+            where T : struct, IEquatable<T>
+                => AddOps.lookup<T, IndexBinOp<T>>();
+
+        public static Index<T> AddG<T>(this Index<T> lhs, Index<T> rhs)
+            where T : struct, IEquatable<T>
+                => AddOp<T>()(lhs,rhs);
+
+        static unsafe Index<T> AddVerySlow<T>(this Index<T> lhs, Index<T> rhs)
+            where T : struct, IEquatable<T>
+        {
+            var len = Vector128<T>.Count;
+            var lArray = lhs.ToArray();
+            var rArray = rhs.ToArray();
+            var dst = new T[lArray.Length];
+
+            var add = InXDelegates.Add<T>();
+            if(add == null)
+                throw new Exception("Add delegate not found");
+
+            var load = InXDelegates.Load<T>();
+            if(load == null)
+                throw new Exception("Load delegate not found");
+            
+            var store = InXDelegates.Store<T>();
+            if(store == null)
+                throw new Exception("Store delegate not found");
+
+            
+            for(var i = 0; i < lhs.Count; i+= len)
+            {
+                void* pLhs = pointer(ref lArray[i]);
+                void* pRhs = pointer(ref rArray[i]);
+                void* pDst = pointer(ref dst[i]);
+
+                var vL = load(pLhs);
+                var vR = load(pRhs);
+                var result = add(vL,vR);
+                store(result, pDst);
+
+            }
+
+            return dst;
+        }
+        
         public static unsafe Index<sbyte> InXAdd(this Index<sbyte> lhs, Index<sbyte> rhs)
         {
             var len = Vector128<sbyte>.Count;
@@ -34,9 +95,10 @@ namespace Z0
                 
                 for(var i = 0; i< lhs.Count; i += len)
                 {
-                    var vL = Avx.LoadVector128(pLeft);
-                    var vR = Avx.LoadVector128(pRight);
-                    Avx2.Store(pTarget,Avx2.Add(vL,vR));
+                    var vL = load(pLeft);
+                    var vR = load(pRight);
+                    var result = Avx2.Add(vL,vR);
+                    store(result, pTarget);
                     pLeft += len;
                     pRight += len;
                     pTarget += len;
@@ -64,9 +126,10 @@ namespace Z0
                 
                 for(var i = 0; i< lhs.Count; i += len)
                 {
-                    var vL = Avx.LoadVector128(pLeft);
-                    var vR = Avx.LoadVector128(pRight);
-                    Avx2.Store(pTarget,Avx2.Add(vL,vR));
+                    var vL = load(pLeft);
+                    var vR = load(pRight);
+                    var result = Avx2.Add(vL,vR);
+                    store(result, pTarget);
                     pLeft += len;
                     pRight += len;
                     pTarget += len;
@@ -94,9 +157,10 @@ namespace Z0
                 
                 for(var i = 0; i< lhs.Count; i += len)
                 {
-                    var vL = Avx.LoadVector128(pLeft);
-                    var vR = Avx.LoadVector128(pRight);
-                    Avx2.Store(pTarget,Avx2.Add(vL,vR));
+                    var vL = load(pLeft);
+                    var vR = load(pRight);
+                    var result = Avx2.Add(vL,vR);
+                    store(result, pTarget);
                     pLeft += len;
                     pRight += len;
                     pTarget += len;
@@ -124,9 +188,10 @@ namespace Z0
                 
                 for(var i = 0; i< lhs.Count; i += len)
                 {
-                    var vL = Avx.LoadVector128(pLeft);
-                    var vR = Avx.LoadVector128(pRight);
-                    Avx2.Store(pTarget,Avx2.Add(vL,vR));
+                    var vL = load(pLeft);
+                    var vR = load(pRight);
+                    var result = Avx2.Add(vL,vR);
+                    store(result, pTarget);
                     pLeft += len;
                     pRight += len;
                     pTarget += len;
@@ -154,9 +219,10 @@ namespace Z0
                 
                 for(var i = 0; i< lhs.Count; i += len)
                 {
-                    var vL = Avx.LoadVector128(pLeft);
-                    var vR = Avx.LoadVector128(pRight);
-                    Avx2.Store(pTarget,Avx2.Add(vL,vR));
+                    var vL = load(pLeft);
+                    var vR = load(pRight);
+                    var result = Avx2.Add(vL,vR);
+                    store(result, pTarget);
                     pLeft += len;
                     pRight += len;
                     pTarget += len;
@@ -184,9 +250,10 @@ namespace Z0
                 
                 for(var i = 0; i< lhs.Count; i += len)
                 {
-                    var vL = Avx.LoadVector128(pLeft);
-                    var vR = Avx.LoadVector128(pRight);
-                    Avx2.Store(pTarget,Avx2.Add(vL,vR));
+                    var vL = load(pLeft);
+                    var vR = load(pRight);
+                    var result = Avx2.Add(vL,vR);
+                    store(result, pTarget);
                     pLeft += len;
                     pRight += len;
                     pTarget += len;
@@ -215,9 +282,10 @@ namespace Z0
                 
                 for(var i = 0; i< lhs.Count; i += len)
                 {
-                    var vL = Avx.LoadVector128(pLeft);
-                    var vR = Avx.LoadVector128(pRight);
-                    Avx2.Store(pTarget,Avx2.Add(vL,vR));
+                    var vL = load(pLeft);
+                    var vR = load(pRight);
+                    var result = Avx2.Add(vL,vR);
+                    store(result, pTarget);
                     pLeft += len;
                     pRight += len;
                     pTarget += len;
@@ -245,9 +313,10 @@ namespace Z0
                 
                 for(var i = 0; i< lhs.Count; i += len)
                 {
-                    var vL = Avx.LoadVector128(pLeft);
-                    var vR = Avx.LoadVector128(pRight);
-                    Avx2.Store(pTarget,Avx2.Add(vL,vR));
+                    var vL = load(pLeft);
+                    var vR = load(pRight);
+                    var result = Avx2.Add(vL,vR);
+                    store(result, pTarget);
                     pLeft += len;
                     pRight += len;
                     pTarget += len;
@@ -276,9 +345,10 @@ namespace Z0
                 
                 for(var i = 0; i< lhs.Count; i += len)
                 {
-                    var vL = Avx.LoadVector128(pLeft);
-                    var vR = Avx.LoadVector128(pRight);
-                    Avx2.Store(pTarget,Avx2.Add(vL,vR));
+                    var vL = load(pLeft);
+                    var vR = load(pRight);
+                    var result = Avx2.Add(vL,vR);
+                    store(result, pTarget);
                     pLeft += len;
                     pRight += len;
                     pTarget += len;
@@ -307,9 +377,10 @@ namespace Z0
                 
                 for(var i = 0; i< lhs.Count; i += len)
                 {
-                    var vL = Avx.LoadVector128(pLeft);
-                    var vR = Avx.LoadVector128(pRight);
-                    Avx2.Store(pTarget,Avx2.Add(vL,vR));
+                    var vL = load(pLeft);
+                    var vR = load(pRight);
+                    var result = Avx2.Add(vL,vR);
+                    store(result, pTarget);
                     pLeft += len;
                     pRight += len;
                     pTarget += len;
@@ -318,8 +389,5 @@ namespace Z0
             }
             return dst;
         }
-
-
     }
-
 }
