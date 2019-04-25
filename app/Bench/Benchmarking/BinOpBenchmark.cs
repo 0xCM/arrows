@@ -22,57 +22,65 @@ namespace Z0.Bench
     public unsafe delegate long TimedIndexBinOp<T>(Index<T> lhs, Index<T> rhs, out Index<T> dst)
         where T : struct, IEquatable<T>;
 
+    public unsafe delegate long TimedIndexUnaryOp<T>(Index<T> src, out Index<T> dst)
+        where T : struct, IEquatable<T>;
+
+    public unsafe delegate long TimedAggregateOp<T>(Index<T> src, out T dst)
+        where T : struct, IEquatable<T>;
+
+    public static class BinOpBenchmark
+    {
+        public static IBenchMark<TimedIndexBinOp<T>> Runner<T>(string opname, BenchConfig config = null)
+            where T : struct, IEquatable<T>
+                => new BinOpBenchmark<T>(opname, config);
+
+
+    }
+
+
     public class BinOpBenchmark<T> : Benchmark<T>,  IBenchMark<TimedIndexBinOp<T>>
         where T : struct, IEquatable<T>
     {
 
         public BinOpBenchmark(string OpName,  BenchConfig config = null)
-            :base(config ?? BenchConfig.Default)
+            :base(OpName, config ?? BenchConfig.Default)
         {
-            this.OpName = OpName;
+
+        }        
+
+        protected long TimeReps(Index<T> lhs, Index<T> rhs, Func<Index<T>, Index<T>, long> worker)
+        {
+            var ticks = 0L;
+            iter(Config.Reps, _ => ticks += worker(lhs,rhs));
+            return ticks;
         }
 
-        public string OpName {get;}
-
-        static readonly long TicksPerMs = Stopwatch.Frequency/1000L;
-        
-        static long TicksToMs(long ticks)
-            => ticks/TicksPerMs;
-
-        BenchResult TimeWork(Index<T> lhs, Index<T> rhs, string OpName, Func<Index<T>, Index<T>, long> worker)
+        protected BenchResult RunCycle(Index<T> lhs, Index<T> rhs, Func<Index<T>, Index<T>, long> worker, int cycle)
         {
-            var kind = PrimKinds.kind<T>();
-            var opid = $"{OpName}/{kind}";
-            var totalResult = BenchResult.Init(opid);
+            var result = BenchResult.Init(OpId);
 
-            zcore.hilite($"{totalResult.OpId} Executing {Config.Cycles} cycles", SeverityLevel.HiliteCL);
-            for(var i = 0; i < Config.Cycles; i ++)
-            {
-                var cycleResult = BenchResult.Init(opid);
+            LogCycleStart(cycle);
+            result = result.AppendRepTicks(TimeReps(lhs,rhs,worker));
+            LogCycleFinish(cycle, result);
 
-                var statsMsg = $"Cycle = {i} | Samples = {Config.SampleSize} | Reps = {Config.Reps}";
-                zcore.hilite($"{totalResult.OpId} Start  {statsMsg}", SeverityLevel.HiliteCL);
+            return result;
+        }
 
-                
-                for(var j = 0; j < Config.Reps; j++)                    
-                    cycleResult = cycleResult.AppendRepTicks(worker(lhs,rhs));
-                
-                totalResult = totalResult.AppendCycle(cycleResult);                
-                zcore.hilite($"{totalResult.OpId} Finish {statsMsg} | Duration = {cycleResult.Duration}ms", SeverityLevel.Perform);                        
+        BenchResult Run(Index<T> lhs, Index<T> rhs, Func<Index<T>, Index<T>, long> worker)
+        {
+            var result = BenchResult.Init(OpId);
 
-            }
-            
-            zcore.hilite($"{totalResult}", SeverityLevel.HiliteCL);
-            return totalResult;
+            LogStart();
+            iter(Config.Cycles, i => result = result.AppendCycle(RunCycle(lhs,rhs, worker,i)));
+            LogFinish(result);
 
+            return result;
         }
 
 
         public BenchResult Run(TimedIndexBinOp<T> Op)
-            => TimeWork(RandomIndex<T>(Settings.Domain<T>(), Config.SampleSize),
+            => Run(RandomIndex<T>(Settings.Domain<T>(), Config.SampleSize),
                         RandomIndex<T>(Settings.Domain<T>(), Config.SampleSize),
-                        OpName,
-                        (x,y) => Op(x, y, out Index<T> z)
-                        );
+                        (x,y) => Op(x, y, out Index<T> z));
     }
 }

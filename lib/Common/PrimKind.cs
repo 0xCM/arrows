@@ -28,6 +28,11 @@ namespace Z0
         public V lookup<K,V>()
             where K : struct, IEquatable<K>
             => (V)index[PrimKinds.key<K>()];
+
+        public V lookup<V>(PrimKind kind)
+            => (V)index[(int)kind];
+
+
     }
 
 
@@ -79,7 +84,9 @@ namespace Z0
 
     public readonly struct PrimKind<T>
     {
-        public static readonly PrimKind Kind = PrimKinds.kind(typeof(T));
+        public static readonly Type Type = typeof(T);
+
+        public static readonly PrimKind Kind = PrimKinds.kind(Type);
     }
 
     public static class PrimKinds
@@ -168,6 +175,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static int key<T>()
             => (int)PrimKind<T>.Kind;
+
 
     }
 

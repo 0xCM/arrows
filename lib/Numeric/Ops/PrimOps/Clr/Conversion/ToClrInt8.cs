@@ -13,125 +13,125 @@ namespace Z0
     using static zcore;
     using static Operative;
 
-    using Target = System.SByte;
-    using TargetStream = System.Collections.Generic.IEnumerable<sbyte>;
-    using TargetList = System.Collections.Generic.IReadOnlyList<sbyte>;
+    using target = System.SByte;
+    using stream = System.Collections.Generic.IEnumerable<sbyte>;
+    using targets = Index<sbyte>;
     
     partial class ClrConverters
     {        
         public readonly struct ToClrInt8 : 
-            Conversion<sbyte, Target>, 
-            Conversion<byte, Target>, 
-            Conversion<short, Target>, 
-            Conversion<ushort, Target>, 
-            Conversion<int, Target>, 
-            Conversion<uint, Target>, 
-            Conversion<long, Target>, 
-            Conversion<ulong, Target>,
-            Conversion<float, Target>, 
-            Conversion<double, Target>, 
-            Conversion<decimal, Target>,
-            Conversion<BigInteger, Target>
+            Conversion<sbyte, target>, 
+            Conversion<byte, target>, 
+            Conversion<short, target>, 
+            Conversion<ushort, target>, 
+            Conversion<int, target>, 
+            Conversion<uint, target>, 
+            Conversion<long, target>, 
+            Conversion<ulong, target>,
+            Conversion<float, target>, 
+            Conversion<double, target>, 
+            Conversion<decimal, target>,
+            Conversion<BigInteger, target>
         {
             public static readonly ToClrInt8 Inhabitant = default;
             
-            public static readonly Type TargetType = typeof(Target);
+            public static readonly Type TargetType = typeof(target);
 
             [MethodImpl(Inline)]
-            public Target convert(byte src)
-                => (Target)src;
+            public target convert(byte src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(byte src, out Target dst)
-                => dst = (Target)src;
+            public target convert(byte src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(sbyte src)
+            public target convert(sbyte src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(sbyte src, out Target dst)
+            public target convert(sbyte src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(short src)
-                => (Target)src;
+            public target convert(short src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(short src, out Target dst)
-                => dst = (Target)src;
+            public target convert(short src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(ushort src)
-                => (Target)src;
+            public target convert(ushort src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(ushort src, out Target dst)
-                => dst = (Target)src;
+            public target convert(ushort src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(int src)
-                => (Target)src;
+            public target convert(int src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(int src, out Target dst)
-                => dst = (Target)src;
+            public target convert(int src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(uint src)
-                => (Target)src;
+            public target convert(uint src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(uint src, out Target dst)
-                => dst = (Target)src;
+            public target convert(uint src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(long src)
-                => (Target)src;
+            public target convert(long src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(long src, out Target dst)
-                => dst = (Target)src;
+            public target convert(long src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(ulong src)
-                => (Target)src;
+            public target convert(ulong src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(ulong src, out Target dst)
-                => dst = (Target)src;
+            public target convert(ulong src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(float src)
-                => (Target)src;
+            public target convert(float src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(float src, out Target dst)
-                => dst = (Target)src;
+            public target convert(float src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(double src)
-                => (Target)src;
+            public target convert(double src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(double src, out Target dst)
-                => dst = (Target)src;
+            public target convert(double src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(decimal src)
-                => (Target)src;
+            public target convert(decimal src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(decimal src, out Target dst)
-                => dst = (Target)src;
+            public target convert(decimal src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(BigInteger src)
-                => (Target)src;
+            public target convert(BigInteger src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(BigInteger src, out Target dst)
-                => dst = (Target)src;
+            public target convert(BigInteger src, out target dst)
+                => dst = (target)src;
         }
 
     }

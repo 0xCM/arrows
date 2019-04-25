@@ -120,8 +120,15 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source method</param>
         [MethodImpl(Inline)]
+        public static string FullDisplayName(this MethodBase src)
+            => $"{src.DeclaringType.DisplayName()}{src.DisplayName()}";
+
+        [MethodImpl(Inline)]
         public static string DisplayName(this MethodBase src)
-            => $"{src.DeclaringType.DisplayName()}{src.Name}";
+        {
+            var attrib = src.GetCustomAttribute<DisplayNameAttribute>();
+            return attrib != null ? attrib.DisplayName.TrimEnd('/') : src.Name;
+        }
 
         /// <summary>
         /// Constructs a display name for a type

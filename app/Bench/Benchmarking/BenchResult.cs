@@ -27,11 +27,6 @@ namespace Z0.Bench
             
         public static readonly BenchResult Empty = new BenchResult(string.Empty,0,0,0);
         
-        static readonly long TicksPerMs 
-            = Stopwatch.Frequency/1000L;
-        
-        static long TicksToMs(long ticks)
-            => ticks/TicksPerMs;
 
         BenchResult(string OpId, int CycleCount, int RepCount, long TickCount)
         {
@@ -50,10 +45,10 @@ namespace Z0.Bench
         public long TickCount {get;}
 
         public long Duration
-            => TicksToMs(TickCount);        
+            => ticksToMs(TickCount);        
 
         public BenchResult AppendRepTicks(long TickCount)
-            => Define(this.OpId,this.CycleCount, this.RepCount + 1, this.TickCount + TickCount);
+            => Define(this.OpId, this.CycleCount, this.RepCount + 1, this.TickCount + TickCount);
 
         public BenchResult AppendCycle(BenchResult cycle)
             => Define(this.OpId, this.CycleCount + 1, this.RepCount + cycle.RepCount, this.TickCount + cycle.TickCount);

@@ -32,10 +32,10 @@ namespace Z0.Tests.InXTests
 
         }
 
-        protected virtual IReadOnlyList<bool[]> Results(FloatComparisonMode mode)
+        protected virtual Index<bool[]> Results(FloatComparisonMode mode)
             => fuse(LeftVecSrc,RightVecSrc, (x,y) =>  InXOp.cmpf(x,y,mode));
 
-        protected abstract bool[] Cmp(IReadOnlyList<T> x, IReadOnlyList<T> y, FloatComparisonMode mode);
+        protected abstract bool[] Cmp(Index<T> x, Index<T> y, FloatComparisonMode mode);
 
 
         public virtual void Verify(FloatComparisonMode mode)
@@ -108,7 +108,7 @@ namespace Z0.Tests.InXTests
                 return result; 
             }
             
-            protected override bool[] Cmp(IReadOnlyList<double> x, IReadOnlyList<double> y, FloatComparisonMode mode)
+            protected override bool[] Cmp(Index<double> x, Index<double> y, FloatComparisonMode mode)
             {
                 var result = alloc<bool>(VecLength);
                 for(var i = 0; i< VecLength; i++)
@@ -122,12 +122,12 @@ namespace Z0.Tests.InXTests
                 var src = Vec128.define(3.4d, double.NaN);
                 var result = inxfunc.clearNaN(src);
                 var expect = Vec128.define(3.4d, -1d);
-                ClaimEq(expect,result);
+                Claim.eq(expect,result);
 
                 src = Vec128.define(double.NaN,3.4d);
                 result = inxfunc.clearNaN(src);
                 expect = Vec128.define(-1d,3.4d);
-                ClaimEq(expect,result);
+                Claim.eq(expect,result);
             }
 
             public void BoolPack()
@@ -220,10 +220,7 @@ namespace Z0.Tests.InXTests
                 CmpLt1();
                 CmpLt2();
                 CmpLt3();
-
             }
-
-
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Z0.Bench
 
         static BenchResult RunPrimalAdd<T>(BenchConfig config = null)
             where T : struct, IEquatable<T>        
-                => PrimalAddBaseline.Runner<T>(config).Run(PrimalAddOp<T>());
+                => BinOpBenchmark.Runner<T>("primal/add", config).Run(PrimalAddOp<T>());
 
         static IEnumerable<BenchResult> RunPrimalAdd(BenchConfig config = null)
         {
@@ -42,12 +42,6 @@ namespace Z0.Bench
 
         class PrimalAddBaseline 
         {
-
-            public static IBenchMark<TimedIndexBinOp<T>> Runner<T>(BenchConfig config = null)
-                where T : struct, IEquatable<T>
-                    => new BinOpBenchmark<T>("primal/add", config);
-
-
             public static TimedIndexBinOp<T> Operator<T>()
                 where T : struct, IEquatable<T>
                     => Operators.lookup<T, TimedIndexBinOp<T>>();
@@ -65,7 +59,6 @@ namespace Z0.Bench
                     @float: new TimedIndexBinOp<float>(Add),
                     @double:new TimedIndexBinOp<double>(Add)
                     );
-
 
             static long Add(Index<sbyte> lhs, Index<sbyte> rhs, out Index<sbyte> dst)
             {            

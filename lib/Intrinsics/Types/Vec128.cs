@@ -9,38 +9,30 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
+    using System.Runtime.InteropServices;
+
 
     using static zcore;
     using static inxfunc;
 
-   public readonly struct Vec128<T> : IEquatable<Vec128<T>>
+    [StructLayout(LayoutKind.Sequential, Size = 16)]
+    public readonly struct Vec128<T> : IEquatable<Vec128<T>>
         where T : struct, IEquatable<T>
     {
         public static readonly int Length = Vector128<T>.Count;
 
-        public static readonly int PrimSize = SizeOf<T>.Size;
+        public static readonly int ComponentSize = Unsafe.SizeOf<T>();
         
-        readonly Vector128<T> data;        
+        //readonly Vector128<T> data;        
     
+        [MethodImpl(Inline)]
+        public static implicit operator Vec128<T>(Vector128<T> src)
+            => Unsafe.As<Vector128<T>, Vec128<T>>(ref src); //src.ToVec128();
 
         [MethodImpl(Inline)]
-        public static implicit operator Vec128<T>(in Vector128<T> src)
-            => new Vec128<T>(src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator Vector128<T>(in Vec128<T> src)
-            => src.As<T>();
-
-        [MethodImpl(Inline)]
-        public Vec128(in Vector128<T> src)
-            => this.data = src;
-
-        [MethodImpl(Inline)]
-        static T component(Vector128<T> src, int idx)
-        {
-            ref T e0 = ref Unsafe.As<Vector128<T>, T>(ref src);                    
-            return Unsafe.Add(ref e0, idx);           
-        }
+        public static implicit operator Vector128<T>(Vec128<T> src)
+            => Unsafe.As<Vec128<T>, Vector128<T>>(ref src);
 
         /// <summary>
         /// Extracts a component via its 0-based index
@@ -48,50 +40,26 @@ namespace Z0
         public  T this[int idx]
         {
             [MethodImpl(Inline)]
-            get => Vector128.GetElement(data,idx);
+            get => this.Component(idx);
 
         }
-
-        /// <summary>
-        /// Copies the vector components to a supplied array
-        /// </summary>
-        [MethodImpl(Inline)]
-        public T[] components(ref T[] dst)
-        {
-            for(var i = 0; i< Length; i++)
-                dst[i] = Vector128.GetElement(data,i);
-            return dst;
-        }    
-
-        /// <summary>
-        /// Extracts the components from the vector
-        /// </summary>
-        [MethodImpl(Inline)]
-        public unsafe T[] ToArray()
-        {      
-             var dst = new T[Length];
-             return components(ref dst);
-        }
-
-
-        [MethodImpl(Inline)]
-        public Vec256<T> ToVec256()
-            => data.ToVector256Unsafe();
 
         [MethodImpl(Inline)]
         public Num128<T> ToNum128()
-            => data;
+            => this.ToVector128();
+
+        [MethodImpl(Inline)]
+        public Vec128<U> As<U>() 
+            where U : struct, IEquatable<U>
+                => Unsafe.As<Vec128<T>, Vec128<U>>(ref Unsafe.AsRef(in this));         
 
         [MethodImpl(Inline)]
         public bool Equals(Vec128<T> rhs)
-            => data.Equals(rhs.data);
+            => this.ToVector128().Equals(rhs);
 
         public override string ToString()
-            => data.ToString();
+            => this.ToVector128().ToString();
  
-        [MethodImpl(Inline)]
-        public Vector128<U> As<U>() 
-            where U : struct        
-                => Unsafe.As<Vector128<T>, Vector128<U>>(ref Unsafe.AsRef(in data));        
+
     }     
 }

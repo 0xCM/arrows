@@ -21,25 +21,15 @@ namespace Z0
         public static intg<byte> ToIntG(this byte src)
             => src;
 
-        [MethodImpl(Inline)]   
-        public static IEnumerable<intg<byte>> ToIntG(this IEnumerable<byte> src)
-            => src.Select(x => x.ToIntG());
 
         [MethodImpl(Inline)]   
         public static intg<sbyte> ToIntG(this sbyte src)
             => src;
 
-        [MethodImpl(Inline)]   
-        public static IEnumerable<intg<sbyte>> ToIntG(this IEnumerable<sbyte> src)
-            => src.Select(x => x.ToIntG());
 
         [MethodImpl(Inline)]   
         public static intg<short> ToIntG(this short src)
             => src;
-
-        [MethodImpl(Inline)]   
-        public static IEnumerable<intg<short>> ToIntG(this IEnumerable<short> src)
-            => src.Select(x => x.ToIntG());
 
 
         [MethodImpl(Inline)]   
@@ -47,74 +37,86 @@ namespace Z0
             => src;
 
         [MethodImpl(Inline)]   
-        public static IEnumerable<intg<ushort>> ToIntG(this IEnumerable<ushort> src)
-            => src.Select(x => x.ToIntG());
-
-        [MethodImpl(Inline)]   
         public static intg<int> ToIntG(this int src)
             => src;
-
-        [MethodImpl(Inline)]   
-        public static IEnumerable<intg<int>> ToIntG(this IEnumerable<int> src)
-            => src.Select(x => x.ToIntG());
 
         [MethodImpl(Inline)]   
         public static intg<uint> ToIntG(this uint src)
             => src;
 
         [MethodImpl(Inline)]   
-        public static IEnumerable<intg<uint>> ToIntG(this IEnumerable<uint> src)
-            => src.Select(x => x.ToIntG());
-
-        [MethodImpl(Inline)]   
         public static intg<long> ToIntG(this long src)
             => src;
 
-        [MethodImpl(Inline)]   
-        public static IEnumerable<intg<long>> ToIntG(this IEnumerable<long> src)
-            => src.Select(x => x.ToIntG());
 
         [MethodImpl(Inline)]   
         public static intg<ulong> ToIntG(this ulong src)
             => src;
 
         [MethodImpl(Inline)]   
-        public static IEnumerable<intg<ulong>> ToIntG(this IEnumerable<ulong> src)
-            => src.Select(x => x.ToIntG());
-
-        [MethodImpl(Inline)]   
         public static intg<BigInteger> ToIntG(this BigInteger src)
             => src;
 
         [MethodImpl(Inline)]   
-        public static IEnumerable<intg<BigInteger>> ToIntG(this IEnumerable<BigInteger> src)
-            => src.Select(x => x.ToIntG());
+        public static intg<long> ToIntG(this double src)
+            => (long)src;
+        
+        [MethodImpl(Inline)]   
+        public static intg<long> ToIntG(this decimal src)
+            => (long)src;
+
         
         [MethodImpl(Inline)]   
         public static intg<int> ToIntG(this float src)
             => (int)src;
 
         [MethodImpl(Inline)]   
+        public static IEnumerable<intg<byte>> ToIntG(this IEnumerable<byte> src)
+            => src.Select(x => x.ToIntG());
+
+        [MethodImpl(Inline)]   
+        public static IEnumerable<intg<sbyte>> ToIntG(this IEnumerable<sbyte> src)
+            => src.Select(x => x.ToIntG());
+
+        [MethodImpl(Inline)]   
+        public static IEnumerable<intg<short>> ToIntG(this IEnumerable<short> src)
+            => src.Select(x => x.ToIntG());
+
+        [MethodImpl(Inline)]   
+        public static IEnumerable<intg<ushort>> ToIntG(this IEnumerable<ushort> src)
+            => src.Select(x => x.ToIntG());
+
+        [MethodImpl(Inline)]   
+        public static IEnumerable<intg<int>> ToIntG(this IEnumerable<int> src)
+            => src.Select(x => x.ToIntG());
+
+        [MethodImpl(Inline)]   
+        public static IEnumerable<intg<uint>> ToIntG(this IEnumerable<uint> src)
+            => src.Select(x => x.ToIntG());
+
+        [MethodImpl(Inline)]   
+        public static IEnumerable<intg<long>> ToIntG(this IEnumerable<long> src)
+            => src.Select(x => x.ToIntG());
+
+        [MethodImpl(Inline)]   
+        public static IEnumerable<intg<ulong>> ToIntG(this IEnumerable<ulong> src)
+            => src.Select(x => x.ToIntG());
+
+        [MethodImpl(Inline)]   
+        public static IEnumerable<intg<BigInteger>> ToIntG(this IEnumerable<BigInteger> src)
+            => src.Select(x => x.ToIntG());
+
+        [MethodImpl(Inline)]   
         public static IEnumerable<intg<int>> ToIntG(this IEnumerable<float> src)
             => src.Select(x => x.ToIntG());
 
         [MethodImpl(Inline)]   
-        public static intg<long> ToIntG(this double src)
-            => (long)src;
-
-        [MethodImpl(Inline)]   
         public static IEnumerable<intg<long>> ToIntG(this IEnumerable<double> src)
             => src.Select(x => x.ToIntG());
-        
-        [MethodImpl(Inline)]   
-        public static intg<long> ToIntG(this decimal src)
-            => (long)src;
 
         [MethodImpl(Inline)]   
         public static IEnumerable<intg<long>> ToIntG(this IEnumerable<decimal> src)
             => src.Select(x => x.ToIntG());
-
-
 
         /// <summary>
         /// effects byte => intg[T]
@@ -133,7 +135,6 @@ namespace Z0
         public static intg<T> ToIntG<T>(this sbyte src)
             where T : struct, IEquatable<T>
             => ClrConverter.convert<sbyte,T>(src);
-
 
         /// <summary>
         /// x:short => x:intg[T]
@@ -316,7 +317,7 @@ namespace Z0
                 => enumg<T>(src);
 
         [MethodImpl(Inline)]   
-        public static IReadOnlyList<intg<T>> ToIntG<T>(this IReadOnlyList<real<T>> src)
+        public static Index<intg<T>> ToIntG<T>(this Index<real<T>> src)
             where T : struct, IEquatable<T>
                 => map(src, x =>  intg<T>(x.unwrap()));
     }

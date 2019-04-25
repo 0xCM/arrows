@@ -19,14 +19,14 @@ namespace Z0
         public interface Divisors<T>
             where T : struct, IEquatable<T>
         {
-            IReadOnlyList<T> divisors(T src);
+            Index<T> divisors(T src);
         }
     }
 
     public static partial class algorithms
     {
         [MethodImpl(Inline)]
-        public static IReadOnlyList<T> divisors<T>(T src)
+        public static Index<T> divisors<T>(T src)
             where T : struct, IEquatable<T>
                 => DivisorOps<T>.Inhabitant.divisors(src);
         
@@ -66,7 +66,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public IReadOnlyList<T> divisors(T src)
+        public Index<T> divisors(T src)
             => AlgOps.divisors(src);
     
         /// <summary>
@@ -151,7 +151,7 @@ namespace Z0
                     => cast<Divisors<T>>(Inhabitant);
 
 
-            public IReadOnlyList<ulong> divisors(ulong src)
+            public Index<ulong> divisors(ulong src)
             {
                 var result = new List<ulong>();
                 
@@ -171,7 +171,7 @@ namespace Z0
                 return result;
             }
 
-            public IReadOnlyList<uint> divisors(uint src)
+            public Index<uint> divisors(uint src)
             {
                 var result = new List<uint>();
                 

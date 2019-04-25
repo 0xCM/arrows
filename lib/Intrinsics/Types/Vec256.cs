@@ -54,7 +54,7 @@ namespace Z0
         /// Extracts the components from the vector
         /// </summary>
         [MethodImpl(Inline)]
-        public IReadOnlyList<T> components()
+        public Index<T> components()
         {
             var dst = new T[Length];
             for(var i = 0; i<Length; i++)

@@ -32,21 +32,21 @@ namespace Z0.Tests
 
         public void Convert()
         {
-            ClaimEq(intg<short>(1), toIntG<short>(bit.on())); 
-            ClaimEq(intg<short>(0), toIntG<short>(bit.off())); 
+            Claim.eq(intg<short>(1), toIntG<short>(bit.on())); 
+            Claim.eq(intg<short>(0), toIntG<short>(bit.off())); 
 
-            ClaimEq(intg<int>(1), toIntG<int>(bit.on())); 
-            ClaimEq(intg<int>(0), toIntG<int>(bit.off())); 
+            Claim.eq(intg<int>(1), toIntG<int>(bit.on())); 
+            Claim.eq(intg<int>(0), toIntG<int>(bit.off())); 
 
-            ClaimEq(intg<uint>(1), toIntG<uint>(bit.on())); 
-            ClaimEq(intg<uint>(0), toIntG<uint>(bit.off())); 
+            Claim.eq(intg<uint>(1), toIntG<uint>(bit.on())); 
+            Claim.eq(intg<uint>(0), toIntG<uint>(bit.off())); 
         }
         public void Extract1()
         {
             var x0 = (byte)0b10100111;
             var x1 = BitVector.define<N8>(bits(1,1,1,0,0,1,0,1));
             var x2 = BitVector.define<N8>(x0.ToBits());
-            ClaimEq(x1,x2);
+            Claim.eq(x1,x2);
 
         }
 
@@ -55,7 +55,7 @@ namespace Z0.Tests
             var x = (byte)0b00010110;
             var expect = BitVector.define<N8>(x.ToBits());
             var actual= BitVector.define<N8>(bits(0,1,1,0,1,0,0,0));
-            ClaimEq(expect,actual);
+            Claim.eq(expect,actual);
         }
 
         public void BitConstruction()
@@ -65,26 +65,26 @@ namespace Z0.Tests
             var x1 = (byte)0b11100101;
             var x2 = (byte)0b00111000;
             var x3 = (byte)0b10100111;
-            ClaimEq(xval, Bits.pack(x0, x1, x2,x3));
+            Claim.eq(xval, Bits.pack(x0, x1, x2,x3));
 
             var xbsref = "10100111" + "00111000" + "11100101" + "10101000";
-            ClaimEq(xbsref, xval.ToBitString().format());
+            Claim.eq(xbsref, xval.ToBitString().format());
 
 
             // var y2 = Bits.pack(x3,x2);
             // var y1 = Bits.pack(x1,x0);
             // var y0 = Bits.pack(y2,y1);
-            // ClaimEq(xval, y0);
+            // Claim.eq(xval, y0);
 
             // var bv1 = BitVector.define<N32>(primops.bits(xval));
             // var bv2 = BitVector.Parse<N32>(xbsref);
-            // ClaimEq(bv2, bv1);
+            // Claim.eq(bv2, bv1);
 
             // var bs1 = bv1.bitstring().format();
-            // ClaimEq(xbsref,bs1);
+            // Claim.eq(xbsref,bs1);
 
             // var bs2 = primops.bitstring(xval).format();
-            // ClaimEq(xbsref,bs2);
+            // Claim.eq(xbsref,bs2);
         }
 
 

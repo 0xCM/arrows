@@ -27,16 +27,11 @@ namespace Z0.Tests.InXTests
         {
 
             _Expect = defer(() => Expected().ToIndex());
-            ClaimEq(SampleSize, VecCount*VecLength);
+            Claim.eq(SampleSize, VecCount*VecLength);
 
         }
 
-
         protected virtual Vec128BinOp<T> VecOp {get;}
-
-        protected virtual Vec128BinOut<T> VecOpOut {get;}
-
-        protected virtual Vec128BinAOut<T> VecOpAOut {get;}
 
         protected virtual IndexBinOp<T> IndexOp {get;}
 
@@ -44,17 +39,17 @@ namespace Z0.Tests.InXTests
             => Results(VecOp);
 
         protected IEnumerable<ArraySegment<T>> LeftSegments
-            => Arr.partition(LeftDataSrc, VecLength);
+            => Arr.partition(LeftDataSrc.ToArray(), VecLength);
 
         protected IEnumerable<ArraySegment<T>> RightSegments
-            => Arr.partition(RightDataSrc, VecLength);
+            => Arr.partition(RightDataSrc.ToArray(), VecLength);
 
         IEnumerable<Vec128<T>> Expected()
         {
             var leftSeg = LeftSegments.ToArray();
             var rightSeg = RightSegments.ToArray();
             for(var i =0; i< VecCount; i++)
-                yield return Vec128.define(IndexOp(leftSeg[i],rightSeg[i]));
+                yield return Vec128.single(IndexOp(leftSeg[i],rightSeg[i]));
         }
 
         Lazy<Index<Vec128<T>>> _Expect;
@@ -69,27 +64,13 @@ namespace Z0.Tests.InXTests
             return results;
         }
 
-        protected Index<Vec128<T>> Apply(Vec128BinAOut<T> vecop)
-        {
-            var storage = new T[SampleSize];
-            for(int i = 0, offset = 0; i<VecCount; i++, offset += VecLength)
-                vecop(LeftVecSrc[i], RightVecSrc[i], storage, offset);                
-            return storage.Stream128().ToIndex();            
-        }
-
-        protected Index<Vec128<T>> Apply(Vec128BinOut<T> vecop)
-        {
-            var results = new Vec128<T>[VecCount];
-            for(int i = 0, offset = 0; i<VecCount; i++, offset += VecLength)
-                vecop(LeftVecSrc[i], RightVecSrc[i], out results[i]);                
-            return results;        
-        }
-
 
         protected void VerifyMatch(Index<Vec128<T>> lhs, Index<Vec128<T>> rhs)
         {
+            Claim.eq(lhs.Length,rhs.Length);
+
             for(var i = 0; i<VecCount; i++)
-                ClaimEq(lhs[i], rhs[i]);
+                Claim.eq(lhs[i], rhs[i]);
         }
 
         public virtual Index<Vec128<T>> ApplyCanonicalOp()
@@ -100,38 +81,12 @@ namespace Z0.Tests.InXTests
             return Apply(VecOp);
         }
 
-        public virtual Index<Vec128<T>> ApplyOutOp()
-        {
-            if(VecOpOut == null)
-                return Index<Vec128<T>>.Empty;
-
-            return(Apply(VecOpOut));
-        }
-
-
-        public virtual Index<Vec128<T>> ApplyStoreOp()
-        {
-            if(VecOpAOut == null)
-                return Index<Vec128<T>>.Empty;
-
-            return Apply(VecOpAOut);
-
-        }
-
         public virtual void VerifyCanonicalOp()            
             => VerifyMatch(Expect, ApplyCanonicalOp());
-
-        public virtual void VerifyOutOp()
-            => VerifyMatch(Expect, ApplyOutOp());
-
-        public virtual void VerifyStoreOp()
-            => VerifyMatch(Expect, ApplyStoreOp());
 
         public virtual void VerifyAll()
         {
             VerifyCanonicalOp();
-            VerifyStoreOp();
-            VerifyOutOp();
         }
 
         protected void ApplyAll(int? reps = null)
@@ -146,20 +101,6 @@ namespace Z0.Tests.InXTests
                 var sw = begin($"Applying canonical {OpName} operation | {statsMsg}");
                 iter(repeat, i => ApplyCanonicalOp());
                 end($"Applied canonical {OpName} operation | {statsMsg}", sw);                
-            }
-
-            if(VecOpAOut != null)
-            {
-                var sw = begin($"Applying {OpName} store operation | {statsMsg}");
-                iter(repeat, i => ApplyStoreOp());
-                end($"Applied {OpName} store operation | {statsMsg}",sw);
-            }
-
-            if (VecOpOut != null)
-            {
-                var sw = begin($"Verifing {OpName} operation with output parameter | {statsMsg}");
-                iter(repeat, i => ApplyOutOp());                                    
-                end($"Applied {OpName} operation with output parameter | {statsMsg} ",sw);
             }
         }
 

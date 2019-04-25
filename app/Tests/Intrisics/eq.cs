@@ -40,8 +40,7 @@ namespace Z0.Tests.InXTests
             trace(result.Count);
         }                
 
-        protected virtual void Verify(Vec128<T> src)
-            =>  Claim.@true(InXG.allOn(src));            
+        protected abstract void Verify(Vec128<T> src);
         
         public virtual void Verify()
         {
@@ -60,12 +59,15 @@ namespace Z0.Tests.InXTests
             public const string Path = BasePath + P.uint8;
                 
             public override void Verify()
-                => base.Verify();
+                =>  base.Verify();
                 
             public override void Apply()
                 => base.Apply();
-        }
 
+            protected override void Verify(Vec128<byte> src)
+                => Claim.@true(InX.allOn(src));
+
+        }
 
         [DisplayName(Path)]
         public class EqUInt16 : EqTest<EqUInt16,ushort>
@@ -77,6 +79,9 @@ namespace Z0.Tests.InXTests
                 
             public override void Apply()
                 => base.Apply();
+
+            protected override void Verify(Vec128<ushort> src)
+                => Claim.@true(InX.allOn(src));
         }
 
         [DisplayName(Path)]
@@ -89,6 +94,9 @@ namespace Z0.Tests.InXTests
                 
             public override void Apply()
                 => base.Apply();
+
+            protected override void Verify(Vec128<short> src)
+                => Claim.@true(InX.allOn(src));
         }
 
         [DisplayName(Path)]
@@ -101,6 +109,9 @@ namespace Z0.Tests.InXTests
                 
             public override void Apply()
                 => base.Apply();
+
+            protected override void Verify(Vec128<int> src)
+                => Claim.@true(InX.allOn(src));
         }
 
         [DisplayName(Path)]
@@ -114,6 +125,8 @@ namespace Z0.Tests.InXTests
             public override void Apply()
                 => base.Apply();
 
+            protected override void Verify(Vec128<uint> src)
+                => Claim.@true(InX.allOn(src));
         }
 
         [DisplayName(Path)]
@@ -127,6 +140,8 @@ namespace Z0.Tests.InXTests
             public override void Apply()
                 => base.Apply();
 
+            protected override void Verify(Vec128<long> src)
+                => Claim.@true(InX.allOn(src));
         }
 
         [DisplayName(Path)]
@@ -139,6 +154,9 @@ namespace Z0.Tests.InXTests
 
             public override void Apply()
                 => base.Apply();
+
+            protected override void Verify(Vec128<ulong> src)
+                => Claim.@true(InX.allOn(src));
         }
 
         [DisplayName(Path)]

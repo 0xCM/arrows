@@ -18,6 +18,9 @@ namespace Z0
 
     public partial class Vec128
     {
+
+
+
         [MethodImpl(Inline)]
         public static Vec128<T> zero<T>()
             where T : struct, IEquatable<T>                    
@@ -26,7 +29,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> define<T>(Vector128<T> src)
             where T : struct, IEquatable<T>            
-                => new Vec128<T>(src);
+                => src.ToVec128();
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<T> define<T>(T[] src, int offset = 0)
@@ -75,9 +78,15 @@ namespace Z0
         
 
         [MethodImpl(Inline)]
-        public static Vec128<T> define<T>(IReadOnlyList<T> src, int startpos = 0)
+        public static Vec128<T> single<T>(Index<T> src)
             where T : struct, IEquatable<T>            
                 => define<T>(src.ToArray(),0);
+
+        [MethodImpl(Inline)]
+        public static Vec128<T> single<T>(T[] src)
+            where T : struct, IEquatable<T>            
+                => define<T>(src,0);
+
 
         [MethodImpl(Inline)]
         public static Vec128<T> define<T>(ArraySegment<T> src)
@@ -85,7 +94,7 @@ namespace Z0
                 => define<T>(src.Array,src.Offset);
 
         [MethodImpl(Inline)]
-        public static int define<T>(T[] src, out Vec128<T>[] dst)
+        public static Index<Vec128<T>> define<T>(T[] src)
             where T : struct, IEquatable<T>
         {
             var vecLen = Vec128<T>.Length;
@@ -93,13 +102,13 @@ namespace Z0
             if(src.Length % vecCount != 0)
                throw errseglen(src);
             var segments = src.Partition(vecLen);
-            dst = new Vec128<T>[vecCount];
+            var dst =  new Vec128<T>[vecCount];
 
             var i =0;
             foreach(var seg in segments)
                 dst[i++] = define(seg);
 
-            return dst.Length;
+            return dst;
         }
 
         [MethodImpl(Inline)]
@@ -247,8 +256,11 @@ namespace Z0
                 yield return define<T>(segment);                    
         }
  
-
-         [MethodImpl(Inline)]
+        public static IEnumerable<Vec128<T>> stream<T>(Index<T> src)
+            where T : struct, IEquatable<T>
+                => stream<T>(src.ToArray());
+ 
+        [MethodImpl(Inline)]
         static Vec128<T> vInt8<T>(T[] data,int startpos)
             where T : struct, IEquatable<T>
         {

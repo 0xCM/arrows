@@ -165,7 +165,7 @@ partial class zcore
     /// <param name="o">The object</param>
     /// <returns></returns>
     [MethodImpl(Inline)]
-    public static IReadOnlyList<PropertyInfo> props(object o)
+    public static Index<PropertyInfo> props(object o)
         => o == null
          ? array<PropertyInfo>()
          : _propsCache.GetOrAdd(o.GetType(),
@@ -176,7 +176,7 @@ partial class zcore
     /// </summary>
     /// <returns></returns>
     [MethodImpl(Inline)]
-    public static IReadOnlyList<PropertyInfo> props(Type type)
+    public static Index<PropertyInfo> props(Type type)
         => _propsCache.GetOrAdd(type, t => t.GetProperties(BF_AllPublicInstance));
 
     /// <summary>
@@ -185,7 +185,7 @@ partial class zcore
     /// <typeparam name="T">The type to examine</typeparam>
     /// <returns></returns>
     [MethodImpl(Inline)]
-    public static IReadOnlyList<PropertyInfo> props<T>()
+    public static Index<PropertyInfo> props<T>()
         => _propsCache.GetOrAdd(typeof(T),
                 t => t.GetProperties(BF_AllPublicInstance));
 
@@ -214,7 +214,6 @@ partial class zcore
     /// <typeparam name="T">The property value type</typeparam>
     /// <param name="o">The object on which the property is defined</param>
     /// <param name="propname">The name of the property</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static T propval<T>(object o, string propname)
         => (T)propval(o, propname);
@@ -234,7 +233,6 @@ partial class zcore
     /// </summary>
     /// <param name="o">An instance of the type on which the property is defined</param>
     /// <param name="propname">The name of the property</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static Type proptype(object o, string propname)
         => o.GetType().GetProperty(propname).PropertyType;
@@ -256,7 +254,6 @@ partial class zcore
     /// </summary>
     /// <typeparam name="T">The type that defines the field</typeparam>
     /// <param name="name">The name of the field</param>
-    /// <returns></returns>
     public static Option<FieldInfo> field<T>(string name)
         => typeof(T).GetFields(BF_Declared).TryGetFirst(x => x.Name == name);
 
@@ -266,7 +263,6 @@ partial class zcore
     /// <typeparam name="V">The value type</typeparam>
     /// <param name="member">The property</param>
     /// <param name="instance">The object instance, if applicable</param>
-    /// <returns></returns>
     public static Option<V> value<V>(PropertyInfo member, object instance = null)
         => from o in member.TryGetValue(instance)
            from v in tryCast<V>(o)

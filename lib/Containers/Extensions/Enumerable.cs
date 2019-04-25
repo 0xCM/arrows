@@ -103,13 +103,6 @@ namespace Z0
         public static IReadOnlyList<T> ToReadOnlyList<T>(this IEnumerable<T> src)
             => src.ToList();
 
-        /// <summary>
-        /// Creates a read-only list from a source array
-        /// </summary>
-        /// <param name="src">The source sequence</param>
-        [MethodImpl(Inline)]
-        public static IReadOnlyList<T> ToReadOnlyList<T>(this T[] src)
-            => src;
 
         /// <summary>
         /// Returns the first element if it exists; otherwise returns the supplied default

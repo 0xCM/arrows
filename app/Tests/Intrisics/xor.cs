@@ -21,8 +21,6 @@ namespace Z0.Tests.InXTests
         where S : XOrTest<S,T>
         where T : struct, IEquatable<T>
     {        
-        protected static readonly InXXOr<T> InXOp = InXG.xor<T>();
-        
         protected XOrTest(Interval<T>? domain = null, int? sampleCount = null)
             : base("xor", domain, sampleCount)        
         {
@@ -30,10 +28,10 @@ namespace Z0.Tests.InXTests
         }
 
         protected override Vec128BinOp<T> VecOp {get;}
-             = InXG.xor<T>;
+              = Vec128Ops.xor<T>();
 
         protected override IndexBinOp<T> IndexOp {get;} 
-            = PrimOps.xor;        
+             = PrimOps.xor;        
     }
 
     class XOrTests

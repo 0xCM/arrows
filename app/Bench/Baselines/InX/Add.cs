@@ -20,19 +20,19 @@ namespace Z0.Bench
     {
         static TimedIndexBinOp<T> InXAddOp<T>()
                 where T : struct, IEquatable<T>
-                    => InXAddBaseline.Operator<T>();    
+                    => InXAdd.Operator<T>();    
 
         static TimedIndexBinOp<T> InXAddOpG<T>()
                 where T : struct, IEquatable<T>
-                    => InXAddBaseline.OperatorG<T>();    
+                    => InXAdd.OperatorG<T>();    
 
         static BenchResult RunInXAdd<T>(BenchConfig config = null)
             where T : struct, IEquatable<T>        
-                => InXAddBaseline.Runner<T>("intrinsics/add", config).Run(InXAddOp<T>());
+                => BinOpBenchmark.Runner<T>("intrinsics/add", config).Run(InXAddOp<T>());
 
         static BenchResult RunInXAddG<T>(BenchConfig config = null)
             where T : struct, IEquatable<T>        
-                => InXAddBaseline.Runner<T>("intrinsics-g/add",config).Run(InXAddOpG<T>());
+                => BinOpBenchmark.Runner<T>("intrinsics-g/add",config).Run(InXAddOpG<T>());
 
         static IEnumerable<BenchResult> RunInXAdd(BenchConfig config = null)
         {
@@ -62,7 +62,7 @@ namespace Z0.Bench
             yield return RunInXAddG<double>(config);
         }
 
-        class InXAddBaseline 
+        class InXAdd 
         {        
             public static readonly PrimalIndex Operators 
                 = PrimKinds.index
@@ -77,11 +77,6 @@ namespace Z0.Bench
                     @float: new TimedIndexBinOp<float>(Add),
                     @double:new TimedIndexBinOp<double>(Add)
                     );
-
-            public static IBenchMark<TimedIndexBinOp<T>> Runner<T>(string OpName, BenchConfig config = null)
-                where T : struct, IEquatable<T>
-                    => new BinOpBenchmark<T>(OpName, config);
-
 
             public static TimedIndexBinOp<T> Operator<T>()
                 where T : struct, IEquatable<T>

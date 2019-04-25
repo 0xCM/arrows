@@ -52,7 +52,7 @@ namespace Z0.Tests
             var y0 = 0b11001001ul;
             var z0 = x0 & y0;
             var z1 = primops.and(x0,y0);
-            ClaimEq(z0,z1);
+            Claim.eq(z0,z1);
         }
 
         public void Test2()
@@ -61,7 +61,7 @@ namespace Z0.Tests
             var y0 = index(0b11001001ul, 0b01011011ul);
             var z0 = index(x0[0] & y0[0], x0[1] & y0[1]);
             var z1 = primops.and(x0,y0);
-            ClaimEq(z0,z1);
+            Claim.eq(z0,z1);
 
         }
     

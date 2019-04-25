@@ -15,19 +15,32 @@ namespace Z0.Bench
     partial class BaselineBench
     {
 
+        static IEnumerable<BenchResult> RunEach(BenchConfig Config)
+        {
+            //yield return BenchResult.Define("primal/add",BaselineBench.RunPrimalAdd(Config));
+            //yield return BenchResult.Define("intrisics/add", BaselineBench.RunInXAdd(Config));
+            //yield return BenchResult.Define("intrisics-g/add", BaselineBench.RunInXAddG(Config));
+            
+            yield return BenchResult.Define("primal/sum", BaselineBench.RunPrimalSum(Config));
+            yield return BenchResult.Define("intrisics/sum", BaselineBench.RunInXSum(Config));
+        }
+
+        static Index<BenchResult> Force(IEnumerable<BenchResult> results)
+            => results.ToIndex();
+
         public static void Run(BenchConfig config = null)
         {
             var sw = stopwatch();
             var Config = config ?? BenchConfig.Default;
+            var results = Force(RunEach(Config));
 
-            //var primal = BenchResult.Define("primal/add", BaselineBench.RunPrimalAdd(Config));
-            //inform($"Primal Benchmark           = {primal.Duration}ms");
-            var intrinsic =   BenchResult.Define("intrinsics/add", BaselineBench.RunInXAdd(Config));
-            var intrinsicG =   BenchResult.Define("intrinsics-g/add", BaselineBench.RunInXAddG(Config));
+            foreach(var result in results)
+                inform(result);
+
+            var msTotal = results.Select(x => x.Duration).Sum();
+
             inform($"Total Runtime              = {sw.ElapsedMilliseconds}ms");
-            inform($"Total Benchtime            = {(intrinsic + intrinsicG).Duration}ms");
-            inform($"Intrinsics Benchmark       = {intrinsic.Duration}ms");            
-            inform($"Intrinsics Benchmark (G)   = {intrinsicG.Duration}ms");
+            inform($"Total Benchtime            = {msTotal}ms");
         }
     }
 }

@@ -92,7 +92,7 @@ namespace Z0
             where T : struct => x.ValueOrDefault();
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<P> Items<P>(this Option<IReadOnlyList<P>> x)
+        public static IReadOnlyList<P> Items<P>(this Option<Index<P>> x)
             => x.ValueOrElse(() => new P[]{});
 
         [MethodImpl(Inline)]
@@ -109,11 +109,11 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static P First<P>(this Option<IReadOnlyList<P>> x)
+        public static P First<P>(this Option<Index<P>> x)
             => x.Items().First();
 
         [MethodImpl(Inline)]
-        public static P FirstOrDefault<P>(this Option<IReadOnlyList<P>> x)
+        public static P FirstOrDefault<P>(this Option<Index<P>> x)
             => x.Items().FirstOrDefault();
 
         /// <summary>

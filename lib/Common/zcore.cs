@@ -14,6 +14,14 @@ using static Z0.Traits;
 
 partial class zcore
 {
+
+    static readonly long TicksPerMs 
+        = Stopwatch.Frequency/1000L;
+    
+    [MethodImpl(Inline)]
+    public static long ticksToMs(long ticks)
+        => ticks/TicksPerMs;
+
     /// <summary>
     /// Reduces a stream to a single value via an additive monoid
     /// </summary>

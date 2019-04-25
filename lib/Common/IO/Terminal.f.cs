@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using System.IO;
 
 using Z0;
 using static Z0.Bibliography;
@@ -48,7 +49,8 @@ partial class zcore
     /// </summary>
     /// <param name="messages">The messages to print</param>    
     public static void print(IEnumerable<AppMsg> messages)
-        => terminal.WriteMessages(messages);
+        => terminal.WriteMessages(messages);    
+
 
     /// <summary>
     /// Reads a line of text from the terminal

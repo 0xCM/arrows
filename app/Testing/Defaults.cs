@@ -51,7 +51,7 @@ namespace Z0.Testing
 
         public const int OpApplyReps = 50;
 
-        public const int SampleSize = (int)Pow2.T16;
+        public const int SampleSize = (int)Pow2.T14;
 
         int Default.SampleSize 
             => SampleSize;

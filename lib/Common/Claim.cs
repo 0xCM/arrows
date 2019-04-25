@@ -48,26 +48,9 @@ namespace Z0
         public static T fail<T>(string msg)
             => throw new Exception(msg);
 
-        public static void eq<T>(IReadOnlyList<T> l1, IReadOnlyList<T> l2)
-            where T : struct, IEquatable<T> 
-        {
-            if (l1.Count != l2.Count)
-                fail($"The reference list has length {l1.Count} while the other has {l2.Count}");
-
-            for (var i = 0; i < l2.Count; i++)
-            {
-                var left = l1[i];
-                var right = l2[i];
-                var same = Equals(left, right);
-                if (!same)
-                    fail($"Item {i} = {left} from the reference list does not mach item {i} = {right} from the other");
-            }
-        }
-
         public static string eq<T>(T x, T y)
             where T : struct, IEquatable<T> 
                 => define(x,y,"==",  (a,b) => a.Equals(b)).demand();
-
 
         public static void eq<T>(Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T> 
@@ -116,7 +99,6 @@ namespace Z0
             where T : Operative.Ordered<T>, new()
                 => define(x,y,">", new T().gt).demand();
 
-
         public static void gteq<T>(T x, T y)
             where T : Operative.Ordered<T>, new()
                 => define(x,y,">=", new T().gteq).demand();    
@@ -128,12 +110,10 @@ namespace Z0
                 fail($"{value} is not between {min} and {max}");
         }
 
-
         public static bool @true(bool x, string msg = null)
             => x ? true : fail<bool>(msg  ?? "Claim is not true");
 
         public static bool @false(bool x, string msg = null)
             => !x ? true : fail<bool>(msg  ?? "Claim is not false");
-
     }
 }

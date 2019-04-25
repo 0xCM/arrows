@@ -14,7 +14,7 @@ namespace Z0
 
     public interface IContext
     {
-        Index<AppMsg> FlushMessages();
+        Index<AppMsg> FlushMessages(params AppMsg[] addenda);
 
     }
 
@@ -91,16 +91,16 @@ namespace Z0
             return ms;
         }
 
-        protected void end(string msg, long duration, [CallerMemberName] string caller = null)
-        {
-            Messages.Add(AppMsg.Define(msg + $" | Duration = {duration}ms", SeverityLevel.HiliteML, GetType().DisplayName() + caller));            
-        }
+        protected void end(string msg, long duration, [CallerMemberName] string caller = null)        
+            => Messages.Add(AppMsg.Define(msg + $" | Duration = {duration}ms", SeverityLevel.HiliteML, GetType().DisplayName() + caller));            
+        
 
         protected void trace(string msg, [CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define(msg, SeverityLevel.Info, GetType().DisplayName() + caller));            
 
-        public Index<AppMsg> FlushMessages()
+        public Index<AppMsg> FlushMessages(params AppMsg[] addenda)
         {
+            Messages.AddRange(addenda);
             var messages = Messages.ToIndex();
             Messages.Clear();
             return messages;

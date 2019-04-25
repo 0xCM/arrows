@@ -94,7 +94,7 @@ namespace Z0.Tests.InX128
             {
                 Claim.eq(Vec128<byte>.Length, arr.Length);
                 var v1 = Vec128.define(arr.ToSpan128());
-                var v2 = Vec128.define(arr);                
+                var v2 = Vec128.single(arr);                
                 Claim.eq(v1,v2);
             }            
         }
@@ -108,7 +108,7 @@ namespace Z0.Tests.InX128
                 Claim.eq(Vec128<int>.Length, arr.Length);
                 var v0 = Vec128.define(arr[0], arr[1], arr[2], arr[3]);
                 var v1 = Vec128.define(arr.ToSpan128());
-                var v2 = Vec128.define(arr);
+                var v2 = Vec128.single(arr);
                 Claim.eq(v0,v1);
                 Claim.eq(v0,v2);
 
@@ -118,7 +118,7 @@ namespace Z0.Tests.InX128
         public void DefineFloat32Vec()
         {
             var src = new float[]{-50,-25,25,50};
-            var v1 = Vec128.define(src);
+            var v1 = Vec128.single(src);
             var v2 = Vec128.define(src.ToSpan128());
             Claim.eq(v1,v2);
         }
@@ -126,7 +126,7 @@ namespace Z0.Tests.InX128
         public void DefineFloat64Vec()
         {
             var src = new double[]{50,25};
-            var v1 = Vec128.define(src);
+            var v1 = Vec128.single(src);
             var v2 = Vec128.define(src,0);
             Claim.eq(v1,v2);
         }

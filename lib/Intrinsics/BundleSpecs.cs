@@ -40,8 +40,6 @@ namespace Z0
 
             void add(in Num128<T> lhs, in Num128<T> rhs, out Num128<T> dst);
 
-            void add(in Num128<T> lhs, in Num128<T> rhs, T[] dst, int offset = 0);
-
         }
 
     public interface InXAdd<T> : InXOp<T>

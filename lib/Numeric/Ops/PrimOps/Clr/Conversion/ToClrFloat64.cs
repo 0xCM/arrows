@@ -13,125 +13,125 @@ namespace Z0
     using static zcore;
     using static Operative;
     
-    using Target = System.Double;
-    using TargetStream = System.Collections.Generic.IEnumerable<double>;
-    using TargetList = System.Collections.Generic.IReadOnlyList<double>;
+    using target = System.Double;
+    using stream = System.Collections.Generic.IEnumerable<double>;
+    using targets = Index<double>;
 
     partial class ClrConverters
     {        
         public readonly struct ToClrFloat64 : 
-            Conversion<sbyte, Target>, 
-            Conversion<byte, Target>, 
-            Conversion<short, Target>, 
-            Conversion<ushort, Target>, 
-            Conversion<int, Target>, 
-            Conversion<uint, Target>, 
-            Conversion<long, Target>, 
-            Conversion<ulong, Target>,
-            Conversion<float, Target>, 
-            Conversion<double, Target>, 
-            Conversion<decimal, Target>,
-            Conversion<BigInteger, Target>
+            Conversion<sbyte, target>, 
+            Conversion<byte, target>, 
+            Conversion<short, target>, 
+            Conversion<ushort, target>, 
+            Conversion<int, target>, 
+            Conversion<uint, target>, 
+            Conversion<long, target>, 
+            Conversion<ulong, target>,
+            Conversion<float, target>, 
+            Conversion<double, target>, 
+            Conversion<decimal, target>,
+            Conversion<BigInteger, target>
         {
             public static readonly ToClrFloat64 Inhabitant = default;
 
-            public static readonly Type TargetType = typeof(Target);
+            public static readonly Type TargetType = typeof(target);
 
             [MethodImpl(Inline)]
-            public Target convert(byte src)
+            public target convert(byte src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(byte src, out Target dst)
+            public target convert(byte src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(sbyte src)
+            public target convert(sbyte src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(sbyte src, out Target dst)
+            public target convert(sbyte src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(short src)
+            public target convert(short src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(short src, out Target dst)
+            public target convert(short src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(ushort src)
+            public target convert(ushort src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(ushort src, out Target dst)
+            public target convert(ushort src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(int src)
+            public target convert(int src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(int src, out Target dst)
+            public target convert(int src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(uint src)
+            public target convert(uint src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(uint src, out Target dst)
+            public target convert(uint src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(long src)
+            public target convert(long src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(long src, out Target dst)
+            public target convert(long src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(ulong src)
+            public target convert(ulong src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(ulong src, out Target dst)
+            public target convert(ulong src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(float src)
+            public target convert(float src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(float src, out Target dst)
+            public target convert(float src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(double src)
+            public target convert(double src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(double src, out Target dst)
+            public target convert(double src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(decimal src)
-                => (Target)src;
+            public target convert(decimal src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(decimal src, out Target dst)
-                => dst = (Target)src;
+            public target convert(decimal src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(BigInteger src)
-                => (Target)src;
+            public target convert(BigInteger src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(BigInteger src, out Target dst)
-                => dst = (Target)src;
+            public target convert(BigInteger src, out target dst)
+                => dst = (target)src;
         }
 
     }
@@ -139,97 +139,97 @@ namespace Z0
     partial class xcore
     {
         [MethodImpl(Inline)]
-        public static TargetList ToDouble(this IReadOnlyList<sbyte> src)
-            => map(src,x => (Target)x);
+        public static targets ToDouble(this Index<sbyte> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToDouble(this IReadOnlyList<byte> src)
-            => map(src,x => (Target)x);
+        public static targets ToDouble(this Index<byte> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToDouble(this IReadOnlyList<short> src)
-            => map(src,x => (Target)x);
+        public static targets ToDouble(this Index<short> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToDouble(this IReadOnlyList<ushort> src)
-            => map(src,x => (Target)x);
-
-
-        [MethodImpl(Inline)]
-        public static TargetList ToDouble(this IReadOnlyList<int> src)
-            => map(src,x => (Target)x);
-
-        [MethodImpl(Inline)]
-        public static TargetList ToDouble(this IReadOnlyList<uint> src)
-            => map(src,x => (Target)x);
-
-        [MethodImpl(Inline)]
-        public static TargetList ToDouble(this IReadOnlyList<long> src)
-            => map(src,x => (Target)x);
-
-        [MethodImpl(Inline)]
-        public static TargetList ToDouble(this IReadOnlyList<ulong> src)
-            => map(src,x => (Target)x);
-
-        [MethodImpl(Inline)]
-        public static TargetList ToDouble(this IReadOnlyList<float> src)
-            => map(src,x => (Target)x);
+        public static targets ToDouble(this Index<ushort> src)
+            => map(src,x => (target)x);
 
 
         [MethodImpl(Inline)]
-        public static TargetList ToDouble(this IReadOnlyList<decimal> src)
-            => map(src,x => (Target)x);
+        public static targets ToDouble(this Index<int> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToDouble(this IReadOnlyList<BigInteger> src)
-            => map(src,x => (Target)x);
+        public static targets ToDouble(this Index<uint> src)
+            => map(src,x => (target)x);
+
+        [MethodImpl(Inline)]
+        public static targets ToDouble(this Index<long> src)
+            => map(src,x => (target)x);
+
+        [MethodImpl(Inline)]
+        public static targets ToDouble(this Index<ulong> src)
+            => map(src,x => (target)x);
+
+        [MethodImpl(Inline)]
+        public static targets ToDouble(this Index<float> src)
+            => map(src,x => (target)x);
+
+
+        [MethodImpl(Inline)]
+        public static targets ToDouble(this Index<decimal> src)
+            => map(src,x => (target)x);
+
+        [MethodImpl(Inline)]
+        public static targets ToDouble(this Index<BigInteger> src)
+            => map(src,x => (target)x);
  
  
          [MethodImpl(Inline)]
-        public static TargetStream ToDouble(this IEnumerable<sbyte> src)
-            => map(src,x => (Target)x);
+        public static stream ToDouble(this IEnumerable<sbyte> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToDouble(this IEnumerable<byte> src)
-            => map(src,x => (Target)x);
+        public static stream ToDouble(this IEnumerable<byte> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToDouble(this IEnumerable<short> src)
-            => map(src,x => (Target)x);
+        public static stream ToDouble(this IEnumerable<short> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToDouble(this IEnumerable<ushort> src)
-            => map(src,x => (Target)x);
-
-
-        [MethodImpl(Inline)]
-        public static TargetStream ToDouble(this IEnumerable<int> src)
-            => map(src,x => (Target)x);
-
-        [MethodImpl(Inline)]
-        public static TargetStream ToDouble(this IEnumerable<uint> src)
-            => map(src,x => (Target)x);
-
-        [MethodImpl(Inline)]
-        public static TargetStream ToDouble(this IEnumerable<long> src)
-            => map(src,x => (Target)x);
-
-        [MethodImpl(Inline)]
-        public static TargetStream ToDouble(this IEnumerable<ulong> src)
-            => map(src,x => (Target)x);
-
-        [MethodImpl(Inline)]
-        public static TargetStream ToDouble(this IEnumerable<float> src)
-            => map(src,x => (Target)x);
+        public static stream ToDouble(this IEnumerable<ushort> src)
+            => map(src,x => (target)x);
 
 
         [MethodImpl(Inline)]
-        public static TargetStream ToDouble(this IEnumerable<decimal> src)
-            => map(src,x => (Target)x);
+        public static stream ToDouble(this IEnumerable<int> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToDouble(this IEnumerable<BigInteger> src)
-            => map(src,x => (Target)x);
+        public static stream ToDouble(this IEnumerable<uint> src)
+            => map(src,x => (target)x);
+
+        [MethodImpl(Inline)]
+        public static stream ToDouble(this IEnumerable<long> src)
+            => map(src,x => (target)x);
+
+        [MethodImpl(Inline)]
+        public static stream ToDouble(this IEnumerable<ulong> src)
+            => map(src,x => (target)x);
+
+        [MethodImpl(Inline)]
+        public static stream ToDouble(this IEnumerable<float> src)
+            => map(src,x => (target)x);
+
+
+        [MethodImpl(Inline)]
+        public static stream ToDouble(this IEnumerable<decimal> src)
+            => map(src,x => (target)x);
+
+        [MethodImpl(Inline)]
+        public static stream ToDouble(this IEnumerable<BigInteger> src)
+            => map(src,x => (target)x);
  
     }    
 

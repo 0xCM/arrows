@@ -19,9 +19,9 @@ namespace Z0.Testing
         where T : struct, IEquatable<T>            
     {
         
-        protected readonly IReadOnlyList<T> PrimSrc;
+        protected readonly Index<T> PrimSrc;
 
-        protected readonly IReadOnlyList<intg<T>> IntSrc;
+        protected readonly Index<intg<T>> IntSrc;
 
         
 
@@ -35,10 +35,10 @@ namespace Z0.Testing
         }
 
         [Repeat(Defaults.Reps)]
-        public abstract IReadOnlyList<T> Baseline();
+        public abstract Index<T> Baseline();
 
         [Repeat(Defaults.Reps)]
-        public abstract IReadOnlyList<intg<T>> Applied();
+        public abstract Index<intg<T>> Applied();
 
         public virtual void Verify()
         {

@@ -136,7 +136,7 @@ partial class zcore
     /// </summary>
     /// <typeparam name="T">The type to materialize from the sequence of (name,value) pairs</typeparam>
     /// <param name="values">The values to parse</param>
-    public static T parse<T>(IReadOnlyList<(string name, string value)> values)
+    public static T parse<T>(Index<(string name, string value)> values)
         where T : new()
     {
         var element = new T();
@@ -152,7 +152,7 @@ partial class zcore
     /// </summary>
     /// <typeparam name="T">The type to materialize from each (name,value) pair sequence</typeparam>
     /// <param name="values"></param>
-    public static IReadOnlyList<T> parse<T>(IEnumerable<IReadOnlyList<(string name, string value)>> values)
+    public static Index<T> parse<T>(IEnumerable<Index<(string name, string value)>> values)
         where T : new()
     {
         var results = new ConcurrentBag<T>();

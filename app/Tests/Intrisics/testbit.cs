@@ -23,8 +23,6 @@ namespace Z0.Tests.InXTests
         where S : BitTestTest<S,T>
     {
 
-        protected static readonly InXBitTest<T> InXOp = InXG.bittest<T>();
-        
         protected BitTestTest(Interval<T>? domain = null, int? streamlen = null)
             : base(P.bittest, domain, streamlen)        
         {
@@ -46,10 +44,10 @@ namespace Z0.Tests.InXTests
             public void TestAllOn()
             {
                 var v1 = Vec128.define(uint.MaxValue, uint.MaxValue,uint.MaxValue,uint.MaxValue);
-                Claim.@true(InXOp.allOn(v1));
+                Claim.@true(InX.allOn(v1));
 
                 var v2 = Vec128.define(uint.MaxValue, uint.MaxValue - 1,uint.MaxValue,uint.MaxValue);
-                Claim.@false(InXOp.allOn(v2));                
+                Claim.@false(InX.allOn(v2));                
             }     
         }
 

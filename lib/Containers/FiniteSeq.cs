@@ -18,7 +18,6 @@ namespace Z0
         /// <summary>
         /// Retrieves the 0-based i'th element of the sequence
         /// </summary>
-        /// <value></value>
         T this[int i] {get;}
 
     }
@@ -35,14 +34,21 @@ namespace Z0
             => new FiniteSeq<T>(src);
 
         [MethodImpl(Inline)]
+        public FiniteSeq(Index<T> src)
+        {
+            this.data = src;
+            this.nonempty = true;
+        }
+
+        [MethodImpl(Inline)]
         public FiniteSeq(IEnumerable<T> src)
         {
-            this.data = src.ToReadOnlyList();
+            this.data = src.ToIndex();
             this.nonempty = true;
         }
         readonly bool nonempty;
 
-        readonly IReadOnlyList<T> data;
+        readonly Index<T> data;
 
         public IEnumerable<T> content
             => data;

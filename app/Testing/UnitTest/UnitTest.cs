@@ -37,23 +37,6 @@ namespace Z0.Testing
             this.SampleSize = SampleSize ?? Defaults.SampleSize;            
         }
 
-             
-        protected virtual string ClaimEq<X>(X lhs, X rhs)
-            where X : struct, IEquatable<X>
-                => Claim.eq(lhs,rhs);
-
-        protected virtual void ClaimEq<X>(IReadOnlyList<X> lhs, IReadOnlyList<X> rhs)
-            where X : struct, IEquatable<X>
-                => Claim.eq(lhs,rhs);
-
-        protected virtual string ClaimEq(string lhs, string rhs)
-            => Claim.eq(lhs,rhs);
-
-        protected virtual void Fail(string msg)
-            => throw new Exception(msg);
-
-        public virtual X Fail<X>(string msg)
-            => throw new Exception(msg);
     }
 
 }

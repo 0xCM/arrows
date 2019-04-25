@@ -91,9 +91,11 @@ namespace Z0
 
     public class FilePath : PathComponent<FilePath>
     {
+        public static FilePath Define(string Name)
+            => new FilePath(Name);
+
         public static FilePath operator + (FilePath lhs, FileName rhs)
             => new FilePath(Path.Join(lhs.Name, rhs.Name));
-
 
         public static FilePath operator + (FilePath lhs, FolderName rhs)
             => new FilePath(Path.Join(lhs.Name, rhs.Name));
@@ -104,8 +106,6 @@ namespace Z0
         public static FilePath operator + (FilePath lhs, FilePath rhs)
             => new FilePath(Path.Join(lhs.Name, rhs.Name));
 
-        public FilePath Define(string Name)
-            => new FilePath(Name);
         public FilePath(string Name)
             : base(Name)
         {

@@ -30,7 +30,7 @@ namespace Z0.Tests.InXTests
         }
         
         IEnumerable<Vec128<T>> DefineStream()
-            => UnarySrc.Stream128();
+            => UnarySrc.ToArray().Stream128();
 
         public virtual void TraverseStream()
         {
@@ -48,7 +48,7 @@ namespace Z0.Tests.InXTests
 
             var i = 0;
             IterOffsets(offset =>{
-                var v0 = Vec128.define(UnarySrc, offset);
+                var v0 = Vec128.define(UnarySrc.ToArray(), offset);
                 var v1 = vectors[i];
                 Claim.eq(v0,v1);
                 i++;

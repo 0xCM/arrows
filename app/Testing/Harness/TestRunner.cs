@@ -21,7 +21,7 @@ namespace Z0.Testing
             => new TestRunner().Run(filter,pll);
 
         IEnumerable<Type> CandidateTypes()
-            => ZTest.DefiningAssembly.Types().Realizes<IUnitTest>();        
+            => ZTest.DefiningAssembly.Types().Realizes<IUnitTest>().Where(t => t.ContainsGenericParameters == false);        
         
         IEnumerable<Type> Hosts()
             => CandidateTypes().Concrete().OrderBy(t => t.DisplayName());
@@ -47,23 +47,21 @@ namespace Z0.Testing
             catch(Exception e)
             {
                 error($"Host execution failed: {e}", this);
-            }
-            
+            }        
         }
     
-
         TestRunner()
         {
         
         }            
-
 
         void Run(IUnitTest host, string hostpath, MethodInfo test)
         {
             var messages = new List<AppMsg>();
             try
             {
-                var testName = $"{hostpath}{test.Name}";
+                test.DisplayName();
+                var testName = $"{hostpath}{test.DisplayName()}";
                 messages.Add(AppMsg.Define("executing", SeverityLevel.HiliteBL, testName));
                 
                 var reps = RepeatAttribute.Repetitions(test);                               
@@ -72,18 +70,19 @@ namespace Z0.Testing
                     test.Invoke(host,null);                    
                 var ms = sw.ElapsedMilliseconds;
                 
-                messages.AddRange(host.FlushMessages());
-                messages.Add(AppMsg.Define(reps == 1 ?$"succeeded {ms}ms" : $"succeeded {ms}ms | {reps} reps", SeverityLevel.Info, testName));
+                messages.AddRange(host.FlushMessages(
+                    AppMsg.Define(reps == 1 ?$"succeeded {ms}ms" : $"succeeded {ms}ms | {reps} reps", SeverityLevel.Info, testName))
+                    );
 
                 print(messages);
-
+                log(messages, LogTarget.TestLog);
             }
             catch(Exception e)
             {
                 print(messages);
+                log(messages, LogTarget.TestLog);
                 error($"{test.Name}: test failed - {e.ToString()}");
             }            
         }
-
     }
 }

@@ -13,125 +13,125 @@ namespace Z0
     using static zcore;
     using static Operative;
     
-    using Target = System.UInt16;
-    using TargetStream = System.Collections.Generic.IEnumerable<ushort>;
-    using TargetList = System.Collections.Generic.IReadOnlyList<ushort>;
+    using target = System.UInt16;
+    using stream = System.Collections.Generic.IEnumerable<ushort>;
+    using targets = Index<ushort>;
     
     partial class ClrConverters
     {        
         public readonly struct ToClrUInt16 : 
-            Conversion<sbyte, Target>, 
-            Conversion<byte, Target>, 
-            Conversion<short, Target>, 
-            Conversion<ushort, Target>, 
-            Conversion<int, Target>, 
-            Conversion<uint, Target>, 
-            Conversion<long, Target>, 
-            Conversion<ulong, Target>,
-            Conversion<float, Target>, 
-            Conversion<double, Target>, 
-            Conversion<decimal, Target>,
-            Conversion<BigInteger, Target>
+            Conversion<sbyte, target>, 
+            Conversion<byte, target>, 
+            Conversion<short, target>, 
+            Conversion<ushort, target>, 
+            Conversion<int, target>, 
+            Conversion<uint, target>, 
+            Conversion<long, target>, 
+            Conversion<ulong, target>,
+            Conversion<float, target>, 
+            Conversion<double, target>, 
+            Conversion<decimal, target>,
+            Conversion<BigInteger, target>
         {
             public static readonly ToClrUInt16 Inhabitant = default;
 
-            public static readonly Type TargetType = typeof(Target);
+            public static readonly Type TargetType = typeof(target);
 
             [MethodImpl(Inline)]
-            public Target convert(byte src)
+            public target convert(byte src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(byte src, out Target dst)
+            public target convert(byte src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(sbyte src)
-                => (Target)src;
+            public target convert(sbyte src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(sbyte src, out Target dst)
-                => dst = (Target)src;
+            public target convert(sbyte src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(short src)
-                => (Target)src;
+            public target convert(short src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(short src, out Target dst)
-                => dst = (Target)src;
+            public target convert(short src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(ushort src)
+            public target convert(ushort src)
                 => src;
 
             [MethodImpl(Inline)]
-            public Target convert(ushort src, out Target dst)
+            public target convert(ushort src, out target dst)
                 => dst = src;
 
             [MethodImpl(Inline)]
-            public Target convert(int src)
-                => (Target)src;
+            public target convert(int src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(int src, out Target dst)
-                => dst = (Target)src;
+            public target convert(int src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(uint src)
-                => (Target)src;
+            public target convert(uint src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(uint src, out Target dst)
-                => dst = (Target)src;
+            public target convert(uint src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(long src)
-                => (Target)src;
+            public target convert(long src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(long src, out Target dst)
-                => dst = (Target)src;
+            public target convert(long src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(ulong src)
-                => (Target)src;
+            public target convert(ulong src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(ulong src, out Target dst)
-                => dst = (Target)src;
+            public target convert(ulong src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(float src)
-                => (Target)src;
+            public target convert(float src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(float src, out Target dst)
-                => dst = (Target)src;
+            public target convert(float src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(double src)
-                => (Target)src;
+            public target convert(double src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(double src, out Target dst)
-                => dst = (Target)src;
+            public target convert(double src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(decimal src)
-                => (Target)src;
+            public target convert(decimal src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(decimal src, out Target dst)
-                => dst = (Target)src;
+            public target convert(decimal src, out target dst)
+                => dst = (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(BigInteger src)
-                => (Target)src;
+            public target convert(BigInteger src)
+                => (target)src;
 
             [MethodImpl(Inline)]
-            public Target convert(BigInteger src, out Target dst)
-                => dst = (Target)src;
+            public target convert(BigInteger src, out target dst)
+                => dst = (target)src;
         }
 
     }
@@ -139,98 +139,98 @@ namespace Z0
     partial class xcore
     {
         [MethodImpl(Inline)]
-        public static TargetList ToUInt16(this IReadOnlyList<byte> src)
-            => map(src,x => (Target)x);
+        public static targets ToUInt16(this Index<byte> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToUInt16(this IReadOnlyList<sbyte> src)
-            => map(src,x => (Target)x);
+        public static targets ToUInt16(this Index<sbyte> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToUInt16(this IReadOnlyList<short> src)
-            => map(src,x => (Target)x);
+        public static targets ToUInt16(this Index<short> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToUInt16(this IReadOnlyList<ushort> src)
-            => map(src,x => (Target)x);
+        public static targets ToUInt16(this Index<ushort> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToUInt16(this IReadOnlyList<int> src)
-            => map(src,x => (Target)x);
+        public static targets ToUInt16(this Index<int> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToUInt16(this IReadOnlyList<uint> src)
-            => map(src,x => (Target)x);
+        public static targets ToUInt16(this Index<uint> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToUInt16(this IReadOnlyList<long> src)
-            => map(src,x => (Target)x);
+        public static targets ToUInt16(this Index<long> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToUInt16(this IReadOnlyList<ulong> src)
-            => map(src,x => (Target)x);
+        public static targets ToUInt16(this Index<ulong> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToUInt16(this IReadOnlyList<float> src)
-            => map(src,x => (Target)x);
+        public static targets ToUInt16(this Index<float> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToUInt16(this IReadOnlyList<double> src)
-            => map(src,x => (Target)x);
+        public static targets ToUInt16(this Index<double> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToUInt16(this IReadOnlyList<decimal> src)
-            => map(src,x => (Target)x);
+        public static targets ToUInt16(this Index<decimal> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetList ToUInt16(this IReadOnlyList<BigInteger> src)
-            => map(src,x => (Target)x);
+        public static targets ToUInt16(this Index<BigInteger> src)
+            => map(src,x => (target)x);
 
 
 
         [MethodImpl(Inline)]
-        public static TargetStream ToUInt16(this IEnumerable<byte> src)
-            => map(src,x => (Target)x);
+        public static stream ToUInt16(this IEnumerable<byte> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToUInt16(this IEnumerable<sbyte> src)
-            => map(src,x => (Target)x);
+        public static stream ToUInt16(this IEnumerable<sbyte> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToUInt16(this IEnumerable<short> src)
-            => map(src,x => (Target)x);
+        public static stream ToUInt16(this IEnumerable<short> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToUInt16(this IEnumerable<ushort> src)
-            => map(src,x => (Target)x);
+        public static stream ToUInt16(this IEnumerable<ushort> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToUInt16(this IEnumerable<int> src)
-            => map(src,x => (Target)x);
+        public static stream ToUInt16(this IEnumerable<int> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToUInt16(this IEnumerable<uint> src)
-            => map(src,x => (Target)x);
+        public static stream ToUInt16(this IEnumerable<uint> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToUInt16(this IEnumerable<long> src)
-            => map(src,x => (Target)x);
+        public static stream ToUInt16(this IEnumerable<long> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToUInt16(this IEnumerable<float> src)
-            => map(src,x => (Target)x);
+        public static stream ToUInt16(this IEnumerable<float> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToUInt16(this IEnumerable<double> src)
-            => map(src,x => (Target)x);
+        public static stream ToUInt16(this IEnumerable<double> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToUInt16(this IEnumerable<decimal> src)
-            => map(src,x => (Target)x);
+        public static stream ToUInt16(this IEnumerable<decimal> src)
+            => map(src,x => (target)x);
 
         [MethodImpl(Inline)]
-        public static TargetStream ToUInt16(this IEnumerable<BigInteger> src)
-            => map(src,x => (Target)x);
+        public static stream ToUInt16(this IEnumerable<BigInteger> src)
+            => map(src,x => (target)x);
 
     }
 }

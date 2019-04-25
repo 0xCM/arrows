@@ -16,123 +16,81 @@ namespace Z0.Tests.InXTests
     
     using P = Paths;
 
-    public abstract class AddTest<S,T> : InXBinOpTest<S,T>
-        where S : AddTest<S,T>
+    public class AddTest<T> : InXBinOpTest<AddTest<T>,T>
         where T : struct, IEquatable<T>
     {                
-        protected AddTest(Interval<T>? domain = null, int? sampleSize = null)
+        public AddTest(Interval<T>? domain = null, int? sampleSize = null)
             : base("add", domain, sampleSize)        
         {
 
         }
 
         protected override IndexBinOp<T> IndexOp {get;} 
-            = PrimOps.add;        
+            = PrimOps.add;    
+
+        protected override Vec128BinOp<T> VecOp {get;}
+            = Vec128Ops.add<T>; 
+
+        public virtual void VerifyGeneric()
+        {                
+            Claim.eq(
+                IndexOp(LeftDataSrc,RightDataSrc),
+                LeftDataSrc.AddG(RightDataSrc)
+                );            
+        }
+
+        public override void VerifyAll()
+        {
+            base.VerifyAll();
+            VerifyGeneric();
+        }
     }
 
-    public class AddTests
+    [DisplayName(BasePath)]
+    public class AddTests : UnitTest<AddTests>
     {
         const string BasePath = P.InX128 + P.add;        
+        
+        [DisplayName(P.int8)]
+        public void AddI8()
+            => new AddTest<byte>().VerifyAll();
 
-        [DisplayName(Path)]
-        public class AddInt8 : AddTest<AddInt8,sbyte>
-        {
-            public const string Path = BasePath + P.int8;
+        [DisplayName(P.uint8)]
+        public void AddU8()
+            => new AddTest<sbyte>().VerifyAll();
 
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
+        [DisplayName(P.int16)]
+        public void AddI16()
+            => new AddTest<short>().VerifyAll();
 
-        [DisplayName(Path)]
-        public class AddUInt8 : AddTest<AddUInt8,byte>
-        {
-            public const string Path = BasePath + P.uint8;
-                
-            public override void VerifyAll()
-                => base.VerifyAll();
+        [DisplayName(P.uint16)]
+        public void AddU16()
+            => new AddTest<ushort>().VerifyAll();
 
-        }
+        [DisplayName(P.int32)]
+        public void AddI32()
+            => new AddTest<int>().VerifyAll();
 
-        [DisplayName(Path)]
-        public class AddInt16 : AddTest<AddInt16,short>
-        {
-            public const string Path = BasePath + P.int16;
+        [DisplayName(P.uint32)]
+        public void AddU32()
+            => new AddTest<uint>().VerifyAll();
 
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
+        [DisplayName(P.int64)]
+        public void AddI64()
+            => new AddTest<long>().VerifyAll();
 
-        [DisplayName(Path)]
-        public class AddUInt16 : AddTest<AddUInt16,ushort>
-        {
-            public const string Path = BasePath + P.uint16;
+        [DisplayName(P.uint64)]
+        public void AddU64()
+            => new AddTest<ulong>().VerifyAll();
 
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
+        [DisplayName(P.float32)]
+        public void AddF32()
+            => new AddTest<short>().VerifyAll();
 
-        [DisplayName(Path)]
-        public class AddInt32 : AddTest<AddInt32,uint>
-        {
-            public const string Path = BasePath + P.int32;
+        [DisplayName(P.float64)]
+        public void AddF64()
+            => new AddTest<double>().VerifyAll();
 
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
 
-        [DisplayName(Path)]
-        public class AddUInt32 : AddTest<AddUInt32,uint>
-        {
-            public const string Path = BasePath + P.uint32;
-
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
-
-        [DisplayName(Path)]
-        public class AddInt64 : AddTest<AddInt64,long>
-        {
-            public const string Path = BasePath + P.int64;
-                
-            public override void VerifyAll()
-                => base.VerifyAll();
-                
-        }
-
-        [DisplayName(Path)]
-        public class AddUInt64 : AddTest<AddUInt64,ulong>
-        {
-            public const string Path = BasePath + P.uint64;
-                
-            public void ApplyOpsAll()
-                => base.ApplyAll();
-
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }        
-
-        [DisplayName(Path)]
-        public class AddFloat32 : AddTest<AddFloat32,float>
-        {
-            public const string Path = BasePath + P.float64;
-
-            public void ApplyOpsAll()
-                => base.ApplyAll();
-            
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
-
-        [DisplayName(Path)]
-        public class AddFloat64 : AddTest<AddFloat64,double>
-        {
-            public const string Path = BasePath + P.float64;
-
-            public void ApplyOpsAll()
-                => base.ApplyAll();
-
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
     }
 }

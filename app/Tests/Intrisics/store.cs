@@ -36,7 +36,7 @@ namespace Z0.Tests.InXTests
             foreach(var v0 in UnarySrcVectors)
             {                
                 InXOp.store(v0,dst);
-                var v1 = Vec128.define(dst);
+                var v1 = Vec128.single(dst);
                 Claim.eq(v0,v1);
                 
             }

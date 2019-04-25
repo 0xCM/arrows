@@ -23,11 +23,10 @@ partial class zcore
     /// <typeparam name="T">The type of value object</typeparam>
     /// <param name="lhs">The first list</param>
     /// <param name="rhs">The second list</param>
-    /// <returns></returns>
-    public static bool eq<T>(IReadOnlyList<T> lhs, IReadOnlyList<T> rhs)
+    public static bool eq<T>(Index<T> lhs, Index<T> rhs)
         where T : Equatable<T>, new()
     {    
-        if (lhs == null || rhs == null || lhs.Count != rhs.Count)
+        if (lhs.Count != rhs.Count)
             return false;
 
         for (int i = 0; i < lhs.Count; i++)
@@ -42,7 +41,6 @@ partial class zcore
     /// <typeparam name="T">The type of value object</typeparam>
     /// <param name="lhs">The first list</param>
     /// <param name="rhs">The second list</param>
-    /// <returns></returns>
    public static bool eq<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
         where T : Equatable<T>, new()
     {    

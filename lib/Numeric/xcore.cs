@@ -21,14 +21,13 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => map(src,unwrap);
 
-
         [MethodImpl(Inline)]   
         public static IEnumerable<T> Unwrap<T>(this IEnumerable<intg<T>> src)
             where T : struct, IEquatable<T>
                 => map(src,unwrap);
 
         [MethodImpl(Inline)]   
-        public static IReadOnlyList<T> Unwrap<T>(this IReadOnlyList<intg<T>> src)
+        public static Index<T> Unwrap<T>(this Index<intg<T>> src)
             where T : struct, IEquatable<T>
                 => map(src,unwrap);
 
@@ -44,7 +43,7 @@ namespace Z0
                 => map(src,unwrap);
 
         [MethodImpl(Inline)]   
-        public static IReadOnlyList<T> Unwrap<T>(this IReadOnlyList<real<T>> src)
+        public static Index<T> Unwrap<T>(this Index<real<T>> src)
             where T : struct, IEquatable<T>
                 => map(src, unwrap);
 

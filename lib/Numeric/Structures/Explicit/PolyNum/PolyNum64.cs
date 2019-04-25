@@ -134,7 +134,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public IReadOnlyList<byte> u8values()
+        public Index<byte> u8values()
             => array(u8_0, u8_1, u8_2, u8_3, u8_4, u8_5, u8_6, u8_7);
                     
 
@@ -225,7 +225,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public IReadOnlyList<sbyte> i8values()
+        public Index<sbyte> i8values()
             => array(i8_0, i8_1, i8_2, i8_3, i8_4, i8_5, i8_6, i8_7); 
                     
         //! int16
@@ -284,7 +284,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public IReadOnlyList<short> i16values()
+        public Index<short> i16values()
             => array(i16_0, i16_1, i16_2, i16_3);
 
         //! uint16        
@@ -345,7 +345,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public IReadOnlyList<ushort> u16list()
+        public Index<ushort> u16list()
             => array(u16_0, u16_1, u16_2, u16_3);
 
 
@@ -404,7 +404,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public IReadOnlyList<int> i32values()
+        public Index<int> i32values()
             => array(i32_0, i32_1);
 
         [MethodImpl(Inline)]
@@ -570,7 +570,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public IReadOnlyList<uint> u32values()
+        public Index<uint> u32values()
             => array(u32_0, u32_1);
 
         //! int64
@@ -634,7 +634,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public IReadOnlyList<long> i64values()
+        public Index<long> i64values()
             => array(i64_0);
 
         //! uint64
@@ -699,7 +699,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public IReadOnlyList<ulong> ui64values()
+        public Index<ulong> ui64values()
             => array(u64_0);
 
         //! float32
@@ -760,7 +760,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public IReadOnlyList<float> f32values()
+        public Index<float> f32values()
             => array(f32_0, f32_1);
 
         //! float64
@@ -820,7 +820,7 @@ namespace Z0
             => PolyNum64.define(lhs.f64_0 + rhs.f64_0);
 
         [MethodImpl(Inline)]
-        public IReadOnlyList<double> f64values()
+        public Index<double> f64values()
             => array(f64_0);
 
         [MethodImpl(Inline)]

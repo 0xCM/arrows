@@ -21,7 +21,7 @@ namespace Z0
             var filename = FileName.Define($"divisors{src.Range}.csv");
             var outpath = dstFolder + filename;
             var lists = src.Lists.OrderBy(x => x.Dividend);
-            return File.save(map(lists, d => d.format()),outpath);
+            return outpath.Overwrite(map(lists, d => d.format()));
         }
     }
 

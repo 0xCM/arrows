@@ -28,13 +28,8 @@ namespace Z0.Tests.InXTests
         }
 
         protected override Vec128BinOp<T> VecOp
-            => InXG.and;
+            => Vec128Ops.and<T>; 
 
-        protected override Vec128BinAOut<T> VecOpAOut
-            => InXG.and;
-
-        protected override Vec128BinOut<T> VecOpOut
-            => InXG.and;
 
         protected override IndexBinOp<T> IndexOp {get;} 
             = PrimOps.and;

@@ -72,7 +72,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> And<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
-                => SSR.InXAndG<T>.TheOnly.and(lhs,rhs);
+                => Vec128Ops.and(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec128<T> Add<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
+            where T : struct, IEquatable<T>
+                => Vec128Ops.add(lhs,rhs);
 
         /// <summary>
         /// Computes the bitwise or of two vectors
@@ -83,31 +88,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> Or<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
-                => InXG.or(lhs,rhs);
+                => Vec128Ops.or(lhs,rhs);
 
-        /// <summary>
-        /// Writes data data in a source vector to a target array
-        /// </summary>
-        /// <param name="src">The data source</param>
-        /// <param name="dst">The target array</param>
-        /// <param name="offset">The position in the target array where receipt of source data can begin</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static void Store<T>(this in Vec128<T> src, T[] dst, int offset = 0)
-            where T : struct, IEquatable<T>
-                => InXG.store(src, dst, offset);
-
-        /// <summary>
-        /// Writes data data in a list of source vectors to a target array
-        /// </summary>
-        /// <param name="src">The data source</param>
-        /// <param name="dst">The target array</param>
-        /// <param name="offset">The position in the target array where receipt of source data can begin</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static void Store<T>(this in Index<Vec128<T>> src, T[] dst, int offset = 0)
-            where T : struct, IEquatable<T>
-                => InXG.store(src, dst, offset);
 
         /// <summary>
         /// Defines a stream of vectors over an array
@@ -119,15 +101,5 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => InXG.stream128(src); 
 
-        /// <summary>
-        /// Computes the bitwise xor between two vectors
-        /// </summary>
-        /// <param name="lhs">The first vector</param>
-        /// <param name="rhs">The second vector</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vec128<T> XOr<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
-            where T : struct, IEquatable<T>
-                => InXG.xor(lhs,rhs);
     }
 }

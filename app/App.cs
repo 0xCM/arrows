@@ -149,47 +149,35 @@ namespace Z0
           
         }
 
-        void TestInXAdd()
+        void TestInXSum()
         {
             var domain = Interval.leftclosed(-150.0d, 150.0d).canonical();
             var stream = RandomStream(domain);
-            var lhs = stream.Freeze(Pow2.T20);
-            var rhs = stream.Freeze(Pow2.T20);
-            var sum1 = lhs.InXAdd(rhs);
-            var sum2 = lhs.Add(rhs);
-            Claim.eq(sum1,sum2);
-
-
-
+            var src = stream.Freeze(Pow2.T20);
+            var expect = Math.Round(src.Sum(),4);
+            var result = Math.Round(src.InXSum(),4);
+            Claim.eq(expect,result);            
+    
 
         }
 
-        void TestInXGAdd()
-        {
-            var domain = Interval.leftclosed(-150.0d, 150.0d).canonical();
-            var stream = RandomStream(domain);
-            var lhs = stream.Freeze(Pow2.T20);
-            var rhs = stream.Freeze(Pow2.T20);
-            var result = lhs.AddG(rhs);
-            inform("Ok");
-
-        }
 
         void RunTests()
         {
             var paths = new[]{""};            
-            var pll = true;
+            var pll = false;
             RunTests(paths,pll);
 
         }
+
         static void Main(string[] args)
         {     
             try
             {
                 var app = new App();
-                // app.RunTests();
-                app.RunBenchmarks();
-                
+                app.RunTests();
+                //app.RunBenchmarks();
+                //app.TestInXSum();
 
             }
             catch(Exception e)

@@ -24,7 +24,7 @@ namespace Z0.Bench
 
     public abstract class Benchmark : Context<Benchmark>
     {
-         public Benchmark()
+         protected Benchmark()
          : base(RandSeeds.BenchSeed)
          {
 
@@ -79,13 +79,19 @@ namespace Z0.Bench
     public abstract class Benchmark<T> : Context<Benchmark<T>>, IBenchMark
         where T : struct, IEquatable<T>
     {
-        protected Benchmark(BenchConfig config, Interval<T>? Domain = null)
+        protected Benchmark(string OpName, BenchConfig config, Interval<T>? Domain = null)
             : base(RandSeeds.BenchSeed)
         {
             this.Config = config ?? BenchConfig.Default;
-            this.Domain = Domain ?? Settings.Domain<T>();
+            this.Domain = Domain ?? Settings.Domain<T>();            
             this.RVar = Z0.RVar.define<T>(this.Domain, RandSeeds.BenchSeed);
+
+            var kind = PrimKinds.kind<T>();
+            this.OpId = $"{OpName}/{kind}";
+
         }
+
+        protected string OpId {get;}
 
         protected Interval<T> Domain {get;}
         
@@ -107,5 +113,18 @@ namespace Z0.Bench
 
         protected Index<T> Sample(int? size = null)
             => RVar.sample(size ?? SampleSize);
+            
+        protected void LogCycleStart(int cycle)
+            => zcore.hilite($"{OpId} Start Cycle  = {cycle} | Samples = {Config.SampleSize} | Reps = {Config.Reps}", SeverityLevel.HiliteCL);
+
+        protected void LogCycleFinish(int cycle, BenchResult result)
+            =>zcore.hilite($"{OpId} Finish Cycle = {cycle} | Samples = {Config.SampleSize} | Reps = {Config.Reps} | Duration = {result.Duration}ms", SeverityLevel.Perform);
+
+        protected void LogStart()
+            => zcore.hilite($"{OpId} Executing {Config.Cycles} cycles", SeverityLevel.HiliteCL);
+
+        protected void LogFinish(BenchResult result)
+            =>  zcore.hilite($"{result}", SeverityLevel.HiliteCL);
+
     }
 }

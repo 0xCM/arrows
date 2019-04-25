@@ -19,7 +19,7 @@ namespace Z0.Tests.InXTests
         where S : InXTest<S,T>
         where T : struct, IEquatable<T>
     {
-        protected static readonly int PrimSize = Vec128<T>.PrimSize;
+        protected static readonly int PrimSize = Vec128<T>.ComponentSize;
 
         protected static readonly int VecLength = Vec128<T>.Length;
 
@@ -51,11 +51,11 @@ namespace Z0.Tests.InXTests
 
         protected Interval<T> Domain {get;}
 
-        protected T[] UnarySrc {get;}
+        protected Index<T> UnarySrc {get;}
 
-        protected T[] LeftDataSrc {get;}
+        protected Index<T> LeftDataSrc {get;}
 
-        protected T[] RightDataSrc {get;}
+        protected Index<T> RightDataSrc {get;}
 
         protected Index<Vec128<T>> LeftVecSrc {get;}
 
@@ -76,14 +76,14 @@ namespace Z0.Tests.InXTests
         /// <param name="listop">The primitive operator</param>
         protected void Verify(Vec128BinOp<T> vecop, IndexBinOp<T> listop)
         {
-            var leftVals = Arr.partition(LeftDataSrc, VecLength).ToReadOnlyList();
-            var rightVals = Arr.partition(RightDataSrc, VecLength).ToReadOnlyList();
+            var leftVals = Arr.partition(LeftDataSrc.ToArray(), VecLength).ToReadOnlyList();
+            var rightVals = Arr.partition(RightDataSrc.ToArray(), VecLength).ToReadOnlyList();
             for(var i = 0; i<VecCount; i++)
             {
                 var lvec = LeftVecSrc[i];
                 var rvec = RightVecSrc[i];
                 var actual = vecop(lvec, rvec);                
-                var expect = Vec128.define(listop(leftVals[i],rightVals[i]));
+                var expect = Vec128.single(listop(leftVals[i],rightVals[i]));
                 ClaimEq(lvec, rvec, expect, actual,i);
             }                
         }
@@ -98,7 +98,7 @@ namespace Z0.Tests.InXTests
         /// Partitions the source array into array segments with vector length
         /// </summary>
         protected IEnumerable<ArraySegment<T>> UnarySrcSegments
-            =>  Arr.partition(UnarySrc, VecLength);
+            =>  Arr.partition(UnarySrc.ToArray(), VecLength);
 
         /// <summary>
         /// Defines a stream of vectors over the source array
@@ -151,31 +151,18 @@ namespace Z0.Tests.InXTests
         {
             var offCount = 0;
             for(var offset =0; offset < SampleSize; offset += VecLength)
-            {
                 receiver(offCount++,offset);
-            }
             Claim.eq(offCount, VecCount);
             return offCount;
         }
                 
-        protected string OpInfo<X,Y,Z>(X lhs, Y rhs, Z result)
-            => $"{lhs} {OpName} {rhs} = {result}";
-
-        /// <summary>
-        /// Discretizes a specified domain using an optionally-specified 
-        /// specified partition width
-        /// </summary>
-        /// <param name="domain">The interval to be partitioned</param>
-        /// <param name="step">The width of each partition</param>
-        protected IEnumerable<T> Partition(Interval<T> domain, T? step = null)
-            => domain.Discretize(step);
 
         /// <summary>
         /// Discretizes the instance domain using an optionall-specified partition width
         /// </summary>
         /// <param name="step">The width of each partition</param>
         protected IEnumerable<T> Partition(T? step = null)
-            => Partition(Domain,step);
+            => Domain.Discretize(step);
 
         /// <summary>
         /// Produces an array of random values
@@ -183,7 +170,6 @@ namespace Z0.Tests.InXTests
         /// <param name="count">The number of values in the produced array</param>
         protected T[] RandArray(Interval<T> domain, int? count = null)
             => RandomIndex(domain, count ?? SampleSize);
-
 
         /// <summary>
         /// Produces a list of random values
@@ -193,27 +179,6 @@ namespace Z0.Tests.InXTests
         protected Index<T> RandIndex(Interval<T> domain, int? count = null)
             => RandomStream(domain).TakeArray(count ?? SampleSize);
 
-        /// <summary>
-        /// Produces an interminable stream of random values
-        /// </summary>
-        /// <param name="min">The lower bound for produced values</param>
-        /// <param name="max">The upper bound for produced values</param>
-        protected IEnumerable<T> RandStream(T min, T max)
-            => Randomizer<T>().stream(min,max);
-
-        /// <summary>
-        /// Produces an interminable stream of random values 
-        /// <param name="domain">The interval from which the values are selected</param>
-        protected IEnumerable<T> RandStream(Interval<T>? domain = null)
-            => RandStream((domain ?? Domain).left, (domain ?? Domain).right);
-
-        /// <summary>
-        /// Produces a stream of random values
-        /// </summary>
-        /// <param name="count">The number of values the stream will yield, 
-        /// which defaults to the sample size if unspecified</param>
-        protected IEnumerable<T> RandStream(int? count = null)
-            => RandStream(Domain).Take(count ?? SampleSize);
 
         /// <summary>
         /// Produces an array of random values
@@ -229,13 +194,6 @@ namespace Z0.Tests.InXTests
         /// <param name="count">The number of values in the produced list</param>
         protected Index<T> RandIndex(int? count = null)
             => RandIndex(Domain,count ?? SampleSize);
-
-        /// <summary>
-        /// Produces a list of random values
-        /// </summary>
-        /// <param name="count">The number of values in the produced list</param>
-        protected Index<T> RandIndex(uint? count = null)
-            => RandIndex(Domain, (int) (count ?? (uint)SampleSize));
 
         /// <summary>
         /// Produces a random list that occupies 128 bits = 16 bytes of memory
@@ -254,7 +212,7 @@ namespace Z0.Tests.InXTests
         /// Produces a random 128-bit vector
         /// </summary>
         protected Vec128<T> RandVec128()        
-            => Vec128.define(RandArray(VecLength));
+            => Vec128.single<T>(RandArray(VecLength));
 
         /// <summary>
         /// Produces a stream of random arrays where each array occupies 128 bits = 16 bytes of memory
@@ -289,14 +247,5 @@ namespace Z0.Tests.InXTests
         protected void trace(int count, [CallerMemberName] string caller = null)
             => base.trace($"Applied the {OpName} operator over {count} vectors", caller);
 
-        protected long Measure(Action f, string name, int? reps = null)
-        {
-            var repeat = reps ?? Defaults.OpApplyReps;
-            var statsMsg = $"{VecCount} vector pairs | {reps} reps";
-            var sw = begin($"Applying {name} | {statsMsg}");
-            iter(repeat, i => f());
-            return end($"Applied {name} operator | {statsMsg}", sw);                        
-
-        }
     }    
 }
