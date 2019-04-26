@@ -26,6 +26,10 @@ partial class zcore
         throw new Exception($"List count mismatch: lhs.Count= {lhs.Count}, rhs.Count = {rhs.Count}");
     }
 
+    [MethodImpl(Inline)]
+    public static unsafe void* pointer<T>(ref T src)
+        => Unsafe.AsPointer(ref src);
+
     /// <summary>
     /// Calculates the time required to execute a specified action
     /// </summary>

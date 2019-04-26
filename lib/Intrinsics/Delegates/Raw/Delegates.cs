@@ -12,6 +12,14 @@ namespace Z0
     using static zcore;
     using static inxfunc;
 
+    public delegate Vector128<T> Vector128BinOp<T>(Vector128<T> lhs, Vector128<T> rhs)
+        where T : struct, IEquatable<T>;
+
+    public unsafe delegate Vector128<T> Vector128LoadOp<T>(void* src)
+        where T : struct, IEquatable<T>;
+
+    public unsafe delegate void Vector128StoreOp<T>(Vector128<T> src, void* dst)
+        where T : struct, IEquatable<T>;
 
     public static partial class InXDelegates
     {

@@ -12,7 +12,6 @@ namespace Z0
     using static zcore;
     using static inxfunc;
 
-
     static class Vec256Delegates
     {
 
@@ -91,7 +90,6 @@ namespace Z0
         public static Vec256LoadOp<T> load<T>()
             where T : struct, IEquatable<T>
                 => Load.lookup<T,Vec256LoadOp<T>>();        
-
-
     }
+
 }

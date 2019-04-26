@@ -325,6 +325,11 @@ namespace Z0.Tests
         public const string add = "add/";
 
         /// <summary>
+        /// Identifies a subtraction operation
+        /// </summary>
+        public const string sub = "sub/";
+
+        /// <summary>
         /// Identifies a multiplication operation
         /// </summary>
         public const string mul = "mul/";

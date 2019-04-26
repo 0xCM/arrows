@@ -23,9 +23,6 @@ namespace Z0.Tests
     public class UInt64Pow : UnaryPrimOpsTest<UInt64Pow,operand>
     {        
         public const string Path = P.primops + P.uint64 + P.pow;
-        public UInt64Pow()
-            : base(Defaults.UInt64Domaim)
-            {}
 
         public override void Verify()
             => base.Verify();

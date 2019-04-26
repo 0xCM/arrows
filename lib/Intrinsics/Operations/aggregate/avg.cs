@@ -15,20 +15,20 @@ namespace Z0
      partial class InX
      {
           [MethodImpl(Inline)]          
-          public static Vec128<byte> avg(Vec128<byte> lhs, Vec128<byte> rhs)
+          public static Vec128<byte> avg(in Vec128<byte> lhs, in Vec128<byte> rhs)
                => Avx2.Average(lhs,rhs);
 
 
           [MethodImpl(Inline)]          
-          public static Vec128<ushort> avg(Vec128<ushort> lhs, Vec128<ushort> rhs)
+          public static Vec128<ushort> avg(in Vec128<ushort> lhs,in Vec128<ushort> rhs)
                => Avx2.Average(lhs,rhs);
 
           [MethodImpl(Inline)]          
-          public static Vec256<byte> avg(Vec256<byte> lhs, Vec256<byte> rhs)
+          public static Vec256<byte> avg(in Vec256<byte> lhs,in Vec256<byte> rhs)
                => Avx2.Average(lhs,rhs);
 
           [MethodImpl(Inline)]          
-          public static Vec256<ushort> avg(Vec256<ushort> lhs, Vec256<ushort> rhs)
+          public static Vec256<ushort> avg(in Vec256<ushort> lhs,in Vec256<ushort> rhs)
                => Avx2.Average(lhs,rhs);
 
      }

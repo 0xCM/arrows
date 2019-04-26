@@ -21,8 +21,8 @@ namespace Z0.Testing
     {
         protected Index<T> PrimSrc;
         
-        protected UnaryPrimOpsTest(Interval<T> bounds, Func<T,bool> filter = null, int? sampleSize = null)
-            : base(bounds, filter, sampleSize)
+        protected UnaryPrimOpsTest(Interval<T>? domain = null, Func<T,bool> filter = null, int? sampleSize = null)
+            : base(domain, filter, sampleSize)
         {
             this.PrimSrc = sample();
 

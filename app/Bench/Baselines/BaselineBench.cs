@@ -17,12 +17,14 @@ namespace Z0.Bench
 
         static IEnumerable<BenchResult> RunEach(BenchConfig Config)
         {
-            //yield return BenchResult.Define("primal/add",BaselineBench.RunPrimalAdd(Config));
-            //yield return BenchResult.Define("intrisics/add", BaselineBench.RunInXAdd(Config));
-            //yield return BenchResult.Define("intrisics-g/add", BaselineBench.RunInXAddG(Config));
+
+            // yield return BenchResult.Define("primal/add",BaselineBench.RunPrimalAdd(Config));
+            // yield return BenchResult.Define("intrisics/add", BaselineBench.RunInXAdd(Config));
+            // yield return BenchResult.Define("intrisics-g/add", BaselineBench.RunInXAddG(Config));            
             
             yield return BenchResult.Define("primal/sum", BaselineBench.RunPrimalSum(Config));
             yield return BenchResult.Define("intrisics/sum", BaselineBench.RunInXSum(Config));
+            yield return BenchResult.Define("intrisics-g/sum", BaselineBench.RunInXSumG(Config));
         }
 
         static Index<BenchResult> Force(IEnumerable<BenchResult> results)

@@ -20,7 +20,7 @@ namespace Z0.Tests.InXTests
         where S : EqTest<S,T>
         where T : struct, IEquatable<T>
     {
-        protected static readonly InXEq<T> InXOp = InX.eq<T>();        
+        protected static readonly Vec128BinPred<T> eq = Vec128Ops.eq;        
                 
         protected EqTest(Interval<T>? domain = null, int? sampleSize = null)
             : base(P.eq, domain, sampleSize)        
@@ -28,26 +28,17 @@ namespace Z0.Tests.InXTests
             
         }
                 
-        protected IEnumerable<Vec128<T>> Results()
+        protected IEnumerable<bool> Results()
         {
             for(var i = 0; i< VecCount; i++)
-                yield return InXOp.eq(LeftVecSrc[i], LeftVecSrc[i]);            
+                yield return eq(LeftVecSrc[i], LeftVecSrc[i]);            
         }
 
         public virtual void Apply()
-        {
-            var result = Results().ToReadOnlyList();
-            trace(result.Count);
-        }                
-
-        protected abstract void Verify(Vec128<T> src);
+            => trace(Results().Freeze().Count);
         
         public virtual void Verify()
-        {
-            var result = Results().ToReadOnlyList();
-            for(var i = 0; i< VecCount; i++)
-                Verify(result[i]);            
-        }        
+            => iter(Results(), result => Claim.@true(result));
     }
 
     public class EqualityTests
@@ -64,9 +55,6 @@ namespace Z0.Tests.InXTests
             public override void Apply()
                 => base.Apply();
 
-            protected override void Verify(Vec128<byte> src)
-                => Claim.@true(InX.allOn(src));
-
         }
 
         [DisplayName(Path)]
@@ -79,9 +67,6 @@ namespace Z0.Tests.InXTests
                 
             public override void Apply()
                 => base.Apply();
-
-            protected override void Verify(Vec128<ushort> src)
-                => Claim.@true(InX.allOn(src));
         }
 
         [DisplayName(Path)]
@@ -95,8 +80,6 @@ namespace Z0.Tests.InXTests
             public override void Apply()
                 => base.Apply();
 
-            protected override void Verify(Vec128<short> src)
-                => Claim.@true(InX.allOn(src));
         }
 
         [DisplayName(Path)]
@@ -110,8 +93,6 @@ namespace Z0.Tests.InXTests
             public override void Apply()
                 => base.Apply();
 
-            protected override void Verify(Vec128<int> src)
-                => Claim.@true(InX.allOn(src));
         }
 
         [DisplayName(Path)]
@@ -125,8 +106,6 @@ namespace Z0.Tests.InXTests
             public override void Apply()
                 => base.Apply();
 
-            protected override void Verify(Vec128<uint> src)
-                => Claim.@true(InX.allOn(src));
         }
 
         [DisplayName(Path)]
@@ -140,8 +119,6 @@ namespace Z0.Tests.InXTests
             public override void Apply()
                 => base.Apply();
 
-            protected override void Verify(Vec128<long> src)
-                => Claim.@true(InX.allOn(src));
         }
 
         [DisplayName(Path)]
@@ -155,22 +132,12 @@ namespace Z0.Tests.InXTests
             public override void Apply()
                 => base.Apply();
 
-            protected override void Verify(Vec128<ulong> src)
-                => Claim.@true(InX.allOn(src));
         }
 
         [DisplayName(Path)]
         public class EqFloat32 : EqTest<EqFloat32,float>
         {
             public const string Path = BasePath + P.float64;
-
-            protected override void Verify(Vec128<float> src)
-            {
-                Claim.@true(src[0].IsNaN());
-                Claim.@true(src[1].IsNaN());
-                Claim.@true(src[2].IsNaN());
-                Claim.@true(src[3].IsNaN());
-            }
 
             public override void Verify()
                 => base.Verify();
@@ -183,12 +150,6 @@ namespace Z0.Tests.InXTests
         public class EqFloat64 : EqTest<EqFloat64,double>
         {
             public const string Path = BasePath + P.float64;
-
-            protected override void Verify(Vec128<double> src)
-            {
-                Claim.@true(src[0].IsNaN());
-                Claim.@true(src[1].IsNaN());
-            }
 
             public override void Verify()
                 => base.Verify();

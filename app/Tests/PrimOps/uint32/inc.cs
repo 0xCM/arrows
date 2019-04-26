@@ -25,12 +25,6 @@ namespace Z0.Tests
     {        
         public const string Path = P.primops + P.uint32 + P.inc;
 
-        public UInt32Inc()
-            : base(Defaults.UInt32Domain)
-        {
-            
-        }
-
         public override void Verify()
             => base.Verify();
 

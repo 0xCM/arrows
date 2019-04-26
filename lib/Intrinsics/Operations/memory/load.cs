@@ -371,5 +371,47 @@ namespace Z0
         public static unsafe Vec256<double> load(void* src, out Vec256<double> dst)
             => dst = Avx2.LoadVector256((double*)src);
  
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<byte> load(byte* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<sbyte> load(sbyte* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<short> load(short* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ushort> load(ushort* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<int> load(int* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<uint> load(uint* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<long> load(long* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ulong> load(ulong* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<float> load(float* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<double> load(double* src)
+            => Avx2.LoadVector128(src);
+ 
+
     }
 }

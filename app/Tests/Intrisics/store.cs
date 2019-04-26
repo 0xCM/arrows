@@ -10,6 +10,8 @@ namespace Z0.Tests.InXTests
     using System.ComponentModel;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
 
     using Z0.Testing;
     
@@ -22,35 +24,39 @@ namespace Z0.Tests.InXTests
         where S : StoreTest<S,T>
         where T : struct, IEquatable<T>
     {
-        protected static readonly InXStore<T> InXOp = InXG.store<T>();
-
         public StoreTest()
             : base(P.store)
         {
 
         }
 
-        public virtual void StoreVector()
-        {   
-            var dst = alloc<T>(VecLength);
-            foreach(var v0 in UnarySrcVectors)
-            {                
-                InXOp.store(v0,dst);
-                var v1 = Vec128.single(dst);
-                Claim.eq(v0,v1);
-                
-            }
-        }
-
         public virtual void StoreVectors()
         {   
+            var vectors = map(UnarySrcVectors, v => Vec128.define(v)).ToArray();
+            Claim.eq(VecCount, vectors.Length);
+
             var dst = alloc<T>(VecLength*VecCount);
-            var src = UnarySrcVectors.ToArray();
-            InXOp.store(src,dst);
-            IterOffsets((c,i) => Claim.eq(src[c],Vec128.define(dst,i)));
+            
+            for(int i=0, offset = 0; i< VecCount; i++, offset += VecLength)            
+                Vec128Ops.store(vectors[i], dst, offset);                    
 
+
+            for(int i = 0, j=0; i< dst.Length; i+= VecLength, j++)
+            {
+                var vDst = Vec128.define(dst, i);
+                var vSrc = vectors[j];
+                Claim.eq(vDst,vSrc);
+            }
+
+            for(int i=0, offset = 0; i < VecCount; i++, offset+= VecLength)
+            {
+
+                var vDst = Arr.SubArray(dst,offset,VecLength);
+                var vSrc = vectors[i];
+                for(var j = 0; j<VecLength; j++)
+                    Claim.eq(vDst[j], vSrc[j]);
+            }
         }
-
     }
 
     public class StoreTests
@@ -61,49 +67,28 @@ namespace Z0.Tests.InXTests
         public sealed class StoreInt64 : StoreTest<StoreInt64, long>
         {
             public const string Path = BasePath + P.int64;
-                
-            public override void StoreVector()
-                => base.StoreVector();
 
             public override void StoreVectors()
-                => base.StoreVectors();
+                => base.StoreVectors();                
         }
 
         [DisplayName(Path)]
         public sealed class StoreUInt64 : StoreTest<StoreUInt64, ulong>
         {
             public const string Path = BasePath + P.uint64;
-                
-            public override void StoreVector()
-                => base.StoreVector();
 
             public override void StoreVectors()
-                => base.StoreVectors();
+                => base.StoreVectors();                
         }
 
-        [DisplayName(Path)]
-        public sealed class StoreFloat32 : StoreTest<StoreFloat32, float>
-        {
-            public const string Path = BasePath + P.float32;
-                
-            public override void StoreVector()
-                => base.StoreVector();
-
-            public override void StoreVectors()
-                => base.StoreVectors();
-        }
 
         [DisplayName(Path)]
         public sealed class StoreFloat64 : StoreTest<StoreFloat64, double>
         {
             public const string Path = BasePath + P.float64;
-                
-            public override void StoreVector()
-                => base.StoreVector();
 
             public override void StoreVectors()
-                => base.StoreVectors();
+                => base.StoreVectors();                
         }
-
     }
 }

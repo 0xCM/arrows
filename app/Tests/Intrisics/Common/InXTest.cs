@@ -10,6 +10,8 @@ namespace Z0.Tests.InXTests
     using System.ComponentModel;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
 
     using Z0.Testing;
     
@@ -19,7 +21,7 @@ namespace Z0.Tests.InXTests
         where S : InXTest<S,T>
         where T : struct, IEquatable<T>
     {
-        protected static readonly int PrimSize = Vec128<T>.ComponentSize;
+        protected static readonly int ComponentSize = Vec128<T>.ComponentSize;
 
         protected static readonly int VecLength = Vec128<T>.Length;
 
@@ -38,12 +40,22 @@ namespace Z0.Tests.InXTests
             
             this.UnarySrc = RandArray();
             Claim.eq(UnarySrc.Length, SampleSize);
-            Claim.eq(VecLength,  16 / PrimSize);
+            Claim.eq(VecLength,  16 / ComponentSize);
+
+            Claim.eq(VecLength*VecCount, SampleSize);
 
             this.LeftDataSrc = RandArray(SampleSize);
+            Claim.eq(LeftDataSrc.Length, SampleSize);
+
             this.RightDataSrc = RandArray(SampleSize);
+            Claim.eq(RightDataSrc.Length, SampleSize);
+
             this.LeftVecSrc = Vec128.stream(LeftDataSrc).ToIndex();
+            Claim.eq(LeftVecSrc.Length, VecCount);
+
             this.RightVecSrc = Vec128.stream(RightDataSrc).ToIndex();
+            Claim.eq(RightVecSrc.Length, VecCount);
+
 
         }
 
@@ -94,37 +106,15 @@ namespace Z0.Tests.InXTests
                 throw new Exception($"Operator failure during iteration {i}: {lvec} OpName {rvec} | Expected = {expect}, Actual = {actual}");
         }
 
-        /// <summary>
-        /// Partitions the source array into array segments with vector length
-        /// </summary>
-        protected IEnumerable<ArraySegment<T>> UnarySrcSegments
-            =>  Arr.partition(UnarySrc.ToArray(), VecLength);
-
-        /// <summary>
-        /// Defines a stream of vectors over the source array
-        /// </summary>
-        protected IEnumerable<Vec128<T>> UnarySrcVectors
-            => UnarySrcSegments.Select(seg => Vec128.define(seg));
-
-        /// <summary>
-        /// Iterates the source segments into a receiver
-        /// </summary>
-        /// <param name="receiver">The segment receiver</param>
-        protected void IterUnarySegments(Action<ArraySegment<T>> receiver)
+        protected IEnumerable<Vector128<T>> UnarySrcVectors
         {
-            foreach(var seg in UnarySrcSegments)
-                receiver(seg);
+            get
+            {
+                for(var i = 0; i< UnarySrc.Length; i += VecLength)
+                    yield return Vec128.define(UnarySrc.ToArray(), i);
+            }
         }
 
-        /// <summary>
-        /// Iterates the source vectors into a receiver
-        /// </summary>
-        /// <param name="receiver">The vector receiver</param>
-        protected void IterUnaryVectors(Action<Vec128<T>> receiver)
-        {
-            foreach(var vec in UnarySrcVectors)
-                receiver(vec);
-        }
 
         /// <summary>
         /// Interates the array indexes that are multiples of vector length into a receiver

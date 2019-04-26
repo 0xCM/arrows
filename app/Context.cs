@@ -32,44 +32,46 @@ namespace Z0
             where R : struct, IEquatable<R>
             => Random.Primal<R>();
         
-        public IEnumerable<R> RandomStream<R>(Interval<R> domain)
+        public IEnumerable<R> RandomStream<R>(Interval<R> domain, Func<R,bool> filter = null)
             where R : struct, IEquatable<R>
-                => Randomizer<R>().stream(domain);
-        
+                 => filter != null 
+                 ? Randomizer<R>().stream(domain).Where(filter) 
+                 : Randomizer<R>().stream(domain);
+
         public IEnumerable<bit> RandomBits()
             => Random.bits();
 
-        protected Vector<N,R> RandomVector<N,R>(Interval<R> domain)
+        protected Vector<N,R> RandomVector<N,R>(Interval<R> domain, Func<R,bool> filter = null)
             where N : TypeNat, new()
             where R : struct, IEquatable<R>
-                => vector<N,R>(RandomStream(domain).Take(nati<N>()));
+                => vector<N,R>(RandomStream(domain,filter).Take(nati<N>()));
 
-        protected IEnumerable<Vector<N,R>> RandomVectors<N,R>(Interval<R> domain)
+        protected IEnumerable<Vector<N,R>> RandomVectors<N,R>(Interval<R> domain, Func<R,bool> filter = null)
             where N : TypeNat, new()
             where R : struct, IEquatable<R>
         {
-            var stream = RandomStream(domain);
+            var stream = RandomStream(domain,filter);
             while(true)
                 yield return vector<N,R>(stream.Take(nati<N>()));
         }
 
-        public Index<R> RandomIndex<R>(Interval<R> domain, int count)
+        public Index<R> RandomIndex<R>(Interval<R> domain, int count, Func<R,bool> filter = null)
             where R : struct, IEquatable<R>
-                => RandomStream(domain).Freeze(count);
+                => RandomStream(domain,filter).Freeze(count);
 
-        public Index<R> RandomIndex<R>(Interval<R> domain, uint count)
+        public Index<R> RandomIndex<R>(Interval<R> domain, uint count, Func<R,bool> filter = null)
             where R : struct, IEquatable<R>
-                => RandomStream(domain).Freeze(count);
+                => RandomStream(domain,filter).Freeze(count);
 
-        public R[] RandomArray<R>(Interval<R> domain, int count)
+        public R[] RandomArray<R>(Interval<R> domain, int count, Func<R,bool> filter = null)
             where R : struct, IEquatable<R>
-                => RandomStream(domain).TakeArray(count);
+                => RandomStream(domain,filter).TakeArray(count);
 
-        public IEnumerable<R[]> RandomArrays<R>(Interval<R> domain, int len)
+        public IEnumerable<R[]> RandomArrays<R>(Interval<R> domain, int len, Func<R,bool> filter = null)
             where R : struct, IEquatable<R>
         {
             while(true)
-                yield return RandomArray<R>(domain,len);
+                yield return RandomArray<R>(domain,len,filter);
         }
         
         protected Context(ulong[] seed)
@@ -86,9 +88,9 @@ namespace Z0
 
         protected long end(string msg, Stopwatch sw, [CallerMemberName] string caller = null)
         {
-            var ms = sw.ElapsedMilliseconds;
-            Messages.Add(AppMsg.Define(msg + $" | Duration = {elapsed(sw)}ms", SeverityLevel.HiliteML, GetType().DisplayName() + caller));            
-            return ms;
+            var ticks = elapsed(sw);
+            Messages.Add(AppMsg.Define(msg + $" | Duration = {ticksToMs(ticks)}ms", SeverityLevel.HiliteML, GetType().DisplayName() + caller));            
+            return ticks;
         }
 
         protected void end(string msg, long duration, [CallerMemberName] string caller = null)        
@@ -104,6 +106,14 @@ namespace Z0
             var messages = Messages.ToIndex();
             Messages.Clear();
             return messages;
+        }
+
+        public void EmitMessages(params AppMsg[] addenda)
+        {
+            var messages = FlushMessages(addenda);
+            print(messages);
+            log(messages, LogTarget.TestLog);
+
         }
 
     }   

@@ -70,7 +70,6 @@ namespace Z0
             return new Vec64<ushort>(castref<Vector64<ushort>>(data));
         }
 
-
         [MethodImpl(Inline)]
         public static unsafe Vec64<int> define(int x0, int x1)
         {

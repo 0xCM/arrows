@@ -38,18 +38,6 @@ namespace Z0
 
             var i = offset;
 
-            if(typematch<T,float>())            
-                return vFloat32(src,offset);
-
-            if(typematch<T,double>())            
-                return vFloat64(src,offset);
-
-            if(typematch<T,int>())            
-                return vInt32(src,offset);
-
-            if(typematch<T,long>())            
-                return vInt64(src,offset);
-
             if(typematch<T,sbyte>())            
                 return vInt8(src,offset);
 
@@ -62,14 +50,23 @@ namespace Z0
             if(typematch<T,ushort>())            
                 return VUint16(src,offset);
 
+            if(typematch<T,int>())            
+                return vInt32(src,offset);
 
             if(typematch<T,uint>())            
                 return vUInt32(src,offset);
 
+            if(typematch<T,long>())            
+                return vInt64(src,offset);
 
             if(typematch<T,ulong>())            
                 return vUInt64(src,offset);
 
+            if(typematch<T,float>())            
+                return vFloat32(src,offset);
+
+            if(typematch<T,double>())            
+                return vFloat64(src,offset);
 
             throw new NotSupportedException();
 

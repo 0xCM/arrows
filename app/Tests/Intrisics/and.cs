@@ -28,7 +28,7 @@ namespace Z0.Tests.InXTests
         }
 
         protected override Vec128BinOp<T> VecOp
-            => Vec128Ops.and<T>; 
+            => Vec128Ops.and; 
 
 
         protected override IndexBinOp<T> IndexOp {get;} 

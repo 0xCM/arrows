@@ -34,39 +34,28 @@ namespace Z0.Bench
 
         }
 
-        protected long TimeReps(Index<T> src, Func<Index<T>, long> worker)
-        {
-            var ticks = 0L;
-            iter(Config.Reps, _ => ticks += worker(src));
-            return ticks;
-        }
-
         protected BenchResult RunCycle(Index<T> src, Func<Index<T>, long> worker, int cycle)
         {
             var result = BenchResult.Init(OpId);
-
             LogCycleStart(cycle);
-            result = result.AppendRepTicks(TimeReps(src,worker));
-            LogCycleFinish(cycle, result);
-
+            var ticks = 0L;
+            iter(Config.Reps, _ => ticks += worker(src));
+            result = result.AppendCycle(Config.Reps, ticks);
+            LogCycleFinish(result);
             return result;
         }
 
-
         BenchResult Run(Index<T> src, Func<Index<T>, long> worker)
         {
-            var result = BenchResult.Init(OpId);
-            
+            var result = BenchResult.Init(OpId);            
             LogStart();
-            iter(Config.Cycles, i => result = result.AppendCycle(RunCycle(src, worker,i)));
+            iter(Config.Cycles, i => result = result.Append(RunCycle(src, worker,i)));
             LogFinish(result);
-
             return result;
         }
 
         public BenchResult Run(TimedAggregateOp<T> Op)
             => Run(RandomIndex<T>(Settings.Domain<T>(), Config.SampleSize),                        
-                        x => Op(x,  out T z)
-                        );
+                        x => Op(x,  out T z));
     }
 }

@@ -24,16 +24,10 @@ namespace Z0.Tests
     public class UInt32Eq : BinaryPrimOpsTest<UInt32Eq,operand>
     {        
         public const string Path = P.primops + P.uint32 + P.eq;
-
-        public UInt32Eq()
-            : base(Defaults.UInt32Domain)
-        {
-            
-        }
-
+        
         public override void Verify()
             => base.Verify();
-
+            
         public override Index<operand> Baseline()
         {
             var dst = target();

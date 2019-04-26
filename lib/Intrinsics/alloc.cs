@@ -500,9 +500,6 @@ namespace Z0
             return copy(src,dst);
         }
     
-        [MethodImpl(Inline)]
-        public static unsafe void* pointer<T>(ref T src)
-            => Unsafe.AsPointer(ref src);
  
         [MethodImpl(Inline)]
         public static Vec128BinOp<X> binop<X>(Vec128BinOp<X> f)

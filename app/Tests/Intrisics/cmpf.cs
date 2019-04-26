@@ -24,7 +24,7 @@ namespace Z0.Tests.InXTests
         where S : CmpFTest<S,T>
         where T : struct, IEquatable<T>
     {        
-        protected static readonly InXCmpF<T> InXOp = InXG.cmpf<T>();
+        protected static readonly Vec128CmpFloat<T> cmpf = Vec128Ops.cmpf;
         
         protected CmpFTest(Interval<T>? domain = null, int? streamlen = null)
             : base("cmp", domain, streamlen)        
@@ -32,13 +32,13 @@ namespace Z0.Tests.InXTests
 
         }
 
-        protected virtual Index<bool[]> Results(FloatComparisonMode mode)
-            => fuse(LeftVecSrc,RightVecSrc, (x,y) =>  InXOp.cmpf(x,y,mode));
+        protected virtual Index<bool[]> Results(FloatCompareKind mode)
+            => fuse(LeftVecSrc,RightVecSrc, (x,y) =>  cmpf(x,y,mode));
 
-        protected abstract bool[] Cmp(Index<T> x, Index<T> y, FloatComparisonMode mode);
+        protected abstract bool[] Cmp(Index<T> x, Index<T> y, FloatCompareKind mode);
 
 
-        public virtual void Verify(FloatComparisonMode mode)
+        public virtual void Verify(FloatCompareKind mode)
         {
             for(var i=0; i < VecCount; i++)
             {
@@ -47,7 +47,7 @@ namespace Z0.Tests.InXTests
 
                 var lArr = lVec.ToArray();
                 var rArr = rVec.ToArray();
-                var actual = InXOp.cmpf(lVec,rVec,mode);
+                var actual = cmpf(lVec,rVec,mode);
                 var expect = Cmp(lArr,rArr,mode);
             }
         }
@@ -108,11 +108,11 @@ namespace Z0.Tests.InXTests
                 return result; 
             }
             
-            protected override bool[] Cmp(Index<double> x, Index<double> y, FloatComparisonMode mode)
+            protected override bool[] Cmp(Index<double> x, Index<double> y, FloatCompareKind kind)
             {
                 var result = alloc<bool>(VecLength);
                 for(var i = 0; i< VecLength; i++)
-                    result[i] = cmp(x[i],y[i],mode);
+                    result[i] = cmp(x[i], y[i], (FloatComparisonMode) kind);
                 return result;
 
             }
@@ -161,34 +161,34 @@ namespace Z0.Tests.InXTests
             }
 
             public void CmpEq()
-                => Verify(FloatComparisonMode.EqualOrderedNonSignaling);
+                => Verify(FloatCompareKind.EqOrdNS);
 
             public void CmpNEq()
-                => Verify(FloatComparisonMode.NotEqualOrderedNonSignaling);
+                => Verify(FloatCompareKind.NEqOrdNS);
 
             public void CmpLt()
-                => Verify(FloatComparisonMode.LessThanOrderedNonSignaling);
+                => Verify(FloatCompareKind.LtOrdNS);
 
             public void CmpLtEq()
-                => Verify(FloatComparisonMode.LessThanOrEqualOrderedNonSignaling);
+                => Verify(FloatCompareKind.LtEqOrdNS);
 
             public void CmpNlt()
-                => Verify(FloatComparisonMode.NotLessThanUnorderedNonSignaling);
+                => Verify(FloatCompareKind.NLtUnOrdNS);
 
             public void CmpNltEq()
-                => Verify(FloatComparisonMode.NotLessThanOrEqualUnorderedNonSignaling);
+                => Verify(FloatCompareKind.NLtEqUnOrdNS);
 
             public void CmpGt()
-                => Verify(FloatComparisonMode.GreaterThanOrderedNonSignaling);
+                => Verify(FloatCompareKind.GtOrdNS);
 
             public void CmpGtEq()
-                => Verify(FloatComparisonMode.GreaterThanOrEqualOrderedNonSignaling);
+                => Verify(FloatCompareKind.GtEqOrdNS);
 
             public void CmpNgt()
-                => Verify(FloatComparisonMode.NotGreaterThanUnorderedNonSignaling);
+                => Verify(FloatCompareKind.NGtUnOrdNS);
 
             public void CmpNgtEq()
-                => Verify(FloatComparisonMode.NotGreaterThanOrEqualUnorderedNonSignaling);
+                => Verify(FloatCompareKind.NGtEqUnOrdNS);
 
             private void Examples()
             {
@@ -197,7 +197,7 @@ namespace Z0.Tests.InXTests
                 {
                     var x0 = Vec128.define(-1.5, 8.9);
                     var x1 = Vec128.define(-4.7, 3.2);
-                    var result = InX.cmpf(x0,x1,FloatComparisonMode.LessThanOrderedNonSignaling);
+                    var result = InX.cmpf(x0,x1,FloatCompareKind.LtOrdNS);
                     trace($"{x0} < {x1} = {result}");                
                 }
 
@@ -205,7 +205,7 @@ namespace Z0.Tests.InXTests
                 {
                     var x0 = Vec128.define(-1.0, -1.0);
                     var x1 = Vec128.define(1.0, 1.0);
-                    var result = InX.cmpf(x0,x1,FloatComparisonMode.LessThanOrderedNonSignaling);
+                    var result = InX.cmpf(x0,x1,FloatCompareKind.LtOrdNS);
                     trace($"{x0} < {x1} = {result}");
                 }
 
@@ -213,7 +213,7 @@ namespace Z0.Tests.InXTests
                 {
                     var x0 = Vec128.define(1.0, -1.0);
                     var x1 = Vec128.define(1.0, 1.0);
-                    var result = InX.cmpf(x0,x1,FloatComparisonMode.LessThanOrderedNonSignaling);
+                    var result = InX.cmpf(x0,x1,FloatCompareKind.LtOrdNS);
                     trace($"{x0} < {x1} = {result}");
                 }
 

@@ -24,6 +24,8 @@ namespace Z0
 
         public static readonly int ComponentSize = Unsafe.SizeOf<T>();
         
+        readonly ulong x0;
+        readonly ulong x1;
         //readonly Vector128<T> data;        
     
         [MethodImpl(Inline)]

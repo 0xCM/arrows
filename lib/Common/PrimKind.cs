@@ -21,13 +21,38 @@ namespace Z0
 
     public readonly struct PrimalIndex
     {
-        readonly Index<object> index;
+        [MethodImpl(Inline)]
+        public static PrimalIndex define(
+            object @sbyte = null, 
+            object @byte = null, 
+            object @short = null, 
+            object @ushort = null, 
+            object @int = null, 
+            object @uint = null, 
+            object @long = null, 
+            object @ulong = null, 
+            object @float = null, 
+            object @double = null,
+            object @decimal = null,
+            object @bigint = null
+            ) => new PrimalIndex(array<object>(null, 
+                @sbyte, @byte, @short, @ushort, @int, 
+                @uint, @long, @ulong, @float, @double,
+                @decimal, @bigint
+                ));
 
+        readonly Index<object> index;
+        
         public PrimalIndex(Index<object> src)
             => index = src;
+        
         public V lookup<K,V>()
             where K : struct, IEquatable<K>
-            => (V)index[PrimKinds.key<K>()];
+        {
+            var del = index[PrimKinds.key<K>()];
+            return Unsafe.As<object,V>(ref del);
+        }
+            
 
         public V lookup<V>(PrimKind kind)
             => (V)index[(int)kind];

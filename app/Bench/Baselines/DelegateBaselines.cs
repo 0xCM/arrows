@@ -14,7 +14,7 @@ namespace Z0.Bench
     using static primops;
 
 
-    public class DelegateBaselines : Benchmark
+    public class DelegateBaselines : BenchmarkContext
     {
         [MethodImpl(Inline)]
         public static int add(int x, int y)

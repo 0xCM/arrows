@@ -24,12 +24,6 @@ namespace Z0.Tests
     {
         public const string Path = P.primops + P.float64 + P.mul;
 
-        public Float64Mul()
-            : base(Defaults.Float64Domain)
-        {
-
-        }   
-
         public override void Verify()
             => base.Verify();
 

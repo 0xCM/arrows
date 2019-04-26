@@ -81,12 +81,9 @@ namespace Z0.Bench
             public static TimedIndexBinOp<T> Operator<T>()
                 where T : struct, IEquatable<T>
                     => Operators.lookup<T, TimedIndexBinOp<T>>();
-
             public static TimedIndexBinOp<T> OperatorG<T>()
                 where T : struct, IEquatable<T>
                     => AddG;
-
-
             static long AddG<T>(Index<T> lhs, Index<T> rhs, out Index<T> dst)
                 where T : struct, IEquatable<T>
             {

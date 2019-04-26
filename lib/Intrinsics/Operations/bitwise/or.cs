@@ -78,7 +78,6 @@ namespace Z0
         public static Vec256<uint> or(in Vec256<uint> lhs, in Vec256<uint> rhs)
             => Avx2.Or(lhs, rhs);
 
-
         [MethodImpl(Inline)]
         public static Vec256<long> or(in Vec256<long> lhs, in Vec256<long> rhs)
             => Avx2.Or(lhs, rhs);

@@ -25,7 +25,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Num128<T> DivF<T>(this in Num128<T> lhs, in Num128<T> rhs)
             where T : struct, IEquatable<T>
-                => InXG.divf(lhs,rhs);
+                => throw new NotImplementedException();
         
         /// <summary>
         /// Divides the components of two floating-point vectors
@@ -36,7 +36,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> DivF<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
-                => InXG.divf(lhs,rhs);
+                => Vec128Ops.div(lhs,rhs);
 
         /// <summary>
         /// Compares two floating-point scalars
@@ -46,9 +46,9 @@ namespace Z0
         /// <param name="mode">The comparison algorithm</param>
         /// <typeparam name="T">The primitive float type, either single or double</typeparam>
         [MethodImpl(Inline)]
-        public static bool CmpF<T>(this in Num128<T> lhs, in Num128<T> rhs, FloatComparisonMode mode)
+        public static bool CmpF<T>(this in Num128<T> lhs, in Num128<T> rhs, FloatCompareKind mode)
             where T : struct, IEquatable<T>
-                => InXG.cmpf(lhs,rhs,mode);
+                => Num128Ops.cmpf(lhs,rhs,mode);
 
         /// <summary>
         /// Compares two floating-point vectors
@@ -58,11 +58,10 @@ namespace Z0
         /// <param name="mode">The comparison algorithm</param>
         /// <typeparam name="T">The primitive float type, either single or double</typeparam>
         [MethodImpl(Inline)]
-        public static bool[] CmpF<T>(this in Vec128<T> lhs, in Vec128<T> rhs, FloatComparisonMode mode)
+        public static bool[] CmpF<T>(this in Vec128<T> lhs, in Vec128<T> rhs, FloatCompareKind mode)
             where T : struct, IEquatable<T>
-                => InXG.cmpf(lhs,rhs,mode);
+                => Vec128Ops.cmpf(lhs,rhs,mode);
  
-
         /// <summary>
         /// Computes the bitwise and of two vectors
         /// </summary>
@@ -90,7 +89,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => Vec128Ops.or(lhs,rhs);
 
-
         /// <summary>
         /// Defines a stream of vectors over an array
         /// </summary>
@@ -99,7 +97,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static IEnumerable<Vec128<T>> Stream128<T>(this T[] src)
             where T : struct, IEquatable<T>
-                => InXG.stream128(src); 
-
+                => Vec128Ops.stream(src); 
     }
 }

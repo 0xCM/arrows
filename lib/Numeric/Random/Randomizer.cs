@@ -8,6 +8,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices;
+    using System.Numerics;
 
     using static zcore;
 
@@ -42,7 +43,9 @@ namespace Z0
         IRandomizer<ulong>,
         IRandomizer<float>,
         IRandomizer<double>,
-        IRandomizer<decimal>
+        IRandomizer<decimal>,
+        IRandomizer<BigInteger>
+
     {
         
         /// <summary>
@@ -343,5 +346,14 @@ namespace Z0
         IEnumerable<decimal> IRandomizer<decimal>.stream()
             => from x in stream(0m, 1m)
                 select x * nextSign();
+
+        public IEnumerable<BigInteger> stream(Interval<BigInteger> domain)
+            => stream((long)domain.left, (long)domain.right).Select(x => new BigInteger(x));
+
+        public IEnumerable<BigInteger> stream(BigInteger min, BigInteger max)
+            => stream((long)min, (long)max).Select(x => new BigInteger(x));
+
+        IEnumerable<BigInteger> IRandomizer<BigInteger>.stream()
+            => stream(long.MinValue, long.MaxValue).Select(x => new BigInteger(x));
     }
 }

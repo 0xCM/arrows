@@ -22,9 +22,21 @@ namespace Z0.Bench
 
     }
 
-    public abstract class Benchmark : Context<Benchmark>
+    public static class Benchmark
     {
-         protected Benchmark()
+        public static BenchResult Run<T>(string opname, Func<T,T,T> binop, BenchConfig config = null)
+            where T : struct, IEquatable<T>
+                => BinOpBenchmark.Runner<T>(opname,config).Run(binop);
+
+        public static BenchResult Run<T>(string opname, Vec128BinOp<T> binop, BenchConfig config = null)
+            where T : struct, IEquatable<T>
+                => BinOpBenchmark.Runner<T>(opname,config).Run(binop);
+
+    }
+
+    public abstract class BenchmarkContext : Context<BenchmarkContext>
+    {
+         protected BenchmarkContext()
          : base(RandSeeds.BenchSeed)
          {
 
@@ -115,16 +127,15 @@ namespace Z0.Bench
             => RVar.sample(size ?? SampleSize);
             
         protected void LogCycleStart(int cycle)
-            => zcore.hilite($"{OpId} Start Cycle  = {cycle} | Samples = {Config.SampleSize} | Reps = {Config.Reps}", SeverityLevel.HiliteCL);
+            => zcore.hilite($"{OpId} Start Cycle | Cycle = {cycle} | Samples = {Config.SampleSize}", SeverityLevel.HiliteCL);
 
-        protected void LogCycleFinish(int cycle, BenchResult result)
-            =>zcore.hilite($"{OpId} Finish Cycle = {cycle} | Samples = {Config.SampleSize} | Reps = {Config.Reps} | Duration = {result.Duration}ms", SeverityLevel.Perform);
+        protected void LogCycleFinish(BenchResult result)
+            => zcore.hilite($"{OpId} Finish Cycle | {result}", SeverityLevel.Perform);
 
         protected void LogStart()
             => zcore.hilite($"{OpId} Executing {Config.Cycles} cycles", SeverityLevel.HiliteCL);
 
         protected void LogFinish(BenchResult result)
             =>  zcore.hilite($"{result}", SeverityLevel.HiliteCL);
-
     }
 }

@@ -33,11 +33,11 @@ namespace Z0
             => Avx2.Divide(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<float> div(Vec256<float> lhs, Vec256<float> rhs)
+        public static Vec256<float> div(in Vec256<float> lhs, in Vec256<float> rhs)
             => Avx2.Divide(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<double> div(Vec256<double> lhs, Vec256<double> rhs)
+        public static Vec256<double> div(in Vec256<double> lhs, in Vec256<double> rhs)
             => Avx2.Divide(lhs, rhs);
 
     }

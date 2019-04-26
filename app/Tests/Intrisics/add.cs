@@ -29,7 +29,7 @@ namespace Z0.Tests.InXTests
             = PrimOps.add;    
 
         protected override Vec128BinOp<T> VecOp {get;}
-            = Vec128Ops.add<T>; 
+            = Vec128Ops.add; 
 
         public virtual void VerifyGeneric()
         {                

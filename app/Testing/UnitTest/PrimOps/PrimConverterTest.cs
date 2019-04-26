@@ -32,10 +32,10 @@ namespace Z0.Testing
         protected Index<S> source(S min, S max)
             =>  Randomizer<S>().stream(min,max).Freeze(VectorSize);
 
-        protected ClrConverterTest(Interval<S> bounds)
+        protected ClrConverterTest(Interval<S>? bounds = null)
         {
-            this.MinPrimVal = bounds.left;
-            this.MaxPrimVal = bounds.right;
+            this.MinPrimVal = (bounds ?? Defaults.get<S>().Domain).left;
+            this.MaxPrimVal = (bounds ?? Defaults.get<S>().Domain).right;
             this.Src = source(MinPrimVal,MaxPrimVal);
         }
       

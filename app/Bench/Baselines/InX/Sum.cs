@@ -18,6 +18,10 @@ namespace Z0.Bench
     
     partial class BaselineBench
     {
+        static BenchResult RunInXSum<T>(BenchConfig config = null)
+            where T : struct, IEquatable<T>        
+                => AggregateBenchmark.Runner<T>("intrinsics/sum", config).Run(InXSum.Operator<T>());
+
         static IEnumerable<BenchResult> RunInXSum(BenchConfig config = null)
         {
             yield return RunInXSum<short>(config);
@@ -26,21 +30,9 @@ namespace Z0.Bench
             yield return RunInXSum<double>(config);
         }
 
-        static TimedAggregateOp<T> InXSumOpG<T>()
-                where T : struct, IEquatable<T>
-                    => InXSum.OperatorG<T>();    
-
-        static TimedAggregateOp<T> InXSumOp<T>()
-                where T : struct, IEquatable<T>
-                    => InXSum.Operator<T>();    
-
         static BenchResult RunInXSumG<T>(BenchConfig config = null)
             where T : struct, IEquatable<T>        
-                => AggregateBenchmark.Runner<T>("intrinsics-g/sum",config).Run(InXSumOpG<T>());
-
-        static BenchResult RunInXSum<T>(BenchConfig config = null)
-            where T : struct, IEquatable<T>        
-                => AggregateBenchmark.Runner<T>("intrinsics/sum", config).Run(InXSumOp<T>());
+                => AggregateBenchmark.Runner<T>("intrinsics-g/sum",config).Run(InXSum.OperatorG<T>());
 
         static IEnumerable<BenchResult> RunInXSumG(BenchConfig config = null)
         {
@@ -65,11 +57,16 @@ namespace Z0.Bench
                 where T : struct, IEquatable<T>
             {
                 var sw = stopwatch();
-                //dst = lhs.SumG(rhs);
-                dst = convert<int,T>(0);
+                dst = IndexOps.sum(lhs);
                 return elapsed(sw);
             }
 
+            public static TimedAggregateOp<T> OperatorG<T>()
+                where T : struct, IEquatable<T>
+                    => SumG;
+            public static TimedAggregateOp<T> Operator<T>()
+                where T : struct, IEquatable<T>
+                    => Operators.lookup<T, TimedAggregateOp<T>>();
 
             static long Sum(Index<short> src, out short dst)
             {
@@ -92,21 +89,13 @@ namespace Z0.Bench
                 return elapsed(sw);
             }        
 
-           static long Sum(Index<double> src, out double dst)
+            static long Sum(Index<double> src, out double dst)
             {
                 var sw = stopwatch();
                 dst = src.InXSum();
                 return elapsed(sw);
             }        
 
-
-            public static TimedAggregateOp<T> OperatorG<T>()
-                where T : struct, IEquatable<T>
-                    => SumG;
-
-            public static TimedAggregateOp<T> Operator<T>()
-                where T : struct, IEquatable<T>
-                    => Operators.lookup<T, TimedAggregateOp<T>>();
         }
     }
 }

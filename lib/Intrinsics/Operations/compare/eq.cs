@@ -12,82 +12,79 @@ namespace Z0
     using static zcore;
     using static inxfunc;
 
-    partial class InX
-    {
-        /// <summary>
-        /// Obtains the eq[T] operator bundle
-        /// </summary>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static InXEq<T> eq<T>()
-            where T : struct, IEquatable<T>
-                => SSR.InXEqG<T>.Operator;
-    }    
     
     partial class InX
     {
         [MethodImpl(Inline)]
-        public static Num128<float> eq(Num128<float> lhs, Num128<float> rhs)
-            => Sse2.CompareEqualScalar(lhs, rhs);
+        public static bool eq(in Num128<float> lhs,in Num128<float> rhs)
+            => NaN(Avx2.CompareEqualScalar(lhs, rhs).GetElement(0));
         
         [MethodImpl(Inline)]
-        public static Num128<double> eq(Num128<double> lhs, Num128<double> rhs)
-            => Sse2.CompareEqualScalar(lhs, rhs);
+        public static bool eq(in Num128<double> lhs,in Num128<double> rhs)
+            => NaN(Avx2.CompareEqualScalar(lhs, rhs).GetElement(0));
 
         [MethodImpl(Inline)]
-        public static Vec128<byte> eq(Vec128<byte> lhs, Vec128<byte> rhs)
-            => Sse2.CompareEqual(lhs, rhs);
+        public static bool eq(in Vec128<byte> lhs, in Vec128<byte> rhs)
+            => Avx2.TestAllOnes(Avx2.CompareEqual(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> eq(Vec128<sbyte> lhs, Vec128<sbyte> rhs)
-            => Sse2.CompareEqual(lhs, rhs);
+        public static bool eq(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+            => Avx2.TestAllOnes(Avx2.CompareEqual(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static Vec128<short> eq(Vec128<short> lhs, Vec128<short> rhs)
-            => Sse2.CompareEqual(lhs, rhs);
+        public static bool eq(in Vec128<short> lhs, in Vec128<short> rhs)
+            => Avx2.TestAllOnes(Avx2.CompareEqual(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static Vec128<ushort> eq(Vec128<ushort> lhs, Vec128<ushort> rhs)
-            => Sse2.CompareEqual(lhs, rhs);
+        public static bool eq(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+            => Avx2.TestAllOnes(Avx2.CompareEqual(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static Vec128<int> eq(Vec128<int> lhs, Vec128<int> rhs)
-            => Sse2.CompareEqual(lhs, rhs);
+        public static bool eq(in Vec128<int> lhs, in Vec128<int> rhs)
+            => Avx2.TestAllOnes(Avx2.CompareEqual(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static Vec128<uint> eq(Vec128<uint> lhs, Vec128<uint> rhs)
-            => Sse2.CompareEqual(lhs, rhs);
+        public static bool eq(in Vec128<uint> lhs, in Vec128<uint> rhs)
+            => Avx2.TestAllOnes(Avx2.CompareEqual(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static Vec128<float> eq(Vec128<float> lhs, Vec128<float> rhs)
-            => Sse2.CompareEqual(lhs, rhs);
+        public static bool eq(in Vec128<long> lhs, in Vec128<long> rhs)
+            => Avx2.TestAllOnes(Avx2.CompareEqual(lhs, rhs));
+
+        [MethodImpl(Inline)]
+        public static bool eq(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
+            => Avx2.TestAllOnes(Avx2.CompareEqual(lhs, rhs));
+
+        [MethodImpl(Inline)]
+        public static bool eq(in Vec128<float> lhs, in Vec128<float> rhs)
+            => Avx2.TestAllOnes(Avx2.CompareEqual(lhs, rhs).AsUInt64());
         
         [MethodImpl(Inline)]
-        public static Vec128<double> eq(Vec128<double> lhs, Vec128<double> rhs)
-            => Sse2.CompareEqual(lhs, rhs);
+        public static bool eq(in Vec128<double> lhs, in Vec128<double> rhs)
+            => Avx2.TestAllOnes(Avx2.CompareEqual(lhs, rhs).AsUInt64());
   
         [MethodImpl(Inline)]
-        public static Vec256<byte> eq(Vec256<byte> lhs, Vec256<byte> rhs)
+        public static Vec256<byte> eq(in Vec256<byte> lhs, in Vec256<byte> rhs)
             => Avx2.CompareEqual(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<sbyte> eq(Vec256<sbyte> lhs, Vec256<sbyte> rhs)
+        public static Vec256<sbyte> eq(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
             => Avx2.CompareEqual(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<short> eq(Vec256<short> lhs, Vec256<short> rhs)
+        public static Vec256<short> eq(in Vec256<short> lhs, in Vec256<short> rhs)
             => Avx2.CompareEqual(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<ushort> eq(Vec256<ushort> lhs, Vec256<ushort> rhs)
+        public static Vec256<ushort> eq(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
             => Avx2.CompareEqual(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<int> eq(Vec256<int> lhs, Vec256<int> rhs)
+        public static Vec256<int> eq(in Vec256<int> lhs, in Vec256<int> rhs)
             => Avx2.CompareEqual(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<uint> eq(Vec256<uint> lhs, Vec256<uint> rhs)
+        public static Vec256<uint> eq(in Vec256<uint> lhs, in Vec256<uint> rhs)
             => Avx2.CompareEqual(lhs, rhs);
 
     }

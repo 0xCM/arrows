@@ -12,18 +12,18 @@ namespace Z0
     using static zcore;
     using static inxfunc;
     using static vec128;
+    
 
-
-    partial class InXX
+    partial class InX
     {
-        public static unsafe short InXSum(this Index<short> src)
+        public static unsafe short sum(in Index<short> src)
         {
-            var veclen = Vector128<short>.Count;
+            var veclen = Vec128<short>.Length;
             var seglen = 2*veclen;
             var srclen = src.Count;
             Claim.eq(0, srclen % seglen);
 
-            var dst = Vector128.Create((short)0);
+            var dst = Vec128.define((short)0);
             fixed(short* pSrc = &(src.ToArray()[0]))            
             {
                 short* pSrcWalker = pSrc;
@@ -35,8 +35,8 @@ namespace Z0
                     var v2 = load(pSrcWalker);
                     pSrcWalker += veclen;
 
-                    var vSum = Avx2.HorizontalAdd(v1,v2);
-                    dst = Avx2.Add(dst, vSum);
+                    var vSum = addh(v1,v2);
+                    dst = add(dst, vSum);
                 }
             }
             
@@ -44,18 +44,18 @@ namespace Z0
             store(dst,final);
             var total = (short)0;
             for(var i=0; i< veclen; i++)
-                total += final[0];            
+                total += final[i];            
             return total;
         }
 
-        public static unsafe int InXSum(this Index<int> src)
+        public static unsafe int sum(in Index<int> src)
         {
-            var veclen = Vector128<int>.Count;
+            var veclen = Vec128<short>.Length;
             var seglen = 2*veclen;
             var srclen = src.Count;
             Claim.eq(0, srclen % seglen);
 
-            var dst = Vector128.Create(0);
+            var dst = Vec128.define(0);
             fixed(int* pSrc = &(src.ToArray()[0]))            
             {
                 int* pSrcWalker = pSrc;
@@ -67,8 +67,8 @@ namespace Z0
                     var v2 = load(pSrcWalker);
                     pSrcWalker += veclen;
 
-                    var vSum = Avx2.HorizontalAdd(v1,v2);
-                    dst = Avx2.Add(dst, vSum);
+                    var vSum = addh(v1,v2);
+                    dst = add(dst, vSum);
                 }
             }
             
@@ -76,18 +76,19 @@ namespace Z0
             store(dst,final);
             var total = 0;
             for(var i=0; i< veclen; i++)
-                total += final[0];            
+                total += final[i];            
             return total;
+
         }
 
-        public static unsafe float InXSum(this Index<float> src)
+        public static unsafe float sum(in Index<float> src)
         {
-            var veclen = Vector128<float>.Count;
+            var veclen = Vec128<short>.Length;
             var seglen = 2*veclen;
             var srclen = src.Count;
             Claim.eq(0, srclen % seglen);
 
-            var dst = Vector128.Create(0.0f);
+            var dst = Vec128.define(0.0f);
             fixed(float* pSrc = &(src.ToArray()[0]))            
             {
                 float* pSrcWalker = pSrc;
@@ -99,8 +100,8 @@ namespace Z0
                     var v2 = load(pSrcWalker);
                     pSrcWalker += veclen;
 
-                    var vSum = Avx2.HorizontalAdd(v1,v2);
-                    dst = Avx2.Add(dst, vSum);
+                    var vSum = addh(v1,v2);
+                    dst = add(dst, vSum);
                 }
             }
             
@@ -108,18 +109,18 @@ namespace Z0
             store(dst,final);
             var total = 0f;
             for(var i=0; i< veclen; i++)
-                total += final[0];            
+                total += final[i];            
             return total;
         }
 
-        public static unsafe double InXSum(this Index<double> src)
+        public static unsafe double sum(in Index<double> src)
         {
-            var veclen = Vector128<double>.Count;
+            var veclen = Vec128<double>.Length;
             var seglen = 2*veclen;
             var srclen = src.Count;
             Claim.eq(0, srclen % seglen);
 
-            var dst = Vector128.Create(0.0);
+            var dst = Vec128.define(0.0);
             fixed(double* pSrc = &(src.ToArray()[0]))            
             {
                 double* pSrcWalker = pSrc;
@@ -131,8 +132,8 @@ namespace Z0
                     var v2 = load(pSrcWalker);
                     pSrcWalker += veclen;
 
-                    var vSum = Avx2.HorizontalAdd(v1,v2);
-                    dst = Avx2.Add(dst, vSum);
+                    var vSum = addh(v1,v2);
+                    dst = add(dst, vSum);
                 }
             }
             
@@ -140,8 +141,9 @@ namespace Z0
             store(dst,final);
             var total = 0d;
             for(var i=0; i< veclen; i++)
-                total += final[0];
+                total += final[i];
             return total;
         }
+
     }
 }

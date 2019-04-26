@@ -18,13 +18,10 @@ namespace Z0.Bench
     
     partial class BaselineBench
     {
-        static TimedAggregateOp<T> PrimalSumOp<T>()
-                where T : struct, IEquatable<T>
-                    => PrimalSumBaseline.Operator<T>();
-
         static BenchResult RunPrimalSum<T>(BenchConfig config = null)
             where T : struct, IEquatable<T>        
-                => AggregateBenchmark.Runner<T>("primal/sum", config).Run(PrimalSumOp<T>());
+                => AggregateBenchmark.Runner<T>("primal/sum", config)
+                    .Run(PrimalSumBaseline.Operator<T>());
 
         static IEnumerable<BenchResult> RunPrimalSum(BenchConfig config = null)
         {
@@ -36,8 +33,6 @@ namespace Z0.Bench
 
         class PrimalSumBaseline 
         {
-
-
             public static TimedAggregateOp<T> Operator<T>()
                 where T : struct, IEquatable<T>
                     => Operators.lookup<T, TimedAggregateOp<T>>();
@@ -84,8 +79,7 @@ namespace Z0.Bench
                 for(var i =0; i< src.Count; i++)
                     dst += src[i];
                 return elapsed(sw);
-            }
-        
+            }        
         }
     }
 }

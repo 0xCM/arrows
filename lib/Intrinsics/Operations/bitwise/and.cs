@@ -14,8 +14,9 @@ namespace Z0
 
     partial class InX
     {
-        //! and: vec -> vec -> vec
+        //! and: vec128 -> vec128 -> vec128
         //! -------------------------------------------------------------------
+
 
         [MethodImpl(Inline)]
         public static Vec128<byte> and(in Vec128<byte> lhs, in Vec128<byte> rhs)
@@ -57,6 +58,9 @@ namespace Z0
         public static Vec128<double> and(in Vec128<double> lhs, in Vec128<double> rhs)
             => Avx2.And(lhs, rhs);
 
+        //! and: vec128 -> vec128 -> vec128
+        //! -------------------------------------------------------------------
+
         [MethodImpl(Inline)]
         public static Vec256<ushort> and(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
             => Avx2.And(lhs, rhs);
@@ -94,48 +98,48 @@ namespace Z0
             => Avx2.And(lhs, rhs); 
  
 
-        //! add: vec -> vec -> dst* -> void
+        //! and: vec -> vec -> *
         //! -------------------------------------------------------------------
         
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<byte> lhs, in Vec128<byte> rhs, byte* dst)
-            => Avx2.Store(dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, void* dst)
+            => Avx2.Store((sbyte*)dst, Avx2.And(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, sbyte* dst)
-            => Avx2.Store(dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<byte> lhs, in Vec128<byte> rhs, void* dst)
+            => Avx2.Store((byte*)dst, Avx2.And(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<short> lhs, in Vec128<short> rhs, short* dst)
-            => Avx2.Store(dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<short> lhs, in Vec128<short> rhs, void* dst)
+            => Avx2.Store((short*)dst, Avx2.And(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ushort* dst)
-            => Avx2.Store(dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<ushort> lhs, in Vec128<ushort> rhs, void* dst)
+            => Avx2.Store((ushort*)dst, Avx2.And(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<int> lhs, in Vec128<int> rhs, int* dst)
-            => Avx2.Store(dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<int> lhs, in Vec128<int> rhs, void* dst)
+            => Avx2.Store((int*)dst, Avx2.And(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<uint> lhs, in Vec128<uint> rhs, uint* dst)
-            => Avx2.Store(dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<uint> lhs, in Vec128<uint> rhs, void* dst)
+            => Avx2.Store((uint*)dst, Avx2.And(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<long> lhs, in Vec128<long> rhs, long* dst)
-            => Avx2.Store(dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<long> lhs, in Vec128<long> rhs, void* dst)
+            => Avx2.Store((long*)dst, Avx2.And(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ulong* dst)
-            => Avx2.Store(dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<ulong> lhs, in Vec128<ulong> rhs, void* dst)
+            => Avx2.Store((ulong*)dst, Avx2.And(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<float> lhs, in Vec128<float> rhs, float* dst)
-            => Avx2.Store(dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<float> lhs, in Vec128<float> rhs, void* dst)
+            => Avx2.Store((float*)dst, Avx2.And(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<double> lhs, in Vec128<double> rhs, double* dst)
-            => Avx2.Store(dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<double> lhs, in Vec128<double> rhs, void* dst)
+            => Avx2.Store((double*)dst, Avx2.And(lhs,rhs));
 
     }
 }

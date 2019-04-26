@@ -37,6 +37,7 @@ namespace Z0.Testing
         Default<ulong>,
         Default<float>,
         Default<double>,
+        Default<decimal>,
         Default<BigInteger>
 
     {
@@ -167,7 +168,18 @@ namespace Z0.Testing
         Interval<double> Default<double>.Domain 
             => Float64Domain;
 
-       // ! Float64
+        // ! Float64
+
+        public const decimal DecimalMin = -250000.00m;
+        
+        public const decimal DecimalMax = 250000.00m;
+
+        public static readonly Interval<decimal> DecimalDomain = Interval.closed(DecimalMin,DecimalMax);
+
+        Interval<decimal> Default<decimal>.Domain 
+            => DecimalDomain;
+
+       // ! BigInteger
 
         public static readonly BigInteger BigIntMin = -250000;
         

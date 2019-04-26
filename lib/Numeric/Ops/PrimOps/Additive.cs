@@ -12,6 +12,8 @@ namespace Z0
 
     using static Operative;
 
+    
+
     partial class PrimOps { public partial class Reify
     {
         public readonly struct Additive : 

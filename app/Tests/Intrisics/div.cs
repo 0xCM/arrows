@@ -20,7 +20,6 @@ namespace Z0.Tests.InXTests
         where S : DivTest<S,T>
         where T : struct, IEquatable<T>
     {        
-        protected static readonly InXDiv<T> InXOp = InXG.div<T>();
         
         protected DivTest(Interval<T>? domain = null, int? sampleSize = null)
             : base(P.add, domain, sampleSize)        
@@ -28,9 +27,11 @@ namespace Z0.Tests.InXTests
 
         }
 
-        protected override Vec128BinOp<T> VecOp {get;} = InXOp.div;
+        protected override Vec128BinOp<T> VecOp {get;} 
+            = Vec128Ops.div;
 
-        protected override IndexBinOp<T> IndexOp {get;} = PrimOps.div;
+        protected override IndexBinOp<T> IndexOp {get;} 
+            = PrimOps.div;
     
     }
 

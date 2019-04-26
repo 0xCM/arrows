@@ -11,34 +11,228 @@ namespace Z0
     
     using static zcore;
     using static inxfunc;
+    using static System.Runtime.Intrinsics.X86.FloatComparisonMode;
 
-
+    
     partial class InX
     {
-        [MethodImpl(Inline)]
-        public static Num128<float> cmpf(in Num128<float> lhs, in Num128<float> rhs, FloatComparisonMode mode)
-            => Avx2.CompareScalar(lhs,rhs,mode);
 
         [MethodImpl(Inline)]
-        public static Num128<double> cmpf(in Num128<double> lhs, in Num128<double> rhs, FloatComparisonMode mode)
-            => Avx2.CompareScalar(lhs,rhs,mode);
+        static bool[] bools(Vector128<double> src)
+            => array(
+                NaN(src.GetElement(0)), 
+                NaN(src.GetElement(1))
+                );
 
         [MethodImpl(Inline)]
-        public static Vec128<float> cmpf(in Vec128<float> lhs, in Vec128<float> rhs, FloatComparisonMode mode)
-            => Avx2.Compare(lhs,rhs,mode);
+        static bool[] bools(Vector128<float> src)
+            => array(
+                NaN(src.GetElement(0)), 
+                NaN(src.GetElement(1)),
+                NaN(src.GetElement(2)), 
+                NaN(src.GetElement(3))
+                );
+
+        [MethodImpl(Inline)]
+        static bool[] bools(Vector256<float> src)
+            => array(
+                NaN(src.GetElement(0)), 
+                NaN(src.GetElement(1)),
+                NaN(src.GetElement(2)), 
+                NaN(src.GetElement(3)),
+                NaN(src.GetElement(4)), 
+                NaN(src.GetElement(5)),
+                NaN(src.GetElement(6)), 
+                NaN(src.GetElement(7))
+                );
+
+        [MethodImpl(Inline)]
+        public static bool cmpf(in Num128<float> lhs, in Num128<float> rhs, FloatCompareKind mode)
+            => NaN(Avx2.CompareScalar(lhs,rhs,(FloatComparisonMode)mode).GetElement(0));
+
+        [MethodImpl(Inline)]
+        public static bool cmpf(in Num128<double> lhs,in Num128<double> rhs, FloatCompareKind mode)
+            => NaN(Avx2.CompareScalar(lhs,rhs,(FloatComparisonMode)mode).GetElement(0));
+
+        [MethodImpl(Inline)]
+        public static bool[] cmpf(in Vec128<float> lhs,in Vec128<float> rhs, FloatCompareKind mode)
+            => bools(Avx2.Compare(lhs,rhs,(FloatComparisonMode)mode));
+
+        [MethodImpl(Inline)]
+        public static bool[] cmpf(in Vec128<double> lhs,in Vec128<double> rhs, FloatCompareKind mode)
+            => bools(Avx2.Compare(lhs,rhs,(FloatComparisonMode)mode));
+
+        [MethodImpl(Inline)]
+        public static Vec256<float> cmpf(in Vec256<float> lhs,in Vec256<float> rhs, FloatCompareKind mode)
+            => clearNaN(Avx2.Compare(lhs,rhs,(FloatComparisonMode)mode));
+
+        [MethodImpl(Inline)]
+        public static Vec256<double> cmpf(in Vec256<double> lhs, in Vec256<double> rhs, FloatCompareKind mode)
+            => clearNaN(Avx2.Compare(lhs,rhs,(FloatComparisonMode)mode));
+
+    }
+
+
+    public enum FloatCompareKind : byte
+    {
+        //
+        // Summary:
+        //     _CMP_EQ_OQ
+        EqOrdNS = EqualOrderedNonSignaling,
+        //
+        // Summary:
+        //     _CMP_LT_OS
+        LtOrdS= LessThanOrderedSignaling,
         
-        [MethodImpl(Inline)]
-        public static Vec128<double> cmpf(in Vec128<double> lhs, in Vec128<double> rhs, FloatComparisonMode mode)
-            => Avx2.Compare(lhs,rhs,mode);
-
-        [MethodImpl(Inline)]
-        public static Vec256<float> compare(Vec256<float> lhs, Vec256<float> rhs, FloatComparisonMode mode)
-            => Avx2.Compare(lhs,rhs,mode);
+        //
+        // Summary:
+        //     _CMP_LE_OS
+        LtEqOrdS = LessThanOrEqualOrderedSignaling,
         
-        [MethodImpl(Inline)]
-        public static Vec256<double> compare(Vec256<double> lhs, Vec256<double> rhs, FloatComparisonMode mode)
-            => Avx2.Compare(lhs,rhs,mode);
-
+        //
+        // Summary:
+        //     _CMP_UNORD_Q
+        UnOrdNS = UnorderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_NEQ_UQ
+        NEqUnOrdNS = NotEqualUnorderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_NLT_US
+        NLtUnOrdS = NotLessThanUnorderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_NLE_US
+        NLtEqUnOrdS = NotLessThanOrEqualUnorderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_ORD_Q
+        OrdNS = OrderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_EQ_UQ
+        EqUnOrdNS = EqualUnorderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_NGE_US
+        NGtEqUnOrdS = NotGreaterThanOrEqualUnorderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_NGT_US
+        NGtUnOrdS = NotGreaterThanUnorderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_FALSE_OQ
+        FalsOrdNS = FalseOrderedNonSignaling,
+        //
+        // Summary:
+        //     _CMP_NEQ_OQ
+        NEqOrdNS = NotEqualOrderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_GE_OS
+        GtEqOrdS = GreaterThanOrEqualOrderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_GT_OS
+        GtOrdS = FloatComparisonMode.GreaterThanOrderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_TRUE_UQ
+        TrueUnOrdNS = FloatComparisonMode.TrueUnorderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_EQ_OS
+        EqOrdS = EqualOrderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_LT_OQ
+        LtOrdNS = LessThanOrderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_LE_OQ
+        LtEqOrdNS = LessThanOrEqualOrderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_UNORD_S
+        UnOrdS = UnorderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_NEQ_US
+        NEqUnOrdS = NotEqualUnorderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_NLT_UQ
+        NLtUnOrdNS = NotLessThanUnorderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_NLE_UQ
+        NLtEqUnOrdNS = NotLessThanOrEqualUnorderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_ORD_S
+        OrdS = OrderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_EQ_US
+        EqUnOrdS= EqualUnorderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_NGE_UQ
+        NGtEqUnOrdNS = NotGreaterThanOrEqualUnorderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_NGT_UQ
+        NGtUnOrdNS = NotGreaterThanUnorderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_FALSE_OS
+        FalseOrdS = FalseOrderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_NEQ_OS
+        NEqOrdS = NotEqualOrderedSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_GE_OQ
+        GtEqOrdNS = GreaterThanOrEqualOrderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_GT_OQ
+        GtOrdNS = GreaterThanOrderedNonSignaling,
+        
+        //
+        // Summary:
+        //     _CMP_TRUE_US
+        TrueUnOrdS = TrueUnorderedNonSignaling
+ 
     }
 
 }

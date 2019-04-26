@@ -5,6 +5,7 @@
 namespace Z0
 {
     using System;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
@@ -12,21 +13,12 @@ namespace Z0
     using static zcore;
     using static inxfunc;
 
-
-    public delegate Vector128<T> Vector128BinOp<T>(Vector128<T> lhs, Vector128<T> rhs)
-        where T : struct, IEquatable<T>;
-
-    public unsafe delegate Vector128<T> Vector128LoadOp<T>(void* src)
-        where T : struct, IEquatable<T>;
-
-    public unsafe delegate void Vector128StoreOp<T>(Vector128<T> src, void* dst)
-        where T : struct, IEquatable<T>;
-
-
-    public delegate bool Vec128UnaryPredicate<T>(in Vec128<T> src)
-        where T : struct, IEquatable<T>;
-
-    public delegate bool Vec128BinaryPredicate<T>(in Vec128<T> lhs, in Vec128<T> rhs)
+    /// <summary>
+    /// Characterizes a function that produces a 128-bit scalar vector given a scalar value
+    /// </summary>
+    /// <param name="src">The scalar upon which the vector is predicated</param>
+    /// <typeparam name="T">The primitive type</typeparam>
+    public delegate Num128<T> Num128Factory<T>(T src)
         where T : struct, IEquatable<T>;
 
     /// <summary>
@@ -46,8 +38,50 @@ namespace Z0
     public delegate Num128<T> Num128UnaryOp<T>(in Num128<T> src)
         where T : struct, IEquatable<T>;
 
+    public delegate Num128<T> Num128TernaryOp<T>(in Num128<T> x, in Num128<T> y, in Num128<T> z)
+        where T : struct, IEquatable<T>;
+
     /// <summary>
-    /// Characterizes the signature of a canonical 128-bit vector instrinsic binary operator
+    /// Characterizes the signature of an unsafe data transfer from a 
+    /// scalar source vector to a pointer-identified memory location
+    /// </summary>
+    /// <param name="src">The source data</param>
+    /// <param name="dst">The target pointer</param>
+    /// <typeparam name="T">The primitive type</typeparam>
+    public unsafe delegate void Num128PStore<T>(in Num128<T> src, void* dst)
+        where T : struct, IEquatable<T>;
+
+    public delegate bool Num128CmpFloat<T>(in Num128<T> lhs, in Num128<T> rhs, FloatCompareKind mode)
+        where T : struct, IEquatable<T>;
+
+    public delegate bool Num128BinPred<T>(in Num128<T> lhs, in Num128<T> rhs)
+        where T : struct, IEquatable<T>;
+
+    public delegate bool[] Vec128CmpFloat<T>(in Vec128<T> lhs, in Vec128<T> rhs, FloatCompareKind mode)
+        where T : struct, IEquatable<T>;
+
+    public delegate Vec128<T> Vec128TernaryOp<T>(in Vec128<T> x, in Vec128<T> y, in Vec128<T> z)
+        where T : struct, IEquatable<T>;
+
+    public delegate bool Vec128UnaryPred<T>(in Vec128<T> src)
+        where T : struct, IEquatable<T>;
+
+    public delegate bool Vec128BinPred<T>(in Vec128<T> lhs, in Vec128<T> rhs)
+        where T : struct, IEquatable<T>;
+
+    /// <summary>
+    /// Characterizes the signature of a canonical 128-bit vector heterogenous binary operator
+    /// </summary>
+    /// <param name="lhs">The left operand</param>
+    /// <param name="rhs">The right operand</param>
+    /// <typeparam name="T">The primitive type</typeparam>
+    public delegate Vec128<T> Vec128BinOp<S,T>(in Vec128<S> lhs,  in Vec128<S> rhs)
+        where T : struct, IEquatable<T>
+        where S : struct, IEquatable<S>;
+
+
+    /// <summary>
+    /// Characterizes the signature of a canonical 128-bit vector binary operator
     /// </summary>
     /// <param name="lhs">The left operand</param>
     /// <param name="rhs">The right operand</param>
@@ -70,7 +104,20 @@ namespace Z0
     /// <param name="src">The source data</param>
     /// <param name="dst">The target pointer</param>
     /// <typeparam name="T">The primitive type</typeparam>
-    public unsafe delegate void Vec128PStore<T>(in Vec128<T> src, void* dst)
+    public unsafe delegate void Vec128PStoreOp<T>(in Vec128<T> src, void* dst)
+        where T : struct, IEquatable<T>;
+
+    /// <summary>
+    /// Characterizes the signature of an unsafe data transfer from a 
+    /// source vector to an array
+    /// </summary>
+    /// <param name="src">The source data</param>
+    /// <param name="dst">The target pointer</param>
+    /// <typeparam name="T">The primitive type</typeparam>
+    public unsafe delegate void Vec128AStoreOp<T>(in Vec128<T> src, T[] dst, int offset = 0)
+        where T : struct, IEquatable<T>;
+
+    public unsafe delegate void Vec128IndexAStoreOp<T>(in Index<Vec128<T>> src, T[] dst, int offset = 0)       
         where T : struct, IEquatable<T>;
 
     /// <summary>
@@ -121,6 +168,14 @@ namespace Z0
     public delegate Vec128<T> Vec128UnaryOp<T>(in Vec128<T> src)
         where T : struct, IEquatable<T>;
 
+    /// <summary>
+    /// Characterizes the signature of a function that transforms arrays into 128-bit vector streams
+    /// </summary>
+    /// <param name="src">The data source</param>
+    /// <typeparam name="T">The primitive type</typeparam>
+    public delegate IEnumerable<Vec128<T>> Vec128StreamOp<T>(T[] src)
+        where T : struct, IEquatable<T>;
+    
     /// <summary>
     /// Characterizes the signature of a 256-bit vector intrinsic unary operator
     /// </summary>

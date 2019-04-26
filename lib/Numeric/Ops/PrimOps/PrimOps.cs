@@ -14,6 +14,7 @@ namespace Z0
     using static Operative;
     using Primal = PrimOps.Reify;
 
+
     partial class Operative
     {
 

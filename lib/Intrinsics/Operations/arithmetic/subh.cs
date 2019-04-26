@@ -16,19 +16,19 @@ namespace Z0
     {
         
         [MethodImpl(Inline)]
-        public static Vec128<short> hsub(Vec128<short> lhs, Vec128<short> rhs)
+        public static Vec128<short> subh(Vec128<short> lhs, Vec128<short> rhs)
             => Avx2.HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> hsub(Vec128<int> lhs, Vec128<int> rhs)
+        public static Vec128<int> subh(Vec128<int> lhs, Vec128<int> rhs)
             => Avx2.HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<float> hsub(Vec128<float> lhs, Vec128<float> rhs)
+        public static Vec128<float> subh(Vec128<float> lhs, Vec128<float> rhs)
             => Avx2.HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> hsub(Vec128<double> lhs, Vec128<double> rhs)
+        public static Vec128<double> subh(Vec128<double> lhs, Vec128<double> rhs)
             => Avx2.HorizontalSubtract(lhs, rhs);
 
  

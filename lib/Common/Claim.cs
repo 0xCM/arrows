@@ -87,6 +87,13 @@ namespace Z0
             where T : struct, IEquatable<T> 
                 => define(x,y,"!=", (a,b) => a.Equals(b)).demand();
 
+        public static void nonzero(int x)
+        {
+            if(x == 0)
+                fail("The input value is required to be nonzero, and yet, it is 0");
+        }
+            
+
         public static string lt<T>(T x, T y)
             where T : Operative.Ordered<T>, new()
                 => define(x,y,"<", new T().lt).demand();

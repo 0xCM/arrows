@@ -15,7 +15,9 @@ namespace Z0.Testing
 
     using static zcore;
 
-    public abstract class BinaryPrimOpsTest<S,T> : PrimOpsTest<S,T>
+
+
+    public class BinaryPrimOpsTest<S,T> : PrimOpsTest<S,T>
         where S : BinaryPrimOpsTest<S,T>
         where T : struct, IEquatable<T>
     {
@@ -24,8 +26,8 @@ namespace Z0.Testing
         protected Index<T> RightSrc;
 
 
-        protected BinaryPrimOpsTest(Interval<T> Bounds, Func<T,bool> filter = null, int? SampleSize = null)
-            : base(Bounds,filter,SampleSize)
+        protected BinaryPrimOpsTest(Interval<T>? domain = null, Func<T,bool> filter = null, int? SampleSize = null)
+            : base(domain,filter,SampleSize)
         {
             this.LeftSrc = sample();
             this.RightSrc = sample();

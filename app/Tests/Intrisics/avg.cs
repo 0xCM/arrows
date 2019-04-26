@@ -21,7 +21,7 @@ namespace Z0.Tests.InXTests
         where S : AvgTest<S,T>
         where T : struct, IEquatable<T>
     {        
-        protected static readonly InXAvg<T> InXOp = InXG.avg<T>();
+        protected static readonly Vec128BinOp<T> Avg = Vec128Ops.avg<T>;
         
         protected AvgTest(Interval<T>? domain = null, int? streamlen = null)
             : base("avg", domain, streamlen)        
@@ -33,10 +33,10 @@ namespace Z0.Tests.InXTests
 
 
         protected IEnumerable<Vec128<T>> Results()
-            => Results(InXOp.avg);
+            => Results(Avg);
         
         public virtual void Verify()
-            => Verify(InXOp.avg, avg);
+            => Verify(Avg, avg);
         
     }
 

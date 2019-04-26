@@ -47,37 +47,40 @@ namespace Z0
         public static bool allOn(in Vec128<ulong> src)
             => Avx.TestAllOnes(src);
 
+
         [MethodImpl(Inline)]
-        public static bool allOff(in Vec128<ulong> src, in Vec128<ulong> mask)
+        public static bool off(in Vec128<sbyte> src, in Vec128<sbyte> mask)
             => Avx.TestAllZeros(src, mask);
 
         [MethodImpl(Inline)]
-        public static bool allOff(in Vec128<uint> src, in Vec128<uint> mask)
+        public static bool off(in Vec128<byte> src, in Vec128<byte> mask)
             => Avx.TestAllZeros(src, mask);
 
         [MethodImpl(Inline)]
-        public static bool allOff(in Vec128<ushort> src, in Vec128<ushort> mask)
+        public static bool off(in Vec128<short> src, in Vec128<short> mask)
+            => Avx.TestAllZeros(src, mask);
+
+        [MethodImpl(Inline)]
+        public static bool off(in Vec128<ushort> src, in Vec128<ushort> mask)
             => Avx.TestAllZeros(src ,mask);
 
         [MethodImpl(Inline)]
-        public static bool allOff(in Vec128<sbyte> src,  Vec128<sbyte> mask)
+        public static bool off(in Vec128<int> src, in Vec128<int> mask)
             => Avx.TestAllZeros(src, mask);
 
         [MethodImpl(Inline)]
-        public static bool allOff(in Vec128<int> src,  Vec128<int> mask)
+        public static bool off(in Vec128<uint> src, in Vec128<uint> mask)
             => Avx.TestAllZeros(src, mask);
 
         [MethodImpl(Inline)]
-        public static bool allOff(in Vec128<short> src,  Vec128<short> mask)
-            => Avx.TestAllZeros(src, mask);
-        
-        [MethodImpl(Inline)]
-        public static bool allOff(in Vec128<byte> src,  Vec128<byte> mask)
+        public static bool off(in Vec128<ulong> src, in Vec128<ulong> mask)
             => Avx.TestAllZeros(src, mask);
 
+
         [MethodImpl(Inline)]
-        public static bool allOff(in Vec128<long> src,  Vec128<long> mask)
+        public static bool off(in Vec128<long> src, in Vec128<long> mask)
             => Avx.TestAllZeros(src, mask);
+
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec128<byte> lhs, in Vec128<byte> rhs)

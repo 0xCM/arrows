@@ -47,11 +47,18 @@ namespace Z0.Bench
         public long Duration
             => ticksToMs(TickCount);        
 
-        public BenchResult AppendRepTicks(long TickCount)
-            => Define(this.OpId, this.CycleCount, this.RepCount + 1, this.TickCount + TickCount);
+        public BenchResult AppendTicks(long TickCount)
+            => Define(this.OpId, this.CycleCount, this.RepCount, this.TickCount + TickCount);
 
-        public BenchResult AppendCycle(BenchResult cycle)
-            => Define(this.OpId, this.CycleCount + 1, this.RepCount + cycle.RepCount, this.TickCount + cycle.TickCount);
+        public BenchResult AppendRepTicks(int RepCount, long TickCount)
+        {
+            Claim.nonzero(RepCount);
+            
+            return Define(this.OpId, this.CycleCount, this.RepCount + RepCount, this.TickCount + TickCount);
+        }
+
+        public BenchResult AppendCycle(int Reps, long Ticks)
+            => Define(this.OpId, this.CycleCount + 1, this.RepCount + Reps, this.TickCount + Ticks);
    
         public BenchResult Append(BenchResult src)
         {
@@ -77,7 +84,8 @@ namespace Z0.Bench
         public BenchResult Reidentify(string OpId)
             => Define(OpId, this.CycleCount, this.RepCount, this.TickCount);
 
+
         public override string ToString()
-            => $"{OpId} Summary: Cycles = {CycleCount}, Reps = {RepCount} | Duration = {Duration}ms";
+            => $"{OpId} Summary: Reps = {RepCount} | Duration = {Duration}ms";
     }
 }
