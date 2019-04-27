@@ -28,9 +28,9 @@ namespace Z0.Tests.InXTests
         }
 
         protected override Vec128BinOp<T> VecOp {get;}
-              = Vec128Ops.xor;
+              = InXVec128Ops.xor;
 
-        protected override IndexBinOp<T> IndexOp {get;} 
+        protected override PrimalFusedBinOp<T> IndexOp {get;} 
              = PrimOps.xor;        
     }
 

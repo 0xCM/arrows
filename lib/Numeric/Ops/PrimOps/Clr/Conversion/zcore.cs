@@ -29,6 +29,16 @@ partial class zcore
         where S : struct, IEquatable<S>
             => ClrConverter.convert<S,T>(src);
 
+    /// <summary>
+    /// Vectorized conversion
+    /// </summary>
+    /// <typeparam name="S">The source type</typeparam>
+    /// <typeparam name="T">The target type</typeparam>
+    /// <param name="src">The source array</param>
+    [MethodImpl(Inline)]   
+    public static Index<T> convert<S,T>(Index<S> src)
+        => ClrConverter.convert<S,T>(src);
+
 
     [MethodImpl(Inline)]   
     public static T convert<T>(int src)
@@ -60,15 +70,6 @@ partial class zcore
         where T : struct, IEquatable<T>
             => ClrConverter.convert<double,T>(src);
 
-    /// <summary>
-    /// Vectorized conversion
-    /// </summary>
-    /// <typeparam name="S">The source type</typeparam>
-    /// <typeparam name="T">The target type</typeparam>
-    /// <param name="src">The source array</param>
-    [MethodImpl(Inline)]   
-    public static Index<T> convert<S,T>(Index<S> src)
-        => ClrConverter.convert<S,T>(src);
 
     /// <summary>
     /// Constructs a generic integer

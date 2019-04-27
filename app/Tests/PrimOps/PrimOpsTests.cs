@@ -16,11 +16,69 @@ namespace Z0.Tests
 
     using static zcore;
     using P = Paths;
-    using D = PrimOpDelegates;
+    using D = PrimalOps;
 
     [DisplayName(P.primops)]
     public class PrimOpsTests : UnitTest<PrimOpsTests>
     {
+        [DisplayName(P.inc)]
+        public void VerifyIncOp()
+        {
+            var runner = new PrimOpsTest();
+            runner.Verify(P.inc,D.inc<sbyte>(), x => ++x);
+            runner.Verify(P.inc,D.inc<byte>(), x => ++x);
+            runner.Verify(P.inc,D.inc<short>(), x => ++x);
+            runner.Verify(P.inc,D.inc<ushort>(), x => ++x);
+            runner.Verify(P.inc,D.inc<int>(), x => ++x);
+            runner.Verify(P.inc,D.inc<uint>(), x => ++x);
+            runner.Verify(P.inc,D.inc<long>(), x => ++x);
+            runner.Verify(P.inc,D.inc<ulong>(), x => ++x);
+            runner.Verify(P.inc,D.inc<float>(), x => ++x);
+            runner.Verify(P.inc,D.inc<double>(), x => ++x);
+            runner.Verify(P.inc,D.inc<decimal>(), x => ++x);
+            runner.Verify(P.add,D.inc<BigInteger>(), x => ++x);
+              
+        }
+
+
+        [DisplayName(P.add)]
+        public void VerifyEqOp()
+        {
+            var runner = new PrimOpsTest();
+            runner.Verify(P.eq,D.eq<sbyte>(), (x,y) => (x == y));
+            runner.Verify(P.eq,D.eq<byte>(), (x,y) => (x == y));
+            runner.Verify(P.eq,D.eq<short>(), (x,y) =>(x == y));
+            runner.Verify(P.eq,D.eq<ushort>(), (x,y) => (x == y));
+            runner.Verify(P.eq,D.eq<int>(), (x,y) => (x == y));
+            runner.Verify(P.eq,D.eq<uint>(), (x,y) => (x == y));
+            runner.Verify(P.eq,D.eq<long>(), (x,y) => (x == y));
+            runner.Verify(P.eq,D.eq<ulong>(), (x,y) => (x == y));
+            runner.Verify(P.eq,D.eq<float>(), (x,y) => (x == y));
+            runner.Verify(P.eq,D.eq<double>(), (x,y) => (x == y));
+            runner.Verify(P.eq,D.eq<decimal>(), (x,y) => (x == y));
+            runner.Verify(P.add,D.eq<BigInteger>(), (x,y) => (x == y));
+              
+        }
+
+        [DisplayName(P.gt)]
+        public void VerifyGtOp()
+        {
+            var runner = new PrimOpsTest();
+            runner.Verify(P.gt,D.gt<sbyte>(), (x,y) => (x > y));
+            runner.Verify(P.gt,D.gt<byte>(), (x,y) => (x > y));
+            runner.Verify(P.gt,D.gt<short>(), (x,y) =>(x > y));
+            runner.Verify(P.gt,D.gt<ushort>(), (x,y) => (x > y));
+            runner.Verify(P.gt,D.gt<int>(), (x,y) => (x > y));
+            runner.Verify(P.gt,D.gt<uint>(), (x,y) => (x > y));
+            runner.Verify(P.gt,D.gt<long>(), (x,y) => (x > y));
+            runner.Verify(P.gt,D.gt<ulong>(), (x,y) => (x > y));
+            runner.Verify(P.gt,D.gt<float>(), (x,y) => (x > y));
+            runner.Verify(P.gt,D.gt<double>(), (x,y) => (x > y));
+            runner.Verify(P.gt,D.gt<decimal>(), (x,y) => (x > y));
+            runner.Verify(P.add,D.gt<BigInteger>(), (x,y) => (x > y));
+              
+        }
+
         [DisplayName(P.add)]
         public void VerifyAddOp()
         {
@@ -126,6 +184,41 @@ namespace Z0.Tests
             runner.Verify(P.or, D.or<long>(), (x,y) => (x | y));
             runner.Verify(P.or, D.or<ulong>(), (x,y) => (x | y));
             runner.Verify(P.or, D.or<BigInteger>(), (x,y) => (x | y));
+              
+        }
+
+        [DisplayName(P.mod)]
+        public void VerifyXOrOp()
+        {
+            var runner = new PrimOpsTest();
+            runner.Verify(P.xor, D.xor<sbyte>(), (x,y) => (sbyte)(x ^ y));
+            runner.Verify(P.xor, D.xor<byte>(), (x,y) => (byte)(x ^ y));
+            runner.Verify(P.xor, D.xor<short>(), (x,y) => (short)(x ^ y));
+            runner.Verify(P.xor, D.xor<ushort>(), (x,y) => (ushort)(x ^ y));
+            runner.Verify(P.xor, D.xor<int>(), (x,y) => (x ^ y));
+            runner.Verify(P.xor, D.xor<uint>(), (x,y) => (x ^ y));
+            runner.Verify(P.xor, D.xor<long>(), (x,y) => (x ^ y));
+            runner.Verify(P.xor, D.xor<ulong>(), (x,y) => (x ^ y));
+            runner.Verify(P.xor, D.xor<BigInteger>(), (x,y) => (x ^ y));
+              
+        }
+
+        [DisplayName(P.mul)]
+        public void VerifyMulOp()
+        {
+            var runner = new PrimOpsTest();
+            runner.Verify(P.mul, D.mul<sbyte>(), (x,y) => (sbyte)(x * y));
+            runner.Verify(P.mul, D.mul<byte>(), (x,y) => (byte)(x * y));
+            runner.Verify(P.mul, D.mul<short>(), (x,y) => (short)(x * y));
+            runner.Verify(P.mul, D.mul<ushort>(), (x,y) => (ushort)(x * y));
+            runner.Verify(P.mul, D.mul<int>(), (x,y) => (x * y));
+            runner.Verify(P.mul, D.mul<uint>(), (x,y) => (x * y));
+            runner.Verify(P.mul, D.mul<long>(), (x,y) => (x * y));
+            runner.Verify(P.mul, D.mul<ulong>(), (x,y) => (x * y));
+            runner.Verify(P.mul, D.mul<float>(), (x,y) => (x * y));
+            runner.Verify(P.mul, D.mul<double>(), (x,y) => (x * y));
+            runner.Verify(P.mul, D.mul<decimal>(), (x,y) => (x * y));
+            runner.Verify(P.mul, D.mul<BigInteger>(), (x,y) => (x * y));
               
         }
 

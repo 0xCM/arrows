@@ -33,7 +33,7 @@ namespace Z0.Tests.InXTests
 
         protected virtual Vec128BinOp<T> VecOp {get;}
 
-        protected virtual IndexBinOp<T> IndexOp {get;}
+        protected virtual PrimalFusedBinOp<T> IndexOp {get;}
 
         protected IEnumerable<Vec128<T>> Results()
             => Results(VecOp);

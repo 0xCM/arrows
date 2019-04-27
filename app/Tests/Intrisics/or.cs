@@ -28,9 +28,9 @@ namespace Z0.Tests.InXTests
         }
 
         protected override Vec128BinOp<T> VecOp {get;} 
-            = Vec128Ops.or;
+            = InXVec128Ops.or;
 
-        protected override IndexBinOp<T> IndexOp {get;} 
+        protected override PrimalFusedBinOp<T> IndexOp {get;} 
             = PrimOps.or;
         
     }

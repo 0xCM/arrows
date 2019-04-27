@@ -22,11 +22,7 @@ namespace Z0
         public interface Nullary<T> 
         {
             T zero {get;}
-
-
         }
-
-
     }
 
     partial class Structures

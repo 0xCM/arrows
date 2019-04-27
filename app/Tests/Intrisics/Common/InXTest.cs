@@ -86,7 +86,7 @@ namespace Z0.Tests.InXTests
         /// </summary>
         /// <param name="vecop">The intrinsic vector operator</param>
         /// <param name="listop">The primitive operator</param>
-        protected void Verify(Vec128BinOp<T> vecop, IndexBinOp<T> listop)
+        protected void Verify(Vec128BinOp<T> vecop, PrimalFusedBinOp<T> listop)
         {
             var leftVals = Arr.partition(LeftDataSrc.ToArray(), VecLength).ToReadOnlyList();
             var rightVals = Arr.partition(RightDataSrc.ToArray(), VecLength).ToReadOnlyList();

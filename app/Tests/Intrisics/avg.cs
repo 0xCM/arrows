@@ -21,7 +21,7 @@ namespace Z0.Tests.InXTests
         where S : AvgTest<S,T>
         where T : struct, IEquatable<T>
     {        
-        protected static readonly Vec128BinOp<T> Avg = Vec128Ops.avg<T>;
+        protected static readonly Vec128BinOp<T> Avg = InXVec128Ops.avg<T>;
         
         protected AvgTest(Interval<T>? domain = null, int? streamlen = null)
             : base("avg", domain, streamlen)        

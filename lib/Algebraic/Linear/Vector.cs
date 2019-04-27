@@ -45,23 +45,25 @@ namespace Z0
         /// <summary>
         /// The underlying data
         /// </summary>
-        Slice<N,T> data {get;}
+        //Slice<N,T> data {get;}
+
+        T[] data {get;}
 
         [MethodImpl(Inline)]   
         public Vector(params T[] src)
-            => data = slice<N,T>(src);
+            => data = src;
 
         [MethodImpl(Inline)]   
         public Vector(Index<T> src)
-            => data = slice<N,T>(src);
+            => data = src;
 
         [MethodImpl(Inline)]   
         public Vector(IEnumerable<T> src)
-            => data = slice<N,T>(src);
+            => data = src.ToArray();
 
         [MethodImpl(Inline)]   
         public Vector(Slice<N,T> src)
-            => data = src;
+            => data = src.data.ToArray();
 
         public T this[int index] 
             => data[index];
@@ -83,7 +85,7 @@ namespace Z0
             => data.Where(predicate);
 
         public uint length 
-            => data.length;
+            => (uint)data.Length;
 
         [MethodImpl(Inline)]   
         public Covector<N, T> tranpose()
@@ -91,7 +93,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public string format()
-            => data.format();
+            => paren(string.Join(",", data));
 
         /// <summary>
         /// Retrurns true if a predicate holds for any components
@@ -107,21 +109,12 @@ namespace Z0
         /// <param name="predicate">The adjudicating predicate</param>
         [MethodImpl(Inline)]   
         public bool all(Func<T,bool> predicate)
-            => data.all(predicate);
-
-        /// <summary>
-        /// Reduces the cells via a monoid
-        /// </summary>
-        /// <param name="monoid">The monoid to use</param>
-
-        [MethodImpl(Inline)]   
-        public T reduce(Operative.Monoidal<T> monoid)
-            =>  data.reduce(monoid);
+            => data.All(predicate);
 
         [MethodImpl(Inline)]   
         public Vector<N,Y> fuse<Y>(Vector<N,T> rhs, Func<T,T,Y> composer)
             where Y : struct, IEquatable<Y>    
-                => new Vector<N,Y>(zcore.fuse(data.unwrap(), rhs.data.unwrap(), composer));
+                => new Vector<N,Y>(zcore.fuse(data, rhs.data, composer));
 
         /// <summary>
         /// Transforms Vector[N,T] => Vector[Y,T] via component transformation f:T->Y
@@ -131,20 +124,20 @@ namespace Z0
         [MethodImpl(Inline)]   
         public Vector<N,Y> map<Y>(Func<T,Y> f)
             where Y : struct, IEquatable<Y>    
-                => new Vector<N, Y>(data.map(f));
+                => new Vector<N, Y>(zcore.map(data,f));
 
         [MethodImpl(Inline)]   
         public IReadOnlyList<T> unwrap()
-            => data.unwrap();
+            => data;
 
         [MethodImpl(Inline)]
         public bool eq(Vector<N, T> rhs)
-            => data.eq(rhs);
+            => Arr.equals(data, rhs.data);
 
 
         [MethodImpl(Inline)]
         public bool neq(Vector<N, T> rhs)
-            => data.neq(rhs);
+            => !eq(rhs);
 
         [MethodImpl(Inline)]
         public bool Equals(Vector<N, T> rhs)
@@ -152,7 +145,7 @@ namespace Z0
  
         [MethodImpl(Inline)]
         public int hash()
-            => data.hash();
+            => data.GetHashCode();
 
         public override int GetHashCode()
             => hash();

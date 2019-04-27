@@ -74,38 +74,6 @@ namespace Z0
 
     }
 
-    public enum PrimKind : byte
-    {
-        none = 0,
-        
-        int8 = 1,
-
-        uint8 = 2,
-
-        int16 = 3,
-
-        uint16 = 4,        
-
-        int32 = 5,
-        
-        uint32 = 6,
-
-        int64 = 7,
-
-        uint64 = 8,
-                            
-        float32 = 9,
-
-        float64 = 10,  
-
-        float128 = 11,
-
-        decimal128 = 12,
-
-        bigint = 13,
-        
-        last = bigint      
-    }
 
     public readonly struct PrimKind<T>
     {

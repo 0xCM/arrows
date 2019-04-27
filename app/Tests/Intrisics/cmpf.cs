@@ -24,7 +24,7 @@ namespace Z0.Tests.InXTests
         where S : CmpFTest<S,T>
         where T : struct, IEquatable<T>
     {        
-        protected static readonly Vec128CmpFloat<T> cmpf = Vec128Ops.cmpf;
+        protected static readonly Vec128CmpFloat<T> cmpf = InXVec128Ops.cmpf;
         
         protected CmpFTest(Interval<T>? domain = null, int? streamlen = null)
             : base("cmp", domain, streamlen)        

@@ -36,7 +36,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> DivF<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
-                => Vec128Ops.div(lhs,rhs);
+                => InXVec128Ops.div(lhs,rhs);
 
         /// <summary>
         /// Compares two floating-point scalars
@@ -48,7 +48,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool CmpF<T>(this in Num128<T> lhs, in Num128<T> rhs, FloatCompareKind mode)
             where T : struct, IEquatable<T>
-                => Num128Ops.cmpf(lhs,rhs,mode);
+                => InXNum128Ops.cmpf(lhs,rhs,mode);
 
         /// <summary>
         /// Compares two floating-point vectors
@@ -60,7 +60,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool[] CmpF<T>(this in Vec128<T> lhs, in Vec128<T> rhs, FloatCompareKind mode)
             where T : struct, IEquatable<T>
-                => Vec128Ops.cmpf(lhs,rhs,mode);
+                => InXVec128Ops.cmpf(lhs,rhs,mode);
  
         /// <summary>
         /// Computes the bitwise and of two vectors
@@ -71,12 +71,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> And<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
-                => Vec128Ops.and(lhs,rhs);
+                => InXVec128Ops.and(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static Vec128<T> Add<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
-                => Vec128Ops.add(lhs,rhs);
+                => InXVec128Ops.add(lhs,rhs);
 
         /// <summary>
         /// Computes the bitwise or of two vectors
@@ -87,7 +87,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> Or<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
-                => Vec128Ops.or(lhs,rhs);
+                => InXVec128Ops.or(lhs,rhs);
 
         /// <summary>
         /// Defines a stream of vectors over an array
@@ -97,6 +97,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static IEnumerable<Vec128<T>> Stream128<T>(this T[] src)
             where T : struct, IEquatable<T>
-                => Vec128Ops.stream(src); 
+                => InXVec128Ops.stream(src); 
     }
 }

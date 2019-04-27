@@ -1,0 +1,130 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
+namespace Z0.Bench
+{
+    using System;
+    using System.Linq;
+    using System.Diagnostics;
+    using System.Collections.Generic;
+
+    using static zcore;
+
+    public unsafe delegate long TimedFusedUnaryOp<T>(Index<T> src, out Index<T> dst)
+        where T : struct, IEquatable<T>;
+
+    public unsafe delegate long TimedFusedBinOp<T>(Index<T> lhs, Index<T> rhs, out Index<T> dst)
+        where T : struct, IEquatable<T>;
+
+    public unsafe delegate long TimedFusedPred<T>(Index<T> lhs, Index<T> rhs, out Index<bool> dst)
+        where T : struct, IEquatable<T>;
+
+    public unsafe delegate long TimedPrimalPred<T>(T lhs, T rhs, out bool dst)
+        where T : struct, IEquatable<T>;
+
+    public unsafe delegate long TimedAggOp<T>(Index<T> src, out T dst)
+        where T : struct, IEquatable<T>;
+
+
+    public class TimedOpConvert<T>
+            where T : struct, IEquatable<T>
+    {
+        public long TimedOp(Index<T> lhs, Index<T> rhs, out Index<T> dst, Func<T,T,T> Op)
+        {
+            var target = new T[lhs.Length];
+            var sw = stopwatch();
+            for(var i = 0; i< lhs.Length; i++)
+                target[i] = Op(lhs[i],rhs[i]);
+            dst = target;
+            return elapsed(sw);
+        }
+
+        public long TimedOp(Index<T> lhs, out T dst, PrimalAggOp<T> Op)
+        {
+            var sw = stopwatch();
+            dst = Op(lhs);
+            return elapsed(sw);
+        }
+
+        public long TimedOp(Index<T> src, out Index<T> dst, PrimalFusedUnaryOp<T> Op)
+        {
+            var sw = stopwatch();
+            dst = Op(src);
+            return elapsed(sw);
+        }
+
+        public long TimedOp(Index<T> src, out Index<T> dst, PrimalUnaryOp<T> Op)
+        {
+            var target = new T[src.Length];
+            var sw = stopwatch();
+            for(var i = 0; i< src.Length; i++)
+                target[i] = Op(src[i]);
+            dst = target;
+            return elapsed(sw);
+        }
+
+        public long TimedOp(Index<T> lhs, Index<T> rhs, out Index<T> dst, PrimalBinOp<T> Op)
+        {
+            var target = new T[lhs.Length];
+            var sw = stopwatch();
+            for(var i = 0; i< lhs.Length; i++)
+                target[i] = Op(lhs[i],rhs[i]);
+            dst = target;
+            return elapsed(sw);
+        }
+
+        public long TimedOp(Index<T> lhs, Index<T> rhs, out Index<bool> dst, PrimalBinPred<T> Op)
+        {
+            var target = new bool[lhs.Length];
+            var sw = stopwatch();
+            for(var i = 0; i< lhs.Length; i++)
+                target[i] = Op(lhs[i],rhs[i]);
+            dst = target;
+            return elapsed(sw);
+        }
+
+        public long TimedOp(Index<T> lhs, Index<T> rhs, out Index<T> dst, PrimalFusedBinOp<T> Op)
+        {
+            var sw = stopwatch();
+            dst = Op(lhs,rhs);
+            return elapsed(sw);
+        }
+
+        public long TimedOp(Index<T> lhs, Index<T> rhs, out Index<bool> dst, PrimalFusedPred<T> Op)
+        {
+            var sw = stopwatch();
+            dst = Op(lhs,rhs);
+            return elapsed(sw);
+        }
+
+        public unsafe long TimedOp(Index<T> lhs, Index<T> rhs, out Index<T> dst, Vec128BinOp<T> Op)
+        {
+            var sw = stopwatch();
+
+            var target = new T[lhs.Length];
+            var lArray = lhs.ToArray();
+            var rArray = rhs.ToArray();
+            var load = Vec128OpCache.Load<T>.Op;
+            var store = Vec128OpCache.StoreP<T>.Op;
+
+            for(var i = 0; i < lhs.Length; i += Vec128<T>.Length)                
+            {
+                var pLhs = pointer(ref lArray[i]);
+                var pRhs = pointer(ref rArray[i]);
+                var pDst = pointer(ref target[i]);
+
+                load(pLhs, out Vec128<T> vLeft);
+                load(pRhs, out Vec128<T> vRight);
+                store(Op(vLeft,vRight), pDst);                
+            }
+
+            dst = target;
+            return elapsed(sw);
+        }
+
+
+    }
+
+
+}

@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Diagnostics;
 
 using Z0;
@@ -25,6 +26,10 @@ partial class zcore
             return lhs.Count;
         throw new Exception($"List count mismatch: lhs.Count= {lhs.Count}, rhs.Count = {rhs.Count}");
     }
+
+    [MethodImpl(Inline)]
+    public static unsafe ref T memref<T>(ReadOnlySpan<T> x)    
+        => ref MemoryMarshal.GetReference(x);
 
     [MethodImpl(Inline)]
     public static unsafe void* pointer<T>(ref T src)
@@ -228,6 +233,15 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static long elapsed(Stopwatch sw) 
         => sw.ElapsedTicks;
+
+    [MethodImpl(Inline)]   
+    public static (long ticks, long ms, string format) snapshot(Stopwatch sw) 
+    {
+        var ticks = sw.ElapsedTicks;
+        var ms = ticksToMs(ticks);
+        return (ticks, ticksToMs(ticks), $"ticks = {ticks} | ms = {ms}");
+    }
+        
 
     /// <summary>
     /// Demands truth that is enforced with an exeption upon false

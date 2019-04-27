@@ -14,33 +14,32 @@ namespace Z0.Bench
     public class BenchResult
     {
         public static BenchResult operator +(BenchResult lhs, BenchResult rhs)
-            => lhs.Append(rhs);
+            => lhs.Merge(rhs);
 
-        public static BenchResult Init(string OpId)
-            => Empty.Reidentify(OpId);
+        public static BenchResult Init(int CycleNumber, string OpId, int InnerReps)
+            => Define(CycleNumber, OpId,InnerReps,0);
 
-        public static BenchResult Define(string OpId, int CycleCount, int RepCount, long TickCount)
-            => new BenchResult(OpId, CycleCount, RepCount, TickCount);
+        public static BenchResult Define(int CycleNumber, string OpId, int InnerReps, long TickCount)
+            => new BenchResult(CycleNumber, OpId, InnerReps, TickCount);
 
-        public static BenchResult Define(string OpId, IEnumerable<BenchResult> src)
-            => Init(OpId).Append(src);
+        public static BenchResult Define(int CycleNumber, string OpId, int InnerReps, IEnumerable<BenchResult> src)
+            => Init(CycleNumber, OpId, InnerReps).Merge(src);
             
-        public static readonly BenchResult Empty = new BenchResult(string.Empty,0,0,0);
+        public static readonly BenchResult Empty = Init(0,string.Empty,0);
         
-
-        BenchResult(string OpId, int CycleCount, int RepCount, long TickCount)
+        BenchResult(int CycleNumber, string OpId, int InnerReps, long TickCount)
         {
             this.OpId = OpId;
-            this.CycleCount = CycleCount;
-            this.RepCount = RepCount;
+            this.CycleNumber = CycleNumber;
+            this.InnerReps = InnerReps;
             this.TickCount = TickCount;
         }
+        
+        public int CycleNumber {get;}
 
         public string OpId {get;}
 
-        public int CycleCount {get;}
-
-        public int RepCount {get;}
+        public int InnerReps {get;}
 
         public long TickCount {get;}
 
@@ -48,44 +47,47 @@ namespace Z0.Bench
             => ticksToMs(TickCount);        
 
         public BenchResult AppendTicks(long TickCount)
-            => Define(this.OpId, this.CycleCount, this.RepCount, this.TickCount + TickCount);
-
-        public BenchResult AppendRepTicks(int RepCount, long TickCount)
-        {
-            Claim.nonzero(RepCount);
-            
-            return Define(this.OpId, this.CycleCount, this.RepCount + RepCount, this.TickCount + TickCount);
-        }
-
-        public BenchResult AppendCycle(int Reps, long Ticks)
-            => Define(this.OpId, this.CycleCount + 1, this.RepCount + Reps, this.TickCount + Ticks);
+            => Define(this.CycleNumber, this.OpId, this.InnerReps, this.TickCount + TickCount);
    
-        public BenchResult Append(BenchResult src)
+        public BenchResult Merge(BenchResult src)
         {
             return Define(
+                    this.CycleNumber, 
                     ifBlank(this.OpId, src.OpId),
-                    this.CycleCount + src.CycleCount, 
-                    this.RepCount + src.RepCount, 
+                    this.InnerReps, 
                     this.TickCount + src.TickCount
                     );
         }
 
-        public BenchResult Append(IEnumerable<BenchResult> rhs)
+        public BenchResult Merge(IEnumerable<BenchResult> rhs)
         {
-            var src = rhs.Select(x => (x.CycleCount, x.RepCount, x.TickCount)).Freeze();            
+            var src = rhs.Select(x => (x.CycleNumber, x.InnerReps, x.TickCount)).Freeze();            
             return Define(
+                    this.CycleNumber, 
                     this.OpId,
-                    this.CycleCount + src.Select(x => x.CycleCount).Sum(), 
-                    this.RepCount + src.Select(x => x.RepCount).Sum(), 
+                    this.InnerReps, 
                     this.TickCount + src.Select(x => x.TickCount).Sum() 
                     );
         }
 
-        public BenchResult Reidentify(string OpId)
-            => Define(OpId, this.CycleCount, this.RepCount, this.TickCount);
-
 
         public override string ToString()
-            => $"{OpId} Summary: Reps = {RepCount} | Duration = {Duration}ms";
+            => $"{OpId}: Duration = {Duration}ms";
+    }
+
+
+    public static class BenchResultX
+    {
+        public static BenchResult Merge(this IEnumerable<BenchResult> results)
+        {
+            var frozen = results.Freeze();
+            if(frozen.Length == 0)
+                return BenchResult.Empty;
+
+            var first = frozen[0];
+            var result = BenchResult.Define(0, first.OpId, first.InnerReps, 0);
+            return result.Merge(results);
+        }
+
     }
 }

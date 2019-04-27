@@ -53,8 +53,105 @@ namespace Z0
             => Avx2.Multiply(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<double> mul(in Vec256<double> lhs, Vec256<double> rhs)
+        public static Vec256<double> mul(in Vec256<double> lhs, in Vec256<double> rhs)
             => Avx2.Multiply(lhs, rhs);
+
+
+        //! add: ptr[T] -> ptr[T] -> ptr[T]
+        //! --------------------------------------------------------------------
+
+
+        [MethodImpl(Inline)]
+        public static unsafe void mul(int* lhs, int* rhs, long* dst)  
+            => Avx2.Store(dst,Avx2.Multiply(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+
+        [MethodImpl(Inline)]
+        public static unsafe void mul(uint* lhs, uint* rhs, ulong* dst)  
+            => Avx2.Store(dst,Avx2.Multiply(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+
+        [MethodImpl(Inline)]
+        public static unsafe void mul(float* lhs, float* rhs, float* dst)  
+            => Avx2.Store(dst,Avx2.Multiply(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+
+        [MethodImpl(Inline)]
+        public static unsafe void mul(double* lhs, double* rhs, double* dst)  
+            => Avx2.Store(dst,Avx2.Multiply(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+
+
+        //! add: index -> index -> index
+        //! --------------------------------------------------------------------
+
+        public static unsafe Index<long> mul(Index<int> lhs, Index<int> rhs)
+        {
+            var len = Vector128<int>.Count;
+            var dst = new long[matchedCount(lhs,rhs)];
+
+            fixed(int* pLhs = &(lhs.ToArray()[0]))
+            fixed(int* pRhs = &(rhs.ToArray()[0]))
+            fixed(long* pDst = &dst[0])
+            {
+                int* pLeft = pLhs, pRight = pRhs;
+                long* pTarget = pDst;                
+                for(var i = 0; i< lhs.Count; i += len, pLeft += len, pRight += len, pTarget += len)
+                    mul(pLeft, pRight, pTarget);
+            }
+            return dst;
+        }
+
+        public static unsafe Index<long> mul(Index<long> lhs, Index<long> rhs)
+            => mul(lhs.Convert<int>(), rhs.Convert<int>());
+
+        public static unsafe Index<ulong> mul(Index<uint> lhs, Index<uint> rhs)
+        {
+            var len = Vector128<int>.Count;
+            var dst = new ulong[matchedCount(lhs,rhs)];
+
+            fixed(uint* pLhs = &(lhs.ToArray()[0]))
+            fixed(uint* pRhs = &(rhs.ToArray()[0]))
+            fixed(ulong* pDst = &dst[0])
+            {
+                uint* pLeft = pLhs, pRight = pRhs;
+                ulong* pTarget = pDst;                
+                for(var i = 0; i< lhs.Count; i += len, pLeft += len, pRight += len, pTarget += len)
+                    mul(pLeft, pRight, pTarget);
+            }
+            return dst;
+        }
+
+        public static unsafe Index<ulong> mul(Index<ulong> lhs, Index<ulong> rhs)
+            => mul(lhs.Convert<uint>(), rhs.Convert<uint>());
+
+        public static unsafe Index<float> mul(Index<float> lhs, Index<float> rhs)
+        {
+            var len = Vector128<float>.Count;
+            var dst = new float[matchedCount(lhs,rhs)];
+
+            fixed(float* pLhs = &(lhs.ToArray()[0]))
+            fixed(float* pRhs = &(rhs.ToArray()[0]))
+            fixed(float* pDst = &dst[0])
+            {
+                float* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
+                for(var i = 0; i< lhs.Count; i += len, pLeft += len, pRight += len, pTarget += len)
+                    mul(pLeft, pRight, pTarget);
+            }
+            return dst;
+        }
+
+        public static unsafe Index<double> mul(Index<double> lhs, Index<double> rhs)
+        {
+            var len = Vector128<double>.Count;
+            var dst = new double[matchedCount(lhs,rhs)];
+
+            fixed(double* pLhs = &(lhs.ToArray()[0]))
+            fixed(double* pRhs = &(rhs.ToArray()[0]))
+            fixed(double* pDst = &dst[0])
+            {
+                double* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
+                for(var i = 0; i< lhs.Count; i += len, pLeft += len, pRight += len, pTarget += len)
+                    mul(pLeft, pRight, pTarget);
+            }
+            return dst;
+        }
 
     }
 }

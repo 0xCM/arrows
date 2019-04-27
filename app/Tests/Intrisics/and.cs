@@ -17,111 +17,73 @@ namespace Z0.Tests.InXTests
     
     using P = Paths;
 
-    public abstract class AndTest<S,T> : InXBinOpTest<S,T>
-        where S : AndTest<S,T>
+    public class AndTest<T> : InXBinOpTest<AndTest<T>,T>
         where T : struct, IEquatable<T>
-    {        
-        protected AndTest(Interval<T>? domain = null, int? sampleSize = null)
-            : base("and", domain, sampleSize)        
+    {                
+        public AndTest(Interval<T>? domain = null, int? sampleSize = null)
+            : base("add", domain, sampleSize)        
         {
 
         }
 
-        protected override Vec128BinOp<T> VecOp
-            => Vec128Ops.and; 
+        protected override PrimalFusedBinOp<T> IndexOp {get;} 
+            = PrimalFusion.add;    
 
+        protected override Vec128BinOp<T> VecOp {get;}
+            = InXVec128Ops.add; 
 
-        protected override IndexBinOp<T> IndexOp {get;} 
-            = PrimOps.and;
-        
+        public virtual void VerifyGeneric()
+        {                
+            Claim.eq(
+                IndexOp(LeftDataSrc,RightDataSrc),
+                LeftDataSrc.AndG(RightDataSrc)
+                );            
+        }
+
+        public override void VerifyAll()
+        {
+            base.VerifyAll();
+            VerifyGeneric();
+        }
     }
 
-    class AndTests
+    [DisplayName(BasePath)]
+    public class AndTests : UnitTest<AndTests>
     {
-        const string BasePath = P.InX128 + P.and;
+        const string BasePath = P.InX128 + P.add;        
+        
+        [DisplayName(P.int8)]
+        public void AndI8()
+            => new AndTest<byte>().VerifyAll();
 
-        [DisplayName(Path)]
-        public class AndInt8 : AndTest<AndInt8, sbyte>
-        {
-            public const string Path = BasePath + P.int8;
+        [DisplayName(P.uint8)]
+        public void AndU8()
+            => new AndTest<sbyte>().VerifyAll();
 
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
+        [DisplayName(P.int16)]
+        public void AndI16()
+            => new AndTest<short>().VerifyAll();
 
-        [DisplayName(Path)]
-        public class AndUInt8 : AndTest<AndUInt8, byte>
-        {
-            public const string Path = BasePath + P.uint8;
+        [DisplayName(P.uint16)]
+        public void AndU16()
+            => new AndTest<ushort>().VerifyAll();
 
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
+        [DisplayName(P.int32)]
+        public void AndI32()
+            => new AndTest<int>().VerifyAll();
 
-        [DisplayName(Path)]
-        public class AndInt16 : AndTest<AndInt16, short>
-        {
-            public const string Path = BasePath + P.int16;
+        [DisplayName(P.uint32)]
+        public void AndU32()
+            => new AndTest<uint>().VerifyAll();
 
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
+        [DisplayName(P.int64)]
+        public void AndI64()
+            => new AndTest<long>().VerifyAll();
 
-
-        [DisplayName(Path)]
-        public class AndUInt16 : AndTest<AndUInt16, ushort>
-        {
-            public const string Path = BasePath + P.uint16;
-
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
-
-        [DisplayName(Path)]
-        public class AndInt32 : AndTest<AndInt32, int>
-        {
-            public const string Path = BasePath + P.int32;
-
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
-
-        [DisplayName(Path)]
-        public class AndUInt32 : AndTest<AndUInt32, uint>
-        {
-            public const string Path = BasePath + P.uint32;
-
-            public void ApplyOps()
-                => base.ApplyAll();
-
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
+        [DisplayName(P.uint64)]
+        public void AndU64()
+            => new AndTest<ulong>().VerifyAll();
 
 
-        [DisplayName(Path)]
-        public class AndInt64 : AndTest<AndInt64, long>
-        {
-            public const string Path = BasePath + P.int64;
-
-            public void ApplyOps()
-                => base.ApplyAll();
-
-            public override void VerifyAll()
-                => base.VerifyAll();
-        }
-
-        [DisplayName(Path)]
-        public class AndUInt64 : AndTest<AndUInt64, ulong>
-        {
-            public const string Path = BasePath + P.uint64;
-
-            public void ApplyOps()
-                => ApplyAll();
-
-            public override void VerifyAll()
-                => base.VerifyAll();
-             
-        } 
-    } 
+    }
 }

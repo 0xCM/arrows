@@ -90,6 +90,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The type of item contained by the collection</typeparam>
         /// <param name="collection">The collection to examine</param>
+        [MethodImpl(Inline)]
         public static bool IsEmpty<T>(this IReadOnlyCollection<T> collection)
              => collection.Count == 0;
 
@@ -98,7 +99,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The type of item contained by the collection</typeparam>
         /// <param name="collection">The collection to examine</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static bool IsNonEmpty<T>(this IReadOnlyCollection<T> collection)
             => collection.Count != 0;
 
@@ -110,5 +111,12 @@ namespace Z0
         /// <param name="items">The items to add</param>
         public static void AddRange<T>(this IList<T> list, IEnumerable<T> items)
             => items.Iterate(item => list.Add(item));
+
+        [MethodImpl(Inline)]
+        public static List<T> Append<T>(this List<T> src, params T[] items)
+        {
+            src.AddRange(items);
+            return src;
+        }
     }
 }

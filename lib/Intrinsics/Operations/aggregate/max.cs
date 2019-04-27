@@ -50,8 +50,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<float> max(in Vec128<float> lhs, in Vec128<float> rhs)
             => Avx2.Max(lhs, rhs);
-
- 
  
         [MethodImpl(Inline)]
         public static Vec128<double> max(in Vec128<double> lhs, in Vec128<double> rhs)
@@ -76,7 +74,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<ushort> max(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
             => Avx2.Max(lhs, rhs);
-
 
         [MethodImpl(Inline)]
         public static Vec256<int> max(in Vec256<int> lhs, in Vec256<int> rhs)

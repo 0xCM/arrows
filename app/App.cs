@@ -74,7 +74,7 @@ namespace Z0
 
         }
 
-        static readonly PrimalIndex Add = PrimKinds.index<object>
+        static readonly PrimalIndex AddDelegates = PrimKinds.index<object>
             (
                 @sbyte : new Vec128BinOp<sbyte>(InX.add),
                 @byte : new Vec128BinOp<byte>(InX.add),
@@ -91,7 +91,7 @@ namespace Z0
         static Vec128<T> addGeneric<T>(Vec128<T> lhs, Vec128<T> rhs)
             where T : struct, IEquatable<T>
         {
-            var adder = Add.lookup<T,Vec128BinOp<T>>();
+            var adder = AddDelegates.lookup<T,Vec128BinOp<T>>();
             var s1 = adder(lhs,rhs);
             var s2 = adder(s1,rhs);
             var s3 = adder(s1,lhs);
@@ -101,7 +101,7 @@ namespace Z0
 
         static Vec128<double> addDelegate(Vec128<double> lhs, Vec128<double> rhs)
         {
-            var adder = Add.lookup<double,Vec128BinOp<double>>();
+            var adder = AddDelegates.lookup<double,Vec128BinOp<double>>();
             var s1 = adder(lhs,rhs);
             var s2 = adder(s1,rhs);
             var s3 = adder(s1,lhs);
@@ -200,9 +200,6 @@ namespace Z0
         }
 
 
-        void RunBenchmarks()
-            => BaselineBench.Run();
-
         void TestRandomFloat()
         {
             var domain = Interval.leftclosed(-150.0d, 150.0d).canonical();
@@ -217,178 +214,6 @@ namespace Z0
             inform($"(+) = {pos} | (-) = {neg}");                       
                   
         }
-
-        static unsafe long TimedOpG<T>(Index<T> lhs, Index<T> rhs, out Index<T> dst, Vec128BinOp<T> Op)
-            where T : struct, IEquatable<T>
-        {
-            var target = new T[lhs.Length];
-            var sw = stopwatch();
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
-            var load = Vec128OpCache.Load<T>.Op;
-            var store = Vec128OpCache.StoreP<T>.Op;
-            
-
-            for(var i = 0; i < lhs.Length; i += Vec128<T>.Length)                
-            {
-                var pLhs = pointer(ref lArray[i]);
-                var pRhs = pointer(ref rArray[i]);
-                var pDst = pointer(ref target[i]);
-
-                load(pLhs, out Vec128<T> vLeft);
-                load(pRhs, out Vec128<T> vRight);
-                store(Op(vLeft,vRight), pDst);                
-            }
-
-            dst = target;
-            return elapsed(sw);
-        }
-
-        static unsafe long TimedOp0(Index<double> lhs, Index<double> rhs, out Index<double> dst, Vec128BinOp<double> Op)
-        {
-            var target = new double[lhs.Length];
-            var sw = stopwatch();
-
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
-            var load = Vec128OpCache.Load<double>.Op;
-            var store = Vec128OpCache.StoreP<double>.Op;
-
-            for(var i = 0; i < lhs.Length; i += Vec128<double>.Length)                
-            {
-                var pLhs = pointer(ref lArray[i]);
-                var pRhs = pointer(ref rArray[i]);
-                var pDst = pointer(ref target[i]);
-
-                load(pLhs, out Vec128<double> vLeft);
-                load(pRhs, out Vec128<double> vRight);
-                store(Op(vLeft,vRight), pDst);                
-            }
-
-            dst = target;
-            return elapsed(sw);
-        }
-
-
-        static unsafe long TimedOp1(Index<double> lhs, Index<double> rhs, out Index<double> dst, Vec128BinOp<double> Op)
-        {
-            var target = new double[lhs.Length];            
-            var sw = stopwatch();
-            
-            var load = Vec128OpCache.Load<double>.Op;
-            var store = Vec128OpCache.StoreP<double>.Op;
-            var veclen = Vec128<double>.Length;
-            
-            fixed(double* pLArray = &lhs.ToArray()[0])
-            fixed(double* pRArray = &rhs.ToArray()[0])
-            fixed(double* pTarget = &target[0])
-            {
-                var pLhs = pLArray;
-                var pRhs = pRArray;
-                var pDst = pTarget;
-                for(var i = 0; i < lhs.Length; i += veclen, pLhs += veclen, pRhs +=veclen, pDst += veclen)                
-                {
-                    load(pLhs, out Vec128<double> vLeft);
-                    load(pRhs, out Vec128<double> vRight);
-                    store(Op(vLeft,vRight), pDst);        
-                }
-
-
-            }
-
-            dst = target;
-            
-            return elapsed(sw);
-        }
-
-        static unsafe long TimedOp2(Index<double> lhs, Index<double> rhs, out Index<double> dst, Vec128BinOp<double> Op)
-        {
-            var target = new double[lhs.Length];
-            var veclen = Vec128<double>.Length;
-            
-            var sw = stopwatch();            
-            fixed(double* pLArray = &lhs.ToArray()[0])
-            fixed(double* pRArray = &rhs.ToArray()[0])
-            fixed(double* pTarget = &target[0])
-            {
-                var pLhs = pLArray;
-                var pRhs = pRArray;
-                var pDst = pTarget;
-                for(var i = 0; i < lhs.Length; i += veclen, pLhs += veclen, pRhs +=veclen, pDst += veclen)                
-                {
-                    InX.load(pLhs, out Vec128<double> vLeft);
-                    InX.load(pRhs, out Vec128<double> vRight);
-                    InX.store(InX.add(vLeft,vRight), pDst);        
-                }
-
-
-            }
-
-            dst = target;
-            return elapsed(sw);
-        }
-
-        void RunOpG()
-        {
-            var config = BenchConfig.Default;
-            var domain = Defaults.get<double>().Domain;
-            var lhs = RandomIndex(domain, config.SampleSize);
-            var rhs = RandomIndex(domain, config.SampleSize);
-
-            var ticks = 0L;
-            for(var i = 0; i<config.Cycles; i++)
-                for(var j = 0; j<config.Reps; j++)
-                    ticks += TimedOpG(lhs, rhs, out Index<double> dst, Vec128Ops.add<double>);
-            inform(ticksToMs(ticks));
-
-
-        }
-
-        void RunOp0()
-        {
-            var config = BenchConfig.Default;
-            var domain = Defaults.Float64Domain;
-            var lhs = RandomIndex(domain, config.SampleSize);
-            var rhs = RandomIndex(domain, config.SampleSize);
-            
-            var ticks = 0L;
-            for(var i = 0; i<config.Cycles; i++)
-                for(var j = 0; j<config.Reps; j++)
-                    ticks += TimedOp0(lhs, rhs, out Index<double> dst, Vec128Ops.add<double>);
-            inform(ticksToMs(ticks));
-
-        }
-
-        void RunOp1()
-        {
-            var config = BenchConfig.Default;
-            var domain = Defaults.Float64Domain;
-            var lhs = RandomIndex(domain, config.SampleSize);
-            var rhs = RandomIndex(domain, config.SampleSize);
-
-            var ticks = 0L;
-            for(var i = 0; i<config.Cycles; i++)
-                for(var j = 0; j<config.Reps; j++)
-                    ticks += TimedOp1(lhs, rhs, out Index<double> dst, Vec128Ops.add<double>);
-            inform(ticksToMs(ticks));
-            
-        }
-
-        void RunOp2()
-        {
-            var config = BenchConfig.Default;
-            var domain = Defaults.Float64Domain;
-            var lhs = RandomIndex<double>(domain, config.SampleSize);
-            var rhs = RandomIndex<double>(domain, config.SampleSize);
-            
-            var ticks = 0L;
-            for(var i = 0; i<config.Cycles; i++)
-                for(var j = 0; j<config.Reps; j++)
-                    ticks += TimedOp2(lhs, rhs, out Index<double> dst, Vec128Ops.add<double>);
-            inform(ticksToMs(ticks));
-
-        }
-
 
         void TestBenchmarks()
         {
@@ -410,7 +235,7 @@ namespace Z0
 
             double SumPrimOpDel()
             {
-                var add = PrimOpDelegates.add<double>();
+                var add = PrimalOps.add<double>();
                 var result = 0d;
                 for(var i=0; i< stream.Length; i++)
                     result = add(result, stream[i]);
@@ -449,7 +274,11 @@ namespace Z0
 
         }
 
-
+        void RunBenchmarks()
+        {
+            var specs = BenchSpecs.XOr<long>();
+            Benchmarker.Run(specs);
+        }
 
         void RunTests()
         {
@@ -464,12 +293,10 @@ namespace Z0
             try
             {
                 var app = new App();
-                app.RunTests();
-                //app.TestBenchmarks();
-                //app.TestAdd();
-                //app.TestBenchmarks();
-                //app.TestInXSum();
-
+                app.RunBenchmarks();
+                //app.RunTests();
+ 
+                //DynInvoke.Test();
             }
             catch(Exception e)
             {

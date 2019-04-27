@@ -145,6 +145,12 @@ namespace Z0
 
         public Index<T> Where(Func<T,bool> predicate)
             => new Index<T>(data.Where(predicate));
+    
+        [MethodImpl(Inline)]
+        public Index<S> Convert<S>()
+            => ClrConverter.convert<T,S>(this);
+
+        
     }
 
 

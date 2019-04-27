@@ -188,6 +188,10 @@ public static partial class zcore
     public static T[] array<S,T>(IEnumerable<S> src, Func<S,T> f)
         => array<T>(src.Select(f));
 
+    [MethodImpl(Inline)]
+    public static IEnumerable<T> concat<T>(params IEnumerable<T>[] src)
+        => src.SelectMany(x => x);
+
     /// <summary>
     /// Concatentates two arrays
     /// </summary>
@@ -202,12 +206,6 @@ public static partial class zcore
     public static byte[] concat(params byte[][] src)
         => Array.concat(src);
 
-    /// <summary>
-    /// Concatenates a sequence of byte arrays
-    /// </summary>
-    /// <param name="src">The source arrays</param>
-    public static byte[] concat(IEnumerable<byte[]> src)
-        => Array.concat(src);
 
     /// <summary>
     /// Concatenates a sequence of parameter arrays
@@ -216,12 +214,6 @@ public static partial class zcore
     public static T[] concat<T>(params T[][] src)
         => Array.concat(src);
 
-    /// <summary>
-    /// Concatenates a sequence of arrays
-    /// </summary>
-    /// <param name="src">The source arrays</param>
-    public static T[] concat<T>(IEnumerable<T[]> src)
-        => Array.concat(src);
 
     /// <summary>
     /// Constructs an N-array from a parameter array

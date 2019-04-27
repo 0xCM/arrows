@@ -90,17 +90,6 @@ namespace Z0
             where T : struct, Structures.Semiring<T>
                 =>  lhs.fuse(rhs, (x,y) => x.mul(y));
 
-        /// <summary>
-        /// Sums the components of a vector to yield a scalar
-        /// </summary>
-        /// <param name="src">The source vector</param>
-        /// <typeparam name="N">The vector length</typeparam>
-        /// <typeparam name="T">The component type</typeparam>
-        [MethodImpl(Inline)]
-        public static T sum<N,T>(Vector<N,T> src) 
-            where N : TypeNat, new() 
-            where T : struct, Structures.Semiring<T>
-                => src.reduce(Monoid.additive<T>());
 
         [MethodImpl(Inline)]
         public static Vector<N,bool> equality<N,T>(Vector<N,T> lhs, Vector<N,T> rhs)

@@ -24,6 +24,47 @@ namespace Z0.Testing
 
         }
 
+        public void Verify<T>(string OpName, PrimalUnaryOp<T> PrimOp, PrimalUnaryOp<T> RefOp, Func<T,bool> filter = null)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimKinds.kind<T>();            
+            var sw = begin($"Verifying {OpName}{kind} operator");
+            
+            var config = Defaults.get<T>();
+            var src = RandomIndex<T>(config.Domain, config.SampleSize, filter);
+            for(var i = 0; i<src.Count; i++)
+            {
+                var x = src[i];
+                Claim.eq(RefOp(x),PrimOp(x));
+            }
+            
+            end($"Verified {OpName}{kind} operator",sw);
+
+
+            EmitMessages();
+        }
+
+        public void Verify<T>(string OpName, PrimalBinPred<T> PrimOp, PrimalBinPred<T> RefOp, Func<T,bool> filter = null)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimKinds.kind<T>();            
+            var sw = begin($"Verifying {OpName}{kind} operator");
+            
+            var config = Defaults.get<T>();
+            var lhs = RandomIndex<T>(config.Domain, config.SampleSize, filter);
+            var rhs = RandomIndex<T>(config.Domain, config.SampleSize, filter);
+            for(var i = 0; i<lhs.Count; i++)
+            {
+                var x = lhs[i];
+                var y = rhs[i];
+                Claim.eq(RefOp(x,y),PrimOp(x,y));
+            }
+            
+            end($"Verified {OpName}{kind} operator",sw);
+
+
+            EmitMessages();
+        }
         
         public void Verify<T>(string OpName, PrimalBinOp<T> PrimOp, PrimalBinOp<T> RefOp, Func<T,bool> filter = null)
             where T : struct, IEquatable<T>

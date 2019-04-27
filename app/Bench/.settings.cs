@@ -48,10 +48,10 @@ namespace Z0.Bench
                 => cast<Setting<T>>(TheOnly);
         
         public static int Cycles()
-            => 10;
+            => 5;
 
         public static int Reps()
-            => 100;
+            => 50;
 
         public static int SampleSize()
             => (int)Pow2.T19;

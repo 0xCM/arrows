@@ -17,6 +17,56 @@ namespace Z0.External
     public static class MsSse
     {
 
+
+        internal static readonly Vector128<float> AbsMask128 = Sse2.IsSupported ?
+            Vector128.Create(0x7FFFFFFF).AsSingle() :
+            Vector128.Create(BitConverter.Int32BitsToSingle(0x7FFFFFFF));
+
+        [MethodImplAttribute(MethodImplOptions.AggressiveInlining)]
+        internal static unsafe Vector128<float> Load1(float* src, int* idx)
+             => Vector128.CreateScalar(src[idx[0]]);
+
+        [MethodImplAttribute(MethodImplOptions.AggressiveInlining)]
+        internal static unsafe Vector128<float> Load4(float* src, int* idx)
+            => Vector128.Create(src[idx[0]], src[idx[1]], src[idx[2]], src[idx[3]]);
+
+        // The control byte shuffles the four 32-bit floats of x: ABCD -> BCDA.
+        [MethodImplAttribute(MethodImplOptions.AggressiveInlining)]
+        internal static Vector128<float> Rotate(in Vector128<float> x)
+            => Sse.Shuffle(x, x, 0x39);
+
+        [MethodImplAttribute(MethodImplOptions.AggressiveInlining)]
+        internal static unsafe void Store4(in Vector128<float> x, float* dst, int* idx)
+        {
+            Sse.StoreScalar(dst + idx[0], x);
+            Vector128<float> rotated = Rotate(in x);
+            Sse.StoreScalar(dst + idx[1], rotated);
+            rotated = Rotate(in rotated);
+            Sse.StoreScalar(dst + idx[2], rotated);
+            rotated = Rotate(in rotated);
+            Sse.StoreScalar(dst + idx[3], rotated);
+        }
+
+
+        [MethodImplAttribute(MethodImplOptions.AggressiveInlining)]
+        public static Vector128<float> VectorMax128(in Vector128<float> vector)
+        {
+            // The control byte shuffles the four 32-bit floats of partialMax: ABCD -> BADC.
+            Vector128<float> x1 = Sse.Shuffle(vector, vector, 0xB1);
+
+            // Performs element-wise maximum operation: The 1st and 3rd 32-bit slots become
+            // max(A, B) and max(C, D).
+            Vector128<float> partialMax = Sse.Max(vector, x1);
+
+            // The control byte shuffles the four 32-bit floats of partialMax: ABCD -> CAAA.
+            x1 = Sse.Shuffle(partialMax, partialMax, 0x02);
+
+            // Performs element-wise maximum operation: The 1st 32-bit slot becomes
+            // max(A, B, C, D).
+            return Sse.MaxScalar(partialMax, x1);
+        }
+
+
         [MethodImpl(Inline)]
         public static Vector128<float> VectorSum128(in Vector128<float> vector)
         {

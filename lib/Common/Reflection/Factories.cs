@@ -6,17 +6,37 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Concurrent;
     using System.Linq;
     using System.Linq.Expressions;
     using System.IO;
     using System.Diagnostics;
     using System.Reflection;
+    using System.Reflection.Emit;
     using System.Runtime.CompilerServices;
 
     using static zcore;
     
     partial class Reflections
     {
+        static readonly ConcurrentDictionary<MethodInfo, Delegate> Delegates = new ConcurrentDictionary<MethodInfo, Delegate>();
+
+        static Func<T,T,T> BuildBinaryOp<T>(this MethodInfo target)
+        {
+            var operand = typeof(T);                        
+            var method = new DynamicMethod("Mul", operand, new Type[] { operand, operand }, operand.Module);            
+            var gen = method.GetILGenerator();
+            gen.Emit(OpCodes.Ldarg_0);
+            gen.Emit(OpCodes.Ldarg_1);
+            gen.EmitCall(OpCodes.Call, target, null);
+            gen.Emit(OpCodes.Ret);
+            return (Func<T,T,T>) method.CreateDelegate(typeof(Func<T,T,T>));
+        }
+        
+        [MethodImpl(Inline)]
+        public static Func<T,T,T> ToBinaryOperator<T>(this MethodInfo target)
+            => (Func<T,T,T>) Delegates.GetOrAdd(target, m => m.BuildBinaryOp<T>());
+
         /// <summary>
         /// Creates an instance of a type and casts the instance value as specified by a type parameter
         /// </summary>

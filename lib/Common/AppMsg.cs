@@ -40,6 +40,8 @@ namespace Z0
 
     public class AppMsg
     {
+        public static AppMsg Define(string Content, SeverityLevel Level)
+            => new AppMsg(Content, Level , string.Empty);
 
         public static AppMsg Define(string Content, SeverityLevel? Level = null, [CallerMemberName] string Caller = null)
             => new AppMsg(Content, Level ?? SeverityLevel.Info, Caller ?? string.Empty);

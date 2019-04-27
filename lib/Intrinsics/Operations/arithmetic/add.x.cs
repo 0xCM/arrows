@@ -19,7 +19,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Index<T> AddG<T>(this Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T>
-                => IndexOps.add<T>()(lhs,rhs);
+                => InXFusionOps.add<T>()(lhs,rhs);
         
         [MethodImpl(Inline)]
         public static unsafe Index<sbyte> InXAdd(this Index<sbyte> lhs, Index<sbyte> rhs)

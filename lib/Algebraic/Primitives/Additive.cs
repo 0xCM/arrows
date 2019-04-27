@@ -43,21 +43,4 @@ namespace Z0
 
     }
 
-    /// <summary>
-    /// Reification of addition as a binary applicative
-    /// </summary>
-    public readonly struct Addition<T> : Additive<T>, BinaryApply<T>
-        where T : Operative.Additive<T>, new()
-    {
-        static readonly Addition<T> effector = default;
-        
-
-        [MethodImpl(Inline)]    
-        public T add(T lhs, T rhs)
-            => effector.add(lhs,rhs);
-
-        [MethodImpl(Inline)]    
-        public T apply(T lhs, T rhs)
-            => effector.add(lhs,rhs);
-    }
 }

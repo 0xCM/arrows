@@ -38,7 +38,7 @@ namespace Z0.Tests.InXTests
             var dst = alloc<T>(VecLength*VecCount);
             
             for(int i=0, offset = 0; i< VecCount; i++, offset += VecLength)            
-                Vec128Ops.store(vectors[i], dst, offset);                    
+                InXVec128Ops.store(vectors[i], dst, offset);                    
 
 
             for(int i = 0, j=0; i< dst.Length; i+= VecLength, j++)

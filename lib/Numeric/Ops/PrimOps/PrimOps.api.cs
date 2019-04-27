@@ -127,16 +127,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => typeops<T>().negate(src);
 
-        /// <summary>
-        /// Negates the source value sfor signable types; for unsignable types,
-        /// reverses the bits in the underlying representations
-        /// </summary>
-        /// <param name="src">The source values</param>
-        /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline)]
-        public static Index<T> negate<T>(Index<T> src)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().negate(src);
 
         /// <summary>
         /// Calculates the absolute value of the operand
@@ -149,33 +139,12 @@ namespace Z0
                 => typeops<T>().abs(src);
         
         /// <summary>
-        /// Calculates the absolute value of each item in a list
-        /// </summary>
-        /// <param name="src">The source values</param>
-        /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline)]
-        public static Index<T> abs<T>(Index<T> src)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().abs(src);
-
-        /// <summary>
         /// Calculates the value of the operand incremented by one
         /// </summary>
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
         public static T inc<T>(T src)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().inc(src);
-
-
-        /// <summary>
-        /// Calculates the value of each item incremented by one
-        /// </summary>
-        /// <param name="src">The source value</param>
-        /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline)]
-        public static Index<T> inc<T>(Index<T> src)        
             where T : struct, IEquatable<T>
                 => typeops<T>().inc(src);
 
@@ -189,25 +158,10 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => typeops<T>().dec(src);
 
-        /// <summary>
-        /// Calculates the value of each item decremented by one
-        /// </summary>
-        /// <param name="src">The source value</param>
-        /// <typeparam name="T">The source type</typeparam>
-        [MethodImpl(Inline)]
-        public static Index<T> dec<T>(Index<T> src)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().dec(src);
-
         [MethodImpl(Inline)]
         public static T add<T>(T lhs, T rhs)        
             where T : struct, IEquatable<T>
                 => typeops<T>().add(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public static Index<T> add<T>(Index<T> lhs, Index<T> rhs)        
-            where T : struct, IEquatable<T>
-            => typeops<T>().add(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static T sub<T>(T lhs, T rhs)        
@@ -215,17 +169,7 @@ namespace Z0
             => typeops<T>().sub(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static Index<T> sub<T>(Index<T> lhs, Index<T> rhs)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().sub(lhs,rhs);
-
-        [MethodImpl(Inline)]
         public static T mul<T>(T lhs, T rhs)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().mul(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public static Index<T> mul<T>(Index<T> lhs, Index<T> rhs)        
             where T : struct, IEquatable<T>
                 => typeops<T>().mul(lhs,rhs);
 
@@ -235,17 +179,7 @@ namespace Z0
                 => typeops<T>().div(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static Index<T> div<T>(Index<T> lhs, Index<T> rhs)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().div(lhs,rhs);
-
-        [MethodImpl(Inline)]
         public static T mod<T>(T lhs, T rhs)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().mod(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public static Index<T> mod<T>(Index<T> lhs, Index<T> rhs)        
             where T : struct, IEquatable<T>
                 => typeops<T>().mod(lhs,rhs);
 
@@ -255,17 +189,7 @@ namespace Z0
                 => typeops<T>().gcd(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static Index<T> gcd<T>(Index<T> lhs, Index<T> rhs)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().gcd(lhs,rhs);
-
-        [MethodImpl(Inline)]
         public static bool eq<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
-                => typeops<T>().eq(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public static Index<bool> eq<T>(Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T>
                 => typeops<T>().eq(lhs,rhs);
 
@@ -275,17 +199,7 @@ namespace Z0
                 => typeops<T>().neq(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static Index<bool> neq<T>(Index<T> lhs, Index<T> rhs)
-            where T : struct, IEquatable<T>
-                => typeops<T>().eq(lhs,rhs);
-
-        [MethodImpl(Inline)]
         public static bool lt<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
-                => typeops<T>().lt(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public static Index<bool> lt<T>(Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T>
                 => typeops<T>().lt(lhs,rhs);
 
@@ -295,27 +209,12 @@ namespace Z0
                 => typeops<T>().lteq(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static Index<bool> lteq<T>(Index<T> lhs, Index<T> rhs)
-            where T : struct, IEquatable<T>
-            => typeops<T>().lteq(lhs,rhs);
-
-        [MethodImpl(Inline)]
         public static bool gt<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
             => typeops<T>().gt(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static Index<bool> gt<T>(Index<T> lhs, Index<T> rhs)
-            where T : struct, IEquatable<T>
-            => typeops<T>().gt(lhs,rhs);
-
-        [MethodImpl(Inline)]
         public static bool gteq<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
-            => typeops<T>().gteq(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public static Index<bool> gteq<T>(Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T>
             => typeops<T>().gteq(lhs,rhs);
                 
@@ -334,26 +233,15 @@ namespace Z0
             where T : struct, IEquatable<T>
             => typeops<T>().or(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public static Index<T> or<T>(Index<T> lhs, Index<T> rhs)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().or(lhs,rhs);
-
         [MethodImpl(Inline)]   
         public static T xor<T>(T lhs, T rhs) 
             where T : struct, IEquatable<T>
             => typeops<T>().xor(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public static Index<T> xor<T>(Index<T> lhs, Index<T> rhs)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().xor(lhs,rhs);
-
         [MethodImpl(Inline)]   
         public static T lshift<T>(T lhs, int rhs) 
             where T : struct, IEquatable<T>
             => typeops<T>().lshift(lhs,rhs);
-
 
         [MethodImpl(Inline)]   
         public static T rshift<T>(T lhs, int rhs) 
@@ -365,21 +253,11 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => typeops<T>().flip(src);
 
-        [MethodImpl(Inline)]
-        public static Index<T> flip<T>(Index<T> src)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().flip(src);
-
         [MethodImpl(Inline)]   
         public static BitString bitstring<T>(T src) 
             where T : struct, IEquatable<T>
                 => typeops<T>().bitstring(src);
 
-        [MethodImpl(Inline)]   
-        public static Index<BitString> bitstring<T>(Index<T> src) 
-            where T : struct, IEquatable<T>
-                => map(src,bitstring);
-            
         [MethodImpl(Inline)]
         public static bool testbit<T>(T src, int pos)
             where T : struct, IEquatable<T>

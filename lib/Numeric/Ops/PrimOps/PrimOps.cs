@@ -20,22 +20,12 @@ namespace Z0
 
         public interface PrimOps<T> :
                 Additive<T>, 
-                Additive<Index<T>>,            
-
                 Subtractive<T>,
-                Subtractive<Index<T>>,
-                
                 Multiplicative<T>, 
-                Multiplicative<Index<T>>,            
-
                 Negatable<T>, 
-                Negatable<Index<T>>,             
-
                 Absolutive<T>, 
-                Absolutive<Index<T>>,             
-
                 Stepwise<T>,
-                Stepwise<Index<T>>,            
+                // Stepwise<Index<T>>,            
 
                 Bitwise<T>, 
                 Divisive<T>, 
@@ -48,39 +38,8 @@ namespace Z0
                 Parser<T>
             where T : struct, IEquatable<T>
         {
-            /// <summary>
-            /// Computes component-wise equality between two lists of equal length
-            /// </summary>
-            /// <param name="lhs">The first list</param>
-            /// <param name="rhs">The second list</param>
-            /// <returns>A list r whose i'th entry is deterimed by r[i] = eq(lhs[i], rhs[i]) </returns>
-            Index<bool> eq(Index<T> lhs, Index<T> rhs);
-            
-            /// <summary>
-            /// Computes component-wise inequality between two lists of equal length
-            /// </summary>
-            /// <param name="lhs">The first list</param>
-            /// <param name="rhs">The second list</param>
-            /// <returns>A list r whose i'th entry is deterimed by r[i] = neq(lhs[i], rhs[i]) </returns>
-            Index<bool> neq(Index<T> lhs, Index<T> rhs);
-            
-            Index<bool> lt(Index<T> lhs, Index<T> rhs);
-            
-            Index<bool> lteq(Index<T> lhs, Index<T> rhs);
-            
-            Index<bool> gt(Index<T> lhs, Index<T> rhs);
-            
-            Index<bool> gteq(Index<T> lhs, Index<T> rhs);
             
             Index<bool> testbits(Index<T> src, int pos);            
-
-            /// <summary>
-            /// Computes the component-wise gcd between two lists of equal length
-            /// </summary>
-            /// <param name="lhs">The first list</param>
-            /// <param name="rhs">The second list</param>
-            /// <returns>A list r whose i'th entry is deterimed by r[i] = gcd(lhs[i], rhs[i]) </returns>
-            Index<T> gcd(Index<T> lhs, Index<T> rhs);
 
             /// <summary>
             /// Computes the component-wise division between two lists of equal length
@@ -89,14 +48,6 @@ namespace Z0
             /// <param name="rhs">The second list</param>
             /// <returns>A list r whose i'th entry is deterimed by r[i] = lhs[i] / rhs[i] </returns>
             Index<T> div(Index<T> lhs, Index<T> rhs);
-
-            /// <summary>
-            /// Computes the component-wise modulus between two lists of equal length
-            /// </summary>
-            /// <param name="lhs">The first list</param>
-            /// <param name="rhs">The second list</param>
-            /// <returns>A list r whose i'th entry is deterimed by r[i] = lhs[i] % rhs[i] </returns>
-            Index<T> mod(Index<T> lhs, Index<T> rhs);
         
             /// <summary>
             /// Implements .net-style comparison for compatibility
@@ -289,33 +240,21 @@ namespace Z0
                 => Ordered.lt(lhs,rhs);
 
 
-            [MethodImpl(Inline)]
-            public Index<bool> lt(Index<T> lhs, Index<T> rhs)
-                =>  fuse(lhs,rhs,lt);
 
             [MethodImpl(Inline)]
             public bool lteq(T lhs, T rhs)
                 => Ordered.lteq(lhs,rhs);
 
-            [MethodImpl(Inline)]
-            public Index<bool> lteq(Index<T> lhs, Index<T> rhs)
-                =>  fuse(lhs,rhs,lteq);
 
             [MethodImpl(Inline)]
             public bool gt(T lhs, T rhs)
                 => Ordered.gt(lhs,rhs);
 
-            [MethodImpl(Inline)]
-            public Index<bool> gt(Index<T> lhs, Index<T> rhs)
-                =>  fuse(lhs,rhs,gt);
 
             [MethodImpl(Inline)]
             public bool gteq(T lhs, T rhs)
                 => Ordered.gteq(lhs,rhs);
 
-            [MethodImpl(Inline)]
-            public Index<bool> gteq(Index<T> lhs, Index<T> rhs)
-                =>  fuse(lhs,rhs,gteq);
 
             [MethodImpl(Inline)]
             public T inc(T x)
@@ -337,7 +276,6 @@ namespace Z0
             public T and(T lhs, T rhs)
                 => Bitwise.and(lhs,rhs);
 
-
             [MethodImpl(Inline)]
             public Index<T> and(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs, and);
@@ -346,15 +284,13 @@ namespace Z0
             public T or(T lhs, T rhs)
                 => Bitwise.or(lhs,rhs);
 
-
             [MethodImpl(Inline)]
             public Index<T> or(Index<T> lhs, Index<T> rhs)
                 =>  fuse(lhs,rhs,or);
 
             [MethodImpl(Inline)]
             public T xor(T lhs, T rhs)
-                => Bitwise.xor(lhs,rhs);
-            
+                => Bitwise.xor(lhs,rhs);            
 
             [MethodImpl(Inline)]
             public Index<T> xor(Index<T> lhs, Index<T> rhs)
@@ -363,7 +299,6 @@ namespace Z0
             [MethodImpl(Inline)]
             public T flip(T x)
                 => Bitwise.flip(x);
-
 
             [MethodImpl(Inline)]
             public Index<T> flip(Index<T> src)
@@ -385,18 +320,10 @@ namespace Z0
             public T rshift(T lhs, int rhs)
                 => Bitwise.rshift(lhs,rhs);
 
-            [MethodImpl(Inline)]
-            public Index<T> rshift(Index<T> lhs, int rhs)
-            {
-                var dst = array<T>(lhs.Count);
-                iter(lhs.Count, i => dst[i] = Bitwise.rshift(lhs[i],rhs));
-                return dst;
-            }
 
             [MethodImpl(Inline)]
             public string bitchars(T x)
                 => Bitwise.bitchars(x);
-
 
             [MethodImpl(Inline)]
             public BitString bitstring(T x)
@@ -423,16 +350,8 @@ namespace Z0
                 => Equality.eq(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public Index<bool> eq(Index<T> lhs, Index<T> rhs)
-                =>  fuse(lhs,rhs,eq);
-
-            [MethodImpl(Inline)]
             public bool neq(T lhs, T rhs)
                 => Equality.neq(lhs,rhs);
-
-            [MethodImpl(Inline)]
-            public Index<bool> neq(Index<T> lhs, Index<T> rhs)
-                =>  fuse(lhs,rhs,neq);
 
             [MethodImpl(Inline)]
             public Quorem<T> divrem(T lhs, T rhs)
@@ -550,15 +469,6 @@ namespace Z0
             [MethodImpl(Inline)]
             public string bitchars(Index<T> src)
                 => string.Join("",map(src,bitchars));
-
-            // BitString BitSource<Index<T>>.bitstring(Index<T> src)            
-            // {
-            //     var allbits = Arr.concat(src.Select(bits).ToArray());
-            //     return BitString.define(allbits);
-            // }                            
-
-            // bool BitSource<Index<T>>.testbit(Index<T> src, int pos)
-            //     => throw new NotImplementedException();
 
             public byte[] bytes(Index<T> src)
                 => Arr.concat(map(src,bytes));

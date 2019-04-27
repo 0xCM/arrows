@@ -12,7 +12,8 @@ namespace Z0
 
     using static Operative;
 
-    
+
+
 
     partial class PrimOps { public partial class Reify
     {
@@ -87,7 +88,4 @@ namespace Z0
         }
 
     }}
-
-
-
 }
