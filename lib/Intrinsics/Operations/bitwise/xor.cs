@@ -315,5 +315,27 @@ namespace Z0
             return dst;
         }
 
+        static readonly PrimalIndex XOrLU
+            = PrimKinds.index
+                (@sbyte: new PrimalFusedBinOp<sbyte>(InX.xor),
+                @byte: new PrimalFusedBinOp<byte>(InX.xor),
+                @short: new PrimalFusedBinOp<short>(InX.xor),
+                @ushort: new PrimalFusedBinOp<ushort>(InX.xor),
+                @int: new PrimalFusedBinOp<int>(InX.xor),
+                @uint: new PrimalFusedBinOp<uint>(InX.xor),
+                @long: new PrimalFusedBinOp<long>(InX.xor),
+                @ulong: new PrimalFusedBinOp<ulong>(InX.xor),
+                @float: new PrimalFusedBinOp<float>(InX.xor),
+                @double:new PrimalFusedBinOp<double>(InX.xor)
+                );
+
+        internal readonly struct XOr<T>
+            where T : struct, IEquatable<T>
+        {
+            public static readonly PrimalFusedBinOp<T> Op = XOrLU.lookup<T,PrimalFusedBinOp<T>>();
+        }
+
+
+
     }    
 }

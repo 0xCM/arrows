@@ -13,12 +13,12 @@ namespace Z0
     partial class PrimalOps
     {
         [MethodImpl(Inline)]
-        static byte abs(byte x)
-            => x;
+        static sbyte abs(sbyte x)
+            => Math.Abs(x);
 
         [MethodImpl(Inline)]
-        static sbyte abs(sbyte x)
-            => (sbyte)(x >= 0 ? x : -x);
+        static byte abs(byte x)
+            => x;
 
         [MethodImpl(Inline)]
         static short abs(short x)
@@ -60,8 +60,7 @@ namespace Z0
         static BigInteger abs(BigInteger x)
             => BigInteger.Abs(x);
 
-
-       static readonly PrimalIndex AbsDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex AbsDelegates = PrimKinds.index<object>
             (
                 @sbyte : new PrimalUnaryOp<sbyte>(abs),
                 @byte : new PrimalUnaryOp<byte>(abs),
@@ -83,9 +82,5 @@ namespace Z0
             public static readonly PrimalUnaryOp<T> Op 
                 = AbsDelegates.lookup<T,PrimalUnaryOp<T>>();
         }
- 
-
-
     }
-
 }

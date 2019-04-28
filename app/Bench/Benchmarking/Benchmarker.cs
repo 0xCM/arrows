@@ -45,7 +45,6 @@ namespace Z0.Bench
     public class Benchmarker<T> : Benchmark<T>
         where T : struct, IEquatable<T>
     {
-        TimedOpConvert<T> OpConvert {get;}
         
         public Benchmarker(string OpName,  BenchConfig config = null)
             : base(OpName, config ?? BenchConfig.Default)
@@ -53,7 +52,12 @@ namespace Z0.Bench
             OpConvert = new TimedOpConvert<T>();
         }        
 
-        protected BenchResult RunCycle(int cycle, Index<T> lhs, Index<T> rhs, Func<Index<T>, Index<T>, long> worker)
+        TimedOpConvert<T> OpConvert {get;}
+
+        Index<T> Sample()
+            => RandomIndex<T>(Domain, Config.SampleSize);
+                    
+        BenchResult RunCycle(int cycle, Index<T> lhs, Index<T> rhs, Func<Index<T>, Index<T>, long> worker)
         {
             var ticks = 0L;
             var result = BenchResult.Init(cycle,OpId,Config.Reps);
@@ -64,7 +68,18 @@ namespace Z0.Bench
             return result;
         }
 
-        BenchResult Run(Index<T> lhs, Index<T> rhs, Func<Index<T>, Index<T>, long> worker)
+        BenchResult RunCycle(Index<T> src, Func<Index<T>, long> worker, int cycle)
+        {
+            var result = BenchResult.Init(cycle,OpId,Config.Reps);
+            LogCycleStart(cycle);
+            var ticks = 0L;
+            iter(Config.Reps, _ => ticks += worker(src));
+            result = result.AppendTicks(ticks);
+            LogCycleFinish(result);
+            return result;
+        }
+
+        BenchResult RunCycles(Index<T> lhs, Index<T> rhs, Func<Index<T>, Index<T>, long> worker)
         {
             var result = BenchResult.Init(0,OpId,Config.Reps);
 
@@ -77,26 +92,11 @@ namespace Z0.Bench
         }
 
         BenchResult Run(TimedFusedPred<T> Op)
-            => Run(
-                RandomIndex<T>(Settings.Domain<T>(), Config.SampleSize), 
-                RandomIndex<T>(Settings.Domain<T>(), Config.SampleSize),                        
-                        (x,y) => Op(x, y,  out Index<bool> z));
+            => RunCycles(Sample(), Sample(), (x,y) => Op(x, y,  out Index<bool> z));
                             
         BenchResult Run(TimedAggOp<T> Op)
-            => Run(RandomIndex<T>(Settings.Domain<T>(), Config.SampleSize),                        
-                        x => Op(x,  out T z));
+            => Run(RandomIndex<T>(Domain, Config.SampleSize), x => Op(x,  out T z));
                         
-        protected BenchResult RunCycle(Index<T> src, Func<Index<T>, long> worker, int cycle)
-        {
-            var result = BenchResult.Init(cycle,OpId,Config.Reps);
-            LogCycleStart(cycle);
-            var ticks = 0L;
-            iter(Config.Reps, _ => ticks += worker(src));
-            result = result.AppendTicks(ticks);
-            LogCycleFinish(result);
-            return result;
-        }
-
         BenchResult Run(Index<T> src, Func<Index<T>, long> worker)
         {
             var result = BenchResult.Init(0, OpId,Config.Reps);
@@ -108,71 +108,107 @@ namespace Z0.Bench
 
         BenchResult Run(TimedFusedUnaryOp<T> Op)
             => Run(
-                RandomIndex<T>(Settings.Domain<T>(), Config.SampleSize),
+                RandomIndex<T>(Domain, Config.SampleSize),
                         x => Op(x, out Index<T> z));
 
        BenchResult Run(TimedFusedBinOp<T> Op)
-            => Run(
-                RandomIndex<T>(Settings.Domain<T>(), Config.SampleSize),
-                RandomIndex<T>(Settings.Domain<T>(), Config.SampleSize),
-                        (x,y) => Op(x, y, out Index<T> z)
-                        );
+            => RunCycles(Sample(),Sample(),(x,y) => Op(x, y, out Index<T> z));
  
-        public BenchResult Run(PrimalFusedPred<T> Op)
+        public BenchResult Run(PrimalFusedPred<T> Op, FusedPredInspector<T> inspector = null)
         {
-            TimedFusedPred<T> _TimedOp = (Index<T> lhs, Index<T> rhs, out Index<bool> dst) 
-                => OpConvert.TimedOp(lhs,rhs,out dst,Op);
-            return Run(_TimedOp);
+            long Measure(Index<T> lhs, Index<T> rhs, out Index<bool> dst)
+            {
+                var ticks = OpConvert.TimedOp(lhs,rhs,out dst,Op);
+                inspector?.Invoke(lhs,rhs,dst);
+                return ticks;
+            }
+
+            return Run(Measure);
         }
 
-        public BenchResult Run(PrimalFusedUnaryOp<T> Op)
+        public BenchResult Run(PrimalFusedUnaryOp<T> Op, FusedUnaryOpInspector<T> inspector = null)
         {
-            TimedFusedUnaryOp<T> _TimedOp = (Index<T> src, out Index<T> dst) 
-                => OpConvert.TimedOp(src,out dst,Op);
-            return Run(_TimedOp);
+            long Measure(Index<T> src, out Index<T> dst)
+            {
+                var ticks = OpConvert.TimedOp(src,out dst,Op);
+                inspector?.Invoke(src, dst);
+                return ticks;
+            }
+
+            return Run(Measure);
         }
 
-        public BenchResult Run(PrimalFusedBinOp<T> Op)
+        public BenchResult Run(PrimalFusedBinOp<T> Op, FusedBinOpInspector<T> inspector = null)
         {
-            TimedFusedBinOp<T> _TimedOp = (Index<T> lhs, Index<T> rhs, out Index<T> dst) 
-                => OpConvert.TimedOp(lhs,rhs,out dst,Op);
-            return Run(_TimedOp);
+            long Measure(Index<T> lhs, Index<T> rhs, out Index<T> dst)
+            {
+                var ticks = OpConvert.TimedOp(lhs,rhs,out dst,Op);
+                inspector?.Invoke(lhs,rhs,dst);
+                return ticks;
+            }
+            
+            return Run(Measure);
         }
 
-        public BenchResult Run(PrimalAggOp<T> Op)
+        public BenchResult Run(PrimalAggOp<T> Op, AggOpInspector<T> inspector = null)
         {
-            TimedAggOp<T> _TimedOp = (Index<T> src, out T dst)  
-                => OpConvert.TimedOp(src,out dst,Op);
-            return Run(_TimedOp);
+            long Measure(Index<T> src, out T dst)
+            {
+                var ticks = OpConvert.TimedOp(src,out dst,Op);
+                inspector?.Invoke(src,dst);
+                return ticks;
+            }
+            
+            return Run(Measure);
         }
 
-        public BenchResult Run(PrimalBinOp<T> Op)
+        public BenchResult Run(PrimalBinOp<T> Op, FusedBinOpInspector<T> inspector = null)
         {
-            TimedFusedBinOp<T> _TimedOp = (Index<T> lhs, Index<T> rhs, out Index<T> dst) 
-                => OpConvert.TimedOp(lhs,rhs,out dst, Op);
-            return Run(_TimedOp);
+            long Measure(Index<T> lhs, Index<T> rhs, out Index<T> dst)
+            {
+                var ticks = OpConvert.TimedOp(lhs, rhs, out dst, Op);
+                inspector?.Invoke(lhs,rhs,dst);
+                return ticks;            
+            }
+
+            return Run(Measure);
         }
 
-        public BenchResult Run(PrimalUnaryOp<T> Op)
+        public BenchResult Run(PrimalUnaryOp<T> Op, FusedUnaryOpInspector<T> inspector = null)
         {
-            TimedFusedUnaryOp<T> _TimedOp = (Index<T> src, out Index<T> dst) 
-                => OpConvert.TimedOp(src, out dst, Op);
-            return Run(_TimedOp);
+            long Measure(Index<T> src, out Index<T> dst)
+            {
+                var ticks = OpConvert.TimedOp(src, out dst, Op);
+                inspector?.Invoke(src,dst);
+                return ticks;
+            }
+            
+            
+            return Run(Measure);
         }
 
-        public BenchResult Run(Func<T,T,T> Op)
+        public BenchResult Run(Func<T,T,T> Op, FusedBinOpInspector<T> inspector = null)
         {
-            TimedFusedBinOp<T> _TimedOp = (Index<T> lhs, Index<T> rhs, out Index<T> dst) 
-                => OpConvert.TimedOp(lhs,rhs,out dst,Op);
-            return Run(_TimedOp);
+            long Measure(Index<T> lhs, Index<T> rhs, out Index<T> dst)
+            {
+                var ticks = OpConvert.TimedOp(lhs,rhs, out dst, Op);
+                inspector?.Invoke(lhs,rhs,dst);                
+                return ticks;
+            }
+            
+            return Run(Measure);                         
         }
 
-        public BenchResult Run(Vec128BinOp<T> Op)
+        public BenchResult Run(Vec128BinOp<T> Op, FusedBinOpInspector<T> inspector = null)
         {
-            TimedFusedBinOp<T> _TimedOp = (Index<T> lhs, Index<T> rhs, out Index<T> dst)
-                => OpConvert.TimedOp(lhs,rhs, out dst, Op);
-            return Run(_TimedOp);             
+            long Measure(Index<T> lhs, Index<T> rhs, out Index<T> dst)
+            {
+                var ticks = OpConvert.TimedOp(lhs,rhs, out dst, Op);
+                inspector?.Invoke(lhs,rhs,dst);                
+                return ticks;
+            }
+            
+            return Run(Measure);             
         }
-
     }
 }

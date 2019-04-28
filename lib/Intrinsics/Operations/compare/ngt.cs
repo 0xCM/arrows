@@ -24,7 +24,6 @@ namespace Z0
         public static Num128<double> ngt(Num128<double> lhs, Num128<double> rhs)
             => Avx2.CompareNotGreaterThanScalar(lhs, rhs);
 
-
         [MethodImpl(Inline)]
         public static Vec128<float> ngt(Vec128<float> lhs, Vec128<float> rhs)
             => Avx2.CompareNotGreaterThan(lhs, rhs);

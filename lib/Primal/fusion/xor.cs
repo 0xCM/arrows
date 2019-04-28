@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
@@ -10,41 +14,86 @@ namespace Z0
     {
  
         [MethodImpl(Inline)]
-        static Index<byte> xor(Index<byte> lhs, Index<byte> rhs)
-            => fuse(lhs,rhs, (x,y) => (byte)(x ^ y));
+        static Index<sbyte> xor(Index<sbyte> lhs, Index<sbyte> rhs)
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = (sbyte)(lhs[i] ^ rhs[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
-        static Index<sbyte> xor(Index<sbyte> lhs, Index<sbyte> rhs)
-            => fuse(lhs,rhs, (x,y) => (sbyte)(x ^ y));
+        static Index<byte> xor(Index<byte> lhs, Index<byte> rhs)
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = (byte)(lhs[i] ^ rhs[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<short> xor(Index<short> lhs, Index<short> rhs)
-            => fuse(lhs,rhs, (x,y) => (short)(x ^ y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = (short)(lhs[i] ^ rhs[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<ushort> xor(Index<ushort> lhs, Index<ushort> rhs)
-            => fuse(lhs,rhs, (x,y) => (ushort)(x ^ y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = (ushort)(lhs[i] ^ rhs[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<int> xor(Index<int> lhs, Index<int> rhs)
-            => fuse(lhs,rhs, (x,y) => (x ^ y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] ^ rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<uint> xor(Index<uint> lhs, Index<uint> rhs)
-            => fuse(lhs,rhs, (x,y) => (x ^ y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] ^ rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<long> xor(Index<long> lhs, Index<long> rhs)
-            => fuse(lhs,rhs, (x,y) => (x ^ y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] ^ rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<ulong> xor(Index<ulong> lhs, Index<ulong> rhs)
-            => fuse(lhs,rhs, (x,y) => (x ^ y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] ^ rhs[i];
+            return dst;
+        }
 
 
         [MethodImpl(Inline)]
         static Index<BigInteger> xor(Index<BigInteger> lhs, Index<BigInteger> rhs)
-            => fuse(lhs,rhs, (x,y) => (x ^ y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] ^ rhs[i];
+            return dst;
+        }
 
 
          static readonly PrimalIndex XOrDelegates = PrimKinds.index<object>

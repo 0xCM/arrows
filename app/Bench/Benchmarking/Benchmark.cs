@@ -22,37 +22,37 @@ namespace Z0.Bench
             where T : struct, IEquatable<T>
                 => new Benchmarker<T>(opname, config);
 
-        public static BenchSpec Measure<T>(this PrimalAggOp<T> op, string opname)
+        public static BenchSpec Measure<T>(this PrimalAggOp<T> op, string opname, AggOpInspector<T> inspector = null)
             where T : struct, IEquatable<T>
-                => config => Runner<T>(opname,config).Run(op);
+                => config => Runner<T>(opname,config).Run(op, inspector);
      
-        public static BenchSpec Measure<T>(this PrimalFusedBinOp<T> op, string opname)
+        public static BenchSpec Measure<T>(this PrimalFusedBinOp<T> op, string opname, FusedBinOpInspector<T> inspector = null)
             where T : struct, IEquatable<T>
-                => config =>  Runner<T>(opname,config).Run(op);
+                => config =>  Runner<T>(opname,config).Run(op, inspector);
 
-        public static BenchSpec Measure<T>(this PrimalFusedUnaryOp<T> op, string opname)
+        public static BenchSpec Measure<T>(this PrimalFusedUnaryOp<T> op, string opname, FusedUnaryOpInspector<T> inspector = null)
             where T : struct, IEquatable<T>
-                => config =>  Runner<T>(opname,config).Run(op);
+                => config =>  Runner<T>(opname,config).Run(op, inspector);
 
-        public static BenchSpec Measure<T>(this PrimalFusedPred<T> op, string opname)
+        public static BenchSpec Measure<T>(this PrimalFusedPred<T> op, string opname, FusedPredInspector<T> inspector = null)
             where T : struct, IEquatable<T>
-                => config =>  Runner<T>(opname,config).Run(op);
+                => config =>  Runner<T>(opname,config).Run(op, inspector);
 
-        public static BenchSpec Measure<T>(this PrimalUnaryOp<T> op, string opname)
+        public static BenchSpec Measure<T>(this PrimalUnaryOp<T> op, string opname, FusedUnaryOpInspector<T> inspector = null)
             where T : struct, IEquatable<T>
-                => config => Runner<T>(opname,config).Run(op);
+                => config => Runner<T>(opname,config).Run(op, inspector);
 
-        public static BenchSpec Measure<T>(this PrimalBinOp<T> op, string opname)
+        public static BenchSpec Measure<T>(this PrimalBinOp<T> op, string opname, FusedBinOpInspector<T> inspector = null)
             where T : struct, IEquatable<T>
-                => config => Runner<T>(opname,config).Run(op);
+                => config => Runner<T>(opname,config).Run(op, inspector);
 
-        public static BenchSpec Measure<T>(Func<T,T,T> binop, string opname)
+        public static BenchSpec Measure<T>(Func<T,T,T> binop, string opname, FusedBinOpInspector<T> inspector = null)
             where T : struct, IEquatable<T>
-                => config => Runner<T>(opname,config).Run(binop);
+                => config => Runner<T>(opname,config).Run(binop, inspector);
 
-        public static BenchSpec Measure<T>(this Vec128BinOp<T> binop, string opname)
+        public static BenchSpec Measure<T>(this Vec128BinOp<T> binop, string opname, FusedBinOpInspector<T> inspector = null)
             where T : struct, IEquatable<T>
-                => config => Runner<T>(opname,config).Run(binop);
+                => config => Runner<T>(opname,config).Run(binop, inspector);
     }
 
 }

@@ -84,8 +84,8 @@ namespace Z0
 
         static readonly PrimalIndex MulAdd = PrimKinds.index<object>
             (
-                @float : new Num128TernaryOp<float>(InX.muladd),
-                @double : new Num128TernaryOp<double>(InX.muladd)
+                @float : new Num128TernaryOp<float>(InX.mulAdd),
+                @double : new Num128TernaryOp<double>(InX.mulAdd)
             );
 
         [MethodImpl(Inline)]

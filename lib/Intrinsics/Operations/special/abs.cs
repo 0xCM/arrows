@@ -28,7 +28,6 @@ namespace Z0
         public static Vec128<uint> abs(Vec128<int> src)
             => Avx2.Abs(src);
 
-
         [MethodImpl(Inline)]
         public static Vec256<byte> abs(Vec256<sbyte> src)
             => Avx2.Abs(src);

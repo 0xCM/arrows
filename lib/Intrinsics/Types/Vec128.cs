@@ -26,7 +26,6 @@ namespace Z0
         
         readonly ulong x0;
         readonly ulong x1;
-        //readonly Vector128<T> data;        
     
         [MethodImpl(Inline)]
         public static implicit operator Vec128<T>(Vector128<T> src)
@@ -61,7 +60,5 @@ namespace Z0
 
         public override string ToString()
             => this.ToVector128().ToString();
- 
-
     }     
 }

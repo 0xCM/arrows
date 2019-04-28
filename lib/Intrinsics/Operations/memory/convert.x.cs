@@ -12,58 +12,58 @@ namespace Z0
     using static zcore;
     using static inxfunc;
 
-    partial class InX
+    partial class InXX
     {
 
         [MethodImpl(Inline)]
-        public static Vec128<short> toInt16v(Vec128<sbyte> src)
+        public static Vec128<short> ToInt16Vec(this Vec128<sbyte> src)
             => Avx2.ConvertToVector128Int16(src);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> toInt32v(Vec128<sbyte> src)
+        public static Vec128<int> ToInt32Vec(this Vec128<sbyte> src)
             => Avx2.ConvertToVector128Int32(src);
 
         [MethodImpl(Inline)]
-        public static Vec128<long> toInt64v(Vec128<sbyte> src)
+        public static Vec128<long> ToInt64Vec(this Vec128<sbyte> src)
             => Avx2.ConvertToVector128Int64(src);
 
         [MethodImpl(Inline)]
-        public static Vec128<short> toInt16v(Vec128<byte> src)
+        public static Vec128<short> toInt16Vec(this Vec128<byte> src)
             =>  Avx2.ConvertToVector128Int16(src);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> toInt32v(Vec128<byte> src)
+        public static Vec128<int> ToInt32Vec(this Vec128<byte> src)
             => Avx2.ConvertToVector128Int32(src);
 
         [MethodImpl(Inline)]
-        public static Vec128<long> toInt64v(Vec128<byte> src)
+        public static Vec128<long> ToInt64Vec(this Vec128<byte> src)
             => Avx2.ConvertToVector128Int64(src);
 
 
         [MethodImpl(Inline)]
-        public static Vec128<int> toInt32v(Vec128<short> src)
+        public static Vec128<int> ToInt32Vec(this Vec128<short> src)
             => Avx2.ConvertToVector128Int32(src);
 
 
         [MethodImpl(Inline)]
-        public static Vec128<long> toInt64v(Vec128<short> src)
+        public static Vec128<long> ToInt64Vec(this Vec128<short> src)
             => Avx2.ConvertToVector128Int64(src);
 
 
         [MethodImpl(Inline)]
-        public static Vec128<int> toInt32v(Vec128<ushort> src)
+        public static Vec128<int> ToInt32Vec(this Vec128<ushort> src)
             => Avx2.ConvertToVector128Int32(src);
 
         [MethodImpl(Inline)]
-        public static Vec128<long> toInt64v(Vec128<ushort> src)
+        public static Vec128<long> ToInt64Vec(this Vec128<ushort> src)
             => Avx2.ConvertToVector128Int64(src);
 
         [MethodImpl(Inline)]
-        public static Vec128<long> toInt64v(Vec128<int> src)
+        public static Vec128<long> ToInt64Vec(this Vec128<int> src)
             => Avx2.ConvertToVector128Int64(src);
 
         [MethodImpl(Inline)]
-        public static Vec128<long> toInt64v(Vec128<uint> src)
+        public static Vec128<long> ToInt64Vec(this Vec128<uint> src)
             => Avx2.ConvertToVector128Int64(src);
 
     }

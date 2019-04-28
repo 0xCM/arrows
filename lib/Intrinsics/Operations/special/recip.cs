@@ -24,6 +24,10 @@ namespace Z0
             => Avx2.Reciprocal(src);
 
 
+        [MethodImpl(Inline)]
+        public static Vec256<float> recip(Vec256<float> src)
+            => Avx2.Reciprocal(src);
+
 
     }
 

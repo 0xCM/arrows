@@ -24,6 +24,80 @@ namespace Z0.External
     /// </summary>
     public sealed class AlignedArray
     {
+        /// <summary>
+        /// Sets the matrix items to zero.
+        /// </summary>
+        /// <param name="destination">The destination values.</param>
+        /// <param name="ccol">The stride column.</param>
+        /// <param name="cfltRow">The row to use.</param>
+        /// <param name="indices">The indicies.</param>
+        public static void ZeroMatrixItems(AlignedArray destination, int ccol, int cfltRow, int[] indices)
+        {
+            Contracts.Assert(ccol > 0);
+            Contracts.Assert(ccol <= cfltRow);
+
+            if (ccol == cfltRow)
+            {
+                ZeroItemsU(destination, destination.Size, indices, indices.Length);
+            }
+            else
+            {
+                ZeroMatrixItemsCore(destination, destination.Size, ccol, cfltRow, indices, indices.Length);
+            }
+        }
+
+        public static unsafe void ZeroItemsU(AlignedArray destination, int c, int[] indices, int cindices)
+        {
+            fixed (float* pdst = &destination.Items[0])
+            fixed (int* pidx = &indices[0])
+            {
+                for (int i = 0; i < cindices; ++i)
+                {
+                    int index = pidx[i];
+                    Contracts.Assert(index >= 0);
+                    Contracts.Assert(index < c);
+                    pdst[index] = 0;
+                }
+            }
+        }
+
+        public static unsafe void ZeroMatrixItemsCore(AlignedArray destination, int c, int ccol, int cfltRow, int[] indices, int cindices)
+        {
+            fixed (float* pdst = &destination.Items[0])
+            fixed (int* pidx = &indices[0])
+            {
+                int ivLogMin = 0;
+                int ivLogLim = ccol;
+                int ivPhyMin = 0;
+
+                for (int i = 0; i < cindices; ++i)
+                {
+                    int index = pidx[i];
+                    Contracts.Assert(index >= 0);
+                    Contracts.Assert(index < c);
+
+                    int col = index - ivLogMin;
+                    if ((uint)col >= (uint)ccol)
+                    {
+                        Contracts.Assert(ivLogMin > index || index >= ivLogLim);
+
+                        int row = index / ccol;
+                        ivLogMin = row * ccol;
+                        ivLogLim = ivLogMin + ccol;
+                        ivPhyMin = row * cfltRow;
+
+                        Contracts.Assert(index >= ivLogMin);
+                        Contracts.Assert(index < ivLogLim);
+                        col = index - ivLogMin;
+                    }
+
+                    pdst[ivPhyMin + col] = 0;
+                }
+            }
+        }
+
+
+
         // Items includes "head" items filled with NaN, followed by _size entries, followed by "tail"
         // items, also filled with NaN. Note that _size * sizeof(Float) is divisible by _cbAlign.
         // It is illegal to access any slot outsize [_base, _base + _size). This is internal so clients

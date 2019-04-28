@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
@@ -11,7 +15,12 @@ namespace Z0
  
         [MethodImpl(Inline)]
         static Index<sbyte> abs(Index<sbyte> src)
-            => map(src, x => x < 0 ? (sbyte)(-x) : x);
+        {
+            var dst = target(src);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = Math.Abs(src[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<byte> abs(Index<byte> src)
@@ -19,7 +28,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Index<short> abs(Index<short> src)
-            => map(src, x => x < 0 ? (short)(-x) : x);
+        {
+            var dst = target(src);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = Math.Abs(src[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<ushort> abs(Index<ushort> src)
@@ -27,15 +41,25 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Index<int> abs(Index<int> src)
-            => map(src, x => x < 0 ? -x : x);
-
+        {
+            var dst = target(src);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = Math.Abs(src[i]);
+            return dst;
+        }
+            
         [MethodImpl(Inline)]
         static Index<uint> abs(Index<uint> src)
             => src;
 
         [MethodImpl(Inline)]
         static Index<long> abs(Index<long> src)
-            => map(src, x => x < 0 ? -x : x);
+        {
+            var dst = target(src);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = Math.Abs(src[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<ulong> abs(Index<ulong> src)
@@ -43,19 +67,39 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Index<float> abs(Index<float> src)
-            => map(src, MathF.Abs);
+        {
+            var dst = target(src);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = MathF.Abs(src[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<double> abs(Index<double> src)
-            => map(src, Math.Abs);
+        {
+            var dst = target(src);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = Math.Abs(src[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<decimal> abs(Index<decimal> src)
-            => map(src, x => x < 0 ? -x : x);
+        {
+            var dst = target(src);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = Math.Abs(src[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<BigInteger> abs(Index<BigInteger> src)
-            => map(src, BigInteger.Abs);
+        {
+            var dst = target(src);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = BigInteger.Abs(src[i]);
+            return dst;
+        }
 
         static readonly PrimalIndex AbsDelegates = PrimKinds.index<object>
             (
@@ -80,5 +124,4 @@ namespace Z0
                 = AbsDelegates.lookup<T,PrimalFusedUnaryOp<T>>();
         }
     }
-
 }

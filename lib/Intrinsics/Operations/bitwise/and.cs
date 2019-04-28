@@ -341,7 +341,6 @@ namespace Z0
             return dst;
         }
 
- 
         public static unsafe Index<double> and(Index<double> lhs, Index<double> rhs)
         {
             var len = Vector128<double>.Count;
@@ -359,6 +358,25 @@ namespace Z0
             return dst;
         }
 
+        static readonly PrimalIndex AndLU
+            = PrimKinds.index
+                (@sbyte: new PrimalFusedBinOp<sbyte>(InX.and),
+                @byte: new PrimalFusedBinOp<byte>(InX.and),
+                @short: new PrimalFusedBinOp<short>(InX.and),
+                @ushort: new PrimalFusedBinOp<ushort>(InX.and),
+                @int: new PrimalFusedBinOp<int>(InX.and),
+                @uint: new PrimalFusedBinOp<uint>(InX.and),
+                @long: new PrimalFusedBinOp<long>(InX.and),
+                @ulong: new PrimalFusedBinOp<ulong>(InX.and),
+                @float: new PrimalFusedBinOp<float>(InX.and),
+                @double:new PrimalFusedBinOp<double>(InX.and)
+                );
+        
+        internal readonly struct And<T>
+            where T : struct, IEquatable<T>
+        {
+            public static readonly PrimalFusedBinOp<T> Op = AndLU.lookup<T,PrimalFusedBinOp<T>>();
+        }
 
 
     }

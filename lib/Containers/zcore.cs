@@ -159,6 +159,26 @@ public static partial class zcore
         => new T[len];
 
     /// <summary>
+    /// Allocates a target index, predicated on the common size of source indexes
+    /// </summary>
+    /// <param name="lhs">The left operand values</param>
+    /// <param name="rhs">The right oprand values</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static T[] target<T>(in Index<T> lhs, in Index<T> rhs)
+        => alloc<T>(matchedCount(lhs,rhs));
+
+    /// <summary>
+    /// Allocates a target index, predicated on the common size of a source index
+    /// </summary>
+    /// <param name="lhs">The left operand values</param>
+    /// <param name="rhs">The right oprand values</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static T[] target<T>(in Index<T> lhs)
+        => alloc<T>(lhs.Count);
+
+    /// <summary>
     /// Reflects variable number of arguments from a parms array back as
     /// a standard array
     /// </summary>

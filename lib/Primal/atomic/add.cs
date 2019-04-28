@@ -61,7 +61,7 @@ namespace Z0
             => lhs + rhs;
 
 
-        static readonly PrimalIndex AddDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex AddDelegates = PrimalIndex.define
             (
                 @sbyte : new PrimalBinOp<sbyte>(add),
                 @byte : new PrimalBinOp<byte>(add),

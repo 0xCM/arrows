@@ -70,11 +70,9 @@ namespace Z0.Bench
                     );
         }
 
-
         public override string ToString()
             => $"{OpId}: Duration = {Duration}ms";
     }
-
 
     public static class BenchResultX
     {

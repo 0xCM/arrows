@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
@@ -11,43 +15,86 @@ namespace Z0
  
         [MethodImpl(Inline)]
         static Index<byte> and(Index<byte> lhs, Index<byte> rhs)
-            => fuse(lhs,rhs, (x,y) => (byte)(x & y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = (byte)(lhs[i] & rhs[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<sbyte> and(Index<sbyte> lhs, Index<sbyte> rhs)
-            => fuse(lhs,rhs, (x,y) => (sbyte)(x & y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = (sbyte)(lhs[i] & rhs[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<short> and(Index<short> lhs, Index<short> rhs)
-            => fuse(lhs,rhs, (x,y) => (short)(x & y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = (short)(lhs[i] & rhs[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<ushort> and(Index<ushort> lhs, Index<ushort> rhs)
-            => fuse(lhs,rhs, (x,y) => (ushort)(x & y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = (ushort)(lhs[i] & rhs[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<int> and(Index<int> lhs, Index<int> rhs)
-            => fuse(lhs,rhs, (x,y) => (x & y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] & rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<uint> and(Index<uint> lhs, Index<uint> rhs)
-            => fuse(lhs,rhs, (x,y) => (x & y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] & rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<long> and(Index<long> lhs, Index<long> rhs)
-            => fuse(lhs,rhs, (x,y) => (x & y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] & rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<ulong> and(Index<ulong> lhs, Index<ulong> rhs)
-            => fuse(lhs,rhs, (x,y) => (x & y));
-
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] & rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<BigInteger> and(Index<BigInteger> lhs, Index<BigInteger> rhs)
-            => fuse(lhs,rhs, (x,y) => (x & y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] & rhs[i];
+            return dst;
+        }
 
-
-         static readonly PrimalIndex AndDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex AndDelegates = PrimKinds.index<object>
             (
                 @sbyte : new PrimalFusedBinOp<sbyte>(and),
                 @byte : new PrimalFusedBinOp<byte>(and),
@@ -66,8 +113,5 @@ namespace Z0
             public static readonly PrimalFusedBinOp<T> Op 
                 = AndDelegates.lookup<T,PrimalFusedBinOp<T>>();
         }
-
-
     }
-
 }

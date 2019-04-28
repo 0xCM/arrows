@@ -18,7 +18,268 @@ namespace Z0
 
     public partial class Vec128
     {
+        const int Len8 = 16;
+        const int Len16 = 8;
+        const int Len32 = 4;
+        const int Len64 = 2;
 
+        static Exception badlen(int value)
+            => new Exception($"Source array is of insufficent length = {value}");
+
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<byte> load(params byte[] src)
+        {
+            if(src.Length < Len8)
+                throw badlen(src.Length);
+
+            fixed(byte* psrc = & src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<sbyte> load(params sbyte[] src)
+        {
+            if(src.Length < Len8)
+                throw badlen(src.Length);
+
+            fixed(sbyte* psrc = & src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<short> load(params short[] src)
+        {
+            if(src.Length < Len16)
+                throw badlen(src.Length);
+
+            fixed(short* psrc = & src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ushort> load(params ushort[] src)
+        {
+            if(src.Length < Len16)
+                throw badlen(src.Length);
+
+            fixed(ushort* psrc = & src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<int> load(params int[] src)
+        {
+            if(src.Length < Len32)
+                throw badlen(src.Length);
+
+            fixed(int* psrc = & src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<uint> load(params uint[] src)
+        {
+            if(src.Length < Len32)
+                throw badlen(src.Length);
+
+            fixed(uint* psrc = & src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<long> load(params long[] src)
+        {
+            if(src.Length < Len64)
+                throw badlen(src.Length);
+
+            fixed(long* psrc = & src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ulong> load(params ulong[] src)
+        {
+            if(src.Length < Len64)
+                throw badlen(src.Length);
+
+            fixed(ulong* psrc = & src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<float> load(params float[] src)
+        {
+            if(src.Length < Len32)
+                throw badlen(src.Length);
+
+            fixed(float* psrc = & src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<double> load(params double[] src)
+        {
+            if(src.Length < Len64)
+                throw badlen(src.Length);
+
+            fixed(double* psrc = & src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<byte> load(byte* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<sbyte> load(sbyte* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<short> load(short* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ushort> load(ushort* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<int> load(int* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<uint> load(uint* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<long> load(long* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ulong> load(ulong* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<float> load(float* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<double> load(double* src)
+            => Avx2.LoadVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<sbyte> load(Span128<sbyte> src)
+        {
+            fixed (sbyte* psrc = &src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<byte> load(Span128<byte> src)
+        {
+            fixed (byte* psrc = &src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<short> load(Span128<short> src)
+        {
+            fixed (short* psrc = &src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ushort> load(Span128<ushort> src)
+        {
+            fixed (ushort* psrc = &src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<int> load(Span128<int> src)
+        {
+            fixed (int* psrc = &src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<uint> load(Span128<uint> src)
+        {
+            fixed (uint* psrc = &src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<long> load(Span128<long> src)
+        {
+            fixed (long* psrc = &src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ulong> load(Span128<ulong> src)
+        {
+            fixed (ulong* psrc = &src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<float> load(Span128<float> src)
+        {
+            fixed (float* psrc = &src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<double> load(Span128<double> src)
+        {
+            fixed (double* psrc = &src[0])
+                return Avx2.LoadVector128(psrc);
+        }
+ 
+        [MethodImpl(Inline)]
+        public static IEnumerable<Vec128<sbyte>> stream(sbyte[] src)
+            => map(range(0, src.Length, Vec128<sbyte>.Length),i => load(src,i));    
+            
+        [MethodImpl(Inline)]
+        public static IEnumerable<Vec128<byte>> stream(byte[] src)
+            => map(range(0, src.Length, Vec128<byte>.Length),i => load(src,i));    
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<Vec128<short>> stream(short[] src)
+            => map(range(0, src.Length, Vec128<short>.Length),i => load(src,i));
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<Vec128<ushort>> stream(ushort[] src)
+            => map(range(0, src.Length, Vec128<ushort>.Length),i => load(src,i));
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<Vec128<int>> stream(int[] src)
+            => map(range(0, src.Length, Vec128<int>.Length),i => load(src,i));
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<Vec128<uint>> stream(uint[] src)
+            => map(range(0, src.Length, Vec128<uint>.Length),i => load(src,i));
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<Vec128<long>> stream(long[] src)
+            => map(range(0, src.Length, Vec128<long>.Length),i => load(src,i));
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<Vec128<ulong>> stream(ulong[] src)
+            => map(range(0, src.Length, Vec128<ulong>.Length),i => load(src,i));
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<Vec128<float>> stream(float[] src)
+            => map(range(0, src.Length, Vec128<float>.Length),i => load(src,i));
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<Vec128<double>> stream(double[] src)
+            => map(range(0, src.Length, Vec128<double>.Length),i => load(src,i));
 
 
         [MethodImpl(Inline)]
@@ -71,9 +332,7 @@ namespace Z0
             throw new NotSupportedException();
 
         }        
-
         
-
         [MethodImpl(Inline)]
         public static Vec128<T> single<T>(Index<T> src)
             where T : struct, IEquatable<T>            
@@ -83,7 +342,6 @@ namespace Z0
         public static Vec128<T> single<T>(T[] src)
             where T : struct, IEquatable<T>            
                 => define<T>(src,0);
-
 
         [MethodImpl(Inline)]
         public static Vec128<T> define<T>(ArraySegment<T> src)
@@ -207,44 +465,107 @@ namespace Z0
             => Vector128.Create(x0,x1);
 
         [MethodImpl(Inline)]
-        public static Vec128<byte> define(byte[] src, int startpos = 0)
-            => InX.load(src,startpos);
+        public static unsafe Vec128<byte> load(byte[] src, int offset = 0)
+        {
+            fixed (byte* psrc = &src[offset])
+                return Avx2.LoadVector128(psrc);
+        }
 
         [MethodImpl(Inline)]
-        public static Vec128<int> define(int[] src, int startpos = 0)
-            => InX.load(src,startpos);
+        public static unsafe Vec128<sbyte> load(sbyte[] src, int offset = 0)
+        {
+            fixed (sbyte* psrc = &src[offset])
+                return Avx2.LoadVector128(psrc);
+        }
 
         [MethodImpl(Inline)]
-        public static Vec128<double> define(double[] src, int startpos)
-            => InX.load(src,startpos);
+        public static unsafe Vec128<short> load(short[] src, int offset = 0)
+        {
+            fixed (short* psrc = &src[offset])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ushort> load(ushort[] src, int offset = 0)
+        {
+            fixed (ushort* psrc = &src[offset])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<int> load(int[] src, int offset = 0)
+        {
+            fixed (int* psrc = &src[offset])
+                return Avx2.LoadVector128(psrc);
+        }
+ 
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<uint> load(uint[] src, int offset = 0)
+        {
+            fixed (uint* psrc = &src[offset])
+                return Avx2.LoadVector128(psrc);
+        }
+
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<long> load(long[] src, int offset = 0)
+        {
+            checklen128(src,offset);
+
+            fixed (long* psrc = &src[offset])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<ulong> load(ulong[] src, int offset = 0)
+        {
+            fixed (ulong* psrc = &src[offset])
+                return Avx2.LoadVector128(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<float> load(float[] src, int offset = 0)
+        {
+            fixed (float* psrc = &src[offset])
+                return Avx2.LoadVector128(psrc);
+        }
+ 
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<double> load(double[] src, int startpos = 0)
+        {
+            fixed (double* psrc = &src[startpos])
+                return Avx2.LoadVector128(psrc);
+        }
+
 
         [MethodImpl(Inline)]
         public static Vec128<byte> define(Span128<byte> src)
-            => InX.load(src);
+            => load(src);
 
         [MethodImpl(Inline)]
         public static Vec128<int> define(Span128<int> src)
-            => InX.load(src);
+            => load(src);
 
         [MethodImpl(Inline)]
         public static Vec128<uint> define(Span128<uint> src)
-            => InX.load(src);
+            => load(src);
 
         [MethodImpl(Inline)]
         public static Vec128<long> define(Span128<long> src)
-            => InX.load(src);
+            => load(src);
 
         [MethodImpl(Inline)]
         public static Vec128<ulong> define(Span128<ulong> src)
-            => InX.load(src);
+            => load(src);
 
         [MethodImpl(Inline)]
         public static Vec128<float> define(Span128<float> src)
-            => InX.load(src);
+            => load(src);
 
         [MethodImpl(Inline)]
         public static Vec128<double> define(Span128<double> src)
-            => InX.load(src);
+            => load(src);
 
         public static IEnumerable<Vec128<T>> stream<T>(T[] src)
             where T : struct, IEquatable<T>
@@ -391,9 +712,6 @@ namespace Z0
             var src = datasource<double>(data,data.Length,startpos);
             var dst = define(src[i++],src[i++]);
             return cast<Vec128<T>>(dst);
-
         }
-
     }
-
 }

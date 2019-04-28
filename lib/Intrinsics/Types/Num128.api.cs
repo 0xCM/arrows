@@ -15,6 +15,71 @@ namespace Z0
 
     public static class Num128
     {
+        
+        [MethodImpl(Inline)]
+        public static unsafe Num128<int> load(int* src)
+            => Avx2.LoadScalarVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Num128<uint> load(uint* src)
+            => Avx2.LoadScalarVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Num128<long> load(long* src)
+            => Avx2.LoadScalarVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Num128<ulong> load(ulong* src)
+            => Avx2.LoadScalarVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Num128<float> load(float* src)
+            => Avx2.LoadScalarVector128(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Num128<double> load(double* src)
+            => Avx2.LoadScalarVector128(src);
+     
+        [MethodImpl(Inline)]
+        public static Vec128<byte> broadcast(Num128<byte> src)
+            => Avx2.BroadcastScalarToVector128(src);
+
+        [MethodImpl(Inline)]
+        public static Vec128<sbyte> broadcast(Num128<sbyte> src)
+            => Avx2.BroadcastScalarToVector128(src);
+
+        [MethodImpl(Inline)]
+        public static Vec128<short> broadcast(Num128<short> src)
+            => Avx2.BroadcastScalarToVector128(src);
+
+        [MethodImpl(Inline)]
+        public static Vec128<ushort> broadcast(Num128<ushort> src)
+            => Avx2.BroadcastScalarToVector128(src);
+
+        [MethodImpl(Inline)]
+        public static Vec128<int> broadcast(Num128<int> src)
+            => Avx2.BroadcastScalarToVector128(src);
+
+        [MethodImpl(Inline)]
+        public static Vec128<uint> broadcast(Num128<uint> src)
+            => Avx2.BroadcastScalarToVector128(src);
+
+        [MethodImpl(Inline)]
+        public static Vec128<long> broadcast(Num128<long> src)
+            => Avx2.BroadcastScalarToVector128(src);
+
+        [MethodImpl(Inline)]
+        public static Vec128<ulong> broadcast(Num128<ulong> src)
+            => Avx2.BroadcastScalarToVector128(src);
+
+        [MethodImpl(Inline)]
+        public static Vec128<float> broadcast(Num128<float> src)
+            => Avx2.BroadcastScalarToVector128(src);
+
+        [MethodImpl(Inline)]
+        public static Vec128<double> broadcast(Num128<double> src)
+            => Avx2.BroadcastScalarToVector128(src);
+
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(byte src)
             where T : struct, IEquatable<T>
@@ -51,7 +116,6 @@ namespace Z0
             dst[0] = src;
             return Unsafe.AsRef<Num128<T>>(dst);
         }
-
 
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(int src)
@@ -125,23 +189,5 @@ namespace Z0
         public static unsafe Num128<T> define<T>(T value)
             where T : struct, IEquatable<T>
                 => Factories.lookup<T,Num128Factory<T>>()(value);
-        // {
-        //     return typecode<T>() switch 
-        //     {
-        //         TypeCode.SByte => scalar<T>(convert<T,sbyte>(value)),
-        //         TypeCode.Byte => scalar<T>(convert<T,byte>(value)),
-        //         TypeCode.Int16 => scalar<T>(convert<T,short>(value)),
-        //         TypeCode.UInt16 => scalar<T>(convert<T,ushort>(value)),
-        //         TypeCode.Int32 => scalar<T>(convert<T,int>(value)),
-        //         TypeCode.UInt32 => scalar<T>(convert<T,uint>(value)),
-        //         TypeCode.Int64 => scalar<T>(convert<T,long>(value)),
-        //         TypeCode.UInt64 => scalar<T>(convert<T,ulong>(value)),
-        //         TypeCode.Single => scalar<T>(convert<T,float>(value)),
-        //         TypeCode.Double => scalar<T>(convert<T,double>(value)),
-        //         _ => throw new NotSupportedException()
-        //     };        
-
-        //  }
-
    }
 }

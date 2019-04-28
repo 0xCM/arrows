@@ -22,6 +22,7 @@ namespace Z0
         public static Num128<double> lt(Num128<double> lhs, Num128<double> rhs)
             => Avx2.CompareLessThanScalar(lhs, rhs);
 
+
         [MethodImpl(Inline)]
         public static Vec128<sbyte> lt(Vec128<sbyte> lhs, Vec128<sbyte> rhs)
             => Avx2.CompareLessThan(lhs, rhs);

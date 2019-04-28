@@ -16,8 +16,180 @@ namespace Z0
     using static zcore;
     using static inxfunc;
 
-    public class Vec256
+    public static class Vec256
     {
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<byte> load(params byte[] src)
+        {
+            checklen256(src);
+
+            fixed(byte* psrc = & src[0])
+                return Avx2.LoadVector256(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<sbyte> load(params sbyte[] src)
+        {
+            checklen256(src);
+
+            fixed(sbyte* psrc = & src[0])
+                return Avx2.LoadVector256(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<short> load(params short[] src)
+        {
+            checklen256(src);
+
+            fixed(short* psrc = & src[0])
+                return Avx2.LoadVector256(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<ushort> load(params ushort[] src)
+        {
+            checklen256(src);
+
+            fixed(ushort* psrc = & src[0])
+                return Avx2.LoadVector256(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<int> load(params int[] src)
+        {
+            checklen256(src);
+
+            fixed(int* psrc = & src[0])
+                return Avx2.LoadVector256(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<uint> load(params uint[] src)
+        {
+            checklen256(src);
+
+            fixed(uint* psrc = & src[0])
+                return Avx2.LoadVector256(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<long> load(params long[] src)
+        {
+            checklen256(src);
+
+            fixed(long* psrc = & src[0])
+                return Avx2.LoadVector256(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<ulong> load(params ulong[] src)
+        {
+            checklen256(src);
+
+            fixed(ulong* psrc = & src[0])
+                return Avx2.LoadVector256(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<float> load(params float[] src)
+        {
+            checklen256(src);
+
+            fixed(float* psrc = & src[0])
+                return Avx2.LoadVector256(psrc);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<double> load(params double[] src)
+        {
+            checklen256(src);
+
+            fixed(double* psrc = & src[0])
+                return Avx2.LoadVector256(psrc);
+        }
+
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<sbyte> load(sbyte* src)
+            => Avx2.LoadVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<byte> load(byte* src)
+            => Avx2.LoadVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<short> load(short* src)
+            => Avx2.LoadVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<ushort> load(ushort* src)
+            => Avx2.LoadVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<int> load(int* src)
+            => Avx2.LoadVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<uint> load(uint* src)
+            => Avx2.LoadVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<long> load(long* src)
+            => Avx2.LoadVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<ulong> load(ulong* src)
+            => Avx2.LoadVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<float> load(float* src)
+            => Avx2.LoadVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<double> load(double* src)
+            => Avx2.LoadVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<byte> broadcast(byte* src)
+            => Avx2.BroadcastScalarToVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<sbyte> broadcast(sbyte* src)
+            => Avx2.BroadcastScalarToVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<short> broadcast(short* src)
+            => Avx2.BroadcastScalarToVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<ushort> broadcast(ushort* src)
+            => Avx2.BroadcastScalarToVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<int> broadcast(int* src)
+            => Avx2.BroadcastScalarToVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<uint> broadcast(uint* src)
+            => Avx2.BroadcastScalarToVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<long> broadcast(long* src)
+            => Avx2.BroadcastScalarToVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<ulong> broadcast(ulong* src)
+            => Avx2.BroadcastScalarToVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<float> broadcast(float* src)
+            => Avx2.BroadcastScalarToVector256(src);
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec256<double> broadcast(double* src)
+            => Avx2.BroadcastScalarToVector256(src);
+
+
         /// <summary>
         /// Constructs a 256-bit vector from the contents of a list. An error will
         /// be raised if the length of the list does not match the length of the
@@ -255,164 +427,6 @@ namespace Z0
                 yield return define<T>(components);                    
             }            
         }
-
     }
-
-    partial class xcore
-    {
-        /// <summary>
-        ///  Constructs a 256-bit vector from components taken from the head of a stream
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        [MethodImpl(Inline)]
-        public static Vec256<sbyte> NextVec256(this IEnumerable<sbyte> src)
-                => Vec256.define(src.Freeze(Vec256<sbyte>.Length));
-
-        /// <summary>
-        /// Constructs a 256-bit vector from the contents of a list. An error will
-        /// be raised if the length of the list does not match the length of the
-        /// target vector
-        /// </summary>
-        /// <param name="src">The source lit</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vec256<sbyte> ToVec256(this Index<sbyte> src)
-                => Vec256.define(src);
-
-        /// <summary>
-        ///  Constructs a 256-bit vector from components taken from the head of a stream
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        [MethodImpl(Inline)]
-        public static Vec256<short> NextVec256(this IEnumerable<short> src)
-                => Vec256.define(src.Freeze(Vec256<short>.Length));
-
-        /// <summary>
-        /// Constructs a 256-bit vector from the contents of a list. An error will
-        /// be raised if the length of the list does not match the length of the
-        /// target vector
-        /// </summary>
-        /// <param name="src">The source lit</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vec256<short> ToVec256(this Index<short> src)
-                => Vec256.define(src);
-
-       /// <summary>
-        ///  Constructs a 256-bit vector from components taken from the head of a stream
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        [MethodImpl(Inline)]
-        public static Vec256<ushort> NextVec256(this IEnumerable<ushort> src)
-                => Vec256.define(src.Freeze(Vec256<ushort>.Length));
-
-        /// <summary>
-        /// Constructs a 256-bit vector from the contents of a list. An error will
-        /// be raised if the length of the list does not match the length of the
-        /// target vector
-        /// </summary>
-        /// <param name="src">The source lit</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vec256<ushort> ToVec256(this Index<ushort> src)
-                => Vec256.define(src);
-
  
-        /// <summary>
-        ///  Constructs a 256-bit vector from components taken from the head of a stream
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        [MethodImpl(Inline)]
-        public static Vec256<int> NextVec256(this IEnumerable<int> src)
-                => Vec256.define(src.Freeze(Vec256<int>.Length));
-
-        /// <summary>
-        /// Constructs a 256-bit vector from the contents of a list. An error will
-        /// be raised if the length of the list does not match the length of the
-        /// target vector
-        /// </summary>
-        /// <param name="src">The source lit</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vec256<int> ToVec256(this Index<int> src)
-                => Vec256.define(src);
-
-        /// <summary>
-        ///  Constructs a 256-bit vector from components taken from the head of a stream
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        [MethodImpl(Inline)]
-        public static Vec256<uint> NextVec256(this IEnumerable<uint> src)
-                => Vec256.define(src.Freeze(Vec256<uint>.Length));
-
-        /// <summary>
-        /// Constructs a 256-bit vector from the contents of a list. An error will
-        /// be raised if the length of the list does not match the length of the
-        /// target vector
-        /// </summary>
-        /// <param name="src">The source lit</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vec256<uint> ToVec256(this Index<uint> src)
-                => Vec256.define(src);
-
-        /// <summary>
-        ///  Constructs a 256-bit vector from components taken from the head of a stream
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        [MethodImpl(Inline)]
-        public static Vec256<long> NextVec256(this IEnumerable<long> src)
-                => Vec256.define(src.Freeze(Vec256<long>.Length));
-
-        /// <summary>
-        /// Constructs a 256-bit vector from the contents of a list. An error will
-        /// be raised if the length of the list does not match the length of the
-        /// target vector
-        /// </summary>
-        /// <param name="src">The source lit</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vec256<long> ToVec256(this Index<long> src)
-                => Vec256.define(src);
-
-        /// <summary>
-        ///  Constructs a 256-bit vector from components taken from the head of a stream
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        [MethodImpl(Inline)]
-        public static Vec256<float> NextVec256(this IEnumerable<float> src)
-                => Vec256.define(src.Freeze(Vec256<float>.Length));
-
-        /// <summary>
-        /// Constructs a 256-bit vector from the contents of a list. An error will
-        /// be raised if the length of the list does not match the length of the
-        /// target vector
-        /// </summary>
-        /// <param name="src">The source lit</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vec256<float> ToVec256(this Index<float> src)
-                => Vec256.define(src);
-
-       /// <summary>
-        ///  Constructs a 256-bit vector from components taken from the head of a stream
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        [MethodImpl(Inline)]
-        public static Vec256<double> NextVec256(this IEnumerable<double> src)
-                => Vec256.define(src.Freeze(Vec256<double>.Length));
-
-        /// <summary>
-        /// Constructs a 256-bit vector from the contents of a list. An error will
-        /// be raised if the length of the list does not match the length of the
-        /// target vector
-        /// </summary>
-        /// <param name="src">The source lit</param>
-        /// <typeparam name="T">The primitive type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vec256<double> ToVec256(this Index<double> src)
-                => Vec256.define(src);
-
- 
-    }    
 }

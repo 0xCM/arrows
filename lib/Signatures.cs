@@ -138,6 +138,18 @@ namespace Z0
         last = bigint      
     }
 
+    public delegate void BinOpInspector<T>(T lhs, T rhs, T result)
+        where T : struct, IEquatable<T>;
+
+    public delegate void FusedBinOpInspector<T>(Index<T> lhs, Index<T> rhs, Index<T> result)
+        where T : struct, IEquatable<T>;
+
+    public delegate void FusedUnaryOpInspector<T>(Index<T> lhs, Index<T> result)
+        where T : struct, IEquatable<T>;
+
+    public delegate void Vec128BinOpInspector<T>(Vec128<T> lhs, Vec128<T> rhs, Vec128<T> result)
+        where T : struct, IEquatable<T>;
+
     public delegate T PrimalBinOp<T>(T lhs, T rhs)
         where T : struct, IEquatable<T>;
 
@@ -156,9 +168,14 @@ namespace Z0
     public delegate Index<bool> PrimalFusedPred<T>(Index<T> lhs, Index<T> rhs)
         where T : struct, IEquatable<T>;
 
+    public delegate void FusedPredInspector<T>(Index<T> lhs, Index<T> rhs, Index<bool> result)
+        where T : struct, IEquatable<T>;
+
     public delegate T PrimalAggOp<T>(in Index<T> src)
         where T : struct, IEquatable<T>;
 
+    public delegate void AggOpInspector<T>(in Index<T> src, T result)
+        where T : struct, IEquatable<T>;
 
 
     /// <summary>
@@ -241,7 +258,7 @@ namespace Z0
     /// </summary>
     /// <param name="src">Identifies the memory location from which to hydrate the vector</param>
     /// <typeparam name="T">The primitive type</typeparam>
-    public unsafe delegate Vec128<T> Vec128LoadOp<T>(void* src, out Vec128<T> dst)
+    public unsafe delegate Vec128<T> Vec128LoadOp<T>(void* src)
         where T : struct, IEquatable<T>;
 
     /// <summary>

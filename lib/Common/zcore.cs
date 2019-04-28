@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using System.Reflection;
 
 using Z0;
 using static Z0.Traits;
@@ -21,6 +22,14 @@ partial class zcore
     [MethodImpl(Inline)]
     public static long ticksToMs(long ticks)
         => ticks/TicksPerMs;
+
+    /// <summary>
+    /// Gets the literal values for an enum type
+    /// </summary>
+    /// <typeparam name="T">The enum type</typeparam>
+    public static IEnumerable<T> literals<T>()
+        where T : Enum
+            => type<T>().GetEnumValues().AsQueryable().Cast<T>();
 
     /// <summary>
     /// Reduces a stream to a single value via an additive monoid

@@ -14,139 +14,139 @@ namespace Z0
     {
  
         [MethodImpl(Inline)]
-        static Index<byte> add(Index<byte> lhs, Index<byte> rhs)
+        static Index<byte> mod(Index<byte> lhs, Index<byte> rhs)
         {
             var dst = target(lhs,rhs);
             for(var i = 0; i<dst.Length; i++)
-                dst[i] = (byte)(lhs[i] + rhs[i]);
+                dst[i] = (byte)(lhs[i] % rhs[i]);
             return dst;
         }
 
 
         [MethodImpl(Inline)]
-        static Index<sbyte> add(Index<sbyte> lhs, Index<sbyte> rhs)
+        static Index<sbyte> mod(Index<sbyte> lhs, Index<sbyte> rhs)
         {
             var dst = target(lhs,rhs);
             for(var i = 0; i<dst.Length; i++)
-                dst[i] = (sbyte)(lhs[i] + rhs[i]);
+                dst[i] = (sbyte)(lhs[i] % rhs[i]);
             return dst;
         }
 
 
         [MethodImpl(Inline)]
-        static Index<short> add(Index<short> lhs, Index<short> rhs)
+        static Index<short> mod(Index<short> lhs, Index<short> rhs)
         {
             var dst = target(lhs,rhs);
             for(var i = 0; i<dst.Length; i++)
-                dst[i] = (short)(lhs[i] + rhs[i]);
+                dst[i] = (short)(lhs[i] % rhs[i]);
             return dst;
         }
 
 
         [MethodImpl(Inline)]
-        static Index<ushort> add(Index<ushort> lhs, Index<ushort> rhs)
+        static Index<ushort> mod(Index<ushort> lhs, Index<ushort> rhs)
         {
             var dst = target(lhs,rhs);
             for(var i = 0; i<dst.Length; i++)
-                dst[i] = (ushort)(lhs[i] + rhs[i]);
+                dst[i] = (ushort)(lhs[i] % rhs[i]);
             return dst;
         }
 
         [MethodImpl(Inline)]
-        static Index<int> add(Index<int> lhs, Index<int> rhs)
+        static Index<int> mod(Index<int> lhs, Index<int> rhs)
         {
             var dst = target(lhs,rhs);
             for(var i = 0; i<dst.Length; i++)
-                dst[i] = lhs[i] + rhs[i];
+                dst[i] = lhs[i] % rhs[i];
             return dst;
         }
 
         [MethodImpl(Inline)]
-        static Index<uint> add(Index<uint> lhs, Index<uint> rhs)
+        static Index<uint> mod(Index<uint> lhs, Index<uint> rhs)
         {
             var dst = target(lhs,rhs);
             for(var i = 0; i<dst.Length; i++)
-                dst[i] = lhs[i] + rhs[i];
+                dst[i] = lhs[i] % rhs[i];
             return dst;
         }
 
         [MethodImpl(Inline)]
-        static Index<long> add(Index<long> lhs, Index<long> rhs)
+        static Index<long> mod(Index<long> lhs, Index<long> rhs)
         {
             var dst = target(lhs,rhs);
             for(var i = 0; i<dst.Length; i++)
-                dst[i] = lhs[i] + rhs[i];
+                dst[i] = lhs[i] % rhs[i];
             return dst;
         }
 
         [MethodImpl(Inline)]
-        static Index<ulong> add(Index<ulong> lhs, Index<ulong> rhs)
+        static Index<ulong> mod(Index<ulong> lhs, Index<ulong> rhs)
         {
             var dst = target(lhs,rhs);
             for(var i = 0; i<dst.Length; i++)
-                dst[i] = lhs[i] + rhs[i];
+                dst[i] = lhs[i] % rhs[i];
             return dst;
         }
 
         [MethodImpl(Inline)]
-        static Index<float> add(Index<float> lhs, Index<float> rhs)
+        static Index<float> mod(Index<float> lhs, Index<float> rhs)
         {
             var dst = target(lhs,rhs);
             for(var i = 0; i<dst.Length; i++)
-                dst[i] = lhs[i] + rhs[i];
+                dst[i] = lhs[i] % rhs[i];
             return dst;
         }
 
 
         [MethodImpl(Inline)]
-        static Index<double> add(Index<double> lhs, Index<double> rhs)
+        static Index<double> mod(Index<double> lhs, Index<double> rhs)
         {
             var dst = target(lhs,rhs);
             for(var i = 0; i<dst.Length; i++)
-                dst[i] = lhs[i] + rhs[i];
+                dst[i] = lhs[i] % rhs[i];
             return dst;
         }
 
         [MethodImpl(Inline)]
-        static Index<decimal> add(Index<decimal> lhs, Index<decimal> rhs)
+        static Index<decimal> mod(Index<decimal> lhs, Index<decimal> rhs)
         {
             var dst = target(lhs,rhs);
             for(var i = 0; i<dst.Length; i++)
-                dst[i] = lhs[i] + rhs[i];
+                dst[i] = lhs[i] % rhs[i];
             return dst;
         }
 
         [MethodImpl(Inline)]
-        static Index<BigInteger> add(Index<BigInteger> lhs, Index<BigInteger> rhs)
+        static Index<BigInteger> mod(Index<BigInteger> lhs, Index<BigInteger> rhs)
         {
             var dst = target(lhs,rhs);
             for(var i = 0; i<dst.Length; i++)
-                dst[i] = lhs[i] + rhs[i];
+                dst[i] = lhs[i] % rhs[i];
             return dst;
         }
 
 
-         static readonly PrimalIndex AddDelegates = PrimKinds.index<object>
+         static readonly PrimalIndex ModDelegates = PrimKinds.index<object>
             (
-                @sbyte : new PrimalFusedBinOp<sbyte>(add),
-                @byte : new PrimalFusedBinOp<byte>(add),
-                @short : new PrimalFusedBinOp<short>(add),
-                @ushort : new PrimalFusedBinOp<ushort>(add),
-                @int : new PrimalFusedBinOp<int>(add),
-                @uint : new PrimalFusedBinOp<uint>(add),
-                @long : new PrimalFusedBinOp<long>(add),
-                @ulong : new PrimalFusedBinOp<ulong>(add),
-                @float : new PrimalFusedBinOp<float>(add),
-                @double : new PrimalFusedBinOp<double>(add),
-                @decimal : new PrimalFusedBinOp<decimal>(add),
-                bigint : new PrimalFusedBinOp<BigInteger>(add)
+                @sbyte : new PrimalFusedBinOp<sbyte>(mod),
+                @byte : new PrimalFusedBinOp<byte>(mod),
+                @short : new PrimalFusedBinOp<short>(mod),
+                @ushort : new PrimalFusedBinOp<ushort>(mod),
+                @int : new PrimalFusedBinOp<int>(mod),
+                @uint : new PrimalFusedBinOp<uint>(mod),
+                @long : new PrimalFusedBinOp<long>(mod),
+                @ulong : new PrimalFusedBinOp<ulong>(mod),
+                @float : new PrimalFusedBinOp<float>(mod),
+                @double : new PrimalFusedBinOp<double>(mod),
+                @decimal : new PrimalFusedBinOp<decimal>(mod),
+                bigint : new PrimalFusedBinOp<BigInteger>(mod)
             );
 
-        readonly struct Add<T>
+        readonly struct Mod<T>
             where T : struct, IEquatable<T>
         {
             public static readonly PrimalFusedBinOp<T> Op 
-                = AddDelegates.lookup<T,PrimalFusedBinOp<T>>();
+                = ModDelegates.lookup<T,PrimalFusedBinOp<T>>();
         }
 
 

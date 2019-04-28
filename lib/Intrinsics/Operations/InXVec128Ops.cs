@@ -141,18 +141,60 @@ namespace Z0
                 => Div.lookup<T,Vec128BinOp<T>>();
 
         //! load
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<sbyte> loadI8(void* src)
+            => Avx2.LoadVector128((sbyte*)src);
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<byte> loadU8(void* src)
+            => Avx2.LoadVector128((byte*)src);
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<short> loadI16(void* src)
+            => Avx2.LoadVector128((short*)src);
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<ushort> loadU16(void* src)
+            => Avx2.LoadVector128((ushort*)src);
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<int> loadI32(void* src)
+            => Avx2.LoadVector128((int*)src);
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<uint> loadU32(void* src)
+            => Avx2.LoadVector128((uint*)src);
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<long> loadI64(void* src)
+            => Avx2.LoadVector128((long*)src);
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<ulong> loadU64(void* src)
+            => Avx2.LoadVector128((ulong*)src);
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<float> loadF32(void* src)
+            => Avx2.LoadVector128((float*)src);
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<double> loadF64(void* src)
+            => Avx2.LoadVector128((double*)src);
+
+
         static readonly unsafe PrimalIndex Load = PrimKinds.index<object>
             (
-                @sbyte : new Vec128LoadOp<sbyte>(InX.load),
-                @byte : new Vec128LoadOp<byte>(InX.load),
-                @short : new Vec128LoadOp<short>(InX.load),
-                @ushort : new Vec128LoadOp<ushort>(InX.load),
-                @int : new Vec128LoadOp<int>(InX.load),
-                @uint : new Vec128LoadOp<uint>(InX.load),
-                @long : new Vec128LoadOp<long>(InX.load),
-                @ulong : new Vec128LoadOp<ulong>(InX.load),
-                @float : new Vec128LoadOp<float>(InX.load),
-                @double : new Vec128LoadOp<double>(InX.load)
+                @sbyte : new Vec128LoadOp<sbyte>(loadI8),
+                @byte : new Vec128LoadOp<byte>(loadU8),
+                @short : new Vec128LoadOp<short>(loadI16),
+                @ushort : new Vec128LoadOp<ushort>(loadU16),
+                @int : new Vec128LoadOp<int>(loadI32),
+                @uint : new Vec128LoadOp<uint>(loadU32),
+                @long : new Vec128LoadOp<long>(loadI64),
+                @ulong : new Vec128LoadOp<ulong>(loadU64),
+                @float : new Vec128LoadOp<float>(loadF32),
+                @double : new Vec128LoadOp<double>(loadF64)
             );
 
 
@@ -163,7 +205,7 @@ namespace Z0
 
 
         //! min
-        static readonly unsafe PrimalIndex Min = PrimKinds.index<object>
+        static readonly unsafe PrimalIndex Min = PrimalIndex.define
             (
                 @sbyte : new Vec128BinOp<sbyte>(InX.min),
                 @byte : new Vec128BinOp<byte>(InX.min),
@@ -182,7 +224,7 @@ namespace Z0
                 => Min.lookup<T,Vec128BinOp<T>>();
 
         //! min
-        static readonly unsafe PrimalIndex Max = PrimKinds.index<object>
+        static readonly unsafe PrimalIndex Max = PrimalIndex.define
             (
                 @sbyte : new Vec128BinOp<sbyte>(InX.max),
                 @byte : new Vec128BinOp<byte>(InX.max),
@@ -202,7 +244,7 @@ namespace Z0
 
         //! mul
         
-        static readonly PrimalIndex Mul = PrimKinds.index<object>
+        static readonly PrimalIndex Mul = PrimalIndex.define
             (
                 @int : new Vec128BinOp<int,long>(InX.mul),
                 @uint : new Vec128BinOp<uint, ulong>(InX.mul),
@@ -266,16 +308,16 @@ namespace Z0
         
         static unsafe readonly PrimalIndex Stream = PrimalIndex.define
             (
-                @sbyte : new Vec128StreamOp<sbyte>(InX.stream),
-                @byte : new Vec128StreamOp<byte>(InX.stream),
-                @short : new Vec128StreamOp<short>(InX.stream),
-                @ushort : new Vec128StreamOp<ushort>(InX.stream),
-                @int : new Vec128StreamOp<int>(InX.stream),
-                @uint : new Vec128StreamOp<uint>(InX.stream),
-                @long : new Vec128StreamOp<long>(InX.stream),
-                @ulong : new Vec128StreamOp<ulong>(InX.stream),
-                @float : new Vec128StreamOp<float>(InX.stream),
-                @double : new Vec128StreamOp<double>(InX.stream)
+                @sbyte : new Vec128StreamOp<sbyte>(Vec128.stream),
+                @byte : new Vec128StreamOp<byte>(Vec128.stream),
+                @short : new Vec128StreamOp<short>(Vec128.stream),
+                @ushort : new Vec128StreamOp<ushort>(Vec128.stream),
+                @int : new Vec128StreamOp<int>(Vec128.stream),
+                @uint : new Vec128StreamOp<uint>(Vec128.stream),
+                @long : new Vec128StreamOp<long>(Vec128.stream),
+                @ulong : new Vec128StreamOp<ulong>(Vec128.stream),
+                @float : new Vec128StreamOp<float>(Vec128.stream),
+                @double : new Vec128StreamOp<double>(Vec128.stream)
             );
 
         [MethodImpl(Inline)]
@@ -289,7 +331,7 @@ namespace Z0
 
         //! and
 
-        static readonly PrimalIndex And = PrimKinds.index<object>
+        static readonly PrimalIndex And = PrimalIndex.define
             (
                 @sbyte : new Vec128BinOp<sbyte>(InX.and),
                 @byte : new Vec128BinOp<byte>(InX.and),
@@ -309,7 +351,7 @@ namespace Z0
                 => And.lookup<T,Vec128BinOp<T>>();
 
         //! and + store to pointer
-        static unsafe readonly PrimalIndex AndPOut = PrimKinds.index<object>
+        static unsafe readonly PrimalIndex AndPOut = PrimalIndex.define
             (
                 @sbyte : new Vec128BinPOut<sbyte>(InX.and),
                 @byte : new Vec128BinPOut<byte>(InX.and),
@@ -330,7 +372,7 @@ namespace Z0
 
         //! or
         
-        static readonly PrimalIndex Or = PrimKinds.index<object>
+        static readonly PrimalIndex Or = PrimalIndex.define
             (
                 @sbyte : new Vec128BinOp<sbyte>(InX.or),
                 @byte : new Vec128BinOp<byte>(InX.or),
@@ -414,47 +456,47 @@ namespace Z0
         public readonly struct Eq<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128BinPred<T> Op = Vec128Delegates.eq<T>();
+            public static readonly Vec128BinPred<T> Op = Vec128Delegates.eq<T>();
         }
 
         public readonly struct Add<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128BinOp<T> Op = Vec128Delegates.add<T>();
+            public static readonly Vec128BinOp<T> Op = Vec128Delegates.add<T>();
 
         }
 
         public readonly struct AddPOut<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128BinPOut<T> Op = Vec128Delegates.addPOut<T>();
+            public static readonly Vec128BinPOut<T> Op = Vec128Delegates.addPOut<T>();
 
         }
 
         public readonly struct Avg<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128BinOp<T> Op = Vec128Delegates.avg<T>();
+            public static readonly Vec128BinOp<T> Op = Vec128Delegates.avg<T>();
         }
 
         public readonly struct CmpF<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128CmpFloat<T> Op = Vec128Delegates.cmpf<T>();
+            public static readonly Vec128CmpFloat<T> Op = Vec128Delegates.cmpf<T>();
 
         }
 
         public readonly struct Div<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128BinOp<T> Op = Vec128Delegates.div<T>();
+            public static readonly Vec128BinOp<T> Op = Vec128Delegates.div<T>();
 
         }
 
         public readonly struct Load<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128LoadOp<T> Op = Vec128Delegates.load<T>();
+            public static readonly Vec128LoadOp<T> Op = Vec128Delegates.load<T>();
 
         }
 
@@ -462,7 +504,7 @@ namespace Z0
             where T : struct, IEquatable<T>
         {
 
-            public static Vec128BinOp<T> Op = Vec128Delegates.min<T>();
+            public static readonly Vec128BinOp<T> Op = Vec128Delegates.min<T>();
 
         }
 
@@ -470,7 +512,7 @@ namespace Z0
             where T : struct, IEquatable<T>
         {
 
-            public static Vec128BinOp<T> Op = Vec128Delegates.max<T>();
+            public static readonly Vec128BinOp<T> Op = Vec128Delegates.max<T>();
 
         }
 
@@ -479,7 +521,7 @@ namespace Z0
             where T : struct, IEquatable<T>
         {
 
-            public static Vec128BinOp<S,T> Op = Vec128Delegates.mul<S,T>();
+            public static readonly Vec128BinOp<S,T> Op = Vec128Delegates.mul<S,T>();
 
         }
 
@@ -487,38 +529,38 @@ namespace Z0
         public readonly struct StoreA<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128StoreAOp<T> Op = Vec128Delegates.storeA<T>();
+            public static readonly Vec128StoreAOp<T> Op = Vec128Delegates.storeA<T>();
         }
 
         public readonly struct StoreP<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128StorePOp<T> Op = Vec128Delegates.storeP<T>();
+            public static readonly Vec128StorePOp<T> Op = Vec128Delegates.storeP<T>();
         }
 
         public readonly struct Stream<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128StreamOp<T> Op = Vec128Delegates.stream<T>();
+            public static readonly Vec128StreamOp<T> Op = Vec128Delegates.stream<T>();
         }
 
         public readonly struct Sub<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128BinOp<T> Op = Vec128Delegates.sub<T>();
+            public static readonly Vec128BinOp<T> Op = Vec128Delegates.sub<T>();
         }
 
         public readonly struct And<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128BinOp<T> Op = Vec128Delegates.and<T>();
+            public static readonly Vec128BinOp<T> Op = Vec128Delegates.and<T>();
 
         }
 
         public readonly struct AndPOut<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128BinPOut<T> Op = Vec128Delegates.andPOut<T>();
+            public static readonly Vec128BinPOut<T> Op = Vec128Delegates.andPOut<T>();
 
         }
 
@@ -526,26 +568,26 @@ namespace Z0
             where T : struct, IEquatable<T>
         {
 
-            public static Vec128BinOp<T> Op = Vec128Delegates.or<T>();
+            public static readonly Vec128BinOp<T> Op = Vec128Delegates.or<T>();
         }
 
         public readonly struct XOr<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128BinOp<T> Op = Vec128Delegates.xor<T>();
+            public static readonly Vec128BinOp<T> Op = Vec128Delegates.xor<T>();
         }
 
         public readonly struct AllOn<T>
             where T : struct, IEquatable<T>
         {
 
-            public static Vec128UnaryPred<T> Op = Vec128Delegates.allOn<T>();
+            public static readonly Vec128UnaryPred<T> Op = Vec128Delegates.allOn<T>();
         }
 
         public readonly struct Off<T>
             where T : struct, IEquatable<T>
         {
-            public static Vec128BinPred<T> Op = Vec128Delegates.off<T>();
+            public static readonly Vec128BinPred<T> Op = Vec128Delegates.off<T>();
         }
 
     }
@@ -615,7 +657,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe Vec128<T> load<T>(void* src, out Vec128<T> dst)
             where T : struct, IEquatable<T>
-                => Vec128OpCache.Load<T>.Op(src,out dst);
+                => dst = Vec128OpCache.Load<T>.Op(src);
 
         [MethodImpl(Inline)]
         public static Vec128BinOp<T> min<T>()

@@ -29,10 +29,10 @@ namespace Z0
                 short* pSrcWalker = pSrc;
                 for(var i = 0; i< srclen; i += seglen)
                 {
-                    var v1 = load(pSrcWalker);
+                    var v1 = Vec128.load(pSrcWalker);
                     pSrcWalker += veclen;                       
 
-                    var v2 = load(pSrcWalker);
+                    var v2 = Vec128.load(pSrcWalker);
                     pSrcWalker += veclen;
 
                     var vSum = addh(v1,v2);
@@ -61,10 +61,10 @@ namespace Z0
                 int* pSrcWalker = pSrc;
                 for(var i = 0; i< srclen; i += seglen)
                 {
-                    var v1 = load(pSrcWalker);
+                    var v1 = Vec128.load(pSrcWalker);
                     pSrcWalker += veclen;                       
 
-                    var v2 = load(pSrcWalker);
+                    var v2 = Vec128.load(pSrcWalker);
                     pSrcWalker += veclen;
 
                     var vSum = addh(v1,v2);
@@ -94,10 +94,10 @@ namespace Z0
                 float* pSrcWalker = pSrc;
                 for(var i = 0; i< srclen; i += seglen)
                 {
-                    var v1 = load(pSrcWalker);
+                    var v1 = Vec128.load(pSrcWalker);
                     pSrcWalker += veclen;                       
 
-                    var v2 = load(pSrcWalker);
+                    var v2 = Vec128.load(pSrcWalker);
                     pSrcWalker += veclen;
 
                     var vSum = addh(v1,v2);
@@ -126,10 +126,10 @@ namespace Z0
                 double* pSrcWalker = pSrc;
                 for(var i = 0; i< srclen; i += seglen)
                 {
-                    var v1 = load(pSrcWalker);
+                    var v1 = Vec128.load(pSrcWalker);
                     pSrcWalker += veclen;                       
 
-                    var v2 = load(pSrcWalker);
+                    var v2 = Vec128.load(pSrcWalker);
                     pSrcWalker += veclen;
 
                     var vSum = addh(v1,v2);
@@ -143,6 +143,21 @@ namespace Z0
             for(var i=0; i< veclen; i++)
                 total += final[i];
             return total;
+        }
+
+        static readonly PrimalIndex SumLU
+            = PrimKinds.index<object>
+                (
+                    @short: new PrimalAggOp<short>(InX.sum),
+                    @int: new PrimalAggOp<int>(InX.sum),
+                    @float: new PrimalAggOp<float>(InX.sum),
+                    @double:new PrimalAggOp<double>(InX.sum)
+                );
+
+        internal readonly struct Sum<T>
+            where T : struct, IEquatable<T>
+        {
+            public static readonly PrimalAggOp<T> Op = SumLU.lookup<T,PrimalAggOp<T>>();
         }
 
     }

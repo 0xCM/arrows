@@ -129,20 +129,99 @@ namespace Z0
             sw.Restart();
             for(var j = 0; j<config.Reps; j++)
                 for(var k = 0; k < lhs.Length; k+= veclen)
-                    addDelegate(InX.load(lhs[k],k), InX.load(rhs[k],k));            
+                    addDelegate(Vec128.load(lhs[k],k), Vec128.load(rhs[k],k));            
             inform($"Delegate: {ticksToMs(elapsed(sw))}ms");
             
             sw.Restart();
             for(var j = 0; j<config.Reps; j++)
                 for(var k = 0; k < lhs.Length; k+= veclen)
-                    addGeneric(InX.load(lhs[k],k), InX.load(rhs[k],k));            
+                    addGeneric(Vec128.load(lhs[k],k), Vec128.load(rhs[k],k));            
             inform($"Generic: {ticksToMs(elapsed(sw))}ms");
             
             sw.Restart();
             for(var j = 0; j<config.Reps; j++)
                 for(var k = 0; k < lhs.Length; k+= veclen)
-                    addDirect(InX.load(lhs[k],k), InX.load(rhs[k],k));            
+                    addDirect(Vec128.load(lhs[k],k), Vec128.load(rhs[k],k));            
             inform($"Direct: {ticksToMs(elapsed(sw))}ms");
+
+        }
+        void TestAdd54()
+        {
+            var config = BenchConfig.Default;
+            var domain = Defaults.Float64Domain;
+            var lhs = Vec128.stream(RandomIndex<double>(domain, config.SampleSize)).ToList();
+            var rhs = Vec128.stream(RandomIndex<double>(domain, config.SampleSize)).ToList();
+            var veclen = Vec128<double>.Length;
+            var sw = stopwatch();
+            var generic = 0L;
+            var direct = 0L;
+            var del = 0L;
+
+            var f = InX.addg<double>();
+
+            for(var j = 0; j<10; j++)
+            {
+                sw.Restart();
+                for(var i = 0; i< 10; i++)
+                    for(var k = 0; k < lhs.Count; k++)
+                        InX.addg(lhs[k],rhs[k]);
+                    
+                generic += elapsed(sw);
+                inform($"Generic: {ticksToMs(elapsed(sw))}ms");
+
+                sw.Restart();
+                for(var i = 0; i< 10; i++)
+                    for(var k = 0; k < lhs.Count; k++)
+                        InX.add(lhs[k],rhs[k]);
+                direct += elapsed(sw);
+                inform($"Direct: {ticksToMs(elapsed(sw))}ms");
+
+                sw.Restart();
+                for(var i = 0; i< 10; i++)
+                    for(var k = 0; k < lhs.Count; k++)
+                        f(lhs[k],rhs[k]);
+                del += elapsed(sw);
+                inform($"Delegate: {ticksToMs(elapsed(sw))}ms");
+
+            }
+
+
+            inform($"Generic Total = {ticksToMs(generic)}ms");
+            inform($"Direct Total = {ticksToMs(direct)}ms");
+            inform($"Delegate Total = {ticksToMs(del)}ms");
+
+        }
+
+
+        void TestAdd50()
+        {
+            var config = BenchConfig.Default;
+            var domain = Defaults.Float64Domain;
+            var lhs = RandomIndex<double>(domain, config.SampleSize);
+            var rhs = RandomIndex<double>(domain, config.SampleSize);
+            var veclen = Vec128<double>.Length;
+            var sw = stopwatch();
+            var generic = 0L;            
+            var direct = 0L;
+            for(var j = 0; j<10; j++)
+            {
+                sw.Restart();
+                for(var i = 0; i< 10; i++)
+                    InX.addg(lhs,rhs);
+                generic += elapsed(sw);
+                inform($"Generic: {ticksToMs(elapsed(sw))}ms");
+
+                sw.Restart();
+                for(var i = 0; i< 10; i++)
+                    InX.add(lhs,rhs);
+                direct += elapsed(sw);
+                inform($"Direct: {ticksToMs(elapsed(sw))}ms");
+
+            }
+
+
+            inform($"Generic Total = {ticksToMs(generic)}ms");
+            inform($"Direct Total = {ticksToMs(direct)}ms");
 
         }
 
@@ -276,7 +355,12 @@ namespace Z0
 
         void RunBenchmarks()
         {
-            var specs = BenchSpecs.XOr<long>();
+            //var opKinds = items(OpKind.Add, OpKind.Sub);
+            var opSets = items(OpSet.All);
+            //var primKinds = items(PrimKind.int16, PrimKind.int32, PrimKind.float32, PrimKind.float64);
+            var opKinds = literals<OpKind>();
+            var primKinds = literals<PrimKind>();
+            var specs = BenchSpecs.Choose(opKinds, opSets, primKinds);
             Benchmarker.Run(specs);
         }
 
@@ -293,10 +377,11 @@ namespace Z0
             try
             {
                 var app = new App();
-                app.RunBenchmarks();
+                //app.RunBenchmarks();
                 //app.RunTests();
- 
-                //DynInvoke.Test();
+                //app.TestAdd54();
+                DynInvoke.Test();
+                
             }
             catch(Exception e)
             {

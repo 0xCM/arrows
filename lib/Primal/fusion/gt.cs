@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
@@ -11,54 +15,113 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Index<bool> gt(Index<byte> lhs, Index<byte> rhs)
-            => fuse(lhs,rhs, (x,y) => x > y);
+        {
+            var dst = alloc<bool>(matchedCount(lhs,rhs));
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] > rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<bool> gt(Index<sbyte> lhs, Index<sbyte> rhs)
-            => fuse(lhs,rhs, (x,y) => (x > y));
+        {
+            var dst = alloc<bool>(matchedCount(lhs,rhs));
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] > rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<bool> gt(Index<short> lhs, Index<short> rhs)
-            => fuse(lhs,rhs, (x,y) => x > y);
+        {
+            var dst = alloc<bool>(matchedCount(lhs,rhs));
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] > rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<bool> gt(Index<ushort> lhs, Index<ushort> rhs)
-            => fuse(lhs,rhs, (x,y) => x > y);
+        {
+            var dst = alloc<bool>(matchedCount(lhs,rhs));
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] > rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<bool> gt(Index<int> lhs, Index<int> rhs)
-            => fuse(lhs,rhs, (x,y) => (x > y));
+        {
+            var dst = alloc<bool>(matchedCount(lhs,rhs));
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] > rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<bool> gt(Index<uint> lhs, Index<uint> rhs)
-            => fuse(lhs,rhs, (x,y) => (x > y));
+        {
+            var dst = alloc<bool>(matchedCount(lhs,rhs));
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] > rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<bool> gt(Index<long> lhs, Index<long> rhs)
-            => fuse(lhs,rhs, (x,y) => (x > y));
+        {
+            var dst = alloc<bool>(matchedCount(lhs,rhs));
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] > rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<bool> gt(Index<ulong> lhs, Index<ulong> rhs)
-            => fuse(lhs,rhs, (x,y) => (x > y));
+        {
+            var dst = alloc<bool>(matchedCount(lhs,rhs));
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] > rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<bool> gt(Index<float> lhs, Index<float> rhs)
-            => fuse(lhs,rhs, (x,y) => (x > y));
+        {
+            var dst = alloc<bool>(matchedCount(lhs,rhs));
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] > rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<bool> gt(Index<double> lhs, Index<double> rhs)
-            => fuse(lhs,rhs, (x,y) => (x > y));
+        {
+            var dst = alloc<bool>(matchedCount(lhs,rhs));
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] > rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<bool> gt(Index<decimal> lhs, Index<decimal> rhs)
-            => fuse(lhs,rhs, (x,y) => (x > y));
+        {
+            var dst = alloc<bool>(matchedCount(lhs,rhs));
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] > rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<bool> gt(Index<BigInteger> lhs, Index<BigInteger> rhs)
-            => fuse(lhs,rhs, (x,y) => (x > y));
+        {
+            var dst = alloc<bool>(matchedCount(lhs,rhs));
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] > rhs[i];
+            return dst;
+        }
 
-
-         static readonly PrimalIndex GtDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex GtDelegates = PrimKinds.index<object>
             (
                 @sbyte : new PrimalFusedPred<sbyte>(gt),
                 @byte : new PrimalFusedPred<byte>(gt),
@@ -80,8 +143,5 @@ namespace Z0
             public static readonly PrimalFusedPred<T> Op 
                 = GtDelegates.lookup<T,PrimalFusedPred<T>>();
         }
-
-
     }
-
 }

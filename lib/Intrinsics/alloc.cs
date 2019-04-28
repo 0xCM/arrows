@@ -328,6 +328,17 @@ namespace Z0
                 throw errlen(src.Length, Vec128<T>.Length, offset, maxpos, finalpos);
         }
 
+        [MethodImpl(Inline)]
+        public static void checklen256<T>(T[] src, int offset = 0)
+            where T : struct, IEquatable<T>
+        {
+            var maxpos = src.Length - 1;
+            var finalpos = offset + Vec256<T>.Length - 1;
+
+            if(finalpos > maxpos)
+                throw errlen(src.Length, Vec256<T>.Length, offset, maxpos, finalpos);
+        }
+
 
         [MethodImpl(Inline)]
         public static T[] datasource<T>(object data, int count, int startpos = 0)

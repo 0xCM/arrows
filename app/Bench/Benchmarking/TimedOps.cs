@@ -17,10 +17,16 @@ namespace Z0.Bench
     public unsafe delegate long TimedFusedBinOp<T>(Index<T> lhs, Index<T> rhs, out Index<T> dst)
         where T : struct, IEquatable<T>;
 
+    public unsafe delegate long TimedAtomicBinOp<T>(T lhs, T rhs, out T dst)
+        where T : struct, IEquatable<T>;
+
+    public unsafe delegate long TimedAtomicUnaryOp<T>(T src, out T dst)
+        where T : struct, IEquatable<T>;
+
     public unsafe delegate long TimedFusedPred<T>(Index<T> lhs, Index<T> rhs, out Index<bool> dst)
         where T : struct, IEquatable<T>;
 
-    public unsafe delegate long TimedPrimalPred<T>(T lhs, T rhs, out bool dst)
+    public unsafe delegate long TimedAtomicPred<T>(T lhs, T rhs, out bool dst)
         where T : struct, IEquatable<T>;
 
     public unsafe delegate long TimedAggOp<T>(Index<T> src, out T dst)
@@ -101,25 +107,7 @@ namespace Z0.Bench
         public unsafe long TimedOp(Index<T> lhs, Index<T> rhs, out Index<T> dst, Vec128BinOp<T> Op)
         {
             var sw = stopwatch();
-
-            var target = new T[lhs.Length];
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
-            var load = Vec128OpCache.Load<T>.Op;
-            var store = Vec128OpCache.StoreP<T>.Op;
-
-            for(var i = 0; i < lhs.Length; i += Vec128<T>.Length)                
-            {
-                var pLhs = pointer(ref lArray[i]);
-                var pRhs = pointer(ref rArray[i]);
-                var pDst = pointer(ref target[i]);
-
-                load(pLhs, out Vec128<T> vLeft);
-                load(pRhs, out Vec128<T> vRight);
-                store(Op(vLeft,vRight), pDst);                
-            }
-
-            dst = target;
+            dst =  Vectorizer.vectorize(Op,lhs,rhs);
             return elapsed(sw);
         }
 

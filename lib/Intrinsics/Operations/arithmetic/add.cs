@@ -8,6 +8,155 @@ namespace Z0
     using static zcore;
     using static inxfunc;
 
+    public static partial class InXS128
+    {
+        static readonly PrimalIndex AddLU = PrimalIndex.define(
+            @uint : default(AddU32),
+            @float : default(AddF32),
+            @double : default(AddF64)
+        );
+
+        readonly ref struct AddU32
+        {
+            public readonly Vec128<uint> Result;
+
+            [MethodImpl(Inline)]
+            public static implicit operator Vec128<uint>(AddU32 src)
+                => src.Result;
+
+            [MethodImpl(Inline)]
+            public AddU32(Vec128<uint> lhs, Vec128<uint> rhs)
+                => Result = Avx2.Add(lhs,rhs);        
+            
+            [MethodImpl(Inline)]
+            public AddU32 Recompute(Vec128<uint> lhs, Vec128<uint> rhs)
+                => new AddU32(lhs,rhs);
+        }
+
+        readonly ref struct AddF32
+        {
+            public readonly Vec128<float> Result;
+
+            [MethodImpl(Inline)]
+            public static implicit operator Vec128<float>(AddF32 src)
+                => src.Result;
+
+            [MethodImpl(Inline)]
+            public AddF32(Vec128<float> lhs, Vec128<float> rhs)
+                => Result = Avx2.Add(lhs,rhs);        
+            
+            [MethodImpl(Inline)]
+            public AddF32 Recompute(Vec128<float> lhs, Vec128<float> rhs)
+                => new AddF32(lhs,rhs);
+        }
+
+        readonly ref struct AddF64
+        {
+            public readonly Vec128<double> Result;
+
+            [MethodImpl(Inline)]
+            public static implicit operator Vec128<double>(AddF64 src)
+                => src.Result;
+
+            [MethodImpl(Inline)]
+            public AddF64(Vec128<double> lhs, Vec128<double> rhs)
+                => Result = Avx2.Add(lhs,rhs);        
+            
+            [MethodImpl(Inline)]
+            public AddF64 Recompute(Vec128<double> lhs, Vec128<double> rhs)
+                => new AddF64(lhs,rhs);
+        }
+
+        static Vec128<uint> Add(Vec128<uint> lhs, Vec128<uint> rhs)
+                => Avx2.Add(lhs,rhs);        
+
+        static Vec128<float> Add(Vec128<float> lhs, Vec128<float> rhs)
+                => Avx2.Add(lhs,rhs);        
+
+        static Vec128<double> Add(Vec128<double> lhs, Vec128<double> rhs)
+                => Avx2.Add(lhs,rhs);        
+
+
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<uint> Load(uint[] src, int offset)
+        {
+            fixed(uint* pSrc = &src[offset])
+                return Avx2.LoadVector128(pSrc);
+        }
+         
+        [MethodImpl(Inline)]
+        static unsafe Vec128<float> Load(float[] src, int offset)
+        {
+            fixed(float* pSrc = &src[offset])
+                return Avx2.LoadVector128(pSrc);
+        }
+
+        [MethodImpl(Inline)]
+        static unsafe Vec128<double> Load(double[] src, int offset)
+        {
+            fixed(double* pSrc = &src[offset])
+                return Avx2.LoadVector128(pSrc);
+        }
+
+
+        [MethodImpl(Inline)]
+        static unsafe void Store(Vec128<uint> src, uint[] dst, int offset )
+        {
+            fixed(uint* pDst = &dst[offset])
+                Avx2.Store(pDst,src);
+        }
+
+        [MethodImpl(Inline)]
+        static unsafe void Store(Vec128<float> src, float[] dst, int offset )
+        {
+            fixed(float* pDst = &dst[offset])
+                Avx2.Store(pDst,src);
+        }
+
+        [MethodImpl(Inline)]
+        static unsafe void Store(Vec128<double> src, double[] dst, int offset )
+        {
+            fixed(double* pDst = &dst[offset])
+                Avx2.Store(pDst,src);
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe void store<T>(Vec128<T> src, T[] dst, int offset )
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimKinds.kind<T>();
+            if(kind == PrimKind.uint32)
+                Store(src.As<uint>(), Unsafe.As<uint[]>(src), offset);
+            else if(kind == PrimKind.float32)
+                Store(src.As<float>(), Unsafe.As<float[]>(src), offset);
+            else if(kind == PrimKind.float64)
+                Store(src.As<double>(), Unsafe.As<double[]>(src), offset);
+            else
+                throw new NotSupportedException();
+
+        }
+
+
+        [MethodImpl(Inline)]
+        public static unsafe Vec128<T> load<T>(T[] src, int offset)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimKinds.kind<T>();
+            
+            if(kind == PrimKind.uint32)
+                return Load(Unsafe.As<uint[]>(src), offset).As<T>();
+
+            if(kind == PrimKind.float32)
+                return Load(Unsafe.As<float[]>(src), offset).As<T>();
+
+            if(kind == PrimKind.float64)
+                return Load(Unsafe.As<double[]>(src), offset).As<T>();
+
+            throw new NotSupportedException();
+        }
+
+    }
     partial class InX
     {
 
@@ -379,6 +528,80 @@ namespace Z0
                     add(pLeft, pRight, pTarget);
             }
             return dst;
+        }
+
+        static readonly PrimalIndex AddLU
+            = PrimKinds.index
+                (@sbyte: new PrimalFusedBinOp<sbyte>(InX.add),
+                @byte: new PrimalFusedBinOp<byte>(InX.add),
+                @short: new PrimalFusedBinOp<short>(InX.add),
+                @ushort: new PrimalFusedBinOp<ushort>(InX.add),
+                @int: new PrimalFusedBinOp<int>(InX.add),
+                @uint: new PrimalFusedBinOp<uint>(InX.add),
+                @long: new PrimalFusedBinOp<long>(InX.add),
+                @ulong: new PrimalFusedBinOp<ulong>(InX.add),
+                @float: new PrimalFusedBinOp<float>(InX.add),
+                @double:new PrimalFusedBinOp<double>(InX.add)
+                );
+
+        internal readonly struct Add<T>
+            where T : struct, IEquatable<T>
+        {
+            public static readonly PrimalFusedBinOp<T> Op = AddLU.lookup<T,PrimalFusedBinOp<T>>();
+        }
+
+
+       [MethodImpl(Inline)]
+        public static Vec128<T> addg<T>(in Vec128<T> lhs, in Vec128<T> rhs)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimKinds.kind<T>();
+
+            if(kind == PrimKind.int16)
+                return Avx2.Add(lhs.As<short>(), rhs.As<short>()).As<short,T>();
+
+            if(kind == PrimKind.uint16)
+                return Avx2.Add(lhs.As<ushort>(), rhs.As<ushort>()).As<ushort,T>();
+
+            if(kind == PrimKind.int32)
+                return Avx2.Add(lhs.As<int>(), rhs.As<int>()).As<int,T>();
+
+            if(kind == PrimKind.uint32)
+                return Avx2.Add(lhs.As<uint>(), rhs.As<uint>()).As<uint,T>();
+
+            if(kind == PrimKind.int64)
+                return Avx2.Add(lhs.As<long>(), rhs.As<long>()).As<long,T>();
+
+            if(kind == PrimKind.uint64)
+                return Avx2.Add(lhs.As<ulong>(), rhs.As<ulong>()).As<ulong,T>();
+
+            if(kind == PrimKind.float32)
+                return Avx2.Add(lhs.As<float>(), rhs.As<float>()).As<float,T>();
+
+            if(kind == PrimKind.float64)
+                return Avx2.Add(lhs.As<double>(), rhs.As<double>()).As<double,T>();
+
+            throw new NotSupportedException();
+        }
+
+        public static Vec128BinOp<T> addg<T>()
+            where T : struct, IEquatable<T>
+                => addg<T>;
+        
+        public static Index<T> addg<T>(Index<T> lhs, Index<T> rhs)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimKinds.kind<T>();
+            if(kind == PrimKind.float64)
+            {
+                var result = add(
+                    Unsafe.As<Index<T>, Index<double>>(ref lhs),
+                    Unsafe.As<Index<T>, Index<double>>(ref rhs)
+                    );
+                return Unsafe.As<Index<double>, Index<T>>(ref result);
+            }
+            throw new NotSupportedException();
+
         }
     }
 }

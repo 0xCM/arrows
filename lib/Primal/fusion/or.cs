@@ -11,42 +11,86 @@ namespace Z0
  
         [MethodImpl(Inline)]
         static Index<byte> or(Index<byte> lhs, Index<byte> rhs)
-            => fuse(lhs,rhs, (x,y) => (byte)(x | y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = (byte)(lhs[i] | rhs[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<sbyte> or(Index<sbyte> lhs, Index<sbyte> rhs)
-            => fuse(lhs,rhs, (x,y) => (sbyte)(x | y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = (sbyte)(lhs[i] | rhs[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<short> or(Index<short> lhs, Index<short> rhs)
-            => fuse(lhs,rhs, (x,y) => (short)(x | y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = (short)(lhs[i] | rhs[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<ushort> or(Index<ushort> lhs, Index<ushort> rhs)
-            => fuse(lhs,rhs, (x,y) => (ushort)(x | y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = (ushort)(lhs[i] | rhs[i]);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<int> or(Index<int> lhs, Index<int> rhs)
-            => fuse(lhs,rhs, (x,y) => (x | y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] | rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<uint> or(Index<uint> lhs, Index<uint> rhs)
-            => fuse(lhs,rhs, (x,y) => (x | y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] | rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<long> or(Index<long> lhs, Index<long> rhs)
-            => fuse(lhs,rhs, (x,y) => (x | y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] | rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<ulong> or(Index<ulong> lhs, Index<ulong> rhs)
-            => fuse(lhs,rhs, (x,y) => (x | y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] | rhs[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         static Index<BigInteger> or(Index<BigInteger> lhs, Index<BigInteger> rhs)
-            => fuse(lhs,rhs, (x,y) => (x | y));
+        {
+            var dst = target(lhs,rhs);
+            for(var i = 0; i<dst.Length; i++)
+                dst[i] = lhs[i] | rhs[i];
+            return dst;
+        }
 
-
-         static readonly PrimalIndex OrDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex OrDelegates = PrimKinds.index<object>
             (
                 @sbyte : new PrimalFusedBinOp<sbyte>(add),
                 @byte : new PrimalFusedBinOp<byte>(add),
@@ -65,8 +109,5 @@ namespace Z0
             public static readonly PrimalFusedBinOp<T> Op 
                 = OrDelegates.lookup<T,PrimalFusedBinOp<T>>();
         }
-
-
     }
-
 }
