@@ -235,13 +235,8 @@ partial class zcore
         => sw.ElapsedTicks;
 
     [MethodImpl(Inline)]   
-    public static (long ticks, long ms, string format) snapshot(Stopwatch sw) 
-    {
-        var ticks = sw.ElapsedTicks;
-        var ms = ticksToMs(ticks);
-        return (ticks, ticksToMs(ticks), $"ticks = {ticks} | ms = {ms}");
-    }
-        
+    public static Duration snapshot(Stopwatch sw)     
+        => Duration.define(sw.ElapsedTicks);        
 
     /// <summary>
     /// Demands truth that is enforced with an exeption upon false
@@ -261,5 +256,26 @@ partial class zcore
     public static T demand<T>(bool condition, string msg = null)
         where T : new()
         => condition ? new T() : throw new Exception(msg ?? $"Precondition for construction of {type<T>().Name} unmet");
+
+    public delegate Duration Repeat(int reps);
+
+    
+    public static BenchSummary micromark(string title, OpId op, int cycles, int reps, Repeat repeater)
+    {
+        var runtime = stopwatch();
+        var duration = default(Duration);
+        var opcount = 0L;
+        for(var cycle = 0; cycle<cycles; cycle++)
+        {
+            var sw = stopwatch();
+            var cycleDuration = repeater(reps);
+            duration += cycleDuration;
+            opcount += reps;
+            print(BenchmarkMessages.EndOfCycle(title, op, cycle, cycleDuration, opcount, duration));
+        }  
+        return new BenchSummary(title, op, opcount, duration, snapshot(runtime));
+
+    }
+
 }
 

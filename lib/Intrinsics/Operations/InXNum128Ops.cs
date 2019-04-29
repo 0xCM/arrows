@@ -17,7 +17,7 @@ namespace Z0
     {
 
         //! eq
-        static readonly PrimalIndex Eq = PrimKinds.index<object>
+        static readonly PrimalIndex Eq = PrimalKinds.index<object>
             (
                 @float : new Num128BinPred<float>(InX.eq),
                 @double : new Num128BinPred<double>(InX.eq)
@@ -30,7 +30,7 @@ namespace Z0
 
         //! add
 
-        static readonly PrimalIndex Add = PrimKinds.index<object>
+        static readonly PrimalIndex Add = PrimalKinds.index<object>
             (
                 @float : new Num128BinOp<float>(InX.add),
                 @double : new Num128BinOp<double>(InX.add)
@@ -43,7 +43,7 @@ namespace Z0
 
         //! sub
 
-        static readonly PrimalIndex Sub = PrimKinds.index<object>
+        static readonly PrimalIndex Sub = PrimalKinds.index<object>
             (
                 @float : new Num128BinOp<float>(InX.sub),
                 @double : new Num128BinOp<double>(InX.sub)
@@ -56,7 +56,7 @@ namespace Z0
 
         //! div
 
-        static readonly PrimalIndex Div = PrimKinds.index<object>
+        static readonly PrimalIndex Div = PrimalKinds.index<object>
             (
                 @float : new Num128BinOp<float>(InX.div),
                 @double : new Num128BinOp<double>(InX.div)
@@ -69,7 +69,7 @@ namespace Z0
 
         //! mul
 
-        static readonly PrimalIndex Mul = PrimKinds.index<object>
+        static readonly PrimalIndex Mul = PrimalKinds.index<object>
             (
                 @float : new Num128BinOp<float>(InX.mul),
                 @double : new Num128BinOp<double>(InX.mul)
@@ -82,7 +82,7 @@ namespace Z0
 
         //! muladd
 
-        static readonly PrimalIndex MulAdd = PrimKinds.index<object>
+        static readonly PrimalIndex MulAdd = PrimalKinds.index<object>
             (
                 @float : new Num128TernaryOp<float>(InX.mulAdd),
                 @double : new Num128TernaryOp<double>(InX.mulAdd)
@@ -96,7 +96,7 @@ namespace Z0
 
         //! min
 
-        static readonly PrimalIndex Min = PrimKinds.index<object>
+        static readonly PrimalIndex Min = PrimalKinds.index<object>
             (
                 @float : new Num128BinOp<float>(InX.min),
                 @double : new Num128BinOp<double>(InX.min)
@@ -109,7 +109,7 @@ namespace Z0
 
         //! min
 
-        static readonly PrimalIndex Max = PrimKinds.index<object>
+        static readonly PrimalIndex Max = PrimalKinds.index<object>
             (
                 @float : new Num128BinOp<float>(InX.max),
                 @double : new Num128BinOp<double>(InX.max)
@@ -121,7 +121,7 @@ namespace Z0
                 => Max.lookup<T,Num128BinOp<T>>();
 
         //! div
-        static readonly PrimalIndex CmpF = PrimKinds.index<object>
+        static readonly PrimalIndex CmpF = PrimalKinds.index<object>
             (
                 @float : new Num128CmpFloat<float>(InX.cmpf),
                 @double : new Num128CmpFloat<double>(InX.cmpf)

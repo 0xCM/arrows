@@ -62,7 +62,7 @@ namespace Z0
         static bool gt(BigInteger lhs, BigInteger rhs)
             => lhs > rhs;
         
-        static readonly PrimalIndex GtDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex GtDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalBinPred<sbyte>(gt),
                 @byte : new PrimalBinPred<byte>(gt),

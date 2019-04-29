@@ -60,7 +60,7 @@ namespace Z0
         static BigInteger abs(BigInteger x)
             => BigInteger.Abs(x);
 
-        static readonly PrimalIndex AbsDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex AbsDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalUnaryOp<sbyte>(abs),
                 @byte : new PrimalUnaryOp<byte>(abs),

@@ -63,7 +63,7 @@ namespace Z0
         static bool eq(BigInteger lhs, BigInteger rhs)
             => lhs == rhs;
         
-        static readonly PrimalIndex EqDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex EqDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalBinPred<sbyte>(eq),
                 @byte : new PrimalBinPred<byte>(eq),

@@ -313,7 +313,7 @@ namespace Z0
         }
 
         static readonly PrimalIndex OrLU
-            = PrimKinds.index
+            = PrimalKinds.index
                 (@sbyte: new PrimalFusedBinOp<sbyte>(InX.or),
                 @byte: new PrimalFusedBinOp<byte>(InX.or),
                 @short: new PrimalFusedBinOp<short>(InX.or),

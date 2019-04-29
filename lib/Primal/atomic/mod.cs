@@ -61,7 +61,7 @@ namespace Z0
         static long mod(long lhs, long rhs)
             => lhs % rhs;
 
-        static readonly PrimalIndex ModDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex ModDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalBinOp<sbyte>(mod),
                 @byte : new PrimalBinOp<byte>(mod),

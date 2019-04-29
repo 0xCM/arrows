@@ -275,7 +275,7 @@ namespace Z0
         }
 
         static readonly PrimalIndex SubLU
-            = PrimKinds.index
+            = PrimalKinds.index
                 (@sbyte: new PrimalFusedBinOp<sbyte>(InX.sub),
                 @byte: new PrimalFusedBinOp<byte>(InX.sub),
                 @short: new PrimalFusedBinOp<short>(InX.sub),

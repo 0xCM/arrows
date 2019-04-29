@@ -17,7 +17,7 @@ namespace Z0
     static class Vec128Delegates
     {
 
-        static readonly PrimalIndex Eq = PrimKinds.index<object>
+        static readonly PrimalIndex Eq = PrimalKinds.index<object>
             (
                 @sbyte : new Vec128BinPred<sbyte>(InX.eq),
                 @byte : new Vec128BinPred<byte>(InX.eq),
@@ -42,7 +42,7 @@ namespace Z0
 
         //! add
 
-        static readonly PrimalIndex Add = PrimKinds.index<object>
+        static readonly PrimalIndex Add = PrimalKinds.index<object>
             (
                 @sbyte : new Vec128BinOp<sbyte>(InX.add),
                 @byte : new Vec128BinOp<byte>(InX.add),
@@ -62,7 +62,7 @@ namespace Z0
                 => Add.lookup<T,Vec128BinOp<T>>();
 
         //! add + store to pointer
-        static unsafe readonly PrimalIndex AddPOut = PrimKinds.index<object>
+        static unsafe readonly PrimalIndex AddPOut = PrimalKinds.index<object>
             (
                 @sbyte : new Vec128BinPOut<sbyte>(InX.add),
                 @byte : new Vec128BinPOut<byte>(InX.add),
@@ -83,7 +83,7 @@ namespace Z0
 
         //! sub
 
-        static readonly PrimalIndex Sub = PrimKinds.index<object>
+        static readonly PrimalIndex Sub = PrimalKinds.index<object>
             (
                 @sbyte : new Vec128BinOp<sbyte>(InX.sub),
                 @byte : new Vec128BinOp<byte>(InX.sub),
@@ -104,7 +104,7 @@ namespace Z0
 
 
         //! avg
-        static readonly PrimalIndex Avg = PrimKinds.index<object>
+        static readonly PrimalIndex Avg = PrimalKinds.index<object>
             (
                 @byte : new Vec128BinOp<byte>(InX.avg),
                 @ushort : new Vec128BinOp<ushort>(InX.avg)
@@ -117,7 +117,7 @@ namespace Z0
 
 
         //! div
-        static readonly PrimalIndex CmpF = PrimKinds.index<object>
+        static readonly PrimalIndex CmpF = PrimalKinds.index<object>
             (
                 @float : new Vec128CmpFloat<float>(InX.cmpf),
                 @double : new Vec128CmpFloat<double>(InX.cmpf)
@@ -129,7 +129,7 @@ namespace Z0
                 => CmpF.lookup<T,Vec128CmpFloat<T>>();
 
         //! div
-        static readonly PrimalIndex Div = PrimKinds.index<object>
+        static readonly PrimalIndex Div = PrimalKinds.index<object>
             (
                 @float : new Vec128BinOp<float>(InX.div),
                 @double : new Vec128BinOp<double>(InX.div)
@@ -183,7 +183,7 @@ namespace Z0
             => Avx2.LoadVector128((double*)src);
 
 
-        static readonly unsafe PrimalIndex Load = PrimKinds.index<object>
+        static readonly unsafe PrimalIndex Load = PrimalKinds.index<object>
             (
                 @sbyte : new Vec128LoadOp<sbyte>(loadI8),
                 @byte : new Vec128LoadOp<byte>(loadU8),

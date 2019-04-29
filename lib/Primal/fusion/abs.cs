@@ -101,7 +101,7 @@ namespace Z0
             return dst;
         }
 
-        static readonly PrimalIndex AbsDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex AbsDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalFusedUnaryOp<sbyte>(abs),
                 @byte : new PrimalFusedUnaryOp<byte>(abs),

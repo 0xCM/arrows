@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
@@ -74,7 +78,7 @@ namespace Z0
 
         }
 
-        static readonly PrimalIndex AddDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex AddDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new Vec128BinOp<sbyte>(InX.add),
                 @byte : new Vec128BinOp<byte>(InX.add),
@@ -272,12 +276,7 @@ namespace Z0
         {
             iter(paths, path => TestRunner.RunTests(path,pll));
         }
-
-        void MeasureDelegates()
-        {
-            new DelegateBaselines().Run();
-        }
-
+        
 
         void TestRandomFloat()
         {
@@ -355,11 +354,9 @@ namespace Z0
 
         void RunBenchmarks()
         {
-            //var opKinds = items(OpKind.Add, OpKind.Sub);
             var opSets = items(OpSet.All);
-            //var primKinds = items(PrimKind.int16, PrimKind.int32, PrimKind.float32, PrimKind.float64);
             var opKinds = literals<OpKind>();
-            var primKinds = literals<PrimKind>();
+            var primKinds = literals<PrimalKind>();
             var specs = BenchSpecs.Choose(opKinds, opSets, primKinds);
             Benchmarker.Run(specs);
         }
@@ -372,6 +369,36 @@ namespace Z0
 
         }
 
+        IEnumerable<BenchComparison> RunBenchComparisons()
+        {
+            var bench = GenericBench.Init(BenchConfig.Define(50,(int)Pow2.T23));
+            // yield return bench.Run(OpKind.Add, PrimalKind.int8);
+            // yield return bench.Run(OpKind.Add, PrimalKind.uint8);
+            // yield return bench.Run(OpKind.Add, PrimalKind.int16);
+            // yield return bench.Run(OpKind.Add, PrimalKind.uint16);
+            // yield return bench.Run(OpKind.Add, PrimalKind.int32);
+            // yield return bench.Run(OpKind.Add, PrimalKind.uint32);
+            // yield return bench.Run(OpKind.Add, PrimalKind.int64);
+            // yield return bench.Run(OpKind.Add, PrimalKind.uint64);
+            yield return bench.Run(OpKind.Add, PrimalKind.float32);
+            yield return bench.Run(OpKind.Add, PrimalKind.float64);
+
+        }
+
+        void print(BenchComparison comparison)
+        {
+            zcore.print(comparison.LeftBench.Description);
+            zcore.print(comparison.RightBench.Description);
+        }
+
+        public void RunBench()
+        {
+            var comparisons = RunBenchComparisons().ToList();
+            iter(comparisons, print);
+
+        }
+
+
         static void Main(string[] args)
         {     
             try
@@ -380,7 +407,7 @@ namespace Z0
                 //app.RunBenchmarks();
                 //app.RunTests();
                 //app.TestAdd54();
-                DynInvoke.Test();
+                app.RunBench();
                 
             }
             catch(Exception e)

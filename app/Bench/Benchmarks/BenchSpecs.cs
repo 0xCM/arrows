@@ -18,7 +18,7 @@ namespace Z0.Bench
 
     public class BenchSpecs
     {
-        public static Specs Choose(OpKind opkind, OpSet? set = null, params PrimKind[] primkinds)
+        public static Specs Choose(OpKind opkind, OpSet? set = null, params PrimalKind[] primkinds)
         {
             return opkind switch {
                 OpKind.Eq => Eq(set,primkinds),                
@@ -35,7 +35,7 @@ namespace Z0.Bench
 
         }
 
-        public static Specs Choose(IEnumerable<OpKind> opkinds, IEnumerable<OpSet> opsets, IEnumerable<PrimKind> primkinds)
+        public static Specs Choose(IEnumerable<OpKind> opkinds, IEnumerable<OpSet> opsets, IEnumerable<PrimalKind> primkinds)
         {
             foreach(var opkind in opkinds)
             foreach(var opset in opsets)
@@ -49,20 +49,20 @@ namespace Z0.Bench
 
         delegate Specs OpPicker(OpSet? set);
 
-        static Specs Pick<T>(OpPicker<T> picker, OpSet? set = null, params PrimKind[] kinds)
+        static Specs Pick<T>(OpPicker<T> picker, OpSet? set = null, params PrimalKind[] kinds)
         {
-            if(kinds.Length == 0 || kinds.Contains(PrimKinds.kind<T>()))
+            if(kinds.Length == 0 || kinds.Contains(PrimalKinds.kind<T>()))
                 foreach(var f in picker(set))
                     yield return f;            
         }
 
-        static Specs Pick<X0,X1>(OpPicker<X0> p0, OpPicker<X1> p1, OpSet? set = null, params PrimKind[] kinds)
+        static Specs Pick<X0,X1>(OpPicker<X0> p0, OpPicker<X1> p1, OpSet? set = null, params PrimalKind[] kinds)
         {
-            if(kinds.Length == 0 || kinds.Contains(PrimKinds.kind<X0>()))
+            if(kinds.Length == 0 || kinds.Contains(PrimalKinds.kind<X0>()))
                 foreach(var f in p0(set))
                     yield return f;            
 
-            if(kinds.Length == 0 || kinds.Contains(PrimKinds.kind<X1>()))
+            if(kinds.Length == 0 || kinds.Contains(PrimalKinds.kind<X1>()))
                 foreach(var f in p1(set))
                     yield return f;            
         }
@@ -77,7 +77,7 @@ namespace Z0.Bench
         static bool allOrOneOf(OpSet? set, params OpSet[] others)
             => all(set) || (set != null && others.Contains(set.Value));
 
-        public static Specs Eq(OpSet? set = null, params PrimKind[] kinds)
+        public static Specs Eq(OpSet? set = null, params PrimalKind[] kinds)
         {
             OpPicker<T> picker<T>()
                 where T : struct, IEquatable<T>            
@@ -106,7 +106,7 @@ namespace Z0.Bench
                 yield return PrimalFusion.eq<T>().Measure(P.primops + P.eq + P.fused);
         }
 
-        public static Specs Gt(OpSet? set = null, params PrimKind[] kinds)
+        public static Specs Gt(OpSet? set = null, params PrimalKind[] kinds)
         {
             OpPicker<T> picker<T>()
                 where T : struct, IEquatable<T>            
@@ -135,7 +135,7 @@ namespace Z0.Bench
                 yield return PrimalFusion.gt<T>().Measure(P.primops + P.gt + P.fused);
         }
 
-        public static Specs Add(OpSet? set = null, params PrimKind[] kinds)
+        public static Specs Add(OpSet? set = null, params PrimalKind[] kinds)
         {
             OpPicker<T> picker<T>()
                 where T : struct, IEquatable<T>            
@@ -173,7 +173,7 @@ namespace Z0.Bench
                 yield return InXFusionOps.add<T>().Measure(P.intrinsics + P.add + P.fused);
         }
 
-        public static Specs Sub(OpSet? set = null, params PrimKind[] kinds)
+        public static Specs Sub(OpSet? set = null, params PrimalKind[] kinds)
         {
             OpPicker<T> picker<T>()
                 where T : struct, IEquatable<T>            
@@ -223,7 +223,7 @@ namespace Z0.Bench
         }
 
   
-        public static Specs And(OpSet? set = null, params PrimKind[] kinds)
+        public static Specs And(OpSet? set = null, params PrimalKind[] kinds)
         {
             OpPicker<T> picker<T>()
                 where T : struct, IEquatable<T>            
@@ -259,7 +259,7 @@ namespace Z0.Bench
                 yield return InXFusionOps.and<T>().Measure(P.intrinsics + P.and + P.fused);
         }
 
-        public static Specs Or(OpSet? set = null, params PrimKind[] kinds)
+        public static Specs Or(OpSet? set = null, params PrimalKind[] kinds)
         {
             OpPicker<T> picker<T>()
                 where T : struct, IEquatable<T>            
@@ -294,7 +294,7 @@ namespace Z0.Bench
                 yield return InXFusionOps.or<T>().Measure(P.intrinsics + P.or + P.fused);
         }
 
-        public static Specs XOr(OpSet? set = null, params PrimKind[] kinds)
+        public static Specs XOr(OpSet? set = null, params PrimalKind[] kinds)
         {
             OpPicker<T> picker<T>()
                 where T : struct, IEquatable<T>            
@@ -330,7 +330,7 @@ namespace Z0.Bench
                 yield return InXFusionOps.xor<T>().Measure(P.intrinsics + P.xor + P.fused);
         }
 
-        public static Specs Abs(OpSet? set = null, params PrimKind[] kinds)  
+        public static Specs Abs(OpSet? set = null, params PrimalKind[] kinds)  
         {      
             OpPicker<T> picker<T>()
                 where T : struct, IEquatable<T>            
@@ -356,7 +356,7 @@ namespace Z0.Bench
                 yield return PrimalFusion.abs<T>().Measure(P.primops + P.abs + P.fused);
         }
 
-        public static Specs Sum(OpSet? set = null, params PrimKind[] kinds)        
+        public static Specs Sum(OpSet? set = null, params PrimalKind[] kinds)        
         {      
 
             OpPicker<T> picker<T>()

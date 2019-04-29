@@ -63,7 +63,7 @@ namespace Z0
         static long mul(long lhs, long rhs)
             => lhs * rhs;
 
-        static readonly PrimalIndex MulDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex MulDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalBinOp<sbyte>(mul),
                 @byte : new PrimalBinOp<byte>(mul),

@@ -14,6 +14,9 @@ namespace Z0.Bench
 
     public class BenchConfig
     {
+        public static BenchConfig Define(int Cycles, int Reps)
+            => new BenchConfig(Cycles,Reps,Reps);
+
         public static readonly BenchConfig Default = new BenchConfig();
 
         public BenchConfig(int? Cycles = null, int? Reps = null, int? SampleSize = null)

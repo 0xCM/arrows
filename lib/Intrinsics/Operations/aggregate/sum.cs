@@ -146,7 +146,7 @@ namespace Z0
         }
 
         static readonly PrimalIndex SumLU
-            = PrimKinds.index<object>
+            = PrimalKinds.index<object>
                 (
                     @short: new PrimalAggOp<short>(InX.sum),
                     @int: new PrimalAggOp<int>(InX.sum),

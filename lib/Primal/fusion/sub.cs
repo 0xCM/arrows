@@ -124,7 +124,7 @@ namespace Z0
             return dst;
         }
 
-        static readonly PrimalIndex SubDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex SubDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalFusedBinOp<sbyte>(sub),
                 @byte : new PrimalFusedBinOp<byte>(sub),

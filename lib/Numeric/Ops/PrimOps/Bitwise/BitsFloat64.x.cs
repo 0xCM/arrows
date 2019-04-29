@@ -20,7 +20,7 @@ namespace Z0
         /// <param name="src">The source number</param>
         [MethodImpl(Inline)]   
         public static string ToIeeeBitString(this target x)
-            => lpadZ(apply(Bits.split(x), 
+            => zpad(apply(Bits.split(x), 
                 ieee => append(ieee.sign == Sign.Negative ? "1" : "0",
                             primops.bitstring(ieee.exponent).format(),
                             primops.bitstring(ieee.mantissa).format()

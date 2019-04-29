@@ -125,7 +125,7 @@ namespace Z0
             return dst;
         }
 
-        static readonly PrimalIndex EqDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex EqDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalFusedPred<sbyte>(eq),
                 @byte : new PrimalFusedPred<byte>(eq),

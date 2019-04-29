@@ -13,6 +13,63 @@ namespace Z0
     using static zcore;
     using static primops;
 
+    public interface IOpInfo
+    {
+        string Name {get;}
+
+        string Symbol {get;}
+        
+    }
+    public abstract class OpInfo<T> : IOpInfo
+        where T : OpInfo<T>
+    {
+        public string Name {get;}
+
+        public string Symbol {get;}
+
+
+        protected OpInfo(string Name, string Symbol = null)
+        {
+            this.Name = Name;
+            this.Symbol = Symbol ?? string.Empty;
+        }
+        
+        public override string ToString()
+            => ifBlank(Symbol,Name);
+    }
+
+    public static class OpInfo    
+    {
+        public static readonly AddInfo Add = AddInfo.TheOnly;
+        
+        public static readonly SubInfo Sub = SubInfo.TheOnly;
+
+        public sealed class AddInfo : OpInfo<AddInfo>
+        {
+            internal static readonly AddInfo TheOnly = new AddInfo();
+            
+            AddInfo()
+            : base("add","+")
+            {
+
+
+            }
+        }
+
+        public sealed class SubInfo : OpInfo<SubInfo>
+        {
+            internal static readonly SubInfo TheOnly = new SubInfo();
+            
+            SubInfo()
+            : base("sub","-")
+            {
+
+
+            }
+        }
+
+    }
+
     public enum OpSet
     {
         
@@ -28,50 +85,7 @@ namespace Z0
         
     }
 
-    public enum OpKind
-    {
-
-        Eq,
-
-        
-        Gt,
-        
-        GtEq,
-        
-        Lt,
-        
-        LtEq,
-
-        Add,
-
-        Sub,
-        
-        Div,
-        
-        Mul,
-
-        Mod,
-
-        Abs,
-
-        Or,
-
-        XOr,
-
-        And,
-
-        Flip,
-
-        Sum,
-
-        Avg
-    }
-
-    public static class OpKinds
-    {
-        public static IEnumerable<OpKind> All
-            => type<OpKind>().GetEnumValues().AsQueryable().Cast<OpKind>();
-    }
+    
 
  
 }

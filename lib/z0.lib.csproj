@@ -18,4 +18,8 @@
   </ItemGroup>
 
 
+  <ItemGroup>
+    <ProjectReference Include="..\gmath\z0.gmath.csproj" />
+  </ItemGroup>
+
 </Project>

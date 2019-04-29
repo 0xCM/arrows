@@ -58,7 +58,7 @@ namespace Z0
         static long and(long lhs, long rhs)
             => lhs & rhs;
 
-        static readonly PrimalIndex AndDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex AndDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalBinOp<sbyte>(and),
                 @byte : new PrimalBinOp<byte>(and),

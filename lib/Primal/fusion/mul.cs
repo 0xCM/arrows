@@ -122,7 +122,7 @@ namespace Z0
             return dst;
         }
 
-        static readonly PrimalIndex MulDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex MulDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalFusedBinOp<sbyte>(div),
                 @byte : new PrimalFusedBinOp<byte>(div),

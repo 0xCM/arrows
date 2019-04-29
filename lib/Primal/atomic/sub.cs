@@ -63,7 +63,7 @@ namespace Z0
             => lhs - rhs;
 
 
-       static readonly PrimalIndex SubDelegates = PrimKinds.index<object>
+       static readonly PrimalIndex SubDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalBinOp<sbyte>(sub),
                 @byte : new PrimalBinOp<byte>(sub),

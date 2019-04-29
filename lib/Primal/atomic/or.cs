@@ -58,7 +58,7 @@ namespace Z0
         static long or(long lhs, long rhs)
             => lhs | rhs;
 
-        static readonly PrimalIndex OrDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex OrDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalBinOp<sbyte>(or),
                 @byte : new PrimalBinOp<byte>(or),

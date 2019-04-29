@@ -58,7 +58,7 @@ namespace Z0
         static long xor(long lhs, long rhs)
             => lhs ^ rhs;
 
-        static readonly PrimalIndex XOrDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex XOrDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalBinOp<sbyte>(xor),
                 @byte : new PrimalBinOp<byte>(xor),

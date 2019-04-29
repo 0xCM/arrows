@@ -86,7 +86,7 @@ namespace Z0.Bench
             this.Config = config ?? BenchConfig.Default;
             this.Domain = Domain ?? Settings.Domain<T>();            
             this.RVar = Z0.RVar.define<T>(this.Domain, RandSeeds.BenchSeed);
-            this.OpId =  $"{OpName}{PrimKinds.kind<T>()}";
+            this.OpId =  $"{OpName}{PrimalKinds.kind<T>()}";
 
         }
 
@@ -104,8 +104,8 @@ namespace Z0.Bench
         protected int Reps
             => Config.Reps;
 
-        public PrimKind PrimalKind 
-            => PrimKinds.kind<T>();
+        public PrimalKind PrimalKind 
+            => PrimalKinds.kind<T>();
 
         protected IEnumerable<T> Samples()
             => RVar.sample();

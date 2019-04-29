@@ -125,12 +125,12 @@ namespace Z0
         public static unsafe void store<T>(Vec128<T> src, T[] dst, int offset )
             where T : struct, IEquatable<T>
         {
-            var kind = PrimKinds.kind<T>();
-            if(kind == PrimKind.uint32)
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.uint32)
                 Store(src.As<uint>(), Unsafe.As<uint[]>(src), offset);
-            else if(kind == PrimKind.float32)
+            else if(kind == PrimalKind.float32)
                 Store(src.As<float>(), Unsafe.As<float[]>(src), offset);
-            else if(kind == PrimKind.float64)
+            else if(kind == PrimalKind.float64)
                 Store(src.As<double>(), Unsafe.As<double[]>(src), offset);
             else
                 throw new NotSupportedException();
@@ -142,15 +142,15 @@ namespace Z0
         public static unsafe Vec128<T> load<T>(T[] src, int offset)
             where T : struct, IEquatable<T>
         {
-            var kind = PrimKinds.kind<T>();
+            var kind = PrimalKinds.kind<T>();
             
-            if(kind == PrimKind.uint32)
+            if(kind == PrimalKind.uint32)
                 return Load(Unsafe.As<uint[]>(src), offset).As<T>();
 
-            if(kind == PrimKind.float32)
+            if(kind == PrimalKind.float32)
                 return Load(Unsafe.As<float[]>(src), offset).As<T>();
 
-            if(kind == PrimKind.float64)
+            if(kind == PrimalKind.float64)
                 return Load(Unsafe.As<double[]>(src), offset).As<T>();
 
             throw new NotSupportedException();
@@ -531,7 +531,7 @@ namespace Z0
         }
 
         static readonly PrimalIndex AddLU
-            = PrimKinds.index
+            = PrimalKinds.index
                 (@sbyte: new PrimalFusedBinOp<sbyte>(InX.add),
                 @byte: new PrimalFusedBinOp<byte>(InX.add),
                 @short: new PrimalFusedBinOp<short>(InX.add),
@@ -555,30 +555,30 @@ namespace Z0
         public static Vec128<T> addg<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>
         {
-            var kind = PrimKinds.kind<T>();
+            var kind = PrimalKinds.kind<T>();
 
-            if(kind == PrimKind.int16)
+            if(kind == PrimalKind.int16)
                 return Avx2.Add(lhs.As<short>(), rhs.As<short>()).As<short,T>();
 
-            if(kind == PrimKind.uint16)
+            if(kind == PrimalKind.uint16)
                 return Avx2.Add(lhs.As<ushort>(), rhs.As<ushort>()).As<ushort,T>();
 
-            if(kind == PrimKind.int32)
+            if(kind == PrimalKind.int32)
                 return Avx2.Add(lhs.As<int>(), rhs.As<int>()).As<int,T>();
 
-            if(kind == PrimKind.uint32)
+            if(kind == PrimalKind.uint32)
                 return Avx2.Add(lhs.As<uint>(), rhs.As<uint>()).As<uint,T>();
 
-            if(kind == PrimKind.int64)
+            if(kind == PrimalKind.int64)
                 return Avx2.Add(lhs.As<long>(), rhs.As<long>()).As<long,T>();
 
-            if(kind == PrimKind.uint64)
+            if(kind == PrimalKind.uint64)
                 return Avx2.Add(lhs.As<ulong>(), rhs.As<ulong>()).As<ulong,T>();
 
-            if(kind == PrimKind.float32)
+            if(kind == PrimalKind.float32)
                 return Avx2.Add(lhs.As<float>(), rhs.As<float>()).As<float,T>();
 
-            if(kind == PrimKind.float64)
+            if(kind == PrimalKind.float64)
                 return Avx2.Add(lhs.As<double>(), rhs.As<double>()).As<double,T>();
 
             throw new NotSupportedException();
@@ -591,8 +591,8 @@ namespace Z0
         public static Index<T> addg<T>(Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T>
         {
-            var kind = PrimKinds.kind<T>();
-            if(kind == PrimKind.float64)
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.float64)
             {
                 var result = add(
                     Unsafe.As<Index<T>, Index<double>>(ref lhs),

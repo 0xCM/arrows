@@ -104,8 +104,18 @@ partial class zcore
     /// <param name="width">The with of the padded string</param>
     /// <returns></returns>
     [MethodImpl(Inline)]   
-    public static string lpadZ(string src, uint width)
+    public static string zpad(string src, uint width)
         => src.PadLeft((int)width,'0');
+
+    /// <summary>
+    /// Formats the source value and left-pads the result with zeros
+    /// </summary>
+    /// <param name="src">The input text</param>
+    /// <param name="width">The with of the padded string</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static string zpad<T>(T src, uint width)
+        => $"{src}".PadLeft((int)width, '0');
 
     /// <summary>
     /// Right-Pads the input string with an optionally-specified character.

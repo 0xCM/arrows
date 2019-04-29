@@ -96,7 +96,7 @@ namespace Z0
         }
 
 
-         static readonly PrimalIndex XOrDelegates = PrimKinds.index<object>
+         static readonly PrimalIndex XOrDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalFusedBinOp<sbyte>(xor),
                 @byte : new PrimalFusedBinOp<byte>(xor),

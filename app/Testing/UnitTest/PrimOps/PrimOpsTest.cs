@@ -27,7 +27,7 @@ namespace Z0.Testing
         public void Verify<T>(string OpName, PrimalUnaryOp<T> PrimOp, PrimalUnaryOp<T> RefOp, Func<T,bool> filter = null)
             where T : struct, IEquatable<T>
         {
-            var kind = PrimKinds.kind<T>();            
+            var kind = PrimalKinds.kind<T>();            
             var sw = begin($"Verifying {OpName}{kind} operator");
             
             var config = Defaults.get<T>();
@@ -47,7 +47,7 @@ namespace Z0.Testing
         public void Verify<T>(string OpName, PrimalBinPred<T> PrimOp, PrimalBinPred<T> RefOp, Func<T,bool> filter = null)
             where T : struct, IEquatable<T>
         {
-            var kind = PrimKinds.kind<T>();            
+            var kind = PrimalKinds.kind<T>();            
             var sw = begin($"Verifying {OpName}{kind} operator");
             
             var config = Defaults.get<T>();
@@ -69,7 +69,7 @@ namespace Z0.Testing
         public void Verify<T>(string OpName, PrimalBinOp<T> PrimOp, PrimalBinOp<T> RefOp, Func<T,bool> filter = null)
             where T : struct, IEquatable<T>
         {
-            var kind = PrimKinds.kind<T>();            
+            var kind = PrimalKinds.kind<T>();            
             var sw = begin($"Verifying {OpName}{kind} operator");
             
             var config = Defaults.get<T>();

@@ -63,9 +63,17 @@ namespace Z0
             where R : struct, IEquatable<R>
                 => RandomStream(domain,filter).Freeze(count);
 
+        public Index<R> RandomIndex<R>(uint count, Func<R,bool> filter = null)
+            where R : struct, IEquatable<R>
+                => RandomStream(Defaults.get<R>().Domain,filter).Freeze(count);
+
         public R[] RandomArray<R>(Interval<R> domain, int count, Func<R,bool> filter = null)
             where R : struct, IEquatable<R>
                 => RandomStream(domain,filter).TakeArray(count);
+
+        public R[] RandomArray<R>(int count, Func<R,bool> filter = null)
+            where R : struct, IEquatable<R>
+                => RandomStream(Defaults.get<R>().Domain,filter).TakeArray(count);
 
         public IEnumerable<R[]> RandomArrays<R>(Interval<R> domain, int len, Func<R,bool> filter = null)
             where R : struct, IEquatable<R>
@@ -115,6 +123,5 @@ namespace Z0
             log(messages, LogTarget.TestLog);
 
         }
-
     }   
 }

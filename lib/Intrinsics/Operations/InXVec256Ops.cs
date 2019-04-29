@@ -15,7 +15,7 @@ namespace Z0
     static class Vec256Delegates
     {
 
-        static readonly PrimalIndex Add = PrimKinds.index<object>
+        static readonly PrimalIndex Add = PrimalKinds.index<object>
             (
                 @sbyte : new Vec256BinOp<sbyte>(InX.add),
                 @byte : new Vec256BinOp<byte>(InX.add),
@@ -29,7 +29,7 @@ namespace Z0
                 @double : new Vec256BinOp<double>(InX.add)
             );
 
-        static readonly PrimalIndex Or = PrimKinds.index<object>
+        static readonly PrimalIndex Or = PrimalKinds.index<object>
             (
                 @sbyte : new Vec256BinOp<sbyte>(InX.or),
                 @byte : new Vec256BinOp<byte>(InX.or),
@@ -43,7 +43,7 @@ namespace Z0
                 @double : new Vec256BinOp<double>(InX.or)
             );
 
-        static readonly PrimalIndex XOr = PrimKinds.index<object>
+        static readonly PrimalIndex XOr = PrimalKinds.index<object>
             (
                 @sbyte : new Vec256BinOp<sbyte>(InX.xor),
                 @byte : new Vec256BinOp<byte>(InX.xor),
@@ -97,7 +97,7 @@ namespace Z0
         static unsafe Vec256<double> loadF64(void* src, out Vec256<double> dst)
             => dst = Avx2.LoadVector256((double*)src);
 
-        static readonly unsafe PrimalIndex Load = PrimKinds.index<object>
+        static readonly unsafe PrimalIndex Load = PrimalKinds.index<object>
             (
                 @sbyte : new Vec256LoadOp<sbyte>(loadI8),
                 @byte : new Vec256LoadOp<byte>(loadU8),
@@ -112,7 +112,7 @@ namespace Z0
             );
 
         
-        static readonly PrimalIndex Mul = PrimKinds.index<object>
+        static readonly PrimalIndex Mul = PrimalKinds.index<object>
             (
                 @int : new Vec256BinOp<int,long>(InX.mul),
                 @uint : new Vec256BinOp<uint, ulong>(InX.mul),

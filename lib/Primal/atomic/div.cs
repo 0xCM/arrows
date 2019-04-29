@@ -61,7 +61,7 @@ namespace Z0
         static long div(long lhs, long rhs)
             => lhs / rhs;
 
-        static readonly PrimalIndex DivDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex DivDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalBinOp<sbyte>(div),
                 @byte : new PrimalBinOp<byte>(div),

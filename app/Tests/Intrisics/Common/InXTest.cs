@@ -59,7 +59,7 @@ namespace Z0.Tests.InXTests
 
         }
 
-        protected PrimKind PritiveKind {get;} = PrimKinds.kind<T>();
+        protected PrimalKind PritiveKind {get;} = PrimalKinds.kind<T>();
 
         protected Interval<T> Domain {get;}
 

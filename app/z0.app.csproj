@@ -9,7 +9,6 @@
     <NullableContextOptions>disable</NullableContextOptions>
     <Optimize>true</Optimize>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-
   </PropertyGroup>
 
   
@@ -17,11 +16,23 @@
     <PackageReference Include="mathnet.numerics" Version="4.7.0" />
   </ItemGroup>
 
-  
 
+  <!-- <PropertyGroup>
+    <IlcOptimizationPreference>Speed</IlcOptimizationPreference>
+  </PropertyGroup>
+
+ <ItemGroup>
+    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="1.0.0-alpha-*" />
+ </ItemGroup> -->
+
+
+  <!-- <ItemGroup>
+    <Compile Include = "..\lib\gmath.cs" />
+  </ItemGroup> -->
 
   <ItemGroup>
     <ProjectReference Include="..\lib\z0.lib.csproj" />
+    <ProjectReference Include="..\gmath\z0.gmath.csproj" />
   </ItemGroup>
 
 

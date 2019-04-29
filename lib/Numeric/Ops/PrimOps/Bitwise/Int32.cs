@@ -50,7 +50,7 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public static string bitchars32(target src)
-                => lpadZ(Convert.ToString(src,2), primops.bitsize<target>());
+                => zpad(Convert.ToString(src,2), primops.bitsize<target>());
 
             [MethodImpl(Inline)]
             public string bitchars(target src)

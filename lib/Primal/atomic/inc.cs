@@ -62,7 +62,7 @@ namespace Z0
         static BigInteger inc(BigInteger x)
             => ++x;
 
-        static readonly PrimalIndex IncDelegates = PrimKinds.index<object>
+        static readonly PrimalIndex IncDelegates = PrimalKinds.index<object>
             (
                 @sbyte : new PrimalUnaryOp<sbyte>(inc),
                 @byte : new PrimalUnaryOp<byte>(inc),

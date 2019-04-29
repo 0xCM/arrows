@@ -9,80 +9,7 @@ namespace Z0
 
     using static zcore;
 
-    public interface IPrimal
-    {
-        PrimKind PrimalKind {get;}
-
-    }
-    public interface IPrimal<T> : IPrimal
-    {
-
-    }
-
-    public readonly struct PrimalIndex
-    {
-        [MethodImpl(Inline)]
-        public static PrimalIndex define(
-            object @sbyte = null, 
-            object @byte = null, 
-            object @short = null, 
-            object @ushort = null, 
-            object @int = null, 
-            object @uint = null, 
-            object @long = null, 
-            object @ulong = null, 
-            object @float = null, 
-            object @double = null,
-            object @decimal = null,
-            object @bigint = null
-            ) => new PrimalIndex(array<object>(null, 
-                @sbyte, @byte, @short, @ushort, @int, 
-                @uint, @long, @ulong, @float, @double,
-                @decimal, @bigint
-                ));
-
-        readonly Index<object> index;
-        
-        public PrimalIndex(Index<object> src)
-            => index = src;
-        
-        public V lookup<K,V>()
-            where K : struct, IEquatable<K>
-        {
-            var del = index[PrimKinds.key<K>()];
-            return Unsafe.As<object,V>(ref del);
-        }
-            
-
-        public V lookup<V>(PrimKind kind)
-            => (V)index[(int)kind];
-
-
-    }
-
-
-    public readonly struct PrimalIndex<T>
-    {
-        readonly Index<object> index;
-
-        public PrimalIndex(Index<object> src)
-            => index = src;
-
-        public T lookup<P>()
-            where P : struct, IEquatable<P>
-            => (T)index[PrimKinds.key<P>()];
-
-    }
-
-
-    public readonly struct PrimKind<T>
-    {
-        public static readonly Type Type = typeof(T);
-
-        public static readonly PrimKind Kind = PrimKinds.kind(Type);
-    }
-
-    public static class PrimKinds
+    public static class PrimalKinds
     {
         static readonly Type[] Kinds = 
             new Type[]{
@@ -101,7 +28,6 @@ namespace Z0
                 typeof(System.Numerics.BigInteger),
                 };
 
-
         [MethodImpl(Inline)]
         public static PrimalIndex index<T>(
             T @sbyte = default(T), 
@@ -117,11 +43,11 @@ namespace Z0
             T @decimal = default(T),
             T @bigint = default(T)
             )
-                => new PrimalIndex(array<object>(default(T), 
+                => new PrimalIndex(new object[]{default(T), 
                 @sbyte, @byte, @short, @ushort, @int, 
                 @uint, @long, @ulong, @float, @double,
                 @decimal, @bigint
-                ));
+                });
 
         [MethodImpl(Inline)]
         public static PrimalIndex index<I8,U8,I16,U16,I32,U32,I64,U64,F32,F64>(
@@ -136,14 +62,14 @@ namespace Z0
             F32 @float = default(F32), 
             F64 @double = default(F64)
             )
-                => new PrimalIndex(array<object>(typeof(void), 
+                => new PrimalIndex(new object[]{typeof(void), 
                 @sbyte, @byte, @short, @ushort, @int, 
                 @uint, @long, @ulong, @float, @double,
-                typeof(decimal), typeof(System.Numerics.BigInteger)
-                ));
+                typeof(decimal), typeof(System.Numerics.BigInteger)}
+                );
 
         [MethodImpl(Inline)]
-        public static Type type(PrimKind key)
+        public static Type type(PrimalKind key)
             => Kinds[(int)key];
 
         [MethodImpl(Inline)]
@@ -151,27 +77,23 @@ namespace Z0
             => Kinds[key];            
 
         [MethodImpl(Inline)]
-        public static PrimKind kind(Type t)
+        public static PrimalKind kind(Type t)
         {
-            for(var i =1; i<= (int)PrimKind.last; i++)
+            for(var i =1; i<= (int)PrimalKind.last; i++)
             {
                 if(Kinds[i] == t)
-                    return (PrimKind)i;
+                    return (PrimalKind)i;
             }
-            return PrimKind.none;
+            return PrimalKind.none;
         }
 
         [MethodImpl(Inline)]
-        public static PrimKind kind<T>()
-            => PrimKind<T>.Kind;
+        public static PrimalKind kind<T>()
+            => PrimalKind<T>.Kind;
 
         [MethodImpl(Inline)]
         public static int key<T>()
-            => (int)PrimKind<T>.Kind;
-
-
+            => (int)PrimalKind<T>.Kind;
     }
-
-
 
 }
