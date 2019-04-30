@@ -20,6 +20,8 @@ namespace Latex
         public static readonly Syntax Gamma = syntax(GreekSym.Gamma, "Gamma");        
         public static readonly Syntax rho = syntax(GreekSym.rho, "rho");        
         public static readonly Syntax Rho = syntax(GreekSym.Rho, "Rho");
+        public static readonly Syntax sigma = syntax(GreekSym.sigma, "sigma");
+        public static readonly Syntax Sigma = syntax(GreekSym.Sigma, "Sigma");        
 
 
         

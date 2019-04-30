@@ -15,29 +15,7 @@ namespace Z0
 
     partial class Reflections
     {
-        [MethodImpl(Inline)]
-        public static IEnumerable<Type> Realizes<T>(this IEnumerable<Type> src)
-            => src.Where(t => t.GetInterfaces().Contains(typeof(T)));
 
-        [MethodImpl(Inline)]
-        public static IEnumerable<Type> Concrete(this IEnumerable<Type> src)
-            => src.Where(t => !t.IsAbstract);
-
-        [MethodImpl(Inline)]
-        public static IEnumerable<Type> Abstract(this IEnumerable<Type> src)
-            => src.Where(t => t.IsAbstract);
-
-        [MethodImpl(Inline)]
-        public static IEnumerable<Type> Public(this IEnumerable<Type> src)
-            => src.Where(t => t.IsPublic);
-
-        [MethodImpl(Inline)]
-        public static IEnumerable<Type> NonPublic(this IEnumerable<Type> src)
-            => src.Where(t => !t.IsPublic);
-
-        [MethodImpl(Inline)]
-        public static IEnumerable<Type> Nested(this IEnumerable<Type> src)
-            => src.Where(t => t.IsNested);
 
         [MethodImpl(Inline)]
         public static bool IsStatic(this PropertyInfo p)

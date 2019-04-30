@@ -369,19 +369,84 @@ namespace Z0
 
         }
 
-        IEnumerable<BenchComparison> RunBenchComparisons()
+        IEnumerable<BenchComparison> Benchmark(BenchConfig config, OpInfo.Add rep)
         {
-            var bench = GenericBench.Init(BenchConfig.Define(50,(int)Pow2.T23));
-            // yield return bench.Run(OpKind.Add, PrimalKind.int8);
-            // yield return bench.Run(OpKind.Add, PrimalKind.uint8);
-            // yield return bench.Run(OpKind.Add, PrimalKind.int16);
-            // yield return bench.Run(OpKind.Add, PrimalKind.uint16);
-            // yield return bench.Run(OpKind.Add, PrimalKind.int32);
-            // yield return bench.Run(OpKind.Add, PrimalKind.uint32);
-            // yield return bench.Run(OpKind.Add, PrimalKind.int64);
-            // yield return bench.Run(OpKind.Add, PrimalKind.uint64);
-            yield return bench.Run(OpKind.Add, PrimalKind.float32);
-            yield return bench.Run(OpKind.Add, PrimalKind.float64);
+            var bench = GenericBench.Init(config);
+            foreach(var comparison in bench.Compare(rep))
+                yield return comparison;
+
+        }
+
+        IEnumerable<BenchComparison> Benchmark(BenchConfig config, OpInfo.Sub rep)
+        {
+            var bench = GenericBench.Init(config);
+            foreach(var comparison in bench.Compare(rep))
+                yield return comparison;
+
+        }
+
+        IEnumerable<BenchComparison> Benchmark(BenchConfig config, OpInfo.Mul rep)
+        {
+            var bench = GenericBench.Init(config);
+            foreach(var comparison in bench.Compare(rep))
+                yield return comparison;
+
+        }
+
+        IEnumerable<BenchComparison> Benchmark(BenchConfig config, OpInfo.Div rep)
+        {
+            var bench = GenericBench.Init(config);
+            foreach(var comparison in bench.Compare(rep))
+                yield return comparison;
+
+        }
+
+        IEnumerable<BenchComparison> Benchmark(BenchConfig config, OpInfo.Mod rep)
+        {
+            var bench = GenericBench.Init(config);
+            foreach(var comparison in bench.Compare(rep))
+                yield return comparison;
+
+        }
+
+        static Task<T> task<T>(Func<T> f)
+            => Task.Factory.StartNew(f);
+        IEnumerable<BenchComparison> RunBenchComparisons()
+        {                        
+            var warmup = GenericBench.Init(BenchConfig.Define(200,(int)Pow2.T10)).Compare(OpInfo.AddRep);
+            warmup.ToList();
+
+            var config = BenchConfig.Define(1200,(int)Pow2.T18);
+            var add =  task(() => Benchmark(config, OpInfo.AddRep).ToList());
+            var sub = task(() => Benchmark(config, OpInfo.SubRep).ToList());
+            var mul = task(() => Benchmark(config, OpInfo.MulRep).ToList());
+            var div = task(() => Benchmark(config, OpInfo.DivRep).ToList());
+            var mod = task(() => Benchmark(config, OpInfo.ModRep).ToList());
+            Task.WaitAll(add,sub,mul,div,mod);
+            var results = new List<BenchComparison>();
+            results.AddRange(add.Result);
+            results.AddRange(sub.Result);
+            results.AddRange(mul.Result);
+            results.AddRange(div.Result);
+            results.AddRange(mod.Result);
+            return results;
+            
+            //var bench = GenericBench.Init(config);
+
+            // foreach(var comparison in bench.Compare(OpInfo.AddRep))
+            //     yield return comparison;
+
+            // foreach(var comparison in bench.Compare(OpInfo.SubRep))
+            //     yield return comparison;
+
+            // foreach(var comparison in bench.Compare(OpInfo.MulRep))
+            //     yield return comparison;
+
+            // foreach(var comparison in bench.Compare(OpInfo.DivRep))
+            //     yield return comparison;
+
+            // foreach(var comparison in bench.Compare(OpInfo.ModRep))
+            //     yield return comparison;
 
         }
 
@@ -389,6 +454,21 @@ namespace Z0
         {
             zcore.print(comparison.LeftBench.Description);
             zcore.print(comparison.RightBench.Description);
+            var delta = comparison.CalcDelta();
+
+            
+            var width = Math.Abs(delta.TimingDelta.Ms);
+            var percent = Math.Round((width / ((double) Math.Min(delta.LeftDuration.Ms, delta.RightDuration.Ms)))* 100.0,4) ;
+            var description = append(
+                $"{delta.DeltaTitle} {delta.OpId}", 
+                $" | Left Time  = {delta.LeftDuration.Ms} ms",
+                $" | Right Time = {delta.RightDuration.Ms} ms",
+                $" | Difference = {delta.TimingDelta.Ms} ms",
+                $" | Winner = {delta.Winner} by {width} ms = {percent} %"
+                );
+            var message = AppMsg.Define(description,  delta.LeftWins ? SeverityLevel.Warning : SeverityLevel.Info);
+            zcore.print(message);
+
         }
 
         public void RunBench()
@@ -398,7 +478,79 @@ namespace Z0
 
         }
 
+        Duration SumGeneric<T>(int cycles, int reps)
+            where T :struct, IEquatable<T>
+        {
+            var src = num.numbers(RandomArray<T>(reps));
+            var t1 = begin("num[int] addition");
+            var r1 = num<T>.Zero;
+            for(var i=0; i< cycles; i++)
+                r1 = src.Sum();
+            return end(t1);
 
+        }
+
+        Duration SumDirect(PrimalInfo.I32 prim, int cycles, int reps)
+        {
+            var src = num.numbers(RandomArray<int>(reps));
+            var t = begin("num addition");
+            var r = 0;
+            for(var i=0; i< cycles; i++)
+                r = src.Sum();
+            return end(t);
+
+        }
+
+        [MethodImpl(Inline)]
+        Duration transform(PrimalInfo.I32 prim, int cycles,  int[] src, int[] dst)
+        {
+            var t = begin($"int transformation");
+            for(var cycle = 0; cycle < cycles; cycle ++)
+            for(var i = 0; i< src.Length; i++)
+            {
+                var input = src[i];
+                dst[i] = input*input - input;
+            }        
+        
+            return end(t);
+        }
+
+
+        void TestGenericAdd<T>()
+            where T : struct, IEquatable<T>
+        {
+            var reps = Pow2.T20;
+
+            var t1 = begin("Initializing");
+            gmath.init();
+            end(t1);
+
+            var t2 = begin("Sampling");
+            var lhs1 = RandomArray<T>(reps);
+            var rhs1 = RandomArray<T>(reps);
+            var lhs2 = RandomArray<T>(reps);
+            var rhs2 = RandomArray<T>(reps);
+            end(t2);
+
+            var t5 = begin("Allocating");
+            var dst1 = alloc<T>(reps);
+            var dst2 = alloc<T>(reps);
+            end(t5);
+
+            var t3 = begin("Operation 1");
+            gmath.add(RandomArray<T>(reps), RandomArray<T>(reps), dst1);
+            end(t3);
+
+            var t4 = begin("Operation 2");
+            gmath.add(RandomArray<T>(reps), RandomArray<T>(reps), dst2);
+            end(t4);
+
+        }
+
+        void TestGenericFloat()
+        {
+            TestGenericAdd<float>();  
+        }
         static void Main(string[] args)
         {     
             try

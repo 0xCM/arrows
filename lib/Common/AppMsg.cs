@@ -111,18 +111,24 @@ namespace Z0
 
     public static class BenchmarkMessages
     {
-        public static AppMsg EndOfCycle(string title, OpId opid, int cycle, Duration cycleDuration, long totalOpCount, Duration totalDuration)
-            => AppMsg.Define(append(
-                        $"{title} {opid} Cycle = {cycle}".PadRight(30), 
-                        $"| {cycleDuration}", 
-                        $"| Total Op Count = {totalOpCount}".PadRight(30),
-                        $"| Total Duration = {totalDuration}"), 
-                            SeverityLevel.Perform);
+        static string Pipe = $" {AsciSym.Pipe} ";
         
-        public static AppMsg EndOfBenchmark(string title, OpId opid,  long totalOpCount, Duration totalDuration)
-            => AppMsg.Define(append($"{title} {opid} summary".PadRight(30), 
-                    $"Total Op Count = {totalOpCount}".PadRight(30), 
-                    $"| Total Duration = {totalDuration}"), 
+        static string Eq = $" {AsciSym.Eq} ";
+
+        public static AppMsg CycleEnd(string title, OpId opid, int cycle, Duration cycleDuration, long totalOpCount, Duration totalDuration)
+            => AppMsg.Define(append(
+                    $"{title}/{opid} running".PadRight(28), 
+                     Pipe, "Cycle", Eq, $"{cycle}".PadRight(5), 
+                     Pipe, "Total Op Count", Eq, $"{totalOpCount}".PadRight(12),
+                     Pipe, "Total Duration", Eq, $"{totalDuration}".PadRight(28),
+                     Pipe, "Duration", Eq, $"{cycleDuration.Ticks}".PadLeft(8), " ticks "
+                     ), SeverityLevel.Perform);
+        
+        public static AppMsg BenchmarkEnd(string title, OpId opid,  long totalOpCount, Duration totalDuration)
+            => AppMsg.Define(append(
+                    $"{title}/{opid} summary".PadRight(28), 
+                     Pipe, "Total Op Count", Eq, $"{totalOpCount}".PadRight(12),
+                     Pipe, "Total Duration", Eq, $"{totalDuration}"), 
                         SeverityLevel.HiliteCL);
 
     }

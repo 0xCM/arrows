@@ -89,7 +89,7 @@ namespace Z0
 
         public Polynomial<T> add(Polynomial<T> rhs)
         {
-            var dst = new PolynomialTerm<T>[max(terms.length, rhs.terms.length)]; 
+            var dst = new PolynomialTerm<T>[Math.Max(terms.length, rhs.terms.length)]; 
             var src = terms.conform(rhs.terms, PolynomialTerm<T>.Zero);
             for(var i = 0; i<= dst.Length(); i++)           
                 dst[i] = Polynomial.term(Ops.add(src.lhs[i].coefficient, src.rhs[i].coefficient), i.ToIntG<uint>());

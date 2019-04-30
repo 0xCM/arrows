@@ -58,7 +58,7 @@ namespace Z0
             this.length = this.data.Length();
         }
 
-        public intg<uint> length {get;}
+        public uint length {get;}
     
 
         public T this[int i] 
@@ -183,7 +183,7 @@ namespace Z0
 
         public Slice<T> data {get;}
 
-        public intg<uint> length {get;}
+        public uint length {get;}
 
 
         [MethodImpl(Inline)]

@@ -70,7 +70,7 @@ namespace Z0.Testing
                     test.Invoke(host,null);                    
                 var ms = sw.ElapsedMilliseconds;
                 
-                messages.AddRange(host.FlushMessages(
+                messages.AddRange(host.Flush(
                     AppMsg.Define(reps == 1 ?$"succeeded {ms}ms" : $"succeeded {ms}ms | {reps} reps", SeverityLevel.Info, testName))
                     );
 

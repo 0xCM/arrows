@@ -20,7 +20,7 @@ namespace Z0
             this.OpCount = OpCount;
             this.Measured = Measured;
             this.Runtime = Runtime;
-            this.Description = BenchmarkMessages.EndOfBenchmark(Title, Operator, OpCount, Measured);
+            this.Description = BenchmarkMessages.BenchmarkEnd(Title, Operator, OpCount, Measured);
         }
         public string Title {get;}
 
@@ -54,5 +54,63 @@ namespace Z0
 
         public BenchSummary RightBench {get;}
 
+        public BenchDelta CalcDelta()
+            => new BenchDelta(this);
+    
+    }
+
+    public class BenchDelta 
+    {
+        public BenchDelta(BenchComparison Comparison)
+        {
+            this.Comparison = Comparison;
+            Claim.eq(Comparison.LeftBench.OpCount, Comparison.RightBench.OpCount);
+            Claim.eq(Comparison.LeftBench.Operator.Primitive, Comparison.RightBench.Operator.Primitive);
+            Claim.eq(Comparison.LeftBench.Operator.Kind, Comparison.RightBench.Operator.Kind);
+        }
+
+        public BenchComparison Comparison {get;}
+
+        public string LeftTitle
+            => Comparison.LeftBench.Title;
+
+        public string RightTitle
+            => Comparison.RightBench.Title;
+
+        public string DeltaTitle
+            => $"{LeftTitle} vs {RightTitle}";
+
+        public long OpCount
+            => Comparison.LeftBench.OpCount;
+
+
+        public OpId OpId
+            => Comparison.LeftBench.Operator;
+
+
+        public Duration LeftDuration
+            => Comparison.LeftBench.Measured;
+
+        public Duration RightDuration
+            => Comparison.RightBench.Measured;
+
+        public Duration TimingDelta
+            => LeftDuration - RightDuration;
+
+        public bool LeftWins
+            => LeftDuration < RightDuration;
+
+        public bool RightWins
+            => RightDuration < LeftDuration;
+
+        public bool IsTie
+            => LeftDuration == RightDuration;
+
+        public string Winner
+            => LeftWins ? LeftTitle :
+               RightWins ? RightTitle :
+               "tie";
+               
+        
     }
 }

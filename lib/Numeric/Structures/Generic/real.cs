@@ -12,7 +12,7 @@ namespace Z0
     
     using static Structures;
 
-    public readonly struct real<T> : RealNumber<real<T>, T>
+    public readonly struct real<T> : IEquatable<real<T>>  //RealNumber<real<T>, T>
         where T : struct, IEquatable<T>
     {
         static readonly Operative.PrimOps<T> Prim = primops.typeops<T>();

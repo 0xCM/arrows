@@ -16,31 +16,6 @@ namespace Z0
             => typeof(OpKind).GetEnumValues().AsQueryable().Cast<OpKind>();
     }
 
-    public readonly struct OpId 
-    {
-        public static OpId Define(OpKind Kind, PrimalKind Primitive)
-            => new OpId(Kind, Primitive);
-
-        public static OpId Define<T>(OpKind Kind)
-            where T : struct, IEquatable<T>
-            => new OpId(Kind, PrimalKinds.kind<T>());
-
-        public OpId(OpKind Kind, PrimalKind Primitive)
-        {
-            this.Kind = Kind;
-            this.Primitive = Primitive;
-        }
-        
-        public readonly OpKind Kind;
-
-        public readonly PrimalKind Primitive;
-
-        
-        public override string ToString() 
-            => $"{Kind}/{Primitive}";
-
-    }
-
     public enum OpKind
     {        
         /// <summary>
@@ -54,6 +29,10 @@ namespace Z0
         /// </summary>
         Gt,
         
+        /// <summary>
+        /// Indicates a binary predicate that determines whether the left
+        /// operand is not smaller than the right operand
+        /// </summary>
         GtEq,
         
         /// <summary>
@@ -62,6 +41,10 @@ namespace Z0
         /// </summary>
         Lt,
         
+        /// <summary>
+        /// Indicates a binary predicate that determines whether the left
+        /// operand is not larger than the right operand
+        /// </summary>
         LtEq,
 
         /// <summary>
@@ -82,6 +65,10 @@ namespace Z0
         /// </summary>
         Div,
         
+        /// <summary>
+        /// Indicates a binary predicate that computes the product of the left
+        /// and right operands
+        /// </summary>
         Mul,
 
         Mod,
@@ -96,8 +83,17 @@ namespace Z0
 
         Flip,
 
+        
+        /// <summary>
+        /// Indicates an aggregate unary operator that calculates the
+        /// sum of the operand constituents
+        /// </summary>
         Sum,
 
+        /// <summary>
+        /// Indicates an aggregate unary operator that calculates the
+        /// average of the operand constituents
+        /// </summary>
         Avg,
 
         

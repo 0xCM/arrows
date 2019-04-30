@@ -155,27 +155,6 @@ namespace Z0
 
 
         /// <summary>
-        /// Selects the properties with set methods from the stream
-        /// </summary>
-        /// <param name="src">The properties to examine</param>
-        public static IEnumerable<PropertyInfo> WithSet(this IEnumerable<PropertyInfo> src)
-            => src.Where(p => p.GetSetMethod() != null);
-
-        /// <summary>
-        /// Selects the properties with get methods from the stream
-        /// </summary>
-        /// <param name="src">The properties to examine</param>
-        public static IEnumerable<PropertyInfo> WithGet(this IEnumerable<PropertyInfo> src)
-            => src.Where(p => p.GetGetMethod() != null);
-
-        /// <summary>
-        /// Selects the properties with both get/set methods from the stream
-        /// </summary>
-        /// <param name="src">The properties to examine</param>
-        public static IEnumerable<PropertyInfo> WithGetAndSet(this IEnumerable<PropertyInfo> src)
-            => src.Where(p => p.GetGetMethod() != null && p.GetSetMethod() != null);
-
-        /// <summary>
         /// Selects the public/non-public static/instance methods declared by a type
         /// </summary>
         /// <param name="src">The type to examine</param>
@@ -188,86 +167,7 @@ namespace Z0
         /// <param name="src">The types to examine</param>
         public static IEnumerable<MethodInfo> DeclaredMethods(this IEnumerable<Type> src)
             => src.Select(x => x.DeclaredMethods()).SelectMany(x => x);
-
-        /// <summary>
-        /// Selects the static fields from a stream
-        /// </summary>
-        /// <param name="src">The fields to examine</param>
-        public static IEnumerable<FieldInfo> Static(this IEnumerable<FieldInfo> src)
-            => src.Where(x => x.IsStatic);
-
-        /// <summary>
-        /// Selects the static methods from a stream
-        /// </summary>
-        /// <param name="src">The fields to examine</param>
-        public static IEnumerable<MethodInfo> Static(this IEnumerable<MethodInfo> src)
-                    => src.Where(x => x.IsStatic);
-        
-        /// <summary>
-        /// Selects the static properties from the stream
-        /// </summary>
-        /// <param name="src">The properties to examine</param>
-        public static IEnumerable<PropertyInfo> Static(this IEnumerable<PropertyInfo> src)
-            => src.Where(p => p.IsStatic());
-
-        /// <summary>
-        /// Selects the static types from the stream
-        /// </summary>
-        /// <param name="src">The types to examine</param>
-        public static IEnumerable<Type> Static(this IEnumerable<Type> src)
-            => src.Where(p => p.IsStatic());
-
-        /// <summary>
-        /// Selects the literal fields from the stream
-        /// </summary>
-        /// <param name="src">The fields to examine</param>
-        public static IEnumerable<FieldInfo> Literal(this IEnumerable<FieldInfo> src)
-            => src.Where(x => x.IsLiteral);
-
-        /// <summary>
-        /// Selects the instance fields from the stream
-        /// </summary>
-        /// <param name="src">The fields to examine</param>
-        public static IEnumerable<FieldInfo> Instance(this IEnumerable<FieldInfo> src)
-            => src.Where(x => !x.IsStatic);
-
-        /// <summary>
-        /// Selects the immutable fields from the stream
-        /// </summary>
-        /// <param name="src">The fields to examine</param>
-        public static IEnumerable<FieldInfo> Immutable(this IEnumerable<FieldInfo> src)
-            => src.Where(x => x.IsInitOnly || x.IsLiteral);
-
-        /// <summary>
-        /// Selects the mmutable fields from the stream
-        /// </summary>
-        /// <param name="src">The fields to examine</param>
-        public static IEnumerable<FieldInfo> Mutable(this IEnumerable<FieldInfo> src)
-            => src.Where(x => !(x.IsInitOnly || x.IsLiteral));
-
-        /// <summary>
-        /// Selects the public fields from the stream
-        /// </summary>
-        /// <param name="src">The fields to examine</param>
-        public static IEnumerable<FieldInfo> Public(this IEnumerable<FieldInfo> src)
-            => src.Where(x => x.IsPublic);
-
-        /// <summary>
-        /// Selects the non-public fields from the stream
-        /// </summary>
-        /// <param name="src">The fields to examine</param>
-        public static IEnumerable<FieldInfo> NonPublic(this IEnumerable<FieldInfo> src)
-            => src.Where(x => !x.IsPublic);
-
-        public static IEnumerable<MethodInfo> Public(this IEnumerable<MethodInfo> src)
-            => src.Where(x => x.IsPublic);
-
-        public static IEnumerable<MethodInfo> WithParameterCount(this IEnumerable<MethodInfo> src, int count)
-            => src.Where(m => m.GetParameters().Length == count);
-
-        public static IEnumerable<MethodInfo> NonPublic(this IEnumerable<MethodInfo> src)
-            => src.Where(x => !x.IsPublic);
-
+            
         public static IEnumerable<object> Values(this IEnumerable<FieldInfo> src, object o = null)
             => src.Select(x => x.GetValue(o));
 

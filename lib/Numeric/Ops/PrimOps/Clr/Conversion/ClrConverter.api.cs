@@ -59,7 +59,4 @@ namespace Z0
         public static Index<T> convert<S,T>(Index<S> src)
             => singleton<S,T>().convert(src);
     }
-
-
-
 }

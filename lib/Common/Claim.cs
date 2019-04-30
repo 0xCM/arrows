@@ -48,6 +48,9 @@ namespace Z0
         public static T fail<T>(string msg)
             => throw new Exception(msg);
 
+        public static void eq(Enum x, Enum y)
+            => @true(x.Equals(y), $"{x} != {y}");
+
         public static string eq<T>(T x, T y)
             where T : struct, IEquatable<T> 
                 => define(x,y,"==",  (a,b) => a.Equals(b)).demand();

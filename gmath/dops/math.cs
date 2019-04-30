@@ -20,6 +20,10 @@ namespace Z0
             add(new uint[]{0u},new uint[]{0u}, new uint[1]);
         }
 
+        #region add
+
+        //! add
+        //! -------------------------------------------------------------------
 
         [MethodImpl(Inline)]
         public static sbyte add(sbyte lhs, sbyte rhs)
@@ -60,6 +64,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static double add(double lhs, double rhs)
             => lhs + rhs;
+
+        #endregion
+
+        #region sub
 
         //! sub
         //! -------------------------------------------------------------------
@@ -104,6 +112,10 @@ namespace Z0
         public static double sub(double lhs, double rhs)
             => lhs - rhs;
 
+        #endregion
+
+        #region mul
+
         //! mul
         //! -------------------------------------------------------------------
 
@@ -147,7 +159,9 @@ namespace Z0
         public static double mul(double lhs, double rhs)
             => lhs * rhs;
 
+        #endregion
 
+        #region div
 
         //! div
         //! -------------------------------------------------------------------
@@ -192,6 +206,9 @@ namespace Z0
         public static double div(double lhs, double rhs)
             => lhs / rhs;
 
+        #endregion div
+
+        #region mod
 
         //! mod
         //! -------------------------------------------------------------------
@@ -236,6 +253,10 @@ namespace Z0
         public static double mod(double lhs, double rhs)
             => lhs % rhs;
 
+        #endregion
+
+        #region and
+
         //! and
         //! -------------------------------------------------------------------
 
@@ -271,7 +292,10 @@ namespace Z0
         public static ulong and(ulong lhs, ulong rhs)
             => lhs & rhs;
 
- 
+        #endregion
+        
+        #region or
+
         //! or
         //! -------------------------------------------------------------------
 
@@ -306,6 +330,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong or(ulong lhs, ulong rhs)
             => lhs | rhs;
+
+        #endregion
+        
+        #region xor
 
         //! xor
         //! -------------------------------------------------------------------
@@ -342,6 +370,9 @@ namespace Z0
         public static ulong xor(ulong lhs, ulong rhs)
             => lhs ^ rhs;
 
+        #endregion
+
+        #region flip
 
         //! flip
         //! -------------------------------------------------------------------
@@ -377,6 +408,197 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong flip(ulong src)
             => ~ src;
+    
+        #endregion
+
+        #region eq
+
+        //! eq
+        //! -------------------------------------------------------------------
+
+        [MethodImpl(Inline)]
+        public static bool eq(sbyte lhs, sbyte rhs)
+            => lhs == rhs;
+
+        [MethodImpl(Inline)]
+        public static bool eq(byte lhs, byte rhs)
+            => lhs == rhs;
+
+        [MethodImpl(Inline)]
+        public static bool eq(short lhs, short rhs)
+            => lhs == rhs;
+
+        [MethodImpl(Inline)]
+        public static bool eq(ushort lhs, ushort rhs)
+            => lhs == rhs;
+
+        [MethodImpl(Inline)]
+        public static bool eq(int lhs, int rhs)
+            => lhs == rhs;
+
+        [MethodImpl(Inline)]
+        public static bool eq(uint lhs, uint rhs)
+            => lhs == rhs;
+
+        [MethodImpl(Inline)]
+        public static bool eq(long lhs, long rhs)
+            => lhs == rhs;
+
+        [MethodImpl(Inline)]
+        public static bool eq(ulong lhs, ulong rhs)
+            => lhs == rhs;
+
+        [MethodImpl(Inline)]
+        public static bool eq(float lhs, float rhs)
+            => lhs == rhs;
+
+        [MethodImpl(Inline)]
+        public static bool eq(double lhs, double rhs)
+            => lhs == rhs;
+
+        #endregion
+
+        #region  neq
+
+        //! neq
+        //! -------------------------------------------------------------------
+
+        [MethodImpl(Inline)]
+        public static bool neq(sbyte lhs, sbyte rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(byte lhs, byte rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(short lhs, short rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(ushort lhs, ushort rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(int lhs, int rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(uint lhs, uint rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(long lhs, long rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(ulong lhs, ulong rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(float lhs, float rhs)
+            => lhs != rhs;
+
+        [MethodImpl(Inline)]
+        public static bool neq(double lhs, double rhs)
+            => lhs != rhs;
+
+        #endregion
+
+        #region pow
+
+        //! pow
+        //! -------------------------------------------------------------------
+
+        [MethodImpl(Inline)]
+        public static sbyte pow(sbyte src, uint exp)
+        {
+            var result = 1;
+            for(var i = 1; i< exp; i++)
+                result = result*i;
+            return (sbyte)result;
+        }
+
+        [MethodImpl(Inline)]
+        public static byte pow(byte src, uint exp)
+        {
+            var result = 1;
+            for(var i = 1; i< exp; i++)
+                result = result*i;
+            return (byte)result;
+        }
+
+        [MethodImpl(Inline)]
+        public static short pow(short src, uint exp)
+        {
+            var result = 1;
+            for(var i = 1; i< exp; i++)
+                result = result*i;
+            return (short)result;
+        }
+
+        [MethodImpl(Inline)]
+        public static ushort pow(ushort src, uint exp)
+        {
+            var result = 1;
+            for(var i = 1; i< exp; i++)
+                result = result*i;
+            return (ushort)result;
+        }
+
+        [MethodImpl(Inline)]
+        public static int pow(int src, uint exp)
+        {
+            var result = 1;
+            for(var i = 1; i< exp; i++)
+                result = result*i;
+            return result;
+        }
+
+        [MethodImpl(Inline)]
+        public static uint pow(uint src, uint exp)
+        {
+            var result = 1u;
+            for(var i = 1u; i< exp; i++)
+                result = result*i;
+            return result;
+        }
+
+        [MethodImpl(Inline)]
+        public static long pow(long src, uint exp)
+        {
+            var result = 1L;
+            for(var i = 1u; i< exp; i++)
+                result = result*i;
+            return result;
+        }
+
+        [MethodImpl(Inline)]
+        public static ulong pow(ulong src, uint exp)
+        {
+            var result = 1ul;
+            for(var i = 1u; i< exp; i++)
+                result = result*i;
+            return result;
+        }
+
+        [MethodImpl(Inline)]
+        public static float pow(float src, uint exp)
+            => MathF.Pow(src,exp);
+
+        [MethodImpl(Inline)]
+        public static double pow(double src, uint exp)
+            => Math.Pow(src,exp);
+
+        [MethodImpl(Inline)]
+        public static float pow(float src, float exp)
+            => MathF.Pow(src,exp);
+
+        [MethodImpl(Inline)]
+        public static double pow(double src, double exp)
+            => Math.Pow(src,exp);
+
+        #endregion
     }
 
 }

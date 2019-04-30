@@ -21,6 +21,8 @@ namespace Z0
 
         public static readonly Atom Minus = "-";
 
+        public static readonly Atom Eq = "=";
+
         public static readonly Atom Bang = "!";
 
         public static readonly Atom At = "@";

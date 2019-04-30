@@ -26,20 +26,17 @@ namespace Z0.Tests
     {
         public const string Path = P.primops + P.bits + "byte-vector/";
         
-        static intg<T> toIntG<T>(bit b)
-            where T : struct, IEquatable<T>
-                => convert<int,T>((int)b); 
 
         public void Convert()
         {
-            Claim.eq(intg<short>(1), toIntG<short>(bit.on())); 
-            Claim.eq(intg<short>(0), toIntG<short>(bit.off())); 
+            static T toInt<T>(bit b)
+                where T : struct, IEquatable<T>
+                    => convert<int,T>((int)b); 
 
-            Claim.eq(intg<int>(1), toIntG<int>(bit.on())); 
-            Claim.eq(intg<int>(0), toIntG<int>(bit.off())); 
-
-            Claim.eq(intg<uint>(1), toIntG<uint>(bit.on())); 
-            Claim.eq(intg<uint>(0), toIntG<uint>(bit.off())); 
+            Claim.eq(1, toInt<int>(bit.on())); 
+            Claim.eq(0, toInt<int>(bit.off())); 
+            Claim.eq(1u, toInt<uint>(bit.on())); 
+            Claim.eq(0u, toInt<uint>(bit.off())); 
         }
         public void Extract1()
         {

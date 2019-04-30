@@ -94,7 +94,7 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static num<T> numg<T>(T x)
         where T : struct, IEquatable<T>
-            => new num<T>(x);
+            => x;
 
     /// <summary>
     /// Constructs a generic float

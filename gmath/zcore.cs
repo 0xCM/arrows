@@ -28,4 +28,23 @@ static class zcore
     [MethodImpl(Inline)]   
     public static T[] array<T>(params T[] src)
         => src;
+
+    /// <summary>
+    /// Shorthand for the <see cref="string.IsNullOrEmpty(string)"/> method
+    /// </summary>
+    /// <param name="subject">The string to evaluate</param>
+    [MethodImpl(Inline)]
+    public static bool isBlank(string subject)
+        => String.IsNullOrWhiteSpace(subject);
+
+    /// <summary>
+    /// A string-specific coalescing operation
+    /// </summary>
+    /// <param name="subject">The subject string</param>
+    /// <param name="replace">The replacement value if blank</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static string ifBlank(string subject, string replace)
+        => isBlank(subject) ? replace : subject;
+
 }

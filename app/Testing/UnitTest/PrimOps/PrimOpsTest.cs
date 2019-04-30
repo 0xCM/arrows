@@ -28,8 +28,8 @@ namespace Z0.Testing
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();            
-            var sw = begin($"Verifying {OpName}{kind} operator");
-            
+            var timing = begin($"{OpName}{kind} verification");
+                        
             var config = Defaults.get<T>();
             var src = RandomIndex<T>(config.Domain, config.SampleSize, filter);
             for(var i = 0; i<src.Count; i++)
@@ -38,17 +38,17 @@ namespace Z0.Testing
                 Claim.eq(RefOp(x),PrimOp(x));
             }
             
-            end($"Verified {OpName}{kind} operator",sw);
+            end(timing);
 
 
-            EmitMessages();
+            Emit();
         }
 
         public void Verify<T>(string OpName, PrimalBinPred<T> PrimOp, PrimalBinPred<T> RefOp, Func<T,bool> filter = null)
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();            
-            var sw = begin($"Verifying {OpName}{kind} operator");
+            var timing = begin($"{OpName}{kind} verification");
             
             var config = Defaults.get<T>();
             var lhs = RandomIndex<T>(config.Domain, config.SampleSize, filter);
@@ -60,17 +60,17 @@ namespace Z0.Testing
                 Claim.eq(RefOp(x,y),PrimOp(x,y));
             }
             
-            end($"Verified {OpName}{kind} operator",sw);
+            end(timing);
 
 
-            EmitMessages();
+            Emit();
         }
         
         public void Verify<T>(string OpName, PrimalBinOp<T> PrimOp, PrimalBinOp<T> RefOp, Func<T,bool> filter = null)
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();            
-            var sw = begin($"Verifying {OpName}{kind} operator");
+            var timing = begin($"{OpName}{kind} verification");
             
             var config = Defaults.get<T>();
             var lhs = RandomIndex<T>(config.Domain, config.SampleSize, filter);
@@ -82,10 +82,10 @@ namespace Z0.Testing
                 Claim.eq(RefOp(x,y),PrimOp(x,y));
             }
             
-            end($"Verified {OpName}{kind} operator",sw);
+            end(timing);
 
 
-            EmitMessages();
+            Emit();
         }
 
     }

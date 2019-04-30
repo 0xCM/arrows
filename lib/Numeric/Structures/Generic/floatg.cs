@@ -16,7 +16,7 @@ namespace Z0
     /// <summary>
     /// Represents an floateger predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct floatg<T> : Floating<floatg<T>,T>
+    public readonly struct floatg<T> : IEquatable<floatg<T>>
             where T : struct, IEquatable<T>
     {        
         static readonly Operative.PrimOps<T> Prim = primops.typeops<T>();

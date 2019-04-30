@@ -265,13 +265,14 @@ partial class zcore
         var runtime = stopwatch();
         var duration = default(Duration);
         var opcount = 0L;
-        for(var cycle = 0; cycle<cycles; cycle++)
+        for(var cycle = 1; cycle<=cycles; cycle++)
         {
             var sw = stopwatch();
             var cycleDuration = repeater(reps);
             duration += cycleDuration;
             opcount += reps;
-            print(BenchmarkMessages.EndOfCycle(title, op, cycle, cycleDuration, opcount, duration));
+            if(cycle % 100 == 0)
+                print(BenchmarkMessages.CycleEnd(title, op, cycle, cycleDuration, opcount, duration));
         }  
         return new BenchSummary(title, op, opcount, duration, snapshot(runtime));
 

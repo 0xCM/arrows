@@ -24,6 +24,10 @@ namespace Z0
         
         public static readonly Atom Rho = "Ρ";
 
+        public static readonly Atom Sigma = "Σ";
+
+        public static readonly Atom sigma = "σ";
+
     }
     
 

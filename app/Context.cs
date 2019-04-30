@@ -14,8 +14,26 @@ namespace Z0
 
     public interface IContext
     {
-        Index<AppMsg> FlushMessages(params AppMsg[] addenda);
+        Index<AppMsg> Flush(params AppMsg[] addenda);
 
+    }
+
+    public readonly struct Timing
+    {
+        [MethodImpl(Inline)]
+        public static Timing Start(string Title)
+            => new Timing(Title);
+        
+        [MethodImpl(Inline)]
+        public Timing(string Title)
+        {
+            this.Title = Title;
+            this.Stopwatch = stopwatch();
+        }
+        
+        public readonly string Title;
+
+        public readonly Stopwatch Stopwatch;
     }
 
     public abstract class Context<T> : IContext
@@ -23,6 +41,23 @@ namespace Z0
         protected IRandomizer Random {get;}
 
         List<AppMsg> Messages {get;} = new List<AppMsg>();
+
+
+        public Index<AppMsg> Flush(params AppMsg[] addenda)
+        {
+            Messages.AddRange(addenda);
+            var messages = Messages.ToIndex();
+            Messages.Clear();
+            return messages;
+        }
+
+        public void Emit(params AppMsg[] addenda)
+        {
+            var messages = Flush(addenda);
+            print(messages);
+            log(messages, LogTarget.TestLog);
+
+        }
 
         /// <summary>
         /// Constructs a context-specific/local randomizer that should not be shared across threads
@@ -71,9 +106,17 @@ namespace Z0
             where R : struct, IEquatable<R>
                 => RandomStream(domain,filter).TakeArray(count);
 
+        public R[] RandomArray<R>(Interval<R> domain, uint count, Func<R,bool> filter = null)
+            where R : struct, IEquatable<R>
+                => RandomStream(domain,filter).TakeArray((int)count);
+
         public R[] RandomArray<R>(int count, Func<R,bool> filter = null)
             where R : struct, IEquatable<R>
-                => RandomStream(Defaults.get<R>().Domain,filter).TakeArray(count);
+                => RandomStream(Defaults.get<R>().Domain,filter).TakeArray((int)count);
+
+        public R[] RandomArray<R>(uint count, Func<R,bool> filter = null)
+            where R : struct, IEquatable<R>
+                => RandomStream(Defaults.get<R>().Domain,filter).TakeArray((int)count);
 
         public IEnumerable<R[]> RandomArrays<R>(Interval<R> domain, int len, Func<R,bool> filter = null)
             where R : struct, IEquatable<R>
@@ -88,40 +131,23 @@ namespace Z0
         protected void hilite(string msg, [CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define(msg, SeverityLevel.HiliteCL, GetType().DisplayName() + caller));            
 
-        protected Stopwatch begin(string msg, [CallerMemberName] string caller = null)
+        protected Timing begin(string title)
         {
-            Messages.Add(AppMsg.Define(msg, SeverityLevel.HiliteCL, GetType().DisplayName() + caller));            
-            return stopwatch();
+            Emit(AppMsg.Define($"{title} begin".PadRight(25), SeverityLevel.HiliteCL, string.Empty));            
+            return Timing.Start(title);
         }
 
-        protected long end(string msg, Stopwatch sw, [CallerMemberName] string caller = null)
+        [MethodImpl(Inline)]
+        protected Duration end(Timing timing)
         {
-            var ticks = elapsed(sw);
-            Messages.Add(AppMsg.Define(msg + $" | Duration = {ticksToMs(ticks)}ms", SeverityLevel.HiliteML, GetType().DisplayName() + caller));            
-            return ticks;
+            var duration = Duration.define(elapsed(timing.Stopwatch));
+            Emit(AppMsg.Define($"{timing.Title} end".PadRight(25) + $"| Duration = {duration}", SeverityLevel.HiliteML, string.Empty));
+            return duration;
         }
-
-        protected void end(string msg, long duration, [CallerMemberName] string caller = null)        
-            => Messages.Add(AppMsg.Define(msg + $" | Duration = {duration}ms", SeverityLevel.HiliteML, GetType().DisplayName() + caller));            
-        
-
+    
         protected void trace(string msg, [CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define(msg, SeverityLevel.Info, GetType().DisplayName() + caller));            
 
-        public Index<AppMsg> FlushMessages(params AppMsg[] addenda)
-        {
-            Messages.AddRange(addenda);
-            var messages = Messages.ToIndex();
-            Messages.Clear();
-            return messages;
-        }
 
-        public void EmitMessages(params AppMsg[] addenda)
-        {
-            var messages = FlushMessages(addenda);
-            print(messages);
-            log(messages, LogTarget.TestLog);
-
-        }
     }   
 }

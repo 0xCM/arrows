@@ -90,88 +90,79 @@ namespace Z0
             throw new Exception($"Operator {op} not supported");
          }
 
-
+        /// <summary>
+        /// Applies an identified binary operator to supplied operands
+        /// </summary>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
+        /// <typeparam name="T">The operand type</typeparam>
+        /// <returns>The operator application result</returns>
         [MethodImpl(Inline)]
-        public static void add<T>(T[] lhs, T[] rhs, T[] dst)
+        public static T apply<T>(OpKind op, T lhs, T rhs)
             where T : struct, IEquatable<T>
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = add(lhs[i], rhs[i]);
+            if(op == OpKind.Add)
+                return add(lhs,rhs);
+
+            if(op == OpKind.Sub)
+                return sub(lhs,rhs);
+
+            if(op == OpKind.Mul)
+                return mul(lhs,rhs);
+
+            if(op == OpKind.Div)
+                return div(lhs,rhs);
+
+            if(op == OpKind.Mod)
+                return mod(lhs,rhs);
+
+            if(op == OpKind.And)
+                return mul(lhs,rhs);
+
+            if(op == OpKind.Or)
+                return div(lhs,rhs);
+
+            if(op == OpKind.XOr)
+                return mod(lhs,rhs);
+
+            throw new Exception($"Operator {op} not supported");
+         }
+
+
+        /// <summary>
+        /// Applies an identified unary operator to a supplied operand
+        /// </summary>
+        /// <param name="src">The operand</param>
+        /// <typeparam name="T">The operand type</typeparam>
+        /// <returns>The operator application result</returns>
+        [MethodImpl(Inline)]
+        public static T apply<T>(OpKind op, T src)
+            where T : struct, IEquatable<T>
+        {
+            if(op == OpKind.Abs)
+                return abs(src);
+
+            if(op == OpKind.Flip)
+                return flip(src);
+
+            throw new Exception($"Operator {op} not supported");
         }
 
-        [MethodImpl(Inline)]
-        public static void sub<T>(T[] lhs, T[] rhs, T[] dst)
+        public static long applyT<T>(OpKind op, T[] lhs, T[] rhs, T[] dst)
             where T : struct, IEquatable<T>
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = sub(lhs[i], rhs[i]);
+            var sw = stopwatch();
+            gmath.apply(op,lhs,rhs,dst);
+            return elapsed(sw);
         }
 
-        [MethodImpl(Inline)]
-        public static void mul<T>(T[] lhs, T[] rhs, T[] dst)
+        public static long applyT<T>(OpKind op, T[] src,  T[] dst)
             where T : struct, IEquatable<T>
         {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = mul(lhs[i], rhs[i]);
-        }
-
-        [MethodImpl(Inline)]
-        public static void div<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = div(lhs[i], rhs[i]);
-        }
-
-        [MethodImpl(Inline)]
-        public static void mod<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = mod(lhs[i], rhs[i]);
-        }
-
-        [MethodImpl(Inline)]
-        public static void and<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = and(lhs[i], rhs[i]);
-        }
-
-        [MethodImpl(Inline)]
-        public static void or<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = or(lhs[i], rhs[i]);
-        }
-
-        [MethodImpl(Inline)]
-        public static void xor<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = xor(lhs[i], rhs[i]);
-        }
-
-        [MethodImpl(Inline)]
-        public static void flip<T>(T[] src, T[] dst)
-            where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = flip(src[i]);
-        }
-
-        [MethodImpl(Inline)]
-        public static void abs<T>(T[] src, T[] dst)
-            where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = abs(src[i]);
+            var sw = stopwatch();
+            gmath.apply(op,src, dst);
+            return elapsed(sw);
         }
 
     }
-
-
 }

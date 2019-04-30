@@ -14,16 +14,39 @@ namespace Z0
     
     using static zcore;
 
-    public readonly struct Duration
+    public readonly struct Duration : IEquatable<Duration>
     {
         public static Duration define(long ticks)
             => new Duration(ticks);
 
         public static Duration mark(Stopwatch sw)
-            => new Duration(sw.ElapsedTicks);
+            => define(sw.ElapsedTicks);
 
         public static Duration operator +(Duration lhs, Duration rhs)
-            => define(lhs.Ticks + rhs.Ticks);
+            => new Duration(lhs.Ticks + rhs.Ticks);
+
+        public static Duration operator -(Duration lhs, Duration rhs)
+            => new Duration(lhs.Ticks - rhs.Ticks);
+
+        public static bool operator !=(Duration lhs, Duration rhs)
+            => lhs.Ticks != rhs.Ticks;
+
+        public static bool operator ==(Duration lhs, Duration rhs)
+            => lhs.Ticks == rhs.Ticks;
+
+
+        public static bool operator >(Duration lhs, Duration rhs)
+            => lhs.Ticks > rhs.Ticks;
+
+        public static bool operator <(Duration lhs, Duration rhs)
+            => lhs.Ticks < rhs.Ticks;
+
+        public static bool operator >=(Duration lhs, Duration rhs)
+            => lhs.Ticks >= rhs.Ticks;
+
+        public static bool operator <=(Duration lhs, Duration rhs)
+            => lhs.Ticks <= rhs.Ticks;
+
             
         public Duration(long Ticks)
             => this.Ticks = Ticks;
@@ -34,6 +57,15 @@ namespace Z0
             => ticksToMs(Ticks);
 
         public override string ToString()
-            => $"{Ticks} (ticks)".PadRight(17) + " = " + $"{Ms} (ms)".PadRight(10);
+            => append($"{Ticks}".PadLeft(10), " ticks ", " ~ ", $"{Ms} ms");
+
+        public bool Equals(Duration rhs)
+            => this.Ticks == rhs.Ticks;
+
+        public override int GetHashCode()
+            => Ticks.GetHashCode();
+
+        public override bool Equals(object obj)            
+            => obj is Duration ? Equals((Duration)obj) : false;
     }
 }

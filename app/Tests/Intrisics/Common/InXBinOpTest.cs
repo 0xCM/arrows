@@ -98,9 +98,9 @@ namespace Z0.Tests.InXTests
 
             if(VecOp != null)
             {
-                var sw = begin($"Applying canonical {OpName} operation | {statsMsg}");
+                var timing = begin($"Canonical {OpName} operation | {statsMsg}");
                 iter(repeat, i => ApplyCanonicalOp());
-                end($"Applied canonical {OpName} operation | {statsMsg}", sw);                
+                end(timing);                
             }
         }
 

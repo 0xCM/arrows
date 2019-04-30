@@ -11,7 +11,7 @@ namespace Z0
     {
         public interface Dim : Formattable
         {
-            Z0.Slice<intg<ulong>> components {get;}
+            
         }
 
     }
@@ -70,9 +70,6 @@ namespace Z0
         public ulong volume()
             => i;
 
-        public Slice<intg<ulong>> components 
-            => slice(i);
-
         public string format()
             => $"{i}";
  
@@ -114,8 +111,6 @@ namespace Z0
         public ulong volume()
             => i*j;
 
-        public Slice<intg<ulong>> components 
-            => slice(i,j);
 
         public string format()
             => xsv(times, i, j);
@@ -161,9 +156,6 @@ namespace Z0
 
         public intg<ulong> volume()
             => i*j*k;
-
-        public Slice<intg<ulong>> components 
-            => slice(i,j,k);
 
         public string format()
             => xsv(times, i, j, k);

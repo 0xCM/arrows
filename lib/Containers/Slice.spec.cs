@@ -16,7 +16,7 @@ namespace Z0
     {
         public interface Slice<T> :  Formattable,  IEnumerable<T> 
         {
-            intg<uint> length {get;}
+            uint length {get;}
 
             T this[int i] {get;}
         }

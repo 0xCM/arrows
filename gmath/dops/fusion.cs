@@ -516,6 +516,143 @@ namespace Z0
         
         #endregion
 
+        #region eq
+
+        //! eq
+        //! -------------------------------------------------------------------
+
+        public static void eq(sbyte[] lhs, sbyte[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = eq(lhs[i], rhs[i]);
+        }
+
+
+        public static void eq(byte[] lhs, byte[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = eq(lhs[i], rhs[i]);
+        }
+
+        public static void eq(short[] lhs, short[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = eq(lhs[i], rhs[i]);
+        }
+
+        public static void eq(ushort[] lhs, ushort[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = eq(lhs[i], rhs[i]);
+        }
+
+        public static void eq(int[] lhs, int[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = eq(lhs[i], rhs[i]);
+        }
+
+        public static void eq(uint[] lhs, uint[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = eq(lhs[i], rhs[i]);
+        }
+
+        public static void eq(long[] lhs, long[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = eq(lhs[i], rhs[i]);
+        }
+
+        public static void eq(ulong[] lhs, ulong[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = eq(lhs[i], rhs[i]);
+        }
+
+        public static void eq(float[] lhs, float[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = eq(lhs[i], rhs[i]);
+        }
+
+        public static void eq(double[] lhs, double[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = eq(lhs[i], rhs[i]);
+        }
+
+        #endregion
+ 
+        #region neq
+
+        //! neq
+        //! -------------------------------------------------------------------
+
+        public static void neq(sbyte[] lhs, sbyte[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = neq(lhs[i], rhs[i]);
+        }
+
+
+        public static void neq(byte[] lhs, byte[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = neq(lhs[i], rhs[i]);
+        }
+
+        public static void neq(short[] lhs, short[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = neq(lhs[i], rhs[i]);
+        }
+
+        public static void neq(ushort[] lhs, ushort[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = neq(lhs[i], rhs[i]);
+        }
+
+        public static void neq(int[] lhs, int[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = neq(lhs[i], rhs[i]);
+        }
+
+        public static void neq(uint[] lhs, uint[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = neq(lhs[i], rhs[i]);
+        }
+
+        public static void neq(long[] lhs, long[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = neq(lhs[i], rhs[i]);
+        }
+
+        public static void neq(ulong[] lhs, ulong[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = neq(lhs[i], rhs[i]);
+        }
+
+        public static void neq(float[] lhs, float[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = neq(lhs[i], rhs[i]);
+        }
+
+        public static void neq(double[] lhs, double[] rhs, bool[] dst)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = neq(lhs[i], rhs[i]);
+        }
+
+        #endregion
+ 
+ 
     }
 
 }
