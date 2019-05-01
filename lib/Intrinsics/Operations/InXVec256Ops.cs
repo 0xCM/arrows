@@ -15,19 +15,6 @@ namespace Z0
     static class Vec256Delegates
     {
 
-        static readonly PrimalIndex Add = PrimalKinds.index<object>
-            (
-                @sbyte : new Vec256BinOp<sbyte>(InX.add),
-                @byte : new Vec256BinOp<byte>(InX.add),
-                @short : new Vec256BinOp<short>(InX.add),
-                @ushort : new Vec256BinOp<ushort>(InX.add),
-                @int : new Vec256BinOp<int>(InX.add),
-                @uint : new Vec256BinOp<uint>(InX.add),
-                @long : new Vec256BinOp<long>(InX.add),
-                @ulong : new Vec256BinOp<ulong>(InX.add),
-                @float : new Vec256BinOp<float>(InX.add),
-                @double : new Vec256BinOp<double>(InX.add)
-            );
 
         static readonly PrimalIndex Or = PrimalKinds.index<object>
             (
@@ -137,15 +124,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => Or.lookup<T,Vec256BinOp<T>>();
 
-        [MethodImpl(Inline)]
-        public static Vec256BinOp<T> add<T>()
-            where T : struct, IEquatable<T>
-                => Add.lookup<T,Vec256BinOp<T>>();        
-
-        [MethodImpl(Inline)]
-        public static Vec256LoadOp<T> load<T>()
-            where T : struct, IEquatable<T>
-                => Load.lookup<T,Vec256LoadOp<T>>();        
     }
 
 }

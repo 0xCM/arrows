@@ -114,15 +114,6 @@ namespace Z0
         public static Index<T> Freeze<T>(this IEnumerable<T> src, int skip, int count)
             => src.Skip(skip).TakeArray(count);
 
-        /// <summary>
-        /// Constructs an array of specified length from a stream
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        /// <param name="length">The length of the index</param>
-        /// <typeparam name="T">The item type</typeparam>
-        [MethodImpl(Inline)]
-        public static T[] TakeArray<T>(this IEnumerable<T> src, int length)
-            => src.Take(length).ToArray();
 
         /// <summary>
         /// Constructs a slice from a sequence
@@ -176,7 +167,7 @@ namespace Z0
         /// <param name="length">The position of the last element of the source array</param>
         /// <returns></returns>
         public static T[] Subset<T>(this T[] src, int offset, int length)
-            => Arr.SubArray(src,offset,length);
+            => src.SubArray(offset,length);
 
         /// <summary>
         /// Defines a window over a 1-d array beginning at a specified index 

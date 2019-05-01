@@ -132,7 +132,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public bool eq(Vector<N, T> rhs)
-            => Arr.equals(data, rhs.data);
+            => data.ReallyEqual(rhs.data);
 
 
         [MethodImpl(Inline)]

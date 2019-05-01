@@ -39,9 +39,9 @@ namespace Z0.Tests.InX128
         {
             var src = new int[]{-50,-25,25,50};
             var dst = new int[src.Length];
-            var v1 = Vec128.define(src);
+            var v1 = Vec128.single(src);
             InX.store(v1, dst, 0);
-            var v2 = Vec128.define(dst);
+            var v2 = Vec128.single(dst);
             Claim.eq(v1,v2);
         }
 
@@ -54,7 +54,7 @@ namespace Z0.Tests.InX128
             trace($"Storing data from {mem.PartCount} {type<Vec128<uint>>().DisplayName()} vectors");
 
             var dst = alloc<uint>(mem.TotalLength); 
-            var src = Context.RandomArray<uint>(Interval.closed(10u,500u), mem.TotalLength);
+            var src = Randomizer.Array<uint>(Interval.closed(10u,500u), mem.TotalLength);
             var vectors = Vec128UInt32Stream(src).ToArray();
             InX.store(vectors,dst);
 
@@ -71,7 +71,7 @@ namespace Z0.Tests.InX128
 
         public void DefineUInt8Vec()
         {
-            var src = Context.RandomArray<byte>(Interval.closed<byte>(0,155), Vec128<byte>.Length);
+            var src = Randomizer.Array<byte>(Interval.closed<byte>(0,155), Vec128<byte>.Length);
             Claim.eq(Vec128<byte>.Length, src.Length);
 
             var v1 = Vec128.define(src.ToSpan128());
@@ -89,7 +89,7 @@ namespace Z0.Tests.InX128
         public void DefineUInt8Vecs()
         {
             var domain = Interval.closed<byte>(0,155);
-            var src = Context.RandomArrays<byte>(domain, Vec128<byte>.Length).Take(Pow2.T15);
+            var src = Randomizer.Arrays<byte>(domain, Vec128<byte>.Length).Take(Pow2.T15);
             foreach(var arr in src)
             {
                 Claim.eq(Vec128<byte>.Length, arr.Length);
@@ -102,7 +102,7 @@ namespace Z0.Tests.InX128
         public void DefineInt32Vecs()
         {
             var domain = Interval.closed(-250000,250000);
-            var src = Context.RandomArrays<int>(domain, Vec128<int>.Length).Take(Pow2.T15);
+            var src = Randomizer.Arrays<int>(domain, Vec128<int>.Length).Take(Pow2.T15);
             foreach(var arr in src)
             {
                 Claim.eq(Vec128<int>.Length, arr.Length);

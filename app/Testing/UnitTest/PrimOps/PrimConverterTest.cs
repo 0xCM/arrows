@@ -30,7 +30,7 @@ namespace Z0.Testing
         protected Index<S> Src; 
 
         protected Index<S> source(S min, S max)
-            =>  Randomizer<S>().stream(min,max).Freeze(VectorSize);
+            =>  Randomizer.Random<S>().stream(min,max).Freeze(VectorSize);
 
         protected ClrConverterTest(Interval<S>? bounds = null)
         {

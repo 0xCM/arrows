@@ -107,7 +107,7 @@ namespace Z0
 
         [MethodImpl(Inline)]        
         public Text reverse()
-            => Arr.reverse(chars());
+            => chars().Reverse();
 
     }
     

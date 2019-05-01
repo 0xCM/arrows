@@ -66,55 +66,6 @@ namespace Z0
             Array.Copy(src,dst,src.Length);
         }
 
-        public static void copy<T>(IReadOnlyList<T> src, T[] dst)
-        {
-            if(src.Count > dst.Length)
-                throw new ArgumentException("The source list is bigger than the target array");
-            for(var i=0; i< src.Count; i++)
-                dst[i] = src[i];
-        }
-
-        /// <summary>
-        /// Reverses an array in-place
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]
-        public static T[] reverse<T>(T[] src)
-        {
-            Array.Reverse(src);
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        public static bool equals<T>(T[] lhs, T[] rhs)
-            where T: IEquatable<T>
-        {
-            if(lhs.Length != rhs.Length)
-                return false;
-            for(var i = 0; i<lhs.Length; i++)
-            {
-                if(!lhs[i].Equals(rhs[i]))
-                    return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Creates a new array from a (contiguous) subset of an existing array
-        /// </summary>
-        /// <typeparam name="T">The array element type</typeparam>
-        /// <param name="src">The source array</param>
-        /// <param name="offset">The position of the first element of the source array </param>
-        /// <param name="count">The number of elements to take from the source array following the offset</param>
-        /// <returns></returns>
-        public static T[] SubArray<T>(this T[] src, int offset, int count)
-        {
-            var dst = new T[count];
-            Array.Copy(src, offset, dst, 0, count);
-            return dst;
-        } 
-
         /// <summary>
         /// Concatentates two byte arrays
         /// </summary>

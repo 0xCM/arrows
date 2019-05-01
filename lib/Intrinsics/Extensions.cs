@@ -73,10 +73,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => InXVec128Ops.and(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public static Vec128<T> Add<T>(this in Vec128<T> lhs, in Vec128<T> rhs)
-            where T : struct, IEquatable<T>
-                => InXVec128Ops.add(lhs,rhs);
 
         /// <summary>
         /// Computes the bitwise or of two vectors

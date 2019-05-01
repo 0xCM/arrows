@@ -157,6 +157,10 @@ namespace Z0.Bench
                 yield return f;
         }
 
+        // public static BenchSpec Measure<T>(this Vec128BinOp<T> binop, string opname, FusedBinOpInspector<T> inspector = null)
+        //     where T : struct, IEquatable<T>
+        //         => config => Runner<T>(opname,config).Run(binop, inspector);
+
         public static Specs Add<T>(OpSet? set = null)
             where T : struct, IEquatable<T>
         {
@@ -167,10 +171,24 @@ namespace Z0.Bench
                 yield return PrimalFusion.add<T>().Measure(P.primops + P.add + P.fused);
             
             if(RunAtomicInX && allOrOneOf(set, OpSet.Atomic, OpSet.Intrisic))
-                yield return InXVec128Ops.add<T>().Measure(P.intrinsics + P.add + P.atomic);
+            {
+                var op = new Vec128BinOp<T>(ginx.add);
+                yield return op.Measure(P.intrinsics + P.add + P.atomic);
+            }
+                
             
             if(allOrOneOf(set, OpSet.Fused, OpSet.Intrisic))
-                yield return InXFusionOps.add<T>().Measure(P.intrinsics + P.add + P.fused);
+            {
+
+                Index<T> add(Index<T> lhs, Index<T> rhs)
+                {
+                    var dst = alloc<T>(lhs.Length);
+                    return ginx.add(lhs,rhs, ref dst);
+                }
+
+                var op = new PrimalFusedBinOp<T>(add);
+                yield return op.Measure(P.intrinsics + P.add + P.atomic);
+            }
         }
 
         public static Specs Sub(OpSet? set = null, params PrimalKind[] kinds)

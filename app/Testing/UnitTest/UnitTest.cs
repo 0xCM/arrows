@@ -14,17 +14,15 @@ namespace Z0.Testing
 
     using static zcore;
     
-    public interface IUnitTest : IContext
+    public interface IUnitTest 
     {
-
+        IReadOnlyList<AppMsg> Flush(params AppMsg[] addenda);
     }
 
     public abstract class UnitTest<T> : Context<T>, IUnitTest
         where T : UnitTest<T>
     {
-        protected static readonly TestContext<T> Context = TestContext.define<T>(RandSeeds.TestSeed);
 
-        List<AppMsg> Messages {get;} = new List<AppMsg>();
         
         protected int SampleSize {get;}
 

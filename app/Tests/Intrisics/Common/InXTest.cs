@@ -41,25 +41,27 @@ namespace Z0.Tests.InXTests
             this.UnarySrc = RandArray();
             Claim.eq(UnarySrc.Length, SampleSize);
             Claim.eq(VecLength,  16 / ComponentSize);
-
             Claim.eq(VecLength*VecCount, SampleSize);
 
-            this.LeftDataSrc = RandArray(SampleSize);
-            Claim.eq(LeftDataSrc.Length, SampleSize);
-
-            this.RightDataSrc = RandArray(SampleSize);
-            Claim.eq(RightDataSrc.Length, SampleSize);
-
-            this.LeftVecSrc = Vec128.stream(LeftDataSrc).ToIndex();
+            var lArray = RandArray(SampleSize);
+            Claim.eq(lArray.Length, SampleSize);
+            this.LeftDataSrc = lArray;
+            
+            this.LeftVecSrc = Vec128.define(lArray);
             Claim.eq(LeftVecSrc.Length, VecCount);
 
-            this.RightVecSrc = Vec128.stream(RightDataSrc).ToIndex();
+            var rArray =  Randomizer.Array<T>(SampleSize);
+            Claim.eq(rArray.Length, SampleSize);
+            this.RightDataSrc = rArray;
+
+            this.RightVecSrc = Vec128.define(rArray);
             Claim.eq(RightVecSrc.Length, VecCount);
 
 
         }
 
-        protected PrimalKind PritiveKind {get;} = PrimalKinds.kind<T>();
+        protected PrimalKind PritiveKind {get;} 
+            = PrimalKinds.kind<T>();
 
         protected Interval<T> Domain {get;}
 
@@ -95,7 +97,7 @@ namespace Z0.Tests.InXTests
                 var lvec = LeftVecSrc[i];
                 var rvec = RightVecSrc[i];
                 var actual = vecop(lvec, rvec);                
-                var expect = Vec128.single(listop(leftVals[i],rightVals[i]));
+                var expect = Vec128.single<T>(listop(leftVals[i],rightVals[i]));
                 ClaimEq(lvec, rvec, expect, actual,i);
             }                
         }
@@ -147,92 +149,12 @@ namespace Z0.Tests.InXTests
         }
                 
 
-        /// <summary>
-        /// Discretizes the instance domain using an optionall-specified partition width
-        /// </summary>
-        /// <param name="step">The width of each partition</param>
-        protected IEnumerable<T> Partition(T? step = null)
-            => Domain.Discretize(step);
-
-        /// <summary>
-        /// Produces an array of random values
-        /// </summary>
-        /// <param name="count">The number of values in the produced array</param>
-        protected T[] RandArray(Interval<T> domain, int? count = null)
-            => RandomIndex(domain, count ?? SampleSize);
-
-        /// <summary>
-        /// Produces a list of random values
-        /// </summary>
-        /// <param name="domain">The interval from which the values are selected</param>
-        /// <param name="count">The number of values in the produced list</param>
-        protected Index<T> RandIndex(Interval<T> domain, int? count = null)
-            => RandomStream(domain).TakeArray(count ?? SampleSize);
-
-
-        /// <summary>
         /// Produces an array of random values
         /// </summary>
         /// <param name="count">The number of values in the produced array</param>
         protected T[] RandArray(int? count = null)
-            => RandArray(Domain, count ?? SampleSize);
+            => Randomizer.Array(Domain, count ?? SampleSize);
 
-
-        /// <summary>
-        /// Produces a list of random values
-        /// </summary>
-        /// <param name="count">The number of values in the produced list</param>
-        protected Index<T> RandIndex(int? count = null)
-            => RandIndex(Domain,count ?? SampleSize);
-
-        /// <summary>
-        /// Produces a random list that occupies 128 bits = 16 bytes of memory
-        /// </summary>
-        protected Index<T> RandIndex128()
-            => RandIndex(VecLength);
-
-        /// <summary>
-        /// Produces a random array that occupies 128 bits = 16 bytes of memory
-        /// </summary>
-        protected T[] RandArray128()
-            => RandArray(VecLength);
-
-
-        /// <summary>
-        /// Produces a random 128-bit vector
-        /// </summary>
-        protected Vec128<T> RandVec128()        
-            => Vec128.single<T>(RandArray(VecLength));
-
-        /// <summary>
-        /// Produces a stream of random arrays where each array occupies 128 bits = 16 bytes of memory
-        /// </summary>
-        /// <param name="count">The number of arrays to produce</param>
-        protected IEnumerable<T[]> RandArrays128(int? count = null)
-        {
-            for(var i = 0; i< (count ?? VecCount); i++)
-                 yield return RandArray128();
-        }
-
-        /// <summary>
-        /// Produces a stream of random lists where each list occupies 128 bits = 16 bytes of memory
-        /// </summary>
-        /// <param name="count">The number of lists to produce</param>
-        protected IEnumerable<Index<T>> RandIndexes128(int? count = null)
-        {
-            for(var i = 0; i< (count ?? VecCount); i++)
-                 yield return RandIndex128();
-        }
-            
-        /// <summary>
-        /// Produces a stream of random 128-bit vectors
-        /// </summary>
-        /// <param name="count">The number of vectors to produce</param>
-        protected IEnumerable<Vec128<T>> RandVecs128(int? count = null)        
-        {
-            for(var i = 0; i< (count ?? VecCount); i++)
-                 yield return RandVec128();
-        }        
 
         protected void trace(int count, [CallerMemberName] string caller = null)
             => base.trace($"Applied the {OpName} operator over {count} vectors", caller);

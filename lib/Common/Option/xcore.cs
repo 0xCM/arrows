@@ -16,11 +16,6 @@ namespace Z0
     partial class xcore
     {
         [MethodImpl(Inline)]
-        public static T ValueOrDefault<T>(this T? x, T @default = default)
-            where T : struct
-                => x != null ? x.Value : @default;
-
-        [MethodImpl(Inline)]
         public static T ValueOrElse<T>(this T? x,  Func<T> @else)
             where T : struct
                 => x != null ? x.Value : @else();

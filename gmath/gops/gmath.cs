@@ -56,6 +56,7 @@ namespace Z0
             init<ulong>();
             gfloat.init<float>();
             gfloat.init<double>();
+            ginx.init();
             math.init();
         }
 
@@ -108,46 +109,30 @@ namespace Z0
         {
             var kind = PrimalKinds.kind<T>();
 
-            if(kind == PrimalKind.uint8)
-            {
-                var l = (int)As.uint8<T>(lhs);
-                var r = (int)As.uint8<T>(rhs);
-                return As.generic<T>((byte)(l + r));                
-            }
-
-
-            if(kind == PrimalKind.int32)
-                return addI32(lhs,rhs);
-
-            if(kind == PrimalKind.int64)
-                return addI64(lhs,rhs);
-
-            if(kind == PrimalKind.int8)
-            {
-                var l = (int)As.int8<T>(lhs);
-                var r = (int)As.int8<T>(rhs);
-                return As.generic<T>((sbyte)(l + r));                
-            }
-
-            if(kind == PrimalKind.uint32)
-                return addU32(lhs,rhs);
-
-            if(kind == PrimalKind.uint64)
-                return addU64(lhs,rhs);
-
+            
             if(kind == PrimalKind.int16)
                 return addI16(lhs,rhs);
-
             if(kind == PrimalKind.uint16)
                 return addU16(lhs,rhs);
-
+            if(kind == PrimalKind.int32)
+                return addI32(lhs,rhs);
+            if(kind == PrimalKind.uint32)
+                return addU32(lhs,rhs);
+            if(kind == PrimalKind.int64)
+                return addI64(lhs,rhs);
+            if(kind == PrimalKind.uint64)
+                return addU64(lhs,rhs);
             if(kind == PrimalKind.float32)
                 return addF32(lhs,rhs);
-
             if(kind == PrimalKind.float64)
                 return addF64(lhs,rhs);
+            if (kind == PrimalKind.int8)
+                return addI8(lhs,rhs);
+            if(kind == PrimalKind.uint8)
+                return addU8(lhs,rhs);
+                        
+            throw new NotSupportedException($"Kind {kind} not supported");
 
-            throw new Exception($"Kind {kind} not supported");
         }
 
         [MethodImpl(Inline)]

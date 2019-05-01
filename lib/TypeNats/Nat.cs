@@ -203,10 +203,10 @@ namespace Z0
         /// <typeparam name="K2">The type of the right endpoint</typeparam>
         /// <returns></returns>
         [MethodImpl(Inline)]   
-        public static Interval<K1,K2> interval<K1,K2>()
+        public static NatInterval<K1,K2> interval<K1,K2>()
             where K1 : TypeNat, Demands.Smaller<K1,K2>, new()
             where K2 : TypeNat, new()
-                => new Interval<K1,K2>(natrep<K1>(), natrep<K2>());
+                => new NatInterval<K1,K2>(natrep<K1>(), natrep<K2>());
 
         /// <summary>
         /// Constructs a natural representative that encodes the sum of two naturals

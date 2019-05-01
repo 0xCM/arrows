@@ -51,7 +51,7 @@ namespace Z0.Tests.InXTests
             for(int i=0, offset = 0; i < VecCount; i++, offset+= VecLength)
             {
 
-                var vDst = Arr.SubArray(dst,offset,VecLength);
+                var vDst = dst.SubArray(offset,VecLength);
                 var vSrc = vectors[i];
                 for(var j = 0; j<VecLength; j++)
                     Claim.eq(vDst[j], vSrc[j]);

@@ -44,10 +44,10 @@ namespace Z0.Tests.InXTests
             public void TestAllOn()
             {
                 var v1 = Vec128.define(uint.MaxValue, uint.MaxValue,uint.MaxValue,uint.MaxValue);
-                Claim.@true(InX.allOn(v1));
+                Claim.@true(dinx.allOn(v1));
 
                 var v2 = Vec128.define(uint.MaxValue, uint.MaxValue - 1,uint.MaxValue,uint.MaxValue);
-                Claim.@false(InX.allOn(v2));                
+                Claim.@false(dinx.allOn(v2));                
             }     
         }
 

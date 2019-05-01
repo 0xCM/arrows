@@ -40,46 +40,7 @@ namespace Z0
         //! Arithmetic
         //! -------------------------------------------------------------------
 
-        //! add
 
-        static readonly PrimalIndex Add = PrimalKinds.index<object>
-            (
-                @sbyte : new Vec128BinOp<sbyte>(InX.add),
-                @byte : new Vec128BinOp<byte>(InX.add),
-                @short : new Vec128BinOp<short>(InX.add),
-                @ushort : new Vec128BinOp<ushort>(InX.add),
-                @int : new Vec128BinOp<int>(InX.add),
-                @uint : new Vec128BinOp<uint>(InX.add),
-                @long : new Vec128BinOp<long>(InX.add),
-                @ulong : new Vec128BinOp<ulong>(InX.add),
-                @float : new Vec128BinOp<float>(InX.add),
-                @double : new Vec128BinOp<double>(InX.add)
-            );
-
-        [MethodImpl(Inline)]
-        public static Vec128BinOp<T> add<T>()
-            where T : struct, IEquatable<T>
-                => Add.lookup<T,Vec128BinOp<T>>();
-
-        //! add + store to pointer
-        static unsafe readonly PrimalIndex AddPOut = PrimalKinds.index<object>
-            (
-                @sbyte : new Vec128BinPOut<sbyte>(InX.add),
-                @byte : new Vec128BinPOut<byte>(InX.add),
-                @short : new Vec128BinPOut<short>(InX.add),
-                @ushort : new Vec128BinPOut<ushort>(InX.add),
-                @int : new Vec128BinPOut<int>(InX.add),
-                @uint : new Vec128BinPOut<uint>(InX.add),
-                @long : new Vec128BinPOut<long>(InX.add),
-                @ulong : new Vec128BinPOut<ulong>(InX.add),
-                @float : new Vec128BinPOut<float>(InX.add),
-                @double : new Vec128BinPOut<double>(InX.add)
-            );
-
-        [MethodImpl(Inline)]
-        public static Vec128BinPOut<T> addPOut<T>()
-            where T : struct, IEquatable<T>
-                => AddPOut.lookup<T,Vec128BinPOut<T>>();
 
         //! sub
 
@@ -119,8 +80,8 @@ namespace Z0
         //! div
         static readonly PrimalIndex CmpF = PrimalKinds.index<object>
             (
-                @float : new Vec128CmpFloat<float>(InX.cmpf),
-                @double : new Vec128CmpFloat<double>(InX.cmpf)
+                @float : new Vec128CmpFloat<float>(dinx.cmpf),
+                @double : new Vec128CmpFloat<double>(dinx.cmpf)
             );
 
         [MethodImpl(Inline)]
@@ -131,8 +92,8 @@ namespace Z0
         //! div
         static readonly PrimalIndex Div = PrimalKinds.index<object>
             (
-                @float : new Vec128BinOp<float>(InX.div),
-                @double : new Vec128BinOp<double>(InX.div)
+                @float : new Vec128BinOp<float>(dinx.div),
+                @double : new Vec128BinOp<double>(dinx.div)
             );
 
         [MethodImpl(Inline)]
@@ -416,14 +377,14 @@ namespace Z0
 
         static readonly PrimalIndex AllOn = PrimalIndex.define
             (
-                @sbyte : new Vec128UnaryPred<sbyte>(InX.allOn),
-                @byte : new Vec128UnaryPred<byte>(InX.allOn),
-                @short : new Vec128UnaryPred<short>(InX.allOn),
-                @ushort : new Vec128UnaryPred<ushort>(InX.allOn),
-                @int : new Vec128UnaryPred<int>(InX.allOn),
-                @uint : new Vec128UnaryPred<uint>(InX.allOn),
-                @long : new Vec128UnaryPred<long>(InX.allOn),
-                @ulong : new Vec128UnaryPred<ulong>(InX.allOn)
+                @sbyte : new Vec128UnaryPred<sbyte>(dinx.allOn),
+                @byte : new Vec128UnaryPred<byte>(dinx.allOn),
+                @short : new Vec128UnaryPred<short>(dinx.allOn),
+                @ushort : new Vec128UnaryPred<ushort>(dinx.allOn),
+                @int : new Vec128UnaryPred<int>(dinx.allOn),
+                @uint : new Vec128UnaryPred<uint>(dinx.allOn),
+                @long : new Vec128UnaryPred<long>(dinx.allOn),
+                @ulong : new Vec128UnaryPred<ulong>(dinx.allOn)
             );
 
         [MethodImpl(Inline)]
@@ -434,14 +395,14 @@ namespace Z0
 
         static readonly PrimalIndex Off = PrimalIndex.define
             (
-                @sbyte : new Vec128BinPred<sbyte>(InX.off),
-                @byte : new Vec128BinPred<byte>(InX.off),
-                @short : new Vec128BinPred<short>(InX.off),
-                @ushort : new Vec128BinPred<ushort>(InX.off),
-                @int : new Vec128BinPred<int>(InX.off),
-                @uint : new Vec128BinPred<uint>(InX.off),
-                @long : new Vec128BinPred<long>(InX.off),
-                @ulong : new Vec128BinPred<ulong>(InX.off)
+                @sbyte : new Vec128BinPred<sbyte>(dinx.off),
+                @byte : new Vec128BinPred<byte>(dinx.off),
+                @short : new Vec128BinPred<short>(dinx.off),
+                @ushort : new Vec128BinPred<ushort>(dinx.off),
+                @int : new Vec128BinPred<int>(dinx.off),
+                @uint : new Vec128BinPred<uint>(dinx.off),
+                @long : new Vec128BinPred<long>(dinx.off),
+                @ulong : new Vec128BinPred<ulong>(dinx.off)
             );
 
         [MethodImpl(Inline)]
@@ -459,19 +420,6 @@ namespace Z0
             public static readonly Vec128BinPred<T> Op = Vec128Delegates.eq<T>();
         }
 
-        public readonly struct Add<T>
-            where T : struct, IEquatable<T>
-        {
-            public static readonly Vec128BinOp<T> Op = Vec128Delegates.add<T>();
-
-        }
-
-        public readonly struct AddPOut<T>
-            where T : struct, IEquatable<T>
-        {
-            public static readonly Vec128BinPOut<T> Op = Vec128Delegates.addPOut<T>();
-
-        }
 
         public readonly struct Avg<T>
             where T : struct, IEquatable<T>
@@ -604,20 +552,7 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => Vec128OpCache.Eq<T>.Op(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public static Vec128BinOp<T> add<T>()
-            where T : struct, IEquatable<T>
-                => Vec128OpCache.Add<T>.Op;
 
-        [MethodImpl(Inline)]
-        public static Vec128<T> add<T>(in Vec128<T> lhs, in Vec128<T> rhs)
-            where T : struct, IEquatable<T>
-                => Vec128OpCache.Add<T>.Op(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public static unsafe void add<T>(in Vec128<T> lhs, in Vec128<T> rhs, void* dst)
-            where T : struct, IEquatable<T>
-                => Vec128OpCache.AddPOut<T>.Op(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Vec128BinOp<T> avg<T>()

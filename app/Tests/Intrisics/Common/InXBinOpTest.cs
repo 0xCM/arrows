@@ -49,7 +49,7 @@ namespace Z0.Tests.InXTests
             var leftSeg = LeftSegments.ToArray();
             var rightSeg = RightSegments.ToArray();
             for(var i =0; i< VecCount; i++)
-                yield return Vec128.single(IndexOp(leftSeg[i],rightSeg[i]));
+                yield return Vec128.single<T>(IndexOp(leftSeg[i],rightSeg[i]));
         }
 
         Lazy<Index<Vec128<T>>> _Expect;
@@ -98,9 +98,9 @@ namespace Z0.Tests.InXTests
 
             if(VecOp != null)
             {
-                var timing = begin($"Canonical {OpName} operation | {statsMsg}");
+                var timing = Timing.begin($"Canonical {OpName} operation | {statsMsg}");
                 iter(repeat, i => ApplyCanonicalOp());
-                end(timing);                
+                Timing.end(timing);                
             }
         }
 

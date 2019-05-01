@@ -50,17 +50,11 @@ namespace Z0
 
         }
 
-        static void V64Intrinsics()
-        {
-            var vec = Vec64.define(0, 1,2,3,4,5,6,7);
-            inform(vec.ToString());
-            
-        }
 
         void CheckRandomBounds<T>(Interval<T> domain)
             where T : struct, IEquatable<T>
         {
-            var stream = RandomStream(domain);
+            var stream = Randomizer.Stream(domain);
             var samples = stream.Freeze(Pow2.T20);
             var underflow = samples.Where(x => primops.lt(x,domain.left) );
             var overflow = samples.Where(x => primops.gteq(x, domain.right));
@@ -78,156 +72,17 @@ namespace Z0
 
         }
 
-        static readonly PrimalIndex AddDelegates = PrimalKinds.index<object>
-            (
-                @sbyte : new Vec128BinOp<sbyte>(InX.add),
-                @byte : new Vec128BinOp<byte>(InX.add),
-                @short : new Vec128BinOp<short>(InX.add),
-                @ushort : new Vec128BinOp<ushort>(InX.add),
-                @int : new Vec128BinOp<int>(InX.add),
-                @uint : new Vec128BinOp<uint>(InX.add),
-                @long : new Vec128BinOp<long>(InX.add),
-                @ulong : new Vec128BinOp<ulong>(InX.add),
-                @float : new Vec128BinOp<float>(InX.add),
-                @double : new Vec128BinOp<double>(InX.add)
-            );
-
-        static Vec128<T> addGeneric<T>(Vec128<T> lhs, Vec128<T> rhs)
-            where T : struct, IEquatable<T>
-        {
-            var adder = AddDelegates.lookup<T,Vec128BinOp<T>>();
-            var s1 = adder(lhs,rhs);
-            var s2 = adder(s1,rhs);
-            var s3 = adder(s1,lhs);
-            return adder(s1,s2);
-        }
-
-
-        static Vec128<double> addDelegate(Vec128<double> lhs, Vec128<double> rhs)
-        {
-            var adder = AddDelegates.lookup<double,Vec128BinOp<double>>();
-            var s1 = adder(lhs,rhs);
-            var s2 = adder(s1,rhs);
-            var s3 = adder(s1,lhs);
-            return adder(s1,s2);
-        }
 
         static Vec128<double> addDirect(Vec128<double> lhs, Vec128<double> rhs)
         {
-            var s1 = InX.add(lhs,rhs);
-            var s2 = InX.add(s1,rhs);
-            var s3 = InX.add(s1,lhs);
-            return InX.add(s1,s2);
+            var s1 = dinx.add(lhs,rhs);
+            var s2 = dinx.add(s1,rhs);
+            var s3 = dinx.add(s1,lhs);
+            return dinx.add(s1,s2);
         }
 
 
-        void TestAdd()
-        {
-            var config = BenchConfig.Default;
-            var domain = Defaults.Float64Domain;
-            var lhs = RandomIndex<double>(domain, config.SampleSize);
-            var rhs = RandomIndex<double>(domain, config.SampleSize);
-            var veclen = Vec128<double>.Length;
-            var sw = stopwatch();
-            
-            sw.Restart();
-            for(var j = 0; j<config.Reps; j++)
-                for(var k = 0; k < lhs.Length; k+= veclen)
-                    addDelegate(Vec128.load(lhs[k],k), Vec128.load(rhs[k],k));            
-            inform($"Delegate: {ticksToMs(elapsed(sw))}ms");
-            
-            sw.Restart();
-            for(var j = 0; j<config.Reps; j++)
-                for(var k = 0; k < lhs.Length; k+= veclen)
-                    addGeneric(Vec128.load(lhs[k],k), Vec128.load(rhs[k],k));            
-            inform($"Generic: {ticksToMs(elapsed(sw))}ms");
-            
-            sw.Restart();
-            for(var j = 0; j<config.Reps; j++)
-                for(var k = 0; k < lhs.Length; k+= veclen)
-                    addDirect(Vec128.load(lhs[k],k), Vec128.load(rhs[k],k));            
-            inform($"Direct: {ticksToMs(elapsed(sw))}ms");
 
-        }
-        void TestAdd54()
-        {
-            var config = BenchConfig.Default;
-            var domain = Defaults.Float64Domain;
-            var lhs = Vec128.stream(RandomIndex<double>(domain, config.SampleSize)).ToList();
-            var rhs = Vec128.stream(RandomIndex<double>(domain, config.SampleSize)).ToList();
-            var veclen = Vec128<double>.Length;
-            var sw = stopwatch();
-            var generic = 0L;
-            var direct = 0L;
-            var del = 0L;
-
-            var f = InX.addg<double>();
-
-            for(var j = 0; j<10; j++)
-            {
-                sw.Restart();
-                for(var i = 0; i< 10; i++)
-                    for(var k = 0; k < lhs.Count; k++)
-                        InX.addg(lhs[k],rhs[k]);
-                    
-                generic += elapsed(sw);
-                inform($"Generic: {ticksToMs(elapsed(sw))}ms");
-
-                sw.Restart();
-                for(var i = 0; i< 10; i++)
-                    for(var k = 0; k < lhs.Count; k++)
-                        InX.add(lhs[k],rhs[k]);
-                direct += elapsed(sw);
-                inform($"Direct: {ticksToMs(elapsed(sw))}ms");
-
-                sw.Restart();
-                for(var i = 0; i< 10; i++)
-                    for(var k = 0; k < lhs.Count; k++)
-                        f(lhs[k],rhs[k]);
-                del += elapsed(sw);
-                inform($"Delegate: {ticksToMs(elapsed(sw))}ms");
-
-            }
-
-
-            inform($"Generic Total = {ticksToMs(generic)}ms");
-            inform($"Direct Total = {ticksToMs(direct)}ms");
-            inform($"Delegate Total = {ticksToMs(del)}ms");
-
-        }
-
-
-        void TestAdd50()
-        {
-            var config = BenchConfig.Default;
-            var domain = Defaults.Float64Domain;
-            var lhs = RandomIndex<double>(domain, config.SampleSize);
-            var rhs = RandomIndex<double>(domain, config.SampleSize);
-            var veclen = Vec128<double>.Length;
-            var sw = stopwatch();
-            var generic = 0L;            
-            var direct = 0L;
-            for(var j = 0; j<10; j++)
-            {
-                sw.Restart();
-                for(var i = 0; i< 10; i++)
-                    InX.addg(lhs,rhs);
-                generic += elapsed(sw);
-                inform($"Generic: {ticksToMs(elapsed(sw))}ms");
-
-                sw.Restart();
-                for(var i = 0; i< 10; i++)
-                    InX.add(lhs,rhs);
-                direct += elapsed(sw);
-                inform($"Direct: {ticksToMs(elapsed(sw))}ms");
-
-            }
-
-
-            inform($"Generic Total = {ticksToMs(generic)}ms");
-            inform($"Direct Total = {ticksToMs(direct)}ms");
-
-        }
 
         void HistoTest<T>(Interval<T> domain, T? grain = null)
             where T : struct, IEquatable<T>
@@ -235,7 +90,7 @@ namespace Z0
             CheckRandomBounds(domain);
 
             var width = primops.sub(domain.right, domain.left);
-            var data = RandomIndex(domain, Pow2.T20);
+            var data = Randomizer.Array(domain, Pow2.T20);
             var histo = new Histogram<T>(domain, grain ?? (primops.div(width,convert<T>(100))));
             histo.Deposit(data);  
 
@@ -282,7 +137,7 @@ namespace Z0
         {
             var domain = Interval.leftclosed(-150.0d, 150.0d).canonical();
             CheckRandomBounds(domain);            
-            var stream = RandomStream(domain);
+            var stream = Randomizer.Stream(domain);
             var samples = stream.Freeze(Pow2.T20);
             
             inform($"Domain = {domain} | Min = {samples.Min()} | Max = {samples.Max()}");
@@ -296,7 +151,7 @@ namespace Z0
         void TestBenchmarks()
         {
             var domain = Interval.leftclosed(-150.0d, 150.0d).canonical();
-            var stream = RandomStream(domain).Freeze(Pow2.T20);
+            var stream = Randomizer.Stream(domain).Freeze(Pow2.T20);
 
             double SumInX()
             {
@@ -343,7 +198,7 @@ namespace Z0
         void TestInXSum()
         {
             var domain = Interval.leftclosed(-150.0d, 150.0d).canonical();
-            var stream = RandomStream(domain);
+            var stream = Randomizer.Stream(domain);
             var src = stream.Freeze(Pow2.T20);
             var expect = Math.Round(src.Sum(),4);
             var result = Math.Round(src.InXSum(),4);
@@ -413,61 +268,33 @@ namespace Z0
             => Task.Factory.StartNew(f);
         IEnumerable<BenchComparison> RunBenchComparisons()
         {                        
-            var warmup = GenericBench.Init(BenchConfig.Define(200,(int)Pow2.T10)).Compare(OpInfo.AddRep);
+            var warmup = GenericBench.Init(new BenchConfig(200,Pow2.T10, Pow2.T10)).Compare(OpInfo.AddRep);
             warmup.ToList();
 
-            var config = BenchConfig.Define(1200,(int)Pow2.T18);
-            var add =  task(() => Benchmark(config, OpInfo.AddRep).ToList());
-            var sub = task(() => Benchmark(config, OpInfo.SubRep).ToList());
-            var mul = task(() => Benchmark(config, OpInfo.MulRep).ToList());
-            var div = task(() => Benchmark(config, OpInfo.DivRep).ToList());
-            var mod = task(() => Benchmark(config, OpInfo.ModRep).ToList());
-            Task.WaitAll(add,sub,mul,div,mod);
-            var results = new List<BenchComparison>();
-            results.AddRange(add.Result);
-            results.AddRange(sub.Result);
-            results.AddRange(mul.Result);
-            results.AddRange(div.Result);
-            results.AddRange(mod.Result);
-            return results;
+            var config = new BenchConfig(1400,Pow2.T18,Pow2.T18);
             
-            //var bench = GenericBench.Init(config);
+            foreach(var result in Benchmark(config, OpInfo.AddRep))
+                yield return result;
 
-            // foreach(var comparison in bench.Compare(OpInfo.AddRep))
-            //     yield return comparison;
+            foreach(var result in Benchmark(config, OpInfo.SubRep))
+                yield return result;
 
-            // foreach(var comparison in bench.Compare(OpInfo.SubRep))
-            //     yield return comparison;
+            foreach(var result in Benchmark(config, OpInfo.MulRep))
+                yield return result;
 
-            // foreach(var comparison in bench.Compare(OpInfo.MulRep))
-            //     yield return comparison;
+            foreach(var result in Benchmark(config, OpInfo.DivRep))
+                yield return result;
 
-            // foreach(var comparison in bench.Compare(OpInfo.DivRep))
-            //     yield return comparison;
-
-            // foreach(var comparison in bench.Compare(OpInfo.ModRep))
-            //     yield return comparison;
+            foreach(var result in Benchmark(config, OpInfo.ModRep))
+                yield return result;
 
         }
 
-        void print(BenchComparison comparison)
+        static void print(BenchComparison comparison)
         {
             zcore.print(comparison.LeftBench.Description);
             zcore.print(comparison.RightBench.Description);
-            var delta = comparison.CalcDelta();
-
-            
-            var width = Math.Abs(delta.TimingDelta.Ms);
-            var percent = Math.Round((width / ((double) Math.Min(delta.LeftDuration.Ms, delta.RightDuration.Ms)))* 100.0,4) ;
-            var description = append(
-                $"{delta.DeltaTitle} {delta.OpId}", 
-                $" | Left Time  = {delta.LeftDuration.Ms} ms",
-                $" | Right Time = {delta.RightDuration.Ms} ms",
-                $" | Difference = {delta.TimingDelta.Ms} ms",
-                $" | Winner = {delta.Winner} by {width} ms = {percent} %"
-                );
-            var message = AppMsg.Define(description,  delta.LeftWins ? SeverityLevel.Warning : SeverityLevel.Info);
-            zcore.print(message);
+            zcore.print(comparison.CalcDelta().Description);
 
         }
 
@@ -481,30 +308,30 @@ namespace Z0
         Duration SumGeneric<T>(int cycles, int reps)
             where T :struct, IEquatable<T>
         {
-            var src = num.numbers(RandomArray<T>(reps));
-            var t1 = begin("num[int] addition");
+            var src = num.numbers(Randomizer.Array<T>(reps));
+            var t1 = Timing.begin("num[int] addition");
             var r1 = num<T>.Zero;
             for(var i=0; i< cycles; i++)
                 r1 = src.Sum();
-            return end(t1);
+            return Timing.end(t1);
 
         }
 
         Duration SumDirect(PrimalInfo.I32 prim, int cycles, int reps)
         {
-            var src = num.numbers(RandomArray<int>(reps));
-            var t = begin("num addition");
+            var src = num.numbers(Randomizer.Array<int>(reps));
+            var t = Timing.begin("num addition");
             var r = 0;
             for(var i=0; i< cycles; i++)
                 r = src.Sum();
-            return end(t);
+            return Timing.end(t);
 
         }
 
         [MethodImpl(Inline)]
         Duration transform(PrimalInfo.I32 prim, int cycles,  int[] src, int[] dst)
         {
-            var t = begin($"int transformation");
+            var t = Timing.begin($"int transformation");
             for(var cycle = 0; cycle < cycles; cycle ++)
             for(var i = 0; i< src.Length; i++)
             {
@@ -512,7 +339,17 @@ namespace Z0
                 dst[i] = input*input - input;
             }        
         
-            return end(t);
+            return Timing.end(t);
+        }
+
+        void RunGBench()
+        {
+            
+            var gbench = GBench.Create(
+                BenchConfig.Default, 
+                Z0.Randomizer.define(RandSeeds.BenchSeed)
+                );
+            gbench.Run();
         }
 
 
@@ -521,29 +358,29 @@ namespace Z0
         {
             var reps = Pow2.T20;
 
-            var t1 = begin("Initializing");
+            var t1 = Timing.begin("Initializing");
             gmath.init();
-            end(t1);
+            Timing.end(t1);
 
-            var t2 = begin("Sampling");
-            var lhs1 = RandomArray<T>(reps);
-            var rhs1 = RandomArray<T>(reps);
-            var lhs2 = RandomArray<T>(reps);
-            var rhs2 = RandomArray<T>(reps);
-            end(t2);
+            var t2 = Timing.begin("Sampling");
+            var lhs1 = Randomizer.Array<T>(reps);
+            var rhs1 = Randomizer.Array<T>(reps);
+            var lhs2 = Randomizer.Array<T>(reps);
+            var rhs2 = Randomizer.Array<T>(reps);
+            Timing.end(t2);
 
-            var t5 = begin("Allocating");
+            var t5 = Timing.begin("Allocating");
             var dst1 = alloc<T>(reps);
             var dst2 = alloc<T>(reps);
-            end(t5);
+            Timing.end(t5);
 
-            var t3 = begin("Operation 1");
-            gmath.add(RandomArray<T>(reps), RandomArray<T>(reps), dst1);
-            end(t3);
+            var t3 = Timing.begin("Operation 1");
+            gmath.add(Randomizer.Array<T>(reps), Randomizer.Array<T>(reps), dst1);
+            Timing.end(t3);
 
-            var t4 = begin("Operation 2");
-            gmath.add(RandomArray<T>(reps), RandomArray<T>(reps), dst2);
-            end(t4);
+            var t4 = Timing.begin("Operation 2");
+            gmath.add(Randomizer.Array<T>(reps), Randomizer.Array<T>(reps), dst2);
+            Timing.end(t4);
 
         }
 
@@ -556,10 +393,10 @@ namespace Z0
             try
             {
                 var app = new App();
-                //app.RunBenchmarks();
-                //app.RunTests();
-                //app.TestAdd54();
-                app.RunBench();
+
+                app.RunGBench();
+                //app.RunBench();
+                //app.TestGInXAdd();
                 
             }
             catch(Exception e)

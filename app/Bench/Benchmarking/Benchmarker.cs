@@ -55,7 +55,7 @@ namespace Z0.Bench
         TimedOpConvert<T> OpConvert {get;}
 
         Index<T> Sample()
-            => RandomIndex<T>(Domain, Config.SampleSize);
+            => Randomizer.Array<T>(Domain, Config.SampleSize);
                     
         BenchResult RunCycle(int cycle, Index<T> lhs, Index<T> rhs, Func<Index<T>, Index<T>, long> worker)
         {
@@ -95,7 +95,7 @@ namespace Z0.Bench
             => RunCycles(Sample(), Sample(), (x,y) => Op(x, y,  out Index<bool> z));
                             
         BenchResult Run(TimedAggOp<T> Op)
-            => Run(RandomIndex<T>(Domain, Config.SampleSize), x => Op(x,  out T z));
+            => Run(Randomizer.Array<T>(Domain, Config.SampleSize), x => Op(x,  out T z));
                         
         BenchResult Run(Index<T> src, Func<Index<T>, long> worker)
         {
@@ -108,7 +108,7 @@ namespace Z0.Bench
 
         BenchResult Run(TimedFusedUnaryOp<T> Op)
             => Run(
-                RandomIndex<T>(Domain, Config.SampleSize),
+                Randomizer.Array<T>(Domain, Config.SampleSize),
                         x => Op(x, out Index<T> z));
 
        BenchResult Run(TimedFusedBinOp<T> Op)

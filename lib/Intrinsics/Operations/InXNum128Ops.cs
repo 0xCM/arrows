@@ -28,19 +28,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => Eq.lookup<T,Num128BinPred<T>>();
 
-        //! add
-
-        static readonly PrimalIndex Add = PrimalKinds.index<object>
-            (
-                @float : new Num128BinOp<float>(InX.add),
-                @double : new Num128BinOp<double>(InX.add)
-            );
-
-        [MethodImpl(Inline)]
-        public static Num128BinOp<T> add<T>()
-            where T : struct, IEquatable<T>
-                => Add.lookup<T,Num128BinOp<T>>();
-
         //! sub
 
         static readonly PrimalIndex Sub = PrimalKinds.index<object>
@@ -58,8 +45,8 @@ namespace Z0
 
         static readonly PrimalIndex Div = PrimalKinds.index<object>
             (
-                @float : new Num128BinOp<float>(InX.div),
-                @double : new Num128BinOp<double>(InX.div)
+                @float : new Num128BinOp<float>(dinx.div),
+                @double : new Num128BinOp<double>(dinx.div)
             );
 
         [MethodImpl(Inline)]
@@ -91,7 +78,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Num128TernaryOp<T> muladd<T>()
             where T : struct, IEquatable<T>
-                => Add.lookup<T,Num128TernaryOp<T>>();
+                => Mul.lookup<T,Num128TernaryOp<T>>();
 
 
         //! min
@@ -123,8 +110,8 @@ namespace Z0
         //! div
         static readonly PrimalIndex CmpF = PrimalKinds.index<object>
             (
-                @float : new Num128CmpFloat<float>(InX.cmpf),
-                @double : new Num128CmpFloat<double>(InX.cmpf)
+                @float : new Num128CmpFloat<float>(dinx.cmpf),
+                @double : new Num128CmpFloat<double>(dinx.cmpf)
             );
 
 
@@ -137,12 +124,6 @@ namespace Z0
 
     static class Num128OpCache
     {
-        public readonly struct Add<T>
-            where T : struct, IEquatable<T>
-        {
-            public static Num128BinOp<T> Op = Num128Delegates.add<T>();
-
-        }
 
         public readonly struct Sub<T>
             where T : struct, IEquatable<T>
@@ -211,10 +192,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => Num128OpCache.Eq<T>.Op(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public static Num128<T> add<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
-                => Num128OpCache.Add<T>.Op(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static Num128<T> sub<T>(in Num128<T> lhs, in Num128<T> rhs)

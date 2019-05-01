@@ -17,14 +17,14 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static PrimalFusedBinOp<T> add<T>()
-            where T : struct, IEquatable<T>
-                => InX.Add<T>.Op;
-
-        [MethodImpl(Inline)]
         public static Index<T> add<T>(in Index<T> lhs, in Index<T> rhs)
             where T : struct, IEquatable<T>
-                => add<T>()(lhs,rhs);
+        {
+            var dst = alloc<T>(lhs.Length);
+            ginx.add(lhs,rhs, ref dst);
+            return dst;
+
+        }
 
         [MethodImpl(Inline)]
         public static PrimalFusedBinOp<T> sub<T>()

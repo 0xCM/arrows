@@ -28,17 +28,17 @@ namespace Z0.Testing
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();            
-            var timing = begin($"{OpName}{kind} verification");
+            var timing = Timing.begin($"{OpName}{kind} verification");
                         
             var config = Defaults.get<T>();
-            var src = RandomIndex<T>(config.Domain, config.SampleSize, filter);
-            for(var i = 0; i<src.Count; i++)
+            var src = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
+            for(var i = 0; i<src.Length; i++)
             {
                 var x = src[i];
                 Claim.eq(RefOp(x),PrimOp(x));
             }
             
-            end(timing);
+            Timing.end(timing);
 
 
             Emit();
@@ -48,19 +48,19 @@ namespace Z0.Testing
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();            
-            var timing = begin($"{OpName}{kind} verification");
+            var timing = Timing.begin($"{OpName}{kind} verification");
             
             var config = Defaults.get<T>();
-            var lhs = RandomIndex<T>(config.Domain, config.SampleSize, filter);
-            var rhs = RandomIndex<T>(config.Domain, config.SampleSize, filter);
-            for(var i = 0; i<lhs.Count; i++)
+            var lhs = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
+            var rhs = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
+            for(var i = 0; i<lhs.Length; i++)
             {
                 var x = lhs[i];
                 var y = rhs[i];
                 Claim.eq(RefOp(x,y),PrimOp(x,y));
             }
             
-            end(timing);
+            Timing.end(timing);
 
 
             Emit();
@@ -70,19 +70,19 @@ namespace Z0.Testing
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();            
-            var timing = begin($"{OpName}{kind} verification");
+            var timing = Timing.begin($"{OpName}{kind} verification");
             
             var config = Defaults.get<T>();
-            var lhs = RandomIndex<T>(config.Domain, config.SampleSize, filter);
-            var rhs = RandomIndex<T>(config.Domain, config.SampleSize, filter);
-            for(var i = 0; i<lhs.Count; i++)
+            var lhs = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
+            var rhs = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
+            for(var i = 0; i<lhs.Length; i++)
             {
                 var x = lhs[i];
                 var y = rhs[i];
                 Claim.eq(RefOp(x,y),PrimOp(x,y));
             }
             
-            end(timing);
+            Timing.end(timing);
 
 
             Emit();
@@ -120,7 +120,7 @@ namespace Z0.Testing
             => array<T>(SampleSize);
         
         protected Index<T> sample()
-            => Randomizer<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Take(SampleSize).ToIndex();
+            => Randomizer.Random<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Take(SampleSize).ToIndex();
 
       
         [Repeat(Defaults.Reps)]

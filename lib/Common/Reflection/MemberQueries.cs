@@ -123,40 +123,5 @@ namespace Z0
         public static string FullDisplayName(this MethodBase src)
             => $"{src.DeclaringType.DisplayName()}{src.DisplayName()}";
 
-        [MethodImpl(Inline)]
-        public static string DisplayName(this MethodBase src)
-        {
-            var attrib = src.GetCustomAttribute<DisplayNameAttribute>();
-            return attrib != null ? attrib.DisplayName.TrimEnd('/') : src.Name;
-        }
-
-        /// <summary>
-        /// Constructs a display name for a type
-        /// </summary>
-        /// <param name="src">The source type</param>
-        public static string DisplayName(this Type src)
-        {
-            var attrib = src.GetCustomAttribute<DisplayNameAttribute>();
-            if (attrib != null)
-                return attrib.DisplayName;
-
-            if (!src.IsGenericType)
-                return src.Name;
-
-            if (src.IsConstructedGenericType)
-            {
-                var typeArgs = src.GenericTypeArguments;
-                var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
-                var typeName = src.Name.Replace($"`{typeArgs.Length}", string.Empty);
-                return append(typeName, "<", argFmt, ">");
-            }
-            else
-            {
-                var typeArgs = src.GetGenericTypeDefinition().GetGenericArguments();
-                var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
-                var typeName = src.Name.Replace($"`{typeArgs.Length}", string.Empty);
-                return append(typeName, "<", argFmt, ">");
-            }
-        }
     }
 }

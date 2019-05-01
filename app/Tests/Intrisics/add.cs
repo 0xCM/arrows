@@ -25,11 +25,6 @@ namespace Z0.Tests.InXTests
 
         }
 
-        protected override PrimalFusedBinOp<T> IndexOp {get;} 
-            = PrimalFusion.add;    
-
-        protected override Vec128BinOp<T> VecOp {get;}
-            = InXVec128Ops.add; 
 
         public virtual void VerifyGeneric()
         {                

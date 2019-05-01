@@ -18,6 +18,7 @@ namespace Z0.Bench
 
     
     
+
     public class GenericBench : Context<App>        
     {
         public static GenericBench Init(BenchConfig config = null)
@@ -81,8 +82,8 @@ namespace Z0.Bench
         T[] Sample<T>(bool nonzero = false)
             where T : struct, IEquatable<T>        
                 => nonzero 
-                 ? RandomArray<T>(Config.Reps,x => gmath.neq(x,gmath.zero<T>())) 
-                 : RandomArray<T>(Config.Reps);
+                 ? Randomizer.Array<T>(Config.Reps,x => gmath.neq(x,gmath.zero<T>())) 
+                 : Randomizer.Array<T>(Config.Reps);
         
         T[] Target<T>()
             where T : struct, IEquatable<T>        

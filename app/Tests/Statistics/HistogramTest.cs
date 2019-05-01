@@ -24,10 +24,8 @@ namespace Z0.Tests
         void HistoTest<T>(Interval<T> domain, T? grain = null)
             where T : struct, IEquatable<T>
         {            
-            //CheckRandomBounds(domain);
-
             var width = primops.sub(domain.right, domain.left);
-            var data = RandomIndex(domain, Pow2.T14);
+            var data = Randomizer.Array(domain, Pow2.T14);
             var histo = new Histogram<T>(domain, grain ?? (primops.div(width,convert<T>(100))));
             histo.Deposit(data);  
 

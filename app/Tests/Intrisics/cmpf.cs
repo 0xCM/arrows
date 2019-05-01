@@ -197,7 +197,7 @@ namespace Z0.Tests.InXTests
                 {
                     var x0 = Vec128.define(-1.5, 8.9);
                     var x1 = Vec128.define(-4.7, 3.2);
-                    var result = InX.cmpf(x0,x1,FloatCompareKind.LtOrdNS);
+                    var result = dinx.cmpf(x0,x1,FloatCompareKind.LtOrdNS);
                     trace($"{x0} < {x1} = {result}");                
                 }
 
@@ -205,7 +205,7 @@ namespace Z0.Tests.InXTests
                 {
                     var x0 = Vec128.define(-1.0, -1.0);
                     var x1 = Vec128.define(1.0, 1.0);
-                    var result = InX.cmpf(x0,x1,FloatCompareKind.LtOrdNS);
+                    var result = dinx.cmpf(x0,x1,FloatCompareKind.LtOrdNS);
                     trace($"{x0} < {x1} = {result}");
                 }
 
@@ -213,7 +213,7 @@ namespace Z0.Tests.InXTests
                 {
                     var x0 = Vec128.define(1.0, -1.0);
                     var x1 = Vec128.define(1.0, 1.0);
-                    var result = InX.cmpf(x0,x1,FloatCompareKind.LtOrdNS);
+                    var result = dinx.cmpf(x0,x1,FloatCompareKind.LtOrdNS);
                     trace($"{x0} < {x1} = {result}");
                 }
 

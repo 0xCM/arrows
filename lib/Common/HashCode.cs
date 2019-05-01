@@ -33,34 +33,6 @@ namespace Z0
             => boxed;
     }
 
-    public static class HashCodeX
-    {
-         //Prime numbers to use when generating a hash code. Taken from John Skeet's answer on SO:
-        //http://stackoverflow.com/questions/263400/what-is-the-best-algorithm-for-an-overridden-system-object-gethashcode
-        const int P1 = 17;
-        const int P2 = 23;
-
-        /// <summary>
-        /// Helper to compute hash code from a collection of items
-        /// </summary>
-        /// <typeparam name="S">The item type</typeparam>
-        /// <param name="items">The items</param>
-        /// <returns></returns>
-        public static int HashCode<S>(this IEnumerable<S> items)
-        {
-            if (items == null)
-                return 0;
-
-            unchecked
-            {
-                var hash = P1;
-                foreach (var item in items)
-                    hash = hash * P2 + item.GetHashCode();
-                return hash;
-            }
-        }
-
-    }
 
     /// <summary>
     /// Represents a (.Net) hash code and defines related operations

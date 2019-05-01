@@ -19,7 +19,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Index<T> AndG<T>(this Index<T> lhs, Index<T> rhs)
             where T : struct, IEquatable<T>
-                => InXFusionOps.add<T>()(lhs,rhs);
+                => InXFusionOps.and<T>()(lhs,rhs);
         
         [MethodImpl(Inline)]
         public static unsafe Index<sbyte> InXAnd(this Index<sbyte> lhs, Index<sbyte> rhs)
