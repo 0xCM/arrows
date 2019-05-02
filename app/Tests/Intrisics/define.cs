@@ -40,7 +40,7 @@ namespace Z0.Tests.InX128
             var src = new int[]{-50,-25,25,50};
             var dst = new int[src.Length];
             var v1 = Vec128.single(src);
-            InX.store(v1, dst, 0);
+            dinx.store(v1, dst, 0);
             var v2 = Vec128.single(dst);
             Claim.eq(v1,v2);
         }
@@ -56,7 +56,7 @@ namespace Z0.Tests.InX128
             var dst = alloc<uint>(mem.TotalLength); 
             var src = Randomizer.Array<uint>(Interval.closed(10u,500u), mem.TotalLength);
             var vectors = Vec128UInt32Stream(src).ToArray();
-            InX.store(vectors,dst);
+            dinx.store(vectors,dst);
 
             void ValidatePart(int cix, int pix)
             {

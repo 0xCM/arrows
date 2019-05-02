@@ -236,7 +236,7 @@ partial class zcore
 
     [MethodImpl(Inline)]   
     public static Duration snapshot(Stopwatch sw)     
-        => Duration.define(sw.ElapsedTicks);        
+        => Duration.Define(sw.ElapsedTicks);        
 
     /// <summary>
     /// Demands truth that is enforced with an exeption upon false

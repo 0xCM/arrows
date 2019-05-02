@@ -25,6 +25,15 @@ namespace Z0
         protected AppMsg ConfigStats
             => AppMsg.Define($"Cycles = {Config.Cycles}, Reps = {Config.Reps}, Ops = {Config.Cycles * Config.Reps}", SeverityLevel.Info);
 
+
+        protected void print(BenchComparison comparison)
+        {
+            zcore.print(comparison.LeftBench.Description);
+            zcore.print(comparison.RightBench.Description);
+            zcore.print(comparison.CalcDelta().Description);
+
+        }
+
     }
 
 

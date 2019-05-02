@@ -14,6 +14,10 @@ namespace Z0
     {
         public static IEnumerable<OpKind> All
             => typeof(OpKind).GetEnumValues().AsQueryable().Cast<OpKind>();
+    
+        public static OpId OpId<T>(this OpKind kind)
+            where T : struct, IEquatable<T>
+                => Z0.OpId.Define<T>(kind);
     }
 
     public enum OpKind

@@ -14,6 +14,9 @@ namespace Z0
 
     public class BenchDelta 
     {
+        public static BenchDelta Calc(BenchComparison comparison)
+            => new BenchDelta(comparison);
+
         public BenchDelta(BenchComparison Comparison)
         {
             this.Comparison = Comparison;
@@ -39,10 +42,8 @@ namespace Z0
         public long OpCount
             => Comparison.LeftBench.OpCount;
 
-
         public OpId OpId
             => Comparison.LeftBench.Operator;
-
 
         public Duration LeftDuration
             => Comparison.LeftBench.Measured;
@@ -66,23 +67,40 @@ namespace Z0
             => LeftWins ? LeftTitle :
                RightWins ? RightTitle :
                "tie";
-               
+
+        static string deltaTitle(BenchComparison c)               
+            => $"{c.LeftBench.Title} vs {c.RightBench.Title}";
+
+        static Duration deltaTiming(BenchComparison c)               
+            => c.LeftBench.Measured - c.RightBench.Measured;
+
 
         static AppMsg Describe(BenchComparison comparison)
         {
-            var delta = comparison.CalcDelta();            
-            var width = Math.Abs(delta.TimingDelta.Ms);
-            var percent = Math.Round((width / ((double) Math.Min(delta.LeftDuration.Ms, delta.RightDuration.Ms)))* 100.0,4) ;
+            var title = deltaTitle(comparison);
+            var timing = deltaTiming(comparison);
+            var width = Math.Abs(timing.Ms);
+            var leftDuration = comparison.LeftBench.Measured;
+            var rightDuration = comparison.RightBench.Measured;
+            var ratio = Math.Round((double)leftDuration.Ticks / (double)rightDuration.Ticks, 4);
+            var opid = comparison.LeftBench.Operator;
             var description = append(
-                $"{delta.DeltaTitle} {delta.OpId}", 
-                $" | Left Time  = {delta.LeftDuration.Ms} ms",
-                $" | Right Time = {delta.RightDuration.Ms} ms",
-                $" | Difference = {delta.TimingDelta.Ms} ms",
-                $" | Winner = {delta.Winner} by {width} ms = {percent} %"
+                $"{title} {opid}", 
+                $" | Left Time  = {leftDuration.Ms} ms",
+                $" | Right Time = {rightDuration.Ms} ms",
+                $" | Difference = {timing.Ms} ms",
+                $" | Performance Ratio = {ratio}"
                 );
-            return AppMsg.Define(description,  delta.LeftWins ? SeverityLevel.Warning : SeverityLevel.Info);            
+            return AppMsg.Define(description,  SeverityLevel.Perform);
         }
 
+    }
+
+
+    public static class BenchComparisonX
+    {
+        public static BenchDelta CalcDelta(this BenchComparison comparison)
+            => BenchDelta.Calc(comparison);
     }
 
 

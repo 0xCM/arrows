@@ -115,6 +115,14 @@ namespace Z0
         
         static string Eq = $" = ";
 
+        public static AppMsg PairCycleStatus(string title, OpId opid, int cycle, Duration leftDuration, Duration rightDuration)
+            => AppMsg.Define(append(
+                    $"{title}/{opid} running".PadRight(28), 
+                     Pipe, "Cycle", Eq, $"{cycle}".PadRight(5), 
+                     Pipe, "Direct Duration", Eq, $"{leftDuration}".PadRight(12),
+                     Pipe, "Generic Duration", Eq, $"{rightDuration}".PadRight(28)
+                     ), SeverityLevel.Perform);
+
         public static AppMsg CycleEnd(string title, OpId opid, int cycle, Duration cycleDuration, long totalOpCount, Duration totalDuration)
             => AppMsg.Define(append(
                     $"{title}/{opid} running".PadRight(28), 

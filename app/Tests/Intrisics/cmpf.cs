@@ -24,16 +24,12 @@ namespace Z0.Tests.InXTests
         where S : CmpFTest<S,T>
         where T : struct, IEquatable<T>
     {        
-        protected static readonly Vec128CmpFloat<T> cmpf = InXVec128Ops.cmpf;
-        
         protected CmpFTest(Interval<T>? domain = null, int? streamlen = null)
             : base("cmp", domain, streamlen)        
         {
 
         }
 
-        protected virtual Index<bool[]> Results(FloatCompareKind mode)
-            => fuse(LeftVecSrc,RightVecSrc, (x,y) =>  cmpf(x,y,mode));
 
         protected abstract bool[] Cmp(Index<T> x, Index<T> y, FloatCompareKind mode);
 
@@ -47,7 +43,7 @@ namespace Z0.Tests.InXTests
 
                 var lArr = lVec.ToArray();
                 var rArr = rVec.ToArray();
-                var actual = cmpf(lVec,rVec,mode);
+                //var actual = cmpf(lVec,rVec,mode);
                 var expect = Cmp(lArr,rArr,mode);
             }
         }

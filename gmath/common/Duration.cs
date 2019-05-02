@@ -18,12 +18,15 @@ namespace Z0
     {
         public static readonly Duration Zero = new Duration(0);
         
-        public static Duration define(long ticks)
+        public static Duration Define(long ticks)
             => new Duration(ticks);
 
         public static Duration mark(Stopwatch sw)
-            => define(sw.ElapsedTicks);
+            => Define(sw.ElapsedTicks);
 
+        public static implicit operator Duration(long ticks)
+            => Define(ticks);
+            
         public static Duration operator +(Duration lhs, Duration rhs)
             => new Duration(lhs.Ticks + rhs.Ticks);
 
@@ -55,6 +58,9 @@ namespace Z0
         
         public readonly long Ticks;
         
+        public Duration Half()
+            => new Duration(Ticks/2);
+
         public readonly long Ms
             => ticksToMs(Ticks);
 

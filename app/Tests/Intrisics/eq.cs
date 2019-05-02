@@ -20,7 +20,6 @@ namespace Z0.Tests.InXTests
         where S : EqTest<S,T>
         where T : struct, IEquatable<T>
     {
-        protected static readonly Vec128BinPred<T> eq = InXVec128Ops.eq;        
                 
         protected EqTest(Interval<T>? domain = null, int? sampleSize = null)
             : base(P.eq, domain, sampleSize)        
@@ -30,8 +29,9 @@ namespace Z0.Tests.InXTests
                 
         protected IEnumerable<bool> Results()
         {
-            for(var i = 0; i< VecCount; i++)
-                yield return eq(LeftVecSrc[i], LeftVecSrc[i]);            
+            yield return false;
+            // for(var i = 0; i< VecCount; i++)
+            //     yield return eq(LeftVecSrc[i], LeftVecSrc[i]);            
         }
 
         public virtual void Apply()

@@ -101,6 +101,17 @@ static class zcore
         return lx;
     }
 
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(Index<T> lhs, Index<T> rhs)
+    {
+        var lx = lhs.Length;
+        var ly = rhs.Length;
+        if(lx != ly)
+            throw new Exception($"The lengths of the input arrays do not match: {lx} != {ly}");
+        return lx;
+    }
+
     /// <summary>
     /// Shorthand for the <see cref="string.IsNullOrEmpty(string)"/> method
     /// </summary>
@@ -416,6 +427,28 @@ static class zcore
     [MethodImpl(Inline)]   
     public static T cast<T>(object src) 
         => (T) src;
+
+    [MethodImpl(Inline)]   
+    public static Duration snapshot(Stopwatch sw)     
+        => Duration.Define(sw.ElapsedTicks);        
+
+    public static BenchSummary micromark(string title, OpId op, int cycles, int reps, Repeat repeater)
+    {
+        var runtime = stopwatch();
+        var duration = default(Duration);
+        var opcount = 0L;
+        for(var cycle = 1; cycle<=cycles; cycle++)
+        {
+            var sw = stopwatch();
+            var cycleDuration = repeater(reps);
+            duration += cycleDuration;
+            opcount += reps;
+            if(cycle % 100 == 0)
+                print(BenchmarkMessages.CycleEnd(title, op, cycle, cycleDuration, opcount, duration));
+        }  
+        return new BenchSummary(title, op, opcount, duration, snapshot(runtime));
+
+    }
 
 
 

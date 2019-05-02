@@ -21,15 +21,13 @@ namespace Z0
         {
             this.LeftBench = LeftBench;
             this.RightBench = RightBench;
-        }
 
+            
+        }
 
         public BenchSummary LeftBench {get;}
 
         public BenchSummary RightBench {get;}
-
-        public BenchDelta CalcDelta()
-            => new BenchDelta(this);
     
     }
 

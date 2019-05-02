@@ -212,8 +212,8 @@ namespace Z0
             var opSets = items(OpSet.All);
             var opKinds = literals<OpKind>();
             var primKinds = literals<PrimalKind>();
-            var specs = BenchSpecs.Choose(opKinds, opSets, primKinds);
-            Benchmarker.Run(specs);
+            // var specs = BenchSpecs.Choose(opKinds, opSets, primKinds);
+            // Benchmarker.Run(specs);
         }
 
         void RunTests()
@@ -224,84 +224,10 @@ namespace Z0
 
         }
 
-        IEnumerable<BenchComparison> Benchmark(BenchConfig config, OpInfo.Add rep)
+
+        public void RunPrimalBench()
         {
-            var bench = GenericBench.Init(config);
-            foreach(var comparison in bench.Compare(rep))
-                yield return comparison;
-
-        }
-
-        IEnumerable<BenchComparison> Benchmark(BenchConfig config, OpInfo.Sub rep)
-        {
-            var bench = GenericBench.Init(config);
-            foreach(var comparison in bench.Compare(rep))
-                yield return comparison;
-
-        }
-
-        IEnumerable<BenchComparison> Benchmark(BenchConfig config, OpInfo.Mul rep)
-        {
-            var bench = GenericBench.Init(config);
-            foreach(var comparison in bench.Compare(rep))
-                yield return comparison;
-
-        }
-
-        IEnumerable<BenchComparison> Benchmark(BenchConfig config, OpInfo.Div rep)
-        {
-            var bench = GenericBench.Init(config);
-            foreach(var comparison in bench.Compare(rep))
-                yield return comparison;
-
-        }
-
-        IEnumerable<BenchComparison> Benchmark(BenchConfig config, OpInfo.Mod rep)
-        {
-            var bench = GenericBench.Init(config);
-            foreach(var comparison in bench.Compare(rep))
-                yield return comparison;
-
-        }
-
-        static Task<T> task<T>(Func<T> f)
-            => Task.Factory.StartNew(f);
-        IEnumerable<BenchComparison> RunBenchComparisons()
-        {                        
-            var warmup = GenericBench.Init(new BenchConfig(200,Pow2.T10, Pow2.T10)).Compare(OpInfo.AddRep);
-            warmup.ToList();
-
-            var config = new BenchConfig(1400,Pow2.T18,Pow2.T18);
-            
-            foreach(var result in Benchmark(config, OpInfo.AddRep))
-                yield return result;
-
-            foreach(var result in Benchmark(config, OpInfo.SubRep))
-                yield return result;
-
-            foreach(var result in Benchmark(config, OpInfo.MulRep))
-                yield return result;
-
-            foreach(var result in Benchmark(config, OpInfo.DivRep))
-                yield return result;
-
-            foreach(var result in Benchmark(config, OpInfo.ModRep))
-                yield return result;
-
-        }
-
-        static void print(BenchComparison comparison)
-        {
-            zcore.print(comparison.LeftBench.Description);
-            zcore.print(comparison.RightBench.Description);
-            zcore.print(comparison.CalcDelta().Description);
-
-        }
-
-        public void RunBench()
-        {
-            var comparisons = RunBenchComparisons().ToList();
-            iter(comparisons, print);
+            PrimalBench.Create(PrimalBench.DefaultConfig, Randomizer).Run();
 
         }
 
@@ -345,7 +271,7 @@ namespace Z0
         void RunGBench()
         {
             
-            var gbench = GBench.Create(
+            var gbench = InXBench.Create(
                 BenchConfig.Default, 
                 Z0.Randomizer.define(RandSeeds.BenchSeed)
                 );
@@ -384,6 +310,13 @@ namespace Z0
 
         }
 
+        void TestComparison()
+        {
+            var lhs = Vec128.define(5,10,20,30);
+            var rhs = Vec128.define(6,9,20,25);
+            var gt = dinx.gt(lhs,rhs);
+            inform($"{lhs} > {rhs} = {gt}");
+        }
         void TestGenericFloat()
         {
             TestGenericAdd<float>();  
@@ -394,7 +327,7 @@ namespace Z0
             {
                 var app = new App();
 
-                app.RunGBench();
+                app.TestComparison();
                 //app.RunBench();
                 //app.TestGInXAdd();
                 

@@ -25,7 +25,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Duration end(Timing timing, bool announce = true)
         {
-            var duration = Duration.define(elapsed(timing.Stopwatch));
+            var duration = Duration.Define(elapsed(timing.Stopwatch));
             if(announce)
                 print(AppMsg.Define($"{timing.Title} end".PadRight(25) + $"| Duration = {duration}", SeverityLevel.HiliteML, string.Empty));
             return duration;
@@ -34,7 +34,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static void end(ref Duration runningTotal, Timing timing, bool announce = true)
         {
-            var current = Duration.define(elapsed(timing.Stopwatch));
+            var current = Duration.Define(elapsed(timing.Stopwatch));
             runningTotal = current + runningTotal;
             if(announce)
                 print(AppMsg.Define($"{timing.Title} end".PadRight(25) 

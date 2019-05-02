@@ -1635,6 +1635,48 @@ namespace Z0
         #region Vec128[]
 
         [MethodImpl(Inline)]
+        internal static Vec128<sbyte>[] int8<T>(Vec128<T>[] src)
+            where T : struct, IEquatable<T>        
+                => Unsafe.As<Vec128<T>[],Vec128<sbyte>[]>(ref src);
+
+        [MethodImpl(Inline)]
+        internal static ref Vec128<sbyte>[] int8<T>(ref Vec128<T>[] src)
+            where T : struct, IEquatable<T>        
+                => ref Unsafe.As<Vec128<T>[],Vec128<sbyte>[]>(ref src);
+
+        [MethodImpl(Inline)]
+        internal static Vec128<byte>[] uint8<T>(Vec128<T>[] src)
+            where T : struct, IEquatable<T>        
+                => Unsafe.As<Vec128<T>[],Vec128<byte>[]>(ref src);
+
+        [MethodImpl(Inline)]
+        internal static ref Vec128<byte>[] uint8<T>(ref Vec128<T>[] src)
+            where T : struct, IEquatable<T>        
+                => ref Unsafe.As<Vec128<T>[],Vec128<byte>[]>(ref src);
+
+
+        [MethodImpl(Inline)]
+        internal static Vec128<short>[] int16<T>(Vec128<T>[] src)
+            where T : struct, IEquatable<T>        
+                => Unsafe.As<Vec128<T>[],Vec128<short>[]>(ref src);
+
+        [MethodImpl(Inline)]
+        internal static ref Vec128<short>[] int16<T>(ref Vec128<T>[] src)
+            where T : struct, IEquatable<T>        
+                => ref Unsafe.As<Vec128<T>[],Vec128<short>[]>(ref src);
+
+        [MethodImpl(Inline)]
+        internal static Vec128<ushort>[] uint16<T>(Vec128<T>[] src)
+            where T : struct, IEquatable<T>        
+                => Unsafe.As<Vec128<T>[],Vec128<ushort>[]>(ref src);
+
+        [MethodImpl(Inline)]
+        internal static ref Vec128<ushort>[] uint16<T>(ref Vec128<T>[] src)
+            where T : struct, IEquatable<T>        
+                => ref Unsafe.As<Vec128<T>[],Vec128<ushort>[]>(ref src);
+
+
+        [MethodImpl(Inline)]
         internal static Vec128<int>[] int32<T>(Vec128<T>[] src)
             where T : struct, IEquatable<T>        
                 => Unsafe.As<Vec128<T>[],Vec128<int>[]>(ref src);
