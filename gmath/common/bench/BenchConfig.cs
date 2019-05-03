@@ -69,6 +69,9 @@ namespace Z0
         public BenchConfig WithSampleSize(int SampleSize)
             => new BenchConfig(Cycles, Reps, SampleSize, AnnounceRate, Primitives, Operators);
 
+        public BenchConfig WithAnnounceRate(int AnnounceRate)
+            => new BenchConfig(Cycles, Reps, SampleSize, AnnounceRate, Primitives, Operators);
+
         public BenchConfig WithOperators(params OpKind[] Operators)
             => new BenchConfig(Cycles, Reps, SampleSize, AnnounceRate, Primitives.ToArray(), Operators);
 

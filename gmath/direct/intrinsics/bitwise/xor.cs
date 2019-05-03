@@ -332,70 +332,70 @@ namespace Z0
         public static unsafe sbyte[] xor(sbyte[] lhs, sbyte[] rhs)
         {
             var dst  = new sbyte[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return xor(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe byte[] xor(byte[] lhs, byte[] rhs)
         {
             var dst  = new byte[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return xor(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe short[] xor(short[] lhs, short[] rhs)
         {
             var dst  = new short[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return xor(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe ushort[] xor(ushort[] lhs, ushort[] rhs)
         {
             var dst  = new ushort[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return xor(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe int[] xor(int[] lhs, int[] rhs)
         {
             var dst  = new int[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return xor(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe uint[] xor(uint[] lhs, uint[] rhs)
         {
             var dst  = new uint[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return xor(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe long[] xor(long[] lhs, long[] rhs)
         {
             var dst  = new long[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return xor(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe ulong[] xor(ulong[] lhs, ulong[] rhs)
         {
             var dst  = new ulong[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return xor(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe float[] xor(float[] lhs, float[] rhs)
         {
             var dst  = new float[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return xor(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe double[] xor(double[] lhs, double[] rhs)
         {
             var dst  = new double[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return xor(lhs, rhs, ref dst);
         }
 
 

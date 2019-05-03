@@ -13,14 +13,14 @@ namespace Z0
 
     public class BenchSummary
     {
-        public BenchSummary(string Title, OpId Operator, long OpCount, Duration Measured, Duration Runtime)
+        public BenchSummary(OpId Operator, long OpCount, Duration Measured, Duration Runtime)
         {
             this.Title = Title;
             this.Operator = Operator;
             this.OpCount = OpCount;
             this.Measured = Measured;
             this.Runtime = Runtime;
-            this.Description = BenchmarkMessages.BenchmarkEnd(Title, Operator, OpCount, Measured);
+            this.Description = BenchmarkMessages.BenchmarkEnd(Operator, OpCount, Measured);
         }
         public string Title {get;}
 
@@ -40,4 +40,26 @@ namespace Z0
 
 
 
+    public class BenchDetail : BenchSummary
+    {
+        public static BenchDetail Define(OpId Operator, int Cycles, int Reps, int Samples, long OpCount, Duration Measured, Duration Runtime)
+            => new BenchDetail(Operator, Cycles, Reps, Samples, OpCount, Measured, Runtime);
+        
+        BenchDetail(OpId Operator, int Cycles, int Reps, int Samples, long OpCount, Duration Measured, Duration Runtime)
+            : base(Operator, OpCount, Measured,Runtime)
+        {
+            this.Cycles = Cycles;
+            this.Reps = Reps;
+            this.Samples = Samples;
+        }
+        
+        public int Cycles {get;}
+
+        public int Reps {get;}
+
+        public int Samples {get;}
+
+    }
+
+    
 }

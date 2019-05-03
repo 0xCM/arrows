@@ -76,8 +76,8 @@ static class zcore
         => src;
 
     [MethodImpl(Inline)]   
-    public static Stopwatch stopwatch() 
-        => Stopwatch.StartNew();
+    public static Stopwatch stopwatch(bool start = true) 
+        => start ? Stopwatch.StartNew() : new Stopwatch();
 
     [MethodImpl(Inline)]   
     public static long elapsed(Stopwatch sw) 
@@ -93,6 +93,17 @@ static class zcore
 
     [MethodImpl(Inline)]   
     public static int length<T>(T[] lhs, T[] rhs)
+    {
+        var lx = lhs.Length;
+        var ly = rhs.Length;
+        if(lx != ly)
+            throw new Exception($"The lengths of the input arrays do not match: {lx} != {ly}");
+        return lx;
+    }
+
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
     {
         var lx = lhs.Length;
         var ly = rhs.Length;
@@ -171,7 +182,6 @@ static class zcore
     [MethodImpl(Inline)]
     public static long ticksToMs(long ticks)
         => ticks/TicksPerMs;
-
 
     static readonly Terminal terminal = Terminal.Get();
 
@@ -377,7 +387,6 @@ static class zcore
     public static string zpad(string src, uint width)
         => src.PadLeft((int)width,'0');
 
-
     /// <summary>
     /// Applies a function to elements of an input sequence to produce 
     /// a transformed output sequence
@@ -417,7 +426,6 @@ static class zcore
     public static IEnumerable<T> map<S,T>(IEnumerable<S> src, Func<S,T> f)
         => src.Select(x => f(x));
 
-
     /// <summary>
     /// Explicitly casts a source value to value of the indicated type, raising
     /// an exception if operation fails
@@ -432,24 +440,55 @@ static class zcore
     public static Duration snapshot(Stopwatch sw)     
         => Duration.Define(sw.ElapsedTicks);        
 
-    public static BenchSummary micromark(string title, OpId op, int cycles, int reps, Repeat repeater)
-    {
-        var runtime = stopwatch();
-        var duration = default(Duration);
-        var opcount = 0L;
-        for(var cycle = 1; cycle<=cycles; cycle++)
-        {
-            var sw = stopwatch();
-            var cycleDuration = repeater(reps);
-            duration += cycleDuration;
-            opcount += reps;
-            if(cycle % 100 == 0)
-                print(BenchmarkMessages.CycleEnd(title, op, cycle, cycleDuration, opcount, duration));
-        }  
-        return new BenchSummary(title, op, opcount, duration, snapshot(runtime));
+    public static ReadOnlySpan<T> rospan<T>(params T[] src)
+        => src;
 
-    }
+    /// <summary>
+    /// Constructs a span from an array
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<T> span<T>(T[] src)
+        => src;
 
+    /// <summary>
+    /// Constructs a span from an array selection
+    /// </summary>
+    /// <param name="src">The source array</param>
+    /// <param name="start">The array index where the span is to begin</param>
+    /// <param name="length">The number of elements to cover from the aray</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<T> span<T>(T[] src, int start, int length)
+        => new Span<T>(src,start, length);
 
+    /// <summary>
+    /// Constructs a span from the entireity of a sequence
+    /// </summary>
+    /// <param name="src">The source sequence</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<T> span<T>(IEnumerable<T> src)
+        => span(src.ToArray());
 
+    /// <summary>
+    /// Constructs a span from a sequence selection
+    /// </summary>
+    /// <param name="src">The source sequence</param>
+    /// <param name="offset">The number of elements to skip from the head of the sequence</param>
+    /// <param name="length">The number of elements to take from the sequence</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<T> span<T>(IEnumerable<T> src, int? offset = null, int? length = null)
+        => span(length == null ? src.Skip(offset ?? 0) : src.Skip(offset ?? 0).Take(length.Value));
+
+    /// <summary>
+    /// Constructs an unpopulated span of a specified length
+    /// </summary>
+    /// <param name="length">The number of T-sized cells to allocate</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span<T> span<T>(int length)
+        => new Span<T>(new T[length]);
 }

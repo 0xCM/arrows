@@ -1,0 +1,18 @@
+direct/add/int32 summary     | Total Op Count = 2147483648   | Total Duration =   14144811 ticks  ~ 1414 ms
+gmath/add/int32 summary      | Total Op Count = 2147483648   | Total Duration =   36991868 ticks  ~ 3699 ms
+direct vs gmath add/int32 | Left Time  = 1414 ms | Right Time = 3699 ms | Difference = -2284 ms | Performance Ratio = 0.3824
+direct/add/uint32 summary    | Total Op Count = 2147483648   | Total Duration =   17020205 ticks  ~ 1702 ms
+gmath/add/uint32 summary     | Total Op Count = 2147483648   | Total Duration =   36020066 ticks  ~ 3602 ms
+direct vs gmath add/uint32 | Left Time  = 1702 ms | Right Time = 3602 ms | Difference = -1899 ms | Performance Ratio = 0.4725
+direct/add/int64 summary     | Total Op Count = 2147483648   | Total Duration =   29037945 ticks  ~ 2903 ms
+gmath/add/int64 summary      | Total Op Count = 2147483648   | Total Duration =   45643833 ticks  ~ 4564 ms
+direct vs gmath add/int64 | Left Time  = 2903 ms | Right Time = 4564 ms | Difference = -1660 ms | Performance Ratio = 0.6362
+direct/add/uint64 summary    | Total Op Count = 2147483648   | Total Duration =   27408630 ticks  ~ 2740 ms
+gmath/add/uint64 summary     | Total Op Count = 2147483648   | Total Duration =   47795139 ticks  ~ 4779 ms
+direct vs gmath add/uint64 | Left Time  = 2740 ms | Right Time = 4779 ms | Difference = -2038 ms | Performance Ratio = 0.5735
+direct/add/float32 summary   | Total Op Count = 2147483648   | Total Duration =   15020363 ticks  ~ 1502 ms
+gmath/add/float32 summary    | Total Op Count = 2147483648   | Total Duration =   64615957 ticks  ~ 6461 ms
+direct vs gmath add/float32 | Left Time  = 1502 ms | Right Time = 6461 ms | Difference = -4959 ms | Performance Ratio = 0.2325
+direct/add/float64 summary   | Total Op Count = 2147483648   | Total Duration =   25976994 ticks  ~ 2597 ms
+gmath/add/float64 summary    | Total Op Count = 2147483648   | Total Duration =   49758665 ticks  ~ 4975 ms
+direct vs gmath add/float64 | Left Time  = 2597 ms | Right Time = 4975 ms | Difference = -2378 ms | Performance Ratio = 0.5221

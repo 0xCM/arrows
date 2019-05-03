@@ -11,7 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
     using static zcore;
-    using static mathops;
+    using static atoms;
 
     public static partial class gmath
     {
@@ -54,20 +54,23 @@ namespace Z0
             init<uint>();
             init<long>();
             init<ulong>();
-            gfloat.init<float>();
-            gfloat.init<double>();
+            init<float>();
+            init<double>();
             ginx.init();
-            math.init();
         }
 
-       public static T zero<T>()
-           where T : struct, IEquatable<T>
+        #region constants
+
+        [MethodImpl(Inline)]
+        public static T zero<T>()
+            where T : struct, IEquatable<T>
             => default(T);
 
-       public static T one<T>()
-           where T : struct, IEquatable<T>
-       {
-             var kind = PrimalKinds.kind<T>();
+        [MethodImpl(Inline)]
+        public static T one<T>()
+            where T : struct, IEquatable<T>
+        {
+                var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.int32)
                 return As.generic<T>(1);
@@ -92,72 +95,128 @@ namespace Z0
 
             if(kind == PrimalKind.uint8)
                 return As.generic<T>((byte)1);
-          
-             if(kind == PrimalKind.float32)
+            
+                if(kind == PrimalKind.float32)
                 return As.generic<T>(1f);
 
             if(kind == PrimalKind.float64)
                 return As.generic<T>(1d);
 
-             throw new Exception("Kind not supported");
-       }
+            throw errors.unsupported(kind);
+        }
 
+        #endregion
+
+        #region add
+
+        [MethodImpl(Inline)]
+        public static T addSwitch<T>(T lhs, T rhs)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+            switch(kind)
+            {
+                case PrimalKind.int8:
+                    return addI8(lhs,rhs);
+                case PrimalKind.uint8:
+                    return addU8(lhs,rhs);
+                case PrimalKind.int16:
+                    return addI16(lhs,rhs);
+                case PrimalKind.uint16:
+                    return addU16(lhs,rhs);
+                case PrimalKind.int32:
+                    return addI32(lhs,rhs);
+                case PrimalKind.uint32:
+                    return addU32(lhs,rhs);
+                case PrimalKind.int64:
+                    return addI64(lhs,rhs);
+                case PrimalKind.uint64:
+                    return addU64(lhs,rhs);
+                case PrimalKind.float32:
+                    return addF32(lhs,rhs);
+                case PrimalKind.float64:
+                    return addF64(lhs,rhs);                
+                default:
+                    throw errors.unsupported(kind);
+            }
+
+        }
 
         [MethodImpl(Inline)]
         public static T add<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();
-
             
-            if(kind == PrimalKind.int16)
-                return addI16(lhs,rhs);
-            if(kind == PrimalKind.uint16)
-                return addU16(lhs,rhs);
-            if(kind == PrimalKind.int32)
-                return addI32(lhs,rhs);
-            if(kind == PrimalKind.uint32)
-                return addU32(lhs,rhs);
-            if(kind == PrimalKind.int64)
-                return addI64(lhs,rhs);
-            if(kind == PrimalKind.uint64)
-                return addU64(lhs,rhs);
-            if(kind == PrimalKind.float32)
-                return addF32(lhs,rhs);
-            if(kind == PrimalKind.float64)
-                return addF64(lhs,rhs);
             if (kind == PrimalKind.int8)
                 return addI8(lhs,rhs);
+            
             if(kind == PrimalKind.uint8)
                 return addU8(lhs,rhs);
-                        
-            throw new NotSupportedException($"Kind {kind} not supported");
+
+            if(kind == PrimalKind.int16)
+                return addI16(lhs,rhs);
+
+            if(kind == PrimalKind.uint16)
+                return addU16(lhs,rhs);
+
+            if(kind == PrimalKind.int32)
+                return addI32(lhs,rhs);
+            
+            if(kind == PrimalKind.uint32)
+                return addU32(lhs,rhs);
+            
+            if(kind == PrimalKind.int64)
+                return addI64(lhs,rhs);
+            
+            if(kind == PrimalKind.uint64)
+                return addU64(lhs,rhs);
+            
+            if(kind == PrimalKind.float32)
+                return addF32(lhs,rhs);
+            
+            if(kind == PrimalKind.float64)
+                return addF64(lhs,rhs);
+                                    
+            throw errors.unsupported(kind);
 
         }
 
+
         [MethodImpl(Inline)]
-        public static void add<T>(T[] lhs, T[] rhs, T[] dst)
+        public static ref T[] add<T>(T[] lhs, T[] rhs, ref T[] dst)
             where T : struct, IEquatable<T>
         {
             for(var i = 0; i< lhs.Length; i++)
                 dst[i] = add(lhs[i], rhs[i]);
+            return ref dst;
         }
 
-        public static long addT<T>(T[] lhs, T[] rhs, T[] dst)
+        [MethodImpl(Inline)]
+        public static ref Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
             where T : struct, IEquatable<T>
         {
-            var sw = stopwatch();
-            gmath.add(lhs,rhs,dst);
-            return elapsed(sw);
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = add(lhs[i],rhs[i]);
+            return ref dst;
         }
 
+
+        [MethodImpl(Inline)]
+        public static void add<T>(T[] lhs, T[] rhs, T[] dst)
+            where T : struct, IEquatable<T>
+                => add(lhs,rhs, ref dst);
+
+        #endregion
+
+        #region sub
 
         [MethodImpl(Inline)]
         public static T sub<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();
-
 
             if(kind == PrimalKind.int32)
                 return subI32(lhs,rhs);
@@ -189,32 +248,42 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return subF64(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }
 
-
         [MethodImpl(Inline)]
-        public static void sub<T>(T[] lhs, T[] rhs, T[] dst)
+        public static ref T[] sub<T>(T[] lhs, T[] rhs, ref T[] dst)
             where T : struct, IEquatable<T>
         {
             for(var i = 0; i< lhs.Length; i++)
                 dst[i] = sub(lhs[i], rhs[i]);
+            return ref dst;
         }
 
-        public static long subT<T>(T[] lhs, T[] rhs, T[] dst)
+        [MethodImpl(Inline)]
+        public static ref Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
             where T : struct, IEquatable<T>
         {
-            var sw = stopwatch();
-            gmath.sub(lhs,rhs,dst);
-            return elapsed(sw);
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = sub(lhs[i],rhs[i]);
+            return ref dst;
         }
+
+        [MethodImpl(Inline)]
+        public static void sub<T>(T[] lhs, T[] rhs, T[] dst)
+            where T : struct, IEquatable<T>
+            => sub(lhs,rhs, ref dst);
+
+        #endregion sub
+
+        #region mul
 
         [MethodImpl(Inline)]
         public static T mul<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();
-
 
             if(kind == PrimalKind.int32)
                 return mulI32(lhs,rhs);
@@ -246,25 +315,36 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return mulF64(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T[] mul<T>(T[] lhs, T[] rhs, ref T[] dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = mul(lhs[i], rhs[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
+            where T : struct, IEquatable<T>
+        {
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = mul(lhs[i],rhs[i]);
+            return ref dst;
         }
 
         [MethodImpl(Inline)]
         public static void mul<T>(T[] lhs, T[] rhs, T[] dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = mul(lhs[i], rhs[i]);
-        }
+            => mul(lhs,rhs, ref dst);
 
-        public static long mulT<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>
-        {
-            var sw = stopwatch();
-            gmath.mul(lhs,rhs,dst);
-            return elapsed(sw);
-        }
+        #endregion
 
+        #region div
 
         [MethodImpl(Inline)]
         public static T div<T>(T lhs, T rhs)
@@ -303,31 +383,42 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return divF64(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }
 
         [MethodImpl(Inline)]
-        public static void div<T>(T[] lhs, T[] rhs, T[] dst)
+        public static ref T[] div<T>(T[] lhs, T[] rhs, ref T[] dst)
             where T : struct, IEquatable<T>
         {
             for(var i = 0; i< lhs.Length; i++)
                 dst[i] = div(lhs[i], rhs[i]);
+            return ref dst;
         }
 
-        public static long divT<T>(T[] lhs, T[] rhs, T[] dst)
+        [MethodImpl(Inline)]
+        public static ref Span<T> div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
             where T : struct, IEquatable<T>
         {
-            var sw = stopwatch();
-            gmath.div(lhs,rhs,dst);
-            return elapsed(sw);
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = div(lhs[i],rhs[i]);
+            return ref dst;
         }
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
+        public static void div<T>(T[] lhs, T[] rhs, T[] dst)
+            where T : struct, IEquatable<T>        
+            => div(lhs,rhs, ref dst);
+
+        #endregion
+
+        #region mod
+
+        [MethodImpl(Inline)]
         public static T mod<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();
-
 
             if(kind == PrimalKind.int32)
                 return modI32(lhs,rhs);
@@ -359,27 +450,39 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return modF64(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }           
 
         [MethodImpl(Inline)]
-        public static void mod<T>(T[] lhs, T[] rhs, T[] dst)
+        public static ref T[] mod<T>(T[] lhs, T[] rhs, ref T[] dst)
             where T : struct, IEquatable<T>
         {
             for(var i = 0; i< lhs.Length; i++)
                 dst[i] = mod(lhs[i], rhs[i]);
+            return ref dst;
         }
 
-        public static long modT<T>(T[] lhs, T[] rhs, T[] dst)
+        [MethodImpl(Inline)]
+        public static ref Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
             where T : struct, IEquatable<T>
         {
-            var sw = stopwatch();
-            gmath.mod(lhs,rhs,dst);
-            return elapsed(sw);
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = mod(lhs[i],rhs[i]);
+            return ref dst;
         }
 
+        [MethodImpl(Inline)]
+        public static void mod<T>(T[] lhs, T[] rhs, T[] dst)
+            where T : struct, IEquatable<T>
+                => mod(lhs,rhs, ref dst);
 
-       [MethodImpl(Inline)]
+        
+        #endregion
+
+        #region and
+
+        [MethodImpl(Inline)]
         public static T and<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
         {
@@ -409,20 +512,39 @@ namespace Z0
             if(kind == PrimalKind.uint8)
                 return andU8(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }           
 
         [MethodImpl(Inline)]
-        public static void and<T>(T[] lhs, T[] rhs, T[] dst)
+        public static ref T[] and<T>(T[] lhs, T[] rhs, ref T[] dst)
             where T : struct, IEquatable<T>
         {
             for(var i = 0; i< lhs.Length; i++)
                 dst[i] = and(lhs[i], rhs[i]);
+            return ref dst;
         }
 
+        [MethodImpl(Inline)]
+        public static ref Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
+            where T : struct, IEquatable<T>
+        {
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = and(lhs[i],rhs[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static void and<T>(T[] lhs, T[] rhs, T[] dst)
+            where T : struct, IEquatable<T>
+            => and(lhs,rhs, ref dst);
 
 
-       [MethodImpl(Inline)]
+        #endregion
+
+        #region or
+
+        [MethodImpl(Inline)]
         public static T or<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
         {
@@ -452,16 +574,37 @@ namespace Z0
             if(kind == PrimalKind.uint8)
                 return orU8(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }           
 
         [MethodImpl(Inline)]
-        public static void or<T>(T[] lhs, T[] rhs, T[] dst)
+        public static ref T[] or<T>(T[] lhs, T[] rhs, ref T[] dst)
             where T : struct, IEquatable<T>
         {
             for(var i = 0; i< lhs.Length; i++)
                 dst[i] = or(lhs[i], rhs[i]);
+            return ref dst;
         }
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
+            where T : struct, IEquatable<T>
+        {
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = or(lhs[i],rhs[i]);
+            return ref dst;
+        }
+
+
+        [MethodImpl(Inline)]
+        public static void or<T>(T[] lhs, T[] rhs, T[] dst)
+            where T : struct, IEquatable<T>
+            => or(lhs,rhs, ref dst);
+
+        #endregion
+
+        #region xor
 
         [MethodImpl(Inline)]
         public static T xor<T>(T lhs, T rhs)
@@ -493,19 +636,39 @@ namespace Z0
             if(kind == PrimalKind.uint8)
                 return xorU8(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }           
 
         [MethodImpl(Inline)]
-        public static void xor<T>(T[] lhs, T[] rhs, T[] dst)
+        public static ref T[] xor<T>(T[] lhs, T[] rhs, ref T[] dst)
             where T : struct, IEquatable<T>
         {
             for(var i = 0; i< lhs.Length; i++)
                 dst[i] = xor(lhs[i], rhs[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
+            where T : struct, IEquatable<T>
+        {
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = xor(lhs[i],rhs[i]);
+            return ref dst;
         }
 
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
+        public static void xor<T>(T[] lhs, T[] rhs, T[] dst)
+            where T : struct, IEquatable<T>
+            => xor(lhs,rhs, ref dst);
+
+        #endregion
+
+        #region flip
+
+        [MethodImpl(Inline)]
         public static T flip<T>(T src)
             where T : struct, IEquatable<T>
         {
@@ -535,19 +698,39 @@ namespace Z0
             if(kind == PrimalKind.uint8)
                 return flipU8(src);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }           
 
         [MethodImpl(Inline)]
-        public static void flip<T>(T[] src, T[] dst)
+        public static ref T[] flip<T>(T[] src, ref T[] dst)
             where T : struct, IEquatable<T>
         {
             for(var i = 0; i< src.Length; i++)
                 dst[i] = flip(src[i]);
+            return ref dst;
         }
 
-       [MethodImpl(Inline)]
-       public static T abs<T>(T src)
+        [MethodImpl(Inline)]
+        public static ref Span<T> flip<T>(ReadOnlySpan<T> src, ref Span<T> dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = flip(src[i]);
+            return ref dst;
+        }
+
+
+        [MethodImpl(Inline)]
+        public static void flip<T>(T[] src, T[] dst)
+            where T : struct, IEquatable<T>
+                => flip(src, ref dst);
+
+        #endregion
+
+        #region abs
+
+        [MethodImpl(Inline)]
+        public static T abs<T>(T src)
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();
@@ -583,23 +766,41 @@ namespace Z0
                 return absF64(src);
 
 
-            throw new Exception($"Kind {kind} not supported");
+            throw errors.unsupported(kind);
         }           
 
         [MethodImpl(Inline)]
-        public static void abs<T>(T[] src, T[] dst)
+        public static ref T[] abs<T>(T[] src, ref T[] dst)
             where T : struct, IEquatable<T>
         {
             for(var i = 0; i< src.Length; i++)
                 dst[i] = abs(src[i]);
+            return ref dst;
         }
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> abs<T>(ReadOnlySpan<T> src, ref Span<T> dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = abs(src[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static void abs<T>(T[] src, T[] dst)
+            where T : struct, IEquatable<T>
+            => abs(src, ref dst);
+
+        #endregion
+
+        #region eq
 
         [MethodImpl(Inline)]
         public static bool eq<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();
-
 
             if(kind == PrimalKind.int32)
                 return eqI32(lhs,rhs);
@@ -631,31 +832,43 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return eqF64(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }
+
+        [MethodImpl(Inline)]
+        public static ref bool[] eq<T>(T[] lhs, T[] rhs, ref bool[] dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = eq(lhs[i], rhs[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<bool> dst)
+            where T : struct, IEquatable<T>
+        {
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = eq(lhs[i],rhs[i]);
+            return ref dst;
+        }
+
 
         [MethodImpl(Inline)]
         public static void eq<T>(T[] lhs, T[] rhs, bool[] dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i],rhs[i]);
-        }
+            => eq(lhs,rhs, ref dst);
 
-       public static long eqT<T>(T[] lhs, T[] rhs, bool[] dst)
-            where T : struct, IEquatable<T>
-        {
-            var sw = stopwatch();
-            gmath.eq(lhs,rhs,dst);
-            return elapsed(sw);
-        }
+        #endregion
+
+        #region neq
 
         [MethodImpl(Inline)]
         public static bool neq<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();
-
 
             if(kind == PrimalKind.int32)
                 return neqI32(lhs,rhs);
@@ -687,24 +900,34 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return neqF64(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
+        }
+
+        [MethodImpl(Inline)]
+        public static ref bool[] neq<T>(T[] lhs, T[] rhs, ref bool[] dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = neq(lhs[i], rhs[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<bool> dst)
+            where T : struct, IEquatable<T>
+        {
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = neq(lhs[i],rhs[i]);
+            return ref dst;
         }
 
         [MethodImpl(Inline)]
         public static void neq<T>(T[] lhs, T[] rhs, bool[] dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = neq(lhs[i],rhs[i]);
-        }
+            => neq(lhs,rhs, ref dst);
 
-       public static long neqT<T>(T[] lhs, T[] rhs, bool[] dst)
-            where T : struct, IEquatable<T>
-        {
-            var sw = stopwatch();
-            gmath.neq(lhs,rhs,dst);
-            return elapsed(sw);
-        }
+        #endregion
 
         [MethodImpl(Inline)]
         public static bool lt<T>(T lhs, T rhs)
@@ -742,16 +965,33 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return ltF64(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }
+
+        [MethodImpl(Inline)]
+        public static ref bool[] lt<T>(T[] lhs, T[] rhs, ref bool[] dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = lt(lhs[i], rhs[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<bool> dst)
+            where T : struct, IEquatable<T>
+        {
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = lt(lhs[i],rhs[i]);
+            return ref dst;
+        }
+
 
         [MethodImpl(Inline)]
         public static void lt<T>(T[] lhs, T[] rhs, bool[] dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = lt(lhs[i],rhs[i]);
-        }
+            => lt(lhs,rhs, ref dst);
 
         [MethodImpl(Inline)]
         public static bool lteq<T>(T lhs, T rhs)
@@ -789,17 +1029,35 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return lteqF64(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }
+
+        [MethodImpl(Inline)]
+        public static ref bool[] lteq<T>(T[] lhs, T[] rhs, ref bool[] dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = lteq(lhs[i], rhs[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<bool> dst)
+            where T : struct, IEquatable<T>
+        {
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = lteq(lhs[i],rhs[i]);
+            return ref dst;
+        }
+
 
         [MethodImpl(Inline)]
         public static void lteq<T>(T[] lhs, T[] rhs, bool[] dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = lteq(lhs[i],rhs[i]);
-        }
+            => lteq(lhs,rhs, ref dst);
 
+        #region gt
 
         [MethodImpl(Inline)]
         public static bool gt<T>(T lhs, T rhs)
@@ -837,16 +1095,37 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return gtF64(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }
+
+        [MethodImpl(Inline)]
+        public static ref bool[] gt<T>(T[] lhs, T[] rhs, ref bool[] dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = gt(lhs[i], rhs[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<bool> dst)
+            where T : struct, IEquatable<T>
+        {
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = gt(lhs[i],rhs[i]);
+            return ref dst;
+        }
+
 
         [MethodImpl(Inline)]
         public static void gt<T>(T[] lhs, T[] rhs, bool[] dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = gt(lhs[i],rhs[i]);
-        }
+            => gt(lhs,rhs, ref dst);
+
+        #endregion
+        
+        #region gteq
 
         [MethodImpl(Inline)]
         public static bool gteq<T>(T lhs, T rhs)
@@ -884,16 +1163,35 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return gteqF64(lhs,rhs);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }
+
+        [MethodImpl(Inline)]
+        public static ref bool[] gteq<T>(T[] lhs, T[] rhs, ref bool[] dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = gteq(lhs[i], rhs[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<bool> dst)
+            where T : struct, IEquatable<T>
+        {
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< lhs.Length; i++)
+                dst[i] = gteq(lhs[i],rhs[i]);
+            return ref dst;
+        }
+
 
         [MethodImpl(Inline)]
         public static void gteq<T>(T[] lhs, T[] rhs, bool[] dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = gteq(lhs[i],rhs[i]);
-        }
+            => gteq(lhs,rhs, ref dst);
+
+        #endregion
 
         [MethodImpl(Inline)]
         public static T pow<T>(T src, uint exp)
@@ -931,7 +1229,7 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return powF64(src,exp);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }           
 
         [MethodImpl(Inline)]
@@ -946,10 +1244,68 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return powF64(src,exp);
 
-            throw new Exception("Kind not supported");
+            throw errors.unsupported(kind);
         }
 
-       [MethodImpl(Inline)]
+        #region negate
+
+        [MethodImpl(Inline)]
+        public static T negate<T>(T src)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int8)
+                return negateI8(src);
+
+            if(kind == PrimalKind.int16)
+                return negateI16(src);
+
+            if(kind == PrimalKind.int32)
+                return negateI32(src);
+
+            if(kind == PrimalKind.int64)
+                return negateI64(src);
+
+            if(kind == PrimalKind.float32)
+                return negateF32(src);
+
+            if(kind == PrimalKind.float64)
+                return negateF64(src);
+
+            throw errors.unsupported(kind);
+        }           
+
+        [MethodImpl(Inline)]
+        public static ref T[] negate<T>(T[] src, ref T[] dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = negate(src[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> negate<T>(ReadOnlySpan<T> src, ref Span<T> dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = negate(src[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static void negate<T>(T[] src, T[] dst)
+            where T : struct, IEquatable<T>
+            => negate(src, ref dst);
+
+
+        #endregion
+
+
+        #region inc
+
+        [MethodImpl(Inline)]
         public static T inc<T>(T src)
             where T : struct, IEquatable<T>
         {
@@ -985,11 +1341,37 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return incF64(src);
 
-            throw new Exception($"Kind {kind} not supported");
+            throw errors.unsupported(kind);
         }           
 
+        [MethodImpl(Inline)]
+        public static ref T[] inc<T>(T[] src, ref T[] dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = inc(src[i]);
+            return ref dst;
+        }
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
+        public static ref Span<T> inc<T>(ReadOnlySpan<T> src, ref Span<T> dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = inc(src[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static void inc<T>(T[] src, T[] dst)
+            where T : struct, IEquatable<T>
+            => inc(src, ref dst);
+
+        #endregion
+
+        #region dec
+
+        [MethodImpl(Inline)]
         public static T dec<T>(T src)
             where T : struct, IEquatable<T>
         {
@@ -1025,10 +1407,35 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return decF64(src);
 
-            throw new Exception($"Kind {kind} not supported");
+            throw errors.unsupported(kind);
         }           
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
+        public static ref T[] dec<T>(T[] src, ref T[] dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = dec(src[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> dec<T>(ReadOnlySpan<T> src, ref Span<T> dst)
+            where T : struct, IEquatable<T>
+        {
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = dec(src[i]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static void dec<T>(T[] src, T[] dst)
+            where T : struct, IEquatable<T>
+            => dec(src, ref dst);
+
+        #endregion
+        
+        [MethodImpl(Inline)]
         public static T min<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
         {
@@ -1064,10 +1471,27 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return minF64(lhs, rhs);
 
-            throw new Exception($"Kind {kind} not supported");
+            throw errors.unsupported(kind);
         }           
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
+        public static T min<T>(params T[] src)
+            where T : struct, IEquatable<T>
+        {
+            if(src.Length == 0)
+                return default;
+            
+            var result = src[0];
+            for(var i = 1; i< src.Length; i++)
+            {
+                var candidate = src[i];
+                if(lt(candidate, result))
+                    result = candidate;
+            }
+            return result;
+        }
+
+        [MethodImpl(Inline)]
         public static T max<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
         {
@@ -1103,9 +1527,24 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return maxF64(lhs, rhs);
 
-            throw new Exception($"Kind {kind} not supported");
+            throw errors.unsupported(kind);
         }           
 
-
+        [MethodImpl(Inline)]
+        public static T max<T>(params T[] src)
+            where T : struct, IEquatable<T>
+        {
+            if(src.Length == 0)
+                return default;
+            
+            var result = src[0];
+            for(var i = 1; i< src.Length; i++)
+            {
+                var candidate = src[i];
+                if(gt(candidate, result))
+                    result = candidate;
+            }
+            return result;
+        }
     }
 }

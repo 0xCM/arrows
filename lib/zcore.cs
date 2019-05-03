@@ -255,28 +255,7 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static T demand<T>(bool condition, string msg = null)
         where T : new()
-        => condition ? new T() : throw new Exception(msg ?? $"Precondition for construction of {type<T>().Name} unmet");
-
-    public delegate Duration Repeat(int reps);
-
-    
-    public static BenchSummary micromark(string title, OpId op, int cycles, int reps, Repeat repeater)
-    {
-        var runtime = stopwatch();
-        var duration = default(Duration);
-        var opcount = 0L;
-        for(var cycle = 1; cycle<=cycles; cycle++)
-        {
-            var sw = stopwatch();
-            var cycleDuration = repeater(reps);
-            duration += cycleDuration;
-            opcount += reps;
-            if(cycle % 100 == 0)
-                print(BenchmarkMessages.CycleEnd(title, op, cycle, cycleDuration, opcount, duration));
-        }  
-        return new BenchSummary(title, op, opcount, duration, snapshot(runtime));
-
-    }
+        => condition ? new T() : throw new Exception(msg ?? $"Precondition for construction of {type<T>().Name} unmet");    
 
 }
 

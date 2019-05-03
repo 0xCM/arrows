@@ -329,70 +329,70 @@ namespace Z0
         public static unsafe sbyte[] or(sbyte[] lhs, sbyte[] rhs)
         {
             var dst  = new sbyte[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return or(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe byte[] or(byte[] lhs, byte[] rhs)
         {
             var dst  = new byte[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return or(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe short[] or(short[] lhs, short[] rhs)
         {
             var dst  = new short[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return or(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe ushort[] or(ushort[] lhs, ushort[] rhs)
         {
             var dst  = new ushort[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return or(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe int[] or(int[] lhs, int[] rhs)
         {
             var dst  = new int[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return or(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe uint[] or(uint[] lhs, uint[] rhs)
         {
             var dst  = new uint[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return or(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe long[] or(long[] lhs, long[] rhs)
         {
             var dst  = new long[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return or(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe ulong[] or(ulong[] lhs, ulong[] rhs)
         {
             var dst  = new ulong[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return or(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe float[] or(float[] lhs, float[] rhs)
         {
             var dst  = new float[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return or(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe double[] or(double[] lhs, double[] rhs)
         {
             var dst  = new double[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return or(lhs, rhs, ref dst);
         }
 
     }

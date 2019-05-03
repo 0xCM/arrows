@@ -2,77 +2,18 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-using System;
-using System.Collections;
-using System.Linq;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using static zcore;
-
-
-partial class zcore
-{
-    public static ReadOnlySpan<T> rospan<T>(params T[] src)
-        => src;
-
-    /// <summary>
-    /// Constructs a span from an array
-    /// </summary>
-    /// <param name="src">The source array</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Span<T> span<T>(T[] src)
-        => src;
-
-    /// <summary>
-    /// Constructs a span from an array selection
-    /// </summary>
-    /// <param name="src">The source array</param>
-    /// <param name="start">The array index where the span is to begin</param>
-    /// <param name="length">The number of elements to cover from the aray</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Span<T> span<T>(T[] src, int start, int length)
-        => new Span<T>(src,start, length);
-
-
-    /// <summary>
-    /// Constructs a span from the entireity of a sequence
-    /// </summary>
-    /// <param name="src">The source sequence</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Span<T> span<T>(IEnumerable<T> src)
-        => span(src.ToArray());
-
-    /// <summary>
-    /// Constructs a span from a sequence selection
-    /// </summary>
-    /// <param name="src">The source sequence</param>
-    /// <param name="offset">The number of elements to skip from the head of the sequence</param>
-    /// <param name="length">The number of elements to take from the sequence</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Span<T> span<T>(IEnumerable<T> src, int? offset = null, int? length = null)
-        => span(length == null ? src.Skip(offset ?? 0) : src.Skip(offset ?? 0).Take(length.Value));
-
-    /// <summary>
-    /// Constructs an unpopulated span of a specified length
-    /// </summary>
-    /// <param name="length">The number of T-sized cells to allocate</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Span<T> span<T>(int length)
-        => new Span<T>(new T[length]);
-}
-
 namespace Z0
 {
-    partial class xcore
-    {
-        
+    using System;
+    using System.Collections;
+    using System.Linq;
+    using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
+    using static zcore;
+
+    public static class SpanX
+    {
         /// <summary>
         /// Constructs a span from the entireity of a sequence
         /// </summary>
@@ -88,7 +29,19 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => Span128.define(src,offset);
 
-
+        [MethodImpl(Inline)]
+        public static bool Contains<T>(this ReadOnlySpan<T> src, T match)        
+            where T : struct, IEquatable<T>
+        {
+            var enumerator = src.GetEnumerator();
+            while(enumerator.MoveNext())
+            {
+                if(enumerator.Current.Equals(match))
+                    return true;
+            }
+            return false;
+        }
+        
         /// <summary>
         /// Constructs mutable span from a slice of a read-only span
         /// </summary>
@@ -190,47 +143,32 @@ namespace Z0
         public static (Index left, Index right) Split(this Range selection)
             => (selection.Start, selection.End);
 
-        /// <summary>
-        /// Overwrites elements 0..(len(src)) of the target span with the elements
-        /// from the source span if  len(dst) >= len(src).
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="dst">The target span</param>
-        /// <typeparam name="T">The element type</typeparam>
-        /// <returns>Returns some(true) if successful, otherwise none </returns>
-        [MethodImpl(Inline)]
-        public static Option<bool> TryCopy<T>(this Span<T> src, Span<T> dst)
-            => src.TryCopyTo(dst) ? true : none<bool>();
+        // [MethodImpl(Inline)]
+        // public static Option<bool> TryCopy<T>(this Span<T> src, Span<T> dst)
+        //     => src.TryCopyTo(dst) ? true : none<bool>();
 
-        /// <summary>
-        /// Overwrites elements 0..(len(src)) of the target span with the elements
-        /// from the source span if  len(dst) >= len(src); otherwise raises an error
-        /// </summary>
-        /// <param name="src">The source span</param>
-        /// <param name="dst">The target span</param>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]
-        public static void Copy<T>(this Span<T> src, Span<T> dst)
-            => onFalse(src.TryCopyTo(dst), () => throw new Exception("Span copy failed"));
+        // [MethodImpl(Inline)]
+        // public static void Copy<T>(this Span<T> src, Span<T> dst)
+        //     => onFalse(src.TryCopyTo(dst), () => throw new Exception("Span copy failed"));
 
 
         [MethodImpl(Inline)]
         public static void Copy<T>(this ReadOnlySpan<T> src, Span<T> dst)
             => src.CopyTo(dst);
 
-        [MethodImpl(Inline)]
-        public static Option<bool> TryCopy<T>(this ReadOnlySpan<T> src, Span<T> dst)
-        {
-            try
-            {
-                src.Copy(dst);
-                return true;
-            }
-            catch(Exception)
-            {
-                return none<bool>();
-            }
-        }
+        // [MethodImpl(Inline)]
+        // public static Option<bool> TryCopy<T>(this ReadOnlySpan<T> src, Span<T> dst)
+        // {
+        //     try
+        //     {
+        //         src.Copy(dst);
+        //         return true;
+        //     }
+        //     catch(Exception)
+        //     {
+        //         return none<bool>();
+        //     }
+        // }
 
     }
 

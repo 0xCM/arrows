@@ -74,7 +74,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<ulong> add(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
-            => Avx2.Add(lhs, rhs);
+            => Sse42.Add(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static Vec128<double> add(in Vec128<double> lhs, in Vec128<double> rhs)
@@ -217,9 +217,9 @@ namespace Z0
         //! add: [] -> [] -> ref [] -> return []
         //! --------------------------------------------------------------------
 
-        public static unsafe ref sbyte[] add(in sbyte[] lhs, in sbyte[] rhs, ref sbyte[] dst)
+        public static unsafe ref sbyte[] add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, ref sbyte[] dst)
         {
-            var vLen = Vector128<sbyte>.Count;
+            var vLen = Vector128<sbyte>.Count;            
             fixed(sbyte* pLhs = &(lhs[0]))
             fixed(sbyte* pRhs = &(rhs[0]))
             fixed(sbyte* pDst = &dst[0])
@@ -228,13 +228,12 @@ namespace Z0
                 
                 for(var i = 0; i < dst.Length; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
                     add(pLeft, pRight, pTarget);
-
             }
+            
             return ref dst;
-
         }
 
-        public static unsafe ref byte[] add(in byte[] lhs, in byte[] rhs, ref byte[] dst)
+        public static unsafe ref byte[] add(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, ref byte[] dst)
         {
             var vLen = Vector128<byte>.Count;
             fixed(byte* pLhs = &(lhs[0]))
@@ -250,7 +249,7 @@ namespace Z0
             return ref dst;
         }
 
-        public static unsafe ref short[] add(in short[] lhs, in short[] rhs, ref short[] dst)
+        public static unsafe ref short[] add(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, ref short[] dst)
         {
             var vLen = Vector128<short>.Count;
             fixed(short* pLhs = &(lhs[0]))
@@ -266,8 +265,7 @@ namespace Z0
             return ref dst;
         }
 
-
-        public static unsafe ref ushort[] add(in ushort[] lhs, in ushort[] rhs, ref ushort[] dst)
+        public static unsafe ref ushort[] add(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, ref ushort[] dst)
         {
             var vLen = Vector128<ushort>.Count;
             fixed(ushort* pLhs = &(lhs[0]))
@@ -283,7 +281,7 @@ namespace Z0
             return ref dst;
         }
 
-        public static unsafe ref int[] add(in int[] lhs, in int[] rhs, ref int[] dst)
+        public static unsafe ref int[] add(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, ref int[] dst)
         {
             var vLen = Vector128<int>.Count;
             fixed(int* pLhs = &(lhs[0]))
@@ -299,7 +297,8 @@ namespace Z0
             return ref dst;
         }
 
-        public static unsafe ref uint[] add(in uint[] lhs, in uint[] rhs, ref uint[] dst)
+
+        public static unsafe ref uint[] add(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, ref uint[] dst)
         {
             var vLen = Vector128<uint>.Count;
             var dLen = length(lhs,rhs);
@@ -317,7 +316,7 @@ namespace Z0
             return ref dst;
         }
 
-        public static unsafe ref long[] add(in long[] lhs, in long[] rhs, ref long[] dst)
+        public static unsafe ref long[] add(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, ref long[] dst)
         {
             var vLen = Vector128<long>.Count;
             var dLen = length(lhs,rhs);
@@ -335,7 +334,7 @@ namespace Z0
             return ref dst;
         }
 
-        public static unsafe ref ulong[] add(in ulong[] lhs, in ulong[] rhs, ref ulong[] dst)
+        public static unsafe ref ulong[] add(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, ref ulong[] dst)
         {
             var vLen = Vector128<ulong>.Count;
             var dLen = length(lhs,rhs);
@@ -353,7 +352,7 @@ namespace Z0
             return ref dst;
         }
 
-        public static unsafe ref float[] add(in float[] lhs, in float[] rhs, ref float[] dst)
+        public static unsafe ref float[] add(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, ref float[] dst)
         {
             var vLen = Vector128<float>.Count;
             var dLen = length(lhs,rhs);
@@ -371,7 +370,7 @@ namespace Z0
             return ref dst;
         }
 
-        public static unsafe ref double[] add(in double[] lhs, in double[] rhs, ref double[] dst)
+        public static unsafe ref double[] add(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, ref double[] dst)
         {
             var vLen = Vector128<double>.Count;
             var dLen = length(lhs,rhs);
@@ -393,72 +392,72 @@ namespace Z0
         //! --------------------------------------------------------------------
 
         [MethodImpl(Inline)]
-        public static unsafe sbyte[] add(sbyte[] lhs, sbyte[] rhs)
+        public static sbyte[] add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
         {
-            var dst  = new sbyte[length(lhs,rhs)];
+            var dst  = alloc<sbyte>(length(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe byte[] add(byte[] lhs, byte[] rhs)
+        public static unsafe byte[] add(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
         {
-            var dst  = new byte[length(lhs,rhs)];
+            var dst  = alloc<byte>(length(lhs,rhs));
+            return add(lhs, rhs, ref dst);
+        }
+
+         [MethodImpl(Inline)]
+        public static unsafe short[] add(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
+        {
+            var dst  =  alloc<short>(length(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe short[] add(short[] lhs, short[] rhs)
+        public static unsafe ushort[] add(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
         {
-            var dst  = new short[length(lhs,rhs)];
+            var dst  =  alloc<ushort>(length(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ushort[] add(ushort[] lhs, ushort[] rhs)
+        public static unsafe int[] add(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
         {
-            var dst  = new ushort[length(lhs,rhs)];
+            var dst  =  alloc<int>(length(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe int[] add(int[] lhs, int[] rhs)
-        {
-            var dst  = new int[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe uint[] add(uint[] lhs, uint[] rhs)
+        public static unsafe uint[] add(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
         {
             var dst  = new uint[length(lhs,rhs)];
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe long[] add(long[] lhs, long[] rhs)
+        public static unsafe long[] add(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
         {
             var dst  = new long[length(lhs,rhs)];
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ulong[] add(ulong[] lhs, ulong[] rhs)
+        public static unsafe ulong[] add(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
         {
             var dst  = new ulong[length(lhs,rhs)];
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe float[] add(float[] lhs, float[] rhs)
+        public static unsafe float[] add(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
         {
             var dst  = new float[length(lhs,rhs)];
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe double[] add(double[] lhs, double[] rhs)
+        public static unsafe double[] add(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
         {
-            var dst  = new double[length(lhs,rhs)];
+            var dst  = alloc<double>(length(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
     }

@@ -11,6 +11,7 @@ namespace Z0
     
     using static zcore;
     using static inxfunc;
+    
 
     
     partial class dinx
@@ -95,15 +96,11 @@ namespace Z0
             => Avx.TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testZ(in Vec128<int> lhs, in Vec128<int> rhs)
-            => Avx.TestZ(lhs, rhs);        
-        
-        [MethodImpl(Inline)]
-        public static bool testZ(in Vec128<long> lhs, in Vec128<long> rhs)
+        public static bool testZ(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
             => Avx.TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testZ(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+        public static bool testZ(in Vec128<int> lhs, in Vec128<int> rhs)
             => Avx.TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
@@ -111,15 +108,54 @@ namespace Z0
             => Avx.TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testZ(in Vec128<ulong> lhs, in Vec128<ulong> rhs) 
+        public static bool testZ(in Vec128<long> lhs, in Vec128<long> rhs)
             => Avx.TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec128<byte> lhs, in Vec128<byte> rhs)
-            => Avx.TestC(lhs, rhs);        
+        public static bool testZ(in Vec128<ulong> lhs, in Vec128<ulong> rhs) 
+            => Avx.TestZ(lhs, rhs);        
+
+
+        [MethodImpl(Inline)]
+        public static bool testZ(in Vec256<byte> lhs, in Vec256<byte> rhs)
+            => Avx.TestZ(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testZ(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+            => Avx.TestZ(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testZ(in Vec256<short> lhs, in Vec256<short> rhs)
+            => Avx.TestZ(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testZ(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+            => Avx.TestZ(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testZ(in Vec256<int> lhs, in Vec256<int> rhs)
+            => Avx.TestZ(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testZ(in Vec256<uint> lhs, in Vec256<uint> rhs)
+            => Avx.TestZ(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testZ(in Vec256<long> lhs, in Vec256<long> rhs)
+            => Avx.TestZ(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testZ(in Vec256<ulong> lhs, in Vec256<ulong> rhs) 
+            => Avx.TestZ(lhs, rhs);        
+
+
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+            => Avx.TestC(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testC(in Vec128<byte> lhs, in Vec128<byte> rhs)
             => Avx.TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
@@ -127,25 +163,58 @@ namespace Z0
             => Avx.TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec128<int> lhs, in Vec128<int> rhs)
-            => Avx.TestC(lhs, rhs);        
-        
-        [MethodImpl(Inline)]
-        public static bool testC(in Vec128<long> lhs, in Vec128<long> rhs)
-            => Avx.TestC(lhs, rhs);        
-
-        [MethodImpl(Inline)]
         public static bool testC(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
             => Avx.TestC(lhs, rhs);        
 
+        [MethodImpl(Inline)]
+        public static bool testC(in Vec128<int> lhs, in Vec128<int> rhs)
+            => Avx.TestC(lhs, rhs);        
+        
         [MethodImpl(Inline)]
         public static bool testC(in Vec128<uint> lhs, in Vec128<uint> rhs)
             => Avx.TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
+        public static bool testC(in Vec128<long> lhs, in Vec128<long> rhs)
             => Avx.TestC(lhs, rhs);        
-             
-    }
 
+        [MethodImpl(Inline)]
+        public static bool testC(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
+            => Avx.TestC(lhs, rhs);                     
+
+
+        [MethodImpl(Inline)]
+        public static bool testC(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+            => Avx.TestC(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testC(in Vec256<byte> lhs, in Vec256<byte> rhs)
+            => Avx.TestC(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testC(in Vec256<short> lhs, in Vec256<short> rhs)
+            => Avx.TestC(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testC(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+            => Avx.TestC(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testC(in Vec256<int> lhs, in Vec256<int> rhs)
+            => Avx.TestC(lhs, rhs);        
+        
+        [MethodImpl(Inline)]
+        public static bool testC(in Vec256<uint> lhs, in Vec256<uint> rhs)
+            => Avx.TestC(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testC(in Vec256<long> lhs, in Vec256<long> rhs)
+            => Avx.TestC(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testC(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
+            => Avx.TestC(lhs, rhs);                     
+
+        
+    }
 }

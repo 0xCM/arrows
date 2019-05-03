@@ -14,10 +14,13 @@ namespace Z0
     {
         public static IEnumerable<OpKind> All
             => typeof(OpKind).GetEnumValues().AsQueryable().Cast<OpKind>();
-    
-        public static OpId OpId<T>(this OpKind kind)
+
+        public static OpId OpId(this OpKind op, PrimalKind prim, bool generic = false, bool intrinsic = false)
+                => Z0.OpId.Define(op, prim, generic, intrinsic);
+
+        public static OpId OpId<T>(this OpKind kind, bool generic = false, bool intrinsic = false)
             where T : struct, IEquatable<T>
-                => Z0.OpId.Define<T>(kind);
+                => Z0.OpId.Define<T>(kind, generic, intrinsic);
     }
 
     public enum OpKind
@@ -87,6 +90,7 @@ namespace Z0
 
         Flip,
 
+        Create,
         
         /// <summary>
         /// Indicates an aggregate unary operator that calculates the
@@ -109,7 +113,11 @@ namespace Z0
         /// <summary>
         /// Indicates a unary operator that decrements a value by a unit
         /// </summary>
-        Dec
+        Dec,
+
+        Max,
+
+        Min
     }
 
 }

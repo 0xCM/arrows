@@ -181,6 +181,21 @@ namespace Z0
 
         #endregion
 
+        #region num
+
+        [MethodImpl(Inline)]
+        public static T[] data<T>(num<T>[] src)
+            where T : struct, IEquatable<T>
+                => Unsafe.As<num<T>[], T[]>(ref src);
+
+        [MethodImpl(Inline)]
+        public static num<T>[] numbers<T>(T[] src)
+            where T : struct, IEquatable<T>
+                => Unsafe.As<T[],num<T>[]>(ref src);
+
+        #endregion
+
+
         #region arrays
 
         [MethodImpl(Inline)]

@@ -378,44 +378,39 @@ namespace Z0
             where T : struct, IEquatable<T>            
                 => src.ToVec128();
 
+
+
         [MethodImpl(Inline)]
         public static unsafe Vec128<T> define<T>(T[] src, int offset = 0)
             where T : struct, IEquatable<T>
         {            
 
             var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.int8)            
-                return vInt8(src,offset);
-
-            if(kind == PrimalKind.uint8)            
-                return vUInt8(src,offset);
-
-            if(kind == PrimalKind.int16)            
-                return vInt16(src,offset);
-
-            if(kind == PrimalKind.uint16)            
-                return VUint16(src,offset);
-
-            if(kind == PrimalKind.int32)            
-                return vInt32(src,offset);
-
-            if(kind == PrimalKind.uint32)            
-                return vUInt32(src,offset);
-
-            if(kind == PrimalKind.int64)            
-                return vInt64(src,offset);
-
-            if(kind == PrimalKind.uint64)            
-                return vUInt64(src,offset);
-
-            if(kind == PrimalKind.float32)            
-                return vFloat32(src,offset);
-
-            if(kind == PrimalKind.float64)            
-                return vFloat64(src,offset);
-
-            throw new NotSupportedException($"Kind {kind} not supported");
+            switch(kind)
+            {
+                case PrimalKind.int8:
+                    return vInt8(src,offset);
+                case PrimalKind.uint8:
+                    return vUInt8(src,offset);
+                case PrimalKind.int16:
+                    return vInt16(src,offset);
+                case PrimalKind.uint16:
+                    return vUInt16(src,offset);
+                case PrimalKind.int32:
+                    return vInt32(src,offset);
+                case PrimalKind.uint32:
+                    return vUInt32(src,offset);
+                case PrimalKind.int64:
+                    return vInt64(src,offset);
+                case PrimalKind.uint64:
+                    return vUInt64(src,offset);
+                case PrimalKind.float32:
+                    return vFloat32(src,offset);
+                case PrimalKind.float64:                
+                    return vFloat64(src,offset);
+                default:
+                    throw new Exception($"Kind {kind} not supported");
+            }
         }        
         
 
@@ -429,21 +424,6 @@ namespace Z0
             where T : struct, IEquatable<T>            
                 => define<T>(src.Array,src.Offset);
 
-        [MethodImpl(Inline)]
-        public static Vec128<T>[] define<T>(T[] src)
-            where T : struct, IEquatable<T>
-        {
-            var vecLen = Vec128<T>.Length;
-            var vecCount = src.Length / vecLen;
-            if(src.Length % vecCount != 0)
-               throw errseglen(src);
-            var dst =  new Vec128<T>[vecCount];
-
-            for(var offset=0; offset< src.Length; offset+= vecLen)        
-                dst[offset] = define(src,offset);
-
-            return dst;
-        }
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<byte> define(byte x0)
@@ -648,11 +628,11 @@ namespace Z0
  
  
         [MethodImpl(Inline)]
-        static Vec128<T> vInt8<T>(T[] data,int startpos)
+        static Vec128<T> vInt8<T>(T[] data, int offset)
             where T : struct, IEquatable<T>
         {
-            var i = startpos;
-            var src = datasource<sbyte>(data, data.Length,startpos);
+            var i = offset;
+            var src = As.int8(data);
             var dst = define(
                 src[i++],src[i++],src[i++],src[i++],
                 src[i++],src[i++],src[i++],src[i++],
@@ -663,11 +643,11 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        static Vec128<T> vUInt8<T>(T[] data,int startpos)
+        static unsafe Vec128<T> vUInt8<T>(T[] data, int offset)
             where T : struct, IEquatable<T>
         {
-            var i = startpos;
-            var src = datasource<byte>(data, data.Length,startpos);
+            var src = As.uint8(data);
+            var i = offset;
             var dst = define(
                 src[i++],src[i++],src[i++],src[i++],
                 src[i++],src[i++],src[i++],src[i++],
@@ -683,27 +663,25 @@ namespace Z0
             where T : struct, IEquatable<T>            
         {
             var i = offset;
-            var src = datasource<short>(data,data.Length,offset);
+            var src = As.int16(data);
             var dst = define(
                 src[i++],src[i++],src[i++],src[i++],
                 src[i++],src[i++],src[i++],src[i++]
                 );
             return As.generic<T>(dst);
-
         }
 
         [MethodImpl(Inline)]
-        static Vec128<T> VUint16<T>(T[] data,int offset)
+        static Vec128<T> vUInt16<T>(T[] data,int offset)
             where T : struct, IEquatable<T>            
         {
             var i = offset;
-            var src = datasource<ushort>(data,data.Length,offset);
+            var src = As.uint16(data);
             var dst = define(
                 src[i++],src[i++],src[i++],src[i++],
                 src[i++],src[i++],src[i++],src[i++]
                 );
             return As.generic<T>(dst);
-
         }
 
         [MethodImpl(Inline)]
@@ -711,10 +689,9 @@ namespace Z0
             where T : struct, IEquatable<T>            
         {
             var i = startpos;
-            var src = datasource<int>(data,data.Length,startpos);
+            var src = As.int32(data);
             var dst = define(src[i++],src[i++],src[i++],src[i++]);
             return As.generic<T>(dst);
-
         }
 
         [MethodImpl(Inline)]
@@ -722,10 +699,9 @@ namespace Z0
             where T : struct, IEquatable<T>            
         {
             var i = startpos;
-            var src = datasource<uint>(data, data.Length, startpos);
+            var src = As.uint32(data);
             var dst = define(src[i++],src[i++],src[i++],src[i++]);
             return As.generic<T>(dst);
-
         }
 
         [MethodImpl(Inline)]
@@ -733,10 +709,9 @@ namespace Z0
             where T : struct, IEquatable<T>            
         {
             var i = startpos;
-            var src = datasource<long>(data,data.Length,startpos);
+            var src = As.int64(data);
             var dst = define(src[i++],src[i++]);
             return As.generic<T>(dst);
-
         }
 
         [MethodImpl(Inline)]
@@ -744,33 +719,20 @@ namespace Z0
             where T : struct, IEquatable<T>            
         {
             var i = startpos;
-            var src = datasource<ulong>(data,data.Length,startpos);
+            var src = As.uint64(data);
             var dst = define(src[i++],src[i++]);
             return As.generic<T>(dst);
-
         }
 
-        static Vector128<T> vFloat32x<T>(T[] data, int offset = 0)
-            where T : struct, IEquatable<T>            
-        {
-            var src = datasource<float>(data,data.Length,offset);            
-            var dst = Vector128.CreateScalarUnsafe(src[0]);
-            dst = Sse41.Insert(dst, Vector128.CreateScalarUnsafe(src[1]), 0x10);
-            dst = Sse41.Insert(dst, Vector128.CreateScalarUnsafe(src[2]), 0x20);
-            dst = Sse41.Insert(dst, Vector128.CreateScalarUnsafe(src[3]), 0x30);
-            return As.generic<T>(dst);
-
-        }
 
         [MethodImpl(Inline)]
         static Vec128<T> vFloat32<T>(T[] data, int startpos)
             where T : struct, IEquatable<T>            
         {
             var i = startpos;
-            var src = datasource<float>(data,data.Length,startpos);
+            var src = As.float32(data);
             var dst = define(src[i++],src[i++],src[i++],src[i++]);
             return As.generic<T>(dst);
-
         }
 
         [MethodImpl(Inline)]
@@ -778,7 +740,7 @@ namespace Z0
             where T : struct, IEquatable<T>            
         {
             var i = startpos;
-            var src = datasource<double>(data,data.Length,startpos);
+            var src = As.float64(data);
             var dst = define(src[i++],src[i++]);
             return As.generic<T>(dst);
         }

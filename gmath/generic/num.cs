@@ -13,6 +13,7 @@ namespace Z0
     using static zcore;
 
 
+
     public readonly struct num<T> : IEquatable<num<T>>
         where T : struct, IEquatable<T>
     {
@@ -57,18 +58,6 @@ namespace Z0
             => gmath.neq(toVal(ref lhs),toVal(ref rhs));
 
         [MethodImpl(Inline)]
-        public static num<T> operator - (num<T> src) 
-            => throw new NotSupportedException();
-
-        [MethodImpl(Inline)]
-        public static num<T> operator ++ (num<T> src) 
-            => gmath.inc(Unsafe.As<num<T>,T>(ref src));
-
-        [MethodImpl(Inline)]
-        public static num<T> operator -- (num<T> src) 
-            => gmath.dec(Unsafe.As<num<T>,T>(ref src));
-
-        [MethodImpl(Inline)]
         public static num<T> operator + (num<T> lhs, num<T> rhs) 
             => gmath.add(toVal(ref lhs),toVal(ref rhs));
 
@@ -87,6 +76,19 @@ namespace Z0
         [MethodImpl(Inline)]
         public static num<T> operator % (num<T> lhs, num<T> rhs)
             => gmath.mod(toVal(ref lhs),toVal(ref rhs));
+
+        [MethodImpl(Inline)]
+        public static num<T> operator - (num<T> src) 
+            => throw new NotSupportedException();
+
+        [MethodImpl(Inline)]
+        public static num<T> operator ++ (num<T> src) 
+            => gmath.inc(Unsafe.As<num<T>,T>(ref src));
+
+        [MethodImpl(Inline)]
+        public static num<T> operator -- (num<T> src) 
+            => gmath.dec(Unsafe.As<num<T>,T>(ref src));
+
 
         [MethodImpl(Inline)]
         public static bool operator < (num<T> lhs, num<T> rhs) 

@@ -36,7 +36,8 @@ namespace Z0
         OneOrMore
     }
 
-
+    public delegate Duration Cycle(int cycles, int reps);
+    
     public delegate Duration Repeat(int reps);
 
     public delegate void BinOpInspector<T>(T lhs, T rhs, T result)

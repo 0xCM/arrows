@@ -115,26 +115,35 @@ namespace Z0
         
         static string Eq = $" = ";
 
-        public static AppMsg PairCycleStatus(string title, OpId opid, int cycle, Duration leftDuration, Duration rightDuration)
+        public static AppMsg CycleStatus<T>(T title, int cycle, long totalOpCount, Duration totalDuration)
             => AppMsg.Define(append(
-                    $"{title}/{opid} running".PadRight(28), 
-                     Pipe, "Cycle", Eq, $"{cycle}".PadRight(5), 
-                     Pipe, "Direct Duration", Eq, $"{leftDuration}".PadRight(12),
-                     Pipe, "Generic Duration", Eq, $"{rightDuration}".PadRight(28)
+                    $"{title} running".PadRight(40), 
+                     Pipe, "Cycle", Eq, $"{cycle}".PadRight(8), 
+                     Pipe, "Op Count", Eq, $"{totalOpCount}".PadRight(12),
+                     Pipe, "Duration", Eq, $"{totalDuration}"
                      ), SeverityLevel.Perform);
 
-        public static AppMsg CycleEnd(string title, OpId opid, int cycle, Duration cycleDuration, long totalOpCount, Duration totalDuration)
+
+        // public static AppMsg CycleStatus(OpId opid, int cycle, long totalOpCount, Duration totalDuration)
+        //     => AppMsg.Define(append(
+        //             $"{opid} running".PadRight(40), 
+        //              Pipe, "Cycle", Eq, $"{cycle}".PadRight(8), 
+        //              Pipe, "Op Count", Eq, $"{totalOpCount}".PadRight(12),
+        //              Pipe, "Duration", Eq, $"{totalDuration}"
+        //              ), SeverityLevel.Perform);
+
+        public static AppMsg CycleEnd(OpId opid, int cycle, Duration cycleDuration, long totalOpCount, Duration totalDuration)
             => AppMsg.Define(append(
-                    $"{title}/{opid} running".PadRight(28), 
+                    $"{opid} running".PadRight(28), 
                      Pipe, "Cycle", Eq, $"{cycle}".PadRight(5), 
                      Pipe, "Total Op Count", Eq, $"{totalOpCount}".PadRight(12),
                      Pipe, "Total Duration", Eq, $"{totalDuration}".PadRight(28),
                      Pipe, "Duration", Eq, $"{cycleDuration.Ticks}".PadLeft(8), " ticks "
                      ), SeverityLevel.Perform);
         
-        public static AppMsg BenchmarkEnd(string title, OpId opid,  long totalOpCount, Duration totalDuration)
+        public static AppMsg BenchmarkEnd(OpId opid,  long totalOpCount, Duration totalDuration)
             => AppMsg.Define(append(
-                    $"{title}/{opid} summary".PadRight(28), 
+                    $"{opid} summary".PadRight(28), 
                      Pipe, "Total Op Count", Eq, $"{totalOpCount}".PadRight(12),
                      Pipe, "Total Duration", Eq, $"{totalDuration}"), 
                         SeverityLevel.HiliteCL);

@@ -12,7 +12,7 @@ namespace Z0
     using static zcore;
 
 
-    public static class mathops
+    public static class atoms
     {
 
         #region add

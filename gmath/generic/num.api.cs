@@ -15,10 +15,12 @@ namespace Z0
 
     public static class num
     {
+        [MethodImpl(Inline)]
         public static num<T>[] alloc<T>(int len)
             where T : struct, IEquatable<T>
                 => new num<T>[len];
 
+        [MethodImpl(Inline)]
         public static num<T>[] numbers<T>(params T[] src)
             where T : struct, IEquatable<T>
         {
@@ -28,6 +30,7 @@ namespace Z0
             return dst;
         }
 
+        [MethodImpl(Inline)]
         public static void copy<T>(T[] src, num<T>[] dst)
             where T : struct, IEquatable<T>
         {            
@@ -36,6 +39,7 @@ namespace Z0
             
         }
 
+        [MethodImpl(Inline)]
         public static void copy<T>(IEnumerable<T> src, num<T>[] dst)
             where T : struct, IEquatable<T>
         {            
@@ -46,10 +50,48 @@ namespace Z0
             {
                 while(i <= last)
                     dst[i] = item;
-            }
-            
+            }            
         }
 
+        [MethodImpl(Inline)]
+        public static void add<T>(num<T>[] lhs, num<T>[] rhs, num<T>[] dst)
+            where T : struct, IEquatable<T>
+        {
+            var xLhs = As.data(lhs);
+            var xRhs = As.data(rhs);
+            var xDst = As.data(dst);
+            gmath.add(xLhs, xRhs, xDst);
+        }
+
+        [MethodImpl(Inline)]
+        public static num<T>[] add<T>(num<T>[] lhs, num<T>[] rhs)
+            where T : struct, IEquatable<T>
+        {
+            var dst = alloc<T>(length(lhs,rhs));
+            add(lhs,rhs,dst);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static void sub<T>(num<T>[] lhs, num<T>[] rhs, num<T>[] dst)
+            where T : struct, IEquatable<T>
+        {
+            var xLhs = As.data(lhs);
+            var xRhs = As.data(rhs);
+            var xDst = As.data(dst);
+            gmath.sub(xLhs, xRhs, xDst);
+        }
+
+        [MethodImpl(Inline)]
+        public static num<T>[] sub<T>(num<T>[] lhs, num<T>[] rhs)
+            where T : struct, IEquatable<T>
+        {
+            var dst = alloc<T>(length(lhs,rhs));
+            sub(lhs,rhs,dst);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
         public static num<T> sum<T>(num<T>[] src)
             where T : struct, IEquatable<T>
         {

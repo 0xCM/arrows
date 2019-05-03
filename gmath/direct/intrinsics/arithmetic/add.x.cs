@@ -17,43 +17,40 @@ namespace Z0
     {
         
         [MethodImpl(Inline)]
-        public static unsafe sbyte[] InXAdd(this sbyte[] lhs, sbyte[] rhs)
+        public static unsafe Span<byte> InXAdd(this ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
             => dinx.add(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static unsafe byte[] InXAdd(this byte[] lhs, byte[] rhs)
+        public static unsafe Span<ushort> InXAdd(this ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
             => dinx.add(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static unsafe short[] InXAdd(this short[] lhs, short[] rhs)
+        public static unsafe Span<short> InXAdd(this ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
             => dinx.add(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static unsafe ushort[] InXAdd(this ushort[] lhs, ushort[] rhs)
+        public static unsafe Span<int> InXAdd(this ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
             => dinx.add(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public static unsafe int[] InXAdd(this int[] lhs, int[] rhs)
-            => dinx.add(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static unsafe uint[] InXAdd(this uint[] lhs, uint[] rhs)
+        public static unsafe uint[] InXAdd(this ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
             => dinx.add(lhs,rhs);
         
         [MethodImpl(Inline)]
-        public static unsafe long[] InXAdd(this long[] lhs, long[] rhs)
+        public static unsafe long[] InXAdd(this ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
             => dinx.add(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static unsafe ulong[] InXAdd(this ulong[] lhs, ulong[] rhs)
+        public static unsafe ulong[] InXAdd(this ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
             => dinx.add(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static unsafe float[] InXAdd(this float[] lhs, float[] rhs)
+        public static unsafe float[] InXAdd(this ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
             => dinx.add(lhs,rhs);
  
         [MethodImpl(Inline)]
-        public static unsafe double[] InXAdd(this double[] lhs, double[] rhs)
+        public static Span<double> InXAdd(this ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
             => dinx.add(lhs,rhs);
     }
 }

@@ -16,7 +16,6 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
 
-    using Z0.Bench;
 
     using static zcore;
     using static primops;
@@ -225,11 +224,6 @@ namespace Z0
         }
 
 
-        public void RunPrimalBench()
-        {
-            PrimalBench.Create(PrimalBench.DefaultConfig, Randomizer).Run();
-
-        }
 
         Duration SumGeneric<T>(int cycles, int reps)
             where T :struct, IEquatable<T>
@@ -268,15 +262,6 @@ namespace Z0
             return Timing.end(t);
         }
 
-        void RunGBench()
-        {
-            
-            var gbench = InXBench.Create(
-                BenchConfig.Default, 
-                Z0.Randomizer.define(RandSeeds.BenchSeed)
-                );
-            gbench.Run();
-        }
 
 
         void TestGenericAdd<T>()

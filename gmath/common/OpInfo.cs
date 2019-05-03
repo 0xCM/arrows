@@ -78,7 +78,23 @@ namespace Z0
         /// The Mod operator descriptor representative
         /// </summary>
         public static readonly Mod ModRep = Mod.Rep;
-        
+
+        /// <summary>
+        /// The And operator descriptor representative
+        /// </summary>
+        public static readonly And AndRep = And.Rep;
+
+        /// <summary>
+        /// The Or operator descriptor representative
+        /// </summary>
+        public static readonly Or OrRep = Or.Rep;
+
+        /// <summary>
+        /// The XOr operator descriptor representative
+        /// </summary>
+        public static readonly XOr XOrRep = XOr.Rep;
+
+
         /// <summary>
         /// Describes the Add operation
         /// </summary>
@@ -158,5 +174,47 @@ namespace Z0
 
             }
         }
+    
+        /// <summary>
+        /// Describes the bitwise and operation
+        /// </summary>
+        public sealed class And : OpInfo<And>
+        {
+            public And()
+             : base(OpKind.Add,"&")
+            {
+
+
+            }
+        }
+
+        /// <summary>
+        /// Describes the bitwise or operation
+        /// </summary>
+        public sealed class Or : OpInfo<Or>
+        {
+            public Or()
+             : base(OpKind.Or,"|")
+            {
+
+
+            }
+        }
+
+
+        /// <summary>
+        /// Describes the bitwise xor operation
+        /// </summary>
+        public sealed class XOr : OpInfo<XOr>
+        {
+            public XOr()
+             : base(OpKind.XOr,"^")
+            {
+
+
+            }
+        }
+
     }
+
 }

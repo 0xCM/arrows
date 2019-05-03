@@ -57,9 +57,43 @@ namespace Z0
             => Avx2.Multiply(lhs, rhs);
 
 
+        //! add: vec -> vec -> *
+        //! -------------------------------------------------------------------
+
+        [MethodImpl(Inline)]
+        public static unsafe void mul(in Vec128<int> lhs, in Vec128<int> rhs, void* dst)
+            => Avx2.Store((long*)dst, Avx2.Multiply(lhs, rhs));
+
+        [MethodImpl(Inline)]
+        public static unsafe void mul(in Vec128<uint> lhs, in Vec128<uint> rhs, void* dst)
+            => Avx2.Store((ulong*)dst, Avx2.Multiply(lhs, rhs));
+
+        [MethodImpl(Inline)]
+        public static unsafe void mul(in Vec128<float> lhs, in Vec128<float> rhs, void* dst)
+            => Avx2.Store((float*)dst, Avx2.Multiply(lhs, rhs));
+
+        [MethodImpl(Inline)]
+        public static unsafe void mul(in Vec128<double> lhs, in Vec128<double> rhs, void* dst)
+            => Avx2.Store((double*)dst, Avx2.Multiply(lhs, rhs));
+
+        [MethodImpl(Inline)]
+        public static unsafe void mul(in Vec256<int> lhs, in Vec256<int> rhs, void* dst)
+            => Avx2.Store((long*)dst, Avx2.Multiply(lhs, rhs));
+
+        [MethodImpl(Inline)]
+        public static unsafe void mul(in Vec256<uint> lhs, in Vec256<uint> rhs, void* dst)
+            => Avx2.Store((ulong*)dst, Avx2.Multiply(lhs, rhs));
+
+        [MethodImpl(Inline)]
+        public static unsafe void mul(in Vec256<float> lhs, in Vec256<float> rhs, void* dst)
+            => Avx2.Store((float*)dst, Avx2.Multiply(lhs, rhs));
+
+        [MethodImpl(Inline)]
+        public static unsafe void mul(in Vec256<double> lhs, in Vec256<double> rhs, void* dst)
+            => Avx2.Store((double*)dst, Avx2.Multiply(lhs, rhs));
+
         //! add: ptr[T] -> ptr[T] -> ptr[T]
         //! --------------------------------------------------------------------
-
 
         [MethodImpl(Inline)]
         public static unsafe void mul(int* lhs, int* rhs, long* dst)  
@@ -77,8 +111,7 @@ namespace Z0
         public static unsafe void mul(double* lhs, double* rhs, double* dst)  
             => Avx2.Store(dst,Avx2.Multiply(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
 
-
-        public static unsafe ref long[] mul(in int[] lhs, in int[] rhs, ref long[] dst)
+        public static unsafe ref long[] mul(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, ref long[] dst)
         {
             var vLen = Vector128<int>.Count;
             var dLen = length(lhs,rhs);
@@ -97,7 +130,7 @@ namespace Z0
             return ref dst;
         }
 
-        public static unsafe ref ulong[] mul(in uint[] lhs, in uint[] rhs, ref ulong[] dst)
+        public static unsafe ref ulong[] mul(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, ref ulong[] dst)
         {
             var vLen = Vector128<uint>.Count;
             var dLen = length(lhs,rhs);
@@ -117,7 +150,7 @@ namespace Z0
         }
 
 
-        public static unsafe ref float[] mul(in float[] lhs, in float[] rhs, ref float[] dst)
+        public static unsafe ref float[] mul(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, ref float[] dst)
         {
             var vLen = Vector128<float>.Count;
             var dLen = length(lhs,rhs);
@@ -135,7 +168,7 @@ namespace Z0
             return ref dst;
         }
 
-        public static unsafe ref double[] mul(in double[] lhs, in double[] rhs, ref double[] dst)
+        public static unsafe ref double[] mul(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, ref double[] dst)
         {
             var vLen = Vector128<double>.Count;
             var dLen = length(lhs,rhs);
@@ -155,28 +188,28 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static unsafe long[] mul(int[] lhs, int[] rhs)
+        public static long[] mul(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
         {
-            var dst  = new long[length(lhs,rhs)];
+            var dst  = alloc<long>(length(lhs,rhs));
             return mul(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ulong[] mul(uint[] lhs, uint[] rhs)
+        public static ulong[] mul(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
         {
-            var dst  = new ulong[length(lhs,rhs)];
+            var dst  = alloc<ulong>(length(lhs,rhs));
             return mul(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe float[] mul(float[] lhs, float[] rhs)
+        public static float[] mul(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
         {
             var dst  = new float[length(lhs,rhs)];
             return mul(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe double[] mul(double[] lhs, double[] rhs)
+        public static double[] mul(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
         {
             var dst  = new double[length(lhs,rhs)];
             return mul(lhs, rhs, ref dst);

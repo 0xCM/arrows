@@ -376,70 +376,70 @@ namespace Z0
         public static unsafe sbyte[] and(sbyte[] lhs, sbyte[] rhs)
         {
             var dst  = new sbyte[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return and(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe byte[] and(byte[] lhs, byte[] rhs)
         {
             var dst  = new byte[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return and(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe short[] and(short[] lhs, short[] rhs)
         {
             var dst  = new short[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return and(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe ushort[] and(ushort[] lhs, ushort[] rhs)
         {
             var dst  = new ushort[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return and(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe int[] and(int[] lhs, int[] rhs)
         {
             var dst  = new int[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return and(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe uint[] and(uint[] lhs, uint[] rhs)
         {
             var dst  = new uint[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return and(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe long[] and(long[] lhs, long[] rhs)
         {
             var dst  = new long[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return and(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe ulong[] and(ulong[] lhs, ulong[] rhs)
         {
             var dst  = new ulong[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return and(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe float[] and(float[] lhs, float[] rhs)
         {
             var dst  = new float[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return and(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
         public static unsafe double[] and(double[] lhs, double[] rhs)
         {
             var dst  = new double[length(lhs,rhs)];
-            return add(lhs, rhs, ref dst);
+            return and(lhs, rhs, ref dst);
         }
     }
 }

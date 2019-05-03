@@ -10,6 +10,13 @@ namespace Z0
 
     public static class corex
     {
+
+        public static bool IsNaN(this float src)
+            => float.IsNaN(src);
+
+        public static bool IsNaN(this double src)
+            => double.IsNaN(src);
+
         [MethodImpl(Inline)]
         public static T ValueOrDefault<T>(this T? x, T @default = default)
             where T : struct
@@ -30,14 +37,11 @@ namespace Z0
                 var bytes = guid.ToByteArray();      
                 yield return BitConverter.ToUInt64(bytes,0);
                 yield return BitConverter.ToUInt64(bytes,4);
-            }
-            
+            }            
         }
 
         public static ulong[] ToLongArray(this IEnumerable<Guid> guids)
             => guids.ToLongs().ToArray();
-
-
 
         /// <summary>
         /// Constructs an array of specified length from a stream
