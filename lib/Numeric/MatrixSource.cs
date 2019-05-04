@@ -10,6 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static nats;
 
     public interface RandomMatrixSource<M,N,T>
         where M : TypeNat, new()
@@ -48,7 +49,7 @@ namespace Z0
         /// <typeparam name="T">The entry type</typeparam>
         public IEnumerable<Matrix<M, N,T>> stream(T min, T max)
         {
-            var len = natval<M>() * natval<N>();
+            var len = natu<M>() * natu<N>();
             var primitives = rand.Random<T>().stream(min,max);
             while(true)
                 yield return Matrix.define(dim, primitives.Take((int)len));                

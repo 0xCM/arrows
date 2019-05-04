@@ -98,9 +98,9 @@ namespace Z0.Tests.InXTests
 
             if(VecOp != null)
             {
-                var timing = Timing.begin($"Canonical {OpName} operation | {statsMsg}");
+                var timing = stopwatch();
                 iter(repeat, i => ApplyCanonicalOp());
-                Timing.end(timing);                
+                elapsed(timing);
             }
         }
 

@@ -10,6 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using static zcore;
+    using static nats;
 
     public readonly struct Vector<N, T> : Equatable<Vector<N,T>>, Formattable, Lengthwise
         where N : TypeNat, new()

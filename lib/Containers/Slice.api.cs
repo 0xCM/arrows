@@ -7,7 +7,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    
+    using static nats;
+
 
     /// <summary>
     /// Defines slice construction/manipulation routines
@@ -145,7 +146,7 @@ namespace Z0
             where U : struct, Operative.Semiring<U>, IEquatable<U>
         {
             var len = s1.length;
-            demand(s1.length == s2.length, $"The slice lengths {s1.length} and {s2.length} must match");
+            nats.demand(s1.length == s2.length, $"The slice lengths {s1.length} and {s2.length} must match");
             var result = alloc<U>(len);
             for(var i=0; i< len; i++)
                 result[i] = f(s1[i], s2[i]);
@@ -158,7 +159,7 @@ namespace Z0
             where T : struct, Operative.Semiring<T>, IEquatable<T>
             where U : struct, Operative.Semiring<U>, IEquatable<U>
         {
-            var len = natval<N>();
+            var len = natu<N>();
             var result = alloc<U>((uint)len);
             for(var i=0UL; i< len; i++)
                 result[i] = f(s1[i], s2[i]);

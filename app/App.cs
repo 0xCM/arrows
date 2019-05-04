@@ -229,29 +229,29 @@ namespace Z0
             where T :struct, IEquatable<T>
         {
             var src = num.numbers(Randomizer.Array<T>(reps));
-            var t1 = Timing.begin("num[int] addition");
+            var t1 = stopwatch();
             var r1 = num<T>.Zero;
             for(var i=0; i< cycles; i++)
                 r1 = src.Sum();
-            return Timing.end(t1);
+            return elapsed(t1);
 
         }
 
         Duration SumDirect(PrimalInfo.I32 prim, int cycles, int reps)
         {
             var src = num.numbers(Randomizer.Array<int>(reps));
-            var t = Timing.begin("num addition");
+            var t = stopwatch();
             var r = 0;
             for(var i=0; i< cycles; i++)
                 r = src.Sum();
-            return Timing.end(t);
+            return elapsed(t);
 
         }
 
         [MethodImpl(Inline)]
         Duration transform(PrimalInfo.I32 prim, int cycles,  int[] src, int[] dst)
         {
-            var t = Timing.begin($"int transformation");
+            var t = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle ++)
             for(var i = 0; i< src.Length; i++)
             {
@@ -259,7 +259,7 @@ namespace Z0
                 dst[i] = input*input - input;
             }        
         
-            return Timing.end(t);
+            return elapsed(t);
         }
 
 
@@ -269,29 +269,29 @@ namespace Z0
         {
             var reps = Pow2.T20;
 
-            var t1 = Timing.begin("Initializing");
+            var t1 = stopwatch();
             gmath.init();
-            Timing.end(t1);
+            elapsed(t1);
 
-            var t2 = Timing.begin("Sampling");
+            var t2 = stopwatch();
             var lhs1 = Randomizer.Array<T>(reps);
             var rhs1 = Randomizer.Array<T>(reps);
             var lhs2 = Randomizer.Array<T>(reps);
             var rhs2 = Randomizer.Array<T>(reps);
-            Timing.end(t2);
+            elapsed(t2);
 
-            var t5 = Timing.begin("Allocating");
+            var t5 = stopwatch();
             var dst1 = alloc<T>(reps);
             var dst2 = alloc<T>(reps);
-            Timing.end(t5);
+            elapsed(t5);
 
-            var t3 = Timing.begin("Operation 1");
+            var t3 = stopwatch();
             gmath.add(Randomizer.Array<T>(reps), Randomizer.Array<T>(reps), dst1);
-            Timing.end(t3);
+            elapsed(t3);
 
-            var t4 = Timing.begin("Operation 2");
+            var t4 = stopwatch();
             gmath.add(Randomizer.Array<T>(reps), Randomizer.Array<T>(reps), dst2);
-            Timing.end(t4);
+            elapsed(t4);
 
         }
 

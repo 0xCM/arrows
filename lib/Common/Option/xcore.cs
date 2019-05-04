@@ -11,9 +11,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    using static Z0.Traits;
 
-    partial class xcore
+    public static class OptionX
     {
         [MethodImpl(Inline)]
         public static T ValueOrElse<T>(this T? x,  Func<T> @else)

@@ -12,6 +12,7 @@ namespace Z0
     using System.Security;
 
     using static zcore;
+    using static inxfunc;
 
     public static class As
     {
@@ -195,8 +196,28 @@ namespace Z0
 
         #endregion
 
-
         #region arrays
+
+        [MethodImpl(Inline)]
+        public static ReadOnlyMemory<sbyte> uint8<T>(ReadOnlyMemory<T> src)
+            where T : struct
+            => Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<sbyte>>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlyMemory<byte> int8<T>(ReadOnlyMemory<T> src)
+            where T : struct
+            => Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<byte>>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlyMemory<float> float32<T>(ReadOnlyMemory<T> src)
+            where T : struct
+            => Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<float>>(ref src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlyMemory<double> float64<T>(ReadOnlyMemory<T> src)
+            where T : struct
+            => Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<double>>(ref src);
 
         [MethodImpl(Inline)]
         public static sbyte[] int8<T>(T[] src)
@@ -362,6 +383,226 @@ namespace Z0
         public static ref T[] generic<T>(ref double[] src)
             => ref Unsafe.As<double[],T[]>(ref src);
 
+
+        #endregion
+
+        #region mutable spans
+
+        [MethodImpl(Inline)]
+        public static Span<sbyte> int8<T>(Span<T> src)
+            where T : struct
+                => cast<T,sbyte>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<byte> uint8<T>(Span<T> src)
+            where T : struct
+                => cast<T,byte>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<short> int16<T>(Span<T> src)
+            where T : struct
+                => cast<T,short>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<ushort> uint16<T>(Span<T> src)
+            where T : struct
+                => cast<T,ushort>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<int> int32<T>(Span<T> src)
+            where T : struct
+                => cast<T,int>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<uint> uint32<T>(Span<T> src)
+            where T : struct
+                => cast<T,uint>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<long> int64<T>(Span<T> src)
+            where T : struct
+                => cast<T,long>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<ulong> uint64<T>(Span<T> src)
+            where T : struct
+                => cast<T,ulong>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<float> float32<T>(Span<T> src)
+            where T : struct
+                => cast<T,float>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<double> float64<T>(Span<T> src)
+            where T : struct
+                => cast<T,double>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<T> generic<T>(Span<sbyte> src)
+            where T : struct
+                => cast<sbyte,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<T> generic<T>(Span<byte> src)
+            where T : struct
+                => cast<byte,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span<T> generic<T>(Span<short> src)
+            where T : struct
+                => cast<short,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span<T> generic<T>(Span<ushort> src)
+            where T : struct
+                => cast<ushort,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span<T> generic<T>(Span<int> src)
+            where T : struct
+                => cast<int,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span<T> generic<T>(Span<uint> src)
+            where T : struct
+                => cast<uint,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span<T> generic<T>(Span<long> src)
+            where T : struct
+                => cast<long,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span<T> generic<T>(Span<ulong> src)
+            where T : struct
+                => cast<ulong,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<T> generic<T>(Span<float> src)
+            where T : struct
+                => cast<float,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Span<T> generic<T>(Span<double> src)
+            where T : struct
+                => cast<double,T>(src);
+
+        #endregion
+
+        #region readonly spans
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<sbyte> int8<T>(ReadOnlySpan<T> src)
+            where T : struct
+                => cast<T,sbyte>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<byte> uint8<T>(ReadOnlySpan<T> src)
+            where T : struct
+                => cast<T,byte>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<short> int16<T>(ReadOnlySpan<T> src)
+            where T : struct
+                => cast<T,short>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<ushort> uint16<T>(ReadOnlySpan<T> src)
+            where T : struct
+                => cast<T,ushort>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<int> int32<T>(ReadOnlySpan<T> src)
+            where T : struct
+                => cast<T,int>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<uint> uint32<T>(ReadOnlySpan<T> src)
+            where T : struct
+                => cast<T,uint>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<long> int64<T>(ReadOnlySpan<T> src)
+            where T : struct
+                => cast<T,long>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<ulong> uint64<T>(ReadOnlySpan<T> src)
+            where T : struct
+                => cast<T,ulong>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<float> float32<T>(ReadOnlySpan<T> src)
+            where T : struct
+                => cast<T,float>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<double> float64<T>(ReadOnlySpan<T> src)
+            where T : struct
+                => cast<T,double>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> generic<T>(ReadOnlySpan<sbyte> src)
+            where T : struct
+                => cast<sbyte,T>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> generic<T>(ReadOnlySpan<byte> src)
+            where T : struct
+                => cast<byte,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> generic<T>(ReadOnlySpan<short> src)
+            where T : struct
+                => cast<short,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> generic<T>(ReadOnlySpan<ushort> src)
+            where T : struct
+                => cast<ushort,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> generic<T>(ReadOnlySpan<int> src)
+            where T : struct
+                => cast<int,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> generic<T>(ReadOnlySpan<uint> src)
+            where T : struct
+                => cast<uint,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> generic<T>(ReadOnlySpan<long> src)
+            where T : struct
+                => cast<long,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> generic<T>(ReadOnlySpan<ulong> src)
+            where T : struct
+                => cast<ulong,T>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> generic<T>(ReadOnlySpan<float> src)
+            where T : struct
+                => cast<float,T>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> generic<T>(ReadOnlySpan<double> src)
+            where T : struct
+                => cast<double,T>(src);
 
         #endregion
 
@@ -1754,5 +1995,54 @@ namespace Z0
 
         #endregion
     
+        #region pointers
+
+        [MethodImpl(Inline)]
+        public static unsafe void* pvoid<T>(ref T src)
+            => Unsafe.AsPointer(ref src);
+
+        [MethodImpl(Inline)]
+        public static unsafe sbyte* pint8<T>(ref T src)
+            => (sbyte*)pvoid(ref src);
+        
+        [MethodImpl(Inline)]
+        public static unsafe byte* puint8<T>(ref T src)
+            => (byte*)pvoid(ref src);
+
+        [MethodImpl(Inline)]
+        public static unsafe short* pint16<T>(ref T src)
+            => (short*)pvoid(ref src);
+        
+        [MethodImpl(Inline)]
+        public static unsafe ushort* puint16<T>(ref T src)
+            => (ushort*)pvoid(ref src);
+
+        [MethodImpl(Inline)]
+        public static unsafe int* pint32<T>(ref T src)
+            => (int*)pvoid(ref src);
+        
+        [MethodImpl(Inline)]
+        public static unsafe uint* puint32<T>(ref T src)
+            => (uint*)pvoid(ref src);
+
+
+        [MethodImpl(Inline)]
+        public static unsafe long* pint64<T>(ref T src)
+            => (long*)pvoid(ref src);
+        
+        [MethodImpl(Inline)]
+        public static unsafe ulong* puint64<T>(ref T src)
+            => (ulong*)pvoid(ref src);
+
+
+        [MethodImpl(Inline)]
+        public static unsafe float* pfloat32<T>(ref T src)
+            => (float*)pvoid(ref src);
+        
+        [MethodImpl(Inline)]
+        public static unsafe double* pfloat64<T>(ref T src)
+            => (double*)pvoid(ref src);
+
+        #endregion    
     }
 }

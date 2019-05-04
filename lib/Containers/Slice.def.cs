@@ -11,7 +11,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    
+    using static nats;
+
     /// <summary>
     /// Encapsulates a linear data segment with length determined at runtime
     /// </summary>
@@ -179,7 +180,7 @@ namespace Z0
         public static implicit operator Slice<N,T>(T[] src)
             => new Slice<N,T>(src);
         
-        static readonly uint Length = (uint)natval<N>();
+        static readonly uint Length = (uint)natu<N>();
 
         public Slice<T> data {get;}
 
@@ -203,7 +204,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Slice(IEnumerable<T> src)
         {
-            this.data = src.Take((int)natval<N>()).ToArray();
+            this.data = src.Take((int)natu<N>()).ToArray();
             this.length = (uint)Prove.claim<N>(data.length);
         }
 

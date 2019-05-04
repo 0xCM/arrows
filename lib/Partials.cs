@@ -89,15 +89,6 @@ namespace Z0
         
     }
 
-    /// <summary>
-    /// Constituents responsible for reifying proofs that
-    /// demands have been satisfied
-    /// </summary>
-    public static partial class Prove
-    {
-
-
-    }
 
 
     public static partial class xcore

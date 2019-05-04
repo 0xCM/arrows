@@ -11,10 +11,10 @@ namespace Z0
     using System.IO;
 
     using static zcore;
+    using static inxfunc;
 
     public class GInXBench : BenchContext
     {   
-
         public static GInXBench Create(BenchConfig Config, IRandomizer random)
             => new GInXBench(Config, random);
         
@@ -94,13 +94,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<sbyte>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -110,13 +110,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<byte>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -126,13 +126,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<short>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -142,13 +142,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<ushort>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -158,13 +158,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<int>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -174,13 +174,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<uint>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -190,13 +190,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<long>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -206,13 +206,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<ulong>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -222,13 +222,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<float>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -239,13 +239,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<double>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -260,13 +260,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<sbyte>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.sub(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.sub(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.sub(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.sub(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -276,13 +276,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<byte>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.sub(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.sub(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.sub(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.sub(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -292,13 +292,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<short>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.sub(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.sub(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.sub(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.sub(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -308,13 +308,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<ushort>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.sub(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.sub(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.sub(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.sub(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -324,13 +324,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<int>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.sub(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.sub(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.sub(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.sub(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -340,13 +340,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<uint>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.sub(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.sub(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.sub(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.sub(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -356,13 +356,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<long>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.sub(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.sub(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.sub(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.sub(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -372,13 +372,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<ulong>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.sub(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.sub(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.sub(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.sub(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -388,13 +388,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<float>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.sub(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.sub(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.sub(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.sub(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -405,13 +405,13 @@ namespace Z0
             var opid = OpKind.Add.OpId<double>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.sub(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.sub(data.LeftSource, data.RightSource, ref data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.sub(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.sub(data.LeftSource, data.RightSource, ref data.RightTarget));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -419,19 +419,20 @@ namespace Z0
 
         #region Mul
 
+
         public BenchComparison MulF32(int? cycles = null, int? samples = null)
         {
             var data = BinOpInit<float>(samples);
             var opid = OpKind.Mul.OpId<float>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.mul(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.mul(data.LeftSource, data.RightSource, data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.mul(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.mul(data.LeftSource, data.RightSource, span(data.RightTarget)));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -442,13 +443,13 @@ namespace Z0
             var opid = OpKind.Mul.OpId<double>(intrinsic: true);
 
             var direct = Measure(opid, samples, () => 
-                dinx.mul(data.LeftSource, data.RightSource, ref data.DirectTarget));
+                dinx.mul(data.LeftSource, data.RightSource, data.LeftTarget));
 
             var generic = Measure(~opid, samples, () => 
-                ginx.mul(data.LeftSource, data.RightSource, ref data.GenericTarget));
+                ginx.mul(data.LeftSource, data.RightSource, span(data.RightTarget)));
 
             var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.DirectTarget, data.GenericTarget);        
+            Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 

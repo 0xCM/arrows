@@ -11,6 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;    
 
     using static zcore;
+    using static inxfunc;
     
     using target = System.Double;
     using stream = System.Collections.Generic.IEnumerable<double>;
@@ -183,7 +184,7 @@ namespace Z0
             => map(src,x => (target)x);
  
  
-         [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static stream ToDouble(this IEnumerable<sbyte> src)
             => map(src,x => (target)x);
 
@@ -228,7 +229,102 @@ namespace Z0
         [MethodImpl(Inline)]
         public static stream ToDouble(this IEnumerable<BigInteger> src)
             => map(src,x => (target)x);
- 
+
+
+        [MethodImpl(Inline)]
+        public static Span<double> ToDouble(this Span<sbyte> src)
+        {
+            var dst = span<double>(src.Length);
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+
+        }
+            
+
+        [MethodImpl(Inline)]
+        public static Span<double> ToDouble(this Span<byte> src)
+        {
+            var dst = span<double>(src.Length);
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<double> ToDouble(this Span<short> src)
+        {
+            var dst = span<double>(src.Length);
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<double> ToDouble(this Span<int> src)
+        {
+            var dst = span<double>(src.Length);
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<double> ToDouble(this Span<uint> src)
+        {
+            var dst = span<double>(src.Length);
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+
+        }
+
+
+        [MethodImpl(Inline)]
+        public static Span<double> ToDouble(this Span<ushort> src)
+        {
+            var dst = span<double>(src.Length);
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<double> ToDouble(this Span<long> src)
+        {
+            var dst = span<double>(src.Length);
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<double> ToDouble(this Span<ulong> src)
+        {
+            var dst = span<double>(src.Length);
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+
+        }
+
+
+
+        [MethodImpl(Inline)]
+        public static Span<double> ToDouble(this Span<float> src)
+        {
+            var dst = span<double>(src.Length);
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+
+        }
+
     }    
 
 }

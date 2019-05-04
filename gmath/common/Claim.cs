@@ -54,6 +54,27 @@ namespace Z0
             where T : struct, IEquatable<T> 
                 => define(x,y,"==",  (a,b) => a.Equals(b)).demand();
 
+        public static void eq<T>(Span<T> lhs, Span<T> rhs)
+            where T : struct, IEquatable<T> 
+        {
+            for(var i = 0; i< length(lhs,rhs); i++)
+            {
+                if(!lhs[i].Equals(rhs[i]))
+                    fail($"lhs[{i}] = {lhs[i]} != rhs[{i}] = {rhs[i]}");
+            }
+        }
+
+
+        public static void eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct, IEquatable<T> 
+        {
+            for(var i = 0; i< length(lhs,rhs); i++)
+            {
+                if(!lhs[i].Equals(rhs[i]))
+                    fail($"lhs[{i}] = {lhs[i]} != rhs[{i}] = {rhs[i]}");
+            }
+        }
+
         public static void eq<T>(T[] lhs, T[] rhs)
             where T : struct, IEquatable<T> 
         {
@@ -70,6 +91,10 @@ namespace Z0
             if(not(x.Equals(y)))
                 fail($"{x} != {y}: {msg}");
         }
+
+        public static bool lt(int x, int y)
+            => !(x < y) ? throw new Exception($"{x} < {y} does not hold") : true;
+
 
         /// <summary>
         /// Demands that the first string is equal to the second

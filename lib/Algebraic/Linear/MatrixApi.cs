@@ -10,6 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using static zcore;
     using static Traits;
+    using static nats;
 
     public static class MatrixOps<M,N>
         where M : TypeNat, new()
@@ -99,7 +100,7 @@ namespace Z0
         public static Vector<M, T> vector<J,T>(Matrix<M, N, T> src) 
             where T : struct, IEquatable<T>    
             where J : TypeNat, new()
-                => vector(src,natval<J>());
+                => vector(src,natu<J>());
 
 
         [MethodImpl(Inline)]
@@ -116,7 +117,7 @@ namespace Z0
         public static Covector<N, T> covector<I,T>(Matrix<M, N, T> src) 
             where I : TypeNat, new()
             where T : struct, IEquatable<T>    
-                => covector(src,natval<I>());
+                => covector(src,natu<I>());
 
         [MethodImpl(Inline)]
         public static Z0.Slice<N,Vector<M, T>> vectors<T>(Matrix<M, N, T> src)
@@ -292,7 +293,7 @@ namespace Z0
                 where M : TypeNat, new()
                 where N : TypeNat, new()
                 where T : struct, IEquatable<T>    
-                    => Slice.define<N,T>(src.data.Segment(natval<N>()*i, natval<N>()));
+                    => Slice.define<N,T>(src.data.Segment(natu<N>()*i, natu<N>()));
 
         [MethodImpl(Inline)]
         public static Matrix<I,J,T> submatrix<M,N,I,J,T>(Matrix<M,N,T> src, Dim<I,J> dstdim, (uint r, uint c) origin)

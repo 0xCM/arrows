@@ -11,6 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static nats;
 
     public static class Arr
     {
@@ -199,7 +200,7 @@ namespace Z0
         [MethodImpl(Inline)]
         internal Array(IEnumerable<T> src)
         {
-            var len = natval<N>();
+            var len = natu<N>();
             data = src.Take((int)len).ToArray();
         }
 
@@ -242,7 +243,7 @@ namespace Z0
         
         public Array(IEnumerable<T> src)
         {
-            dim = ((uint)natval<K1>(), (uint)natval<K2>());
+            dim = ((uint)natu<K1>(), (uint)natu<K2>());
             data = new T[dim.k1,dim.k2];
             foreach(var axis0 in src.Partition<K1,T>().Iteri())
             foreach(var axis1 in axis0.value.Iteri())
@@ -297,7 +298,7 @@ namespace Z0
 
         public Array(IEnumerable<T> src)
         {
-            dim = ((uint)natval<K1>(), (uint)natval<K2>(), (uint)natval<K3>());
+            dim = ((uint)natu<K1>(), (uint)natu<K2>(), (uint)natu<K3>());
             data = new T[dim.k1,dim.k2,dim.k3];
             foreach(var axis0 in src.Partition<K1,T>().Iteri())
             foreach(var axis1 in src.Partition<K2,T>().Iteri())

@@ -52,7 +52,7 @@ namespace Z0
         }
 
         public interface GF<N, S, T> : GF<N,S>, ModN<N, S, T>
-            where N : TypeNat, Demands.PrimePower<N>, new()
+            where N : TypeNat, IPrimePower<N>, new()
             where S : GF<N,S,T>,new()
             
         {

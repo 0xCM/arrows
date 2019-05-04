@@ -11,6 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using Z0;
     using static zcore;
+    using static nats;
 
     partial class xcore
     {
@@ -29,7 +30,7 @@ namespace Z0
                 var primal = rand.Random<T>();
             
                 static Vector<N,T> vector(N len, IEnumerable<T> src)
-                    => Vector.define(len, (src.Take((int)natval<N>())));
+                    => Vector.define(len, (src.Take((int)natu<N>())));
 
                 var s = primal.stream(min,max);
                 var len = natrep<N>();

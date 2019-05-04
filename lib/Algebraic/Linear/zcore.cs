@@ -11,6 +11,7 @@ using System.Diagnostics;
 
 using Z0;
 using static zcore;
+using static nats;
 
 public static partial class zcore
 {

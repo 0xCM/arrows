@@ -13,52 +13,32 @@ namespace Z0
 
     public class BenchSummary
     {
-        public BenchSummary(OpId Operator, long OpCount, Duration Measured, Duration Runtime)
+        public static BenchSummary Define(OpId Operator, int Cycles, long OpCount, Duration Measured)
+            => new BenchSummary(Operator, Cycles, OpCount, Measured);
+
+        public BenchSummary(OpId Operator, int Cycles,  long OpCount,  Duration ExecTime)
         {
-            this.Title = Title;
             this.Operator = Operator;
+            this.Cycles = Cycles;
             this.OpCount = OpCount;
-            this.Measured = Measured;
-            this.Runtime = Runtime;
-            this.Description = BenchmarkMessages.BenchmarkEnd(Operator, OpCount, Measured);
+            this.ExecTime = ExecTime;
+            this.Description = BenchmarkMessages.BenchmarkEnd(Operator, OpCount, ExecTime);
         }
-        public string Title {get;}
 
         public OpId Operator {get;}
-        
+
+        public int Cycles {get;}
+
         public long OpCount {get;}
 
-        public Duration Measured {get;}
-
-        public Duration Runtime {get;}
+        public Duration ExecTime {get;}
 
         public AppMsg Description {get;}
 
+        public string Title => $"{Operator}";
+
         public override string ToString()
             => Description.ToString();
-    }
-
-
-
-    public class BenchDetail : BenchSummary
-    {
-        public static BenchDetail Define(OpId Operator, int Cycles, int Reps, int Samples, long OpCount, Duration Measured, Duration Runtime)
-            => new BenchDetail(Operator, Cycles, Reps, Samples, OpCount, Measured, Runtime);
-        
-        BenchDetail(OpId Operator, int Cycles, int Reps, int Samples, long OpCount, Duration Measured, Duration Runtime)
-            : base(Operator, OpCount, Measured,Runtime)
-        {
-            this.Cycles = Cycles;
-            this.Reps = Reps;
-            this.Samples = Samples;
-        }
-        
-        public int Cycles {get;}
-
-        public int Reps {get;}
-
-        public int Samples {get;}
-
     }
 
     

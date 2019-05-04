@@ -15,12 +15,27 @@ namespace Z0
         public static IEnumerable<OpKind> All
             => typeof(OpKind).GetEnumValues().AsQueryable().Cast<OpKind>();
 
-        public static OpId OpId(this OpKind op, PrimalKind prim, bool generic = false, bool intrinsic = false)
-                => Z0.OpId.Define(op, prim, generic, intrinsic);
+        public static OpId OpId(this OpKind op, PrimalKind prim, bool generic = false, bool intrinsic = false, bool vectored = false)
+                => Z0.OpId.Define(op, prim, generic, intrinsic,vectored);
 
-        public static OpId OpId<T>(this OpKind kind, bool generic = false, bool intrinsic = false)
+        public static OpId OpId<T>(this OpKind kind, bool generic = false, bool intrinsic = false, bool vectored = false)
             where T : struct, IEquatable<T>
-                => Z0.OpId.Define<T>(kind, generic, intrinsic);
+                => Z0.OpId.Define<T>(kind, generic, intrinsic,vectored);
+    
+        /// <summary>
+        /// Describes vectored intrinsic operators
+        /// </summary>
+        public static OpId VInX<T>(this OpKind kind, bool generic = false)
+            where T : struct, IEquatable<T>
+                => kind.OpId<T>(generic, intrinsic: true, vectored : true);
+
+        /// <summary>
+        /// Describes intrinsic scalar operators
+        /// </summary>
+        public static OpId SInX<T>(this OpKind kind, bool generic = false)
+            where T : struct, IEquatable<T>
+                => kind.OpId<T>(generic, intrinsic: true, vectored : false);
+
     }
 
     public enum OpKind

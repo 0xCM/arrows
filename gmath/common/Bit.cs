@@ -27,7 +27,7 @@ namespace Z0
     /// Represents a numeric or logical bit
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Boolean_algebra</remarks>
-    public readonly struct bit : Bit<bit>, Wrapped<bool>
+    public readonly struct bit : IEquatable<bit> //: Bit<bit>, Wrapped<bool>
     {
 
         /// <summary>
@@ -243,5 +243,4 @@ namespace Z0
         public override string ToString()
             => format();
     }
-
 }

@@ -28,7 +28,7 @@ namespace Z0.Testing
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();            
-            var timing = Timing.begin($"{OpName}{kind} verification");
+            var timing = stopwatch();
                         
             var config = Defaults.get<T>();
             var src = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
@@ -38,7 +38,7 @@ namespace Z0.Testing
                 Claim.eq(RefOp(x),PrimOp(x));
             }
             
-            Timing.end(timing);
+            elapsed(timing);
 
 
             Emit();
@@ -48,7 +48,7 @@ namespace Z0.Testing
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();            
-            var timing = Timing.begin($"{OpName}{kind} verification");
+            var timing = stopwatch();
             
             var config = Defaults.get<T>();
             var lhs = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
@@ -60,7 +60,7 @@ namespace Z0.Testing
                 Claim.eq(RefOp(x,y),PrimOp(x,y));
             }
             
-            Timing.end(timing);
+            elapsed(timing);
 
 
             Emit();
@@ -70,7 +70,7 @@ namespace Z0.Testing
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();            
-            var timing = Timing.begin($"{OpName}{kind} verification");
+            var timing = stopwatch();
             
             var config = Defaults.get<T>();
             var lhs = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
@@ -82,7 +82,7 @@ namespace Z0.Testing
                 Claim.eq(RefOp(x,y),PrimOp(x,y));
             }
             
-            Timing.end(timing);
+            elapsed(timing);
 
 
             Emit();

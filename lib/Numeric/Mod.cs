@@ -10,6 +10,7 @@ namespace Z0
 
     using static Traits;
     using static zcore;
+    using static nats;
 
     /// <summary>
     /// Defines interal operations modulo N
@@ -23,7 +24,7 @@ namespace Z0
         
         static readonly Operative.PrimOps<T> Ops = primops.typeops<T>();
         
-        static readonly intg<T> @base =  natval<N>().ToIntG<T>();
+        static readonly intg<T> @base =  natu<N>().ToIntG<T>();
 
         public IEnumerable<T> members 
             => range<T>(@base.zero.unwrap(), @base.dec().unwrap()).Unwrap();

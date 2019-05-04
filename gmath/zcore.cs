@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
 using Z0;
-static class zcore
+static partial class zcore
 {
     public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
 
@@ -91,37 +91,101 @@ static class zcore
     public static T[] array<T>(params T[] src)
         => src;
 
+    static Exception lengthMismatch(int lhs, int rhs)
+        => throw new Exception($"Length mismatch, {lhs} != {rhs}");
+
+    static Exception countMismatch(int lhs, int rhs)
+        => throw new Exception($"Count mismatch, {lhs} != {rhs}");
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(ReadOnlyMemory<T> lhs, ReadOnlyMemory<T> rhs)
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
     [MethodImpl(Inline)]   
     public static int length<T>(T[] lhs, T[] rhs)
-    {
-        var lx = lhs.Length;
-        var ly = rhs.Length;
-        if(lx != ly)
-            throw new Exception($"The lengths of the input arrays do not match: {lx} != {ly}");
-        return lx;
-    }
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
 
 
     [MethodImpl(Inline)]   
     public static int length<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-    {
-        var lx = lhs.Length;
-        var ly = rhs.Length;
-        if(lx != ly)
-            throw new Exception($"The lengths of the input arrays do not match: {lx} != {ly}");
-        return lx;
-    }
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(Span<T> lhs, Span<T> rhs)
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(Span128<T> lhs, Span128<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
+    /// <summary>
+    /// Returns the common number of 128-bit blocks in the supplied spans, if possible. Otherwise,
+    /// raises an exception
+    /// </summary>
+    /// <param name="lhs">The left source</param>
+    /// <param name="rhs">The right source</param>
+    /// <typeparam name="T">The span element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int blocks<T>(Span128<T> lhs, Span128<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount : throw countMismatch(lhs.BlockCount,rhs.BlockCount);
+
+    /// <summary>
+    /// Returns the common number of 256-bit blocks in the supplied spans, if possible. Otherwise,
+    /// raises an exception
+    /// </summary>
+    /// <param name="lhs">The left source</param>
+    /// <param name="rhs">The right source</param>
+    /// <typeparam name="T">The span element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int blocks<T>(Span256<T> lhs, Span256<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount : throw countMismatch(lhs.BlockCount,rhs.BlockCount);
+
+    /// <summary>
+    /// Returns the common number of 128-bit blocks in the supplied spans, if possible. Otherwise,
+    /// raises an exception
+    /// </summary>
+    /// <param name="lhs">The left source</param>
+    /// <param name="rhs">The right source</param>
+    /// <typeparam name="T">The span element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int blocks<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount : throw countMismatch(lhs.BlockCount,rhs.BlockCount);
+
+    /// <summary>
+    /// Returns the common number of 256-bit blocks in the supplied spans, if possible. Otherwise,
+    /// raises an exception
+    /// </summary>
+    /// <param name="lhs">The left source</param>
+    /// <param name="rhs">The right source</param>
+    /// <typeparam name="T">The span element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int blocks<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount : throw countMismatch(lhs.BlockCount,rhs.BlockCount);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(Span256<T> lhs, Span256<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
 
 
     [MethodImpl(Inline)]   
+    public static int length<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
+    [MethodImpl(Inline)]   
     public static int length<T>(Index<T> lhs, Index<T> rhs)
-    {
-        var lx = lhs.Length;
-        var ly = rhs.Length;
-        if(lx != ly)
-            throw new Exception($"The lengths of the input arrays do not match: {lx} != {ly}");
-        return lx;
-    }
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
 
     /// <summary>
     /// Shorthand for the <see cref="string.IsNullOrEmpty(string)"/> method
@@ -440,55 +504,24 @@ static class zcore
     public static Duration snapshot(Stopwatch sw)     
         => Duration.Define(sw.ElapsedTicks);        
 
-    public static ReadOnlySpan<T> rospan<T>(params T[] src)
-        => src;
 
     /// <summary>
-    /// Constructs a span from an array
+    /// Demands truth that is enforced with an exeption upon false
     /// </summary>
-    /// <param name="src">The source array</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Span<T> span<T>(T[] src)
-        => src;
+    /// <param name="x">The value to test</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static bool demand(bool x, string message = null)
+        => x ? x : throw new Exception(message ?? "demand failed");
 
     /// <summary>
-    /// Constructs a span from an array selection
+    /// Constructs a value if boolean predondition is true; otherwise, raises an exception
     /// </summary>
-    /// <param name="src">The source array</param>
-    /// <param name="start">The array index where the span is to begin</param>
-    /// <param name="length">The number of elements to cover from the aray</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Span<T> span<T>(T[] src, int start, int length)
-        => new Span<T>(src,start, length);
+    /// <param name="condition">The condition to test</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static T demand<T>(bool condition, string msg = null)
+        where T : new()
+        => condition ? new T() : throw new Exception(msg ?? $"Precondition for construction of {type<T>().Name} unmet");    
 
-    /// <summary>
-    /// Constructs a span from the entireity of a sequence
-    /// </summary>
-    /// <param name="src">The source sequence</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Span<T> span<T>(IEnumerable<T> src)
-        => span(src.ToArray());
-
-    /// <summary>
-    /// Constructs a span from a sequence selection
-    /// </summary>
-    /// <param name="src">The source sequence</param>
-    /// <param name="offset">The number of elements to skip from the head of the sequence</param>
-    /// <param name="length">The number of elements to take from the sequence</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Span<T> span<T>(IEnumerable<T> src, int? offset = null, int? length = null)
-        => span(length == null ? src.Skip(offset ?? 0) : src.Skip(offset ?? 0).Take(length.Value));
-
-    /// <summary>
-    /// Constructs an unpopulated span of a specified length
-    /// </summary>
-    /// <param name="length">The number of T-sized cells to allocate</param>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Span<T> span<T>(int length)
-        => new Span<T>(new T[length]);
 }

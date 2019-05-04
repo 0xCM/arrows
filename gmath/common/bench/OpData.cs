@@ -75,8 +75,8 @@ namespace Z0
         {            
             this.LeftSource = LeftSource;
             this.RightSource = RightSource;
-            this.DirectTarget = LeftTarget;
-            this.GenericTarget = RightTarget;
+            this.LeftTarget = LeftTarget;
+            this.RightTarget = RightTarget;
             this.Length = length(LeftTarget, RightTarget);
         }
 
@@ -84,9 +84,9 @@ namespace Z0
 
         public readonly T[] RightSource;
 
-        public T[] DirectTarget;
+        public T[] LeftTarget;
 
-        public T[] GenericTarget;
+        public T[] RightTarget;
 
         public int Length {get;}
     }

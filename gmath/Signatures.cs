@@ -36,9 +36,21 @@ namespace Z0
         OneOrMore
     }
 
-    public delegate Duration Cycle(int cycles, int reps);
+    /// <summary>
+    /// Defines the signature of a function that measures execution time for
+    /// cycles * reps invocations
+    /// </summary>
+    /// <param name="cycles">The number of cycles</param>
+    /// <param name="reps">The number of reps</param>
+    public delegate Duration Repeat(int cycles, int reps);
     
-    public delegate Duration Repeat(int reps);
+    /// <summary>
+    /// Defines the signature of a function that measures execution time for
+    /// a specified number of cycles
+    /// </summary>
+    /// <param name="cycles">The number of cycles</param>
+    /// <param name="reps">The number of reps</param>
+    public delegate OpStats Cycle(int reps);
 
     public delegate void BinOpInspector<T>(T lhs, T rhs, T result)
         where T : struct, IEquatable<T>;

@@ -14,6 +14,7 @@ using System.Diagnostics;
 using Z0;
 using static zcore;
 using Array = Z0.Arr;
+using static nats;
 
 public static partial class zcore
 {
@@ -369,7 +370,7 @@ public static partial class zcore
     public static IEnumerable<IReadOnlyList<T>> partition<W,T>(IEnumerable<T> src)
         where W : TypeNat, new()
     {
-        var width = natval<W>();
+        var width = natu<W>();
         var sement = new T[width];
         var current = 0UL;
         foreach(var item in src)
@@ -431,7 +432,7 @@ public static partial class zcore
     [MethodImpl(Inline)]   
     public static T[] repeat<N,T>(T value)
         where N : TypeNat, new()
-        => repeat(value, natval<N>());
+        => repeat(value, natu<N>());
 
     /// <summary>
     /// Reverses the input sequence

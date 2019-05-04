@@ -9,7 +9,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static zcore;
-
+    using static nats;
     partial class Structures
     {
         public interface Digit<T> : Formattable

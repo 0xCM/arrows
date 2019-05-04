@@ -35,20 +35,79 @@ namespace Z0
             zcore.print(comparison.CalcDelta().Description);
         }        
         
-        protected BenchComparison Compare(OpId op, Cycle direct, Cycle generic, int? cycles, int? reps, int? samples)
+        protected BenchComparison Compare(OpId op, Repeat left, Repeat right, int? cycles, int? reps, int? samples)
         {
-            var running = stopwatch();
             var _cycles = cycles ?? Config.Cycles;
             var _reps = reps ?? Config.Reps;
-            var _samples = samples ?? Config.SampleSize;
-            var opcount = (long)((long)_reps * (long)_cycles * (long)(_samples));
-            var dTime = direct(cycles ?? Config.Cycles,reps ?? Config.Reps);
-            var gTime = generic(cycles ?? Config.Cycles, reps ?? Config.Reps);            
-            var runtime = snapshot(running);
-            var dBench = BenchDetail.Define(op, _cycles, _reps, _samples, opcount, dTime, runtime.Half());
-            var gBench = new BenchSummary(~op, opcount, gTime, runtime.Half());
-            var comparison = BenchComparison.Define(dBench,gBench);
-            return comparison;
+            var dTime = left(_cycles , _reps);
+            var gTime = right(_cycles, _reps);            
+            var dBench = BenchSummary.Define(op, _cycles, 0, dTime);
+            var gBench = new BenchSummary(~op, _cycles, 0, gTime);
+            return BenchComparison.Define(dBench,gBench);
+        }
+
+        protected BenchComparison Run<T>(T title, Cycle left, Cycle right, int? cycles)
+        {
+            var lStats = left(cycles?? Config.Cycles);
+            var rStats = right(cycles ?? Config.Cycles);
+            Claim.eq(lStats.OpCount, rStats.OpCount);
+            Claim.eq(lStats.Cycles, rStats.Cycles);
+            var lBench = BenchSummary.Define(lStats.Op, lStats.Cycles, lStats.OpCount, lStats.ExecTime);
+            var rBench = new BenchSummary(rStats.Op, rStats.Cycles,  rStats.OpCount, rStats.ExecTime);
+            return BenchComparison.Define(lBench, rBench);
+        }
+
+        protected Cycle MeasureCycles(OpId op, long opsPerCycle, Action action)
+        {
+            OpStats repeat(int cycles)
+            {
+                var timer = stopwatch(false);
+                var opcount = 0L;
+
+                for(var cycle = 1; cycle <= cycles; cycle++)
+                {
+                    timer.Start();
+                    
+                    action();
+                    
+                    timer.Stop();
+                    opcount += opsPerCycle;
+                                        
+                    if(cycle % Config.AnnounceRate == 0)
+                        zcore.print(BenchmarkMessages.CycleStatus(op, cycle, opcount, elapsed(timer)));                    
+                }
+                
+                return  OpStats.Define(op, elapsed(timer), cycles, opcount);
+            }
+            
+            return repeat;
+
+        }
+
+        protected Cycle Measure(OpId op, Func<long> action)
+        {
+            OpStats repeat(int cycles)
+            {
+                var timer = stopwatch(false);
+                var opcount = 0L;
+
+                for(var cycle = 1; cycle <= cycles; cycle++)
+                {
+                    timer.Start();
+                    
+                    opcount += action();
+                    
+                    timer.Stop();
+                                        
+                    if(cycle % Config.AnnounceRate == 0)
+                        zcore.print(BenchmarkMessages.CycleStatus(op, cycle, opcount, elapsed(timer)));                    
+                }
+                
+                return  OpStats.Define(op, elapsed(timer), cycles, opcount);
+            }
+            
+            return repeat;
+
         }
 
         /// <summary>
@@ -59,7 +118,7 @@ namespace Z0
         /// <param name="action">The action for which a cyclic measure is to be obtained</param>
         /// <param name="cycles">The number of cycles to iterate</param>
         /// <param name="reps">The number of reps to iterate</param>
-        protected Cycle Measure<T>(T title, int? samples, Action action)
+        protected Repeat Measure<T>(T title, int? samples, Action action)
         {
             Duration repeat(int cycles, int reps)
             {
@@ -143,6 +202,15 @@ namespace Z0
             var runners = map(methods, m => (m.Name, (OpRunner) Delegate.CreateDelegate(typeof(OpRunner),this,m))).ToDictionary();
             return runners;            
         }
+
+        protected unsafe void SampleTo<T>(void* pDst, int? samples = null, bool nonzero = false)
+            where T : struct, IEquatable<T>
+        {
+            var domain = Defaults.get<T>().Domain;
+            Randomizer.StreamTo<T>(domain, samples ?? Config.SampleSize, pDst);
+             
+        }
+
 
     }
 }

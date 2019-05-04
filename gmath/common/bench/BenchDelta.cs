@@ -23,7 +23,7 @@ namespace Z0
             this.Description = Describe(Comparison);
             Claim.eq(Comparison.LeftBench.OpCount, Comparison.RightBench.OpCount);
             Claim.eq(Comparison.LeftBench.Operator.Primitive, Comparison.RightBench.Operator.Primitive);
-            Claim.eq(Comparison.LeftBench.Operator.Kind, Comparison.RightBench.Operator.Kind);
+            Claim.eq(Comparison.LeftBench.Operator.OpKind, Comparison.RightBench.Operator.OpKind);
         }
 
         public BenchComparison Comparison {get;}
@@ -46,10 +46,10 @@ namespace Z0
             => Comparison.LeftBench.Operator;
 
         public Duration LeftDuration
-            => Comparison.LeftBench.Measured;
+            => Comparison.LeftBench.ExecTime;
 
         public Duration RightDuration
-            => Comparison.RightBench.Measured;
+            => Comparison.RightBench.ExecTime;
 
         public Duration TimingDelta
             => LeftDuration - RightDuration;
@@ -72,7 +72,7 @@ namespace Z0
             => $"{c.LeftBench.Title} vs {c.RightBench.Title}";
 
         static Duration deltaTiming(BenchComparison c)               
-            => c.LeftBench.Measured - c.RightBench.Measured;
+            => c.LeftBench.ExecTime - c.RightBench.ExecTime;
 
 
         static AppMsg Describe(BenchComparison comparison)
@@ -80,8 +80,8 @@ namespace Z0
             var title = deltaTitle(comparison);
             var timing = deltaTiming(comparison);
             var width = Math.Abs(timing.Ms);
-            var leftDuration = comparison.LeftBench.Measured;
-            var rightDuration = comparison.RightBench.Measured;
+            var leftDuration = comparison.LeftBench.ExecTime;
+            var rightDuration = comparison.RightBench.ExecTime;
             var ratio = Math.Round((double)leftDuration.Ticks / (double)rightDuration.Ticks, 4);
             var opid = comparison.LeftBench.Operator;
             var description = append(

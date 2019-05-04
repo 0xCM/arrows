@@ -79,38 +79,6 @@ partial class zcore
     public static BitVector<N8> bytevector(params BinaryDigit[] src)
         => BitVector.define<N8>(map(src, x => x == 0 ? bit.off() : bit.on()));
 
-    /// <summary>
-    /// Computes the integral divisors of a number, exluding 1 and the number itself
-    /// </summary>
-    /// <param name="src">The source value</param>
-    public static IEnumerable<intg<T>> divisors<T>(intg<T> src)
-        where T : struct, IEquatable<T>
-    {        
-        var zero = Z0.intg<T>.Zero;
-        var one = Z0.intg<T>.One;
-        var two = one.inc();
-        if(src != zero && src != one)
-        {
-            var upper = (src/two).inc();
-            var candidates = range<T>(two, upper);
-            foreach(var c in candidates)
-                if(src % c == zero )
-                    yield return c;
-        }    
-    }
-
-    /// <summary>
-    /// Determines whether an integer is prime
-    /// </summary>
-    /// <param name="x">The integer to examine</param>
-    /// <typeparam name="T">The underlying integer type</typeparam>
-    [MethodImpl(Inline)]   
-    public static bool prime<T>(intg<T> x)
-        where T : struct, IEquatable<T>
-    {
-        var upperBound = x.ToFloatG64().sqrt().ceiling().ToIntG<T>();   
-        return divisors(x).Count() == 0;
-    }                
 
     /// <summary>
     /// Enumerates generic reals, with unit spacing, inclusively between specified bounds

@@ -11,9 +11,6 @@ namespace Z0
 
     using static zcore;
 
-    using static Z0.Traits;
-
-
     /// <summary>
     /// Represents a potential value
     /// </summary>

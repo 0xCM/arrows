@@ -47,14 +47,14 @@ namespace Z0.Tests.InXTests
             Claim.eq(lArray.Length, SampleSize);
             this.LeftDataSrc = lArray;
             
-            this.LeftVecSrc = Vec128.define(lArray);
+            this.LeftVecSrc = Vec128.exhaust(lArray);
             Claim.eq(LeftVecSrc.Length, VecCount);
 
             var rArray =  Randomizer.Array<T>(SampleSize);
             Claim.eq(rArray.Length, SampleSize);
             this.RightDataSrc = rArray;
 
-            this.RightVecSrc = Vec128.define(rArray);
+            this.RightVecSrc = Vec128.exhaust(rArray);
             Claim.eq(RightVecSrc.Length, VecCount);
 
 
@@ -71,9 +71,9 @@ namespace Z0.Tests.InXTests
 
         protected Index<T> RightDataSrc {get;}
 
-        protected Index<Vec128<T>> LeftVecSrc {get;}
+        protected Vec128<T>[] LeftVecSrc {get;}
 
-        protected Index<Vec128<T>> RightVecSrc {get;}
+        protected Vec128<T>[] RightVecSrc {get;}
 
         protected IEnumerable<Vec128<T>> Results(Vec128BinOp<T> vecop)
         {

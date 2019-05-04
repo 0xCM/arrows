@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Globalization;
 
 using Z0;
 using static Z0.Bibliography;
@@ -139,15 +140,6 @@ partial class zcore
         => (T) src;
 
     /// <summary>
-    /// Envisions (reimagines?) a block of memory
-    /// </summary>
-    /// <param name="src">The memory location to be interpreted as a T-value</param>
-    /// <typeparam name="T">The lens through which a memory block is interpreted</typeparam>
-    [MethodImpl(Inline)]
-    public static unsafe T castref<T>(void* src)
-        => Unsafe.AsRef<T>(src);
- 
-    /// <summary>
     /// The univeral identity function that returns the source value
     /// </summary>
     /// <param name="x">The source value</param>
@@ -256,6 +248,14 @@ partial class zcore
     public static T demand<T>(bool condition, string msg = null)
         where T : new()
         => condition ? new T() : throw new Exception(msg ?? $"Precondition for construction of {type<T>().Name} unmet");    
+
+    /// <summary>
+    /// Constructs a date from an integer in the form YYYYMMDD
+    /// </summary>
+    /// <param name="d">The integer representing the date</param>
+    /// <returns></returns>
+    public static Date date(int d) 
+        => DateTime.ParseExact(d.ToString(), "yyyyMMdd", CultureInfo.CurrentCulture);
 
 }
 
