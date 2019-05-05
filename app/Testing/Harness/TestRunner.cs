@@ -11,7 +11,7 @@ namespace Z0.Testing
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
-    using static Nats;
+    
     using static zcore;
 
     [DisplayName("testrunner")]

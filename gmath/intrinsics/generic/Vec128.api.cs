@@ -492,12 +492,14 @@ namespace Z0
             => Vector128.Create(x0);
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<sbyte> define(sbyte x0, sbyte x1, sbyte x2, sbyte x3, 
-                sbyte x4, sbyte x5, sbyte x6, sbyte x7,
-                sbyte x8, sbyte x9, sbyte x10, sbyte x11,
+        public static unsafe Vec128<sbyte> define(
+                sbyte x00, sbyte x01, sbyte x02, sbyte x03, 
+                sbyte x04, sbyte x05, sbyte x06, sbyte x07,
+                sbyte x08, sbyte x09, sbyte x10, sbyte x11,
                 sbyte x12, sbyte x13, sbyte x14, sbyte x15)
-                    => Vector128.Create(x0, x1, x2, x3, x4, x5, x6, x7, 
-                        x8, x9, x10, x11,x12, x13, x14, x15);
+                    => Vector128.Create(
+                        x00, x01, x02, x03, x04, x05, x06, x07, 
+                        x08, x09, x10, x11,x12, x13, x14, x15);
 
 
         [MethodImpl(Inline)]
@@ -516,7 +518,8 @@ namespace Z0
             => Vector128.Create(x0);
         
         [MethodImpl(Inline)]
-        public static unsafe Vec128<ushort> define(ushort x0, ushort x1, ushort x2, ushort x3, 
+        public static unsafe Vec128<ushort> define(
+                ushort x0, ushort x1, ushort x2, ushort x3, 
                 ushort x4, ushort x5, ushort x6, ushort x7)
                     => Vector128.Create(x0,x1,x2,x3,x4,x5,x6,x7);
 

@@ -106,8 +106,7 @@ namespace Z0
                 '7' => D7,
                 '8' => D8,
                 '9' => D9,
-                _ => throw new NotSupportedException($"{c}")
-            };
+                _ => throw new NotSupportedException($"{c}")};
 
         /// <summary>
         /// Parses valid decimail digits from the source string, ignoring characters

@@ -147,64 +147,7 @@ namespace Z0
                   
         }
 
-        void TestBenchmarks()
-        {
-            var domain = Interval.leftclosed(-150.0d, 150.0d).canonical();
-            var stream = Randomizer.Stream(domain).Freeze(Pow2.T20);
 
-            double SumInX()
-            {
-                return Math.Round(stream.InXSum(),4);
-            }
-
-            double SumPrimal()
-            {
-                var result = 0d;
-                for(var i=0; i< stream.Length; i++)
-                    result += stream[i];
-                return Math.Round(result,4);                
-            }
-
-            double SumPrimOpDel()
-            {
-                var add = PrimalOps.add<double>();
-                var result = 0d;
-                for(var i=0; i< stream.Length; i++)
-                    result = add(result, stream[i]);
-                return Math.Round(result,4);                
-
-            }
-
-            double SumPrimOps()
-            {
-                var result = 0d;
-                for(var i=0; i< stream.Length; i++)
-                    result = primops.add(result, stream[i]);
-                return Math.Round(result,4);                
-            }
-
-            Claim.eq(SumInX(), SumPrimal());
-            Claim.eq(SumPrimOpDel(), SumPrimal());
-            Claim.eq(SumPrimOps(), SumPrimal());
-
-            measure(() => SumPrimOpDel(), "primops-d/sum", 100);
-            measure(() => SumPrimOps(), "primops/sum", 100);
-            measure(() => SumPrimal(), "primal/sum", 100);
-            measure(() => SumInX(), "intrinsics/sum", 100);
-
-        }
-
-        void TestInXSum()
-        {
-            var domain = Interval.leftclosed(-150.0d, 150.0d).canonical();
-            var stream = Randomizer.Stream(domain);
-            var src = stream.Freeze(Pow2.T20);
-            var expect = Math.Round(src.Sum(),4);
-            var result = Math.Round(src.InXSum(),4);
-            Claim.eq(expect,result);            
-            inform($"sum = {result}");
-
-        }
 
         void RunBenchmarks()
         {

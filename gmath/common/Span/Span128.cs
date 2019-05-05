@@ -13,115 +13,14 @@ namespace Z0
     
     using static zcore;
     using static inxfunc;
-    using static Span128;
-
-    public static class Span128
-    {
-        /// <summary>
-        /// Calculates the number of cells in a specified number of blocks
-        /// </summary>
-        /// <typeparam name="T">The block constituent type</typeparam>
-        [MethodImpl(Inline)]
-        public static int cellcount<T>(int blocks = 1)
-            where T : struct, IEquatable<T>        
-                => Span128<T>.CellCount * blocks;
-
-        /// <summary>
-        /// Calculates the number of bytes required to represent a block constituent
-        /// </summary>
-        /// <typeparam name="T">The block constituent type</typeparam>
-        [MethodImpl(Inline)]
-        public static int cellsize<T>()
-            where T : struct, IEquatable<T>        
-                => Span128<T>.CellSize;
-
-        /// <summary>
-        /// Calculates the number of bytes requred to represent a block
-        /// </summary>
-        /// <typeparam name="T">The block constituent type</typeparam>
-        [MethodImpl(Inline)]
-        public static int blocksize<T>()
-            where T : struct, IEquatable<T>        
-                => Span128<T>.BlockSize;
-
-        /// <summary>
-        /// Calculates the number of bytes required to represent a specified
-        /// number of blocks
-        /// </summary>
-        /// <typeparam name="T">The block constituent type</typeparam>
-        [MethodImpl(Inline)]
-        public static int datasize<T>(int blocks)
-            where T : struct, IEquatable<T>        
-                => cellcount<T>(blocks) * cellsize<T>();
-
-
-        /// <summary>
-        /// Calculates the number blocks that can be covered by a specified number of bytes
-        /// </summary>
-        /// <typeparam name="T">The block constituent type</typeparam>
-        [MethodImpl(Inline)]
-        public static int blockcount<T>(int datasize)
-            where T : struct, IEquatable<T>        
-                => datasize / blocksize<T>();
-
-
-        [MethodImpl(Inline)]
-        public static int blockoffset<T>(int blockIndex)
-            where T : struct, IEquatable<T>        
-                => Span128<T>.BlockSize * blockIndex;
-
-        [MethodImpl(Inline)]
-        public static int align<T>(int datasize)
-            where T : struct, IEquatable<T>        
-                => datasize - datasize % cellcount<T>();
-
-        /// <summary>
-        /// Determines whether data of a specified length can be evenly covered by blocks
-        /// </summary>
-        /// <param name="datasize">The length, in bytes, of the source data</param>
-        /// <typeparam name="T">The block constituent type</typeparam>
-        [MethodImpl(Inline)]
-        public static bool aligned<T>(int datasize)
-            where T : struct, IEquatable<T>        
-            => datasize % blockcount<T>(datasize) == 0;
-
-
-        [MethodImpl(Inline)]
-        public static Span128<T> load<T>(Span<T> src)
-            where T : struct, IEquatable<T>
-                => new Span128<T>(src.Slice(0, align<T>(src.Length)));
-
-        [MethodImpl(Inline)]
-        public static Span128<T> load<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
-                => new Span128<T>(src.Slice(0, align<T>(src.Length)));
-
-        [MethodImpl(Inline)]
-        public static Span128<T> load<T>(T[] src)
-            where T : struct, IEquatable<T>
-                => new Span128<T>(src, 0, align<T>(src.Length));
-
-        [MethodImpl(Inline)]
-        public static Span128<T> load<T>(T[] src, int offset, int len)
-            where T : struct, IEquatable<T>
-                => new Span128<T>(src, offset, len);
-
-        [MethodImpl(Inline)]
-        public static Span128<T> single<T>(params T[] src)
-            where T : struct, IEquatable<T>
-                => new Span128<T>(src);
-
-
-    }
 
     /// <summary>
-    /// A selective clone/wrapper of System.Span[T] where the the 
-    /// encasulated data is always a multiple of 16 bytes = 128 bits
+    /// A System.Span[T] clone where the  encasulated data is always a multiple 
+    /// of 16 bytes = 128 bits
     /// </summary>
     public ref struct Span128<T>
         where T : struct, IEquatable<T>
     {
-
         [MethodImpl(Inline)]
         public static implicit operator Span<T>(Span128<T> src)
             => src.data;
@@ -146,80 +45,48 @@ namespace Z0
         public static bool operator != (Span128<T> lhs, Span128<T> rhs)
             => lhs.data != rhs.data;
         
-        /// <summary>
-        /// The number of values per block
-        /// </summary>
-        public static readonly int CellCount = Vec128<T>.Length;
-
-        /// <summary>
-        /// The size, in bytes, of a block constituent
-        /// </summary>
-        /// <typeparam name="T">The primitive type</typeparam>
-        public static readonly int CellSize = Unsafe.SizeOf<T>();
-
+        public static readonly int BlockLength = Vec128<T>.Length;
 
         /// <summary>
         /// The size, in bytes, of a block 
         /// </summary>
         /// <typeparam name="T">The primitive type</typeparam>
-        public static readonly int BlockSize = CellCount * CellSize;
+        public static readonly int BlockSize = 16;
 
-
-        static Exception unaligned(int actual)
-            => new ArgumentException($"Length mismatch: {actual}");
+        /// <summary>
+        /// The size, in bytes, of a block constituent
+        /// </summary>
+        /// <typeparam name="T">The primitive type</typeparam>
+        public static readonly int CellSize = BlockSize / BlockLength;
 
         Span<T> data;
 
         [MethodImpl(Inline)]
         public unsafe Span128(void* src, int len)    
         {
-            assert(aligned<T>(len));
-            
+            //assert(aligned<T>(len));            
             data = new Span<T>(src, len);  
-
-        }
-
-        [MethodImpl(Inline)]
-        public Span128(T[] src, int offset, int len)
-        {
-            assert(aligned<T>(len - offset));
-            data = span(src, offset, len);
         }
 
         [MethodImpl(Inline)]
         public Span128(T[] src)
         {
-            assert(aligned<T>(src.Length));
+            assert(src.Length % BlockLength == 0);
             data = span(src);
         }
 
         [MethodImpl(Inline)]
         public Span128(ReadOnlySpan<T> src)
         {
-            assert(aligned<T>(src.Length));
+            assert(src.Length % BlockLength == 0);
             data = span<T>(src.Length);
             src.CopyTo(data);
         }
 
         [MethodImpl(Inline)]
-        public Span128(T value, int len)
+        public Span128(Span<T> src)
         {
-            assert(aligned<T>(len));
-            this.data = new Span<T>(new T[len]);
-            this.data.Fill(value);
-        }
-
-        [MethodImpl(Inline)]
-        public Span128(ref Span<T> src)
-        {
-            assert(aligned<T>(src.Length));         
-            this.data = src;
-        }
-
-        [MethodImpl(Inline)]
-        public Span128(ArraySegment<T> src)
-        {
-            assert(aligned<T>(src.Count));            
+            assert(src.Length % BlockLength == 0);
             this.data = src;
         }
 
@@ -239,41 +106,23 @@ namespace Z0
         {
             [MethodImpl(Inline)]
             get => data[range];
-
         }
 
         [MethodImpl(Inline)]
         public Span<T> Slice(int start)
             => data.Slice(start);
 
-
         [MethodImpl(Inline)]
         public Span<T> Slice(int start, int length)
             => data.Slice(start,length);
 
-
         [MethodImpl(Inline)]
-        public Span<T> Slice(Range range)
-            => data.Slice(range);
-
-        [MethodImpl(Inline)]
-        public Span128<T> Block(int blockOffset)
-            => (Span128<T>)data.Slice(blockoffset<T>(blockOffset), BlockSize);
-
+        public Span128<T> Block(int blockIndex)
+            => new Span128<T>(data.Slice(blockIndex * BlockLength, BlockLength));
         
         [MethodImpl(Inline)]
-        public Span128<T> Blocks(int start)
-        {
-            assert(aligned<T>(start));
-            return (Span128<T>)Slice(start);
-        }
-
-        [MethodImpl(Inline)]
-        public Span128<T> Blocks(int start, int blocks)
-        {
-            assert(aligned<T>(start));
-            return (Span128<T>)Slice(start, datasize<T>(blocks));
-        }
+        public Span128<T> Blocks(int blockIndex, int blockCount)
+            => (Span128<T>)Slice(blockIndex * BlockLength, blockCount * BlockLength );
             
         [MethodImpl(Inline)]
         public Span<T> ToSpan()
@@ -306,13 +155,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool TryCopyTo (Span<T> dst)
             => data.TryCopyTo(dst);
-
                 
         [MethodImpl(Inline)]
         public Span128<S> As<S>()                
             where S : struct, IEquatable<S>
                 => (Span128<S>)MemoryMarshal.Cast<T,S>(data);            
-
+        
         public int Length 
         {
             [MethodImpl(Inline)]
@@ -322,7 +170,7 @@ namespace Z0
         public int BlockCount 
         {
             [MethodImpl(Inline)]
-            get => blockcount<T>(data.Length);
+            get => data.Length / BlockLength; 
         }
 
         public bool IsEmpty
@@ -338,7 +186,6 @@ namespace Z0
             => throw new NotSupportedException();
 
        public override int GetHashCode() 
-            => throw new NotSupportedException();
-        
+            => throw new NotSupportedException();        
     }
 }

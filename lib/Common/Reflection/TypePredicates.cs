@@ -23,6 +23,15 @@ namespace Z0
             || p.GetSetMethod().IsStatic == true;
 
         /// <summary>
+        /// Determines whether a type is static
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static bool IsStatic(this Type t)
+            => t.IsAbstract && t.IsSealed;
+
+
+        /// <summary>
         /// Determines whether a type has a public default constructor
         /// </summary>
         /// <param name="t">The type to examine</param>
@@ -307,14 +316,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool IsNamed(this Type t)
             => !t.IsAnonymous();
-
-        /// <summary>
-        /// Determines whether a type is static
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsStatic(this Type t)
-            => t.IsAbstract && t.IsSealed;
 
         /// <summary>
         /// Determines whether a type is a struct

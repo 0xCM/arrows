@@ -758,32 +758,108 @@ namespace Z0
             => (sbyte)(lhs | rhs);
 
         [MethodImpl(Inline)]
+        public static sbyte or(sbyte x1, sbyte x2, params sbyte[] more)
+        {
+            var result = or(x1,x2);
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+            
+
+        [MethodImpl(Inline)]
         public static byte or(byte lhs, byte rhs)
             => (byte)(lhs | rhs);
+
+        [MethodImpl(Inline)]
+        public static byte or(byte x1, byte x2, params byte[] more)
+        {
+            var result = or(x1,x2);
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
 
         [MethodImpl(Inline)]
         public static short or(short lhs, short rhs)
             => (short)(lhs | rhs);
 
+
+        [MethodImpl(Inline)]
+        public static short or(short x1, short x2, params short[] more)
+        {
+            var result = or(x1,x2);
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+
         [MethodImpl(Inline)]
         public static ushort or(ushort lhs, ushort rhs)
             => (ushort)(lhs | rhs);
+
+
+        [MethodImpl(Inline)]
+        public static ushort or(ushort x1, ushort x2, params ushort[] more)
+        {
+            var result = or(x1,x2);
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
 
         [MethodImpl(Inline)]
         public static int or(int lhs, int rhs)
             => lhs | rhs;
 
         [MethodImpl(Inline)]
+        public static int or(int x1, int x2, params int[] more)
+        {
+            var result = or(x1,x2);
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+
+        [MethodImpl(Inline)]
         public static uint or(uint lhs, uint rhs)
             => lhs | rhs;
+
+        [MethodImpl(Inline)]
+        public static uint or(uint x1, uint x2, params uint[] more)
+        {
+            var result = or(x1,x2);
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
 
         [MethodImpl(Inline)]
         public static long or(long lhs, long rhs)
             => lhs | rhs;
 
         [MethodImpl(Inline)]
+        public static long or(long x1, long x2, params long[] more)
+        {
+            var result = or(x1,x2);
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+
+        [MethodImpl(Inline)]
         public static ulong or(ulong lhs, ulong rhs)
             => lhs | rhs;
+
+        [MethodImpl(Inline)]
+        public static ulong or(ulong x1, ulong x2, params ulong[] more)
+        {
+            var result = or(x1,x2);
+            for(var i = 0; i< more.Length; i++)
+                result |= more[i];
+            return result;
+        }
+
 
         [MethodImpl(Inline)]
         public static void or(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
@@ -1122,6 +1198,78 @@ namespace Z0
             return ref io;
         }
 
+
+        #endregion
+
+        #region lshift
+
+        [MethodImpl(Inline)]
+        public static sbyte lshift(sbyte lhs, int rhs)
+            => (sbyte)(lhs << rhs);
+
+        [MethodImpl(Inline)]
+        public static byte lshift(byte lhs, int rhs)
+            => (byte)(lhs << rhs);
+
+        [MethodImpl(Inline)]
+        public static short lshift(short lhs, int rhs)
+            => (short)(lhs << rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort lshift(ushort lhs, int rhs)
+            => (ushort)(lhs << rhs);
+
+        [MethodImpl(Inline)]
+        public static int lshift(int lhs, int rhs)
+            => lhs << rhs;
+
+        [MethodImpl(Inline)]
+        public static uint lshift(uint lhs, int rhs)
+            => lhs << rhs;
+
+        [MethodImpl(Inline)]
+        public static long lshift(long lhs, int rhs)
+            => lhs << rhs;
+
+        [MethodImpl(Inline)]
+        public static ulong lshift(ulong lhs, int rhs)
+            => lhs << rhs;
+
+        #endregion
+
+        #region rshift
+
+        [MethodImpl(Inline)]
+        public static sbyte rshift(sbyte lhs, int rhs)
+            => (sbyte)(lhs >> rhs);
+
+        [MethodImpl(Inline)]
+        public static byte rshift(byte lhs, int rhs)
+            => (byte)(lhs >> rhs);
+
+        [MethodImpl(Inline)]
+        public static short rshift(short lhs, int rhs)
+            => (short)(lhs >> rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort rshift(ushort lhs, int rhs)
+            => (ushort)(lhs >> rhs);
+
+        [MethodImpl(Inline)]
+        public static int rshift(int lhs, int rhs)
+            => lhs >> rhs;
+
+        [MethodImpl(Inline)]
+        public static uint rshift(uint lhs, int rhs)
+            => lhs >> rhs;
+
+        [MethodImpl(Inline)]
+        public static long rshift(long lhs, int rhs)
+            => lhs >> rhs;
+
+        [MethodImpl(Inline)]
+        public static ulong rshift(ulong lhs, int rhs)
+            => lhs >> rhs;
 
         #endregion
 

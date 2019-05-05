@@ -350,14 +350,6 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void* i8num(object value, int count)
-        {
-            var dst =  stackalloc sbyte[count];
-            dst[0] = As.int8(value);
-            return dst;
-        }
-
-        [MethodImpl(Inline)]
         public static unsafe void* i8vec(object data, int count)
         {
             var src = datasource<sbyte>(data,count);

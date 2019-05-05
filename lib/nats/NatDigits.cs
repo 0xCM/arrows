@@ -8,45 +8,11 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     
-    using static zcore;
     using static nats;
-    partial class Structures
+    using static zcore;
+
+    public static class NatDigits
     {
-        public interface Digit<T> : Formattable
-            where T : Enum
-        {
-
-        }
-
-        public interface Digit<S,T> : Digit<T>, IEquatable<S>
-            where S : Digit<S,T>
-            where T : Enum
-        {
-
-        }
-
-        public interface Digit<N,S,T> : Digit<S,T>, IEquatable<S>
-            where N : TypeNat, new()
-            where S : Digit<N,S,T>
-            where T : Enum
-        {
-
-        }
-
-    }
-
-    public static class Digit
-    {
-        /// <summary>
-        /// Defines a generic digit based on a digit enumeration value
-        /// </summary>
-        /// <param name="src">The source value</param>
-        /// <typeparam name="T">The digit's enumeration type</typeparam>
-        public static Digit<T> define<T>(T src)
-            where T : Enum
-                => new Digit<T>(src);
-
-
         /// <summary>
         /// Defines a generic digit based on a digit enumeration value
         /// in the context of a natural base
@@ -71,59 +37,28 @@ namespace Z0
             where T : Enum
                 => new Digit<N,T>(src);
 
+
     }
 
-    /// <summary>
-    /// Defines a generic digit representation parametrized by a
-    /// defining enumeration
-    /// </summary>
-    /// <typeparam name="T">The digit's enumeration type</typeparam>
-    public readonly struct Digit<T> : Structures.Digit<Digit<T>,T> 
-        where T : Enum
+    public static class NatDigitsX
     {
-        public static Digit<T> Zero = default;
-
-        [MethodImpl(Inline)]
-        public static bool operator ==(Digit<T> lhs, Digit<T> rhs)
-            => lhs.Equals(rhs);
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(Digit<T> lhs, Digit<T> rhs)
-            => not(lhs.Equals(rhs));
-
-        public static implicit operator uint(Digit<T> src)
-            => src.value.ToIntG<uint>();
-
-        public static implicit operator T(Digit<T> src)
-            => src.value;
-
-        public Digit(T src)
-            => value = src;
-        
-        readonly T value;
-
-        public string format()
-            => value.ToString();
-
-        public bool Equals(Digit<T> rhs)
-            => value.Equals(rhs);
-
         /// <summary>
         /// Expresses the digit in a natural base
         /// </summary>
         /// <param name="b">The natural base value</param>
         /// <typeparam name="N">The natural base type</typeparam>
-        public Digit<N,T> InBase<N>(N b = default)
-            where N : TypeNat, new() => new Digit<N,T>(value);
+        public static Digit<N,T> InBase<N,T>(this Digit<T> d, N b = default)
+            where T : Enum
+            where N : TypeNat, new() => new Digit<N,T>(d.Unwrap());
+
+    }
 
 
-        [MethodImpl(Inline)]        
-        public override bool Equals(object rhs)
-            => rhs is Digit<T> ? Equals((Digit<T>)rhs) : false;
-        
-        [MethodImpl(Inline)]        
-        public override int GetHashCode()
-            => value.GetHashCode();
+    public interface IDigit<N,S,T> : IDigit<S,T>, IEquatable<S>
+        where N : TypeNat, new()
+        where S : IDigit<N,S,T>
+        where T : Enum
+    {
 
     }
 
@@ -132,7 +67,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="N">The natural base type</typeparam>
     /// <typeparam name="T">The digit's enumeration type</typeparam>
-    public readonly struct Digit<N,T> : Structures.Digit<N,Digit<N,T>,T>
+    public readonly struct Digit<N,T> : IDigit<N,Digit<N,T>,T>
         where T : Enum
         where N : TypeNat, new()
     {
@@ -200,5 +135,6 @@ namespace Z0
         public override string ToString()
             => format();
     }
+
 
 }

@@ -153,7 +153,6 @@ namespace Z0
             return Randomizer.Array<T>(samples ?? Config.SampleSize, filter);
         }
                  
-
         protected T[] Init<T>(int? samples, bool nonzero = false)
             where T : struct, IEquatable<T>
         {
@@ -182,7 +181,6 @@ namespace Z0
                 alloc<T>(samples ?? Config.SampleSize),
                 alloc<T>(samples ?? Config.SampleSize)
             );
-
         }
 
         protected BenchComparison Finish(BenchComparison compared)
@@ -191,7 +189,7 @@ namespace Z0
             return compared;
         }
 
-        public IReadOnlyDictionary<string,OpRunner> OpRunners()
+        public IReadOnlyDictionary<string,OpRunner> Runners()
         {
             var methods = GetType().GetMethods().Where(
                     m => m.IsPublic && !m.IsStatic && !m.IsAbstract  
@@ -207,10 +205,7 @@ namespace Z0
             where T : struct, IEquatable<T>
         {
             var domain = Defaults.get<T>().Domain;
-            Randomizer.StreamTo<T>(domain, samples ?? Config.SampleSize, pDst);
-             
+            Randomizer.StreamTo<T>(domain, samples ?? Config.SampleSize, pDst);             
         }
-
-
     }
 }

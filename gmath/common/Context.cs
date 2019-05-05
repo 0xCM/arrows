@@ -12,9 +12,12 @@ namespace Z0
 
     using static zcore;
 
-
-
-    public abstract class Context 
+    public interface IContext
+    {
+        IReadOnlyList<AppMsg> Emit(params AppMsg[] addenda);
+    }
+    
+    public abstract class Context : IContext
     {
         protected IRandomizer Randomizer {get;}
 
@@ -43,8 +46,38 @@ namespace Z0
             => Messages.Add(AppMsg.Define(msg, SeverityLevel.HiliteCL, GetType().DisplayName() + caller));            
 
         protected void trace(string msg, [CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define(msg, SeverityLevel.Info, GetType().DisplayName() + caller));            
+            => Messages.Add(AppMsg.Define(msg, SeverityLevel.Info, GetType().DisplayName() + caller));
+
+        IReadOnlyList<AppMsg> IContext.Emit(params AppMsg[] addenda)
+        {
+            var messages = Flush(addenda);
+            Emit(messages.ToArray());
+            return messages;
+        }
     }
+
+    public abstract class Context<T> : Context
+    {                
+        protected Context(ulong[] seed)
+            : base(Z0.Randomizer.define(seed))            
+        {
+
+        }
+
+        protected Context(IRandomizer randomizer)
+            : base(randomizer)            
+        {
+
+        }
+
+
+        public override void Emit(params AppMsg[] addenda)        
+        {
+            var messages = Flush(addenda);
+            print(messages);
+            //log(messages, LogTarget.TestLog);            
+        }
+    }   
 
 
 }

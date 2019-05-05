@@ -12,12 +12,12 @@ namespace Z0
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using System.Collections.Concurrent;
-
-    using static ReflectionFlags;
+    
     using static zcore;
-    partial class Reflections
+    
+    public static class FluentReflection
     {
-        public static IEnumerable<Type> Realizes<T>(this IEnumerable<Type> src)
+        public static IEnumerable<Type> Realize<T>(this IEnumerable<Type> src)
             => src.Where(t => t.GetInterfaces().Contains(typeof(T)));
 
         public static IEnumerable<Type> Concrete(this IEnumerable<Type> src)
@@ -51,6 +51,20 @@ namespace Z0
         public static IEnumerable<MethodInfo> Static(this IEnumerable<MethodInfo> src)
                     => src.Where(x => x.IsStatic);
         
+
+        [MethodImpl(Inline)]
+        static bool IsStatic(this PropertyInfo p)
+            => p.GetGetMethod()?.IsStatic == true 
+            || p.GetSetMethod().IsStatic == true;
+
+        /// <summary>
+        /// Determines whether a type is static
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        [MethodImpl(Inline)]
+        static bool IsStatic(this Type t)
+            => t.IsAbstract && t.IsSealed;
+
         /// <summary>
         /// Selects the static properties from a stream
         /// </summary>

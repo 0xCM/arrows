@@ -58,16 +58,19 @@ namespace Z0
         public static bool operator != (ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             => lhs.data != rhs.data;
 
+        public static readonly int BlockLength = Span128<T>.BlockLength;
+
         /// <summary>
         /// The number of values per block
         /// </summary>
-        public static readonly int CellCount = Vec128<T>.Length;
+        public static readonly int BlockSize = Span128<T>.BlockSize;
 
         /// <summary>
         /// The size, in bytes, of a block constituent
         /// </summary>
         /// <typeparam name="T">The primitive type</typeparam>
-        public static readonly int CellSize = Unsafe.SizeOf<T>();
+        public static readonly int CellSize = Span128<T>.CellSize;
+
 
         static Exception unaligned(int actual)
             => new ArgumentException($"Length mismatch: {actual}");
@@ -78,7 +81,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public unsafe ReadOnlySpan128(void* src, int len)    
         {
-            assert(aligned<T>(len));
             
             data = new ReadOnlySpan<T>(src, len);  
 
@@ -87,7 +89,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public ReadOnlySpan128(T[] src)
         {
-            assert(aligned<T>(src.Length));
+            assert(aligned(src));
             data = rospan(src);
         }
 
@@ -101,14 +103,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public ReadOnlySpan128(ReadOnlySpan<T> src)
         {
-            assert(aligned<T>(src.Length));
+            assert(aligned(src));
             data = src;
         }
 
         [MethodImpl(Inline)]
         public ReadOnlySpan128(T value, int len)
         {
-            assert(aligned<T>(len));
+            assert(aligned<T>(len * cellsize<T>()));
             
             var src = span<T>(len);
             src.Fill(value);
@@ -118,19 +120,11 @@ namespace Z0
         [MethodImpl(Inline)]
         public ReadOnlySpan128(ref Span<T> src)
         {
-            assert(aligned<T>(src.Length));
+            assert(aligned(src));
          
             this.data = src;
         }
 
-        [MethodImpl(Inline)]
-        public ReadOnlySpan128(ArraySegment<T> src)
-        {
-            assert(aligned<T>(src.Count));
-            
-            this.data = src;
-
-        }
 
         public ref readonly T this[int ix] 
         {
@@ -163,20 +157,15 @@ namespace Z0
         public ReadOnlySpan<T> Slice(Range range)
             => data.Slice(range);
 
- 
-         [MethodImpl(Inline)]
-        public ReadOnlySpan128<T> Block(int start)
-        {
-            assert(aligned<T>(start));
-            return (ReadOnlySpan128<T>)Slice(start);
-        }
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan128<T> Block(int start, int count)
-        {
-            assert(aligned<T>(start));
-            return (ReadOnlySpan128<T>)Slice(start, count * CellCount);
-        }
+        public ReadOnlySpan128<T> Block(int blockIndex)
+            => new ReadOnlySpan128<T>(data.Slice(blockIndex * BlockLength, BlockLength));
+        
+        [MethodImpl(Inline)]
+        public ReadOnlySpan128<T> Blocks(int blockIndex, int blockCount)
+            => (ReadOnlySpan128<T>)Slice(blockIndex * BlockLength, blockCount * BlockLength );
+            
 
         [MethodImpl(Inline)]
         public Span<T> ToSpan()
@@ -217,10 +206,10 @@ namespace Z0
             get => data.Length;
         }
 
-        public int BlockCount 
+         public int BlockCount 
         {
             [MethodImpl(Inline)]
-            get => data.Length / CellCount;
+            get => data.Length / BlockLength; 
         }
 
         public bool IsEmpty

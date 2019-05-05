@@ -12,8 +12,11 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
 
+    using Z0.Test;
+
     using static zcore;
     using static inxfunc;
+    using static math;
 
     class Benchmark : Context
     {
@@ -67,7 +70,7 @@ namespace Z0
         {
             var bench = GInXBench.Create(ConfigureGInX(), Randomizer);
             var comparisons = new List<BenchComparison>();
-            foreach(var runner in bench.OpRunners().Select(r => r.Value))
+            foreach(var runner in bench.Runners().Select(r => r.Value))
                 comparisons.Add(runner());
             iter(comparisons,print);
 
@@ -77,7 +80,7 @@ namespace Z0
         {
             var bench = GMathBench.Create(Randomizer);
             var comparisons = new List<BenchComparison>();
-            foreach(var runner in bench.OpRunners().Select(r => r.Value))
+            foreach(var runner in bench.Runners().Select(r => r.Value))
                 comparisons.Add(runner());
             iter(comparisons,print);
         }
@@ -251,6 +254,31 @@ namespace Z0
             }
         }
 
+        const byte A = 0b00;
+
+        const byte B = 0b01;
+
+        const byte C = 0b10;
+
+        const byte D = 0b11;
+        
+
+
+            
+        const byte Reverse =  0b00_01_10_11;
+        const byte DCBA = (D << 0) | (C << 2) | (B << 4) | (A << 6) ;
+
+        void TestPermutation()
+        {
+            var x = Vec128.define(1f,2f,3f,4f);
+            var y1 = dinx.permute(x, Reverse); 
+            var c1 = PermuteControl.Identity();
+            var y2 = dinx.permute(x,c1);
+            inform($" P({x}) = {y1}");
+            inform($" P({x}) = {y2}");
+
+        }
+
         void TestMutation()
         {
             var v1 = Vec128.define(1,2,3,4);
@@ -261,10 +289,13 @@ namespace Z0
         {            
                         
             var bench = new Benchmark();
+            var tests = new TestManager();
+            tests.Run();
             //bench.TestRandom();
             //bench.TestMul3();
-            bench.TestAdd2();
+            //bench.TestAdd2();
             //bench.RunAdHocInXBench();
+            //bench.TestPermutation();
         }
 
     }

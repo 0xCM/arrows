@@ -342,6 +342,7 @@ static partial class zcore
         => terminal.WriteMessage(
                 AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, caller));
 
+
     /// <summary>
     /// Emits an error-level message
     /// </summary>

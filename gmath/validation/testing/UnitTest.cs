@@ -2,18 +2,26 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Test
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
-    
-    using static BinaryDigit;
+    using System.Runtime.CompilerServices;
+    using System.IO;
 
     using static zcore;
 
 
-    partial class xcore
+    public abstract class UnitTest<T> : TestContext<T>
+        where T : UnitTest<T>
     {
+
+        protected UnitTest(TestConfig config = null)
+            : base(config)
+            {
+
+            }
     }
 
 
