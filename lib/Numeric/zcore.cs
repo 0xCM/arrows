@@ -11,6 +11,8 @@ using Z0;
 
 
 using static zcore;
+using static zfunc;
+
 using static Z0.Traits;
 
 partial class zcore

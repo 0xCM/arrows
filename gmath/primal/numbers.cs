@@ -11,7 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     
     using static zcore;
-    using static inxfunc;
+    using static mfunc;
 
     public static class numbers
     {

@@ -10,6 +10,7 @@ namespace Z0.Bench
     using System.Collections.Generic;
 
     using static zcore;
+    using static zfunc;
 
     public unsafe delegate long TimedFusedUnaryOp<T>(Index<T> src, out Index<T> dst)
         where T : struct, IEquatable<T>;

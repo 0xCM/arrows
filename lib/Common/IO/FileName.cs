@@ -11,6 +11,8 @@ namespace Z0
     using System.IO;
 
     using static zcore;
+    using static zfunc;
+
 
     public abstract class PathComponent<T>
         where T : PathComponent<T>

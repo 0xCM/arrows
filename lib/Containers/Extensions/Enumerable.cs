@@ -13,26 +13,10 @@ namespace Z0
     using System.Diagnostics;
     
     using static zcore;
+    using static zfunc;
 
     partial class xcore
     {
-
-        /// <summary>
-        /// Applies an action to each member of the collection
-        /// </summary>
-        /// <typeparam name="T">The item type</typeparam>
-        /// <param name="items">The items to enumerate</param>
-        /// <param name="action">The action to apply</param>
-        /// <param name="pll">Indicates whether the action should be applied concurrently</param>
-        [MethodImpl(Inline)]
-        public static void Iterate<T>(this IEnumerable<T> items, Action<T> action, bool pll = false)
-        {
-            if (pll)
-                items.AsParallel().ForAll(action);
-            else
-                foreach (var item in items)
-                    action(item);
-        }
 
         /// <summary>
         /// Convenience wrapper for Enumerable.SelectMany that yields a sequence of elements from a sequence of sequences
@@ -272,17 +256,7 @@ namespace Z0
         public static Option<T> TryFind<T>(this IEnumerable<T> src, Func<T,bool> predicate)
             => src.FirstOrDefault(predicate);
 
-        /// <summary>
-        /// Attaches a 0-based integer sequence to the input value sequence and
-        /// yield the paired sequence elements
-        /// </summary>
-        /// <param name="i">The index of the paired value</param>
-        /// <param name="value">The indexed value</param>
-        /// <typeparam name="T">The item type</typeparam>
-        [MethodImpl(Inline)]
-        public static IEnumerable<(int i, T value)> Iteri<T>(this IEnumerable<T> items)
-            => iteri(items);
-
+ 
         /// <summary>
         /// Partitions the source sequence into segments of natural length
         /// </summary>

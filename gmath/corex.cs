@@ -54,42 +54,6 @@ namespace Z0
             => src.Take(length).ToArray();
 
 
-        [MethodImpl(Inline)]
-        public static string DisplayName(this MethodBase src)
-        {
-            var attrib = src.GetCustomAttribute<DisplayNameAttribute>();
-            return attrib != null ? attrib.DisplayName.TrimEnd('/') : src.Name;
-        }
-
-        /// <summary>
-        /// Constructs a display name for a type
-        /// </summary>
-        /// <param name="src">The source type</param>
-        public static string DisplayName(this Type src)
-        {
-            var attrib = src.GetCustomAttribute<DisplayNameAttribute>();
-            if (attrib != null)
-                return attrib.DisplayName;
-
-            if (!src.IsGenericType)
-                return src.Name;
-
-            if (src.IsConstructedGenericType)
-            {
-                var typeArgs = src.GenericTypeArguments;
-                var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
-                var typeName = src.Name.Replace($"`{typeArgs.Length}", string.Empty);
-                return append(typeName, "<", argFmt, ">");
-            }
-            else
-            {
-                var typeArgs = src.GetGenericTypeDefinition().GetGenericArguments();
-                var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
-                var typeName = src.Name.Replace($"`{typeArgs.Length}", string.Empty);
-                return append(typeName, "<", argFmt, ">");
-            }
-        }
-
 
         public static void CopyTo<T>(this IReadOnlyList<T> src, T[] dst)
         {
@@ -186,5 +150,10 @@ namespace Z0
         internal static Dictionary<K,V> ToDictionary<K,V>(this IEnumerable<(K key, V value)> src)
             => new Dictionary<K,V>(src.Select(x => new KeyValuePair<K,V>(x.key,x.value)));
 
+        public static bool ContainsAny(this string src, IEnumerable<string> substrings)
+            => substrings.Any(ss => src.Contains(ss));
+
+        public static bool ContainsAny(this string src, params string[] substrings)
+            => substrings.Any(ss => src.Contains(ss));
     }
 }

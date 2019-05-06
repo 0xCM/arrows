@@ -10,6 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
 using Z0;
+using static zfunc;
+
 static partial class zcore
 {
     public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
@@ -75,13 +77,6 @@ static partial class zcore
     public static IEnumerable<T> items<T>(params T[] src)
         => src;
 
-    [MethodImpl(Inline)]   
-    public static Stopwatch stopwatch(bool start = true) 
-        => start ? Stopwatch.StartNew() : new Stopwatch();
-
-    [MethodImpl(Inline)]   
-    public static long elapsed(Stopwatch sw) 
-        => sw.ElapsedTicks;
 
     [MethodImpl(Inline)]   
     public static T[] alloc<T>(int len)
@@ -206,47 +201,6 @@ static partial class zcore
         => isBlank(subject) ? replace : subject;
 
 
-    [MethodImpl(Inline)]
-    public static bool not(bool x)
-        => !x;
-
-    /// <summary>
-    /// Concatenates an arbitrary number of strings
-    /// </summary>
-    /// <param name="src">The strings to be concatenated</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static string append(params string[] src) 
-        => string.Concat(src);
-    
-    /// <summary>
-    /// Concatenates an arbitrary number of string representations
-    /// </summary>
-    /// <param name="src">The strings to be concatenated</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static string append<T>(IEnumerable<T> src) 
-        => string.Concat(src);
-
-    /// <summary>
-    /// Concatenates an arbitrary number of string representations,
-    /// separated by a specified delimiter
-    /// </summary>
-    /// <param name="delimiter">The separator</param>
-    /// <param name="src">The values for which string representations will
-    /// be formed</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static string append<T>(string delimiter, IEnumerable<T> src) 
-        => string.Join(delimiter, src.Select(x => x.ToString()));
-
-    static readonly long TicksPerMs 
-        = Stopwatch.Frequency/1000L;
-    
-    [MethodImpl(Inline)]
-    public static long ticksToMs(long ticks)
-        => ticks/TicksPerMs;
-
     static readonly Terminal terminal = Terminal.Get();
 
     /// <summary>
@@ -256,7 +210,6 @@ static partial class zcore
     [MethodImpl(Inline)]   
     public static void write(object x)
         => terminal.Write(x);
-
 
     /// <summary>
     /// Writes a single messages to the terminal
@@ -342,7 +295,6 @@ static partial class zcore
         => terminal.WriteMessage(
                 AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, caller));
 
-
     /// <summary>
     /// Emits an error-level message
     /// </summary>
@@ -353,143 +305,11 @@ static partial class zcore
         => terminal.WriteMessage(
                 AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, $"{name<T>()}/{caller}"));
 
-    /// <summary>
-    /// Returns the name of the supplied type
-    /// </summary>
-    /// <param name="full">Whether the full name should be returned</param>
-    /// <typeparam name="T">The type to examine</typeparam>
-    [MethodImpl(Inline)]   
-    public static string typename<T>(bool full = false)
-        => full ? typeof(T).FullName : typeof(T).Name;
 
     [MethodImpl(Inline)]   
     public static string name<T>(bool full = false)
         => typeof(T).DisplayName();
     
-    /// <summary>
-    /// Returns the System.Type of the supplied parametric type
-    /// </summary>
-    /// <typeparam name="T">The source type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static Type type<T>() 
-        => typeof(T);
-
-
-    /// <summary>
-    /// Aplies an action to the sequence of integers min,min+1,...,max - 1
-    /// </summary>
-    /// <param name="min">The inclusive lower bound of the sequence</param>
-    /// <param name="max">The non-inclusive upper bound of the sequence
-    /// over intergers over which iteration will occur</param>
-    /// <param name="f">The action to be applied to each  value</param>
-    [MethodImpl(Inline)]
-    public static void iter(int min, int max, Action<int> f)
-    {
-       for(var i = min; i< max; i++) 
-            f(i);
-    }
-
-    /// <summary>
-    /// Aplies an action to the sequence of integers min,min+1,...,max - 1
-    /// </summary>
-    /// <param name="min">The inclusive lower bound of the sequence</param>
-    /// <param name="max">The non-inclusive upper bound of the sequence
-    /// over intergers over which iteration will occur</param>
-    /// <param name="f">The action to be applied to each  value</param>
-    [MethodImpl(Inline)]
-    public static void iter(long min, long max, Action<long> f)
-    {
-       for(var i = min; i< max; i++) 
-            f(i);
-    }
-
-    /// <summary>
-    /// Applies an action to the increasing sequence of integers 0,1,2,...,count - 1
-    /// </summary>
-    /// <param name="count">The number of times the action will be invoked
-    /// <param name="f">The action to be applied to each value</param>
-    [MethodImpl(Inline)]
-    public static void iter(int count, Action<int> f)
-    {
-       for(var i = 0; i< count; i++) 
-            f(i);
-    }
-
-    /// <summary>
-    /// Iterates over the supplied items, invoking a receiver for each
-    /// </summary>
-    /// <param name="src">The source items</param>
-    /// <param name="f">The receiver</param>
-    /// <typeparam name="T">The item type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Unit iter<T>(IEnumerable<T> items, Action<T> action, bool pll = false)
-    {
-        if (pll)
-            items.AsParallel().ForAll(item => action(item));
-        else
-            foreach (var item in items)
-                action(item);
-        return Unit.Value;
-    }
-
-    [MethodImpl(Inline)]   
-    public static T[] map<S,T>(S[] src, Func<S,T> f)
-    {
-        var dst = alloc<T>(src.Length);
-        for(var i = 0; i<src.Length; i++)
-            dst[i] = f(src[i]);
-        return dst;
-    }    
-
-    /// <summary>
-    /// Left-Pads the input string with zeros
-    /// </summary>
-    /// <param name="src">The input text</param>
-    /// <param name="width">The with of the padded string</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static string zpad(string src, uint width)
-        => src.PadLeft((int)width,'0');
-
-    /// <summary>
-    /// Applies a function to elements of an input sequence to produce 
-    /// a transformed output sequence
-    /// </summary>
-    /// <param name="f">The function to be applied</param>
-    /// <param name="src">The source sequence</param>
-    /// <typeparam name="A">The source value type</typeparam>
-    /// <typeparam name="B">The target value type</typeparam>
-    /// <returns>The transformed sequence</returns>
-    public static IEnumerable<B> mapi<A,B>(Func<int,A,B> f, IEnumerable<A> src)
-    {
-        var i = 0;
-        foreach(var item in src)
-            yield return f(i++,item);
-    }
-
-    /// <summary>
-    /// Applies a function to a value
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <param name="f">The function to apply</param>
-    /// <typeparam name="X">The source value type</typeparam>
-    /// <typeparam name="Y">The output value type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Y apply<X,Y>(X x,Func<X,Y> f)
-        => f(x);
-
-    /// <summary>
-    /// Applies a function f:S->T over an input sequence [S] to obtain 
-    /// a target sequence [T]
-    /// </summary>
-    /// <param name="f">The function to be applied</param>
-    /// <param name="src">The source sequence</param>
-    /// <typeparam name="S">The source element type</typeparam>
-    /// <typeparam name="T">The target element type</typeparam>
-    [MethodImpl(Inline)]   
-    public static IEnumerable<T> map<S,T>(IEnumerable<S> src, Func<S,T> f)
-        => src.Select(x => f(x));
 
     /// <summary>
     /// Explicitly casts a source value to value of the indicated type, raising
@@ -500,10 +320,6 @@ static partial class zcore
     [MethodImpl(Inline)]   
     public static T cast<T>(object src) 
         => (T) src;
-
-    [MethodImpl(Inline)]   
-    public static Duration snapshot(Stopwatch sw)     
-        => Duration.Define(sw.ElapsedTicks);        
 
 
     /// <summary>

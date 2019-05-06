@@ -7,6 +7,7 @@ namespace Z0
     using static zcore;
     using static Latex.Math;
     using static nats;
+    using static zfunc;
 
     public interface IDim : Formattable
     {

@@ -8,123 +8,129 @@ namespace Z0
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
-    using System.Runtime.InteropServices;
+    using System.Runtime.InteropServices;    
+    using System.Diagnostics;
     
     using static zcore;
-    using static inxfunc;
-    using static Span128;
-
-    public static class ReadOnlySpan128
-    {
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan128<T> load<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
-            => new ReadOnlySpan128<T>(src.Slice(0, Span128.align<T>(src.Length)));            
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan128<T> load<T>(Span<T> src)
-            where T : struct, IEquatable<T>
-            => new ReadOnlySpan128<T>(src.Slice(0, Span128.align<T>(src.Length)));            
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan128<T> load<T>(T[] src, int offset, int len)
-            where T : struct, IEquatable<T>
-                => new ReadOnlySpan128<T>(src,offset,len);
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan128<T> single<T>(params T[] src)
-            where T : struct, IEquatable<T>
-                => new ReadOnlySpan128<T>(src);
-    }
+    using static mfunc;
 
     /// <summary>
-    /// A selective clone/wrapper of System.Span[T] where the the 
-    /// encasulated data is always a multiple of 16 bytes = 128 bits
+    /// A System.Span[T] clone where the  encasulated data is always a multiple 
+    /// of 16 bytes = 128 bits
     /// </summary>
-    public readonly ref struct ReadOnlySpan128<T>
+    public ref struct ReadOnlySpan128<T>
         where T : struct, IEquatable<T>
     {
+        /// <summary>
+        /// The number of cells in the block
+        /// </summary>
+        public static readonly int BlockLength = Span128<T>.BlockLength;
 
-        public static implicit operator ReadOnlySpan<T> (ReadOnlySpan128<T> src)
+        /// <summary>
+        /// The size, in bytes, of a block 
+        /// </summary>
+        /// <typeparam name="T">The primitive type</typeparam>
+        /// <remarks>Should always be 16 irrespective of the cell type</remarks>
+        public static readonly int BlockSize = Span128<T>.BlockSize;
+
+        /// <summary>
+        /// The size, in bytes, of a constituent block cell
+        /// </summary>
+        /// <typeparam name="T">The primitive type</typeparam>
+        public static readonly int CellSize = Span128<T>.CellSize;
+
+        [MethodImpl(Inline)]
+        public static implicit operator ReadOnlySpan<T>(ReadOnlySpan128<T> src)
             => src.data;
+
+        [MethodImpl(Inline)]
+        public static explicit operator ReadOnlySpan128<T>(Span<T> src)
+            => new ReadOnlySpan128<T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator ReadOnlySpan128<T>(ReadOnlySpan<T> src)
             => new ReadOnlySpan128<T>(src);
 
+        [MethodImpl(Inline)]
+        public static implicit operator ReadOnlySpan128<T> (T[] src)
+            => new ReadOnlySpan128<T>(src);
+
+        [MethodImpl(Inline)]
         public static bool operator == (ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             => lhs.data == rhs.data;
 
+        [MethodImpl(Inline)]
         public static bool operator != (ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             => lhs.data != rhs.data;
-
-        public static readonly int BlockLength = Span128<T>.BlockLength;
-
-        /// <summary>
-        /// The number of values per block
-        /// </summary>
-        public static readonly int BlockSize = Span128<T>.BlockSize;
-
-        /// <summary>
-        /// The size, in bytes, of a block constituent
-        /// </summary>
-        /// <typeparam name="T">The primitive type</typeparam>
-        public static readonly int CellSize = Span128<T>.CellSize;
-
-
-        static Exception unaligned(int actual)
-            => new ArgumentException($"Length mismatch: {actual}");
-
-
-        readonly ReadOnlySpan<T> data;
+        
+        [MethodImpl(Inline)]
+        public static bool aligned(int length)
+            => Span128<T>.Aligned(length);
 
         [MethodImpl(Inline)]
-        public unsafe ReadOnlySpan128(void* src, int len)    
+        public static ReadOnlySpan128<T> Load(T[] src)
         {
-            
-            data = new ReadOnlySpan<T>(src, len);  
-
+            assert(aligned(src.Length));
+            return new ReadOnlySpan128<T>(src);
         }
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan128(T[] src)
+        public static ReadOnlySpan128<T> Load(Span128<T> src)
+            => new ReadOnlySpan128<T>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<T> load(Span<T> src, int offset, int length)
         {
-            assert(aligned(src));
-            data = rospan(src);
+            assert(aligned(length));
+            return new ReadOnlySpan128<T>(src.Slice(offset, length));
         }
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan128(T[] src, int offset, int len)
+        public static ReadOnlySpan128<T> load(ReadOnlySpan<T> src, int offset, int length)
         {
-            assert(aligned<T>(len - offset));
-            data = rospan(src, offset, len);
+            assert(aligned(length));
+            return new ReadOnlySpan128<T>(src.Slice(offset, length));
         }
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan128(ReadOnlySpan<T> src)
+        public static unsafe ReadOnlySpan128<T> load(void* src, int length)
         {
-            assert(aligned(src));
+            assert(aligned(length));
+            return new ReadOnlySpan128<T>(src,length);
+        }
+
+        ReadOnlySpan<T> data;
+
+        [MethodImpl(Inline)]
+        unsafe ReadOnlySpan128(void* src, int length)    
+        {
+            data = new ReadOnlySpan<T>(src, length);  
+        }
+
+        [MethodImpl(Inline)]
+        ReadOnlySpan128(T[] src)
+        {
+            data = span(src);
+        }
+        
+        
+        [MethodImpl(Inline)]
+        ReadOnlySpan128(ReadOnlySpan<T> src)
+        {
             data = src;
         }
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan128(T value, int len)
+        ReadOnlySpan128(Span128<T> src)
         {
-            assert(aligned<T>(len * cellsize<T>()));
-            
-            var src = span<T>(len);
-            src.Fill(value);
-            this.data = src;
+            data = src.ToReadOnlySpan();
         }
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan128(ref Span<T> src)
+        ReadOnlySpan128(Span<T> src)
         {
-            assert(aligned(src));
-         
             this.data = src;
         }
-
 
         public ref readonly T this[int ix] 
         {
@@ -142,7 +148,6 @@ namespace Z0
         {
             [MethodImpl(Inline)]
             get => data[range];
-
         }
 
         [MethodImpl(Inline)]
@@ -154,11 +159,6 @@ namespace Z0
             => data.Slice(start,length);
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan<T> Slice(Range range)
-            => data.Slice(range);
-
-
-        [MethodImpl(Inline)]
         public ReadOnlySpan128<T> Block(int blockIndex)
             => new ReadOnlySpan128<T>(data.Slice(blockIndex * BlockLength, BlockLength));
         
@@ -166,6 +166,9 @@ namespace Z0
         public ReadOnlySpan128<T> Blocks(int blockIndex, int blockCount)
             => (ReadOnlySpan128<T>)Slice(blockIndex * BlockLength, blockCount * BlockLength );
             
+        [MethodImpl(Inline)]
+        public Span128<T> ToSpan128()
+            => Span128.load(data);
 
         [MethodImpl(Inline)]
         public Span<T> ToSpan()
@@ -194,19 +197,18 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool TryCopyTo (Span<T> dst)
             => data.TryCopyTo(dst);
-
+                
         [MethodImpl(Inline)]
         public ReadOnlySpan128<S> As<S>()                
             where S : struct, IEquatable<S>
-                => (ReadOnlySpan128<S>)MemoryMarshal.Cast<T,S>(data);            
-
+                => (ReadOnlySpan128<S>)MemoryMarshal.Cast<T,S>(data);                    
         public int Length 
         {
             [MethodImpl(Inline)]
             get => data.Length;
         }
 
-         public int BlockCount 
+        public int BlockCount 
         {
             [MethodImpl(Inline)]
             get => data.Length / BlockLength; 

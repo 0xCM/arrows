@@ -7,7 +7,9 @@ namespace Z0
     using System;
     using System.Numerics;
     using System.Runtime.CompilerServices;
+
     using static zcore;
+    using static zfunc;
 
     using static Operative;
     using static Bits;

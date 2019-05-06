@@ -5,6 +5,8 @@
 namespace Z0
 {
     using static zcore;
+    using static zfunc;
+
 
     /// <summary>
     /// Represents a transposition in the context of a permutation

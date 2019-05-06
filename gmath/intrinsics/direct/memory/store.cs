@@ -16,10 +16,7 @@ namespace Z0
     partial class dinx
     {
 
-
-        //! vec[T] -> T* -> void
-        //! ---------------------------------------------------------------
-
+        #region store to pointer
 
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec128<byte> src, void* dst)
@@ -62,6 +59,38 @@ namespace Z0
             => Avx2.Store((double*)dst,src);            
 
         [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<sbyte> src, void* dst)
+            => Avx2.Store((sbyte*)dst,src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<byte> src, void* dst)
+            => Avx2.Store((byte*)dst,src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<short> src, void* dst)
+            => Avx2.Store((short*)dst,src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<ushort> src, void* dst)
+            => Avx2.Store((ushort*)dst,src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<int> src, void* dst)
+            => Avx2.Store((int*)dst,src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<uint> src, void* dst)
+            => Avx2.Store((uint*)dst,src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<long> src, void* dst)
+            => Avx2.Store((long*)dst,src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<ulong> src, void* dst)
+            => Avx2.Store((ulong*)dst,src);            
+
+        [MethodImpl(Inline)]
         public static unsafe void store(in Vec256<float> src, void* dst)
             => Avx2.Store((float*)dst,src);            
 
@@ -69,166 +98,8 @@ namespace Z0
         public static unsafe void store(in Vec256<double> src, void* dst)
             => Avx2.Store((double*)dst,src);            
 
-        //! vec [T] -> [T]
-        //! ---------------------------------------------------------------
+        #endregion
 
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<sbyte> src, sbyte[] dst, int offset = 0)
-        {
-            fixed (sbyte* pdst = &dst[offset])
-                Avx2.Store(pdst,src);
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<byte> src, byte[] dst, int offset = 0)
-        {
-            fixed (byte* pdst = &dst[offset])
-                Avx2.Store(pdst,src);
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<short> src, short[] dst, int offset = 0)
-        {
-            fixed (short* pdst = &dst[offset])
-                Avx2.Store(pdst,src);
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<ushort> src, ushort[] dst, int offset = 0)
-        {
-            fixed (ushort* pdst = &dst[offset])
-                Avx2.Store(pdst,src);
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<int> src, int[] dst, int offset = 0)
-        {
-            fixed (int* pdst = &dst[offset = 0])
-                Avx2.Store(pdst,src);
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<uint> src, uint[] dst, int offset = 0)
-        {
-            fixed (uint* pdst = &dst[offset])
-                Avx2.Store(pdst,src);
-        }        
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<long> src, long[] dst, int offset = 0)
-        {
-            fixed (long* pdst = &dst[offset])
-                Avx2.Store(pdst,src);
-        }
-
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<ulong> src, ulong[] dst, int offset = 0)
-        {
-            fixed (ulong* pdst = &dst[offset])
-                Avx2.Store(pdst,src);
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<float> src, float[] dst, int offset = 0)
-        {
-            fixed (float* pdst = &dst[offset])
-                Avx2.Store(pdst,src);
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<double> src, double[] dst, int offset = 0)
-        {
-            fixed (double* pdst = &dst[offset])
-                Avx2.Store(pdst,src);
-        }
-
-        //! index[vec[T]] -> [T]
-        //! ---------------------------------------------------------------
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Index<Vec128<sbyte>> src, sbyte[] dst, int offset = 0)
-        {
-            for(int i=0, nextOffset = offset; i<src.Count; i++, nextOffset += Vec128<sbyte>.Length)
-                store(src[i], dst, nextOffset);                    
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Index<Vec128<byte>> src, byte[] dst, int offset = 0)
-        {
-            for(int i=0, nextOffset = offset; i<src.Count; i++, nextOffset += Vec128<byte>.Length)
-                store(src[i], dst, nextOffset);                    
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Index<Vec128<short>> src, short[] dst, int offset = 0)
-        {
-            for(int i=0, nexpos = offset; i<src.Count; i++, nexpos += Vec128<short>.Length)
-                store(src[i], dst, nexpos);                    
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Index<Vec128<ushort>> src, ushort[] dst, int offset = 0)
-        {
-            for(int i=0, nexpos = offset; i<src.Count; i++, nexpos += Vec128<ushort>.Length)
-                store(src[i], dst, nexpos);                    
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Index<Vec128<int>> src, int[] dst, int offset = 0)
-        {
-            checkTarget(src,dst,offset);
-
-            for(int i=0, nextOffset = offset; i<src.Count; i++, nextOffset += Vec128<int>.Length)
-                store(src[i], dst, nextOffset);                    
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Index<Vec128<uint>> src, uint[] dst, int offset = 0)
-        {
-            checkTarget(src,dst,offset);
-
-            for(int i=0, nextOffset = offset; i < src.Count; i++, nextOffset += Vec128<uint>.Length)
-                store(src[i], dst, nextOffset);                    
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Index<Vec128<long>> src, long[] dst, int offset = 0)
-        {
-            checkTarget(src,dst,offset);
-
-            for(int i=0, nextOffset = offset; i<src.Count; i++, nextOffset += Vec128<long>.Length)
-                store(src[i], dst, nextOffset);                    
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Index<Vec128<ulong>> src, ulong[] dst, int offset = 0)
-        {
-            checkTarget(src,dst,offset);
-
-            for(int i=0, nextOffset = offset; i<src.Count; i++, nextOffset += Vec128<ulong>.Length)
-                store(src[i], dst, nextOffset);                    
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Index<Vec128<float>> src, float[] dst, int offset = 0)
-        {
-            checkTarget(src,dst,offset);
-
-            for(int i=0, nextOffset = offset; i<src.Count; i++, nextOffset += Vec128<float>.Length)
-                store(src[i], dst, nextOffset);                    
-        }
-
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Index<Vec128<double>> src, double[] dst, int offset = 0)
-        {
-            checkTarget(src,dst,offset);
-
-            for(int i=0, nextOffset = offset; i<src.Count; i++, nextOffset += Vec128<double>.Length)
-                store(src[i], dst, nextOffset);                    
-        }
 
 
         //! vec[T] -> span[T]

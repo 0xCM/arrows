@@ -13,6 +13,7 @@ namespace Z0.Testing
 
     
     using static zcore;
+    using static zfunc;
 
     [DisplayName("testrunner")]
     public class TestRunner
@@ -21,7 +22,7 @@ namespace Z0.Testing
             => new TestRunner().Run(filter,pll);
 
         IEnumerable<Type> CandidateTypes()
-            => ZTest.DefiningAssembly.Types().Realizes<IUnitTest>().Where(t => t.ContainsGenericParameters == false);        
+            => ZTest.DefiningAssembly.Types().Realize<IUnitTest>().Where(t => t.ContainsGenericParameters == false);        
         
         IEnumerable<Type> Hosts()
             => CandidateTypes().Concrete().OrderBy(t => t.DisplayName());

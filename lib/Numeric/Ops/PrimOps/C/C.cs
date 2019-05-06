@@ -9,12 +9,13 @@ namespace Z0
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
+
     using static zcore;
+    using static zfunc;
 
     partial class C
     {
         
-        public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
 
         public static readonly C Inhabitant = new C();
 

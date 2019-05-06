@@ -11,6 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static zfunc;
 
     public interface FiniteSeq<S,T> : Contain.Seq<S,T>, Contain.FiniteContainer<S,T>
         where S : FiniteSeq<S,T>, new()

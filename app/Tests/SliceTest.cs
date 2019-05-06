@@ -16,6 +16,7 @@ namespace Z0.Tests
     using static Nats;
     using static zcore;
     using static ztest;
+    using static zfunc;
 
     
     [DisplayName("slice")]

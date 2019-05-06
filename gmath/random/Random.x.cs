@@ -14,7 +14,6 @@ namespace Z0
 
     using static zcore;
 
-
     public interface IRandomizer 
     {
         
@@ -55,16 +54,16 @@ namespace Z0
         /// <summary>
         /// Produces a random array that occupies 128 bits = 16 bytes of memory
         /// </summary>
-        public static T[] Array128<T>(this IRandomizer random)
+        public static T[] Array128<T>(this IRandomizer random, int blocks = 1)
             where T : struct, IEquatable<T>
-            => random.Array<T>(Z0.Vec128<T>.Length);
+            => random.Array<T>(Z0.Vec128<T>.Length*blocks);
 
         /// <summary>
         /// Produces a random array that occupies 128 bits = 16 bytes of memory
         /// </summary>
-        public static T[] Array256<T>(this IRandomizer random)
+        public static T[] Array256<T>(this IRandomizer random, int blocks = 1)
             where T : struct, IEquatable<T>
-            => random.Array<T>(Z0.Vec256<T>.Length);
+            => random.Array<T>(Z0.Vec256<T>.Length*blocks);
 
         /// <summary>
         /// Produces a random 128-bit vector
@@ -80,7 +79,7 @@ namespace Z0
         public static unsafe Span128<T> Span128<T>(this IRandomizer random, int blocks, Interval<T>? domain = null)
             where T : struct, IEquatable<T>
         {
-            var dst = alloc<T>(Z0.Span128.datasize<T>(blocks));
+            var dst = alloc<T>(Z0.Span128.blocklength<T>(blocks));
             var pDst = pvoid(ref dst[0]);
             random.StreamTo(domain ?? domain<T>(), blocks, pDst);
             return Z0.Span128.load(dst);
@@ -89,7 +88,7 @@ namespace Z0
         public static unsafe Span256<T> Span256<T>(this IRandomizer random, int blocks, Interval<T>? domain = null)
             where T : struct, IEquatable<T>
         {
-            var dst = alloc<T>(Z0.Span256.datasize<T>(blocks));
+            var dst = alloc<T>(Z0.Span256.blocklength<T>(blocks));            
             var pDst = pvoid(ref dst[0]);
             random.StreamTo(domain ?? domain<T>(), blocks, pDst);
             return Z0.Span256.load(dst);

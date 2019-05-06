@@ -12,33 +12,11 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static zfunc;
 
 
-    partial class Structures
-    {
-        // public interface BitString :  Formattable, Lengthwise
-        // {
-            
 
-        // }
-        
-        // public interface BitString<S> : BitString, FreeMonoid<S>
-        //     where S : BitString<S>, new()
-        // {
-
-
-        // }
-
-        // public interface BitString<S,N> : BitString<S>
-        //     where S : BitString<S,N>, new()
-        //     where N : TypeNat, new()
-        // {
-
-
-        // }
-    }
-
-    public readonly struct BitString //: Structures.BitString<BitString>
+    public readonly struct BitString 
     {
 
         public static BitString define(IReadOnlyList<bit> src)

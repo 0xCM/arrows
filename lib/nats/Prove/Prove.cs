@@ -12,6 +12,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static nats;
+    using static zfunc;
 
     public static partial class Prove
     {
@@ -31,7 +32,7 @@ namespace Z0
             catch (Exception e)
             {
                 error?.Invoke(e);
-                return zcore.none<T>();
+                return none<T>();
             }
         }
 

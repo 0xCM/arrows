@@ -10,6 +10,8 @@ namespace Z0
     using System.Collections.Generic;
     
     using static zcore;
+    using static zfunc;
+
     using static Operative;
     
     using target = System.SByte;

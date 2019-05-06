@@ -10,36 +10,21 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.IO;
 
-    public static class OpKinds
+    using static zcore;
+
+
+
+    public enum OpFusion
     {
-        public static IEnumerable<OpKind> All
-            => typeof(OpKind).GetEnumValues().AsQueryable().Cast<OpKind>();
+        Atomic,
 
-        public static OpId OpId(this OpKind op, PrimalKind prim, bool generic = false, bool intrinsic = false, bool vectored = false)
-                => Z0.OpId.Define(op, prim, generic, intrinsic,vectored);
-
-        public static OpId OpId<T>(this OpKind kind, bool generic = false, bool intrinsic = false, bool vectored = false)
-            where T : struct, IEquatable<T>
-                => Z0.OpId.Define<T>(kind, generic, intrinsic,vectored);
-    
-        /// <summary>
-        /// Describes vectored intrinsic operators
-        /// </summary>
-        public static OpId VInX<T>(this OpKind kind, bool generic = false)
-            where T : struct, IEquatable<T>
-                => kind.OpId<T>(generic, intrinsic: true, vectored : true);
-
-        /// <summary>
-        /// Describes intrinsic scalar operators
-        /// </summary>
-        public static OpId SInX<T>(this OpKind kind, bool generic = false)
-            where T : struct, IEquatable<T>
-                => kind.OpId<T>(generic, intrinsic: true, vectored : false);
-
+        Fused
     }
-
+    
     public enum OpKind
     {        
+        None,
+        
         /// <summary>
         /// Indicates a binary predicate that adjudicates operand equality
         /// </summary>
@@ -134,5 +119,6 @@ namespace Z0
 
         Min
     }
+
 
 }

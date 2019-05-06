@@ -12,28 +12,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Security;
     
-    using static zcore;
+    using static zfunc;
 
-    public readonly struct OpStats
-    {
-        public static OpStats Define(OpId Op, Duration ExecTime, int Cycles, long OpCount)
-            => new OpStats(Op,ExecTime,Cycles,OpCount);
-
-        public OpStats(OpId Op, Duration ExecTime, int Cycles, long OpCount)
-        {
-            this.Op = Op;
-            this.ExecTime = ExecTime;
-            this.OpCount = OpCount;
-            this.Cycles = Cycles;
-        }
-
-        public readonly OpId Op;
-        
-        public readonly Duration ExecTime;
-        
-        public readonly int Cycles;
-        public readonly long OpCount;
-    }
 
     public readonly struct Duration : IEquatable<Duration>
     {

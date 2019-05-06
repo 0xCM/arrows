@@ -13,6 +13,7 @@ namespace Z0.Testing
 
     using static zcore;
     using static nats;
+    using static zfunc;
     
 
     /// <summary>

@@ -9,6 +9,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static zfunc;
+
     using static Operative;
 
     using target = System.Decimal;
@@ -50,7 +52,7 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public static string bitchars128(target src)
-                => zcore.apply(Bits.split(src), 
+                => apply(Bits.split(src), 
                         parts => append(
                             bitchars32(parts.x0), 
                             bitchars32(parts.x1),

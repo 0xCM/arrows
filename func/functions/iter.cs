@@ -10,40 +10,9 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
 using Z0;
-using static Z0.Bibliography;
-using static Z0.Traits;
 
-partial class zcore
+partial class zfunc
 {
-    /// <summary>
-    /// Aplies an action to the sequence of generic integers min,min+1,...,max - 1
-    /// </summary>
-    /// <param name="min">The inclusive lower bound of the sequence</param>
-    /// <param name="max">The non-inclusive upper bound of the sequence
-    /// over intergers over which iteration will occur</param>
-    /// <param name="f">The action to be applied to each  value</param>
-    [MethodImpl(Inline)]
-    public static void iterg<T>(intg<T> min, intg<T> max, Action<intg<T>> f)
-        where T : struct, IEquatable<T>
-    {
-       for(var i = min; i< max; i++) 
-            f(i);
-    }
-
-    /// <summary>
-    /// Aplies an action to the sequence of generic integers 0,2,...,max - 1
-    /// </summary>
-    /// <param name="max">The non-inclusive upper bound of the sequence
-    /// over intergers over which iteration will occur</param>
-    /// <param name="f">The action to be applied to each  value</param>
-    [MethodImpl(Inline)]
-    public static void iterg<T>(intg<T> max, Action<intg<T>> f)
-        where T : struct, IEquatable<T>
-    {
-       for(var i = max.zero; i< max; i++) 
-            f(i);
-    }
-
     /// <summary>
     /// Aplies an action to the sequence of integers min,min+1,...,max - 1
     /// </summary>
@@ -115,4 +84,19 @@ partial class zcore
         foreach(var item in items)
             yield return (idx++, item);
     }
+
+    [MethodImpl(Inline)]
+    public static void iter(int start, int limit, int step, Action<int> f)
+    {
+        for(var i = start; i < limit; i += step)   
+            f(i);             
+    }
+
+    [MethodImpl(Inline)]
+    public static IEnumerable<int> range(int start, int limit, int step)
+    {
+        for(var i = start; i< limit; i += step)
+            yield return i;
+    }
+
 }

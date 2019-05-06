@@ -15,7 +15,9 @@ namespace Z0
     using Z0.Test;
 
     using static zcore;
-    using static inxfunc;
+    using static zfunc;    
+    using static mfunc;
+    
     using static math;
 
     class Benchmark : Context
@@ -76,13 +78,14 @@ namespace Z0
 
         }
 
+        static HashSet<T> set<T>(params T[] src)
+            => new HashSet<T>(src);
+
         void RunGMathBench()
         {
+            var operators = set(OpKind.Mul.ToString());
             var bench = GMathBench.Create(Randomizer);
-            var comparisons = new List<BenchComparison>();
-            foreach(var runner in bench.Runners().Select(r => r.Value))
-                comparisons.Add(runner());
-            iter(comparisons,print);
+            bench.Run(name => name.ContainsAny(operators));
         }
         void RunAdHocBench()
         {
@@ -160,6 +163,47 @@ namespace Z0
 
         }
 
+
+
+        void TestAdd3()
+        {
+            var lSrc = Randomizer.Span256<long>(Pow2.T14);
+            var rSrc = Randomizer.Span256<long>(Pow2.T14);                      
+            var blocks = zcore.blocks(lSrc, rSrc);
+            var cells = Span256.blocklength<long>(blocks);
+            var cycles = Pow2.T14;
+            inform($"Operating on {blocks} blocks = {cells} cells for {cycles} cycles");
+
+            var dstA = Span256.blockalloc<long>(blocks);
+            var dstB = Span256.blockalloc<long>(blocks);
+            var cycle = 0;
+            
+            var sw = stopwatch();
+            while(++cycle <= cycles)
+                math.add(lSrc,rSrc, dstA);
+            var aTime = snapshot(sw);
+            inform($"Primal: {aTime}");
+
+
+            sw.Restart();
+            cycle = 0;
+            while(++cycle <= cycles)
+            {
+                for(var i = 0; i< blocks; i++)
+                {
+                    var lVec = Vec256.define(lSrc,i);
+                    var rVec = Vec256.define(rSrc,i);
+                    ginx.add(lVec,rVec, dstB, i);
+                }
+            }
+            var bTime = snapshot(sw);
+            inform($"Intrinsic: {bTime}");
+
+            Claim.eq(dstA, dstB);
+
+
+
+        }
         
 
         void TestAdd2()
@@ -167,7 +211,6 @@ namespace Z0
             var lSrc = Randomizer.Span128<long>(Pow2.T10);
             var rSrc = Randomizer.Span128<long>(Pow2.T10);  
             var count = blocks(lSrc, rSrc);
-            Claim.eq(count * 2 * sizeof(long), Span128.datasize<long>(count));
             for(var i = 0; i< count; i++)
             {
                 var lVec = Vec128.define(lSrc,i);
@@ -200,58 +243,98 @@ namespace Z0
         }
 
 
-        void TestMul3()
-        {
-            var domain = Interval.closed(-Pow2.T20, Pow2.T20);
-            var lhsData = Randomizer.Array<float>(4*Pow2.T18);
-            var rhsData = Randomizer.Array<float>(4*Pow2.T18);
-            var len = length(lhsData, rhsData);
-            var dst = span<float>(len);
 
-            PrimalMul(lhsData,rhsData,dst);
-            dinx.mul(lhsData,rhsData,dst);
-            
-            var sw = stopwatch();            
-            for(var i = 1; i< 100; i++)
-                dinx.mul(lhsData, rhsData, dst);     
+        void TestMulFloat(int? count = null)
+        {
+            var blocks = count ?? Pow2.T18;
+            var lhs = Randomizer.Span256<float>(blocks);
+            var rhs = Randomizer.Span256<float>(blocks);
+            var dstA = Span256.blockalloc<float>(blocks);
+            var dstB = Span256.blockalloc<float>(blocks);
+
+            var len = length(lhs, rhs);
+            var cycles = 100;
+
+            var cycle = 0;
+            var sw = stopwatch();
+            while(++cycle <= cycles)
+                MS.ML.Mul256(lhs,rhs, dstA, len);            
+
+            inform($"Completed ML multiplication: {snapshot(sw)}");
+
+            cycle = 0;
+            sw.Restart();            
+            while(++cycle <= cycles)
+                dinx.mul(lhs, rhs, ref dstB);     
+
             inform($"Completed vector multiplication: {snapshot(sw)}");
             
-            sw.Restart();
-            for(var i = 1; i< 100; i++)
-                PrimalMul(lhsData, rhsData, dst);
-            inform($"Completed primal multiplication: {snapshot(sw)}");
+            Claim.@true(Span256.eq(dstA,dstB));
 
-            sw.Restart();
-            for(var i = 1; i< 100; i++)
-                MS.ML.Mul256(lhsData,rhsData, dst, len);
-            inform($"Completed ML multiplication: {snapshot(sw)}");
 
         }
 
-        void TestMul()
+        void TestMulDouble(int? count = null)
         {
-            var domain = Interval.closed(-Pow2.T20, Pow2.T20);
-            var lhsVecs = Randomizer.Vec128<int>(Pow2.T10,domain);
-            var rhsVecs = Randomizer.Vec128<int>(Pow2.T10,domain);            
-            var len = length(lhsVecs, rhsVecs);
-            Claim.eq(Pow2.T10, len);
-            for(var i = 0; i< len; i++)
-            {
-                var lVec = lhsVecs[i];
-                var rVec = rhsVecs[i];                
-                var result = Vec128<long>.Zero;
-                ginx.mul(lVec, rVec, ref result);
+            var blocks = count ?? Pow2.T18;
+            var lhs = Randomizer.Span256<double>(blocks);
+            var rhs = Randomizer.Span256<double>(blocks);
+            var dstA = Span256.blockalloc<double>(blocks).Unblock();
+            var dstB = Span256.blockalloc<double>(blocks);
 
-                var lX = (long)lVec.Scalar(0).value;
-                var lY = (long)lVec.Scalar(2).value;
+            var len = length(lhs, rhs);
+            var cycles = 100;
+            var cycle = 0;
+            var sw = stopwatch(false);
 
-
-                var rX = (long)rVec.Scalar(0).value;
-                var rY = (long)rVec.Scalar(2).value;
+            cycle = 0;
+            sw.Restart();
+            while(++cycle <= cycles)
+                math.mul(lhs, rhs, ref dstA);     
             
-                Claim.eq(lX * rX, result.Scalar(0).value);
-                Claim.eq(lY * rY, result.Scalar(1).value);            
-            }
+            inform($"Completed primal multiplication: {snapshot(sw)}");
+
+            cycle = 0;
+            sw.Restart();
+            while(++cycle <= cycles)
+                dinx.mul(lhs, rhs, ref dstB);     
+            
+            inform($"Completed vector multiplication: {snapshot(sw)}");
+            
+            Claim.@true(Span256.eq(dstA.ToSpan256(), dstB));
+
+
+        }
+
+        void TestMulInt32(int? count = null)
+        {
+            var blocks = count ?? Pow2.T18;
+            var lhs = Randomizer.Span256<int>(blocks);
+            var rhs = Randomizer.Span256<int>(blocks);
+            var dstA = Span256.blockalloc<int>(blocks).Unblock();
+            var dstB = Span256.blockalloc<long>(blocks);
+            Claim.eq(dstA.Length, dstB.Length * 2);
+
+            var len = length(lhs, rhs);
+            var cycles = 100;
+            var cycle = 0;
+            var sw = stopwatch(false);
+
+            cycle = 0;
+            sw.Restart();
+            while(++cycle <= cycles)
+                math.mul(lhs, rhs, ref dstA);     
+            
+            inform($"Completed primal multiplication: {snapshot(sw)}");
+
+            cycle = 0;
+            sw.Restart();
+            while(++cycle <= cycles)
+                dinx.mul(lhs, rhs, ref dstB);     
+            
+            inform($"Completed vector multiplication: {snapshot(sw)}");
+            
+            //Claim.eq(dstA.ToArray(), dstB.ToArray().Select(x => (int)x).ToArray());
         }
 
         const byte A = 0b00;
@@ -263,7 +346,11 @@ namespace Z0
         const byte D = 0b11;
         
 
-
+        void BenchGM()
+        {
+            var bench = GMathBench.Create(Randomizer);
+            print(bench.MulF64());
+        }
             
         const byte Reverse =  0b00_01_10_11;
         const byte DCBA = (D << 0) | (C << 2) | (B << 4) | (A << 6) ;
@@ -287,10 +374,21 @@ namespace Z0
         }
         static void Main(params string[] args)
         {            
-                        
-            var bench = new Benchmark();
-            var tests = new TestManager();
-            tests.Run();
+            var app = new Benchmark();
+            try
+            {                        
+                //app.RunGMathBench();
+                app.TestAdd3();
+                // app.TestMulFloat();
+                // GC.Collect();
+                // app.TestMulDouble();
+                // GC.Collect();
+                // app.TestMulInt32();
+            }
+            catch(Exception e)
+            {
+                app.NotifyError(e);
+            }
             //bench.TestRandom();
             //bench.TestMul3();
             //bench.TestAdd2();

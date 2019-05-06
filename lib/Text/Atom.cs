@@ -10,11 +10,12 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static zfunc;
 
     /// <summary>
     /// Defines an indivisible sequence of characters
     /// </summary>
-    public readonly struct Atom : Equatable<Atom>, Structures.Nullary<Atom>, Formattable
+    public readonly struct Atom : IEquatable<Atom>, Structures.Nullary<Atom>, Formattable
     {
         public static readonly Atom Empty = new Atom(string.Empty);
 

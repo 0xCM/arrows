@@ -11,6 +11,8 @@ namespace Z0
     using System.Runtime.CompilerServices;    
 
     using static zcore;
+    using static zfunc;
+
     using static Structures;
     using analog = int32;
     using primitive = System.Int32;

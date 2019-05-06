@@ -14,6 +14,7 @@ namespace Z0.Tests.InXTests
     using Z0.Testing;
     
     using static zcore;
+    using static zfunc;
 
 
    public abstract class InXBinOpTest<S,T> : InXTest<S,T>

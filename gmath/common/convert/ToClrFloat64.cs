@@ -11,7 +11,8 @@ namespace Z0
     using System.Runtime.CompilerServices;    
 
     using static zcore;
-    using static inxfunc;
+    using static zfunc;    
+    using static mfunc;
     
     using target = System.Double;
     using stream = System.Collections.Generic.IEnumerable<double>;

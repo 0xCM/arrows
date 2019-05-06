@@ -11,6 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static zfunc;
 
     /// <summary>
     /// Defines the primary semi-sequence api

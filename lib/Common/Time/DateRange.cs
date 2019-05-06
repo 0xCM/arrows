@@ -11,6 +11,7 @@ namespace Z0
     using System.Linq;
 
     using static zcore;
+    using static zfunc;
 
     /// <summary>
     /// Represents a contiguous finite interval of time with calendar day resolution

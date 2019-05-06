@@ -21,7 +21,7 @@ namespace Z0.Tests.InXTests
         where S : InXTest<S,T>
         where T : struct, IEquatable<T>
     {
-        protected static readonly int ComponentSize = Vec128<T>.ComponentSize;
+        protected static readonly int ComponentSize = Vec128<T>.CellSize;
 
         protected static readonly int VecLength = Vec128<T>.Length;
 
@@ -155,9 +155,11 @@ namespace Z0.Tests.InXTests
         protected T[] RandArray(int? count = null)
             => Randomizer.Array(Domain, count ?? SampleSize);
 
+        protected void trace(string msg, [CallerMemberName] string caller = null)
+            => base.Trace(msg, caller);
 
         protected void trace(int count, [CallerMemberName] string caller = null)
-            => base.trace($"Applied the {OpName} operator over {count} vectors", caller);
+            => base.Trace($"Applied the {OpName} operator over {count} vectors", caller);
 
     }    
 }

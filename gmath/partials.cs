@@ -68,36 +68,6 @@ namespace Z0
             }
         }
 
-        static void init<T>()
-            where T : struct, IEquatable<T>
-        {
-            var ctx = new InitContext<T>();
-
-            ginx.add(ctx.vOne128, ctx.vOne128);
-            ginx.add(ctx.v128Data, ctx.v128Data, ref ctx.v128Dst);
-
-            ginx.add(ctx.vOne256, ctx.vOne256);
-            ginx.add(ctx.v256Data, ctx.v256Data, ref ctx.v256Dst);
-
-        }
-        public static void init()
-        {
-            init<sbyte>();                
-            init<byte>();
-
-            init<short>();
-            init<ushort>();                
-
-            init<int>();
-            init<uint>();                
-
-            init<long>();
-            init<ulong>();                
-
-            init<float>();
-            init<double>();                
-
-        }
 
     }
 

@@ -9,128 +9,118 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
     using System.Runtime.InteropServices;    
+    using System.Diagnostics;
     
     using static zcore;
-    using static inxfunc;
-    using static Span256;
-
-    public static class ReadOnlySpan256
-    {
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan256<T> load<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
-            => new ReadOnlySpan256<T>(src.Slice(0, Span256.align<T>(src.Length)));            
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan256<T> load<T>(Span<T> src)
-            where T : struct, IEquatable<T>
-            => new ReadOnlySpan256<T>(src.Slice(0, Span256.align<T>(src.Length)));            
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan256<T> load<T>(T[] src, int offset, int len)
-            where T : struct, IEquatable<T>
-                => new ReadOnlySpan256<T>(src,offset, len);
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan256<T> single<T>(params T[] src)
-            where T : struct, IEquatable<T>
-                => new ReadOnlySpan256<T>(src);
-    }
+    using static mfunc;
 
     /// <summary>
-    /// A selective clone/wrapper of System.Span[T] where the the 
-    /// encasulated data is always a multiple of 32 bytes / 256 bits
+    /// A System.Span[T] clone where the  encasulated data is always a multiple 
+    /// of 16 bytes = 256 bits
     /// </summary>
-    public readonly ref struct ReadOnlySpan256<T>
+    public ref struct ReadOnlySpan256<T>
         where T : struct, IEquatable<T>
     {
+        /// <summary>
+        /// The number of cells in the block
+        /// </summary>
+        public static readonly int BlockLength = Span256<T>.BlockLength;
 
-        public static implicit operator ReadOnlySpan<T> (ReadOnlySpan256<T> src)
+        /// <summary>
+        /// The size, in bytes, of a block 
+        /// </summary>
+        /// <typeparam name="T">The primitive type</typeparam>
+        /// <remarks>Should always be 16 irrespective of the cell type</remarks>
+        public static readonly int BlockSize = Span256<T>.BlockSize;
+
+        /// <summary>
+        /// The size, in bytes, of a constituent block cell
+        /// </summary>
+        /// <typeparam name="T">The primitive type</typeparam>
+        public static readonly int CellSize = Span256<T>.CellSize;
+
+        [MethodImpl(Inline)]
+        public static implicit operator ReadOnlySpan<T>(ReadOnlySpan256<T> src)
             => src.data;
+
+        [MethodImpl(Inline)]
+        public static explicit operator ReadOnlySpan256<T>(Span<T> src)
+            => new ReadOnlySpan256<T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator ReadOnlySpan256<T>(ReadOnlySpan<T> src)
             => new ReadOnlySpan256<T>(src);
 
+        [MethodImpl(Inline)]
+        public static implicit operator ReadOnlySpan256<T> (T[] src)
+            => new ReadOnlySpan256<T>(src);
+
+        [MethodImpl(Inline)]
         public static bool operator == (ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             => lhs.data == rhs.data;
 
+        [MethodImpl(Inline)]
         public static bool operator != (ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             => lhs.data != rhs.data;
-
-        /// <summary>
-        /// The number of values per block
-        /// </summary>
-        public static readonly int CellCount = Vec256<T>.Length;
-
-        /// <summary>
-        /// The size, in bytes, of a block constituent
-        /// </summary>
-        /// <typeparam name="T">The primitive type</typeparam>
-        public static readonly int CellSize = Unsafe.SizeOf<T>();
-
-        static Exception unaligned(int actual)
-            => new ArgumentException($"Length mismatch: {actual}");
-
-        readonly ReadOnlySpan<T> data;
+        
+        [MethodImpl(Inline)]
+        public static bool Aligned(int length)
+            => Span256<T>.Aligned(length);
 
         [MethodImpl(Inline)]
-        public unsafe ReadOnlySpan256(void* src, int len)    
+        public static ReadOnlySpan256<T> Load(T[] src)
         {
-            assert(aligned<T>(len));
-            
-            data = new ReadOnlySpan<T>(src, len);  
-
+            assert(Aligned(src.Length));
+            return new ReadOnlySpan256<T>(src);
         }
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan256(T[] src)
+        public static ReadOnlySpan256<T> Load(Span256<T> src)
+            => new ReadOnlySpan256<T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<T> Load(Span<T> src, int offset, int length)
         {
-            assert(aligned<T>(src.Length));
-            data = rospan(src);
+            assert(Aligned(length));
+            return new ReadOnlySpan256<T>(src.Slice(offset, length));
         }
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan256(T[] src, int offset, int len)
+        public static ReadOnlySpan256<T> Load(ReadOnlySpan<T> src, int offset, int length)
         {
-            assert(aligned<T>(len - offset));
-            data = rospan(src, offset, len);
+            assert(Aligned(length));
+            return new ReadOnlySpan256<T>(src.Slice(offset, length));
         }
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan256(ReadOnlySpan<T> src)
+        public static unsafe ReadOnlySpan256<T> Load(void* src, int length)
         {
-            assert(aligned<T>(src.Length));
-            data = src;
+            assert(Aligned(length));
+            return new ReadOnlySpan256<T>(src,length);
+        }
+
+        ReadOnlySpan<T> data;
+
+        [MethodImpl(Inline)]
+        unsafe ReadOnlySpan256(void* src, int length)    
+        {
+            data = new ReadOnlySpan<T>(src, length);  
         }
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan256(T value, int len)
-        {
-            assert(aligned<T>(len));
-            
-            var src = span<T>(len);
-            src.Fill(value);
-            this.data = src;
-        }
+        ReadOnlySpan256(T[] src)
+            => data = span(src);
+        
+        
+        [MethodImpl(Inline)]
+        ReadOnlySpan256(ReadOnlySpan<T> src)
+            => data = src;
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan256(ref Span<T> src)
-        {
-            assert(aligned<T>(src.Length));
-         
-            this.data = src;
-        }
-
-        [MethodImpl(Inline)]
-        public ReadOnlySpan256(ArraySegment<T> src)
-        {
-            assert(aligned<T>(src.Count));
-            
-            this.data = src;
-
-        }
-
+        ReadOnlySpan256(Span<T> src)        
+            => this.data = src;
+        
         public ref readonly T this[int ix] 
         {
             [MethodImpl(Inline)]
@@ -147,7 +137,6 @@ namespace Z0
         {
             [MethodImpl(Inline)]
             get => data[range];
-
         }
 
         [MethodImpl(Inline)]
@@ -159,23 +148,16 @@ namespace Z0
             => data.Slice(start,length);
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan<T> Slice(Range range)
-            => data.Slice(range);
-
- 
-         [MethodImpl(Inline)]
-        public ReadOnlySpan256<T> Block(int start)
-        {
-            assert(aligned<T>(start));
-            return (ReadOnlySpan256<T>)Slice(start);
-        }
-
+        public ReadOnlySpan256<T> Block(int blockIndex)
+            => new ReadOnlySpan256<T>(data.Slice(blockIndex * BlockLength, BlockLength));
+        
         [MethodImpl(Inline)]
-        public ReadOnlySpan256<T> Block(int start, int count)
-        {
-            assert(aligned<T>(start));
-            return (ReadOnlySpan256<T>)Slice(start, count * CellCount);
-        }
+        public ReadOnlySpan256<T> Blocks(int blockIndex, int blockCount)
+            => (ReadOnlySpan256<T>)Slice(blockIndex * BlockLength, blockCount * BlockLength );
+            
+        [MethodImpl(Inline)]
+        public Span256<T> ToSpan256()
+            => Span256.load(data);
 
         [MethodImpl(Inline)]
         public Span<T> ToSpan()
@@ -204,12 +186,11 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool TryCopyTo (Span<T> dst)
             => data.TryCopyTo(dst);
-
+                
         [MethodImpl(Inline)]
         public ReadOnlySpan256<S> As<S>()                
             where S : struct, IEquatable<S>
-                => (ReadOnlySpan256<S>)MemoryMarshal.Cast<T,S>(data);            
-
+                => (ReadOnlySpan256<S>)MemoryMarshal.Cast<T,S>(data);                    
         public int Length 
         {
             [MethodImpl(Inline)]
@@ -219,9 +200,9 @@ namespace Z0
         public int BlockCount 
         {
             [MethodImpl(Inline)]
-            get => data.Length / CellCount;
+            get => data.Length / BlockLength; 
         }
-                    
+
         public bool IsEmpty
         {
             [MethodImpl(Inline)]

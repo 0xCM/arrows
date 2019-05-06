@@ -14,6 +14,8 @@ namespace Z0.Tests.InXTests
     using Z0.Testing;
     
     using static zcore;
+    using static zfunc;
+
     
     using P = Paths;
 

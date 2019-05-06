@@ -15,49 +15,6 @@ namespace Z0
 
     public static partial class gmath
     {
-        static void init<T>()
-            where T : struct, IEquatable<T>
-        {
-            var kind = PrimalKinds.kind<T>();
-            var g1 = one<T>();
-
-            add<T>(array(g1), array(g1), alloc<T>(1));
-            sub<T>(array(g1), array(g1), alloc<T>(1));
-            mul<T>(array(g1), array(g1), alloc<T>(1));
-            div<T>(array(g1), array(g1), alloc<T>(1));
-            mod<T>(array(g1), array(g1), alloc<T>(1));
-            abs<T>(array(g1), alloc<T>(1));
-            lt<T>(array(g1), array(g1), alloc<bool>(1));
-            gt<T>(array(g1), array(g1), alloc<bool>(1));
-            lteq<T>(array(g1), array(g1), alloc<bool>(1));
-            gteq<T>(array(g1), array(g1), alloc<bool>(1));
-
-            num.numbers<T>(g1);
-
-            if(kind.IsIntegral())
-            {
-                and<T>(array(g1), array(g1), alloc<T>(1));
-                or<T>(array(g1), array(g1), alloc<T>(1));
-                xor<T>(array(g1), array(g1), alloc<T>(1));
-                flip<T>(array(g1), alloc<T>(1));
-            }
-
-        }
-
-        public static void init()
-        {
-            init<sbyte>();
-            init<byte>();
-            init<short>();
-            init<ushort>();
-            init<int>();
-            init<uint>();
-            init<long>();
-            init<ulong>();
-            init<float>();
-            init<double>();
-            ginx.init();
-        }
 
         #region constants
 

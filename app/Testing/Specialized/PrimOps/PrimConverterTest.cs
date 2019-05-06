@@ -12,6 +12,8 @@ namespace Z0.Testing
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static zfunc;
+
 
     using source = System.Double;
     using target = System.Int32;

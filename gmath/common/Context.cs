@@ -42,10 +42,16 @@ namespace Z0
             this.Randomizer = Randomizer;
         }
 
-        protected void hilite(string msg, [CallerMemberName] string caller = null)
+        protected void HiLite(string msg, [CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define(msg, SeverityLevel.HiliteCL, GetType().DisplayName() + caller));            
 
-        protected void trace(string msg, [CallerMemberName] string caller = null)
+        protected void NotifyError(Exception e)
+        {
+            var msg = AppMsg.Define($"{e}", SeverityLevel.Error);
+            Emit(msg);
+        }
+
+        protected void Trace(string msg, [CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define(msg, SeverityLevel.Info, GetType().DisplayName() + caller));
 
         IReadOnlyList<AppMsg> IContext.Emit(params AppMsg[] addenda)

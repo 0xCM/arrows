@@ -10,7 +10,9 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
     
     using static zcore;
+    using static zfunc;
     using static inxfunc;
+    using static mfunc;
     using static System.Runtime.Intrinsics.X86.FloatComparisonMode;
 
     

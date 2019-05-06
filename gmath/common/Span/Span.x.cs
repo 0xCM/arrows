@@ -11,7 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    using static inxfunc;
+    using static mfunc;
     
     public static class SpanX
     {
@@ -134,6 +134,18 @@ namespace Z0
         [MethodImpl(Inline)]
         public static void Copy<T>(this ReadOnlySpan<T> src, Span<T> dst)
             => src.CopyTo(dst);
+
+
+        [MethodImpl(Inline)]
+        public static Span128<T> ToSpan128<T>(this Span<T> src)
+             where T : struct, IEquatable<T>
+                => (Span128<T>)src;
+
+
+        [MethodImpl(Inline)]
+        public static Span256<T> ToSpan256<T>(this Span<T> src)
+             where T : struct, IEquatable<T>
+                => (Span256<T>)src;
 
     }
 

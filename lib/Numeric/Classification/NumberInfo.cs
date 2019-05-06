@@ -10,6 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
     using System.Text;
+    using static zfunc;
 
     public interface NumInfoProvider<T>
     {
@@ -27,7 +28,7 @@ namespace Z0
             this.Zero = zero;
             this.BitSize = bitsize;
             this.Infinite = infinite;
-            this.Epsilon = epsilon != default ? Option.some(epsilon) : Option.none<T>();
+            this.Epsilon = epsilon != default ? some(epsilon) : none<T>();
         }
 
         public T MinVal {get;}

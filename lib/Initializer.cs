@@ -9,6 +9,7 @@ namespace Z0
     using System.Numerics;
 
     using static zcore;
+    using static zfunc;
 
     public sealed class Initalizer : SysInit<Initalizer>
     {

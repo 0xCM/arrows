@@ -13,6 +13,8 @@ namespace Z0
 
     public class BenchSummary
     {
+        public static readonly BenchSummary Zero = new BenchSummary(OpId.Zero, 0, 0, Duration.Zero);
+        
         public static BenchSummary Define(OpId Operator, int Cycles, long OpCount, Duration Measured)
             => new BenchSummary(Operator, Cycles, OpCount, Measured);
 

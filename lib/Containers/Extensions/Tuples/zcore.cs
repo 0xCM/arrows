@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
 using Z0;
+using static zfunc;
 
 partial class zcore
 {

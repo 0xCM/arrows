@@ -10,6 +10,7 @@ namespace Z0
     using System.Collections.Concurrent;
 
     using static zcore;
+    using static zfunc;
 
     partial class Operative
     {

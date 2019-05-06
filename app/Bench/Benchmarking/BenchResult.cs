@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0.Bench
 {
     using System;
@@ -10,6 +14,7 @@ namespace Z0.Bench
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static zfunc;
 
     public class BenchResult
     {

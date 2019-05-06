@@ -14,7 +14,7 @@ using System.Globalization;
 using Z0;
 using static Z0.Bibliography;
 using static zcore;
-using static Z0.Traits;
+using static zfunc;
 
 
 partial class zcore
@@ -61,19 +61,6 @@ partial class zcore
         return duration;
     }
 
-    [MethodImpl(Inline)]
-    public static void iter(int start, int limit, int step, Action<int> f)
-    {
-        for(var i = start; i < limit; i += step)   
-            f(i);             
-    }
-
-    [MethodImpl(Inline)]
-    public static IEnumerable<int> range(int start, int limit, int step)
-    {
-        for(var i = start; i< limit; i += step)
-            yield return i;
-    }
 
     /// <summary>
     /// Calculates the time required to execute a specified function
@@ -88,46 +75,6 @@ partial class zcore
         return result;
     }
 
-
-    /// <summary>
-    /// Specifies the generic type definition for a specified generic type
-    /// </summary>
-    /// <typeparam name="T">The generic type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static Type typedef(Type t)
-        => t.GetGenericTypeDefinition();
-
-    /// <summary>
-    /// Returns the name of the supplied type
-    /// </summary>
-    /// <param name="full">Whether the full name should be returned</param>
-    /// <typeparam name="T">The type to examine</typeparam>
-    [MethodImpl(Inline)]   
-    public static string typename<T>(bool full = false)
-        => full ? typeof(T).FullName : typeof(T).Name;
-
-    [MethodImpl(Inline)]   
-    public static string name<T>(bool full = false)
-        => typeof(T).DisplayName();
-    
-    /// <summary>
-    /// Returns the System.Type of the supplied parametric type
-    /// </summary>
-    /// <typeparam name="T">The source type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static Type type<T>() 
-        => typeof(T);
-
-    /// <summary>
-    /// Creates an instance of a specified type
-    /// </summary>
-    /// <param name="t">The type of the instance to create</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static T instance<T>(Type t, params object[] args)
-        => (T)Activator.CreateInstance(t,args);
 
     /// <summary>
     /// Explicitly casts a source value to value of the indicated type, raising
@@ -178,13 +125,6 @@ partial class zcore
     public static (Type t0,Type t1, Type t2) types<T0,T1,T2>() 
         => (typeof(T0),typeof(T1),typeof(T2));
 
-    /// <summary>
-    /// Returns true if the input is false, false otherwise
-    /// </summary>
-    /// <param name="a">The value to test</param>
-    [MethodImpl(Inline)]   
-    public static bool not(bool a) 
-        => !a;
 
     /// <summary>
     /// Raises a NotImplemented exception
@@ -218,17 +158,6 @@ partial class zcore
     public static Z0.PointedArrow<A,B> arrow<A,B>(A a, B b, string label = null)
         => new Z0.PointedArrow<A,B>(a,b,label);
 
-    [MethodImpl(Inline)]   
-    public static Stopwatch stopwatch() 
-        => Stopwatch.StartNew();
-
-    [MethodImpl(Inline)]   
-    public static long elapsed(Stopwatch sw) 
-        => sw.ElapsedTicks;
-
-    [MethodImpl(Inline)]   
-    public static Duration snapshot(Stopwatch sw)     
-        => Duration.Define(sw.ElapsedTicks);        
 
     /// <summary>
     /// Demands truth that is enforced with an exeption upon false

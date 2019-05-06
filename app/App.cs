@@ -18,6 +18,8 @@ namespace Z0
 
 
     using static zcore;
+    using static zfunc;
+
     using static primops;
     using static algorithms;
 
@@ -66,8 +68,8 @@ namespace Z0
                 foreach(var i in overflow)
                     babble(i);
 
-            Claim.eq(0, underflow.Count, $"Generation underflow: numbers should be greater than or equal to {domain.left}");
-            Claim.eq(0, overflow.Count, $"Generation overlfow: numbers should be less than {domain.right}");
+            Claim.eq(0, underflow.Count, AppMsg.Define($"Generation underflow: numbers should be greater than or equal to {domain.left}"));
+            Claim.eq(0, overflow.Count, AppMsg.Define($"Generation overlfow: numbers should be less than {domain.right}"));
 
         }
 

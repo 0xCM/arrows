@@ -14,6 +14,8 @@ namespace Z0
 
     public class BenchComparison
     {
+        public static readonly BenchComparison Zero = new BenchComparison(BenchSummary.Zero, BenchSummary.Zero);
+        
         public static BenchComparison Define(BenchSummary LeftBench, BenchSummary RightBench)
             => new BenchComparison(LeftBench,RightBench);
 

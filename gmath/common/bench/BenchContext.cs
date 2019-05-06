@@ -11,6 +11,29 @@ namespace Z0
     using System.IO;
 
     using static zcore;
+    using static zfunc;
+    using static mfunc;
+
+
+    public ref struct BinOpSpanData<T>
+    {
+        public BinOpSpanData(T[] LeftSource, T[] RightSource)
+        {
+            this.LeftSource = LeftSource;
+            this.RightSource = RightSource;
+            this.Target = span<T>(length(LeftSource, RightSource));
+        }
+
+        public readonly Span<T> LeftSource;
+
+        public readonly Span<T> RightSource;
+
+        public Span<T> Target;
+
+        public void ClearTarget()
+            => Target.Clear();
+
+    }
 
     public delegate BenchComparison OpRunner(int? cycles = null, int? samples = null);
 
@@ -21,6 +44,30 @@ namespace Z0
         {
             this.Config = Config;
         }
+
+        public void Run(Func<string,bool> filter = null)
+        {
+            filter = filter ?? (s => true);
+            
+            var comparisons = new List<BenchComparison>();
+            foreach(var runner in Runners().Where(r => filter(r.Key)).Select(r => r.Value))
+                comparisons.Add(runner());
+            iter(comparisons,print);
+        }
+
+
+        public IReadOnlyDictionary<string,OpRunner> Runners()
+        {
+            var methods = GetType().GetMethods().Where(
+                    m => m.IsPublic && !m.IsStatic && !m.IsAbstract  
+                    && m.DeclaringType == this.GetType()
+                    && m.GetParameters().Length == 2 
+                    && m.ReturnType == typeof(BenchComparison));
+            
+            var runners = map(methods, m => (m.Name, (OpRunner) Delegate.CreateDelegate(typeof(OpRunner),this,m))).ToDictionary();
+            return runners;            
+        }
+
 
         public BenchConfig Config {get;}
     
@@ -84,6 +131,31 @@ namespace Z0
 
         }
 
+        protected Cycle Measure(OpId op, Func<OpMeasure> action)
+        {
+            OpStats repeat(int cycles)
+            {
+                var totalOps = 0L;
+                var totalTime = Duration.Zero;
+
+                for(var cycle = 1; cycle <= cycles; cycle++)
+                {
+                    
+                    var cycleResult = action();
+                    totalOps += cycleResult.OpCount;
+                    totalTime += cycleResult.WorkTime;
+                                        
+                                        
+                    if(cycle % Config.AnnounceRate == 0)
+                        zcore.print(BenchmarkMessages.CycleStatus(op, cycle, totalOps, totalTime));                    
+                }
+                
+                return  OpStats.Define(op, totalTime, cycles, totalOps);
+            }
+            
+            return repeat;
+        }
+
         protected Cycle Measure(OpId op, Func<long> action)
         {
             OpStats repeat(int cycles)
@@ -107,8 +179,8 @@ namespace Z0
             }
             
             return repeat;
-
         }
+
 
         /// <summary>
         /// Measures the time required to iterate an action over a specified number
@@ -172,6 +244,18 @@ namespace Z0
             );
         }
 
+        
+        protected BinOpSpanData<T> BinOpSpansInit<T>(int? samples, bool nonzero = false)                
+            where T : struct, IEquatable<T>
+        {
+            GC.Collect();
+            return new BinOpSpanData<T>(
+                Sample<T>(samples ?? Config.SampleSize, nonzero), 
+                Sample<T>(samples ?? Config.SampleSize, nonzero) 
+            );
+        }
+
+
         protected UnaryOpData<T> UnaryOpInit<T>(int? samples, bool nonzero = false)                
             where T : struct, IEquatable<T>
         {
@@ -187,18 +271,6 @@ namespace Z0
         {
             GC.Collect();
             return compared;
-        }
-
-        public IReadOnlyDictionary<string,OpRunner> Runners()
-        {
-            var methods = GetType().GetMethods().Where(
-                    m => m.IsPublic && !m.IsStatic && !m.IsAbstract  
-                    && m.DeclaringType == this.GetType()
-                    && m.GetParameters().Length == 2 
-                    && m.ReturnType == typeof(BenchComparison));
-            
-            var runners = map(methods, m => (m.Name, (OpRunner) Delegate.CreateDelegate(typeof(OpRunner),this,m))).ToDictionary();
-            return runners;            
         }
 
         protected unsafe void SampleTo<T>(void* pDst, int? samples = null, bool nonzero = false)

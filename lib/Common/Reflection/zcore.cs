@@ -14,6 +14,7 @@ using System.Diagnostics;
 
 using Z0;
 using static zcore;
+using static zfunc;
 
 using static Z0.ReflectionFlags;
 partial class zcore
@@ -349,13 +350,6 @@ partial class zcore
     public static TypeCode typecode<T>()
         => Type.GetTypeCode(typeof(T));
 
-
-    /// <summary>
-    /// Invokes a sequence of actions
-    /// </summary>
-    /// <param name="actions">The actions that will be sequentially invoked</param>
-    public static void invoke(params Action[] actions)
-        => iter(actions, a => a());
 
     /// <summary>
     /// Applies f(v) if v is of type X otherwise applies unmatched(v)

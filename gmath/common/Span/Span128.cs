@@ -12,7 +12,7 @@ namespace Z0
     using System.Diagnostics;
     
     using static zcore;
-    using static inxfunc;
+    using static mfunc;
 
     /// <summary>
     /// A System.Span[T] clone where the  encasulated data is always a multiple 
@@ -21,20 +21,42 @@ namespace Z0
     public ref struct Span128<T>
         where T : struct, IEquatable<T>
     {
+        /// <summary>
+        /// The number of cells in the block
+        /// </summary>
+        public static readonly int BlockLength = Vec128<T>.Length;
+
+        /// <summary>
+        /// The size, in bytes, of a block 
+        /// </summary>
+        /// <typeparam name="T">The primitive type</typeparam>
+        /// <remarks>Should always be 16 irrespective of the cell type</remarks>
+        public static readonly int BlockSize = Unsafe.SizeOf<T>() * BlockLength; 
+
+        /// <summary>
+        /// The size, in bytes, of a constituent block cell
+        /// </summary>
+        /// <typeparam name="T">The primitive type</typeparam>
+        public static readonly int CellSize = BlockSize / BlockLength;
+
         [MethodImpl(Inline)]
         public static implicit operator Span<T>(Span128<T> src)
             => src.data;
 
         [MethodImpl(Inline)]
-        public static explicit operator Span128<T>(Span<T> src)
-            => new Span128<T>(src);
+        public static implicit operator ReadOnlySpan128<T> (Span128<T> src)
+            => ReadOnlySpan128<T>.Load(src);
 
         [MethodImpl(Inline)]
         public static implicit operator ReadOnlySpan<T> (Span128<T> src)
-            => src.data;
+            => src.ToReadOnlySpan();
 
         [MethodImpl(Inline)]
-        public static implicit operator Span128<T> (T[] src)
+        public static explicit operator Span128<T> (T[] src)
+            => Load(src);
+
+        [MethodImpl(Inline)]
+        public static explicit operator Span128<T>(Span<T> src)
             => new Span128<T>(src);
 
         [MethodImpl(Inline)]
@@ -45,48 +67,89 @@ namespace Z0
         public static bool operator != (Span128<T> lhs, Span128<T> rhs)
             => lhs.data != rhs.data;
         
-        public static readonly int BlockLength = Vec128<T>.Length;
+        [MethodImpl(Inline)]
+        public static bool Aligned(int length)
+            => length % BlockLength == 0;
 
-        /// <summary>
-        /// The size, in bytes, of a block 
-        /// </summary>
-        /// <typeparam name="T">The primitive type</typeparam>
-        public static readonly int BlockSize = 16;
+        [MethodImpl(Inline)]
+        public static Span128<T> BlockAlloc(int count)
+            => new Span128<T>(new T[count * BlockLength]);
 
-        /// <summary>
-        /// The size, in bytes, of a block constituent
-        /// </summary>
-        /// <typeparam name="T">The primitive type</typeparam>
-        public static readonly int CellSize = BlockSize / BlockLength;
+
+        [MethodImpl(Inline)]
+        public static Span128<T> Load(T[] src)
+        {
+            assert(Aligned(src.Length));
+            return new Span128<T>(src);
+        }
+
+        [MethodImpl(Inline)]
+        public static Span128<T> Load(T[] src, int offset, int length)
+        {
+            assert(Aligned(length));
+            return new Span128<T>(src, offset, length);
+        }
+
+        [MethodImpl(Inline)]
+        public static Span128<T> Load(ReadOnlySpan<T> src)
+        {
+            assert(Aligned(src.Length));
+            return new Span128<T>(src);
+        }
+
+        [MethodImpl(Inline)]
+        public static Span128<T> Load(ReadOnlySpan<T> src, int offset, int length)
+        {
+            assert(Aligned(length));
+            return new Span128<T>(src.Slice(offset, length));
+        }
+
+        [MethodImpl(Inline)]
+        public static Span128<T> Load(Span<T> src)
+        {
+            assert(Aligned(src.Length));
+            return new Span128<T>(src);
+        }
+
+        [MethodImpl(Inline)]
+        public static Span128<T> Load(Span<T> src, int offset, int length)
+        {
+            assert(Aligned(length));
+            return new Span128<T>(src.Slice(offset, length));
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Span128<T> Load(void* src, int length)
+        {
+            assert(Aligned(length));
+            return new Span128<T>(src,length);
+        }
 
         Span<T> data;
 
         [MethodImpl(Inline)]
-        public unsafe Span128(void* src, int len)    
+        unsafe Span128(void* src, int length)    
         {
-            //assert(aligned<T>(len));            
-            data = new Span<T>(src, len);  
+            data = new Span<T>(src, length);  
         }
 
         [MethodImpl(Inline)]
-        public Span128(T[] src)
+        Span128(T[] src, int offset, int length)
         {
-            assert(src.Length % BlockLength == 0);
-            data = span(src);
+            data = span(src,offset,length);
         }
 
+        
         [MethodImpl(Inline)]
-        public Span128(ReadOnlySpan<T> src)
+        Span128(ReadOnlySpan<T> src)
         {
-            assert(src.Length % BlockLength == 0);
             data = span<T>(src.Length);
             src.CopyTo(data);
         }
 
         [MethodImpl(Inline)]
-        public Span128(Span<T> src)
+        Span128(Span<T> src)
         {
-            assert(src.Length % BlockLength == 0);
             this.data = src;
         }
 
@@ -125,7 +188,7 @@ namespace Z0
             => (Span128<T>)Slice(blockIndex * BlockLength, blockCount * BlockLength );
             
         [MethodImpl(Inline)]
-        public Span<T> ToSpan()
+        public Span<T> Unblock()
             => data;
 
         [MethodImpl(Inline)]
@@ -159,8 +222,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span128<S> As<S>()                
             where S : struct, IEquatable<S>
-                => (Span128<S>)MemoryMarshal.Cast<T,S>(data);            
-        
+                => (Span128<S>)MemoryMarshal.Cast<T,S>(data);                    
         public int Length 
         {
             [MethodImpl(Inline)]

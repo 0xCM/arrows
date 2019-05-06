@@ -11,7 +11,10 @@ using System.Runtime.CompilerServices;
 using bigint = Z0.intg<System.Numerics.BigInteger>;
 
 using Z0;
+
 using static zcore;
+using static zfunc;
+
 
 partial class zcore
 {

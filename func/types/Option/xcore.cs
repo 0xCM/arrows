@@ -10,9 +10,9 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static zcore;
+    using static zfunc;
 
-    public static class OptionX
+    partial class xfunc
     {
         [MethodImpl(Inline)]
         public static T ValueOrElse<T>(this T? x,  Func<T> @else)
@@ -86,7 +86,7 @@ namespace Z0
             where T : struct => x.ValueOrDefault();
 
         [MethodImpl(Inline)]
-        public static IReadOnlyList<P> Items<P>(this Option<Index<P>> x)
+        public static IReadOnlyList<P> Items<P>(this Option<P[]> x)
             => x.ValueOrElse(() => new P[]{});
 
         [MethodImpl(Inline)]
@@ -103,11 +103,11 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static P First<P>(this Option<Index<P>> x)
+        public static P First<P>(this Option<P[]> x)
             => x.Items().First();
 
         [MethodImpl(Inline)]
-        public static P FirstOrDefault<P>(this Option<Index<P>> x)
+        public static P FirstOrDefault<P>(this Option<P[]> x)
             => x.Items().FirstOrDefault();
 
         /// <summary>
@@ -150,8 +150,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Option<T> TryGetFirst<T>(IEnumerable<Option<T>> potentials)
         {
-            var o = potentials.TryFind(x => x.IsSome());
-            return o.IsSome() ? o.Value() : none<T>();
+            var o = potentials.Where(x => x.IsSome()).ToList();
+            return o.Any() ? o.First() : none<T>();
         }
 
         /// <summary>

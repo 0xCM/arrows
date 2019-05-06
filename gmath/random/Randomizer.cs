@@ -11,7 +11,7 @@ namespace Z0
     using System.Numerics;
 
     using static zcore;
-
+    using static zfunc;
 
     /// <summary>
     /// Defines pseudorandom number generator

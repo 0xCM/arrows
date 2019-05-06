@@ -8,9 +8,9 @@ namespace Z0
     using System.Collections.Generic;    
     using System.Linq;
     using System.Runtime.CompilerServices;
-    using static zcore;
-    using Z0;
 
+    using static zcore;
+    using static zfunc;
 
     partial class Structures
     {

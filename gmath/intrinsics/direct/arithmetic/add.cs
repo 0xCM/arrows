@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     using static zcore;
-    using static inxfunc;
+    using static mfunc;
 
 
     partial class dinx
@@ -158,311 +158,652 @@ namespace Z0
             => Avx2.Store((double*)dst, Avx2.Add(lhs, rhs));
 
 
-        //! add: * -> * -> *
-        //! --------------------------------------------------------------------
+        [MethodImpl(Inline)]
+        public static unsafe void add(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, void* dst)
+            => Avx2.Store((sbyte*)dst, Avx2.Add(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static unsafe void add(sbyte* lhs, sbyte* rhs, sbyte* dst)  
-            => Avx2.Store(dst,Avx2.Add(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public static unsafe void add(in Vec256<byte> lhs, in Vec256<byte> rhs, void* dst)
+            => Avx2.Store((byte*)dst, Avx2.Add(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public static unsafe void add(byte* lhs, byte* rhs, byte* dst)  
-            => Avx2.Store(dst,Avx2.Add(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public static unsafe void add(in Vec256<short> lhs, in Vec256<short> rhs, void* dst)
+            => Avx2.Store((short*)dst, Avx2.Add(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static unsafe void add(short* lhs, short* rhs, short* dst)  
-            => Avx2.Store(dst,Avx2.Add(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public static unsafe void add(in Vec256<ushort> lhs, in Vec256<ushort> rhs, void* dst)
+            => Avx2.Store((ushort*)dst, Avx2.Add(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static unsafe void add(ushort* lhs, ushort* rhs, ushort* dst)  
-            => Avx2.Store(dst,Avx2.Add(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public static unsafe void add(in Vec256<int> lhs, in Vec256<int> rhs, void* dst)
+            => Avx2.Store((int*)dst, Avx2.Add(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static unsafe void add(int* lhs, int* rhs, int* dst)  
-            => Avx2.Store(dst,Avx2.Add(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public static unsafe void add(in Vec256<uint> lhs, in Vec256<uint> rhs, void* dst)
+            => Avx2.Store((uint*)dst, Avx2.Add(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static unsafe void add(uint* lhs, uint* rhs, uint* dst)  
-            => Avx2.Store(dst,Avx2.Add(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public static unsafe void add(in Vec256<long> lhs, in Vec256<long> rhs, void* dst)
+            => Avx2.Store((long*)dst, Avx2.Add(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static unsafe void add(long* lhs, long* rhs, long* dst)  
-            => Avx2.Store(dst,Avx2.Add(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public static unsafe void add(in Vec256<ulong> lhs, in Vec256<ulong> rhs, void* dst)
+            => Avx2.Store((ulong*)dst, Avx2.Add(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static unsafe void add(ulong* lhs, ulong* rhs, ulong* dst)  
-            => Avx2.Store(dst,Avx2.Add(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public static unsafe void add(in Vec256<float> lhs, in Vec256<float> rhs, void* dst)
+            => Avx2.Store((float*)dst, Avx2.Add(lhs, rhs));
 
         [MethodImpl(Inline)]
-        public static unsafe void add(float* lhs, float* rhs, float* dst)  
-            => Avx2.Store(dst,Avx2.Add(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public static unsafe void add(in Vec256<double> lhs, in Vec256<double> rhs, void* dst)
+            => Avx2.Store((double*)dst, Avx2.Add(lhs, rhs));
 
-        [MethodImpl(Inline)]
-        public static unsafe void add(double* lhs, double* rhs, double* dst)  
-            => Avx2.Store(dst,Avx2.Add(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
- 
-        //! add: [] -> [] -> ref [] -> return []
-        //! --------------------------------------------------------------------
 
-        public static unsafe ref sbyte[] add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, ref sbyte[] dst)
+        public static unsafe ref Span128<sbyte> add(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, ref Span128<sbyte> dst)
         {
-            var vLen = Vector128<sbyte>.Count;            
-            fixed(sbyte* pLhs = &(lhs[0]))
-            fixed(sbyte* pRhs = &(rhs[0]))
-            fixed(sbyte* pDst = &dst[0])
+            var vLen = Span128<sbyte>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(sbyte* pLhs0 = &first(lhs))
+            fixed(sbyte* pRhs0 = &(first(rhs)))
+            fixed(sbyte* pDst0 = &first(dst))
             {
-                sbyte* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dst.Length; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    add(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
             }
             
             return ref dst;
         }
 
-        public static unsafe ref byte[] add(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, ref byte[] dst)
+        public static unsafe ref Span128<byte> add(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, ref Span128<byte> dst)
         {
-            var vLen = Vector128<byte>.Count;
-            fixed(byte* pLhs = &(lhs[0]))
-            fixed(byte* pRhs = &(rhs[0]))
-            fixed(byte* pDst = &dst[0])
-            {
-                byte* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dst.Length; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    add(pLeft, pRight, pTarget);
+            var vLen = Span128<byte>.BlockLength;            
+            var dLen = length(lhs,rhs);
 
+            fixed(byte* pLhs0 = &first(lhs))
+            fixed(byte* pRhs0 = &first(rhs))
+            fixed(byte* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
             }
+            
             return ref dst;
         }
 
-        public static unsafe ref short[] add(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, ref short[] dst)
+        public static unsafe ref Span128<short> add(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, ref Span128<short> dst)
         {
-            var vLen = Vector128<short>.Count;
-            fixed(short* pLhs = &(lhs[0]))
-            fixed(short* pRhs = &(rhs[0]))
-            fixed(short* pDst = &dst[0])
-            {
-                short* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dst.Length; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    add(pLeft, pRight, pTarget);
-            }
+            var vLen = Span128<short>.BlockLength;            
+            var dLen = length(lhs,rhs);
 
+            fixed(short* pLhs0 = &first(lhs))
+            fixed(short* pRhs0 = &first(rhs))
+            fixed(short* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
             return ref dst;
         }
 
-        public static unsafe ref ushort[] add(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, ref ushort[] dst)
+        public static unsafe ref Span128<ushort> add(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, ref Span128<ushort> dst)
         {
-            var vLen = Vector128<ushort>.Count;
-            fixed(ushort* pLhs = &(lhs[0]))
-            fixed(ushort* pRhs = &(rhs[0]))
-            fixed(ushort* pDst = &dst[0])
-            {
-                ushort* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dst.Length; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    add(pLeft, pRight, pTarget);
-            }
+            var vLen = Span128<ushort>.BlockLength;            
+            var dLen = length(lhs,rhs);
 
+            fixed(ushort* pLhs0 = &first(lhs))
+            fixed(ushort* pRhs0 = &first(rhs))
+            fixed(ushort* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
             return ref dst;
         }
 
-        public static unsafe ref int[] add(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, ref int[] dst)
+        public static unsafe ref Span128<int> add(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, ref Span128<int> dst)
         {
-            var vLen = Vector128<int>.Count;
-            fixed(int* pLhs = &(lhs[0]))
-            fixed(int* pRhs = &(rhs[0]))
-            fixed(int* pDst = &dst[0])
-            {
-                int* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dst.Length; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    add(pLeft, pRight, pTarget);
-            }
+            var vLen = Span128<int>.BlockLength;            
+            var dLen = length(lhs,rhs);
 
+            fixed(int* pLhs0 = &first(lhs))
+            fixed(int* pRhs0 = &first(rhs))
+            fixed(int* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
             return ref dst;
         }
 
         public static unsafe ref Span128<uint> add(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, ref Span128<uint> dst)
         {
-            var vLen = Vector128<uint>.Count;
+            var vLen = Span128<uint>.BlockLength;            
             var dLen = length(lhs,rhs);
 
-            fixed(uint* pLhs = &first(lhs))
-            fixed(uint* pRhs = &first(rhs))
-            fixed(uint* pDst = &first(dst))
+            fixed(uint* pLhs0 = &first(lhs))
+            fixed(uint* pRhs0 = &first(rhs))
+            fixed(uint* pDst0 = &first(dst))
             {
-                uint* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    add(pLeft, pRight, pTarget);
-            }
-
-            return ref dst;
-        }
-
-        public static unsafe ref uint[] add(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, ref uint[] dst)
-        {
-            var vLen = Vector128<uint>.Count;
-            var dLen = length(lhs,rhs);
-
-            fixed(uint* pLhs = &(lhs[0]))
-            fixed(uint* pRhs = &(rhs[0]))
-            fixed(uint* pDst = &dst[0])
-            {
-                uint* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    add(pLeft, pRight, pTarget);
-            }
-
-            return ref dst;
-        }
-
-        public static unsafe ref long[] add(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, ref long[] dst)
-        {
-            var vLen = Vector128<long>.Count;
-            var dLen = length(lhs,rhs);
-
-            fixed(long* pLhs = &(lhs[0]))
-            fixed(long* pRhs = &(rhs[0]))
-            fixed(long* pDst = &dst[0])
-            {
-                long* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    add(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
             }
             
             return ref dst;
         }
 
-        public static unsafe ref ulong[] add(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, ref ulong[] dst)
+        public static unsafe ref Span128<long> add(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, ref Span128<long> dst)
         {
-            var vLen = Vector128<ulong>.Count;
+            var vLen = Span128<long>.BlockLength;            
             var dLen = length(lhs,rhs);
 
-            fixed(ulong* pLhs = &(lhs[0]))
-            fixed(ulong* pRhs = &(rhs[0]))
-            fixed(ulong* pDst = &dst[0])
+            fixed(long* pLhs0 = &first(lhs))
+            fixed(long* pRhs0 = &first(rhs))
+            fixed(long* pDst0 = &first(dst))
             {
-                ulong* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    add(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
             }
             
             return ref dst;
         }
 
-        public static unsafe ref float[] add(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, ref float[] dst)
+        public static unsafe ref Span128<ulong> add(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, ref Span128<ulong> dst)
         {
-            var vLen = Vector128<float>.Count;
+            var vLen = Vector128<ulong>.Count;            
             var dLen = length(lhs,rhs);
 
-            fixed(float* pLhs = &(lhs[0]))
-            fixed(float* pRhs = &(rhs[0]))
-            fixed(float* pDst = &dst[0])
+            fixed(ulong* pLhs0 = &first(lhs))
+            fixed(ulong* pRhs0 = &first(rhs))
+            fixed(ulong* pDst0 = &first(dst))
             {
-                float* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    add(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
             }
-
+            
             return ref dst;
         }
 
-        public static unsafe ref double[] add(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, ref double[] dst)
+        public static unsafe ref Span128<float> add(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, ref Span128<float> dst)
         {
-            var vLen = Vector128<double>.Count;
+            var vLen = Vector128<float>.Count;            
             var dLen = length(lhs,rhs);
 
-            fixed(double* pLhs = &(lhs[0]))
-            fixed(double* pRhs = &(rhs[0]))
-            fixed(double* pDst = &dst[0])
+            fixed(float* pLhs0 = &first(lhs))
+            fixed(float* pRhs0 = &first(rhs))
+            fixed(float* pDst0 = &first(dst))
             {
-                double* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    add(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
             }
-
+            
             return ref dst;
-        } 
+        }
 
-         //! add: [] -> [] -> []
-        //! --------------------------------------------------------------------
+        public static unsafe ref Span128<double> add(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, ref Span128<double> dst)
+        {
+            var vLen = Vector128<double>.Count;            
+            var dLen = length(lhs,rhs);
+
+            fixed(double* pLhs0 = &first(lhs))
+            fixed(double* pRhs0 = &first(rhs))
+            fixed(double* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
+        }
+
+        public static unsafe ref Span256<sbyte> add(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, ref Span256<sbyte> dst)
+        {
+            var vLen = Span256<sbyte>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(sbyte* pLhs0 = &first(lhs))
+            fixed(sbyte* pRhs0 = &(first(rhs)))
+            fixed(sbyte* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
+        }
+
+        public static unsafe ref Span256<byte> add(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, ref Span256<byte> dst)
+        {
+            var vLen = Span256<byte>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(byte* pLhs0 = &first(lhs))
+            fixed(byte* pRhs0 = &first(rhs))
+            fixed(byte* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
+        }
+
+        public static unsafe ref Span256<short> add(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, ref Span256<short> dst)
+        {
+            var vLen = Span256<short>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(short* pLhs0 = &first(lhs))
+            fixed(short* pRhs0 = &first(rhs))
+            fixed(short* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
+        }
+
+        public static unsafe ref Span256<ushort> add(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, ref Span256<ushort> dst)
+        {
+            var vLen = Span256<ushort>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(ushort* pLhs0 = &first(lhs))
+            fixed(ushort* pRhs0 = &first(rhs))
+            fixed(ushort* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
+        }
+
+        public static unsafe ref Span256<int> add(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, ref Span256<int> dst)
+        {
+            var vLen = Span256<int>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(int* pLhs0 = &first(lhs))
+            fixed(int* pRhs0 = &first(rhs))
+            fixed(int* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
+        }
+
+        public static unsafe ref Span256<uint> add(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, ref Span256<uint> dst)
+        {
+            var vLen = Span256<uint>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(uint* pLhs0 = &first(lhs))
+            fixed(uint* pRhs0 = &first(rhs))
+            fixed(uint* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
+        }
+
+        public static unsafe ref Span256<long> add(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, ref Span256<long> dst)
+        {
+            var vLen = Span256<long>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(long* pLhs0 = &first(lhs))
+            fixed(long* pRhs0 = &first(rhs))
+            fixed(long* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
+        }
+
+        public static unsafe ref Span256<ulong> add(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, ref Span256<ulong> dst)
+        {
+            var vLen = Vector256<ulong>.Count;            
+            var dLen = length(lhs,rhs);
+
+            fixed(ulong* pLhs0 = &first(lhs))
+            fixed(ulong* pRhs0 = &first(rhs))
+            fixed(ulong* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
+        }
+
+        public static unsafe ref Span256<float> add(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
+        {
+            var vLen = Vector256<float>.Count;            
+            var dLen = length(lhs,rhs);
+
+            fixed(float* pLhs0 = &first(lhs))
+            fixed(float* pRhs0 = &first(rhs))
+            fixed(float* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
+        }
+
+        public static unsafe ref Span256<double> add(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, ref Span256<double> dst)
+        {
+            var vLen = Vector256<double>.Count;            
+            var dLen = length(lhs,rhs);
+
+            fixed(double* pLhs0 = &first(lhs))
+            fixed(double* pRhs0 = &first(rhs))
+            fixed(double* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.add(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
+        }
+
 
         [MethodImpl(Inline)]
-        public static sbyte[] add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+        public static Span128<sbyte> add(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs)
         {
-            var dst  = alloc<sbyte>(length(lhs,rhs));
+            var dst  = Span128.blockalloc<sbyte>(blocks(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe byte[] add(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
+        public static Span128<byte> add(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs)
         {
-            var dst  = alloc<byte>(length(lhs,rhs));
+            var dst  = Span128.blockalloc<byte>(blocks(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
-         [MethodImpl(Inline)]
-        public static unsafe short[] add(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
+
+        [MethodImpl(Inline)]
+        public static Span128<short> add(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs)
         {
-            var dst  =  alloc<short>(length(lhs,rhs));
+            var dst  = Span128.blockalloc<short>(blocks(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ushort[] add(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
+        public static Span128<ushort> add(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs)
         {
-            var dst  =  alloc<ushort>(length(lhs,rhs));
+            var dst  = Span128.blockalloc<ushort>(blocks(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe int[] add(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
+        public static Span128<int> add(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs)
         {
-            var dst  =  alloc<int>(length(lhs,rhs));
+            var dst  = Span128.blockalloc<int>(blocks(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe uint[] add(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
+        public static Span128<uint> add(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs)
         {
-            var dst  = new uint[length(lhs,rhs)];
+            var dst  = Span128.blockalloc<uint>(blocks(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe long[] add(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
+        public static Span128<long> add(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs)
         {
-            var dst  = new long[length(lhs,rhs)];
+            var dst  = Span128.blockalloc<long>(blocks(lhs,rhs));
+            return add(lhs, rhs, ref dst);
+        }
+
+       [MethodImpl(Inline)]
+        public static Span128<ulong> add(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs)
+        {
+            var dst  = Span128.blockalloc<ulong>(blocks(lhs,rhs));
+            return add(lhs, rhs, ref dst);
+        }
+
+
+       [MethodImpl(Inline)]
+        public static Span128<float> add(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs)
+        {
+            var dst  = Span128.blockalloc<float>(blocks(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ulong[] add(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
+        public static Span128<double> add(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs)
         {
-            var dst  = new ulong[length(lhs,rhs)];
+            var dst  = Span128.blockalloc<double>(blocks(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe float[] add(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
+        public static Span256<sbyte> add(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs)
         {
-            var dst  = new float[length(lhs,rhs)];
+            var dst  = Span256.blockalloc<sbyte>(blocks(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static unsafe double[] add(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
+        public static Span256<byte> add(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs)
         {
-            var dst  = alloc<double>(length(lhs,rhs));
+            var dst  = Span256.blockalloc<byte>(blocks(lhs,rhs));
             return add(lhs, rhs, ref dst);
         }
+
+
+        [MethodImpl(Inline)]
+        public static Span256<short> add(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs)
+        {
+            var dst  = Span256.blockalloc<short>(blocks(lhs,rhs));
+            return add(lhs, rhs, ref dst);
+        }
+
+        [MethodImpl(Inline)]
+        public static Span256<ushort> add(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs)
+        {
+            var dst  = Span256.blockalloc<ushort>(blocks(lhs,rhs));
+            return add(lhs, rhs, ref dst);
+        }
+
+        [MethodImpl(Inline)]
+        public static Span256<int> add(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs)
+        {
+            var dst  = Span256.blockalloc<int>(blocks(lhs,rhs));
+            return add(lhs, rhs, ref dst);
+        }
+
+        [MethodImpl(Inline)]
+        public static Span256<uint> add(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs)
+        {
+            var dst  = Span256.blockalloc<uint>(blocks(lhs,rhs));
+            return add(lhs, rhs, ref dst);
+        }
+
+        [MethodImpl(Inline)]
+        public static Span256<long> add(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs)
+        {
+            var dst  = Span256.blockalloc<long>(blocks(lhs,rhs));
+            return add(lhs, rhs, ref dst);
+        }
+
+       [MethodImpl(Inline)]
+        public static Span256<ulong> add(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs)
+        {
+            var dst  = Span256.blockalloc<ulong>(blocks(lhs,rhs));
+            return add(lhs, rhs, ref dst);
+        }
+
+
+       [MethodImpl(Inline)]
+        public static Span256<float> add(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs)
+        {
+            var dst  = Span256.blockalloc<float>(blocks(lhs,rhs));
+            return add(lhs, rhs, ref dst);
+        }
+
+        [MethodImpl(Inline)]
+        public static Span256<double> add(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs)
+        {
+            var dst  = Span256.blockalloc<double>(blocks(lhs,rhs));
+            return add(lhs, rhs, ref dst);
+        }
+
+
     }
 }

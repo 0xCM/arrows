@@ -10,12 +10,9 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
 using Z0;
-using static Z0.Bibliography;
-using static zcore;
-using static Z0.Traits;
 
 
-public static partial class zcore
+partial class zfunc
 {
 
    /// <summary>

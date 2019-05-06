@@ -9,7 +9,9 @@ namespace Z0
     using System.Reflection;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+
     using static zcore;
+    using static zfunc;
 
 
     public class BenchDelta 
@@ -22,7 +24,7 @@ namespace Z0
             this.Comparison = Comparison;
             this.Description = Describe(Comparison);
             Claim.eq(Comparison.LeftBench.OpCount, Comparison.RightBench.OpCount);
-            Claim.eq(Comparison.LeftBench.Operator.Primitive, Comparison.RightBench.Operator.Primitive);
+            Claim.eq(Comparison.LeftBench.Operator.OperandKind, Comparison.RightBench.Operator.OperandKind);
             Claim.eq(Comparison.LeftBench.Operator.OpKind, Comparison.RightBench.Operator.OpKind);
         }
 
@@ -93,15 +95,11 @@ namespace Z0
                 );
             return AppMsg.Define(description,  SeverityLevel.Perform);
         }
-
     }
-
 
     public static class BenchComparisonX
     {
         public static BenchDelta CalcDelta(this BenchComparison comparison)
             => BenchDelta.Calc(comparison);
     }
-
-
 }

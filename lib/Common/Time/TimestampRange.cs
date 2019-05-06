@@ -9,6 +9,7 @@ namespace Z0
     using System.Linq;
 
     using static zcore;
+    using static zfunc;
 
     /// <summary>
     /// Represents a finite interval of time with (at least) millisecond resolution

@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
     
     using static zcore;
-    using static inxfunc;
+    using static mfunc;
 
 
     partial class dinx
@@ -88,54 +88,82 @@ namespace Z0
         //! add: ptr[T] -> ptr[T] -> ptr[T]
         //! --------------------------------------------------------------------
 
-        [MethodImpl(Inline)]
-        public static unsafe void mul(int* lhs, int* rhs, long* dst)  
-            => Avx2.Store(dst,Avx2.Multiply(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
-
-        [MethodImpl(Inline)]
-        public static unsafe void mul(uint* lhs, uint* rhs, ulong* dst)  
-            => Avx2.Store(dst,Avx2.Multiply(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
-
-        [MethodImpl(Inline)]
-        public static unsafe void mul(float* lhs, float* rhs, float* dst)  
-            => Avx2.Store(dst,Avx2.Multiply(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
-
-        [MethodImpl(Inline)]
-        public static unsafe void mul(double* lhs, double* rhs, double* dst)  
-            => Avx2.Store(dst,Avx2.Multiply(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
-
-        public static unsafe void mul(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
+        public static unsafe ref Span256<long> mul(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, ref Span256<long> dst)
         {
+            var vLen = Span256<int>.BlockLength;
+            var dLen = Span256<long>.BlockLength;
             var len = length(lhs,rhs);
-            var vecLen = Vec256<float>.Length;
-            fixed(float* pDstStart =  &first(dst))
-            fixed(float* pLhsStart = &first(lhs))
-            fixed(float* pRhsStart = &first(rhs))
+
+            fixed(int* pLhs0 = &first(lhs))
+            fixed(int* pRhs0 = &first(rhs))
+            fixed(long* pDst0 = &first(dst))
             {
-                var pDst = pDstStart;                
-                var pLhs = pLhsStart;
-                var pRhs = pRhsStart;
-                for(var i =0; i < len; i+= vecLen, pDst += vecLen, pLhs += vecLen, pRhs += vecLen)
+                int* pLhs = pLhs0, pRhs = pRhs0;
+                long* pDst = pDst0;                
+                
+                for(var i =0; i < len; i+= vLen, pLhs += vLen, pRhs += vLen, pDst += dLen)
                 {
                     var vLhs = Vec256.load(pLhs);
                     var vRhs = Vec256.load(pRhs);
                     store(mul(vLhs,vRhs), pDst);
                 }
             }
+            return ref dst;
+
         }
 
+        public static unsafe ref Span256<float> mul(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
+        {
+            var len = length(lhs,rhs);
+            var vLen = Span256<float>.BlockLength;
+            fixed(float* pLhs0 = &first(lhs))
+            fixed(float* pRhs0 = &first(rhs))
+            fixed(float* pDst0 =  &first(dst))
+            {
+                float* pDst = pDst0, pLhs = pLhs0, pRhs = pRhs0;
+                for(var i =0; i < len; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    store(mul(vLhs,vRhs), pDst);
+                }
+            }
+            return ref dst;
+        }
 
-        public static unsafe void mul(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
+        public static unsafe ref Span256<ulong> mul(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, ref Span256<ulong> dst)
+        {
+            var vLen = Span256<uint>.BlockLength;
+            var dLen = length(lhs,rhs);
+
+            fixed(uint* pLhs0 = &first(lhs))
+            fixed(uint* pRhs0 = &first(rhs))
+            fixed(ulong* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.mul(vLhs,vRhs), pDst);
+                }
+            }            
+            return ref dst;            
+        }
+
+        public static unsafe ref Span256<double> mul(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs,ref Span256<double> dst)
         {
             var dLen = length(lhs,rhs);
-            var vLen = Vec256<double>.Length;
-            fixed(double* pLhsStart = &first(lhs))
-            fixed(double* pRhsStart = &first(rhs))
-            fixed(double* pDstStart =  &first(dst))
+            var vLen = Span256<double>.BlockLength;
+            fixed(double* pLhs0 = &first(lhs))
+            fixed(double* pRhs0 = &first(rhs))
+            fixed(double* pDst0 = &first(dst))
             {
-                var pDst = pDstStart;                
-                var pLhs = pLhsStart;
-                var pRhs = pRhsStart;
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
                 for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
                 {
                     var vLhs = Vec256.load(pLhs);
@@ -143,75 +171,97 @@ namespace Z0
                     dinx.store(dinx.mul(vLhs,vRhs), pDst);
                 }
             }
+            return ref dst;
         }
 
-        public static unsafe void mul(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<long> dst)
+
+        public static unsafe ref Span128<long> mul(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, ref Span128<long> dst)
         {
-            var vLen = Vector128<int>.Count;
+            var vLen = Span128<int>.BlockLength;
             var dLen = length(lhs,rhs);
 
-            fixed(int* pLhsStart = &first(lhs))
-            fixed(int* pRhsStart = &first(rhs))
-            fixed(long* pDstStart = &first(dst))
+            fixed(int* pLhs0 = &first(lhs))
+            fixed(int* pRhs0 = &first(rhs))
+            fixed(long* pDst0 = &first(dst))
             {
-                int* pLhs = pLhsStart, pRhs = pRhsStart;
-                long* pDst = pDstStart;                
-                
-                for(var i = 0; i < dLen; i += vLen, pLhs += vLen, pRhs += vLen, pDst += vLen)
-                    mul(pLhs, pRhs, pDst);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.mul(vLhs,vRhs), pDst);
+                }
             }
-
+            return ref dst;
         }
 
-        public static unsafe void mul(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<ulong> dst)
+
+        public static unsafe ref Span128<ulong> mul(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, ref Span128<ulong> dst)
         {
-            var vLen = Vector128<uint>.Count;
+            var vLen = Span128<uint>.BlockLength;
             var dLen = length(lhs,rhs);
 
-            fixed(uint* pLhsStart = &lhs[0])
-            fixed(uint* pRhsStart = &rhs[0])
-            fixed(ulong* pDstStart = &dst[0])
+            fixed(uint* pLhs0 = &first(lhs))
+            fixed(uint* pRhs0 = &first(rhs))
+            fixed(ulong* pDst0 = &first(dst))
             {
-                uint* pLhs = pLhsStart, pRhs = pRhsStart;
-                ulong* pDst = pDstStart;                
-                
-                for(var i = 0; i < dLen; i += vLen, pLhs += vLen, pRhs += vLen, pDst += vLen)
-                    mul(pLhs, pRhs, pDst);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.mul(vLhs,vRhs), pDst);
+                }
             }            
+            return ref dst;            
         }
 
 
-        public static unsafe ref float[] mul(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, ref float[] dst)
+        public static unsafe ref Span128<float> mul(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, ref Span128<float> dst)
         {
-            var vLen = Vector128<float>.Count;
+            var vLen = Span128<float>.BlockLength;
             var dLen = length(lhs,rhs);
 
-            fixed(float* pLhs = &lhs[0])
-            fixed(float* pRhs = &rhs[0])
-            fixed(float* pDst = &dst[0])
+            fixed(float* pLhs0 = &first(lhs))
+            fixed(float* pRhs0 = &first(rhs))
+            fixed(float* pDst0 = &dst[0])
             {
-                float* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    mul(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.mul(vLhs,vRhs), pDst);
+                }
             }
 
             return ref dst;
         }
 
-        public static unsafe ref double[] mul(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, ref double[] dst)
+        public static unsafe ref Span128<double> mul(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, ref Span128<double> dst)
         {
-            var vLen = Vector128<double>.Count;
+            var vLen = Span128<double>.BlockLength;
             var dLen = length(lhs,rhs);
 
-            fixed(double* pLhs = &lhs[0])
-            fixed(double* pRhs = &rhs[0])
-            fixed(double* pDst = &dst[0])
+            fixed(double* pLhs0 = &first(lhs))
+            fixed(double* pRhs0 = &first(rhs))
+            fixed(double* pDst0 = &dst[0])
             {
-                double* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    mul(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.mul(vLhs,vRhs), pDst);
+                }
             }
 
             return ref dst;
@@ -219,47 +269,47 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static Span<long> mul(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
-        {
-            var dst  = span<long>(length(lhs,rhs));
-            mul(lhs, rhs, dst);
+        public static Span256<long> mul(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs)
+        {            
+            var dst  = Span256.blockalloc<long>(blocks(lhs,rhs));
+            mul(lhs, rhs, ref dst);
             return dst;
         }
 
         [MethodImpl(Inline)]
-        public static Span<ulong> mul(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
+        public static Span256<ulong> mul(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs)
         {
-            var dst  = span<ulong>(length(lhs,rhs));
-            mul(lhs, rhs, dst);
+            var dst  = Span256.blockalloc<ulong>(blocks(lhs,rhs));
+            mul(lhs, rhs, ref dst);
             return dst;
         }
 
         [MethodImpl(Inline)]
-        public static float[] mul(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
+        public static Span256<float> mul(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs)
         {
-            var dst  = new float[length(lhs,rhs)];
+            var dst  = Span256.blockalloc<float>(blocks(lhs,rhs));
             return mul(lhs, rhs, ref dst);
         }
 
         [MethodImpl(Inline)]
-        public static double[] mul(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
+        public static Span256<double> mul(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs)
         {
-            var dst  = new double[length(lhs,rhs)];
+            var dst  = Span256.blockalloc<double>(blocks(lhs,rhs));
             return mul(lhs, rhs, ref dst);
         }
 
 
         [MethodImpl(Inline)]
-        public unsafe static ref long[] mul(in Vec128<int> lhs, in Vec128<int> rhs, ref long[] dst)
+        public unsafe static ref Span128<long> mul(in Vec128<int> lhs, in Vec128<int> rhs, ref Span128<long> dst)
         {
-            fixed(long* pDst = &dst[0])
+            fixed(long* pDst = &first(dst))
                 mul(lhs,rhs,pDst);
             return ref dst;
         }
 
 
         [MethodImpl(Inline)]
-        public unsafe static ref ulong[] mul(in Vec128<uint> lhs, in Vec128<uint> rhs, ref ulong[] dst)
+        public unsafe static ref Span128<ulong> mul(in Vec128<uint> lhs, in Vec128<uint> rhs, ref Span128<ulong> dst)
         {
             fixed(ulong* pDst = &dst[0])
                 mul(lhs,rhs,pDst);
@@ -267,7 +317,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public unsafe static ref float[] mul(in Vec128<float> lhs, in Vec128<float> rhs, ref float[] dst)
+        public unsafe static ref Span128<float> mul(in Vec128<float> lhs, in Vec128<float> rhs, ref Span128<float> dst)
         {
             fixed(float* pDst = &dst[0])
                 mul(lhs,rhs,pDst);
@@ -275,7 +325,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public unsafe static ref double[] mul(in Vec128<double> lhs, in Vec128<double> rhs, ref double[] dst)
+        public unsafe static ref Span128<double> mul(in Vec128<double> lhs, in Vec128<double> rhs, ref Span128<double> dst)
         {
             fixed(double* pDst = &dst[0])
                 mul(lhs,rhs,pDst);
@@ -284,7 +334,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public unsafe static ref long[] mul(in Vec256<int> lhs, in Vec256<int> rhs, ref long[] dst)
+        public unsafe static ref Span256<long> mul(in Vec256<int> lhs, in Vec256<int> rhs, ref Span256<long> dst)
         {
             fixed(long* pDst = &dst[0])
                 mul(lhs,rhs,pDst);
@@ -292,7 +342,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public unsafe static ref ulong[] mul(in Vec256<uint> lhs, in Vec256<uint> rhs, ref ulong[] dst)
+        public unsafe static ref Span256<ulong> mul(in Vec256<uint> lhs, in Vec256<uint> rhs, ref Span256<ulong> dst)
         {
             fixed(ulong* pDst = &dst[0])
                 mul(lhs,rhs,pDst);
@@ -300,7 +350,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public unsafe static ref float[] mul(in Vec256<float> lhs, in Vec256<float> rhs, ref float[] dst)
+        public unsafe static ref Span256<float> mul(in Vec256<float> lhs, in Vec256<float> rhs, ref Span256<float> dst)
         {
             fixed(float* pDst = &dst[0])
                 mul(lhs,rhs,pDst);
@@ -308,7 +358,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public unsafe static ref double[] mul(in Vec256<double> lhs, in Vec256<double> rhs, ref double[] dst)
+        public unsafe static ref Span256<double> mul(in Vec256<double> lhs, in Vec256<double> rhs, ref Span256<double> dst)
         {
             fixed(double* pDst = &dst[0])
                 mul(lhs,rhs,pDst);

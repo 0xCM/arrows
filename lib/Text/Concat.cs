@@ -22,35 +22,6 @@ using static Z0.ReflectionFlags;
 partial class zcore
 {
 
-    /// <summary>
-    /// Concatenates an arbitrary number of strings
-    /// </summary>
-    /// <param name="src">The strings to be concatenated</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static string append(params string[] src) 
-        => string.Concat(src);
-    
-    /// <summary>
-    /// Concatenates an arbitrary number of string representations
-    /// </summary>
-    /// <param name="src">The strings to be concatenated</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static string append<T>(IEnumerable<T> src) 
-        => string.Concat(src);
-
-    /// <summary>
-    /// Concatenates an arbitrary number of string representations,
-    /// separated by a specified delimiter
-    /// </summary>
-    /// <param name="delimiter">The separator</param>
-    /// <param name="src">The values for which string representations will
-    /// be formed</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static string append<T>(string delimiter, IEnumerable<T> src) 
-        => string.Join(delimiter, src.Select(x => x.ToString()));
 
     /// <summary>
     /// Functional equivalalent of <see cref="string.Join(string, object[])"/>

@@ -10,6 +10,7 @@ namespace Z0
     
     using static nats;
     using static zcore;
+    using static zfunc;
 
     public static class NatDigits
     {

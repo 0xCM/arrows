@@ -9,6 +9,8 @@ namespace Latex
 
     using Z0;
     using static zcore;
+    using static zfunc;
+
     using static LatexCmd;
 
 

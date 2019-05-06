@@ -10,6 +10,8 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     using static zcore;
+    using static mfunc;
+
     using static As;
 
     partial class ginx
@@ -46,6 +48,57 @@ namespace Z0
                 default:
                     throw errors.unsupported(kind);
             }            
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe Span128<T> add<T>(in Vec128<T> lhs, in Vec128<T> rhs, Span128<T> dst, int blockIndex)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            var dstBlock = dst.Block(blockIndex);
+            switch(kind)
+            {
+                case PrimalKind.int8:
+                     fixed(sbyte* pDst = &first(As.int8(dstBlock)))
+                        dinx.add(int8(lhs), int8(rhs), pDst);
+                    break;
+                case PrimalKind.uint8:
+                     fixed(byte* pDst = &first(As.uint8(dstBlock)))
+                        dinx.add(uint8(lhs), uint8(rhs), pDst);
+                    break;
+                case PrimalKind.int16:
+                     fixed(short* pDst = &first(As.int16(dstBlock)))
+                        dinx.add(int16(lhs), int16(rhs), pDst);
+                    break;
+                case PrimalKind.uint16:
+                     fixed(ushort* pDst = &first(As.uint16(dstBlock)))
+                        dinx.add(uint16(lhs), uint16(rhs), pDst);
+                    break;
+                case PrimalKind.int32:
+                     fixed(int* pDst = &first(As.int32(dstBlock)))
+                        dinx.add(int32(lhs), int32(rhs), pDst);
+                    break;
+                case PrimalKind.uint32:
+                    fixed(uint* pDst = &first(As.uint32(dstBlock)))
+                        dinx.add(uint32(lhs), uint32(rhs), pDst);
+                    break;
+                case PrimalKind.int64:
+                    fixed(long* pDst = &first(As.int64(dstBlock)))
+                        dinx.add(int64(lhs), int64(rhs), pDst);
+                    break;
+                case PrimalKind.float32:
+                    fixed(float* pDst = &first(As.float32(dstBlock)))
+                        dinx.add(float32(lhs), float32(rhs), pDst);
+                    break;
+                case PrimalKind.float64:
+                    fixed(double* pDst = &first(As.float64(dstBlock)))
+                        dinx.add(float64(lhs), float64(rhs), pDst);
+                break;                
+                default:
+                    throw errors.unsupported(kind);                    
+            }
+            return dst;
         }
 
 
@@ -127,7 +180,58 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref T[] add<T>(T[] lhs, T[] rhs, ref T[] dst)
+        public static unsafe Span256<T> add<T>(in Vec256<T> lhs, in Vec256<T> rhs, Span256<T> dst, int blockIndex)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            var dstBlock = dst.Block(blockIndex);
+            switch(kind)
+            {
+                case PrimalKind.int8:
+                     fixed(sbyte* pDst = &first(As.int8(dstBlock)))
+                        dinx.add(int8(lhs), int8(rhs), pDst);
+                    break;
+                case PrimalKind.uint8:
+                     fixed(byte* pDst = &first(As.uint8(dstBlock)))
+                        dinx.add(uint8(lhs), uint8(rhs), pDst);
+                    break;
+                case PrimalKind.int16:
+                     fixed(short* pDst = &first(As.int16(dstBlock)))
+                        dinx.add(int16(lhs), int16(rhs), pDst);
+                    break;
+                case PrimalKind.uint16:
+                     fixed(ushort* pDst = &first(As.uint16(dstBlock)))
+                        dinx.add(uint16(lhs), uint16(rhs), pDst);
+                    break;
+                case PrimalKind.int32:
+                     fixed(int* pDst = &first(As.int32(dstBlock)))
+                        dinx.add(int32(lhs), int32(rhs), pDst);
+                    break;
+                case PrimalKind.uint32:
+                    fixed(uint* pDst = &first(As.uint32(dstBlock)))
+                        dinx.add(uint32(lhs), uint32(rhs), pDst);
+                    break;
+                case PrimalKind.int64:
+                    fixed(long* pDst = &first(As.int64(dstBlock)))
+                        dinx.add(int64(lhs), int64(rhs), pDst);
+                    break;
+                case PrimalKind.float32:
+                    fixed(float* pDst = &first(As.float32(dstBlock)))
+                        dinx.add(float32(lhs), float32(rhs), pDst);
+                    break;
+                case PrimalKind.float64:
+                    fixed(double* pDst = &first(As.float64(dstBlock)))
+                        dinx.add(float64(lhs), float64(rhs), pDst);
+                break;                
+                default:
+                    throw errors.unsupported(kind);                    
+            }
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span128<T> add<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();        
@@ -135,68 +239,119 @@ namespace Z0
             {
                 case PrimalKind.int8:
                 {
-                    ref var xDst = ref int8(ref dst);
-                    dinx.add(int8(ref lhs), int8(ref rhs), ref xDst);
-                    return ref generic<T>(ref xDst);
+                    var xDst = int8(dst);
+                    dinx.add(int8(lhs), int8(rhs), ref xDst);
+                    return generic<T>(xDst);
                 }
                 case PrimalKind.uint8:
                 {
-                    ref var xDst = ref uint8(ref dst);
-                    dinx.add(uint8(ref lhs), uint8(ref rhs), ref xDst);
-                    return ref generic<T>(ref xDst);
+                    var xDst = uint8(dst);
+                    dinx.add(uint8(lhs), uint8(rhs), ref xDst);
+                    return generic<T>(xDst);
                 }
                 case PrimalKind.int16:
                 {
-                    ref var xDst = ref int16(ref dst);
-                    dinx.add(int16(ref lhs), int16(ref rhs), ref xDst);
-                    return ref generic<T>(ref xDst);
+                    var xDst = int16(dst);
+                    dinx.add(int16(lhs), int16(rhs), ref xDst);
+                    return generic<T>(xDst);
                 }
                 case PrimalKind.uint16:
                 {
-                    ref var xDst = ref uint16(ref dst);
-                    dinx.add(uint16(ref lhs), uint16(ref rhs), ref xDst);
-                    return ref generic<T>(ref xDst);
+                    var xDst = uint16(dst);
+                    dinx.add(uint16(lhs), uint16(rhs), ref xDst);
+                    return generic<T>(xDst);
                 }
                 case PrimalKind.int32:
                 {
-                    ref var xDst = ref int32(ref dst);
-                    dinx.add(int32(ref lhs), int32(ref rhs), ref xDst);
-                    return ref generic<T>(ref xDst);
+                    var xDst = int32(dst);
+                    dinx.add(int32(lhs), int32(rhs), ref xDst);
+                    return generic<T>(xDst);
                 }
                 case PrimalKind.uint32:
                 {
-                    ref var xDst = ref uint32(ref dst);
-                    dinx.add(uint32(ref lhs), uint32(ref rhs), ref xDst);
-                    return ref generic<T>(ref xDst);
-                }
-                case PrimalKind.int64:
-                {
-                    ref var xDst = ref int64(ref dst);
-                    dinx.add(int64(ref lhs), int64(ref rhs), ref xDst);
-                    return ref generic<T>(ref xDst);
-                }
-                case PrimalKind.uint64:
-                {
-                    ref var xDst = ref uint64(ref dst);
-                    dinx.add(uint64(ref lhs), uint64(ref rhs), ref xDst);
-                    return ref generic<T>(ref xDst);
+                    var xDst = uint32(dst);
+                    dinx.add(uint32(lhs), uint32(rhs), ref xDst);
+                    return generic<T>(xDst);
                 }
                 case PrimalKind.float32:
                 {
-                    ref var xDst = ref float32(ref dst);
-                    dinx.add(float32(ref lhs), float32(ref rhs), ref xDst);
-                    return ref generic<T>(ref xDst);
+                    var xDst = float32(dst);
+                    dinx.add(float32(lhs), float32(rhs), ref xDst);
+                    return generic<T>(xDst);
                 }
                 case PrimalKind.float64:
                 {
-                    ref var xDst = ref float64(ref dst);
-                    dinx.add(float64(ref lhs), float64(ref rhs), ref xDst);
-                    return ref generic<T>(ref xDst);
+                    var xDst = float64(dst);
+                    dinx.add(float64(rhs), float64(rhs), ref  xDst);
+                    return generic<T>(xDst);
                 }
                 
                 default:
                     throw errors.unsupported(kind);
             }                
         }
-    }
+
+        [MethodImpl(Inline)]
+        public static Span256<T> add<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();        
+            switch(kind)
+            {
+                case PrimalKind.int8:
+                {
+                    var xDst = int8(dst);
+                    dinx.add(int8(lhs), int8(rhs), ref xDst);
+                    return generic<T>(xDst);
+                }
+                case PrimalKind.uint8:
+                {
+                    var xDst = uint8(dst);
+                    dinx.add(uint8(lhs), uint8(rhs), ref xDst);
+                    return generic<T>(xDst);
+                }
+                case PrimalKind.int16:
+                {
+                    var xDst = int16(dst);
+                    dinx.add(int16(lhs), int16(rhs), ref xDst);
+                    return generic<T>(xDst);
+                }
+                case PrimalKind.uint16:
+                {
+                    var xDst = uint16(dst);
+                    dinx.add(uint16(lhs), uint16(rhs), ref xDst);
+                    return generic<T>(xDst);
+                }
+                case PrimalKind.int32:
+                {
+                    var xDst = int32(dst);
+                    dinx.add(int32(lhs), int32(rhs), ref xDst);
+                    return generic<T>(xDst);
+                }
+                case PrimalKind.uint32:
+                {
+                    var xDst = uint32(dst);
+                    dinx.add(uint32(lhs), uint32(rhs), ref xDst);
+                    return generic<T>(xDst);
+                }
+                case PrimalKind.float32:
+                {
+                    var xDst = float32(dst);
+                    dinx.add(float32(lhs), float32(rhs), ref xDst);
+                    return generic<T>(xDst);
+                }
+                case PrimalKind.float64:
+                {
+                    var xDst = float64(dst);
+                    dinx.add(float64(rhs), float64(rhs), ref  xDst);
+                    return generic<T>(xDst);
+                }
+                
+                default:
+                    throw errors.unsupported(kind);
+            }                
+        }
+
+
+   }
 }

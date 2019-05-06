@@ -13,6 +13,7 @@ namespace Z0
 
 
     using static zcore;
+    using static zfunc;
 
     using target = System.Single;
     using stream = System.Collections.Generic.IEnumerable<float>;

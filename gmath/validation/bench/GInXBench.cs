@@ -11,7 +11,9 @@ namespace Z0
     using System.IO;
 
     using static zcore;
-    using static inxfunc;
+
+    using static zfunc;
+    using static mfunc;
 
     public class GInXBench : BenchContext
     {   
@@ -22,7 +24,7 @@ namespace Z0
             : base(Config, Randomizer)
         {
 
-            gmath.init();
+            
 
         }
 
@@ -88,164 +90,237 @@ namespace Z0
         
         #region Add
 
+        [MethodImpl(Inline)]
+        public static OpMeasure gadd<T>(BinOpData<T> src)
+            where T : struct, IEquatable<T>
+        {
+            var lhs =  Span128.load(src.LeftSource);
+            var rhs = Span128.load(src.RightSource);
+            var dst = Span128.load(src.RightTarget);
+            var sw = stopwatch();
+            ginx.add(lhs, rhs, dst);
+            return(lhs.Length, snapshot(sw));
+        }
+
         public BenchComparison AddI8(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<sbyte>(samples);
-            var opid = OpKind.Add.OpId<sbyte>(intrinsic: true);
+            var opid = OpKind.Add.Vec128OpId<sbyte>();
+            var src = BinOpInit<sbyte>(samples);
 
-            var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
+            OpMeasure direct()
+            {
+                var lhs = Span128.load(src.LeftSource);
+                var rhs = Span128.load(src.RightSource);
+                var dst = Span128.load(src.LeftTarget);
+                var sw = stopwatch();
+                dinx.add(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, direct), 
+                Measure(~opid, () => gadd(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
+        
         }
 
         public BenchComparison AddU8(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<byte>(samples);
-            var opid = OpKind.Add.OpId<byte>(intrinsic: true);
+            var opid = OpKind.Add.Vec128OpId<byte>();
+            var src = BinOpInit<byte>(samples);
 
-            var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
+            OpMeasure direct()
+            {
+                var lhs = Span128.load(src.LeftSource);
+                var rhs = Span128.load(src.RightSource);
+                var dst = Span128.load(src.LeftTarget);
+                var sw = stopwatch();
+                dinx.add(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, direct), 
+                Measure(~opid, () => gadd(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison AddI16(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<short>(samples);
-            var opid = OpKind.Add.OpId<short>(intrinsic: true);
+            var opid = OpKind.Add.Vec128OpId<short>();
+            var src = BinOpInit<short>(samples);
 
-            var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
+            OpMeasure direct()
+            {
+                var lhs = Span128.load(src.LeftSource);
+                var rhs = Span128.load(src.RightSource);
+                var dst = Span128.load(src.LeftTarget);
+                var sw = stopwatch();
+                dinx.add(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, direct), 
+                Measure(~opid, () => gadd(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison AddU16(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<ushort>(samples);
-            var opid = OpKind.Add.OpId<ushort>(intrinsic: true);
+            var opid = OpKind.Add.Vec128OpId<ushort>();
+            var src = BinOpInit<ushort>(samples);
 
-            var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
+            OpMeasure direct()
+            {
+                var lhs = Span128.load(src.LeftSource);
+                var rhs = Span128.load(src.RightSource);
+                var dst = Span128.load(src.LeftTarget);
+                var sw = stopwatch();
+                dinx.add(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, direct), 
+                Measure(~opid, () => gadd(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison AddI32(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<int>(samples);
-            var opid = OpKind.Add.OpId<int>(intrinsic: true);
+            var src = BinOpInit<int>(samples);
+            var opid = OpKind.Add.Vec128OpId<int>();
 
-            var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
+            OpMeasure direct()
+            {
+                var lhs = Span128.load(src.LeftSource);
+                var rhs = Span128.load(src.RightSource);
+                var dst = Span128.load(src.LeftTarget);
+                var sw = stopwatch();
+                dinx.add(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, direct), 
+                Measure(~opid, () => gadd(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison AddU32(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<uint>(samples);
-            var opid = OpKind.Add.OpId<uint>(intrinsic: true);
+            var src = BinOpInit<uint>(samples);
+            var opid = OpKind.Add.Vec128OpId<uint>();
 
-            var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
+            OpMeasure direct()
+            {
+                var lhs = Span128.load(src.LeftSource);
+                var rhs = Span128.load(src.RightSource);
+                var dst = Span128.load(src.LeftTarget);
+                var sw = stopwatch();
+                dinx.add(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, direct), 
+                Measure(~opid, () => gadd(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison AddI64(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<long>(samples);
-            var opid = OpKind.Add.OpId<long>(intrinsic: true);
+            var src = BinOpInit<long>(samples);
+            var opid = OpKind.Add.Vec128OpId<long>();
 
-            var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
+            OpMeasure direct()
+            {
+                var lhs = Span128.load(src.LeftSource);
+                var rhs = Span128.load(src.RightSource);
+                var dst = Span128.load(src.LeftTarget);
+                var sw = stopwatch();
+                dinx.add(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, direct), 
+                Measure(~opid, () => gadd(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison AddU64(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<ulong>(samples);
-            var opid = OpKind.Add.OpId<ulong>(intrinsic: true);
+            var opid = OpKind.Add.Vec128OpId<ulong>();
+            var src = BinOpInit<ulong>(samples);
 
-            var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
+            OpMeasure direct()
+            {
+                var lhs = Span128.load(src.LeftSource);
+                var rhs = Span128.load(src.RightSource);
+                var dst = Span128.load(src.LeftTarget);
+                var sw = stopwatch();
+                dinx.add(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, direct), 
+                Measure(~opid, () => gadd(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison AddF32(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<float>(samples);
-            var opid = OpKind.Add.OpId<float>(intrinsic: true);
+            var opid = OpKind.Add.Vec128OpId<float>();
+            var src = BinOpInit<float>(samples);
 
-            var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
+            OpMeasure direct()
+            {
+                var lhs = Span128.load(src.LeftSource);
+                var rhs = Span128.load(src.RightSource);
+                var dst = Span128.load(src.LeftTarget);
+                var sw = stopwatch();
+                dinx.add(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, direct), 
+                Measure(~opid, () => gadd(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
 
         public BenchComparison AddF64(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<double>(samples);
-            var opid = OpKind.Add.OpId<double>(intrinsic: true);
+            var opid = OpKind.Add.Vec128OpId<double>();
+            var src = BinOpInit<double>(samples);
 
-            var direct = Measure(opid, samples, () => 
-                dinx.add(data.LeftSource, data.RightSource, ref data.LeftTarget));
+            OpMeasure direct()
+            {
+                var lhs = Span128.load(src.LeftSource);
+                var rhs = Span128.load(src.RightSource);
+                var dst = Span128.load(src.LeftTarget);
+                var sw = stopwatch();
+                dinx.add(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, direct), 
+                Measure(~opid, () => gadd(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                ginx.add(data.LeftSource, data.RightSource, ref data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
@@ -417,43 +492,6 @@ namespace Z0
 
         #endregion
 
-        #region Mul
-
-
-        public BenchComparison MulF32(int? cycles = null, int? samples = null)
-        {
-            var data = BinOpInit<float>(samples);
-            var opid = OpKind.Mul.OpId<float>(intrinsic: true);
-
-            var direct = Measure(opid, samples, () => 
-                dinx.mul(data.LeftSource, data.RightSource, data.LeftTarget));
-
-            var generic = Measure(~opid, samples, () => 
-                ginx.mul(data.LeftSource, data.RightSource, span(data.RightTarget)));
-
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
-            return Finish(comparison);            
-        }
-
-
-        public BenchComparison MulF64(int? cycles = null, int? samples = null)
-        {
-            var data = BinOpInit<double>(samples);
-            var opid = OpKind.Mul.OpId<double>(intrinsic: true);
-
-            var direct = Measure(opid, samples, () => 
-                dinx.mul(data.LeftSource, data.RightSource, data.LeftTarget));
-
-            var generic = Measure(~opid, samples, () => 
-                ginx.mul(data.LeftSource, data.RightSource, span(data.RightTarget)));
-
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
-            return Finish(comparison);            
-        }
-
-        #endregion
     
     }
 }

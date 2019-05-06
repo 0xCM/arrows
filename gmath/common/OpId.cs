@@ -10,41 +10,52 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.IO;
 
-
-
     public readonly struct OpId 
-    {        
-        public static OpId Define(OpKind Kind, PrimalKind Primitive, bool Generic = false, bool Intrinsic = false, bool Vectored = false, int? OperandSize = null)
-            => new OpId(Kind, Primitive, Generic, Intrinsic,  Vectored);
+    {   
+        public static IEnumerable<OpKind> OpKinds
+            => typeof(OpKind).GetEnumValues().AsQueryable().Cast<OpKind>();
 
-        public static OpId Define<T>(OpKind Kind,  bool Generic = false, bool Intrinsic = false, bool Vectored = false)
+        public static IEnumerable<PrimalKind> Primitives
+            => typeof(PrimalKind).GetEnumValues().AsQueryable().Cast<PrimalKind>();
+
+        public static readonly OpId Zero = new OpId(OpKind.None, PrimalKind.none, false, false, OpFusion.Atomic, 0);     
+        
+        public static OpId Define(OpKind Kind, PrimalKind Primitive, bool Generic = false, bool Intrinsic = false, 
+            OpFusion Fusion = OpFusion.Atomic, ByteSize? OperandSize = null)
+                => new OpId(Kind, Primitive, Generic, Intrinsic, Fusion,OperandSize);
+
+        public static OpId Define<T>(OpKind Kind,  bool Generic = false, bool Intrinsic = false, 
+            OpFusion Fusion = OpFusion.Atomic, ByteSize? OperandSize = null)
             where T : struct, IEquatable<T>
-            => new OpId(Kind, PrimalKinds.kind<T>(), Generic, Intrinsic, Vectored, Unsafe.SizeOf<T>());
+                => new OpId(Kind, PrimalKinds.kind<T>(), Generic, Intrinsic, Fusion, OperandSize ?? Unsafe.SizeOf<T>());
 
         public static OpId operator ~(OpId src)
             => src.FlipGeneric();
 
-        OpId(OpKind Kind, PrimalKind Primitive, bool Generic, bool Intrinsic, bool Vectored, int? OperandSize = null)
+        OpId(OpKind OpKind, PrimalKind OperandKind, bool Generic, bool Intrinsic, OpFusion Fusion, ByteSize? OperandSize)
         {
-            this.OpKind = Kind;
-            this.Primitive = Primitive;
+            this.OpKind = OpKind;
+            this.OperandKind = OperandKind;
             this.Generic = Generic;
             this.Intrinsic = Intrinsic;
-            this.Vectored = Vectored;
-            this.OperandSize = Intrinsic ? 128 : OperandSize ?? 0;
+            this.Fusion = Fusion;
+            this.OperandSize = OperandSize ?? 0;
         }
         
         public readonly OpKind OpKind;
 
-        public readonly PrimalKind Primitive;
+        public readonly PrimalKind OperandKind;
+
+        public readonly ByteSize OperandSize;
 
         public readonly bool Generic;
 
         public readonly bool Intrinsic;
 
-        public readonly int OperandSize;
+        public readonly OpFusion Fusion;
 
-        public readonly bool Vectored;
+        public bool Vectored =>
+            Fusion == OpFusion.Fused;
 
         /// <summary>
         /// monomorphic (direct) vs parametric (generic)
@@ -56,18 +67,18 @@ namespace Z0
             => Intrinsic ?  (Generic ? "ginx" : "dinx") : (Generic ? "gmath" : "dmath");
 
         string OpInfo
-            => Vectored ? $"{OpKind}/Vec{OperandSize}[{Primitive}]" 
-              : Intrinsic ? $"Num{OperandSize}[{Primitive}]"            
-              : $"{OpKind}/{Primitive}";
+            => Vectored ? $"{OpKind}/Vec{OperandSize}[{OperandKind}]" 
+              : Intrinsic ? $"Num{OperandSize}[{OperandKind}]"            
+              : $"{OpKind}/{OperandKind}";
 
         public override string ToString() 
             => $"{Prefix}/{OpInfo}".ToLower();
         
         public OpId FlipGeneric()
-            => new OpId(OpKind,Primitive, !Generic, Intrinsic, Vectored, OperandSize);
+            => new OpId(OpKind,OperandKind, !Generic, Intrinsic, Fusion, OperandSize);
     
         public OpId ResizeOperand(int OperandSize)
-            => new OpId(OpKind,Primitive, Generic, Intrinsic, Vectored, OperandSize);
+            => new OpId(OpKind,OperandKind, Generic, Intrinsic, Fusion, OperandSize);
     }
 
 

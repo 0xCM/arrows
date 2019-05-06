@@ -10,10 +10,9 @@ using System.Diagnostics;
 using System.IO;
 
 using Z0;
-using static Z0.Bibliography;
 using static zcore;
-using static Z0.Traits;
-using static Z0.ReflectionFlags;
+using static zfunc;
+
 
 partial class zcore
 {

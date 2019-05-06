@@ -14,6 +14,8 @@ namespace Z0.Testing
     using Z0.Testing;
 
     using static zcore;
+    using static zfunc;
+
 
 
     public class PrimOpsTest : Context<PrimOpsTest>

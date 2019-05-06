@@ -13,6 +13,8 @@ using System.Diagnostics;
 
 using Z0;
 using static zcore;
+using static zfunc;
+
 using Array = Z0.Arr;
 using static nats;
 
@@ -337,7 +339,7 @@ public static partial class zcore
     /// <typeparam name="V">The value type</typeparam>
     /// <returns></returns>
     public static Index<K,V> index<K,V>((K key, V value)[] src)
-        => new Index<K,V>(map(src,kvp));
+        => new Index<K,V>(src.Select(x => (x.key, x.value)));
 
     /// <summary>
     /// Constructs a keyed value

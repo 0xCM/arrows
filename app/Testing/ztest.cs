@@ -10,6 +10,8 @@ namespace Z0
     using MathNet.Numerics;
 
     using static zcore;
+        using static zfunc;
+
 
     /// <summary>
     /// A reference calculator

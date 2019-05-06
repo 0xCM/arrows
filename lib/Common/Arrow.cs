@@ -11,6 +11,7 @@ namespace Z0
     using Latex;
     
     using static zcore;
+    using static zfunc;
 
     /// <summary>
     /// Represents a directed path from a source space to a target space

@@ -12,7 +12,7 @@ namespace Z0
     using System.Security;
 
     using static zcore;
-    using static inxfunc;
+    using static mfunc;
 
     public static class As
     {
@@ -386,7 +386,7 @@ namespace Z0
 
         #endregion
 
-        #region mutable spans
+        #region span
 
         [MethodImpl(Inline)]
         public static Span<sbyte> int8<T>(Span<T> src)
@@ -496,7 +496,7 @@ namespace Z0
 
         #endregion
 
-        #region readonly spans
+        #region readonly span
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan<sbyte> int8<T>(ReadOnlySpan<T> src)
@@ -2044,5 +2044,447 @@ namespace Z0
             => (double*)pvoid(ref src);
 
         #endregion    
+
+        #region span128
+
+        [MethodImpl(Inline)]
+        public static Span128<sbyte> int8<T>(Span128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,sbyte>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<byte> uint8<T>(Span128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,byte>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<short> int16<T>(Span128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,short>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<ushort> uint16<T>(Span128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,ushort>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<int> int32<T>(Span128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,int>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<uint> uint32<T>(Span128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,uint>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<long> int64<T>(Span128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,long>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<ulong> uint64<T>(Span128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,ulong>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<float> float32<T>(Span128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,float>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<double> float64<T>(Span128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,double>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<T> generic<T>(Span128<sbyte> src)
+            where T : struct, IEquatable<T>
+                => cast<sbyte,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<T> generic<T>(Span128<byte> src)
+            where T : struct, IEquatable<T>
+                => cast<byte,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span128<T> generic<T>(Span128<short> src)
+            where T : struct, IEquatable<T>
+                => cast<short,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span128<T> generic<T>(Span128<ushort> src)
+            where T : struct, IEquatable<T>
+                => cast<ushort,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span128<T> generic<T>(Span128<int> src)
+            where T : struct, IEquatable<T>
+                => cast<int,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span128<T> generic<T>(Span128<uint> src)
+            where T : struct, IEquatable<T>
+                => cast<uint,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span128<T> generic<T>(Span128<long> src)
+            where T : struct, IEquatable<T>
+                => cast<long,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span128<T> generic<T>(Span128<ulong> src)
+            where T : struct, IEquatable<T>
+                => cast<ulong,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<T> generic<T>(Span128<float> src)
+            where T : struct, IEquatable<T>
+                => cast<float,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Span128<T> generic<T>(Span128<double> src)
+            where T : struct, IEquatable<T>
+                => cast<double,T>(src);
+
+        #endregion
+
+        #region readonly span128
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<sbyte> int8<T>(ReadOnlySpan128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,sbyte>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<byte> uint8<T>(ReadOnlySpan128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,byte>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<short> int16<T>(ReadOnlySpan128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,short>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<ushort> uint16<T>(ReadOnlySpan128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,ushort>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<int> int32<T>(ReadOnlySpan128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,int>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<uint> uint32<T>(ReadOnlySpan128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,uint>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<long> int64<T>(ReadOnlySpan128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,long>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<ulong> uint64<T>(ReadOnlySpan128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,ulong>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<float> float32<T>(ReadOnlySpan128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,float>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<double> float64<T>(ReadOnlySpan128<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,double>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<T> generic<T>(ReadOnlySpan128<sbyte> src)
+            where T : struct, IEquatable<T>
+                => cast<sbyte,T>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<T> generic<T>(ReadOnlySpan128<byte> src)
+            where T : struct, IEquatable<T>
+                => cast<byte,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<T> generic<T>(ReadOnlySpan128<short> src)
+            where T : struct, IEquatable<T>
+                => cast<short,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<T> generic<T>(ReadOnlySpan128<ushort> src)
+            where T : struct, IEquatable<T>
+                => cast<ushort,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<T> generic<T>(ReadOnlySpan128<int> src)
+            where T : struct, IEquatable<T>
+                => cast<int,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<T> generic<T>(ReadOnlySpan128<uint> src)
+            where T : struct, IEquatable<T>
+                => cast<uint,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<T> generic<T>(ReadOnlySpan128<long> src)
+            where T : struct, IEquatable<T>
+                => cast<long,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<T> generic<T>(ReadOnlySpan128<ulong> src)
+            where T : struct, IEquatable<T>
+                => cast<ulong,T>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<T> generic<T>(ReadOnlySpan128<float> src)
+            where T : struct, IEquatable<T>
+                => cast<float,T>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan128<T> generic<T>(ReadOnlySpan128<double> src)
+            where T : struct, IEquatable<T>
+                => cast<double,T>(src);
+
+        #endregion
+
+        #region span256
+
+        [MethodImpl(Inline)]
+        public static Span256<sbyte> int8<T>(Span256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,sbyte>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<byte> uint8<T>(Span256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,byte>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<short> int16<T>(Span256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,short>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<ushort> uint16<T>(Span256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,ushort>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<int> int32<T>(Span256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,int>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<uint> uint32<T>(Span256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,uint>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<long> int64<T>(Span256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,long>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<ulong> uint64<T>(Span256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,ulong>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<float> float32<T>(Span256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,float>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<double> float64<T>(Span256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,double>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<T> generic<T>(Span256<sbyte> src)
+            where T : struct, IEquatable<T>
+                => cast<sbyte,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<T> generic<T>(Span256<byte> src)
+            where T : struct, IEquatable<T>
+                => cast<byte,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span256<T> generic<T>(Span256<short> src)
+            where T : struct, IEquatable<T>
+                => cast<short,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span256<T> generic<T>(Span256<ushort> src)
+            where T : struct, IEquatable<T>
+                => cast<ushort,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span256<T> generic<T>(Span256<int> src)
+            where T : struct, IEquatable<T>
+                => cast<int,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span256<T> generic<T>(Span256<uint> src)
+            where T : struct, IEquatable<T>
+                => cast<uint,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span256<T> generic<T>(Span256<long> src)
+            where T : struct, IEquatable<T>
+                => cast<long,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static Span256<T> generic<T>(Span256<ulong> src)
+            where T : struct, IEquatable<T>
+                => cast<ulong,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<T> generic<T>(Span256<float> src)
+            where T : struct, IEquatable<T>
+                => cast<float,T>(src);
+
+        [MethodImpl(Inline)]
+        public static Span256<T> generic<T>(Span256<double> src)
+            where T : struct, IEquatable<T>
+                => cast<double,T>(src);
+
+        #endregion
+
+        #region readonly span256
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<sbyte> int8<T>(ReadOnlySpan256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,sbyte>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<byte> uint8<T>(ReadOnlySpan256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,byte>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<short> int16<T>(ReadOnlySpan256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,short>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<ushort> uint16<T>(ReadOnlySpan256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,ushort>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<int> int32<T>(ReadOnlySpan256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,int>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<uint> uint32<T>(ReadOnlySpan256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,uint>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<long> int64<T>(ReadOnlySpan256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,long>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<ulong> uint64<T>(ReadOnlySpan256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,ulong>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<float> float32<T>(ReadOnlySpan256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,float>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<double> float64<T>(ReadOnlySpan256<T> src)
+            where T : struct, IEquatable<T>
+                => cast<T,double>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<T> generic<T>(ReadOnlySpan256<sbyte> src)
+            where T : struct, IEquatable<T>
+                => cast<sbyte,T>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<T> generic<T>(ReadOnlySpan256<byte> src)
+            where T : struct, IEquatable<T>
+                => cast<byte,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<T> generic<T>(ReadOnlySpan256<short> src)
+            where T : struct, IEquatable<T>
+                => cast<short,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<T> generic<T>(ReadOnlySpan256<ushort> src)
+            where T : struct, IEquatable<T>
+                => cast<ushort,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<T> generic<T>(ReadOnlySpan256<int> src)
+            where T : struct, IEquatable<T>
+                => cast<int,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<T> generic<T>(ReadOnlySpan256<uint> src)
+            where T : struct, IEquatable<T>
+                => cast<uint,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<T> generic<T>(ReadOnlySpan256<long> src)
+            where T : struct, IEquatable<T>
+                => cast<long,T>(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<T> generic<T>(ReadOnlySpan256<ulong> src)
+            where T : struct, IEquatable<T>
+                => cast<ulong,T>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<T> generic<T>(ReadOnlySpan256<float> src)
+            where T : struct, IEquatable<T>
+                => cast<float,T>(src);
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan256<T> generic<T>(ReadOnlySpan256<double> src)
+            where T : struct, IEquatable<T>
+                => cast<double,T>(src);
+
+        #endregion
+
+
     }
 }

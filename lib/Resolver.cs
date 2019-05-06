@@ -13,6 +13,7 @@ namespace Z0
     using System.Reflection;
 
     using static zcore;
+    using static zfunc;
     
 
     /// <summary>
@@ -23,16 +24,6 @@ namespace Z0
         static readonly ConcurrentDictionary<Type,object> index
             = new ConcurrentDictionary<Type, object>();
 
-
-        /// <summary>
-        /// Resolves the requested operations, if possible; otherwise,
-        /// rasies an error
-        /// </summary>
-        /// <typeparam name="T">The operand type</typeparam>
-        /// <typeparam name="R">The operations type</typeparam>
-        [MethodImpl(Inline)]
-        static R resolve<T,R>()
-            => cast<R>(index[type<T>()]);    
 
         /// <summary>
         /// Defines an operational reification of type R indexed by an operand type T

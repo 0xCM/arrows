@@ -13,6 +13,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static zfunc;
 
     /// <summary>
     /// Defines a concurrent key-value store 

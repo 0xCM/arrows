@@ -9,6 +9,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static zfunc;
+
     using target = System.Decimal;
 
     public static partial class Bits

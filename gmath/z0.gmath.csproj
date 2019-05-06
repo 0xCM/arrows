@@ -12,4 +12,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\func\z0.zfunc.csproj" />
+  </ItemGroup>
 </Project>

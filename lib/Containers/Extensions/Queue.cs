@@ -13,6 +13,7 @@ namespace Z0
     using System.Diagnostics;
 
     using static zcore;
+    using static zfunc;
 
 
     partial class xcore

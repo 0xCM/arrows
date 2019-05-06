@@ -44,30 +44,6 @@ namespace Z0.Tests.InX128
         }
 
 
-        public void StoreUInt32Vecs()
-        {
-            var vecCount = Pow2.T16;
-            var mem = MemoryPartition.define((int)vecCount * Vec128<uint>.Length, Vec128<uint>.Length);
-
-            trace($"Storing data from {mem.PartCount} {type<Vec128<uint>>().DisplayName()} vectors");
-
-            var dst = alloc<uint>(mem.TotalLength); 
-            var src = Randomizer.Array<uint>(Interval.closed(10u,500u), mem.TotalLength);
-            var vectors = Vec128UInt32Stream(src).ToArray();
-            dinx.store(vectors,dst);
-
-            void ValidatePart(int cix, int pix)
-            {
-                var v = vectors[pix];
-                iter(mem.PartLength, 
-                    i => Claim.eq(src[cix + i], v[i]));
-            }
-            
-            mem.GetIndex().IterateParts(ValidatePart);
-
-        }
-
-
 
         public void DefineFloat64Vec()
         {

@@ -12,16 +12,11 @@ using System.Reflection;
 
 using Z0;
 using static Z0.Traits;
+using static zfunc;
 
 partial class zcore
 {
 
-    static readonly long TicksPerMs 
-        = Stopwatch.Frequency/1000L;
-    
-    [MethodImpl(Inline)]
-    public static long ticksToMs(long ticks)
-        => ticks/TicksPerMs;
 
     /// <summary>
     /// Gets the literal values for an enum type

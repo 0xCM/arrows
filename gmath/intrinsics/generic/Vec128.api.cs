@@ -231,7 +231,6 @@ namespace Z0
                 return Avx2.LoadVector128(psrc);
         }
 
-
         [MethodImpl(Inline)]
         public static unsafe Vec128<byte> load(Span128<byte> src)
         {
@@ -620,7 +619,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe Vec128<long> load(long[] src, int offset = 0)
         {
-            checklen128(src,offset);
 
             fixed (long* psrc = &src[offset])
                 return Avx2.LoadVector128(psrc);

@@ -12,6 +12,7 @@ namespace Z0
     using System.Linq;
 
     using static zcore;
+    using static zfunc;
 
 
     

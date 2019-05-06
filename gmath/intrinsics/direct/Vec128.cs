@@ -33,7 +33,7 @@ namespace Z0
 
         public static readonly int Length = Vector128<T>.Count;
 
-        public static readonly int ComponentSize = Unsafe.SizeOf<T>();
+        public static readonly int CellSize = Unsafe.SizeOf<T>();
 
         public static readonly Vec128<T> Zero = Vector128<T>.Zero;
         

@@ -6,17 +6,52 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Diagnostics;
     using System.Reflection;
     using System.ComponentModel;
+    using System.Linq;
     using System.Runtime.CompilerServices;
-    using System.Collections.Concurrent;
-    
-    using static zcore;
-    
-    public static class FluentReflection
+
+    using static zfunc;
+
+    partial class xfunc
     {
+        [MethodImpl(Inline)]
+        public static string DisplayName(this MethodBase src)
+        {
+            var attrib = src.GetCustomAttribute<DisplayNameAttribute>();
+            return attrib != null ? attrib.DisplayName.TrimEnd('/') : src.Name;
+        }
+
+        /// <summary>
+        /// Constructs a display name for a type
+        /// </summary>
+        /// <param name="src">The source type</param>
+        public static string DisplayName(this Type src)
+        {
+            var attrib = src.GetCustomAttribute<DisplayNameAttribute>();
+            if (attrib != null)
+                return attrib.DisplayName;
+
+            if (!src.IsGenericType)
+                return src.Name;
+
+            if (src.IsConstructedGenericType)
+            {
+                var typeArgs = src.GenericTypeArguments;
+                var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
+                var typeName = src.Name.Replace($"`{typeArgs.Length}", string.Empty);
+                return append(typeName, "<", argFmt, ">");
+            }
+            else
+            {
+                var typeArgs = src.GetGenericTypeDefinition().GetGenericArguments();
+                var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
+                var typeName = src.Name.Replace($"`{typeArgs.Length}", string.Empty);
+                return append(typeName, "<", argFmt, ">");
+            }
+        }
+
+
         public static IEnumerable<Type> Realize<T>(this IEnumerable<Type> src)
             => src.Where(t => t.GetInterfaces().Contains(typeof(T)));
 
@@ -52,7 +87,7 @@ namespace Z0
                     => src.Where(x => x.IsStatic);
         
 
-        [MethodImpl(Inline)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static bool IsStatic(this PropertyInfo p)
             => p.GetGetMethod()?.IsStatic == true 
             || p.GetSetMethod().IsStatic == true;
@@ -61,7 +96,7 @@ namespace Z0
         /// Determines whether a type is static
         /// </summary>
         /// <param name="t">The type to examine</param>
-        [MethodImpl(Inline)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static bool IsStatic(this Type t)
             => t.IsAbstract && t.IsSealed;
 
@@ -200,7 +235,6 @@ namespace Z0
         /// <param name="name">The name to match</param>
         public static IEnumerable<T> WithName<T>(this IEnumerable<T> src, string name)
             where T : MemberInfo
-            => src.Where(x => x.Name == name);
+            => src.Where(x => x.Name == name); 
     }
-
 }

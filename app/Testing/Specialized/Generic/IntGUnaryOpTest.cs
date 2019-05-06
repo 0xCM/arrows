@@ -12,6 +12,8 @@ namespace Z0.Testing
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static zfunc;
+
 
 
     public abstract class IntGUnaryOpTest<C,T> : IntGTest<C,T>

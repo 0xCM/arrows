@@ -1,15 +1,15 @@
-//-------------------------------------------------------------------------------------------
-// MetaCore
-// Author: Chris Moore, 0xCM@gmail.com
-// License: MIT
-//-------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
 
-    using static zcore;
+    using static zfunc;
+    
     /// <summary>
     /// Defines a slot in the type system for an "empty" type
     /// In this way, void functions can be considered

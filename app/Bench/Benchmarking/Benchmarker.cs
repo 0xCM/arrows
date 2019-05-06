@@ -18,6 +18,7 @@ namespace Z0.Bench
 
 
     using static zcore;
+    using static zfunc;
 
 
     public static class Benchmarker

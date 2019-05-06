@@ -12,6 +12,7 @@ namespace Z0
     using System.Linq;
 
     using static zcore;
+    using static zfunc;
 
     /// <summary>
     /// Characterizes a system initializer, i.e. a component whose initialization

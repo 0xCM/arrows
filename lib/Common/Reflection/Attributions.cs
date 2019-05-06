@@ -15,6 +15,8 @@ namespace Z0
 
     using static ReflectionFlags;
     using static zcore;
+    using static zfunc;
+
 
     partial class Reflections
     {

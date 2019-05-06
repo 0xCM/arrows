@@ -8,7 +8,8 @@ namespace Z0
     using System.Numerics;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using static zcore;
+
+    using static zfunc;
 
     public enum SeverityLevel
     {   
@@ -36,7 +37,6 @@ namespace Z0
         /// Identifies error content
         /// </summary>
         Error = ConsoleColor.Red,
-
         
         /// <summary>
         /// Identifies benchmark/timing result
@@ -109,45 +109,5 @@ namespace Z0
     }
 
 
-    public static class BenchmarkMessages
-    {
-        static string Pipe = $" | ";
-        
-        static string Eq = $" = ";
-
-        public static AppMsg CycleStatus<T>(T title, int cycle, long totalOpCount, Duration totalDuration)
-            => AppMsg.Define(append(
-                    $"{title} running".PadRight(40), 
-                     Pipe, "Cycle", Eq, $"{cycle}".PadRight(8), 
-                     Pipe, "Op Count", Eq, $"{totalOpCount}".PadRight(12),
-                     Pipe, "Duration", Eq, $"{totalDuration}"
-                     ), SeverityLevel.Perform);
-
-
-        // public static AppMsg CycleStatus(OpId opid, int cycle, long totalOpCount, Duration totalDuration)
-        //     => AppMsg.Define(append(
-        //             $"{opid} running".PadRight(40), 
-        //              Pipe, "Cycle", Eq, $"{cycle}".PadRight(8), 
-        //              Pipe, "Op Count", Eq, $"{totalOpCount}".PadRight(12),
-        //              Pipe, "Duration", Eq, $"{totalDuration}"
-        //              ), SeverityLevel.Perform);
-
-        public static AppMsg CycleEnd(OpId opid, int cycle, Duration cycleDuration, long totalOpCount, Duration totalDuration)
-            => AppMsg.Define(append(
-                    $"{opid} running".PadRight(28), 
-                     Pipe, "Cycle", Eq, $"{cycle}".PadRight(5), 
-                     Pipe, "Total Op Count", Eq, $"{totalOpCount}".PadRight(12),
-                     Pipe, "Total Duration", Eq, $"{totalDuration}".PadRight(28),
-                     Pipe, "Duration", Eq, $"{cycleDuration.Ticks}".PadLeft(8), " ticks "
-                     ), SeverityLevel.Perform);
-        
-        public static AppMsg BenchmarkEnd(OpId opid,  long totalOpCount, Duration totalDuration)
-            => AppMsg.Define(append(
-                    $"{opid} summary".PadRight(28), 
-                     Pipe, "Total Op Count", Eq, $"{totalOpCount}".PadRight(12),
-                     Pipe, "Total Duration", Eq, $"{totalDuration}"), 
-                        SeverityLevel.HiliteCL);
-
-    }
 
 }

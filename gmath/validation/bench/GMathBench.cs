@@ -11,7 +11,8 @@ namespace Z0
     using System.IO;
 
     using static zcore;
-
+    using static zfunc;
+    using static mfunc;
 
     public class GMathBench : BenchContext
     {
@@ -296,132 +297,194 @@ namespace Z0
 
         #region Mul
 
+
+        [MethodImpl(Inline)]
+        public static OpMeasure gmul<T>(BinOpData<T> src)
+            where T : struct, IEquatable<T>
+        {
+            var lhs = rospan(src.LeftSource);
+            var rhs = rospan(src.RightSource);
+            var dst = span(src.RightTarget);
+            var sw = stopwatch();
+            gmath.mul(lhs, rhs, ref dst);
+            return(lhs.Length, snapshot(sw));
+        }
+
+
         public BenchComparison MulI16(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<short>(samples);
             var opid = OpKind.Mul.OpId<short>();
+            var src = BinOpInit<short>(samples,true);
 
-            var direct = Measure(opid, samples, () => 
-                math.mul(data.LeftSource, data.RightSource, data.LeftTarget));
+            OpMeasure dmul()
+            {
+                var lhs = rospan(src.LeftSource);
+                var rhs = rospan(src.RightSource);
+                var dst = span(src.LeftTarget);
+                var sw = stopwatch();
+                math.mul(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, dmul), 
+                Measure(~opid, () => gmul(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mul(data.LeftSource, data.RightSource, data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison MulU16(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<short>(samples);
-            var opid = OpKind.Mul.OpId<short>();
+            var opid = OpKind.Mul.OpId<ushort>();
+            var src = BinOpInit<ushort>(samples,true);
 
-            var direct = Measure(opid, samples, () => 
-                math.mul(data.LeftSource, data.RightSource, data.LeftTarget));
+            OpMeasure dmul()
+            {
+                var lhs = rospan(src.LeftSource);
+                var rhs = rospan(src.RightSource);
+                var dst = span(src.LeftTarget);
+                var sw = stopwatch();
+                math.mul(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, dmul), 
+                Measure(~opid, () => gmul(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mul(data.LeftSource, data.RightSource, data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison MulI32(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<int>(samples);
             var opid = OpKind.Mul.OpId<int>();
+            var src = BinOpInit<int>(samples,true);
 
-            var direct = Measure(opid, samples, () => 
-                math.mul(data.LeftSource, data.RightSource, data.LeftTarget));
+            OpMeasure dmul()
+            {
+                var lhs = rospan(src.LeftSource);
+                var rhs = rospan(src.RightSource);
+                var dst = span(src.LeftTarget);
+                var sw = stopwatch();
+                math.mul(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, dmul), 
+                Measure(~opid, () => gmul(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mul(data.LeftSource, data.RightSource, data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison MulU32(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<uint>(samples);
             var opid = OpKind.Mul.OpId<uint>();
+            var src = BinOpInit<uint>(samples,true);
 
-            var direct = Measure(opid, samples, () => 
-                math.mul(data.LeftSource, data.RightSource, data.LeftTarget));
+            OpMeasure dmul()
+            {
+                var lhs = rospan(src.LeftSource);
+                var rhs = rospan(src.RightSource);
+                var dst = span(src.LeftTarget);
+                var sw = stopwatch();
+                math.mul(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, dmul), 
+                Measure(~opid, () => gmul(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mul(data.LeftSource, data.RightSource, data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison MulI64(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<long>(samples);
             var opid = OpKind.Mul.OpId<long>();
+            var src = BinOpInit<long>(samples,true);
 
-            var direct = Measure(opid, samples, () => 
-                math.mul(data.LeftSource, data.RightSource, data.LeftTarget));
+            OpMeasure dmul()
+            {
+                var lhs = rospan(src.LeftSource);
+                var rhs = rospan(src.RightSource);
+                var dst = span(src.LeftTarget);
+                var sw = stopwatch();
+                math.mul(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, dmul), 
+                Measure(~opid, () => gmul(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mul(data.LeftSource, data.RightSource, data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison MulU64(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<ulong>(samples);
             var opid = OpKind.Mul.OpId<ulong>();
+            var src = BinOpInit<ulong>(samples,true);
 
-            var direct = Measure(opid, samples, () => 
-                math.mul(data.LeftSource, data.RightSource, data.LeftTarget));
+            OpMeasure dmul()
+            {
+                var lhs = rospan(src.LeftSource);
+                var rhs = rospan(src.RightSource);
+                var dst = span(src.LeftTarget);
+                var sw = stopwatch();
+                math.mul(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, dmul), 
+                Measure(~opid, () => gmul(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mul(data.LeftSource, data.RightSource, data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
 
         public BenchComparison MulF32(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<float>(samples);
             var opid = OpKind.Mul.OpId<float>();
+            var src = BinOpInit<float>(samples,true);
 
-            var direct = Measure(opid, samples, () => 
-                math.mul(data.LeftSource, data.RightSource, data.LeftTarget));
+            OpMeasure dmul()
+            {
+                var lhs = rospan(src.LeftSource);
+                var rhs = rospan(src.RightSource);
+                var dst = span(src.LeftTarget);
+                var sw = stopwatch();
+                math.mul(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, dmul), 
+                Measure(~opid, () => gmul(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mul(data.LeftSource, data.RightSource, data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
         public BenchComparison MulF64(int? cycles = null, int? samples = null)
         {
-            var data = BinOpInit<double>(samples);
             var opid = OpKind.Mul.OpId<double>();
+            var src = BinOpInit<double>(samples,true);
 
-            var direct = Measure(opid, samples, () => 
-                math.mul(data.LeftSource, data.RightSource, data.LeftTarget));
+            OpMeasure dmul()
+            {
+                var lhs = rospan(src.LeftSource);
+                var rhs = rospan(src.RightSource);
+                var dst = span(src.LeftTarget);
+                var sw = stopwatch();
+                math.mul(lhs, rhs, ref dst);
+                return(src.LeftSource.Length, snapshot(sw));
+            }
+            
+            var comparison = Run(opid, Measure(opid, dmul), 
+                Measure(~opid, () => gmul(src)), cycles);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mul(data.LeftSource, data.RightSource, data.RightTarget));
-
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
-            Claim.eq(data.LeftTarget, data.RightTarget);        
+            Claim.eq(src.LeftTarget, src.RightTarget);        
             return Finish(comparison);            
         }
 
