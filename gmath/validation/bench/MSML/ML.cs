@@ -12,7 +12,9 @@ namespace MS
     using System.Runtime.Intrinsics.X86;
     using nuint = System.UInt64;
     using Z0;
+
     using static zcore;
+    using static mfunc;
 
     public static partial class ML
     {

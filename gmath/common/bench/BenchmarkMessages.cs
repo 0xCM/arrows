@@ -33,7 +33,33 @@ namespace Z0
                      Pipe, "Total Duration", Eq, $"{totalDuration}".PadRight(28),
                      Pipe, "Duration", Eq, $"{cycleDuration.Ticks}".PadLeft(8), " ticks "
                      ), SeverityLevel.Perform);
-        
+
+
+        static string deltaTitle(BenchComparison c)               
+            => $"{c.LeftBench.Title} vs {c.RightBench.Title}";
+
+        static Duration deltaTiming(BenchComparison c)               
+            => c.LeftBench.ExecTime - c.RightBench.ExecTime;
+
+        public static AppMsg Describe(this BenchComparison comparison)
+        {
+            var title = deltaTitle(comparison);
+            var timing = deltaTiming(comparison);
+            var width = Math.Abs(timing.Ms);
+            var leftDuration = comparison.LeftBench.ExecTime;
+            var rightDuration = comparison.RightBench.ExecTime;
+            var ratio = Math.Round((double)leftDuration.Ticks / (double)rightDuration.Ticks, 4);
+            var opid = comparison.LeftBench.Operator;
+            var description = append(
+                $"{title} {opid}", 
+                $" | Left Time  = {leftDuration.Ms} ms",
+                $" | Right Time = {rightDuration.Ms} ms",
+                $" | Difference = {timing.Ms} ms",
+                $" | Performance Ratio = {ratio}"
+                );
+            return AppMsg.Define(description,  SeverityLevel.Perform);
+        }
+
         public static AppMsg BenchmarkEnd(OpId opid,  long totalOpCount, Duration totalDuration)
             => AppMsg.Define(append(
                     $"{opid} summary".PadRight(28), 

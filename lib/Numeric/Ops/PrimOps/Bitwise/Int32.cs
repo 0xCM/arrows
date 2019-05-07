@@ -13,82 +13,82 @@ namespace Z0
 
     using static Operative;
 
-    using target = System.Int32;
-    using targets = Index<int>;
+    
+    using ints = Index<int>;
 
     partial class PrimOps { partial class Reify {
 
         public readonly partial struct Bitwise : 
-            Bitwise<target> 
+            Bitwise<int> 
 
         {
             [MethodImpl(Inline)]   
-            public target and(target lhs, target rhs) 
+            public int and(int lhs, int rhs) 
                 => lhs & rhs;
 
             [MethodImpl(Inline)]
-            public targets and(targets lhs, targets rhs)
-                => fuse(lhs, rhs, and, out target[] dst);
+            public ints and(ints lhs, ints rhs)
+                => fuse(lhs, rhs, and, out int[] dst);
 
             [MethodImpl(Inline)]   
-            public target or(target lhs, target rhs) 
+            public int or(int lhs, int rhs) 
                 => lhs | rhs;
 
             [MethodImpl(Inline)]   
-            public target xor(target lhs, target rhs) 
+            public int xor(int lhs, int rhs) 
                 => lhs ^ rhs;
 
             [MethodImpl(Inline)]   
-            public target lshift(target lhs, int rhs) 
+            public int lshift(int lhs, int rhs) 
                 => lhs << rhs;
 
             [MethodImpl(Inline)]   
-            public target rshift(target lhs, int rhs) 
+            public int rshift(int lhs, int rhs) 
                 => lhs >> rhs;
 
             [MethodImpl(Inline)]   
-            public target flip(target src) 
+            public int flip(int src) 
                 => ~ src;
 
             [MethodImpl(Inline)]
-            public static string bitchars32(target src)
-                => zpad(Convert.ToString(src,2), primops.bitsize<target>());
+            public static string bitchars32(int src)
+                => zpad(Convert.ToString(src,2), primops.bitsize<int>());
 
             [MethodImpl(Inline)]
-            public string bitchars(target src)
+            public string bitchars(int src)
                 => bitchars32(src);
 
             [MethodImpl(Inline)]   
-            public BitString bitstring(target src) 
-                => BitString.define(bit.parse(bitchars(src)));
+            public BitString bitstring(int src) 
+                => BitString.define(bit.Parse(bitchars(src)));
 
             [MethodImpl(Inline)]
-            public byte[] bytes(target src)
+            public byte[] bytes(int src)
                 => BitConverter.GetBytes(src); 
 
             [MethodImpl(Inline)]
-            public bool testbit(target src, int pos)
+            public bool testbit(int src, int pos)
                 => (src & (1 << pos)) != 0;
 
             [MethodImpl(Inline)]
-            public bit[] bits(target src)
+            public bit[] bits(int src)
             {
-                var dst = array<bit>(SizeOf<target>.BitSize);
-                for(var i = 0; i < SizeOf<target>.BitSize; i++)
+                var dst = array<bit>(SizeOf<int>.BitSize);
+                for(var i = 0; i < SizeOf<int>.BitSize; i++)
                     dst[i] = testbit(src,i);
                 return dst; 
             }
 
             [MethodImpl(Inline)]
-            public targets or(targets lhs, targets rhs)
-                => fuse(lhs,rhs, or, out target[] dst);
+            public ints or(ints lhs, ints rhs)
+                => fuse(lhs,rhs, or, out int[] dst);
 
             [MethodImpl(Inline)]
-            public targets xor(targets lhs, targets rhs)
-                => fuse(lhs,rhs, xor, out target[] dst);
+            public ints xor(ints lhs, ints rhs)
+                => fuse(lhs,rhs, xor, out int[] dst);
 
             [MethodImpl(Inline)]
-            public targets flip(targets lhs)
+            public ints flip(ints lhs)
                 => map(lhs,flip);
 
         }

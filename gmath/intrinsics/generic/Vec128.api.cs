@@ -15,6 +15,7 @@ namespace Z0
 
     using static zcore;
     using static mfunc;
+    using static zfunc;
     using static As;
 
     public static class Vec128

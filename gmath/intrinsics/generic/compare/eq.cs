@@ -10,12 +10,11 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     using static zcore;
+    using static mfunc;
     using static As;
 
     partial class ginx
     {
-
-
         [MethodImpl(Inline)]
         public static bool eq<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct, IEquatable<T>

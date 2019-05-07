@@ -16,6 +16,8 @@ namespace Z0
     using NumVec = System.Numerics.Vector;
 
     using static zcore;
+    using static mfunc;
+    using static zfunc;
 
     public static class VecX
     {

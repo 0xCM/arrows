@@ -10,6 +10,7 @@ namespace Z0
     using System.Runtime.Intrinsics;
 
     using static zcore;
+    using static mfunc;
 
     public static class NumX
     {
@@ -28,7 +29,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool IsNaN(this Num128<double> src)
                 => src.value.IsNaN();
-
-
     }
 }

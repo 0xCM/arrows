@@ -15,6 +15,7 @@ namespace Z0.Tests
 
     using static zcore;
     using static ztest;
+    using static zfunc;
 
     using P = Paths;
 

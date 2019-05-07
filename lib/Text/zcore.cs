@@ -99,8 +99,6 @@ partial class zcore
     [DebuggerStepThrough]
     public static Regex regexc(string pattern)
         => _regexCache.GetOrAdd(pattern, p => regex(p));
-
-
     
     /// <summary>
     /// Constructs a depiction of the empty set, {∅}
@@ -108,7 +106,6 @@ partial class zcore
     [MethodImpl(Inline)]
     public static string emptyset()
         => embrace(MathSym.emptyset);
-
 
     /// <summary>
     /// Splits the string into delimited and nonempy parts
@@ -118,7 +115,7 @@ partial class zcore
     [MethodImpl(Inline)]
     public static IReadOnlyList<string> split(string src, char c)
         => isBlank(src)
-        ? array<string>()
+        ? zfunc.array<string>()
         : src.Split(new char[] { c }, StringSplitOptions.RemoveEmptyEntries);
 
     /// <summary>

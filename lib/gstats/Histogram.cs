@@ -11,6 +11,7 @@ namespace Z0
     using System.Collections.Generic;
 
     using static zcore;
+    using static zfunc;
 
     public class Histogram
     {

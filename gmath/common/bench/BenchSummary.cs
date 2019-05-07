@@ -9,8 +9,7 @@ namespace Z0
     using System.Reflection;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using static zcore;
-
+    
     public class BenchSummary
     {
         public static readonly BenchSummary Zero = new BenchSummary(OpId.Zero, 0, 0, Duration.Zero);
@@ -37,11 +36,10 @@ namespace Z0
 
         public AppMsg Description {get;}
 
-        public string Title => $"{Operator}";
+        public string Title 
+            => $"{Operator}";
 
         public override string ToString()
             => Description.ToString();
     }
-
-    
 }

@@ -17,6 +17,7 @@ using static zcore;
 
 public static partial class mfunc
 {
+    internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
 
     static Exception lengthMismatch(int lhs, int rhs)
         => throw new Exception($"Length mismatch, {lhs} != {rhs}");
@@ -29,15 +30,17 @@ public static partial class mfunc
         where T : struct, IEquatable<T>
             => src.GetElement(ix);
 
+    public static BinaryDigit[] digits(params BinaryDigit[] src)
+        => src;
 
     [MethodImpl(Inline)]
-    public static void assert(bool condition, string msg = null, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+    public static void assert(bool condition, string msg = null, [CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
     {
         if(!condition)
             throw new Exception( $"{caller} {file} line{line}: {msg ?? "Assertion Failed" }" );
     }
          
-
     [MethodImpl(Inline)]
     public static ReadOnlySpan<byte> bytes<T>(ReadOnlySpan<T> src)
         where T : struct
@@ -587,8 +590,44 @@ public static partial class mfunc
         where T : struct, IEquatable<T>
         => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
 
+    [MethodImpl(Inline)]
+    public static bit[] bits(params bit[] src)
+        => src;
+
+    [MethodImpl(Inline)]
+    public static byte[] pack(params bool[] src)
+        => Z0.Bits.pack(src);
+
+    /// <summary>
+    /// Reinterprets the Bits of a float as the Bits of an int
+    /// </summary>
+    /// <param name="src">The source value to reinterpret</param>
     [MethodImpl(Inline)]   
-    public static int length<T>(Index<T> lhs, Index<T> rhs)
-        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+    public static int bitsf(float src)
+        => BitConverter.SingleToInt32Bits(src);
+
+    /// <summary>
+    /// Reinterprets the Bits of an int as the Bits of a float
+    /// </summary>
+    /// <param name="src">The source value to reinterpret</param>
+    [MethodImpl(Inline)]   
+    public static float bitsf(int src)
+        => BitConverter.Int32BitsToSingle(src);
+
+    /// <summary>
+    /// Reinterprets the Bits of a double as the Bits of a long
+    /// </summary>
+    /// <param name="src">The source value to reinterpret</param>
+    [MethodImpl(Inline)]   
+    public static long bitsf(double src)
+        => BitConverter.DoubleToInt64Bits(src);
+
+    /// <summary>
+    /// Reinterprets the Bits of a long as the Bits of a double
+    /// </summary>
+    /// <param name="src">The source value to reinterpret</param>
+    [MethodImpl(Inline)]   
+    public static double bitsf(long src)
+        => BitConverter.Int64BitsToDouble(src);
 
 }

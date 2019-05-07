@@ -7,6 +7,7 @@ namespace Z0
     using System.Linq;
 
     using static zcore;
+    using static zfunc;
 
     /// <summary>
     /// Classifies the precision with which <see cref="DateTime"/> value should be interpreted

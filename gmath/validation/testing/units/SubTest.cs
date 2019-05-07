@@ -11,7 +11,7 @@ namespace Z0.Test
     using System.IO;
 
     using static zcore;
-    using static mfunc;
+    using static global::mfunc;
 
 
     sealed class SubTest : UnitTest<SubTest>

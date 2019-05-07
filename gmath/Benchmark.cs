@@ -16,7 +16,7 @@ namespace Z0
 
     using static zcore;
     using static zfunc;    
-    using static mfunc;
+    using static global::mfunc;
     
     using static math;
 
@@ -137,7 +137,7 @@ namespace Z0
         {
             var lSrc = Randomizer.Span256<long>(Pow2.T14);
             var rSrc = Randomizer.Span256<long>(Pow2.T14);                      
-            var blocks = mfunc.blocks(lSrc, rSrc);
+            var blocks = global::mfunc.blocks(lSrc, rSrc);
             var cells = Span256.blocklength<long>(blocks);
             var cycles = Pow2.T14;
             inform($"Operating on {blocks} blocks = {cells} cells for {cycles} cycles");

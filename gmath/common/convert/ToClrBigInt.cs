@@ -13,6 +13,7 @@ namespace Z0
 
 
     using static zcore;
+    using static mfunc;
     
     
     using target = System.Numerics.BigInteger;

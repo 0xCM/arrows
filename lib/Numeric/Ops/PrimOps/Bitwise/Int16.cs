@@ -57,7 +57,7 @@ namespace Z0
 
             [MethodImpl(Inline)]   
             public BitString bitstring(target src) 
-                => BitString.define(bit.parse(bitchars(src)));
+                => BitString.define(bit.Parse(bitchars(src)));
             [MethodImpl(Inline)]
             public byte[] bytes(target src)
                 => BitConverter.GetBytes(src); 

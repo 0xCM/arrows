@@ -11,7 +11,7 @@ namespace Z0
     using System.Collections.Generic;
     
     using static zcore;
-    using static inxfunc;
+    using static mfunc;
 
 
     partial class dinx

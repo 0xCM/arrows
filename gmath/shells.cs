@@ -8,11 +8,12 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
+
     using static zcore;
+    using static mfunc;
 
     static class shells
-    {
-        
+    {        
         public static void PrimalSwitch<T>()
         {
             var kind = PrimalKinds.kind<T>();
@@ -112,9 +113,4 @@ namespace Z0
 
         }
     }
-
-
 }
-
-
-

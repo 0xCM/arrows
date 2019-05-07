@@ -337,7 +337,7 @@ partial class zcore
         : rparen())[0];
 
     static char[] bounds(TupleFormat style)
-        => array(leftBound(style), rightBound(style));
+        => zfunc. array(leftBound(style), rightBound(style));
 
     /// <summary>
     /// Gets the boundary production function as determined by a style

@@ -8,6 +8,7 @@ namespace Z0
 
     using static zcore;
     using static nats;
+    using static zfunc;
 
 
     /// <summary>

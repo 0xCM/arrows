@@ -9,7 +9,6 @@ namespace Z0
     using System.Reflection;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using static zcore;
 
     public readonly struct OpMeasure
     {
@@ -36,6 +35,4 @@ namespace Z0
 
         public readonly Duration WorkTime;
     }
-
-
 }

@@ -12,6 +12,7 @@ namespace Z0
     using System.Runtime.InteropServices;    
 
     using static zcore;
+    using static zfunc;
 
     public interface PolyNum<T>
         where T : struct, IEquatable<T>

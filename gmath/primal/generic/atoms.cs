@@ -9,16 +9,15 @@ namespace Z0
     using System.Reflection;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    
     using static zcore;
+    using static mfunc;
 
 
     public static class atoms
     {
 
         #region add
-
-        //! add
-        //!--------------------------------------------------------------------
 
         [MethodImpl(Inline)]
         public static T addI8<T>(T lhs, T rhs)

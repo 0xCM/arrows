@@ -12,7 +12,7 @@ namespace Z0
     using System.Diagnostics;
     
     using static zcore;
-    using static inxfunc;
+    using static mfunc;
     using static Span128;
 
     public static class Span128

@@ -11,87 +11,86 @@ namespace Z0
     using static zfunc;
 
     
-    using target = System.UInt16;
-    using targets = Index<ushort>;
+    using ushorts = Index<ushort>;
 
     using static Operative;
 
     partial class PrimOps { partial class Reify {
         public readonly partial struct Bitwise : 
-            Bitwise<target> 
+            Bitwise<ushort> 
         {
 
             [MethodImpl(Inline)]   
-            public target and(target a, target b) 
-                => (target)(a & b);
+            public ushort and(ushort a, ushort b) 
+                => (ushort)(a & b);
 
             [MethodImpl(Inline)]
-            public targets and(targets lhs, targets rhs)
-                => fuse(lhs,rhs, and, out target[] dst);
+            public ushorts and(ushorts lhs, ushorts rhs)
+                => fuse(lhs,rhs, and, out ushort[] dst);
 
             [MethodImpl(Inline)]   
-            public target or(target a, target b) 
-                => (target)(a | b);
+            public ushort or(ushort a, ushort b) 
+                => (ushort)(a | b);
 
             [MethodImpl(Inline)]
-            public targets or(targets lhs, targets rhs)
-                => fuse(lhs,rhs, or, out target[] dst);
+            public ushorts or(ushorts lhs, ushorts rhs)
+                => fuse(lhs,rhs, or, out ushort[] dst);
 
             [MethodImpl(Inline)]   
-            public target xor(target a, target b) 
-                => (target)(a ^ b);
+            public ushort xor(ushort a, ushort b) 
+                => (ushort)(a ^ b);
 
             [MethodImpl(Inline)]
-            public targets xor(targets lhs, targets rhs)
-                => fuse(lhs,rhs, xor, out target[] dst);
+            public ushorts xor(ushorts lhs, ushorts rhs)
+                => fuse(lhs,rhs, xor, out ushort[] dst);
 
             [MethodImpl(Inline)]   
-            public target lshift(target a, int shift) 
-                => (target)(a << shift);
+            public ushort lshift(ushort a, int shift) 
+                => (ushort)(a << shift);
 
             [MethodImpl(Inline)]   
-            public target rshift(target a, int shift) 
-                => (target)(a >> shift);
+            public ushort rshift(ushort a, int shift) 
+                => (ushort)(a >> shift);
 
             [MethodImpl(Inline)]   
-            public target flip(target a) 
-                => (target)~ a;
+            public ushort flip(ushort a) 
+                => (ushort)~ a;
 
             [MethodImpl(Inline)]
-            public targets flip(targets lhs)
+            public ushorts flip(ushorts lhs)
                 => map(lhs,flip);
 
             [MethodImpl(Inline)]
-            public string bitchars(target src)
-                => zpad(Convert.ToString(src,2), primops.bitsize<target>());
+            public string bitchars(ushort src)
+                => zpad(Convert.ToString(src,2), primops.bitsize<ushort>());
 
             [MethodImpl(Inline)]   
-            public BitString bitstring(target src) 
-                => BitString.define(bit.parse(bitchars(src)));
+            public BitString bitstring(ushort src) 
+                => BitString.define(bit.Parse(bitchars(src)));
 
             [MethodImpl(Inline)]
-            public bool testbit(target src, int pos)
+            public bool testbit(ushort src, int pos)
                 => (src & (1 << pos)) != 0;
 
             [MethodImpl(Inline)]
-            public bit[] bits(target src)
+            public bit[] bits(ushort src)
             {
-                var dst = array<bit>(SizeOf<target>.BitSize);
-                for(var i = 0; i < SizeOf<target>.BitSize; i++)
+                var dst = array<bit>(SizeOf<ushort>.BitSize);
+                for(var i = 0; i < SizeOf<ushort>.BitSize; i++)
                     dst[i] = testbit(src,i);
                 return dst; 
             }
             
             [MethodImpl(Inline)]
-            public byte[] bytes(target src)
+            public byte[] bytes(ushort src)
                 => BitConverter.GetBytes(src);
 
             [MethodImpl(Inline)]
-            public static int countLeadingOff(target src)
+            public static int countLeadingOff(ushort src)
                 => countLeadingOff((uint)src) - 16;
 
             [MethodImpl(Inline)]
-            public static int countTrailingOff(target src)
+            public static int countTrailingOff(ushort src)
                 => countTrailingOff((uint)src);
         }
     }

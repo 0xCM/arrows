@@ -13,6 +13,7 @@ namespace Z0
     using static As;
 
     using static zcore;
+    using static zfunc;
 
     public interface IRandomizer 
     {

@@ -12,6 +12,8 @@ namespace Z0
     
     using static zcore;
     using static zfunc;
+    using static mfunc;
+
     
     using static ClrConverters;
 

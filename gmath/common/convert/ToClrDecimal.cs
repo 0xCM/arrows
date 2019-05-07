@@ -11,12 +11,11 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Text;
 
-
     using static zcore;
+    using static mfunc;
     
     using target = System.Decimal;
-    using stream = System.Collections.Generic.IEnumerable<decimal>;
-    
+    using stream = System.Collections.Generic.IEnumerable<decimal>;    
     
     partial class ClrConverters
     {        

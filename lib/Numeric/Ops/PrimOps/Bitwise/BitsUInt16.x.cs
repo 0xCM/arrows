@@ -9,8 +9,7 @@ namespace Z0
     
     using static zcore;
 
-    using target = System.UInt16;
-    using targets = Index<ushort>;
+    using ushorts = Index<ushort>;
 
     partial class BitwiseX
     {
@@ -21,8 +20,8 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
 
         [MethodImpl(Inline)]
-        public static target And(this target lhs, target rhs)
-            => (target)(lhs & rhs);            
+        public static ushort And(this ushort lhs, ushort rhs)
+            => (ushort)(lhs & rhs);            
 
         /// <summary>
         /// Computes a correctly-typed bitwise or of the operands
@@ -30,8 +29,8 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static target Or(this target lhs, target rhs)
-            => (target)(lhs | rhs);
+        public static ushort Or(this ushort lhs, ushort rhs)
+            => (ushort)(lhs | rhs);
 
         /// <summary>
         /// Computes a correctly-typed bitwise xor of the operands
@@ -39,8 +38,8 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static target XOr(this target lhs, target rhs)
-            => (target)(lhs ^ rhs);
+        public static ushort XOr(this ushort lhs, ushort rhs)
+            => (ushort)(lhs ^ rhs);
 
         /// <summary>
         /// Computes a correctly-typed left shift of the source value
@@ -48,8 +47,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="shift">The magnitude of the shift</param>
         [MethodImpl(Inline)]
-        public static target LShift(this target src, int shift)
-            => (target)(src << shift);
+        public static ushort LShift(this ushort src, int shift)
+            => (ushort)(src << shift);
 
         /// <summary>
         /// Computes a correctly-typed right shift of the source value
@@ -57,16 +56,16 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="shift">The magnitude of the shift</param>
         [MethodImpl(Inline)]
-        public static target RShift(this target src, int shift)
-            => (target)(src >> shift);
+        public static ushort RShift(this ushort src, int shift)
+            => (ushort)(src >> shift);
 
         /// <summary>
         /// Computes a correctly-typed twos-complement of the source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static target Flip(this target src)
-            => (target)(~src);
+        public static ushort Flip(this ushort src)
+            => (ushort)(~src);
 
         /// <summary>
         /// Determines whether a bit in a specified position is on
@@ -74,7 +73,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this target src, int pos)
+        public static bool TestBit(this ushort src, int pos)
             => Ops.testbit(src,pos);
 
         /// <summary>
@@ -82,7 +81,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static string BitChars(this target src)
+        public static string BitChars(this ushort src)
             => Ops.bitchars(src);
 
         /// <summary>
@@ -90,7 +89,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]   
-        public static BitString BitString(this target src) 
+        public static BitString BitString(this ushort src) 
             => Ops.bitstring(src);
 
         /// <summary>
@@ -98,7 +97,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static bit[] ToBits(this target src)
+        public static bit[] ToBits(this ushort src)
             => Ops.bits(src);
 
         /// <summary>
@@ -106,7 +105,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte[] ToBytes(this target src)
+        public static byte[] ToBytes(this ushort src)
             => Ops.bytes(src);
     }
 

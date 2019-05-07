@@ -13,7 +13,7 @@ namespace Z0
     using static zcore;
 
     using static zfunc;
-    using static mfunc;
+    using static global::mfunc;
 
     public class Span128Sampler : Sampler<Span128Sampler> 
     {

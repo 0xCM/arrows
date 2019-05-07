@@ -14,71 +14,71 @@ namespace Z0
 
     using static Operative;
     
-    using target = System.SByte;
-    using targets = Index<sbyte>;
+    
+    using sbytes = Index<sbyte>;
 
     partial class PrimOps { partial class Reify {
         
         public readonly partial struct Bitwise : 
-            Bitwise<target> 
+            Bitwise<sbyte> 
         {
         
             [MethodImpl(Inline)]   
-            public target and(target lhs, target rhs) 
-                => (target)(lhs & rhs);
+            public sbyte and(sbyte lhs, sbyte rhs) 
+                => (sbyte)(lhs & rhs);
 
             [MethodImpl(Inline)]
-            public targets and(targets lhs, targets rhs)
-                => fuse(lhs,rhs, and, out target[] dst);
+            public sbytes and(sbytes lhs, sbytes rhs)
+                => fuse(lhs,rhs, and, out sbyte[] dst);
 
             [MethodImpl(Inline)]   
-            public target or(target lhs, target rhs) 
-                => (target)(lhs | rhs);
+            public sbyte or(sbyte lhs, sbyte rhs) 
+                => (sbyte)(lhs | rhs);
 
             [MethodImpl(Inline)]
-            public targets or(targets lhs, targets rhs)
-                => fuse(lhs,rhs, or, out target[] dst);
+            public sbytes or(sbytes lhs, sbytes rhs)
+                => fuse(lhs,rhs, or, out sbyte[] dst);
 
             [MethodImpl(Inline)]   
-            public target xor(target a, target b) 
-                => (target)(a ^ b);
+            public sbyte xor(sbyte a, sbyte b) 
+                => (sbyte)(a ^ b);
 
             [MethodImpl(Inline)]
-            public targets xor(targets lhs, targets rhs)
-                => fuse(lhs,rhs, xor, out target[] dst);
+            public sbytes xor(sbytes lhs, sbytes rhs)
+                => fuse(lhs,rhs, xor, out sbyte[] dst);
 
             [MethodImpl(Inline)]   
-            public target lshift(target a, int shift) 
-                => (target)(a << shift);
+            public sbyte lshift(sbyte a, int shift) 
+                => (sbyte)(a << shift);
 
             [MethodImpl(Inline)]   
-            public target rshift(target a, int shift) 
-                => (target)(a >> shift);
+            public sbyte rshift(sbyte a, int shift) 
+                => (sbyte)(a >> shift);
 
             [MethodImpl(Inline)]   
-            public target flip(target a) 
-                => (target)~ a;
+            public sbyte flip(sbyte a) 
+                => (sbyte)~ a;
             
             [MethodImpl(Inline)]
-            public string bitchars(target src)
-                => zpad(Convert.ToString(src,2), primops.bitsize<target>());
+            public string bitchars(sbyte src)
+                => zpad(Convert.ToString(src,2), primops.bitsize<sbyte>());
 
             [MethodImpl(Inline)]   
-            public BitString bitstring(target src) 
-                => BitString.define(bit.parse(bitchars(src)));
+            public BitString bitstring(sbyte src) 
+                => BitString.define(bit.Parse(bitchars(src)));
 
             [MethodImpl(Inline)]
-            public byte[] bytes(target src)
+            public byte[] bytes(sbyte src)
                 => array((byte)src);
 
             [MethodImpl(Inline)]
-            public bool testbit(target src, int pos)
+            public bool testbit(sbyte src, int pos)
                 => (src & (1 << pos)) != 0;
 
             [MethodImpl(Inline)]
-            public bit[] bits(target src)
+            public bit[] bits(sbyte src)
             {
-                var bitsize = SizeOf<target>.BitSize;
+                var bitsize = SizeOf<sbyte>.BitSize;
                 var dst = array<bit>(bitsize);
                 for(var i = 0; i < bitsize; i++)
                     dst[i] = testbit(src,i);
@@ -90,12 +90,12 @@ namespace Z0
             /// </summary>
             /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public static int countTrailingOff(target src)
+            public static int countTrailingOff(sbyte src)
                 => countTrailingOff((int)src);
 
 
             [MethodImpl(Inline)]
-            public targets flip(targets lhs)
+            public sbytes flip(sbytes lhs)
                 => map(lhs,flip);
     }
     }

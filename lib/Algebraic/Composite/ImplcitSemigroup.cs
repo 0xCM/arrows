@@ -27,7 +27,6 @@ namespace Z0
         public interface ImplicitSemigroup<S,T> : 
             Structures.Nullary<S>, 
             Structures.Semigroup<S>, 
-            Wrapped<T>, 
             Operative.Nullary<T>, 
             Operative.Semigroup<T>,
             Formattable

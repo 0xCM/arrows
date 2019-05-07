@@ -10,6 +10,7 @@ namespace Z0
     
     using static zcore;
     using static zfunc;
+    using static mfunc;
 
     public interface IDigit<T> 
         where T : Enum

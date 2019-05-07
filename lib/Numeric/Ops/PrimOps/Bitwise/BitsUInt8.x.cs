@@ -11,9 +11,7 @@ namespace Z0
     using static zcore;
     using static zfunc;
 
-
-    using target = System.Byte;
-    using targets = Index<byte>;
+    using bytes = Index<byte>;
 
     partial class BitwiseX
     {
@@ -25,8 +23,8 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
 
         [MethodImpl(Inline)]
-        public static target And(this target lhs, target rhs)
-            => (target)(lhs & rhs);
+        public static byte And(this byte lhs, byte rhs)
+            => (byte)(lhs & rhs);
 
         /// <summary>
         /// Computes and returns the bitwise and of corresponding operand entries
@@ -34,10 +32,10 @@ namespace Z0
         /// <param name="lhs">The first list of values</param>
         /// <param name="rhs">The second list of values</param>
         [MethodImpl(Inline)]
-        public static targets And(this targets lhs, targets rhs)
+        public static bytes And(this bytes lhs, bytes rhs)
         {
             var count = countmatch(lhs,rhs);
-            var dst = alloc<target>(lhs.Count);
+            var dst = alloc<byte>(lhs.Count);
             iter(count, i => dst[i] = lhs[i].And(rhs[i]));
             return dst;
         }
@@ -48,8 +46,8 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static target Or(this target lhs, target rhs)
-            => (target)(lhs | rhs);
+        public static byte Or(this byte lhs, byte rhs)
+            => (byte)(lhs | rhs);
 
         /// <summary>
         /// Computes a correctly-typed bitwise xor of the operands
@@ -57,8 +55,8 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static target XOr(this target lhs, target rhs)
-            => (target)(lhs ^ rhs);
+        public static byte XOr(this byte lhs, byte rhs)
+            => (byte)(lhs ^ rhs);
 
         /// <summary>
         /// Computes a correctly-typed left shift of the source value
@@ -66,8 +64,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="shift">The magnitude of the shift</param>
         [MethodImpl(Inline)]
-        public static target LShift(this target src, int shift)
-            => (target)(src << shift);
+        public static byte LShift(this byte src, int shift)
+            => (byte)(src << shift);
 
         /// <summary>
         /// Computes a correctly-typed right shift of the source value
@@ -75,16 +73,16 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="shift">The magnitude of the shift</param>
         [MethodImpl(Inline)]
-        public static target RShift(this target src, int shift)
-            => (target)(src >> shift);
+        public static byte RShift(this byte src, int shift)
+            => (byte)(src >> shift);
 
         /// <summary>
         /// Computes a correctly-typed twos-complement of the source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static target Flip(this target src)
-            => (target)(~src);
+        public static byte Flip(this byte src)
+            => (byte)(~src);
 
         /// <summary>
         /// Determines whether a bit in a specified position is on
@@ -92,7 +90,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this target src, int pos)
+        public static bool TestBit(this byte src, int pos)
             => Ops.testbit(src,pos);
 
         /// <summary>
@@ -100,7 +98,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static string BitChars(this target src)
+        public static string BitChars(this byte src)
             => Ops.bitchars(src);
 
         /// <summary>
@@ -108,7 +106,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]   
-        public static BitString BitString(this target src) 
+        public static BitString BitString(this byte src) 
             => Ops.bitstring(src);
 
         /// <summary>
@@ -116,7 +114,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static bit[] ToBits(this target src)
+        public static bit[] ToBits(this byte src)
             => Ops.bits(src);
 
         /// <summary>
@@ -124,7 +122,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte[] ToBytes(this target src)
+        public static byte[] ToBytes(this byte src)
             => Ops.bytes(src);
     }
 

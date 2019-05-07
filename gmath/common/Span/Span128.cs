@@ -12,7 +12,7 @@ namespace Z0
     using System.Diagnostics;
     
     using static zcore;
-    using static mfunc;
+    using static global::mfunc;
 
     /// <summary>
     /// A System.Span[T] clone where the  encasulated data is always a multiple 

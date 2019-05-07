@@ -12,6 +12,7 @@ namespace Z0
 
     using static zcore;
     using static zfunc;
+    using static mfunc;
     
     using target = System.Int64;
     using stream = System.Collections.Generic.IEnumerable<long>;

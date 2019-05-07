@@ -66,7 +66,7 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public static string bitchars64(target src)
-                => apply(Bits.unpack(src), parts 
+                => apply(Bits.split(src), parts 
                     => bitcharsu32(parts.x0) + bitcharsu32(parts.x1));
 
             [MethodImpl(Inline)]
@@ -75,7 +75,7 @@ namespace Z0
 
             [MethodImpl(Inline)]   
             public BitString bitstring(target src) 
-                => BitString.define(bit.parse(bitchars(src)));
+                => BitString.define(bit.Parse(bitchars(src)));
 
             [MethodImpl(Inline)]
             public byte[] bytes(target src)

@@ -12,6 +12,7 @@ namespace Z0.Test
 
     using static zcore;
     using static mfunc;
+    using static zfunc;
 
 
     sealed class AlignedSpanTest : UnitTest<AlignedSpanTest>

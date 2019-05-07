@@ -72,9 +72,6 @@ namespace Z0
         bool IEquatable<FixedArray<T>>.Equals(FixedArray<T> rhs)
             => eq(rhs);
 
-        T Wrapped<T>.unwrap()
-            => Zero;
-
         bool Operative.Semigroup<T>.eq(T lhs, T rhs)
             => lhs.Equals(rhs);
 
@@ -131,9 +128,7 @@ namespace Z0
         bool IEquatable<FixedList<T>>.Equals(FixedList<T> rhs)
             => eq(rhs);
 
-        T Wrapped<T>.unwrap()
-            => Zero;
-
+        
         bool Operative.Semigroup<T>.eq(T lhs, T rhs)
             => lhs.Equals(rhs);
 
@@ -193,9 +188,6 @@ namespace Z0
         bool IEquatable<FixedStream<T>>.Equals(FixedStream<T> rhs)
             => eq(rhs);
 
-        T Wrapped<T>.unwrap()
-            => Zero;
-
         bool Operative.Semigroup<T>.eq(T lhs, T rhs)
             => lhs.Equals(rhs);
 
@@ -207,8 +199,5 @@ namespace Z0
 
         IEqualityComparer<T> Structures.ImplicitSemigroup<FixedStream<T>, T>.comparer(Func<T, int> hasher)
             => ISG.comparer(hasher);
-
-
     }
-
 }

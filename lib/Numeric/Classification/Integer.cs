@@ -6,6 +6,7 @@ namespace Z0
 {
     using System;
     using System.Numerics;
+    using static zfunc;
 
     partial class Operative
     {
@@ -77,7 +78,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface Integer<S,T> : Integer<S>, Wrapped<T>
+        public interface Integer<S,T> : Integer<S>
             where S : Integer<S,T>, new() { }
     }
 }

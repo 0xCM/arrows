@@ -12,7 +12,7 @@ namespace Z0
 
     using static zcore;
     using static zfunc;
-    using static mfunc;
+    using static global::mfunc;
 
     /// <summary>
     /// Defines pseudorandom number generator
@@ -171,9 +171,9 @@ namespace Z0
                 => bitcharsu32(parts.x0) + bitcharsu32(parts.x1));
 
         static BitString ToBitString(ulong src)
-            => BitString.define(Bit.parse(bitchars64(src)));
+            => BitString.define(bit.Parse(bitchars64(src)));
 
-        public IEnumerable<Bit> bits()
+        public IEnumerable<bit> bits()
         {
             while(true)
             {

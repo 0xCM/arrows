@@ -13,7 +13,7 @@ namespace Z0
     using static zcore;
 
     using static zfunc;
-    using static mfunc;
+    using static global::mfunc;
     using Aligned = Span256;
 
     public class Vec256Bench : BenchContext

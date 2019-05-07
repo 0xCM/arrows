@@ -10,7 +10,8 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
     
     using static zcore;
-    using static inxfunc;
+    using static global::mfunc;
+
 
     partial class dinx
     {

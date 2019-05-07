@@ -9,8 +9,7 @@ namespace Z0
     
     using static zcore;
 
-    using target = System.UInt64;
-    using targets = Index<ulong>;
+    using ulongs = Index<ulong>;
 
     partial class BitwiseX
     {
@@ -21,7 +20,7 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
 
         [MethodImpl(Inline)]
-        public static target And(this target lhs, target rhs)
+        public static ulong And(this ulong lhs, ulong rhs)
             => lhs & rhs;            
 
         /// <summary>
@@ -30,8 +29,8 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static target Or(this target lhs, target rhs)
-            => (target)(lhs | rhs);
+        public static ulong Or(this ulong lhs, ulong rhs)
+            => (ulong)(lhs | rhs);
 
         /// <summary>
         /// Computes a bitwise xor of the operands
@@ -39,7 +38,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static target XOr(this target lhs, target rhs)
+        public static ulong XOr(this ulong lhs, ulong rhs)
             => lhs ^ rhs;
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="shift">The magnitude of the shift</param>
         [MethodImpl(Inline)]
-        public static target LShift(this target src, int shift)
+        public static ulong LShift(this ulong src, int shift)
             => src << shift;
 
         /// <summary>
@@ -57,7 +56,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="shift">The magnitude of the shift</param>
         [MethodImpl(Inline)]
-        public static target RShift(this target src, int shift)
+        public static ulong RShift(this ulong src, int shift)
             => src >> shift;
 
         /// <summary>
@@ -65,7 +64,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static target Flip(this target src)
+        public static ulong Flip(this ulong src)
             => ~src;
 
         /// <summary>
@@ -74,7 +73,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this target src, int pos)
+        public static bool TestBit(this ulong src, int pos)
             => Ops.testbit(src,pos);
 
         /// <summary>
@@ -82,7 +81,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static string ToBitChars(this target src)
+        public static string ToBitChars(this ulong src)
             => Ops.bitchars(src);
 
         /// <summary>
@@ -90,7 +89,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]   
-        public static BitString ToBitString(this target src) 
+        public static BitString ToBitString(this ulong src) 
             => Ops.bitstring(src);
 
         /// <summary>
@@ -98,7 +97,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static bit[] ToBits(this target src)
+        public static bit[] ToBits(this ulong src)
             => Ops.bits(src);
 
         /// <summary>
@@ -106,7 +105,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte[] ToBytes(this target src)
+        public static byte[] ToBytes(this ulong src)
             => Ops.bytes(src);
     }
 }

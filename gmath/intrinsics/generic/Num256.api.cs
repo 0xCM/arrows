@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.Intrinsics;
 
     using static zcore;
-    using static inxfunc;
+    using static mfunc;
 
     public static class Num256
     {

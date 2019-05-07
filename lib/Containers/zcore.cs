@@ -121,42 +121,6 @@ public static partial class zcore
         => new Index<T>(src);
 
     /// <summary>
-    /// Creates, but does not populate, a mutable array
-    /// </summary>
-    /// <param name="len">The length of the array</param>
-    /// <typeparam name="T">The array element type</typeparam>
-    [MethodImpl(Inline)]
-    public static T[] array<T>(long len)
-        => new T[len];
-
-    /// <summary>
-    /// Creates, but does not populate, a mutable array
-    /// </summary>
-    /// <param name="len">The length of the array</param>
-    /// <typeparam name="T">The array element type</typeparam>
-    [MethodImpl(Inline)]
-    public static T[] alloc<T>(uint len)
-        => new T[len];
-
-    /// <summary>
-    /// Creates, but does not populate, a mutable array
-    /// </summary>
-    /// <param name="len">The length of the array</param>
-    /// <typeparam name="T">The array element type</typeparam>
-    [MethodImpl(Inline)]
-    public static T[] alloc<T>(long len)
-        => new T[len];
-
-    /// <summary>
-    /// Creates, but does not populate, a mutable array
-    /// </summary>
-    /// <param name="len">The length of the array</param>
-    /// <typeparam name="T">The array element type</typeparam>
-    [MethodImpl(Inline)]
-    public static T[] alloc<T>(int len)
-        => new T[len];
-
-    /// <summary>
     /// Allocates a target index, predicated on the common size of source indexes
     /// </summary>
     /// <param name="lhs">The left operand values</param>
@@ -175,16 +139,6 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static T[] target<T>(in Index<T> lhs)
         => alloc<T>(lhs.Count);
-
-    /// <summary>
-    /// Reflects variable number of arguments from a parms array back as
-    /// a standard array
-    /// </summary>
-    /// <param name="src">The element source</param>
-    /// <typeparam name="T">The array element type</typeparam>
-    [MethodImpl(Inline)]
-    public static T[] array<T>(params T[] src)
-         => src;
 
     /// <summary>
     /// Constructs an array from a stream

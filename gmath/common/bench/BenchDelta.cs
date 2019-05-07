@@ -10,9 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static zcore;
     using static zfunc;
-
 
     public class BenchDelta 
     {
@@ -22,7 +20,7 @@ namespace Z0
         public BenchDelta(BenchComparison Comparison)
         {
             this.Comparison = Comparison;
-            this.Description = Describe(Comparison);
+            this.Description = Comparison.Describe();
             Claim.eq(Comparison.LeftBench.OpCount, Comparison.RightBench.OpCount);
             Claim.eq(Comparison.LeftBench.Operator.OperandKind, Comparison.RightBench.Operator.OperandKind);
             Claim.eq(Comparison.LeftBench.Operator.OpKind, Comparison.RightBench.Operator.OpKind);
@@ -69,32 +67,6 @@ namespace Z0
             => LeftWins ? LeftTitle :
                RightWins ? RightTitle :
                "tie";
-
-        static string deltaTitle(BenchComparison c)               
-            => $"{c.LeftBench.Title} vs {c.RightBench.Title}";
-
-        static Duration deltaTiming(BenchComparison c)               
-            => c.LeftBench.ExecTime - c.RightBench.ExecTime;
-
-
-        static AppMsg Describe(BenchComparison comparison)
-        {
-            var title = deltaTitle(comparison);
-            var timing = deltaTiming(comparison);
-            var width = Math.Abs(timing.Ms);
-            var leftDuration = comparison.LeftBench.ExecTime;
-            var rightDuration = comparison.RightBench.ExecTime;
-            var ratio = Math.Round((double)leftDuration.Ticks / (double)rightDuration.Ticks, 4);
-            var opid = comparison.LeftBench.Operator;
-            var description = append(
-                $"{title} {opid}", 
-                $" | Left Time  = {leftDuration.Ms} ms",
-                $" | Right Time = {rightDuration.Ms} ms",
-                $" | Difference = {timing.Ms} ms",
-                $" | Performance Ratio = {ratio}"
-                );
-            return AppMsg.Define(description,  SeverityLevel.Perform);
-        }
     }
 
     public static class BenchComparisonX

@@ -17,7 +17,7 @@ namespace Z0
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct modg<N, T> : Structures.ModN<N, modg<N, T>, T>, Wrapped<T>
+    public readonly struct modg<N, T> : Structures.ModN<N, modg<N, T>, T>
         where N : ITypeNat, new()
         where T : struct, IEquatable<T>
     {

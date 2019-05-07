@@ -55,7 +55,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface RealNumber<S,T> : RealNumber<S>, Wrapped<T>
+        public interface RealNumber<S,T> : RealNumber<S>
             where S : RealNumber<S,T>, new()
         {
 

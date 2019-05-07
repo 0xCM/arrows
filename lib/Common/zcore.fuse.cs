@@ -11,6 +11,7 @@ using System.Diagnostics;
 
 using Z0;
 using static Z0.Traits;
+using static zfunc;
 
 partial class zcore
 { 

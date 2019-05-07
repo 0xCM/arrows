@@ -12,7 +12,7 @@ namespace Z0
     using System.Security;
 
     using static zcore;
-    using static mfunc;
+    using static global::mfunc;
 
     public static class As
     {

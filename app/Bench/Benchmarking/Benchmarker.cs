@@ -16,10 +16,8 @@ namespace Z0.Bench
     using System.Runtime.Intrinsics.X86;
     using Specs = System.Collections.Generic.IEnumerable<BenchSpec>;
 
-
     using static zcore;
     using static zfunc;
-
 
     public static class Benchmarker
     {
@@ -202,14 +200,7 @@ namespace Z0.Bench
 
         public BenchResult Run(Vec128BinOp<T> Op, FusedBinOpInspector<T> inspector = null)
         {
-            long Measure(Index<T> lhs, Index<T> rhs, out Index<T> dst)
-            {
-                var ticks = OpConvert.TimedOp(lhs,rhs, out dst, Op);
-                inspector?.Invoke(lhs,rhs,dst);                
-                return ticks;
-            }
-            
-            return Run(Measure);             
+            return BenchResult.Empty;
         }
     }
 }

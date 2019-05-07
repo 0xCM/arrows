@@ -13,53 +13,52 @@ namespace Z0
 
     using static Operative;
 
-    using target = System.Byte;
-    using targets = Index<byte>;
+    using bytes = Index<byte>;
 
     partial class PrimOps { partial class Reify {
 
         public readonly partial struct Bitwise : 
-            Bitwise<target> 
+            Bitwise<byte> 
         {
 
             [MethodImpl(Inline)]   
-            public target and(target lhs, target rhs) 
-                => (target)(lhs & rhs);
+            public byte and(byte lhs, byte rhs) 
+                => (byte)(lhs & rhs);
 
             [MethodImpl(Inline)]
-            public targets and(targets lhs, targets rhs)
-                => fuse(lhs,rhs, and, out target[] dst);
+            public bytes and(bytes lhs, bytes rhs)
+                => fuse(lhs,rhs, and, out byte[] dst);
 
             [MethodImpl(Inline)]   
-            public target or(target lhs, target rhs) 
-                => (target)(lhs | rhs);
+            public byte or(byte lhs, byte rhs) 
+                => (byte)(lhs | rhs);
 
             [MethodImpl(Inline)]
-            public targets or(targets lhs, targets rhs)
-                => fuse(lhs,rhs, or, out target[] dst);
+            public bytes or(bytes lhs, bytes rhs)
+                => fuse(lhs,rhs, or, out byte[] dst);
 
             [MethodImpl(Inline)]   
-            public target xor(target lhs, target rhs) 
-                => (target)(lhs ^ rhs);
+            public byte xor(byte lhs, byte rhs) 
+                => (byte)(lhs ^ rhs);
 
             [MethodImpl(Inline)]
-            public targets xor(targets lhs, targets rhs)
-                => fuse(lhs,rhs, xor, out target[] dst);
+            public bytes xor(bytes lhs, bytes rhs)
+                => fuse(lhs,rhs, xor, out byte[] dst);
 
             [MethodImpl(Inline)]   
-            public target lshift(target src, int shift) 
-                => (target)(src << shift);
+            public byte lshift(byte src, int shift) 
+                => (byte)(src << shift);
 
             [MethodImpl(Inline)]   
-            public target rshift(target a, int shift) 
-                => (target)(a >> shift);
+            public byte rshift(byte a, int shift) 
+                => (byte)(a >> shift);
 
             [MethodImpl(Inline)]   
-            public target flip(target a) 
-                => (target)~ a;
+            public byte flip(byte a) 
+                => (byte)~ a;
 
             [MethodImpl(Inline)]
-            public targets flip(targets lhs)
+            public bytes flip(bytes lhs)
                 => map(lhs,flip);
 
             /// <summary>
@@ -67,44 +66,44 @@ namespace Z0
             /// </summary>
             /// <param name="src">The source number</param>
             [MethodImpl(Inline)]
-            public string bitchars(target src)
-                => zpad(Convert.ToString(src,2), primops.bitsize<target>());
+            public string bitchars(byte src)
+                => zpad(Convert.ToString(src,2), primops.bitsize<byte>());
 
             [MethodImpl(Inline)]   
-            public BitString bitstring(target src) 
-                => BitString.define(bit.parse(bitchars(src)));
+            public BitString bitstring(byte src) 
+                => BitString.define(bit.Parse(bitchars(src)));
 
             /// <summary>
             /// Determines whether a position-specified bit in the source is on
             /// </summary>
             /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public bool testbit(target src, int pos)
+            public bool testbit(byte src, int pos)
                 => (src & (1 << pos)) != 0;
         
             [MethodImpl(Inline)]
-            public bit[] bits(target src)
+            public bit[] bits(byte src)
             {
-                var dst = array<bit>(SizeOf<target>.BitSize);
-                for(var i = 0; i < SizeOf<target>.BitSize; i++)
+                var dst = array<bit>(SizeOf<byte>.BitSize);
+                for(var i = 0; i < SizeOf<byte>.BitSize; i++)
                     dst[i] = testbit(src,i);
                 return dst; 
             }
 
             /// <summary>
-            /// Interprets the source as an array of targets
+            /// Interprets the source as an array of bytes
             /// </summary>
             /// <param name="src">The soruce value</param>
             [MethodImpl(Inline)]
-            public byte[] bytes(target src)
-                => array(src);
+            public byte[] bytes(byte src)
+                => new byte[]{src};
 
             /// <summary>
             /// Counts the number of leading zero bits in the source
             /// </summary>
             /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public static int countLeadingOff(target src)
+            public static int countLeadingOff(byte src)
                 => countLeadingOff((ushort)src) - 8;
 
             /// <summary>
@@ -112,7 +111,7 @@ namespace Z0
             /// </summary>
             /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public static int countTrailingOff(target src)
+            public static int countTrailingOff(byte src)
                 => countTrailingOff((uint)src);
         }
     }

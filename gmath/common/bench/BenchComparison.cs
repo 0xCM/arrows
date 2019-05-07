@@ -9,9 +9,7 @@ namespace Z0
     using System.Reflection;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using static zcore;
-
-
+    
     public class BenchComparison
     {
         public static readonly BenchComparison Zero = new BenchComparison(BenchSummary.Zero, BenchSummary.Zero);
@@ -22,16 +20,11 @@ namespace Z0
         public BenchComparison(BenchSummary LeftBench, BenchSummary RightBench)
         {
             this.LeftBench = LeftBench;
-            this.RightBench = RightBench;
-
-            
+            this.RightBench = RightBench;            
         }
 
         public BenchSummary LeftBench {get;}
 
-        public BenchSummary RightBench {get;}
-    
+        public BenchSummary RightBench {get;}    
     }
-
-
 }

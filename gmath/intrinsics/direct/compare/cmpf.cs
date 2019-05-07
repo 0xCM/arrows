@@ -8,12 +8,11 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
+    using static System.Runtime.Intrinsics.X86.FloatComparisonMode;
     
     using static zcore;
     using static zfunc;
-    using static inxfunc;
     using static mfunc;
-    using static System.Runtime.Intrinsics.X86.FloatComparisonMode;
 
     
     partial class dinx

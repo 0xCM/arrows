@@ -12,6 +12,7 @@ namespace Z0
     using System.Text;
 
     using static zcore;
+    using static mfunc;
 
     public static class ConvertX
     {

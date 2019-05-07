@@ -14,6 +14,7 @@ namespace Z0
 
 
     using static zcore;
+    using static mfunc;
 
     [StructLayout(LayoutKind.Sequential, Size = 16)]
     public readonly struct Vec128<T> : IEquatable<Vec128<T>>

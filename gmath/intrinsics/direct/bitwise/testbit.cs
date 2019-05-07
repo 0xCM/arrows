@@ -10,211 +10,237 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
     
     using static zcore;
-    using static inxfunc;
-    
+    using static mfunc;
 
+    using static System.Runtime.Intrinsics.X86.Sse41;
+    using static System.Runtime.Intrinsics.X86.Avx;
     
     partial class dinx
     {
         [MethodImpl(Inline)]
         public static bool allOn(in Vec128<byte> src)
-            => Avx.TestAllOnes(src);
+            => TestAllOnes(src);
 
         [MethodImpl(Inline)]
         public static bool allOn(in Vec128<sbyte> src)
-            => Avx.TestAllOnes(src);
+            => TestAllOnes(src);
 
         [MethodImpl(Inline)]
         public static bool allOn(in Vec128<short> src)
-            => Avx.TestAllOnes(src);        
+            => TestAllOnes(src);        
 
         [MethodImpl(Inline)]
         public static bool allOn(in Vec128<ushort> src)
-            => Avx.TestAllOnes(src);
+            => TestAllOnes(src);
 
         [MethodImpl(Inline)]
         public static bool allOn(in Vec128<int> src)
-            => Avx.TestAllOnes(src);
+            => TestAllOnes(src);
 
         [MethodImpl(Inline)]
         public static bool allOn(in Vec128<uint> src)
-            => Avx.TestAllOnes(src);
+            => TestAllOnes(src);
                         
         [MethodImpl(Inline)]
         public static bool allOn(in Vec128<long> src)
-            => Avx.TestAllOnes(src);
+            => TestAllOnes(src);
 
         [MethodImpl(Inline)]
         public static bool allOn(in Vec128<ulong> src)
-            => Avx.TestAllOnes(src);
-
+            => TestAllOnes(src);
 
         [MethodImpl(Inline)]
         public static bool off(in Vec128<sbyte> src, in Vec128<sbyte> mask)
-            => Avx.TestAllZeros(src, mask);
+            => TestAllZeros(src, mask);
 
         [MethodImpl(Inline)]
         public static bool off(in Vec128<byte> src, in Vec128<byte> mask)
-            => Avx.TestAllZeros(src, mask);
+            => TestAllZeros(src, mask);
 
         [MethodImpl(Inline)]
         public static bool off(in Vec128<short> src, in Vec128<short> mask)
-            => Avx.TestAllZeros(src, mask);
+            => TestAllZeros(src, mask);
 
         [MethodImpl(Inline)]
         public static bool off(in Vec128<ushort> src, in Vec128<ushort> mask)
-            => Avx.TestAllZeros(src ,mask);
+            => TestAllZeros(src ,mask);
 
         [MethodImpl(Inline)]
         public static bool off(in Vec128<int> src, in Vec128<int> mask)
-            => Avx.TestAllZeros(src, mask);
+            => TestAllZeros(src, mask);
 
         [MethodImpl(Inline)]
         public static bool off(in Vec128<uint> src, in Vec128<uint> mask)
-            => Avx.TestAllZeros(src, mask);
+            => TestAllZeros(src, mask);
 
         [MethodImpl(Inline)]
         public static bool off(in Vec128<ulong> src, in Vec128<ulong> mask)
-            => Avx.TestAllZeros(src, mask);
-
+            => TestAllZeros(src, mask);
 
         [MethodImpl(Inline)]
         public static bool off(in Vec128<long> src, in Vec128<long> mask)
-            => Avx.TestAllZeros(src, mask);
-
+            => TestAllZeros(src, mask);
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec128<byte> lhs, in Vec128<byte> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec128<short> lhs, in Vec128<short> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec128<int> lhs, in Vec128<int> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec128<uint> lhs, in Vec128<uint> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec128<long> lhs, in Vec128<long> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec128<ulong> lhs, in Vec128<ulong> rhs) 
-            => Avx.TestZ(lhs, rhs);        
-
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec256<byte> lhs, in Vec256<byte> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec256<short> lhs, in Vec256<short> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec256<int> lhs, in Vec256<int> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec256<uint> lhs, in Vec256<uint> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec256<long> lhs, in Vec256<long> rhs)
-            => Avx.TestZ(lhs, rhs);        
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testZ(in Vec256<ulong> lhs, in Vec256<ulong> rhs) 
-            => Avx.TestZ(lhs, rhs);        
-
-
+            => TestZ(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec128<byte> lhs, in Vec128<byte> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec128<short> lhs, in Vec128<short> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec128<int> lhs, in Vec128<int> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
         
         [MethodImpl(Inline)]
         public static bool testC(in Vec128<uint> lhs, in Vec128<uint> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec128<long> lhs, in Vec128<long> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
-            => Avx.TestC(lhs, rhs);                     
-
+            => TestC(lhs, rhs);                     
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec256<byte> lhs, in Vec256<byte> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec256<short> lhs, in Vec256<short> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec256<int> lhs, in Vec256<int> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
         
         [MethodImpl(Inline)]
         public static bool testC(in Vec256<uint> lhs, in Vec256<uint> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec256<long> lhs, in Vec256<long> rhs)
-            => Avx.TestC(lhs, rhs);        
+            => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
         public static bool testC(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
-            => Avx.TestC(lhs, rhs);                     
+            => TestC(lhs, rhs);                             
+ 
 
-        
+        [MethodImpl(Inline)]
+        public static bool testMix(in Vec128<byte> lhs, in Vec128<byte> rhs)
+            => TestMixOnesZeros(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testMix(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+            => TestMixOnesZeros(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testMix(in Vec128<short> lhs, in Vec128<short> rhs)
+            => TestMixOnesZeros(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testMix(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+            => TestMixOnesZeros(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testMix(in Vec128<int> lhs, in Vec128<int> rhs)
+            => TestMixOnesZeros(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testMix(in Vec128<uint> lhs, in Vec128<uint> rhs)
+            => TestMixOnesZeros(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testMix(in Vec128<long> lhs, in Vec128<long> rhs)
+            => TestMixOnesZeros(lhs, rhs);        
+
+        [MethodImpl(Inline)]
+        public static bool testMix(in Vec128<ulong> lhs, in Vec128<ulong> rhs) 
+            => TestMixOnesZeros(lhs, rhs);        
+
     }
 }

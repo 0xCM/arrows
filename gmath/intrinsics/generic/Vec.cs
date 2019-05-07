@@ -14,6 +14,7 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     using static zcore;
+    using static mfunc;
 
     public static class Vec128X
     {

@@ -9,97 +9,97 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static zcore;
+    using static mfunc;
     using static Operative;
 
-    using target = System.Double;
-    using targets = Index<double>;
+    using doubles = Index<double>;
 
     partial class PrimOps { partial class Reify {
 
         [MethodImpl(Inline)]   
-        static targets rshift(targets src, int shift)
+        static doubles rshift(doubles src, int shift)
         {
-            target unaryShift(target x) => bitsf(bitsf(x) >> shift);
-            return mapto(src,unaryShift, out target[] dst);
+            double unaryShift(double x) => bitsf(bitsf(x) >> shift);
+            return mapto(src,unaryShift, out double[] dst);
         }
 
         [MethodImpl(Inline)]   
-        static targets lshift(targets src, int shift)
+        static doubles lshift(doubles src, int shift)
         {
-            target unaryShift(target x) => bitsf(bitsf(x) << shift);            
-            return mapto(src,unaryShift, out target[] dst);
+            double unaryShift(double x) => bitsf(bitsf(x) << shift);            
+            return mapto(src,unaryShift, out double[] dst);
         }
 
         public readonly partial struct Bitwise : 
-            Bitwise<target> 
+            Bitwise<double> 
         {
             
             [MethodImpl(Inline)]   
-            public target and(target lhs, target rhs)
+            public double and(double lhs, double rhs)
                 => bitsf(bitsf(lhs) & bitsf(rhs));
 
             [MethodImpl(Inline)]   
-            public targets and(targets lhs, targets rhs)
-                => fuse(lhs,rhs, and, out target[] dst);
+            public doubles and(doubles lhs, doubles rhs)
+                => fuse(lhs,rhs, and, out double[] dst);
 
             [MethodImpl(Inline)]   
-            public target or(target lhs, target rhs)
+            public double or(double lhs, double rhs)
                 => bitsf(bitsf(lhs) | bitsf(rhs));
 
             [MethodImpl(Inline)]   
-            public targets or(targets lhs, targets rhs)
-                => fuse(lhs,rhs, or, out target[] dst);
+            public doubles or(doubles lhs, doubles rhs)
+                => fuse(lhs,rhs, or, out double[] dst);
 
             [MethodImpl(Inline)]   
-            public target xor(target lhs, target rhs)
+            public double xor(double lhs, double rhs)
                 => bitsf(bitsf(lhs) ^ bitsf(rhs));
 
             [MethodImpl(Inline)]   
-            public targets xor(targets lhs, targets rhs)
-                => fuse(lhs,rhs, xor, out target[] dst);
+            public doubles xor(doubles lhs, doubles rhs)
+                => fuse(lhs,rhs, xor, out double[] dst);
 
             [MethodImpl(Inline)]   
-            public target flip(target x)
+            public double flip(double x)
                 => bitsf(~bitsf(x));
 
             [MethodImpl(Inline)]   
-            public targets flip(targets src)
-                => mapto(src,flip, out target[] dst);
+            public doubles flip(doubles src)
+                => mapto(src,flip, out double[] dst);
 
             [MethodImpl(Inline)]   
-            public target lshift(target lhs, int rhs)
+            public double lshift(double lhs, int rhs)
                 => bitsf(bitsf(lhs) << rhs);
 
             [MethodImpl(Inline)]   
-            public targets lshift(targets src, int shift)
+            public doubles lshift(doubles src, int shift)
                 => Reify.lshift(src,shift);
 
             [MethodImpl(Inline)]   
-            public target rshift(target lhs, int rhs)
+            public double rshift(double lhs, int rhs)
                 => bitsf(bitsf(lhs) >> rhs);
 
             [MethodImpl(Inline)]   
-            public targets rshift(targets src, int shift)
+            public doubles rshift(doubles src, int shift)
                 => Reify.rshift(src,shift);
 
             [MethodImpl(Inline)]
-            public string bitchars(target src)
+            public string bitchars(double src)
                 => bitchars(bitsf(src));
 
             [MethodImpl(Inline)]   
-            public BitString bitstring(target src) 
-                => BitString.define(bit.parse(bitchars(src)));
+            public BitString bitstring(double src) 
+                => BitString.define(bit.Parse(bitchars(src)));
 
             [MethodImpl(Inline)]
-            public byte[] bytes(target src)
+            public byte[] bytes(double src)
                 => BitConverter.GetBytes(src);
 
             [MethodImpl(Inline)]
-            public bool testbit(target src, int pos)
+            public bool testbit(double src, int pos)
                 => testbit(bitsf(src),pos);
 
             [MethodImpl(Inline)]
-            public bit[] bits(target src)
+            public bit[] bits(double src)
                 => bits(bitsf(src));
         }
     }

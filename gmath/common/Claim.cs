@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static zcore;
-    using static mfunc;
+    using static global::mfunc;
 
     public readonly struct Claim<T>
     {

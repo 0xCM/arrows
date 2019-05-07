@@ -105,12 +105,6 @@ namespace Z0.Bench
             return elapsed(sw);
         }
 
-        public unsafe long TimedOp(Index<T> lhs, Index<T> rhs, out Index<T> dst, Vec128BinOp<T> Op)
-        {
-            var sw = stopwatch();
-            dst =  Vectorizer.vectorize(Op,lhs,rhs);
-            return elapsed(sw);
-        }
 
 
     }

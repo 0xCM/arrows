@@ -14,6 +14,8 @@ namespace Z0.Tests
     using Z0.Testing;
     
     using static zcore;
+    using static zfunc;
+
     using static BitVectorPatterns;
     using static BitPattern;
     using static BinaryDigit;
@@ -33,15 +35,15 @@ namespace Z0.Tests
                 where T : struct, IEquatable<T>
                     => convert<int,T>((int)b); 
 
-            Claim.eq(1, toInt<int>(bit.on())); 
-            Claim.eq(0, toInt<int>(bit.off())); 
-            Claim.eq(1u, toInt<uint>(bit.on())); 
-            Claim.eq(0u, toInt<uint>(bit.off())); 
+            Claim.eq(1, toInt<int>(bit.On)); 
+            Claim.eq(0, toInt<int>(bit.Off)); 
+            Claim.eq(1u, toInt<uint>(bit.On)); 
+            Claim.eq(0u, toInt<uint>(bit.Off)); 
         }
         public void Extract1()
         {
             var x0 = (byte)0b10100111;
-            var x1 = BitVector.define<N8>(bits(1,1,1,0,0,1,0,1));
+            var x1 = BitVector.define<N8>(Z0.Bits.pack(1,1,1,0,0,1,0,1));
             var x2 = BitVector.define<N8>(x0.ToBits());
             Claim.eq(x1,x2);
 
@@ -51,7 +53,7 @@ namespace Z0.Tests
         {
             var x = (byte)0b00010110;
             var expect = BitVector.define<N8>(x.ToBits());
-            var actual= BitVector.define<N8>(bits(0,1,1,0,1,0,0,0));
+            var actual= BitVector.define<N8>(Z0.Bits.pack(0,1,1,0,1,0,0,0));
             Claim.eq(expect,actual);
         }
 
@@ -62,7 +64,7 @@ namespace Z0.Tests
             var x1 = (byte)0b11100101;
             var x2 = (byte)0b00111000;
             var x3 = (byte)0b10100111;
-            Claim.eq(xval, Bits.pack(x0, x1, x2,x3));
+            Claim.eq(xval, Z0.Bits.pack(x0, x1, x2,x3));
 
             var xbsref = "10100111" + "00111000" + "11100101" + "10101000";
             Claim.eq(xbsref, xval.ToBitString().format());

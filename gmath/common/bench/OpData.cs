@@ -10,6 +10,8 @@ namespace Z0
 
     using static zcore;
     using static mfunc;
+    using static zfunc;
+    
     using static OpInfo;
 
     public static class UnaryOpData

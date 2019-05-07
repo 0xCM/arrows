@@ -9,44 +9,22 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
     
-    using static mfunc;
+    using static global::mfunc;
 
     public unsafe delegate Index<T> Vec128Fuser<T>(in Vec128BinOp<T> Op, in Index<T> lhs, in Index<T> rhs)
         where T : struct, IEquatable<T>;
 
     public static class Vectorizer
     {
-        static readonly PrimalIndex LU = PrimalIndex.define(
-            @sbyte: new Vec128Fuser<sbyte>(Vectorize),
-            @byte: new Vec128Fuser<byte>(Vectorize),
-            @short: new Vec128Fuser<short>(Vectorize),
-            @ushort: new Vec128Fuser<ushort>(Vectorize),
-            @int: new Vec128Fuser<int>(Vectorize),
-            @uint: new Vec128Fuser<uint>(Vectorize),
-            @long: new Vec128Fuser<long>(Vectorize),
-            @ulong: new Vec128Fuser<ulong>(Vectorize),
-            @float: new Vec128Fuser<float>(Vectorize),
-            @double: new Vec128Fuser<double>(Vectorize)
-        );
-
-        readonly struct Cache<T>
-            where T : struct, IEquatable<T>
-        {
-            public static readonly Vec128Fuser<T> Op = LU.lookup<T,Vec128Fuser<T>>();
-        }
-
-
-        public static unsafe Index<sbyte> Vectorize(in Vec128BinOp<sbyte> Op, in Index<sbyte> lhs, in Index<sbyte> rhs)
+        public static unsafe sbyte[] Vectorize(in Vec128BinOp<sbyte> Op, in sbyte[] lhs, in sbyte[] rhs)
         {
             var count = length(lhs,rhs);
             var veclen = Vec128<sbyte>.Length;
-            var target = new sbyte[count];
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
+            var dst = new sbyte[count];
 
-            fixed(sbyte* pLhs = &lArray[0])
-            fixed(sbyte* pRhs = &rArray[0])
-            fixed(sbyte* pDst = &target[0])
+            fixed(sbyte* pLhs = &lhs[0])
+            fixed(sbyte* pRhs = &rhs[0])
+            fixed(sbyte* pDst = &dst[0])
             {
                 sbyte* pLhsWalk = pLhs, pRhsWalk = pRhs, pDstWalk = pDst;
                 for(var i = 0; i< count; i += veclen, pLhsWalk += veclen, pRhsWalk += veclen, pDstWalk += veclen)
@@ -56,20 +34,18 @@ namespace Z0
                     dinx.store(Op(vLeft,vRight), pDst);                
                 }
             }
-            return target;            
+            return dst;            
         }
 
-        public static unsafe Index<byte> Vectorize(in Vec128BinOp<byte> Op, in Index<byte> lhs, in Index<byte> rhs)
+        public static unsafe byte[] Vectorize(in Vec128BinOp<byte> Op, in byte[] lhs, in byte[] rhs)
         {
             var count = length(lhs,rhs);
             var veclen = Vec128<byte>.Length;
-            var target = new byte[count];
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
+            var dst = new byte[count];
 
-            fixed(byte* pLhs = &lArray[0])
-            fixed(byte* pRhs = &rArray[0])
-            fixed(byte* pDst = &target[0])
+            fixed(byte* pLhs = &lhs[0])
+            fixed(byte* pRhs = &rhs[0])
+            fixed(byte* pDst = &dst[0])
             {
                 byte* pLhsWalk = pLhs, pRhsWalk = pRhs, pDstWalk = pDst;
                 for(var i = 0; i< count; i += veclen, pLhsWalk += veclen, pRhsWalk += veclen, pDstWalk += veclen)
@@ -79,20 +55,18 @@ namespace Z0
                     dinx.store(Op(vLeft,vRight), pDst);                
                 }
             }
-            return target;            
+            return dst;            
         }
 
-        public static unsafe Index<short> Vectorize(in Vec128BinOp<short> Op, in Index<short> lhs, in Index<short> rhs)
+        public static unsafe short[] Vectorize(in Vec128BinOp<short> Op, in short[] lhs, in short[] rhs)
         {
             var count = length(lhs,rhs);
             var veclen = Vec128<short>.Length;
-            var target = new short[count];
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
+            var dst = new short[count];
 
-            fixed(short* pLhs = &lArray[0])
-            fixed(short* pRhs = &rArray[0])
-            fixed(short* pDst = &target[0])
+            fixed(short* pLhs = &lhs[0])
+            fixed(short* pRhs = &rhs[0])
+            fixed(short* pDst = &dst[0])
             {
                 short* pLhsWalk = pLhs, pRhsWalk = pRhs, pDstWalk = pDst;
                 for(var i = 0; i< count; i += veclen, pLhsWalk += veclen, pRhsWalk += veclen, pDstWalk += veclen)
@@ -102,20 +76,18 @@ namespace Z0
                     dinx.store(Op(vLeft,vRight), pDst);                
                 }
             }
-            return target;            
+            return dst;            
         }
 
-        public static unsafe Index<ushort> Vectorize(in Vec128BinOp<ushort> Op, in Index<ushort> lhs, in Index<ushort> rhs)
+        public static unsafe ushort[] Vectorize(in Vec128BinOp<ushort> Op, in ushort[] lhs, in ushort[] rhs)
         {
             var count = length(lhs,rhs);
             var veclen = Vec128<ushort>.Length;
-            var target = new ushort[count];
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
+            var dst = new ushort[count];
 
-            fixed(ushort* pLhs = &lArray[0])
-            fixed(ushort* pRhs = &rArray[0])
-            fixed(ushort* pDst = &target[0])
+            fixed(ushort* pLhs = &lhs[0])
+            fixed(ushort* pRhs = &rhs[0])
+            fixed(ushort* pDst = &dst[0])
             {
                 ushort* pLhsWalk = pLhs, pRhsWalk = pRhs, pDstWalk = pDst;
                 for(var i = 0; i< count; i += veclen, pLhsWalk += veclen, pRhsWalk += veclen, pDstWalk += veclen)
@@ -125,20 +97,17 @@ namespace Z0
                     dinx.store(Op(vLeft,vRight), pDst);                
                 }
             }
-            return target;            
+            return dst;            
         }
 
-        public static unsafe Index<int> Vectorize(in Vec128BinOp<int> Op, in Index<int> lhs, in Index<int> rhs)
+        public static unsafe int[] Vectorize(in Vec128BinOp<int> Op, in int[] lhs, in int[] rhs)
         {
             var count = length(lhs,rhs);
             var veclen = Vec128<int>.Length;
-            var target = new int[count];
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
-
-            fixed(int* pLhs = &lArray[0])
-            fixed(int* pRhs = &rArray[0])
-            fixed(int* pDst = &target[0])
+            var dst = new int[count];
+            fixed(int* pLhs = &lhs[0])
+            fixed(int* pRhs = &rhs[0])
+            fixed(int* pDst = &dst[0])
             {
                 int* pLhsWalk = pLhs, pRhsWalk = pRhs, pDstWalk = pDst;
                 for(var i = 0; i< count; i += veclen, pLhsWalk += veclen, pRhsWalk += veclen, pDstWalk += veclen)
@@ -148,20 +117,18 @@ namespace Z0
                     dinx.store(Op(vLeft,vRight), pDst);                
                 }
             }
-            return target;            
+            return dst;            
         }
 
-        public static unsafe Index<uint> Vectorize(in Vec128BinOp<uint> Op, in Index<uint> lhs, in Index<uint> rhs)
+        public static unsafe uint[] Vectorize(in Vec128BinOp<uint> Op, in uint[] lhs, in uint[] rhs)
         {
             var count = length(lhs,rhs);
             var veclen = Vec128<uint>.Length;
-            var target = new uint[count];
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
+            var dst = new uint[count];
 
-            fixed(uint* pLhs = &lArray[0])
-            fixed(uint* pRhs = &rArray[0])
-            fixed(uint* pDst = &target[0])
+            fixed(uint* pLhs = &lhs[0])
+            fixed(uint* pRhs = &rhs[0])
+            fixed(uint* pDst = &dst[0])
             {
                 uint* pLhsWalk = pLhs, pRhsWalk = pRhs, pDstWalk = pDst;
                 for(var i = 0; i< count; i += veclen, pLhsWalk += veclen, pRhsWalk += veclen, pDstWalk += veclen)
@@ -171,21 +138,19 @@ namespace Z0
                     dinx.store(Op(vLeft,vRight), pDst);                
                 }
             }
-            return target;            
+            return dst;            
         }
 
 
-        public static unsafe Index<long> Vectorize(in Vec128BinOp<long> Op, in Index<long> lhs, in Index<long> rhs)
+        public static unsafe long[] Vectorize(in Vec128BinOp<long> Op, in long[] lhs, in long[] rhs)
         {
             var count = length(lhs,rhs);
             var veclen = Vec128<long>.Length;
-            var target = new long[count];
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
+            var dst = new long[count];
 
-            fixed(long* pLhs = &lArray[0])
-            fixed(long* pRhs = &rArray[0])
-            fixed(long* pDst = &target[0])
+            fixed(long* pLhs = &lhs[0])
+            fixed(long* pRhs = &rhs[0])
+            fixed(long* pDst = &dst[0])
             {
                 long* pLhsWalk = pLhs, pRhsWalk = pRhs, pDstWalk = pDst;
                 for(var i = 0; i< count; i += veclen, pLhsWalk += veclen, pRhsWalk += veclen, pDstWalk += veclen)
@@ -195,20 +160,18 @@ namespace Z0
                     dinx.store(Op(vLeft,vRight), pDst);                
                 }
             }
-            return target;            
+            return dst;            
         }
 
-        public static unsafe Index<ulong> Vectorize(in Vec128BinOp<ulong> Op, in Index<ulong> lhs, in Index<ulong> rhs)
+        public static unsafe ulong[] Vectorize(in Vec128BinOp<ulong> Op, in ulong[] lhs, in ulong[] rhs)
         {
             var count = length(lhs,rhs);
             var veclen = Vec128<ulong>.Length;
-            var target = new ulong[count];
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
+            var dst = new ulong[count];
 
-            fixed(ulong* pLhs = &lArray[0])
-            fixed(ulong* pRhs = &rArray[0])
-            fixed(ulong* pDst = &target[0])
+            fixed(ulong* pLhs = &lhs[0])
+            fixed(ulong* pRhs = &rhs[0])
+            fixed(ulong* pDst = &dst[0])
             {
                 ulong* pLhsWalk = pLhs, pRhsWalk = pRhs, pDstWalk = pDst;
                 for(var i = 0; i< count; i += veclen, pLhsWalk += veclen, pRhsWalk += veclen, pDstWalk += veclen)
@@ -218,22 +181,18 @@ namespace Z0
                     dinx.store(Op(vLeft,vRight), pDst);                
                 }
             }
-            return target;            
+            return dst;            
         }
-
-
-
-        public static unsafe Index<float> Vectorize(in Vec128BinOp<float> Op, in Index<float> lhs, in Index<float> rhs)
+        
+        public static unsafe float[] Vectorize(in Vec128BinOp<float> Op, in float[] lhs, in float[] rhs)
         {
             var count = length(lhs,rhs);
             var veclen = Vec128<float>.Length;
-            var target = new float[count];
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
+            var dst = new float[count];
 
-            fixed(float* pLhs = &lArray[0])
-            fixed(float* pRhs = &rArray[0])
-            fixed(float* pDst = &target[0])
+            fixed(float* pLhs = &lhs[0])
+            fixed(float* pRhs = &rhs[0])
+            fixed(float* pDst = &dst[0])
             {
                 float* pLhsWalk = pLhs, pRhsWalk = pRhs, pDstWalk = pDst;
                 for(var i = 0; i< count; i += veclen, pLhsWalk += veclen, pRhsWalk += veclen, pDstWalk += veclen)
@@ -243,21 +202,19 @@ namespace Z0
                     dinx.store(Op(vLeft,vRight), pDst);                
                 }
             }
-            return target;            
+            return dst;            
         }
 
 
-        public static unsafe Index<double> Vectorize(in Vec128BinOp<double> Op, in Index<double> lhs, in Index<double> rhs)
+        public static unsafe double[] Vectorize(in Vec128BinOp<double> Op, in double[] lhs, in double[] rhs)
         {
             var count = length(lhs,rhs);
             var veclen = Vec128<double>.Length;
-            var target = new double[count];
-            var lArray = lhs.ToArray();
-            var rArray = rhs.ToArray();
+            var dst = new double[count];
 
-            fixed(double* pLhs = &lArray[0])
-            fixed(double* pRhs = &rArray[0])
-            fixed(double* pDst = &target[0])
+            fixed(double* pLhs = &lhs[0])
+            fixed(double* pRhs = &rhs[0])
+            fixed(double* pDst = &dst[0])
             {
                 double* pLhsWalk = pLhs, pRhsWalk = pRhs, pDstWalk = pDst;
                 for(var i = 0; i< count; i += veclen, pLhsWalk += veclen, pRhsWalk += veclen, pDstWalk += veclen)
@@ -267,14 +224,8 @@ namespace Z0
                     dinx.store(Op(vLeft,vRight), pDst);                
                 }
             }
-            return target;            
+            return dst;            
         }
 
-        public static Vec128Fuser<T> vectorize<T>()
-            where T : struct, IEquatable<T>
-                => Cache<T>.Op;
-        public static Index<T> vectorize<T>(Vec128BinOp<T> op, in Index<T> lhs, in Index<T> rhs)
-            where T : struct, IEquatable<T>
-                => Cache<T>.Op(op,lhs,rhs);
     }
 }

@@ -15,6 +15,7 @@ namespace Z0.Tests
 
     using static zcore;
     using static ztest;
+    using static zfunc;
     
     using operand = System.Int64;
     using P = Paths;

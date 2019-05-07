@@ -13,28 +13,7 @@ namespace Z0
     using static zcore;
     using static zfunc;
     using static mfunc;
-
-
-    public ref struct BinOpSpanData<T>
-    {
-        public BinOpSpanData(T[] LeftSource, T[] RightSource)
-        {
-            this.LeftSource = LeftSource;
-            this.RightSource = RightSource;
-            this.Target = span<T>(length(LeftSource, RightSource));
-        }
-
-        public readonly Span<T> LeftSource;
-
-        public readonly Span<T> RightSource;
-
-        public Span<T> Target;
-
-        public void ClearTarget()
-            => Target.Clear();
-
-    }
-
+    
     public delegate BenchComparison OpRunner();
 
     public abstract class BenchContext : Context
@@ -54,7 +33,6 @@ namespace Z0
                 comparisons.Add(runner());
             iter(comparisons,print);
         }
-
 
         public IReadOnlyDictionary<string,OpRunner> Runners()
         {
@@ -181,7 +159,6 @@ namespace Z0
             return repeat;
         }
 
-
         /// <summary>
         /// Measures the time required to iterate an action over a specified number
         /// of cycles, each of which iterate the action over a specified number of
@@ -243,19 +220,7 @@ namespace Z0
                 alloc<T>(samples ?? Config.SampleSize)
             );
         }
-
         
-        protected BinOpSpanData<T> BinOpSpansInit<T>(int? samples, bool nonzero = false)                
-            where T : struct, IEquatable<T>
-        {
-            GC.Collect();
-            return new BinOpSpanData<T>(
-                Sample<T>(samples ?? Config.SampleSize, nonzero), 
-                Sample<T>(samples ?? Config.SampleSize, nonzero) 
-            );
-        }
-
-
         protected UnaryOpData<T> UnaryOpInit<T>(int? samples, bool nonzero = false)                
             where T : struct, IEquatable<T>
         {

@@ -12,7 +12,9 @@ namespace Z0.Tests
     using System.Runtime.CompilerServices;
 
     using Z0.Testing;
+
     using static zcore;
+    using static zfunc;
 
     using operand = System.Int64;
     using P = Paths;

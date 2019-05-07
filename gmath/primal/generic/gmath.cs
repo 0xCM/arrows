@@ -10,8 +10,10 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
+    
     using static zcore;
     using static atoms;
+    using static mfunc;
 
     public static partial class gmath
     {

@@ -15,7 +15,7 @@ namespace Z0
     using static System.Runtime.Intrinsics.X86.Fma;
     
     using static zcore;
-    using static inxfunc;
+    using static mfunc;
 
     partial class dinx
     {

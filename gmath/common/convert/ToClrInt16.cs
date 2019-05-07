@@ -11,8 +11,8 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Text;
 
-
     using static zcore;
+    using static mfunc;
     
     using target = System.Int16;
     using stream = System.Collections.Generic.IEnumerable<short>;

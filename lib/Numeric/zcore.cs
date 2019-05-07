@@ -34,17 +34,6 @@ partial class zcore
     }
 
     /// <summary>
-    /// Constructs a bit from the data in an integral value at a specified position
-    /// </summary>
-    /// <param name="src">The source value</param>
-    /// <param name="pos">The bit position</param>
-    /// <typeparam name="T">The underlying integral type</typeparam>
-    [MethodImpl(Inline)]   
-    public static bit bitat<T>(intg<T> x, int pos)
-        where T : struct, IEquatable<T>
-            => Bits.bit(x, pos);
-
-    /// <summary>
     /// Constructs a bit vector from a bit parameter array
     /// </summary>
     /// <param name="src">The bit source</param>
@@ -61,7 +50,7 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static BitVector<N> bitvector<N>(params uint[] src)
         where N : ITypeNat, new()
-            => BitVector.define<N>(map(src, x => x == 0 ? bit.off() : bit.on()));
+            => BitVector.define<N>(map(src, x => x == 0 ? bit.Off : bit.On));
 
     /// <summary>
     /// Constructs a bit vector of natural length 8 from a parameter array of integers
@@ -71,7 +60,7 @@ partial class zcore
     /// <param name="src">The bit source</param>
     [MethodImpl(Inline)]   
     public static BitVector<N8> bytevector(params uint[] src)
-        => BitVector.define<N8>(map(src, x => x == 0 ? bit.off() : bit.on()));
+        => BitVector.define<N8>(map(src, x => x == 0 ? bit.Off : bit.On));
 
     /// <summary>
     /// Defines a bitvector of natural length 8 from a parameter array of binary digits
@@ -79,7 +68,7 @@ partial class zcore
     /// <param name="src">The source digits</param>
     [MethodImpl(Inline)]   
     public static BitVector<N8> bytevector(params BinaryDigit[] src)
-        => BitVector.define<N8>(map(src, x => x == 0 ? bit.off() : bit.on()));
+        => BitVector.define<N8>(map(src, x => x == 0 ? bit.Off : bit.On));
 
 
     /// <summary>
@@ -357,7 +346,7 @@ partial class zcore
 
     [MethodImpl(Inline)]   
     public static string hexstring(decimal src)
-        => apply(Bits.split(src), parts =>
+        => apply(Z0.Bits.split(src), parts =>
             append(
                 parts.x0.ToString("X8"),
                 parts.x1.ToString("X8"),

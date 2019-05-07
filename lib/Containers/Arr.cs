@@ -12,6 +12,7 @@ namespace Z0
 
     using static zcore;
     using static nats;
+    using static zfunc;
 
     public static class Arr
     {
@@ -176,7 +177,7 @@ namespace Z0
     /// <summary>
     /// A one-dimensional array with lenght encoded by typenat parameter
     /// </summary>
-    public struct Array<N,T> : Contain.Array<N,T>, Wrapped<T[]>
+    public struct Array<N,T> : Contain.Array<N,T>
         where N : ITypeNat, new()
     {
         public static readonly int Length = nati<N>();

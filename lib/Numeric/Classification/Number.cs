@@ -6,6 +6,7 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
+    using static zfunc;
 
     partial class Operative
     {
@@ -88,7 +89,7 @@ namespace Z0
         /// Characterizes a structural number reification in the C adaptation context
         /// </summary>
         /// <typeparam name="S">The reifying type</typeparam>
-        public interface Number<S,T> : Number<S>, Wrapped<T>
+        public interface Number<S,T> : Number<S>
             where S : Number<S,T>, new()
         {
             S revalue(T src);

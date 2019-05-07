@@ -10,9 +10,8 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
 
-
     using static zcore;
-
+    using static mfunc;
 
     public static class IntervalX
     {

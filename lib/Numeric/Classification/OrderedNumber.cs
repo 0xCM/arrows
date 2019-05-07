@@ -28,7 +28,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface OrderedNumber<S,T> : OrderedNumber<S>, Wrapped<T>
+        public interface OrderedNumber<S,T> : OrderedNumber<S>
             where S : OrderedNumber<S,T>, new() {}
     }
 

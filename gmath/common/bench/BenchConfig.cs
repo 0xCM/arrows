@@ -42,7 +42,6 @@ namespace Z0
             this.AnnounceRate = AnnounceRate ?? Pow2.T24;
             this.Primitives = (primitives != null && primitives.Length != 0) ? primitives : ActivePrimitives;
             this.Operators = (operators  != null && operators.Length != 0) ? operators : ActiveOperators;
-
         }
 
         public int Cycles {get;}
