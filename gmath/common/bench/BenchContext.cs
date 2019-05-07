@@ -35,11 +35,11 @@ namespace Z0
 
     }
 
-    public delegate BenchComparison OpRunner(int? cycles = null, int? samples = null);
+    public delegate BenchComparison OpRunner();
 
     public abstract class BenchContext : Context
     {
-        public BenchContext(BenchConfig Config, IRandomizer Randomizer)
+        public BenchContext(IRandomizer Randomizer, BenchConfig Config)
             : base(Randomizer)
         {
             this.Config = Config;
@@ -61,7 +61,7 @@ namespace Z0
             var methods = GetType().GetMethods().Where(
                     m => m.IsPublic && !m.IsStatic && !m.IsAbstract  
                     && m.DeclaringType == this.GetType()
-                    && m.GetParameters().Length == 2 
+                    && m.GetParameters().Length == 0 
                     && m.ReturnType == typeof(BenchComparison));
             
             var runners = map(methods, m => (m.Name, (OpRunner) Delegate.CreateDelegate(typeof(OpRunner),this,m))).ToDictionary();
@@ -93,14 +93,14 @@ namespace Z0
             return BenchComparison.Define(dBench,gBench);
         }
 
-        protected BenchComparison Run<T>(T title, Cycle left, Cycle right, int? cycles)
+        protected BenchComparison Run<T>(T title, Cycle left, Cycle right, int? cycles = null)
         {
-            var lStats = left(cycles?? Config.Cycles);
-            var rStats = right(cycles ?? Config.Cycles);
+            var lStats = left(Config.Cycles);
+            var rStats = right(Config.Cycles);
             Claim.eq(lStats.OpCount, rStats.OpCount);
             Claim.eq(lStats.Cycles, rStats.Cycles);
-            var lBench = BenchSummary.Define(lStats.Op, lStats.Cycles, lStats.OpCount, lStats.ExecTime);
-            var rBench = new BenchSummary(rStats.Op, rStats.Cycles,  rStats.OpCount, rStats.ExecTime);
+            var lBench = BenchSummary.Define(lStats.Op, Config.Cycles, lStats.OpCount, lStats.ExecTime);
+            var rBench = new BenchSummary(rStats.Op, Config.Cycles,  rStats.OpCount, rStats.ExecTime);
             return BenchComparison.Define(lBench, rBench);
         }
 

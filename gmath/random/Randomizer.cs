@@ -12,6 +12,7 @@ namespace Z0
 
     using static zcore;
     using static zfunc;
+    using static mfunc;
 
     /// <summary>
     /// Defines pseudorandom number generator
@@ -170,9 +171,9 @@ namespace Z0
                 => bitcharsu32(parts.x0) + bitcharsu32(parts.x1));
 
         static BitString ToBitString(ulong src)
-            => BitString.define(bit.parse(bitchars64(src)));
+            => BitString.define(Bit.parse(bitchars64(src)));
 
-        public IEnumerable<bit> bits()
+        public IEnumerable<Bit> bits()
         {
             while(true)
             {
@@ -372,153 +373,171 @@ namespace Z0
             => Unsafe.As<Randomizer,IRandomizer<T>>(ref src);
 
         
-        public unsafe void StreamTo(Interval<byte> domain, int count, void* dst)
+        public unsafe void StreamTo(Interval<byte> domain, int count, void* dst, Func<byte,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (byte*)dst;                    
             var size = sizeof(byte);
 
+            filter = filter ?? (x => true);
             while(it.MoveNext())
-            {
+            {                
                 var current = it.Current;
-                Buffer.MemoryCopy(&current, pDst++, size, size);
+                if(filter(current))
+                    Buffer.MemoryCopy(&current, pDst++, size, size);
             }            
         }
 
-        public unsafe void StreamTo(Interval<sbyte> domain, int count, void* dst)
+        public unsafe void StreamTo(Interval<sbyte> domain, int count, void* dst, Func<sbyte,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (sbyte*)dst;                    
             var size = sizeof(sbyte);
 
+            filter = filter ?? (x => true);
             while(it.MoveNext())
-            {
+            {                
                 var current = it.Current;
-                Buffer.MemoryCopy(&current, pDst++, size, size);
+                if(filter(current))
+                    Buffer.MemoryCopy(&current, pDst++, size, size);
             }            
         }
-        public unsafe void StreamTo(Interval<short> domain, int count, void* dst)
+        public unsafe void StreamTo(Interval<short> domain, int count, void* dst, Func<short,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (short*)dst;                    
             var size = sizeof(short);
 
+            filter = filter ?? (x => true);
             while(it.MoveNext())
-            {
+            {                
                 var current = it.Current;
-                Buffer.MemoryCopy(&current, pDst++, size, size);
+                if(filter(current))
+                    Buffer.MemoryCopy(&current, pDst++, size, size);
             }            
         }
 
-        public unsafe void StreamTo(Interval<ushort> domain, int count, void* dst)
+        public unsafe void StreamTo(Interval<ushort> domain, int count, void* dst, Func<ushort,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (ushort*)dst;                    
             var size = sizeof(ushort);
 
+            filter = filter ?? (x => true);
             while(it.MoveNext())
-            {
+            {                
                 var current = it.Current;
-                Buffer.MemoryCopy(&current, pDst++, size, size);
+                if(filter(current))
+                    Buffer.MemoryCopy(&current, pDst++, size, size);
             }            
         }
 
-        public unsafe void StreamTo(Interval<int> domain, int count, void* dst)
+        public unsafe void StreamTo(Interval<int> domain, int count, void* dst, Func<int,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (int*)dst;                    
             var size = sizeof(int);
 
+            filter = filter ?? (x => true);
             while(it.MoveNext())
-            {
+            {                
                 var current = it.Current;
-                Buffer.MemoryCopy(&current, pDst++, size, size);
+                if(filter(current))
+                    Buffer.MemoryCopy(&current, pDst++, size, size);
             }            
         }
 
-
-        public unsafe void StreamTo(Interval<uint> domain, int count, void* dst)
+        public unsafe void StreamTo(Interval<uint> domain, int count, void* dst, Func<uint,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (uint*)dst;                    
             var size = sizeof(uint);
 
+            filter = filter ?? (x => true);
             while(it.MoveNext())
-            {
+            {                
                 var current = it.Current;
-                Buffer.MemoryCopy(&current, pDst++, size, size);
+                if(filter(current))
+                    Buffer.MemoryCopy(&current, pDst++, size, size);
             }            
         }
 
-        public unsafe void StreamTo(Interval<long> domain, int count, void* dst)
+        public unsafe void StreamTo(Interval<long> domain, int count, void* dst, Func<long,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (long*)dst;                    
             var size = sizeof(long);
 
+            filter = filter ?? (x => true);
             while(it.MoveNext())
-            {
+            {                
                 var current = it.Current;
-                Buffer.MemoryCopy(&current, pDst++, size, size);
+                if(filter(current))
+                    Buffer.MemoryCopy(&current, pDst++, size, size);
             }            
         }
 
-        public unsafe void StreamTo(Interval<ulong> domain, int count, void* dst)
+        public unsafe void StreamTo(Interval<ulong> domain, int count, void* dst, Func<ulong,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (ulong*)dst;                    
             var size = sizeof(ulong);
 
+            filter = filter ?? (x => true);
             while(it.MoveNext())
-            {
+            {                
                 var current = it.Current;
-                Buffer.MemoryCopy(&current, pDst++, size, size);
+                if(filter(current))
+                    Buffer.MemoryCopy(&current, pDst++, size, size);
             }            
         }
 
-        public unsafe void StreamTo(Interval<float> domain, int count, void* dst)
+        public unsafe void StreamTo(Interval<float> domain, int count, void* dst, Func<float,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (float*)dst;                    
             var size = sizeof(float);
 
+            filter = filter ?? (x => true);
             while(it.MoveNext())
-            {
+            {                
                 var current = it.Current;
-                Buffer.MemoryCopy(&current, pDst++, size, size);
+                if(filter(current))
+                    Buffer.MemoryCopy(&current, pDst++, size, size);
             }            
         }
 
-        public unsafe void StreamTo(Interval<double> domain, int count, void* dst)
+        public unsafe void StreamTo(Interval<double> domain, int count, void* dst, Func<double,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (double*)dst;                    
             var size = sizeof(double);
-
+            
+            filter = filter ?? (x => true);
             while(it.MoveNext())
-            {
+            {                
                 var current = it.Current;
-                Buffer.MemoryCopy(&current, pDst++, size, size);
+                if(filter(current))
+                    Buffer.MemoryCopy(&current, pDst++, size, size);
             }            
         }
 
-
-
-
-        public unsafe void StreamTo(Interval<decimal> domain, int count, void* dst)
+        public unsafe void StreamTo(Interval<decimal> domain, int count, void* dst, Func<decimal,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (decimal*)dst;                    
             var size = sizeof(decimal);
 
+            filter = filter ?? (x => true);
             while(it.MoveNext())
-            {
+            {                
                 var current = it.Current;
-                Buffer.MemoryCopy(&current, pDst++, size, size);
+                if(filter(current))
+                    Buffer.MemoryCopy(&current, pDst++, size, size);
             }            
         }
 
-         public unsafe void StreamTo(Interval<BigInteger> domain, int count, void* dst)
+         public unsafe void StreamTo(Interval<BigInteger> domain, int count, void* dst, Func<BigInteger, bool> filter = null)
             => throw new NotSupportedException();
 
     }

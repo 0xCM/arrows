@@ -34,7 +34,7 @@ namespace Z0.Tests
 
             babble($"Histogram domain: {histo.Domain}");
             babble($"Histogram grain: {histo.Grain}");
-            babble($"Histogram bucket count: {buckets.Count}");            
+            babble($"Histogram bucket count: {buckets.Length}");            
             babble($"Total number of samples: {data.Length}");
             babble($"Sum of bucket counts: {total}");
             Claim.eq(total, data.Length);

@@ -28,7 +28,7 @@ namespace Z0
 
         IEnumerable<T> stream();    
 
-        unsafe void StreamTo(Interval<T> domain, int count, void* dst); 
+        unsafe void StreamTo(Interval<T> domain, int count, void* dst, Func<T,bool> filter = null); 
     }
     
     public static class RandomX
@@ -85,7 +85,7 @@ namespace Z0
             return Z0.Span128.load(dst);
         }
 
-        public static unsafe Span256<T> Span256<T>(this IRandomizer random, int blocks, Interval<T>? domain = null)
+        public static unsafe Span256<T> Span256<T>(this IRandomizer random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct, IEquatable<T>
         {
             var dst = alloc<T>(Z0.Span256.blocklength<T>(blocks));            
@@ -130,7 +130,7 @@ namespace Z0
                 yield return random.Array<R>(domain,len,filter);
         }
 
-        public static unsafe void StreamTo<T>(this IRandomizer random, Interval<T> domain, int count, void* pDst)
+        public static unsafe void StreamTo<T>(this IRandomizer random, Interval<T> domain, int count, void* pDst, Func<T,bool> filter = null)
             where T : struct, IEquatable<T>
                 => random.Random<T>().StreamTo(domain, count, pDst);
     }

@@ -25,7 +25,7 @@ namespace Z0
         /// <typeparam name="T">The list element type</typeparam>
         [MethodImpl(Inline)]   
         public static IReadOnlyList<T> length<K,T>(IReadOnlyList<T> src)
-            where K : TypeNat, new()
+            where K : ITypeNat, new()
                 => natu<K>() == (ulong)src.Count 
                 ? src : failure<K,IReadOnlyList<T>>(nameof(length), src);
 
@@ -39,7 +39,7 @@ namespace Z0
         /// <typeparam name="T">The list element type</typeparam>
         [MethodImpl(Inline)]   
         public static IReadOnlyList<T> length<K,T>(K k, IReadOnlyList<T> src)
-            where K : TypeNat, new()
+            where K : ITypeNat, new()
                 => k.value == (ulong)src.Count ? src : failure<K,IReadOnlyList<T>>(nameof(length), src);
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]   
         public static T[] length<K,T>(K k, params T[] src)
-            where K : TypeNat, new()
+            where K : ITypeNat, new()
                 => k.value == (ulong)src.Length ? src : failure<K,T[]>(nameof(length),src); 
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]   
         public static T[] length<K,T>(params T[] src)
-            where K : TypeNat, new()
+            where K : ITypeNat, new()
                 => natu<K>() == (ulong)src.Length ? src : failure<K,T[]>(nameof(length), src); 
     }
 

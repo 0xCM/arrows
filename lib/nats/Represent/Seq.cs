@@ -9,12 +9,12 @@ namespace Z0
     using System.Collections.Generic;
     using System.Collections.Concurrent;
     using System.Reflection;
-
+    using static mfunc;
 
     /// <summary>
     /// Characterizes a type-level sequence of typenats
     /// </summary>
-    public interface NatSeq : TypeNat
+    public interface NatSeq : ITypeNat
     {
 
     }
@@ -43,18 +43,18 @@ namespace Z0
             = Nat.nat<K1>().value;
         
         public static readonly byte[] Digits 
-            = zcore.digits(Value);
+            = mfunc.digits(Value);
         
         public ulong value 
             => Value;
 
-        public TypeNat rep
+        public ITypeNat rep
             => Rep; 
 
         public NatSeq seq
             => Rep; 
 
-        public byte[] digits()
+        byte[] ITypeNat.Digits()
             => Digits;
 
         public string format()
@@ -80,18 +80,18 @@ namespace Z0
             + Nat.nat<K2>().value;
 
         public static readonly byte[] Digits 
-            = zcore.digits(Value);
+            = mfunc.digits(Value);
 
         public ulong value 
             => Value;
 
-        public TypeNat rep
+        public ITypeNat rep
             => Rep; 
 
         public NatSeq seq
             => Rep; 
 
-        public byte[] digits()
+        byte[] ITypeNat.Digits()
             => Digits;
 
         public string format()
@@ -120,15 +120,15 @@ namespace Z0
             + Nat.nat<K3>().value;
 
         public static readonly byte[] Digits 
-            = zcore.digits(Value);
+            = mfunc.digits(Value);
 
         public ulong value 
             => Value;
 
-        public byte[] digits() 
+        byte[] ITypeNat.Digits()
             => Digits;
 
-        public TypeNat rep
+        public ITypeNat rep
             => Rep; 
 
         public NatSeq seq
@@ -163,18 +163,18 @@ namespace Z0
             + Nat.nat<K4>().value;
 
         public static readonly byte[] Digits 
-            = zcore.digits(Value);
+            = mfunc.digits(Value);
 
         public ulong value 
             => Value;
 
-        public TypeNat rep
+        public ITypeNat rep
             => Rep; 
 
         public NatSeq seq
             => Rep; 
 
-        public byte[] digits()
+        byte[] ITypeNat.Digits()
             => Digits;
 
         public string format()
@@ -209,18 +209,18 @@ namespace Z0
             + Nat.nat<K5>().value;
 
         public static readonly byte[] Digits 
-            = zcore.digits(Value);
+            = mfunc.digits(Value);
 
         public ulong value 
             => Value;
 
-        public TypeNat rep
+        public ITypeNat rep
             => Rep; 
 
         public NatSeq seq
             => Rep; 
 
-        public byte[] digits()
+        byte[] ITypeNat.Digits()
             => Digits;
 
         public string format()
@@ -252,18 +252,18 @@ namespace Z0
             + Nat.nat<K6>().value;
 
         public static readonly byte[] Digits 
-            = zcore.digits(Value);
+            = mfunc.digits(Value);
     
         public ulong value 
             => Value;
 
-        public TypeNat rep
+        public ITypeNat rep
             => Rep; 
 
         public NatSeq seq
             => Rep; 
 
-        public byte[] digits()
+        byte[] ITypeNat.Digits()
             => Digits;
 
         public string format()
@@ -304,18 +304,18 @@ namespace Z0
             + Nat.nat<K7>().value;
 
         public static readonly byte[] Digits 
-            = zcore.digits(Value);
+            = mfunc.digits(Value);
 
         public ulong value 
             => Value;
 
-        public TypeNat rep
+        public ITypeNat rep
             => Rep; 
 
         public NatSeq seq
             => Rep; 
 
-        public byte[] digits()
+        byte[] ITypeNat.Digits()
             => Digits;
 
         public string format()
@@ -359,18 +359,18 @@ namespace Z0
             + Nat.nat<K8>().value;
 
         public static readonly byte[] Digits 
-            = zcore.digits(Value);
+            = mfunc.digits(Value);
 
         public ulong value 
             => Value;
 
-        public TypeNat rep
+        public ITypeNat rep
             => Rep; 
 
         public NatSeq seq
             => Rep; 
 
-        public byte[] digits()
+        byte[] ITypeNat.Digits()
             => Digits;
 
         public string format()
@@ -417,18 +417,18 @@ namespace Z0
             + Nat.nat<K9>().value; 
 
         public static readonly byte[] Digits 
-            = zcore.digits(Value);
+            = mfunc.digits(Value);
 
         public ulong value 
             => Value;
 
-        public TypeNat rep
+        public ITypeNat rep
             => Rep; 
 
         public NatSeq seq
             => Rep; 
 
-        public byte[] digits()
+        byte[] ITypeNat.Digits()
             => Digits;
 
         public string format()

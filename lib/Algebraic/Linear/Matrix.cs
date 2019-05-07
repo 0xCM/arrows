@@ -13,8 +13,8 @@ namespace Z0
 
 
     public readonly struct Matrix<M, N, T>
-            where M : TypeNat, new()
-            where N : TypeNat, new()
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
             where T : struct, IEquatable<T>    
     {
         static readonly Dim<M,N> Dim = default;        

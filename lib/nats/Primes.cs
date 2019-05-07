@@ -25,8 +25,8 @@ namespace Z0
         
         static IEnumerable<ulong> primenats()
             => from f in type<Primes>().GetFields()
-                where f.FieldType.Realizes<TypeNat>()
-                select ((TypeNat)f.GetValue(null)).value;
+                where f.FieldType.Realizes<ITypeNat>()
+                select ((ITypeNat)f.GetValue(null)).value;
         
         static readonly HashSet<ulong> Cached = new HashSet<ulong>(defined());
                 

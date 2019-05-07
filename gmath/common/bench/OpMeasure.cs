@@ -27,6 +27,7 @@ namespace Z0
 
         public OpMeasure(long OpCount, Duration WorkTime)
         {
+            Claim.nonzero(OpCount);
             this.OpCount = OpCount;
             this.WorkTime = WorkTime;
         }

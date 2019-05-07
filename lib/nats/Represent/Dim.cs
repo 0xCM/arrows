@@ -21,7 +21,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">The natural type</typeparam>
         public static Dim<K> define<K>()
-            where K : TypeNat, new()
+            where K : ITypeNat, new()
                 => Dim<K>.Rep;
 
         /// <summary>
@@ -30,8 +30,8 @@ namespace Z0
         /// <typeparam name="K1">The type of the first component</typeparam>
         /// <typeparam name="K2">The type of the second component</typeparam>
         public static Dim<K1,K2> define<K1,K2>()
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
                 => Dim<K1,K2>.Rep;
 
         /// <summary>
@@ -41,9 +41,9 @@ namespace Z0
         /// <typeparam name="K2">The type of the second component</typeparam>
         /// <typeparam name="K3">The type of the third component</typeparam>
         public static Dim<K1,K2,K3> define<K1,K2,K3>()
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
-            where K3 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
+            where K3 : ITypeNat, new()
                 => Dim<K1,K2,K3>.Rep;
     }
 
@@ -52,7 +52,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K">The dimension type</typeparam>
     public readonly struct Dim<K> : IDim
-        where K : TypeNat, new()
+        where K : ITypeNat, new()
     {
         public static readonly Dim<K> Rep = default;
 
@@ -86,8 +86,8 @@ namespace Z0
     /// <typeparam name="K1">The type of the first dimension</typeparam>
     /// <typeparam name="K2">The type of the second dimension</typeparam>
     public readonly struct Dim<K1,K2> : IDim
-        where K1 : TypeNat, new()
-        where K2 : TypeNat, new()
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
     {
         public static readonly Dim<K1,K2> Rep = default;
 
@@ -130,9 +130,9 @@ namespace Z0
     /// <typeparam name="N">The type of the second dimension</typeparam>
     /// <typeparam name="P">The type of the third dimension</typeparam>
     public readonly struct Dim<M,N,P> : IDim
-        where M : TypeNat, new()
-        where N : TypeNat, new()
-        where P : TypeNat, new()
+        where M : ITypeNat, new()
+        where N : ITypeNat, new()
+        where P : ITypeNat, new()
     {
         public static readonly Dim<M,N,P> Rep = default;
 

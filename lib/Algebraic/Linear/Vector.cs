@@ -16,7 +16,7 @@ namespace Z0
 
 
     public readonly struct Vector<N, T> : Equatable<Vector<N,T>>, Formattable, Lengthwise
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         where T : struct, IEquatable<T>    
     {
 

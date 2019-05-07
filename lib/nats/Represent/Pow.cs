@@ -17,9 +17,9 @@ namespace Z0
     /// </summary>
     /// <typeparam name="B">The base type</typeparam>
     /// <typeparam name="E">The exponent type</typeparam>
-    public interface IPow<B,E> : TypeNat
-        where B : TypeNat, new()
-        where E : TypeNat, new()
+    public interface IPow<B,E> : ITypeNat
+        where B : ITypeNat, new()
+        where E : ITypeNat, new()
     {
 
     }
@@ -32,8 +32,8 @@ namespace Z0
     /// <typeparam name="E">The exponent type</typeparam>
     public interface IPow<S,B,E> : IPow<B,E>, TypeNat<S>
         where S : IPow<S,B,E>, new()
-        where B : TypeNat, new()
-        where E : TypeNat, new()
+        where B : ITypeNat, new()
+        where E : ITypeNat, new()
     {
         
     }
@@ -44,12 +44,12 @@ namespace Z0
     public readonly struct Pow<B,E> : IPow<Pow<B, E>, B, E>,
           IEquatable<Pow<B,E>>,
           IEquatable<NatSeq>
-            where B : TypeNat, new()
-            where E : TypeNat, new()
+            where B : ITypeNat, new()
+            where E : ITypeNat, new()
     {
         public static readonly Pow<B,E> Rep = default;
 
-        public static readonly TypeNat[] Operands = {new B(), new E()};            
+        public static readonly ITypeNat[] Operands = {new B(), new E()};            
 
         /// <summary>
         /// Raises a baise to a power
@@ -63,12 +63,12 @@ namespace Z0
             = pow(Nat.nat<B>().value, Nat.nat<E>().value);
             
         public static readonly byte[] Digits 
-            = zcore.digits(Value);
+            = mfunc.digits(Value);
 
         public static readonly NatSeq Seq
             = Nat.reflect(Digits);
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => Rep;
 
         public NatSeq seq
@@ -77,7 +77,7 @@ namespace Z0
         public ulong value 
             => Value;
 
-        public byte[] digits()
+        byte[] ITypeNat. Digits()
             => Digits;
 
         public NatSeq natseq()

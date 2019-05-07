@@ -18,7 +18,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K">A prime nat type</typeparam>
     public interface IPrime<K> : IDemand<K>
-        where K : TypeNat, new()
+        where K : ITypeNat, new()
     {
         
     }
@@ -28,7 +28,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface IPrimePower<T> : IDemand<T>
-        where T : TypeNat, new()
+        where T : ITypeNat, new()
     {
 
     }
@@ -39,8 +39,8 @@ namespace Z0
     /// <typeparam name="P">The prime type</typeparam>
     /// <typeparam name="N">The power type</typeparam>
     public interface IPrimePower<P,N> : IDemand<P,N>
-        where P : TypeNat, IPrime<P>,new()
-        where N : TypeNat, new()
+        where P : ITypeNat, IPrime<P>,new()
+        where N : ITypeNat, new()
     {
 
     }
@@ -49,7 +49,7 @@ namespace Z0
    // Captures evidence that k:K => k is prime
    // </summary>
    public readonly struct Prime<K> : IPrime<K>
-        where K : TypeNat, new()
+        where K : ITypeNat, new()
     {
         static readonly K k = default;
 

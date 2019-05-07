@@ -13,9 +13,9 @@ namespace Z0
     /// <typeparam name="K1">The first nat type</typeparam>
     /// <typeparam name="K2">The second nat type</typeparam>
     public interface IBetween<K,K1,K2> : IDemand<K,K1,K2>
-        where K : TypeNat, new()
-        where K1: TypeNat, new()
-        where K2: TypeNat, new()
+        where K : ITypeNat, new()
+        where K1: ITypeNat, new()
+        where K2: ITypeNat, new()
     {
         
     }
@@ -27,9 +27,9 @@ namespace Z0
     /// <typeparam name="K1">The first nat type</typeparam>
     /// <typeparam name="K2">The second nat type</typeparam>
     public readonly struct Between<K,K1,K2> : IBetween<K,K1,K2>
-        where K: TypeNat, new()
-        where K1: TypeNat, new()
-        where K2: TypeNat, new()
+        where K: ITypeNat, new()
+        where K1: ITypeNat, new()
+        where K2: ITypeNat, new()
     {        
         static readonly K k = default;
 

@@ -19,7 +19,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value to convert</param>
         [MethodImpl(Inline)]   
-        public static bit ToBit(this bool src)
+        public static Bit ToBit(this bool src)
             => src;
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value to convert</param>
         [MethodImpl(Inline)]   
-        public static bit ToBool(this bit src)
+        public static Bit ToBool(this Bit src)
             => src;
 
        /// <summary>
@@ -35,7 +35,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bitstring source</param>
         [MethodImpl(Inline)]   
-        public static IEnumerable<bit> ToBits(this IEnumerable<bool> src)
+        public static IEnumerable<Bit> ToBits(this IEnumerable<bool> src)
             => map(src,x => x.ToBit()); 
     }
 }

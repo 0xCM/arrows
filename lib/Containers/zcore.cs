@@ -75,15 +75,10 @@ public static partial class zcore
     /// <typeparam name="T">The element type </typeparam>
     [MethodImpl(Inline)]   
     public static Z0.Slice<N,T> slice<N,T>(IEnumerable<T> src)
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         where T : struct, IEquatable<T>
             => new Slice<N,T>(src);
 
-    [MethodImpl(Inline)]   
-    public static Z0.Slice<N,T> slice<N,T>(Index<T> src)
-        where N : TypeNat, new()
-        where T : struct, IEquatable<T>
-            => new Slice<N,T>(src);
 
     /// <summary>
     /// Constructs a slice of natural lengh from a parameter array
@@ -93,7 +88,7 @@ public static partial class zcore
     /// <typeparam name="T">The element type </typeparam>
     [MethodImpl(Inline)]   
     public static Z0.Slice<N,T> slice<N,T>(params T[] src)
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         where T : struct, IEquatable<T>
             => new Slice<N,T>(src);
 
@@ -168,8 +163,8 @@ public static partial class zcore
     /// <param name="rhs">The right oprand values</param>
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]
-    public static T[] target<T>(in Index<T> lhs, in Index<T> rhs)
-        => alloc<T>(matchedCount(lhs,rhs));
+    public static T[] target<T>(in T[] lhs, in T[] rhs)
+        => alloc<T>(matchedLength(lhs,rhs));
 
     /// <summary>
     /// Allocates a target index, predicated on the common size of a source index
@@ -246,7 +241,7 @@ public static partial class zcore
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(params T[] src)
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
             => Arr.define<N, T>(src);
 
     /// <summary>
@@ -258,7 +253,7 @@ public static partial class zcore
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(N len, params T[] src)
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
             => Arr.define(len, src);
 
     /// <summary>
@@ -269,7 +264,7 @@ public static partial class zcore
     /// <typeparam name="T">Then element type</typeparam>
     [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(IEnumerable<T> src)
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
             => Z0.Arr.define<N, T>(src);
 
     /// <summary>
@@ -280,7 +275,7 @@ public static partial class zcore
     /// <typeparam name="T">Then element type</typeparam>
     [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(N len, IEnumerable<T> src)
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
             => Z0.Arr.define(len, src);
 
     /// <summary>
@@ -370,7 +365,7 @@ public static partial class zcore
     /// <typeparam name="W">The width type</typeparam>
     /// <typeparam name="T">The element type</typeparam>
     public static IEnumerable<IReadOnlyList<T>> partition<W,T>(IEnumerable<T> src)
-        where W : TypeNat, new()
+        where W : ITypeNat, new()
     {
         var width = natu<W>();
         var sement = new T[width];
@@ -433,7 +428,7 @@ public static partial class zcore
     /// <typeparam name="T">The replicant type</typeparam>
     [MethodImpl(Inline)]   
     public static T[] repeat<N,T>(T value)
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         => repeat(value, natu<N>());
 
     /// <summary>

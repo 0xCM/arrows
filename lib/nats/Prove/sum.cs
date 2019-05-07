@@ -24,16 +24,16 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         public static Add<K1,K2> sum<K1,K2>(uint expected)
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
         {
             claim<Add<K1,K2>>(expected);
             return Nat.add<K1,K2>();
         } 
 
         public static Add<K1,K2> sum<K1,K2>(int expected)
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
         {
             claim<Add<K1,K2>>(expected);
             return Nat.add<K1,K2>();
@@ -49,8 +49,8 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         public static Add<K1,K2> sum<K1,K2>(K1 k1, K2 k2, uint expected)
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
         {
             claim<Add<K1,K2>>(expected);
             return Nat.add<K1,K2>();
@@ -66,8 +66,8 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         public static Add<K1,K2> sum<K1,K2>(K1 k1, K2 k2, ulong expected)
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
         {
             claim<Add<K1,K2>>(expected);
             return Nat.add<K1,K2>();
@@ -81,8 +81,8 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         public static Option<Add<K1,K2>> trySum<K1,K2>(uint expected)
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
                 => Try(() => sum<K1,K2>(expected));
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         public static Option<Add<K1,K2>> trySum<K1,K2>(K1 k1, K2 k2, uint expected)
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
                 => Try(() => sum(k1,k2,expected));
 
 

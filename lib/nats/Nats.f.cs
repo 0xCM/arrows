@@ -70,7 +70,7 @@ public static class nats
     /// <typeparam name="N">The nat type</typeparam>
     [MethodImpl(Inline)]   
     public static ulong natu<N>() 
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
             => new N().value; 
 
     /// <summary>
@@ -79,7 +79,7 @@ public static class nats
     /// <typeparam name="N">The nat type</typeparam>
     [MethodImpl(Inline)]   
     public static int nati<N>() 
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
             => (int)natu<N>();
 
     /// <summary>
@@ -88,7 +88,7 @@ public static class nats
     /// <typeparam name="N">The nat type</typeparam>
     [MethodImpl(Inline)]   
     public static uint natui<N>() 
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
             => (uint)natu<N>();
 
 
@@ -99,7 +99,7 @@ public static class nats
     /// <typeparam name="N">The nat type</typeparam>
     [MethodImpl(Inline)]   
     public static int nati<N>(N rep) 
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
             => (int)rep.value;
 
 
@@ -109,7 +109,7 @@ public static class nats
     /// <typeparam name="K">The representative type</typeparam>
     [MethodImpl(Inline)]   
     public static K natrep<K>()
-        where K : TypeNat,new()
+        where K : ITypeNat,new()
             => new K(); 
 
     /// <summary>
@@ -118,7 +118,7 @@ public static class nats
     /// <typeparam name="K">The natural type</typeparam>
     [MethodImpl(Inline)]   
     public static Dim<K> dim<K>()
-        where K : TypeNat, new()
+        where K : ITypeNat, new()
             => Dim.define<K>();
 
     /// <summary>
@@ -127,7 +127,7 @@ public static class nats
     /// <typeparam name="K">The natural type</typeparam>
     [MethodImpl(Inline)]   
     public static Dim<K> dim<K>(K k)
-        where K : TypeNat, new()
+        where K : ITypeNat, new()
             => Dim.define<K>();
 
     /// <summary>
@@ -137,8 +137,8 @@ public static class nats
     /// <typeparam name="K2">The type of the second component</typeparam>
     [MethodImpl(Inline)]   
     public static Dim<K1,K2> dim<K1,K2>()
-        where K1 : TypeNat, new()
-        where K2 : TypeNat, new()
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
             => Dim.define<K1,K2>();
 
     /// <summary>
@@ -148,8 +148,8 @@ public static class nats
     /// <typeparam name="K2">The type of the second component</typeparam>
     [MethodImpl(Inline)]   
     public static Dim<K1,K2> dim<K1,K2>(K1 k1, K2 k2)
-        where K1 : TypeNat, new()
-        where K2 : TypeNat, new()
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
             => Dim.define<K1,K2>();
 
     /// <summary>
@@ -160,9 +160,9 @@ public static class nats
     /// <typeparam name="K3">The type of the third component</typeparam>
     [MethodImpl(Inline)]   
     public static Dim<K1,K2,K3> dim<K1,K2,K3>()
-        where K1 : TypeNat, new()
-        where K2 : TypeNat, new()
-        where K3 : TypeNat, new()
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
+        where K3 : ITypeNat, new()
             => Dim.define<K1,K2,K3>();
 
     /// <summary>
@@ -173,9 +173,9 @@ public static class nats
     /// <typeparam name="K3">The type of the third component</typeparam>
     [MethodImpl(Inline)]   
     public static Dim<K1,K2,K3> dim<K1,K2,K3>(K1 k1, K2 k2, K3 k3)
-        where K1 : TypeNat, new()
-        where K2 : TypeNat, new()
-        where K3 : TypeNat, new()
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
+        where K3 : ITypeNat, new()
             => Dim.define<K1,K2,K3>();
 
     /// <summary>

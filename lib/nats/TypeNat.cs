@@ -7,7 +7,7 @@ namespace Z0
     /// <summary>
     /// Characterizes a type-level natural number, a *typenat*
     /// </summary>
-    public interface TypeNat : Formattable
+    public interface ITypeNat : Formattable
     {
         /// <summary>
         /// Specifies the value of the associated natural number
@@ -17,7 +17,7 @@ namespace Z0
         /// <summary>
         /// Specifies the associated base-10 digits 
         /// </summary>
-        byte[] digits();
+        byte[] Digits();
 
         /// <summary>
         /// Specifies the canonical sequence representative
@@ -30,13 +30,13 @@ namespace Z0
     /// Characterizes a typenat
     /// </summary>
     /// <typeparam name="T">The represented type</typeparam>
-    public interface TypeNat<T> : TypeNat 
-        where T: TypeNat
+    public interface TypeNat<T> : ITypeNat 
+        where T: ITypeNat
     {
         /// <summary>
         /// Specifies the representing type
         /// </summary>
-        TypeNat rep {get;}
+        ITypeNat rep {get;}
 
 
     }

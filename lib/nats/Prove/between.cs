@@ -26,9 +26,9 @@ namespace Z0
         /// <typeparam name="K2">The upper inclusive bound</typeparam>
         [MethodImpl(Inline)]
         public static Between<K, K1, K2> between<K,K1,K2>()
-            where K: TypeNat, new()
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K: ITypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => new Between<K,K1,K2>(natrep<K>(), natrep<K1>(), natrep<K2>());
 
         /// <summary>
@@ -41,9 +41,9 @@ namespace Z0
         /// <typeparam name="K2">The upper inclusive bound</typeparam>
         [MethodImpl(Inline)]
         public static Between<K, K1, K2> between<K,K1,K2>(K k, K1 k1, K2 k2)
-            where K: TypeNat, new()
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K: ITypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => new Between<K,K1,K2>(k, k1, k2);
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace Z0
         /// <typeparam name="K2">The upper inclusive bound</typeparam>
         [MethodImpl(Inline)]
         public static Option<Between<K,K1,K2>> tryBetween<K,K1,K2>()
-            where K: TypeNat, new()
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K: ITypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => Try(() => between<K,K1,K2>());
 
         /// <summary>
@@ -71,9 +71,9 @@ namespace Z0
         /// <typeparam name="K2">The upper inclusive bound</typeparam>
         [MethodImpl(Inline)]
         public static Option<Between<K,K1,K2>> tryBetween<K,K1,K2>(K k, K1 k1, K2 k2)
-            where K: TypeNat, new()
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K: ITypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => Try(() => between<K,K1,K2>(k, k1, k2));
  
     }

@@ -17,6 +17,13 @@ using static zcore;
 
 public static partial class mfunc
 {
+
+    static Exception lengthMismatch(int lhs, int rhs)
+        => throw new Exception($"Length mismatch, {lhs} != {rhs}");
+
+    static Exception countMismatch(int lhs, int rhs)
+        => throw new Exception($"Count mismatch, {lhs} != {rhs}");
+
     [MethodImpl(Inline)]
     public static T component<T>(Vector128<T> src, int ix)
         where T : struct, IEquatable<T>
@@ -423,11 +430,165 @@ public static partial class mfunc
         return dst;
     }
 
-}
+    /// <summary>
+    /// Converts an integer to a sequence of digits
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static byte[] digits(byte src)
+        => src.ToString().Select(c => byte.Parse(c.ToString())).ToArray();
 
+    /// <summary>
+    /// Converts an integer to a sequence of digits
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]
+    public static byte[] digits(ushort src)
+        => src.ToString().Select(c => byte.Parse(c.ToString())).ToArray();
 
-partial class zcore
-{
+    /// <summary>
+    /// Converts an integer to a sequence of digits
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]
+    public static byte[] digits(uint src)
+        => src.ToString().Select(c => byte.Parse(c.ToString())).ToArray();
 
+    /// <summary>
+    /// Converts an integer to a sequence of digits
+    /// </summary>
+    /// <param name="src">The source value</param>
+    [MethodImpl(Inline)]
+    public static byte[] digits(ulong src)
+        => src.ToString().Select(c => byte.Parse(c.ToString())).ToArray();
+
+    /// <summary>
+    /// Converts from one value to another, provided the 
+    /// required conversion operation is defined; otherwise,
+    /// raises an error
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <typeparam name="S">The source type</typeparam>
+    /// <typeparam name="T">The target type</typeparam>
+    [MethodImpl(Inline)]   
+    public static T convert<S,T>(S src)
+        where T : struct, IEquatable<T>
+        where S : struct, IEquatable<S>
+            => ClrConverter.convert<S,T>(src);
+
+    /// <summary>
+    /// Vectorized conversion
+    /// </summary>
+    /// <typeparam name="S">The source type</typeparam>
+    /// <typeparam name="T">The target type</typeparam>
+    /// <param name="src">The source array</param>
+    [MethodImpl(Inline)]   
+    public static T[] convert<S,T>(S[] src)
+        => ClrConverter.convert<S,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(int src)
+        where T : struct, IEquatable<T>
+            => ClrConverter.convert<int,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(uint src)
+        where T : struct, IEquatable<T>
+            => ClrConverter.convert<uint,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(long src)
+        where T : struct, IEquatable<T>
+            => ClrConverter.convert<long,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(ulong src)
+        where T : struct, IEquatable<T>
+            => ClrConverter.convert<ulong,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(float src)
+        where T : struct, IEquatable<T>
+            => ClrConverter.convert<float,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(double src)
+        where T : struct, IEquatable<T>
+            => ClrConverter.convert<double,T>(src);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(ReadOnlyMemory<T> lhs, ReadOnlyMemory<T> rhs)
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(T[] lhs, T[] rhs)
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(Span<T> lhs, Span<T> rhs)
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(Span128<T> lhs, Span128<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
+    /// <summary>
+    /// Returns the common number of 128-bit blocks in the supplied spans, if possible. Otherwise,
+    /// raises an exception
+    /// </summary>
+    /// <param name="lhs">The left source</param>
+    /// <param name="rhs">The right source</param>
+    /// <typeparam name="T">The span element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int blocks<T>(Span128<T> lhs, Span128<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount : throw countMismatch(lhs.BlockCount,rhs.BlockCount);
+
+    /// <summary>
+    /// Returns the common number of 256-bit blocks in the supplied spans, if possible. Otherwise,
+    /// raises an exception
+    /// </summary>
+    /// <param name="lhs">The left source</param>
+    /// <param name="rhs">The right source</param>
+    /// <typeparam name="T">The span element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int blocks<T>(Span256<T> lhs, Span256<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount : throw countMismatch(lhs.BlockCount,rhs.BlockCount);
+
+    /// <summary>
+    /// Returns the common number of 128-bit blocks in the supplied spans, if possible. Otherwise,
+    /// raises an exception
+    /// </summary>
+    /// <param name="lhs">The left source</param>
+    /// <param name="rhs">The right source</param>
+    /// <typeparam name="T">The span element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int blocks<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount : throw countMismatch(lhs.BlockCount,rhs.BlockCount);
+
+    /// <summary>
+    /// Returns the common number of 256-bit blocks in the supplied spans, if possible. Otherwise,
+    /// raises an exception
+    /// </summary>
+    /// <param name="lhs">The left source</param>
+    /// <param name="rhs">The right source</param>
+    /// <typeparam name="T">The span element type</typeparam>
+    [MethodImpl(Inline)]   
+    public static int blocks<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount : throw countMismatch(lhs.BlockCount,rhs.BlockCount);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(Span256<T> lhs, Span256<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(Index<T> lhs, Index<T> rhs)
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
 
 }

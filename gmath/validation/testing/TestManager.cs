@@ -29,9 +29,15 @@ namespace Z0.Test
                 var hostname = host.GetType().DisplayName();
                 foreach(var (testName,executor) in host.Runners())
                 {
-                    executor();
-
-                    host.Emit(AppMsg.Define($"Executed {hostname}/{testName}"));
+                    try
+                    {
+                        executor();
+                        host.Emit(AppMsg.Define($"Executed {hostname}/{testName}"));
+                    }
+                    catch(Exception e)
+                    {
+                        host.Emit(AppMsg.Define($"{e}", SeverityLevel.Error));                        
+                    }
                 }
             }
             catch(Exception e)

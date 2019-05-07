@@ -72,13 +72,13 @@ namespace Z0
 
         public static readonly NatSeq<N1,N0> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -91,13 +91,13 @@ namespace Z0
 
         public static readonly NatSeq<N1,N1> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -110,13 +110,13 @@ namespace Z0
 
         public static readonly NatSeq<N1,N2> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -129,13 +129,13 @@ namespace Z0
 
         public static readonly NatSeq<N1,N3> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -148,13 +148,13 @@ namespace Z0
 
         public static readonly NatSeq<N1,N4> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -167,13 +167,13 @@ namespace Z0
 
         public static readonly NatSeq<N1,N5> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -187,13 +187,13 @@ namespace Z0
 
         public static readonly NatSeq<N1,N6> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -206,13 +206,13 @@ namespace Z0
 
         public static readonly NatSeq<N1,N7> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -225,13 +225,13 @@ namespace Z0
 
         public static readonly NatSeq<N1,N8> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -244,13 +244,13 @@ namespace Z0
 
         public static readonly NatSeq<N1,N9> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -263,13 +263,13 @@ namespace Z0
 
         public static readonly NatSeq<N2,N0> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -282,13 +282,13 @@ namespace Z0
 
         public static readonly NatSeq<N3,N2> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
         
@@ -302,13 +302,13 @@ namespace Z0
         
         public static readonly NatSeq<N6,N4> Seq = default;
         
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
         
         public NatSeq seq => Seq;
         
         public ulong value => Seq.value;
         
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
         
         public string format() => Seq.format();
         
@@ -321,13 +321,13 @@ namespace Z0
         
         public static readonly NatSeq<N1,N2,N8> Seq = default;
         
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
         
         public NatSeq seq => Seq;
         
         public ulong value => Seq.value;
         
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
         
         public string format() => Seq.format();
         
@@ -341,13 +341,13 @@ namespace Z0
 
         public static readonly NatSeq<N2,N5,N6> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq.seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -361,13 +361,13 @@ namespace Z0
 
         public static readonly NatSeq<N5,N1,N2> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq.seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -380,13 +380,13 @@ namespace Z0
 
         public static readonly NatSeq<N1,N0,N2,N4> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq.seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -399,13 +399,13 @@ namespace Z0
 
         public static readonly NatSeq<N2,N0,N4,N8> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq.seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -418,13 +418,13 @@ namespace Z0
 
         public static readonly NatSeq<N4,N0,N9,N6> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq.seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 
@@ -437,13 +437,13 @@ namespace Z0
 
         public static readonly NatSeq<N8,N1,N9,N2> Seq = default;
 
-        public TypeNat rep => Rep;
+        public ITypeNat rep => Rep;
 
         public NatSeq seq => Seq.seq;
 
         public ulong value => Seq.value;
 
-        public byte[] digits() => Seq.digits();
+        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
 
         public string format() => Seq.format();
 

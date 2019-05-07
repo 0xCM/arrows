@@ -15,10 +15,7 @@ namespace Z0
 
     partial class dinx
     {
-
-
-        //! add: vec -> vec -> vec
-        //! -------------------------------------------------------------------
+        #region add:vec -> vec -> vec
 
         [MethodImpl(Inline)]
         public static Vec128<byte> add(in Vec128<byte> lhs, in Vec128<byte> rhs)
@@ -53,11 +50,11 @@ namespace Z0
             => Sse42.Add(lhs,rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> add(in Vec128<double> lhs, in Vec128<double> rhs)
+        public static Vec128<float> add(in Vec128<float> lhs, in Vec128<float> rhs)
             => Avx2.Add(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<float> add(in Vec128<float> lhs, in Vec128<float> rhs)
+        public static Vec128<double> add(in Vec128<double> lhs, in Vec128<double> rhs)
             => Avx2.Add(lhs, rhs);
 
         [MethodImpl(Inline)]
@@ -71,7 +68,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<short> add(in Vec256<short> lhs, in Vec256<short> rhs)
             => Avx2.Add(lhs, rhs);
-
 
         [MethodImpl(Inline)]
         public static Vec256<ushort> add(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
@@ -102,60 +98,49 @@ namespace Z0
             => Avx2.Add(lhs, rhs);
 
 
-        [MethodImpl(Inline)]
-        public static unsafe ref Span<sbyte> add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, ref Span<sbyte> dst)
-        {
-            var result = Avx2.Add(lhs,rhs);
-            fixed(sbyte* pDst = dst)
-                Avx.Store(pDst,result);
-            return ref dst;
-        }
+        #endregion
 
-
-
-        //! add: vec -> vec -> dst*
-        //! -------------------------------------------------------------------
-
+        #region add:vec -> vec -> *
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, void* dst)
-            => Avx2.Store((sbyte*)dst, Avx2.Add(lhs, rhs));
+        public static unsafe void add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, sbyte* dst)
+            => store(add(lhs, rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<byte> lhs, in Vec128<byte> rhs, void* dst)
-            => Avx2.Store((byte*)dst, Avx2.Add(lhs,rhs));
+        public static unsafe void add(in Vec128<byte> lhs, in Vec128<byte> rhs, byte* dst)
+            => store(add(lhs, rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<short> lhs, in Vec128<short> rhs, void* dst)
-            => Avx2.Store((short*)dst, Avx2.Add(lhs, rhs));
+        public static unsafe void add(in Vec128<short> lhs, in Vec128<short> rhs, short* dst)
+            => store(add(lhs, rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<ushort> lhs, in Vec128<ushort> rhs, void* dst)
-            => Avx2.Store((ushort*)dst, Avx2.Add(lhs, rhs));
+        public static unsafe void add(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ushort* dst)
+            => store(add(lhs, rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<int> lhs, in Vec128<int> rhs, void* dst)
-            => Avx2.Store((int*)dst, Avx2.Add(lhs, rhs));
+        public static unsafe void add(in Vec128<int> lhs, in Vec128<int> rhs, int* dst)
+            => store(add(lhs, rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<uint> lhs, in Vec128<uint> rhs, void* dst)
-            => Avx2.Store((uint*)dst, Avx2.Add(lhs, rhs));
+        public static unsafe void add(in Vec128<uint> lhs, in Vec128<uint> rhs, uint* dst)
+            => store(add(lhs, rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<long> lhs, in Vec128<long> rhs, void* dst)
-            => Avx2.Store((long*)dst, Avx2.Add(lhs, rhs));
+        public static unsafe void add(in Vec128<long> lhs, in Vec128<long> rhs, long* dst)
+            => store(add(lhs, rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<ulong> lhs, in Vec128<ulong> rhs, void* dst)
-            => Avx2.Store((ulong*)dst, Avx2.Add(lhs, rhs));
+        public static unsafe void add(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ulong* dst)
+            => store(add(lhs, rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<float> lhs, in Vec128<float> rhs, void* dst)
-            => Avx2.Store((float*)dst, Avx2.Add(lhs, rhs));
+        public static unsafe void add(in Vec128<float> lhs, in Vec128<float> rhs, float* dst)
+            => store(add(lhs, rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<double> lhs, in Vec128<double> rhs, void* dst)
-            => Avx2.Store((double*)dst, Avx2.Add(lhs, rhs));
+        public static unsafe void add(in Vec128<double> lhs, in Vec128<double> rhs, double* dst)
+            => store(add(lhs, rhs), dst);
 
 
         [MethodImpl(Inline)]
@@ -198,7 +183,9 @@ namespace Z0
         public static unsafe void add(in Vec256<double> lhs, in Vec256<double> rhs, void* dst)
             => Avx2.Store((double*)dst, Avx2.Add(lhs, rhs));
 
+        #endregion
 
+        # region add:span -> span -> ref span -> ref span
         public static unsafe ref Span128<sbyte> add(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, ref Span128<sbyte> dst)
         {
             var vLen = Span128<sbyte>.BlockLength;            
@@ -362,7 +349,7 @@ namespace Z0
 
         public static unsafe ref Span128<ulong> add(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, ref Span128<ulong> dst)
         {
-            var vLen = Vector128<ulong>.Count;            
+            var vLen = Span128<ulong>.BlockLength;            
             var dLen = length(lhs,rhs);
 
             fixed(ulong* pLhs0 = &first(lhs))
@@ -385,7 +372,7 @@ namespace Z0
 
         public static unsafe ref Span128<float> add(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, ref Span128<float> dst)
         {
-            var vLen = Vector128<float>.Count;            
+            var vLen = Span128<float>.BlockLength;            
             var dLen = length(lhs,rhs);
 
             fixed(float* pLhs0 = &first(lhs))
@@ -408,16 +395,16 @@ namespace Z0
 
         public static unsafe ref Span128<double> add(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, ref Span128<double> dst)
         {
-            var vLen = Vector128<double>.Count;            
+            var vLen = Span128<double>.BlockLength;            
             var dLen = length(lhs,rhs);
 
             fixed(double* pLhs0 = &first(lhs))
             fixed(double* pRhs0 = &first(rhs))
             fixed(double* pDst0 = &first(dst))
             {
-                var pDst = pDst0;                
                 var pLhs = pLhs0;
                 var pRhs = pRhs0;
+                var pDst = pDst0;                
                 for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
                 {
                     var vLhs = Vec128.load(pLhs);
@@ -659,151 +646,6 @@ namespace Z0
             return ref dst;
         }
 
-
-        [MethodImpl(Inline)]
-        public static Span128<sbyte> add(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs)
-        {
-            var dst  = Span128.blockalloc<sbyte>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span128<byte> add(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs)
-        {
-            var dst  = Span128.blockalloc<byte>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-
-        [MethodImpl(Inline)]
-        public static Span128<short> add(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs)
-        {
-            var dst  = Span128.blockalloc<short>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span128<ushort> add(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs)
-        {
-            var dst  = Span128.blockalloc<ushort>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span128<int> add(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs)
-        {
-            var dst  = Span128.blockalloc<int>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span128<uint> add(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs)
-        {
-            var dst  = Span128.blockalloc<uint>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span128<long> add(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs)
-        {
-            var dst  = Span128.blockalloc<long>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-       [MethodImpl(Inline)]
-        public static Span128<ulong> add(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs)
-        {
-            var dst  = Span128.blockalloc<ulong>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-
-       [MethodImpl(Inline)]
-        public static Span128<float> add(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs)
-        {
-            var dst  = Span128.blockalloc<float>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span128<double> add(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs)
-        {
-            var dst  = Span128.blockalloc<double>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span256<sbyte> add(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs)
-        {
-            var dst  = Span256.blockalloc<sbyte>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span256<byte> add(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs)
-        {
-            var dst  = Span256.blockalloc<byte>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-
-        [MethodImpl(Inline)]
-        public static Span256<short> add(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs)
-        {
-            var dst  = Span256.blockalloc<short>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span256<ushort> add(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs)
-        {
-            var dst  = Span256.blockalloc<ushort>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span256<int> add(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs)
-        {
-            var dst  = Span256.blockalloc<int>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span256<uint> add(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs)
-        {
-            var dst  = Span256.blockalloc<uint>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span256<long> add(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs)
-        {
-            var dst  = Span256.blockalloc<long>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-       [MethodImpl(Inline)]
-        public static Span256<ulong> add(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs)
-        {
-            var dst  = Span256.blockalloc<ulong>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-
-       [MethodImpl(Inline)]
-        public static Span256<float> add(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs)
-        {
-            var dst  = Span256.blockalloc<float>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span256<double> add(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs)
-        {
-            var dst  = Span256.blockalloc<double>(blocks(lhs,rhs));
-            return add(lhs, rhs, ref dst);
-        }
-
-
+        #endregion
     }
 }

@@ -53,7 +53,7 @@ namespace Z0
         /// <typeparam name="N">The natural length type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<N,T> define<N,T>(params T[] src)
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
             where T : struct, IEquatable<T>
                 => new Slice<N,T>(src);
 
@@ -66,7 +66,7 @@ namespace Z0
         /// <typeparam name="N">The natural length type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<N,T> define<N,T>(IEnumerable<T> src)
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
             where T : struct, IEquatable<T>
                 => new Slice<N,T>(src);
 
@@ -89,8 +89,8 @@ namespace Z0
         /// <typeparam name="T">The individual type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<Add<M,N>,T> concat<N,M,T>(Slice<N,T> s1, Slice<M,T> s2)
-            where N : TypeNat, new() 
-            where M : TypeNat, new() 
+            where N : ITypeNat, new() 
+            where M : ITypeNat, new() 
             where T : struct, IEquatable<T>
                 => define<Add<M,N>,T>(s1.data + s2.data);
 
@@ -136,7 +136,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T reduce<N,T>(Slice<N,T> s, Func<T,T,T> reducer)
-                where N : Z0.TypeNat, new()
+                where N : Z0.ITypeNat, new()
                 where T : struct, Structures.Semiring<T>
                     => fold(s,reducer);
 
@@ -155,7 +155,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Slice<N,U> apply<N,T,U>(Slice<N,T> s1, Slice<N,T> s2, Func<T,T,U> f)
-            where N : Z0.TypeNat, new()
+            where N : Z0.ITypeNat, new()
             where T : struct, Operative.Semiring<T>, IEquatable<T>
             where U : struct, Operative.Semiring<U>, IEquatable<U>
         {
@@ -168,7 +168,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T sum<N,T>(Slice<N,T> x)
-            where N : Z0.TypeNat, new() 
+            where N : Z0.ITypeNat, new() 
             where T : struct, Structures.Semiring<T>
                 => reduce(x, (a,b) => a.add(b));
 
@@ -181,7 +181,7 @@ namespace Z0
         /// <typeparam name="T">The semigroup-conforming element type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<N,T> add<N,T>(Slice<N,T> s1, Slice<N,T> s2)
-                where N : Z0.TypeNat, new()
+                where N : Z0.ITypeNat, new()
                 where T : struct, Operative.Semiring<T>, IEquatable<T>
                     => new Slice<N,T>(apply(s1,s2,semiring<T>().add));
 
@@ -195,7 +195,7 @@ namespace Z0
         /// <typeparam name="T">The semigroup-conforming element type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<N,T> mul<N,T>(Slice<N,T> s1, Slice<N,T> s2)
-                where N : Z0.TypeNat, new()
+                where N : Z0.ITypeNat, new()
                 where T : struct, Operative.Semiring<T>, IEquatable<T>
                     => new Slice<N,T>(apply(s1,s2,semiring<T>().mul));
     } 

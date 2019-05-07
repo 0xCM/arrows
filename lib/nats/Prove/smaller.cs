@@ -25,7 +25,7 @@ namespace Z0
         /// <typeparam name="K">The natural representative</typeparam>
         [MethodImpl(Inline)]   
         public static bool lt<K>(uint t, bool raise = true)
-            where K : TypeNat, new() 
+            where K : ITypeNat, new() 
                 =>  natu<K>() < t ? true : failure<K>("lt", t, raise);
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Z0
         /// <typeparam name="K">The natural representative</typeparam>
         [MethodImpl(Inline)]   
         public static bool lteq<K>(uint t, bool raise = true)
-            where K : TypeNat, new() 
+            where K : ITypeNat, new() 
                 =>  natu<K>() <= t ? true : failure<K>("lteq", t, raise);
 
         /// <summary>
@@ -50,8 +50,8 @@ namespace Z0
         /// <typeparam name="K2">The larger type</typeparam>
         [MethodImpl(Inline)]   
         public static Smaller<K1,K2> smaller<K1,K2>()
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => new Smaller<K1,K2>(natrep<K1>(),natrep<K2>());                             
 
         /// <summary>
@@ -63,8 +63,8 @@ namespace Z0
         /// <typeparam name="K2">The larger type</typeparam>
         [MethodImpl(Inline)]   
         public static Smaller<K1,K2> smaller<K1,K2>(K1 k1, K2 k2)
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => new Smaller<K1,K2>(k1,k2);
 
         /// <summary>
@@ -76,8 +76,8 @@ namespace Z0
         /// <typeparam name="K2">The larger type</typeparam>
         [MethodImpl(Inline)]   
         public static Option<Smaller<K1,K2>> trySmaller<K1,K2>()
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => Try(() => new Smaller<K1,K2>(natrep<K1>(),natrep<K2>())); 
 
         /// <summary>
@@ -89,8 +89,8 @@ namespace Z0
         /// <typeparam name="K2">The larger type</typeparam>
         [MethodImpl(Inline)]   
         public static Option<Smaller<K1,K2>> trySmaller<K1,K2>(K1 k1, K2 k2)
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => Try(() => new Smaller<K1,K2>(k1,k2));
     }
 }

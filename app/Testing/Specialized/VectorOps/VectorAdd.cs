@@ -18,7 +18,7 @@ namespace Z0.Testing
 
     public abstract class VectorAdd<C,N,T> : RealVectorBinOpTest<C,N,T,T>
         where C : VectorAdd<C,N,T>
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         where T : struct, IEquatable<T>
     {
 

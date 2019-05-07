@@ -10,13 +10,11 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
     
     using static zcore;
-    using static inxfunc;
+    using static mfunc;
 
     partial class dinx
     {
-        //! and: vec128 -> vec128 -> vec128
-        //! -------------------------------------------------------------------
-
+        #region and:vec -> vec -> vec
 
         [MethodImpl(Inline)]
         public static Vec128<byte> and(in Vec128<byte> lhs, in Vec128<byte> rhs)
@@ -58,16 +56,6 @@ namespace Z0
         public static Vec128<double> and(in Vec128<double> lhs, in Vec128<double> rhs)
             => Avx2.And(lhs, rhs);
 
-        //! and: vec128 -> vec128 -> vec128
-        //! -------------------------------------------------------------------
-
-        [MethodImpl(Inline)]
-        public static Vec256<ushort> and(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
-            => Avx2.And(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static Vec256<sbyte> and(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
-            => Avx2.And(lhs, rhs);
 
         [MethodImpl(Inline)]
         public static Vec256<byte> and(in Vec256<byte> lhs, in Vec256<byte> rhs)
@@ -75,6 +63,14 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<short> and(in Vec256<short> lhs, in Vec256<short> rhs)
+            => Avx2.And(lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<sbyte> and(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+            => Avx2.And(lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ushort> and(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
             => Avx2.And(lhs, rhs);
 
         [MethodImpl(Inline)]
@@ -90,356 +86,564 @@ namespace Z0
             => Avx2.And(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<float> and(in Vec256<float> lhs, in Vec256<float> rhs)
+        public static Vec256<ulong> and(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
             => Avx2.And(lhs, rhs);
 
-        [MethodImpl(Inline)]    
-        public static Vec256<double> and(in Vec256<double> lhs, in Vec256<double> rhs)
-            => Avx2.And(lhs, rhs); 
- 
-
-        //! and: vec -> vec -> *
-        //! -------------------------------------------------------------------
+        [MethodImpl(Inline)]
+        public static Vec256<float> and(in Vec256<float> lhs, in Vec256<float> rhs)
+            => Avx2.And(lhs, rhs);
         
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, void* dst)
-            => Avx2.Store((sbyte*)dst, Avx2.And(lhs,rhs));
+        public static Vec256<double> and(in Vec256<double> lhs, in Vec256<double> rhs)
+            => Avx2.And(lhs, rhs);
+
+        #endregion
+
+        #region and:vec -> vec -> *        
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<byte> lhs, in Vec128<byte> rhs, void* dst)
-            => Avx2.Store((byte*)dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, sbyte* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<short> lhs, in Vec128<short> rhs, void* dst)
-            => Avx2.Store((short*)dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<byte> lhs, in Vec128<byte> rhs, byte* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<ushort> lhs, in Vec128<ushort> rhs, void* dst)
-            => Avx2.Store((ushort*)dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<short> lhs, in Vec128<short> rhs, short* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<int> lhs, in Vec128<int> rhs, void* dst)
-            => Avx2.Store((int*)dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ushort* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<uint> lhs, in Vec128<uint> rhs, void* dst)
-            => Avx2.Store((uint*)dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<int> lhs, in Vec128<int> rhs, int* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<long> lhs, in Vec128<long> rhs, void* dst)
-            => Avx2.Store((long*)dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<uint> lhs, in Vec128<uint> rhs, uint* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<ulong> lhs, in Vec128<ulong> rhs, void* dst)
-            => Avx2.Store((ulong*)dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<long> lhs, in Vec128<long> rhs, long* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<float> lhs, in Vec128<float> rhs, void* dst)
-            => Avx2.Store((float*)dst, Avx2.And(lhs,rhs));
+        public unsafe static void and(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ulong* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void and(in Vec128<double> lhs, in Vec128<double> rhs, void* dst)
-            => Avx2.Store((double*)dst, Avx2.And(lhs,rhs));
-
-
-        //! and: ptr -> ptr -> ptr
-        //! --------------------------------------------------------------------
+        public unsafe static void and(in Vec128<float> lhs, in Vec128<float> rhs, float* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void and(sbyte* lhs, sbyte* rhs, sbyte* dst)  
-            => Avx2.Store(dst,Avx2.And(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public unsafe static void and(in Vec128<double> lhs, in Vec128<double> rhs, double* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void and(byte* lhs, byte* rhs, byte* dst)  
-            => Avx2.Store(dst,Avx2.And(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public unsafe static void and(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, sbyte* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void and(short* lhs, short* rhs, short* dst)  
-            => Avx2.Store(dst,Avx2.And(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public unsafe static void and(in Vec256<byte> lhs, in Vec256<byte> rhs, byte* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void and(ushort* lhs, ushort* rhs, ushort* dst)  
-            => Avx2.Store(dst,Avx2.And(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public unsafe static void and(in Vec256<short> lhs, in Vec256<short> rhs, short* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void and(int* lhs, int* rhs, int* dst)  
-            => Avx2.Store(dst,Avx2.And(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public unsafe static void and(in Vec256<ushort> lhs, in Vec256<ushort> rhs, ushort* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void and(uint* lhs, uint* rhs, uint* dst)  
-            => Avx2.Store(dst,Avx2.And(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public unsafe static void and(in Vec256<int> lhs, in Vec256<int> rhs, int* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void and(long* lhs, long* rhs, long* dst)  
-            => Avx2.Store(dst,Avx2.And(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public unsafe static void and(in Vec256<uint> lhs, in Vec256<uint> rhs, uint* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void and(ulong* lhs, ulong* rhs, ulong* dst)  
-            => Avx2.Store(dst,Avx2.And(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public unsafe static void and(in Vec256<long> lhs, in Vec256<long> rhs, long* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void and(float* lhs, float* rhs, float* dst)  
-            => Avx2.Store(dst,Avx2.And(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public unsafe static void and(in Vec256<ulong> lhs, in Vec256<ulong> rhs, ulong* dst)
+            => store(and(lhs,rhs), dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void and(double* lhs, double* rhs, double* dst)  
-            => Avx2.Store(dst,Avx2.And(Avx2.LoadVector128(lhs),Avx2.LoadVector128(rhs)));
+        public unsafe static void and(in Vec256<float> lhs, in Vec256<float> rhs, float* dst)
+            => store(and(lhs,rhs), dst);
 
-         //! and: [] -> [] -> ref [] -> return []
-        //! --------------------------------------------------------------------
+        [MethodImpl(Inline)]
+        public unsafe static void and(in Vec256<double> lhs, in Vec256<double> rhs, double* dst)
+            => store(and(lhs,rhs), dst);
 
-        public static unsafe ref sbyte[] and(in sbyte[] lhs, in sbyte[] rhs, ref sbyte[] dst)
+        #endregion
+
+        #region and:span -> span -> ref span -> ref span
+
+        public static unsafe ref Span128<sbyte> and(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, ref Span128<sbyte> dst)
         {
-            var vLen = Vector128<sbyte>.Count;
+            var vLen = Span128<sbyte>.BlockLength;            
             var dLen = length(lhs,rhs);
 
-            fixed(sbyte* pLhs = &(lhs[0]))
-            fixed(sbyte* pRhs = &(rhs[0]))
-            fixed(sbyte* pDst = &dst[0])
+            fixed(sbyte* pLhs0 = &first(lhs))
+            fixed(sbyte* pRhs0 = &(first(rhs)))
+            fixed(sbyte* pDst0 = &first(dst))
             {
-                sbyte* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    and(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
             }
-
+            
             return ref dst;
         }
 
-        public static unsafe ref byte[] and(in byte[] lhs, in byte[] rhs, ref byte[] dst)
+        public static unsafe ref Span128<byte> and(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, ref Span128<byte> dst)
         {
-            var vLen = Vector128<byte>.Count;
+            var vLen = Span128<byte>.BlockLength;            
             var dLen = length(lhs,rhs);
 
-            fixed(byte* pLhs = &(lhs[0]))
-            fixed(byte* pRhs = &(rhs[0]))
-            fixed(byte* pDst = &dst[0])
+            fixed(byte* pLhs0 = &first(lhs))
+            fixed(byte* pRhs0 = &first(rhs))
+            fixed(byte* pDst0 = &first(dst))
             {
-                byte* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    and(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
             }
-
+            
             return ref dst;
         }
 
-        public static unsafe ref short[] and(in short[] lhs, in short[] rhs, ref short[] dst)
+        public static unsafe ref Span128<short> and(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, ref Span128<short> dst)
         {
-            var vLen = Vector128<short>.Count;
+            var vLen = Span128<short>.BlockLength;            
             var dLen = length(lhs,rhs);
 
-            fixed(short* pLhs = &(lhs[0]))
-            fixed(short* pRhs = &(rhs[0]))
-            fixed(short* pDst = &dst[0])
+            fixed(short* pLhs0 = &first(lhs))
+            fixed(short* pRhs0 = &first(rhs))
+            fixed(short* pDst0 = &first(dst))
             {
-                short* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    and(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
             }
-
+            
             return ref dst;
         }
 
-        public static unsafe ref ushort[] and(in ushort[] lhs, in ushort[] rhs, ref ushort[] dst)
+        public static unsafe ref Span128<ushort> and(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, ref Span128<ushort> dst)
         {
-            var vLen = Vector128<ushort>.Count;
+            var vLen = Span128<ushort>.BlockLength;            
             var dLen = length(lhs,rhs);
 
-            fixed(ushort* pLhs = &(lhs[0]))
-            fixed(ushort* pRhs = &(rhs[0]))
-            fixed(ushort* pDst = &dst[0])
+            fixed(ushort* pLhs0 = &first(lhs))
+            fixed(ushort* pRhs0 = &first(rhs))
+            fixed(ushort* pDst0 = &first(dst))
             {
-                ushort* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    and(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
             }
-
+            
             return ref dst;
         }
 
-        public static unsafe ref int[] and(in int[] lhs, in int[] rhs, ref int[] dst)
+        public static unsafe ref Span128<int> and(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, ref Span128<int> dst)
         {
-            var vLen = Vector128<int>.Count;
+            var vLen = Span128<int>.BlockLength;            
             var dLen = length(lhs,rhs);
 
-            fixed(int* pLhs = &(lhs[0]))
-            fixed(int* pRhs = &(rhs[0]))
-            fixed(int* pDst = &dst[0])
+            fixed(int* pLhs0 = &first(lhs))
+            fixed(int* pRhs0 = &first(rhs))
+            fixed(int* pDst0 = &first(dst))
             {
-                int* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    and(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
             }
-
+            
             return ref dst;
         }
 
-        public static unsafe ref uint[] and(in uint[] lhs, in uint[] rhs, ref uint[] dst)
+        public static unsafe ref Span128<uint> and(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, ref Span128<uint> dst)
         {
-            var vLen = Vector128<uint>.Count;
+            var vLen = Span128<uint>.BlockLength;            
             var dLen = length(lhs,rhs);
 
-            fixed(uint* pLhs = &(lhs[0]))
-            fixed(uint* pRhs = &(rhs[0]))
-            fixed(uint* pDst = &dst[0])
+            fixed(uint* pLhs0 = &first(lhs))
+            fixed(uint* pRhs0 = &first(rhs))
+            fixed(uint* pDst0 = &first(dst))
             {
-                uint* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    and(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
             }
-
+            
             return ref dst;
         }
 
-        public static unsafe ref long[] and(in long[] lhs, in long[] rhs, ref long[] dst)
+        public static unsafe ref Span128<long> and(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, ref Span128<long> dst)
         {
-            var vLen = Vector128<long>.Count;
+            var vLen = Span128<long>.BlockLength;            
             var dLen = length(lhs,rhs);
 
-            fixed(long* pLhs = &(lhs[0]))
-            fixed(long* pRhs = &(rhs[0]))
-            fixed(long* pDst = &dst[0])
+            fixed(long* pLhs0 = &first(lhs))
+            fixed(long* pRhs0 = &first(rhs))
+            fixed(long* pDst0 = &first(dst))
             {
-                long* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    and(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
             }
-
+            
             return ref dst;
         }
 
-        public static unsafe ref ulong[] and(in ulong[] lhs, in ulong[] rhs, ref ulong[] dst)
+        public static unsafe ref Span128<ulong> and(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, ref Span128<ulong> dst)
         {
-            var vLen = Vector128<ulong>.Count;
+            var vLen = Span128<ulong>.BlockLength;            
             var dLen = length(lhs,rhs);
 
-            fixed(ulong* pLhs = &(lhs[0]))
-            fixed(ulong* pRhs = &(rhs[0]))
-            fixed(ulong* pDst = &dst[0])
+            fixed(ulong* pLhs0 = &first(lhs))
+            fixed(ulong* pRhs0 = &first(rhs))
+            fixed(ulong* pDst0 = &first(dst))
             {
-                ulong* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    and(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
             }
-
+            
             return ref dst;
         }
 
-        public static unsafe ref float[] and(in float[] lhs, in float[] rhs, ref float[] dst)
+        public static unsafe ref Span128<float> and(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, ref Span128<float> dst)
         {
-            var vLen = Vector128<float>.Count;
+            var vLen = Span128<float>.BlockLength;            
             var dLen = length(lhs,rhs);
 
-            fixed(float* pLhs = &(lhs[0]))
-            fixed(float* pRhs = &(rhs[0]))
-            fixed(float* pDst = &dst[0])
+            fixed(float* pLhs0 = &first(lhs))
+            fixed(float* pRhs0 = &first(rhs))
+            fixed(float* pDst0 = &first(dst))
             {
-                float* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    and(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
             }
-
+            
             return ref dst;
         }
 
-        public static unsafe ref double[] and(in double[] lhs, in double[] rhs, ref double[] dst)
+        public static unsafe ref Span128<double> and(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, ref Span128<double> dst)
         {
-            var vLen = Vector128<double>.Count;
+            var vLen = Span128<double>.BlockLength;            
             var dLen = length(lhs,rhs);
 
-            fixed(double* pLhs = &(lhs[0]))
-            fixed(double* pRhs = &(rhs[0]))
-            fixed(double* pDst = &dst[0])
+            fixed(double* pLhs0 = &first(lhs))
+            fixed(double* pRhs0 = &first(rhs))
+            fixed(double* pDst0 = &first(dst))
             {
-                double* pLeft = pLhs, pRight = pRhs, pTarget = pDst;
-                
-                for(var i = 0; i < dLen; i += vLen, pLeft += vLen, pRight += vLen, pTarget += vLen)
-                    and(pLeft, pRight, pTarget);
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec128.load(pLhs);
+                    var vRhs = Vec128.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
             }
-
+            
             return ref dst;
         }
 
-
-        //! and: [] -> [] -> []
-        //! --------------------------------------------------------------------
-   
-        [MethodImpl(Inline)]
-        public static unsafe sbyte[] and(sbyte[] lhs, sbyte[] rhs)
+        public static unsafe ref Span256<sbyte> and(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, ref Span256<sbyte> dst)
         {
-            var dst  = new sbyte[length(lhs,rhs)];
-            return and(lhs, rhs, ref dst);
+            var vLen = Span256<sbyte>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(sbyte* pLhs0 = &first(lhs))
+            fixed(sbyte* pRhs0 = &first(rhs))
+            fixed(sbyte* pDst0 = &first(dst))
+            {
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                var pDst = pDst0;                
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static unsafe byte[] and(byte[] lhs, byte[] rhs)
+        public static unsafe ref Span256<byte> and(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, ref Span256<byte> dst)
         {
-            var dst  = new byte[length(lhs,rhs)];
-            return and(lhs, rhs, ref dst);
+            var vLen = Span256<byte>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(byte* pLhs0 = &first(lhs))
+            fixed(byte* pRhs0 = &first(rhs))
+            fixed(byte* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static unsafe short[] and(short[] lhs, short[] rhs)
+        public static unsafe ref Span256<short> and(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, ref Span256<short> dst)
         {
-            var dst  = new short[length(lhs,rhs)];
-            return and(lhs, rhs, ref dst);
+            var vLen = Span256<short>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(short* pLhs0 = &first(lhs))
+            fixed(short* pRhs0 = &first(rhs))
+            fixed(short* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static unsafe ushort[] and(ushort[] lhs, ushort[] rhs)
+        public static unsafe ref Span256<ushort> and(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, ref Span256<ushort> dst)
         {
-            var dst  = new ushort[length(lhs,rhs)];
-            return and(lhs, rhs, ref dst);
+            var vLen = Span256<ushort>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(ushort* pLhs0 = &first(lhs))
+            fixed(ushort* pRhs0 = &first(rhs))
+            fixed(ushort* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static unsafe int[] and(int[] lhs, int[] rhs)
+        public static unsafe ref Span256<int> and(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, ref Span256<int> dst)
         {
-            var dst  = new int[length(lhs,rhs)];
-            return and(lhs, rhs, ref dst);
+            var vLen = Span256<int>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(int* pLhs0 = &first(lhs))
+            fixed(int* pRhs0 = &first(rhs))
+            fixed(int* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static unsafe uint[] and(uint[] lhs, uint[] rhs)
+        public static unsafe ref Span256<uint> and(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, ref Span256<uint> dst)
         {
-            var dst  = new uint[length(lhs,rhs)];
-            return and(lhs, rhs, ref dst);
+            var vLen = Span256<uint>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(uint* pLhs0 = &first(lhs))
+            fixed(uint* pRhs0 = &first(rhs))
+            fixed(uint* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static unsafe long[] and(long[] lhs, long[] rhs)
+        public static unsafe ref Span256<long> and(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, ref Span256<long> dst)
         {
-            var dst  = new long[length(lhs,rhs)];
-            return and(lhs, rhs, ref dst);
+            var vLen = Span256<long>.BlockLength;            
+            var dLen = length(lhs,rhs);
+
+            fixed(long* pLhs0 = &first(lhs))
+            fixed(long* pRhs0 = &first(rhs))
+            fixed(long* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static unsafe ulong[] and(ulong[] lhs, ulong[] rhs)
+        public static unsafe ref Span256<ulong> and(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, ref Span256<ulong> dst)
         {
-            var dst  = new ulong[length(lhs,rhs)];
-            return and(lhs, rhs, ref dst);
+            var vLen = Vector256<ulong>.Count;            
+            var dLen = length(lhs,rhs);
+
+            fixed(ulong* pLhs0 = &first(lhs))
+            fixed(ulong* pRhs0 = &first(rhs))
+            fixed(ulong* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static unsafe float[] and(float[] lhs, float[] rhs)
+        public static unsafe ref Span256<float> and(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
         {
-            var dst  = new float[length(lhs,rhs)];
-            return and(lhs, rhs, ref dst);
+            var vLen = Vector256<float>.Count;            
+            var dLen = length(lhs,rhs);
+
+            fixed(float* pLhs0 = &first(lhs))
+            fixed(float* pRhs0 = &first(rhs))
+            fixed(float* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static unsafe double[] and(double[] lhs, double[] rhs)
+        public static unsafe ref Span256<double> and(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, ref Span256<double> dst)
         {
-            var dst  = new double[length(lhs,rhs)];
-            return and(lhs, rhs, ref dst);
+            var vLen = Vector256<double>.Count;            
+            var dLen = length(lhs,rhs);
+
+            fixed(double* pLhs0 = &first(lhs))
+            fixed(double* pRhs0 = &first(rhs))
+            fixed(double* pDst0 = &first(dst))
+            {
+                var pDst = pDst0;                
+                var pLhs = pLhs0;
+                var pRhs = pRhs0;
+                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    dinx.store(dinx.and(vLhs,vRhs), pDst);
+                }
+            }
+            
+            return ref dst;
         }
-    }
+        #endregion        
+   }
 }

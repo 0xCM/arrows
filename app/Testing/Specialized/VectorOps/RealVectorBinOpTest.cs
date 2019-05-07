@@ -18,7 +18,7 @@ namespace Z0.Testing
 
     public abstract class RealVectorBinOpTest<C,N,T,R> : VectorBinOpTest<C,N,T,R>
         where C : RealVectorBinOpTest<C,N,T,R>
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         where T : struct, IEquatable<T>            
         where R : struct, IEquatable<R>
     {

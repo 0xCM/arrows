@@ -37,7 +37,7 @@ namespace Z0.Tests.InXTests
         }
 
         public virtual void Apply()
-            => trace(Results().Freeze().Count);
+            => trace(Results().Freeze().Length);
         
         public virtual void Verify()
             => iter(Results(), result => Claim.@true(result));

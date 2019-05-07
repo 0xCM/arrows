@@ -13,7 +13,7 @@ namespace Z0
     {
 
         public interface ModN<N,T> : Ring<T>
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
         {
 
             IEnumerable<T> members {get;}
@@ -46,13 +46,13 @@ namespace Z0
 
         public interface ModN<N,S,T> : ModN<N,S>, Ring<S,T>
             where S : ModN<N,S,T>, new()
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
         {
 
         }
 
         public interface GF<N, S, T> : GF<N,S>, ModN<N, S, T>
-            where N : TypeNat, IPrimePower<N>, new()
+            where N : ITypeNat, IPrimePower<N>, new()
             where S : GF<N,S,T>,new()
             
         {

@@ -15,11 +15,13 @@ namespace Z0
 
     public class Num128Bench : BenchContext
     {   
-        public static Num128Bench Create(BenchConfig Config, IRandomizer random)
-            => new Num128Bench(Config, random);
+        static readonly BenchConfig DefaultConfig = new BenchConfig(Cycles: Pow2.T14, Reps: 1, SampleSize: Pow2.T12, AnnounceRate: Pow2.T10);
+
+        public static Num128Bench Create(IRandomizer random, BenchConfig config = null)
+            => new Num128Bench(random, config ?? DefaultConfig);
         
-        Num128Bench(BenchConfig Config, IRandomizer Randomizer)
-            : base(Config, Randomizer)
+        Num128Bench(IRandomizer random, BenchConfig config)
+            : base(random, config)
         {
 
 
@@ -38,7 +40,7 @@ namespace Z0
             var right = MeasureCycles(~opid, data.Length, () => 
                 Num128.mul<float>(data.LeftSource, data.RightSource, data.RightTarget)); 
             
-            var comparison = Run("title", left, right, cycles);            
+            var comparison = Run("title", left, right);            
             Claim.eq(data.LeftTarget, data.RightTarget);
 
             return comparison;
@@ -60,7 +62,7 @@ namespace Z0
                 Num128.mul<double>(data.LeftSource, data.RightSource, data.RightTarget); 
                 return data.Length;});
             
-            var comparison = Run("title", left, right, cycles);            
+            var comparison = Run("title", left, right);            
             Claim.eq(data.LeftTarget, data.RightTarget);
 
             return comparison;

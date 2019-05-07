@@ -54,7 +54,7 @@ namespace Z0.Tests
 
         
         public override Index<Vector<N8,real<operand>>> Applied()        
-            => fuse(LeftRealVecSrc,RightRealVecSrc, (v1,v2) =>
+            => fuse(LeftRealVecSrc.ToArray(), RightRealVecSrc.ToArray(), (v1,v2) =>
                     v1.fuse(v2, (x,y) => x + y));
     }
 

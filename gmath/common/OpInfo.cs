@@ -10,9 +10,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.IO;
 
-    using static zcore;
+    using static zfunc;
     
-
     public interface IOpInfo : IKinded<OpKind>
     {
         string Symbol {get;}        
@@ -158,7 +157,6 @@ namespace Z0
              : base(OpKind.Div,"/")
             {
 
-
             }
         }
 
@@ -197,10 +195,8 @@ namespace Z0
              : base(OpKind.Or,"|")
             {
 
-
             }
         }
-
 
         /// <summary>
         /// Describes the bitwise xor operation
@@ -214,7 +210,5 @@ namespace Z0
 
             }
         }
-
     }
-
 }

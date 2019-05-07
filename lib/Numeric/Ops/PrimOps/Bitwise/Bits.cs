@@ -22,7 +22,7 @@ namespace Z0
         /// <typeparam name="N">The natural length type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<N,bit> parse<N>(string src)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
         {
             Prove.claim<N>(src.Length);
             var digits = new bit[src.Length];

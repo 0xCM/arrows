@@ -142,7 +142,7 @@ partial class zcore
         where T : new()
     {
         var element = new T();
-        var properties = props(element).ToDictionary(x => x.Name);
+        var properties = typeof(T).GetProperties().ToDictionary(x => x.Name);
         iter(values,
             kvp => properties.TryFind(kvp.name)
                              .OnSome(p => p.SetValue(element, parse(p.PropertyType, kvp.value))));

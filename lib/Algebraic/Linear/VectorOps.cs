@@ -12,7 +12,6 @@ namespace Z0
 
     public static class Vector
     {
-
         /// <summary>
         /// Defines a vector of natural length from a parameter array
         /// </summary>
@@ -22,7 +21,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N,T> define<N,T>(N len, params T[] src) 
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
             where T : struct, IEquatable<T>    
                 => new Vector<N,T>(src);
 
@@ -35,7 +34,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N,T> define<N,T>(N len, IEnumerable<T> src) 
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
             where T : struct, IEquatable<T>    
                 => new Vector<N,T>(src);
 
@@ -48,7 +47,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N,T> define<N,T>(N len, Index<T> src) 
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
             where T : struct, IEquatable<T>    
                 => new Vector<N,T>(src);
 
@@ -60,7 +59,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N,T> define<N,T>(params T[] src) 
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
             where T : struct, IEquatable<T>    
                 => new Vector<N,T>(src);
 
@@ -73,7 +72,7 @@ namespace Z0
         /// <typeparam name="T">The common component type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N,T> add<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
             where T : struct, Structures.Semiring<T>
                 =>  lhs.fuse(rhs, (x,y) => x.add(y));
 
@@ -86,23 +85,21 @@ namespace Z0
         /// <typeparam name="T">The common component type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N,T> mul<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
             where T : struct, Structures.Semiring<T>
                 =>  lhs.fuse(rhs, (x,y) => x.mul(y));
 
-
         [MethodImpl(Inline)]
         public static Vector<N,bool> equality<N,T>(Vector<N,T> lhs, Vector<N,T> rhs)
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
             where T : struct, IEquatable<T>
                 => vector<N,bool>(lhs == rhs);
 
         [MethodImpl(Inline)]
-        public static Index<Vector<N,bool>> equality<N,T>(Index<Vector<N,T>> lhs, Index<Vector<N,T>> rhs)
-            where N : TypeNat, new() 
+        public static Vector<N,bool>[] equality<N,T>(Vector<N,T>[] lhs, Vector<N,T>[] rhs)
+            where N : ITypeNat, new() 
             where T : struct, IEquatable<T>
                 => fuse(lhs, rhs, (v1,v2) =>  vector<N,bool>(v1 == v2));
-
     }
 
 }

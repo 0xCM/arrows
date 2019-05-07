@@ -87,18 +87,14 @@ namespace Z0
                     => src.Where(x => x.IsStatic);
         
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static bool IsStatic(this PropertyInfo p)
-            => p.GetGetMethod()?.IsStatic == true 
-            || p.GetSetMethod().IsStatic == true;
+        // [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        // static bool IsStatic(this PropertyInfo p)
+        //     => p.GetGetMethod()?.IsStatic == true 
+        //     || p.GetSetMethod().IsStatic == true;
 
-        /// <summary>
-        /// Determines whether a type is static
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static bool IsStatic(this Type t)
-            => t.IsAbstract && t.IsSealed;
+        // [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        // static bool IsStatic(this Type t)
+        //     => t.IsAbstract && t.IsSealed;
 
         /// <summary>
         /// Selects the static properties from a stream

@@ -18,13 +18,12 @@ namespace Z0
         /// <summary>
         /// Determines whether a string starts with a value from a supplied set
         /// </summary>
-        /// <param name="s">The string to examine</param>
+        /// <param name="src">The string to examine</param>
         /// <param name="values">The characters for which to search</param>
-        /// <returns></returns>
-        public static bool StartsWithAny(this string s, IEnumerable<string> values)
+        public static bool StartsWithAny(this string src, IEnumerable<string> values)
         {
             foreach (var v in values)
-                if (s.StartsWith(v))
+                if (src.StartsWith(v))
                     return true;
             return false;
         }
@@ -32,38 +31,36 @@ namespace Z0
         /// <summary>
         /// Determines whether a string terminates with a value from a supplied set
         /// </summary>
-        /// <param name="s">The string to examine</param>
+        /// <param name="src">The string to examine</param>
         /// <param name="values">The characters for which to search</param>
         /// <returns></returns>
-        public static bool EndsWithAny(this string s, IEnumerable<string> values)
+        public static bool EndsWithAny(this string src, IEnumerable<string> values)
         {
             foreach (var v in values)
-                if (s.EndsWith(v))
+                if (src.EndsWith(v))
                     return true;
             return false;
         }
 
-
         /// <summary>
         /// Determines whether a string leads with any of a specified set of characters
         /// </summary>
-        /// <param name="s">The string to examine</param>
+        /// <param name="src">The string to examine</param>
         /// <param name="chars">The characters for which to search</param>
         /// <returns></returns>
-        public static bool StartsWithAny(this string s, IEnumerable<char> chars)
-            => isBlank(s) ? false : chars.Contains(s[0]);
+        public static bool StartsWithAny(this string src, IEnumerable<char> chars)
+            => isBlank(src) ? false : chars.Contains(src[0]);
 
         /// <summary>
         /// Determines whether a string contains any of the characters in a supplied sequence
         /// </summary>
-        /// <param name="s">The string to test</param>
+        /// <param name="src">The string to test</param>
         /// <param name="chars">The characters for which to search</param>
-        /// <returns></returns>
-        public static bool ContainsAny(this string s, IEnumerable<char> chars)
+        public static bool ContainsAny(this string src, IEnumerable<char> chars)
         {
             foreach (var c in chars)
             {
-                if (s.Contains(c))
+                if (src.Contains(c))
                     return true;
             }
             return false;
@@ -72,35 +69,41 @@ namespace Z0
         /// <summary>
         /// Determines whether a string contains any of the supplied substrings
         /// </summary>
-        /// <param name="s">The string to test</param>
+        /// <param name="src">The string to test</param>
         /// <param name="substrings">The characters for which to search</param>
-        /// <returns></returns>
-        public static bool ContainsAny(this string s, params string[] substrings)
+        public static bool ContainsAny(this string src, params string[] substrings)
         {
             foreach (var c in substrings)
             {
-                if (s.Contains(c))
+                if (src.Contains(c))
                     return true;
             }
             return false;
         }
 
+        /// <summary>
+        /// Determines whether a string contains any of the supplied substrings
+        /// </summary>
+        /// <param name="src">The string to test</param>
+        /// <param name="substrings">The characters for which to search</param>
+        public static bool ContainsAny(this string src, IEnumerable<string> substrings)
+            => substrings.Any(ss => src.Contains(ss));
+
 
         /// <summary>
         /// Gets the string to the right of, but not including, a specified index
         /// </summary>
-        /// <param name="s">The string to search</param>
+        /// <param name="src">The string to search</param>
         /// <param name="idx">The index</param>
         /// <returns></returns>
-        public static string RightOf(this string s, int idx)
-            => (idx >= s.Length - 1) ? String.Empty : s.Substring(idx + 1);
+        public static string RightOf(this string src, int idx)
+            => (idx >= src.Length - 1) ? String.Empty : src.Substring(idx + 1);
 
         /// <summary>
         /// Gets the string to the right of, but not including, a specified substring
         /// </summary>
         /// <param name="s">The string to search</param>
         /// <param name="substring">The substring to match</param>
-        /// <returns></returns>
         public static string RightOf(this string s, string substring)
         {
             var idx = s.IndexOf(substring);
@@ -115,7 +118,6 @@ namespace Z0
         /// </summary>
         /// <param name="s">The string to search</param>
         /// <param name="substring">The substring to match</param>
-        /// <returns></returns>
         public static string LeftOf(this string s, string substring)
         {
             var idx = s.IndexOf(substring);
@@ -125,54 +127,63 @@ namespace Z0
                 return string.Empty;
         }
 
-    /// <summary>
-    /// Formats the source as a braced list
-    /// </summary>
-    /// <param name="src">The source sequence</param>
-    /// <typeparam name="T">The element type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static string Embrace<T>(this IEnumerable<T> src)
-        => embrace(string.Join(',',src));
+        /// <summary>
+        /// Formats the source as a braced list
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public static string Embrace<T>(this IEnumerable<T> src)
+            => embrace(string.Join(',',src));
 
-    /// <summary>
-    /// Gets the string to the left of, but not including, a specified index
-    /// </summary>
-    /// <param name="s">The string to search</param>
-    /// <param name="idx">The index</param>
-    /// <returns></returns>
-    public static string LeftOf(this string s, int idx)
-        => (idx >= s.Length - 1) ? String.Empty : s.Substring(0, idx);
+        /// <summary>
+        /// Gets the string to the left of, but not including, a specified index
+        /// </summary>
+        /// <param name="s">The string to search</param>
+        /// <param name="idx">The index</param>
+        /// <returns></returns>
+        public static string LeftOf(this string s, int idx)
+            => (idx >= s.Length - 1) ? String.Empty : s.Substring(0, idx);
 
-    /// <summary>
-    /// Gets the string to the left of, but not including, the first instance of a specified character
-    /// </summary>
-    /// <param name="s">The string to search</param>
-    /// <param name="c">The character</param>
-    /// <returns></returns>
-    public static string LeftOf(this string s, char c)
-        => s.Substring(0, apply(s.IndexOf(c), idx => idx == -1 ? s.Length - 1 : idx));
+        /// <summary>
+        /// Gets the string to the left of, but not including, the first instance of a specified character
+        /// </summary>
+        /// <param name="s">The string to search</param>
+        /// <param name="c">The character</param>
+        /// <returns></returns>
+        public static string LeftOf(this string s, char c)
+            => s.Substring(0, apply(s.IndexOf(c), idx => idx == -1 ? s.Length - 1 : idx));
 
-    /// <summary>
-    /// Gets the string to the right of, but not including, the first instance of a specified character
-    /// </summary>
-    /// <param name="s">The string to search</param>
-    /// <param name="c">The character</param>
-    /// <returns></returns>
-    public static string RightOf(this string s, char c)
-        => s.RightOf(s.IndexOf(c));
+        /// <summary>
+        /// Gets the string to the right of, but not including, the first instance of a specified character
+        /// </summary>
+        /// <param name="s">The string to search</param>
+        /// <param name="c">The character</param>
+        /// <returns></returns>
+        public static string RightOf(this string s, char c)
+            => s.RightOf(s.IndexOf(c));
 
-    /// <summary>
-    /// Partitions a string into two part, predicated on the first occurrence of a specified marker
-    /// </summary>
-    /// <param name="s">The string to partition</param>
-    /// <param name="marker">The demarcator</param>
-    /// <param name="trim">Whether to trim the parts prior to packing the resulting tuple</param>
-    /// <returns></returns>
-    public static (string Left, string Right) Bifurcate(this string s, string marker, bool trim = true)
-        => (ifTrue(trim, LeftOf(s, marker),x => x.Trim()), 
-            ifTrue(trim, RightOf(s, marker),x => x.Trim()));
-
+        /// <summary>
+        /// Partitions a string into two part, predicated on the first occurrence of a specified marker
+        /// </summary>
+        /// <param name="s">The string to partition</param>
+        /// <param name="marker">The demarcator</param>
+        /// <param name="trim">Whether to trim the parts prior to packing the resulting tuple</param>
+        /// <returns></returns>
+        public static (string Left, string Right) Split(this string s, string marker, bool trim = true)
+            => (ifTrue(trim, LeftOf(s, marker),x => x.Trim()), 
+                ifTrue(trim, RightOf(s, marker),x => x.Trim()));
+ 
+         /// <summary>
+        /// Formats a stream 
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="sep">The item separator</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static string Format<T>(this IEnumerable<T> src, string sep = ", ")
+                => embrace(string.Join(sep, src.Select(x => x.ToString())).TrimEnd());
 
     }
 }

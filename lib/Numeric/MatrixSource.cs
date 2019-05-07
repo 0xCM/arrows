@@ -13,8 +13,8 @@ namespace Z0
     using static nats;
 
     public interface RandomMatrixSource<M,N,T>
-        where M : TypeNat, new()
-        where N : TypeNat, new()
+        where M : ITypeNat, new()
+        where N : ITypeNat, new()
         where T : struct, IEquatable<T>
 
     {
@@ -22,8 +22,8 @@ namespace Z0
     }
 
     public readonly struct MatrixSource<M,N,T> : RandomMatrixSource<M,N,T>
-        where N : TypeNat, new()
-        where M : TypeNat, new()
+        where N : ITypeNat, new()
+        where M : ITypeNat, new()
         where T : struct, IEquatable<T>
     {
         public static MatrixSource<M,N,T> Inhabitant = default;

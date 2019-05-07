@@ -22,7 +22,7 @@ namespace Z0
         /// <typeparam name="T">The digit's enumeration type</typeparam>
         /// <typeparam name="N">The natural base type</typeparam>
         public static Digit<N,T> define<N,T>(T src)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
             where T : Enum
                 => new Digit<N,T>(src);
 
@@ -34,7 +34,7 @@ namespace Z0
         /// <typeparam name="T">The digit's enumeration type</typeparam>
         /// <typeparam name="N">The natural base type</typeparam>
         public static Digit<N,T> define<N,T>(T src, N b)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
             where T : Enum
                 => new Digit<N,T>(src);
 
@@ -50,13 +50,13 @@ namespace Z0
         /// <typeparam name="N">The natural base type</typeparam>
         public static Digit<N,T> InBase<N,T>(this Digit<T> d, N b = default)
             where T : Enum
-            where N : TypeNat, new() => new Digit<N,T>(d.Unwrap());
+            where N : ITypeNat, new() => new Digit<N,T>(d.Unwrap());
 
     }
 
 
     public interface IDigit<N,S,T> : IDigit<S,T>, IEquatable<S>
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         where S : IDigit<N,S,T>
         where T : Enum
     {
@@ -70,7 +70,7 @@ namespace Z0
     /// <typeparam name="T">The digit's enumeration type</typeparam>
     public readonly struct Digit<N,T> : IDigit<N,Digit<N,T>,T>
         where T : Enum
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
     {
         /// <summary>
         /// Specifies the value of the structurel digit corresponding to 0

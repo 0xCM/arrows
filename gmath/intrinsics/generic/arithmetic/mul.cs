@@ -215,16 +215,16 @@ namespace Z0
             switch(kind)
             {
                 case PrimalKind.int32:
-                    dinx.mul(int32(lhs), int32(rhs), dst);
+                    dinx.mul(int32(lhs), int32(rhs), int64(dst));
                     break;
                 case PrimalKind.uint32:
-                    dinx.mul(uint32(lhs), uint32(rhs), dst);
+                    dinx.mul(uint32(lhs), uint32(rhs), uint64(dst));
                     break;
                 case PrimalKind.float32:
-                    dinx.mul(float32(lhs), float32(rhs), dst);
+                    dinx.mul(float32(lhs), float32(rhs), float32(dst));
                     break;
                 case PrimalKind.float64:
-                    dinx.mul(float64(lhs), float64(rhs), dst);                
+                    dinx.mul(float64(lhs), float64(rhs), float64(dst));                
                 break;                
                 default:
                     throw errors.unsupported(kind);

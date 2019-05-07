@@ -51,7 +51,7 @@ namespace Z0
     /// See https://en.wikipedia.org/wiki/Permutation
     /// </remarks>
     public readonly struct Permutaton<N>
-        where N : TypeNat, new()        
+        where N : ITypeNat, new()        
     {
         readonly (ulong k, ulong v)[] assigments;
 

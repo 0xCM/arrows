@@ -76,7 +76,11 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span256<T> BlockAlloc(int count)
             => new Span256<T>(new T[count * BlockLength]);
-        
+
+        [MethodImpl(Inline)]
+        public static Span256<T> Alloc(int length)
+            => Load(new T[length]);
+
         [MethodImpl(Inline)]
         public static Span256<T> Load(T[] src)
         {
@@ -231,7 +235,13 @@ namespace Z0
             [MethodImpl(Inline)]
             get => data.IsEmpty;
         }
-            
+                    
+        public ref T Head
+        {
+            [MethodImpl(Inline)]
+            get => ref data[0];                        
+        }            
+
         public override string ToString() 
             => data.ToString();
 

@@ -22,8 +22,8 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         public static Mul<K1,K2> product<K1,K2>(uint expected)
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
         {
             claim<Mul<K1,K2>>(expected);
             return Nat.mul<K1,K2>();
@@ -39,8 +39,8 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         public static Mul<K1,K2> product<K1,K2>(K1 k1, K2 k2, uint expected)
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
         {
             claim<Mul<K1,K2>>(expected);
             return Nat.mul<K1,K2>();
@@ -54,8 +54,8 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         public static Option<Mul<K1,K2>> tryProduct<K1,K2>(uint expected)
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
                 => Try(() => product<K1,K2>(expected));
 
         /// <summary>
@@ -68,8 +68,8 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         public static Option<Mul<K1,K2>> tryProduct<K1,K2>(K1 k1, K2 k2, uint expected)
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
                 => Try(() => product(k1,k2,expected));
 
 

@@ -14,7 +14,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">A nonzero natural type</typeparam>
         public interface Nonzero<K> : IDemand<K>, ILarger<K,N0>
-            where K : TypeNat, new()
+            where K : ITypeNat, new()
         {
 
         }
@@ -26,7 +26,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K">A nonzero natural type</typeparam>
     public readonly struct Nonzero<K> : Demands.Nonzero<K>
-        where K: TypeNat, new()
+        where K: ITypeNat, new()
     {
         static readonly K k = default;
         static readonly string description = $"{k} != 0";

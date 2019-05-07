@@ -634,4 +634,6 @@ partial class zfunc
     public static string append<T>(string delimiter, IEnumerable<T> src) 
         => string.Join(delimiter, src.Select(x => x.ToString()));
 
+
+
 }

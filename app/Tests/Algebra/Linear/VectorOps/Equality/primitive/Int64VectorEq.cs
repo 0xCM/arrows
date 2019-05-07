@@ -47,7 +47,7 @@ namespace Z0.Tests
  
         
         public override Index<Vector<N8,bool>> Applied()        
-            => fuse(LeftPrimVecSrc,LeftPrimVecSrc, 
+            => fuse(LeftPrimVecSrc.ToArray(),LeftPrimVecSrc.ToArray(), 
                     (v1,v2) => vector<N8,bool>(v1 == v2));
     }
 

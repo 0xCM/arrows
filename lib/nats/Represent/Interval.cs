@@ -14,12 +14,12 @@ namespace Z0
     /// Reifies a nondegenerate interval of natural numbers
     /// </summary>
     public readonly struct NatInterval<K1,K2> //: Traits.NatInterval<NatInterval<K1,K2>, K1,K2>
-        where K1: TypeNat, ISmaller<K1,K2>, new()
-        where K2 : TypeNat, new()
+        where K1: ITypeNat, ISmaller<K1,K2>, new()
+        where K2 : ITypeNat, new()
         
     {
         public static Option<Between<T,K1,K2>> contains<T>()
-            where T : TypeNat, new() => Prove.tryBetween<T,K1,K2>();
+            where T : ITypeNat, new() => Prove.tryBetween<T,K1,K2>();
                  
         public static IEnumerable<ulong> values()
         {

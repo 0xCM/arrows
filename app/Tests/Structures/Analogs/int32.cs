@@ -49,7 +49,7 @@ namespace Z0.Tests
         public void VerifySum()
         {
             var expect = BaselineSum();
-            var actual = map(AnalogSum(), v => v.map(x => (int)x));
+            var actual = map(AnalogSum().ToArray(), v => v.map(x => (int)x));
             var equality = Vector.equality(expect,actual);
             var result = equality.Where(v => v.CountFalse() != 0).Count();
             Claim.eq(result,0);                
@@ -58,7 +58,7 @@ namespace Z0.Tests
         public void VerifyMul()
         {
             var expect = BaselineMul();
-            var actual = map(AnalogMul(), v => v.map(x => (int)x));
+            var actual = map(AnalogMul().ToArray(), v => v.map(x => (int)x));
             var equality = Vector.equality(expect,actual);
             var result = equality.Where(v => v.CountFalse() != 0).Count();
             Claim.eq(result,0);                
@@ -66,20 +66,20 @@ namespace Z0.Tests
 
         [Repeat(Defaults.Reps)]
         public Index<Vector<N128,int32>> AnalogSum()
-            => fuse(LeftAnaVecs, RightAnaVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x + y));
+            => fuse(LeftAnaVecs.ToArray(), RightAnaVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x + y));
 
 
         [Repeat(Defaults.Reps)]
         public Index<Vector<N128,int>> BaselineSum()
-            => fuse(LeftPrimVecs, RightPrimVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x + y));
+            => fuse(LeftPrimVecs.ToArray(), RightPrimVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x + y));
 
         [Repeat(Defaults.Reps)]
         public Index<Vector<N128,int32>> AnalogMul()
-            => fuse(LeftAnaVecs, RightAnaVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x * y));
+            => fuse(LeftAnaVecs.ToArray(), RightAnaVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x * y));
 
         [Repeat(Defaults.Reps)]
         public Index<Vector<N128,int>> BaselineMul()
-            => fuse(LeftPrimVecs, RightPrimVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x * y));
+            => fuse(LeftPrimVecs.ToArray(), RightPrimVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x * y));
 
 
     }

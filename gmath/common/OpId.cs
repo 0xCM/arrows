@@ -67,8 +67,8 @@ namespace Z0
             => Intrinsic ?  (Generic ? "ginx" : "dinx") : (Generic ? "gmath" : "dmath");
 
         string OpInfo
-            => Vectored ? $"{OpKind}/Vec{OperandSize}[{OperandKind}]" 
-              : Intrinsic ? $"Num{OperandSize}[{OperandKind}]"            
+            => Vectored ? $"{OpKind}/Vec{OperandSize*8}[{OperandKind}]" 
+              : Intrinsic ? $"Num{OperandSize*8}[{OperandKind}]"            
               : $"{OpKind}/{OperandKind}";
 
         public override string ToString() 

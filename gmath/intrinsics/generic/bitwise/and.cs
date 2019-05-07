@@ -56,34 +56,34 @@ namespace Z0
             switch(kind)
             {
                 case PrimalKind.int8:
-                    dinx.and(int8(lhs), int8(rhs), dst);
+                    dinx.and(int8(lhs), int8(rhs), (sbyte*) dst);
                     break;
                 case PrimalKind.uint8:
-                    dinx.and(uint8(lhs), uint8(rhs), dst);
+                    dinx.and(uint8(lhs), uint8(rhs), (byte*) dst);
                     break;
                 case PrimalKind.int16:
-                    dinx.and(int16(lhs), int16(rhs), dst);
+                    dinx.and(int16(lhs), int16(rhs), (short*) dst);
                     break;
                 case PrimalKind.uint16:
-                    dinx.and(uint16(lhs), uint16(rhs), dst);
+                    dinx.and(uint16(lhs), uint16(rhs), (ushort*) dst);
                     break;
                 case PrimalKind.int32:
-                    dinx.and(int32(lhs), int32(rhs), dst);
+                    dinx.and(int32(lhs), int32(rhs), (int*) dst);
                     break;
                 case PrimalKind.uint32:
-                    dinx.and(uint32(lhs), uint32(rhs), dst);
+                    dinx.and(uint32(lhs), uint32(rhs), (uint*) dst);
                     break;
                 case PrimalKind.int64:
-                    dinx.and(int64(lhs), int64(rhs), dst);
+                    dinx.and(int64(lhs), int64(rhs), (long*) dst);
                     break;
                 case PrimalKind.uint64:
-                    dinx.and(uint64(lhs), uint64(rhs), dst);
+                    dinx.and(uint64(lhs), uint64(rhs), (ulong*) dst);
                     break;
                 case PrimalKind.float32:
-                    dinx.and(float32(lhs), float32(rhs), dst);
+                    dinx.and(float32(lhs), float32(rhs), (float*) dst);
                     break;
                 case PrimalKind.float64:
-                    dinx.and(float64(lhs), float64(rhs), dst);                
+                    dinx.and(float64(lhs), float64(rhs), (double*) dst);                
                 break;                
                 default:
                     throw errors.unsupported(kind);

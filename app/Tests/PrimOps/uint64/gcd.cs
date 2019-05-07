@@ -42,7 +42,7 @@ namespace Z0.Tests
 
         [Repeat(1)]
         public override Index<operand> Compute()
-            => fuse(LeftSrc,RightSrc, Prim.gcd);
+            => fuse(LeftSrc.ToArray(),RightSrc.ToArray(), Prim.gcd);
 
 
     } 

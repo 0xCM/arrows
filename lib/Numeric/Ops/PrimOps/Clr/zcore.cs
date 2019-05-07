@@ -173,43 +173,7 @@ partial class zcore
         return dst;
     }
 
-    [MethodImpl(Inline)]   
-    public static Index<floatg<T>> floats<T>(Index<T> src)
-        where T : struct, IEquatable<T>
-        => map(src, x => floatg<T>(x));
 
-    /// <summary>
-    /// Converts an integer to a sequence of digits
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static byte[] digits(byte x)
-        => x.ToIntG<byte>().digits();
-
-    /// <summary>
-    /// Converts an integer to a sequence of digits
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static byte[] digits(ushort x)
-        => x.ToIntG<ushort>().digits();
-
-    /// <summary>
-    /// Converts an integer to a sequence of digits
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static byte[] digits(uint x)
-        => x.ToIntG<uint>().digits();
-
-    /// <summary>
-    /// Converts an integer to a sequence of digits
-    /// </summary>
-    /// <param name="x">The source value</param>
-    [MethodImpl(Inline)]
-    public static byte[] digits(ulong x)
-        => x.ToIntG<ulong>().digits();
 
     /// <summary>
     /// Effects byte => intg[byte]

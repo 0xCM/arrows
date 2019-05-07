@@ -206,56 +206,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T SecondOrDefault<T>(this IEnumerable<T> items)
             => items.Take(2).LastOrDefault();
-
-        /// <summary>
-        /// Logically equivalent to <see cref="Enumerable.Single{TSource}(IEnumerable{TSource})"/>, but returns None
-        /// in lieu of throwing an exception if there is not exactly one item in the sequence
-        /// </summary>
-        /// <typeparam name="TValue"></typeparam>
-        /// <param name="values"></param>
-        [MethodImpl(Inline)]
-        public static Option<TValue> TryGetSingle<TValue>(this IEnumerable<TValue> values)
-            => values.Count() == 1 ? values.Single() : none<TValue>();
-
-        /// <summary>
-        /// Logically equivalent to <see cref="Enumerable.Single{TSource}(IEnumerable{TSource})"/>, but returns None
-        /// in lieu of throwing an exception if there is not exactly one item in the sequence
-        /// </summary>
-        /// <typeparam name="X">The stream item type</typeparam>
-        /// <param name="stream">The stream to search</param>
-        /// <param name="predicate">The predicate to match</param>
-        [MethodImpl(Inline)]
-        public static Option<X> TryGetSingle<X>(this IEnumerable<X> stream, Func<X, bool> predicate)
-        {
-            var satisfied = stream.Where(predicate).ToList();
-            if (satisfied.Count != 1)
-                return none<X>();
-            else
-                return satisfied[0];
-        }
-
-        /// <summary>
-        /// Searches for the first element in the stream that satisfies a predicate and returns the
-        /// element if found; otherwise, returns None
-        /// </summary>
-        /// <typeparam name="X">The stream item type</typeparam>
-        /// <param name="stream">The stream to search</param>
-        /// <param name="predicate">The predicate to match</param>
-        [MethodImpl(Inline)]
-        public static Option<X> TryGetFirst<X>(this IEnumerable<X> stream, Func<X, bool> predicate)
-            => stream.FirstOrDefault(predicate);
-
-        /// <summary>
-        /// Returns the first element of the sequence that satisifies the predicate, if any.
-        /// </summary>
-        /// <param name="src">The sequence to search</param>
-        /// <param name="predicate">The predicate to satiisfy</param>
-        /// <typeparam name="T">The element type</typeparam>
-        /// <returns>A valued option, if found; otherwise, none</returns>
-        [MethodImpl(Inline)]
-        public static Option<T> TryFind<T>(this IEnumerable<T> src, Func<T,bool> predicate)
-            => src.FirstOrDefault(predicate);
-
  
         /// <summary>
         /// Partitions the source sequence into segments of natural length
@@ -265,7 +215,7 @@ namespace Z0
         /// <typeparam name="N">The segment length</typeparam>
         [MethodImpl(Inline)]
         public static IEnumerable<IReadOnlyList<T>> Partition<N,T>(this IEnumerable<T> src)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
                 => partition<N,T>(src);    
         
         /// <summary>

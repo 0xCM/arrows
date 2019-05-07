@@ -60,16 +60,16 @@ namespace Z0
             var underflow = samples.Where(x => primops.lt(x,domain.left) );
             var overflow = samples.Where(x => primops.gteq(x, domain.right));
             
-            if(underflow.Count != 0)
+            if(underflow.Count() != 0)
                 foreach(var i in underflow)
                     babble(i);
 
-            if(overflow.Count != 0)
+            if(overflow.Count() != 0)
                 foreach(var i in overflow)
                     babble(i);
 
-            Claim.eq(0, underflow.Count, AppMsg.Define($"Generation underflow: numbers should be greater than or equal to {domain.left}"));
-            Claim.eq(0, overflow.Count, AppMsg.Define($"Generation overlfow: numbers should be less than {domain.right}"));
+            Claim.eq(0, underflow.Count(), AppMsg.Define($"Generation underflow: numbers should be greater than or equal to {domain.left}"));
+            Claim.eq(0, overflow.Count(), AppMsg.Define($"Generation overlfow: numbers should be less than {domain.right}"));
 
         }
 
@@ -100,7 +100,7 @@ namespace Z0
 
             inform($"Histogram domain: {histo.Domain}");
             inform($"Histogram grain: {histo.Grain}");
-            inform($"Histogram bucket count: {buckets.Count}");            
+            inform($"Histogram bucket count: {buckets.Length}");            
             inform($"Total number of samples: {data.Length}");
             inform($"Sum of bucket counts: {total}");
             Claim.eq(total, data.Length);
@@ -143,8 +143,8 @@ namespace Z0
             
             inform($"Domain = {domain} | Min = {samples.Min()} | Max = {samples.Max()}");
 
-            var pos = samples.Where(x => x > 0).Count;
-            var neg = samples.Where(x => x < 0).Count;
+            var pos = samples.Where(x => x > 0).Count();
+            var neg = samples.Where(x => x < 0).Count();
             inform($"(+) = {pos} | (-) = {neg}");                       
                   
         }
@@ -215,7 +215,6 @@ namespace Z0
             var reps = Pow2.T20;
 
             var t1 = stopwatch();
-            gmath.init();
             elapsed(t1);
 
             var t2 = stopwatch();

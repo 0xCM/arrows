@@ -8,9 +8,9 @@ namespace Z0
     /// <summary>
     /// Reifies a natural prime base raised to a natural power
     /// </summary>
-    public readonly struct PrimePow<P, E> : TypeNat
-        where E : TypeNat, new()
-        where P : TypeNat, IPrime<P>, new()
+    public readonly struct PrimePow<P, E> : ITypeNat
+        where E : ITypeNat, new()
+        where P : ITypeNat, IPrime<P>, new()
     {
         public static readonly PrimePow<P,E> Rep = default;
 
@@ -18,7 +18,7 @@ namespace Z0
 
         public static readonly ulong Value = Seq.value;
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => Rep;
 
         public NatSeq seq 
@@ -27,8 +27,8 @@ namespace Z0
         public ulong value 
             => Seq.value;
 
-        public byte[] digits() 
-            => Seq.digits();
+        byte[] ITypeNat.Digits() 
+            => (Seq as ITypeNat).Digits();
 
         public string format()
             => Value.ToString();

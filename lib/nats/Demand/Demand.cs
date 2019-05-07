@@ -19,7 +19,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K1">The Nat type</typeparam>
     public interface IDemand<K1> : IDemand
-        where K1 : TypeNat, new()
+        where K1 : ITypeNat, new()
     {
         /// <summary>
         /// Specifies whether reification satisfies demand
@@ -37,8 +37,8 @@ namespace Z0
     /// <typeparam name="K1">The first nat type</typeparam>
     /// <typeparam name="K2">The second nat type</typeparam>
     public interface IDemand<K1,K2> : IDemand
-        where K1 : TypeNat, new()
-        where K2 : TypeNat
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat
     {
         
     }
@@ -50,9 +50,9 @@ namespace Z0
     /// <typeparam name="K2">The second nat type</typeparam>
     /// <typeparam name="K3">The third nat type</typeparam>
     public interface IDemand<K1,K2,K3> : IDemand
-        where K1 : TypeNat, new()
-        where K2 : TypeNat, new()
-        where K3 : TypeNat, new()
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
+        where K3 : ITypeNat, new()
     {
         
     }

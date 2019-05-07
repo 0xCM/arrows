@@ -18,7 +18,7 @@ namespace Z0
     /// encasulated data is always of lenth 16 bytes = 128 bits
     /// </summary>
     public ref struct Span<N,T>
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         where T : struct, IEquatable<T>
     {
         public static implicit operator Span<T>(Span<N,T> src)

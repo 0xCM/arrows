@@ -20,13 +20,12 @@ namespace Z0
     /// </summary>
     public static class BitVector
     {
-
         /// <summary>
         /// Constructs a BitVector from an array of bits
         /// </summary>
         /// <param name="src">The source bits</param>
         public static BitVector<N> define<N>(params bit[] src)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
                 => new BitVector<N>(src);
 
         /// <summary>
@@ -34,11 +33,11 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         public static BitVector<N> define<N>(params BinaryDigit[] src)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
                 => new BitVector<N>(src.ToBits());
    
         public static BitVector<N> Parse<N>(string src)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
         {
             var len = Nat.require<N>(src.Length);
             var bits = alloc<bit>(src.Length);
@@ -52,7 +51,7 @@ namespace Z0
     /// Defines an integrally and naturally typed bitvector
     /// </summary>
     public readonly struct BitVector<N> : Structures.Bitwise<BitVector<N>>, Lengthwise,  Formattable, Equatable<BitVector<N>>
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
     {
         public static readonly uint Length = (uint)natu<N>();        
         const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
@@ -91,10 +90,7 @@ namespace Z0
         public BitVector(params bit[] src)
             => bits = src.Length == Length ? src : throw error(src.Length);
 
-        public BitVector(Index<bit> src)
-            => bits = src.Count == Length ? src : throw error(src.Count);
-
-        public Index<bit> bits {get;}
+        public bit[] bits {get;}
         
         public uint length 
             => Length;
@@ -199,7 +195,6 @@ namespace Z0
         public BitVector<N> trailingOffToOn()
             => throw new Exception();
 
-
         public override string ToString()
             => format();
 
@@ -211,11 +206,8 @@ namespace Z0
 
         static byte turnBitOff(byte src, int pos)
             => (byte)(src & ~ (1 << pos));
-        
-        
+           
         public byte[] bytes()
             => throw new NotImplementedException();
-    }
-
- 
+    } 
 }

@@ -21,7 +21,7 @@ namespace Z0
         /// <typeparam name="T">The base value type</typeparam>
         [MethodImpl(Inline)]
         public static T value<N,T>()
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
             where T : struct, IEquatable<T>
                 => cast<Pow2<N,T>>(Pow2G<T>.TheOne).Value;
 
@@ -155,7 +155,7 @@ namespace Z0
 
 
     public interface Pow2<N,T>
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         where T : struct, IEquatable<T>
     {
         T Value {get;}

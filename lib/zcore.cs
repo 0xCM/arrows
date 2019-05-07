@@ -127,25 +127,6 @@ partial class zcore
 
 
     /// <summary>
-    /// Raises a NotImplemented exception
-    /// </summary>
-    public static T noimpl<T>() 
-        => throw new NotImplementedException();
-
-    /// <summary>
-    /// Raises a NotImplemented exception
-    /// </summary>
-    public static void noimpl() 
-        => throw new NotImplementedException();
-
-    /// <summary>
-    /// Raises a NotSupportedException exception
-    /// </summary>
-    /// <returns></returns>
-    public static T nosupport<T>()
-        => throw new NotSupportedException();
-
-    /// <summary>
     /// Constructs an arrow, based at a specified source, projecting
     /// onto a specified value
     /// </summary>

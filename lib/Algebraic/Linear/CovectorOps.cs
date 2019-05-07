@@ -25,7 +25,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static T apply<N,T>(Covector<N,T> cv, Vector<N,T> v)
             where T : struct, Operative.Semiring<T>, IEquatable<T>
-            where N : TypeNat, new()        
+            where N : ITypeNat, new()        
 
         {
             var sr = new T();
@@ -43,7 +43,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(Dim<N> dim, params T[] src) 
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
             where T : struct, IEquatable<T>    
                 => new Covector<N,T>(src);
 
@@ -56,7 +56,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(IEnumerable<T> src) 
             where T : struct, IEquatable<T>    
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
                 => new Covector<N,T>(src);
         
         /// <summary>
@@ -68,7 +68,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(params T[] src) 
             where T : struct, IEquatable<T>    
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
                 => new Covector<N,T>(src);
 
 
@@ -80,7 +80,7 @@ namespace Z0
         /// <typeparam name="T">The convector component type</typeparam>
         [MethodImpl(Inline)]
         public static T sum<N,T>(Covector<N,T> src) 
-            where N : TypeNat, new() 
+            where N : ITypeNat, new() 
             where T : struct, Structures.Semiring<T>
                 => Slice.sum(src.cells);
     }

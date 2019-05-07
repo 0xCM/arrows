@@ -17,7 +17,7 @@ namespace Z0.Testing
 
     public abstract class VectorEquality<C,N,T> : VectorBinOpTest<C,N,T,bool>
         where C : VectorEquality<C,N,T>
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         where T : struct, IEquatable<T>
     {
 

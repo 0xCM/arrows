@@ -19,7 +19,7 @@ namespace Z0
         /// Reifies a semiring of vectors over a semiring of elements
         /// </summary>
         public readonly struct VectorSemiring<N, T> : Operative.Semiring<Vector<N,T>>
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
             where T : struct, Structures.Semiring<T> 
         {
             static VectorSemiring<N, T> Inhabitant = default;

@@ -8,11 +8,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using System.Reflection;
 
 using Z0;
 
 partial class zfunc
 {
+
+    /// <summary>
+    /// Gets the assembly in which the parametrized type is defined
+    /// </summary>
+    [MethodImpl(Inline)]
+    public static Assembly assembly<T>()
+        => typeof(T).Assembly;
 
 
     /// <summary>

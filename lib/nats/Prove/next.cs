@@ -25,8 +25,8 @@ namespace Z0
         /// <typeparam name="K2">The successor type</typeparam>
         /// <returns></returns>
         public static Next<K1,K2> next<K1,K2>()
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => new Next<K1,K2>(natrep<K1>(),natrep<K2>());                             
 
         /// <summary>
@@ -37,8 +37,8 @@ namespace Z0
         /// <typeparam name="K2">The successor type</typeparam>
         /// <returns></returns>
         public static Next<K1,K2> next<K1,K2>(K1 k1, K2 k2)
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => new Next<K1,K2>(k1,k2);                             
 
         /// <summary>
@@ -49,8 +49,8 @@ namespace Z0
         /// <typeparam name="K2">The successor type</typeparam>
         /// <returns></returns>
         public static Option<Next<K1,K2>> tryNext<K1,K2>()
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => Try(() => new Next<K1,K2>(natrep<K1>(),natrep<K2>()));                             
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace Z0
         /// <typeparam name="K2">The successor type</typeparam>
         /// <returns></returns>
         public static Option<Next<K1,K2>> tryNext<K1,K2>(K1 k1, K2 k2)
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => Try(() => new Next<K1,K2>(k1,k2));                             
 
     }

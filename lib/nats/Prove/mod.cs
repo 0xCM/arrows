@@ -26,9 +26,9 @@ namespace Z0
         /// <typeparam name="K3">The third natural type</typeparam>
         [MethodImpl(Inline)]
         public static Mod<K1,K2,K3> mod<K1,K2,K3>()
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
-            where K3 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
+            where K3 : ITypeNat, new()
                 => new Mod<K1,K2,K3>(natrep<K1>(), natrep<K2>(),natrep<K3>());
 
         /// <summary>
@@ -41,9 +41,9 @@ namespace Z0
         /// <typeparam name="K3">The third natural type</typeparam>
         [MethodImpl(Inline)]
         public static Mod<K1,K2,K3> mod<K1,K2,K3>(K1 k1, K2 k2, K3 k3)
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
-            where K3 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
+            where K3 : ITypeNat, new()
                 => new Mod<K1,K2,K3>(k1, k2, k3);
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace Z0
         /// <typeparam name="K3">The third natural type</typeparam>
         [MethodImpl(Inline)]
         public static Option<Mod<K1,K2,K3>> tryMod<K1,K2,K3>()
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
-            where K3 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
+            where K3 : ITypeNat, new()
                 => Try( () => new Mod<K1,K2,K3>(natrep<K1>(), natrep<K2>(),natrep<K3>()));
 
         /// <summary>
@@ -71,9 +71,9 @@ namespace Z0
         /// <typeparam name="K3">The third natural type</typeparam>
         [MethodImpl(Inline)]
         public static Option<Mod<K1,K2,K3>> tryMod<K1,K2,K3>(K1 k1, K2 k2, K3 k3)
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
-            where K3 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
+            where K3 : ITypeNat, new()
                 => Try( () => new Mod<K1,K2,K3>(k1, k2, k3));
 
 
@@ -85,7 +85,7 @@ namespace Z0
         /// <typeparam name="K">An even natural type</typeparam>
         [MethodImpl(Inline)]
         public static Even<K> even<K>()
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => new Even<K>(natrep<K>());
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Z0
         /// <typeparam name="K">An even natural type</typeparam>
         [MethodImpl(Inline)]
         public static Even<K> even<K>(K k)
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => new Even<K>(k);
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Z0
         /// <typeparam name="K">An even natural type</typeparam>
         [MethodImpl(Inline)]
         public static Option<Even<K>> tryEven<K>()
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => Try(() => new Even<K>(natrep<K>()));
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace Z0
         /// <typeparam name="K">An even natural type</typeparam>
         [MethodImpl(Inline)]
         public static Option<Even<K>> tryEven<K>(K k)
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => Try(() => new Even<K>(k));
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Z0
         /// <typeparam name="K">An odd natural type</typeparam>
         [MethodImpl(Inline)]
         public static Odd<K> odd<K>()
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => new Odd<K>(natrep<K>());
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace Z0
         /// <typeparam name="K">An odd natural type</typeparam>
         [MethodImpl(Inline)]
         public static Odd<K> odd<K>(K k)
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => new Odd<K>(k);
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Z0
         /// <typeparam name="K">An odd natural type</typeparam>
         [MethodImpl(Inline)]
         public static Option<Odd<K>> tryOdd<K>()
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => Try(() => new Odd<K>(natrep<K>()));
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Z0
         /// <typeparam name="K">An odd natural type</typeparam>
         [MethodImpl(Inline)]
         public static Option<Odd<K>> tryOdd<K>(K k)
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => Try( () => new Odd<K>(k));
 
     }

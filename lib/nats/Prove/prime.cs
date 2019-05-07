@@ -21,7 +21,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">The subject</typeparam>
         public static Prime<K> prime<K>()
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => new Prime<K>(natrep<K>());
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">The subject</typeparam>
         public static Prime<K> prime<K>(K k)
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => new Prime<K>(k);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">The subject</typeparam>
         public static Option<Prime<K>> tryPrime<K>()
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => Try(() => prime<K>());
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">The subject</typeparam>
         public static Option<Prime<K>> tryPrime<K>(K k)
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => Try(() => prime<K>(k));
 
     }

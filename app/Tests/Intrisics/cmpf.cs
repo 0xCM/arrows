@@ -116,12 +116,12 @@ namespace Z0.Tests.InXTests
             public void ClearNaN()
             {
                 var src = Vec128.define(3.4d, double.NaN);
-                var result = inxfunc.clearNaN(src);
+                var result = mfunc.clearNaN(src);
                 var expect = Vec128.define(3.4d, -1d);
                 Claim.eq(expect,result);
 
                 src = Vec128.define(double.NaN,3.4d);
-                result = inxfunc.clearNaN(src);
+                result = mfunc.clearNaN(src);
                 expect = Vec128.define(-1d,3.4d);
                 Claim.eq(expect,result);
             }

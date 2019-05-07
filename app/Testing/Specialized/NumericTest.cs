@@ -52,7 +52,7 @@ namespace Z0.Testing
         /// <param name="src">The source strem</param>
         /// <typeparam name="N">The vector length</typeparam>
         protected IEnumerable<Vector<N,T>> MakeVectors<N>(IEnumerable<T> src)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
             => from x in src.Partition(nati<N>())
                 where x.Count == nati<N>()
                 select vector<N,T>(x);

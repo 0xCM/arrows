@@ -2025,7 +2025,6 @@ namespace Z0
         public static unsafe uint* puint32<T>(ref T src)
             => (uint*)pvoid(ref src);
 
-
         [MethodImpl(Inline)]
         public static unsafe long* pint64<T>(ref T src)
             => (long*)pvoid(ref src);
@@ -2034,7 +2033,6 @@ namespace Z0
         public static unsafe ulong* puint64<T>(ref T src)
             => (ulong*)pvoid(ref src);
 
-
         [MethodImpl(Inline)]
         public static unsafe float* pfloat32<T>(ref T src)
             => (float*)pvoid(ref src);
@@ -2042,6 +2040,46 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe double* pfloat64<T>(ref T src)
             => (double*)pvoid(ref src);
+
+        [MethodImpl(Inline)]
+        public static unsafe sbyte* int8(void* src)
+            => (sbyte*)src;
+
+        [MethodImpl(Inline)]
+        public static unsafe byte* uint8(void* src)
+            => (byte*)src;
+
+        [MethodImpl(Inline)]
+        public static unsafe short* int16(void* src)
+            => (short*)src;
+
+        [MethodImpl(Inline)]
+        public static unsafe ushort* uint16(void* src)
+            => (ushort*)src;
+
+        [MethodImpl(Inline)]
+        public static unsafe int* int32(void* src)
+            => (int*)src;
+
+        [MethodImpl(Inline)]
+        public static unsafe uint* uint32(void* src)
+            => (uint*)src;
+
+        [MethodImpl(Inline)]
+        public static unsafe long* int64(void* src)
+            => (long*)src;
+
+        [MethodImpl(Inline)]
+        public static unsafe ulong* uint64(void* src)
+            => (ulong*)src;
+
+        [MethodImpl(Inline)]
+        public static unsafe float* float32(void* src)
+            => (float*)src;
+
+        [MethodImpl(Inline)]
+        public static unsafe double* float64(void* src)
+            => (double*)src;
 
         #endregion    
 

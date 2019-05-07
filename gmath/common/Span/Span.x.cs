@@ -68,7 +68,27 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<T> ToSpan<T>(this T[] src)
             => src;
- 
+        
+        /// <summary>
+        /// Constructs a span from a sequence selection
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span256<T> ToSpan256<T>(this T[] src)
+            where T : struct, IEquatable<T>
+            => (Span256<T>)src;
+
+        /// <summary>
+        /// Constructs a span from a sequence selection
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span128<T> ToSpan128<T>(this T[] src)
+            where T : struct, IEquatable<T>
+            => (Span128<T>)src;
+
         /// <summary>
         /// Constructs a span from an array selection
         /// </summary>
@@ -147,6 +167,19 @@ namespace Z0
              where T : struct, IEquatable<T>
                 => (Span256<T>)src;
 
+
+        [MethodImpl(Inline)]
+        public static bool Any<T>(this Span128<T> src, Func<T,bool> f)
+             where T : struct, IEquatable<T>
+        {
+            var it = src.GetEnumerator();
+            while(it.MoveNext())
+            {
+                if(f(it.Current))
+                    return true;
+            }
+            return false;
+        }
     }
 
 }

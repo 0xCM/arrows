@@ -15,7 +15,7 @@ namespace Z0
         /// <typeparam name="K">The field type</typeparam>
         /// <typeparam name="G">The indidual type</typeparam>
         public interface VectorSpace<N,K,G> : LeftModule<K,G>
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
             where G : GroupA<G>, new()
             where K : Field<K>, new()
         {

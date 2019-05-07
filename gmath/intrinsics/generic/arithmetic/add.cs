@@ -111,34 +111,34 @@ namespace Z0
             switch(kind)
             {
                 case PrimalKind.int8:
-                    dinx.add(int8(lhs), int8(rhs), dst);
+                    dinx.add(int8(lhs), int8(rhs), int8(dst));
                     break;
                 case PrimalKind.uint8:
-                    dinx.add(uint8(lhs), uint8(rhs), dst);
+                    dinx.add(uint8(lhs), uint8(rhs), uint8(dst));
                     break;
                 case PrimalKind.int16:
-                    dinx.add(int16(lhs), int16(rhs), dst);
+                    dinx.add(int16(lhs), int16(rhs), int16(dst));
                     break;
                 case PrimalKind.uint16:
-                    dinx.add(uint16(lhs), uint16(rhs), dst);
+                    dinx.add(uint16(lhs), uint16(rhs), uint16(dst));
                     break;
                 case PrimalKind.int32:
-                    dinx.add(int32(lhs), int32(rhs), dst);
+                    dinx.add(int32(lhs), int32(rhs), int32(dst));
                     break;
                 case PrimalKind.uint32:
-                    dinx.add(uint32(lhs), uint32(rhs), dst);
+                    dinx.add(uint32(lhs), uint32(rhs), uint32(dst));
                     break;
                 case PrimalKind.int64:
-                    dinx.add(int64(lhs), int64(rhs), dst);
+                    dinx.add(int64(lhs), int64(rhs), int64(dst));
                     break;
                 case PrimalKind.uint64:
-                    dinx.add(uint64(lhs), uint64(rhs), dst);
+                    dinx.add(uint64(lhs), uint64(rhs), uint64(dst));
                     break;
                 case PrimalKind.float32:
-                    dinx.add(float32(lhs), float32(rhs), dst);
+                    dinx.add(float32(lhs), float32(rhs), float32(dst));
                     break;
                 case PrimalKind.float64:
-                    dinx.add(float64(lhs), float64(rhs), dst);                
+                    dinx.add(float64(lhs), float64(rhs), float64(dst));                
                 break;                
                 default:
                     throw errors.unsupported(kind);
@@ -273,6 +273,18 @@ namespace Z0
                     dinx.add(uint32(lhs), uint32(rhs), ref xDst);
                     return generic<T>(xDst);
                 }
+                case PrimalKind.int64:
+                {
+                    var xDst = int64(dst);
+                    dinx.add(int64(lhs), int64(rhs), ref xDst);
+                    return generic<T>(xDst);
+                }
+                case PrimalKind.uint64:
+                {
+                    var xDst = uint64(dst);
+                    dinx.add(uint64(lhs), uint64(rhs), ref xDst);
+                    return generic<T>(xDst);
+                }
                 case PrimalKind.float32:
                 {
                     var xDst = float32(dst);
@@ -282,7 +294,7 @@ namespace Z0
                 case PrimalKind.float64:
                 {
                     var xDst = float64(dst);
-                    dinx.add(float64(rhs), float64(rhs), ref  xDst);
+                    dinx.add(float64(lhs), float64(rhs), ref  xDst);
                     return generic<T>(xDst);
                 }
                 
@@ -334,6 +346,18 @@ namespace Z0
                     dinx.add(uint32(lhs), uint32(rhs), ref xDst);
                     return generic<T>(xDst);
                 }
+                case PrimalKind.int64:
+                {
+                    var xDst = int64(dst);
+                    dinx.add(int64(lhs), int64(rhs), ref xDst);
+                    return generic<T>(xDst);
+                }
+                case PrimalKind.uint64:
+                {
+                    var xDst = uint64(dst);
+                    dinx.add(uint64(lhs), uint64(rhs), ref xDst);
+                    return generic<T>(xDst);
+                }
                 case PrimalKind.float32:
                 {
                     var xDst = float32(dst);
@@ -343,7 +367,7 @@ namespace Z0
                 case PrimalKind.float64:
                 {
                     var xDst = float64(dst);
-                    dinx.add(float64(rhs), float64(rhs), ref  xDst);
+                    dinx.add(float64(lhs), float64(rhs), ref  xDst);
                     return generic<T>(xDst);
                 }
                 

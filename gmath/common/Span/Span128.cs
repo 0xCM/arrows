@@ -52,7 +52,7 @@ namespace Z0
             => src.ToReadOnlySpan();
 
         [MethodImpl(Inline)]
-        public static explicit operator Span128<T> (T[] src)
+        public static implicit operator Span128<T> (T[] src)
             => Load(src);
 
         [MethodImpl(Inline)]
@@ -223,6 +223,7 @@ namespace Z0
         public Span128<S> As<S>()                
             where S : struct, IEquatable<S>
                 => (Span128<S>)MemoryMarshal.Cast<T,S>(data);                    
+
         public int Length 
         {
             [MethodImpl(Inline)]
@@ -240,7 +241,13 @@ namespace Z0
             [MethodImpl(Inline)]
             get => data.IsEmpty;
         }
-            
+
+        public ref T Head
+        {
+            [MethodImpl(Inline)]
+            get => ref data[0];                        
+        }            
+
         public override string ToString() 
             => data.ToString();
 

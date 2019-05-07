@@ -9,6 +9,7 @@ namespace Z0
     using System.Collections.Generic;
 
     using static zcore;
+    using static mfunc;
     using static OpInfo;
 
     public static class UnaryOpData

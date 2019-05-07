@@ -10,14 +10,14 @@ namespace Z0
     using System.Collections.Concurrent;
     using System.Reflection;
     using System.Runtime.CompilerServices;
-    //using static zcore;
 
+    using static mfunc;
 
     /// <summary>
     /// Encodes a natural number k such that k:K & j:Prior[K] => k = j + 1
     /// </summary>
-    public readonly struct Prior<K> : TypeNat, IEquatable<Prior<K>>
-            where K : TypeNat, new()
+    public readonly struct Prior<K> : ITypeNat, IEquatable<Prior<K>>
+            where K : ITypeNat, new()
     {
         
         static K k = default;
@@ -30,12 +30,12 @@ namespace Z0
         static readonly string description = $"--{k} = {Value}";
 
         public static readonly byte[] Digits 
-            = zcore.digits(Value);
+            = mfunc.digits(Value);
 
         public static readonly NatSeq Seq
             = Nat.reflect(Digits);
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => Rep;
 
         public NatSeq seq
@@ -45,7 +45,7 @@ namespace Z0
             => Value;
 
 
-        public byte[] digits()
+        byte[] ITypeNat. Digits()
             => Digits;
 
         public NatSeq natseq()

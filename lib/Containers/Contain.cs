@@ -157,7 +157,7 @@ namespace Z0
         /// by a natural type parameter
         /// </summary>
         public interface Enumerable<N,I> : IEnumerable<I>
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
         {
             /// <summary>
             /// The value of the natural parameter
@@ -166,7 +166,7 @@ namespace Z0
         }
 
         public interface Array<N,T> : Enumerable<N,T>
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
         {
             /// <summary>
             /// Specifies or retrieves an array value via an unchecked index

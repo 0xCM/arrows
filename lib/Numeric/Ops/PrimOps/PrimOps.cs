@@ -27,8 +27,6 @@ namespace Z0
                 Negatable<T>, 
                 Absolutive<T>, 
                 Stepwise<T>,
-                // Stepwise<Index<T>>,            
-
                 Bitwise<T>, 
                 Divisive<T>, 
                 Nullary<T>, 
@@ -175,7 +173,7 @@ namespace Z0
                 => Additive.add(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public Index<T> add(Index<T> lhs, Index<T> rhs)
+            public Index<T> add(T[] lhs, T[] rhs)
                 =>  fuse(lhs,rhs,add);
 
             [MethodImpl(Inline)]
@@ -183,7 +181,7 @@ namespace Z0
                 => Multiplicative.mul(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public Index<T> mul(Index<T> lhs, Index<T> rhs)
+            public Index<T> mul(T[] lhs, T[] rhs)
                 => fuse(lhs,rhs,mul);
 
             [MethodImpl(Inline)]
@@ -191,7 +189,7 @@ namespace Z0
                 => Divisive.div(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public Index<T> div(Index<T> lhs, Index<T> rhs)
+            public Index<T> div(T[] lhs, T[] rhs)
                 =>  fuse(lhs,rhs,div);
 
             [MethodImpl(Inline)]
@@ -199,7 +197,7 @@ namespace Z0
                 => Divisive.mod(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public Index<T> mod(Index<T> lhs, Index<T> rhs)
+            public Index<T> mod(T[] lhs, T[] rhs)
                 =>  fuse(lhs,rhs,mod);
 
             [MethodImpl(Inline)]
@@ -207,7 +205,7 @@ namespace Z0
                 => Divisive.gcd(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public Index<T> gcd(Index<T> lhs, Index<T> rhs)
+            public Index<T> gcd(T[] lhs, T[] rhs)
                 =>  fuse(lhs,rhs,gcd);
             
             [MethodImpl(Inline)]
@@ -225,7 +223,7 @@ namespace Z0
 
             
             [MethodImpl(Inline)]
-            public Index<T> sub(Index<T> lhs, Index<T> rhs)
+            public Index<T> sub(T[] lhs, T[] rhs)
                 =>  fuse(lhs,rhs,sub);
 
             [MethodImpl(Inline)]
@@ -279,7 +277,7 @@ namespace Z0
                 => Bitwise.and(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public Index<T> and(Index<T> lhs, Index<T> rhs)
+            public Index<T> and(T[] lhs, T[] rhs)
                 =>  fuse(lhs,rhs, and);
 
             [MethodImpl(Inline)]
@@ -287,7 +285,7 @@ namespace Z0
                 => Bitwise.or(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public Index<T> or(Index<T> lhs, Index<T> rhs)
+            public Index<T> or(T[] lhs, T[] rhs)
                 =>  fuse(lhs,rhs,or);
 
             [MethodImpl(Inline)]
@@ -295,7 +293,7 @@ namespace Z0
                 => Bitwise.xor(lhs,rhs);            
 
             [MethodImpl(Inline)]
-            public Index<T> xor(Index<T> lhs, Index<T> rhs)
+            public Index<T> xor(T[] lhs, T[] rhs)
                 =>  fuse(lhs,rhs,xor);
 
             [MethodImpl(Inline)]
@@ -478,6 +476,25 @@ namespace Z0
             public bit[] bits(Index<T> src)
                 => Arr.concat(map(src,bits));
 
+            public Index<T> div(Index<T> lhs, Index<T> rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Index<T> and(Index<T> lhs, Index<T> rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Index<T> or(Index<T> lhs, Index<T> rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Index<T> xor(Index<T> lhs, Index<T> rhs)
+            {
+                throw new NotImplementedException();
+            }
         }    
     }
 }

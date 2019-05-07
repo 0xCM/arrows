@@ -14,18 +14,15 @@ namespace Z0
     using static zcore;
     using static zfunc;
 
-
-
     public readonly struct BitString 
     {
-
-        public static BitString define(IReadOnlyList<bit> src)
+        public static BitString define(IReadOnlyList<Bit> src)
             => new BitString(src.ToArray());
 
-        public static BitString define(params bit[] src)
+        public static BitString define(params Bit[] src)
             => new BitString(src);
 
-        public static BitString define(IEnumerable<bit> src)
+        public static BitString define(IEnumerable<Bit> src)
             => new BitString(src.ToArray());
 
         public static readonly BitString Empty = default;
@@ -35,7 +32,7 @@ namespace Z0
         public static BitString operator + (BitString lhs, BitString rhs) 
             => lhs.concat(rhs);
 
-        public bit[] bits {get;}
+        public Bit[] bits {get;}
 
         public BitString zero 
             => Empty;
@@ -47,7 +44,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public BitString(params bit[] src)
+        public BitString(params Bit[] src)
             => this.bits = src;
 
 

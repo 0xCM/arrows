@@ -18,9 +18,9 @@ namespace Z0
     /// <typeparam name="K2">The second nat type</typeparam>
     /// <typeparam name="K3">The third nat type</typeparam>
     public interface IMod<K1,K2,K3> : IDemand<K1,K2,K3>
-        where K1 : TypeNat, new()
-        where K2 : TypeNat, new()
-        where K3 : TypeNat, new()
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
+        where K3 : ITypeNat, new()
     {
 
     }
@@ -30,7 +30,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K">An even natural type</typeparam>
     public interface IEven<K> : IDemand<K>
-        where K : TypeNat, new()
+        where K : ITypeNat, new()
     {
 
     }
@@ -40,7 +40,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K">An Odd natural type</typeparam>
     public interface IOdd<K> : IDemand<K>
-        where K : TypeNat, new()
+        where K : ITypeNat, new()
     {
 
     }
@@ -53,9 +53,9 @@ namespace Z0
     /// <typeparam name="K2">The second nat type</typeparam>
     /// <typeparam name="K3">The third nat type</typeparam>
     public readonly struct Mod<K1,K2,K3> : IMod<K1,K2,K3>
-        where K1: TypeNat, new()
-        where K2: TypeNat, new()
-        where K3: TypeNat, new()
+        where K1: ITypeNat, new()
+        where K2: ITypeNat, new()
+        where K3: ITypeNat, new()
     {
         static readonly K1 k1 = default;
         static readonly K2 k2 = default;
@@ -81,7 +81,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K">An even natural type</typeparam>
     public readonly struct Even<K> : IEven<K>
-        where K: TypeNat, new()
+        where K: ITypeNat, new()
     {
         static readonly K k = default;
         static readonly string description = $"{k} % {2} = {0}";
@@ -103,7 +103,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K">An odd natural type</typeparam>
     public readonly struct Odd<K> : IOdd<K>
-        where K: TypeNat, new()
+        where K: ITypeNat, new()
     {
         static readonly K k = default;
         static readonly string description = $"{k} % {2} != {0}";

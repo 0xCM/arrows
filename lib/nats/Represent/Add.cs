@@ -11,12 +11,14 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
+    using static mfunc;
+
     /// <summary>
     /// Encodes a natural number k such that k1:K1 & k2:K2 => k = k1 + k2
     /// </summary>
-    public readonly struct Add<K1, K2> : TypeNat, IEquatable<Pow<K1,K2>>, IEquatable<NatSeq>
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+    public readonly struct Add<K1, K2> : ITypeNat, IEquatable<Pow<K1,K2>>, IEquatable<NatSeq>
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
     {
         static readonly K1 k1 = default;
 
@@ -30,12 +32,12 @@ namespace Z0
         static readonly string description = $"{k1} + {k2} = {Value}";
 
         public static readonly byte[] Digits 
-            = zcore.digits(Value);
+            = mfunc.digits(Value);
 
         public static readonly NatSeq Seq
             = Nat.reflect(Digits);
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => Rep;
 
         public NatSeq seq
@@ -44,7 +46,7 @@ namespace Z0
         public ulong value 
             => Value;
 
-        public byte[] digits()
+        byte[] ITypeNat. Digits()
             => Digits;
 
         public NatSeq natseq()

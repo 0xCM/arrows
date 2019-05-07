@@ -21,7 +21,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Vector<N,T> NatVec<N,T>(this Z0.TypeNat<N> n, IEnumerable<T> components)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
             where T :struct, IEquatable<T>
                 => new Vector<N, T>(components);
 
@@ -33,7 +33,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static int CountFalse<N>(this Vector<N,bool> src)
-            where N : TypeNat, new()    
+            where N : ITypeNat, new()    
                 => src.cells(x => x == false).Count();
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static int CountTrue<N>(this Vector<N,bool> src)
-            where N : TypeNat, new()    
+            where N : ITypeNat, new()    
                 => src.cells(x => x == true).Count();
 
     }

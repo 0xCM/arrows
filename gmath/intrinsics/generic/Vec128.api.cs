@@ -14,7 +14,8 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     using static zcore;
-    using static inxfunc;
+    using static mfunc;
+    using static As;
 
     public static class Vec128
     {
@@ -768,14 +769,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe ref Vec128<int> add(ref Vec128<int> lhs, in Vec128<int> rhs)
         {
-            dinx.store(dinx.add(lhs,rhs), Unsafe.AsPointer(ref lhs));
+            dinx.store(dinx.add(lhs,rhs), pint32(ref lhs));
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
         public static unsafe ref Vec128<int> sub(ref Vec128<int> lhs, in Vec128<int> rhs)
         {
-            dinx.store(dinx.sub(lhs,rhs), Unsafe.AsPointer(ref lhs));
+            dinx.store(dinx.sub(lhs,rhs), pint32(ref lhs));
             return ref lhs;
         }
 
@@ -783,7 +784,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe ref Vec128<int> mul(ref Vec128<int> lhs, in Vec128<int> rhs)
         {
-            dinx.store(dinx.sub(lhs,rhs), Unsafe.AsPointer(ref lhs));
+            dinx.store(dinx.sub(lhs,rhs), pint32(ref lhs));
             return ref lhs;
         }
 

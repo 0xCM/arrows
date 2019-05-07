@@ -74,7 +74,7 @@ namespace Z0
         uint length 
             => (uint)_content.Value.Count;
 
-        public Index<T> content 
+        public T[] content 
             => _content.Value;
 
         public SemiSeq<T> zero 

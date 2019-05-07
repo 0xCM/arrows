@@ -36,13 +36,13 @@ namespace Z0
         public ulong value 
             => 0;
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => this;
 
         public NatSeq seq
             => this;
 
-        public byte[] digits() 
+        byte[] ITypeNat. Digits()
             => Digits;
 
 
@@ -63,7 +63,7 @@ namespace Z0
 
         public static readonly byte[] Digits = {1};        
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => this;
 
         public NatSeq seq
@@ -72,7 +72,7 @@ namespace Z0
         public bool valid 
             => true;
 
-        public byte[] digits() 
+        byte[] ITypeNat. Digits()
             => Digits;
 
         public ulong value 
@@ -96,7 +96,7 @@ namespace Z0
 
         public static readonly byte[] Digits = {2};
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => this;
 
         public NatSeq seq
@@ -108,9 +108,8 @@ namespace Z0
         public bool valid 
             => true;
         
-        public byte[] digits() 
+        byte[] ITypeNat. Digits()
             => Digits;
-
 
         public string format()
             => value.ToString();
@@ -130,7 +129,7 @@ namespace Z0
 
         public static readonly byte[] Digits = {3};
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => this;
 
         public NatSeq seq
@@ -141,8 +140,7 @@ namespace Z0
         
         public ulong value 
             => 3;
-
-        public byte[] digits() 
+        byte[] ITypeNat. Digits()
             => Digits;
 
         public string format()
@@ -163,7 +161,7 @@ namespace Z0
 
         public static readonly byte[] Digits = {4};        
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => this;
 
         public NatSeq seq
@@ -175,7 +173,7 @@ namespace Z0
         public bool valid 
             => true;
 
-        public byte[] digits() 
+        byte[] ITypeNat. Digits()
             => Digits;
 
         public string format()
@@ -196,7 +194,7 @@ namespace Z0
 
         public static readonly byte[] Digits = {5};
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => this;
 
         public NatSeq seq
@@ -208,7 +206,7 @@ namespace Z0
         public ulong value 
             => 5;
                 
-        public byte[] digits() 
+        byte[] ITypeNat. Digits()
             => Digits;
 
         public string format()
@@ -228,7 +226,7 @@ namespace Z0
 
         public static readonly byte[] Digits = {6};
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => this;
 
         public NatSeq seq
@@ -240,7 +238,7 @@ namespace Z0
         public ulong value 
             => 6;
         
-        public byte[] digits() 
+        byte[] ITypeNat. Digits()
             => Digits;
 
         public string format()
@@ -261,7 +259,7 @@ namespace Z0
 
         public static readonly byte[] Digits = {7};
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => this;
 
         public NatSeq seq
@@ -273,7 +271,7 @@ namespace Z0
         public ulong value 
             => 7;
             
-        public byte[] digits() 
+        byte[] ITypeNat. Digits()
             => Digits;
 
         public string format()
@@ -294,7 +292,7 @@ namespace Z0
 
         public static readonly byte[] Digits = {8};        
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => this;
 
         public NatSeq seq
@@ -306,7 +304,7 @@ namespace Z0
         public ulong value  
             => 8;
 
-        public byte[] digits() 
+        byte[] ITypeNat. Digits()
             => Digits;
 
         public string format()
@@ -327,7 +325,7 @@ namespace Z0
         
         public static readonly byte[] Digits = {9};
 
-        public TypeNat rep 
+        public ITypeNat rep 
             => this;
 
         public NatSeq seq
@@ -339,7 +337,7 @@ namespace Z0
         public ulong value 
             => 9;
          
-        public byte[] digits() 
+        byte[] ITypeNat. Digits()
             => Digits;
 
         public string format()

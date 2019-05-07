@@ -16,8 +16,8 @@ namespace Z0
         /// Requires n1:T1 & n2:T2 => n1 < T2
         /// </summary>
         public interface ISmaller<K1,K2> : IDemand<K1,K2>
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
         {
             
         }
@@ -26,8 +26,8 @@ namespace Z0
     /// Captures evidence that n1:T1 & n2:T2 => n1 < T2
     /// </summary>
     public readonly struct Smaller<K1,K2> : ISmaller<K1,K2>
-        where K1: TypeNat, new()
-        where K2: TypeNat, new()
+        where K1: ITypeNat, new()
+        where K2: ITypeNat, new()
     {
         static readonly K1 k1 = default;
         static readonly K2 k2 = default;

@@ -12,9 +12,9 @@ namespace Z0
     using static Traits;
 
     public readonly struct MatMul<M,N,P,T> 
-        where M : TypeNat, new()
-        where N : TypeNat, new()
-        where P : TypeNat, new()
+        where M : ITypeNat, new()
+        where N : ITypeNat, new()
+        where P : ITypeNat, new()
         where T : struct, Operative.Semiring<T>, IEquatable<T>
     {
         

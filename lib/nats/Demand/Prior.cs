@@ -20,8 +20,8 @@ namespace Z0
         /// <typeparam name="K1"></typeparam>
         /// <typeparam name="K2"></typeparam>
         public interface IPrior<K1,K2> : ILarger<K1,K2>
-            where K1 : TypeNat, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
         {
 
         }       
@@ -33,8 +33,8 @@ namespace Z0
     /// <typeparam name="K1">The first nat type</typeparam>
     /// <typeparam name="K2">The second nat type</typeparam>
     public readonly struct Prior<K1,K2> : Demands.Next<K1,K2>
-        where K1: TypeNat, new()
-        where K2: TypeNat, new()
+        where K1: ITypeNat, new()
+        where K2: ITypeNat, new()
     {
         static readonly K1 k1 = default;
         static readonly K2 k2 = default;

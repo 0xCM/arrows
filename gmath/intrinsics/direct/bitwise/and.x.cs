@@ -17,44 +17,76 @@ namespace Z0
     {
         
         [MethodImpl(Inline)]
-        public static unsafe sbyte[] InXAnd(this sbyte[] lhs, sbyte[] rhs)
-            => dinx.and(lhs,rhs);
+        public static Span128<byte> And(this Span128<byte> lhs, ReadOnlySpan128<byte> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
 
         [MethodImpl(Inline)]
-        public static unsafe byte[] InXAnd(this byte[] lhs, byte[] rhs)
-            => dinx.and(lhs,rhs);
+        public static Span128<ushort> And(this Span128<ushort> lhs, ReadOnlySpan128<ushort> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
 
         [MethodImpl(Inline)]
-        public static unsafe short[] InXAnd(this short[] lhs, short[] rhs)
-            => dinx.and(lhs,rhs);
+        public static Span128<short> And(this Span128<short> lhs, ReadOnlySpan128<short> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
 
         [MethodImpl(Inline)]
-        public static unsafe ushort[] InXAnd(this ushort[] lhs, ushort[] rhs)
-            => dinx.and(lhs,rhs);
+        public static Span128<int> And(this Span128<int> lhs, ReadOnlySpan128<int> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
 
         [MethodImpl(Inline)]
-        public static unsafe int[] InXAnd(this int[] lhs, int[] rhs)
-            => dinx.and(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public static unsafe uint[] InXAnd(this uint[] lhs, uint[] rhs)
-            => dinx.and(lhs,rhs);
+        public static Span128<uint> And(this Span128<uint> lhs, ReadOnlySpan128<uint> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
         
         [MethodImpl(Inline)]
-        public static unsafe long[] InXAnd(this long[] lhs, long[] rhs)
-            => dinx.and(lhs,rhs);
+        public static Span128<long> And(this Span128<long> lhs, ReadOnlySpan128<long> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
 
         [MethodImpl(Inline)]
-        public static unsafe ulong[] InXAnd(this ulong[] lhs, ulong[] rhs)
-            => dinx.and(lhs,rhs);
+        public static Span128<ulong> And(this Span128<ulong> lhs, ReadOnlySpan128<ulong> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
 
         [MethodImpl(Inline)]
-        public static unsafe float[] InXAnd(this float[] lhs, float[] rhs)
-            => dinx.and(lhs,rhs);
+        public static Span128<float> And(this Span128<float> lhs, ReadOnlySpan128<float> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
  
         [MethodImpl(Inline)]
-        public static unsafe double[] InXAnd(this double[] lhs, double[] rhs)
-            => dinx.and(lhs,rhs);
+        public static Span128<double> And(this Span128<double> lhs, ReadOnlySpan128<double> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
+ 
+         [MethodImpl(Inline)]
+        public static Span256<byte> And(this Span256<byte> lhs, ReadOnlySpan256<byte> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
 
+        [MethodImpl(Inline)]
+        public static Span256<ushort> And(this Span256<ushort> lhs, ReadOnlySpan256<ushort> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
+
+        [MethodImpl(Inline)]
+        public static Span256<short> And(this Span256<short> lhs, ReadOnlySpan256<short> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
+
+        [MethodImpl(Inline)]
+        public static Span256<int> And(this Span256<int> lhs, ReadOnlySpan256<int> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
+
+        [MethodImpl(Inline)]
+        public static Span256<uint> And(this Span256<uint> lhs, ReadOnlySpan256<uint> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
+        
+        [MethodImpl(Inline)]
+        public static Span256<long> And(this Span256<long> lhs, ReadOnlySpan256<long> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
+
+        [MethodImpl(Inline)]
+        public static Span256<ulong> And(this Span256<ulong> lhs, ReadOnlySpan256<ulong> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
+
+        [MethodImpl(Inline)]
+        public static Span256<float> And(this Span256<float> lhs, ReadOnlySpan256<float> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
+ 
+        [MethodImpl(Inline)]
+        public static Span256<double> And(this Span256<double> lhs, ReadOnlySpan256<double> rhs)
+            => dinx.and(lhs,rhs, ref lhs);
+ 
     }
 }

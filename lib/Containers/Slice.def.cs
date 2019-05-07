@@ -90,7 +90,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public Slice<N,T> ToNatLenth<N>()
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
                 => new Slice<N,T>(data);
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Z0
     /// Encapsulates a linear data segment with naturally-typed length
     /// </summary>
     public readonly struct Slice<N,T> : Structures.Slice<Slice<N,T>,T>
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         where T : struct, IEquatable<T>
     {                    
         

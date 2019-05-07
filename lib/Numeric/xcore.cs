@@ -24,7 +24,7 @@ namespace Z0
         /// <typeparam name="N">The natural length type</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         public static IEnumerable<Vector<N,T>> Vectors<N,T>(this IRandomizer rand, T min, T max)        
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
             where T : struct, IEquatable<T>
         {
                 var primal = rand.Random<T>();
@@ -47,17 +47,15 @@ namespace Z0
         /// <typeparam name="N">The natural length type</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         public static IEnumerable<Vector<N,T>> Vectors<N,T>(this IRandomizer rand, N len, T min, T max)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
             where T : struct, IEquatable<T>
                 => rand.Vectors<N,T>(min,max);
 
-
         public static RandomMatrixSource<M,N,T> MatrixSource<M,N,T>(this IRandomizer rand)
-            where M : TypeNat, new()
-            where N : TypeNat, new()
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
             where T : struct, IEquatable<T>
                 => new MatrixSource<M,N,T>(rand);
-
 
         /// <summary>
         /// Yields a stream of priamal random matrices
@@ -68,8 +66,8 @@ namespace Z0
         /// <typeparam name="N">The column dimension</typeparam>
         /// <typeparam name="T">The entry type</typeparam>
         public static IEnumerable<Matrix<M,N,T>> matrices<M,N,T>(this RandomMatrixSource<M,N,T> rms, T min, T max)
-            where M : TypeNat, new()
-            where N : TypeNat, new()
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
             where T : struct, IEquatable<T>
                 => rms.stream(min,max);
 
@@ -83,8 +81,8 @@ namespace Z0
         /// <typeparam name="N">The column dimension</typeparam>
         /// <typeparam name="T">The entry type</typeparam>
         public static IEnumerable<Matrix<M,N,T>> matrices<M,N,T>(this RandomMatrixSource<M,N,T> rms, Dim<M,N> dim, T min, T max)
-             where M : TypeNat, new()
-             where N : TypeNat, new()
+             where M : ITypeNat, new()
+             where N : ITypeNat, new()
              where T : struct, IEquatable<T>
                 => rms.stream(min,max);
 
@@ -219,7 +217,7 @@ namespace Z0
                 => max(src);
 
         [MethodImpl(Inline)]
-        public static T Inf<T>(this Index<T> src)
+        public static T Inf<T>(this T[] src)
             where T : struct, Structures.Orderable<T>
                 => min(src);
 

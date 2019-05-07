@@ -13,9 +13,10 @@ namespace Z0
     using System.Collections.Concurrent;
     using System.Runtime.CompilerServices;
 
-    using static zcore;
+    //using static zcore;
     using static zfunc;
     using static nats;
+    using static mfunc;
     
     /// <summary>
     /// Constructs natural number prepresentatives and calculates related values
@@ -27,7 +28,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         static Type primtype(byte value)
             => (value switch {                    
-                    1 => N1.Rep as TypeNat, 
+                    1 => N1.Rep as ITypeNat, 
                     2 => N2.Rep, 
                     3 => N3.Rep,
                     4 => N4.Rep, 
@@ -51,8 +52,8 @@ namespace Z0
                 7 => typeof(NatSeq<,,,,,,>), 
                 8 => typeof(NatSeq<,,,,,,,>), 
                 9 => typeof(NatSeq<,,,,,,,,>), 
-                _ => nosupport<Type>()}
-                );
+                _ => throw new NotSupportedException()
+                });
 
         [MethodImpl(Inline)]       
         static Type[] types(byte[] digits)
@@ -68,7 +69,7 @@ namespace Z0
             => reflect(digits(value));
 
         public static int require<N>(int value)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
                 => nati<N>() == value ? value : throw new Exception();
 
         /// <summary>
@@ -101,12 +102,12 @@ namespace Z0
         /// <typeparam name="K">The representative type to construct</typeparam>
         [MethodImpl(Inline)]   
         public static K nat<K>()
-            where K : TypeNat,new()
+            where K : ITypeNat,new()
              => new K(); 
 
         [MethodImpl(Inline)]   
         public static Next<K> next<K>()
-                where K : TypeNat,new()
+                where K : ITypeNat,new()
             => new Next<K>();
 
         /// <summary>
@@ -117,8 +118,8 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]   
         public static T reduce<S,T>()
-            where S : TypeNat, new()
-            where T : TypeNat, new()
+            where S : ITypeNat, new()
+            where T : ITypeNat, new()
         {                        
             var tval = Nat.nat<T>();
             var sval = Nat.nat<S>();
@@ -129,18 +130,18 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static Next<K> next<K>(K nat)
-                where K : TypeNat,new()
+                where K : ITypeNat,new()
             => new Next<K>();
 
         [MethodImpl(Inline)]   
         public static Prior<K> prior<K>()
-                where K : TypeNat,new()
+                where K : ITypeNat,new()
             => new Prior<K>();
 
 
         [MethodImpl(Inline)]   
         public static Prior<K> prior<K>(K nat)
-                where K : TypeNat,new()
+                where K : ITypeNat,new()
             => new Prior<K>();
 
         /// <summary>
@@ -150,8 +151,8 @@ namespace Z0
         /// <typeparam name="K2">The second type</typeparam>
         [MethodImpl(Inline)]   
         public static (ulong k1, ulong k2) pair<K1,K2>()
-            where K2 : TypeNat, new()
-            where K1 : TypeNat, new()
+            where K2 : ITypeNat, new()
+            where K1 : ITypeNat, new()
                 => (natu<K1>(), natu<K2>());            
 
         /// <summary>
@@ -162,9 +163,9 @@ namespace Z0
         /// <typeparam name="K3">The thrid type</typeparam>
         [MethodImpl(Inline)]   
         public static (ulong k1, ulong k2, ulong k3) triple<K1,K2,K3>()
-            where K2 : TypeNat, new()
-            where K1 : TypeNat, new()
-            where K3 : TypeNat, new()
+            where K2 : ITypeNat, new()
+            where K1 : ITypeNat, new()
+            where K3 : ITypeNat, new()
                 => (natu<K1>(),natu<K2>(), natu<K3>());            
 
         /// <summary>
@@ -175,7 +176,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static intg<Z> natvalg<K,Z>()
             where Z : struct, IEquatable<Z>
-            where K : TypeNat, new()
+            where K : ITypeNat, new()
                 => new K().value.ToIntG<Z>(); 
 
         /// <summary>
@@ -207,8 +208,8 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]   
         public static NatInterval<K1,K2> interval<K1,K2>()
-            where K1 : TypeNat, ISmaller<K1,K2>, new()
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, ISmaller<K1,K2>, new()
+            where K2 : ITypeNat, new()
                 => new NatInterval<K1,K2>(natrep<K1>(), natrep<K2>());
 
         /// <summary>
@@ -218,8 +219,8 @@ namespace Z0
         /// <typeparam name="K2">The second operand type</typeparam>
         [MethodImpl(Inline)]   
         public static Add<K1,K2> add<K1,K2>()
-            where K1 : TypeNat, new()        
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()        
+            where K2 : ITypeNat, new()
                 => Add<K1,K2>.Rep;
 
         /// <summary>
@@ -229,8 +230,8 @@ namespace Z0
         /// <typeparam name="K2">The second operand type</typeparam>
         [MethodImpl(Inline)]   
         public static Add<K1,K2> add<K1,K2>(K1 k1, K2 k2)
-            where K1 : TypeNat, new()        
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()        
+            where K2 : ITypeNat, new()
                 => Add<K1,K2>.Rep;
 
         /// <summary>
@@ -240,8 +241,8 @@ namespace Z0
         /// <typeparam name="K2">The second operand type</typeparam>
         [MethodImpl(Inline)]   
         public static Mul<K1,K2> mul<K1,K2>()
-            where K1 : TypeNat, new()        
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()        
+            where K2 : ITypeNat, new()
                 => Mul<K1,K2>.Rep;
 
         /// <summary>
@@ -252,8 +253,8 @@ namespace Z0
         /// <typeparam name="E">The exponent type</typeparam>
         [MethodImpl(Inline)]   
         public static Pow<B,E> pow<B,E>()
-            where B : TypeNat, new()        
-            where E : TypeNat, new()
+            where B : ITypeNat, new()        
+            where E : ITypeNat, new()
                 => Pow<B,E>.Rep;
 
         /// <summary>
@@ -264,8 +265,8 @@ namespace Z0
         /// <typeparam name="E">The exponent type</typeparam>
         [MethodImpl(Inline)]   
         public static PrimePow<P,E> primepow<P,E>()
-            where P : TypeNat, IPrime<P>, new()        
-            where E : TypeNat, new()
+            where P : ITypeNat, IPrime<P>, new()        
+            where E : ITypeNat, new()
                 => PrimePow<P,E>.Rep;
 
         /// <summary>
@@ -275,8 +276,8 @@ namespace Z0
         /// <typeparam name="K2">The second dimensional factor</typeparam>
         [MethodImpl(Inline)]   
         public static Dim<K1,K2> dim<K1,K2>()
-            where K1 : TypeNat, new()        
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()        
+            where K2 : ITypeNat, new()
                 => Dim<K1,K2>.Rep;
 
         /// <summary>
@@ -286,8 +287,8 @@ namespace Z0
         /// <typeparam name="K2">The second dimensional factor</typeparam>
         [MethodImpl(Inline)]   
         public static Dim<K1,K2> dim<K1,K2>(K1 k1, K2 k2)
-            where K1 : TypeNat, new()        
-            where K2 : TypeNat, new()
+            where K1 : ITypeNat, new()        
+            where K2 : ITypeNat, new()
                 => Dim<K1,K2>.Rep;
 
 
@@ -299,9 +300,9 @@ namespace Z0
         /// <typeparam name="K3">The third dimensional factor</typeparam>
         [MethodImpl(Inline)]   
         public static Dim<K1,K2,K3> dim<K1,K2,K3>()
-            where K1 : TypeNat, new()        
-            where K2 : TypeNat, new()
-            where K3 : TypeNat, new()
+            where K1 : ITypeNat, new()        
+            where K2 : ITypeNat, new()
+            where K3 : ITypeNat, new()
                 => Dim<K1,K2,K3>.Rep;
 
         /// <summary>

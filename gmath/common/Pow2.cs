@@ -59,21 +59,30 @@ namespace Z0
                 _ => 0UL,
             };
 
+        public static T[] powers<T>(int min, byte max)
+        {   
+            var dst = new T[max - min + 1];
+            var current = min;
+            var i = 0;
+            while(current <= max)
+                dst[i++] = ClrConverter.convert<ulong,T>(pow(current++));
+            return dst;
+        }
 
         /// <summary>
         /// 2^0 = 1
         /// </summary>
-        public const int T00 = 0;
+        public const int T00 = 1;
 
         /// <summary>
         /// 2^1 = 2
         /// </summary>
-        public const int T01 = 2;
+        public const int T01 = 2*T00;
 
         /// <summary>
         /// 2^2 = 4
         /// </summary>
-        public const int T02 = 2*2;
+        public const int T02 = 2*T01;
 
         /// <summary>
         /// 2^3 = 8

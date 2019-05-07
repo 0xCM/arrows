@@ -38,7 +38,7 @@ namespace Z0.Tests
         }
 
         public override Index<operand> Compute()
-            => fuse(LeftSrc,RightSrc, Prim.and);
+            => fuse(LeftSrc.ToArray(),RightSrc.ToArray(), Prim.and);
     
     
         public void Test1()

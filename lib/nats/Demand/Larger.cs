@@ -13,8 +13,8 @@ namespace Z0
     /// <typeparam name="K1">The larger nat type</typeparam>
     /// <typeparam name="K2">The smaller nat type</typeparam>
     public interface ILarger<K1,K2> : IDemand<K1,K2>
-        where K1: TypeNat, new()
-        where K2: TypeNat, new()
+        where K1: ITypeNat, new()
+        where K2: ITypeNat, new()
     {
         
     }
@@ -26,8 +26,8 @@ namespace Z0
     /// <typeparam name="K1">The larger nat type</typeparam>
     /// <typeparam name="K2">The smaller nat type</typeparam>
     public readonly struct Larger<K1,K2> : ILarger<K1,K2>
-        where K1: TypeNat, new()
-        where K2: TypeNat, new()
+        where K1: ITypeNat, new()
+        where K2: ITypeNat, new()
     {
         static readonly K1 k1 = default;
         static readonly K2 k2 = default;

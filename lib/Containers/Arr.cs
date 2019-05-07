@@ -21,7 +21,7 @@ namespace Z0
         /// <typeparam name="N">The natural length type</typeparam>
         /// <typeparam name="T">Then element type</typeparam>
         public static Array<N,T> define<N,T>()
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
                 => new Array<N,T>();
 
         /// <summary>
@@ -31,11 +31,11 @@ namespace Z0
         /// <typeparam name="N">The natural length type</typeparam>
         /// <typeparam name="T">Then element type</typeparam>
         public static Array<N,T> define<N,T>(params T[] src)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
                 => new Array<N,T>(src);
 
         public static Array<N,T> define<N,T>(N len, params T[] src)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
                 => new Array<N,T>(src);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Z0
         /// <typeparam name="T">Then element type</typeparam>
         /// <returns></returns>
         public static Array<N,T> define<N,T>(IEnumerable<T> src)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
                 => new Array<N,T>(src);
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Z0
         /// <typeparam name="T">Then element type</typeparam>
         /// <returns></returns>
         public static Array<N,T> define<N,T>(N len, IEnumerable<T> src)
-            where N : TypeNat, new()
+            where N : ITypeNat, new()
                 => new Array<N,T>(src);
 
 
@@ -177,7 +177,7 @@ namespace Z0
     /// A one-dimensional array with lenght encoded by typenat parameter
     /// </summary>
     public struct Array<N,T> : Contain.Array<N,T>, Wrapped<T[]>
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
     {
         public static readonly int Length = nati<N>();
 
@@ -234,8 +234,8 @@ namespace Z0
     /// A 2-dimensional array with length encoded by two typenat parameters
     /// </summary>
     public readonly struct Array<K1,K2,T> : Contain.DiscreteContainer<Array<K1,K2,T>,(int i, int j, T value)>
-        where K1 : TypeNat, new()
-        where K2 : TypeNat, new()
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
     {
         readonly T[,] data;
         
@@ -288,9 +288,9 @@ namespace Z0
     /// A 3-dimensional array with length encoded by three natural parameters
     /// </summary>
     public readonly struct Array<K1,K2,K3,T> : Contain.DiscreteContainer<Array<K1,K2,K3,T>, (int i, int j, int k, T value)>
-        where K1 : TypeNat, new()
-        where K2 : TypeNat, new()
-        where K3 : TypeNat, new()
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
+        where K3 : ITypeNat, new()
     {
         readonly T[,,] data;
         

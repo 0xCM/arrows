@@ -26,7 +26,7 @@ namespace Z0
         /// <typeparam name="K">The natural type</typeparam>
         [MethodImpl(Inline)]   
         public static ulong claim<K>(ulong expected)
-            where K : TypeNat, new()
+            where K : ITypeNat, new()
                 => natu<K>() == expected  ? expected : failure<K,ulong>("eq", expected);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Z0
         /// <typeparam name="K">The natural type</typeparam>
         [MethodImpl(Inline)]   
         public static ulong claim<K>(K k, ulong expected)
-                where K : TypeNat, new()
+                where K : ITypeNat, new()
                     => k.value == expected  ? expected : failure<K,ulong>("eq", expected);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Z0
         /// <typeparam name="K">The natural type</typeparam>
         [MethodImpl(Inline)]   
         public static uint claim<K>(int expected)
-            where K : TypeNat, new()
+            where K : ITypeNat, new()
                 => natu<K>() == (uint)expected ? (uint)expected : failure<K,uint>("eq", (uint)expected);
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Z0
         /// <typeparam name="K">The natural type</typeparam>
         [MethodImpl(Inline)]   
         public static uint claim<K>(K k, int expected)
-                where K : TypeNat, new()
+                where K : ITypeNat, new()
                     => k.value == (uint)expected ? (uint)expected : failure<K,uint>("eq", (uint)expected);
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Z0
         /// <typeparam name="K">The natural representative</typeparam>
         [MethodImpl(Inline)]   
         public static bool eq<K>(uint test, bool raise = true)
-            where K : TypeNat, new() 
+            where K : ITypeNat, new() 
                 =>  natu<K>() == test ? true : failure<K>("eq", test, raise);
 
 
@@ -87,8 +87,8 @@ namespace Z0
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
         public static Equal<K1,K2> equal<K1,K2>()
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => new Equal<K1,K2>(natrep<K1>(),natrep<K2>());                             
 
         /// <summary>
@@ -99,8 +99,8 @@ namespace Z0
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
         public static Equal<K1,K2> equal<K1,K2>(K1 k1, K2 k2)
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => new Equal<K1,K2>(k1,k2);                             
 
         /// <summary>
@@ -111,8 +111,8 @@ namespace Z0
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
         public static Option<Equal<K1,K2>> tryEqual<K1,K2>()
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => Try(() => new Equal<K1,K2>(natrep<K1>(),natrep<K2>()));
 
         /// <summary>
@@ -123,8 +123,8 @@ namespace Z0
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
         public static Option<Equal<K1,K2>> tryEqual<K1,K2>(K1 k1, K2 k2)
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => Try(() => new Equal<K1,K2>(k1,k2));                             
 
         /// <summary>
@@ -135,8 +135,8 @@ namespace Z0
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
         public static Different<K1,K2> different<K1,K2>()
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => new Different<K1,K2>(natrep<K1>(),natrep<K2>());                             
 
         /// <summary>
@@ -147,8 +147,8 @@ namespace Z0
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
         public static Different<K1,K2> different<K1,K2>(K1 k1, K2 k2)
-            where K1: TypeNat, new()
-            where K2: TypeNat, new()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
                 => new Different<K1,K2>(k1,k2);
 
 

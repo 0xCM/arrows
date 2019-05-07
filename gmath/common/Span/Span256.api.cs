@@ -25,7 +25,17 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span256<T> blockalloc<T>(int blocks)
             where T : struct, IEquatable<T>        
-                =>Span256<T>.BlockAlloc(blocks);
+                => Span256<T>.BlockAlloc(blocks);
+
+        /// <summary>
+        /// Allocates a span to hold a specified number of cells
+        /// </summary>
+        /// <param name="blocks">The number of blocks for which memory should be alocated</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span256<T> alloc<T>(int length)
+            where T : struct, IEquatable<T>        
+                =>Span256<T>.Alloc(length);
 
         [MethodImpl(Inline)]
         public static Span256<T> load<T>(Span<T> src, int offset, int length)

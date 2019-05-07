@@ -24,7 +24,7 @@ namespace Z0
         /// <typeparam name="K">A nonzero natural type</typeparam>
         [MethodImpl(Inline)]
         public static Nonzero<K> nonzero<K>()
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => new Nonzero<K>(natrep<K>());                             
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Z0
         /// <typeparam name="K">A nonzero natural type</typeparam>
         [MethodImpl(Inline)]
         public static Nonzero<K> nonzero<K>(K k)
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => new Nonzero<K>(k);                             
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Z0
         /// <typeparam name="K">A nonzero natural type</typeparam>
         [MethodImpl(Inline)]
         public static Option<Nonzero<K>> tryNonzero<K>()
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => Try(() => new Nonzero<K>(natrep<K>())); 
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Z0
         /// <typeparam name="K">A nonzero natural type</typeparam>
         [MethodImpl(Inline)]
         public static Option<Nonzero<K>> tryNonzero<K>(K k)
-            where K: TypeNat, new()
+            where K: ITypeNat, new()
                 => Try( () => new Nonzero<K>(k)); 
     }
 }

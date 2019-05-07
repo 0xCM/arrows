@@ -9,9 +9,7 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
     
-    using static zcore;
-    using static inxfunc;
-
+    using static mfunc;
 
     public unsafe delegate Index<T> Vec128Fuser<T>(in Vec128BinOp<T> Op, in Index<T> lhs, in Index<T> rhs)
         where T : struct, IEquatable<T>;

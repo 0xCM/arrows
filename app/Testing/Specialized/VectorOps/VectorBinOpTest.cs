@@ -23,7 +23,7 @@ namespace Z0.Testing
     /// <typeparam name="T">The component type</typeparam>
     public abstract class VectorBinOpTest<C,N,T,R> : BinOpTest<C,T>
         where C : VectorBinOpTest<C,N,T,R>
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         where T : struct, IEquatable<T>            
         where R : struct, IEquatable<R>
     {

@@ -33,10 +33,10 @@ namespace Z0.Tests
             => base.Verify();
 
         public override Index<operand> Baseline()
-            => fuse(LeftPrimSrc, RightPrimSrc, (x,y) => x + y);
+            => fuse(LeftPrimSrc.ToArray(), RightPrimSrc, (x,y) => x + y);
 
         public override Index<intg<operand>> Applied()
-            => fuse(LeftIntSrc,RightIntSrc, (x,y) => x + y );
+            => fuse(LeftIntSrc.ToArray(), RightIntSrc, (x,y) => x + y );
 
     }
 

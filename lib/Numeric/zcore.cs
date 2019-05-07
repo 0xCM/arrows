@@ -51,7 +51,7 @@ partial class zcore
 
     [MethodImpl(Inline)]   
     public static BitVector<N> bitvector<N>(params bit[] src)
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
             => BitVector.define<N>(src);
 
     /// <summary>
@@ -60,7 +60,7 @@ partial class zcore
     /// <param name="src">The bit source</param>
     [MethodImpl(Inline)]   
     public static BitVector<N> bitvector<N>(params uint[] src)
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
             => BitVector.define<N>(map(src, x => x == 0 ? bit.off() : bit.on()));
 
     /// <summary>
@@ -146,7 +146,7 @@ partial class zcore
     /// <typeparam name="T">The integral type</typeparam>
     [MethodImpl(Inline)]   
     public static modg<N,T> modring<N,T>(intg<T> lhs)
-        where N : TypeNat, new()
+        where N : ITypeNat, new()
         where T : struct, IEquatable<T>
             => new modg<N,T>(lhs);
 
@@ -184,7 +184,7 @@ partial class zcore
                Ordering.EQ; 
 
     [MethodImpl(Inline)]
-    public static Index<(T lhs, Ordering, T rhs)> compare<T>(Index<T> lhs, Index<T> rhs)
+    public static Index<(T lhs, Ordering, T rhs)> compare<T>(T[] lhs, T[] rhs)
         where T: Structures.Orderable<T>, new()
             => fuse(lhs,rhs, (l,r) =>  (l, compare(l,r), r));
 
@@ -207,7 +207,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     /// <returns></returns>    
     [MethodImpl(Inline)]
-    public static Index<T> abs<T>(Index<T> src)
+    public static T[] abs<T>(T[] src)
         where T: Structures.Number<T>, new()
             => map(src,x => x.abs());
 
@@ -219,7 +219,7 @@ partial class zcore
     /// <param name="rhs">The right sequence</param>
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
-    public static Index<T> add<T>(Index<T> lhs, Index<T> rhs)
+    public static T[] add<T>(T[] lhs, T[] rhs)
         where T: Structures.Additive<T>, new()
             => fuse(lhs,rhs, (l,r) =>  l.add(r));
 
@@ -230,7 +230,7 @@ partial class zcore
     /// <param name="rhs">The right sequence</param>
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
-    public static Index<T> sub<T>(Index<T> lhs, Index<T> rhs)
+    public static T[] sub<T>(T[] lhs, T[] rhs)
         where T: Structures.Subtractive<T>, new()
             => fuse(lhs,rhs, (l,r) =>  l.sub(r));
 
@@ -241,7 +241,7 @@ partial class zcore
     /// <param name="rhs">The right sequence</param>
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
-    public static Index<T> mul<T>(Index<T> lhs, Index<T> rhs)
+    public static T[] mul<T>(T[] lhs, T[] rhs)
         where T: Structures.Multiplicative<T>, new()
             => fuse(lhs,rhs, (l,r) =>  l.mul(r));
 
@@ -252,7 +252,7 @@ partial class zcore
     /// <param name="rhs">The right sequence</param>
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
-    public static Index<T> div<T>(Index<T> lhs, Index<T> rhs)
+    public static T[] div<T>(T[] lhs, T[] rhs)
         where T: Structures.Divisive<T>, new()
             => fuse(lhs,rhs, (l,r) =>  l.div(r));
 
@@ -262,7 +262,7 @@ partial class zcore
     /// <param name="src">The input sequence</param>
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
-    public static T min<T>(Index<T> src)
+    public static T min<T>(params T[] src)
         where T : struct, Structures.Orderable<T>
     {
         T min = src.FirstOrDefault();
@@ -270,16 +270,6 @@ partial class zcore
             min = item.lt(min) ? item : min;
         return min;
     }
-
-    /// <summary>
-    /// Computes the minimum of the parameter array
-    /// </summary>
-    /// <param name="src">The input sequence</param>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static T min<T>(params T[] src)
-        where T : struct, Structures.Orderable<T>
-        => min(src);
 
     [MethodImpl(Inline)]
     public static T max<T>(T x, T y)
