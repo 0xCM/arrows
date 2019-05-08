@@ -137,6 +137,9 @@ namespace Z0
             where T : struct, IEquatable<T> 
                 => define(x,y,"!=", (a,b) => a.Equals(b)).demand();
 
+        public static bool eq(ulong x, ulong y, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => x != y ? throw new Exception($"{file} line {line}: {x} != {y}") : true;
+
         [MethodImpl(Inline)]
         public static void nonzero(int x, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
         {

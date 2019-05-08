@@ -350,7 +350,7 @@ namespace Z0
 
         void Pop()
         {
-            var counts = dinx.popcounts(0u, Byte.MaxValue);
+            var counts = Bits.popcounts(0u, Byte.MaxValue);
             var text = counts.Format();
             inform(text);
             
@@ -359,15 +359,17 @@ namespace Z0
         }
 
 
-
-        void BitTests()
+        public void BitTest()
         {
-            var bv = BitPatterns.BV008;
-            inform($"{bv}");
-            bv[3] = 0;
-            bv[0] = 1;
-            inform($"{bv}");
-            
+            // var u16Packed = Bits.bitpack(1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            // inform(u16Packed.ToBitVector());
+
+            // var u32Packed = Bits.bitpack(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1);
+            // inform(u32Packed.ToBitVector());
+
+            var bs1 = "10001000111";
+            var value = Bits.parse<ulong>(bs1).ToBitVector();
+            inform(value);
         }
 
         void RunTests()
@@ -380,7 +382,8 @@ namespace Z0
             var app = new Benchmark();
             try
             {     
-                app.BitTests();                   
+                //app.RunTests();                   
+                app.BitTest();
                 //app.RunTests();
                 //app.Pop();
                 //app.RunBench(BenchKind.Common);

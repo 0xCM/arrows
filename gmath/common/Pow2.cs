@@ -14,58 +14,97 @@ namespace Z0
     
     public static class Pow2
     {
+        static readonly ulong[] PowerTable = new ulong[]{
+            T00, T01, T02, T03, T04, T05, T06, T07, T08, T09,
+            T10, T11, T12, T13, T14, T15, T16, T17, T18, T19,
+            T20, T21, T22, T23, T24, T25, T26, T27, T28, T29,
+            T30, T31, T32, T33, T34, T35, T36, T37, T28, T39,
+            T40, T41, T42, T43, T44, T45, T46, T47, T48, T49,
+            T50, T51, T52, T53, T54, T55, T56, T57, T58, T59,
+            T60, T61, T62, T63};
+
+
         /// <summary>
         /// Computes 2^i 
         /// </summary>
         /// <param name="exp">The exponent</param>
         [MethodImpl(Inline)]
         public static ulong pow(int exp)
-            => exp switch {
-                0 => (ulong)T00,
-                1 => (ulong)T01,
-                2 => (ulong)T02,
-                3 => (ulong)T03,
-                4 => (ulong)T04,
-                5 => (ulong)T05,
-                6 => (ulong)T06,
-                7 => (ulong)T07,
-                8 => (ulong)T08,
-                9 => (ulong)T09,
-                10 => (ulong)T10,
-                11 => (ulong)T11,
-                12 => (ulong)T12,
-                13 => (ulong)T13,
-                14 => (ulong)T14,
-                15 => (ulong)T15,
-                16 => (ulong)T16,
-                17 => (ulong)T17,
-                18 => (ulong)T18,
-                19 => (ulong)T19,
-                20 => (ulong)T20,
-                21 => (ulong)T21,
-                22 => (ulong)T22,
-                23 => (ulong)T23,
-                24 => (ulong)T24,
-                25 => (ulong)T25,
-                26 => (ulong)T26,
-                27 => (ulong)T27,
-                28 => (ulong)T28,
-                29 => (ulong)T29,
-                30 => (ulong)T30,
-                31 => (ulong)T31,
-                32 => (ulong)T32,
-                33 => (ulong)T33,
-                34 => (ulong)T34,
-                35 => (ulong)T35,
-                _ => 0UL,
-            };
+            =>  PowerTable[exp];
+            // => exp switch {
+            //     0 => (ulong)T00,
+            //     1 => (ulong)T01,
+            //     2 => (ulong)T02,
+            //     3 => (ulong)T03,
+            //     4 => (ulong)T04,
+            //     5 => (ulong)T05,
+            //     6 => (ulong)T06,
+            //     7 => (ulong)T07,
+            //     8 => (ulong)T08,
+            //     9 => (ulong)T09,
+            //     10 => (ulong)T10,
+            //     11 => (ulong)T11,
+            //     12 => (ulong)T12,
+            //     13 => (ulong)T13,
+            //     14 => (ulong)T14,
+            //     15 => (ulong)T15,
+            //     16 => (ulong)T16,
+            //     17 => (ulong)T17,
+            //     18 => (ulong)T18,
+            //     19 => (ulong)T19,
+            //     20 => (ulong)T20,
+            //     21 => (ulong)T21,
+            //     22 => (ulong)T22,
+            //     23 => (ulong)T23,
+            //     24 => (ulong)T24,
+            //     25 => (ulong)T25,
+            //     26 => (ulong)T26,
+            //     27 => (ulong)T27,
+            //     28 => (ulong)T28,
+            //     29 => (ulong)T29,
+            //     30 => (ulong)T30,
+            //     31 => (ulong)T31,
+            //     32 => (ulong)T32,
+            //     33 => (ulong)T33,
+            //     34 => (ulong)T34,
+            //     35 => (ulong)T35,
+            //     36 => (ulong)T36,
+            //     37 => (ulong)T37,
+            //     38 => (ulong)T38,
+            //     39 => (ulong)T39,
+            //     40 => (ulong)T40,
+            //     41 => (ulong)T41,
+            //     42 => (ulong)T42,
+            //     43 => (ulong)T43,
+            //     44 => (ulong)T44,
+            //     45 => (ulong)T45,
+            //     46 => (ulong)T46,
+            //     47 => (ulong)T47,
+            //     48 => (ulong)T48,
+            //     49 => (ulong)T49,
+            //     50 => (ulong)T50,
+            //     51 => (ulong)T51,
+            //     52 => (ulong)T52,
+            //     53 => (ulong)T53,
+            //     54 => (ulong)T54,
+            //     55 => (ulong)T55,
+            //     56 => (ulong)T56,
+            //     57 => (ulong)T57,
+            //     58 => (ulong)T58,
+            //     59 => (ulong)T59,
+            //     60 => (ulong)T60,
+            //     61 => (ulong)T61,
+            //     62 => (ulong)T62,
+            //     63 => (ulong)T63,
+            //     _ => 0UL,
+            // };
 
-        public static T[] powers<T>(int min, byte max)
+        public static T[] powers<T>(int minExp, byte maxExp)
         {   
-            var dst = new T[max - min + 1];
-            var current = min;
+            var dst = new T[maxExp - minExp + 1];
+            var current = minExp;
             var i = 0;
-            while(current <= max)
+            while(current <= maxExp)
                 dst[i++] = ClrConverter.convert<ulong,T>(pow(current++));
             return dst;
         }
@@ -269,7 +308,42 @@ namespace Z0
         
         public const long T49 = 2*T48;
 
+        public const long T50 = 2*T49;
 
+        public const long T51 = 2*T50;
+                
+        public const long T52 = 2*T51;
+
+        public const long T53 = 2*T52;
+
+        public const long T54 = 2*T53;
+
+        public const long T55 = 2*T54;
+
+        public const long T56 = 2*T55;
+
+        public const long T57 = 2*T56;
+
+        public const long T58 = 2*T57;
+
+        public const long T59 = 2*T58;
+        
+        public const long T60 = 2*T59;
+
+        public const long T61 = 2*T60;
+
+        public const long T62 = 2*T61;        
+        
+
+        /// <summary>
+        /// 9223372036854775808
+        /// </summary>
+        /// <returns></returns>
+        public const ulong T63 = 2* (ulong)T62;
+
+        public const int MinExponent = 0;
+
+        public const int MaxExponent = 63;        
     }
 
 }

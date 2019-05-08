@@ -15,173 +15,173 @@ namespace Z0
     public static class BitPatterns
     {
 
-        public static readonly BitVector8 BV000 = BitVector8.Define(0, 0, 0, 0, 0, 0, 0, 0);
+        public static readonly BitVectorU8 BV000 = BitVectorU8.Define(0, 0, 0, 0, 0, 0, 0, 0);
 
-        public static readonly BitVector8 BV001 = BitVector8.Define(1, 0, 0, 0, 0, 0, 0, 0);
+        public static readonly BitVectorU8 BV001 = BitVectorU8.Define(1, 0, 0, 0, 0, 0, 0, 0);
 
-        public static readonly BitVector8 BV002 = BitVector8.Define(0, 1, 0, 0, 0, 0, 0, 0);
+        public static readonly BitVectorU8 BV002 = BitVectorU8.Define(0, 1, 0, 0, 0, 0, 0, 0);
 
-        public static readonly BitVector8 BV003 = BV002 | BV001;
+        public static readonly BitVectorU8 BV003 = BV002 | BV001;
 
-        public static readonly BitVector8 BV004 = BitVector8.Define(0, 0, 1, 0, 0, 0, 0, 0);
+        public static readonly BitVectorU8 BV004 = BitVectorU8.Define(0, 0, 1, 0, 0, 0, 0, 0);
 
-        public static readonly BitVector8 BV005 = BV004 | BV001;
+        public static readonly BitVectorU8 BV005 = BV004 | BV001;
 
-        public static readonly BitVector8 BV006 = BV004 | BV002;
+        public static readonly BitVectorU8 BV006 = BV004 | BV002;
 
-        public static readonly BitVector8 BV007 = BV004 | BV003;
+        public static readonly BitVectorU8 BV007 = BV004 | BV003;
 
-        public static readonly BitVector8 BV008 = BitVector8.Define(0, 0, 0, 1, 0, 0, 0, 0);
+        public static readonly BitVectorU8 BV008 = BitVectorU8.Define(0, 0, 0, 1, 0, 0, 0, 0);
 
-        public static readonly BitVector8 BV009 = BV008 | BV001;
+        public static readonly BitVectorU8 BV009 = BV008 | BV001;
 
-        public static readonly BitVector8 BV010 = BV008 | BV002;
+        public static readonly BitVectorU8 BV010 = BV008 | BV002;
 
-        public static readonly BitVector8 BV011 = BV008 | BV003;
+        public static readonly BitVectorU8 BV011 = BV008 | BV003;
 
-        public static readonly BitVector8 BV012 = BV008 | BV004;
+        public static readonly BitVectorU8 BV012 = BV008 | BV004;
 
-        public static readonly BitVector8 BV013 = BV008 | BV005;
+        public static readonly BitVectorU8 BV013 = BV008 | BV005;
 
-        public static readonly BitVector8 BV014 = BV008 | BV006;
+        public static readonly BitVectorU8 BV014 = BV008 | BV006;
 
-        public static readonly BitVector8 BV015 = BV008 | BV007;
+        public static readonly BitVectorU8 BV015 = BV008 | BV007;
 
-        public static readonly BitVector8 BV016 = BitVector8.Define(0, 0, 0, 0, 1, 0, 0, 0);
+        public static readonly BitVectorU8 BV016 = BitVectorU8.Define(0, 0, 0, 0, 1, 0, 0, 0);
 
-        public static readonly BitVector8 BV017 = BV016 | BV001;
+        public static readonly BitVectorU8 BV017 = BV016 | BV001;
 
-        public static readonly BitVector8 BV018 = BV016 | BV002;
+        public static readonly BitVectorU8 BV018 = BV016 | BV002;
 
-        public static readonly BitVector8 BV019 = BV016 | BV003;
+        public static readonly BitVectorU8 BV019 = BV016 | BV003;
 
-        public static readonly BitVector8 BV020 = BV016 | BV004;
+        public static readonly BitVectorU8 BV020 = BV016 | BV004;
 
-        public static readonly BitVector8 BV021 = BV016 | BV005;
+        public static readonly BitVectorU8 BV021 = BV016 | BV005;
 
-        public static readonly BitVector8 BV022 = BV016 | BV006;
+        public static readonly BitVectorU8 BV022 = BV016 | BV006;
 
-        public static readonly BitVector8 BV023 = BV016 | BV007;
+        public static readonly BitVectorU8 BV023 = BV016 | BV007;
 
-        public static readonly BitVector8 BV024 = BV016 | BV008;
+        public static readonly BitVectorU8 BV024 = BV016 | BV008;
 
-        public static readonly BitVector8 BV025 = BV016 | BV009;
+        public static readonly BitVectorU8 BV025 = BV016 | BV009;
         
-        public static readonly BitVector8 BV026 = BV016 | BV010;
+        public static readonly BitVectorU8 BV026 = BV016 | BV010;
         
-        public static readonly BitVector8 BV027 = BV016 | BV011;
+        public static readonly BitVectorU8 BV027 = BV016 | BV011;
         
-        public static readonly BitVector8 BV028 = BV016 | BV012;
+        public static readonly BitVectorU8 BV028 = BV016 | BV012;
         
-        public static readonly BitVector8 BV029 = BV016 | BV013;
+        public static readonly BitVectorU8 BV029 = BV016 | BV013;
         
-        public static readonly BitVector8 BV030 = BV016 | BV014;
+        public static readonly BitVectorU8 BV030 = BV016 | BV014;
         
-        public static readonly BitVector8 BV031 = BV016 | BV015;
+        public static readonly BitVectorU8 BV031 = BV016 | BV015;
 
-        public static readonly BitVector8 BV032 = BitVector8.Define(0, 0, 0, 0, 0, 1, 0, 0);
+        public static readonly BitVectorU8 BV032 = BitVectorU8.Define(0, 0, 0, 0, 0, 1, 0, 0);
         
-        public static readonly BitVector8 BV033 = BV032 | BV001;
+        public static readonly BitVectorU8 BV033 = BV032 | BV001;
 
-        public static readonly BitVector8 BV034 = BV032 | BV002;
+        public static readonly BitVectorU8 BV034 = BV032 | BV002;
 
-        public static readonly BitVector8 BV035 = BV032 | BV003;
+        public static readonly BitVectorU8 BV035 = BV032 | BV003;
 
-        public static readonly BitVector8 BV036 = BV032 | BV004;
+        public static readonly BitVectorU8 BV036 = BV032 | BV004;
 
-        public static readonly BitVector8 BV037 = BV032 | BV005;
+        public static readonly BitVectorU8 BV037 = BV032 | BV005;
 
-        public static readonly BitVector8 BV038 = BV032 | BV006;
+        public static readonly BitVectorU8 BV038 = BV032 | BV006;
 
-        public static readonly BitVector8 BV039 = BV032 | BV007;
+        public static readonly BitVectorU8 BV039 = BV032 | BV007;
 
-        public static readonly BitVector8 BV040 = BV032 | BV008;
+        public static readonly BitVectorU8 BV040 = BV032 | BV008;
 
-        public static readonly BitVector8 BV041 = BV032 | BV009;
+        public static readonly BitVectorU8 BV041 = BV032 | BV009;
         
-        public static readonly BitVector8 BV042 = BV032 | BV010;
+        public static readonly BitVectorU8 BV042 = BV032 | BV010;
         
-        public static readonly BitVector8 BV043 = BV032 | BV011;
+        public static readonly BitVectorU8 BV043 = BV032 | BV011;
         
-        public static readonly BitVector8 BV044 = BV032 | BV012;
+        public static readonly BitVectorU8 BV044 = BV032 | BV012;
         
-        public static readonly BitVector8 BV045 = BV032 | BV013;
+        public static readonly BitVectorU8 BV045 = BV032 | BV013;
         
-        public static readonly BitVector8 BV046 = BV032 | BV014;
+        public static readonly BitVectorU8 BV046 = BV032 | BV014;
         
-        public static readonly BitVector8 BV047 = BV032 | BV015;
+        public static readonly BitVectorU8 BV047 = BV032 | BV015;
 
-        public static readonly BitVector8 BV048 = BV032 | BV016;
+        public static readonly BitVectorU8 BV048 = BV032 | BV016;
 
-        public static readonly BitVector8 BV049 = BV032 | BV017;
+        public static readonly BitVectorU8 BV049 = BV032 | BV017;
 
-        public static readonly BitVector8 BV050 = BV032 | BV018;
+        public static readonly BitVectorU8 BV050 = BV032 | BV018;
 
-        public static readonly BitVector8 BV051 = BV032 | BV019;
+        public static readonly BitVectorU8 BV051 = BV032 | BV019;
 
-        public static readonly BitVector8 BV052 = BV032 | BV020;
+        public static readonly BitVectorU8 BV052 = BV032 | BV020;
 
-        public static readonly BitVector8 BV053 = BV032 | BV021;
+        public static readonly BitVectorU8 BV053 = BV032 | BV021;
 
-        public static readonly BitVector8 BV054 = BV032 | BV022;
+        public static readonly BitVectorU8 BV054 = BV032 | BV022;
 
-        public static readonly BitVector8 BV055 = BV032 | BV023;
+        public static readonly BitVectorU8 BV055 = BV032 | BV023;
 
-        public static readonly BitVector8 BV056 = BV032 | BV024;
+        public static readonly BitVectorU8 BV056 = BV032 | BV024;
         
-        public static readonly BitVector8 BV057 = BV032 | BV025;
+        public static readonly BitVectorU8 BV057 = BV032 | BV025;
         
-        public static readonly BitVector8 BV058 = BV032 | BV026;
+        public static readonly BitVectorU8 BV058 = BV032 | BV026;
         
-        public static readonly BitVector8 BV059 = BV032 | BV027;
+        public static readonly BitVectorU8 BV059 = BV032 | BV027;
         
-        public static readonly BitVector8 BV060 = BV032 | BV028;
+        public static readonly BitVectorU8 BV060 = BV032 | BV028;
         
-        public static readonly BitVector8 BV061 = BV032 | BV029;
+        public static readonly BitVectorU8 BV061 = BV032 | BV029;
         
-        public static readonly BitVector8 BV062 = BV032 | BV030;
+        public static readonly BitVectorU8 BV062 = BV032 | BV030;
         
-        public static readonly BitVector8 BV063 = BV032 | BV031;
+        public static readonly BitVectorU8 BV063 = BV032 | BV031;
 
-        public static readonly BitVector8  BV064 = BitVector8.Define(0, 0, 0, 0, 0, 0, 1, 0);
+        public static readonly BitVectorU8  BV064 = BitVectorU8.Define(0, 0, 0, 0, 0, 0, 1, 0);
 
-        public static readonly BitVector8 BV065 = BV064 | BV001;
+        public static readonly BitVectorU8 BV065 = BV064 | BV001;
 
-        public static readonly BitVector8 BV066 = BV064 | BV002;
+        public static readonly BitVectorU8 BV066 = BV064 | BV002;
 
-        public static readonly BitVector8 BV067 = BV064 | BV003;
+        public static readonly BitVectorU8 BV067 = BV064 | BV003;
 
-        public static readonly BitVector8 BV068 = BV064 | BV004;
+        public static readonly BitVectorU8 BV068 = BV064 | BV004;
 
-        public static readonly BitVector8 BV069 = BV064 | BV005;
+        public static readonly BitVectorU8 BV069 = BV064 | BV005;
 
-        public static readonly BitVector8 BV070 = BV064 | BV006;
+        public static readonly BitVectorU8 BV070 = BV064 | BV006;
 
-        public static readonly BitVector8 BV071 = BV064 | BV007;
+        public static readonly BitVectorU8 BV071 = BV064 | BV007;
 
-        public static readonly BitVector8 BV072 = BV064 | BV008;
+        public static readonly BitVectorU8 BV072 = BV064 | BV008;
 
-        public static readonly BitVector8 BV073 = BV064 | BV009;
+        public static readonly BitVectorU8 BV073 = BV064 | BV009;
 
-        public static readonly BitVector8 BV074 = BV064 | BV010;
+        public static readonly BitVectorU8 BV074 = BV064 | BV010;
 
-        public static readonly BitVector8 BV075 = BV064 | BV011;
+        public static readonly BitVectorU8 BV075 = BV064 | BV011;
 
-        public static readonly BitVector8 BV076 = BV064 | BV012;
+        public static readonly BitVectorU8 BV076 = BV064 | BV012;
 
-        public static readonly BitVector8 BV077 = BV064 | BV013;
+        public static readonly BitVectorU8 BV077 = BV064 | BV013;
 
-        public static readonly BitVector8 BV078 = BV064 | BV014;
+        public static readonly BitVectorU8 BV078 = BV064 | BV014;
 
-        public static readonly BitVector8 BV079 = BV064 | BV015;
+        public static readonly BitVectorU8 BV079 = BV064 | BV015;
 
-        public static readonly BitVector8 BV080 = BV064 | BV016;
+        public static readonly BitVectorU8 BV080 = BV064 | BV016;
 
-        public static readonly BitVector8  BV128 = BitVector8.Define(0, 0, 0, 0, 0, 0, 0, 1);
+        public static readonly BitVectorU8  BV128 = BitVectorU8.Define(0, 0, 0, 0, 0, 0, 0, 1);
         
-        public static readonly BitVector8  BV255 = BitVector8.Define(1, 1, 1, 1, 1, 1, 1, 1);
+        public static readonly BitVectorU8  BV255 = BitVectorU8.Define(1, 1, 1, 1, 1, 1, 1, 1);
                 
-        static readonly BitVector8[] Lookup = new BitVector8[]
+        static readonly BitVectorU8[] Lookup = new BitVectorU8[]
         {
             BV000, BV001, BV002, BV003, BV004, BV005, BV006, BV007,
             BV008, BV009, BV010, BV011, BV012, BV013, BV014, BV015,
@@ -194,8 +194,8 @@ namespace Z0
 
         };    
 
-        public static BitVector8 Find(byte src)
-            => src <= 63 ? Lookup[src] : BitVector8.Define(src);
+        public static BitVectorU8 Find(byte src)
+            => src <= 63 ? Lookup[src] : BitVectorU8.Define(src);
 
         [StructLayout(LayoutKind.Explicit )]
         public struct U16 

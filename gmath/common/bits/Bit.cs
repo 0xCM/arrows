@@ -25,31 +25,31 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static Bit Read(sbyte src, int pos)
-            => Bits.testbit(src, pos);
+            => Bits.test(src, pos);
 
         [MethodImpl(Inline)]   
         public static Bit Read(byte src, int pos)
-            => Bits.testbit(src, pos);
+            => Bits.test(src, pos);
 
         [MethodImpl(Inline)]   
         public static Bit Read(short src, int pos)
-            => Bits.testbit(src, pos);
+            => Bits.test(src, pos);
 
         [MethodImpl(Inline)]   
         public static Bit Read(ushort src, int pos)
-            => Bits.testbit(src, pos);
+            => Bits.test(src, pos);
 
         [MethodImpl(Inline)]   
         public static Bit Read(int src, int pos)
-            => Bits.testbit(src, pos);
+            => Bits.test(src, pos);
 
         [MethodImpl(Inline)]   
         public static Bit Read(uint src, int pos)
-            => Bits.testbit(src, pos);
+            => Bits.test(src, pos);
 
         [MethodImpl(Inline)]   
         public static Bit Read(long src, int pos)
-            => Bits.testbit(src, pos);
+            => Bits.test(src, pos);
 
         [MethodImpl(Inline)]   
         public static Bit Read(ulong src, int pos)
@@ -57,11 +57,11 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static Bit Read(float src, int pos)
-            => Bits.testbit(src, pos);
+            => Bits.test(src, pos);
 
         [MethodImpl(Inline)]   
         public static Bit Read(double src, int pos)
-            => Bits.testbit(src, pos);
+            => Bits.test(src, pos);
 
         /// <summary>
         /// Parses the bits from a string of bit characters
@@ -73,7 +73,7 @@ namespace Z0
         {
             var dst = alloc<Bit>(src.Length);            
             for(var i = 0; i< src.Length; i++)
-                dst[i] = Z0.Bit.Parse(src[i]);
+                dst[i] = Bit.Parse(src[i]);
             return dst;            
         }
 

@@ -147,37 +147,13 @@ namespace Z0
                 yield return next();
         }
 
-
-        [MethodImpl(Inline)]
-        static uint hi(ulong src)
-            => (uint)(src >> 32);
-
-        [MethodImpl(Inline)]
-        static uint lo(ulong src)
-            => (uint)src;
-                
-        [MethodImpl(Inline)]
-        static (uint x0, uint x1) unpack(ulong src)
-            => (lo(src), hi(src));
-
-        [MethodImpl(Inline)]
-        static string bitcharsu32(uint src)
-            => zpad(Convert.ToString(src,2), 64);
-
-        [MethodImpl(Inline)]
-        static string bitchars64(ulong src)
-            => apply(unpack(src), parts 
-                => bitcharsu32(parts.x0) + bitcharsu32(parts.x1));
-
-        static BitString ToBitString(ulong src)
-            => BitString.define(Bit.Parse(bitchars64(src)));
-
         public IEnumerable<Bit> bits()
         {
             while(true)
             {
                 var i = next();
-                foreach(var b in ToBitString(i).bits)
+                var bits = Bit.Parse(Bits.bitstring(i));
+                foreach(var b in bits)
                     yield return b;
             }
         }
