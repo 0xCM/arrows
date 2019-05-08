@@ -6,7 +6,7 @@ namespace Z0
 {
     partial class Operative
     {
-        public interface LeftDistributive<T>  : Multiplicative<T>, Additive<T>
+        public interface ILeftDistributiveOps<T>  : IMultiplicativeOps<T>, IAdditiveOps<T>
         {
             /// <summary>
             /// Characterizes a type that defines an operator that left-distributes
@@ -22,7 +22,7 @@ namespace Z0
         /// multiplication over addition
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface RightDistributive<T> : Multiplicative<T>, Additive<T>
+        public interface IRightDistributiveOps<T> : IMultiplicativeOps<T>, IAdditiveOps<T>
         {
             T distribute((T x, T y) lhs, T rhs);
         }
@@ -33,7 +33,7 @@ namespace Z0
         /// Characterizes a type that defines both left and right distribution
         /// over addition
         /// </summary>
-        public interface Distributive<T> : LeftDistributive<T>, RightDistributive<T>
+        public interface IDistributiveOps<T> : ILeftDistributiveOps<T>, IRightDistributiveOps<T>
         {
 
         }
@@ -42,7 +42,7 @@ namespace Z0
 
     partial class Structures
     {
-        public interface LeftDistributive<S>: Multiplicative<S>, Additive<S>
+        public interface LeftDistributive<S>: IMultiplicative<S>, IAdditive<S>
             where S : LeftDistributive<S>, new()
         {
             /// <summary>
@@ -54,7 +54,7 @@ namespace Z0
 
         }
 
-        public interface RightDistributive<S> : Multiplicative<S>, Additive<S>
+        public interface RightDistributive<S> : IMultiplicative<S>, IAdditive<S>
             where S : RightDistributive<S>, new()
         {
             /// <summary>
@@ -66,18 +66,18 @@ namespace Z0
 
         }
         
-        public interface Distributive<S> : LeftDistributive<S>, RightDistributive<S> 
-            where S : Distributive<S>, new()
+        public interface IDistributive<S> : LeftDistributive<S>, RightDistributive<S> 
+            where S : IDistributive<S>, new()
         {}
 
-        public interface LeftDistributive<S,T>  : LeftDistributive<S>, Multiplicative<S,T>, Additive<S>
+        public interface LeftDistributive<S,T>  : LeftDistributive<S>, IMultiplicative<S,T>, IAdditive<S>
             where S : LeftDistributive<S,T>, new() { }
 
-        public interface RightDistributive<S,T>  : RightDistributive<S>, Multiplicative<S,T>, Additive<S>
+        public interface RightDistributive<S,T>  : RightDistributive<S>, IMultiplicative<S,T>, IAdditive<S>
             where S : RightDistributive<S,T>, new() { }
 
-        public interface Distributive<S,T> : Distributive<S>, LeftDistributive<S,T>, RightDistributive<S,T>
-            where S : Distributive<S,T>,new() { }
+        public interface IDistributive<S,T> : IDistributive<S>, LeftDistributive<S,T>, RightDistributive<S,T>
+            where S : IDistributive<S,T>,new() { }
 
     }
 }

@@ -6,92 +6,82 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
-
+    using static Structures;
+    using static Operative;
     
-    partial class Operative
-    {        
-
-
-        /// <summary>
-        /// Characterizes group operations over a type
-        /// </summary>
-        /// <typeparam name="T">The operand type</typeparam>
-        public interface Group<T> : Invertive<T>, Monoid<T>
-        {
-            
-        }
-
-
-        public interface GroupM<T> : Group<T>, MonoidM<T>, InvertiveM<T>
-        {
-
-        }
-
-        /// <summary>
-        /// Characterizes additive/abelian group operations
-        /// </summary>
-        public interface GroupA<T> : Group<T>, MonoidA<T>, Negatable<T> 
-        {
-
-        }
-
-
-
+    /// <summary>
+    /// Characterizes group operations over a type
+    /// </summary>
+    /// <typeparam name="T">The operand type</typeparam>
+    public interface IGroupOps<T> : IInvertiveOps<T>, IMonoidOps<T>
+    {
+        
     }
 
-    partial class Structures
+
+    public interface IGroupMOps<T> : IGroupOps<T>, IMonoidMOps<T>, InvertiveMOps<T>
     {
 
-        public interface Group<S> : Invertive<S>, Monoid<S>
-            where S : Group<S>, new()
-        {
+    }
 
-        }
-
-        public interface GroupM<S> : Group<S>, MonoidM<S>
-            where S : GroupM<S>, new()
-        {
-            
-        }
-
-        public interface GroupA<S> : Group<S>, MonoidA<S>, Negatable<S>
-            where S : GroupA<S>, new()
-        {
-
-        }
-        /// <summary>
-        /// Characterizes a group structure
-        /// </summary>
-        /// <typeparam name="T">The type over which the structure is defind</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface Group<S,T> : Group<S>
-            where S : Group<S,T>, new()
-        {
-            
-        }
-
-        /// <summary>
-        /// Characterizes a multiplicative group structure
-        /// </summary>
-        /// <typeparam name="T">The type over which the structure is defind</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface GroupM<S,T> : GroupM<S>, Group<S,T>, MonoidM<S,T>
-            where S : GroupM<S,T>, new()
-        {
-            
-        }
-
-
-        /// <summary>
-        /// Characterizes an additive group structure
-        /// </summary>
-        /// <typeparam name="T">The type over which the structure is defind</typeparam>
-        /// <typeparam name="S">The structure type</typeparam>
-        public interface GroupA<S,T> : GroupA<S>, Group<S,T>, MonoidA<S,T>
-            where S : GroupA<S,T>, new()
-        {
-            
-        }
+    /// <summary>
+    /// Characterizes additive/abelian group operations
+    /// </summary>
+    public interface IGroupAOps<T> : IGroupOps<T>, IMonoidAOps<T>, INegatableOps<T> 
+    {
 
     }
+
+
+    public interface IGroup<S> : IInvertive<S>, IMonoid<S>
+        where S : IGroup<S>, new()
+    {
+
+    }
+
+    public interface IGroupM<S> : IGroup<S>, IMonoidM<S>
+        where S : IGroupM<S>, new()
+    {
+        
+    }
+
+    public interface IGroupA<S> : IGroup<S>, IMonoidA<S>, INegatable<S>
+        where S : IGroupA<S>, new()
+    {
+
+    }
+    /// <summary>
+    /// Characterizes a group structure
+    /// </summary>
+    /// <typeparam name="T">The type over which the structure is defind</typeparam>
+    /// <typeparam name="S">The structure type</typeparam>
+    public interface IGroup<S,T> : IGroup<S>
+        where S : IGroup<S,T>, new()
+    {
+        
+    }
+
+    /// <summary>
+    /// Characterizes a multiplicative group structure
+    /// </summary>
+    /// <typeparam name="T">The type over which the structure is defind</typeparam>
+    /// <typeparam name="S">The structure type</typeparam>
+    public interface IGroupM<S,T> : IGroupM<S>, IGroup<S,T>, IMonoidM<S,T>
+        where S : IGroupM<S,T>, new()
+    {
+        
+    }
+
+
+    /// <summary>
+    /// Characterizes an additive group structure
+    /// </summary>
+    /// <typeparam name="T">The type over which the structure is defind</typeparam>
+    /// <typeparam name="S">The structure type</typeparam>
+    public interface IGroupA<S,T> : IGroupA<S>, IGroup<S,T>, IMonoidA<S,T>
+        where S : IGroupA<S,T>, new()
+    {
+        
+    }
+
 }

@@ -28,7 +28,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The element type</typeparam>
         /// <typeparam name="S">The type of the reifying structure</typeparam>
-        public interface Slice<S,T> :  Slice<T>, Reversible<S>, Equatable<S>
+        public interface Slice<S,T> :  Slice<T>, IReversible<S>, Equatable<S>
             where S : Slice<S,T>, new()
         {
 

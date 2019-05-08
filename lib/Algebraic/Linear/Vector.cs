@@ -15,7 +15,7 @@ namespace Z0
     using static zfunc;
 
 
-    public readonly struct Vector<N, T> : Equatable<Vector<N,T>>, Formattable, Lengthwise
+    public readonly struct Vector<N, T> : Equatable<Vector<N,T>>, Formattable, ILengthwise
         where N : ITypeNat, new()
         where T : struct, IEquatable<T>    
     {
@@ -88,7 +88,7 @@ namespace Z0
         public IEnumerable<T> cells(Func<T,bool> predicate)
             => data.Where(predicate);
 
-        public uint length 
+        public uint Length 
             => (uint)data.Length;
 
         [MethodImpl(Inline)]   

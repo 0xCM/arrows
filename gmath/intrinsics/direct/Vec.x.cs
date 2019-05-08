@@ -15,7 +15,7 @@ namespace Z0
     using X86 = System.Runtime.Intrinsics.X86;
     using NumVec = System.Numerics.Vector;
 
-    using static zcore;
+    
     using static mfunc;
     using static zfunc;
 

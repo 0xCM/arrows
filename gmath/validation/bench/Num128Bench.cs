@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.IO;
 
-    using static zcore;
+    
     using static zfunc;
 
     public class Num128Bench : BenchContext
@@ -28,9 +28,9 @@ namespace Z0
 
         }
 
-        public BenchComparison MulF32(int? cycles = null, int? samples = null)
+        public IBenchComparison MulF32()
         {
-            var data = BinOpInit<float>(samples);
+            var data = BinOpInit<float>();
             var opid = OpKind.Mul.Num128OpId<float>();
             var sw = stopwatch(false);
 
@@ -47,9 +47,9 @@ namespace Z0
 
         }
 
-        public BenchComparison MulF64(int? cycles = null, int? samples = null)
+        public IBenchComparison MulF64()
         {
-            var data = BinOpInit<double>(samples);
+            var data = BinOpInit<double>();
             var opid = OpKind.Mul.Num128OpId<double>();
             var sw = stopwatch(false);
 

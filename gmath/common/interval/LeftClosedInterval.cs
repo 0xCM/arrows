@@ -10,7 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static zcore;
+    
 
     /// <summary>
     /// Characterizes an interval that does not contain its upper bound

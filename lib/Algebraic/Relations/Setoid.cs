@@ -9,33 +9,32 @@ namespace Z0
     using System.Collections.Generic;
     using System.Collections.Concurrent;
 
+    using static Structures;
+
     using static zcore;
     using static Reify;
 
-    partial class Structures
+    /// <summary>
+    /// Characterizes a discrete partition over a discrete set and, consequently, 
+    /// is a constructive presentation of an equivalence relation. In this context, a parition
+    /// is a collection of mutually disjoint subsets of a given set whose union
+    /// is recovers the original set
+    /// </summary>
+    /// <typeparam name="T">The element type</typeparam>
+    /// <remarks>See https://en.wikipedia.org/wiki/Setoid</remarks>
+    public interface ISetoid<C,T> : IQuotientSet<C,T>
+        where C : IDiscreteEqivalenceClass<C,T>, new()
+        where T : Structures.ISemigroup<T>, new()
     {
-        /// <summary>
-        /// Characterizes a discrete partition over a discrete set and, consequently, 
-        /// is a constructive presentation of an equivalence relation. In this context, a parition
-        /// is a collection of mutually disjoint subsets of a given set whose union
-        /// is recovers the original set
-        /// </summary>
-        /// <typeparam name="T">The element type</typeparam>
-        /// <remarks>See https://en.wikipedia.org/wiki/Setoid</remarks>
-        public interface Setoid<C,T> : QuotientSet<C,T>
-            where C : DiscreteEqivalenceClass<C,T>, new()
-            where T : Structures.Semigroup<T>, new()
-        {
 
-        }
     }
 
-    public class Setoid<T> : Structures.Setoid<FiniteEquivalenceClass<T>, T>
-        where T : Structures.Semigroup<T>, new()
+    public class Setoid<T> : ISetoid<FiniteEquivalenceClass<T>, T>
+        where T : Structures.ISemigroup<T>, new()
     {        
         readonly FiniteSet<T> membership;
         
-        readonly Operative.Equivalence<T> equivalence;
+        readonly Operative.IEquivalenceOps<T> equivalence;
         
         readonly Reify.FiniteEquivalenceClass<T>[] parts;
         
@@ -44,7 +43,7 @@ namespace Z0
         {
             this.membership = new FiniteSet<T>();
         }
-        public Setoid(FiniteSet<T> data, Operative.Equivalence<T> equivalence)
+        public Setoid(FiniteSet<T> data, Operative.IEquivalenceOps<T> equivalence)
         {
             this.membership = data;
             this.equivalence = equivalence;

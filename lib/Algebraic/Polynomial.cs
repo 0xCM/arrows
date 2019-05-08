@@ -13,17 +13,15 @@ namespace Z0
     public static class Polynomial
     {
         public static PolynomialTerm<T> term<T>(T coefficient, intg<uint> power)
-            where  T: Equatable<T>, new()
+            where  T: IEquatable<T>, new()
                 => new PolynomialTerm<T>(coefficient,power);
     }
     
     public readonly struct PolynomialTerm<T> : Equatable<PolynomialTerm<T>>
-        where  T: Equatable<T>, new()
+        where  T: IEquatable<T>, new()
     {
         
-        static readonly Equatable<T> eqops = new T();
         public static readonly PolynomialTerm<T> Zero = default;
-
 
         public static implicit operator PolynomialTerm<T>((T coefficient, intg<uint> power) x)        
             => new PolynomialTerm<T>(x.coefficient, x.power);
@@ -45,7 +43,7 @@ namespace Z0
             => $"{coefficient}X^{power}";
 
         public bool eq(PolynomialTerm<T> lhs, PolynomialTerm<T> rhs)
-            => lhs.coefficient.eq(rhs.coefficient) && lhs.power == rhs.power;
+            => lhs.coefficient.Equals(rhs.coefficient) && lhs.power == rhs.power;
 
         public bool neq(PolynomialTerm<T> lhs, PolynomialTerm<T> rhs)
             => not(eq(lhs,rhs));
@@ -60,13 +58,13 @@ namespace Z0
             => eq(rhs);
 
         public int hash()
-            => coefficient.hash() & power.GetHashCode();
+            => coefficient.GetHashCode() & power.GetHashCode();
     }
 
     public readonly struct Polynomial<T>
-        where T : Operative.MonoidA<T>, Equatable<T>, new()
+        where T : Operative.IMonoidAOps<T>, Equatable<T>, new()
     {
-        static readonly Operative.MonoidA<T> Ops = new T();
+        static readonly Operative.IMonoidAOps<T> Ops = new T();
         
         static readonly T FZero = Ops.zero;
 

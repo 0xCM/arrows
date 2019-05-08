@@ -13,16 +13,15 @@ namespace Z0
     using static zcore;
     using static Traits;
 
-
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct modg<N, T> : Structures.ModN<N, modg<N, T>, T>
+    public readonly struct modg<N, T> : IModN<N, modg<N, T>, T>
         where N : ITypeNat, new()
         where T : struct, IEquatable<T>
     {
 
-        static Operative.ModN<N,T> Ops = ModOps<N,T>.Inhabitant;
+        static IModNOps<N,T> Ops = ModOps<N,T>.Inhabitant;
         
         static readonly intg<T> @base = Nat.natvalg<N,T>();
 

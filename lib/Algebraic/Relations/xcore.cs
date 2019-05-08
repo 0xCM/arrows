@@ -19,7 +19,7 @@ namespace Z0
         /// <typeparam name="T">The set member type</typeparam>
         /// <returns></returns>
         public static FiniteSet<T> ToFiniteSet<T>(this IEnumerable<T> src)
-            where T : Structures.Semigroup<T>, new()
+            where T : Structures.ISemigroup<T>, new()
                 => new FiniteSet<T>(src);
     }
 

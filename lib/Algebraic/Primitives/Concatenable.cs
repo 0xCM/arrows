@@ -11,26 +11,21 @@ namespace Z0
     using static zcore;
     using static Operative;
 
-    partial class Operative
+    public interface IConcatenableOps<T>
     {
-        public interface Concatenable<T>
-        {
-            T concat(T lhs, T rhs);
-        }
+        T concat(T lhs, T rhs);
     }
 
-    partial class Structures
+    public interface IConcatenable<S> 
+        where S : IConcatenable<S>, new()
     {
-        public interface Concatenable<S> 
-            where S : Concatenable<S>, new()
-        {
-            S concat(S rhs);
-        }
-
-        public interface Concatenable<S,T> : Concatenable<S>
-            where S : Concatenable<S,T>, new()
-        {
-
-        }
+        S concat(S rhs);
     }
+
+    public interface IConcatenable<S,T> : IConcatenable<S>
+        where S : IConcatenable<S,T>, new()
+    {
+
+    }
+
 }

@@ -8,7 +8,7 @@ namespace Z0
 
     partial class Structures
     {
-        public interface DiscreteGroup<S> : Group<S>
+        public interface DiscreteGroup<S> : IGroup<S>
             where S : DiscreteGroup<S>, new()
         {
             
@@ -19,7 +19,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The operational type</typeparam>
         /// <typeparam name="S">The structure type</typeparam>
-        public interface DiscreteGroup<S,T> : Group<S,T>, Contain.DiscreteSet<S,T>
+        public interface DiscreteGroup<S,T> : IGroup<S,T>, IDiscreteSet<S,T>
             where S : DiscreteGroup<S,T>, new()
             where T : IEquatable<T>
         {
@@ -34,7 +34,7 @@ namespace Z0
 
         }
 
-        public interface FiniteAbelianGroup<S,T> : DiscreteAbelianGroup<S,T>, Contain.FiniteSet<S,T>
+        public interface FiniteAbelianGroup<S,T> : DiscreteAbelianGroup<S,T>, Contain.IFiniteSet<S,T>
             where S : FiniteAbelianGroup<S,T>, new()
             where T : IEquatable<T>
         {
@@ -42,7 +42,7 @@ namespace Z0
 
         }
 
-        public interface DiscreteAbelianGroup<S,T> : GroupA<S,T>, Contain.DiscreteSet<S,T>
+        public interface DiscreteAbelianGroup<S,T> : IGroupA<S,T>, IDiscreteSet<S,T>
             where S : DiscreteAbelianGroup<S,T>, new()
             where T : IEquatable<T>
         {

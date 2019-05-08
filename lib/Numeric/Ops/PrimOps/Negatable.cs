@@ -13,24 +13,24 @@ namespace Z0
 
     partial class PrimOps { partial class Reify {
         public readonly struct Negatable : 
-            Negatable<byte>, 
-            Negatable<sbyte>, 
-            Negatable<short>, 
-            Negatable<ushort>, 
-            Negatable<int>, 
-            Negatable<uint>, 
-            Negatable<long>,             
-            Negatable<ulong>, 
-            Negatable<float>, 
-            Negatable<double>, 
-            Negatable<decimal>,
-            Negatable<BigInteger>
+            INegatableOps<byte>, 
+            INegatableOps<sbyte>, 
+            INegatableOps<short>, 
+            INegatableOps<ushort>, 
+            INegatableOps<int>, 
+            INegatableOps<uint>, 
+            INegatableOps<long>,             
+            INegatableOps<ulong>, 
+            INegatableOps<float>, 
+            INegatableOps<double>, 
+            INegatableOps<decimal>,
+            INegatableOps<BigInteger>
         {
             static readonly Negatable Inhabitant = default;
 
             [MethodImpl(Inline)]
-            public static Negatable<T> Operator<T>() 
-                => cast<Negatable<T>>(Inhabitant);
+            public static INegatableOps<T> Operator<T>() 
+                => cast<INegatableOps<T>>(Inhabitant);
 
             [MethodImpl(Inline)]
             public byte negate(byte x)

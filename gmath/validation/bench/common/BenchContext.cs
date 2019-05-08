@@ -10,11 +10,11 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.IO;
 
-    using static zcore;
+    
     using static zfunc;
     using static mfunc;
     
-    public delegate BenchComparison OpRunner();
+    public delegate IBenchComparison OpRunner();
 
     public abstract class BenchContext : Context
     {
@@ -28,7 +28,7 @@ namespace Z0
         {
             filter = filter ?? (s => true);
             
-            var comparisons = new List<BenchComparison>();
+            var comparisons = new List<IBenchComparison>();
             foreach(var runner in Runners().Where(r => filter(r.Key)).Select(r => r.Value))
                 comparisons.Add(runner());
             iter(comparisons,print);
@@ -40,7 +40,7 @@ namespace Z0
                     m => m.IsPublic && !m.IsStatic && !m.IsAbstract  
                     && m.DeclaringType == this.GetType()
                     && m.GetParameters().Length == 0 
-                    && m.ReturnType == typeof(BenchComparison));
+                    && m.ReturnType == type<IBenchComparison>());
             
             var runners = map(methods, m => (m.Name, (OpRunner) Delegate.CreateDelegate(typeof(OpRunner),this,m))).ToDictionary();
             return runners;            
@@ -53,21 +53,37 @@ namespace Z0
             => AppMsg.Define($"Cycles = {Config.Cycles}, Reps = {Config.Reps}, Ops = {Config.Cycles * Config.Reps}", SeverityLevel.Info);
 
 
-        protected void print(BenchComparison comparison)
+        protected void print(IBenchComparison comparison)
         {
-            zcore.print(comparison.LeftBench.Description);
-            zcore.print(comparison.RightBench.Description);
-            zcore.print(comparison.CalcDelta().Description);
+            zfunc.print(comparison.LeftMsg);
+            zfunc.print(comparison.RightMsg);
+            zfunc.print(comparison.CalcDelta().Description);
         }        
         
-        protected BenchComparison Compare(OpId op, Repeat left, Repeat right, int? cycles, int? reps, int? samples)
+        protected IBenchComparison Compare(OpId op, OpMeasurer left, OpMeasurer right)
         {
-            var _cycles = cycles ?? Config.Cycles;
-            var _reps = reps ?? Config.Reps;
-            var dTime = left(_cycles , _reps);
-            var gTime = right(_cycles, _reps);            
-            var dBench = BenchSummary.Define(op, _cycles, 0, dTime);
-            var gBench = new BenchSummary(~op, _cycles, 0, gTime);
+            var leftMeasure = left(Config.Cycles, Config.Reps);
+            var rightMeasure = right(Config.Cycles, Config.Reps);            
+            var lBench = BenchSummary.Define(op, Config.Cycles, leftMeasure);
+            var rBench = BenchSummary.Define(~op, Config.Cycles, rightMeasure);
+            return BenchComparison.Define(lBench,rBench);
+        }
+
+        protected BenchComparison Compare(OpId op, Repeat left, Repeat right)
+        {
+            var lTime = left(Config.Cycles, Config.Reps);
+            var rTime = right(Config.Cycles, Config.Reps);            
+            var lBench = BenchSummary.Define(op, Config.Cycles, 0, lTime);
+            var rBench = new BenchSummary(~op, Config.Cycles, 0, rTime);
+            return BenchComparison.Define(lBench,rBench);
+        }
+
+        protected BenchComparison<T> Measure<T>(T leftTitle, OpMeasurer left, T rightTitle, OpMeasurer right)
+        {
+            var lMeasure = left(Config.Cycles , Config.Reps);
+            var rMeasure = right(Config.Cycles, Config.Reps);            
+            var dBench = BenchSummary.Define(leftTitle, Config.Cycles, lMeasure);
+            var gBench = BenchSummary.Define(rightTitle, Config.Cycles, rMeasure);
             return BenchComparison.Define(dBench,gBench);
         }
 
@@ -99,7 +115,7 @@ namespace Z0
                     opcount += opsPerCycle;
                                         
                     if(cycle % Config.AnnounceRate == 0)
-                        zcore.print(BenchmarkMessages.CycleStatus(op, cycle, opcount, elapsed(timer)));                    
+                        zfunc.print(BenchmarkMessages.CycleStatus(op, cycle, opcount, elapsed(timer)));                    
                 }
                 
                 return  OpStats.Define(op, elapsed(timer), cycles, opcount);
@@ -125,7 +141,7 @@ namespace Z0
                                         
                                         
                     if(cycle % Config.AnnounceRate == 0)
-                        zcore.print(BenchmarkMessages.CycleStatus(op, cycle, totalOps, totalTime));                    
+                        zfunc.print(BenchmarkMessages.CycleStatus(op, cycle, totalOps, totalTime));                    
                 }
                 
                 return  OpStats.Define(op, totalTime, cycles, totalOps);
@@ -150,7 +166,7 @@ namespace Z0
                     timer.Stop();
                                         
                     if(cycle % Config.AnnounceRate == 0)
-                        zcore.print(BenchmarkMessages.CycleStatus(op, cycle, opcount, elapsed(timer)));                    
+                        zfunc.print(BenchmarkMessages.CycleStatus(op, cycle, opcount, elapsed(timer)));                    
                 }
                 
                 return  OpStats.Define(op, elapsed(timer), cycles, opcount);
@@ -185,10 +201,63 @@ namespace Z0
                     
                     opcount += ((long)reps *  (long)(samples ?? Config.SampleSize));
                     if(cycle % Config.AnnounceRate == 0)
-                        zcore.print(BenchmarkMessages.CycleStatus(title, cycle, opcount, elapsed(timer)));                    
+                        zfunc.print(BenchmarkMessages.CycleStatus(title, cycle, opcount, elapsed(timer)));                    
                 }
                 
                 return elapsed(timer);
+            }
+            
+            return  repeat;
+        }
+
+        protected OpMeasurer Measure<T>(T title, Action action, int OpCountPerRep = 1)
+        {
+            OpMeasure repeat(int cycles, int reps)
+            {
+                var timer = stopwatch(false);
+                var opcount = 0L;
+
+                for(var cycle = 1; cycle <= cycles; cycle++)
+                {
+                    timer.Start();
+                    
+                    for(var rep = 1; rep <= reps; rep++)
+                        action();
+                    
+                    timer.Stop();
+                    
+                    opcount += OpCountPerRep;
+                    if(cycle % Config.AnnounceRate == 0)
+                        zfunc.print(BenchmarkMessages.CycleStatus(title, cycle, opcount, elapsed(timer)));                    
+                }
+                
+                return (opcount, elapsed(timer));
+            }
+            
+            return  repeat;
+        }
+
+        protected OpMeasurer DefineMeasure<T>(T title, Func<long> action)
+        {
+            OpMeasure repeat(int cycles, int reps)
+            {
+                var timer = stopwatch(false);
+                var opcount = 0L;
+
+                for(var cycle = 1; cycle <= cycles; cycle++)
+                {
+                    timer.Start();
+                    
+                    for(var rep = 1; rep <= reps; rep++)
+                        opcount += action();
+                    
+                    timer.Stop();
+                    
+                    if(cycle % Config.AnnounceRate == 0)
+                        zfunc.print(BenchmarkMessages.CycleStatus(title, cycle, opcount, elapsed(timer)));                    
+                }
+                
+                return (opcount, elapsed(timer));
             }
             
             return  repeat;
@@ -202,41 +271,42 @@ namespace Z0
             return Randomizer.Array<T>(samples ?? Config.SampleSize, filter);
         }
                  
-        protected T[] Init<T>(int? samples, bool nonzero = false)
+        protected T[] Init<T>(bool nonzero = false)
             where T : struct, IEquatable<T>
         {
             GC.Collect();
-            return Sample<T>(samples,nonzero);
+            return Sample<T>(Config.SampleSize,nonzero);
         }
 
-        protected BinOpData<T> BinOpInit<T>(int? samples, bool nonzero = false)                
+        protected BinOpData<T> BinOpInit<T>(bool nonzero = false)                
             where T : struct, IEquatable<T>
         {
             GC.Collect();
             return new BinOpData<T>(
-                Sample<T>(samples ?? Config.SampleSize, nonzero), 
-                Sample<T>(samples ?? Config.SampleSize, nonzero), 
-                alloc<T>(samples ?? Config.SampleSize),
-                alloc<T>(samples ?? Config.SampleSize)
+                Sample<T>(Config.SampleSize, nonzero), 
+                Sample<T>(Config.SampleSize, nonzero), 
+                alloc<T>(Config.SampleSize),
+                alloc<T>(Config.SampleSize)
             );
         }
         
-        protected UnaryOpData<T> UnaryOpInit<T>(int? samples, bool nonzero = false)                
+        protected UnaryOpData<T> UnaryOpInit<T>(bool nonzero = false)                
             where T : struct, IEquatable<T>
         {
             GC.Collect();
             return new UnaryOpData<T>(
-                Sample<T>(samples ?? Config.SampleSize, nonzero), 
-                alloc<T>(samples ?? Config.SampleSize),
-                alloc<T>(samples ?? Config.SampleSize)
+                Sample<T>(Config.SampleSize, nonzero), 
+                alloc<T>(Config.SampleSize),
+                alloc<T>(Config.SampleSize)
             );
         }
 
-        protected BenchComparison Finish(BenchComparison compared)
+        protected IBenchComparison Finish(IBenchComparison compared)
         {
             GC.Collect();
             return compared;
         }
+
 
         protected unsafe void SampleTo<T>(void* pDst, int? samples = null, bool nonzero = false)
             where T : struct, IEquatable<T>

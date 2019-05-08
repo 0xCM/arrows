@@ -15,8 +15,8 @@ namespace Z0
     using static zcore;
     using static Structures;
 
-    public interface Listed<S> : Equatable<S>, Nullary<S>, Reversible<S>, Lengthwise<S>
-        where S : Listed<S>, new()
+    public interface IListed<S> : IEquatable<S>, INullary<S>, IReversible<S>, ILengthwise<S>
+        where S : IListed<S>, new()
     {
         /// <summary>
         /// Returns the elements following the head, if any; otherwise, returns the zero element of S
@@ -25,9 +25,9 @@ namespace Z0
 
     }
 
-    public interface Listed<S,T> : Listed<S>
-        where S : Listed<S,T>, new()
-        where T : struct, MonoidA<T>
+    public interface IListed<S,T> : IListed<S>
+        where S : IListed<S,T>, new()
+        where T : struct, IMonoidA<T>
     {
         /// <summary>
         /// Returns the first constituent if it exits; otherwise, the zero element of T
@@ -49,12 +49,12 @@ namespace Z0
     public static class Listing
     {
         public static Listing<T> define<T>(IEnumerable<T> src)
-            where T : struct,MonoidA<T>
+            where T : struct,IMonoidA<T>
                 => new Listing<T>(src);
     }
 
-    public readonly struct Listing<T> : Listed<Listing<T>, T>
-        where T : struct, MonoidA<T>
+    public readonly struct Listing<T> : IListed<Listing<T>, T>
+        where T : struct, IMonoidA<T>
     {
 
         [MethodImpl(Inline)]
@@ -97,7 +97,7 @@ namespace Z0
             _data = defer(() => slice(items));
         }
         
-        public uint length 
+        public uint Length 
             => data.length;
 
         [MethodImpl(Inline)]
@@ -134,7 +134,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public bool nonzero()
-            => length != 0;
+            => Length != 0;
 
         [MethodImpl(Inline)]
         public Listing<T> redefine(IEnumerable<T> content)
@@ -142,7 +142,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Listing<U> redefine<U>(IEnumerable<T> content, Func<T,U> f)
-            where U : struct, MonoidA<U>
+            where U : struct, IMonoidA<U>
             => new Listing<U>(content.Select(f));
 
         [MethodImpl(Inline)]

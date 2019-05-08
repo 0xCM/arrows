@@ -8,9 +8,9 @@ namespace Z0
 
     partial class Structures
     {
-        public interface LeftModule<R,G>  : GroupA<G>
-            where R : Ring<R>, new()
-            where G : GroupA<G>, new()
+        public interface ILeftModule<R,G>  : IGroupA<G>
+            where R : IRing<R>, new()
+            where G : IGroupA<G>, new()
         {
 
             /// <summary>
@@ -22,9 +22,9 @@ namespace Z0
 
         }
 
-        public interface RightModule<G,R>  : GroupA<G>
-            where R : Ring<R>, new()
-            where G : GroupA<G>, new()
+        public interface IRightModule<G,R>  : IGroupA<G>
+            where R : IRing<R>, new()
+            where G : IGroupA<G>, new()
         {
 
             /// <summary>
@@ -36,18 +36,18 @@ namespace Z0
 
         }
 
-        public interface LeftModule<S,R,G> : LeftModule<R,G>
-            where S : LeftModule<S,R,G>, new()
-            where R : CommutativeRing<R>, new()
-            where G : GroupA<G>, new()
+        public interface ILeftModule<S,R,G> : ILeftModule<R,G>
+            where S : ILeftModule<S,R,G>, new()
+            where R : ICommutativeRing<R>, new()
+            where G : IGroupA<G>, new()
         {
 
         }
 
-        public interface RightModule<S,G,R> : RightModule<G,R>
-            where S : RightModule<S,G,R>, new()
-            where R : CommutativeRing<R>, new()
-            where G : GroupA<G>, new()
+        public interface IRightModule<S,G,R> : IRightModule<G,R>
+            where S : IRightModule<S,G,R>, new()
+            where R : ICommutativeRing<R>, new()
+            where G : IGroupA<G>, new()
         {
 
         }
@@ -67,7 +67,7 @@ namespace Z0
         /// Also, see https://en.wikipedia.org/wiki/Group_with_operators
         /// </remarks>
         public interface GroupAction<G,R>
-            where G : Group<G>, new()
+            where G : IGroupOps<G>, new()
 
         {
             /// <summary>
@@ -85,8 +85,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="G">The group individual type</typeparam>
         /// <typeparam name="R">The ring individual type</typeparam>
-        public interface LeftModule<R,G> : GroupA<G>
-            where R : CommutativeRing<R>, new()
+        public interface ILeftModuleOps<R,G> : IGroupAOps<G>
+            where R : ICommutativeRingOps<R>, new()
             
         {
             /// <summary>
@@ -103,8 +103,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="G">The group individual type</typeparam>
         /// <typeparam name="R">The ring individual type</typeparam>
-        public interface RightModule<G,R> : GroupA<G>
-            where R : CommutativeRing<R>, new()
+        public interface RightModule<G,R> : IGroupAOps<G>
+            where R : ICommutativeRingOps<R>, new()
         {
             /// <summary>
             /// Effects right scalar multiplication

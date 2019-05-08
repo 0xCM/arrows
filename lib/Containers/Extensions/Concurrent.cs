@@ -20,7 +20,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K">The key type</typeparam>
     /// <typeparam name="V">Tye value type</typeparam>
-    public class ConcurrentIndex<K,V> : Lengthwise
+    public class ConcurrentIndex<K,V> : ILengthwise
     {
         /// <summary>
         /// The backing store
@@ -109,7 +109,7 @@ namespace Z0
         public IEnumerable<(K key,V value)> KeyedValues
             => from item in storage select (item.Key, item.Value);
 
-        public uint length 
+        public uint Length 
             => (uint)storage.Count;
     }
 

@@ -11,32 +11,24 @@ namespace Z0
 
     using static Operative;
 
-    partial class Operative
+    public interface INegatableOps<T>
     {
-        public interface Negatable<T>
-        {
-            /// <summary>
-            /// Unary negation of input
-            /// </summary>
-            /// <param name="x">The input value</param>
-            T negate(T x);
-
-        }
+        /// <summary>
+        /// Unary negation of input
+        /// </summary>
+        /// <param name="x">The input value</param>
+        T negate(T x);
 
     }
 
-    partial class Structures
+    public interface INegatable<S>
+        where S : INegatable<S>, new()
     {
-        public interface Negatable<S>
-            where S : Negatable<S>, new()
-        {
-            /// <summary>
-            /// Unary structural negation
-            /// </summary>
-            /// <param name="a">The input value</param>
-            S negate();
-        }
-
+        /// <summary>
+        /// Unary structural negation
+        /// </summary>
+        /// <param name="a">The input value</param>
+        S negate();
     }
 
 }

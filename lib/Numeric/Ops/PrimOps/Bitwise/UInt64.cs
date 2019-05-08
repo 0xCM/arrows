@@ -21,7 +21,7 @@ namespace Z0
     partial class PrimOps { partial class Reify {
         
         public readonly partial struct Bitwise : 
-            Bitwise<target> 
+            IBitwiseOps<target> 
         {
         
             [MethodImpl(Inline)]   
@@ -75,7 +75,7 @@ namespace Z0
 
             [MethodImpl(Inline)]   
             public BitString bitstring(target src) 
-                => BitString.define(bit.Parse(bitchars(src)));
+                => BitString.define(Bit.Parse(bitchars(src)));
 
             [MethodImpl(Inline)]
             public byte[] bytes(target src)
@@ -86,9 +86,9 @@ namespace Z0
                 => (src & (1ul << pos)) != 0ul;
 
             [MethodImpl(Inline)]
-            public bit[] bits(target src)
+            public Bit[] bits(target src)
             {
-                var dst = array<bit>(SizeOf<target>.BitSize);
+                var dst = array<Bit>(SizeOf<target>.BitSize);
                 for(var i = 0; i < SizeOf<target>.BitSize; i++)
                     dst[i] = testbit(src,i);
                 return dst; 

@@ -9,16 +9,16 @@ namespace Z0
     /// <summary>
     /// Characterizes  a type that  exhibits a notion of length
     /// </summary>
-    public interface Lengthwise
+    public interface ILengthwise
     {
-        uint length {get;}
+        uint Length {get;}
     }
 
     /// <summary>
     /// Characterizes  a type that  exhibits a notion of length
     /// </summary>
-    public interface Lengthwise<S> : Lengthwise
-        where S : Lengthwise<S>, new()
+    public interface ILengthwise<S> : ILengthwise
+        where S : ILengthwise<S>, new()
     {
 
     }

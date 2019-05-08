@@ -12,7 +12,7 @@ namespace Z0
     /// Characterizes structural equality
     /// </summary>
     /// <typeparam name="S">The structure type</typeparam>
-    public interface Equatable<S> : Hashable<S> 
+    public interface Equatable<S> : IHashable<S> 
         where S : Equatable<S>, new()
     {
 

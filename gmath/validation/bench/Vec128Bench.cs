@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.IO;
 
-    using static zcore;
+    
     using static zfunc;
     using static global::mfunc;
 
@@ -37,13 +37,13 @@ namespace Z0
 
         readonly Span128Sampler RightSamples;   
 
-        public BenchComparison CreateI8(int? cycles = null, int? samples = null)
+        public IBenchComparison CreateI8()
         {
-            var data = UnaryOpInit<sbyte>(samples);
+            var data = UnaryOpInit<sbyte>();
             var opid = OpKind.Create.OpId<sbyte>(intrinsic: true);
 
             var src = data.Source;
-            var direct = Measure(opid, samples, () => 
+            var direct = Measure(opid, () => 
                 {
                     var i =0;
                     dinx.store(Vec128.define(
@@ -54,44 +54,44 @@ namespace Z0
                         data.RightTarget);
                 });
 
-            var generic = Measure(~opid, samples, () => 
+            var generic = Measure(~opid, () => 
                 dinx.store(Vec128.define(data.Source), data.LeftTarget));
 
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison CreateI32(int? cycles = null, int? samples = null)
+        public IBenchComparison CreateI32()
         {
-            var data = UnaryOpInit<int>(samples);
+            var data = UnaryOpInit<int>();
             var opid = OpKind.Create.OpId<int>(intrinsic: true);
 
             var src = data.Source;
-            var direct = Measure(opid, samples, () => 
+            var direct = Measure(opid, () => 
                 dinx.store(Vec128.define(src[0], src[1], src[2], src[3]), data.RightTarget));
 
-            var generic = Measure(~opid, samples, () => 
+            var generic = Measure(~opid, () => 
                 dinx.store(Vec128.define(data.Source), data.LeftTarget));
 
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison CreateF64(int? cycles = null, int? samples = null)
+        public IBenchComparison CreateF64()
         {
-            var data = UnaryOpInit<double>(samples);
+            var data = UnaryOpInit<double>();
             var opid = OpKind.Create.OpId<double>(intrinsic: true);
 
             var src = data.Source;
-            var direct = Measure(opid, samples, () => 
+            var direct = Measure(opid, () => 
                 dinx.store(Vec128.define(src[0], src[1]), data.RightTarget));
 
-            var generic = Measure(~opid, samples, () => 
+            var generic = Measure(~opid, () => 
                 dinx.store(Vec128.define(data.Source), data.LeftTarget));
 
-            var comparison = Compare(opid, direct, generic, cycles, Config.Reps, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
@@ -213,7 +213,7 @@ namespace Z0
         }
 
 
-        public BenchComparison AddI8()
+        public IBenchComparison AddI8()
         {
             var opid = OpKind.Add.Vec128OpId<sbyte>();
             (var lDst, var rDst) = Targets<sbyte>();
@@ -227,7 +227,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison AddU8()        
+        public IBenchComparison AddU8()        
         {
             var opid = OpKind.Add.Vec128OpId<byte>();
             (var lDst, var rDst) = Targets<byte>();
@@ -241,7 +241,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison AddI16()
+        public IBenchComparison AddI16()
         {
             var opid = OpKind.Add.Vec128OpId<short>();
             (var lDst, var rDst) = Targets<short>();
@@ -255,7 +255,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison AddU16()        
+        public IBenchComparison AddU16()        
         {
             var opid = OpKind.Add.Vec128OpId<ushort>();
             (var lDst, var rDst) = Targets<ushort>();
@@ -269,7 +269,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison AddI32()
+        public IBenchComparison AddI32()
         {
             var opid = OpKind.Add.Vec128OpId<int>();
             (var lDst, var rDst) = Targets<int>();
@@ -283,7 +283,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison AddU326()        
+        public IBenchComparison AddU326()        
         {
             var opid = OpKind.Add.Vec128OpId<uint>();
             (var lDst, var rDst) = Targets<uint>();
@@ -297,7 +297,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison AddI64()
+        public IBenchComparison AddI64()
         {
             var opid = OpKind.Add.Vec128OpId<long>();
             (var lDst, var rDst) = Targets<long>();
@@ -311,7 +311,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison AddU64()        
+        public IBenchComparison AddU64()        
         {
             var opid = OpKind.Add.Vec128OpId<ulong>();
             (var lDst, var rDst) = Targets<ulong>();
@@ -326,7 +326,7 @@ namespace Z0
         }
 
 
-        public BenchComparison AddF32()        
+        public IBenchComparison AddF32()        
         {
             var opid = OpKind.Add.Vec128OpId<float>();
             (var lDst, var rDst) = Targets<float>();
@@ -340,7 +340,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison AddF64()        
+        public IBenchComparison AddF64()        
         {
             var opid = OpKind.Add.Vec128OpId<double>();
             (var lDst, var rDst) = Targets<double>();
@@ -465,7 +465,7 @@ namespace Z0
         }
 
 
-        public BenchComparison SubI8()
+        public IBenchComparison SubI8()
         {
             var opid = OpKind.Sub.Vec128OpId<sbyte>();
             (var lDst, var rDst) = Targets<sbyte>();
@@ -479,7 +479,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison SubU8()        
+        public IBenchComparison SubU8()        
         {
             var opid = OpKind.Sub.Vec128OpId<byte>();
             (var lDst, var rDst) = Targets<byte>();
@@ -493,7 +493,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison SubI16()
+        public IBenchComparison SubI16()
         {
             var opid = OpKind.Sub.Vec128OpId<short>();
             (var lDst, var rDst) = Targets<short>();
@@ -507,7 +507,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison SubU16()        
+        public IBenchComparison SubU16()        
         {
             var opid = OpKind.Sub.Vec128OpId<ushort>();
             (var lDst, var rDst) = Targets<ushort>();
@@ -521,7 +521,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison SubI32()
+        public IBenchComparison SubI32()
         {
             var opid = OpKind.Sub.Vec128OpId<int>();
             (var lDst, var rDst) = Targets<int>();
@@ -535,7 +535,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison SubU326()        
+        public IBenchComparison SubU326()        
         {
             var opid = OpKind.Sub.Vec128OpId<uint>();
             (var lDst, var rDst) = Targets<uint>();
@@ -549,7 +549,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison SubI64()
+        public IBenchComparison SubI64()
         {
             var opid = OpKind.Sub.Vec128OpId<long>();
             (var lDst, var rDst) = Targets<long>();
@@ -563,7 +563,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison SubU64()        
+        public IBenchComparison SubU64()        
         {
             var opid = OpKind.Sub.Vec128OpId<ulong>();
             (var lDst, var rDst) = Targets<ulong>();
@@ -578,7 +578,7 @@ namespace Z0
         }
 
 
-        public BenchComparison SubF32()        
+        public IBenchComparison SubF32()        
         {
             var opid = OpKind.Sub.Vec128OpId<float>();
             (var lDst, var rDst) = Targets<float>();
@@ -592,7 +592,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-        public BenchComparison SubF64()        
+        public IBenchComparison SubF64()        
         {
             var opid = OpKind.Sub.Vec128OpId<double>();
             (var lDst, var rDst) = Targets<double>();
@@ -606,9 +606,7 @@ namespace Z0
             return Finish(comparison);
         }
 
-
         #endregion
- 
     
     }
 }

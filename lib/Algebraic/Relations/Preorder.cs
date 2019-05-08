@@ -16,7 +16,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The preorder domain</typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Preorder </remarks>
-        public interface Preorder<T> : Reflexive<T>, Transitive<T>            
+        public interface IPreorderOps<T> : IReflexiveOps<T>, ITransitiveOps<T>            
         {
 
         }        
@@ -27,14 +27,11 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The element type</typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Preorder </remarks>
-        public interface Proset<T> : Preorder<T>
+        public interface IProsetOps<T> : IPreorderOps<T>
             where T : IEquatable<T>
 
         {
 
         }
     }
-
-
-
 }

@@ -14,7 +14,6 @@ namespace Z0.Tests
     using Z0.Testing;
     
     using static zcore;
-    using static BitVectorPatterns;
     using static BitPatterns;
     
     using P = Paths;
@@ -25,8 +24,8 @@ namespace Z0.Tests
     {
         public const string Path = P.primops + P.bits + "bit/";
 
-        static readonly bit off = Z0.bit.Off;
-        static readonly bit on = Z0.bit.On;
+        static readonly Bit off = Z0.Bit.Off;
+        static readonly Bit on = Z0.Bit.On;
 
         public void BitConvert()
         {
@@ -55,8 +54,8 @@ namespace Z0.Tests
         {
 
             //parse
-            Claim.eq(off, Z0.bit.Parse('0'));
-            Claim.eq(on, Z0.bit.Parse('1'));
+            Claim.eq(off, Z0.Bit.Parse('0'));
+            Claim.eq(on, Z0.Bit.Parse('1'));
 
             //flip
             Claim.eq(on, ~ off);

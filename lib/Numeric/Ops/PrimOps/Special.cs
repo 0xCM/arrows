@@ -18,7 +18,7 @@ namespace Z0
         /// Function grab-bag
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Special<T>
+        public interface ISpecialOps<T>
         {
             /// <summary>
             /// Computes the square root of the operand, truncating as 
@@ -46,24 +46,24 @@ namespace Z0
     partial class PrimOps { partial class Reify
     {
         public readonly struct Special : 
-            Special<byte>, 
-            Special<sbyte>, 
-            Special<short>, 
-            Special<ushort>, 
-            Special<int>, 
-            Special<uint>, 
-            Special<long>, 
-            Special<ulong>, 
-            Special<float>, 
-            Special<double>, 
-            Special<decimal>,
-            Special<BigInteger>
+            ISpecialOps<byte>, 
+            ISpecialOps<sbyte>, 
+            ISpecialOps<short>, 
+            ISpecialOps<ushort>, 
+            ISpecialOps<int>, 
+            ISpecialOps<uint>, 
+            ISpecialOps<long>, 
+            ISpecialOps<ulong>, 
+            ISpecialOps<float>, 
+            ISpecialOps<double>, 
+            ISpecialOps<decimal>,
+            ISpecialOps<BigInteger>
         {
             public static readonly Special Inhabitant = default;
             
             [MethodImpl(Inline)]
-            public static Special<T> Operator<T>() 
-                => cast<Special<T>>(Inhabitant);
+            public static ISpecialOps<T> Operator<T>() 
+                => cast<ISpecialOps<T>>(Inhabitant);
 
             // ! sbyte
             // ! --------------------------------------------------------------

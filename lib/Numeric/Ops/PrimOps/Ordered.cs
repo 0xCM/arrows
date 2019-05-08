@@ -14,25 +14,25 @@ namespace Z0
     partial class PrimOps { partial class Reify {
 
         public readonly struct Ordered : 
-            Ordered<byte>,
-            Ordered<sbyte>, 
-            Ordered<short>, 
-            Ordered<ushort>, 
-            Ordered<int>, 
-            Ordered<uint>,
-            Ordered<long>, 
-            Ordered<ulong>,
-            Ordered<float>, 
-            Ordered<double>, 
-            Ordered<decimal>,
-            Ordered<BigInteger>
+            IOrderedOps<byte>,
+            IOrderedOps<sbyte>, 
+            IOrderedOps<short>, 
+            IOrderedOps<ushort>, 
+            IOrderedOps<int>, 
+            IOrderedOps<uint>,
+            IOrderedOps<long>, 
+            IOrderedOps<ulong>,
+            IOrderedOps<float>, 
+            IOrderedOps<double>, 
+            IOrderedOps<decimal>,
+            IOrderedOps<BigInteger>
                 
         {
             static readonly Ordered Inhabitant = default;
 
             [MethodImpl(Inline)]
-            public static Ordered<T> Operator<T>() 
-                => cast<Ordered<T>>(Inhabitant);
+            public static IOrderedOps<T> Operator<T>() 
+                => cast<IOrderedOps<T>>(Inhabitant);
 
             [MethodImpl(Inline)]
             public bool lt(byte lhs, byte rhs)

@@ -18,7 +18,7 @@ namespace Z0
     partial class PrimOps { partial class Reify {
         
         public readonly partial struct Bitwise : 
-            Bitwise<BigInteger> 
+            IBitwiseOps<BigInteger> 
         {
             
             [MethodImpl(Inline)]   
@@ -86,7 +86,7 @@ namespace Z0
 
             [MethodImpl(Inline)]   
             public BitString bitstring(BigInteger src) 
-                => BitString.define(bit.Parse(bitchars(src)));
+                => BitString.define(Bit.Parse(bitchars(src)));
 
             [MethodImpl(Inline)]
             public byte[] bytes(BigInteger src)
@@ -102,7 +102,7 @@ namespace Z0
                 => BitOperations.TrailingZeroCount(src);
 
             [MethodImpl(Inline)]
-            public bit[] bits(BigInteger src)
+            public Bit[] bits(BigInteger src)
                 => throw new NotImplementedException();
 
             public BigIntegers xor(BigIntegers lhs, BigIntegers rhs)

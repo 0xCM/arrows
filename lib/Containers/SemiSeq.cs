@@ -25,7 +25,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]   
         public static SemiSeq<T> define<T>(IEnumerable<T> src)
-            where T : Structures.Semigroup<T>, new()
+            where T : Structures.ISemigroup<T>, new()
                 => new SemiSeq<T>(src);
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]   
         public static SemiSeq<T> define<T>(params T[] src)
-            where T : Structures.Semigroup<T>, new()
+            where T : Structures.ISemigroup<T>, new()
                 => new SemiSeq<T>(src);
     }
 
@@ -43,8 +43,8 @@ namespace Z0
     /// Canonical semiseq reification structure
     /// </summary>
     /// <typeparam name="T">The element type</typeparam>
-    public readonly struct SemiSeq<T> :  Contain.SemiSeq<SemiSeq<T>,T>
-        where T : Structures.Semigroup<T>, new()
+    public readonly struct SemiSeq<T> :  ISemiSeq<SemiSeq<T>,T>
+        where T : Structures.ISemigroup<T>, new()
     {        
         public static readonly SemiSeq<T> Empty  = new SemiSeq<T>(new T[]{});
         
@@ -80,7 +80,7 @@ namespace Z0
         public SemiSeq<T> zero 
             => Empty;
 
-        IEnumerable<T> Contain.DiscreteContainer<SemiSeq<T>, T>.content 
+        IEnumerable<T> IDiscreteContainer<SemiSeq<T>, T>.content 
             => content;
 
         [MethodImpl(Inline)]   

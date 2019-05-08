@@ -14,20 +14,20 @@ namespace Z0
 
     using Z0.Test;
 
-    using static zcore;
+    
     using static zfunc;    
-    using static global::mfunc;
+    using static mfunc;
     
     using static math;
 
     class Benchmark : Context
     {
 
-        protected void print(BenchComparison c)
+        protected void print(IBenchComparison c)
         {
-            zcore.print(c.LeftBench.Description);
-            zcore.print(c.RightBench.Description);
-            zcore.print(c.CalcDelta().Description);
+            zfunc.print(c.LeftMsg);
+            zfunc.print(c.RightMsg);
+            zfunc.print(c.CalcDelta().Description);
         }
 
         public Benchmark()
@@ -52,21 +52,10 @@ namespace Z0
             return new BenchConfig(cycles, reps, samples);
         }
 
-        void RunAdHocInXBench()
-        {
-            
-            var comparisons = new List<BenchComparison>();
-            var bench = Num128Bench.Create(Randomizer);
-            comparisons.Add(bench.MulF32());
-            comparisons.Add(bench.MulF64());
-            iter(comparisons,print);
-
-        }
-        
         void RunInXBench()
         {
             var bench = Vec128Bench.Create(Randomizer);
-            var comparisons = new List<BenchComparison>();
+            var comparisons = new List<IBenchComparison>();
             foreach(var runner in bench.Runners().Select(r => r.Value))
                 comparisons.Add(runner());
             iter(comparisons,print);
@@ -309,7 +298,7 @@ namespace Z0
             void RunAdHocBench()
             {
                 var bench = PrimalBench.Create(Randomizer);
-                var comparisons = new List<BenchComparison>();
+                var comparisons = new List<IBenchComparison>();
                 comparisons.Add(bench.MulF32());
                 comparisons.Add(bench.MulF64());
                 iter(comparisons,print);
@@ -369,6 +358,18 @@ namespace Z0
 
         }
 
+
+
+        void BitTests()
+        {
+            var bv = BitPatterns.BV008;
+            inform($"{bv}");
+            bv[3] = 0;
+            bv[0] = 1;
+            inform($"{bv}");
+            
+        }
+
         void RunTests()
         {
             var tm = new TestManager();
@@ -378,9 +379,11 @@ namespace Z0
         {            
             var app = new Benchmark();
             try
-            {                        
+            {     
+                app.BitTests();                   
                 //app.RunTests();
-                app.Pop();
+                //app.Pop();
+                //app.RunBench(BenchKind.Common);
                 //app.RunBench(BenchKind.Vec128);
                 //app.RunBench(BenchKind.Vec256);
                 //app.RunBench(BenchKind.Primal);

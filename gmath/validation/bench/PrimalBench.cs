@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.IO;
 
-    using static zcore;
+    
     using static zfunc;
     using static global::mfunc;
 
@@ -19,7 +19,7 @@ namespace Z0
         public static PrimalBench Create(IRandomizer random, BenchConfig config = null)
             => new PrimalBench(random, config);
 
-        static readonly BenchConfig DefaultConfig = new BenchConfig(Cycles: Pow2.T14, Reps: Pow2.T09, SampleSize: Pow2.T13, AnnounceRate: Pow2.T11);
+        static readonly BenchConfig DefaultConfig = new BenchConfig(Cycles: Pow2.T14, Reps: 1, SampleSize: Pow2.T13, AnnounceRate: Pow2.T11);
 
         PrimalBench(IRandomizer random, BenchConfig config = null)
             : base(random, config ?? DefaultConfig)
@@ -30,130 +30,130 @@ namespace Z0
 
         #region Add
 
-        public BenchComparison AddI16(int? cycles = null, int? samples = null)
+        public IBenchComparison AddI16()
         {
-            var data = BinOpInit<short>(samples);
+            var data = BinOpInit<short>();
             var opid = OpKind.Add.OpId<short>();
 
-            var direct = Measure(opid, samples, () => 
-                math.add(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.add(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.add(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.add(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison AddU16(int? cycles = null, int? samples = null)
+        public IBenchComparison AddU16()
         {
-            var data = BinOpInit<ushort>(samples);
+            var data = BinOpInit<ushort>();
             var opid = OpKind.Add.OpId<ushort>();
 
-            var direct = Measure(opid, samples, () => 
-                math.add(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.add(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.add(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.add(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison AddI32(int? cycles = null, int? samples = null)
+        public IBenchComparison AddI32()
         {
-            var data = BinOpInit<int>(samples);
+            var data = BinOpInit<int>();
             var opid = OpKind.Add.OpId<int>();
 
-            var direct = Measure(opid, samples, () => 
-                math.add(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.add(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.add(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.add(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison AddU32(int? cycles = null, int? samples = null)
+        public IBenchComparison AddU32()
         {
-            var data = BinOpInit<uint>(samples);
+            var data = BinOpInit<uint>();
             var opid = OpKind.Add.OpId<uint>();
 
-            var direct = Measure(opid, samples, () => 
-                math.add(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.add(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.add(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.add(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison AddI64(int? cycles = null, int? samples = null)
+        public IBenchComparison AddI64()
         {
-            var data = BinOpInit<long>(samples);
+            var data = BinOpInit<long>();
             var opid = OpKind.Add.OpId<long>();
 
-            var direct = Measure(opid, samples, () => 
-                math.add(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.add(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.add(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.add(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison AddU64(int? cycles = null, int? samples = null)
+        public IBenchComparison AddU64()
         {
-            var data = BinOpInit<ulong>(samples);
+            var data = BinOpInit<ulong>();
             var opid = OpKind.Add.OpId<ulong>();
 
-            var direct = Measure(opid, samples, () => 
-                math.add(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.add(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.add(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.add(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison AddF32(int? cycles = null, int? samples = null)
+        public IBenchComparison AddF32()
         {
-            var data = BinOpInit<float>(samples);
+            var data = BinOpInit<float>();
             var opid = OpKind.Add.OpId<float>();
 
-            var direct = Measure(opid, samples, () => 
-                math.add(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.add(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.add(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.add(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison AddF64(int? cycles = null, int? samples = null)
+        public IBenchComparison AddF64()
         {
-            var data = BinOpInit<double>(samples);
+            var data = BinOpInit<double>();
             var opid = OpKind.Add.OpId<double>();
 
-            var direct = Measure(opid, samples, () => 
-                math.add(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.add(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.add(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.add(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
@@ -161,130 +161,130 @@ namespace Z0
         #endregion
 
         #region Sub
-        public BenchComparison SubI16(int? cycles = null, int? samples = null)
+        public IBenchComparison SubI16()
         {
-            var data = BinOpInit<short>(samples);
+            var data = BinOpInit<short>();
             var opid = OpKind.Sub.OpId<short>();
 
-            var direct = Measure(opid, samples, () => 
-                math.sub(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.sub(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison SubU16(int? cycles = null, int? samples = null)
+        public IBenchComparison SubU16()
         {
-            var data = BinOpInit<ushort>(samples);
+            var data = BinOpInit<ushort>();
             var opid = OpKind.Sub.OpId<ushort>();
 
-            var direct = Measure(opid, samples, () => 
-                math.sub(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.sub(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison SubI32(int? cycles = null, int? samples = null)
+        public IBenchComparison SubI32()
         {
-            var data = BinOpInit<int>(samples);
+            var data = BinOpInit<int>();
             var opid = OpKind.Sub.OpId<int>();
 
-            var direct = Measure(opid, samples, () => 
-                math.sub(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.sub(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison SubU32(int? cycles = null, int? samples = null)
+        public IBenchComparison SubU32()
         {
-            var data = BinOpInit<uint>(samples);
+            var data = BinOpInit<uint>();
             var opid = OpKind.Sub.OpId<uint>();
 
-            var direct = Measure(opid, samples, () => 
-                math.sub(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.sub(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison SubI64(int? cycles = null, int? samples = null)
+        public IBenchComparison SubI64()
         {
-            var data = BinOpInit<long>(samples);
+            var data = BinOpInit<long>();
             var opid = OpKind.Sub.OpId<long>();
 
-            var direct = Measure(opid, samples, () => 
-                math.sub(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.sub(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison SubU64(int? cycles = null, int? samples = null)
+        public IBenchComparison SubU64()
         {
-            var data = BinOpInit<ulong>(samples);
+            var data = BinOpInit<ulong>();
             var opid = OpKind.Sub.OpId<ulong>();
 
-            var direct = Measure(opid, samples, () => 
-                math.sub(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.sub(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison SubF32(int? cycles = null, int? samples = null)
+        public IBenchComparison SubF32()
         {
-            var data = BinOpInit<float>(samples);
+            var data = BinOpInit<float>();
             var opid = OpKind.Sub.OpId<float>();
 
-            var direct = Measure(opid, samples, () => 
-                math.sub(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.sub(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison SubF64(int? cycles = null, int? samples = null)
+        public IBenchComparison SubF64()
         {
-            var data = BinOpInit<double>(samples);
+            var data = BinOpInit<double>();
             var opid = OpKind.Sub.OpId<double>();
 
-            var direct = Measure(opid, samples, () => 
-                math.sub(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.sub(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.sub(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
@@ -307,10 +307,10 @@ namespace Z0
         }
 
 
-        public BenchComparison MulI16(int? cycles = null, int? samples = null)
+        public IBenchComparison MulI16()
         {
             var opid = OpKind.Mul.OpId<short>();
-            var src = BinOpInit<short>(samples,true);
+            var src = BinOpInit<short>(true);
 
             OpMeasure dmul()
             {
@@ -329,10 +329,10 @@ namespace Z0
             return Finish(comparison);            
         }
 
-        public BenchComparison MulU16(int? cycles = null, int? samples = null)
+        public IBenchComparison MulU16()
         {
             var opid = OpKind.Mul.OpId<ushort>();
-            var src = BinOpInit<ushort>(samples,true);
+            var src = BinOpInit<ushort>(true);
 
             OpMeasure dmul()
             {
@@ -351,10 +351,10 @@ namespace Z0
             return Finish(comparison);            
         }
 
-        public BenchComparison MulI32(int? cycles = null, int? samples = null)
+        public IBenchComparison MulI32()
         {
             var opid = OpKind.Mul.OpId<int>();
-            var src = BinOpInit<int>(samples,true);
+            var src = BinOpInit<int>(true);
 
             OpMeasure dmul()
             {
@@ -373,10 +373,10 @@ namespace Z0
             return Finish(comparison);            
         }
 
-        public BenchComparison MulU32(int? cycles = null, int? samples = null)
+        public IBenchComparison MulU32()
         {
             var opid = OpKind.Mul.OpId<uint>();
-            var src = BinOpInit<uint>(samples,true);
+            var src = BinOpInit<uint>(true);
 
             OpMeasure dmul()
             {
@@ -395,10 +395,10 @@ namespace Z0
             return Finish(comparison);            
         }
 
-        public BenchComparison MulI64(int? cycles = null, int? samples = null)
+        public IBenchComparison MulI64()
         {
             var opid = OpKind.Mul.OpId<long>();
-            var src = BinOpInit<long>(samples,true);
+            var src = BinOpInit<long>(true);
 
             OpMeasure dmul()
             {
@@ -417,10 +417,10 @@ namespace Z0
             return Finish(comparison);            
         }
 
-        public BenchComparison MulU64(int? cycles = null, int? samples = null)
+        public IBenchComparison MulU64()
         {
             var opid = OpKind.Mul.OpId<ulong>();
-            var src = BinOpInit<ulong>(samples,true);
+            var src = BinOpInit<ulong>(true);
 
             OpMeasure dmul()
             {
@@ -440,10 +440,10 @@ namespace Z0
         }
 
 
-        public BenchComparison MulF32(int? cycles = null, int? samples = null)
+        public IBenchComparison MulF32()
         {
             var opid = OpKind.Mul.OpId<float>();
-            var src = BinOpInit<float>(samples,true);
+            var src = BinOpInit<float>(true);
 
             OpMeasure dmul()
             {
@@ -462,10 +462,10 @@ namespace Z0
             return Finish(comparison);            
         }
 
-        public BenchComparison MulF64(int? cycles = null, int? samples = null)
+        public IBenchComparison MulF64()
         {
             var opid = OpKind.Mul.OpId<double>();
-            var src = BinOpInit<double>(samples,true);
+            var src = BinOpInit<double>(true);
 
             OpMeasure dmul()
             {
@@ -488,132 +488,132 @@ namespace Z0
 
         #region Div
 
-        public BenchComparison DivI16(int? cycles = null, int? samples = null)
+        public IBenchComparison DivI16()
         {
-            var data = BinOpInit<short>(samples,true);
+            var data = BinOpInit<short>(true);
             var opid = OpKind.Div.OpId<short>();
 
-            var direct = Measure(opid, samples, () => 
-                math.div(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.div(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.div(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.div(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison DivU16(int? cycles = null, int? samples = null)
+        public IBenchComparison DivU16()
         {
-            var data = BinOpInit<ushort>(samples,true);
+            var data = BinOpInit<ushort>(true);
             var opid = OpKind.Div.OpId<ushort>();
 
-            var direct = Measure(opid, samples, () => 
-                math.div(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.div(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.div(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.div(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
 
-        public BenchComparison DivI32(int? cycles = null, int? samples = null)
+        public IBenchComparison DivI32()
         {
-            var data = BinOpInit<int>(samples,true);
+            var data = BinOpInit<int>(true);
             var opid = OpKind.Div.OpId<int>();
 
-            var direct = Measure(opid, samples, () => 
-                math.div(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.div(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.div(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.div(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison DivU32(int? cycles = null, int? samples = null)
+        public IBenchComparison DivU32()
         {
-            var data = BinOpInit<uint>(samples,true);
+            var data = BinOpInit<uint>(true);
             var opid = OpKind.Div.OpId<uint>();
 
-            var direct = Measure(opid, samples, () => 
-                math.div(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.div(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.div(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.div(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
 
-        public BenchComparison DivI64(int? cycles = null, int? samples = null)
+        public IBenchComparison DivI64()
         {
-            var data = BinOpInit<long>(samples,true);
+            var data = BinOpInit<long>(true);
             var opid = OpKind.Div.OpId<long>();
 
-            var direct = Measure(opid, samples, () => 
-                math.div(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.div(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.div(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.div(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison DivU64(int? cycles = null, int? samples = null)
+        public IBenchComparison DivU64()
         {
-            var data = BinOpInit<ulong>(samples,true);
+            var data = BinOpInit<ulong>(true);
             var opid = OpKind.Div.OpId<ulong>();
 
-            var direct = Measure(opid, samples, () => 
-                math.div(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.div(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.div(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.div(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison DivF32(int? cycles = null, int? samples = null)
+        public IBenchComparison DivF32()
         {
-            var data = BinOpInit<float>(samples,true);
+            var data = BinOpInit<float>(true);
             var opid = OpKind.Div.OpId<float>();
 
-            var direct = Measure(opid, samples, () => 
-                math.div(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.div(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.div(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.div(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison DivF64(int? cycles = null, int? samples = null)
+        public IBenchComparison DivF64()
         {
-            var data = BinOpInit<double>(samples,true);
+            var data = BinOpInit<double>(true);
             var opid = OpKind.Div.OpId<double>();
 
-            var direct = Measure(opid, samples, () => 
-                math.div(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.div(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.div(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.div(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
@@ -623,132 +623,132 @@ namespace Z0
 
         #region Mod
 
-        public BenchComparison ModI16(int? cycles = null, int? samples = null)
+        public IBenchComparison ModI16()
         {
-            var data = BinOpInit<short>(samples, true);
+            var data = BinOpInit<short>(true);
             var opid = OpKind.Mod.OpId<short>();
 
-            var direct = Measure(opid, samples, () => 
-                math.mod(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.mod(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison ModU16(int? cycles = null, int? samples = null)
+        public IBenchComparison ModU16()
         {
-            var data = BinOpInit<ushort>(samples, true);
+            var data = BinOpInit<ushort>(true);
             var opid = OpKind.Mod.OpId<ushort>();
 
-            var direct = Measure(opid, samples, () => 
-                math.mod(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.mod(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
 
-        public BenchComparison ModI32(int? cycles = null, int? samples = null)
+        public IBenchComparison ModI32()
         {
-            var data = BinOpInit<int>(samples, true);
+            var data = BinOpInit<int>(true);
             var opid = OpKind.Mod.OpId<int>();
 
-            var direct = Measure(opid, samples, () => 
-                math.mod(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.mod(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison ModU32(int? cycles = null, int? samples = null)
+        public IBenchComparison ModU32()
         {
-            var data = BinOpInit<uint>(samples, true);
+            var data = BinOpInit<uint>(true);
             var opid = OpKind.Mod.OpId<uint>();
 
-            var direct = Measure(opid, samples, () => 
-                math.mod(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.mod(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
 
-        public BenchComparison ModI64(int? cycles = null, int? samples = null)
+        public IBenchComparison ModI64()
         {
-            var data = BinOpInit<long>(samples, true);
+            var data = BinOpInit<long>(true);
             var opid = OpKind.Mod.OpId<long>();
 
-            var direct = Measure(opid, samples, () => 
-                math.mod(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.mod(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison ModU64(int? cycles = null, int? samples = null)
+        public IBenchComparison ModU64()
         {
-            var data = BinOpInit<ulong>(samples, true);
+            var data = BinOpInit<ulong>(true);
             var opid = OpKind.Mod.OpId<ulong>();
 
-            var direct = Measure(opid, samples, () => 
-                math.mod(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.mod(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison ModF32(int? cycles = null, int? samples = null)
+        public IBenchComparison ModF32()
         {
-            var data = BinOpInit<float>(samples,true);
+            var data = BinOpInit<float>(true);
             var opid = OpKind.Mod.OpId<float>();
 
-            var direct = Measure(opid, samples, () => 
-                math.mod(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.mod(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison ModF64(int? cycles = null, int? samples = null)
+        public IBenchComparison ModF64()
         {
-            var data = BinOpInit<double>(samples, true);
+            var data = BinOpInit<double>(true);
             var opid = OpKind.Mod.OpId<double>();
 
-            var direct = Measure(opid, samples, () => 
-                math.mod(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.mod(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.mod(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
@@ -759,37 +759,37 @@ namespace Z0
 
         #region Max
 
-        public BenchComparison MaxF64(int? cycles = null,  int? samples = null)
+        public IBenchComparison MaxF64(int? cycles = null,  int? samples = null)
         {
-            var src = Init<double>(samples);
+            var src = Init<double>();
             var opid = OpKind.Max.OpId<double>();
             var zero = default(double);
 
             var dResult = zero;
             var gResult = zero;
 
-            var direct = Measure(opid, samples, () => dResult = math.max(src));
-            var generic = Measure(~opid, samples, () => gResult = gmath.max(src));
+            var direct = Measure(opid, () => dResult = math.max(src));
+            var generic = Measure(~opid, () => gResult = gmath.max(src));
             
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(dResult, gResult);            
             return Finish(comparison);
             
         }
 
-        public BenchComparison MaxI32(int? cycles = null, int? samples = null)
+        public IBenchComparison MaxI32()
         {
-            var src = Init<int>(samples);
+            var src = Init<int>();
             var opid = OpKind.Max.OpId<int>();
             var zero = default(int);
             
             var dResult = zero;
             var gResult = zero;
 
-            var direct = Measure(opid, samples, () => dResult = math.max(src));
-            var generic = Measure(~opid, samples, () => gResult = gmath.max(src));
+            var direct = Measure(opid, () => {dResult = math.max(src);});
+            var generic = Measure(~opid, () => {gResult = gmath.max(src);});
             
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);            
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(dResult, gResult);            
             return Finish(comparison);
         }
@@ -798,98 +798,98 @@ namespace Z0
 
         #region And
 
-        public BenchComparison AndI16(int? cycles = null, int? samples = null)
+        public IBenchComparison AndI16()
         {
-            var data = BinOpInit<short>(samples);
+            var data = BinOpInit<short>();
             var opid = OpKind.And.OpId<short>();
 
-            var direct = Measure(opid, samples, () => 
-                math.and(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.and(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.and(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.and(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison AndU16(int? cycles = null, int? samples = null)
+        public IBenchComparison AndU16()
         {
-            var data = BinOpInit<ushort>(samples);
+            var data = BinOpInit<ushort>();
             var opid = OpKind.And.OpId<ushort>();
 
-            var direct = Measure(opid, samples, () => 
-                math.and(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.and(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.and(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.and(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison AndI32(int? cycles = null, int? samples = null)
+        public IBenchComparison AndI32()
         {
-            var data = BinOpInit<int>(samples);
+            var data = BinOpInit<int>();
             var opid = OpKind.And.OpId<int>();
 
-            var direct = Measure(opid, samples, () => 
-                math.and(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.and(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.and(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.and(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison AndU32(int? cycles = null, int? samples = null)
+        public IBenchComparison AndU32()
         {
-            var data = BinOpInit<uint>(samples);
+            var data = BinOpInit<uint>();
             var opid = OpKind.And.OpId<uint>();
 
-            var direct = Measure(opid, samples, () => 
-                math.and(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.and(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.and(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.and(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison AndI64(int? cycles = null, int? samples = null)
+        public IBenchComparison AndI64()
         {
-            var data = BinOpInit<long>(samples);
+            var data = BinOpInit<long>();
             var opid = OpKind.And.OpId<long>();
 
-            var direct = Measure(opid, samples, () => 
-                math.and(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.and(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.and(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.and(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison AndU64(int? cycles = null, int? samples = null)
+        public IBenchComparison AndU64()
         {
-            var data = BinOpInit<ulong>(samples);
+            var data = BinOpInit<ulong>();
             var opid = OpKind.And.OpId<ulong>();
 
-            var direct = Measure(opid, samples, () => 
-                math.and(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.and(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.and(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.and(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
@@ -898,98 +898,98 @@ namespace Z0
 
         #region Or
 
-        public BenchComparison OrI16(int? cycles = null, int? samples = null)
+        public IBenchComparison OrI16()
         {
-            var data = BinOpInit<short>(samples);
+            var data = BinOpInit<short>();
             var opid = OpKind.Or.OpId<short>();
 
-            var direct = Measure(opid, samples, () => 
-                math.or(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.or(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.or(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.or(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison OrU16(int? cycles = null, int? samples = null)
+        public IBenchComparison OrU16()
         {
-            var data = BinOpInit<ushort>(samples);
+            var data = BinOpInit<ushort>();
             var opid = OpKind.Or.OpId<ushort>();
 
-            var direct = Measure(opid, samples, () => 
-                math.or(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.or(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.or(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.or(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison OrI32(int? cycles = null, int? samples = null)
+        public IBenchComparison OrI32()
         {
-            var data = BinOpInit<int>(samples);
+            var data = BinOpInit<int>();
             var opid = OpKind.Or.OpId<int>();
 
-            var direct = Measure(opid, samples, () => 
-                math.or(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.or(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.or(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.or(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison OrU32(int? cycles = null, int? samples = null)
+        public IBenchComparison OrU32()
         {
-            var data = BinOpInit<uint>(samples);
+            var data = BinOpInit<uint>();
             var opid = OpKind.Or.OpId<uint>();
 
-            var direct = Measure(opid, samples, () => 
-                math.or(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.or(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.or(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.or(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison OrI64(int? cycles = null, int? samples = null)
+        public IBenchComparison OrI64()
         {
-            var data = BinOpInit<long>(samples);
+            var data = BinOpInit<long>();
             var opid = OpKind.Or.OpId<long>();
 
-            var direct = Measure(opid, samples, () => 
-                math.or(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.or(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.or(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.or(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison OrU64(int? cycles = null, int? samples = null)
+        public IBenchComparison OrU64()
         {
-            var data = BinOpInit<ulong>(samples);
+            var data = BinOpInit<ulong>();
             var opid = OpKind.Or.OpId<ulong>();
 
-            var direct = Measure(opid, samples, () => 
-                math.or(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.or(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.or(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.or(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
@@ -998,98 +998,98 @@ namespace Z0
 
         #region XOr
 
-        public BenchComparison XOrI16(int? cycles = null, int? samples = null)
+        public IBenchComparison XOrI16()
         {
-            var data = BinOpInit<short>(samples);
+            var data = BinOpInit<short>();
             var opid = OpKind.XOr.OpId<short>();
 
-            var direct = Measure(opid, samples, () => 
-                math.xor(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.xor(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.xor(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.xor(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison XOrU16(int? cycles = null, int? samples = null)
+        public IBenchComparison XOrU16()
         {
-            var data = BinOpInit<ushort>(samples);
+            var data = BinOpInit<ushort>();
             var opid = OpKind.XOr.OpId<ushort>();
 
-            var direct = Measure(opid, samples, () => 
-                math.xor(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.xor(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.xor(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.xor(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison XOrI32(int? cycles = null, int? samples = null)
+        public IBenchComparison XOrI32()
         {
-            var data = BinOpInit<int>(samples);
+            var data = BinOpInit<int>();
             var opid = OpKind.XOr.OpId<int>();
 
-            var direct = Measure(opid, samples, () => 
-                math.xor(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.xor(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.xor(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.xor(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison XOrU32(int? cycles = null, int? samples = null)
+        public IBenchComparison XOrU32()
         {
-            var data = BinOpInit<uint>(samples);
+            var data = BinOpInit<uint>();
             var opid = OpKind.XOr.OpId<uint>();
 
-            var direct = Measure(opid, samples, () => 
-                math.xor(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.xor(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.xor(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.xor(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison XOrI64(int? cycles = null, int? samples = null)
+        public IBenchComparison XOrI64()
         {
-            var data = BinOpInit<long>(samples);
+            var data = BinOpInit<long>();
             var opid = OpKind.XOr.OpId<long>();
 
-            var direct = Measure(opid, samples, () => 
-                math.xor(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.xor(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.xor(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.xor(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison XOrU64(int? cycles = null, int? samples = null)
+        public IBenchComparison XOrU64()
         {
-            var data = BinOpInit<ulong>(samples);
+            var data = BinOpInit<ulong>();
             var opid = OpKind.XOr.OpId<ulong>();
 
-            var direct = Measure(opid, samples, () => 
-                math.xor(data.LeftSource, data.RightSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.xor(data.LeftSource, data.RightSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.xor(data.LeftSource, data.RightSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.xor(data.LeftSource, data.RightSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
@@ -1098,99 +1098,99 @@ namespace Z0
 
         #region Flip
 
-        public BenchComparison FlipI16(int? cycles = null, int? samples = null)
+        public IBenchComparison FlipI16()
         {
-            var data = BinOpInit<short>(samples);
+            var data = BinOpInit<short>();
             var opid = OpKind.Flip.OpId<short>();
 
-            var direct = Measure(opid, samples, () => 
-                math.flip(data.LeftSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.flip(data.LeftSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.flip(data.LeftSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.flip(data.LeftSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
         
-        public BenchComparison FlipU16(int? cycles = null, int? samples = null)
+        public IBenchComparison FlipU16()
         {
-            var data = BinOpInit<ushort>(samples);
+            var data = BinOpInit<ushort>();
             var opid = OpKind.Flip.OpId<ushort>();
 
-            var direct = Measure(opid, samples, () => 
-                math.flip(data.LeftSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.flip(data.LeftSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.flip(data.LeftSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.flip(data.LeftSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison FlipI32(int? cycles = null, int? samples = null)
+        public IBenchComparison FlipI32()
         {
-            var data = BinOpInit<int>(samples);
+            var data = BinOpInit<int>();
             var opid = OpKind.Flip.OpId<int>();
 
-            var direct = Measure(opid, samples, () => 
-                math.flip(data.LeftSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.flip(data.LeftSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.flip(data.LeftSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.flip(data.LeftSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison FlipU32(int? cycles = null, int? samples = null)
+        public IBenchComparison FlipU32()
         {
-            var data = BinOpInit<uint>(samples);
+            var data = BinOpInit<uint>();
             var opid = OpKind.Flip.OpId<uint>();
 
-            var direct = Measure(opid, samples, () => 
-                math.flip(data.LeftSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.flip(data.LeftSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.flip(data.LeftSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.flip(data.LeftSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
 
-        public BenchComparison FlipI64(int? cycles = null, int? samples = null)
+        public IBenchComparison FlipI64()
         {
-            var data = BinOpInit<long>(samples);
+            var data = BinOpInit<long>();
             var opid = OpKind.Flip.OpId<long>();
 
-            var direct = Measure(opid, samples, () => 
-                math.flip(data.LeftSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.flip(data.LeftSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.flip(data.LeftSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.flip(data.LeftSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }
 
-        public BenchComparison FlipU64(int? cycles = null, int? samples = null)
+        public IBenchComparison FlipU64()
         {
-            var data = BinOpInit<ulong>(samples);
+            var data = BinOpInit<ulong>();
             var opid = OpKind.Flip.OpId<ulong>();
 
-            var direct = Measure(opid, samples, () => 
-                math.flip(data.LeftSource, data.LeftTarget));
+            var direct = Measure(opid, () => 
+                math.flip(data.LeftSource, data.LeftTarget), data.Length);
 
-            var generic = Measure(~opid, samples, () => 
-                gmath.flip(data.LeftSource, data.RightTarget));
+            var generic = Measure(~opid, () => 
+                gmath.flip(data.LeftSource, data.RightTarget), data.Length);
 
-            var comparison = Compare(opid, direct, generic, cycles, 1, samples);
+            var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
             return Finish(comparison);            
         }

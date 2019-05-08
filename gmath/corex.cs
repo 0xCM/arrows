@@ -6,7 +6,7 @@ namespace Z0
     using System.ComponentModel;
     using System.Linq;
     using System.Runtime.CompilerServices;
-    using static zcore;
+    
     using static mfunc;
 
     public static class corex
@@ -26,8 +26,8 @@ namespace Z0
         /// Produces an array of bits from a stream of binary digits
         /// </summary>
         /// <param name="src">The source digits</param>
-        public static bit[] ToBits(this IEnumerable<BinaryDigit> src)
-            => src.Select(d => d == BinaryDigit.B0 ? bit.Off : bit.On).ToArray();
+        public static Bit[] ToBits(this IEnumerable<BinaryDigit> src)
+            => src.Select(d => d == BinaryDigit.B0 ? Bit.Off : Bit.On).ToArray();
 
         public static IEnumerable<ulong> ToLongs(this IEnumerable<Guid> guids)
         {

@@ -50,7 +50,7 @@ namespace Z0
         public static BitString testall(intg<T> src)
         {
             var len = (int)src.bitsize;
-            var bits = new bit[len];
+            var bits = new Bit[len];
             for(var i = 0; i < len; i++)
                 bits[i] = src.testbit(i);
             return new BitString(bits);

@@ -15,7 +15,7 @@ namespace Z0
     /// <summary>
     /// Defines an indivisible sequence of characters
     /// </summary>
-    public readonly struct Atom : IEquatable<Atom>, Structures.Nullary<Atom>, Formattable
+    public readonly struct Atom : IEquatable<Atom>, INullary<Atom>, Formattable
     {
         public static readonly Atom Empty = new Atom(string.Empty);
 
@@ -89,7 +89,7 @@ namespace Z0
     /// <summary>
     /// Defines an atom sequence container
     /// </summary>
-    public readonly struct Atoms : Contain.Seq<Atoms, Atom>
+    public readonly struct Atoms : ISeq<Atoms, Atom>
     {
         public static Atoms contain(IEnumerable<Atom> src)
             => new Atoms(src);

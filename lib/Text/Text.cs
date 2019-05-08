@@ -15,7 +15,7 @@ namespace Z0
     using static Operative;
 
 
-    public readonly struct Text : Structures.FreeMonoid<Text>, Formattable, IComparable<String>, Structures.Reversible<Text>
+    public readonly struct Text : IFreeMonoid<Text>, Formattable, IComparable<String>, IReversible<Text>
     {    
         public static readonly Text Empty = new Text(string.Empty);
 
@@ -47,7 +47,7 @@ namespace Z0
             get => _content ?? string.Empty;
         }
 
-        public uint length 
+        public uint Length 
             => (uint)(content.Length);
 
         public Text zero 

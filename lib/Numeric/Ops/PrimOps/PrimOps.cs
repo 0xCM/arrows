@@ -21,20 +21,20 @@ namespace Z0
     {
 
         public interface PrimOps<T> :
-                Additive<T>, 
-                Subtractive<T>,
-                Multiplicative<T>, 
-                Negatable<T>, 
-                Absolutive<T>, 
-                Stepwise<T>,
-                Bitwise<T>, 
-                Divisive<T>, 
-                Nullary<T>, 
-                Unital<T>,
-                Ordered<T>,
-                Semigroup<T>,
-                Trigonmetric<T>,
-                Special<T>,
+                IAdditiveOps<T>, 
+                ISubtractiveOps<T>,
+                IMultiplicativeOps<T>, 
+                INegatableOps<T>, 
+                IAbsolutiveOps<T>, 
+                IStepwiseOps<T>,
+                IBitwiseOps<T>, 
+                IDivisiveOps<T>, 
+                INullaryOps<T>, 
+                IUnitalOps<T>,
+                IOrderedOps<T>,
+                ISemigroupOps<T>,
+                ITrigonmetricOps<T>,
+                ISpecialOps<T>,
                 Parser<T>
             where T : struct, IEquatable<T>
         {
@@ -112,33 +112,33 @@ namespace Z0
 
         {
             public static readonly PrimOps<T> Inhabitant = default;
-            static readonly Operative.Additive<T> Additive = Primal.Additive.Operator<T>();
+            static readonly IAdditiveOps<T> Additive = Primal.Additive.Operator<T>();
 
-            static readonly Operative.Divisive<T> Divisive = Primal.Divisive.Operator<T>();
+            static readonly IDivisiveOps<T> Divisive = Primal.Divisive.Operator<T>();
 
-            static readonly Operative.Multiplicative<T> Multiplicative = Primal.Multiplicative.Operator<T>();
+            static readonly IMultiplicativeOps<T> Multiplicative = Primal.Multiplicative.Operator<T>();
 
-            static readonly Operative.Absolutive<T> Absolutive = Primal.Absolutive.Operator<T>();
+            static readonly Operative.IAbsolutiveOps<T> Absolutive = Primal.Absolutive.Operator<T>();
 
-            static readonly Operative.Subtractive<T> Subtractive = Primal.Subtractive.Operator<T>();
+            static readonly ISubtractiveOps<T> Subtractive = Primal.Subtractive.Operator<T>();
 
-            static readonly Operative.Negatable<T> Negatable = Primal.Negatable.Operator<T>();
+            static readonly INegatableOps<T> Negatable = Primal.Negatable.Operator<T>();
 
-            static readonly Operative.Nullary<T> Nullary = Primal.Nullary.Operator<T>();
+            static readonly INullaryOps<T> Nullary = Primal.Nullary.Operator<T>();
 
-            static readonly Operative.Unital<T> Unital = Primal.Unital.Operator<T>();
+            static readonly IUnitalOps<T> Unital = Primal.Unital.Operator<T>();
 
-            static readonly Operative.Ordered<T> Ordered = Primal.Ordered.Operator<T>();
+            static readonly IOrderedOps<T> Ordered = Primal.Ordered.Operator<T>();
 
-            static readonly Operative.Stepwise<T> Stepwise = Primal.Stepwise.Operator<T>();
+            static readonly IStepwiseOps<T> Stepwise = Primal.Stepwise.Operator<T>();
 
-            static readonly Operative.Bitwise<T> Bitwise = Primal.Bitwise.Operator<T>();
+            static readonly IBitwiseOps<T> Bitwise = Primal.Bitwise.Operator<T>();
 
-            static readonly Operative.Semigroup<T> Equality = Primal.Equality.Operator<T>();
+            static readonly ISemigroupOps<T> Equality = Primal.Equality.Operator<T>();
             
-            static readonly Operative.Trigonmetric<T> Trig = Primal.Trig.Operator<T>();
+            static readonly ITrigonmetricOps<T> Trig = Primal.Trig.Operator<T>();
 
-            static readonly Operative.Special<T> Special = Primal.Special.Operator<T>();
+            static readonly Operative.ISpecialOps<T> Special = Primal.Special.Operator<T>();
 
             static readonly NumInfoProvider<T> NumInfo = Primal.NumInfo.Operator<T>();
 
@@ -451,7 +451,7 @@ namespace Z0
                 => Special.pow(src,exp);
 
             [MethodImpl(Inline)]
-            public bit[] bits(T src)
+            public Bit[] bits(T src)
                 => Bitwise.bits(src);
 
             [MethodImpl(Inline)]
@@ -473,7 +473,7 @@ namespace Z0
             public byte[] bytes(Index<T> src)
                 => Arr.concat(map(src,bytes));
 
-            public bit[] bits(Index<T> src)
+            public Bit[] bits(Index<T> src)
                 => Arr.concat(map(src,bits));
 
             public Index<T> div(Index<T> lhs, Index<T> rhs)

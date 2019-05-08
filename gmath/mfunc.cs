@@ -13,17 +13,56 @@ using System.Diagnostics;
 
 using Z0;
 using static zfunc;
-using static zcore;
 
 public static partial class mfunc
 {
     internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
 
-    static Exception lengthMismatch(int lhs, int rhs)
-        => throw new Exception($"Length mismatch, {lhs} != {rhs}");
+
+    public static TimedPair measure(Action left, Action right, int reps)
+    {
+        var i = 0;        
+        var sw = stopwatch(false);
+        
+        sw.Restart();
+        while(i++ < reps)    
+            left();
+        
+        var leftTime = snapshot(sw);
+
+        i = 0;
+        sw.Restart();        
+        while(i++ < reps)    
+            left();
+        var rightTime = snapshot(sw);
+
+        return (leftTime,rightTime);            
+    }
+
+    [MethodImpl(Inline)]   
+    public static IEnumerable<T> items<T>(params T[] src)
+        => src;
 
     static Exception countMismatch(int lhs, int rhs)
         => throw new Exception($"Count mismatch, {lhs} != {rhs}");
+
+    static Exception lengthMismatch(int lhs, int rhs)
+        => throw new Exception($"Length mismatch, {lhs} != {rhs}");
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
+
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
+        where T : struct, IEquatable<T>
+        => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
 
     [MethodImpl(Inline)]
     public static T component<T>(Vector128<T> src, int ix)
@@ -591,7 +630,7 @@ public static partial class mfunc
         => lhs.Length == rhs.Length ? lhs.Length : throw lengthMismatch(lhs.Length,rhs.Length);
 
     [MethodImpl(Inline)]
-    public static bit[] bits(params bit[] src)
+    public static Bit[] bits(params Bit[] src)
         => src;
 
     [MethodImpl(Inline)]
@@ -629,5 +668,25 @@ public static partial class mfunc
     [MethodImpl(Inline)]   
     public static double bitsf(long src)
         => BitConverter.Int64BitsToDouble(src);
+
+    /// <summary>
+    /// Explicitly casts a source value to value of the indicated type, raising
+    /// an exception if operation fails
+    /// </summary>
+    /// <param name="src">The source value</param>
+    /// <typeparam name="T">The target type</typeparam>
+    [MethodImpl(Inline)]   
+    public static T cast<T>(object src) 
+        => (T) src;
+
+    /// <summary>
+    /// Demands truth that is enforced with an exeption upon false
+    /// </summary>
+    /// <param name="x">The value to test</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static bool demand(bool x, string message = null)
+        => x ? x : throw new Exception(message ?? "demand failed");
+
 
 }

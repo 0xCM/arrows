@@ -12,7 +12,7 @@ namespace MS
     using System.Runtime.Intrinsics.X86;
     using nuint = System.UInt64;
 
-    using static zcore;
+    
 
     public static class MsSse
     {

@@ -14,23 +14,23 @@ namespace Z0
     partial class PrimOps { partial class Reify {
 
         public readonly struct Subtractive : 
-            Subtractive<byte>, 
-            Subtractive<sbyte>, 
-            Subtractive<short>, 
-            Subtractive<ushort>, 
-            Subtractive<int>, 
-            Subtractive<uint>, 
-            Subtractive<long>,             
-            Subtractive<ulong>, 
-            Subtractive<float>, 
-            Subtractive<double>, 
-            Subtractive<decimal>,
-            Subtractive<BigInteger>
+            ISubtractiveOps<byte>, 
+            ISubtractiveOps<sbyte>, 
+            ISubtractiveOps<short>, 
+            ISubtractiveOps<ushort>, 
+            ISubtractiveOps<int>, 
+            ISubtractiveOps<uint>, 
+            ISubtractiveOps<long>,             
+            ISubtractiveOps<ulong>, 
+            ISubtractiveOps<float>, 
+            ISubtractiveOps<double>, 
+            ISubtractiveOps<decimal>,
+            ISubtractiveOps<BigInteger>
         {
             static readonly Subtractive Inhabitant = default;
 
-            public static Subtractive<T> Operator<T>() 
-                => cast<Subtractive<T>>(Inhabitant);
+            public static ISubtractiveOps<T> Operator<T>() 
+                => cast<ISubtractiveOps<T>>(Inhabitant);
 
             [MethodImpl(Inline)]
             public sbyte sub(sbyte lhs, sbyte rhs)

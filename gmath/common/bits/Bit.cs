@@ -9,28 +9,59 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static zcore;
+    
     using static zfunc;
     using static mfunc;
-
-    public interface Bit<S> : IComparable<S>, IEquatable<S>
-        where S : Bit<S>, new()
-    {
-
-    }
 
     /// <summary>
     /// Represents a numeric or logical bit
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Boolean_algebra</remarks>
-    public readonly struct bit : IEquatable<bit> 
+    public readonly struct Bit : IEquatable<Bit> 
     {
-        public static readonly bit Off = false;
+        public static readonly Bit Off = false;
 
-        public static readonly bit On = true;
+        public static readonly Bit On = true;
 
-        public static bit Read(byte src, byte pos)
-            => ((src >> pos) & 1) != 0;
+        [MethodImpl(Inline)]   
+        public static Bit Read(sbyte src, int pos)
+            => Bits.testbit(src, pos);
+
+        [MethodImpl(Inline)]   
+        public static Bit Read(byte src, int pos)
+            => Bits.testbit(src, pos);
+
+        [MethodImpl(Inline)]   
+        public static Bit Read(short src, int pos)
+            => Bits.testbit(src, pos);
+
+        [MethodImpl(Inline)]   
+        public static Bit Read(ushort src, int pos)
+            => Bits.testbit(src, pos);
+
+        [MethodImpl(Inline)]   
+        public static Bit Read(int src, int pos)
+            => Bits.testbit(src, pos);
+
+        [MethodImpl(Inline)]   
+        public static Bit Read(uint src, int pos)
+            => Bits.testbit(src, pos);
+
+        [MethodImpl(Inline)]   
+        public static Bit Read(long src, int pos)
+            => Bits.testbit(src, pos);
+
+        [MethodImpl(Inline)]   
+        public static Bit Read(ulong src, int pos)
+            => Bits.testbit(src, pos);
+
+        [MethodImpl(Inline)]   
+        public static Bit Read(float src, int pos)
+            => Bits.testbit(src, pos);
+
+        [MethodImpl(Inline)]   
+        public static Bit Read(double src, int pos)
+            => Bits.testbit(src, pos);
 
         /// <summary>
         /// Parses the bits from a string of bit characters
@@ -38,121 +69,120 @@ namespace Z0
         /// <param name="src"></param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static bit[] Parse(string src)
+        public static Bit[] Parse(string src)
         {
-            var dst = alloc<bit>(src.Length);            
+            var dst = alloc<Bit>(src.Length);            
             for(var i = 0; i< src.Length; i++)
-                dst[i] = Z0.bit.Parse(src[i]);
-            return dst;
-            
+                dst[i] = Z0.Bit.Parse(src[i]);
+            return dst;            
         }
 
         /// <summary>
         /// Parses a bit from a character
         /// </summary>
         /// <param name="c">The source value</param>
-        public static bit Parse(char c)
+        public static Bit Parse(char c)
             => c != '0' ? On : Off;
         
         [MethodImpl(Inline)]
-        public static implicit operator bool(bit src)
+        public static implicit operator bool(Bit src)
             => src.value;
 
         [MethodImpl(Inline)]
-        public static implicit operator bit(bool src)
-            => new bit(src);
+        public static implicit operator Bit(bool src)
+            => new Bit(src);
         
         [MethodImpl(Inline)]
-        public static explicit operator byte(bit src)
+        public static explicit operator byte(Bit src)
             => src.value ? (byte)1 : (byte)0;
 
         [MethodImpl(Inline)]
-        public static explicit operator ushort(bit src)
+        public static explicit operator ushort(Bit src)
             => src.value ? (ushort)1 : (ushort)0;
 
         [MethodImpl(Inline)]
-        public static explicit operator uint(bit src)
+        public static explicit operator uint(Bit src)
             => src.value ? 1u : 0u;
 
         [MethodImpl(Inline)]
-        public static explicit operator ulong(bit src)
+        public static explicit operator ulong(Bit src)
             => src.value ? 1ul : 0ul;
 
         [MethodImpl(Inline)]
-        public static implicit operator bit(sbyte src)
+        public static implicit operator Bit(sbyte src)
             => src == 0 ? Off : On;
 
         [MethodImpl(Inline)]
-        public static implicit operator bit(byte src)
+        public static implicit operator Bit(byte src)
             => src == 0 ? Off : On;
 
         [MethodImpl(Inline)]
-        public static implicit operator bit(short src)
+        public static implicit operator Bit(short src)
             => src == 0 ? Off : On;
 
         [MethodImpl(Inline)]
-        public static implicit operator bit(ushort src)
+        public static implicit operator Bit(ushort src)
             => src == 0 ? Off : On;
 
         [MethodImpl(Inline)]
-        public static implicit operator bit(int src)
+        public static implicit operator Bit(int src)
             => src == 0 ? Off : On;
 
         [MethodImpl(Inline)]
-        public static implicit operator bit(uint src)
+        public static implicit operator Bit(uint src)
             => src == 0 ? Off : On;
 
         [MethodImpl(Inline)]
-        public static implicit operator bit(long src)
+        public static implicit operator Bit(long src)
             => src == 0 ? Off : On;
 
         [MethodImpl(Inline)]
-        public static implicit operator bit(ulong src)
+        public static implicit operator Bit(ulong src)
             => src == 0 ? Off : On;
 
         [MethodImpl(Inline)]
-        public static implicit operator BinaryDigit(bit src)
+        public static implicit operator BinaryDigit(Bit src)
             => src.value ? BinaryDigit.B1 : BinaryDigit.B0;
 
         [MethodImpl(Inline)]
-        public static implicit operator bit(BinaryDigit src)
-            => new bit(src == BinaryDigit.B1);
+        public static implicit operator Bit(BinaryDigit src)
+            => new Bit(src == BinaryDigit.B1);
 
         [MethodImpl(Inline)]
-        public static bool operator true(bit src)
+        public static bool operator true(Bit src)
             => src.value;
 
         [MethodImpl(Inline)]
-        public static bool operator false(bit src)
+        public static bool operator false(Bit src)
             => !src.value;
 
         [MethodImpl(Inline)]
-        public static bool operator ==(bit lhs, bit rhs)
+        public static bool operator ==(Bit lhs, Bit rhs)
             => lhs.value == rhs.value;
 
         [MethodImpl(Inline)]
-        public static bool operator !=(bit lhs, bit rhs)
+        public static bool operator !=(Bit lhs, Bit rhs)
             => lhs.value != rhs.value;
 
         [MethodImpl(Inline)]
-        public static bit operator ~ (bit src) 
+        public static Bit operator ~ (Bit src) 
             => src.flip();
 
         [MethodImpl(Inline)]
-        public static bit operator & (bit lhs, bit rhs) 
+        public static Bit operator & (Bit lhs, Bit rhs) 
             => lhs.value & rhs.value;
 
         [MethodImpl(Inline)]
-        public static bit operator | (bit lhs, bit rhs) 
+        public static Bit operator | (Bit lhs, Bit rhs) 
             => lhs.value | rhs.value;
 
         [MethodImpl(Inline)]
-        public static bit operator ^ (bit lhs, bit rhs) 
+        public static Bit operator ^ (Bit lhs, Bit rhs) 
             => lhs.value ^ rhs.value;
 
 
         [MethodImpl(Inline)]
-        public static bit operator + (bit lhs, bit rhs) 
+        public static Bit operator + (Bit lhs, Bit rhs) 
             => (lhs.value,rhs.value) switch
                 {
                     (true, true) => false,
@@ -162,7 +192,7 @@ namespace Z0
                 };
 
         [MethodImpl(Inline)]
-        public static bit operator * (bit lhs, bit rhs) 
+        public static Bit operator * (Bit lhs, Bit rhs) 
             => (lhs.value,rhs.value) switch
                 {
                     (true, true) => true,
@@ -173,7 +203,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public bit(bool value)        
+        public Bit(bool value)        
             => this.value = value;
 
 
@@ -183,45 +213,44 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public int CompareTo(bit rhs)
+        public int CompareTo(Bit rhs)
             => value.CompareTo(rhs);
 
         readonly bool value;
 
         [MethodImpl(Inline)]
-        public bool eq(bit rhs)
+        public bool eq(Bit rhs)
             => value == rhs.value;
 
         [MethodImpl(Inline)]
-        public bool neq(bit rhs)
+        public bool neq(Bit rhs)
             => value != rhs.value;
 
         [MethodImpl(Inline)]
-        public bool eq(bit lhs, bit rhs)
+        public bool eq(Bit lhs, Bit rhs)
             => lhs.value == rhs.value;
 
         [MethodImpl(Inline)]
-        public bool neq(bit lhs, bit rhs)
+        public bool neq(Bit lhs, Bit rhs)
             => lhs.value != rhs.value;
 
-        public bit flip()
+        public Bit flip()
             => ! value;
 
         [MethodImpl(Inline)]
         public string format()
             => value == true ? "1" : "0";
 
-
         [MethodImpl(Inline)]
         public int hash()
             => value == true ? 1 : 0;
 
         [MethodImpl(Inline)]
-        public bool Equals(bit rhs)
+        public bool Equals(Bit rhs)
             => value == rhs.value;
 
         public override bool Equals(object rhs)
-            => rhs is bit ? Equals((bit)rhs) : false;
+            => rhs is Bit ? Equals((Bit)rhs) : false;
 
         public override int GetHashCode()
             => hash();

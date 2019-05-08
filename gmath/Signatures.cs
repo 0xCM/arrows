@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
     
-    using static zcore;
+    
     using static mfunc;
 
 
@@ -43,7 +43,10 @@ namespace Z0
     /// <param name="cycles">The number of cycles</param>
     /// <param name="reps">The number of reps</param>
     public delegate Duration Repeat(int cycles, int reps);
-    
+
+    public delegate OpMeasure OpMeasurer(int cycles, int reps);
+
+
     /// <summary>
     /// Defines the signature of a function that measures execution time for
     /// a specified number of cycles

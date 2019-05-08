@@ -16,7 +16,7 @@ namespace Z0.Tests
     using static zcore;
     using static zfunc;
 
-    using static BitVectorPatterns;
+    using static BitPatterns;
     using static BitPattern;
     using static BinaryDigit;
 
@@ -31,14 +31,14 @@ namespace Z0.Tests
 
         public void Convert()
         {
-            static T toInt<T>(bit b)
+            static T toInt<T>(Bit b)
                 where T : struct, IEquatable<T>
                     => convert<int,T>((int)b); 
 
-            Claim.eq(1, toInt<int>(bit.On)); 
-            Claim.eq(0, toInt<int>(bit.Off)); 
-            Claim.eq(1u, toInt<uint>(bit.On)); 
-            Claim.eq(0u, toInt<uint>(bit.Off)); 
+            Claim.eq(1, toInt<int>(Bit.On)); 
+            Claim.eq(0, toInt<int>(Bit.Off)); 
+            Claim.eq(1u, toInt<uint>(Bit.On)); 
+            Claim.eq(0u, toInt<uint>(Bit.Off)); 
         }
         public void Extract1()
         {

@@ -15,9 +15,9 @@ namespace Z0
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Multiset</remarks>
     public readonly struct Multiset<T> 
-        where T : Operative.Ordered<T>,  new()                
+        where T : IOrderedOps<T>,  new()                
     {
-        static Operative.Ordered<T> Ops = new T();
+        static IOrderedOps<T> Ops = new T();
         
         readonly SortedDictionary<T,int> data;
 

@@ -29,7 +29,7 @@ namespace Z0
     /// Provides a layer of indirection for, and gives a concrete type to, 
     /// an IEnumerable instance
     /// </summary>
-    public readonly struct Seq<T> : Contain.Seq<Seq<T>,T>
+    public readonly struct Seq<T> : ISeq<Seq<T>,T>
     {
         public static readonly Seq<T> Empty = default;
 

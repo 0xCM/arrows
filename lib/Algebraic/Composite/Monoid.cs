@@ -15,8 +15,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The reification type of an additive monoid</typeparam>
         [MethodImpl(Inline)]
-        public static Operative.Monoidal<T> additive<T>()
-            where T : struct, Structures.MonoidA<T> 
+        public static Operative.IMonoidalOps<T> additive<T>()
+            where T : struct, Structures.IMonoidA<T> 
                 => new Reify.Monoidal<T>((x,y) => x.add(y), default(T).zero);
 
         /// <summary>
@@ -24,8 +24,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The reification type of a multiplicative monoid</typeparam>
         [MethodImpl(Inline)]
-        public static Operative.Monoidal<T> multiplicative<T>()
-            where T : struct, Structures.MonoidM<T> 
+        public static Operative.IMonoidalOps<T> multiplicative<T>()
+            where T : struct, Structures.IMonoidM<T> 
                 => new Reify.Monoidal<T>((x,y) => x.mul(y), default(T).one);
 
     }
@@ -37,13 +37,13 @@ namespace Z0
         /// Characterizes monoidal operations
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Monoid<T> : Semigroup<T>
+        public interface IMonoidOps<T> : ISemigroupOps<T>
         {
 
 
         }
 
-        public interface Monoidal<T> : Monoid<T>
+        public interface IMonoidalOps<T> : IMonoidOps<T>
         {
             T identity {get;}
             
@@ -55,7 +55,7 @@ namespace Z0
         /// Characterizes multiplicative monoidal operations
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface MonoidM<T> : Monoid<T>, SemigroupM<T>, Unital<T>
+        public interface IMonoidMOps<T> : IMonoidOps<T>, ISemigroupMOps<T>, IUnitalOps<T>
         {
 
         }
@@ -66,7 +66,7 @@ namespace Z0
         /// Characterizes additive monoidal operations
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface MonoidA<T> : Monoid<T>, SemigroupA<T>, Nullary<T>
+        public interface IMonoidAOps<T> : IMonoidOps<T>, ISemigroupAOps<T>, INullaryOps<T>
         {
             
 
@@ -77,8 +77,8 @@ namespace Z0
 
     partial class Structures
     {
-        public interface Monoid<S> : Semigroup<S>
-            where S : Monoid<S>, new()
+        public interface IMonoid<S> : ISemigroup<S>
+            where S : IMonoid<S>, new()
         {
 
         }
@@ -88,21 +88,21 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The classified structure</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface Monoid<S,T> : Monoid<S>, Semigroup<S,T>
-            where S : Monoid<S,T>, new()
+        public interface IMonoid<S,T> : IMonoid<S>, ISemigroup<S,T>
+            where S : IMonoid<S,T>, new()
         {
             
         }            
 
         
-        public interface MonoidM<S> : Monoid<S>, SemigroupM<S>, Unital<S>
-            where S: MonoidM<S>, new()
+        public interface IMonoidM<S> : IMonoid<S>, SemigroupM<S>, IUnital<S>
+            where S: IMonoidM<S>, new()
         {
 
         }
 
-        public interface MonoidA<S> : Monoid<S>, SemigroupA<S>, Nullary<S>
-            where S : MonoidA<S>, new()
+        public interface IMonoidA<S> : IMonoid<S>, SemigroupA<S>, INullary<S>
+            where S : IMonoidA<S>, new()
         {
 
         }
@@ -112,8 +112,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The classified structure</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface MonoidM<S,T> : MonoidM<S>, Monoid<S,T>, SemigroupM<S,T>
-            where S : MonoidM<S,T>, new()
+        public interface IMonoidM<S,T> : IMonoidM<S>, IMonoid<S,T>, ISemigroupM<S,T>
+            where S : IMonoidM<S,T>, new()
         {
 
         }            
@@ -123,8 +123,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The classified structure</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface MonoidA<S,T> :  MonoidA<S>, Monoid<S,T>, SemigroupA<S,T>
-            where S : MonoidA<S,T>, new()
+        public interface IMonoidA<S,T> :  IMonoidA<S>, IMonoid<S,T>, ISemigroupA<S,T>
+            where S : IMonoidA<S,T>, new()
         {
 
         }            
@@ -134,7 +134,7 @@ namespace Z0
     partial class Reify
     {
 
-        public readonly struct Monoidal<T> : Operative.Monoidal<T>
+        public readonly struct Monoidal<T> : Operative.IMonoidalOps<T>
             where T : struct, IEquatable<T> 
         {
 
@@ -163,11 +163,11 @@ namespace Z0
         }
 
 
-        public readonly struct MonoidM<T> : Operative.MonoidM<T>, Operative.Monoidal<T>
-            where T : Structures.MonoidM<T>, new()
+        public readonly struct MonoidM<T> : Operative.IMonoidMOps<T>, Operative.IMonoidalOps<T>
+            where T : Structures.IMonoidM<T>, new()
         {    
 
-            static readonly Structures.MonoidM<T>  exemplar = default;
+            static readonly Structures.IMonoidM<T>  exemplar = default;
 
             public T one 
                 => exemplar.one;
@@ -192,10 +192,10 @@ namespace Z0
                 => lhs.mul(rhs);
         }
 
-        public readonly struct MonoidA<T> : Operative.MonoidA<T>, Operative.Monoidal<T>
-            where T : Structures.MonoidA<T>, new()
+        public readonly struct MonoidA<T> : Operative.IMonoidAOps<T>, Operative.IMonoidalOps<T>
+            where T : Structures.IMonoidA<T>, new()
         {    
-            static readonly Structures.MonoidA<T> exemplar = default;
+            static readonly Structures.IMonoidA<T> exemplar = default;
 
             public T zero 
                 => exemplar.zero;

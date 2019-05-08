@@ -7,40 +7,36 @@ namespace Z0
     using System;
     using System.Numerics;
 
-    partial class Operative
+    public interface IDecrementableOps<T> 
     {
-        public interface Decrementable<T> 
-        {
-            T dec(T x);        
-        }
+        T dec(T x);        
+    }
 
-        public interface Incrementable<T>
-        {
-            T inc(T x);        
-        }
+    public interface IIncrementableOps<T>
+    {
+        T inc(T x);        
+    }
 
 
 
-        /// <summary>
-        /// Characterizes a type that realizes both incrementing and decrementing operations
-        /// </summary>
-        /// <typeparam name="T">The target type</typeparam>
-        public interface Stepwise<T> : Incrementable<T>, Decrementable<T>
-        {
-            
-        }
-
+    /// <summary>
+    /// Characterizes a type that realizes both incrementing and decrementing operations
+    /// </summary>
+    /// <typeparam name="T">The target type</typeparam>
+    public interface IStepwiseOps<T> : IIncrementableOps<T>, IDecrementableOps<T>
+    {
+        
     }
 
     partial class Structures
     {
-        public interface Decrementable<S> : Orderable<S>
-            where S : Decrementable<S>, new()
+        public interface IDecrementable<S> : IOrderable<S>
+            where S : IDecrementable<S>, new()
         {
             S dec();
         }
 
-        public interface Incrementable<S> : Orderable<S>
+        public interface Incrementable<S> : IOrderable<S>
             where S : Incrementable<S>, new()
         {
             S inc();        
@@ -51,8 +47,8 @@ namespace Z0
         /// operations are defined
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
-        public interface Stepwise<S> : Incrementable<S>, Decrementable<S>
-            where S : Stepwise<S>, new()
+        public interface IStepwise<S> : Incrementable<S>, IDecrementable<S>
+            where S : IStepwise<S>, new()
         {
 
         }

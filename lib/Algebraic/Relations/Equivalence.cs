@@ -20,13 +20,13 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The element type</typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Equivalence_relation</remarks>
-        public interface Equivalence<T> : Reflexive<T>, Symmetric<T>, Transitive<T> { }
+        public interface IEquivalenceOps<T> : IReflexiveOps<T>, ISymmetricOps<T>, ITransitiveOps<T> { }
 
     }
 
     partial class Structures
     {
-        public interface EquivalenceClass<T>
+        public interface IEquivalenceClass<T>
         {
             T representative {get;}
         }
@@ -37,8 +37,8 @@ namespace Z0
         /// an equivalence relation
         /// </summary>
         /// <typeparam name="T">The classified type</typeparam>
-        public interface EquivalenceClass<S,T> : Semigroup<S,T>, EquivalenceClass<T>, Contain.NonempySet<S>
-            where S : EquivalenceClass<S,T>, new()
+        public interface IEquivalenceClass<S,T> : ISemigroup<S,T>, IEquivalenceClass<T>, INonempySet<S>
+            where S : IEquivalenceClass<S,T>, new()
         {
             
         }
@@ -48,16 +48,16 @@ namespace Z0
         /// with enumerable content
         /// </summary>
         /// <typeparam name="T">The content type</typeparam>
-        public interface DiscreteEqivalenceClass<S,T> : EquivalenceClass<S,T>, Contain.DiscreteSet<S,T> 
-            where S : DiscreteEqivalenceClass<S,T>, new() { }
+        public interface IDiscreteEqivalenceClass<S,T> : IEquivalenceClass<S,T>, IDiscreteSet<S,T> 
+            where S : IDiscreteEqivalenceClass<S,T>, new() { }
 
         /// <summary>
         /// Characterizes an equivalence class, i.e. a segment of a partition effected via 
         /// an equivalence relation
         /// </summary>
         /// <typeparam name="T">The classified type</typeparam>
-        public interface FiniteEquivalenceClass<S,T> : DiscreteEqivalenceClass<S,T>//, FiniteSet<S,T> 
-            where S : FiniteEquivalenceClass<S,T>, new()
+        public interface IFiniteEquivalenceClass<S,T> : IDiscreteEqivalenceClass<S,T>//, FiniteSet<S,T> 
+            where S : IFiniteEquivalenceClass<S,T>, new()
         { }
 
 
@@ -70,16 +70,16 @@ namespace Z0
         /// Defines the canonical reification of a discrete equivalence class
         /// </summary>
         public readonly struct FiniteEquivalenceClass<T> 
-            : Structures.DiscreteEqivalenceClass<FiniteEquivalenceClass<T>,T>,  
-              Structures.Semigroup<FiniteEquivalenceClass<T>>
-                where T : Structures.Semigroup<T>, new()
+            : Structures.IDiscreteEqivalenceClass<FiniteEquivalenceClass<T>,T>,  
+              Structures.ISemigroup<FiniteEquivalenceClass<T>>
+                where T : Structures.ISemigroup<T>, new()
         {
                     
-            Operative.Equivalence<T> equivalence {get;}
+            Operative.IEquivalenceOps<T> equivalence {get;}
             
             FiniteSet<T> membership {get;}
 
-            public FiniteEquivalenceClass(T representative, Operative.Equivalence<T> equivalence, IEnumerable<T> members)
+            public FiniteEquivalenceClass(T representative, Operative.IEquivalenceOps<T> equivalence, IEnumerable<T> members)
             {
                 this.representative = representative;
                 this.equivalence = equivalence;

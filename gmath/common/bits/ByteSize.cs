@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.IO;
 
-    using static zcore;
+    
     using static zfunc;
     using static mfunc;
 
@@ -95,6 +95,4 @@ namespace Z0
             => obj is ByteSize ? Equals((ByteSize)obj) : false;
 
     }
-
-
 }

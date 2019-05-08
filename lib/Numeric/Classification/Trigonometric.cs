@@ -4,71 +4,63 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    partial class Operative
+    /// <summary>
+    /// Characterizes trigonometric operations over a type
+    /// </summary>
+    /// <typeparam name="T">The operand type</typeparam>
+    public interface ITrigonmetricOps<T>
     {
-        /// <summary>
-        /// Characterizes trigonometric operations over a type
-        /// </summary>
-        /// <typeparam name="T">The operand type</typeparam>
-        public interface Trigonmetric<T>
-        {
-            T sin(T x);   
+        T sin(T x);   
 
-            T sinh(T x);   
+        T sinh(T x);   
 
-            T asin(T x);   
+        T asin(T x);   
 
-            T asinh(T x);   
+        T asinh(T x);   
 
-            T cos(T x);   
+        T cos(T x);   
 
-            T cosh(T x);   
+        T cosh(T x);   
 
-            T acos(T x);   
-        
-            T acosh(T x);   
+        T acos(T x);   
+    
+        T acosh(T x);   
 
-            T tan(T x);
+        T tan(T x);
 
-            T tanh(T x);
+        T tanh(T x);
 
-            T atan(T x);
+        T atan(T x);
 
-            T atanh(T x);        
-        }
+        T atanh(T x);        
     }
 
-    partial class Structures
+    public interface ITrigonmetric<S> 
     {
+        S sin();   
 
-        public interface Trigonmetric<S> 
-        {
-            S sin();   
+        S sinh();   
 
-            S sinh();   
+        S asin();   
 
-            S asin();   
+        S asinh();   
 
-            S asinh();   
+        S cos();   
 
-            S cos();   
+        S cosh();   
 
-            S cosh();   
+        S acos();   
+    
+        S acosh();   
 
-            S acos();   
-        
-            S acosh();   
+        S tan();
 
-            S tan();
+        S tanh();
 
-            S tanh();
+        S atan();
 
-            S atan();
-
-            S atanh();
-        
-        }
-
-
+        S atanh();
+    
     }
+
 }

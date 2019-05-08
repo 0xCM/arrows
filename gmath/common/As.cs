@@ -11,8 +11,8 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
     using System.Security;
 
-    using static zcore;
-    using static global::mfunc;
+    
+    using static mfunc;
 
     public static class As
     {

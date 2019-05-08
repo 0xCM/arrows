@@ -18,7 +18,7 @@ namespace Z0
         /// <summary>
         /// Reifies a semiring of vectors over a semiring of elements
         /// </summary>
-        public readonly struct VectorSemiring<N, T> : Operative.Semiring<Vector<N,T>>
+        public readonly struct VectorSemiring<N, T> : Operative.ISemiringOps<Vector<N,T>>
             where N : ITypeNat, new()
             where T : struct, Structures.Semiring<T> 
         {

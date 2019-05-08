@@ -20,7 +20,7 @@ namespace Z0
     /// <summary>
     /// Defines a 32-bit signed integer via primitive operations
     /// </summary>
-    public readonly struct int32 : Structures.Integer<analog, primitive>, Formattable
+    public readonly struct int32 : IInteger<analog, primitive>, Formattable
     {
     
         static readonly Operative.PrimOps<primitive> Prim = primops.typeops<primitive>();

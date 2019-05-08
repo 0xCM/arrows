@@ -14,42 +14,34 @@ namespace Z0
 
     public class BenchDelta 
     {
-        public static BenchDelta Calc(BenchComparison comparison)
+        public static BenchDelta Calc(IBenchComparison comparison)
             => new BenchDelta(comparison);
 
-        public BenchDelta(BenchComparison Comparison)
+        public BenchDelta(IBenchComparison Comparison)
         {
             this.Comparison = Comparison;
             this.Description = Comparison.Describe();
-            Claim.eq(Comparison.LeftBench.OpCount, Comparison.RightBench.OpCount);
-            Claim.eq(Comparison.LeftBench.Operator.OperandKind, Comparison.RightBench.Operator.OperandKind);
-            Claim.eq(Comparison.LeftBench.Operator.OpKind, Comparison.RightBench.Operator.OpKind);
+            Claim.eq(Comparison.LeftMeasure.OpCount, Comparison.RightMeasure.OpCount);
         }
 
-        public BenchComparison Comparison {get;}
+        public IBenchComparison Comparison {get;}
 
         public AppMsg Description {get;}
 
         public string LeftTitle
-            => Comparison.LeftBench.Title;
+            => Comparison.LeftTitle;
 
         public string RightTitle
-            => Comparison.RightBench.Title;
-
-        public string DeltaTitle
-            => $"{LeftTitle} vs {RightTitle}";
-
+            => Comparison.RightTitle;
+        
         public long OpCount
-            => Comparison.LeftBench.OpCount;
-
-        public OpId OpId
-            => Comparison.LeftBench.Operator;
+            => Comparison.LeftMeasure.OpCount;
 
         public Duration LeftDuration
-            => Comparison.LeftBench.ExecTime;
+            => Comparison.LeftMeasure.WorkTime;
 
         public Duration RightDuration
-            => Comparison.RightBench.ExecTime;
+            => Comparison.RightMeasure.WorkTime;
 
         public Duration TimingDelta
             => LeftDuration - RightDuration;
@@ -71,7 +63,7 @@ namespace Z0
 
     public static class BenchComparisonX
     {
-        public static BenchDelta CalcDelta(this BenchComparison comparison)
+        public static BenchDelta CalcDelta(this IBenchComparison comparison)
             => BenchDelta.Calc(comparison);
     }
 }

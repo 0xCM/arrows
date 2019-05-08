@@ -24,7 +24,7 @@ namespace Z0
         /// Constructs a BitVector from an array of bits
         /// </summary>
         /// <param name="src">The source bits</param>
-        public static BitVector<N> define<N>(params bit[] src)
+        public static BitVector<N> define<N>(params Bit[] src)
             where N : ITypeNat, new()
                 => new BitVector<N>(src);
 
@@ -40,9 +40,9 @@ namespace Z0
             where N : ITypeNat, new()
         {
             var len = Nat.require<N>(src.Length);
-            var bits = alloc<bit>(src.Length);
+            var bits = alloc<Bit>(src.Length);
             for(var i=0; i< len; i++)
-                bits[i] = bit.Parse(src[i]);
+                bits[i] = Bit.Parse(src[i]);
             return define<N>(bits);
 
         }
@@ -50,7 +50,7 @@ namespace Z0
     /// <summary>
     /// Defines an integrally and naturally typed bitvector
     /// </summary>
-    public readonly struct BitVector<N> : Structures.Bitwise<BitVector<N>>, Lengthwise,  Formattable, Equatable<BitVector<N>>
+    public readonly struct BitVector<N> : IBitwise<BitVector<N>>, ILengthwise,  Formattable, Equatable<BitVector<N>>
         where N : ITypeNat, new()
     {
         public static readonly uint Length = (uint)natu<N>();        
@@ -87,13 +87,13 @@ namespace Z0
         static Exception error(int len)
             => new Exception($"The source has length {len} which differs from the required length {Length}" );
         
-        public BitVector(params bit[] src)
+        public BitVector(params Bit[] src)
             => bits = src.Length == Length ? src : throw error(src.Length);
 
-        public bit[] bits {get;}
-        
-        public uint length 
-            => Length;
+        public Bit[] bits {get;}
+
+        uint ILengthwise.Length 
+            => (uint)bits.Length;
 
         [MethodImpl(Inline)]
         public BitVector<N> and(BitVector<N> rhs)
@@ -145,7 +145,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool eq(BitVector<N> rhs)
         {
-            for(var i = 0; i< length; i++)
+            for(var i = 0; i< Length; i++)
                 if(bits[i] != rhs.bits[i])
                     return false;
             return true;

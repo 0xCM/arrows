@@ -9,7 +9,8 @@ namespace Z0
     using System.Linq;
     using System.Runtime.CompilerServices;
 
-    using static zcore;
+    using static zfunc;
+    using static mfunc;
 
     /// <summary>
     /// Facilities deterministic/repeatable executions of pseudorandom processes

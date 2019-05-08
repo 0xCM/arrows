@@ -12,7 +12,7 @@ namespace MS
     using System.Runtime.Intrinsics.X86;
     using nuint = System.UInt64;
 
-    using static zcore;
+    using static mfunc;
 
     /// <summary>
     /// This implements a logical array of floats that is automatically aligned for SSE/AVX operations.

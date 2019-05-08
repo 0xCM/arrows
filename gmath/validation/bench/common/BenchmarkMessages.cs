@@ -41,30 +41,32 @@ namespace Z0
         static Duration deltaTiming(BenchComparison c)               
             => c.LeftBench.ExecTime - c.RightBench.ExecTime;
 
-        public static AppMsg Describe(this BenchComparison comparison)
+        public static AppMsg Describe(this IBenchComparison comparison)
         {
-            var title = deltaTitle(comparison);
-            var timing = deltaTiming(comparison);
-            var width = Math.Abs(timing.Ms);
-            var leftDuration = comparison.LeftBench.ExecTime;
-            var rightDuration = comparison.RightBench.ExecTime;
+            var title = $"{comparison.LeftTitle} / {comparison.RightTitle}";
+            var delta = comparison.LeftMeasure.WorkTime - comparison.RightMeasure.WorkTime;
+            var width = Math.Abs(delta.Ms);
+            var leftDuration = comparison.LeftMeasure.WorkTime;
+            var rightDuration = comparison.RightMeasure.WorkTime;
             var ratio = Math.Round((double)leftDuration.Ticks / (double)rightDuration.Ticks, 4);
-            var opid = comparison.LeftBench.Operator;
             var description = append(
-                $"{title} {opid}", 
+                $"{title}", 
                 $" | Left Time  = {leftDuration.Ms} ms",
                 $" | Right Time = {rightDuration.Ms} ms",
-                $" | Difference = {timing.Ms} ms",
+                $" | Difference = {delta.Ms} ms",
                 $" | Performance Ratio = {ratio}"
                 );
             return AppMsg.Define(description,  SeverityLevel.Perform);
         }
 
-        public static AppMsg BenchmarkEnd(OpId opid,  long totalOpCount, Duration totalDuration)
+       public static AppMsg BenchmarkEnd<T>(T title,  long totalOpCount, Duration totalDuration)
             => AppMsg.Define(append(
-                    $"{opid} summary".PadRight(28), 
+                    $"{title} summary".PadRight(28), 
                      Pipe, "Total Op Count", Eq, $"{totalOpCount}".PadRight(12),
                      Pipe, "Total Duration", Eq, $"{totalDuration}"), 
                         SeverityLevel.HiliteCL);
-    }    
+ 
+        public static AppMsg BenchmarkEnd(OpId opid,  long totalOpCount, Duration totalDuration)
+            => BenchmarkEnd<OpId>(opid, totalOpCount, totalDuration);
+    }
 }

@@ -15,49 +15,44 @@ namespace Z0
  
     using static zfunc;
     using static mfunc;
-    using static BitPackBytes;
-
-    static class BitPackBytes
-    {
-        public const byte Zero = 0;
-
-        public const byte One = 1;
-
-        public const byte Mask00 = 0&7;
     
-        public const byte Mask01 = 1&7;
-        
-        public const byte Mask02 = 2&7;
-        
-        public const byte Mask03 = 3&7;
-        
-        public const byte Mask04 = 4&7;
-        
-        public const byte Mask05 = 5&7;
-        
-        public const byte Mask06 = 6&7;
-        
-        public const byte Mask07 = 7&7;
-
-        public const byte LShift00 = One << Mask00;
-
-        public const byte LShift01 = One << Mask01;
-
-        public const byte LShift02 = One << Mask02;
-
-        public const byte LShift03 = One << Mask03;
-        
-        public const byte LShift04 = One << Mask04;
-
-        public const byte LShift05 = One << Mask05;
-
-        public const byte LShift06 = One << Mask06;
-
-        public const byte LShift07 = One << Mask07;
-    }
-
     public static class Bits
     {                
+        const byte Zero = 0;
+
+        const byte One = 1;
+
+        const byte Mask00 = 0&7;
+    
+        const byte Mask01 = 1&7;
+        
+        const byte Mask02 = 2&7;
+        
+        const byte Mask03 = 3&7;
+        
+        const byte Mask04 = 4&7;
+        
+        const byte Mask05 = 5&7;
+        
+        const byte Mask06 = 6&7;
+        
+        const byte Mask07 = 7&7;
+
+        const byte LShift00 = One << Mask00;
+
+        const byte LShift01 = One << Mask01;
+
+        const byte LShift02 = One << Mask02;
+
+        const byte LShift03 = One << Mask03;
+        
+        const byte LShift04 = One << Mask04;
+
+        const byte LShift05 = One << Mask05;
+
+        const byte LShift06 = One << Mask06;
+
+        const byte LShift07 = One << Mask07;
 
         /// <summary>
         /// Calculates the base-2 log of the source
@@ -201,6 +196,37 @@ namespace Z0
             return dst;
         }
 
+        public static byte pack(Bit x0, Bit x1, Bit x2, Bit x3, Bit x4, Bit x5, Bit x6, Bit x7)
+        {
+            var dst = Zero;
+            
+            if(x0)
+                dst |= LShift00;
+            
+            if(x1)
+                dst |= LShift01;
+            
+            if(x2)
+                dst |= LShift02;
+
+            if(x3)
+                dst |= LShift03;
+
+            if(x4)
+                dst |= LShift04;
+
+            if(x5)
+                dst |= LShift05;
+
+            if(x6)
+                dst |= LShift06;
+
+            if(x7)
+                dst |= LShift07;
+            
+            return dst;
+        }
+
         /// <summary>
         /// Packs uint8[2] => uint16
         /// </summary>
@@ -209,7 +235,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ushort pack(byte x0, byte x1)
             => (ushort) ((ushort)x1 << 8 | (ushort)x0);
-
 
         /// <summary>
         /// Packs uint8[4] => uint32
@@ -221,7 +246,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static uint pack(byte x0, byte x1, byte x2, byte x3)
             => BitConverter.ToUInt32(array(x0,x1,x2,x3));
-
 
         /// <summary>
         /// Packs uint8[8] => uint64
@@ -238,7 +262,7 @@ namespace Z0
         public static ulong pack(byte x0, byte x1, byte x2, byte x3, byte x4, byte x5, byte x6, byte x7)
             => BitConverter.ToUInt32(array(x0,x1,x2,x3,x4,x5,x6,x7));
  
-         /// <summary>
+        /// <summary>
         /// Constructs a short value from two signed byte values
         /// </summary>
         /// <param name="x0">The low-order bits</param>
@@ -381,14 +405,104 @@ namespace Z0
 
         #endregion
 
-        /// <summary>
-        /// Constructs a bit from source at a specified position
-        /// </summary>
-        /// <param name="src">The source value</param>
-        /// <param name="pos">The bit position</param>
-        [MethodImpl(Inline)]   
-        public static bit bitat(int src, int pos)
-                => testbit(src, pos);
+        #region set
+
+        [MethodImpl(Inline)]
+        public static sbyte setbit(sbyte src, int pos)
+             => (sbyte)((sbyte)(1 >> pos) | src);
+
+        [MethodImpl(Inline)]
+        public static byte setbit(byte src, int pos)
+             => (byte)((1 >> pos) | src);
+
+        [MethodImpl(Inline)]
+        public static short setbit(short src, int pos)
+             => (short)((short)(1 >> pos) | src);
+
+        [MethodImpl(Inline)]
+        public static ushort setbit(ushort src, int pos)
+             => (ushort)((1 >> pos) | src);
+
+        [MethodImpl(Inline)]
+        public static int setbit(int src, int pos)
+             => (1 >> pos) | src;
+
+        [MethodImpl(Inline)]
+        public static uint setbit(uint src, int pos)
+             => (1u >> pos) | src;
+
+        [MethodImpl(Inline)]
+        public static long setbit(long src, int pos)
+             => (1L >> pos) | src;
+
+        [MethodImpl(Inline)]
+        public static ulong setbit(ulong src, int pos)
+             => (1ul >> pos) | src;
+
+        [MethodImpl(Inline)]
+        public static float setbit(float src, int pos)
+             => BitConverter.Int32BitsToSingle((1 >> pos) | BitConverter.SingleToInt32Bits(src));
+
+        [MethodImpl(Inline)]
+        public static double setbit(double src, int pos)
+             => BitConverter.Int64BitsToDouble((1L >> pos) | BitConverter.DoubleToInt64Bits(src));
+
+        #endregion
+
+        #region unset
+
+        [MethodImpl(Inline)]
+        static byte LeftMask(int pos)
+            => (byte) ~ (1 << pos);
+
+        [MethodImpl(Inline)]
+        public static byte unset(byte src, int pos)
+             => (byte)(src &= LeftMask(pos));
+
+        #endregion
+
+        [MethodImpl(Inline)]
+        public static string bitchars(sbyte src)
+            => zpad(Convert.ToString(src,2), 8);
+
+        [MethodImpl(Inline)]
+        public static string bitchars(byte src)
+            => zpad(Convert.ToString(src,2), 8);
+
+        [MethodImpl(Inline)]
+        public static string bitchars(short src)
+            => zpad(Convert.ToString(src,2), 16);
+
+        [MethodImpl(Inline)]
+        public static string bitchars(ushort src)
+            => zpad(Convert.ToString(src,2), 16);
+
+        [MethodImpl(Inline)]
+        public static string bitchars(int src)
+            => zpad(Convert.ToString(src,2), 32);
+
+        [MethodImpl(Inline)]
+        public static string bitchars(uint src)
+            => zpad(Convert.ToString(src,2), 32);
+
+        [MethodImpl(Inline)]
+        public static string bitchars(long src)
+            => zpad(Convert.ToString(src,2), 64);
+
+        [MethodImpl(Inline)]
+        public static string bitchars(ulong src)
+        {
+             (var x0, var x1) = split(src);
+             return bitchars(x0) + bitchars(x1);
+        }
+            
+        [MethodImpl(Inline)]
+        public static string bitchars(float src)
+            => bitchars(BitConverter.SingleToInt32Bits(src));
+
+        [MethodImpl(Inline)]
+        public static string bitchars(double src)
+            => bitchars(bitsf(src));
 
         /// <summary>
         /// Produces a byte by extracting bits [0 .. 7] from the source
@@ -463,8 +577,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static byte hi8(int src)
             => hi(hi(src));
-
-
 
         /// <summary>
         /// int => (short, .)
@@ -675,62 +787,37 @@ namespace Z0
         public static uint extract(uint value, int start, int length)
             => Bmi1.BitFieldExtract(value,(byte)start,(byte)length);
 
-        [MethodImpl(Inline)]
-        public static string bitchars(sbyte src)
-            => zpad(Convert.ToString(src,2), sizeof(byte));
-
         [MethodImpl(Inline)]   
         public static BitString bitstring(sbyte src) 
-            => BitString.define(Z0.bit.Parse(bitchars(src)));
-
-        [MethodImpl(Inline)]
-        public static string bitchars32(int src)
-            => zpad(Convert.ToString(src,2), sizeof(int));
-
-        [MethodImpl(Inline)]
-        public static string bitchars(int src)
-            => bitchars32(src);
+            => BitString.define(Z0.Bit.Parse(bitchars(src)));
 
         [MethodImpl(Inline)]   
         public static BitString bitstring(int src) 
-            => BitString.define(Z0.bit.Parse(bitchars(src)));
+            => BitString.define(Z0.Bit.Parse(bitchars(src)));
 
-
-        [MethodImpl(Inline)]
-        public static string bitchars(float src)
-            => bitchars(BitConverter.SingleToInt32Bits(src));
         
         [MethodImpl(Inline)]   
         public static BitString bitstring(float src) 
-            => BitString.define(Z0.bit.Parse(bitchars(src)));
-
-        [MethodImpl(Inline)]
-        public static string bitchars(double src)
-            => bitchars(bitsf(src));
+            => BitString.define(Z0.Bit.Parse(bitchars(src)));
 
         [MethodImpl(Inline)]   
         public static BitString bitstring(double src) 
-            => BitString.define(Z0.bit.Parse(bitchars(src)));
+            => BitString.define(Z0.Bit.Parse(bitchars(src)));
 
-        [MethodImpl(Inline)]
-        public static string bitchars(long src)
-            => zpad(Convert.ToString(src,2), sizeof(long));
 
         [MethodImpl(Inline)]   
         public static BitString bitstring(long src) 
-            => BitString.define(Z0.bit.Parse(bitchars(src)));
+            => BitString.define(Z0.Bit.Parse(bitchars(src)));
 
         [MethodImpl(Inline)]
         public static byte[] bytes(sbyte src)
             => array((byte)src);
 
-
-
         [MethodImpl(Inline)]
-        public static bit[] bits(sbyte src)
+        public static Bit[] bits(sbyte src)
         {
             var bitsize = SizeOf<sbyte>.BitSize;
-            var dst = array<bit>(bitsize);
+            var dst = array<Bit>(bitsize);
             for(var i = 0; i < bitsize; i++)
                 dst[i] = testbit(src,i);
             return dst; 
@@ -742,9 +829,9 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static bit[] bits(int src)
+        public static Bit[] bits(int src)
         {
-            var dst = array<bit>(SizeOf<int>.BitSize);
+            var dst = array<Bit>(SizeOf<int>.BitSize);
             for(var i = 0; i < SizeOf<int>.BitSize; i++)
                 dst[i] = testbit(src,i);
             return dst; 
@@ -756,7 +843,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static bit[] bits(float src)
+        public static Bit[] bits(float src)
             => bits(BitConverter.SingleToInt32Bits(src));
 
         [MethodImpl(Inline)]
@@ -765,7 +852,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static bit[] bits(double src)
+        public static Bit[] bits(double src)
             => bits(bitsf(src));
  
 
@@ -775,32 +862,25 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static bit[] bits(long src)
+        public static Bit[] bits(long src)
         {
-            var dst = array<bit>(SizeOf<long>.BitSize);
+            var dst = array<Bit>(SizeOf<long>.BitSize);
             for(var i = 0; i < SizeOf<long>.BitSize; i++)
                 dst[i] = testbit(src,i);
             return dst; 
         }
         
 
-        /// <summary>
-        /// Renders a number as a base-2 formatted string
-        /// </summary>
-        /// <param name="src">The source number</param>
-        [MethodImpl(Inline)]
-        public static string bitchars(byte src)
-            => zpad(Convert.ToString(src,2), sizeof(byte));
 
         [MethodImpl(Inline)]   
         public static BitString bitstring(byte src) 
-            => BitString.define(Z0.bit.Parse(bitchars(src)));
+            => BitString.define(Z0.Bit.Parse(bitchars(src)));
 
    
         [MethodImpl(Inline)]
-        public static bit[] bits(byte src)
+        public static Bit[] bits(byte src)
         {
-            var dst = array<bit>(SizeOf<byte>.BitSize);
+            var dst = array<Bit>(SizeOf<byte>.BitSize);
             for(var i = 0; i < SizeOf<byte>.BitSize; i++)
                 dst[i] = testbit(src,i);
             return dst; 
@@ -814,20 +894,16 @@ namespace Z0
         public static byte[] bytes(byte src)
             => new byte[]{src};
 
-    
-        [MethodImpl(Inline)]
-        public static string bitchars(ushort src)
-            => zpad(Convert.ToString(src,2), sizeof(ushort)*8);
 
         [MethodImpl(Inline)]   
         public static BitString bitstring(ushort src) 
-            => BitString.define(Z0.bit.Parse(bitchars(src)));
+            => BitString.define(Z0.Bit.Parse(bitchars(src)));
 
 
         [MethodImpl(Inline)]
-        public static bit[] bits(ushort src)
+        public static Bit[] bits(ushort src)
         {
-            var dst = array<bit>(SizeOf<ushort>.BitSize);
+            var dst = array<Bit>(SizeOf<ushort>.BitSize);
             for(var i = 0; i < SizeOf<ushort>.BitSize; i++)
                 dst[i] = testbit(src,i);
             return dst; 
@@ -873,17 +949,10 @@ namespace Z0
         public static int countTrailingOff(ushort src)
             => countTrailingOff((uint)src);
 
-        [MethodImpl(Inline)]
-        static string bitcharsu32(uint src)
-            => zpad(Convert.ToString(src,2), sizeof(uint));
-
-        [MethodImpl(Inline)]
-        public static string bitchars(uint src)
-            => bitcharsu32(src);
 
         [MethodImpl(Inline)]   
         public static BitString bitstring(uint src) 
-            => BitString.define(Z0.bit.Parse(bitchars(src)));
+            => BitString.define(Z0.Bit.Parse(bitchars(src)));
 
         [MethodImpl(Inline)]
         public static byte[] bytes(uint src)
@@ -891,9 +960,9 @@ namespace Z0
 
  
         [MethodImpl(Inline)]
-        public static bit[] bits(uint src)
+        public static Bit[] bits(uint src)
         {
-            var dst = array<bit>(SizeOf<uint>.BitSize);
+            var dst = array<Bit>(SizeOf<uint>.BitSize);
             for(var i = 0; i < SizeOf<uint>.BitSize; i++)
                 dst[i] = testbit(src,i);
             return dst; 

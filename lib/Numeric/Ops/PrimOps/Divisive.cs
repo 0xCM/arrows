@@ -13,24 +13,24 @@ namespace Z0
 
     partial class PrimOps { partial class Reify {
         public readonly struct Divisive : 
-            Divisive<byte>, 
-            Divisive<sbyte>, 
-            Divisive<short>,
-            Divisive<ushort>, 
-            Divisive<int>,
-            Divisive<uint>,
-            Divisive<long>,
-            Divisive<ulong>,            
-            Divisive<float>,
-            Divisive<double>, 
-            Divisive<decimal>,
-            Divisive<BigInteger>                
+            IDivisiveOps<byte>, 
+            IDivisiveOps<sbyte>, 
+            IDivisiveOps<short>,
+            IDivisiveOps<ushort>, 
+            IDivisiveOps<int>,
+            IDivisiveOps<uint>,
+            IDivisiveOps<long>,
+            IDivisiveOps<ulong>,            
+            IDivisiveOps<float>,
+            IDivisiveOps<double>, 
+            IDivisiveOps<decimal>,
+            IDivisiveOps<BigInteger>                
         {
             static readonly Divisive Inhabitant = default;
 
             [MethodImpl(Inline)]
-            public static Divisive<T> Operator<T>() 
-                => cast<Divisive<T>>(Inhabitant);
+            public static IDivisiveOps<T> Operator<T>() 
+                => cast<IDivisiveOps<T>>(Inhabitant);
 
             [MethodImpl(Inline)]
             public byte div(byte lhs, byte rhs)

@@ -10,12 +10,12 @@ namespace Z0.Tests
     using Z0.Testing;
     
     using static zcore;
-    using static BitVectorPatterns;
     using static BitPatterns;
     
     using P = Paths;
 
-
+    using static zfunc;
+    
     [DisplayName(Path)]
     public class HistogramTest : UnitTest<HistogramTest>
     {

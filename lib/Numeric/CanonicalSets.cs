@@ -13,7 +13,7 @@ namespace Z0
     /// <summary>
     /// Represents the set that contains all potential values of a specified type
     /// </summary>
-    public readonly struct TotalSet<T> : Contain.Set<TotalSet<T>,T>
+    public readonly struct TotalSet<T> : IMathSet<TotalSet<T>,T>
         where T : IEquatable<T>
     {
         public static readonly TotalSet<T> Inhabitant = default;
@@ -52,7 +52,7 @@ namespace Z0
     /// <summary>
     /// Represents the universal empty set
     /// </summary>
-    public readonly struct EmptySet : Contain.Set
+    public readonly struct EmptySet : IMathSet
     {
         public static readonly EmptySet Inhabitant = default;
 
@@ -75,7 +75,7 @@ namespace Z0
     /// <summary>
     /// Represents the set that contains no values of a specified type
     /// </summary>
-    public readonly struct EmptySet<T> : Contain.Set<EmptySet<T>, T>
+    public readonly struct EmptySet<T> : IMathSet<EmptySet<T>, T>
         where T : IEquatable<T>
     {
         public static readonly EmptySet<T> Inhabitant = default;
@@ -118,7 +118,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of natural numbers
     /// </summary>
-    public readonly struct N : Contain.DiscreteSet<N,bigint>
+    public readonly struct N : IDiscreteSet<N,bigint>
     {
         internal static readonly N Inhabitant = default;
 
@@ -172,7 +172,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of integers
     /// </summary>
-    public readonly struct Z : Contain.DiscreteSet<Z,bigint>, Operative.GroupA<bigint>
+    public readonly struct Z : IDiscreteSet<Z,bigint>, IGroupAOps<bigint>
     {
         internal static readonly Z Inhabitant = default;
     
@@ -242,7 +242,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of rational numbers
     /// </summary>
-    public readonly struct Q : Contain.Set<Q>
+    public readonly struct Q : IMathSet<Q>
     {
         internal static readonly Q Inhabitant = default(Q);
 
@@ -271,7 +271,7 @@ namespace Z0
     /// <summary>
     /// Represents the set of real numbers
     /// </summary>
-    public readonly struct R : Contain.Set<R>
+    public readonly struct R : IMathSet<R>
     {
         internal static readonly R Inhabitant = default(R);
     

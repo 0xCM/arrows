@@ -13,8 +13,8 @@ namespace Z0
     using static zcore;
     using static zfunc;
 
-    public interface FiniteSeq<S,T> : Contain.Seq<S,T>, Contain.FiniteContainer<S,T>
-        where S : FiniteSeq<S,T>, new()
+    public interface IFiniteSeq<S,T> : ISeq<S,T>, IFiniteContainer<S,T>
+        where S : IFiniteSeq<S,T>, new()
     {
         /// <summary>
         /// Retrieves the 0-based i'th element of the sequence
@@ -23,7 +23,7 @@ namespace Z0
 
     }
 
-    public readonly struct FiniteSeq<T> : FiniteSeq<FiniteSeq<T>,T>
+    public readonly struct FiniteSeq<T> : IFiniteSeq<FiniteSeq<T>,T>
     {
         public static readonly FiniteSeq<T> Empty = default;
 

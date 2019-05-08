@@ -16,7 +16,6 @@ namespace Z0.Tests
     using static zcore;
     using static zfunc;
     
-    using static BitVectorPatterns;
     using static BitPatterns;
     
     using P = Paths;

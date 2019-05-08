@@ -17,9 +17,9 @@ namespace Z0
             static readonly Bitwise Inhabitant = default;
 
             [MethodImpl(Inline)]
-            public static Bitwise<T> Operator<T>() 
+            public static IBitwiseOps<T> Operator<T>() 
                 where T : struct, IEquatable<T>
-                    => cast<Bitwise<T>>(Inhabitant);
+                    => cast<IBitwiseOps<T>>(Inhabitant);
     
       }
 

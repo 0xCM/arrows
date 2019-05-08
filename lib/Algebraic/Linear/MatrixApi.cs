@@ -235,7 +235,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Matrix<M, N, T> add<T>(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
-            where T : struct, Operative.Semiring<T>, IEquatable<T>
+            where T : struct, Operative.ISemiringOps<T>, IEquatable<T>
             {
                 var sr = new T();
                 return Matrix.define<M,N,T>(fuse(lhs.data, rhs.data, sr.add));
@@ -272,7 +272,7 @@ namespace Z0
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where P : ITypeNat, new()
-            where T : struct, Operative.Semiring<T>, IEquatable<T>
+            where T : struct, Operative.ISemiringOps<T>, IEquatable<T>
         {            
             var m = Prove.claim<M>(rhs.dim().i);
             var p = Prove.claim<P>(rhs.dim().j);

@@ -39,11 +39,11 @@ namespace Z0
             => (RealCalc<T>)ops;
 
         public static S number<S,T>(T src)
-            where S : Number<S,T>, new()
+            where S : ICNumber<S,T>, new()
             => ((S)prototypes[type<T>()]).revalue(src);
             
         public static IEnumerable<S> numbers<S,T>(IEnumerable<T> src)
-            where S : Number<S,T>, new()
+            where S : ICNumber<S,T>, new()
             => ((S)prototypes[type<T>()]).wrap(src);
 
 

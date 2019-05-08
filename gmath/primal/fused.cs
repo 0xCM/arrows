@@ -11,7 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
 
-    using static zcore;
+    
     using static mfunc;
 
     public static partial class math

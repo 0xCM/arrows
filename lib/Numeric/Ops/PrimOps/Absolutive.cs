@@ -15,24 +15,24 @@ namespace Z0
     partial class PrimOps { partial class Reify
     {
         public readonly struct Absolutive : 
-            Absolutive<byte>, 
-            Absolutive<sbyte>, 
-            Absolutive<short>, 
-            Absolutive<ushort>, 
-            Absolutive<int>, 
-            Absolutive<uint>, 
-            Absolutive<long>, 
-            Absolutive<ulong>, 
-            Absolutive<float>, 
-            Absolutive<double>, 
-            Absolutive<decimal>,
-            Absolutive<BigInteger>
+            IAbsolutiveOps<byte>, 
+            IAbsolutiveOps<sbyte>, 
+            IAbsolutiveOps<short>, 
+            IAbsolutiveOps<ushort>, 
+            IAbsolutiveOps<int>, 
+            IAbsolutiveOps<uint>, 
+            IAbsolutiveOps<long>, 
+            IAbsolutiveOps<ulong>, 
+            IAbsolutiveOps<float>, 
+            IAbsolutiveOps<double>, 
+            IAbsolutiveOps<decimal>,
+            IAbsolutiveOps<BigInteger>
         {
             static readonly Absolutive Inhabitant = default;
             
             [MethodImpl(Inline)]
-            public static Absolutive<T> Operator<T>() 
-                => cast<Absolutive<T>>(Inhabitant);
+            public static IAbsolutiveOps<T> Operator<T>() 
+                => cast<IAbsolutiveOps<T>>(Inhabitant);
 
             [MethodImpl(Inline)]
             public byte abs(byte x)

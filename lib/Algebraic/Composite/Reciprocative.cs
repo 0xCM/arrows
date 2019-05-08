@@ -6,7 +6,7 @@ namespace Z0
 {
     partial class Operative
     {
-        public interface Reciprocative<T> : Unital<T>, Multiplicative<T>
+        public interface IReciprocativeOps<T> : IUnitalOps<T>, IMultiplicativeOps<T>
         {
             /// <summary>
             /// Calculates the multiplicative inverse of a given element
@@ -26,8 +26,8 @@ namespace Z0
         /// s:S => s * recip(s) = 1
         /// </summary>
         /// <typeparam name="S"></typeparam>
-        public interface Reciprocative<S> :  Unital<S>, Multiplicative<S>
-            where S : Reciprocative<S>, new()
+        public interface IReciprocative<S> :  IUnital<S>, IMultiplicative<S>
+            where S : IReciprocative<S>, new()
         {
             /// <summary>
             /// Calculates the structure's multiplicative inverse

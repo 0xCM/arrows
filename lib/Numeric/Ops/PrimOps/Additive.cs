@@ -18,25 +18,25 @@ namespace Z0
     partial class PrimOps { public partial class Reify
     {
         public readonly struct Additive : 
-            Additive<byte>, 
-            Additive<sbyte>, 
-            Additive<short>, 
-            Additive<ushort>, 
-            Additive<int>, 
-            Additive<uint>,
-            Additive<long>, 
-            Additive<ulong>,
-            Additive<float>, 
-            Additive<double>, 
-            Additive<decimal>,
-            Additive<BigInteger>
+            IAdditiveOps<byte>, 
+            IAdditiveOps<sbyte>, 
+            IAdditiveOps<short>, 
+            IAdditiveOps<ushort>, 
+            IAdditiveOps<int>, 
+            IAdditiveOps<uint>,
+            IAdditiveOps<long>, 
+            IAdditiveOps<ulong>,
+            IAdditiveOps<float>, 
+            IAdditiveOps<double>, 
+            IAdditiveOps<decimal>,
+            IAdditiveOps<BigInteger>
                 
         {
             static readonly Additive Inhabitant = default;
 
             [MethodImpl(Inline)]
-            public static Additive<T> Operator<T>() 
-                => cast<Additive<T>>(Inhabitant);
+            public static IAdditiveOps<T> Operator<T>() 
+                => cast<IAdditiveOps<T>>(Inhabitant);
 
             [MethodImpl(Inline)]
             public byte add(byte lhs, byte rhs)

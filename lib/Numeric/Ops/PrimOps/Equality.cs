@@ -13,25 +13,25 @@ namespace Z0
 
     partial class PrimOps { partial class Reify {
         public readonly struct Equality : 
-            Semigroup<byte>, 
-            Semigroup<sbyte>, 
-            Semigroup<short>, 
-            Semigroup<ushort>, 
-            Semigroup<int>, 
-            Semigroup<uint>,
-            Semigroup<long>, 
-            Semigroup<ulong>,
-            Semigroup<float>, 
-            Semigroup<double>, 
-            Semigroup<decimal>,
-            Semigroup<BigInteger>
+            ISemigroupOps<byte>, 
+            ISemigroupOps<sbyte>, 
+            ISemigroupOps<short>, 
+            ISemigroupOps<ushort>, 
+            ISemigroupOps<int>, 
+            ISemigroupOps<uint>,
+            ISemigroupOps<long>, 
+            ISemigroupOps<ulong>,
+            ISemigroupOps<float>, 
+            ISemigroupOps<double>, 
+            ISemigroupOps<decimal>,
+            ISemigroupOps<BigInteger>
                 
         {
             static readonly Equality Inhabitant = default;
 
             [MethodImpl(Inline)]
-            public static Semigroup<T> Operator<T>() 
-                => cast<Semigroup<T>>(Inhabitant);
+            public static ISemigroupOps<T> Operator<T>() 
+                => cast<ISemigroupOps<T>>(Inhabitant);
 
             // !! eq
             // !! -------------------------------------------------------------

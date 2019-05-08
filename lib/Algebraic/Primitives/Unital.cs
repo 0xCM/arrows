@@ -4,37 +4,28 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-
-    partial class Operative
+    /// <summary>
+    /// Characterizes operations over a unital type
+    /// </summary>
+    /// <typeparam name="T">The characterized type</typeparam>
+    public interface IUnitalOps<T> 
     {
         /// <summary>
-        /// Characterizes operations over a unital type
+        /// The unital value
         /// </summary>
-        /// <typeparam name="T">The characterized type</typeparam>
-        public interface Unital<T> 
-        {
-            /// <summary>
-            /// The unital value
-            /// </summary>
-            T one {get;}
-        }
-
-
+        T one {get;}
     }
 
-    partial class Structures
+    /// <summary>
+    /// Characterizes an multiplicative structure S for which there exists a
+    /// distinguished element 1:S such that for every s:S, 1*s = s*1 = s
+    /// </summary>
+    /// <typeparam name="S">The reification type</typeparam>
+    public interface IUnital<S> 
+        where S : IUnital<S>, new()
     {
-        /// <summary>
-        /// Characterizes an multiplicative structure S for which there exists a
-        /// distinguished element 1:S such that for every s:S, 1*s = s*1 = s
-        /// </summary>
-        /// <typeparam name="S">The reification type</typeparam>
-        public interface Unital<S> 
-            where S : Unital<S>, new()
-        {
-            S one {get;}
-        }
-
+        S one {get;}
     }
+
 
 }

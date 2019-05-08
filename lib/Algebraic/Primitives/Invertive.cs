@@ -11,7 +11,7 @@ namespace Z0
         /// Characterizes operational inversion
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Invertive<T>
+        public interface IInvertiveOps<T>
         {
 
         }
@@ -20,7 +20,7 @@ namespace Z0
         /// Characterizes operational multiplicative inversion
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface InvertiveM<T> : Invertive<T>
+        public interface InvertiveMOps<T> : IInvertiveOps<T>
         {
             T invertM(T x);
         }
@@ -29,7 +29,7 @@ namespace Z0
         /// Characterizes operational additive inversion
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface InvertiveA<T> : Invertive<T>
+        public interface InvertiveA<T> : IInvertiveOps<T>
         {
             T invertA(T x);
         }
@@ -43,7 +43,7 @@ namespace Z0
         /// Characterizes structural inversion
         /// </summary>
         /// <typeparam name="T">The type over which the structrue is defined</typeparam>
-        public interface Invertive<S>
+        public interface IInvertive<S>
         {
             
         }
@@ -52,7 +52,7 @@ namespace Z0
         /// Characterizes structural multiplicative inversion
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
-        public interface InvertiveM<S> : Invertive<S>, Multiplicative<S>
+        public interface InvertiveM<S> : IInvertive<S>, IMultiplicative<S>
             where S : InvertiveM<S>, new()
         {
             /// <summary>
@@ -65,7 +65,7 @@ namespace Z0
         /// Characterizes structural additive inversion
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
-        public interface InvertiveA<S> : Invertive<S>, Additive<S>
+        public interface InvertiveA<S> : IInvertive<S>, IAdditive<S>
             where S : InvertiveA<S>, new()
         {
             /// <summary>

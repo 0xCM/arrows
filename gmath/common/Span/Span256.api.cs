@@ -11,7 +11,7 @@ namespace Z0
     using System.Runtime.InteropServices;    
     using System.Diagnostics;
     
-    using static zcore;
+    
     using static mfunc;
     using static Span256;
 

@@ -4,6 +4,8 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
+    using static Operative;
+    
     public enum Ordering
     {
         LT = -1,
@@ -11,59 +13,54 @@ namespace Z0
         GT = 1
     }
 
-    partial class Operative
+    /// <summary>
+    /// Characterizes a (unital) ring
+    /// </summary>
+    public interface IRingOps<T> : IGroupAOps<T>, IMonoidMOps<T>, IDistributiveOps<T> 
     {
+        
+    }
 
-        /// <summary>
-        /// Characterizes a (unital) ring
-        /// </summary>
-        public interface Ring<T> : GroupA<T>, MonoidM<T>, Distributive<T> 
-        {
-            
-        }
-
-        /// <summary>
-        /// Characterizes a commutative, unital ring
-        /// </summary>
-        public interface CommutativeRing<T> : Ring<T>
-        {
-            
-        }
+    /// <summary>
+    /// Characterizes a commutative, unital ring
+    /// </summary>
+    public interface ICommutativeRingOps<T> : IRingOps<T>
+    {
+        
+    }
 
 
-        public interface DivisionRing<T> : Ring<T>, Divisive<T>, Reciprocative<T>
-        {
-
-
-        }
+    public interface IDivisionRingOps<T> : IRingOps<T>, IDivisiveOps<T>, IReciprocativeOps<T>
+    {
 
 
     }
 
+
     partial class Structures
     {
         
-        public interface Ring<S> : GroupA<S>, MonoidM<S>, Distributive<S>
-            where S : Ring<S>, new()
+        public interface IRing<S> : IGroupA<S>, IMonoidM<S>, IDistributive<S>
+            where S : IRing<S>, new()
         {
 
         }
         
-        public interface Ring<S,T> : Ring<S>, GroupA<S,T>, MonoidM<S,T>, Distributive<S,T>
-            where S : Ring<S,T>, new()
+        public interface IRing<S,T> : IRing<S>, IGroupA<S,T>, IMonoidM<S,T>, IDistributive<S,T>
+            where S : IRing<S,T>, new()
         {
             
         }
 
-        public interface CommutativeRing<S> : Ring<S>
-            where S : CommutativeRing<S>, new()
+        public interface ICommutativeRing<S> : IRing<S>
+            where S : ICommutativeRing<S>, new()
         {
 
         }
 
 
-        public interface DivisionRing<S> : Ring<S>, Divisive<S>, Reciprocative<S>
-            where S : DivisionRing<S>, new()
+        public interface IDivisionRing<S> : IRing<S>, IDivisive<S>, IReciprocative<S>
+            where S : IDivisionRing<S>, new()
         {
 
         }

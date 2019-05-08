@@ -9,6 +9,7 @@ namespace Z0.Bench
     using System.Runtime.CompilerServices;
 
     using static zcore;
+    using static zfunc;
 
     public interface IBenchMark
     {
@@ -114,15 +115,15 @@ namespace Z0.Bench
             => RVar.sample(size ?? SampleSize);
 
         protected void LogStart()
-            => zcore.hilite($"{OpId}: Executing {Config.Cycles} cycles", SeverityLevel.HiliteCL,string.Empty);
+            => hilite($"{OpId}: Executing {Config.Cycles} cycles", SeverityLevel.HiliteCL,string.Empty);
 
         protected void LogCycleStart(int cycle)
-            => zcore.hilite($"{OpId}: Started Cycle = {cycle + 1} | Samples = {Config.SampleSize}", SeverityLevel.HiliteCL,string.Empty);
+            => hilite($"{OpId}: Started Cycle = {cycle + 1} | Samples = {Config.SampleSize}", SeverityLevel.HiliteCL,string.Empty);
 
         protected void LogCycleFinish(BenchResult result)
-            => zcore.hilite($"{OpId}: Finished Cycle {result.CycleNumber + 1} | Reps  = {result.InnerReps} | Duration = {result.Duration}ms", SeverityLevel.Perform,string.Empty);
+            => hilite($"{OpId}: Finished Cycle {result.CycleNumber + 1} | Reps  = {result.InnerReps} | Duration = {result.Duration}ms", SeverityLevel.Perform,string.Empty);
 
         protected void LogFinish(BenchResult result)
-            =>  zcore.hilite($"{OpId}: Completed {Config.Cycles} Cycles | Total Reps = {Config.Reps*Config.Cycles} | Total Duration = {result.Duration}ms", SeverityLevel.HiliteCL,string.Empty);
+            => hilite($"{OpId}: Completed {Config.Cycles} Cycles | Total Reps = {Config.Reps*Config.Cycles} | Total Duration = {result.Duration}ms", SeverityLevel.HiliteCL,string.Empty);
     }
 }

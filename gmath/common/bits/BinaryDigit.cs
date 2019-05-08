@@ -9,7 +9,7 @@ namespace Z0
     
     using static BinaryDigit;
 
-    using static zcore;
+    
 
     public static class BinaryDigits
     {

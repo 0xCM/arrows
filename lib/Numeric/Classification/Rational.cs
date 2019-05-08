@@ -15,7 +15,7 @@ namespace Z0
         /// Characterizes fractional operations
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Fractional<T> : RealNumber<T> 
+        public interface IFractionalOps<T> : IRealNumberOps<T> 
             where T : struct, IEquatable<T>
         {
             T ceiling(T x);
@@ -31,8 +31,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="R"></typeparam>
-        public interface Rational<T,R> : Reciprocative<R>, Fractional<R>
-            where T : struct, IEquatable<T>, Integer<T>
+        public interface Rational<T,R> : IReciprocativeOps<R>, IFractionalOps<R>
+            where T : struct, IEquatable<T>, IIntegerOps<T>
             where R : struct, IEquatable<R>
 
 
@@ -49,8 +49,8 @@ namespace Z0
 
     partial class Structures
     {
-         public interface Fractional<S> : RealNumber<S> 
-            where S : Fractional<S>, new()
+         public interface IFractional<S> : IRealNumber<S> 
+            where S : IFractional<S>, new()
          {
             S ceiling();
             
@@ -62,7 +62,7 @@ namespace Z0
         /// Characterizes a fractional structure
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Fractional<S,T> : Fractional<S>, RealNumber<S,T> 
+        public interface Fractional<S,T> : IFractional<S>, RealNumber<S,T> 
             where S : Fractional<S,T>, new()
         {
 

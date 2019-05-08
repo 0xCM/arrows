@@ -17,8 +17,8 @@ namespace Z0
             static readonly Trig Inhabitant = default;
 
             [MethodImpl(Inline)]
-            public static Trigonmetric<T> Operator<T>() 
-                => cast<Trigonmetric<T>>(Inhabitant);
+            public static ITrigonmetricOps<T> Operator<T>() 
+                => cast<ITrigonmetricOps<T>>(Inhabitant);
     
       }
 

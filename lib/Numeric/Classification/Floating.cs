@@ -15,11 +15,11 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
         public interface Floating<T> : 
-            RealNumber<T>, 
-            Fractional<T>, 
+            IRealNumberOps<T>, 
+            IFractionalOps<T>, 
             Resignable<T>, 
-            Subtractive<T>, 
-            Trigonmetric<T>
+            ISubtractiveOps<T>, 
+            ITrigonmetricOps<T>
         where T : struct, IEquatable<T>
         {
             /// <summary>
@@ -41,7 +41,7 @@ namespace Z0
         /// Characterizes an operation provider for bounded floating point values
         /// </summary>
         /// <typeparam name="T">The underlying numeric type</typeparam>
-        public interface FiniteFloat<T> : Floating<T>, BoundReal<T> 
+        public interface FiniteFloat<T> : Floating<T>, IBoundRealOps<T> 
             where T : struct, IEquatable<T>
 
         { }
@@ -62,11 +62,11 @@ namespace Z0
     {
 
         public interface Floating<S> : 
-            RealNumber<S>, 
-            Fractional<S>, 
+            IRealNumber<S>, 
+            IFractional<S>, 
             Resignable<S>, 
-            Subtractive<S>, 
-            Trigonmetric<S>
+            ISubtractive<S>, 
+            ITrigonmetric<S>
         where S : Floating<S>, new()
         {
             S sqrt();

@@ -9,7 +9,7 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
 
-    using static zcore;
+    
     using static global::mfunc;
 
    public readonly struct Num128<T> : IEquatable<Num128<T>>

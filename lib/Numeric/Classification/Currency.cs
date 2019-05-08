@@ -3,37 +3,29 @@ namespace Z0
     using System;
     using System.Numerics;
 
-    using Currency = Operative.Currency<decimal>;
-    partial class Operative
+    using static Structures;
+    
+    using Currency = ICurrencyOps<decimal>;
+    /// <summary>
+    /// Characterizes a bounded fractional operation provider
+    /// </summary>
+    /// <typeparam name="T">The primitive type</typeparam>
+    public interface ICurrencyOps<T> : IBoundRealOps<T>, Operative.IFractionalOps<T> 
+        where T : struct, IEquatable<T>
+
     {
-
-        /// <summary>
-        /// Characterizes a bounded fractional operation provider
-        /// </summary>
-        /// <typeparam name="T">The primitive type</typeparam>
-        public interface Currency<T> : BoundReal<T>, Fractional<T> 
-            where T : struct, IEquatable<T>
-
-        {
-
-        }
-
-
 
     }
 
-    partial class Structures
+    /// <summary>
+    /// Characterizes structural reifications of Currency 
+    /// </summary>
+    /// <typeparam name="S">The structural reification type</typeparam>
+    public interface ICurrency<S> : IBoundReal<S>, IFractional<S>
+        where S : ICurrency<S>, new()
     {
-        /// <summary>
-        /// Characterizes structural reifications of Currency 
-        /// </summary>
-        /// <typeparam name="S">The structural reification type</typeparam>
-        public interface Currency<S> : BoundReal<S>, Fractional<S>
-            where S : Currency<S>, new()
-        {
-
-        }
 
     }
+
 
 }

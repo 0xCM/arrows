@@ -9,7 +9,7 @@ namespace Z0
     using System.Runtime.Serialization;
     using System.Runtime.CompilerServices;
 
-    using static zcore;
+    
 
 
     public static class ErrorMessage

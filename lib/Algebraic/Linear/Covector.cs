@@ -14,7 +14,7 @@ namespace Z0
     /// <summary>
     /// Strutural represention of the dual of an N-dimensional vector
     /// </summary>
-    public readonly struct Covector<N, T> : Equatable<Covector<N,T>>, IEnumerable<T>, Formattable, Lengthwise
+    public readonly struct Covector<N, T> : Equatable<Covector<N,T>>, IEnumerable<T>, Formattable, ILengthwise
         where N : ITypeNat, new() 
         where T : struct, IEquatable<T>    
     {
@@ -66,7 +66,7 @@ namespace Z0
         public T this[int index] 
             => cells[index];
 
-        public uint length 
+        public uint Length 
             => cells.length;
 
         [MethodImpl(Inline)]   

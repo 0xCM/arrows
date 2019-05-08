@@ -12,7 +12,7 @@ namespace Z0
         /// Characterizes semiring operations
         /// </summary>
         /// <typeparam name="T">The individual type</typeparam>
-        public interface Semiring<T> : MonoidA<T>, MonoidM<T>, Distributive<T>
+        public interface ISemiringOps<T> : IMonoidAOps<T>, IMonoidMOps<T>, IDistributiveOps<T>
         {        
             T muladd(T x, T y, T z);            
         }
@@ -27,7 +27,7 @@ namespace Z0
         /// Characterizes a semiring structure
         /// </summary>
         /// <typeparam name="S">The structure type</typeparam>
-         public interface Semiring<S> : MonoidA<S>, MonoidM<S>, Distributive<S>
+         public interface Semiring<S> : IMonoidA<S>, IMonoidM<S>, IDistributive<S>
             where S : Semiring<S>, new()
          {
             S muladd(S y, S z);
@@ -38,7 +38,7 @@ namespace Z0
 
     partial class Reify
     {
-        public readonly struct Semiring<T> : Operative.Semiring<T>
+        public readonly struct Semiring<T> : Operative.ISemiringOps<T>
             where T : Structures.Semiring<T>, new()
         {
             static readonly Structures.Semiring<T> exemplar = new T();

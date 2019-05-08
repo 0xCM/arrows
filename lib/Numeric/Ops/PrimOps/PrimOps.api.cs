@@ -269,7 +269,7 @@ namespace Z0
                 => typeops<T>().testbits(src,pos);
 
         [MethodImpl(Inline)]
-        public static bit[] bits<T>(T src)
+        public static Bit[] bits<T>(T src)
             where T : struct, IEquatable<T>
                 => typeops<T>().bits(src);
 

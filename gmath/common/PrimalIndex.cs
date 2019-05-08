@@ -8,7 +8,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static mfunc;
-    using static zcore;
+    
 
     public readonly struct PrimalIndex
     {

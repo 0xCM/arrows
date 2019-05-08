@@ -351,7 +351,7 @@ namespace Z0
             public byte[] bytes()
                 => Prim.bytes(data);
 
-            bool Structures.BitSource<structure>.testbit(int pos)
+            bool IBitSource<structure>.testbit(int pos)
                 => Prim.testbit(data,pos);
 
             [MethodImpl(Inline)]

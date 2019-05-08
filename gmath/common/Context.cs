@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Linq;
 
-    using static zcore;
+    
 
     public interface IContext
     {
@@ -34,7 +34,7 @@ namespace Z0
         public virtual void Emit(params AppMsg[] addenda)
         {
             var messages = Flush(addenda);
-            print(messages);
+            zfunc.print(messages);
         }
 
         protected Context(IRandomizer Randomizer)
@@ -76,14 +76,11 @@ namespace Z0
 
         }
 
-
         public override void Emit(params AppMsg[] addenda)        
         {
             var messages = Flush(addenda);
-            print(messages);
+            zfunc.print(messages);
             //log(messages, LogTarget.TestLog);            
         }
     }   
-
-
 }

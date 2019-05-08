@@ -19,24 +19,16 @@ partial class zcore
     /// Retrieves semigroup operations for a specified type
     /// </summary>
     [MethodImpl(Inline)]
-    public static Equatable<T> equatable<T>() 
-        where T : Equatable<T>, new()
-            => new T();
-
-    /// <summary>
-    /// Retrieves semigroup operations for a specified type
-    /// </summary>
-    [MethodImpl(Inline)]
-    public static Operative.Semigroup<T> semigroup<T>() 
-        where T : Operative.Semigroup<T>, new()
+    public static ISemigroupOps<T> semigroup<T>() 
+        where T : ISemigroupOps<T>, new()
             => new T();
 
     /// <summary>
     /// Retrieves semiring operations for a specified type
     /// </summary>
     [MethodImpl(Inline)]
-    public static Operative.Semiring<T> semiring<T>() 
-        where T : Operative.Semiring<T>, new()
+    public static Operative.ISemiringOps<T> semiring<T>() 
+        where T : Operative.ISemiringOps<T>, new()
             => new T();
 
     /// <summary>
@@ -44,8 +36,8 @@ partial class zcore
     /// </summary>
     /// <typeparam name="T">The system type</typeparam>
     [MethodImpl(Inline)]
-    public static Operative.Ordered<T> ordered<T>()
-        where T : Operative.Ordered<T>, new()
+    public static IOrderedOps<T> ordered<T>()
+        where T : IOrderedOps<T>, new()
         => new T();
 
     /// <summary>
@@ -53,8 +45,8 @@ partial class zcore
     /// </summary>
     /// <typeparam name="T">The system type</typeparam>
     [MethodImpl(Inline)]
-    public static Operative.Stepwise<T> stepwise<T>()
-        where T : Operative.Stepwise<T>, new()
+    public static IStepwiseOps<T> stepwise<T>()
+        where T : IStepwiseOps<T>, new()
             => new T();
 
 }

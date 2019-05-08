@@ -12,19 +12,16 @@ namespace Z0
     using static zcore;
     using static zfunc;
 
-    partial class Structures
+    public interface ISymbol<S,T> :  IFreeMonoid<S>
+        where S : ISymbol<S,T>, new()
+        where T : INullary<T>, new()
     {
-        public interface Symbol<S,T> :  FreeMonoid<S>
-            where S : Symbol<S,T>, new()
-            where T : Nullary<T>, new()
-        {
-        }
-
     }
+
     /// <summary>
     /// Represents a symbol comprising a finite ordered sequence of atoms
     /// </summary>
-    public readonly struct Symbol : Structures.Symbol<Symbol,Atom>
+    public readonly struct Symbol : ISymbol<Symbol,Atom>
     {
         public static readonly Symbol Empty = new Symbol(string.Empty);
 
@@ -64,11 +61,11 @@ namespace Z0
         public bool nonzero()
             => atoms.length != 0;
 
-        public uint length 
+        public uint Length 
             => atoms.length;
 
         public uint count 
-            => length;
+            => Length;
 
         public Atom this[int i] 
             => atoms[i];

@@ -15,7 +15,7 @@ namespace Z0
     /// <summary>
     /// Defines interal operations modulo N
     /// </summary>
-    public readonly struct ModOps<N,T> : Operative.ModN<N,T>
+    public readonly struct ModOps<N,T> : IModNOps<N,T>
         where N : ITypeNat, new()
         where T : struct, IEquatable<T>
 

@@ -28,7 +28,7 @@ namespace Z0
 
     }
 
-    public readonly struct FixedArray<T> : FixedContainer<FixedArray<T>, T[],T>
+    public readonly struct FixedArray<T> : IFixedContainer<FixedArray<T>, T[],T>
         where T : struct, IEquatable<T>
     {
 
@@ -51,10 +51,10 @@ namespace Z0
         public T[] release()
             => data;
 
-        FixedArray<T> Structures.Nullary<FixedArray<T>>.zero 
+        FixedArray<T> INullary<FixedArray<T>>.zero 
             => Empty;
 
-        T Operative.Nullary<T>.zero 
+        T INullaryOps<T>.zero 
             =>  Zero;
         
         bool eq(FixedArray<T> rhs)
@@ -66,26 +66,26 @@ namespace Z0
         bool Equatable<FixedArray<T>>.neq(FixedArray<T> rhs)
             => not(eq(rhs));
 
-        int Hashable<FixedArray<T>>.hash()
+        int IHashable<FixedArray<T>>.hash()
             => _hash.Value;
 
         bool IEquatable<FixedArray<T>>.Equals(FixedArray<T> rhs)
             => eq(rhs);
 
-        bool Operative.Semigroup<T>.eq(T lhs, T rhs)
+        bool ISemigroupOps<T>.eq(T lhs, T rhs)
             => lhs.Equals(rhs);
 
-        bool Operative.Semigroup<T>.neq(T lhs, T rhs)
+        bool ISemigroupOps<T>.neq(T lhs, T rhs)
             => not(lhs.Equals(rhs));
 
         string Formattable.format()
             => ISG.format();
 
-        IEqualityComparer<T> Structures.ImplicitSemigroup<FixedArray<T>, T>.comparer(Func<T, int> hasher)
+        IEqualityComparer<T> Structures.IImplicitSemigroup<FixedArray<T>, T>.comparer(Func<T, int> hasher)
             => ISG.comparer(hasher);
     }
 
-    public readonly struct FixedList<T> : FixedContainer<FixedList<T>, IReadOnlyList<T>,T>
+    public readonly struct FixedList<T> : IFixedContainer<FixedList<T>, IReadOnlyList<T>,T>
         where T : struct, IEquatable<T>
     {
         public static readonly FixedList<T> Empty = new FixedList<T>(new T[]{});
@@ -107,10 +107,10 @@ namespace Z0
         public IReadOnlyList<T> release()
             => data;
 
-        FixedList<T> Structures.Nullary<FixedList<T>>.zero 
+        FixedList<T> INullary<FixedList<T>>.zero 
             => Empty;
 
-        T Operative.Nullary<T>.zero 
+        T INullaryOps<T>.zero 
             =>  Zero;
         
         bool eq(FixedList<T> rhs)
@@ -122,29 +122,29 @@ namespace Z0
         bool Equatable<FixedList<T>>.neq(FixedList<T> rhs)
             => not(eq(rhs));
 
-        int Hashable<FixedList<T>>.hash()
+        int IHashable<FixedList<T>>.hash()
             => _hash.Value;
 
         bool IEquatable<FixedList<T>>.Equals(FixedList<T> rhs)
             => eq(rhs);
 
         
-        bool Operative.Semigroup<T>.eq(T lhs, T rhs)
+        bool ISemigroupOps<T>.eq(T lhs, T rhs)
             => lhs.Equals(rhs);
 
-        bool Operative.Semigroup<T>.neq(T lhs, T rhs)
+        bool ISemigroupOps<T>.neq(T lhs, T rhs)
             => not(lhs.Equals(rhs));
 
         string Formattable.format()
             => ISG.format();
 
-        IEqualityComparer<T> Structures.ImplicitSemigroup<FixedList<T>, T>.comparer(Func<T, int> hasher)
+        IEqualityComparer<T> Structures.IImplicitSemigroup<FixedList<T>, T>.comparer(Func<T, int> hasher)
             => ISG.comparer(hasher);
 
 
     }
 
-    public readonly struct FixedStream<T> : FixedContainer<FixedStream<T>, IEnumerable<T>,T>
+    public readonly struct FixedStream<T> : IFixedContainer<FixedStream<T>, IEnumerable<T>,T>
         where T : struct, IEquatable<T>
     {
         public static readonly FixedStream<T> Empty = new FixedStream<T>(new T[]{});
@@ -167,10 +167,10 @@ namespace Z0
             => data;
 
 
-        FixedStream<T> Structures.Nullary<FixedStream<T>>.zero 
+        FixedStream<T> INullary<FixedStream<T>>.zero 
             => Empty;
 
-        T Operative.Nullary<T>.zero 
+        T INullaryOps<T>.zero 
             =>  Zero;
         
         bool eq(FixedStream<T> rhs)
@@ -182,22 +182,22 @@ namespace Z0
         bool Equatable<FixedStream<T>>.neq(FixedStream<T> rhs)
             => not(eq(rhs));
 
-        int Hashable<FixedStream<T>>.hash()
+        int IHashable<FixedStream<T>>.hash()
             => _hash.Value;
 
         bool IEquatable<FixedStream<T>>.Equals(FixedStream<T> rhs)
             => eq(rhs);
 
-        bool Operative.Semigroup<T>.eq(T lhs, T rhs)
+        bool ISemigroupOps<T>.eq(T lhs, T rhs)
             => lhs.Equals(rhs);
 
-        bool Operative.Semigroup<T>.neq(T lhs, T rhs)
+        bool ISemigroupOps<T>.neq(T lhs, T rhs)
             => not(lhs.Equals(rhs));
 
         string Formattable.format()
             => ISG.format();
 
-        IEqualityComparer<T> Structures.ImplicitSemigroup<FixedStream<T>, T>.comparer(Func<T, int> hasher)
+        IEqualityComparer<T> Structures.IImplicitSemigroup<FixedStream<T>, T>.comparer(Func<T, int> hasher)
             => ISG.comparer(hasher);
     }
 }

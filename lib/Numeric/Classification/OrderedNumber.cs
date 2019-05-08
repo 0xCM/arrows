@@ -12,7 +12,7 @@ namespace Z0
         /// Characterizes numeric operations in the presence of order
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public interface OrderedNumber<T> : Stepwise<T>,  Ordered<T>, Number<T> 
+        public interface IOrderedNumberOps<T> : IStepwiseOps<T>,  IOrderedOps<T>, INumberOps<T> 
             where T : struct, IEquatable<T>
             { }
 
@@ -20,15 +20,15 @@ namespace Z0
 
     partial class Structures
     {
-        public interface OrderedNumber<S> :  Stepwise<S>,  Orderable<S>,  Number<S>
-            where S : OrderedNumber<S>, new() {}
+        public interface IOrderedNumber<S> :  IStepwise<S>,  IOrderable<S>,  INumber<S>
+            where S : IOrderedNumber<S>, new() {}
         
         /// <summary>
         /// Characterizes a structural number with order
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
         /// <typeparam name="T">The underlying type</typeparam>
-        public interface OrderedNumber<S,T> : OrderedNumber<S>
+        public interface OrderedNumber<S,T> : IOrderedNumber<S>
             where S : OrderedNumber<S,T>, new() {}
     }
 

@@ -13,93 +13,93 @@ namespace Z0
 
     partial class PrimOps { partial class Reify {
         public readonly struct Unital :
-            Unital<byte>,
-            Unital<sbyte>,
-            Unital<short>,
-            Unital<ushort>,
-            Unital<int>,
-            Unital<uint>,
-            Unital<long>,
-            Unital<ulong>,
-            Unital<float>,
-            Unital<double>,
-            Unital<decimal>,
-            Unital<BigInteger>
+            IUnitalOps<byte>,
+            IUnitalOps<sbyte>,
+            IUnitalOps<short>,
+            IUnitalOps<ushort>,
+            IUnitalOps<int>,
+            IUnitalOps<uint>,
+            IUnitalOps<long>,
+            IUnitalOps<ulong>,
+            IUnitalOps<float>,
+            IUnitalOps<double>,
+            IUnitalOps<decimal>,
+            IUnitalOps<BigInteger>
 
         {
             static readonly Unital Inhabitant = default;
 
             [MethodImpl(Inline)]
-            public static Unital<T> Operator<T>() 
-                => cast<Unital<T>>(Inhabitant);
+            public static IUnitalOps<T> Operator<T>() 
+                => cast<IUnitalOps<T>>(Inhabitant);
 
-            byte Unital<byte>.one 
+            byte IUnitalOps<byte>.one 
             {
                 [MethodImpl(Inline)]
                 get => 1;
             }
 
-            sbyte Unital<sbyte>.one 
+            sbyte IUnitalOps<sbyte>.one 
             {
                 [MethodImpl(Inline)]
                 get => 1;
             }
 
-            short Unital<short>.one 
+            short IUnitalOps<short>.one 
             {
                 [MethodImpl(Inline)]
                 get => 1;
             }
 
-            ushort Unital<ushort>.one 
+            ushort IUnitalOps<ushort>.one 
             {
                 [MethodImpl(Inline)]
                 get => 1;
             }
 
-            int Unital<int>.one 
+            int IUnitalOps<int>.one 
             {
                 [MethodImpl(Inline)]
                 get => 1;
             }
 
-            uint Unital<uint>.one 
+            uint IUnitalOps<uint>.one 
             {
                 [MethodImpl(Inline)]
                 get => 1;
             }
 
-            long Unital<long>.one 
+            long IUnitalOps<long>.one 
             {
                 [MethodImpl(Inline)]
                 get => 1;
             }
 
-            ulong Unital<ulong>.one 
+            ulong IUnitalOps<ulong>.one 
             {
                 [MethodImpl(Inline)]
                 get => 1;
             }
 
-            float Unital<float>.one 
+            float IUnitalOps<float>.one 
             {
                 [MethodImpl(Inline)]
                 get => 1;
             }
 
-            double Unital<double>.one 
+            double IUnitalOps<double>.one 
             {
                 [MethodImpl(Inline)]
                 get => 1;
             }
 
-            decimal Unital<decimal>.one 
+            decimal IUnitalOps<decimal>.one 
             {
                 [MethodImpl(Inline)]
                 get => 1;
             }
 
-            BigInteger Unital<BigInteger>.one 
+            BigInteger IUnitalOps<BigInteger>.one 
             {
                 [MethodImpl(Inline)]
                 get => BigInteger.One;

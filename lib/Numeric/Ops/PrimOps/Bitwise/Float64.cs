@@ -31,7 +31,7 @@ namespace Z0
         }
 
         public readonly partial struct Bitwise : 
-            Bitwise<double> 
+            IBitwiseOps<double> 
         {
             
             [MethodImpl(Inline)]   
@@ -88,7 +88,7 @@ namespace Z0
 
             [MethodImpl(Inline)]   
             public BitString bitstring(double src) 
-                => BitString.define(bit.Parse(bitchars(src)));
+                => BitString.define(Bit.Parse(bitchars(src)));
 
             [MethodImpl(Inline)]
             public byte[] bytes(double src)
@@ -99,7 +99,7 @@ namespace Z0
                 => testbit(bitsf(src),pos);
 
             [MethodImpl(Inline)]
-            public bit[] bits(double src)
+            public Bit[] bits(double src)
                 => bits(bitsf(src));
         }
     }

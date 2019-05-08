@@ -16,7 +16,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The relation domain</typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Partially_ordered_set</remarks>
-        public interface PartialOrder<T> : Reflexive<T>, Antisymmetric<T>, Transitive<T>
+        public interface IPartialOrderOps<T> : IReflexiveOps<T>, IAntisymmetricOps<T>, ITransitiveOps<T>
         {
 
         }
@@ -27,7 +27,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <remarks>See https://en.wikipedia.org/wiki/Partially_ordered_set </remarks>
-        public interface Poset<T> : PartialOrder<T>
+        public interface IPosetOps<T> : IPartialOrderOps<T>
             where T : IEquatable<T>
 
         {

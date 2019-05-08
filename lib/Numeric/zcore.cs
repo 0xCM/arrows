@@ -39,7 +39,7 @@ partial class zcore
     /// <param name="src">The bit source</param>
 
     [MethodImpl(Inline)]   
-    public static BitVector<N> bitvector<N>(params bit[] src)
+    public static BitVector<N> bitvector<N>(params Bit[] src)
         where N : ITypeNat, new()
             => BitVector.define<N>(src);
 
@@ -50,7 +50,7 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static BitVector<N> bitvector<N>(params uint[] src)
         where N : ITypeNat, new()
-            => BitVector.define<N>(map(src, x => x == 0 ? bit.Off : bit.On));
+            => BitVector.define<N>(map(src, x => x == 0 ? Bit.Off : Bit.On));
 
     /// <summary>
     /// Constructs a bit vector of natural length 8 from a parameter array of integers
@@ -60,7 +60,7 @@ partial class zcore
     /// <param name="src">The bit source</param>
     [MethodImpl(Inline)]   
     public static BitVector<N8> bytevector(params uint[] src)
-        => BitVector.define<N8>(map(src, x => x == 0 ? bit.Off : bit.On));
+        => BitVector.define<N8>(map(src, x => x == 0 ? Bit.Off : Bit.On));
 
     /// <summary>
     /// Defines a bitvector of natural length 8 from a parameter array of binary digits
@@ -68,7 +68,7 @@ partial class zcore
     /// <param name="src">The source digits</param>
     [MethodImpl(Inline)]   
     public static BitVector<N8> bytevector(params BinaryDigit[] src)
-        => BitVector.define<N8>(map(src, x => x == 0 ? bit.Off : bit.On));
+        => BitVector.define<N8>(map(src, x => x == 0 ? Bit.Off : Bit.On));
 
 
     /// <summary>
@@ -150,7 +150,7 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static T min<T>(T x, T y)
-        where T : Structures.Orderable<T>, new()
+        where T : Structures.IOrderable<T>, new()
             => x.lt(y) ? x : y;
 
     /// <summary>
@@ -162,19 +162,19 @@ partial class zcore
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static IEnumerable<T> pow<T>(IEnumerable<T> src, int exp)
-        where T : Structures.NaturallyPowered<T>, new() 
+        where T : INaturallyPowered<T>, new() 
             => map(src, x => x.pow(exp));
     
     [MethodImpl(Inline)]
     static Ordering compare<T>(T lhs, T rhs)
-        where T: Structures.Orderable<T>, new()
+        where T: Structures.IOrderable<T>, new()
             => lhs.gt(rhs) ? Ordering.GT :
                lhs.lt(rhs) ? Ordering.LT :
                Ordering.EQ; 
 
     [MethodImpl(Inline)]
     public static Index<(T lhs, Ordering, T rhs)> compare<T>(T[] lhs, T[] rhs)
-        where T: Structures.Orderable<T>, new()
+        where T: Structures.IOrderable<T>, new()
             => fuse(lhs,rhs, (l,r) =>  (l, compare(l,r), r));
 
 
@@ -197,7 +197,7 @@ partial class zcore
     /// <returns></returns>    
     [MethodImpl(Inline)]
     public static T[] abs<T>(T[] src)
-        where T: Structures.Number<T>, new()
+        where T: INumber<T>, new()
             => map(src,x => x.abs());
 
 
@@ -209,7 +209,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static T[] add<T>(T[] lhs, T[] rhs)
-        where T: Structures.Additive<T>, new()
+        where T: IAdditive<T>, new()
             => fuse(lhs,rhs, (l,r) =>  l.add(r));
 
     /// <summary>
@@ -220,7 +220,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static T[] sub<T>(T[] lhs, T[] rhs)
-        where T: Structures.Subtractive<T>, new()
+        where T: ISubtractive<T>, new()
             => fuse(lhs,rhs, (l,r) =>  l.sub(r));
 
     /// <summary>
@@ -231,7 +231,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static T[] mul<T>(T[] lhs, T[] rhs)
-        where T: Structures.Multiplicative<T>, new()
+        where T: IMultiplicative<T>, new()
             => fuse(lhs,rhs, (l,r) =>  l.mul(r));
 
     /// <summary>
@@ -242,7 +242,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static T[] div<T>(T[] lhs, T[] rhs)
-        where T: Structures.Divisive<T>, new()
+        where T: IDivisive<T>, new()
             => fuse(lhs,rhs, (l,r) =>  l.div(r));
 
     /// <summary>
@@ -252,7 +252,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static T min<T>(params T[] src)
-        where T : struct, Structures.Orderable<T>
+        where T : struct, Structures.IOrderable<T>
     {
         T min = src.FirstOrDefault();
         foreach(var item in src)
@@ -262,12 +262,12 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static T max<T>(T x, T y)
-        where T : Structures.Orderable<T>, new()
+        where T : Structures.IOrderable<T>, new()
             => x.gt(y) ? x : y;
 
     [MethodImpl(Inline)]
     public static T max<T>(IEnumerable<T> src)
-        where T : struct, Structures.Orderable<T>
+        where T : struct, Structures.IOrderable<T>
     {
         T max = src.FirstOrDefault();
         foreach(var item in src)
@@ -277,7 +277,7 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static T max<T>(params T[] src)
-        where T : struct, Structures.Orderable<T>
+        where T : struct, Structures.IOrderable<T>
         => max((IEnumerable<T>)src);
 
     /// <summary>
@@ -287,7 +287,7 @@ partial class zcore
     /// <typeparam name="T"></typeparam>
     [MethodImpl(Inline)]
     public static T sum<T>(IEnumerable<T> src)
-        where T : Structures.Additive<T>, Structures.Nullary<T>, new()
+        where T : IAdditive<T>, INullary<T>, new()
     {
         var s = new T().zero;
         iter(src, x => s = x.add(s));
@@ -295,7 +295,7 @@ partial class zcore
     }
 
     public static T avg<T>(IEnumerable<T> src)
-        where T : Structures.RealNumber<T>,new()
+        where T : Structures.IRealNumber<T>,new()
     {
         var prototype = new T();
         var result = prototype.zero;

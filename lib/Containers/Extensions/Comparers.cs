@@ -17,7 +17,7 @@ namespace  Z0
     /// Reifies an IComparable instance from an ordered value
     /// </summary>
     readonly struct Comparable<T> : IComparable<T>
-        where T : Orderable<T>, Equatable<T>, new()
+        where T : IOrderable<T>, Equatable<T>, new()
     {
         readonly T ordered;
 

@@ -16,7 +16,7 @@ namespace Z0
     /// <summary>
     /// Defines an associative array
     /// </summary>
-    public readonly struct Index<K,V> : Contain.DiscreteContainer<Index<K,V>,KeyedValue<K,V>>, IEnumerable<KeyedValue<K,V>>
+    public readonly struct Index<K,V> : IDiscreteContainer<Index<K,V>,KeyedValue<K,V>>, IEnumerable<KeyedValue<K,V>>
     {
         IReadOnlyDictionary<K,V> _items {get;}
         

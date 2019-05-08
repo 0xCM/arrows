@@ -13,6 +13,8 @@ namespace Z0
 
     public enum BenchKind
     {
+        Common,
+        
         Primal,
         
         Num128,
@@ -29,6 +31,8 @@ namespace Z0
         {
             switch(kind)
             {
+                case BenchKind.Common:
+                    return CommonBench.Create(random, config);
                 case BenchKind.Primal:
                     return PrimalBench.Create(random, config);
                 case BenchKind.Num128:

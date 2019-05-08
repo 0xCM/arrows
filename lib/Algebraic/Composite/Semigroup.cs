@@ -22,78 +22,73 @@ namespace Z0
     }    
 
 
-    partial class Operative
+    public interface ISemigroupOps<T>
+    {
+        /// <summary>
+        /// Adjudicates equality between semigroup members
+        /// </summary>
+        /// <param name="lhs">The first operand</param>
+        /// <param name="rhs">The second operand</param>
+        bool eq(T lhs, T rhs);
+
+        /// <summary>
+        /// Adjudicates negated equality between semigroup members
+        /// </summary>
+        /// <param name="lhs">The first operand</param>
+        /// <param name="rhs">The second operand</param>
+        bool neq(T lhs, T rhs);
+        
+    }
+
+
+    public interface ISemigroupAOps<T> : ISemigroupOps<T>, IAdditiveOps<T>
     {
 
-        public interface Semigroup<T>
-        {
-            /// <summary>
-            /// Adjudicates equality between semigroup members
-            /// </summary>
-            /// <param name="lhs">The first operand</param>
-            /// <param name="rhs">The second operand</param>
-            bool eq(T lhs, T rhs);
-
-            /// <summary>
-            /// Adjudicates negated equality between semigroup members
-            /// </summary>
-            /// <param name="lhs">The first operand</param>
-            /// <param name="rhs">The second operand</param>
-            bool neq(T lhs, T rhs);
-            
-        }
+    }
 
 
-        public interface SemigroupA<T> : Semigroup<T>, Additive<T>
-        {
-
-        }
-
-
-        public interface SemigroupM<T> : Semigroup<T>, Multiplicative<T>
-        {
-
-        }
-
-
+    public interface ISemigroupMOps<T> : ISemigroupOps<T>, IMultiplicativeOps<T>
+    {
 
     }
+
+
 
     partial class Structures
     {
         
-        public interface Semigroup<S> : Equatable<S>
-            where S : Semigroup<S>, new()
+        public interface ISemigroup<S> : Equatable<S>
+            where S : ISemigroup<S>, new()
         {
 
         }
 
-        public interface SemigroupM<S>: Semigroup<S>, Multiplicative<S>
+        public interface SemigroupM<S>: ISemigroup<S>, IMultiplicative<S>
             where S : SemigroupM<S>, new()
         {
 
         }            
 
-        public interface SemigroupA<S>: Semigroup<S>, Additive<S>
+        public interface SemigroupA<S>: ISemigroup<S>, IAdditive<S>
             where S : SemigroupA<S>, new()
         {
 
         }            
 
-        public interface Semigroup<S,T> : Semigroup<S>
-            where S : Semigroup<S,T>, new()
+        public interface ISemigroup<S,T> : ISemigroup<S>
+            where S : ISemigroup<S,T>, new()
         {
             
         }            
 
-        public interface SemigroupA<S,T> : Semigroup<S,T>, SemigroupA<S>,  Additive<S>
-            where S : SemigroupA<S,T>, new()
+        public interface ISemigroupA<S,T> : ISemigroup<S,T>, SemigroupA<S>,  IAdditive<S>
+            where S : ISemigroupA<S,T>, new()
         {
 
         }            
 
-        public interface SemigroupM<S,T> : SemigroupM<S>, Semigroup<S,T>, Multiplicative<S,T>
-            where S : SemigroupM<S,T>, new()
+        public interface ISemigroupM<S,T> : SemigroupM<S>, ISemigroup<S,T>, IMultiplicative<S,T>
+            where S : ISemigroupM<S,T>, new()
         {
 
         }            
@@ -102,8 +97,8 @@ namespace Z0
 
     partial class Reify
     {
-        public readonly struct Semigroup<T> : Operative.Semigroup<T>
-            where T : Structures.Semigroup<T>, new()
+        public readonly struct Semigroup<T> : ISemigroupOps<T>
+            where T : Structures.ISemigroup<T>, new()
         {    
 
             public static Semigroup<T> Inhabitant = default;
@@ -119,7 +114,7 @@ namespace Z0
         }
 
 
-        public readonly struct SemigroupM<T> : Operative.SemigroupM<T>
+        public readonly struct SemigroupM<T> : ISemigroupMOps<T>
             where T : Structures.SemigroupM<T>, new()
         {    
 
@@ -140,7 +135,7 @@ namespace Z0
 
         }
 
-        public readonly struct SemigroupA<T> : Operative.SemigroupA<T>
+        public readonly struct SemigroupA<T> : ISemigroupAOps<T>
             where T : Structures.SemigroupA<T>, new()
         {    
             

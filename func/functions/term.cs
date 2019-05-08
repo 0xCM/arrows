@@ -3,30 +3,17 @@
 // License     :  MIT
 //-----------------------------------------------------------------------------
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
-using System.IO;
 
 using Z0;
-using static zcore;
-using static zfunc;
 
-
-partial class zcore
+partial class zfunc
 {
-
     static readonly Terminal terminal = Terminal.Get();
-
-    /// <summary>
-    /// Renders the supplied value to the console with no carriage return
-    /// </summary>
-    /// <param name="x"></param>
-    [MethodImpl(Inline)]   
-    public static void write(object x)
-        => terminal.Write(x);
-
 
     /// <summary>
     /// Writes a single messages to the terminal
@@ -34,14 +21,6 @@ partial class zcore
     /// <param name="msg">The message to print</param>    
     public static void print(AppMsg msg)
         => terminal.WriteMessage(msg);
-
-    /// <summary>
-    /// Renders terminal content at a specified severiy level
-    /// </summary>
-    /// <param name="content">The content to print</param>    
-    /// <param name="level">The severity level of the message</param>    
-    public static void print(object content, SeverityLevel level)
-        => terminal.WriteLine(content, level);
 
     /// <summary>
     /// Prints a sequence of messages in an unbroken block
@@ -52,12 +31,6 @@ partial class zcore
 
 
     /// <summary>
-    /// Reads a line of text from the terminal
-    /// </summary>
-    public static string read()
-        => terminal.ReadLine();
-
-    /// <summary>
     /// Emits an information-level message
     /// </summary>
     /// <param name="msg">The message to emit</param>
@@ -65,6 +38,28 @@ partial class zcore
     public static void inform(object msg, [CallerMemberName] string caller = null)
         => terminal.WriteMessage(
                 AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Info, caller));
+
+    /// <summary>
+    /// Renders the supplied value to the console with no carriage return
+    /// </summary>
+    /// <param name="x"></param>
+    [MethodImpl(Inline)]   
+    public static void write(object x)
+        => terminal.Write(x);
+
+    /// <summary>
+    /// Renders terminal content at a specified severiy level
+    /// </summary>
+    /// <param name="content">The content to print</param>    
+    /// <param name="level">The severity level of the message</param>    
+    public static void print(object content, SeverityLevel level)
+        => terminal.WriteLine(content, level);
+
+    /// <summary>
+    /// Reads a line of text from the terminal
+    /// </summary>
+    public static string read()
+        => terminal.ReadLine();
 
     /// <summary>
     /// Emits a warning-level message
@@ -121,5 +116,4 @@ partial class zcore
     public static void error<T>(object msg, T host, [CallerMemberName] string caller = null)
         => terminal.WriteMessage(
                 AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, $"{name<T>()}/{caller}"));
-
 }

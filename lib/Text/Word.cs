@@ -14,7 +14,7 @@ namespace Z0
     /// <summary>
     /// Represents a symbol comprising a finite ordered sequence of symbols
     /// </summary>
-    public readonly struct Word : Structures.FreeMonoid<Word>
+    public readonly struct Word : IFreeMonoid<Word>
     {
         public static readonly Word Empty = new Word();        
 
@@ -43,7 +43,7 @@ namespace Z0
         public Word zero 
             => Empty;
 
-        public uint length 
+        public uint Length 
             => symbols.length;
 
         [MethodImpl(Inline)]

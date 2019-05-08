@@ -10,9 +10,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Numerics;
 
-    using static zcore;
     using static zfunc;
-    using static global::mfunc;
+    using static mfunc;
 
     /// <summary>
     /// Defines pseudorandom number generator
@@ -171,9 +170,9 @@ namespace Z0
                 => bitcharsu32(parts.x0) + bitcharsu32(parts.x1));
 
         static BitString ToBitString(ulong src)
-            => BitString.define(bit.Parse(bitchars64(src)));
+            => BitString.define(Bit.Parse(bitchars64(src)));
 
-        public IEnumerable<bit> bits()
+        public IEnumerable<Bit> bits()
         {
             while(true)
             {

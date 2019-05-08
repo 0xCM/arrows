@@ -4,32 +4,24 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    partial class Operative
+    /// <summary>
+    /// Characterizes operations over nonnegative operands
+    /// </summary>
+    /// <typeparam name="T">The operand type</typeparam>
+    public interface INonNegativeOps<T>
     {
-        /// <summary>
-        /// Characterizes operations over nonnegative operands
-        /// </summary>
-        /// <typeparam name="T">The operand type</typeparam>
-        public interface NonNegative<T>
-        {
-            
-        }
+        
+    }
+
+    /// <summary>
+    /// Characterizes a structure whose values are nonnegative
+    /// </summary>
+    /// <typeparam name="S">The reifying structure</typeparam>
+    public interface INonNegative<S>            
+        where S : INonNegative<S>, new()
+    {
 
     }
 
-    partial class Structures
-    {
-        /// <summary>
-        /// Characterizes a structure whose values are nonnegative
-        /// </summary>
-        /// <typeparam name="S">The reifying structure</typeparam>
-        public interface NonNegative<S>            
-            where S : NonNegative<S>, new()
-        {
-
-        }
-
-
-    }
 
 }

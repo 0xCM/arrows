@@ -23,8 +23,8 @@ namespace  Z0
         /// <param name="relation">The partitioning relation</param>
         /// <param name="items">The items to partition</param>
         /// <typeparam name="T">The item type</typeparam>
-        public static IEnumerable<Reify.FiniteEquivalenceClass<T>> Partition<T>(this Operative.Equivalence<T> relation, IEnumerable<T> items)
-            where T : Structures.Semigroup<T>, new()
+        public static IEnumerable<Reify.FiniteEquivalenceClass<T>> Partition<T>(this Operative.IEquivalenceOps<T> relation, IEnumerable<T> items)
+            where T : Structures.ISemigroup<T>, new()
 
         {
             var classes = cindex<T, ConcurrentBag<T>>();
@@ -41,9 +41,9 @@ namespace  Z0
 
         class Komparer<T> : IComparer<T>
         {
-            Operative.Ordered<T> ordered {get;}                
+            IOrderedOps<T> ordered {get;}                
 
-            public Komparer(Operative.Ordered<T> ordered)
+            public Komparer(IOrderedOps<T> ordered)
                 => this.ordered = ordered;
             public int Compare(T x, T y)
             {
@@ -58,7 +58,7 @@ namespace  Z0
             }
         }
 
-        public static IComparer<T> ToComparer<T>(this Operative.Ordered<T> order)
+        public static IComparer<T> ToComparer<T>(this IOrderedOps<T> order)
             => new Komparer<T>(order);
 
 

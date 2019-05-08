@@ -17,9 +17,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="C">The equivalence class type</typeparam>
         /// <typeparam name="T">The set domain</typeparam>
-        public interface QuotientSet<C,T> 
-            where C : Structures.EquivalenceClass<C,T>, new()
-            where T : Equatable<T>, new()
+        public interface IQuotientSet<C,T> 
+            where C : Structures.IEquivalenceClass<C,T>, new()
+            where T : IEquatable<T>, new()
         {
             /// <summary>
             /// Effects a partition via the equivalence
@@ -35,9 +35,6 @@ namespace Z0
             /// <returns></returns>
             C project(T x);
         }
-
-
-
     }
 
 }

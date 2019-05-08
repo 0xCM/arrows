@@ -14,24 +14,24 @@ namespace Z0
     partial class PrimOps { partial class Reify {
 
         public readonly struct Stepwise : 
-            Stepwise<byte>, 
-            Stepwise<sbyte>, 
-            Stepwise<short>, 
-            Stepwise<ushort>, 
-            Stepwise<int>, 
-            Stepwise<uint>, 
-            Stepwise<long>,             
-            Stepwise<ulong>, 
-            Stepwise<float>, 
-            Stepwise<double>, 
-            Stepwise<decimal>,
-            Stepwise<BigInteger>
+            IStepwiseOps<byte>, 
+            IStepwiseOps<sbyte>, 
+            IStepwiseOps<short>, 
+            IStepwiseOps<ushort>, 
+            IStepwiseOps<int>, 
+            IStepwiseOps<uint>, 
+            IStepwiseOps<long>,             
+            IStepwiseOps<ulong>, 
+            IStepwiseOps<float>, 
+            IStepwiseOps<double>, 
+            IStepwiseOps<decimal>,
+            IStepwiseOps<BigInteger>
         {
             static readonly Stepwise Inhabitant = default;
 
             [MethodImpl(Inline)]
-            public static Stepwise<T> Operator<T>() 
-                => cast<Stepwise<T>>(Inhabitant);
+            public static IStepwiseOps<T> Operator<T>() 
+                => cast<IStepwiseOps<T>>(Inhabitant);
 
             [MethodImpl(Inline)]
             public byte inc(byte x)

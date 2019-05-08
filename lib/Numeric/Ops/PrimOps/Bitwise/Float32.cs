@@ -31,7 +31,7 @@ namespace Z0
         }
 
         public readonly partial struct Bitwise : 
-            Bitwise<float> 
+            IBitwiseOps<float> 
         {
             [MethodImpl(Inline)]   
             public float and(float lhs, float rhs)
@@ -83,11 +83,11 @@ namespace Z0
         
             [MethodImpl(Inline)]
             public string bitchars(float src)
-                => bitchars(BitConverter.SingleToInt32Bits(src));
+                => Bits.bitchars(src);
          
             [MethodImpl(Inline)]   
             public BitString bitstring(float src) 
-                => BitString.define(bit.Parse(bitchars(src)));
+                => BitString.define(Bit.Parse(bitchars(src)));
 
 
             [MethodImpl(Inline)]
@@ -99,7 +99,7 @@ namespace Z0
                 => testbit(BitConverter.SingleToInt32Bits(src),pos);
 
             [MethodImpl(Inline)]
-            public bit[] bits(float src)
+            public Bit[] bits(float src)
                 => bits(BitConverter.SingleToInt32Bits(src));
 
 

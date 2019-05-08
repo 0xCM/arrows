@@ -13,7 +13,7 @@ namespace Z0
     using System.Runtime.InteropServices;
 
 
-    using static zcore;
+    
     using static mfunc;
 
     [StructLayout(LayoutKind.Sequential, Size = 16)]

@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
 
-    using static zcore;
+    
     using static mfunc;
 
    public readonly struct Vec256<T> : IEquatable<Vec256<T>>

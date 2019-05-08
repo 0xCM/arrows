@@ -6,36 +6,27 @@ namespace Z0
 {
     using System;
 
-    partial class Operative
+    /// <summary>
+    /// Characterizes an exponentiation operation
+    /// </summary>
+    /// <typeparam name="B">The base type</typeparam>
+    /// <typeparam name="E">The exponent type</typeparam>
+    public interface IPoweredOps<B,E> 
     {
-
-    
-        /// <summary>
-        /// Characterizes an exponentiation operation
-        /// </summary>
-        /// <typeparam name="B">The base type</typeparam>
-        /// <typeparam name="E">The exponent type</typeparam>
-        public interface Powered<B,E> 
-        {
-            B pow(B b, E exp);
-        }
-    
+        B pow(B b, E exp);
     }
 
-    partial class Structures
+    public interface IPowered<B,E> : IEquatable<B>
+        where B : IPowered<B,E>, new()
     {
-        public interface Powered<B,E> : IEquatable<B>
-            where B : Powered<B,E>, new()
-        {
-            B pow(E exp);
-            
-        }
-
-        public interface NaturallyPowered<S> : Powered<S, int>
-            where S : NaturallyPowered<S>, new()
-        {
-        }
-
+        B pow(E exp);
+        
     }
+
+    public interface INaturallyPowered<S> : IPowered<S, int>
+        where S : INaturallyPowered<S>, new()
+    {
+    }
+
 
 }

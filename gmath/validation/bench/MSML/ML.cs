@@ -13,7 +13,7 @@ namespace MS
     using nuint = System.UInt64;
     using Z0;
 
-    using static zcore;
+    
     using static mfunc;
 
     public static partial class ML
@@ -1998,9 +1998,9 @@ namespace MS
 
         public static unsafe void Mul256(ReadOnlySpan<float> src1, ReadOnlySpan<float> src2, Span<float> dst, int count)
         {
-            zcore.demand(count <= src1.Length);
-            zcore.demand(count <= src2.Length);
-            zcore.demand(count <= dst.Length);
+            demand(count <= src1.Length);
+            demand(count <= src2.Length);
+            demand(count <= dst.Length);
             fixed (float* psrc1 = &MemoryMarshal.GetReference(src1))
             fixed (float* psrc2 = &MemoryMarshal.GetReference(src2))
             fixed (float* pdst = &MemoryMarshal.GetReference(dst))
@@ -2191,7 +2191,7 @@ namespace MS
                             // when it doesn't cross a cache-line/page boundary, we will just assert
                             // that the alignment is correct and allow for the more-efficient codegen.
 
-                            zcore.demand(((nuint)(pValues) % 32) == 0);
+                            demand(((nuint)(pValues) % 32) == 0);
                             result = Avx.Add(result, Avx.LoadVector256(pValues));
                         }
                     }

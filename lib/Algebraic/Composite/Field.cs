@@ -7,7 +7,7 @@ namespace Z0
 
     partial class Operative
     {
-        public interface Field<T> : CommutativeRing<T>, DivisionRing<T>
+        public interface IFieldOps<T> : ICommutativeRingOps<T>, IDivisionRingOps<T>
         {
 
         }
@@ -17,8 +17,8 @@ namespace Z0
     partial class Structures
     {
         
-        public interface Field<S> : CommutativeRing<S>, DivisionRing<S>
-            where S : Field<S>, new()
+        public interface IField<S> : ICommutativeRing<S>, IDivisionRing<S>
+            where S : IField<S>, new()
         {
 
         }

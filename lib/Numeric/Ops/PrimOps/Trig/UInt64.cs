@@ -14,7 +14,7 @@ namespace Z0
     using SysMath = System.Math;
 
     partial class PrimOps { partial class Reify {
-        public readonly partial struct Trig : Trigonmetric<operand> 
+        public readonly partial struct Trig : ITrigonmetricOps<operand> 
         {
 
             // !! UInt64

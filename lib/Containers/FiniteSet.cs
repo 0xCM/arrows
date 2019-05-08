@@ -21,7 +21,7 @@ namespace Z0
         /// <typeparam name="T">The member type</typeparam>
         /// <returns></returns>
         public static Reify.FiniteSet<T> define<T>(params T[] members)
-            where T : Structures.Semigroup<T>, new()
+            where T : Structures.ISemigroup<T>, new()
                 => new Reify.FiniteSet<T>(members);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Z0
         /// <typeparam name="T">The member type</typeparam>
         /// <returns></returns>
         public static Reify.FiniteSet<T> define<T>(IEnumerable<T> members)
-            where T : Structures.Semigroup<T>, new()
+            where T : Structures.ISemigroup<T>, new()
                 => new Reify.FiniteSet<T>(members);
 
     }    
@@ -47,8 +47,8 @@ namespace Z0
         /// <summary>
         /// Contains a finite set of values
         /// </summary>
-        public readonly struct FiniteSet<T> : Contain.FiniteSet<FiniteSet<T>,T>
-            where T : Structures.Semigroup<T>, new()
+        public readonly struct FiniteSet<T> : Contain.IFiniteSet<FiniteSet<T>,T>
+            where T : Structures.ISemigroup<T>, new()
         {
             static readonly IEqualityComparer<HashSet<T>> setcomparer = HashSet<T>.CreateSetComparer();        
 

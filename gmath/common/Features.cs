@@ -9,7 +9,7 @@ namespace Z0
     using System.Collections.Generic;
 
     using X86 = System.Runtime.Intrinsics.X86;
-    using static zcore;
+    
 
     /// <summary>
     /// Specifies the intrisinc instruction sets available on the

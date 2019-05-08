@@ -11,46 +11,38 @@ namespace Z0
 
     using static zcore;
     using static Reify;
+    using static Structures;
 
-    partial class Operative
+    /// <summary>
+    /// Characterizes free moinoidial operations
+    /// </summary>
+    /// <typeparam name="T">The individual type</typeparam>
+    /// <remarks>See https://en.wikipedia.org/wiki/Free_monoid 
+    /// and http://localhost:9000/refs/books/Y2007GRAA.pdf#page=39&view=fit</remarks>
+    public interface IFreeMonoidOps<T> : Operative.IMonoidOps<T>, IConcatenableOps<T>
     {
-        /// <summary>
-        /// Characterizes free moinoidial operations
-        /// </summary>
-        /// <typeparam name="T">The individual type</typeparam>
-        /// <remarks>See https://en.wikipedia.org/wiki/Free_monoid 
-        /// and http://localhost:9000/refs/books/Y2007GRAA.pdf#page=39&view=fit</remarks>
-        public interface FreeMonoid<T> : Monoid<T>, Concatenable<T>
-        {
-            T empty {get;}
-
-        }
+        T empty {get;}
 
     }
 
-    partial class Structures
+    /// <summary>
+    /// Characterizes a free monoidal structure
+    /// </summary>
+    /// <typeparam name="S">The structure type</typeparam>
+    /// <typeparam name="T">The underlying type</typeparam>
+    public interface IFreeMonoid<S> :  IMonoid<S>, IConcatenable<S>, ILengthwise<S>, INullary<S>
+        where S : IFreeMonoid<S>, new()
     {
-        /// <summary>
-        /// Characterizes a free monoidal structure
-        /// </summary>
-        /// <typeparam name="S">The structure type</typeparam>
-        /// <typeparam name="T">The underlying type</typeparam>
-        public interface FreeMonoid<S> :  Monoid<S>, Concatenable<S>, Lengthwise<S>, Nullary<S>
-            where S : FreeMonoid<S>, new()
-        {
 
-        }
-
-        
     }
 
     public static class FreeMonoid
     {
         public static FreeMonoid<T> define<T>(params T[] generators)
-            where T :  Structures.FreeMonoid<T>, new()
+            where T :  IFreeMonoid<T>, new()
                 => new FreeMonoid<T>(generators);
 
-        public static IEnumerable<T> generate<T>(Operative.FreeMonoid<T> fm, IEnumerable<T> generators)
+        public static IEnumerable<T> generate<T>(IFreeMonoidOps<T> fm, IEnumerable<T> generators)
         {
             var level1 = generators;
             foreach(var m in level1)
@@ -74,26 +66,23 @@ namespace Z0
             foreach(var s in level4)
                 yield return s;
         }
+    }
+
+    public readonly struct FreeMonoid<T> 
+        where T : IFreeMonoid<T>, new()
+    {
+
+        public FreeMonoid(FiniteSet<T> g)
+            => this.generators = g;
+
+        public FreeMonoid(params T[] generators)
+            => this.generators = generators.ToFiniteSet();
+
+        public FiniteSet<T> generators {get;}
+
+        public IEnumerable<T> concat(IEnumerable<T> s1, IEnumerable<T> s2)
+            => s1.Concat(s2);
 
     }
 
-    partial class Reify
-    {   
-        public readonly struct FreeMonoid<T> 
-            where T : Structures.FreeMonoid<T>, new()
-        {
-
-            public FreeMonoid(FiniteSet<T> g)
-                => this.generators = g;
-
-            public FreeMonoid(params T[] generators)
-                => this.generators = generators.ToFiniteSet();
-
-            public FiniteSet<T> generators {get;}
-
-            public IEnumerable<T> concat(IEnumerable<T> s1, IEnumerable<T> s2)
-                => s1.Concat(s2);
-
-        }
-    }
 }

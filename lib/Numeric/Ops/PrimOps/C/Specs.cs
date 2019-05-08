@@ -13,8 +13,8 @@ namespace Z0
 
     partial class C
     {
-        public interface Signable<S> : Structures.Orderable<S>
-            where S : Signable<S>, new()
+        public interface ISignable<S> : Structures.IOrderable<S>
+            where S : ISignable<S>, new()
         {
             /// <summary>
             /// Specifies the sign of the structure
@@ -47,7 +47,7 @@ namespace Z0
         /// Characterizes a number upon which a total order is defined
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
-        public interface OrdNum<S> : Number<S>, Structures.Orderable<S> 
+        public interface OrdNum<S> : ICNumber<S>, Structures.IOrderable<S> 
             where S : OrdNum<S>, new()
         {
 
@@ -57,7 +57,7 @@ namespace Z0
         /// Characterizes a number upon which a total order is defined
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
-        public interface OrdNum<S,T> : Number<S,T>, OrdNum<S>
+        public interface OrdNum<S,T> : ICNumber<S,T>, OrdNum<S>
             where S : OrdNum<S,T>, new()
         {
 
@@ -80,7 +80,7 @@ namespace Z0
         /// Characterizes a structural integer
         /// </summary>
         /// <typeparam name="S">The reifying type</typeparam>
-        public interface Int<S> : RealNum<S>, Structures.Bitwise<S>
+        public interface Int<S> : RealNum<S>, IBitwise<S>
             where S : Int<S>, new()
         {
 
@@ -100,7 +100,7 @@ namespace Z0
 
         }
 
-        public interface SNum<S> : RealNum<S>, Signable<S> 
+        public interface SNum<S> : RealNum<S>, ISignable<S> 
             where S : SNum<S>, new()
         {
 
@@ -136,7 +136,7 @@ namespace Z0
         /// Characterizes a structural signable integer
         /// </summary>
         /// <typeparam name="S">The reifying type</typeparam>
-        public interface SInt<S> : Signable<S>, Int<S>
+        public interface SInt<S> : ISignable<S>, Int<S>
             where S : SInt<S>, new()
         {
 
@@ -180,7 +180,7 @@ namespace Z0
         /// Characterizes operational equality in the C adaptation context
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Equator<T>
+        public interface IEquator<T>
         {
             T eq(T lhs, T rhs);
             
@@ -192,7 +192,7 @@ namespace Z0
         /// Characterizes operational order
         /// </summary>
         /// <typeparam name="T">The operand type</typeparam>
-        public interface Orderer<T> : Equator<T>
+        public interface IOrderer<T> : IEquator<T>
         {
             T lt(T lhs, T rhs);
 
@@ -203,12 +203,12 @@ namespace Z0
             T gteq(T lhs, T rhs);
         }
         
-        public interface NumOps<T>            
-            : Operative.Additive<T>, 
-              Orderer<T>,
-              Operative.Multiplicative<T>, 
-              Operative.Divisive<T>, 
-              Operative.Bitwise<T>
+        public interface INumOps<T>            
+            : IAdditiveOps<T>, 
+              IOrderer<T>,
+              IMultiplicativeOps<T>, 
+              IDivisiveOps<T>, 
+              IBitwiseOps<T>
             where T : struct, IEquatable<T>
         {
             

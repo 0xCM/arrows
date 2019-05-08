@@ -24,13 +24,13 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]   
         public static T apply<N,T>(Covector<N,T> cv, Vector<N,T> v)
-            where T : struct, Operative.Semiring<T>, IEquatable<T>
+            where T : struct, Operative.ISemiringOps<T>, IEquatable<T>
             where N : ITypeNat, new()        
 
         {
             var sr = new T();
             var result = sr.zero;
-            for(var i = 0u; i<cv.length; i++)
+            for(var i = 0u; i<cv.Length; i++)
                 result = sr.add(result, sr.mul(cv.cell(i), v.cell(i)));
             return result;
         }

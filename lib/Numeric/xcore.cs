@@ -208,32 +208,32 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T Sum<T>(this IEnumerable<T> src)
-            where T : Structures.Additive<T>, Structures.Nullary<T>, new()
+            where T : IAdditive<T>, INullary<T>, new()
                 => sum(src);
 
         [MethodImpl(Inline)]
         public static T Sup<T>(this IEnumerable<T> src)
-            where T : struct, Structures.Orderable<T>
+            where T : struct, Structures.IOrderable<T>
                 => max(src);
 
         [MethodImpl(Inline)]
         public static T Inf<T>(this T[] src)
-            where T : struct, Structures.Orderable<T>
+            where T : struct, Structures.IOrderable<T>
                 => min(src);
 
         [MethodImpl(Inline)]
         public static IEnumerable<T> Pow<T>(this IEnumerable<T> src, int exp)
-            where T : Structures.NaturallyPowered<T>, new() 
+            where T : INaturallyPowered<T>, new() 
                 => pow(src,exp);
 
         [MethodImpl(Inline)]
         public static Slice<T> Pow<T>(this Slice<T> src, int exp)
-            where T : struct, Structures.NaturallyPowered<T>
+            where T : struct, INaturallyPowered<T>
                 => slice(pow(src,exp));
 
         [MethodImpl(Inline)]
         public static T Avg<T>(this IEnumerable<T> src)
-            where T : Structures.RealNumber<T>,new()
+            where T : Structures.IRealNumber<T>,new()
                 => avg(src);
 
         [MethodImpl(Inline)]   

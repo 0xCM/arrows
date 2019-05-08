@@ -177,7 +177,7 @@ namespace Z0
     /// <summary>
     /// A one-dimensional array with lenght encoded by typenat parameter
     /// </summary>
-    public struct Array<N,T> : Contain.Array<N,T>
+    public struct Array<N,T> : IArray<N,T>
         where N : ITypeNat, new()
     {
         public static readonly int Length = nati<N>();
@@ -234,7 +234,7 @@ namespace Z0
     /// <summary>
     /// A 2-dimensional array with length encoded by two typenat parameters
     /// </summary>
-    public readonly struct Array<K1,K2,T> : Contain.DiscreteContainer<Array<K1,K2,T>,(int i, int j, T value)>
+    public readonly struct Array<K1,K2,T> : IDiscreteContainer<Array<K1,K2,T>,(int i, int j, T value)>
         where K1 : ITypeNat, new()
         where K2 : ITypeNat, new()
     {
@@ -288,7 +288,7 @@ namespace Z0
     /// <summary>
     /// A 3-dimensional array with length encoded by three natural parameters
     /// </summary>
-    public readonly struct Array<K1,K2,K3,T> : Contain.DiscreteContainer<Array<K1,K2,K3,T>, (int i, int j, int k, T value)>
+    public readonly struct Array<K1,K2,K3,T> : IDiscreteContainer<Array<K1,K2,K3,T>, (int i, int j, int k, T value)>
         where K1 : ITypeNat, new()
         where K2 : ITypeNat, new()
         where K3 : ITypeNat, new()

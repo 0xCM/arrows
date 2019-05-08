@@ -225,17 +225,16 @@ namespace Z0
                 get{return this < zero;}
             }
 
-            structure Signable<structure>.sign => throw new NotImplementedException();
+            structure ISignable<structure>.sign => throw new NotImplementedException();
 
-            structure Signable<structure>.positive => throw new NotImplementedException();
+            structure ISignable<structure>.positive => throw new NotImplementedException();
 
-            structure Signable<structure>.negative => throw new NotImplementedException();
+            structure ISignable<structure>.negative => throw new NotImplementedException();
 
-            int Number<structure>.bitsize => throw new NotImplementedException();
+            int ICNumber<structure>.bitsize => throw new NotImplementedException();
 
-            structure Structures.Unital<structure>.one => throw new NotImplementedException();
+            structure IUnital<structure>.one => throw new NotImplementedException();
 
-            structure Structures.Nullary<structure>.zero => throw new NotImplementedException();
 
             [MethodImpl(Inline)]
             public structure negate()
@@ -374,7 +373,7 @@ namespace Z0
                 return result;
             }
 
-            bool Structures.BitSource<structure>.testbit(int pos)
+            bool IBitSource<structure>.testbit(int pos)
                 => Prim.testbit(data,pos);
 
             public byte[] bytes()

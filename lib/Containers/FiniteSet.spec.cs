@@ -19,8 +19,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
         /// <typeparam name="T">The member type</typeparam>
-        public interface FiniteSet<S,T> : DiscreteSet<S,T>, IEquatable<S>
-            where S : FiniteSet<S,T>, new()
+        public interface IFiniteSet<S,T> : IDiscreteSet<S,T>, IEquatable<S>
+            where S : IFiniteSet<S,T>, new()
         {
             /// <summary>
             /// Evidence that the set is indeed finite

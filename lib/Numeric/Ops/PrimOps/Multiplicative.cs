@@ -14,24 +14,24 @@ namespace Z0
 
     partial class PrimOps { partial class Reify {
         public readonly struct Multiplicative : 
-            Multiplicative<byte>, 
-            Multiplicative<sbyte>, 
-            Multiplicative<short>,
-            Multiplicative<ushort>, 
-            Multiplicative<int>,
-            Multiplicative<uint>,
-            Multiplicative<long>,
-            Multiplicative<ulong>,            
-            Multiplicative<float>, 
-            Multiplicative<double>, 
-            Multiplicative<decimal>,
-            Multiplicative<BigInteger>                    
+            IMultiplicativeOps<byte>, 
+            IMultiplicativeOps<sbyte>, 
+            IMultiplicativeOps<short>,
+            IMultiplicativeOps<ushort>, 
+            IMultiplicativeOps<int>,
+            IMultiplicativeOps<uint>,
+            IMultiplicativeOps<long>,
+            IMultiplicativeOps<ulong>,            
+            IMultiplicativeOps<float>, 
+            IMultiplicativeOps<double>, 
+            IMultiplicativeOps<decimal>,
+            IMultiplicativeOps<BigInteger>                    
         {
             static readonly Multiplicative Inhabitant = default;
 
             [MethodImpl(Inline)]
-            public static Multiplicative<T> Operator<T>() 
-                => cast<Multiplicative<T>>(Inhabitant);
+            public static IMultiplicativeOps<T> Operator<T>() 
+                => cast<IMultiplicativeOps<T>>(Inhabitant);
 
             [MethodImpl(Inline)]
             public sbyte mul(sbyte lhs, sbyte rhs)

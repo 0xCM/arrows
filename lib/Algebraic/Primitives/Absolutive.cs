@@ -14,7 +14,7 @@ namespace Z0
     partial class Operative
     {    
 
-        public interface Absolutive<T> 
+        public interface IAbsolutiveOps<T> 
         {
             T abs(T x);
         }

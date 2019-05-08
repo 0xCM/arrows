@@ -10,7 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static zcore;
+    
     using static global::mfunc;
     
     public static class SpanX

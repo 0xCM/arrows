@@ -7,21 +7,16 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
-    partial class Operative
+    public interface IOrderedOps<T> 
     {
-        public interface Ordered<T> 
-        {
-            bool lt(T lhs, T rhs);
-            
-            bool lteq(T lhs, T rhs);
-            
-            bool gt(T lhs, T rhs);  
-            
-            bool gteq(T lhs, T rhs);              
-        }    
-
+        bool lt(T lhs, T rhs);
         
-    }
+        bool lteq(T lhs, T rhs);
+        
+        bool gt(T lhs, T rhs);  
+        
+        bool gteq(T lhs, T rhs);              
+    }    
 
     partial class Structures
     {
@@ -29,8 +24,8 @@ namespace Z0
         /// Characterizes a totally ordered structure
         /// </summary>
         /// <typeparam name="S">The structure reification type</typeparam>
-        public interface Orderable<S> : Equatable<S>
-            where S : Orderable<S>, new()
+        public interface IOrderable<S> : Equatable<S>
+            where S : IOrderable<S>, new()
         {   
             /// <summary>
             /// Determines whether this:S & rhs:S => this < rhs

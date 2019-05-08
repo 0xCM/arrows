@@ -13,8 +13,8 @@ namespace Z0
     /// a virtual function call
     /// </summary>
     /// <typeparam name="S"></typeparam>
-    public interface Hashable<S> : IEquatable<S>
-        where S : Hashable<S>, new()
+    public interface IHashable<S> : IEquatable<S>
+        where S : IHashable<S>, new()
     {
         /// <summary>
         /// Computes the hashcode for the instance
