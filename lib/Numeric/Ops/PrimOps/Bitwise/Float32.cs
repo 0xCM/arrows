@@ -81,13 +81,6 @@ namespace Z0
             public floats rshift(floats src, int shift)
                 => Reify.rshift(src,shift);
         
-            [MethodImpl(Inline)]
-            public string bitchars(float src)
-                => Bits.bitchars(src);
-         
-            [MethodImpl(Inline)]   
-            public BitString bitstring(float src) 
-                => BitString.define(Bit.Parse(bitchars(src)));
 
 
             [MethodImpl(Inline)]
@@ -102,8 +95,11 @@ namespace Z0
             public Bit[] bits(float src)
                 => bits(BitConverter.SingleToInt32Bits(src));
 
-
-        }
+                public string bitstring(float src)
+                {
+                    throw new NotImplementedException();
+                }
+            }
     }
 }}
 

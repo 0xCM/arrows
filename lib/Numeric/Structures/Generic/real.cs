@@ -267,9 +267,6 @@ namespace Z0
         public real<T> muladd(real<T> y, real<T> z)
             => Prim.muladd(data, y.data, z.data);
 
-        [MethodImpl(Inline)]
-        public BitString bitstring()
-            => Prim.bitstring(data);
 
         [MethodImpl(Inline)]
         public byte[] bytes()

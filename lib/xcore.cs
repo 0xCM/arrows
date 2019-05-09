@@ -12,6 +12,7 @@ namespace Z0
 
 
     using static zcore;
+    using static zfunc;
 
     partial class xcore
     {

@@ -101,14 +101,6 @@ public static partial class zcore
     public static Seq<T> seq<T>(params T[] src)
             => Seq.define(src);
 
-    /// <summary>
-    /// Consructs an enumerable from a parameter array
-    /// </summary>
-    /// <param name="src">The source items</param>
-    /// <typeparam name="T">The item type</typeparam>
-    [MethodImpl(Inline)]
-    public static IEnumerable<T> items<T>(params T[] src)
-        => src;
 
     /// <summary>
     /// Constructs an index from a parameter array

@@ -254,7 +254,7 @@ namespace Z0
                 => typeops<T>().flip(src);
 
         [MethodImpl(Inline)]   
-        public static BitString bitstring<T>(T src) 
+        public static string bitstring<T>(T src) 
             where T : struct, IEquatable<T>
                 => typeops<T>().bitstring(src);
 

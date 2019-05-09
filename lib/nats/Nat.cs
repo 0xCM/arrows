@@ -372,5 +372,7 @@ namespace Z0
             where K5 : NatPrimitive<K5>, new()
             where K6 : NatPrimitive<K6>, new()
                 => default;
+   
+   
     }
 }

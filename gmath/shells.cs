@@ -109,7 +109,7 @@ namespace Z0
                 
             }
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
 
         }
     }

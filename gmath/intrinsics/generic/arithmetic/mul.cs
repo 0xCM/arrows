@@ -28,7 +28,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return generic<T>(dinx.mul(float64(lhs), float64(rhs)));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }            
         }
 
@@ -48,7 +48,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return generic<T>(dinx.mul(float64(lhs), float64(rhs)));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }            
         }
 
@@ -70,7 +70,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return generic<S>(dinx.mul(float64(lhs), float64(rhs)));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }            
         }
 
@@ -95,7 +95,7 @@ namespace Z0
                     dst = generic<S>(dinx.mul(float64(lhs), float64(rhs)));
                     return ref dst;
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }            
         }
 
@@ -124,7 +124,7 @@ namespace Z0
                         dinx.mul(float64(lhs), float64(rhs), pDst);
                 break;                
                 default:
-                    throw errors.unsupported(kind);                    
+                    throw unsupported(kind);                    
             }
             return dst;
         }
@@ -163,7 +163,7 @@ namespace Z0
                 }
                 
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }                
         }
 
@@ -201,7 +201,7 @@ namespace Z0
                 }
                 
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }                
 
         }
@@ -227,7 +227,7 @@ namespace Z0
                     dinx.mul(float64(lhs), float64(rhs), float64(dst));                
                 break;                
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }
         }
             

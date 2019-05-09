@@ -157,20 +157,7 @@ namespace Z0
         /// <param name="items">The source array</param>
         /// <param name="width">The width of each subarray</param>
         public static IEnumerable<ArraySegment<T>> partition<T>(T[] items, int width)
-        {
-            var count = items.Length / width;
-            var overflow = items.Length % width;
-            for(var i = 0; i < count; i++)
-                yield return new ArraySegment<T>(items, i*width, width);                    
-
-            if(overflow != 0)
-            {
-                var last = alloc<T>(width);
-                for(var i = count; i< items.Length; i++)
-                    last[i] = items[i];
-                yield return new ArraySegment<T>(last);
-            }
-        }
+            => items.Partition(width);
 
     }
 

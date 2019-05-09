@@ -11,6 +11,7 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using static zcore;
+    using static zfunc;
 
     /// <summary>
     /// Characterizes a natural k such that b:B & e:E => k = b^e

@@ -44,7 +44,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return generic<T>(dinx.sub(float64(lhs), float64(rhs)));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }            
         }
 
@@ -86,7 +86,7 @@ namespace Z0
                     dinx.sub(float64(lhs), float64(rhs), (double*) dst);                
                 break;                
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }
         }
             
@@ -120,7 +120,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return generic<T>(dinx.sub(float64(lhs), float64(rhs)));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }            
         }
 
@@ -194,7 +194,7 @@ namespace Z0
                 }
                 
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }                
         }
 
@@ -266,7 +266,7 @@ namespace Z0
                     return dst;
                 }
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }
         }
     }

@@ -10,7 +10,7 @@ namespace Z0.Testing
     using System.Runtime.InteropServices;
 
     using static zcore;
-
+    using static zfunc;
 
     public interface IPolyProp<T>
     {

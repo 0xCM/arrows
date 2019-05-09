@@ -119,9 +119,6 @@ namespace Z0
         public BitVector<N> rshift(int rhs)
             => throw new Exception();
 
-        [MethodImpl(Inline)]
-        public BitString bitstring()
-            => BitString.define(bits);
 
         /// <summary>
         /// Tests whether the bit in an specific position is set

@@ -24,6 +24,11 @@ namespace Z0
         public static readonly BitVectorU16 Zero = Define(0);
 
         [MethodImpl(Inline)]
+        public static BitVectorU16 Define(Bit x00, Bit x01, Bit x02, Bit x03, Bit x04, Bit x05, Bit x06, Bit x07,
+            Bit x08, Bit x09, Bit x10, Bit x11, Bit x12, Bit x13, Bit x14, Bit x15)
+            => Bits.bitpack(x00, x01, x02, x03, x04, x05, x06, x07, x08, x09, x10, x11, x12, x13, x14, x15);
+
+        [MethodImpl(Inline)]
         public static BitVectorU16 Define(ushort src)
             => new BitVectorU16(src);    
 

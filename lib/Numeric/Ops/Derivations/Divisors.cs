@@ -12,6 +12,7 @@ namespace Z0
 
     using static zcore;
     using static primops;
+    using static zfunc;
     using static Operative;
 
     partial class Operative

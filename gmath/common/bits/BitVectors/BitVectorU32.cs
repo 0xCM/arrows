@@ -20,10 +20,24 @@ namespace Z0
         public BitVectorU32(uint data)
             => this.data = data;
 
+        [MethodImpl(Inline)]
+        public BitVectorU32(Bit[] src)
+        {
+            this.data = 0;
+            for(var i = 0; i< Math.Min(32, src.Length); i++)
+                if(src[i])
+                    Bits.set(ref data, i);
+        }
+
+
         public static readonly BitVectorU32 Zero = Define(0);
 
         [MethodImpl(Inline)]
         public static BitVectorU32 Define(uint src)
+            => new BitVectorU32(src);    
+
+        [MethodImpl(Inline)]
+        public static BitVectorU32 Define(Bit[] src)
             => new BitVectorU32(src);    
 
         [MethodImpl(Inline)]

@@ -52,12 +52,9 @@ namespace Z0
                 => (target)~ a;
 
             [MethodImpl(Inline)]
-            public string bitchars(target src)
+            public string bitstring(target src)
                 => zpad(Convert.ToString(src,2), primops.bitsize<target>());
 
-            [MethodImpl(Inline)]   
-            public BitString bitstring(target src) 
-                => BitString.define(Bit.Parse(bitchars(src)));
             [MethodImpl(Inline)]
             public byte[] bytes(target src)
                 => BitConverter.GetBytes(src); 

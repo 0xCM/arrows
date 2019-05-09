@@ -40,21 +40,6 @@ namespace Z0
         public static readonly uint BitSize = BaseInfo.BitSize;            
 
         
-        /// <summary>
-        /// Tests all bits in an integer and returns a bitstring reporting the result
-        /// </summary>
-        /// <param name="src">The source integer</param>
-        /// <typeparam name="T">The underlying primitive type</typeparam>
-        /// <remarks>The just a (likely) more expensive aproach for extracting a bitstring from an integer</remarks>
-        [MethodImpl(Inline)]   
-        public static BitString testall(intg<T> src)
-        {
-            var len = (int)src.bitsize;
-            var bits = new Bit[len];
-            for(var i = 0; i < len; i++)
-                bits[i] = src.testbit(i);
-            return new BitString(bits);
-        }
 
         [MethodImpl(Inline)]
         public static explicit operator intg<T>(sbyte src)
@@ -354,10 +339,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public intg<T> gcd(intg<T> rhs)
             => Prim.gcd(data, rhs.data);
-
-        [MethodImpl(Inline)]
-        public BitString bitstring()
-            => Prim.bitstring(data);
 
         [MethodImpl(Inline)]
         public byte[] bytes()

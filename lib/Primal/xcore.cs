@@ -48,7 +48,7 @@ namespace Z0
         /// <typeparam name="T">The underlying primitive type</typeparam>
         public static IEnumerable<Digit<N2,BinaryDigit>> ToBinaryDigitsG<T>(this intg<T> src)
             where T : struct, IEquatable<T>    
-                => map(src.bitstring().bits,b => NatDigits.define( b ? BinaryDigit.One : BinaryDigit.Zero, Nats.N2));
+                => throw new NotImplementedException(); //map(src.bitstring().bits,b => NatDigits.define( b ? BinaryDigit.One : BinaryDigit.Zero, Nats.N2));
 
         /// <summary>
         /// Converts a decimal digit to a generic digit in base 10

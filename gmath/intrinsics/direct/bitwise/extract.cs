@@ -20,10 +20,15 @@ namespace Z0
         public static byte extract(Vec128<byte> src, byte pos)
             => Avx2.Extract(src,pos);
 
-        
+
         [MethodImpl(Inline)]
         public static int extract(Vec128<int> src, byte pos)
             => Avx2.Extract(src,pos);
+
+        [MethodImpl(Inline)]
+        public static uint extract(Vec128<ushort> src, byte pos)
+            => Avx2.Extract(src,pos);
+
 
         [MethodImpl(Inline)]
         public static uint extract(Vec128<uint> src, byte pos)
@@ -42,5 +47,4 @@ namespace Z0
         public static float extract(Vec128<float> src, byte pos)
             => Avx2.Extract(src,pos);
     }
-
 }

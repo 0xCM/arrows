@@ -11,6 +11,7 @@ namespace Z0
 
     
     using static zcore;
+    using static zfunc;
 
     public static class Pow2N
     {

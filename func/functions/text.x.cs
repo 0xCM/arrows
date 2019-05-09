@@ -16,6 +16,79 @@ namespace Z0
     partial class xfunc
     {
         /// <summary>
+        /// Encloses a string within a boundary
+        /// </summary>
+        /// <param name="s">The string to enclose</param>
+        /// <param name="left">The left boundary</param>
+        /// <param name="right">The right boundary</param>
+        [MethodImpl(Inline)]
+        public static string EncloseWithin(this string s, string left, string right)
+            => $"{left}{s}{right}";
+
+        /// <summary>
+        /// Determines whether the subject is contained betwee specified left and right markers
+        /// </summary>
+        /// <param name="s">The subject to test</param>
+        /// <param name="left">The left marker</param>
+        /// <param name="right">The right marker</param>
+        /// <param name="compare">Th comparison type</param>
+        [MethodImpl(Inline)]
+        public static bool EnclosedBy(this string s, string left, string right,
+            StringComparison compare = StringComparison.InvariantCulture) => s.StartsWith(left, compare) && s.EndsWith(right, compare);
+
+
+        /// <summary>
+        /// Determines whether the subject is contained betwee specified left and right markers
+        /// </summary>
+        /// <param name="s">The string to search</param>
+        /// <param name="left">The left marker</param>
+        /// <param name="right">The right marker</param>
+        [MethodImpl(Inline)]
+        public static bool EnclosedBy(this string s, char left, char right)
+            => String.IsNullOrEmpty(s) ? false : s[0] == left && s.Last() == right;
+
+        /// <summary>
+        /// Determines whether a string begins with a specific character
+        /// </summary>
+        /// <param name="s">The string to search</param>
+        /// <param name="c">The character to match</param>
+        [MethodImpl(Inline)]
+        public static bool StartsWith(this string s, char c)
+            => isNotBlank(s) ? s.StartsWith(c.ToString()) : false;
+
+        /// <summary>
+        /// Determines whether a string ends with a specific character
+        /// </summary>
+        /// <param name="s">The string to search</param>
+        /// <param name="c">The character to match</param>
+        [MethodImpl(Inline)]
+        public static bool EndsWith(this string s, char c)
+            => isNotBlank(s) ? s.EndsWith(c.ToString()) : false;
+
+        /// <summary>
+        /// Determines whether a string starts with a digit
+        /// </summary>
+        /// <param name="s">The string to search</param>
+        [MethodImpl(Inline)]
+        public static bool StartsWithNumber(this string s)
+            => isNotBlank(s) ? Char.IsDigit(s.First()) : false;
+
+        /// <summary>
+        /// Determines whether a string ends with a digit
+        /// </summary>
+        /// <param name="s">The string to search</param>
+        /// <returns></returns>
+        public static bool EndsWithNumber(this string s)
+            => isNotBlank(s) ? Char.IsDigit(s.Last()) : false;
+
+        /// <summary>
+        /// Formats an array of bytes as a string of hex characters
+        /// </summary>
+        /// <param name="bytes">The data to format to format</param>
+        public static string ToHexString(this byte[] bytes)
+            => "0x" + BitConverter.ToString(bytes).Replace("-", String.Empty);
+
+        /// <summary>
         /// Determines whether a string starts with a value from a supplied set
         /// </summary>
         /// <param name="src">The string to examine</param>
@@ -33,7 +106,6 @@ namespace Z0
         /// </summary>
         /// <param name="src">The string to examine</param>
         /// <param name="values">The characters for which to search</param>
-        /// <returns></returns>
         public static bool EndsWithAny(this string src, IEnumerable<string> values)
         {
             foreach (var v in values)
@@ -184,6 +256,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static string Format<T>(this IEnumerable<T> src, string sep = ", ")
                 => embrace(string.Join(sep, src.Select(x => x.ToString())).TrimEnd());
-
     }
 }

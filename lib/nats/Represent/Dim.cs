@@ -4,12 +4,10 @@
 //-----------------------------------------------------------------------------
 namespace Z0
 {
-    using static zcore;
-    using static Latex.Math;
     using static nats;
     using static zfunc;
 
-    public interface IDim : Formattable
+    public interface IDim
     {
         
     }
@@ -62,8 +60,8 @@ namespace Z0
         /// <summary>
         /// Specifies the value of the dimension component
         /// </summary>
-        public intg<ulong> i 
-            => u(natu<K>());
+        public ulong i 
+            => natu<K>();
 
         public ulong volume()
             => i;
@@ -91,8 +89,6 @@ namespace Z0
     {
         public static readonly Dim<K1,K2> Rep = default;
 
-
-
         public static implicit operator (ulong i, ulong j)(Dim<K1,K2> x)
             => Nat.pair<K1,K2>();
     
@@ -111,9 +107,8 @@ namespace Z0
         public ulong volume()
             => i*j;
 
-
         public string format()
-            => xsv(times, i, j);
+            => xsv("×", i, j);
  
         public override string  ToString()
             => format();
@@ -158,7 +153,7 @@ namespace Z0
             => i*j*k;
 
         public string format()
-            => xsv(times, i, j, k);
+            => xsv("×", i, j, k);
 
         public override string  ToString()
             => format();

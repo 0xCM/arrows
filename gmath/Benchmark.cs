@@ -153,7 +153,18 @@ namespace Z0
 
 
         }
-        
+
+        void RunBench(BenchKind kind,  OpKind op, BenchConfig config = null)
+        {
+            
+
+            
+            var operators = set(OpKind.Mul.ToString());
+            var bench = kind.CreateBench(Randomizer,config);
+            bench.Run(x => x.Contains(op.ToString()));
+
+        }
+
         void RunBench(BenchKind kind,  Func<string, bool> filter = null, BenchConfig config = null)
         {
             
@@ -291,13 +302,13 @@ namespace Z0
             void RunGMathBench()
             {
                 var operators = set(OpKind.Mul.ToString());
-                var bench = PrimalBench.Create(Randomizer);
+                var bench = PrimalFusedBench.Create(Randomizer);
                 bench.Run(name => name.ContainsAny(operators));
             }
             
             void RunAdHocBench()
             {
-                var bench = PrimalBench.Create(Randomizer);
+                var bench = PrimalFusedBench.Create(Randomizer);
                 var comparisons = new List<IBenchComparison>();
                 comparisons.Add(bench.MulF32());
                 comparisons.Add(bench.MulF64());
@@ -358,14 +369,27 @@ namespace Z0
 
         }
 
+        public void NumberTest()
+        {
+            var x = num(3u);
+            var y = num(4u);
+            Claim.eq(7, x + y);
+        }
+        public void TestEqual()
+        {
+            var v1 = Vec256.define(2u, 4u, 8u, 10u, 20u, 30u, 40u, 50u);
+            var v2 = Vec256.define(1u, 4u, 7u, 11u, 20u, 1u, 1u, 50u);
+            var v3 = dinx.eq(v1,v2);
+            for(var i = 0; i< Vec256<uint>.Length; i++)
+            {
+                inform($"{v1[i]} == {v2[i]} => {v3[i]}");
+                Claim.eq(v1[i] == v2[i], v3[i]);
+            }
+
+        }
 
         public void BitTest()
         {
-            // var u16Packed = Bits.bitpack(1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            // inform(u16Packed.ToBitVector());
-
-            // var u32Packed = Bits.bitpack(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1);
-            // inform(u32Packed.ToBitVector());
 
             var bs1 = "10001000111";
             var value = Bits.parse<ulong>(bs1).ToBitVector();
@@ -382,14 +406,19 @@ namespace Z0
             var app = new Benchmark();
             try
             {     
+                //app.RunBench(BenchKind.PrimalAtomic);
+                //app.RunBench(BenchKind.PrimalFused);
+                //app.RunBench(BenchKind.NumG);
+                app.RunBench(BenchKind.Vec128);
                 //app.RunTests();                   
-                app.BitTest();
+                //app.TestEqual();
+                //app.NumberTest();
                 //app.RunTests();
                 //app.Pop();
-                //app.RunBench(BenchKind.Common);
+                //app.RunBench(BenchKind.NumG, OpKind.And);
                 //app.RunBench(BenchKind.Vec128);
                 //app.RunBench(BenchKind.Vec256);
-                //app.RunBench(BenchKind.Primal);
+                //app.RunBench(BenchKind.NumG, OpKind.Div);
                 //app.RunBench(BenchKind.Num128);
             }
             catch(Exception e)

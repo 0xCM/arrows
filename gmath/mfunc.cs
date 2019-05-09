@@ -18,6 +18,15 @@ public static partial class mfunc
 {
     internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
 
+    public static PrimalUnsupportedException unsupported(PrimalKind kind)
+        => new PrimalUnsupportedException(kind);
+
+    public static PrimalUnsupportedException unsupported(PrimalKind src, PrimalKind dst)
+        => new PrimalUnsupportedException(src,dst);
+
+    public static num<T> num<T>(T src)
+        where T : struct, IEquatable<T>
+            => src;
 
     public static TimedPair measure(Action left, Action right, int reps)
     {
@@ -39,9 +48,6 @@ public static partial class mfunc
         return (leftTime,rightTime);            
     }
 
-    [MethodImpl(Inline)]   
-    public static IEnumerable<T> items<T>(params T[] src)
-        => src;
 
     static Exception countMismatch(int lhs, int rhs)
         => throw new Exception($"Count mismatch, {lhs} != {rhs}");
@@ -670,16 +676,6 @@ public static partial class mfunc
         => BitConverter.Int64BitsToDouble(src);
 
     /// <summary>
-    /// Explicitly casts a source value to value of the indicated type, raising
-    /// an exception if operation fails
-    /// </summary>
-    /// <param name="src">The source value</param>
-    /// <typeparam name="T">The target type</typeparam>
-    [MethodImpl(Inline)]   
-    public static T cast<T>(object src) 
-        => (T) src;
-
-    /// <summary>
     /// Demands truth that is enforced with an exeption upon false
     /// </summary>
     /// <param name="x">The value to test</param>
@@ -687,6 +683,7 @@ public static partial class mfunc
     [MethodImpl(Inline)]   
     public static bool demand(bool x, string message = null)
         => x ? x : throw new Exception(message ?? "demand failed");
+
 
 
 }

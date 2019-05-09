@@ -68,12 +68,8 @@ namespace Z0
                 => zpad(Convert.ToString(src,2), primops.bitsize<uint>());
 
             [MethodImpl(Inline)]
-            public string bitchars(uint src)
-                => bitcharsu32(src);
-
-            [MethodImpl(Inline)]   
-            public BitString bitstring(uint src) 
-                => BitString.define(Bit.Parse(bitchars(src)));
+            public string bitstring(uint src)
+                => Bits.bitstring(src);
 
             [MethodImpl(Inline)]
             public byte[] bytes(uint src)

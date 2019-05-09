@@ -28,7 +28,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return dinx.eq(float64(lhs), float64(rhs));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }
 
         }
@@ -45,7 +45,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return dinx.cmpf(float64(lhs), float64(rhs),mode);
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }
 
         }
@@ -63,7 +63,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return dinx.neq(float64(lhs), float64(rhs));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }
 
         }
@@ -80,7 +80,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return dinx.gt(float64(lhs), float64(rhs));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }
 
         }
@@ -97,7 +97,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return dinx.ngt(float64(lhs), float64(rhs));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }
 
         }
@@ -115,7 +115,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return dinx.gteq(float64(lhs), float64(rhs));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }
 
         }
@@ -132,7 +132,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return dinx.lt(float64(lhs), float64(rhs));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }
 
         }
@@ -149,7 +149,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return dinx.nlt(float64(lhs), float64(rhs));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }
 
         }
@@ -166,7 +166,7 @@ namespace Z0
                 case PrimalKind.float64:
                     return dinx.lteq(float64(lhs), float64(rhs));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }
 
         }
@@ -183,7 +183,7 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return generic<T>(Avx2.AddScalar(float64(lhs), float64(rhs)));
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
@@ -198,7 +198,7 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return generic<T>(dinx.add(float64(lhs), float64(rhs)));
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
         }
 
 
@@ -214,7 +214,7 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return generic<T>(dinx.mul(float64(lhs), float64(rhs)));
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
         }
 
 
@@ -231,7 +231,7 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return generic<T>(dinx.div(float64(lhs), float64(rhs)));
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
@@ -246,7 +246,7 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return generic<T>(dinx.max(float64(lhs), float64(rhs)));
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
@@ -261,7 +261,7 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return generic<T>(dinx.min(float64(lhs), float64(rhs)));
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
@@ -276,7 +276,7 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return generic<T>(dinx.mulAdd(float64(x), float64(y), float64(z)));
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
@@ -288,7 +288,7 @@ namespace Z0
             if(kind == PrimalKind.float32)
                 return generic<T>(dinx.recip(float32(src)));
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
@@ -300,7 +300,7 @@ namespace Z0
             if(kind == PrimalKind.float32)
                 return generic<T>(dinx.recipsqrt(float32(src)));
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
@@ -315,7 +315,7 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return generic<T>(dinx.sqrt(float64(src)));
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
@@ -330,7 +330,7 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return generic<T>(dinx.ceiling(float64(src)));
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
         }
 
 
@@ -346,7 +346,7 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return generic<T>(dinx.floor(float64(src)));
 
-            throw errors.unsupported(kind);
+            throw unsupported(kind);
         }
 
     }

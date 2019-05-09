@@ -38,6 +38,27 @@ namespace Z0
         }
     }
 
+    public static class Errors
+    {
+        public static Exception NotEqual(object lhs, object rhs, string file, int? line)
+            => new Exception($"{file} line {line}: {lhs} != {rhs}") ;
+
+        public static Exception NotLessThan(object lhs, object rhs, string file, int? line)
+            => new Exception($"{file} line {line}: !({lhs} < {rhs})") ;
+
+        public static Exception ItemsNotEqual(int index, object lhs, object rhs, string file, int? line)
+            => new Exception($"{file} line {line}: lhs[{index}] = {lhs} != rhs[{index}] = {rhs}");
+
+        public static Exception NotNonzero(string file, int? line)
+            => new Exception($"{file} line {line}: The input value is required to be nonzero, and yet, it is");
+        
+        public static Exception NotTrue(string msg, string file, int? line)
+            => new Exception($"{file} line {line}: {msg ?? "The source value is required to be true and yet it is false"}");
+
+        public static Exception NotFalse(string msg, string file, int? line)
+            => new Exception($"{file} line {line}: {msg ?? "The source value is required to be false and yet it is true"}");
+    }
+
     public static class Claim
     {
 
@@ -72,94 +93,101 @@ namespace Z0
                 throw new Exception(msg.ToString());
         }
 
-        public static void eq<T>(Span128<T> lhs, Span128<T> rhs, [CallerMemberName] string caller = null,  [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        public static void eq<T>(Span128<T> lhs, Span128<T> rhs, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct, IEquatable<T> 
         {
             for(var i = 0; i< length(lhs,rhs); i++)
             {
                 if(!lhs[i].Equals(rhs[i]))
-                    throw new Exception($"{caller} {file} line {line}: lhs[{i}] = {lhs[i]} != rhs[{i}] = {rhs[i]}");
+                    throw Errors.ItemsNotEqual(i,lhs[i],rhs[i], file, line);
             }
         }
 
-        public static void eq<T>(Span256<T> lhs, Span256<T> rhs, [CallerMemberName] string caller = null,   [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        public static void eq<T>(Span256<T> lhs, Span256<T> rhs,  [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct, IEquatable<T> 
         {
             for(var i = 0; i< length(lhs,rhs); i++)
             {
                 if(!lhs[i].Equals(rhs[i]))
-                    throw new Exception($"{caller} {file} line {line}: lhs[{i}] = {lhs[i]} != rhs[{i}] = {rhs[i]}");
+                    throw Errors.ItemsNotEqual(i,lhs[i],rhs[i], file, line);
             }
         }
 
-        public static void eq<T>(Span<T> lhs, Span<T> rhs, [CallerMemberName] string caller = null,  [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        public static void eq<T>(Span<T> lhs, Span<T> rhs,  [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct, IEquatable<T> 
         {
             for(var i = 0; i< length(lhs,rhs); i++)
             {
                 if(!lhs[i].Equals(rhs[i]))
-                    throw new Exception($"{caller} {file} line {line}: lhs[{i}] = {lhs[i]} != rhs[{i}] = {rhs[i]}");
+                    throw Errors.ItemsNotEqual(i,lhs[i],rhs[i], file, line);
             }
         }
 
-        public static void eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null,  [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        public static void eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct, IEquatable<T> 
         {
             for(var i = 0; i< length(lhs,rhs); i++)
-            {
                 if(!lhs[i].Equals(rhs[i]))
-                    throw new Exception($"{caller} {file} line {line}: lhs[{i}] = {lhs[i]} != rhs[{i}] = {rhs[i]}");
-            }
+                    throw Errors.ItemsNotEqual(i,lhs[i],rhs[i], file, line);
         }
 
-        public static void eq<T>(T[] lhs, T[] rhs, [CallerMemberName] string caller = null,  [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        public static void eq<T>(T[] lhs, T[] rhs,  [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct, IEquatable<T> 
-        {
-            
+        {            
             for(var i = 0; i< length(lhs,rhs); i++)
-            {
                 if(!lhs[i].Equals(rhs[i]))
-                    throw new Exception($"{caller} {file} line {line}: lhs[{i}] = {lhs[i]} != rhs[{i}] = {rhs[i]}");
-            }
+                    throw Errors.ItemsNotEqual(i,lhs[i],rhs[i], file, line);
         }
+
+        [MethodImpl(Inline)]
+        public static bool eq<T>(num<T> lhs, num<T> rhs,  [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where T : struct, IEquatable<T> 
+                => lhs == rhs ? true : throw Errors.NotEqual(lhs, rhs, file, line);
+
+        [MethodImpl(Inline)]
+        public static bool eq(uint lhs, uint rhs, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs != rhs ? throw Errors.NotEqual(lhs, rhs, file, line) : true;        
+
+        [MethodImpl(Inline)]
+        public static bool eq(ulong lhs, ulong rhs, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs != rhs ? throw Errors.NotEqual(lhs, rhs, file, line) : true;        
+
+        [MethodImpl(Inline)]
+        public static bool eq(bool lhs, bool rhs, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs != rhs ? throw Errors.NotEqual(lhs, rhs, file, line) : true;        
 
         [MethodImpl(Inline)]
         public static bool lt(int x, int y, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => !(x < y) ? throw new Exception($"{file} line {line}: {x} < {y} does not hold") : true;
-         
+            => !(x < y) ? throw Errors.NotLessThan(x,y,file,line) : true;
+
         [MethodImpl(Inline)]
-        public static string enumeq<T>(T x, T y, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        public static bool lt(ulong x, ulong y, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => !(x < y) ? throw Errors.NotLessThan(x,y,file,line) : true;
+
+        [MethodImpl(Inline)]
+        public static bool enumeq<T>(T lhs, T rhs, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : Enum
-                => define(x,y,"==",  (a,b) => a.Equals(b)).demand();
+                => lhs.Equals(rhs) ? true : throw Errors.NotEqual(lhs, rhs, file, line);
 
         [MethodImpl(Inline)]
         public static string neq<T>(T x, T y, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct, IEquatable<T> 
                 => define(x,y,"!=", (a,b) => a.Equals(b)).demand();
 
-        public static bool eq(ulong x, ulong y, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => x != y ? throw new Exception($"{file} line {line}: {x} != {y}") : true;
+        [MethodImpl(Inline)]
+        public static bool nonzero(int x, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => x != 0 ? true : throw Errors.NotNonzero(file,line);
 
         [MethodImpl(Inline)]
-        public static void nonzero(int x, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-        {
-            if(x == 0)
-                throw new Exception($"{file} line {line}: The input value is required to be nonzero, and yet, it is");
-        }
-
-        [MethodImpl(Inline)]
-        public static void nonzero(long x, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-        {
-            if(x == 0)
-                throw new Exception($"{file} line {line}: The input value is required to be nonzero, and yet, it is");
-        }
+        public static bool nonzero(long x, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => x != 0 ? true : throw Errors.NotNonzero(file,line);
 
         [MethodImpl(Inline)]
         public static bool @true(bool src, string msg = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => src ? true : throw new Exception($"{file} line {line}: {msg ?? "The source value is false"}");
+            => src ? true : throw Errors.NotTrue(msg,file,line);
 
         [MethodImpl(Inline)]
         public static bool @false(bool x, string msg = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => !x ? true : throw new Exception($"{file} line {line}: {msg ?? "The source value is true"}");
+            => !x ? true : throw Errors.NotFalse(msg,file,line);
     }
 }

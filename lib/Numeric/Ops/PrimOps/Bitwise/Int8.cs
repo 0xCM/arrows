@@ -60,12 +60,8 @@ namespace Z0
                 => (sbyte)~ a;
             
             [MethodImpl(Inline)]
-            public string bitchars(sbyte src)
+            public string bitstring(sbyte src)
                 => zpad(Convert.ToString(src,2), primops.bitsize<sbyte>());
-
-            [MethodImpl(Inline)]   
-            public BitString bitstring(sbyte src) 
-                => BitString.define(Bit.Parse(bitchars(src)));
 
             [MethodImpl(Inline)]
             public byte[] bytes(sbyte src)
@@ -73,7 +69,7 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public bool testbit(sbyte src, int pos)
-                => Bits.testbit(src,pos);
+                => Bits.test(src,pos);
 
             [MethodImpl(Inline)]
             public Bit[] bits(sbyte src)

@@ -322,16 +322,8 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public string bitchars(T x)
-                => Bitwise.bitchars(x);
-
-            [MethodImpl(Inline)]
-            public BitString bitstring(T x)
+            public string bitstring(T x)
                 => Bitwise.bitstring(x);
-
-            [MethodImpl(Inline)]
-            public Index<BitString> bitstring(Index<T> src)
-                => map(src,bitstring);
 
             [MethodImpl(Inline)]
             public byte[] bytes(T x)
@@ -468,7 +460,7 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public string bitchars(Index<T> src)
-                => string.Join("",map(src,bitchars));
+                => string.Join("", map(src, (Func<T, string>)this.bitstring));
 
             public byte[] bytes(Index<T> src)
                 => Arr.concat(map(src,bytes));

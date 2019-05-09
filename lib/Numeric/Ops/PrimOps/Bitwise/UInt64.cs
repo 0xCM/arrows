@@ -70,12 +70,8 @@ namespace Z0
                     => bitcharsu32(parts.x0) + bitcharsu32(parts.x1));
 
             [MethodImpl(Inline)]
-            public string bitchars(target src)
-                => bitchars64(src);
-
-            [MethodImpl(Inline)]   
-            public BitString bitstring(target src) 
-                => BitString.define(Bit.Parse(bitchars(src)));
+            public string bitstring(target src)
+                => Bits.bitstring(src);
 
             [MethodImpl(Inline)]
             public byte[] bytes(target src)

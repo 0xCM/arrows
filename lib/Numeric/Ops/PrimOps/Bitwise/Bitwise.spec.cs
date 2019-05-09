@@ -19,12 +19,8 @@ namespace Z0
         /// Extracts the character bits from the falue
         /// </summary>
         /// <param name="src"></param>
-        string bitchars(T src);
+        string bitstring(T src);
 
-        /// <summary>
-        /// Formats the source value a sequence of base-2 digits
-        /// </summary>
-        Z0.BitString bitstring(T src);
 
         /// <summary>
         /// Determines whether a bit at a specified position is on
@@ -158,11 +154,6 @@ namespace Z0
     public interface IBitSource<S>
         where S : IBitSource<S>, new()
     {
-        /// <summary>
-        /// Formats the source value a sequence of base-2 digits
-        /// </summary>
-        Z0.BitString bitstring();
-
         /// <summary>
         /// Determines whether a bit at a specified position is on
         /// </summary>

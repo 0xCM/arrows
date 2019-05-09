@@ -11,11 +11,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Linq;
 
-
     partial class Prove
-    {
-
-    
+    {    
         /// <summary>
         /// Attempts to prove that k1:K1 & k2:K2 =>  k1 + k2 = expected 
         /// Signals success by returning evidence
@@ -98,8 +95,5 @@ namespace Z0
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
                 => Try(() => sum(k1,k2,expected));
-
-
     }
-
 }

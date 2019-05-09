@@ -8,12 +8,11 @@ namespace Z0
     using System.Numerics;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+
     using static zcore;
+    using static zfunc;
 
     using static Operative;
-
-
-
 
     partial class PrimOps { public partial class Reify
     {

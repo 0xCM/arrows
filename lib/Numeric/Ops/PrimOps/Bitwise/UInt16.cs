@@ -61,12 +61,8 @@ namespace Z0
                 => map(lhs,flip);
 
             [MethodImpl(Inline)]
-            public string bitchars(ushort src)
-                => Bits.bitchars(src);
-
-            [MethodImpl(Inline)]   
-            public BitString bitstring(ushort src) 
-                => BitString.define(Bit.Parse(bitchars(src)));
+            public string bitstring(ushort src)
+                => Bits.bitstring(src);
 
             [MethodImpl(Inline)]
             public bool testbit(ushort src, int pos)

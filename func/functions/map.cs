@@ -55,4 +55,55 @@ partial class zfunc
         => f(x);
 
 
+    /// <summary>
+    /// Reduces a sequence to a single value via a supplied operator
+    /// </summary>
+    /// <param name="src">The source sequence</param>
+    /// <param name="f">The reduction operator</param>
+    /// <param name="a0">The seed value</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static T fold<T>(IEnumerable<T> src, Func<T,T,T> f, T a0 = default(T))
+    {
+        var cumulant = a0;
+        foreach(var item in src)
+            cumulant = f(cumulant,item);            
+        return cumulant;
+    }
+
+ 
+    /// <summary>
+    /// Transforms a function (S,T) -> U to a function S -> (T -> U)
+    /// </summary>
+    /// <typeparam name="S">The first argument type</typeparam>
+    /// <typeparam name="T">The second argument type</typeparam>
+    /// <typeparam name="U">The codomain</typeparam>
+    [MethodImpl(Inline)]
+    public static Func<S,T,U> curry<S,T,U>(Func<(S,T), U> f)
+    {        
+        U g(S a, T b) => f((a,b));        
+        return g;
+    }
+
+    /// <summary>
+    /// Transforms a function S -> (T -> U) to a function (S,T) -> U
+    /// </summary>
+    /// <typeparam name="S">The first argument type</typeparam>
+    /// <typeparam name="T">The second argument type</typeparam>
+    /// <typeparam name="U">The codomain</typeparam>
+    [MethodImpl(Inline)]
+    public static Func<(S,T),U> uncurry<S,T,U>(Func<S,T,U> f)
+    {        
+        U g((S a, T b) x) => f(x.a,x.b);
+        return g;
+    }
+
+    /// <summary>
+    /// Creates a deferred value
+    /// </summary>
+    /// <param name="factory">A function that produces a value upon demeand</param>
+    [MethodImpl(Inline)]
+    public static Lazy<T> defer<T>(Func<T> factory)
+        => new Lazy<T>(factory);
+
 }

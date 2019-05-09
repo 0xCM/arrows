@@ -63,6 +63,25 @@ partial class zfunc
     public static T instance<T>(Type t, params object[] args)
         => (T)Activator.CreateInstance(t,args);
 
+    /// <summary>
+    /// Returns a pair of System.Type 
+    /// </summary>
+    /// <typeparam name="T0">The first source type</typeparam>
+    /// <typeparam name="T1">The second source type</typeparam>
+    [MethodImpl(Inline)]
+    public static (Type t0,Type t1) types<T0,T1>() 
+        => (typeof(T0),typeof(T1));
+
+    /// <summary>
+    /// Returns a triple of System.Type 
+    /// </summary>
+    /// <typeparam name="T0">The first source type</typeparam>
+    /// <typeparam name="T1">The second source type</typeparam>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static (Type t0,Type t1, Type t2) types<T0,T1,T2>() 
+        => (typeof(T0),typeof(T1),typeof(T2));
+
 
 
 }

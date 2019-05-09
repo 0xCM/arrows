@@ -336,8 +336,8 @@ namespace Z0
                 => Prim.gcd(data,rhs.data);
 
             [MethodImpl(Inline)]
-            public BitString bitstring()
-                => Prim.bitstring(data);       
+            public string bitstring()
+                => Bits.bitstring(data);
 
             public byte[] bytes()
                 => Prim.bytes(data);

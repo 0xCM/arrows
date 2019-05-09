@@ -83,16 +83,8 @@ namespace Z0
                 => Reify.rshift(src,shift);
 
             [MethodImpl(Inline)]
-            public string bitchars(double src)
-                => bitchars(bitsf(src));
-
-            [MethodImpl(Inline)]   
-            public BitString bitstring(double src) 
-                => BitString.define(Bit.Parse(bitchars(src)));
-
-            [MethodImpl(Inline)]
-            public byte[] bytes(double src)
-                => BitConverter.GetBytes(src);
+            public string bitstring(double src)
+                => Bits.bitstring(src);
 
             [MethodImpl(Inline)]
             public bool testbit(double src, int pos)
@@ -101,6 +93,9 @@ namespace Z0
             [MethodImpl(Inline)]
             public Bit[] bits(double src)
                 => bits(bitsf(src));
+
+            public byte[] bytes(double src)
+                => Bits.bytes(src);
         }
     }
 }}

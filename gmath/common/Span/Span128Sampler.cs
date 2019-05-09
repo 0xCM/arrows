@@ -13,7 +13,7 @@ namespace Z0
     
 
     using static zfunc;
-    using static global::mfunc;
+    using static mfunc;
 
     public class Span128Sampler : Sampler<Span128Sampler> 
     {
@@ -25,11 +25,32 @@ namespace Z0
         public static Span128Sampler Sample(IRandomizer random, int blocks)
             => new Span128Sampler(random, blocks);
 
+
+        void CollectSamples(int blocks)
+        {
+            Int8Samples = Random.Array128<sbyte>(blocks);            
+            UInt8Samples = Random.Array128<byte>(blocks);
+            Int16Samples = Random.Array128<short>(blocks);            
+            UInt16Samples = Random.Array128<ushort>(blocks);
+            Int32Samples = Random.Array128<int>(blocks);            
+            UInt32Samples = Random.Array128<uint>(blocks);
+            Int64Samples = Random.Array128<long>(blocks);            
+            UInt64Samples = Random.Array128<ulong>(blocks);
+            Float32Samples = Random.Array128<float>(blocks);
+            Float64Samples = Random.Array128<double>(blocks);            
+
+        }
+
+        Span128Sampler(IRandomizer random, int blocks)
+            : base(random)
+        {
+            CollectSamples(blocks);
+        }
+
         /// <summary>
         /// Returns values for which samples have already been drawn
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
         public Span128<T> Sampled<T>(T specimen = default(T))
             where T : struct, IEquatable<T>
             => PrimalKinds.kind<T>() switch {
@@ -45,40 +66,5 @@ namespace Z0
                 PrimalKind.float64 => As.generic<T>(Float64Samples),
                 _ => throw new Exception($"Kind not supported")
             };
-
-        Span128Sampler(IRandomizer random, int blocks)
-        {
-            this.Int8Samples = random.Array128<sbyte>(blocks);            
-            this.UInt8Samples = random.Array128<byte>(blocks);
-            this.Int16Samples = random.Array128<short>(blocks);            
-            this.UInt16Samples = random.Array128<ushort>(blocks);
-            this.Int32Samples = random.Array128<int>(blocks);            
-            this.UInt32Samples = random.Array128<uint>(blocks);
-            this.Int64Samples = random.Array128<long>(blocks);            
-            this.UInt64Samples = random.Array128<ulong>(blocks);
-            this.Float32Samples = random.Array128<float>(blocks);
-            this.Float64Samples = random.Array128<double>(blocks);            
-        }
-
-        readonly byte[] UInt8Samples;
-
-        readonly sbyte[] Int8Samples;
-        
-        readonly short[] Int16Samples;
-
-        readonly ushort[] UInt16Samples;
-
-        readonly int[] Int32Samples;
-
-        readonly uint[] UInt32Samples;
-
-        readonly long[] Int64Samples;
-
-        readonly ulong[] UInt64Samples;
-
-        readonly float[] Float32Samples;
-
-        readonly double[] Float64Samples;
-
     }
 }

@@ -313,9 +313,6 @@ namespace Z0
         public floatg<T> muladd(floatg<T> y, floatg<T> z)
             => Prim.muladd(data,y.data,z.data);
 
-        [MethodImpl(Inline)]
-        public BitString bitstring()
-            => Prim.bitstring(data);
 
         [MethodImpl(Inline)]
         public bool testbit(int pos)

@@ -252,9 +252,6 @@ namespace Z0
             return Quorem.define(quo, rem);
         }
 
-        [MethodImpl(Inline)]
-        public BitString bitstring()
-            => Prim.bitstring(data);
 
         [MethodImpl(Inline)]
         public byte[] bytes()

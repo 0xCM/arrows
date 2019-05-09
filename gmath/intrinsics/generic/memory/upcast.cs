@@ -40,7 +40,7 @@ namespace Z0
                             rhs = generic<T>(dinx.upcast(src, out Vec128<long> _));
                             break;
                         default: 
-                            throw errors.unsupported(srcKind, dstKind);
+                            throw unsupported(srcKind, dstKind);
                     }
                 }
                 break;
@@ -59,7 +59,7 @@ namespace Z0
                             rhs = generic<T>(dinx.upcast(src, out Vec128<long> _));
                             break;
                         default: 
-                            throw errors.unsupported(srcKind, dstKind);
+                            throw unsupported(srcKind, dstKind);
                     }
                 }
                 break;
@@ -75,7 +75,7 @@ namespace Z0
                             rhs = generic<T>(dinx.upcast(src, out Vec128<long> _));
                             break;
                         default: 
-                            throw errors.unsupported(srcKind, dstKind);
+                            throw unsupported(srcKind, dstKind);
                     }
                 }
                 break;
@@ -91,7 +91,7 @@ namespace Z0
                             rhs = generic<T>(dinx.upcast(src, out Vec128<long> _));
                             break;
                         default: 
-                            throw errors.unsupported(srcKind, dstKind);
+                            throw unsupported(srcKind, dstKind);
                     }
                 }
                 break;
@@ -104,7 +104,7 @@ namespace Z0
                             rhs = generic<T>(dinx.upcast(src, out Vec128<long> _));
                             break;
                         default: 
-                            throw errors.unsupported(srcKind, dstKind);
+                            throw unsupported(srcKind, dstKind);
                     }
                 }
                 break;
@@ -117,12 +117,12 @@ namespace Z0
                             rhs = generic<T>(dinx.upcast(src, out Vec128<long> _));
                             break;
                         default: 
-                            throw errors.unsupported(srcKind, dstKind);
+                            throw unsupported(srcKind, dstKind);
                     }
                 }
                 break;                
                 default:
-                    throw errors.unsupported(srcKind, dstKind);
+                    throw unsupported(srcKind, dstKind);
             }            
         }
 

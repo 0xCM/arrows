@@ -32,59 +32,6 @@ partial class zcore
     public static unsafe ref T memref<T>(ReadOnlySpan<T> x)    
         => ref MemoryMarshal.GetReference(x);
 
-    [MethodImpl(Inline)]
-    public static unsafe void* pointer<T>(ref T src)
-        => Unsafe.AsPointer(ref src);
-
-    /// <summary>
-    /// Calculates the time required to execute a specified action
-    /// </summary>
-    /// <param name="f">The action for which a running time will be calculated</param>
-    /// <returns>The number of milliseconds elaplsed during execution</returns>
-    [MethodImpl(Inline)]
-    public static long measure(Action f, string name, int reps = 1, bool announce = true)
-    {
-        if(announce)
-             print($"Measuring {name} execution time", SeverityLevel.HiliteML);
-        
-        var sw = stopwatch();
-        for(var i = 0; i<reps; i++)
-            f();
-
-        var duration = sw.ElapsedMilliseconds;
-        
-        if(announce)
-             print($"Measured {name} execution time" +
-                    (reps != 1 ? $" over {reps} repetitions" : string.Empty) +
-                    $": {duration}ms", SeverityLevel.HiliteML);
-
-        return duration;
-    }
-
-
-    /// <summary>
-    /// Calculates the time required to execute a specified function
-    /// </summary>
-    /// <param name="f">The function for which a running time will be calculated</param>
-    /// <returns>The number of milliseconds elaplsed during execution</returns>
-    public static T duration<T>(Func<T> f, out long ms)
-    {
-        var sw = stopwatch();
-        var result = f();
-        ms = sw.ElapsedMilliseconds;
-        return result;
-    }
-
-
-    /// <summary>
-    /// Explicitly casts a source value to value of the indicated type, raising
-    /// an exception if operation fails
-    /// </summary>
-    /// <param name="src">The source value</param>
-    /// <typeparam name="T">The target type</typeparam>
-    [MethodImpl(Inline)]   
-    public static T cast<T>(object src) 
-        => (T) src;
 
     /// <summary>
     /// The univeral identity function that returns the source value
@@ -104,26 +51,6 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static Citation cite(Resource resource, int location)
         => Citation.define(resource,location);
-
-    /// <summary>
-    /// Returns a pair of System.Type 
-    /// </summary>
-    /// <typeparam name="T0">The first source type</typeparam>
-    /// <typeparam name="T1">The second source type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static (Type t0,Type t1) types<T0,T1>() 
-        => (typeof(T0),typeof(T1));
-
-    /// <summary>
-    /// Returns a triple of System.Type 
-    /// </summary>
-    /// <typeparam name="T0">The first source type</typeparam>
-    /// <typeparam name="T1">The second source type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static (Type t0,Type t1, Type t2) types<T0,T1,T2>() 
-        => (typeof(T0),typeof(T1),typeof(T2));
 
 
     /// <summary>

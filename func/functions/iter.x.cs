@@ -43,6 +43,7 @@ namespace  Z0
         public static IEnumerable<(int i, T value)> Iteri<T>(this IEnumerable<T> items)
             => iteri(items);
 
+ 
 
     }
 }

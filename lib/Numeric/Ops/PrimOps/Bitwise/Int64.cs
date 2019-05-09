@@ -62,12 +62,9 @@ namespace Z0
                 => map(lhs,flip);
 
             [MethodImpl(Inline)]
-            public string bitchars(long src)
-                => zpad(Convert.ToString(src,2), primops.bitsize<long>());
+            public string bitstring(long src)
+                => Bits.bitstring(src);
 
-            [MethodImpl(Inline)]   
-            public BitString bitstring(long src) 
-                => BitString.define(Bit.Parse(bitchars(src)));
 
             [MethodImpl(Inline)]
             public byte[] bytes(long src)

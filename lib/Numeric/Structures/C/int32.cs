@@ -344,8 +344,8 @@ namespace Z0
             }
 
             [MethodImpl(Inline)]
-            public BitString bitstring()
-                => Prim.bitstring(data);       
+            public string bitstring()
+                => Bits.bitstring(data);
 
             [MethodImpl(Inline)]
             public byte[] bytes()

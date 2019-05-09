@@ -58,7 +58,7 @@ namespace Z0
             /// <remarks>
             /// Taken from https://stackoverflow.com/questions/14048476/biginteger-to-hex-decimal-octal-binary-strings
             /// </remarks>
-            public string bitchars(BigInteger x)
+            public string bitstring(BigInteger x)
             {
                 var bytes = x.ToByteArray();
                 var idx = bytes.Length - 1;
@@ -84,9 +84,6 @@ namespace Z0
             }
 
 
-            [MethodImpl(Inline)]   
-            public BitString bitstring(BigInteger src) 
-                => BitString.define(Bit.Parse(bitchars(src)));
 
             [MethodImpl(Inline)]
             public byte[] bytes(BigInteger src)

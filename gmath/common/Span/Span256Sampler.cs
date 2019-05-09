@@ -15,12 +15,6 @@ namespace Z0
     using static zfunc;
     using static global::mfunc;
 
-    public abstract class Sampler<T>
-        where T : Sampler<T>
-    {
-
-
-    }
 
     public class Span256Sampler : Sampler<Span256Sampler>
     {
@@ -31,6 +25,28 @@ namespace Z0
         /// <param name="blocks">The number of blocks to sample for each primitive</param>
         public static Span256Sampler Sample(IRandomizer random, int blocks)
             => new Span256Sampler(random, blocks);
+
+        Span256Sampler(IRandomizer random, int blocks)
+            : base(random)
+        {
+            TakeSamples(blocks);
+        }
+
+        void TakeSamples(int blocks)
+        {
+           Int8Samples = Random.Array256<sbyte>(blocks);            
+            UInt8Samples = Random.Array256<byte>(blocks);
+            Int16Samples = Random.Array256<short>(blocks);            
+            UInt16Samples = Random.Array256<ushort>(blocks);
+            Int32Samples = Random.Array256<int>(blocks);            
+            UInt32Samples = Random.Array256<uint>(blocks);
+            Int64Samples = Random.Array256<long>(blocks);            
+            UInt64Samples = Random.Array256<ulong>(blocks);
+            Float32Samples = Random.Array256<float>(blocks);
+            Float64Samples = Random.Array256<double>(blocks);            
+ 
+        }
+
 
         /// <summary>
         /// Returns values for which samples have already been drawn
@@ -53,39 +69,6 @@ namespace Z0
                 _ => throw new Exception($"Kind not supported")
             };
 
-        Span256Sampler(IRandomizer random, int blocks)
-        {
-            this.Int8Samples = random.Array256<sbyte>(blocks);            
-            this.UInt8Samples = random.Array256<byte>(blocks);
-            this.Int16Samples = random.Array256<short>(blocks);            
-            this.UInt16Samples = random.Array256<ushort>(blocks);
-            this.Int32Samples = random.Array256<int>(blocks);            
-            this.UInt32Samples = random.Array256<uint>(blocks);
-            this.Int64Samples = random.Array256<long>(blocks);            
-            this.UInt64Samples = random.Array256<ulong>(blocks);
-            this.Float32Samples = random.Array256<float>(blocks);
-            this.Float64Samples = random.Array256<double>(blocks);            
-        }
-
-        readonly byte[] UInt8Samples;
-
-        readonly sbyte[] Int8Samples;
-        
-        readonly short[] Int16Samples;
-
-        readonly ushort[] UInt16Samples;
-
-        readonly int[] Int32Samples;
-
-        readonly uint[] UInt32Samples;
-
-        readonly long[] Int64Samples;
-
-        readonly ulong[] UInt64Samples;
-
-        readonly float[] Float32Samples;
-
-        readonly double[] Float64Samples;
 
     }
 }

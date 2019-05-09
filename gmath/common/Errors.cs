@@ -23,12 +23,7 @@ namespace Z0
 
     public static class errors
     {
-        public static PrimalUnsupportedException unsupported(PrimalKind kind)
-            => new PrimalUnsupportedException(kind);
-
-        public static PrimalUnsupportedException unsupported(PrimalKind src, PrimalKind dst)
-            => new PrimalUnsupportedException(src,dst);
-
+     
     }
 
     /// <summary>

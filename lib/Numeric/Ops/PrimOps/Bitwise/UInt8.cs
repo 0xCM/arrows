@@ -66,12 +66,8 @@ namespace Z0
             /// </summary>
             /// <param name="src">The source number</param>
             [MethodImpl(Inline)]
-            public string bitchars(byte src)
-                => zpad(Convert.ToString(src,2), primops.bitsize<byte>());
-
-            [MethodImpl(Inline)]   
-            public BitString bitstring(byte src) 
-                => BitString.define(Bit.Parse(bitchars(src)));
+            public string bitstring(byte src)
+                => Bits.bitstring(src);
 
             /// <summary>
             /// Determines whether a position-specified bit in the source is on

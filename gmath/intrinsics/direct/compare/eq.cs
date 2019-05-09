@@ -61,48 +61,83 @@ namespace Z0
             => allOn(CompareEqual(lhs, rhs).AsUInt64());
   
         [MethodImpl(Inline)]
-        public static bool eq(in Vec256<byte> lhs, in Vec256<byte> rhs)
+        public static BitVectorU32 eq(in Vec256<byte> lhs, in Vec256<byte> rhs)
         {
             var result = CompareEqual(lhs, rhs);
-            return allOn(extract(result,0)) && allOn(extract(result,1));
+            var x0 = extract(result, 0);
+            var x1 = extract(result, 1);
+            var dst = new Bit[32];
+            for(byte i = 0; i< 16; i++)
+                dst[i] = extract(x0, i);
+
+            for(byte j = 0; j< 16; j++)
+                dst[16 + j] = extract(x0, j);
+            return BitVectorU32.Define(dst);
+
         }
 
         [MethodImpl(Inline)]
         public static bool eq(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
         {
             var result = CompareEqual(lhs, rhs);
+            var x0 = extract(result, 0);
+            var x1 = extract(result, 1);
+
             return allOn(extract(result,0)) && allOn(extract(result,1));
         }
 
         [MethodImpl(Inline)]
-        public static bool eq(in Vec256<short> lhs, in Vec256<short> rhs)
+        public static BitVectorU16 eq(in Vec256<short> lhs, in Vec256<short> rhs)
         {
             var result = CompareEqual(lhs, rhs);
-            return allOn(extract(result,0)) && allOn(extract(result,1));
+            var x0 = extract(result,0).ToArray();
+            var x1 = extract(result,1).ToArray();
+
+            return BitVectorU16.Define(            
+                x0[0], x0[1], x0[2], x0[3],
+                x0[4], x0[5], x0[6], x0[7],
+                x1[0], x1[1], x1[2], x1[3],
+                x1[4], x1[5], x1[6], x1[7]
+                );
         }
 
         [MethodImpl(Inline)]
-        public static bool eq(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+        public static BitVectorU16 eq(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
         {
             var result = CompareEqual(lhs, rhs);
-            return allOn(extract(result,0)) && allOn(extract(result,1));
+            var x0 = extract(result, 0);
+            var x1 = extract(result, 1);
+
+            return BitVectorU16.Define(            
+                extract(x0, 0), extract(x0, 1), extract(x0, 2), extract(x0, 3),
+                extract(x0, 4), extract(x0, 5), extract(x0, 6), extract(x0, 7),
+                extract(x1, 0), extract(x1, 1), extract(x1, 2), extract(x1, 3),
+                extract(x1, 4), extract(x1, 5), extract(x1, 6), extract(x1, 7)                
+                );
         }            
 
         [MethodImpl(Inline)]
-        public static bool eq(in Vec256<int> lhs, in Vec256<int> rhs)
+        public static BitVectorU8 eq(in Vec256<int> lhs, in Vec256<int> rhs)
         {
             var result = CompareEqual(lhs, rhs);
-            return allOn(extract(result,0)) && allOn(extract(result,1));
+            var x0 = extract(result, 0);
+            var x1 = extract (result, 1);
+            return BitVectorU8.Define(            
+                extract(x0, 0), extract(x0, 1), extract(x0, 2), extract(x0, 3),
+                extract(x1, 0), extract(x1, 1), extract(x1, 2), extract(x1, 3));
         }
+
 
         [MethodImpl(Inline)]
-        public static bool eq(in Vec256<uint> lhs, in Vec256<uint> rhs)
+        public static BitVectorU8 eq(in Vec256<uint> lhs, in Vec256<uint> rhs)
         {
             var result = CompareEqual(lhs, rhs);
-            return allOn(extract(result,0)) && allOn(extract(result,1));
+            var x0 = extract(result, 0);
+            var x1 = extract (result, 1);
+            return BitVectorU8.Define(            
+                extract(x0, 0), extract(x0, 1), extract(x0, 2), extract(x0, 3),
+                extract(x1, 0), extract(x1, 1), extract(x1, 2), extract(x1, 3));
+                                              
         }
-
-
-
     }
 }

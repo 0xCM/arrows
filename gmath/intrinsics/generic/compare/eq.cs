@@ -43,10 +43,8 @@ namespace Z0
                 case PrimalKind.float64:
                     return dinx.eq(float64(lhs), float64(rhs));
                 default:
-                    throw errors.unsupported(kind);
+                    throw unsupported(kind);
             }            
         }
-
     }
-
 }

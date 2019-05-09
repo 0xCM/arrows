@@ -67,7 +67,7 @@ namespace Z0.Tests
             Claim.eq(xval, Z0.Bits.pack(x0, x1, x2,x3));
 
             var xbsref = "10100111" + "00111000" + "11100101" + "10101000";
-            Claim.eq(xbsref, xval.ToBitString().format());
+            Claim.eq(xbsref, xval.ToBitChars());
 
 
             // var y2 = Bits.pack(x3,x2);

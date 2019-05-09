@@ -13,6 +13,7 @@ namespace Z0
     using System.Diagnostics;
     
     using static zcore;
+    using static zfunc;
     using static Structures;
 
     public interface IListed<S> : IEquatable<S>, INullary<S>, IReversible<S>, ILengthwise<S>

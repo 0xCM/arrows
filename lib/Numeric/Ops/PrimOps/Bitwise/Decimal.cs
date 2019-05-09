@@ -60,13 +60,10 @@ namespace Z0
                             );
 
             [MethodImpl(Inline)]
-            public string bitchars(decimal src)
+            public string bitstring(decimal src)
                 => bitchars128(src);
             
-            [MethodImpl(Inline)]   
-            public BitString bitstring(decimal src) 
-                => BitString.define(Bit.Parse(bitchars(src)));
-
+            
             [MethodImpl(Inline)]
             public bool testbit(decimal src, int pos)
             {

@@ -54,7 +54,7 @@ namespace Z0.Testing
         protected IEnumerable<Vector<N,T>> MakeVectors<N>(IEnumerable<T> src)
             where N : ITypeNat, new()
             => from x in src.Partition(nati<N>())
-                where x.Count == nati<N>()
+                where x.Length == nati<N>()
                 select vector<N,T>(x);
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Z0.Testing
         /// <typeparam name="N">The vector length</typeparam>
         protected IEnumerable<T[]> MakeArrays(IEnumerable<T> src, int len)
             => from x in src.Partition(len)
-                where x.Count == len
+                where x.Length == len
                 select x.ToArray();
 
         protected Func<T,bool> Filter {get;}

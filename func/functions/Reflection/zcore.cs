@@ -3,14 +3,16 @@
 // License     :  MIT
 //-----------------------------------------------------------------------------
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
+using System.Linq.Expressions;
+using System.IO;
 using System.Diagnostics;
+using System.Reflection;
+using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
+
 
 using Z0;
 using static zfunc;
@@ -18,19 +20,22 @@ using static Z0.ReflectionFlags;
 
 partial class zfunc
 {
-    static ConcurrentDictionary<Type, PropertyInfo[]> _propsCache
-        = new ConcurrentDictionary<Type, PropertyInfo[]>();
 
-    static ConcurrentDictionary<Type, ConstructorInfo[]> _constructorCache
-        = new ConcurrentDictionary<Type, ConstructorInfo[]>();
+    static Func<T,T,T> binopConstruct<T>(this MethodInfo target)
+    {
+        var operand = typeof(T);                        
+        var method = new DynamicMethod("Mul", operand, new Type[] { operand, operand }, operand.Module);            
+        var gen = method.GetILGenerator();
+        gen.Emit(OpCodes.Ldarg_0);
+        gen.Emit(OpCodes.Ldarg_1);
+        gen.EmitCall(OpCodes.Call, target, null);
+        gen.Emit(OpCodes.Ret);
+        return (Func<T,T,T>) method.CreateDelegate(typeof(Func<T,T,T>));
+    }
 
-    static ConcurrentDictionary<Type, Type> _ulTypeCache
-        = new ConcurrentDictionary<Type, Type>();
-
-    static ConcurrentDictionary<Type, Type> _nnTypeCache 
-        = new ConcurrentDictionary<Type, Type>();
-
-
+    [MethodImpl(Inline)]
+    public static Func<T,T,T> binop<T>(MethodInfo target)
+        => (Func<T,T,T>) Delegates.GetOrAdd(target, m => binopConstruct<T>(m));
 
     /// <summary>
     /// Searches a type for an instance constructor that matches a specified signature
@@ -83,20 +88,6 @@ partial class zfunc
     public static Option<object> TryGetValue(this FieldInfo field, object instance = null)
         => Try(() => field.GetValue(instance));
 
-    /// <summary>
-    /// Retrieves the values of a type's public instance properties
-    /// </summary>
-    /// <param name="t">The type to examine</param>
-    /// <param name="o">The type instance</param>
-    public static IReadOnlyDictionary<string, object> GetPropertyValues(this Type t, object o)
-        => map(props(o), p => (p.Name, p.GetValue(o))).ToReadOnlyDictionary();
-
-    /// <summary>
-    /// If non-nullable, returns the supplied type. If nullable, returns the underlying type
-    /// </summary>
-    /// <param name="t">The type to examine</param>
-    public static Type GetNonNullableType(this Type t)
-        => nonNullable(t);
 
     /// <summary>
     /// Retrieves the identified <see cref="MethodInfo"/>
@@ -313,81 +304,4 @@ partial class zfunc
     public static TypeCode typecode<T>()
         => Type.GetTypeCode(typeof(T));
 
-    /// <summary>
-    /// Applies f(v) if v is of type X otherwise applies unmatched(v)
-    /// </summary>
-    /// <typeparam name="X">The match type</typeparam>
-    /// <typeparam name="Y">The evaluation type</typeparam>
-    /// <param name="v">The candidate value</param>
-    /// <param name="f">The function to apply if matched</param>
-    /// <param name="u">The function to apply if unmatched</param>
-    /// <returns></returns>
-    public static Y ifType<X, Y>(object v, Func<X, Y> f, Func<object, Y> u)
-    {
-        switch (v)
-        {
-            case X x:
-                return f(x);
-            default:
-                return u(v);
-        }
-    }
-
-    /// <summary>
-    /// Applies f(v) if v is of type X otherwise returns None
-    /// </summary>
-    /// <typeparam name="X">The match type</typeparam>
-    /// <typeparam name="Y">The evaluation type</typeparam>
-    /// <param name="v">The candidate value</param>
-    /// <param name="f">The function to apply if matched</param>
-    /// <returns></returns>
-    public static Option<Y> ifType<X, Y>(object v, Func<X, Y> f)
-    {
-        switch (v)
-        {
-            case X x:
-                return f(x);
-            default:
-                return none<Y>();
-        }
-    }
-
-    /// <summary>
-    /// Applies f(X left, X right) if possible, otherwise returns None
-    /// </summary>
-    /// <typeparam name="X">The right input type</typeparam>
-    /// <typeparam name="Y">The output type</typeparam>
-    /// <param name="v">The value to be evaluated </param>
-    /// <param name="f">The function to apply</param>
-    /// <returns></returns>
-    public static Option<Y> ifType<X, Y>((object candididate, X right) v, Func<(X left, X right), Y> f)
-    {
-        switch (v.candididate)
-        {
-            case X x:
-                return f((x, v.right));
-            default:
-                return none<Y>();
-        }
-    }
-
-    /// <summary>
-    /// Applies f(X left, X right) if possible, otherwise applies f(candidate)
-    /// </summary>
-    /// <typeparam name="X">The right input type</typeparam>
-    /// <typeparam name="Y">The output type</typeparam>
-    /// <param name="v">The value to be evaluated </param>
-    /// <param name="f">The function to apply</param>
-    /// <param name="else">The alternate</param>
-    /// <returns></returns>
-    public static Y ifType<X, Y>((object candididate, X right) v, Func<(X left, X right), Y> f, Func<object, Y> @else)
-    {
-        switch (v.candididate)
-        {
-            case X x:
-                return f((x, v.right));
-            default:
-                return @else(v.candididate);
-        }
-    }
 }

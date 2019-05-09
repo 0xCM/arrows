@@ -10,6 +10,7 @@ namespace Z0.Bench
     using System.Runtime.InteropServices;
 
     using static zcore;
+    using static zfunc;
 
     public interface Setting
     {
