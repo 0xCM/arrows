@@ -21,6 +21,8 @@ namespace Z0
         
         NumG,
 
+        Numbers,
+
         Num128,
 
         Vec128,
@@ -43,6 +45,8 @@ namespace Z0
                     return PrimalAtomicBench.Create(random, config);
                 case BenchKind.NumG:
                     return NumGBench.Create(random, config);
+                case BenchKind.Numbers:
+                    return NumbersBench.Create(random, config);
                 case BenchKind.Num128:
                     return Num128Bench.Create(random, config);
                 case BenchKind.Vec128:

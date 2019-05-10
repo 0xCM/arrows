@@ -12,7 +12,6 @@ namespace Z0
 
     using static zcore;
     using static zfunc;
-
     using static nats;
 
     /// <summary>
@@ -272,7 +271,7 @@ namespace Z0
         /// </summary>
         /// <param name="monoid">The monoid to use</param>
         [MethodImpl(Inline)]   
-        public T reduce(Operative.IMonoidalOps<T> monoid)
+        public T reduce(IMonoidalOps<T> monoid)
             =>  fold(data,monoid);
 
         [MethodImpl(Inline)]   

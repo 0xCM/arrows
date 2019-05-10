@@ -28,7 +28,7 @@ public static partial class zcore
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]   
     public static SemiSeq<T> semiseq<T>(IEnumerable<T> src)
-        where T : struct, Structures.ISemigroup<T>
+        where T : struct, ISemigroup<T>
             => new SemiSeq<T>(src);
 
     /// <summary>
@@ -38,7 +38,7 @@ public static partial class zcore
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]   
     public static SemiSeq<T> semiseq<T>(params T[] src)
-        where T : struct, Structures.ISemigroup<T>
+        where T : struct, ISemigroup<T>
             => new SemiSeq<T>(src);
 
 

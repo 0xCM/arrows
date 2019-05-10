@@ -26,33 +26,33 @@ namespace Z0
         
         }
 
-        public IBenchComparison MeasureIterator()
-        {
-            var start = 0;
-            var finish = 1000;
-            long For()
-            {
-                var opcount = 0;
-                for(var i = start; i< finish; i++)
-                    opcount++;
-                return opcount;
-            }
+        // public IBenchComparison MeasureIterator()
+        // {
+        //     var start = 0;
+        //     var finish = 1000;
+        //     long For()
+        //     {
+        //         var opcount = 0;
+        //         for(var i = start; i< finish; i++)
+        //             opcount++;
+        //         return opcount;
+        //     }
 
-            long Iterator()
-            {
-                var opcount = 0;
-                var it = It.Define(start,finish);
-                while(it++)
-                    opcount++;
-                return opcount;
-            }
+        //     long Iterator()
+        //     {
+        //         var opcount = 0;
+        //         var it = It.Define(start,finish);
+        //         while(it++)
+        //             opcount++;
+        //         return opcount;
+        //     }
 
-            var lhs = DefineMeasure("for", For);
-            var rhs = DefineMeasure("it", For);
-            var compare = Measure("for", lhs, "it", rhs);
+        //     var lhs = DefineMeasure("for", For);
+        //     var rhs = DefineMeasure("it", For);
+        //     var compare = Measure("for", lhs, "it", rhs);
             
-            return compare;
-        }
+        //     return compare;
+        // }
     }
 
 }

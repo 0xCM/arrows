@@ -420,7 +420,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
+        public static ref Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, ref Span<T> dst)
             where T : struct, IEquatable<T>
         {
             var len  = length(lhs,rhs);
@@ -759,6 +759,18 @@ namespace Z0
         {
             var kind = PrimalKinds.kind<T>();
 
+            if(kind == PrimalKind.int8)
+                return eqI8(lhs,rhs);
+
+            if(kind == PrimalKind.uint8)
+                return eqU8(lhs,rhs);
+
+            if(kind == PrimalKind.int16)
+                return eqI16(lhs,rhs);
+
+            if(kind == PrimalKind.uint16)
+                return eqU16(lhs,rhs);
+
             if(kind == PrimalKind.int32)
                 return eqI32(lhs,rhs);
 
@@ -770,18 +782,6 @@ namespace Z0
 
             if(kind == PrimalKind.uint64)
                 return eqU64(lhs,rhs);
-
-            if(kind == PrimalKind.int16)
-                return eqI16(lhs,rhs);
-
-            if(kind == PrimalKind.uint16)
-                return eqU16(lhs,rhs);
-
-            if(kind == PrimalKind.int8)
-                return eqI8(lhs,rhs);
-
-            if(kind == PrimalKind.uint8)
-                return eqU8(lhs,rhs);
 
             if(kind == PrimalKind.float32)
                 return eqF32(lhs,rhs);
@@ -802,7 +802,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<bool> dst)
+        public static ref Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, ref Span<bool> dst)
             where T : struct, IEquatable<T>
         {
             var len  = length(lhs,rhs);
@@ -811,6 +811,14 @@ namespace Z0
             return ref dst;
         }
 
+        [MethodImpl(Inline)]
+        public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct, IEquatable<T>
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            eq(lhs, rhs, ref dst);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         public static void eq<T>(T[] lhs, T[] rhs, bool[] dst)
@@ -880,11 +888,22 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct, IEquatable<T>
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            neq(lhs, rhs, ref dst);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
         public static void neq<T>(T[] lhs, T[] rhs, bool[] dst)
             where T : struct, IEquatable<T>
             => neq(lhs,rhs, ref dst);
 
         #endregion
+
+        #region lt
 
         [MethodImpl(Inline)]
         public static bool lt<T>(T lhs, T rhs)
@@ -935,13 +954,22 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<bool> dst)
+        public static ref Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, ref Span<bool> dst)
             where T : struct, IEquatable<T>
         {
             var len  = length(lhs,rhs);
             for(var i = 0; i< lhs.Length; i++)
                 dst[i] = lt(lhs[i],rhs[i]);
             return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct, IEquatable<T>
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            lt(lhs, rhs, ref dst);
+            return dst;
         }
 
 
@@ -989,6 +1017,8 @@ namespace Z0
             throw unsupported(kind);
         }
 
+
+        
         [MethodImpl(Inline)]
         public static ref bool[] lteq<T>(T[] lhs, T[] rhs, ref bool[] dst)
             where T : struct, IEquatable<T>
@@ -999,7 +1029,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<bool> dst)
+        public static ref Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, ref Span<bool> dst)
             where T : struct, IEquatable<T>
         {
             var len  = length(lhs,rhs);
@@ -1008,11 +1038,21 @@ namespace Z0
             return ref dst;
         }
 
+        [MethodImpl(Inline)]
+        public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct, IEquatable<T>
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            lteq(lhs, rhs, ref dst);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         public static void lteq<T>(T[] lhs, T[] rhs, bool[] dst)
             where T : struct, IEquatable<T>
             => lteq(lhs,rhs, ref dst);
+
+        #endregion
 
         #region gt
 
@@ -1074,15 +1114,21 @@ namespace Z0
             return ref dst;
         }
 
+        [MethodImpl(Inline)]
+        public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct, IEquatable<T>
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            gt(lhs, rhs, ref dst);
+            return dst;
+        }
+
 
         [MethodImpl(Inline)]
         public static void gt<T>(T[] lhs, T[] rhs, bool[] dst)
             where T : struct, IEquatable<T>
             => gt(lhs,rhs, ref dst);
 
-        #endregion
-        
-        #region gteq
 
         [MethodImpl(Inline)]
         public static bool gteq<T>(T lhs, T rhs)
@@ -1142,6 +1188,14 @@ namespace Z0
             return ref dst;
         }
 
+        [MethodImpl(Inline)]
+        public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct, IEquatable<T>
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            gteq(lhs, rhs, ref dst);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         public static void gteq<T>(T[] lhs, T[] rhs, bool[] dst)

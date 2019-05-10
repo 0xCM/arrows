@@ -19,7 +19,7 @@ namespace Z0
         {
             var opid = Id<sbyte>(OpKind.And);
             
-            OpMeasure baseline(Span128<sbyte> dst)
+            OpMetrics baseline(Span128<sbyte> dst)
             {
                 var sw = stopwatch();
                 dinx.and(LeftSample(opid), RightSample(opid), ref dst);
@@ -39,7 +39,7 @@ namespace Z0
         {
             var opid = Id<byte>(OpKind.And);
 
-            OpMeasure baseline(Span128<byte> dst)
+            OpMetrics baseline(Span128<byte> dst)
             {
                 var sw = stopwatch();
                 dinx.and(LeftSample(opid), RightSample(opid), ref dst);
@@ -59,7 +59,7 @@ namespace Z0
         {
             var opid = Id<short>(OpKind.And);
         
-            OpMeasure baseline(Span128<short> dst)
+            OpMetrics baseline(Span128<short> dst)
             {
                 var sw = stopwatch();
                 dinx.and(LeftSample(opid), RightSample(opid), ref dst);
@@ -79,7 +79,7 @@ namespace Z0
         {
             var opid = Id<ushort>(OpKind.And);
             
-            OpMeasure baseline(Span128<ushort> dst)
+            OpMetrics baseline(Span128<ushort> dst)
             {
                 var sw = stopwatch();
                 dinx.and(LeftSample(opid), RightSample(opid), ref dst);
@@ -99,7 +99,7 @@ namespace Z0
         {
             var opid = Id<int>(OpKind.And);
             
-            OpMeasure baseline(Span128<int> dst)
+            OpMetrics baseline(Span128<int> dst)
             {
                 var sw = stopwatch();
                 dinx.and(LeftSample(opid), RightSample(opid), ref dst);
@@ -119,7 +119,7 @@ namespace Z0
         {
             var opid = Id<uint>(OpKind.And);
             
-            OpMeasure baseline(Span128<uint> dst)
+            OpMetrics baseline(Span128<uint> dst)
             {
                 var sw = stopwatch();
                 dinx.and(LeftSample(opid), RightSample(opid), ref dst);
@@ -139,7 +139,7 @@ namespace Z0
         {
             var opid = Id<long>(OpKind.And);
 
-            OpMeasure baseline(Span128<long> dst)
+            OpMetrics baseline(Span128<long> dst)
             {
                 var sw = stopwatch();
                 dinx.and(LeftSample(opid), RightSample(opid), ref dst);
@@ -159,7 +159,7 @@ namespace Z0
         {
             var opid = Id<ulong>(OpKind.And);
             
-            OpMeasure baseline(Span128<ulong> dst)
+            OpMetrics baseline(Span128<ulong> dst)
             {
                 var sw = stopwatch();
                 dinx.and(LeftSample(opid), RightSample(opid), ref dst);
@@ -179,7 +179,7 @@ namespace Z0
         {
             var opid = Id<float>(OpKind.And);
             
-            OpMeasure baseline(Span128<float> dst)
+            OpMetrics baseline(Span128<float> dst)
             {
                 var sw = stopwatch();
                 dinx.and(LeftSample(opid), RightSample(opid), ref dst);
@@ -199,7 +199,7 @@ namespace Z0
         {
             var opid = Id<double>(OpKind.And);
  
-            OpMeasure baseline(Span128<double> dst)
+            OpMetrics baseline(Span128<double> dst)
             {
                 var sw = stopwatch();
                 dinx.and(LeftSample(opid), RightSample(opid), ref dst);
@@ -215,7 +215,7 @@ namespace Z0
             return Finish(comparison);
        }
 
-        OpMeasure gand<T>(T[] dst)
+        OpMetrics gand<T>(T[] dst)
             where T : struct, IEquatable<T>
         {
             var opid = Id<T>(OpKind.And);

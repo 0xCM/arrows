@@ -27,8 +27,8 @@ partial class zcore
     /// Retrieves semiring operations for a specified type
     /// </summary>
     [MethodImpl(Inline)]
-    public static Operative.ISemiringOps<T> semiring<T>() 
-        where T : Operative.ISemiringOps<T>, new()
+    public static ISemiringOps<T> semiring<T>() 
+        where T : ISemiringOps<T>, new()
             => new T();
 
     /// <summary>

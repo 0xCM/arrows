@@ -28,17 +28,11 @@ namespace Z0
             }
             return false;
         }
-        
-        /// <summary>
-        /// Constructs mutable span from a slice of a read-only span
-        /// </summary>
-        /// <param name="src">The source sequence</param>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span<T> MutableSlice<T>(this ReadOnlySpan<T> src, int? offset = null, int? length = null)
-            where T : struct, IEquatable<T>
-                => src.Slice(offset ?? 0, length ?? src.Length).ToArray();
 
+        [MethodImpl(Inline)]
+        public static bool Contains<T>(this Span<T> src, T match)        
+            where T : struct, IEquatable<T>
+                => src.Freeze().Contains(match);
 
         /// <summary>
         /// Constructs a span from the entireity of a sequence
@@ -116,7 +110,7 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this Span<T> src)
+        public static ReadOnlySpan<T> Freeze<T>(this Span<T> src)
             => src;
 
 
@@ -145,16 +139,21 @@ namespace Z0
         /// </summary>
         /// <param name="left">The index at which the selection begins</param>
         /// <param name="right">The index at which the selection ends</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static (Index left, Index right) Split(this Range selection)
             => (selection.Start, selection.End);
-
 
         [MethodImpl(Inline)]
         public static void Copy<T>(this ReadOnlySpan<T> src, Span<T> dst)
             => src.CopyTo(dst);
 
+        [MethodImpl(Inline)]
+        public static Span<T> ToSpan<T>(this ReadOnlySpan<T> src)
+        {
+            var dst = span<T>(src.Length);
+            src.CopyTo(dst);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         public static Span128<T> ToSpan128<T>(this Span<T> src)

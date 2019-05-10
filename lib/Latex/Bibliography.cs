@@ -107,6 +107,14 @@ namespace Z0
         public readonly struct Citation
         {
             /// <summary>
+            /// Constructs a citation for a bibliographic resource
+            /// </summary>
+            /// <param name="resource">The referenced biblography resource</param>
+            /// <param name="location">The location of interest within the referenced work</param>
+            public static Citation Cite(Resource resource, int location)
+                => Citation.define(resource,location);
+
+            /// <summary>
             /// Constructs a reference to a bibliographic resource
             /// </summary>
             /// <param name="resource"></param>

@@ -63,7 +63,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static SemiSeq<T> ToSemiSeq<T>(this IEnumerable<T> src)
-            where T : struct, Structures.ISemigroup<T>
+            where T : struct, ISemigroup<T>
                 => semiseq(src);
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static SemiSeq<T> ToSemiSeq<T>(this T[] src)
-            where T : struct, Structures.ISemigroup<T>
+            where T : struct, ISemigroup<T>
                 => semiseq(src);
 
         /// <summary>

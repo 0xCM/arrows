@@ -17,7 +17,7 @@ namespace Z0
                 => new PolynomialTerm<T>(coefficient,power);
     }
     
-    public readonly struct PolynomialTerm<T> : Equatable<PolynomialTerm<T>>
+    public readonly struct PolynomialTerm<T> : IEquatable<PolynomialTerm<T>>
         where  T: IEquatable<T>, new()
     {
         
@@ -62,9 +62,9 @@ namespace Z0
     }
 
     public readonly struct Polynomial<T>
-        where T : Operative.IMonoidAOps<T>, Equatable<T>, new()
+        where T : IMonoidAOps<T>, IEquatable<T>, new()
     {
-        static readonly Operative.IMonoidAOps<T> Ops = new T();
+        static readonly IMonoidAOps<T> Ops = new T();
         
         static readonly T FZero = Ops.zero;
 
@@ -81,11 +81,11 @@ namespace Z0
 
         public intg<uint> degree()
             => nonzero 
-            ? terms.reverse().filter(t => t.coefficient.neq(FZero)).data.First().power 
+            ? terms.reverse().filter(t => !t.coefficient.Equals(FZero)).data.First().power 
             : 0;
 
         public bool nonzero
-            => any(terms, t => t.coefficient.neq(FZero));
+            => any(terms, t => !t.coefficient.Equals(FZero));
 
         public Polynomial<T> add(Polynomial<T> rhs)
         {

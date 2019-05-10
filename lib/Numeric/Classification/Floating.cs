@@ -17,7 +17,7 @@ namespace Z0
         public interface Floating<T> : 
             IRealNumberOps<T>, 
             IFractionalOps<T>, 
-            Resignable<T>, 
+            IResignableOps<T>, 
             ISubtractiveOps<T>, 
             ITrigonmetricOps<T>
         where T : struct, IEquatable<T>
@@ -64,7 +64,7 @@ namespace Z0
         public interface Floating<S> : 
             IRealNumber<S>, 
             IFractional<S>, 
-            Resignable<S>, 
+            IResignable<S>, 
             ISubtractive<S>, 
             ITrigonmetric<S>
         where S : Floating<S>, new()

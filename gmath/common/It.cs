@@ -41,15 +41,19 @@ namespace Z0
             return src;
         }
 
+        [MethodImpl(Inline)]
         public static implicit operator int(It src)
             => src.Current;
 
+        [MethodImpl(Inline)]
         public static implicit operator uint(It src)
             => (uint)src.Current;
 
+        [MethodImpl(Inline)]
         public static implicit operator long(It src)
             => src.Current;
 
+        [MethodImpl(Inline)]
         public static implicit operator ulong(It src)
             => (ulong)src.Current;
 

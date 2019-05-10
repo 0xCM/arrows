@@ -9,21 +9,27 @@ namespace Z0
     using System.Reflection;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-        
+
+    using static zfunc;
+    using static mfunc;
+
     public interface IBenchComparison
     {
         string LeftTitle {get;}
 
         AppMsg LeftMsg {get;}
         
-        OpMeasure LeftMeasure{get;}
-
+        OpMetrics LeftMeasure{get;}
 
         string RightTitle {get;}
 
         AppMsg RightMsg {get;}
 
-        OpMeasure RightMeasure {get;}
+        OpMetrics RightMeasure {get;}
+
+        double PerformanceRatio {get;}
+
+        BenchComparisonRecord ToRecord();
     }
 
     public class BenchComparison<T> : IBenchComparison
@@ -31,7 +37,10 @@ namespace Z0
         public BenchComparison(BenchSummary<T> LeftBench, BenchSummary<T> RightBench)
         {
             this.LeftBench = LeftBench;
-            this.RightBench = RightBench;            
+            this.RightBench = RightBench;   
+            var leftTicks = (double)LeftBench.Measure.WorkTime.Ticks;
+            var rightTicks = (double)RightBench.Measure.WorkTime.Ticks;
+            this.PerformanceRatio = Math.Round(leftTicks / rightTicks, 4);         
         }
 
         public BenchSummary<T> LeftBench {get;}
@@ -44,7 +53,7 @@ namespace Z0
         public AppMsg LeftMsg
             => LeftBench.Description;
 
-        public OpMeasure LeftMeasure
+        public OpMetrics LeftMeasure
             => LeftBench.Measure;
 
         public string RightTitle
@@ -53,10 +62,70 @@ namespace Z0
         public AppMsg RightMsg
             => RightBench.Description;
 
-        public OpMeasure RightMeasure
+        public OpMetrics RightMeasure
             => RightBench.Measure;
+    
+        public double PerformanceRatio {get;}
+        
+        public BenchComparisonRecord ToRecord()
+            => new BenchComparisonRecord
+            (
+                LeftTitle,
+                RightTitle,
+                LeftMeasure.OpCount,
+                RightMeasure.OpCount,
+                LeftMeasure.WorkTime,
+                RightMeasure.WorkTime,
+                PerformanceRatio
+            );
     }
 
+    public class BenchComparisonRecord
+    {
+        public static IReadOnlyList<string> Headers()
+            =>  type<BenchComparisonRecord>().DeclaredProperties().Select(p => p.Name).ToReadOnlyList();
+
+        public BenchComparisonRecord(
+            string LeftOpUri, string RightOpUri, 
+            long LeftOpCount, long RightOpCount,
+            Duration LeftWorkTime, Duration RightWorkTime,
+            double PerformanceRatio
+            )
+        {
+            this.LeftOpUri = LeftOpUri;
+            this.RightOpUri = RightOpUri;
+            
+            this.LeftOpCount = LeftOpCount;
+            this.RightOpCount = RightOpCount;
+
+            this.LeftWorkTime = LeftWorkTime;
+            this.RightWorkTime = RightWorkTime;
+            this.PerformanceRatio = PerformanceRatio;
+        }
+
+        public string LeftOpUri {get;}
+
+        public string RightOpUri {get;}
+
+        public long LeftOpCount {get;}
+
+        public long RightOpCount {get;}
+        
+        public Duration LeftWorkTime {get;}
+
+        public Duration RightWorkTime {get;}
+
+        public double PerformanceRatio {get;}
+
+        public string Delimited(char delimiter = ',')
+            => string.Join(delimiter, LeftOpUri, RightOpUri, LeftOpCount, RightOpCount, LeftWorkTime.Ms, RightWorkTime.Ms, PerformanceRatio);
+
+
+        public override string ToString()
+            => Delimited();
+
+
+    }
     public class BenchComparison : BenchComparison<OpId>
     {
         public static readonly BenchComparison Zero = new BenchComparison(BenchSummary.Zero, BenchSummary.Zero);

@@ -8,9 +8,6 @@ namespace Z0
     using System.Numerics;
     using static zfunc;
 
-    using static Operative;
-    using static Structures;
-
     /// <summary>
     /// Characterizes operations over an integer type
     /// </summary>

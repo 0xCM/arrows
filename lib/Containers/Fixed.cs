@@ -10,8 +10,6 @@ namespace Z0
     using static zcore;
     using static zfunc;
 
-    using static Contain;
-
     public static class Fixed
     {
         public static FixedList<T> list<T>(IReadOnlyList<T> src)
@@ -60,14 +58,6 @@ namespace Z0
         bool eq(FixedArray<T> rhs)
             => System.Linq.Enumerable.SequenceEqual(data, rhs.data, ISG.comparer());
 
-        bool Equatable<FixedArray<T>>.eq(FixedArray<T> rhs)
-            => eq(rhs);
-
-        bool Equatable<FixedArray<T>>.neq(FixedArray<T> rhs)
-            => not(eq(rhs));
-
-        int IHashable<FixedArray<T>>.hash()
-            => _hash.Value;
 
         bool IEquatable<FixedArray<T>>.Equals(FixedArray<T> rhs)
             => eq(rhs);
@@ -78,10 +68,10 @@ namespace Z0
         bool ISemigroupOps<T>.neq(T lhs, T rhs)
             => not(lhs.Equals(rhs));
 
-        string Formattable.format()
+        string format()
             => ISG.format();
 
-        IEqualityComparer<T> Structures.IImplicitSemigroup<FixedArray<T>, T>.comparer(Func<T, int> hasher)
+        IEqualityComparer<T> IImplicitSemigroup<FixedArray<T>, T>.comparer(Func<T, int> hasher)
             => ISG.comparer(hasher);
     }
 
@@ -116,14 +106,6 @@ namespace Z0
         bool eq(FixedList<T> rhs)
             => System.Linq.Enumerable.SequenceEqual(data, rhs.data, ISG.comparer());
 
-        bool Equatable<FixedList<T>>.eq(FixedList<T> rhs)
-            => eq(rhs);
-
-        bool Equatable<FixedList<T>>.neq(FixedList<T> rhs)
-            => not(eq(rhs));
-
-        int IHashable<FixedList<T>>.hash()
-            => _hash.Value;
 
         bool IEquatable<FixedList<T>>.Equals(FixedList<T> rhs)
             => eq(rhs);
@@ -135,10 +117,10 @@ namespace Z0
         bool ISemigroupOps<T>.neq(T lhs, T rhs)
             => not(lhs.Equals(rhs));
 
-        string Formattable.format()
+        string format()
             => ISG.format();
 
-        IEqualityComparer<T> Structures.IImplicitSemigroup<FixedList<T>, T>.comparer(Func<T, int> hasher)
+        IEqualityComparer<T> IImplicitSemigroup<FixedList<T>, T>.comparer(Func<T, int> hasher)
             => ISG.comparer(hasher);
 
 
@@ -176,14 +158,6 @@ namespace Z0
         bool eq(FixedStream<T> rhs)
             => System.Linq.Enumerable.SequenceEqual(data, rhs.data, ISG.comparer());
 
-        bool Equatable<FixedStream<T>>.eq(FixedStream<T> rhs)
-            => eq(rhs);
-
-        bool Equatable<FixedStream<T>>.neq(FixedStream<T> rhs)
-            => not(eq(rhs));
-
-        int IHashable<FixedStream<T>>.hash()
-            => _hash.Value;
 
         bool IEquatable<FixedStream<T>>.Equals(FixedStream<T> rhs)
             => eq(rhs);
@@ -194,10 +168,10 @@ namespace Z0
         bool ISemigroupOps<T>.neq(T lhs, T rhs)
             => not(lhs.Equals(rhs));
 
-        string Formattable.format()
+        string format()
             => ISG.format();
 
-        IEqualityComparer<T> Structures.IImplicitSemigroup<FixedStream<T>, T>.comparer(Func<T, int> hasher)
+        IEqualityComparer<T> IImplicitSemigroup<FixedStream<T>, T>.comparer(Func<T, int> hasher)
             => ISG.comparer(hasher);
     }
 }

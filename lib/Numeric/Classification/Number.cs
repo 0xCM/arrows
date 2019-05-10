@@ -7,8 +7,6 @@ namespace Z0
     using System;
     using System.Collections.Generic;
     using static zfunc;
-    using static Structures;
-    using static Operative;
 
     /// <summary>
     /// Defines the minimal aspects for a value to be considered a "real number"
@@ -41,10 +39,10 @@ namespace Z0
     public interface INumber<S> : 
             ISubtractive<S>, 
             Absolitive<S>, 
-            Equatable<S>, 
+            IEquatable<S>, 
             IGroupA<S>, 
-            SemigroupM<S>, 
-            Semiring<S>, 
+            ISemigroupM<S>, 
+            ISemiring<S>, 
             IDivisive<S>, 
             INaturallyPowered<S>, 
             IBitSource<S>, 

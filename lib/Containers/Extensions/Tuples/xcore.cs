@@ -92,22 +92,5 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => tuple(v);
 
-        /// <summary>
-        /// Transforms a sequence of key-value pairs into a sequence of tuples
-        /// </summary>
-        /// <param name="key">The key</param>
-        /// <param name="value">The value</param>
-        /// <typeparam name="K">The key type</typeparam>
-        /// <typeparam name="V">The value type</typeparam>
-        [MethodImpl(Inline)]
-        public static IEnumerable<(K key, V value)> ToTuples<K,V>(this IEnumerable<KeyValuePair<K,V>> pairs)
-            => tuples(pairs);
-
-        [MethodImpl(Inline)]
-        public static string Format<X,Y>(this (X x,Y y) src)
-            => paren(src.x.ToString(), ",", src.y.ToString());
-        
-        public static string Format<X,Y>(this IEnumerable<(X x,Y y)> src)
-            => string.Join(", ", src.Select(x => x.Format()));
     }
 }

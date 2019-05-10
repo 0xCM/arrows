@@ -24,7 +24,7 @@ namespace Z0
         /// <param name="lhs">The first list</param>
         /// <param name="rhs">The second list</param>
         public static bool DeepEquals<T>(this IEnumerable<T> lhs, IEnumerable<T> rhs)
-            where T : Equatable<T>, new()
+            where T : IEquatable<T>, new()
                 => eq(lhs,rhs);
 
         /// <summary>

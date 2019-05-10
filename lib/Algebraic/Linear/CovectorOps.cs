@@ -24,7 +24,7 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]   
         public static T apply<N,T>(Covector<N,T> cv, Vector<N,T> v)
-            where T : struct, Operative.ISemiringOps<T>, IEquatable<T>
+            where T : struct, ISemiringOps<T>, IEquatable<T>
             where N : ITypeNat, new()        
 
         {
@@ -81,7 +81,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T sum<N,T>(Covector<N,T> src) 
             where N : ITypeNat, new() 
-            where T : struct, Structures.Semiring<T>
+            where T : struct, ISemiring<T>
                 => Slice.sum(src.cells);
     }
 }

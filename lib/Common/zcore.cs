@@ -31,7 +31,7 @@ partial class zcore
     /// <typeparam name="T">The stream element type</typeparam>
     [MethodImpl(Inline)]
     public static T foldA<T>(IEnumerable<T> src)
-        where T : struct, Structures.IMonoidA<T>
+        where T : struct, IMonoidA<T>
     {
         
         var cumulant = default(T).zero;
@@ -47,7 +47,7 @@ partial class zcore
     /// <typeparam name="T">The stream element type</typeparam>
     [MethodImpl(Inline)]
     public static T foldM<T>(IEnumerable<T> src)
-        where T : struct, Structures.IMonoidM<T>
+        where T : struct, IMonoidM<T>
     {        
         var cumulant = default(T).one;
         foreach(var item in src)
@@ -61,7 +61,7 @@ partial class zcore
     /// <param name="src">The source stream</param>
     /// <typeparam name="T">The stream element type</typeparam>
     [MethodImpl(Inline)]
-    public static T fold<T>(IEnumerable<T> src, Operative.IMonoidalOps<T> monoid)
+    public static T fold<T>(IEnumerable<T> src, IMonoidalOps<T> monoid)
         where T : struct, IEquatable<T>
     {
         
@@ -70,7 +70,5 @@ partial class zcore
             cumulant = monoid.compose(cumulant, item);            
         return cumulant;
     }
-                    
-
-
+                
 }

@@ -17,129 +17,140 @@ namespace Z0
     partial class NumGBench
     {
 
-        OpMeasure gmod<T>(T[] dst)
+        OpMetrics mod<T>(T[] dst)
             where T : struct, IEquatable<T>
         {
-            var lhs = Number.many(LeftSrc.Sampled(head(dst)));
-            var rhs = Number.many(NonZeroSrc.Sampled(head(dst)));
+            var opid =  Id<T>(OpKind.Mod);
+            var lhs = Number.many(LeftSrc.Sampled(opid));
+            var rhs = Number.many(NonZeroSrc.Sampled(opid));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = lhs[it] + rhs[it];
-            return(dst.Length, snapshot(sw));
+
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = lhs[it] % rhs[it];
+            return(SampleSize, snapshot(sw));
         }
 
-        OpMeasure dmod(sbyte[] dst)
+        OpMetrics dmod(sbyte[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = NonZeroSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = (sbyte)(lhs[it] + rhs[it]);
+            
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = (sbyte)(lhs[it] % rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dmod(byte[] dst)
+        OpMetrics dmod(byte[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = NonZeroSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = (byte)(lhs[it] + rhs[it]);
+
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = (byte)(lhs[it] % rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dmod(short[] dst)
+        OpMetrics dmod(short[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = NonZeroSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = (short)(lhs[it] + rhs[it]);
+
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = (short)(lhs[it] % rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dmod(ushort[] dst)
+        OpMetrics dmod(ushort[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = NonZeroSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = (ushort)(lhs[it] + rhs[it]);
+
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = (ushort)(lhs[it] % rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dmod(int[] dst)
+        OpMetrics dmod(int[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = NonZeroSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = lhs[it] + rhs[it];
+
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = lhs[it] % rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dmod(uint[] dst)
+        OpMetrics dmod(uint[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = NonZeroSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = lhs[it] + rhs[it];
+
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = lhs[it] % rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
 
-        OpMeasure dmod(long[] dst)
+        OpMetrics dmod(long[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = NonZeroSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = lhs[it] + rhs[it];
+
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = lhs[it] % rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
 
-        OpMeasure dmod(ulong[] dst)
+        OpMetrics dmod(ulong[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = NonZeroSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = lhs[it] + rhs[it];
+
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = lhs[it] % rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
 
-        OpMeasure dmod(float[] dst)
+        OpMetrics dmod(float[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = NonZeroSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = lhs[it] + rhs[it];
+
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = lhs[it] % rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
 
-        OpMeasure dmod(double[] dst)
+        OpMetrics dmod(double[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = NonZeroSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = lhs[it] + rhs[it];
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = lhs[it] % rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
@@ -150,7 +161,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dmod(dst.Left)), 
-                Measure(opid, () => gmod(dst.Right)));
+                Measure(opid, () => mod(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -164,7 +175,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dmod(dst.Left)), 
-                Measure(opid, () => gmod(dst.Right)));
+                Measure(opid, () => mod(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -178,7 +189,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dmod(dst.Left)), 
-                Measure(opid, () => gmod(dst.Right)));
+                Measure(opid, () => mod(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -192,7 +203,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dmod(dst.Left)), 
-                Measure(opid, () => gmod(dst.Right)));
+                Measure(opid, () => mod(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -207,7 +218,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dmod(dst.Left)), 
-                Measure(opid, () => gmod(dst.Right)));
+                Measure(opid, () => mod(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -222,7 +233,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dmod(dst.Left)), 
-                Measure(opid, () => gmod(dst.Right)));
+                Measure(opid, () => mod(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -236,7 +247,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dmod(dst.Left)), 
-                Measure(opid, () => gmod(dst.Right)));
+                Measure(opid, () => mod(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -250,7 +261,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dmod(dst.Left)), 
-                Measure(opid, () => gmod(dst.Right)));
+                Measure(opid, () => mod(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -264,7 +275,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dmod(dst.Left)), 
-                Measure(opid, () => gmod(dst.Right)));
+                Measure(opid, () => mod(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -278,7 +289,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dmod(dst.Left)), 
-                Measure(opid, () => gmod(dst.Right)));
+                Measure(opid, () => mod(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             

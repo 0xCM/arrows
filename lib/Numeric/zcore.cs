@@ -150,7 +150,7 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static T min<T>(T x, T y)
-        where T : Structures.IOrderable<T>, new()
+        where T : IOrderable<T>, new()
             => x.lt(y) ? x : y;
 
     /// <summary>
@@ -167,14 +167,14 @@ partial class zcore
     
     [MethodImpl(Inline)]
     static Ordering compare<T>(T lhs, T rhs)
-        where T: Structures.IOrderable<T>, new()
+        where T: IOrderable<T>, new()
             => lhs.gt(rhs) ? Ordering.GT :
                lhs.lt(rhs) ? Ordering.LT :
                Ordering.EQ; 
 
     [MethodImpl(Inline)]
     public static Index<(T lhs, Ordering, T rhs)> compare<T>(T[] lhs, T[] rhs)
-        where T: Structures.IOrderable<T>, new()
+        where T: IOrderable<T>, new()
             => fuse(lhs,rhs, (l,r) =>  (l, compare(l,r), r));
 
 
@@ -252,7 +252,7 @@ partial class zcore
     /// <typeparam name="T">The operand type</typeparam>
     [MethodImpl(Inline)]
     public static T min<T>(params T[] src)
-        where T : struct, Structures.IOrderable<T>
+        where T : struct, IOrderable<T>
     {
         T min = src.FirstOrDefault();
         foreach(var item in src)
@@ -262,12 +262,12 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static T max<T>(T x, T y)
-        where T : Structures.IOrderable<T>, new()
+        where T : IOrderable<T>, new()
             => x.gt(y) ? x : y;
 
     [MethodImpl(Inline)]
     public static T max<T>(IEnumerable<T> src)
-        where T : struct, Structures.IOrderable<T>
+        where T : struct, IOrderable<T>
     {
         T max = src.FirstOrDefault();
         foreach(var item in src)
@@ -277,7 +277,7 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static T max<T>(params T[] src)
-        where T : struct, Structures.IOrderable<T>
+        where T : struct, IOrderable<T>
         => max((IEnumerable<T>)src);
 
     /// <summary>
@@ -295,7 +295,7 @@ partial class zcore
     }
 
     public static T avg<T>(IEnumerable<T> src)
-        where T : Structures.IRealNumber<T>,new()
+        where T : IRealNumber<T>,new()
     {
         var prototype = new T();
         var result = prototype.zero;
@@ -305,7 +305,7 @@ partial class zcore
             result = result.add(val);
             count = count.inc();
         }
-        return count.neq(count.zero) ? result.div(count) : result;
+        return !count.Equals(count.zero) ? result.div(count) : result;
     }
 
     [MethodImpl(Inline)]

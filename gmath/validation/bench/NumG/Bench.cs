@@ -39,6 +39,12 @@ namespace Z0
 
         readonly ArraySampler NonZeroSrc;   
 
+        int SampleSize
+            => Config.SampleSize;
+
+        (T[] Left,T[] Right) Sampled<T>(OpId<T> opid = default)
+            where T : struct, IEquatable<T>
+                => (LeftSrc.Sampled(opid), RightSrc.Sampled(opid));
 
         static OpId<T> Id<T>(OpKind op, bool generic = false)
             where T : struct, IEquatable<T>

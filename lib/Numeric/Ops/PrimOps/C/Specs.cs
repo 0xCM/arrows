@@ -13,7 +13,7 @@ namespace Z0
 
     partial class C
     {
-        public interface ISignable<S> : Structures.IOrderable<S>
+        public interface ISignable<S> : IOrderable<S>
             where S : ISignable<S>, new()
         {
             /// <summary>
@@ -47,7 +47,7 @@ namespace Z0
         /// Characterizes a number upon which a total order is defined
         /// </summary>
         /// <typeparam name="S">The reification type</typeparam>
-        public interface OrdNum<S> : ICNumber<S>, Structures.IOrderable<S> 
+        public interface OrdNum<S> : ICNumber<S>, IOrderable<S> 
             where S : OrdNum<S>, new()
         {
 

@@ -18,7 +18,7 @@ namespace Z0
     {
         public IBenchComparison MinI8()
         {
-            var opid = Id<sbyte>(OpKind.Min);
+            var opid = Id<sbyte>(OpKind.MinAggregate);
             var zero = default(sbyte);
             var src = LeftSrc.Sampled(opid);
             
@@ -35,7 +35,7 @@ namespace Z0
 
         public IBenchComparison MinU8()
         {
-            var opid = Id<byte>(OpKind.Min);
+            var opid = Id<byte>(OpKind.MinAggregate);
             var zero = default(byte);
             var src = LeftSrc.Sampled(opid);
             
@@ -52,7 +52,7 @@ namespace Z0
 
         public IBenchComparison MinI16()
         {
-            var opid = Id<short>(OpKind.Min);
+            var opid = Id<short>(OpKind.MinAggregate);
             var zero = default(short);
             var src = LeftSrc.Sampled(opid);
             
@@ -69,7 +69,7 @@ namespace Z0
 
         public IBenchComparison MinU16()
         {
-            var opid = Id<ushort>(OpKind.Min);
+            var opid = Id<ushort>(OpKind.MinAggregate);
             var zero = default(ushort);
             var src = LeftSrc.Sampled(opid);
             
@@ -86,7 +86,7 @@ namespace Z0
 
         public IBenchComparison MinI32()
         {
-            var opid = Id<int>(OpKind.Min);
+            var opid = Id<int>(OpKind.MinAggregate);
             var zero = default(int);
             var src = LeftSrc.Sampled(opid);
             
@@ -103,7 +103,7 @@ namespace Z0
 
         public IBenchComparison MinU32()
         {
-            var opid = Id<uint>(OpKind.Min);
+            var opid = Id<uint>(OpKind.MinAggregate);
             var zero = default(uint);
             var src = LeftSrc.Sampled(opid);
             
@@ -120,7 +120,7 @@ namespace Z0
 
        public IBenchComparison MinI64()
         {
-            var opid = Id<long>(OpKind.Min);
+            var opid = Id<long>(OpKind.MinAggregate);
             var zero = default(long);
             var src = LeftSrc.Sampled(opid);
             
@@ -137,7 +137,7 @@ namespace Z0
 
         public IBenchComparison MinU64()
         {
-            var opid = Id<ulong>(OpKind.Min);
+            var opid = Id<ulong>(OpKind.MinAggregate);
             var zero = default(ulong);
             var src = LeftSrc.Sampled(opid);
             
@@ -154,7 +154,7 @@ namespace Z0
 
         public IBenchComparison MinF32()
         {
-            var opid = Id<float>(OpKind.Min);
+            var opid = Id<float>(OpKind.MinAggregate);
             var zero = default(float);
             var src = LeftSrc.Sampled(opid);
 
@@ -172,7 +172,7 @@ namespace Z0
 
         public IBenchComparison MinF64()
         {
-            var opid = Id<double>(OpKind.Min);
+            var opid = Id<double>(OpKind.MinAggregate);
             var zero = default(double);
             var src = LeftSrc.Sampled(opid);
 

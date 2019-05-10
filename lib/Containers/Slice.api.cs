@@ -46,14 +46,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T reduce<N,T>(Slice<N,T> s, Func<T,T,T> reducer)
                 where N : Z0.ITypeNat, new()
-                where T : struct, Structures.Semiring<T>
+                where T : struct, ISemiring<T>
                     => fold(s,reducer);
 
 
         [MethodImpl(Inline)]
         public static T sum<N,T>(Slice<N,T> x)
             where N : Z0.ITypeNat, new() 
-            where T : struct, Structures.Semiring<T>
+            where T : struct, ISemiring<T>
                 => reduce(x, (a,b) => a.add(b));
 
 

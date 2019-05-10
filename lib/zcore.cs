@@ -28,30 +28,6 @@ partial class zcore
         throw new Exception($"List count mismatch: lhs.Count= {lhs.Count}, rhs.Count = {rhs.Count}");
     }
 
-    [MethodImpl(Inline)]
-    public static unsafe ref T memref<T>(ReadOnlySpan<T> x)    
-        => ref MemoryMarshal.GetReference(x);
-
-
-    /// <summary>
-    /// The univeral identity function that returns the source value
-    /// </summary>
-    /// <param name="x">The source value</param>
-    /// <typeparam name="A">The source value type</typeparam>
-    /// <returns>The source value</returns>
-    [MethodImpl(Inline)]   
-    public static A  identity<A>(A x) => x;
-
-    /// <summary>
-    /// Constructs a citation for a bibliographic resource
-    /// </summary>
-    /// <param name="resource">The referenced biblography resource</param>
-    /// <param name="location">The location of interest within the referenced work</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static Citation cite(Resource resource, int location)
-        => Citation.define(resource,location);
-
 
     /// <summary>
     /// Constructs an arrow, based at a specified source, projecting

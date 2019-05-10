@@ -20,20 +20,20 @@ namespace Z0
             var opid = Id<sbyte>(OpKind.Eq);
             var dst = Targets<bool>();
 
-            OpMeasure eqLeft(bool[] dst)
+            OpMetrics baseline(bool[] dst)
             {
                 var src = Sampled(opid);
 
                 var sw = stopwatch();
-                var it = It.Define(0, SampleSize);
-                while(++it)
-                    dst[it] = math.eq(src.Left[it], src.Right[it]);
+                var it = -1;
+                while(++it < SampleSize)
+                    dst[it] = src.Left[it] == src.Right[it];
                 return(SampleSize, snapshot(sw));
             }
 
             var comparison = Run(opid, 
-                Measure(opid, () => eqLeft(dst.Left)), 
-                Measure(~opid, () => eqRight<sbyte>(dst.Right)));
+                Measure(opid, () => baseline(dst.Left)), 
+                Measure(~opid, () => eq<sbyte>(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);            
             return Finish(comparison);
@@ -42,22 +42,22 @@ namespace Z0
         public IBenchComparison EqU8()
         {
             var opid = Id<byte>(OpKind.Eq);
-            var dst = Targets<bool>();
 
-            OpMeasure eqLeft(bool[] dst)
+            OpMetrics baseline(bool[] dst)
             {
                 var src = Sampled(opid);
 
                 var sw = stopwatch();
-                var it = It.Define(0, SampleSize);
-                while(++it)
-                    dst[it] = math.eq(src.Left[it], src.Right[it]);
+                var it = -1;
+                while(++it < SampleSize)
+                    dst[it] = src.Left[it] == src.Right[it];
                 return(SampleSize, snapshot(sw));
             }
-
+            
+            var dst = Targets<bool>();
             var comparison = Run(opid, 
-                Measure(opid, () => eqLeft(dst.Left)), 
-                Measure(~opid, () => eqRight<byte>(dst.Right)));
+                Measure(opid, () => baseline(dst.Left)), 
+                Measure(~opid, () => eq<byte>(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);            
             return Finish(comparison);
@@ -66,22 +66,22 @@ namespace Z0
         public IBenchComparison EqI16()
         {
             var opid = Id<short>(OpKind.Eq);
-            var dst = Targets<bool>();
 
-            OpMeasure eqLeft(bool[] dst)
+            OpMetrics baseline(bool[] dst)
             {
                 var src = Sampled(opid);
-
                 var sw = stopwatch();
-                var it = It.Define(0, SampleSize);
-                while(++it)
-                    dst[it] = math.eq(src.Left[it], src.Right[it]);
+                
+                var it = -1;
+                while(++it < SampleSize)
+                    dst[it] = src.Left[it] == src.Right[it];
                 return(SampleSize, snapshot(sw));
             }
 
+            var dst = Targets<bool>();
             var comparison = Run(opid, 
-                Measure(opid, () => eqLeft(dst.Left)), 
-                Measure(~opid, () => eqRight<ushort>(dst.Right)));
+                Measure(opid, () => baseline(dst.Left)), 
+                Measure(~opid, () => eq<short>(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);            
             return Finish(comparison);
@@ -90,22 +90,22 @@ namespace Z0
         public IBenchComparison EqU16()
         {
             var opid = Id<ushort>(OpKind.Eq);
-            var dst = Targets<bool>();
 
-            OpMeasure eqLeft(bool[] dst)
+            OpMetrics baseline(bool[] dst)
             {
                 var src = Sampled(opid);
-
                 var sw = stopwatch();
-                var it = It.Define(0, SampleSize);
-                while(++it)
-                    dst[it] = math.eq(src.Left[it], src.Right[it]);
+                
+                var it = -1;
+                while(++it < SampleSize)
+                    dst[it] = src.Left[it] == src.Right[it];
                 return(SampleSize, snapshot(sw));
             }
 
+            var dst = Targets<bool>();
             var comparison = Run(opid, 
-                Measure(opid, () => eqLeft(dst.Left)), 
-                Measure(~opid, () => eqRight<ushort>(dst.Right)));
+                Measure(opid, () => baseline(dst.Left)), 
+                Measure(~opid, () => eq<ushort>(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);            
             return Finish(comparison);
@@ -117,20 +117,20 @@ namespace Z0
             var opid = Id<int>(OpKind.Eq);
             var dst = Targets<bool>();
 
-            OpMeasure eqLeft(bool[] dst)
+            OpMetrics baseline(bool[] dst)
             {
                 var src = Sampled(opid);
-
                 var sw = stopwatch();
-                var it = It.Define(0, SampleSize);
-                while(++it)
-                    dst[it] = math.eq(src.Left[it], src.Right[it]);
+
+                var it = -1;
+                while(++it < SampleSize)
+                    dst[it] = src.Left[it] == src.Right[it];
                 return(SampleSize, snapshot(sw));
             }
 
             var comparison = Run(opid, 
-                Measure(opid, () => eqLeft(dst.Left)), 
-                Measure(~opid, () => eqRight<int>(dst.Right)));
+                Measure(opid, () => baseline(dst.Left)), 
+                Measure(~opid, () => eq<int>(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);            
             return Finish(comparison);
@@ -141,20 +141,20 @@ namespace Z0
             var opid = Id<uint>(OpKind.Eq);
             var dst = Targets<bool>();
 
-            OpMeasure eqLeft(bool[] dst)
+            OpMetrics baseline(bool[] dst)
             {
                 var src = Sampled(opid);
 
                 var sw = stopwatch();
-                var it = It.Define(0, SampleSize);
-                while(++it)
-                    dst[it] = math.eq(src.Left[it], src.Right[it]);
+                var it = -1;
+                while(++it < SampleSize)
+                    dst[it] = src.Left[it] == src.Right[it];
                 return(SampleSize, snapshot(sw));
             }
 
             var comparison = Run(opid, 
-                Measure(opid, () => eqLeft(dst.Left)), 
-                Measure(~opid, () => eqRight<uint>(dst.Right)));
+                Measure(opid, () => baseline(dst.Left)), 
+                Measure(~opid, () => eq<uint>(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);            
             return Finish(comparison);
@@ -165,20 +165,20 @@ namespace Z0
             var opid = Id<long>(OpKind.Eq);
             var dst = Targets<bool>();
 
-            OpMeasure eqLeft(bool[] dst)
+            OpMetrics baseline(bool[] dst)
             {
                 var src = Sampled(opid);
 
                 var sw = stopwatch();
-                var it = It.Define(0, SampleSize);
-                while(++it)
-                    dst[it] = math.eq(src.Left[it], src.Right[it]);
+                var it = -1;
+                while(++it < SampleSize)
+                    dst[it] = src.Left[it] == src.Right[it];
                 return(SampleSize, snapshot(sw));
             }
 
             var comparison = Run(opid, 
-                Measure(opid, () => eqLeft(dst.Left)), 
-                Measure(~opid, () => eqRight<long>(dst.Right)));
+                Measure(opid, () => baseline(dst.Left)), 
+                Measure(~opid, () => eq<long>(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);            
             return Finish(comparison);
@@ -189,20 +189,20 @@ namespace Z0
             var opid = Id<ulong>(OpKind.Eq);
             var dst = Targets<bool>();
 
-            OpMeasure eqLeft(bool[] dst)
+            OpMetrics baseline(bool[] dst)
             {
                 var src = Sampled(opid);
 
                 var sw = stopwatch();
-                var it = It.Define(0, SampleSize);
-                while(++it)
-                    dst[it] = math.eq(src.Left[it], src.Right[it]);
+                var it = -1;
+                while(++it < SampleSize)
+                    dst[it] = src.Left[it] == src.Right[it];
                 return(SampleSize, snapshot(sw));
             }
 
             var comparison = Run(opid, 
-                Measure(opid, () => eqLeft(dst.Left)), 
-                Measure(~opid, () => eqRight<ulong>(dst.Right)));
+                Measure(opid, () => baseline(dst.Left)), 
+                Measure(~opid, () => eq<ulong>(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);            
             return Finish(comparison);
@@ -213,20 +213,20 @@ namespace Z0
             var opid = Id<float>(OpKind.Eq);
             var dst = Targets<bool>();
 
-            OpMeasure eqLeft(bool[] dst)
+            OpMetrics baseline(bool[] dst)
             {
                 var src = Sampled(opid);
 
                 var sw = stopwatch();
-                var it = It.Define(0, SampleSize);
-                while(++it)
-                    dst[it] = math.eq(src.Left[it], src.Right[it]);
+                var it = -1;
+                while(++it < SampleSize)
+                    dst[it] = src.Left[it] == src.Right[it];
                 return(SampleSize, snapshot(sw));
             }
 
             var comparison = Run(opid, 
-                Measure(opid, () => eqLeft(dst.Left)), 
-                Measure(~opid, () => eqRight<float>(dst.Right)));
+                Measure(opid, () => baseline(dst.Left)), 
+                Measure(~opid, () => eq<float>(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);            
             return Finish(comparison);
@@ -237,34 +237,34 @@ namespace Z0
             var opid = Id<double>(OpKind.Eq);
             var dst = Targets<bool>();
 
-            OpMeasure eqLeft(bool[] dst)
+            OpMetrics baseline(bool[] dst)
             {
                 var src = Sampled(opid);
 
                 var sw = stopwatch();
-                var it = It.Define(0, SampleSize);
-                while(++it)
-                    dst[it] = math.eq(src.Left[it], src.Right[it]);
+                var it = -1;
+                while(++it < SampleSize)
+                    dst[it] = src.Left[it] == src.Right[it];
                 return(SampleSize, snapshot(sw));
             }
 
             var comparison = Run(opid, 
-                Measure(opid, () => eqLeft(dst.Left)), 
-                Measure(~opid, () => eqRight<double>(dst.Right)));
+                Measure(opid, () => baseline(dst.Left)), 
+                Measure(~opid, () => eq<double>(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);            
             return Finish(comparison);
         }
 
-        OpMeasure eqRight<T>(bool[] dst)
+        OpMetrics eq<T>(bool[] dst)
             where T : struct, IEquatable<T>
         {
             var opid = Id<T>(OpKind.Eq);
             var src = Sampled(opid);
 
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = gmath.eq(src.Left[it], src.Right[it]);
             return(SampleSize, snapshot(sw));
         }

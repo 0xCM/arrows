@@ -11,8 +11,23 @@ namespace Z0
     using System.IO;
 
     
+    public enum OpArity
+    {
+        /// <summary>
+        /// Indicates an operator that accepts one input
+        /// </summary>
+        Unary = 1,
 
+        /// <summary>
+        /// Indicates an operator that accepts two inputs, normally described by "left" and "right"
+        /// </summary>
+        Binary = 2,
 
+        /// <summary>
+        /// Indicates an operator that accepts three inputs
+        /// </summary>
+        Ternary = 3
+    }
 
     public enum OpFusion
     {
@@ -78,14 +93,26 @@ namespace Z0
         /// </summary>
         Mul,
 
+        /// <summary>
+        /// Indicates a binary operator that computes the modulus of the source operands
+        /// </summary>
         Mod,
 
         Abs,
 
+        /// <summary>
+        /// Indicates a binary operator that computes the bitwise or of the source operands
+        /// </summary>
         Or,
 
+        /// <summary>
+        /// Indicates a binary operator that computes the bitwise xor of the source operands
+        /// </summary>
         XOr,
 
+        /// <summary>
+        /// Indicates a binary operator that computes the bitwise and of the source operands
+        /// </summary>
         And,
 
         Flip,
@@ -103,7 +130,6 @@ namespace Z0
         /// average of the operand constituents
         /// </summary>
         Avg,
-
         
         /// <summary>
         /// Indicates a unary operator that increments a value by a unit
@@ -115,9 +141,28 @@ namespace Z0
         /// </summary>
         Dec,
 
+
+        /// <summary>
+        /// Indicates a binary operator that returns the greater operand
+        /// </summary>
         Max,
 
-        Min
+        /// <summary>
+        /// Indicates a binary operator that returns the smaller operand
+        /// </summary>
+        Min,
+
+        /// <summary>
+        /// Indicates a unary aggregate operator calculates the maximum value contained in a collection
+        /// </summary>
+        MaxAggregate,
+
+        /// <summary>
+        /// Indicates a unary aggregate operator calculates the minimum value contained in a collection
+        /// </summary>
+        MinAggregate,
+
+        Negate
     }
 
 

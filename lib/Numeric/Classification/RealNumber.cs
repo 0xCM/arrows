@@ -26,34 +26,32 @@ namespace Z0
 
     }
 
-    partial class Structures
+    /// <summary>
+    /// Characterizes a structured real
+    /// </summary>
+    /// <typeparam name="S">The reification type</typeparam>
+    public interface IRealNumber<S> : IOrderedNumber<S>, ITrigonmetric<S>, IComparable<S>
+        where S : IRealNumber<S>, new()
     {
-        /// <summary>
-        /// Characterizes a structured real
-        /// </summary>
-        /// <typeparam name="S">The reification type</typeparam>
-        public interface IRealNumber<S> : IOrderedNumber<S>, ITrigonmetric<S>, IComparable<S>
-            where S : IRealNumber<S>, new()
-        {
 
-        }
-
-        public interface IBoundReal<S> :  IRealNumber<S>
-            where S : IBoundReal<S>, new()
-        {
-
-        }
-
-
-        /// <summary>
-        /// Characterizes a reification structure over real numbers
-        /// </summary>
-        /// <typeparam name="S">The reification type</typeparam>
-        /// <typeparam name="T">The underlying type</typeparam>
-        public interface RealNumber<S,T> : IRealNumber<S>
-            where S : RealNumber<S,T>, new()
-        {
-
-        }
     }
+
+    public interface IBoundReal<S> :  IRealNumber<S>
+        where S : IBoundReal<S>, new()
+    {
+
+    }
+
+
+    /// <summary>
+    /// Characterizes a reification structure over real numbers
+    /// </summary>
+    /// <typeparam name="S">The reification type</typeparam>
+    /// <typeparam name="T">The underlying type</typeparam>
+    public interface IRealNumber<S,T> : IRealNumber<S>
+        where S : IRealNumber<S,T>, new()
+    {
+
+    }
+
 }

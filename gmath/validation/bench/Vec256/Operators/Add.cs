@@ -15,7 +15,7 @@ namespace Z0
 
     partial class Vec256Bench 
     {   
-        OpMeasure gadd<T>(T[] dst)
+        OpMetrics gadd<T>(T[] dst)
             where T : struct, IEquatable<T>
         {
             var lhs = LeftSrc.Sampled(head(dst));
@@ -25,7 +25,7 @@ namespace Z0
             return(lhs.Length, snapshot(sw));
         }
 
-        OpMeasure dadd(Span256<byte> dst)
+        OpMetrics dadd(Span256<byte> dst)
         {
             var lhs = LeftSrc.Sampled(dst.Head);
             Claim.nonzero(lhs.Length);
@@ -36,7 +36,7 @@ namespace Z0
             return(lhs.Length, snapshot(sw));
         }
 
-        OpMeasure dadd(Span256<sbyte> dst)
+        OpMetrics dadd(Span256<sbyte> dst)
         {
             var lhs = LeftSrc.Sampled(dst.Head);
             Claim.nonzero(lhs.Length);
@@ -47,7 +47,7 @@ namespace Z0
             return(lhs.Length, snapshot(sw));
         }
 
-        OpMeasure dadd(Span256<short> dst)
+        OpMetrics dadd(Span256<short> dst)
         {
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
@@ -56,7 +56,7 @@ namespace Z0
             return(lhs.Length, snapshot(sw));
         }
 
-        OpMeasure dadd(Span256<ushort> dst)
+        OpMetrics dadd(Span256<ushort> dst)
         {
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
@@ -65,7 +65,7 @@ namespace Z0
             return(lhs.Length, snapshot(sw));
         }
 
-        OpMeasure dadd(Span256<int> dst)
+        OpMetrics dadd(Span256<int> dst)
         {
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
@@ -74,7 +74,7 @@ namespace Z0
             return(lhs.Length, snapshot(sw));
         }
 
-        OpMeasure dadd(Span256<uint> dst)
+        OpMetrics dadd(Span256<uint> dst)
         {
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
@@ -83,7 +83,7 @@ namespace Z0
             return(lhs.Length, snapshot(sw));
         }
 
-        OpMeasure dadd(Span256<long> dst)
+        OpMetrics dadd(Span256<long> dst)
         {
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
@@ -92,7 +92,7 @@ namespace Z0
             return(lhs.Length, snapshot(sw));
         }
 
-        OpMeasure dadd(Span256<ulong> dst)
+        OpMetrics dadd(Span256<ulong> dst)
         {
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
@@ -101,7 +101,7 @@ namespace Z0
             return(lhs.Length, snapshot(sw));
         }
 
-        OpMeasure dadd(Span256<float> dst)
+        OpMetrics dadd(Span256<float> dst)
         {
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
@@ -110,7 +110,7 @@ namespace Z0
             return(lhs.Length, snapshot(sw));
         }
 
-        OpMeasure dadd(Span256<double> dst)
+        OpMetrics dadd(Span256<double> dst)
         {
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);

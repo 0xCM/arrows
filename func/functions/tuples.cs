@@ -25,6 +25,17 @@ partial class zfunc
         => (T) src;
 
     /// <summary>
+    /// Transforms a sequence of key-value pairs into a sequence of tuples
+    /// </summary>
+    /// <param name="key">The key</param>
+    /// <param name="value">The value</param>
+    /// <typeparam name="K">The key type</typeparam>
+    /// <typeparam name="V">The value type</typeparam>
+    [MethodImpl(Inline)]
+    public static IEnumerable<(K key, V value)> tuples<K,V>(IEnumerable<KeyValuePair<K,V>> pairs)
+        => pairs.Select(p => (p.Key,p.Value));
+
+    /// <summary>
     /// Maps a function over a 2-tuple
     /// </summary>
     /// <typeparam name="X1">The type of the first coordinate</typeparam>

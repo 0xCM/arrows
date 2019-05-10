@@ -26,11 +26,6 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => Number.sum(src);
 
-        [MethodImpl(Inline)]
-        public static num<T> Sum<T>(this IEnumerable<num<T>> src)        
-            where T : struct, IEquatable<T>
-                => Number.sum(src);
-        
 
         [MethodImpl(Inline)]
         public static void Scale<T>(this num<T>[] src, num<T> factor, num<T>[] dst)        

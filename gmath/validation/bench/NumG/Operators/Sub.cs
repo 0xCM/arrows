@@ -17,128 +17,141 @@ namespace Z0
     partial class NumGBench
     {
 
-        OpMeasure gsub<T>(T[] dst)
+        OpMetrics sub<T>(T[] dst)
             where T : struct, IEquatable<T>
         {
-            var lhs = Number.many(LeftSrc.Sampled(head(dst)));
-            var rhs = Number.many(RightSrc.Sampled(head(dst)));
+            var opid =  Id<T>(OpKind.Sub);
+            var src = Sampled(opid);
+            var lhs = Number.many(src.Left);
+            var rhs = Number.many(src.Right);
+
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] - rhs[it];
-            return(dst.Length, snapshot(sw));
+            return(SampleSize, snapshot(sw));
         }
 
-        OpMeasure dsub(sbyte[] dst)
+        OpMetrics dsub(sbyte[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (sbyte)(lhs[it] - rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(byte[] dst)
+        OpMetrics dsub(byte[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (byte)(lhs[it] - rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(short[] dst)
+        OpMetrics dsub(short[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (short)(lhs[it] - rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(ushort[] dst)
+        OpMetrics dsub(ushort[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (ushort)(lhs[it] - rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(int[] dst)
+        OpMetrics dsub(int[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] - rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(uint[] dst)
+        OpMetrics dsub(uint[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = lhs[it] - rhs[it];
-            return(dst.Length, snapshot(sw));
-        }
 
-
-        OpMeasure dsub(long[] dst)
-        {
-            var lhs = LeftSrc.Sampled(head(dst));
-            var rhs = RightSrc.Sampled(head(dst));
-            var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] - rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
 
-        OpMeasure dsub(ulong[] dst)
+        OpMetrics dsub(long[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] - rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
 
-        OpMeasure dsub(float[] dst)
+        OpMetrics dsub(ulong[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] - rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
 
-        OpMeasure dsub(double[] dst)
+        OpMetrics dsub(float[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = lhs[it] - rhs[it];
+            return(dst.Length, snapshot(sw));
+        }
+
+
+        OpMetrics dsub(double[] dst)
+        {
+            var lhs = LeftSrc.Sampled(head(dst));
+            var rhs = RightSrc.Sampled(head(dst));
+            var sw = stopwatch();
+
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] - rhs[it];
             return(dst.Length, snapshot(sw));
         }
@@ -150,7 +163,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dsub(dst.Left)), 
-                Measure(opid, () => gsub(dst.Right)));
+                Measure(opid, () => sub(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -164,7 +177,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dsub(dst.Left)), 
-                Measure(opid, () => gsub(dst.Right)));
+                Measure(opid, () => sub(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -178,7 +191,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dsub(dst.Left)), 
-                Measure(opid, () => gsub(dst.Right)));
+                Measure(opid, () => sub(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -192,7 +205,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dsub(dst.Left)), 
-                Measure(opid, () => gsub(dst.Right)));
+                Measure(opid, () => sub(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -207,7 +220,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dsub(dst.Left)), 
-                Measure(opid, () => gsub(dst.Right)));
+                Measure(opid, () => sub(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -222,7 +235,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dsub(dst.Left)), 
-                Measure(opid, () => gsub(dst.Right)));
+                Measure(opid, () => sub(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -236,7 +249,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dsub(dst.Left)), 
-                Measure(opid, () => gsub(dst.Right)));
+                Measure(opid, () => sub(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -250,7 +263,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dsub(dst.Left)), 
-                Measure(opid, () => gsub(dst.Right)));
+                Measure(opid, () => sub(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -264,7 +277,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dsub(dst.Left)), 
-                Measure(opid, () => gsub(dst.Right)));
+                Measure(opid, () => sub(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -278,7 +291,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(~opid, () => dsub(dst.Left)), 
-                Measure(opid, () => gsub(dst.Right)));
+                Measure(opid, () => sub(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             

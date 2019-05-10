@@ -14,6 +14,7 @@ namespace Z0
     public static class BibEntries
     {
 
+
         public static readonly Resource Y1999ABC = Resource.define(1999,"ABC","The ABC's", "Smith");
             
     }

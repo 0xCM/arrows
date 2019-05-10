@@ -73,7 +73,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vector<N,T> add<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
             where N : ITypeNat, new() 
-            where T : struct, Structures.Semiring<T>
+            where T : struct, ISemiring<T>
                 =>  lhs.fuse(rhs, (x,y) => x.add(y));
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vector<N,T> mul<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
             where N : ITypeNat, new() 
-            where T : struct, Structures.Semiring<T>
+            where T : struct, ISemiring<T>
                 =>  lhs.fuse(rhs, (x,y) => x.mul(y));
 
         [MethodImpl(Inline)]

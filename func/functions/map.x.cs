@@ -17,6 +17,16 @@ namespace  Z0
     {
 
 
+        public static Y? TryMap<X,Y>(this X? x, Func<X,Y> f)
+            where X : struct
+            where Y : struct
+                => x.HasValue ? f(x.Value) : (Y?)null;
+
+        public static Y Map<X,Y>(this X? x, Func<X,Y> f)
+            where X : struct
+            where Y : struct
+                => x.HasValue ? f(x.Value) : default(Y);
+
 
 
     }

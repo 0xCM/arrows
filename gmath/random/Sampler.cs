@@ -93,13 +93,16 @@ namespace Z0
             : base(random)
         {
             TakeSamples(samples,nonzero);
+            this.SampleSize  = samples;
+        
         }
+
+        public int SampleSize {get;}                
 
         public T[] Sampled<T>(OpId<T> op)
             where T : struct, IEquatable<T>
                 => Sampled<T>();
 
-                
         /// <summary>
         /// Returns values for which samples have already been drawn
         /// </summary>

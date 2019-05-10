@@ -19,6 +19,29 @@ namespace Z0
     using static mfunc;
     
     /// <summary>
+    /// Characterizes an enumerable with a known length as specified
+    /// by a natural type parameter
+    /// </summary>
+    public interface IEnumerable<N,I> : IEnumerable<I>
+        where N : ITypeNat, new()
+    {
+        /// <summary>
+        /// The value of the natural parameter
+        /// </summary>
+        uint length {get;}
+    }
+
+    public interface IArray<N,T> : IEnumerable<N,T>
+        where N : ITypeNat, new()
+    {
+        /// <summary>
+        /// Specifies or retrieves an array value via an unchecked index
+        /// </summary>
+        ref T this[int ix] {get;}
+    }
+
+
+    /// <summary>
     /// Constructs natural number prepresentatives and calculates related values
     /// </summary>
     public static class Nat

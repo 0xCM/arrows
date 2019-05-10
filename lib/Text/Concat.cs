@@ -21,8 +21,6 @@ using static Z0.ReflectionFlags;
 
 partial class zcore
 {
-
-
     /// <summary>
     /// Functional equivalalent of <see cref="string.Join(string, object[])"/>
     /// </summary>

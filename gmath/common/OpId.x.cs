@@ -70,6 +70,13 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => kind.OpId<T>(generic: true, intrinsic: false, fusion: OpFusion.Atomic);
 
+        /// <summary>
+        /// Describes an operator on a numbers type
+        /// </summary>
+        public static OpId<T> Numbers<T>(this OpKind kind, bool generic = false)
+            where T : struct, IEquatable<T>
+                => kind.OpId<T>(generic: generic, intrinsic: false, fusion: OpFusion.Fused);
+
     }
 
 }

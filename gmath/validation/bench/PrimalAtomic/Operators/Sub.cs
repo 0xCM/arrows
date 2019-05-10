@@ -148,124 +148,124 @@ namespace Z0
             return Finish(comparison);
         }
 
-        OpMeasure gsub<T>(T[] dst)
+        OpMetrics gsub<T>(T[] dst)
             where T : struct, IEquatable<T>
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = gmath.sub(lhs[it],rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(sbyte[] dst)
+        OpMetrics dsub(sbyte[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (sbyte)(lhs[it] - rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(byte[] dst)
+        OpMetrics dsub(byte[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (byte)(lhs[it] - rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(short[] dst)
+        OpMetrics dsub(short[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (short)(lhs[it] - rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(ushort[] dst)
+        OpMetrics dsub(ushort[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (ushort)(lhs[it] - rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(int[] dst)
+        OpMetrics dsub(int[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] - rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(uint[] dst)
+        OpMetrics dsub(uint[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] - rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(long[] dst)
+        OpMetrics dsub(long[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] - rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(ulong[] dst)
+        OpMetrics dsub(ulong[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] - rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(float[] dst)
+        OpMetrics dsub(float[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] - rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dsub(double[] dst)
+        OpMetrics dsub(double[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] - rhs[it];
             return(dst.Length, snapshot(sw));
         }

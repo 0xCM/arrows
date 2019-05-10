@@ -40,6 +40,18 @@ namespace Z0
         int SampleSize
             => Config.SampleSize;
         
+        ReadOnlySpan<T> LeftSample<T>(OpId<T> op = default)
+            where T : struct, IEquatable<T>
+                => LeftSrc.Sampled<T>();
+
+        ReadOnlySpan<T> RightSample<T>(OpId<T> op = default)
+            where T : struct, IEquatable<T>
+                => RightSrc.Sampled<T>();
+
+        ReadOnlySpan<T> NonZeroSample<T>(OpId<T> op = default)
+            where T : struct, IEquatable<T>
+                => NonZeroSrc.Sampled<T>();
+
         (T[] Left,T[] Right) Sampled<T>(OpId<T> opid = default)
             where T : struct, IEquatable<T>
                 => (LeftSrc.Sampled(opid), RightSrc.Sampled(opid));

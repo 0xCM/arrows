@@ -121,102 +121,102 @@ namespace Z0
             return Finish(comparison);
         }
 
-        OpMeasure gxor<T>(T[] dst)
+        OpMetrics gxor<T>(T[] dst)
             where T : struct, IEquatable<T>
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = gmath.xor(lhs[it],rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dxor(sbyte[] dst)
+        OpMetrics dxor(sbyte[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (sbyte)(lhs[it] ^ rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dxor(byte[] dst)
+        OpMetrics dxor(byte[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (byte)(lhs[it] ^ rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dxor(short[] dst)
+        OpMetrics dxor(short[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (short)(lhs[it] ^ rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dxor(ushort[] dst)
+        OpMetrics dxor(ushort[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (ushort)(lhs[it] ^ rhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dxor(int[] dst)
+        OpMetrics dxor(int[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] ^ rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dxor(uint[] dst)
+        OpMetrics dxor(uint[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] ^ rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dxor(long[] dst)
+        OpMetrics dxor(long[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] ^ rhs[it];
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dxor(ulong[] dst)
+        OpMetrics dxor(ulong[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = lhs[it] ^ rhs[it];
             return(dst.Length, snapshot(sw));
         }

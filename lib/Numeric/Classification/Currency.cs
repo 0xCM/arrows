@@ -10,7 +10,7 @@ namespace Z0
     /// Characterizes a bounded fractional operation provider
     /// </summary>
     /// <typeparam name="T">The primitive type</typeparam>
-    public interface ICurrencyOps<T> : IBoundRealOps<T>, Operative.IFractionalOps<T> 
+    public interface ICurrencyOps<T> : IBoundRealOps<T>, IFractionalOps<T> 
         where T : struct, IEquatable<T>
 
     {

@@ -17,28 +17,6 @@ namespace  Z0
     partial class xcore
     {
 
-        /// <summary>
-        /// Partitons a finite sequence of items via an equivalence relation
-        /// </summary>
-        /// <param name="relation">The partitioning relation</param>
-        /// <param name="items">The items to partition</param>
-        /// <typeparam name="T">The item type</typeparam>
-        public static IEnumerable<Reify.FiniteEquivalenceClass<T>> Partition<T>(this Operative.IEquivalenceOps<T> relation, IEnumerable<T> items)
-            where T : Structures.ISemigroup<T>, new()
-
-        {
-            var classes = cindex<T, ConcurrentBag<T>>();
-            foreach(var item in items)
-            {
-                classes.FirstKey(k => relation.related(item,k))
-                       .OnNone(() => classes.TryAdd(item, k => cbag(k)))
-                       .OnSome(k => classes[k].Add(item));
-            }
-
-            return classes.KeyedValues.Select(kvp => new Reify.FiniteEquivalenceClass<T>(kvp.key,relation, kvp.value ));
-        }
-
-
         class Komparer<T> : IComparer<T>
         {
             IOrderedOps<T> ordered {get;}                
@@ -52,15 +30,11 @@ namespace  Z0
                 else if(ordered.gt(x, y))
                     return 1;
                 else
-                    return 0;
-                
-
+                    return 0;            
             }
         }
 
         public static IComparer<T> ToComparer<T>(this IOrderedOps<T> order)
             => new Komparer<T>(order);
-
-
     }    
 }

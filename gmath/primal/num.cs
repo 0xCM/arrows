@@ -17,7 +17,7 @@ namespace Z0
     public readonly struct num<T> : IEquatable<num<T>>
         where T : struct, IEquatable<T>
     {
-        readonly T placeholder;
+        readonly T x;
 
         public static readonly IPrimalInfo<T> NumInfo = PrimalInfo.Get<T>();
 
@@ -81,7 +81,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static num<T> operator - (num<T> src) 
-            => throw new NotSupportedException();
+            => gmath.negate(Unsafe.As<num<T>,T>(ref src));
 
         [MethodImpl(Inline)]
         public static num<T> operator ++ (num<T> src) 

@@ -6,7 +6,9 @@ namespace Z0
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    using System.Linq;
 
     using static zfunc;
 
@@ -120,6 +122,24 @@ namespace Z0
                     coord(x.x1), coord(x.x2), coord(x.x3), coord(x.x4), coord(x.x5), coord(x.x6), coord(x.x7), coord(x.x8)));
 
 
+        /// <summary>
+        /// Transforms a sequence of key-value pairs into a sequence of tuples
+        /// </summary>
+        /// <param name="key">The key</param>
+        /// <param name="value">The value</param>
+        /// <typeparam name="K">The key type</typeparam>
+        /// <typeparam name="V">The value type</typeparam>
+        [MethodImpl(Inline)]
+        public static IEnumerable<(K key, V value)> ToTuples<K,V>(this IEnumerable<KeyValuePair<K,V>> pairs)
+            => tuples(pairs);
+
+        [MethodImpl(Inline)]
+        public static string Format<X,Y>(this (X x,Y y) src)
+            => paren(src.x.ToString(), ",", src.y.ToString());
+        
+        [MethodImpl(Inline)]
+        public static string Format<X,Y>(this IEnumerable<(X x,Y y)> src)
+            => string.Join(", ", src.Select(x => x.Format()));
     }
 
 }

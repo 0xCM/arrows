@@ -44,7 +44,10 @@ namespace Z0
     /// <param name="reps">The number of reps</param>
     public delegate Duration Repeat(int cycles, int reps);
 
-    public delegate OpMeasure OpMeasurer(int cycles, int reps);
+    public delegate OpMetrics OpMeasurer(int cycles, int reps);
+
+    public delegate OpMetrics<T> OpMeasurer<T>(int cycles, int reps)
+        where T : struct, IEquatable<T>;
 
 
     /// <summary>

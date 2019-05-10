@@ -42,25 +42,6 @@ namespace Z0
                 PrimalKind.float32, PrimalKind.float64,
         };
 
-        static BenchConfig ConfigureVec128<T>(int cycles, int reps)
-            where T : struct, IEquatable<T>
-        {
-            var vLen = Vec128<T>.Length;
-            var primKind = PrimalKinds.kind<T>();
-            var domain = Defaults.get<T>().Domain;
-            var samples = vLen * reps;
-            return new BenchConfig(cycles, reps, samples);
-        }
-
-        void RunInXBench()
-        {
-            var bench = Vec128Bench.Create(Randomizer);
-            var comparisons = new List<IBenchComparison>();
-            foreach(var runner in bench.Runners().Select(r => r.Value))
-                comparisons.Add(runner());
-            iter(comparisons,print);
-
-        }
 
         static HashSet<T> set<T>(params T[] src)
             => new HashSet<T>(src);
@@ -120,6 +101,20 @@ namespace Z0
 
         }
 
+        void TestNumbers()
+        {
+            var leftSrc = Randomizer.Span<long>(Pow2.T11);
+            var rightSrc = Randomizer.Span<long>(Pow2.T11);
+            var dstA = span<long>(Pow2.T11);
+
+            var leftNumbers = numbers(leftSrc);
+            var rightNumbers = numbers(rightSrc);
+
+            var sum1 = math.add(leftSrc,rightSrc, dstA);
+            var sum2 = leftNumbers + rightNumbers;
+            
+            Claim.eq(sum1.Freeze(), sum2.Extract());
+        }
 
 
         void TestAdd3()
@@ -154,21 +149,17 @@ namespace Z0
 
         }
 
-        void RunBench(BenchKind kind,  OpKind op, BenchConfig config = null)
-        {
-            
-
-            
-            var operators = set(OpKind.Mul.ToString());
-            var bench = kind.CreateBench(Randomizer,config);
-            bench.Run(x => x.Contains(op.ToString()));
+        void RunBench(BenchKind kind, params  OpKind[] opkinds)
+        {                    
+            var ops = opkinds.Select(o => o.ToString()).ToHashSet();
+            var bench = kind.CreateBench(Randomizer);
+            bench.Run(x => ops.Any(o => x.StartsWith(o)));
 
         }
 
         void RunBench(BenchKind kind,  Func<string, bool> filter = null, BenchConfig config = null)
         {
             
-            var operators = set(OpKind.Mul.ToString());
             var bench = kind.CreateBench(Randomizer,config);
             bench.Run(filter);
 
@@ -406,20 +397,19 @@ namespace Z0
             var app = new Benchmark();
             try
             {     
-                //app.RunBench(BenchKind.PrimalAtomic);
+                app.RunBench(BenchKind.PrimalAtomic);
                 //app.RunBench(BenchKind.PrimalFused);
                 //app.RunBench(BenchKind.NumG);
-                app.RunBench(BenchKind.Vec128);
+                // app.RunBench(BenchKind.Numbers);
+                // app.RunBench(BenchKind.Vec128);
+                // app.RunBench(BenchKind.Vec256);
+                // app.RunBench(BenchKind.Num128);
                 //app.RunTests();                   
                 //app.TestEqual();
                 //app.NumberTest();
                 //app.RunTests();
                 //app.Pop();
-                //app.RunBench(BenchKind.NumG, OpKind.And);
-                //app.RunBench(BenchKind.Vec128);
-                //app.RunBench(BenchKind.Vec256);
-                //app.RunBench(BenchKind.NumG, OpKind.Div);
-                //app.RunBench(BenchKind.Num128);
+
             }
             catch(Exception e)
             {

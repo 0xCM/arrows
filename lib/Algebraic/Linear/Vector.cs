@@ -15,7 +15,7 @@ namespace Z0
     using static zfunc;
 
 
-    public readonly struct Vector<N, T> : Equatable<Vector<N,T>>, Formattable, ILengthwise
+    public readonly struct Vector<N, T> : IEquatable<Vector<N,T>>, ILengthwise
         where N : ITypeNat, new()
         where T : struct, IEquatable<T>    
     {

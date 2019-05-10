@@ -50,7 +50,7 @@ namespace Z0
     /// <summary>
     /// Defines an integrally and naturally typed bitvector
     /// </summary>
-    public readonly struct BitVector<N> : IBitwise<BitVector<N>>, ILengthwise,  Formattable, Equatable<BitVector<N>>
+    public readonly struct BitVector<N> : IBitwise<BitVector<N>>, ILengthwise,  IEquatable<BitVector<N>>
         where N : ITypeNat, new()
     {
         public static readonly uint Length = (uint)natu<N>();        

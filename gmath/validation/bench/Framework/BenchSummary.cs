@@ -14,7 +14,7 @@ namespace Z0
     {
         int Cycles {get;}
 
-        OpMeasure Measure {get;}
+        OpMetrics Measure {get;}
 
         AppMsg Description {get;}
 
@@ -28,11 +28,11 @@ namespace Z0
             this.Cycles = Cycles;
             this.OpCount = OpCount;
             this.ExecTime = ExecTime;
-            this.Measure = OpMeasure.Define(OpCount, ExecTime);
+            this.Measure = OpMetrics.Define(OpCount, ExecTime);
             this.Description = BenchmarkMessages.BenchmarkEnd(Title, OpCount, ExecTime);
         }
 
-        public BenchSummary(T Title, int Cycles,  OpMeasure Measure)
+        public BenchSummary(T Title, int Cycles,  OpMetrics Measure)
         {
             this.Title = Title;
             this.Cycles = Cycles;
@@ -44,7 +44,7 @@ namespace Z0
 
         public int Cycles {get;}
 
-        public OpMeasure Measure {get;}
+        public OpMetrics Measure {get;}
 
         public long OpCount {get;}
 
@@ -63,7 +63,7 @@ namespace Z0
         public static BenchSummary<T> Define<T>(T title, int Cycles, long OpCount, Duration Measured)
             => new BenchSummary<T>(title, Cycles, OpCount, Measured);
 
-        public static BenchSummary<T> Define<T>(T title, int Cycles, OpMeasure Measure)
+        public static BenchSummary<T> Define<T>(T title, int Cycles, OpMetrics Measure)
             => new BenchSummary<T>(title, Cycles, Measure);
 
         public static BenchSummary Define(OpId Operator, int Cycles, long OpCount, Duration Measured)

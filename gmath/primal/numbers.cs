@@ -9,9 +9,9 @@ namespace Z0
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
-    
-    
+        
     using static mfunc;
+    using static zfunc;
 
     public static class numbers
     {
@@ -20,27 +20,79 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => new numbers<T>(src);
 
+        [MethodImpl(Inline)]
+        public static numbers<T> define<T>(Span<T> src)
+            where T : struct, IEquatable<T>
+                => new numbers<T>(src);
+
     }
 
-    public readonly ref struct numbers<T>
+    public static class numbersX
+    {
+        public static void CopyTo<T>(this numbers<T> src, T[] dst)
+            where T : struct, IEquatable<T>
+                =>  src.Extract().CopyTo(dst);
+    }
+
+    public ref struct numbers<T>
         where T : struct, IEquatable<T>
     {
-        
+        Span<T> data;
+
+        [MethodImpl(Inline)]
+        public numbers(Span<T> data)
+            => this.data = data;
+
+        [MethodImpl(Inline)]
+        public Span<T> Extract(bool copy = false)
+        {
+            if(copy)
+            {
+                var dst = span<T>(data.Length);
+                data.CopyTo(dst);
+                return dst;
+            }
+            else
+                return data;
+        }
+
+        [MethodImpl(Inline)]
+        public ReadOnlySpan<T> ToReadOnlySpan()
+            => data;
+
+        [MethodImpl(Inline)]
+        public T[] ToArray()
+            => data.ToArray();
+
+    
+
+        public ref T this[int i]
+        {
+            [MethodImpl(Inline)]
+            get => ref data[i];            
+        }
+
+        public int Count
+        {
+            [MethodImpl(Inline)]
+            get => data.Length;            
+        }
+
+        [MethodImpl(Inline)]
+        public bool Equals(numbers<T> rhs)
+            => not(eq(this, rhs).Contains(false));
+
         [MethodImpl(Inline)]
         public static implicit operator numbers<T>(T[] src)
-            =>  new numbers<T>(src);
+            => new numbers<T>(src);
 
         [MethodImpl(Inline)]
         public static implicit operator numbers<T>(Span<T> src)
             =>  new numbers<T>(src);
 
         [MethodImpl(Inline)]
-        public static implicit operator numbers<T>(ReadOnlySpan<T> src)
-            =>  new numbers<T>(src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator ReadOnlySpan<T>(numbers<T> src)
-            => src.data;
+        public static implicit operator Span<T>(numbers<T> src)
+            =>  src.data;
 
         [MethodImpl(Inline)]
         public static Span<bool> operator == (numbers<T> lhs, numbers<T> rhs) 
@@ -66,11 +118,9 @@ namespace Z0
         public static numbers<T> operator / (numbers<T> lhs, numbers<T> rhs) 
             => div(lhs,rhs);
 
-
         [MethodImpl(Inline)]
         public static numbers<T> operator % (numbers<T> lhs, numbers<T> rhs) 
             => mod(lhs,rhs);
-
 
         [MethodImpl(Inline)]
         public static numbers<T> operator & (numbers<T> lhs, numbers<T> rhs) 
@@ -83,7 +133,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static numbers<T> operator ^ (numbers<T> lhs, numbers<T> rhs) 
             => xor(lhs,rhs);
-
 
         [MethodImpl(Inline)]
         public static numbers<T> operator - (numbers<T> src) 
@@ -118,174 +167,91 @@ namespace Z0
             => gteq(lhs,rhs);
 
         [MethodImpl(Inline)]
-        static numbers<T> add(numbers<T> lhs, numbers<T> rhs)
-        {
-            var dst = span<T>(length(lhs.data,rhs.data));
-            return new numbers<T>(gmath.add(lhs.data,rhs.data, ref dst));            
-        }
+        public static numbers<T> add(numbers<T> lhs, numbers<T> rhs)
+            => new numbers<T>(gmath.add(lhs.data,rhs.data, ref lhs.data));            
 
         [MethodImpl(Inline)]
-        static numbers<T> sub(numbers<T> lhs, numbers<T> rhs)
-        {
-            var dst = span<T>(length(lhs.data,rhs.data));
-            return new numbers<T>(gmath.sub(lhs.data,rhs.data, ref dst));            
-        }
+        public static numbers<T> sub(numbers<T> lhs, numbers<T> rhs)
+            => new numbers<T>(gmath.sub(lhs.data,rhs.data, ref lhs.data));            
 
         [MethodImpl(Inline)]
-        static numbers<T> mul(numbers<T> lhs, numbers<T> rhs)
-        {
-            var dst = span<T>(length(lhs.data,rhs.data));
-            return new numbers<T>(gmath.mul(lhs.data,rhs.data, ref dst));            
-        }
+        public static numbers<T> mul(numbers<T> lhs, numbers<T> rhs)
+            => new numbers<T>(gmath.mul(lhs.data,rhs.data, ref lhs.data));            
 
         [MethodImpl(Inline)]
-        static numbers<T> div(numbers<T> lhs, numbers<T> rhs)
-        {
-            var dst = span<T>(length(lhs.data,rhs.data));
-            return new numbers<T>(gmath.div(lhs.data,rhs.data, ref dst));            
-        }
+        public static numbers<T> div(numbers<T> lhs, numbers<T> rhs)
+            => new numbers<T>(gmath.div(lhs.data,rhs.data, ref lhs.data));            
 
         [MethodImpl(Inline)]
-        static numbers<T> mod(numbers<T> lhs, numbers<T> rhs)
-        {
-            var dst = span<T>(length(lhs.data,rhs.data));
-            return new numbers<T>(gmath.mod(lhs.data,rhs.data, ref dst));            
-        }
-
+        public static numbers<T> mod(numbers<T> lhs, numbers<T> rhs)
+            => new numbers<T>(gmath.mod(lhs.data,rhs.data, ref lhs.data));            
 
         [MethodImpl(Inline)]
         static numbers<T> and(numbers<T> lhs, numbers<T> rhs)
-        {
-            var dst = span<T>(length(lhs.data,rhs.data));
-            return new numbers<T>(gmath.and(lhs.data,rhs.data, ref dst));            
-        }
+            => new numbers<T>(gmath.and(lhs.data,rhs.data, ref lhs.data));            
 
         [MethodImpl(Inline)]
         static numbers<T> or(numbers<T> lhs, numbers<T> rhs)
-        {
-            var dst = span<T>(length(lhs.data,rhs.data));
-            return new numbers<T>(gmath.or(lhs.data,rhs.data, ref dst));            
-        }
+            => new numbers<T>(gmath.or(lhs.data,rhs.data, ref lhs.data));            
 
         [MethodImpl(Inline)]
         static numbers<T> xor(numbers<T> lhs, numbers<T> rhs)
-        {
-            var dst = span<T>(length(lhs.data,rhs.data));
-            return new numbers<T>(gmath.xor(lhs.data,rhs.data, ref dst));            
-        }
+            => new numbers<T>(gmath.xor(lhs.data,rhs.data, ref lhs.data));            
 
         [MethodImpl(Inline)]
         static Span<bool> gt(numbers<T> lhs, numbers<T> rhs)
         {
-            var dst = span<bool>(length(lhs.data,rhs.data));
-            return gmath.gt(lhs.data,rhs.data, ref dst);            
+            return gmath.gt<T>(lhs.data, rhs.data);            
         }
 
         [MethodImpl(Inline)]
         static Span<bool> gteq(numbers<T> lhs, numbers<T> rhs)
         {
-            var dst = span<bool>(length(lhs.data,rhs.data));
-            return gmath.gteq(lhs.data,rhs.data, ref dst);            
+            return gmath.gteq<T>(lhs.data, rhs.data);            
         }
 
         [MethodImpl(Inline)]
-        static Span<bool> eq(numbers<T> lhs, numbers<T> rhs)
-        {
-            var dst = span<bool>(length(lhs.data,rhs.data));
-            return gmath.eq(lhs.data,rhs.data, ref dst);            
-        }
+        public static Span<bool> eq(numbers<T> lhs, numbers<T> rhs)
+            => gmath.eq<T>(lhs.data,rhs.data);            
 
         [MethodImpl(Inline)]
-        static Span<bool> neq(numbers<T> lhs, numbers<T> rhs)
-        {
-            var dst = span<bool>(length(lhs.data,rhs.data));
-            return gmath.neq(lhs.data,rhs.data, ref dst);            
-        }
+        public static Span<bool> neq(numbers<T> lhs, numbers<T> rhs)
+            => gmath.neq<T>(lhs.data,rhs.data);            
 
         [MethodImpl(Inline)]
-        static Span<bool> lt(numbers<T> lhs, numbers<T> rhs)
-        {
-            var dst = span<bool>(length(lhs.data,rhs.data));
-            return gmath.lt(lhs.data,rhs.data, ref dst);            
-        }
+        public static Span<bool> lt(numbers<T> lhs, numbers<T> rhs)
+            => gmath.lt<T>(lhs.data,rhs.data);            
 
         [MethodImpl(Inline)]
-        static Span<bool> lteq(numbers<T> lhs, numbers<T> rhs)
-        {
-            var dst = span<bool>(length(lhs.data,rhs.data));
-            return gmath.lteq(lhs.data,rhs.data, ref dst);            
-        }
+        public static Span<bool> lteq(numbers<T> lhs, numbers<T> rhs)
+            => gmath.lteq<T>(lhs.data,rhs.data);            
 
         [MethodImpl(Inline)]
-        static numbers<T> negate(numbers<T> src)
-        {
-            var dst = span<T>(src.data.Length);
-            return new numbers<T>(gmath.negate(src.data, ref dst));            
-        }
+        public static numbers<T> negate(numbers<T> src)
+            => numbers<T>(gmath.negate(src.data, ref src.data));            
 
         [MethodImpl(Inline)]
-        static numbers<T> inc(numbers<T> src)
-        {
-            var dst = span<T>(src.data.Length);
-            return new numbers<T>(gmath.inc(src.data, ref dst));            
-        }
+        public static numbers<T> inc(numbers<T> src)
+            => new numbers<T>(gmath.inc(src.data, ref src.data));            
 
         [MethodImpl(Inline)]
-        static numbers<T> dec(numbers<T> src)
-        {
-            var dst = span<T>(src.data.Length);
-            return new numbers<T>(gmath.dec(src.data, ref dst));            
-        }
+        public static numbers<T> dec(numbers<T> src)
+            => new numbers<T>(gmath.dec(src.data, ref src.data));            
 
         [MethodImpl(Inline)]
-        static numbers<T> flip(numbers<T> src)
-        {
-            var dst = span<T>(src.data.Length);
-            return new numbers<T>(gmath.flip(src.data, ref dst));            
-        }
+        public static numbers<T> flip(numbers<T> src)
+            => new numbers<T>(gmath.flip(src.data, ref src.data));            
 
         [MethodImpl(Inline)]
-        static numbers<T> abs(numbers<T> src)
-        {
-            var dst = span<T>(src.data.Length);
-            return new numbers<T>(gmath.abs(src.data, ref dst));            
-        }
+        public static numbers<T> abs(numbers<T> src)
+            => new numbers<T>(gmath.abs(src.data, ref src.data));            
 
-        readonly ReadOnlySpan<T> data;
-
-        [MethodImpl(Inline)]
-        public numbers(Span<T> data)
-            => this.data = data;
-
-        [MethodImpl(Inline)]
-        public numbers(ReadOnlySpan<T> data)
-            => this.data = data;
-
-        public T this[int i]
-        {
-            [MethodImpl(Inline)]
-            get => data[i];            
-        }
-
-        [MethodImpl(Inline)]
-        public bool Equals(numbers<T> rhs)
-        {
-            var lhs = this;
-            var result = span<bool>(rhs.data.Length);
-            gmath.eq(lhs.data,rhs.data, ref result);
-            var notEq = result.Contains(false);
-            return !notEq;
-        }
          
         public override bool Equals(object rhs)
             => throw new NotSupportedException();
 
         [MethodImpl(Inline)]
         public override int GetHashCode()
-            =>throw new NotSupportedException();
-
- 
+            =>throw new NotSupportedException(); 
     }
-
-
 }

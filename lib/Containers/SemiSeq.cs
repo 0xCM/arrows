@@ -25,7 +25,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]   
         public static SemiSeq<T> define<T>(IEnumerable<T> src)
-            where T : Structures.ISemigroup<T>, new()
+            where T : ISemigroup<T>, new()
                 => new SemiSeq<T>(src);
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]   
         public static SemiSeq<T> define<T>(params T[] src)
-            where T : Structures.ISemigroup<T>, new()
+            where T : ISemigroup<T>, new()
                 => new SemiSeq<T>(src);
     }
 
@@ -44,7 +44,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The element type</typeparam>
     public readonly struct SemiSeq<T> :  ISemiSeq<SemiSeq<T>,T>
-        where T : Structures.ISemigroup<T>, new()
+        where T : ISemigroup<T>, new()
     {        
         public static readonly SemiSeq<T> Empty  = new SemiSeq<T>(new T[]{});
         
@@ -89,7 +89,7 @@ namespace Z0
             if(length != rhs.length)
                 return false;
             
-            var equated = map(zip(content,rhs.content), x =>  x.right.eq(x.left));
+            var equated = map(zip(content,rhs.content), x =>  x.right.Equals(x.left));
             return not(equated.Any(x => x == false));
         }
 

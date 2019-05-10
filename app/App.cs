@@ -172,7 +172,7 @@ namespace Z0
         Duration SumGeneric<T>(int cycles, int reps)
             where T :struct, IEquatable<T>
         {
-            var src = num.numbers(Randomizer.Array<T>(reps));
+            var src = Number.many(Randomizer.Array<T>(reps));
             var t1 = stopwatch();
             var r1 = num<T>.Zero;
             for(var i=0; i< cycles; i++)
@@ -183,7 +183,7 @@ namespace Z0
 
         Duration SumDirect(PrimalInfo.I32 prim, int cycles, int reps)
         {
-            var src = num.numbers(Randomizer.Array<int>(reps));
+            var src = Number.many(Randomizer.Array<int>(reps));
             var t = stopwatch();
             var r = 0;
             for(var i=0; i< cycles; i++)

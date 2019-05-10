@@ -70,11 +70,6 @@ namespace Z0
             OpFusion Fusion = OpFusion.Atomic, ByteSize? OperandSize = null)
                 => new OpId(Kind, Primitive, Generic, Intrinsic, Fusion,OperandSize);
 
-        // public static OpId Define<T>(OpKind Kind,  bool Generic = false, bool Intrinsic = false, 
-        //     OpFusion Fusion = OpFusion.Atomic, ByteSize? OperandSize = null)
-        //     where T : struct, IEquatable<T>
-        //         => new OpId(Kind, PrimalKinds.kind<T>(), Generic, Intrinsic, Fusion, OperandSize ?? Unsafe.SizeOf<T>());
-
         public static OpId<T> Define<T>(OpKind Kind,  bool Generic = false, bool Intrinsic = false, 
             OpFusion Fusion = OpFusion.Atomic, ByteSize? OperandSize = null)
             where T : struct, IEquatable<T>

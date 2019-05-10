@@ -15,7 +15,6 @@ namespace Z0
 
     partial class xcore
     {
-
         /// <summary>
         /// Yields a stream of primal random vectors
         /// </summary>
@@ -213,12 +212,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T Sup<T>(this IEnumerable<T> src)
-            where T : struct, Structures.IOrderable<T>
+            where T : struct, IOrderable<T>
                 => max(src);
 
         [MethodImpl(Inline)]
         public static T Inf<T>(this T[] src)
-            where T : struct, Structures.IOrderable<T>
+            where T : struct, IOrderable<T>
                 => min(src);
 
         [MethodImpl(Inline)]
@@ -233,7 +232,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T Avg<T>(this IEnumerable<T> src)
-            where T : Structures.IRealNumber<T>,new()
+            where T : IRealNumber<T>,new()
                 => avg(src);
 
         [MethodImpl(Inline)]   

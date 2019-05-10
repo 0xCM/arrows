@@ -214,16 +214,6 @@ public static class nats
         where T : struct, IEquatable<T>
             => vector<N4,T>(x.x1, x.x2,x.x3,x.x4);
 
-    /// <summary>
-    /// Transforms a sequence of key-value pairs into a sequence of tuples
-    /// </summary>
-    /// <param name="key">The key</param>
-    /// <param name="value">The value</param>
-    /// <typeparam name="K">The key type</typeparam>
-    /// <typeparam name="V">The value type</typeparam>
-    [MethodImpl(Inline)]
-    public static IEnumerable<(K key, V value)> tuples<K,V>(IEnumerable<KeyValuePair<K,V>> pairs)
-        => pairs.Select(p => (p.Key,p.Value));
 
     /// <summary>
     /// Converts an homogenous 2-tuple to a 2-vector
@@ -235,6 +225,5 @@ public static class nats
     public static Vector<N2,T> vector<T>((T x1, T x2) x)
         where T : struct, IEquatable<T>
             => vector<N2,T>(x.x1, x.x2);
-   
 
 }

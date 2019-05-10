@@ -256,5 +256,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static string Format<T>(this IEnumerable<T> src, string sep = ", ")
                 => embrace(string.Join(sep, src.Select(x => x.ToString())).TrimEnd());
+ 
+        [MethodImpl(Inline)]
+        public static Atoms Contain(this IEnumerable<Atom> src)
+           => Atoms.contain(src);
+
     }
 }

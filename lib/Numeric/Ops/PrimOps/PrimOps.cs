@@ -118,7 +118,7 @@ namespace Z0
 
             static readonly IMultiplicativeOps<T> Multiplicative = Primal.Multiplicative.Operator<T>();
 
-            static readonly Operative.IAbsolutiveOps<T> Absolutive = Primal.Absolutive.Operator<T>();
+            static readonly IAbsolutiveOps<T> Absolutive = Primal.Absolutive.Operator<T>();
 
             static readonly ISubtractiveOps<T> Subtractive = Primal.Subtractive.Operator<T>();
 

@@ -18,7 +18,7 @@ namespace Z0
     {
         public IBenchComparison MaxI8()
         {
-            var opid = Id<sbyte>(OpKind.Max);
+            var opid = Id<sbyte>(OpKind.MaxAggregate);
             var zero = default(sbyte);
             var src = LeftSrc.Sampled(opid);
             
@@ -35,7 +35,7 @@ namespace Z0
 
         public IBenchComparison MaxU8()
         {
-            var opid = Id<byte>(OpKind.Max);
+            var opid = Id<byte>(OpKind.MaxAggregate);
             var zero = default(byte);
             var src = LeftSrc.Sampled(opid);
             
@@ -52,7 +52,7 @@ namespace Z0
 
         public IBenchComparison MaxI16()
         {
-            var opid = Id<short>(OpKind.Max);
+            var opid = Id<short>(OpKind.MaxAggregate);
             var zero = default(short);
             var src = LeftSrc.Sampled(opid);
             
@@ -69,7 +69,7 @@ namespace Z0
 
         public IBenchComparison MaxU16()
         {
-            var opid = Id<ushort>(OpKind.Max);
+            var opid = Id<ushort>(OpKind.MaxAggregate);
             var zero = default(ushort);
             var src = LeftSrc.Sampled(opid);
             
@@ -86,7 +86,7 @@ namespace Z0
 
         public IBenchComparison MaxI32()
         {
-            var opid = Id<int>(OpKind.Max);
+            var opid = Id<int>(OpKind.MaxAggregate);
             var zero = default(int);
             var src = LeftSrc.Sampled(opid);
             
@@ -103,7 +103,7 @@ namespace Z0
 
         public IBenchComparison MaxU32()
         {
-            var opid = Id<uint>(OpKind.Max);
+            var opid = Id<uint>(OpKind.MaxAggregate);
             var zero = default(uint);
             var src = LeftSrc.Sampled(opid);
             
@@ -120,7 +120,7 @@ namespace Z0
 
        public IBenchComparison MaxI64()
         {
-            var opid = Id<long>(OpKind.Max);
+            var opid = Id<long>(OpKind.MaxAggregate);
             var zero = default(long);
             var src = LeftSrc.Sampled(opid);
             
@@ -137,7 +137,7 @@ namespace Z0
 
         public IBenchComparison MaxU64()
         {
-            var opid = Id<ulong>(OpKind.Max);
+            var opid = Id<ulong>(OpKind.MaxAggregate);
             var zero = default(ulong);
             var src = LeftSrc.Sampled(opid);
             
@@ -154,7 +154,7 @@ namespace Z0
 
         public IBenchComparison MaxF32()
         {
-            var opid = Id<float>(OpKind.Max);
+            var opid = Id<float>(OpKind.MaxAggregate);
             var zero = default(float);
             var src = LeftSrc.Sampled(opid);
 
@@ -172,7 +172,7 @@ namespace Z0
 
         public IBenchComparison MaxF64()
         {
-            var opid = Id<double>(OpKind.Max);
+            var opid = Id<double>(OpKind.MaxAggregate);
             var zero = default(double);
             var src = LeftSrc.Sampled(opid);
 

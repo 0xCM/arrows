@@ -126,104 +126,108 @@ namespace Z0
             return Finish(comparison);
         } 
 
-        OpMeasure gflip<T>(T[] dst)
+        OpMetrics gflip<T>(T[] dst)
             where T : struct, IEquatable<T>
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = gmath.flip(lhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dflip(sbyte[] dst)
+        OpMetrics dflip(sbyte[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = (sbyte)(~lhs[it]);
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = (sbyte)(~ lhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dflip(byte[] dst)
+        OpMetrics dflip(byte[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (byte)(~ lhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dflip(short[] dst)
+        OpMetrics dflip(short[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (short)(~ lhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dflip(ushort[] dst)
+        OpMetrics dflip(ushort[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = (ushort)(~ lhs[it]);
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dflip(int[] dst)
+        OpMetrics dflip(int[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = ~ lhs[it];
             return(dst.Length, snapshot(sw));
         }
 
-        OpMeasure dflip(uint[] dst)
+        OpMetrics dflip(uint[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
-                dst[it] = ~ lhs[it];
-            return(dst.Length, snapshot(sw));
-        }
-
-
-        OpMeasure dflip(long[] dst)
-        {
-            var lhs = LeftSrc.Sampled(head(dst));
-            var rhs = RightSrc.Sampled(head(dst));
-            var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = ~ lhs[it];
             return(dst.Length, snapshot(sw));
         }
 
 
-        OpMeasure dflip(ulong[] dst)
+        OpMetrics dflip(long[] dst)
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));
             var sw = stopwatch();
-            var it = It.Define(0, dst.Length);
-            while(++it)
+            
+            var it = -1;
+            while(++it < SampleSize)
+                dst[it] = ~ lhs[it];
+            return(dst.Length, snapshot(sw));
+        }
+
+
+        OpMetrics dflip(ulong[] dst)
+        {
+            var lhs = LeftSrc.Sampled(head(dst));
+            var rhs = RightSrc.Sampled(head(dst));
+            var sw = stopwatch();
+            
+            var it = -1;
+            while(++it < SampleSize)
                 dst[it] = ~ lhs[it];
             return(dst.Length, snapshot(sw));
         }
