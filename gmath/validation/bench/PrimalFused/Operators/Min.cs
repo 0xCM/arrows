@@ -25,8 +25,8 @@ namespace Z0
             var lhsDst = zero;
             var rhsDst = zero;
 
-            var lhs = Measure(opid, () => lhsDst = math.min(src), SampleSize);
-            var rhs = Measure(~opid, () => rhsDst = gmath.min(src), SampleSize);
+            var lhs = Measure(opid, () => lhsDst = math.min(src));
+            var rhs = Measure(!opid, () => rhsDst = gmath.min(src));
             
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(lhsDst, rhsDst);            
@@ -42,8 +42,8 @@ namespace Z0
             var lhsDst = zero;
             var rhsDst = zero;
 
-            var lhs = Measure(opid, () => lhsDst = math.min(src), SampleSize);
-            var rhs = Measure(~opid, () => rhsDst = gmath.min(src), SampleSize);
+            var lhs = Measure(opid, () => lhsDst = math.min(src));
+            var rhs = Measure(!opid, () => rhsDst = gmath.min(src));
             
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(lhsDst, rhsDst);            
@@ -59,8 +59,8 @@ namespace Z0
             var lhsDst = zero;
             var rhsDst = zero;
 
-            var lhs = Measure(opid, () => lhsDst = math.min(src), SampleSize);
-            var rhs = Measure(~opid, () => rhsDst = gmath.min(src), SampleSize);
+            var lhs = Measure(opid, () => lhsDst = math.min(src));
+            var rhs = Measure(!opid, () => rhsDst = gmath.min(src));
             
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(lhsDst, rhsDst);            
@@ -76,8 +76,8 @@ namespace Z0
             var lhsDst = zero;
             var rhsDst = zero;
 
-            var lhs = Measure(opid, () => lhsDst = math.min(src), SampleSize);
-            var rhs = Measure(~opid, () => rhsDst = gmath.min(src), SampleSize);
+            var lhs = Measure(opid, () => lhsDst = math.min(src));
+            var rhs = Measure(!opid, () => rhsDst = gmath.min(src));
             
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(lhsDst, rhsDst);            
@@ -93,8 +93,8 @@ namespace Z0
             var lhsDst = zero;
             var rhsDst = zero;
 
-            var lhs = Measure(opid, () => lhsDst = math.min(src), SampleSize);
-            var rhs = Measure(~opid, () => rhsDst = gmath.min(src), SampleSize);
+            var lhs = Measure(opid, () => lhsDst = math.min(src));
+            var rhs = Measure(!opid, () => rhsDst = gmath.min(src));
             
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(lhsDst, rhsDst);            
@@ -110,8 +110,8 @@ namespace Z0
             var lhsDst = zero;
             var rhsDst = zero;
 
-            var lhs = Measure(opid, () => lhsDst = math.min(src), SampleSize);
-            var rhs = Measure(~opid, () => rhsDst = gmath.min(src), SampleSize);
+            var lhs = Measure(opid, () => lhsDst = math.min(src));
+            var rhs = Measure(!opid, () => rhsDst = gmath.min(src));
             
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(lhsDst, rhsDst);            
@@ -127,8 +127,8 @@ namespace Z0
             var lhsDst = zero;
             var rhsDst = zero;
 
-            var lhs = Measure(opid, () => lhsDst = math.min(src), SampleSize);
-            var rhs = Measure(~opid, () => rhsDst = gmath.min(src), SampleSize);
+            var lhs = Measure(opid, () => lhsDst = math.min(src));
+            var rhs = Measure(!opid, () => rhsDst = gmath.min(src));
             
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(lhsDst, rhsDst);            
@@ -144,8 +144,8 @@ namespace Z0
             var lhsDst = zero;
             var rhsDst = zero;
 
-            var lhs = Measure(opid, () => lhsDst = math.min(src), SampleSize);
-            var rhs = Measure(~opid, () => rhsDst = gmath.min(src), SampleSize);
+            var lhs = Measure(opid, () => lhsDst = math.min(src));
+            var rhs = Measure(!opid, () => rhsDst = gmath.min(src));
             
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(lhsDst, rhsDst);            
@@ -161,8 +161,8 @@ namespace Z0
             var lhsDst = zero;
             var rhsDst = zero;
 
-            var lhs = Measure(opid, () => lhsDst = math.min(src), SampleSize);
-            var rhs = Measure(~opid, () => rhsDst = gmath.min(src), SampleSize);
+            var lhs = Measure(opid, () => lhsDst = math.min(src));
+            var rhs = Measure(!opid, () => rhsDst = gmath.min(src));
             
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(lhsDst, rhsDst);            
@@ -179,8 +179,8 @@ namespace Z0
             var lhsDst = zero;
             var rhsDst = zero;
 
-            var lhs = Measure(opid, () => lhsDst = math.min(src), SampleSize);
-            var rhs = Measure(~opid, () => rhsDst = gmath.min(src), SampleSize);
+            var lhs = Measure(opid, () => lhsDst = math.min(src));
+            var rhs = Measure(!opid, () => rhsDst = gmath.min(src));
             
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(lhsDst, rhsDst);            

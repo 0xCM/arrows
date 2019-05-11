@@ -62,7 +62,20 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<T> ToSpan<T>(this T[] src)
             => src;
-        
+
+        /// <summary>
+        /// Constructs a span from a sequence selection
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this T[] src)
+            => src;
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this Span<T> src)
+            => src;
+
         /// <summary>
         /// Constructs a span from a sequence selection
         /// </summary>

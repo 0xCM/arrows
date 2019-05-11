@@ -23,29 +23,11 @@ namespace Z0
     class Benchmark : Context
     {
 
-        protected void print(IBenchComparison c)
-        {
-            zfunc.print(c.LeftMsg);
-            zfunc.print(c.RightMsg);
-            zfunc.print(c.CalcDelta().Description);
-        }
-
         public Benchmark()
             :base(Z0.Randomizer.define(RandSeeds.BenchSeed))
         {
             
         }
-
-        static readonly PrimalKind[] Primitives = new PrimalKind[]{
-                PrimalKind.int32, PrimalKind.uint32,
-                PrimalKind.int64, PrimalKind.uint64,
-                PrimalKind.float32, PrimalKind.float64,
-        };
-
-
-        static HashSet<T> set<T>(params T[] src)
-            => new HashSet<T>(src);
-
 
 
         void TestScalar()
@@ -154,15 +136,94 @@ namespace Z0
             var ops = opkinds.Select(o => o.ToString()).ToHashSet();
             var bench = kind.CreateBench(Randomizer);
             bench.Run(x => ops.Any(o => x.StartsWith(o)));
-
         }
 
         void RunBench(BenchKind kind,  Func<string, bool> filter = null, BenchConfig config = null)
-        {
-            
+        {            
             var bench = kind.CreateBench(Randomizer,config);
             bench.Run(filter);
+        }
 
+        void Bench51<T>()
+            where T : struct, IEquatable<T>
+        {
+            var samples = Pow2.T19;
+            var cycles = Pow2.T12;
+            var src = (Left: Randomizer.Array<T>(samples),  Right: Randomizer.Array<T>(samples));
+            var dst = (Left: alloc<T>(samples), Right: alloc<T>(samples));
+            var leftTime = Duration.Zero;
+            var rightTime = Duration.Zero;
+
+            Duration LeftBench()
+            {
+                var sw = stopwatch();
+                gmath.add(src.Left, src.Right, dst.Left);
+                return snapshot(sw);
+            }
+
+            Duration RightBench()
+            {
+                var sw = stopwatch();
+                for(var i = 0; i< samples; i++)
+                    dst.Right[i] = gmath.add(src.Left[i], src.Right[i]);
+                return snapshot(sw);
+            }
+
+            for(var i=1; i<=cycles; i++)
+            {
+                leftTime += LeftBench();
+                rightTime += RightBench();
+            }
+
+            inform($"Left: {leftTime} | Right: {rightTime}");
+            
+
+        }
+
+        void Bench51()
+        {
+            Bench51<byte>();
+        }
+        void Bench50<T>()
+            where T : struct, IEquatable<T>
+        {
+            var lhs = Randomizer.Array<T>(Pow2.T19);
+            var rhs = Randomizer.Array<T>(Pow2.T19);
+            var len = Pow2.T19;
+            var dst = span<T>(len);
+            var lhsBytes = As.uint8(lhs);
+            var rhsBytes = As.uint8(rhs);
+            var dstBytes = alloc<byte>(len);
+
+            void add(byte[] lhs, byte[] rhs, byte[] dst)
+            {
+                for(var i =0; i<lhs.Length; i++)
+                {
+                    ref var x = ref lhs[i];
+                    ref var y = ref rhs[i];
+                    dst[i] = (byte)(x + y);                 
+                }
+            }
+
+            var sw = stopwatch();
+            for(var i = 0; i<Pow2.T12; i++)
+            {
+                fused.addU8(lhs, rhs, dst);
+            }
+            inform($"Generic: {snapshot(sw)}");
+
+            sw.Restart();
+            for(var i = 0; i<Pow2.T12; i++)
+            {
+                add(lhsBytes, rhsBytes, dstBytes);
+            }
+            inform($"Direct: {snapshot(sw)}");
+
+        }
+
+        void Bench50()
+        {
+            Bench50<byte>();
         }
 
         void TestMulFloat(int? count = null)
@@ -225,6 +286,29 @@ namespace Z0
             
             Claim.@true(Span256.eq(dstA.ToSpan256(), dstB));
 
+
+        }
+
+        public void TestInlining()
+        {
+            var lhs = Randomizer.Span<byte>(Pow2.T19);
+            var rhs = Randomizer.Span<byte>(Pow2.T19);
+            var len = Pow2.T19;
+            var dst = span<byte>(len);
+
+            var sw = stopwatch();
+            for(var i = 0; i<Pow2.T12; i++)
+            {
+                math.add(lhs, rhs, dst);
+            }
+            inform($"Inline: {snapshot(sw)}");
+
+            sw.Restart();
+            for(var i = 0; i<Pow2.T12; i++)
+            {
+                //math.addNI(lhs,rhs,dst);
+            }
+            inform($"Not Inline: {snapshot(sw)}");
 
         }
 
@@ -303,7 +387,9 @@ namespace Z0
                 var comparisons = new List<IBenchComparison>();
                 comparisons.Add(bench.MulF32());
                 comparisons.Add(bench.MulF64());
-                iter(comparisons,print);
+                var q = from c in comparisons
+                        select c.Describe();
+                print(q);
             }
 
             unsafe void TestRandom()
@@ -392,12 +478,65 @@ namespace Z0
             var tm = new TestManager();
             tm.Run();
         }
+
+
+        void Test32()
+        {
+            var cycles = Pow2.T12;
+            var samples = Pow2.T19;
+
+            void RunTest<T>()
+                where T : struct, IEquatable<T>
+            {
+                var lhsA = Randomizer.Array<T>(samples);
+                var lhsS = lhsA.ToReadOnlySpan();
+                var rhsA = Randomizer.Array<T>(samples);
+                var rhsS = rhsA.ToReadOnlySpan();
+                var dstA = alloc<T>(samples);
+                var dstS = span<T>(samples);
+
+                var sw = stopwatch();
+                for(var i = 0; i<cycles; i++)
+                    fused.add(lhsS, rhsS, dstS);
+                inform($"Spans A: {snapshot(sw)}");
+
+                sw.Restart();
+                for(var i = 0; i<cycles; i++)
+                    gmath.add(lhsS, rhsS, dstS);
+                inform($"Spans B: {snapshot(sw)}");
+
+            }
+
+            RunTest<byte>();
+
+        }
+
+        static ref T DoFlip<T>(ref T val)
+            where T : struct, IEquatable<T>
+            => ref atoms.flipU8(ref val);
+
+        void IncTest()
+        {
+            // var val = 3.0;
+            // math.inc(ref val);
+            // inform(val);
+
+
+            byte val = 0b01010101;
+            inform($"Input value:  {val.ToBitString()}");
+            DoFlip(ref val);
+            inform($"Output value: {val.ToBitString()}");
+
+        }
         static void Main(params string[] args)
         {            
             var app = new Benchmark();
             try
             {     
-                app.RunBench(BenchKind.PrimalAtomic);
+                app.Bench51();
+                //app.RunBench(BenchKind.PrimalDirect);
+                //app.RunBench(BenchKind.NumG);
+                //app.RunBench(BenchKind.PrimalAtomic);                
                 //app.RunBench(BenchKind.PrimalFused);
                 //app.RunBench(BenchKind.NumG);
                 // app.RunBench(BenchKind.Numbers);

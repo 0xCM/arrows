@@ -16,8 +16,6 @@ namespace Z0
 
     partial class PrimalFusedBench
     {
-
-        #region Flip
         public IBenchComparison FlipI8()
         {
             var opid = Id<sbyte>(OpKind.Flip);
@@ -25,10 +23,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.flip(src.Left, dst.Left), SampleSize);
+                math.flip(src.Left, dst.Left));
 
-            var rhs = Measure(~opid, () => 
-                gmath.flip(src.Left, dst.Right), SampleSize);
+            var rhs = Measure(!opid, () => 
+                gmath.flip(src.Left, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -42,10 +40,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.flip(src.Left, dst.Left), SampleSize);
+                math.flip(src.Left, dst.Left));
 
-            var rhs = Measure(~opid, () => 
-                gmath.flip(src.Left, dst.Right), SampleSize);
+            var rhs = Measure(!opid, () => 
+                gmath.flip(src.Left, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -59,10 +57,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.flip(src.Left, dst.Left), SampleSize);
+                math.flip(src.Left, dst.Left));
 
-            var rhs = Measure(~opid, () => 
-                gmath.flip(src.Left, dst.Right), SampleSize);
+            var rhs = Measure(!opid, () => 
+                gmath.flip(src.Left, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -76,10 +74,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.flip(src.Left, dst.Left), SampleSize);
+                math.flip(src.Left, dst.Left));
 
-            var rhs = Measure(~opid, () => 
-                gmath.flip(src.Left, dst.Right), SampleSize);
+            var rhs = Measure(!opid, () => 
+                gmath.flip(src.Left, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -93,10 +91,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.flip(src.Left, dst.Left), SampleSize);
+                math.flip(src.Left, dst.Left));
 
-            var rhs = Measure(~opid, () => 
-                gmath.flip(src.Left, dst.Right), SampleSize);
+            var rhs = Measure(!opid, () => 
+                gmath.flip(src.Left, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -110,10 +108,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.flip(src.Left, dst.Left), SampleSize);
+                math.flip(src.Left, dst.Left));
 
-            var rhs = Measure(~opid, () => 
-                gmath.flip(src.Left, dst.Right), SampleSize);
+            var rhs = Measure(!opid, () => 
+                gmath.flip(src.Left, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -128,10 +126,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.flip(src.Left, dst.Left), SampleSize);
+                math.flip(src.Left, dst.Left));
 
-            var rhs = Measure(~opid, () => 
-                gmath.flip(src.Left, dst.Right), SampleSize);
+            var rhs = Measure(!opid, () => 
+                gmath.flip(src.Left, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -145,19 +143,16 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.flip(src.Left, dst.Left), SampleSize);
+                math.flip(src.Left, dst.Left));
 
-            var rhs = Measure(~opid, () => 
-                gmath.flip(src.Left, dst.Right), SampleSize);
+            var rhs = Measure(!opid, () => 
+                gmath.flip(src.Left, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
             return Finish(comparison);            
         }
-
-        #endregion
-
-
+ 
     }
 
 }

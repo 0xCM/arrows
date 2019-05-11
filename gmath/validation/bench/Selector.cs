@@ -19,6 +19,10 @@ namespace Z0
 
         PrimalAtomic,
         
+        PrimalGeneric,
+
+        PrimalDirect,
+
         NumG,
 
         Numbers,
@@ -39,18 +43,28 @@ namespace Z0
             {
                 case BenchKind.Common:
                     return CommonBench.Create(random, config);
+                
                 case BenchKind.PrimalFused:
                     return PrimalFusedBench.Create(random, config);
-                case BenchKind.PrimalAtomic:
-                    return PrimalAtomicBench.Create(random, config);
+
+                case BenchKind.PrimalDirect:
+                    return PrimalDirectBench.Create(random, config);
+
+                case BenchKind.PrimalGeneric:
+                    return PrimalGenericBench.Create(random, config);
+                
                 case BenchKind.NumG:
                     return NumGBench.Create(random, config);
+                
                 case BenchKind.Numbers:
                     return NumbersBench.Create(random, config);
+                
                 case BenchKind.Num128:
                     return Num128Bench.Create(random, config);
+                
                 case BenchKind.Vec128:
                     return Vec128Bench.Create(random, config);
+                
                 case BenchKind.Vec256:
                     return Vec256Bench.Create(random, config);
 

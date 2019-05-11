@@ -31,6 +31,18 @@ namespace Z0
             RightSamples = Span128Sampler.Sample(random, config.SampleSize);            
         }
 
+
+        protected UnaryOpData<T> UnaryOpInit<T>(bool nonzero = false)                
+            where T : struct, IEquatable<T>
+        {
+            GC.Collect();
+            return new UnaryOpData<T>(
+                Sample<T>(Config.SampleSize, nonzero), 
+                alloc<T>(Config.SampleSize),
+                alloc<T>(Config.SampleSize)
+            );
+        }
+
         readonly Span128Sampler LeftSamples;   
 
         readonly Span128Sampler RightSamples;   

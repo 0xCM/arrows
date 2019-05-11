@@ -231,6 +231,7 @@ namespace Z0
         public static byte[] uint8<T>(T[] src)
             => Unsafe.As<T[],byte[]>(ref src);
 
+
         [MethodImpl(Inline)]
         public static ref byte[] uint8<T>(ref T[] src)
             => ref Unsafe.As<T[],byte[]>(ref src);
@@ -822,9 +823,6 @@ namespace Z0
 
         #region Num256
 
-        //! Num256
-        //! -------------------------------------------------------------------
-
         [MethodImpl(Inline)]
         internal static Num256<sbyte> int8<T>(Num256<T> src)
             where T : struct, IEquatable<T>        
@@ -1035,9 +1033,6 @@ namespace Z0
         #endregion
 
         #region Vec128
-
-        //! Vec128
-        //! -------------------------------------------------------------------
 
         [MethodImpl(Inline)]
         internal static Vec128<sbyte> int8<T>(Vec128<T> src)

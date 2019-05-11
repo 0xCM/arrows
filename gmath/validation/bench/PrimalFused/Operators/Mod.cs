@@ -19,15 +19,13 @@ namespace Z0
         public IBenchComparison ModI8()
         {
             var opid = Id<sbyte>(OpKind.Mod);
-            var srcLeft = LeftSrc.Sampled(opid); 
-            var srcRight = NonZeroSrc.Sampled(opid);
+            var src = Sampled(opid,true);
             var dst = Targets(opid);
-
+            
             var lhs = Measure(opid, () => 
-                math.mod(srcLeft, srcRight, dst.Left), SampleSize);
-
-            var rhs = Measure(~opid, () => 
-                gmath.mod(srcLeft, srcRight, dst.Right), SampleSize);
+                math.mod(src.Left, src.Right, dst.Left));
+            var rhs = Measure(!opid, () => 
+                gmath.mod(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -37,15 +35,13 @@ namespace Z0
         public IBenchComparison ModU8()
         {
             var opid = Id<byte>(OpKind.Mod);
-            var srcLeft = LeftSrc.Sampled(opid); 
-            var srcRight = NonZeroSrc.Sampled(opid);
+            var src = Sampled(opid,true);
             var dst = Targets(opid);
-
+            
             var lhs = Measure(opid, () => 
-                math.mod(srcLeft, srcRight, dst.Left), SampleSize);
-
-            var rhs = Measure(~opid, () => 
-                gmath.mod(srcLeft, srcRight, dst.Right), SampleSize);
+                math.mod(src.Left, src.Right, dst.Left));
+            var rhs = Measure(!opid, () => 
+                gmath.mod(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -55,15 +51,13 @@ namespace Z0
         public IBenchComparison ModI16()
         {
             var opid = Id<short>(OpKind.Mod);
-            var srcLeft = LeftSrc.Sampled(opid); 
-            var srcRight = NonZeroSrc.Sampled(opid);
+            var src = Sampled(opid,true);
             var dst = Targets(opid);
-
+            
             var lhs = Measure(opid, () => 
-                math.mod(srcLeft, srcRight, dst.Left), SampleSize);
-
-            var rhs = Measure(~opid, () => 
-                gmath.mod(srcLeft, srcRight, dst.Right), SampleSize);
+                math.mod(src.Left, src.Right, dst.Left));
+            var rhs = Measure(!opid, () => 
+                gmath.mod(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -73,15 +67,13 @@ namespace Z0
         public IBenchComparison ModU16()
         {
             var opid = Id<ushort>(OpKind.Mod);
-            var srcLeft = LeftSrc.Sampled(opid); 
-            var srcRight = NonZeroSrc.Sampled(opid);
+            var src = Sampled(opid,true);
             var dst = Targets(opid);
-
+            
             var lhs = Measure(opid, () => 
-                math.mod(srcLeft, srcRight, dst.Left), SampleSize);
-
-            var rhs = Measure(~opid, () => 
-                gmath.mod(srcLeft, srcRight, dst.Right), SampleSize);
+                math.mod(src.Left, src.Right, dst.Left));
+            var rhs = Measure(!opid, () => 
+                gmath.mod(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -91,15 +83,13 @@ namespace Z0
         public IBenchComparison ModI32()
         {
             var opid = Id<int>(OpKind.Mod);
-            var srcLeft = LeftSrc.Sampled(opid); 
-            var srcRight = NonZeroSrc.Sampled(opid);
+            var src = Sampled(opid,true);
             var dst = Targets(opid);
-
+            
             var lhs = Measure(opid, () => 
-                math.mod(srcLeft, srcRight, dst.Left), SampleSize);
-
-            var rhs = Measure(~opid, () => 
-                gmath.mod(srcLeft, srcRight, dst.Right), SampleSize);
+                math.mod(src.Left, src.Right, dst.Left));
+            var rhs = Measure(!opid, () => 
+                gmath.mod(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -109,15 +99,13 @@ namespace Z0
         public IBenchComparison ModU32()
         {
             var opid = Id<uint>(OpKind.Mod);
-            var srcLeft = LeftSrc.Sampled(opid); 
-            var srcRight = NonZeroSrc.Sampled(opid);
+            var src = Sampled(opid,true);
             var dst = Targets(opid);
-
+            
             var lhs = Measure(opid, () => 
-                math.mod(srcLeft, srcRight, dst.Left), SampleSize);
-
-            var rhs = Measure(~opid, () => 
-                gmath.mod(srcLeft, srcRight, dst.Right), SampleSize);
+                math.mod(src.Left, src.Right, dst.Left));
+            var rhs = Measure(!opid, () => 
+                gmath.mod(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -127,15 +115,13 @@ namespace Z0
         public IBenchComparison ModI64()
         {
             var opid = Id<long>(OpKind.Mod);
-            var srcLeft = LeftSrc.Sampled(opid); 
-            var srcRight = NonZeroSrc.Sampled(opid);
+            var src = Sampled(opid,true);
             var dst = Targets(opid);
-
+            
             var lhs = Measure(opid, () => 
-                math.mod(srcLeft, srcRight, dst.Left), SampleSize);
-
-            var rhs = Measure(~opid, () => 
-                gmath.mod(srcLeft, srcRight, dst.Right), SampleSize);
+                math.mod(src.Left, src.Right, dst.Left));
+            var rhs = Measure(!opid, () => 
+                gmath.mod(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -145,15 +131,15 @@ namespace Z0
         public IBenchComparison ModU64()
         {
             var opid = Id<ulong>(OpKind.Mod);
+            var src = Sampled(opid,true);
             var dst = Targets(opid);
+            
+            var lhs = Measure(opid, () => 
+                math.mod(src.Left, src.Right, dst.Left));
+            var rhs = Measure(!opid, () => 
+                gmath.mod(src.Left, src.Right, dst.Right));
 
-            var direct = Measure(opid, () => 
-                math.mod(LeftSrc.Sampled(opid), NonZeroSrc.Sampled(opid), dst.Left), dst.Left.Length);
-
-            var generic = Measure(~opid, () => 
-                gmath.mod(LeftSrc.Sampled(opid), NonZeroSrc.Sampled(opid), dst.Right), dst.Right.Length);
-
-            var comparison = Compare(opid, direct, generic);
+            var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
             return Finish(comparison);            
         }
@@ -161,15 +147,13 @@ namespace Z0
         public IBenchComparison ModF32()
         {
             var opid = Id<float>(OpKind.Mod);
-            var srcLeft = LeftSrc.Sampled(opid); 
-            var srcRight = NonZeroSrc.Sampled(opid);
+            var src = Sampled(opid,true);
             var dst = Targets(opid);
-
+            
             var lhs = Measure(opid, () => 
-                math.mod(srcLeft, srcRight, dst.Left), SampleSize);
-
-            var rhs = Measure(~opid, () => 
-                gmath.mod(srcLeft, srcRight, dst.Right), SampleSize);
+                math.mod(src.Left, src.Right, dst.Left));
+            var rhs = Measure(!opid, () => 
+                gmath.mod(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -179,15 +163,13 @@ namespace Z0
         public IBenchComparison ModF64()
         {
             var opid = Id<double>(OpKind.Mod);
-            var srcLeft = LeftSrc.Sampled(opid); 
-            var srcRight = NonZeroSrc.Sampled(opid);
+            var src = Sampled(opid,true);
             var dst = Targets(opid);
-
+            
             var lhs = Measure(opid, () => 
-                math.mod(srcLeft, srcRight, dst.Left), SampleSize);
-
-            var rhs = Measure(~opid, () => 
-                gmath.mod(srcLeft, srcRight, dst.Right), SampleSize);
+                math.mod(src.Left, src.Right, dst.Left));
+            var rhs = Measure(!opid, () => 
+                gmath.mod(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        

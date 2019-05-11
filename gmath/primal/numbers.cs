@@ -168,35 +168,35 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> add(numbers<T> lhs, numbers<T> rhs)
-            => new numbers<T>(gmath.add(lhs.data,rhs.data, ref lhs.data));            
+            => new numbers<T>(gmath.add(lhs.data,rhs.data, lhs.data));            
 
         [MethodImpl(Inline)]
         public static numbers<T> sub(numbers<T> lhs, numbers<T> rhs)
-            => new numbers<T>(gmath.sub(lhs.data,rhs.data, ref lhs.data));            
+            => new numbers<T>(gmath.sub(lhs.data,rhs.data, lhs.data));            
 
         [MethodImpl(Inline)]
         public static numbers<T> mul(numbers<T> lhs, numbers<T> rhs)
-            => new numbers<T>(gmath.mul(lhs.data,rhs.data, ref lhs.data));            
+            => new numbers<T>(gmath.mul(lhs.data,rhs.data, lhs.data));            
 
         [MethodImpl(Inline)]
         public static numbers<T> div(numbers<T> lhs, numbers<T> rhs)
-            => new numbers<T>(gmath.div(lhs.data,rhs.data, ref lhs.data));            
+            => new numbers<T>(gmath.div(lhs.data,rhs.data, lhs.data));            
 
         [MethodImpl(Inline)]
         public static numbers<T> mod(numbers<T> lhs, numbers<T> rhs)
-            => new numbers<T>(gmath.mod(lhs.data,rhs.data, ref lhs.data));            
+            => new numbers<T>(gmath.mod(lhs.data,rhs.data, lhs.data));            
 
         [MethodImpl(Inline)]
         static numbers<T> and(numbers<T> lhs, numbers<T> rhs)
-            => new numbers<T>(gmath.and(lhs.data,rhs.data, ref lhs.data));            
+            => new numbers<T>(gmath.and(lhs.data,rhs.data, lhs.data));            
 
         [MethodImpl(Inline)]
         static numbers<T> or(numbers<T> lhs, numbers<T> rhs)
-            => new numbers<T>(gmath.or(lhs.data,rhs.data, ref lhs.data));            
+            => new numbers<T>(gmath.or(lhs.data,rhs.data, lhs.data));            
 
         [MethodImpl(Inline)]
         static numbers<T> xor(numbers<T> lhs, numbers<T> rhs)
-            => new numbers<T>(gmath.xor(lhs.data,rhs.data, ref lhs.data));            
+            => new numbers<T>(gmath.xor(lhs.data,rhs.data, lhs.data));            
 
         [MethodImpl(Inline)]
         static Span<bool> gt(numbers<T> lhs, numbers<T> rhs)
@@ -228,23 +228,23 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> negate(numbers<T> src)
-            => numbers<T>(gmath.negate(src.data, ref src.data));            
+            => numbers<T>(gmath.negate(src.data, src.data));            
 
         [MethodImpl(Inline)]
         public static numbers<T> inc(numbers<T> src)
-            => new numbers<T>(gmath.inc(src.data, ref src.data));            
+            => new numbers<T>(gmath.inc(src.data, src.data));            
 
         [MethodImpl(Inline)]
         public static numbers<T> dec(numbers<T> src)
-            => new numbers<T>(gmath.dec(src.data, ref src.data));            
+            => new numbers<T>(gmath.dec(src.data, src.data));            
 
         [MethodImpl(Inline)]
         public static numbers<T> flip(numbers<T> src)
-            => new numbers<T>(gmath.flip(src.data, ref src.data));            
+            => new numbers<T>(gmath.flip(src.data, src.data));            
 
         [MethodImpl(Inline)]
         public static numbers<T> abs(numbers<T> src)
-            => new numbers<T>(gmath.abs(src.data, ref src.data));            
+            => new numbers<T>(gmath.abs(src.data, src.data));            
 
          
         public override bool Equals(object rhs)

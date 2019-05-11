@@ -14,12 +14,15 @@ namespace Z0
         where T : struct
     {
         public static implicit operator OpId(OpId<T> src)
-            => OpId.Define(src.OpKind, src.OperandKind, src.Generic, src.Intrinsic, src.Fusion, src.OperandSize);
+            => OpId.Define(src.OpKind, src.OperandKind, src.Generic, src.Intrinsic, src.Fusion, src.OperandSize, src.Baseline);
 
         public static OpId<T> operator ~(OpId<T> src)
             => src.FlipGeneric();
-       
-       public OpId(OpKind OpKind, bool Generic, bool Intrinsic, OpFusion Fusion, ByteSize? OperandSize)
+
+        public static OpId<T> operator !(OpId<T> src)
+            => src.FlipBaseline();
+
+        public OpId(OpKind OpKind, bool Generic, bool Intrinsic, OpFusion Fusion, ByteSize? OperandSize, bool Baseline)
         {
             this.OpKind = OpKind;
             this.OperandKind = PrimalKinds.kind<T>();
@@ -27,6 +30,7 @@ namespace Z0
             this.Intrinsic = Intrinsic;
             this.Fusion = Fusion;
             this.OperandSize = OperandSize ?? 0;
+            this.Baseline = Baseline;
         }
         
         public readonly OpKind OpKind;
@@ -40,6 +44,8 @@ namespace Z0
         public readonly bool Intrinsic;
 
         public readonly OpFusion Fusion;
+
+        public readonly bool Baseline;
 
         public bool Vectored =>
             Fusion == OpFusion.Fused;
@@ -51,8 +57,11 @@ namespace Z0
             => Describe(this);
 
         public OpId<T> FlipGeneric()
-            => new OpId<T>(OpKind, !Generic, Intrinsic, Fusion, OperandSize);
-    
+            => new OpId<T>(OpKind, !Generic, Intrinsic, Fusion, OperandSize, Baseline);
+
+        public OpId<T> FlipBaseline()
+            => new OpId<T>(OpKind, Generic, Intrinsic, Fusion, OperandSize, !Baseline);
+
 
     }
 
@@ -64,21 +73,24 @@ namespace Z0
         public static IEnumerable<PrimalKind> Primitives
             => typeof(PrimalKind).GetEnumValues().AsQueryable().Cast<PrimalKind>();
 
-        public static readonly OpId Zero = new OpId(OpKind.None, PrimalKind.none, false, false, OpFusion.Atomic, 0);     
+        public static readonly OpId Zero = new OpId(OpKind.None, PrimalKind.none, false, false, OpFusion.Atomic, 0, true);     
         
         public static OpId Define(OpKind Kind, PrimalKind Primitive, bool Generic = false, bool Intrinsic = false, 
-            OpFusion Fusion = OpFusion.Atomic, ByteSize? OperandSize = null)
-                => new OpId(Kind, Primitive, Generic, Intrinsic, Fusion,OperandSize);
+            OpFusion Fusion = OpFusion.Atomic, ByteSize? OperandSize = null, bool baseline = true)
+                => new OpId(Kind, Primitive, Generic, Intrinsic, Fusion,OperandSize, baseline);
 
         public static OpId<T> Define<T>(OpKind Kind,  bool Generic = false, bool Intrinsic = false, 
-            OpFusion Fusion = OpFusion.Atomic, ByteSize? OperandSize = null)
+            OpFusion Fusion = OpFusion.Atomic, ByteSize? OperandSize = null, bool baseline = true)
             where T : struct, IEquatable<T>
-                => new OpId<T>(Kind, Generic, Intrinsic, Fusion, OperandSize ?? Unsafe.SizeOf<T>());
+                => new OpId<T>(Kind, Generic, Intrinsic, Fusion, OperandSize ?? Unsafe.SizeOf<T>(), baseline);
+
+        public static OpId operator !(OpId src)
+            => src.FlipBaseline();
 
         public static OpId operator ~(OpId src)
             => src.FlipGeneric();
         
-        OpId(OpKind OpKind, PrimalKind OperandKind, bool Generic, bool Intrinsic, OpFusion Fusion, ByteSize? OperandSize)
+        OpId(OpKind OpKind, PrimalKind OperandKind, bool Generic, bool Intrinsic, OpFusion Fusion, ByteSize? OperandSize, bool Baseline)
         {
             this.OpKind = OpKind;
             this.OperandKind = OperandKind;
@@ -86,7 +98,8 @@ namespace Z0
             this.Intrinsic = Intrinsic;
             this.Fusion = Fusion;
             this.OperandSize = OperandSize ?? 0;
-        }
+            this.Baseline = Baseline;
+       }
         
         public readonly OpKind OpKind;
 
@@ -100,6 +113,8 @@ namespace Z0
 
         public readonly OpFusion Fusion;
 
+        public readonly bool Baseline;
+
         public bool Vectored =>
             Fusion == OpFusion.Fused;
 
@@ -109,10 +124,12 @@ namespace Z0
             {   string info = string.Empty;            
                 if(Intrinsic)
                 {
+                    info += "intrinsics/";                    
+
                     if(Generic)
-                        info += "ginx/";
+                        info += "generic/";
                     else 
-                        info += "dinx/";
+                        info += "direct/";
                     
                     if(Vectored)
                         info += "Vec";
@@ -123,10 +140,12 @@ namespace Z0
                 }
                 else
                 {
+                    info += "primal/";
+
                     if(Generic)
-                        info += "gmath/";
+                        info += "generic/";
                     else
-                        info += "dmath/";
+                        info += "direct/";
 
                     if(Vectored)
                         info += "fused/";
@@ -136,7 +155,13 @@ namespace Z0
                     info += $"{OperandKind}/";
 
                 }
-                info += OpKind.ToString().ToLower();
+
+                info += $"{OpKind.ToString().ToLower()}/";
+
+                if(Baseline)
+                    info += "baseline ";
+                else
+                    info += "benchmark";
 
                 return info;
             }
@@ -144,14 +169,14 @@ namespace Z0
 
         public override string ToString() 
             => OpInfo;
-        
+
+        public OpId FlipBaseline()
+            => new OpId(OpKind,OperandKind, Generic, Intrinsic, Fusion, OperandSize, !Baseline);
+
         public OpId FlipGeneric()
-            => new OpId(OpKind,OperandKind, !Generic, Intrinsic, Fusion, OperandSize);
+            => new OpId(OpKind,OperandKind, !Generic, Intrinsic, Fusion, OperandSize, Baseline);
     
         public OpId ResizeOperand(int OperandSize)
-            => new OpId(OpKind,OperandKind, Generic, Intrinsic, Fusion, OperandSize);
+            => new OpId(OpKind,OperandKind, Generic, Intrinsic, Fusion, OperandSize, Baseline);
     }
-
-
-
 }

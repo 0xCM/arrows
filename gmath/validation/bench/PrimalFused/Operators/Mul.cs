@@ -23,10 +23,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.mul(src.Left, src.Right, dst.Left), SampleSize);
+                math.mul(src.Left, src.Right, dst.Left));
 
             var rhs = Measure(~opid, () => 
-                gmath.mul(src.Left, src.Right, dst.Right), SampleSize);
+                gmath.mul(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -40,10 +40,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.mul(src.Left, src.Right, dst.Left), SampleSize);
+                math.mul(src.Left, src.Right, dst.Left));
 
             var rhs = Measure(~opid, () => 
-                gmath.mul(src.Left, src.Right, dst.Right), SampleSize);
+                gmath.mul(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -57,10 +57,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.mul(src.Left, src.Right, dst.Left), SampleSize);
+                math.mul(src.Left, src.Right, dst.Left));
 
             var rhs = Measure(~opid, () => 
-                gmath.mul(src.Left, src.Right, dst.Right), SampleSize);
+                gmath.mul(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -74,10 +74,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.mul(src.Left, src.Right, dst.Left), SampleSize);
+                math.mul(src.Left, src.Right, dst.Left));
 
             var rhs = Measure(~opid, () => 
-                gmath.mul(src.Left, src.Right, dst.Right), SampleSize);
+                gmath.mul(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -91,10 +91,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.mul(src.Left, src.Right, dst.Left), SampleSize);
+                math.mul(src.Left, src.Right, dst.Left));
 
             var rhs = Measure(~opid, () => 
-                gmath.mul(src.Left, src.Right, dst.Right), SampleSize);
+                gmath.mul(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -108,10 +108,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.mul(src.Left, src.Right, dst.Left), SampleSize);
+                math.mul(src.Left, src.Right, dst.Left));
 
             var rhs = Measure(~opid, () => 
-                gmath.mul(src.Left, src.Right, dst.Right), SampleSize);
+                gmath.mul(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -125,10 +125,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.mul(src.Left, src.Right, dst.Left), SampleSize);
+                math.mul(src.Left, src.Right, dst.Left));
 
             var rhs = Measure(~opid, () => 
-                gmath.mul(src.Left, src.Right, dst.Right), SampleSize);
+                gmath.mul(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -142,10 +142,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.mul(src.Left, src.Right, dst.Left), SampleSize);
+                math.mul(src.Left, src.Right, dst.Left));
 
             var rhs = Measure(~opid, () => 
-                gmath.mul(src.Left, src.Right, dst.Right), SampleSize);
+                gmath.mul(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -159,10 +159,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.mul(src.Left, src.Right, dst.Left), SampleSize);
+                math.mul(src.Left, src.Right, dst.Left));
 
             var rhs = Measure(~opid, () => 
-                gmath.mul(src.Left, src.Right, dst.Right), SampleSize);
+                gmath.mul(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        
@@ -176,10 +176,10 @@ namespace Z0
             var dst = Targets(opid);
 
             var lhs = Measure(opid, () => 
-                math.mul(src.Left, src.Right, dst.Left), SampleSize);
+                math.mul(src.Left, src.Right, dst.Left));
 
             var rhs = Measure(~opid, () => 
-                gmath.mul(src.Left, src.Right, dst.Right), SampleSize);
+                gmath.mul(src.Left, src.Right, dst.Right));
 
             var comparison = Compare(opid, lhs, rhs);
             Claim.eq(dst.Left, dst.Right);        

@@ -17,12 +17,16 @@ using static zfunc;
 public static partial class mfunc
 {
     internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
+    internal const MethodImplOptions NotInline = MethodImplOptions.NoInlining;
 
     public static PrimalUnsupportedException unsupported(PrimalKind kind)
         => new PrimalUnsupportedException(kind);
 
     public static PrimalUnsupportedException unsupported(PrimalKind src, PrimalKind dst)
         => new PrimalUnsupportedException(src,dst);
+
+    public static HashSet<T> set<T>(params T[] src)
+        => new HashSet<T>(src);
 
     public static TimedPair measure(Action left, Action right, int reps)
     {

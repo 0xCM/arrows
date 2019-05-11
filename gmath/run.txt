@@ -1,0 +1,721 @@
+primal/direct/atomic/float32/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 214407     ticks  ~ 21 ms
+primal/direct/atomic/float32/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 435195     ticks  ~ 43 ms
+primal/direct/atomic/float32/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 648909     ticks  ~ 64 ms
+primal/direct/atomic/float32/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 857517     ticks  ~ 85 ms
+primal/generic/atomic/float32/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 366118     ticks  ~ 36 ms
+primal/generic/atomic/float32/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 735829     ticks  ~ 73 ms
+primal/generic/atomic/float32/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1101776    ticks  ~ 110 ms
+primal/generic/atomic/float32/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1520278    ticks  ~ 152 ms
+primal/direct/atomic/float64/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 209921     ticks  ~ 20 ms
+primal/direct/atomic/float64/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 420169     ticks  ~ 42 ms
+primal/direct/atomic/float64/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 630759     ticks  ~ 63 ms
+primal/direct/atomic/float64/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 840873     ticks  ~ 84 ms
+primal/generic/atomic/float64/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 383257     ticks  ~ 38 ms
+primal/generic/atomic/float64/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 836076     ticks  ~ 83 ms
+primal/generic/atomic/float64/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1338047    ticks  ~ 133 ms
+primal/generic/atomic/float64/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1718778    ticks  ~ 171 ms
+primal/direct/atomic/int16/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 214858     ticks  ~ 21 ms
+primal/direct/atomic/int16/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 426227     ticks  ~ 42 ms
+primal/direct/atomic/int16/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 639212     ticks  ~ 63 ms
+primal/direct/atomic/int16/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 852070     ticks  ~ 85 ms
+primal/generic/atomic/int16/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 223780     ticks  ~ 22 ms
+primal/generic/atomic/int16/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 449471     ticks  ~ 44 ms
+primal/generic/atomic/int16/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 671440     ticks  ~ 67 ms
+primal/generic/atomic/int16/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 891829     ticks  ~ 89 ms
+primal/direct/atomic/int32/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 214274     ticks  ~ 21 ms
+primal/direct/atomic/int32/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 454603     ticks  ~ 45 ms
+primal/direct/atomic/int32/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 884692     ticks  ~ 88 ms
+primal/direct/atomic/int32/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1102085    ticks  ~ 110 ms
+primal/generic/atomic/int32/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 208751     ticks  ~ 20 ms
+primal/generic/atomic/int32/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 425792     ticks  ~ 42 ms
+primal/generic/atomic/int32/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 634096     ticks  ~ 63 ms
+primal/generic/atomic/int32/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 843592     ticks  ~ 84 ms
+primal/direct/atomic/int64/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 218775     ticks  ~ 21 ms
+primal/direct/atomic/int64/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 436880     ticks  ~ 43 ms
+primal/direct/atomic/int64/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 654311     ticks  ~ 65 ms
+primal/direct/atomic/int64/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 871681     ticks  ~ 87 ms
+primal/generic/atomic/int64/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 213631     ticks  ~ 21 ms
+primal/generic/atomic/int64/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 427678     ticks  ~ 42 ms
+primal/generic/atomic/int64/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 658209     ticks  ~ 65 ms
+primal/generic/atomic/int64/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 867239     ticks  ~ 86 ms
+primal/direct/atomic/int8/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 222101     ticks  ~ 22 ms
+primal/direct/atomic/int8/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 434093     ticks  ~ 43 ms
+primal/direct/atomic/int8/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 645047     ticks  ~ 64 ms
+primal/direct/atomic/int8/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 892187     ticks  ~ 89 ms
+primal/generic/atomic/int8/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 243301     ticks  ~ 24 ms
+primal/generic/atomic/int8/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 482741     ticks  ~ 48 ms
+primal/generic/atomic/int8/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 706399     ticks  ~ 70 ms
+primal/generic/atomic/int8/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 929973     ticks  ~ 92 ms
+primal/direct/atomic/uint16/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 213632     ticks  ~ 21 ms
+primal/direct/atomic/uint16/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 633474     ticks  ~ 63 ms
+primal/direct/atomic/uint16/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 859503     ticks  ~ 85 ms
+primal/direct/atomic/uint16/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1360769    ticks  ~ 136 ms
+primal/generic/atomic/uint16/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 243192     ticks  ~ 24 ms
+primal/generic/atomic/uint16/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 485929     ticks  ~ 48 ms
+primal/generic/atomic/uint16/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 734392     ticks  ~ 73 ms
+primal/generic/atomic/uint16/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 975868     ticks  ~ 97 ms
+primal/direct/atomic/uint32/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 247389     ticks  ~ 24 ms
+primal/direct/atomic/uint32/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 476201     ticks  ~ 47 ms
+primal/direct/atomic/uint32/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 705078     ticks  ~ 70 ms
+primal/direct/atomic/uint32/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 932966     ticks  ~ 93 ms
+primal/generic/atomic/uint32/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 248342     ticks  ~ 24 ms
+primal/generic/atomic/uint32/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 483388     ticks  ~ 48 ms
+primal/generic/atomic/uint32/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 694947     ticks  ~ 69 ms
+primal/generic/atomic/uint32/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 905960     ticks  ~ 90 ms
+primal/direct/atomic/uint64/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 219640     ticks  ~ 21 ms
+primal/direct/atomic/uint64/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 442465     ticks  ~ 44 ms
+primal/direct/atomic/uint64/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 660143     ticks  ~ 66 ms
+primal/direct/atomic/uint64/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 887416     ticks  ~ 88 ms
+primal/generic/atomic/uint64/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 228095     ticks  ~ 22 ms
+primal/generic/atomic/uint64/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 447311     ticks  ~ 44 ms
+primal/generic/atomic/uint64/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 672624     ticks  ~ 67 ms
+primal/generic/atomic/uint64/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 889208     ticks  ~ 88 ms
+primal/direct/atomic/uint8/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 217776     ticks  ~ 21 ms
+primal/direct/atomic/uint8/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 436376     ticks  ~ 43 ms
+primal/direct/atomic/uint8/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 658993     ticks  ~ 65 ms
+primal/direct/atomic/uint8/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 879500     ticks  ~ 87 ms
+primal/generic/atomic/uint8/add/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 244072     ticks  ~ 24 ms
+primal/generic/atomic/uint8/add/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 488502     ticks  ~ 48 ms
+primal/generic/atomic/uint8/add/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 785384     ticks  ~ 78 ms
+primal/generic/atomic/uint8/add/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1116736    ticks  ~ 111 ms
+primal/direct/atomic/int16/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 213737     ticks  ~ 21 ms
+primal/direct/atomic/int16/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 428793     ticks  ~ 42 ms
+primal/direct/atomic/int16/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 643535     ticks  ~ 64 ms
+primal/direct/atomic/int16/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 858639     ticks  ~ 85 ms
+primal/generic/atomic/int16/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 226508     ticks  ~ 22 ms
+primal/generic/atomic/int16/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 494044     ticks  ~ 49 ms
+primal/generic/atomic/int16/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 733300     ticks  ~ 73 ms
+primal/generic/atomic/int16/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1006457    ticks  ~ 100 ms
+primal/direct/atomic/int32/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 225126     ticks  ~ 22 ms
+primal/direct/atomic/int32/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 515583     ticks  ~ 51 ms
+primal/direct/atomic/int32/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 759331     ticks  ~ 75 ms
+primal/direct/atomic/int32/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1067965    ticks  ~ 106 ms
+primal/generic/atomic/int32/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 209511     ticks  ~ 20 ms
+primal/generic/atomic/int32/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 419852     ticks  ~ 41 ms
+primal/generic/atomic/int32/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 632594     ticks  ~ 63 ms
+primal/generic/atomic/int32/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 942414     ticks  ~ 94 ms
+primal/direct/atomic/int64/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 218878     ticks  ~ 21 ms
+primal/direct/atomic/int64/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 436765     ticks  ~ 43 ms
+primal/direct/atomic/int64/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 662473     ticks  ~ 66 ms
+primal/direct/atomic/int64/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 887858     ticks  ~ 88 ms
+primal/generic/atomic/int64/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 299937     ticks  ~ 29 ms
+primal/generic/atomic/int64/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 523305     ticks  ~ 52 ms
+primal/generic/atomic/int64/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 853919     ticks  ~ 85 ms
+primal/generic/atomic/int64/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1069537    ticks  ~ 106 ms
+primal/direct/atomic/int8/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 217871     ticks  ~ 21 ms
+primal/direct/atomic/int8/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 431001     ticks  ~ 43 ms
+primal/direct/atomic/int8/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 646442     ticks  ~ 64 ms
+primal/direct/atomic/int8/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 878216     ticks  ~ 87 ms
+primal/generic/atomic/int8/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 239308     ticks  ~ 23 ms
+primal/generic/atomic/int8/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 464486     ticks  ~ 46 ms
+primal/generic/atomic/int8/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 689403     ticks  ~ 68 ms
+primal/generic/atomic/int8/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 915091     ticks  ~ 91 ms
+primal/direct/atomic/uint16/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 214059     ticks  ~ 21 ms
+primal/direct/atomic/uint16/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 432190     ticks  ~ 43 ms
+primal/direct/atomic/uint16/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 648434     ticks  ~ 64 ms
+primal/direct/atomic/uint16/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 863286     ticks  ~ 86 ms
+primal/generic/atomic/uint16/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 313214     ticks  ~ 31 ms
+primal/generic/atomic/uint16/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 688149     ticks  ~ 68 ms
+primal/generic/atomic/uint16/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1063579    ticks  ~ 106 ms
+primal/generic/atomic/uint16/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1433871    ticks  ~ 143 ms
+primal/direct/atomic/uint32/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 329361     ticks  ~ 32 ms
+primal/direct/atomic/uint32/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 659659     ticks  ~ 65 ms
+primal/direct/atomic/uint32/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 993437     ticks  ~ 99 ms
+primal/direct/atomic/uint32/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1327321    ticks  ~ 132 ms
+primal/generic/atomic/uint32/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 294364     ticks  ~ 29 ms
+primal/generic/atomic/uint32/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 584467     ticks  ~ 58 ms
+primal/generic/atomic/uint32/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 833458     ticks  ~ 83 ms
+primal/generic/atomic/uint32/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1044746    ticks  ~ 104 ms
+primal/direct/atomic/uint64/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 217524     ticks  ~ 21 ms
+primal/direct/atomic/uint64/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 433008     ticks  ~ 43 ms
+primal/direct/atomic/uint64/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 647961     ticks  ~ 64 ms
+primal/direct/atomic/uint64/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 862248     ticks  ~ 86 ms
+primal/generic/atomic/uint64/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 251174     ticks  ~ 25 ms
+primal/generic/atomic/uint64/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 598695     ticks  ~ 59 ms
+primal/generic/atomic/uint64/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 807345     ticks  ~ 80 ms
+primal/generic/atomic/uint64/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1018557    ticks  ~ 101 ms
+primal/direct/atomic/uint8/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 217755     ticks  ~ 21 ms
+primal/direct/atomic/uint8/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 429026     ticks  ~ 42 ms
+primal/direct/atomic/uint8/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 641733     ticks  ~ 64 ms
+primal/direct/atomic/uint8/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 857853     ticks  ~ 85 ms
+primal/generic/atomic/uint8/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 242027     ticks  ~ 24 ms
+primal/generic/atomic/uint8/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 483296     ticks  ~ 48 ms
+primal/generic/atomic/uint8/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 784719     ticks  ~ 78 ms
+primal/generic/atomic/uint8/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1020059    ticks  ~ 102 ms
+primal/direct/atomic/float32/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 217840     ticks  ~ 21 ms
+primal/direct/atomic/float32/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 429062     ticks  ~ 42 ms
+primal/direct/atomic/float32/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 640150     ticks  ~ 64 ms
+primal/direct/atomic/float32/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 852253     ticks  ~ 85 ms
+primal/generic/atomic/float32/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 425128     ticks  ~ 42 ms
+primal/generic/atomic/float32/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 818130     ticks  ~ 81 ms
+primal/generic/atomic/float32/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1211974    ticks  ~ 121 ms
+primal/generic/atomic/float32/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1608246    ticks  ~ 160 ms
+primal/direct/atomic/float64/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 339177     ticks  ~ 33 ms
+primal/direct/atomic/float64/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 914413     ticks  ~ 91 ms
+primal/direct/atomic/float64/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1251802    ticks  ~ 125 ms
+primal/direct/atomic/float64/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1589379    ticks  ~ 158 ms
+primal/generic/atomic/float64/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 430815     ticks  ~ 43 ms
+primal/generic/atomic/float64/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 873391     ticks  ~ 87 ms
+primal/generic/atomic/float64/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1304881    ticks  ~ 130 ms
+primal/generic/atomic/float64/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1793798    ticks  ~ 179 ms
+primal/direct/atomic/int16/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 328797     ticks  ~ 32 ms
+primal/direct/atomic/int16/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 654265     ticks  ~ 65 ms
+primal/direct/atomic/int16/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 978449     ticks  ~ 97 ms
+primal/direct/atomic/int16/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1380158    ticks  ~ 138 ms
+primal/generic/atomic/int16/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 349547     ticks  ~ 34 ms
+primal/generic/atomic/int16/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 704011     ticks  ~ 70 ms
+primal/generic/atomic/int16/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1177775    ticks  ~ 117 ms
+primal/generic/atomic/int16/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1521251    ticks  ~ 152 ms
+primal/direct/atomic/int32/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 314575     ticks  ~ 31 ms
+primal/direct/atomic/int32/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 636143     ticks  ~ 63 ms
+primal/direct/atomic/int32/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 992849     ticks  ~ 99 ms
+primal/direct/atomic/int32/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1350106    ticks  ~ 135 ms
+primal/generic/atomic/int32/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 373428     ticks  ~ 37 ms
+primal/generic/atomic/int32/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 730896     ticks  ~ 73 ms
+primal/generic/atomic/int32/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1091017    ticks  ~ 109 ms
+primal/generic/atomic/int32/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1451868    ticks  ~ 145 ms
+primal/direct/atomic/int64/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 858441     ticks  ~ 85 ms
+primal/direct/atomic/int64/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 1848085    ticks  ~ 184 ms
+primal/direct/atomic/int64/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 2666868    ticks  ~ 266 ms
+primal/direct/atomic/int64/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 3482203    ticks  ~ 348 ms
+primal/generic/atomic/int64/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 855841     ticks  ~ 85 ms
+primal/generic/atomic/int64/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 1694399    ticks  ~ 169 ms
+primal/generic/atomic/int64/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 2519585    ticks  ~ 251 ms
+primal/generic/atomic/int64/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 3472603    ticks  ~ 347 ms
+primal/direct/atomic/int8/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 355959     ticks  ~ 35 ms
+primal/direct/atomic/int8/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 707340     ticks  ~ 70 ms
+primal/direct/atomic/int8/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1063873    ticks  ~ 106 ms
+primal/direct/atomic/int8/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1598702    ticks  ~ 159 ms
+primal/generic/atomic/int8/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 350537     ticks  ~ 35 ms
+primal/generic/atomic/int8/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 704164     ticks  ~ 70 ms
+primal/generic/atomic/int8/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1061901    ticks  ~ 106 ms
+primal/generic/atomic/int8/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1434020    ticks  ~ 143 ms
+primal/direct/atomic/uint16/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 340498     ticks  ~ 34 ms
+primal/direct/atomic/uint16/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 757255     ticks  ~ 75 ms
+primal/direct/atomic/uint16/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1194408    ticks  ~ 119 ms
+primal/direct/atomic/uint16/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1573093    ticks  ~ 157 ms
+primal/generic/atomic/uint16/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 413574     ticks  ~ 41 ms
+primal/generic/atomic/uint16/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 811813     ticks  ~ 81 ms
+primal/generic/atomic/uint16/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1265108    ticks  ~ 126 ms
+primal/generic/atomic/uint16/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1688853    ticks  ~ 168 ms
+primal/direct/atomic/uint32/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 398471     ticks  ~ 39 ms
+primal/direct/atomic/uint32/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 806219     ticks  ~ 80 ms
+primal/direct/atomic/uint32/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1203562    ticks  ~ 120 ms
+primal/direct/atomic/uint32/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1608199    ticks  ~ 160 ms
+primal/generic/atomic/uint32/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 462379     ticks  ~ 46 ms
+primal/generic/atomic/uint32/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 865785     ticks  ~ 86 ms
+primal/generic/atomic/uint32/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1266345    ticks  ~ 126 ms
+primal/generic/atomic/uint32/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1659932    ticks  ~ 165 ms
+primal/direct/atomic/uint64/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 747900     ticks  ~ 74 ms
+primal/direct/atomic/uint64/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 1564011    ticks  ~ 156 ms
+primal/direct/atomic/uint64/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 2354330    ticks  ~ 235 ms
+primal/direct/atomic/uint64/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 3126632    ticks  ~ 312 ms
+primal/generic/atomic/uint64/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 762645     ticks  ~ 76 ms
+primal/generic/atomic/uint64/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 1522301    ticks  ~ 152 ms
+primal/generic/atomic/uint64/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 2283327    ticks  ~ 228 ms
+primal/generic/atomic/uint64/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 3048740    ticks  ~ 304 ms
+primal/direct/atomic/uint8/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 340926     ticks  ~ 34 ms
+primal/direct/atomic/uint8/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 683618     ticks  ~ 68 ms
+primal/direct/atomic/uint8/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1041000    ticks  ~ 104 ms
+primal/direct/atomic/uint8/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1381782    ticks  ~ 138 ms
+primal/generic/atomic/uint8/div/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 367440     ticks  ~ 36 ms
+primal/generic/atomic/uint8/div/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 758930     ticks  ~ 75 ms
+primal/generic/atomic/uint8/div/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1131554    ticks  ~ 113 ms
+primal/generic/atomic/uint8/div/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1528827    ticks  ~ 152 ms
+primal/direct/atomic/float32/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 2268439    ticks  ~ 226 ms
+primal/direct/atomic/float32/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 4567252    ticks  ~ 456 ms
+primal/direct/atomic/float32/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 6987552    ticks  ~ 698 ms
+primal/direct/atomic/float32/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 9101701    ticks  ~ 910 ms
+primal/generic/atomic/float32/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 2336779    ticks  ~ 233 ms
+primal/generic/atomic/float32/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 4620941    ticks  ~ 462 ms
+primal/generic/atomic/float32/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 6999934    ticks  ~ 699 ms
+primal/generic/atomic/float32/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 9190153    ticks  ~ 919 ms
+primal/direct/atomic/float64/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 1960575    ticks  ~ 196 ms
+primal/direct/atomic/float64/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 3895599    ticks  ~ 389 ms
+primal/direct/atomic/float64/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 5966461    ticks  ~ 596 ms
+primal/direct/atomic/float64/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 8025604    ticks  ~ 802 ms
+primal/generic/atomic/float64/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 2201386    ticks  ~ 220 ms
+primal/generic/atomic/float64/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 4246823    ticks  ~ 424 ms
+primal/generic/atomic/float64/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 6310530    ticks  ~ 631 ms
+primal/generic/atomic/float64/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 8542897    ticks  ~ 854 ms
+primal/direct/atomic/int16/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 345844     ticks  ~ 34 ms
+primal/direct/atomic/int16/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 700463     ticks  ~ 70 ms
+primal/direct/atomic/int16/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1048369    ticks  ~ 104 ms
+primal/direct/atomic/int16/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1395155    ticks  ~ 139 ms
+primal/generic/atomic/int16/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 350302     ticks  ~ 35 ms
+primal/generic/atomic/int16/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 702088     ticks  ~ 70 ms
+primal/generic/atomic/int16/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1046034    ticks  ~ 104 ms
+primal/generic/atomic/int16/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1396205    ticks  ~ 139 ms
+primal/direct/atomic/int32/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 301643     ticks  ~ 30 ms
+primal/direct/atomic/int32/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 598942     ticks  ~ 59 ms
+primal/direct/atomic/int32/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 897018     ticks  ~ 89 ms
+primal/direct/atomic/int32/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1196131    ticks  ~ 119 ms
+primal/generic/atomic/int32/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 346646     ticks  ~ 34 ms
+primal/generic/atomic/int32/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 701651     ticks  ~ 70 ms
+primal/generic/atomic/int32/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1043637    ticks  ~ 104 ms
+primal/generic/atomic/int32/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1389391    ticks  ~ 138 ms
+primal/direct/atomic/int64/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 775126     ticks  ~ 77 ms
+primal/direct/atomic/int64/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 1547572    ticks  ~ 154 ms
+primal/direct/atomic/int64/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 2323599    ticks  ~ 232 ms
+primal/direct/atomic/int64/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 3098861    ticks  ~ 309 ms
+primal/generic/atomic/int64/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 931193     ticks  ~ 93 ms
+primal/generic/atomic/int64/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 1746098    ticks  ~ 174 ms
+primal/generic/atomic/int64/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 2625098    ticks  ~ 262 ms
+primal/generic/atomic/int64/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 3668111    ticks  ~ 366 ms
+primal/direct/atomic/int8/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 511572     ticks  ~ 51 ms
+primal/direct/atomic/int8/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 844519     ticks  ~ 84 ms
+primal/direct/atomic/int8/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1244177    ticks  ~ 124 ms
+primal/direct/atomic/int8/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1577523    ticks  ~ 157 ms
+primal/generic/atomic/int8/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 357128     ticks  ~ 35 ms
+primal/generic/atomic/int8/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 711670     ticks  ~ 71 ms
+primal/generic/atomic/int8/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1188888    ticks  ~ 118 ms
+primal/generic/atomic/int8/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1546831    ticks  ~ 154 ms
+primal/direct/atomic/uint16/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 546056     ticks  ~ 54 ms
+primal/direct/atomic/uint16/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 876900     ticks  ~ 87 ms
+primal/direct/atomic/uint16/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1207585    ticks  ~ 120 ms
+primal/direct/atomic/uint16/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1539551    ticks  ~ 153 ms
+primal/generic/atomic/uint16/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 359221     ticks  ~ 35 ms
+primal/generic/atomic/uint16/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 718256     ticks  ~ 71 ms
+primal/generic/atomic/uint16/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1078232    ticks  ~ 107 ms
+primal/generic/atomic/uint16/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1441249    ticks  ~ 144 ms
+primal/direct/atomic/uint32/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 379011     ticks  ~ 37 ms
+primal/direct/atomic/uint32/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 751115     ticks  ~ 75 ms
+primal/direct/atomic/uint32/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1116200    ticks  ~ 111 ms
+primal/direct/atomic/uint32/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1497513    ticks  ~ 149 ms
+primal/generic/atomic/uint32/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 397925     ticks  ~ 39 ms
+primal/generic/atomic/uint32/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 800065     ticks  ~ 80 ms
+primal/generic/atomic/uint32/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1203816    ticks  ~ 120 ms
+primal/generic/atomic/uint32/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1602445    ticks  ~ 160 ms
+primal/direct/atomic/uint64/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 747265     ticks  ~ 74 ms
+primal/direct/atomic/uint64/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 1494783    ticks  ~ 149 ms
+primal/direct/atomic/uint64/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 2242651    ticks  ~ 224 ms
+primal/direct/atomic/uint64/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 3059539    ticks  ~ 305 ms
+primal/generic/atomic/uint64/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 833861     ticks  ~ 83 ms
+primal/generic/atomic/uint64/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 1809442    ticks  ~ 180 ms
+primal/generic/atomic/uint64/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 2629712    ticks  ~ 262 ms
+primal/generic/atomic/uint64/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 3521067    ticks  ~ 352 ms
+primal/direct/atomic/uint8/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 330720     ticks  ~ 33 ms
+primal/direct/atomic/uint8/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 664396     ticks  ~ 66 ms
+primal/direct/atomic/uint8/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 997819     ticks  ~ 99 ms
+primal/direct/atomic/uint8/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1329223    ticks  ~ 132 ms
+primal/generic/atomic/uint8/mod/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 378361     ticks  ~ 37 ms
+primal/generic/atomic/uint8/mod/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 763146     ticks  ~ 76 ms
+primal/generic/atomic/uint8/mod/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1144852    ticks  ~ 114 ms
+primal/generic/atomic/uint8/mod/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1521295    ticks  ~ 152 ms
+primal/direct/atomic/float32/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 213583     ticks  ~ 21 ms
+primal/direct/atomic/float32/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 427304     ticks  ~ 42 ms
+primal/direct/atomic/float32/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 637116     ticks  ~ 63 ms
+primal/direct/atomic/float32/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 849117     ticks  ~ 84 ms
+primal/generic/atomic/float32/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 370489     ticks  ~ 37 ms
+primal/generic/atomic/float32/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 741521     ticks  ~ 74 ms
+primal/generic/atomic/float32/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1112609    ticks  ~ 111 ms
+primal/generic/atomic/float32/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1482463    ticks  ~ 148 ms
+primal/direct/atomic/float64/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 219509     ticks  ~ 21 ms
+primal/direct/atomic/float64/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 431389     ticks  ~ 43 ms
+primal/direct/atomic/float64/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 643112     ticks  ~ 64 ms
+primal/direct/atomic/float64/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 853611     ticks  ~ 85 ms
+primal/generic/atomic/float64/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 384632     ticks  ~ 38 ms
+primal/generic/atomic/float64/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 877004     ticks  ~ 87 ms
+primal/generic/atomic/float64/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1284077    ticks  ~ 128 ms
+primal/generic/atomic/float64/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1679943    ticks  ~ 167 ms
+primal/direct/atomic/int16/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 398402     ticks  ~ 39 ms
+primal/direct/atomic/int16/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 616825     ticks  ~ 61 ms
+primal/direct/atomic/int16/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 835287     ticks  ~ 83 ms
+primal/direct/atomic/int16/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1271855    ticks  ~ 127 ms
+primal/generic/atomic/int16/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 233005     ticks  ~ 23 ms
+primal/generic/atomic/int16/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 462239     ticks  ~ 46 ms
+primal/generic/atomic/int16/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 690886     ticks  ~ 69 ms
+primal/generic/atomic/int16/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 919092     ticks  ~ 91 ms
+primal/direct/atomic/int32/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 223981     ticks  ~ 22 ms
+primal/direct/atomic/int32/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 439410     ticks  ~ 43 ms
+primal/direct/atomic/int32/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 656991     ticks  ~ 65 ms
+primal/direct/atomic/int32/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 872425     ticks  ~ 87 ms
+primal/generic/atomic/int32/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 208931     ticks  ~ 20 ms
+primal/generic/atomic/int32/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 418541     ticks  ~ 41 ms
+primal/generic/atomic/int32/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 629081     ticks  ~ 62 ms
+primal/generic/atomic/int32/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 841003     ticks  ~ 84 ms
+primal/direct/atomic/int64/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 217957     ticks  ~ 21 ms
+primal/direct/atomic/int64/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 527778     ticks  ~ 52 ms
+primal/direct/atomic/int64/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 745026     ticks  ~ 74 ms
+primal/direct/atomic/int64/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 979861     ticks  ~ 97 ms
+primal/generic/atomic/int64/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 267380     ticks  ~ 26 ms
+primal/generic/atomic/int64/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 565539     ticks  ~ 56 ms
+primal/generic/atomic/int64/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 783544     ticks  ~ 78 ms
+primal/generic/atomic/int64/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 999786     ticks  ~ 99 ms
+primal/direct/atomic/int8/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 217964     ticks  ~ 21 ms
+primal/direct/atomic/int8/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 456599     ticks  ~ 45 ms
+primal/direct/atomic/int8/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 677154     ticks  ~ 67 ms
+primal/direct/atomic/int8/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 895786     ticks  ~ 89 ms
+primal/generic/atomic/int8/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 376155     ticks  ~ 37 ms
+primal/generic/atomic/int8/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 603792     ticks  ~ 60 ms
+primal/generic/atomic/int8/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 835953     ticks  ~ 83 ms
+primal/generic/atomic/int8/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1120928    ticks  ~ 112 ms
+primal/direct/atomic/uint16/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 216684     ticks  ~ 21 ms
+primal/direct/atomic/uint16/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 434617     ticks  ~ 43 ms
+primal/direct/atomic/uint16/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 653862     ticks  ~ 65 ms
+primal/direct/atomic/uint16/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1022393    ticks  ~ 102 ms
+primal/generic/atomic/uint16/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 264791     ticks  ~ 26 ms
+primal/generic/atomic/uint16/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 523270     ticks  ~ 52 ms
+primal/generic/atomic/uint16/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 781708     ticks  ~ 78 ms
+primal/generic/atomic/uint16/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1103026    ticks  ~ 110 ms
+primal/direct/atomic/uint32/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 265226     ticks  ~ 26 ms
+primal/direct/atomic/uint32/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 495321     ticks  ~ 49 ms
+primal/direct/atomic/uint32/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 761790     ticks  ~ 76 ms
+primal/direct/atomic/uint32/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 984578     ticks  ~ 98 ms
+primal/generic/atomic/uint32/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 255110     ticks  ~ 25 ms
+primal/generic/atomic/uint32/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 521868     ticks  ~ 52 ms
+primal/generic/atomic/uint32/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 733564     ticks  ~ 73 ms
+primal/generic/atomic/uint32/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 943152     ticks  ~ 94 ms
+primal/direct/atomic/uint64/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 215900     ticks  ~ 21 ms
+primal/direct/atomic/uint64/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 432895     ticks  ~ 43 ms
+primal/direct/atomic/uint64/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 837635     ticks  ~ 83 ms
+primal/direct/atomic/uint64/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1057292    ticks  ~ 105 ms
+primal/generic/atomic/uint64/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 217509     ticks  ~ 21 ms
+primal/generic/atomic/uint64/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 451369     ticks  ~ 45 ms
+primal/generic/atomic/uint64/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 681469     ticks  ~ 68 ms
+primal/generic/atomic/uint64/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 905239     ticks  ~ 90 ms
+primal/direct/atomic/uint8/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 259235     ticks  ~ 25 ms
+primal/direct/atomic/uint8/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 515724     ticks  ~ 51 ms
+primal/direct/atomic/uint8/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 747259     ticks  ~ 74 ms
+primal/direct/atomic/uint8/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1003728    ticks  ~ 100 ms
+primal/generic/atomic/uint8/mul/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 280209     ticks  ~ 28 ms
+primal/generic/atomic/uint8/mul/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 529546     ticks  ~ 52 ms
+primal/generic/atomic/uint8/mul/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 907734     ticks  ~ 90 ms
+primal/generic/atomic/uint8/mul/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1289067    ticks  ~ 128 ms
+primal/direct/atomic/float32/negate/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 196619     ticks  ~ 19 ms
+primal/direct/atomic/float32/negate/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 393060     ticks  ~ 39 ms
+primal/direct/atomic/float32/negate/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 596268     ticks  ~ 59 ms
+primal/direct/atomic/float32/negate/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 783927     ticks  ~ 78 ms
+primal/generic/atomic/float32/negate/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 368797     ticks  ~ 36 ms
+primal/generic/atomic/float32/negate/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 751165     ticks  ~ 75 ms
+primal/generic/atomic/float32/negate/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1164929    ticks  ~ 116 ms
+primal/generic/atomic/float32/negate/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1542584    ticks  ~ 154 ms
+primal/direct/atomic/float64/negate/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 187313     ticks  ~ 18 ms
+primal/direct/atomic/float64/negate/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 385371     ticks  ~ 38 ms
+primal/direct/atomic/float64/negate/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 584140     ticks  ~ 58 ms
+primal/direct/atomic/float64/negate/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 812220     ticks  ~ 81 ms
+primal/generic/atomic/float64/negate/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 505481     ticks  ~ 50 ms
+primal/generic/atomic/float64/negate/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 912078     ticks  ~ 91 ms
+primal/generic/atomic/float64/negate/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1329917    ticks  ~ 132 ms
+primal/generic/atomic/float64/negate/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1908139    ticks  ~ 190 ms
+primal/direct/atomic/int16/negate/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 264118     ticks  ~ 26 ms
+primal/direct/atomic/int16/negate/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 531256     ticks  ~ 53 ms
+primal/direct/atomic/int16/negate/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 794427     ticks  ~ 79 ms
+primal/direct/atomic/int16/negate/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1053909    ticks  ~ 105 ms
+primal/generic/atomic/int16/negate/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 336990     ticks  ~ 33 ms
+primal/generic/atomic/int16/negate/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 681488     ticks  ~ 68 ms
+primal/generic/atomic/int16/negate/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1050648    ticks  ~ 105 ms
+primal/generic/atomic/int16/negate/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1471533    ticks  ~ 147 ms
+primal/direct/atomic/int32/negate/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 270171     ticks  ~ 27 ms
+primal/direct/atomic/int32/negate/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 474475     ticks  ~ 47 ms
+primal/direct/atomic/int32/negate/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 686743     ticks  ~ 68 ms
+primal/direct/atomic/int32/negate/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 871332     ticks  ~ 87 ms
+primal/generic/atomic/int32/negate/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 225265     ticks  ~ 22 ms
+primal/generic/atomic/int32/negate/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 463187     ticks  ~ 46 ms
+primal/generic/atomic/int32/negate/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 793841     ticks  ~ 79 ms
+primal/generic/atomic/int32/negate/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1138922    ticks  ~ 113 ms
+primal/direct/atomic/int64/negate/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 255124     ticks  ~ 25 ms
+primal/direct/atomic/int64/negate/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 449629     ticks  ~ 44 ms
+primal/direct/atomic/int64/negate/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 644427     ticks  ~ 64 ms
+primal/direct/atomic/int64/negate/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 830971     ticks  ~ 83 ms
+primal/generic/atomic/int64/negate/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 231886     ticks  ~ 23 ms
+primal/generic/atomic/int64/negate/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 462579     ticks  ~ 46 ms
+primal/generic/atomic/int64/negate/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 688598     ticks  ~ 68 ms
+primal/generic/atomic/int64/negate/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 916516     ticks  ~ 91 ms
+primal/direct/atomic/int8/negate/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 185588     ticks  ~ 18 ms
+primal/direct/atomic/int8/negate/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 370066     ticks  ~ 37 ms
+primal/direct/atomic/int8/negate/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 600440     ticks  ~ 60 ms
+primal/direct/atomic/int8/negate/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 790101     ticks  ~ 79 ms
+primal/generic/atomic/int8/negate/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 239137     ticks  ~ 23 ms
+primal/generic/atomic/int8/negate/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 466375     ticks  ~ 46 ms
+primal/generic/atomic/int8/negate/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 695146     ticks  ~ 69 ms
+primal/generic/atomic/int8/negate/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 925171     ticks  ~ 92 ms
+primal/direct/atomic/int16/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 213175     ticks  ~ 21 ms
+primal/direct/atomic/int16/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 429911     ticks  ~ 42 ms
+primal/direct/atomic/int16/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 647565     ticks  ~ 64 ms
+primal/direct/atomic/int16/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 862476     ticks  ~ 86 ms
+primal/generic/atomic/int16/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 312073     ticks  ~ 31 ms
+primal/generic/atomic/int16/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 583102     ticks  ~ 58 ms
+primal/generic/atomic/int16/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 809151     ticks  ~ 80 ms
+primal/generic/atomic/int16/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1034451    ticks  ~ 103 ms
+primal/direct/atomic/int32/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 267674     ticks  ~ 26 ms
+primal/direct/atomic/int32/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 556012     ticks  ~ 55 ms
+primal/direct/atomic/int32/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 772223     ticks  ~ 77 ms
+primal/direct/atomic/int32/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 987038     ticks  ~ 98 ms
+primal/generic/atomic/int32/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 206947     ticks  ~ 20 ms
+primal/generic/atomic/int32/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 421631     ticks  ~ 42 ms
+primal/generic/atomic/int32/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 679592     ticks  ~ 67 ms
+primal/generic/atomic/int32/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 884707     ticks  ~ 88 ms
+primal/direct/atomic/int64/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 213515     ticks  ~ 21 ms
+primal/direct/atomic/int64/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 429533     ticks  ~ 42 ms
+primal/direct/atomic/int64/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 643227     ticks  ~ 64 ms
+primal/direct/atomic/int64/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 857056     ticks  ~ 85 ms
+primal/generic/atomic/int64/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 211861     ticks  ~ 21 ms
+primal/generic/atomic/int64/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 420396     ticks  ~ 42 ms
+primal/generic/atomic/int64/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 714550     ticks  ~ 71 ms
+primal/generic/atomic/int64/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 943204     ticks  ~ 94 ms
+primal/direct/atomic/int8/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 256088     ticks  ~ 25 ms
+primal/direct/atomic/int8/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 467744     ticks  ~ 46 ms
+primal/direct/atomic/int8/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 683484     ticks  ~ 68 ms
+primal/direct/atomic/int8/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 958106     ticks  ~ 95 ms
+primal/generic/atomic/int8/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 227445     ticks  ~ 22 ms
+primal/generic/atomic/int8/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 460540     ticks  ~ 46 ms
+primal/generic/atomic/int8/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 683740     ticks  ~ 68 ms
+primal/generic/atomic/int8/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 914445     ticks  ~ 91 ms
+primal/direct/atomic/uint16/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 377295     ticks  ~ 37 ms
+primal/direct/atomic/uint16/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 687567     ticks  ~ 68 ms
+primal/direct/atomic/uint16/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 905851     ticks  ~ 90 ms
+primal/direct/atomic/uint16/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1124372    ticks  ~ 112 ms
+primal/generic/atomic/uint16/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 242299     ticks  ~ 24 ms
+primal/generic/atomic/uint16/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 557722     ticks  ~ 55 ms
+primal/generic/atomic/uint16/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 798298     ticks  ~ 79 ms
+primal/generic/atomic/uint16/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1042373    ticks  ~ 104 ms
+primal/direct/atomic/uint32/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 222575     ticks  ~ 22 ms
+primal/direct/atomic/uint32/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 448587     ticks  ~ 44 ms
+primal/direct/atomic/uint32/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 700862     ticks  ~ 70 ms
+primal/direct/atomic/uint32/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 925291     ticks  ~ 92 ms
+primal/generic/atomic/uint32/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 219803     ticks  ~ 21 ms
+primal/generic/atomic/uint32/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 436395     ticks  ~ 43 ms
+primal/generic/atomic/uint32/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 651472     ticks  ~ 65 ms
+primal/generic/atomic/uint32/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 867659     ticks  ~ 86 ms
+primal/direct/atomic/uint64/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 223939     ticks  ~ 22 ms
+primal/direct/atomic/uint64/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 446977     ticks  ~ 44 ms
+primal/direct/atomic/uint64/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 669450     ticks  ~ 66 ms
+primal/direct/atomic/uint64/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 891768     ticks  ~ 89 ms
+primal/generic/atomic/uint64/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 223962     ticks  ~ 22 ms
+primal/generic/atomic/uint64/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 446449     ticks  ~ 44 ms
+primal/generic/atomic/uint64/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 691586     ticks  ~ 69 ms
+primal/generic/atomic/uint64/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 904243     ticks  ~ 90 ms
+primal/direct/atomic/uint8/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 210780     ticks  ~ 21 ms
+primal/direct/atomic/uint8/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 421301     ticks  ~ 42 ms
+primal/direct/atomic/uint8/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 633459     ticks  ~ 63 ms
+primal/direct/atomic/uint8/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 930281     ticks  ~ 93 ms
+primal/generic/atomic/uint8/or/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 240230     ticks  ~ 24 ms
+primal/generic/atomic/uint8/or/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 479841     ticks  ~ 47 ms
+primal/generic/atomic/uint8/or/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 722776     ticks  ~ 72 ms
+primal/generic/atomic/uint8/or/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 963600     ticks  ~ 96 ms
+primal/direct/atomic/float32/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 206705     ticks  ~ 20 ms
+primal/direct/atomic/float32/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 504007     ticks  ~ 50 ms
+primal/direct/atomic/float32/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 835803     ticks  ~ 83 ms
+primal/direct/atomic/float32/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1041130    ticks  ~ 104 ms
+primal/generic/atomic/float32/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 374117     ticks  ~ 37 ms
+primal/generic/atomic/float32/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 755159     ticks  ~ 75 ms
+primal/generic/atomic/float32/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1129471    ticks  ~ 112 ms
+primal/generic/atomic/float32/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1504946    ticks  ~ 150 ms
+primal/direct/atomic/float64/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 205935     ticks  ~ 20 ms
+primal/direct/atomic/float64/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 415495     ticks  ~ 41 ms
+primal/direct/atomic/float64/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 619590     ticks  ~ 61 ms
+primal/direct/atomic/float64/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 820817     ticks  ~ 82 ms
+primal/generic/atomic/float64/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 380344     ticks  ~ 38 ms
+primal/generic/atomic/float64/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 760158     ticks  ~ 76 ms
+primal/generic/atomic/float64/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 1143754    ticks  ~ 114 ms
+primal/generic/atomic/float64/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1582266    ticks  ~ 158 ms
+primal/direct/atomic/int16/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 215318     ticks  ~ 21 ms
+primal/direct/atomic/int16/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 424257     ticks  ~ 42 ms
+primal/direct/atomic/int16/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 631066     ticks  ~ 63 ms
+primal/direct/atomic/int16/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 839909     ticks  ~ 83 ms
+primal/generic/atomic/int16/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 220390     ticks  ~ 22 ms
+primal/generic/atomic/int16/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 543779     ticks  ~ 54 ms
+primal/generic/atomic/int16/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 768771     ticks  ~ 76 ms
+primal/generic/atomic/int16/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 993151     ticks  ~ 99 ms
+primal/direct/atomic/int32/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 210728     ticks  ~ 21 ms
+primal/direct/atomic/int32/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 420885     ticks  ~ 42 ms
+primal/direct/atomic/int32/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 632801     ticks  ~ 63 ms
+primal/direct/atomic/int32/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 844194     ticks  ~ 84 ms
+primal/generic/atomic/int32/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 210146     ticks  ~ 21 ms
+primal/generic/atomic/int32/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 421504     ticks  ~ 42 ms
+primal/generic/atomic/int32/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 790896     ticks  ~ 79 ms
+primal/generic/atomic/int32/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1082780    ticks  ~ 108 ms
+primal/direct/atomic/int64/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 211835     ticks  ~ 21 ms
+primal/direct/atomic/int64/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 424508     ticks  ~ 42 ms
+primal/direct/atomic/int64/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 637637     ticks  ~ 63 ms
+primal/direct/atomic/int64/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 849230     ticks  ~ 84 ms
+primal/generic/atomic/int64/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 228531     ticks  ~ 22 ms
+primal/generic/atomic/int64/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 456070     ticks  ~ 45 ms
+primal/generic/atomic/int64/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 685056     ticks  ~ 68 ms
+primal/generic/atomic/int64/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 915129     ticks  ~ 91 ms
+primal/direct/atomic/int8/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 212600     ticks  ~ 21 ms
+primal/direct/atomic/int8/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 429526     ticks  ~ 42 ms
+primal/direct/atomic/int8/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 648240     ticks  ~ 64 ms
+primal/direct/atomic/int8/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 860849     ticks  ~ 86 ms
+primal/generic/atomic/int8/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 229534     ticks  ~ 22 ms
+primal/generic/atomic/int8/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 464086     ticks  ~ 46 ms
+primal/generic/atomic/int8/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 687211     ticks  ~ 68 ms
+primal/generic/atomic/int8/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 955762     ticks  ~ 95 ms
+primal/direct/atomic/uint16/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 213855     ticks  ~ 21 ms
+primal/direct/atomic/uint16/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 432080     ticks  ~ 43 ms
+primal/direct/atomic/uint16/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 647463     ticks  ~ 64 ms
+primal/direct/atomic/uint16/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 863524     ticks  ~ 86 ms
+primal/generic/atomic/uint16/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 242180     ticks  ~ 24 ms
+primal/generic/atomic/uint16/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 487864     ticks  ~ 48 ms
+primal/generic/atomic/uint16/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 739629     ticks  ~ 73 ms
+primal/generic/atomic/uint16/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1000002    ticks  ~ 100 ms
+primal/direct/atomic/uint32/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 214605     ticks  ~ 21 ms
+primal/direct/atomic/uint32/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 437631     ticks  ~ 43 ms
+primal/direct/atomic/uint32/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 774574     ticks  ~ 77 ms
+primal/direct/atomic/uint32/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1087790    ticks  ~ 108 ms
+primal/generic/atomic/uint32/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 209531     ticks  ~ 20 ms
+primal/generic/atomic/uint32/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 421874     ticks  ~ 42 ms
+primal/generic/atomic/uint32/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 632594     ticks  ~ 63 ms
+primal/generic/atomic/uint32/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 845013     ticks  ~ 84 ms
+primal/direct/atomic/uint64/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 302957     ticks  ~ 30 ms
+primal/direct/atomic/uint64/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 510815     ticks  ~ 51 ms
+primal/direct/atomic/uint64/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 719849     ticks  ~ 71 ms
+primal/direct/atomic/uint64/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 928813     ticks  ~ 92 ms
+primal/generic/atomic/uint64/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 210575     ticks  ~ 21 ms
+primal/generic/atomic/uint64/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 426694     ticks  ~ 42 ms
+primal/generic/atomic/uint64/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 771225     ticks  ~ 77 ms
+primal/generic/atomic/uint64/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 985461     ticks  ~ 98 ms
+primal/direct/atomic/uint8/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 240611     ticks  ~ 24 ms
+primal/direct/atomic/uint8/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 507160     ticks  ~ 50 ms
+primal/direct/atomic/uint8/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 762643     ticks  ~ 76 ms
+primal/direct/atomic/uint8/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 975757     ticks  ~ 97 ms
+primal/generic/atomic/uint8/sub/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 242048     ticks  ~ 24 ms
+primal/generic/atomic/uint8/sub/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 492781     ticks  ~ 49 ms
+primal/generic/atomic/uint8/sub/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 734051     ticks  ~ 73 ms
+primal/generic/atomic/uint8/sub/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 997532     ticks  ~ 99 ms
+primal/direct/atomic/int16/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 221943     ticks  ~ 22 ms
+primal/direct/atomic/int16/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 435727     ticks  ~ 43 ms
+primal/direct/atomic/int16/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 650147     ticks  ~ 65 ms
+primal/direct/atomic/int16/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 863608     ticks  ~ 86 ms
+primal/generic/atomic/int16/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 226397     ticks  ~ 22 ms
+primal/generic/atomic/int16/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 452185     ticks  ~ 45 ms
+primal/generic/atomic/int16/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 677962     ticks  ~ 67 ms
+primal/generic/atomic/int16/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 906258     ticks  ~ 90 ms
+primal/direct/atomic/int32/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 220183     ticks  ~ 22 ms
+primal/direct/atomic/int32/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 444368     ticks  ~ 44 ms
+primal/direct/atomic/int32/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 663126     ticks  ~ 66 ms
+primal/direct/atomic/int32/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 879956     ticks  ~ 87 ms
+primal/generic/atomic/int32/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 206381     ticks  ~ 20 ms
+primal/generic/atomic/int32/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 411140     ticks  ~ 41 ms
+primal/generic/atomic/int32/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 616157     ticks  ~ 61 ms
+primal/generic/atomic/int32/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 822568     ticks  ~ 82 ms
+primal/direct/atomic/int64/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 213985     ticks  ~ 21 ms
+primal/direct/atomic/int64/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 473694     ticks  ~ 47 ms
+primal/direct/atomic/int64/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 694838     ticks  ~ 69 ms
+primal/direct/atomic/int64/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 914705     ticks  ~ 91 ms
+primal/generic/atomic/int64/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 216113     ticks  ~ 21 ms
+primal/generic/atomic/int64/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 430318     ticks  ~ 43 ms
+primal/generic/atomic/int64/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 644137     ticks  ~ 64 ms
+primal/generic/atomic/int64/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 865439     ticks  ~ 86 ms
+primal/direct/atomic/int8/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 232196     ticks  ~ 23 ms
+primal/direct/atomic/int8/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 453840     ticks  ~ 45 ms
+primal/direct/atomic/int8/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 663789     ticks  ~ 66 ms
+primal/direct/atomic/int8/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 875015     ticks  ~ 87 ms
+primal/generic/atomic/int8/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 268453     ticks  ~ 26 ms
+primal/generic/atomic/int8/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 494527     ticks  ~ 49 ms
+primal/generic/atomic/int8/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 872433     ticks  ~ 87 ms
+primal/generic/atomic/int8/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1098093    ticks  ~ 109 ms
+primal/direct/atomic/uint16/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 215348     ticks  ~ 21 ms
+primal/direct/atomic/uint16/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 431220     ticks  ~ 43 ms
+primal/direct/atomic/uint16/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 743045     ticks  ~ 74 ms
+primal/direct/atomic/uint16/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1063527    ticks  ~ 106 ms
+primal/generic/atomic/uint16/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 239498     ticks  ~ 23 ms
+primal/generic/atomic/uint16/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 477666     ticks  ~ 47 ms
+primal/generic/atomic/uint16/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 727642     ticks  ~ 72 ms
+primal/generic/atomic/uint16/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1074934    ticks  ~ 107 ms
+primal/direct/atomic/uint32/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 214883     ticks  ~ 21 ms
+primal/direct/atomic/uint32/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 431422     ticks  ~ 43 ms
+primal/direct/atomic/uint32/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 646525     ticks  ~ 64 ms
+primal/direct/atomic/uint32/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 859966     ticks  ~ 85 ms
+primal/generic/atomic/uint32/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 227905     ticks  ~ 22 ms
+primal/generic/atomic/uint32/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 455433     ticks  ~ 45 ms
+primal/generic/atomic/uint32/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 668387     ticks  ~ 66 ms
+primal/generic/atomic/uint32/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 898812     ticks  ~ 89 ms
+primal/direct/atomic/uint64/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 281149     ticks  ~ 28 ms
+primal/direct/atomic/uint64/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 518957     ticks  ~ 51 ms
+primal/direct/atomic/uint64/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 781716     ticks  ~ 78 ms
+primal/direct/atomic/uint64/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1002411    ticks  ~ 100 ms
+primal/generic/atomic/uint64/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 222699     ticks  ~ 22 ms
+primal/generic/atomic/uint64/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 464025     ticks  ~ 46 ms
+primal/generic/atomic/uint64/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 675398     ticks  ~ 67 ms
+primal/generic/atomic/uint64/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 890743     ticks  ~ 89 ms
+primal/direct/atomic/uint8/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 212679     ticks  ~ 21 ms
+primal/direct/atomic/uint8/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 424035     ticks  ~ 42 ms
+primal/direct/atomic/uint8/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 634987     ticks  ~ 63 ms
+primal/direct/atomic/uint8/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 845681     ticks  ~ 84 ms
+primal/generic/atomic/uint8/and/baseline  running | Cycle = 2048     | Op Count = 8388608      | Duration = 236869     ticks  ~ 23 ms
+primal/generic/atomic/uint8/and/baseline  running | Cycle = 4096     | Op Count = 16777216     | Duration = 475920     ticks  ~ 47 ms
+primal/generic/atomic/uint8/and/baseline  running | Cycle = 6144     | Op Count = 25165824     | Duration = 868094     ticks  ~ 86 ms
+primal/generic/atomic/uint8/and/baseline  running | Cycle = 8192     | Op Count = 33554432     | Duration = 1108059    ticks  ~ 110 ms
+LeftOpUri,RightOpUri,LeftOpCount,RightOpCount,LeftWorkTime,RightWorkTime,PerformanceRatio
+primal/direct/atomic/float32/add/baseline ,primal/generic/atomic/float32/add/baseline ,33554432,33554432,85,152,0.5641
+primal/direct/atomic/float64/add/baseline ,primal/generic/atomic/float64/add/baseline ,33554432,33554432,84,171,0.4892
+primal/direct/atomic/int16/add/baseline ,primal/generic/atomic/int16/add/baseline ,33554432,33554432,85,89,0.9554
+primal/direct/atomic/int32/add/baseline ,primal/generic/atomic/int32/add/baseline ,33554432,33554432,110,84,1.3064
+primal/direct/atomic/int64/add/baseline ,primal/generic/atomic/int64/add/baseline ,33554432,33554432,87,86,1.0051
+primal/direct/atomic/int8/add/baseline ,primal/generic/atomic/int8/add/baseline ,33554432,33554432,89,92,0.9594
+primal/direct/atomic/uint16/add/baseline ,primal/generic/atomic/uint16/add/baseline ,33554432,33554432,136,97,1.3944
+primal/direct/atomic/uint32/add/baseline ,primal/generic/atomic/uint32/add/baseline ,33554432,33554432,93,90,1.0298
+primal/direct/atomic/uint64/add/baseline ,primal/generic/atomic/uint64/add/baseline ,33554432,33554432,88,88,0.998
+primal/direct/atomic/uint8/add/baseline ,primal/generic/atomic/uint8/add/baseline ,33554432,33554432,87,111,0.7876
+primal/direct/atomic/int16/and/baseline ,primal/generic/atomic/int16/and/baseline ,33554432,33554432,85,100,0.8531
+primal/direct/atomic/int32/and/baseline ,primal/generic/atomic/int32/and/baseline ,33554432,33554432,106,94,1.1332
+primal/direct/atomic/int64/and/baseline ,primal/generic/atomic/int64/and/baseline ,33554432,33554432,88,106,0.8301
+primal/direct/atomic/int8/and/baseline ,primal/generic/atomic/int8/and/baseline ,33554432,33554432,87,91,0.9597
+primal/direct/atomic/uint16/and/baseline ,primal/generic/atomic/uint16/and/baseline ,33554432,33554432,86,143,0.6021
+primal/direct/atomic/uint32/and/baseline ,primal/generic/atomic/uint32/and/baseline ,33554432,33554432,132,104,1.2705
+primal/direct/atomic/uint64/and/baseline ,primal/generic/atomic/uint64/and/baseline ,33554432,33554432,86,101,0.8465
+primal/direct/atomic/uint8/and/baseline ,primal/generic/atomic/uint8/and/baseline ,33554432,33554432,85,102,0.841
+primal/direct/atomic/float32/div/baseline ,primal/generic/atomic/float32/div/baseline ,33554432,33554432,85,160,0.5299
+primal/direct/atomic/float64/div/baseline ,primal/generic/atomic/float64/div/baseline ,33554432,33554432,158,179,0.886
+primal/direct/atomic/int16/div/baseline ,primal/generic/atomic/int16/div/baseline ,33554432,33554432,138,152,0.9073
+primal/direct/atomic/int32/div/baseline ,primal/generic/atomic/int32/div/baseline ,33554432,33554432,135,145,0.9299
+primal/direct/atomic/int64/div/baseline ,primal/generic/atomic/int64/div/baseline ,33554432,33554432,348,347,1.0028
+primal/direct/atomic/int8/div/baseline ,primal/generic/atomic/int8/div/baseline ,33554432,33554432,159,143,1.1148
+primal/direct/atomic/uint16/div/baseline ,primal/generic/atomic/uint16/div/baseline ,33554432,33554432,157,168,0.9315
+primal/direct/atomic/uint32/div/baseline ,primal/generic/atomic/uint32/div/baseline ,33554432,33554432,160,165,0.9688
+primal/direct/atomic/uint64/div/baseline ,primal/generic/atomic/uint64/div/baseline ,33554432,33554432,312,304,1.0255
+primal/direct/atomic/uint8/div/baseline ,primal/generic/atomic/uint8/div/baseline ,33554432,33554432,138,152,0.9038
+primal/direct/atomic/float32/mod/baseline ,primal/generic/atomic/float32/mod/baseline ,33554432,33554432,910,919,0.9904
+primal/direct/atomic/float64/mod/baseline ,primal/generic/atomic/float64/mod/baseline ,33554432,33554432,802,854,0.9394
+primal/direct/atomic/int16/mod/baseline ,primal/generic/atomic/int16/mod/baseline ,33554432,33554432,139,139,0.9992
+primal/direct/atomic/int32/mod/baseline ,primal/generic/atomic/int32/mod/baseline ,33554432,33554432,119,138,0.8609
+primal/direct/atomic/int64/mod/baseline ,primal/generic/atomic/int64/mod/baseline ,33554432,33554432,309,366,0.8448
+primal/direct/atomic/int8/mod/baseline ,primal/generic/atomic/int8/mod/baseline ,33554432,33554432,157,154,1.0198
+primal/direct/atomic/uint16/mod/baseline ,primal/generic/atomic/uint16/mod/baseline ,33554432,33554432,153,144,1.0682
+primal/direct/atomic/uint32/mod/baseline ,primal/generic/atomic/uint32/mod/baseline ,33554432,33554432,149,160,0.9345
+primal/direct/atomic/uint64/mod/baseline ,primal/generic/atomic/uint64/mod/baseline ,33554432,33554432,305,352,0.8689
+primal/direct/atomic/uint8/mod/baseline ,primal/generic/atomic/uint8/mod/baseline ,33554432,33554432,132,152,0.8737
+primal/direct/atomic/float32/mul/baseline ,primal/generic/atomic/float32/mul/baseline ,33554432,33554432,84,148,0.5728
+primal/direct/atomic/float64/mul/baseline ,primal/generic/atomic/float64/mul/baseline ,33554432,33554432,85,167,0.5081
+primal/direct/atomic/int16/mul/baseline ,primal/generic/atomic/int16/mul/baseline ,33554432,33554432,127,91,1.3838
+primal/direct/atomic/int32/mul/baseline ,primal/generic/atomic/int32/mul/baseline ,33554432,33554432,87,84,1.0374
+primal/direct/atomic/int64/mul/baseline ,primal/generic/atomic/int64/mul/baseline ,33554432,33554432,97,99,0.9801
+primal/direct/atomic/int8/mul/baseline ,primal/generic/atomic/int8/mul/baseline ,33554432,33554432,89,112,0.7991
+primal/direct/atomic/uint16/mul/baseline ,primal/generic/atomic/uint16/mul/baseline ,33554432,33554432,102,110,0.9269
+primal/direct/atomic/uint32/mul/baseline ,primal/generic/atomic/uint32/mul/baseline ,33554432,33554432,98,94,1.0439
+primal/direct/atomic/uint64/mul/baseline ,primal/generic/atomic/uint64/mul/baseline ,33554432,33554432,105,90,1.168
+primal/direct/atomic/uint8/mul/baseline ,primal/generic/atomic/uint8/mul/baseline ,33554432,33554432,100,128,0.7786
+primal/direct/atomic/float32/negate/baseline ,primal/generic/atomic/float32/negate/baseline ,33554432,33554432,78,154,0.5082
+primal/direct/atomic/float64/negate/baseline ,primal/generic/atomic/float64/negate/baseline ,33554432,33554432,81,190,0.4257
+primal/direct/atomic/int16/negate/baseline ,primal/generic/atomic/int16/negate/baseline ,33554432,33554432,105,147,0.7162
+primal/direct/atomic/int32/negate/baseline ,primal/generic/atomic/int32/negate/baseline ,33554432,33554432,87,113,0.765
+primal/direct/atomic/int64/negate/baseline ,primal/generic/atomic/int64/negate/baseline ,33554432,33554432,83,91,0.9067
+primal/direct/atomic/int8/negate/baseline ,primal/generic/atomic/int8/negate/baseline ,33554432,33554432,79,92,0.854
+primal/direct/atomic/int16/or/baseline ,primal/generic/atomic/int16/or/baseline ,33554432,33554432,86,103,0.8338
+primal/direct/atomic/int32/or/baseline ,primal/generic/atomic/int32/or/baseline ,33554432,33554432,98,88,1.1157
+primal/direct/atomic/int64/or/baseline ,primal/generic/atomic/int64/or/baseline ,33554432,33554432,85,94,0.9087
+primal/direct/atomic/int8/or/baseline ,primal/generic/atomic/int8/or/baseline ,33554432,33554432,95,91,1.0477
+primal/direct/atomic/uint16/or/baseline ,primal/generic/atomic/uint16/or/baseline ,33554432,33554432,112,104,1.0787
+primal/direct/atomic/uint32/or/baseline ,primal/generic/atomic/uint32/or/baseline ,33554432,33554432,92,86,1.0664
+primal/direct/atomic/uint64/or/baseline ,primal/generic/atomic/uint64/or/baseline ,33554432,33554432,89,90,0.9862
+primal/direct/atomic/uint8/or/baseline ,primal/generic/atomic/uint8/or/baseline ,33554432,33554432,93,96,0.9654
+primal/direct/atomic/float32/sub/baseline ,primal/generic/atomic/float32/sub/baseline ,33554432,33554432,104,150,0.6918
+primal/direct/atomic/float64/sub/baseline ,primal/generic/atomic/float64/sub/baseline ,33554432,33554432,82,158,0.5188
+primal/direct/atomic/int16/sub/baseline ,primal/generic/atomic/int16/sub/baseline ,33554432,33554432,83,99,0.8457
+primal/direct/atomic/int32/sub/baseline ,primal/generic/atomic/int32/sub/baseline ,33554432,33554432,84,108,0.7797
+primal/direct/atomic/int64/sub/baseline ,primal/generic/atomic/int64/sub/baseline ,33554432,33554432,84,91,0.928
+primal/direct/atomic/int8/sub/baseline ,primal/generic/atomic/int8/sub/baseline ,33554432,33554432,86,95,0.9007
+primal/direct/atomic/uint16/sub/baseline ,primal/generic/atomic/uint16/sub/baseline ,33554432,33554432,86,100,0.8635
+primal/direct/atomic/uint32/sub/baseline ,primal/generic/atomic/uint32/sub/baseline ,33554432,33554432,108,84,1.2873
+primal/direct/atomic/uint64/sub/baseline ,primal/generic/atomic/uint64/sub/baseline ,33554432,33554432,92,98,0.9425
+primal/direct/atomic/uint8/sub/baseline ,primal/generic/atomic/uint8/sub/baseline ,33554432,33554432,97,99,0.9782
+primal/direct/atomic/int16/and/baseline ,primal/generic/atomic/int16/and/baseline ,33554432,33554432,86,90,0.9529
+primal/direct/atomic/int32/and/baseline ,primal/generic/atomic/int32/and/baseline ,33554432,33554432,87,82,1.0698
+primal/direct/atomic/int64/and/baseline ,primal/generic/atomic/int64/and/baseline ,33554432,33554432,91,86,1.0569
+primal/direct/atomic/int8/and/baseline ,primal/generic/atomic/int8/and/baseline ,33554432,33554432,87,109,0.7968
+primal/direct/atomic/uint16/and/baseline ,primal/generic/atomic/uint16/and/baseline ,33554432,33554432,106,107,0.9894
+primal/direct/atomic/uint32/and/baseline ,primal/generic/atomic/uint32/and/baseline ,33554432,33554432,85,89,0.9568
+primal/direct/atomic/uint64/and/baseline ,primal/generic/atomic/uint64/and/baseline ,33554432,33554432,100,89,1.1254
+primal/direct/atomic/uint8/and/baseline ,primal/generic/atomic/uint8/and/baseline ,33554432,33554432,84,110,0.7632

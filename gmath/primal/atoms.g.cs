@@ -14,237 +14,8 @@ namespace Z0
     using static mfunc;
     using static As;
 
-    public static class atoms
+    public static partial class atoms
     {
-
-        #region add
-
-        [MethodImpl(Inline)]
-        public static T addI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) + int8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T addU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) + uint8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T addI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) + int16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T addU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) + uint16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T addI32<T>(T lhs, T rhs)
-            => generic<T>(int32(lhs) + int32(rhs));
-        
-        [MethodImpl(Inline)]
-        public static T addU32<T>(T lhs, T rhs)
-            => generic<T>(uint32(lhs) + uint32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T addI64<T>(T lhs, T rhs)
-            => generic<T>(int64(lhs) + int64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T addU64<T>(T lhs, T rhs)
-            => generic<T>(uint64(lhs) + uint64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T addF32<T>(T lhs, T rhs)
-            => generic<T>(float32(lhs) + float32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T addF64<T>(T lhs, T rhs)
-            => generic<T>(float64(lhs) + float64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T addF64<T>(ref T lhs, ref T rhs)
-            => generic<T>(float64(lhs) + float64(rhs));
-
-
-        #endregion
-
-        #region sub
-
-
-        [MethodImpl(Inline)]
-        public static T subI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) - int8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T subU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) - uint8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T subI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) - int16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T subU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) - uint16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T subI32<T>(T lhs, T rhs)
-            => generic<T>(int32(lhs) - int32(rhs));
-        
-        [MethodImpl(Inline)]
-        public static T subU32<T>(T lhs, T rhs)
-            => generic<T>(uint32(lhs) - uint32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T subI64<T>(T lhs, T rhs)
-            => generic<T>(int64(lhs) - int64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T subU64<T>(T lhs, T rhs)
-            => generic<T>(uint64(lhs) - uint64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T subF32<T>(T lhs, T rhs)
-            => generic<T>(float32(lhs) - float32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T subF64<T>(T lhs, T rhs)
-            => generic<T>(float64(lhs) - float64(rhs));
-
-        #endregion
-
-        #region mul
-        
-
-        [MethodImpl(Inline)]
-        public static T mulI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) * int8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T mulU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) * uint8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T mulI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) * int16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T mulU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) * uint16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T mulI32<T>(T lhs, T rhs)
-            => generic<T>(int32(lhs) * int32(rhs));
-        
-        [MethodImpl(Inline)]
-        public static T mulU32<T>(T lhs, T rhs)
-            => generic<T>(uint32(lhs) * uint32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T mulI64<T>(T lhs, T rhs)
-            => generic<T>(int64(lhs) * int64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T mulU64<T>(T lhs, T rhs)
-            => generic<T>(uint64(lhs) * uint64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T mulF32<T>(T lhs, T rhs)
-            => generic<T>(float32(lhs) * float32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T mulF64<T>(T lhs, T rhs)
-            => generic<T>(float64(lhs) * float64(rhs));
-
-        #endregion
-
-        #region div
-
-
-        [MethodImpl(Inline)]
-        public static T divI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) / int8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T divU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) / uint8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T divI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) / int16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T divU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) / uint16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T divI32<T>(T lhs, T rhs)
-            => generic<T>(int32(lhs) / int32(rhs));
-        
-        [MethodImpl(Inline)]
-        public static T divU32<T>(T lhs, T rhs)
-            => generic<T>(uint32(lhs) / uint32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T divI64<T>(T lhs, T rhs)
-            => generic<T>(int64(lhs) / int64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T divU64<T>(T lhs, T rhs)
-            => generic<T>(uint64(lhs) / uint64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T divF32<T>(T lhs, T rhs)
-            => generic<T>(float32(lhs) / float32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T divF64<T>(T lhs, T rhs)
-            => generic<T>(float64(lhs) / float64(rhs));
-
-        #endregion
-
-        #region mod
-
-
-        [MethodImpl(Inline)]
-        public static T modI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) % int8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T modU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) % uint8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T modI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) % int16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T modU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) % uint16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T modI32<T>(T lhs, T rhs)
-            => generic<T>(int32(lhs) % int32(rhs));
-        
-        [MethodImpl(Inline)]
-        public static T modU32<T>(T lhs, T rhs)
-            => generic<T>(uint32(lhs) % uint32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T modI64<T>(T lhs, T rhs)
-            => generic<T>(int64(lhs) % int64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T modU64<T>(T lhs, T rhs)
-            => generic<T>(uint64(lhs) % uint64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T modF32<T>(T lhs, T rhs)
-            => generic<T>(float32(lhs) % float32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T modF64<T>(T lhs, T rhs)
-            => generic<T>(float64(lhs) % float64(rhs));
-
-        #endregion
 
         #region and
 
@@ -355,39 +126,168 @@ namespace Z0
 
         #endregion
 
+        #region lshift
+
+        [MethodImpl(Inline)]
+        public static T lshiftI8<T>(T lhs, int rhs)
+            => generic<T>((sbyte)(int8(lhs) << rhs));
+
+        [MethodImpl(Inline)]
+        public static T lshiftU8<T>(T lhs, int rhs)
+            => generic<T>((byte)(uint8(lhs) << rhs));
+
+        [MethodImpl(Inline)]
+        public static T lshiftI16<T>(T lhs, int rhs)
+            => generic<T>((short)(int16(lhs) << rhs));
+
+        [MethodImpl(Inline)]
+        public static T lshiftU16<T>(T lhs, int rhs)
+            => generic<T>((ushort)(uint16(lhs) << rhs));
+
+        [MethodImpl(Inline)]
+        public static T lshiftI32<T>(T lhs, int rhs)
+            => generic<T>(int32(lhs) << rhs);
+        
+        [MethodImpl(Inline)]
+        public static T lshiftU32<T>(T lhs, int rhs)
+            => generic<T>(uint32(lhs) << rhs);
+
+        [MethodImpl(Inline)]
+        public static T lshiftI64<T>(T lhs, int rhs)
+            => generic<T>(int64(lhs)  << rhs);
+
+        [MethodImpl(Inline)]
+        public static T lshiftU64<T>(T lhs, int rhs)
+            => generic<T>(uint64(lhs)  << rhs);
+
+
+        #endregion
+
+        #region lshift
+
+        [MethodImpl(Inline)]
+        public static T rshiftI8<T>(T lhs, int rhs)
+            => generic<T>((sbyte)(int8(lhs) >> rhs));
+
+        [MethodImpl(Inline)]
+        public static T rshiftU8<T>(T lhs, int rhs)
+            => generic<T>((byte)(uint8(lhs) >> rhs));
+
+        [MethodImpl(Inline)]
+        public static T rshiftI16<T>(T lhs, int rhs)
+            => generic<T>((short)(int16(lhs) >> rhs));
+
+        [MethodImpl(Inline)]
+        public static T rshiftU16<T>(T lhs, int rhs)
+            => generic<T>((ushort)(uint16(lhs) >> rhs));
+
+        [MethodImpl(Inline)]
+        public static T rshiftI32<T>(T lhs, int rhs)
+            => generic<T>(int32(lhs) >> rhs);
+        
+        [MethodImpl(Inline)]
+        public static T rshiftU32<T>(T lhs, int rhs)
+            => generic<T>(uint32(lhs) >> rhs);
+
+        [MethodImpl(Inline)]
+        public static T rshiftI64<T>(T lhs, int rhs)
+            => generic<T>(int64(lhs)  >> rhs);
+
+        [MethodImpl(Inline)]
+        public static T rshiftU64<T>(T lhs, int rhs)
+            => generic<T>(uint64(lhs)  >> rhs);
+
+        #endregion
+
         #region flip
 
         [MethodImpl(Inline)]
+        public static ref T flipI8<T>(ref T src)
+        {
+            math.flip(ref int8(ref src));            
+            return ref src;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T flipU8<T>(ref T src)
+        {
+            math.flip(ref uint8(ref src));            
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T flipI16<T>(ref T src)
+        {
+            math.flip(ref int16(ref src));            
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T flipU16<T>(ref T src)
+        {
+            math.flip(ref uint16(ref src));            
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T flipI32<T>(ref T src)
+        {
+            math.flip(ref int32(ref src));            
+            return ref src;
+        }
+        
+        [MethodImpl(Inline)]
+        public static ref T flipU32<T>(ref T src)
+        {
+            math.flip(ref uint32(ref src));            
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T flipI64<T>(ref T src)
+        {
+            math.flip(ref int64(ref src));            
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T flipU64<T>(ref T src)
+        {
+            math.flip(ref uint64(ref src));            
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
         public static T flipI8<T>(T src)
-            => generic<T>((sbyte)(~ int8(src)));
+            => flipI8(ref src);
 
         [MethodImpl(Inline)]
         public static T flipU8<T>(T src)
-            => generic<T>((byte)(~ uint8(src)));
+            => flipU8(ref src);
 
         [MethodImpl(Inline)]
         public static T flipI16<T>(T src)
-            => generic<T>((short)(~ int16(src)));
+            => flipI16(ref src);
 
         [MethodImpl(Inline)]
         public static T flipU16<T>(T src)
-            => generic<T>((ushort)(~ uint16(src)));
+            => flipU16(ref src);
 
         [MethodImpl(Inline)]
         public static T flipI32<T>(T src)
-            => generic<T>(~ int32(src));
+            => flipI32(ref src);
         
         [MethodImpl(Inline)]
         public static T flipU32<T>(T src)
-            => generic<T>(~ uint32(src));
+            => flipU32(ref src);
 
         [MethodImpl(Inline)]
         public static T flipI64<T>(T src)
-            => generic<T>(~ int64(src));
+            => flipI64(ref src);
 
         [MethodImpl(Inline)]
         public static T flipU64<T>(T src)
-            => generic<T>(~ uint64(src));
+            => flipU64(ref src);
 
         #endregion
 
@@ -743,124 +643,279 @@ namespace Z0
  
         #region inc
 
+        [MethodImpl(Inline)]
+        public static ref T incI8<T>(ref T io)
+        {
+            ref var result = ref math.inc(ref int8(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T incU8<T>(ref T io)
+        {
+            ref var result = ref math.inc(ref uint8(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T incI16<T>(ref T io)
+        {
+            ref var result = ref math.inc(ref int16(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T incU16<T>(ref T io)
+        {
+            ref var result = ref math.inc(ref uint16(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T incI32<T>(ref T io)
+        {
+            ref var result = ref math.inc(ref int32(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T incU32<T>(ref T io)
+        {
+            ref var result = ref math.inc(ref uint32(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T incI64<T>(ref T io)
+        {
+            ref var result = ref math.inc(ref int64(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T incU64<T>(ref T io)
+        {
+            ref var result = ref math.inc(ref uint64(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T incF32<T>(ref T io)
+        {
+            ref var result = ref math.inc(ref float32(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T incF64<T>(ref T io)
+        {
+            ref var result = ref math.inc(ref float64(ref io));
+            return ref io;
+        }
+
+
 
         [MethodImpl(Inline)]
         public static T incI8<T>(T src)
-            => generic<T>((sbyte)(int8(src) + 1));
+            => incI8(ref src);
 
         [MethodImpl(Inline)]
         public static T incU8<T>(T src)
-            => generic<T>((byte)(uint8(src) + 1));
+            => incU8(ref src);
 
         [MethodImpl(Inline)]
         public static T incI16<T>(T src)
-            => generic<T>((short)(int16(src) + 1));
+            => incI16(ref src);
 
         [MethodImpl(Inline)]
         public static T incU16<T>(T src)
-            => generic<T>((ushort)(uint16(src) + 1));
+            => incU16(ref src);
 
         [MethodImpl(Inline)]
         public static T incI32<T>(T src)
-            => generic<T>(int32(src) + 1);
+            => incI32(ref src);
         
         [MethodImpl(Inline)]
         public static T incU32<T>(T src)
-            => generic<T>(uint32(src) + 1);
+            => incU32(ref src);
 
         [MethodImpl(Inline)]
         public static T incI64<T>(T src)
-            => generic<T>(int64(src) + 1);
+            => incI64(ref src);
 
         [MethodImpl(Inline)]
         public static T incU64<T>(T src)
-            => generic<T>(uint64(src) + 1);
+            => incU64(ref src);
 
         [MethodImpl(Inline)]
         public static T incF32<T>(T src)
-            => generic<T>(float32(src) + 1);
+            => incF32(ref src);
 
         [MethodImpl(Inline)]
         public static T incF64<T>(T src)
-            => generic<T>(float64(src) + 1);
+            => incF64(ref src);
+
 
         #endregion
 
         #region dec
 
+        [MethodImpl(Inline)]
+        public static ref T decI8<T>(ref T io)
+        {
+            ref var result = ref math.dec(ref int8(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T decU8<T>(ref T io)
+        {
+            ref var result = ref math.dec(ref uint8(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T decI16<T>(ref T io)
+        {
+            ref var result = ref math.dec(ref int16(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T decU16<T>(ref T io)
+        {
+            ref var result = ref math.dec(ref uint16(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T decI32<T>(ref T io)
+        {
+            ref var result = ref math.dec(ref int32(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T decU32<T>(ref T io)
+        {
+            ref var result = ref math.dec(ref uint32(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T decI64<T>(ref T io)
+        {
+            ref var result = ref math.dec(ref int64(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T decU64<T>(ref T io)
+        {
+            ref var result = ref math.dec(ref uint64(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T decF32<T>(ref T io)
+        {
+            ref var result = ref math.dec(ref float32(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T decF64<T>(ref T io)
+        {
+            ref var result = ref math.dec(ref float64(ref io));
+            return ref io;
+        }
 
         [MethodImpl(Inline)]
         public static T decI8<T>(T src)
-            => generic<T>((sbyte)(int8(src)- 1));
+            => decI8(ref src);
 
         [MethodImpl(Inline)]
         public static T decU8<T>(T src)
-            => generic<T>((byte)(uint8(src) - 1));
+            => decU8(ref src);
 
         [MethodImpl(Inline)]
         public static T decI16<T>(T src)
-            => generic<T>((short)(int16(src) - 1));
+            => decI16(ref src);
 
         [MethodImpl(Inline)]
         public static T decU16<T>(T src)
-            => generic<T>((ushort)(uint16(src) - 1));
+            => decU16(ref src);
 
         [MethodImpl(Inline)]
         public static T decI32<T>(T src)
-            => generic<T>(int32(src) - 1);
+            => decI32(ref src);
         
         [MethodImpl(Inline)]
         public static T decU32<T>(T src)
-            => generic<T>(uint32(src) - 1);
+            => decU32(ref src);
 
         [MethodImpl(Inline)]
         public static T decI64<T>(T src)
-            => generic<T>(int64(src) - 1);
+            => decI64(ref src);
 
         [MethodImpl(Inline)]
         public static T decU64<T>(T src)
-            => generic<T>(uint64(src) - 1);
+            => decU64(ref src);
 
         [MethodImpl(Inline)]
         public static T decF32<T>(T src)
-            => generic<T>(float32(src) - 1);
+            => decF32(ref src);
 
         [MethodImpl(Inline)]
         public static T decF64<T>(T src)
-            => generic<T>(float64(src) - 1);
+            => decF64(ref src);
+
 
         #endregion
 
         #region negate
 
+        [MethodImpl(Inline)]
+        public static ref T negateI8<T>(ref T io)
+        {
+            ref var result = ref math.negate(ref int8(ref io));
+            return ref io;
+        }
 
         [MethodImpl(Inline)]
-        public static T negateI8<T>(T src)
-            => generic<T>((sbyte)(- int8(src)));
-
-
-        [MethodImpl(Inline)]
-        public static T negateI16<T>(T src)
-            => generic<T>((short)(- int16(src)));
-
+        public static ref T negateI16<T>(ref T io)
+        {
+            ref var result = ref math.negate(ref int16(ref io));
+            return ref io;
+        }
 
         [MethodImpl(Inline)]
-        public static T negateI32<T>(T src)
-            => generic<T>(- int32(src));
-        
+        public static ref T negateI32<T>(ref T io)
+        {
+            ref var result = ref math.negate(ref int32(ref io));
+            return ref io;
+        }
 
         [MethodImpl(Inline)]
-        public static T negateI64<T>(T src)
-            => generic<T>(- int64(src));
-
-
-        [MethodImpl(Inline)]
-        public static T negateF32<T>(T src)
-            => generic<T>(- float32(src));
+        public static ref T negateI64<T>(ref T io)
+        {
+            ref var result = ref math.negate(ref int64(ref io));
+            return ref io;
+        }
 
         [MethodImpl(Inline)]
-        public static T negateF64<T>(T src)
-            => generic<T>(- float64(src));
+        public static ref T negateF32<T>(ref T io)
+        {
+            ref var result = ref math.negate(ref float32(ref io));
+            return ref io;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T negateF64<T>(ref T io)
+        {
+            ref var result = ref math.negate(ref float64(ref io));
+            return ref io;
+        }
 
         #endregion
 

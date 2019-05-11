@@ -69,38 +69,73 @@ namespace Z0
         #region add
 
         [MethodImpl(Inline)]
-        public static T addSwitch<T>(T lhs, T rhs)
+        public static ref T add<T>(ref T lhs, T rhs)
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();
-            switch(kind)
+            ref T result = ref lhs;
+            if (kind == PrimalKind.int8)
             {
-                case PrimalKind.int8:
-                    return addI8(lhs,rhs);
-                case PrimalKind.uint8:
-                    return addU8(lhs,rhs);
-                case PrimalKind.int16:
-                    return addI16(lhs,rhs);
-                case PrimalKind.uint16:
-                    return addU16(lhs,rhs);
-                case PrimalKind.int32:
-                    return addI32(lhs,rhs);
-                case PrimalKind.uint32:
-                    return addU32(lhs,rhs);
-                case PrimalKind.int64:
-                    return addI64(lhs,rhs);
-                case PrimalKind.uint64:
-                    return addU64(lhs,rhs);
-                case PrimalKind.float32:
-                    return addF32(lhs,rhs);
-                case PrimalKind.float64:
-                    return addF64(lhs,rhs);                
-                default:
-                    throw unsupported(kind);
+                lhs = addI8(lhs,rhs);
+                return ref lhs;
+            }
+            
+            if(kind == PrimalKind.uint8)
+            {
+                lhs = addU8(lhs,rhs);
+                return ref lhs;
             }
 
-        }
+            if(kind == PrimalKind.int16)
+            {
+                lhs = addI16(lhs,rhs);
+                return ref lhs;
+            }
 
+            if(kind == PrimalKind.uint16)
+            {
+                lhs = addU16(lhs,rhs);
+                return ref lhs;
+            }
+
+            if(kind == PrimalKind.int32)
+            {
+                lhs = addI32(lhs,rhs);
+                return ref lhs;
+            }
+            
+            if(kind == PrimalKind.uint32)
+            {
+                lhs = addU32(lhs,rhs);
+                return ref lhs;
+            }
+            
+            if(kind == PrimalKind.int64)
+            {
+                lhs = addI64(lhs,rhs);
+                return ref lhs;
+            }
+            
+            if(kind == PrimalKind.uint64)
+            {
+                lhs = addU64(lhs,rhs);
+                return ref lhs;
+            }
+            
+            if(kind == PrimalKind.float32)
+            {
+                lhs = addF32(lhs,rhs);
+                return ref lhs;
+            }
+            
+            if(kind == PrimalKind.float64)
+            {
+                lhs = addF64(lhs,rhs);
+                return ref lhs;
+            }
+                                    
+            throw unsupported(kind);
+        }
 
         [MethodImpl(Inline)]
         public static T add<T>(T lhs, T rhs)
@@ -108,7 +143,6 @@ namespace Z0
         {
             var kind = PrimalKinds.kind<T>();
             
-
             if (kind == PrimalKind.int8)
                 return addI8(lhs,rhs);
             
@@ -140,34 +174,17 @@ namespace Z0
                 return addF64(lhs,rhs);
                                     
             throw unsupported(kind);
-
-        }
-
-
-        [MethodImpl(Inline)]
-        public static ref T[] add<T>(T[] lhs, T[] rhs, ref T[] dst)
-            where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = add(lhs[i], rhs[i]);
-            return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
+        public static Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = add(lhs[i],rhs[i]);
-            return ref dst;
-        }
-
+                => fused.add(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static void add<T>(T[] lhs, T[] rhs, T[] dst)
+        public static Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
             where T : struct, IEquatable<T>
-                => add(lhs,rhs, ref dst);
+                => fused.add(lhs,rhs,dst);
 
         #endregion
 
@@ -178,6 +195,12 @@ namespace Z0
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int8)
+                return subI8(lhs,rhs);
+
+            if(kind == PrimalKind.uint8)
+                return subU8(lhs,rhs);
 
             if(kind == PrimalKind.int32)
                 return subI32(lhs,rhs);
@@ -197,12 +220,6 @@ namespace Z0
             if(kind == PrimalKind.uint16)
                 return subU16(lhs,rhs);
 
-            if(kind == PrimalKind.int8)
-                return subI8(lhs,rhs);
-
-            if(kind == PrimalKind.uint8)
-                return subU8(lhs,rhs);
-
             if(kind == PrimalKind.float32)
                 return subF32(lhs,rhs);
 
@@ -213,28 +230,14 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref T[] sub<T>(T[] lhs, T[] rhs, ref T[] dst)
+        public static Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = sub(lhs[i], rhs[i]);
-            return ref dst;
-        }
+                => fused.sub(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
+        public static Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = sub(lhs[i],rhs[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static void sub<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>
-            => sub(lhs,rhs, ref dst);
+                => fused.sub(lhs,rhs,dst);
 
         #endregion sub
 
@@ -279,24 +282,16 @@ namespace Z0
             throw unsupported(kind);
         }
 
-        [MethodImpl(Inline)]
-        public static T[] mul<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = mul(lhs[i], rhs[i]);
-            return  dst;
-        }
 
         [MethodImpl(Inline)]
-        public static ref Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, ref Span<T> dst)
+        public static Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = mul(lhs[i],rhs[i]);
-            return ref dst;
-        }
+                => fused.mul(lhs,rhs,dst);
+
+        [MethodImpl(Inline)]
+        public static Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
+            where T : struct, IEquatable<T>
+                => fused.mul(lhs,rhs,dst);
 
 
         #endregion
@@ -344,28 +339,14 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref T[] div<T>(T[] lhs, T[] rhs, ref T[] dst)
+        public static Span<T> div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = div(lhs[i], rhs[i]);
-            return ref dst;
-        }
+                => fused.div(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<T> div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
+        public static Span<T> div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = div(lhs[i],rhs[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static void div<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>        
-            => div(lhs,rhs, ref dst);
+                => fused.div(lhs,rhs,dst);
 
         #endregion
 
@@ -411,33 +392,19 @@ namespace Z0
         }           
 
         [MethodImpl(Inline)]
-        public static ref T[] mod<T>(T[] lhs, T[] rhs, ref T[] dst)
+        public static Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = mod(lhs[i], rhs[i]);
-            return ref dst;
-        }
+                => fused.mod(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, ref Span<T> dst)
+        public static Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = mod(lhs[i],rhs[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static void mod<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>
-                => mod(lhs,rhs, ref dst);
-
+                => fused.mod(lhs,rhs,dst);
         
         #endregion
 
         #region and
+
 
         [MethodImpl(Inline)]
         public static T and<T>(T lhs, T rhs)
@@ -473,28 +440,14 @@ namespace Z0
         }           
 
         [MethodImpl(Inline)]
-        public static ref T[] and<T>(T[] lhs, T[] rhs, ref T[] dst)
+        public static Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = and(lhs[i], rhs[i]);
-            return ref dst;
-        }
+                => fused.and(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
+        public static Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = and(lhs[i],rhs[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static void and<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>
-            => and(lhs,rhs, ref dst);
+                => fused.and(lhs,rhs,dst);
 
 
         #endregion
@@ -535,29 +488,14 @@ namespace Z0
         }           
 
         [MethodImpl(Inline)]
-        public static ref T[] or<T>(T[] lhs, T[] rhs, ref T[] dst)
+        public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = or(lhs[i], rhs[i]);
-            return ref dst;
-        }
+                => fused.or(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
+        public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = or(lhs[i],rhs[i]);
-            return ref dst;
-        }
-
-
-        [MethodImpl(Inline)]
-        public static void or<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>
-            => or(lhs,rhs, ref dst);
+                => fused.or(lhs,rhs,dst);
 
         #endregion
 
@@ -597,29 +535,104 @@ namespace Z0
         }           
 
         [MethodImpl(Inline)]
-        public static ref T[] xor<T>(T[] lhs, T[] rhs, ref T[] dst)
+        public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = xor(lhs[i], rhs[i]);
-            return ref dst;
-        }
+                => fused.xor(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<T> dst)
+        public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
+            where T : struct, IEquatable<T>
+                => fused.xor(lhs,rhs,dst);
+        
+        #endregion
+
+        #region lshift / rshift
+
+        [MethodImpl(Inline)]
+        public static T lshift<T>(T lhs, int rhs)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int32)
+                return lshiftI32(lhs,rhs);
+
+            if(kind == PrimalKind.uint32)
+                return lshiftU32(lhs,rhs);
+
+            if(kind == PrimalKind.int64)
+                return lshiftI64(lhs,rhs);
+
+            if(kind == PrimalKind.uint64)
+                return lshiftU64(lhs,rhs);
+
+            if(kind == PrimalKind.int16)
+                return lshiftI16(lhs,rhs);
+
+            if(kind == PrimalKind.uint16)
+                return lshiftU16(lhs,rhs);
+
+            if(kind == PrimalKind.int8)
+                return lshiftI8(lhs,rhs);
+
+            if(kind == PrimalKind.uint8)
+                return lshiftU8(lhs,rhs);
+
+            throw unsupported(kind);
+        }           
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> lshift<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs, ref Span<T> dst)
             where T : struct, IEquatable<T>
         {
             var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = xor(lhs[i],rhs[i]);
+            for(var i = 0; i< len; i++)
+                dst[i] = lshift(lhs[i],rhs[i]);
             return ref dst;
         }
 
+        [MethodImpl(Inline)]
+        public static T rshift<T>(T lhs, int rhs)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int32)
+                return rshiftI32(lhs,rhs);
+
+            if(kind == PrimalKind.uint32)
+                return rshiftU32(lhs,rhs);
+
+            if(kind == PrimalKind.int64)
+                return rshiftI64(lhs,rhs);
+
+            if(kind == PrimalKind.uint64)
+                return rshiftU64(lhs,rhs);
+
+            if(kind == PrimalKind.int16)
+                return rshiftI16(lhs,rhs);
+
+            if(kind == PrimalKind.uint16)
+                return rshiftU16(lhs,rhs);
+
+            if(kind == PrimalKind.int8)
+                return rshiftI8(lhs,rhs);
+
+            if(kind == PrimalKind.uint8)
+                return rshiftU8(lhs,rhs);
+
+            throw unsupported(kind);
+        }           
 
         [MethodImpl(Inline)]
-        public static void xor<T>(T[] lhs, T[] rhs, T[] dst)
+        public static ref Span<T> rshift<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs, ref Span<T> dst)
             where T : struct, IEquatable<T>
-            => xor(lhs,rhs, ref dst);
+        {
+            var len  = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                dst[i] = rshift(lhs[i],rhs[i]);
+            return ref dst;
+        }
 
         #endregion
 
@@ -658,29 +671,17 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-        [MethodImpl(Inline)]
-        public static ref T[] flip<T>(T[] src, ref T[] dst)
-            where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = flip(src[i]);
-            return ref dst;
-        }
 
         [MethodImpl(Inline)]
-        public static ref Span<T> flip<T>(ReadOnlySpan<T> src, ref Span<T> dst)
+        public static Span<T> flip<T>(ReadOnlySpan<T> src, Span<T> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = flip(src[i]);
-            return ref dst;
-        }
+                => fused.flip(src,dst);
 
 
         [MethodImpl(Inline)]
-        public static void flip<T>(T[] src, T[] dst)
+        public static Span<T> flip<T>(ReadOnlySpan<T> src, T[] dst)
             where T : struct, IEquatable<T>
-                => flip(src, ref dst);
+                => fused.flip(src,dst);
 
         #endregion
 
@@ -727,27 +728,14 @@ namespace Z0
         }           
 
         [MethodImpl(Inline)]
-        public static ref T[] abs<T>(T[] src, ref T[] dst)
+        public static Span<T> abs<T>(ReadOnlySpan<T> src, Span<T> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = abs(src[i]);
-            return ref dst;
-        }
+                => fused.abs(src,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<T> abs<T>(ReadOnlySpan<T> src, ref Span<T> dst)
+        public static Span<T> abs<T>(ReadOnlySpan<T> src, T[] dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = abs(src[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static void abs<T>(T[] src, T[] dst)
-            where T : struct, IEquatable<T>
-            => abs(src, ref dst);
+                => fused.abs(src,dst);
 
         #endregion
 
@@ -793,37 +781,22 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref bool[] eq<T>(T[] lhs, T[] rhs, ref bool[] dst)
+        public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i], rhs[i]);
-            return ref dst;
-        }
+                => fused.eq(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, ref Span<bool> dst)
+        public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = eq(lhs[i],rhs[i]);
-            return ref dst;
-        }
+                => fused.eq(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             var dst = span<bool>(length(lhs,rhs));
-            eq(lhs, rhs, ref dst);
-            return dst;
+            return fused.eq(lhs,rhs,dst);
         }
-
-        [MethodImpl(Inline)]
-        public static void eq<T>(T[] lhs, T[] rhs, bool[] dst)
-            where T : struct, IEquatable<T>
-            => eq(lhs,rhs, ref dst);
 
         #endregion
 
@@ -869,37 +842,22 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref bool[] neq<T>(T[] lhs, T[] rhs, ref bool[] dst)
+        public static Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = neq(lhs[i], rhs[i]);
-            return ref dst;
-        }
+                => fused.neq(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<bool> dst)
+        public static Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = neq(lhs[i],rhs[i]);
-            return ref dst;
-        }
+                => fused.neq(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             var dst = span<bool>(length(lhs,rhs));
-            neq(lhs, rhs, ref dst);
-            return dst;
+            return fused.neq(lhs,rhs,dst);
         }
-
-        [MethodImpl(Inline)]
-        public static void neq<T>(T[] lhs, T[] rhs, bool[] dst)
-            where T : struct, IEquatable<T>
-            => neq(lhs,rhs, ref dst);
 
         #endregion
 
@@ -945,38 +903,26 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref bool[] lt<T>(T[] lhs, T[] rhs, ref bool[] dst)
+        public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = lt(lhs[i], rhs[i]);
-            return ref dst;
-        }
+                => fused.lt(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, ref Span<bool> dst)
+        public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = lt(lhs[i],rhs[i]);
-            return ref dst;
-        }
+                => fused.lt(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             var dst = span<bool>(length(lhs,rhs));
-            lt(lhs, rhs, ref dst);
-            return dst;
+            return fused.lt(lhs,rhs,dst);
         }
 
+        #endregion
 
-        [MethodImpl(Inline)]
-        public static void lt<T>(T[] lhs, T[] rhs, bool[] dst)
-            where T : struct, IEquatable<T>
-            => lt(lhs,rhs, ref dst);
+        #region lteq        
 
         [MethodImpl(Inline)]
         public static bool lteq<T>(T lhs, T rhs)
@@ -1017,40 +963,23 @@ namespace Z0
             throw unsupported(kind);
         }
 
-
-        
         [MethodImpl(Inline)]
-        public static ref bool[] lteq<T>(T[] lhs, T[] rhs, ref bool[] dst)
+        public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = lteq(lhs[i], rhs[i]);
-            return ref dst;
-        }
+                => fused.lteq(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, ref Span<bool> dst)
+        public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = lteq(lhs[i],rhs[i]);
-            return ref dst;
-        }
+                => fused.lteq(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             var dst = span<bool>(length(lhs,rhs));
-            lteq(lhs, rhs, ref dst);
-            return dst;
+            return fused.lteq(lhs,rhs,dst);
         }
-
-        [MethodImpl(Inline)]
-        public static void lteq<T>(T[] lhs, T[] rhs, bool[] dst)
-            where T : struct, IEquatable<T>
-            => lteq(lhs,rhs, ref dst);
 
         #endregion
 
@@ -1096,39 +1025,26 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref bool[] gt<T>(T[] lhs, T[] rhs, ref bool[] dst)
+        public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = gt(lhs[i], rhs[i]);
-            return ref dst;
-        }
+                => fused.gt(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<bool> dst)
+        public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = gt(lhs[i],rhs[i]);
-            return ref dst;
-        }
+                => fused.gt(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             var dst = span<bool>(length(lhs,rhs));
-            gt(lhs, rhs, ref dst);
-            return dst;
+            return fused.gt(lhs,rhs,dst);
         }
 
+        #endregion
 
-        [MethodImpl(Inline)]
-        public static void gt<T>(T[] lhs, T[] rhs, bool[] dst)
-            where T : struct, IEquatable<T>
-            => gt(lhs,rhs, ref dst);
-
+        #region gteq
 
         [MethodImpl(Inline)]
         public static bool gteq<T>(T lhs, T rhs)
@@ -1170,39 +1086,26 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref bool[] gteq<T>(T[] lhs, T[] rhs, ref bool[] dst)
+        public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = gteq(lhs[i], rhs[i]);
-            return ref dst;
-        }
+                => fused.gteq(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
-        public static ref Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs,  ref Span<bool> dst)
+        public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
             where T : struct, IEquatable<T>
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = gteq(lhs[i],rhs[i]);
-            return ref dst;
-        }
+                => fused.gteq(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             var dst = span<bool>(length(lhs,rhs));
-            gteq(lhs, rhs, ref dst);
-            return dst;
+            return fused.gteq(lhs,rhs,dst);
         }
 
-        [MethodImpl(Inline)]
-        public static void gteq<T>(T[] lhs, T[] rhs, bool[] dst)
-            where T : struct, IEquatable<T>
-            => gteq(lhs,rhs, ref dst);
-
         #endregion
+
+        #region pow
 
         [MethodImpl(Inline)]
         public static T pow<T>(T src, uint exp)
@@ -1258,6 +1161,8 @@ namespace Z0
             throw unsupported(kind);
         }
 
+        #endregion
+
         #region negate
 
         [MethodImpl(Inline)]
@@ -1267,52 +1172,65 @@ namespace Z0
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.int8)
-                return negateI8(src);
+                return negateI8(ref src);
 
             if(kind == PrimalKind.int16)
-                return negateI16(src);
+                return negateI16(ref src);
 
             if(kind == PrimalKind.int32)
-                return negateI32(src);
+                return negateI32(ref src);
 
             if(kind == PrimalKind.int64)
-                return negateI64(src);
+                return negateI64(ref src);
 
             if(kind == PrimalKind.float32)
-                return negateF32(src);
+                return negateF32(ref src);
 
             if(kind == PrimalKind.float64)
-                return negateF64(src);
+                return negateF64(ref src);
 
             throw unsupported(kind);
         }           
 
         [MethodImpl(Inline)]
-        public static ref T[] negate<T>(T[] src, ref T[] dst)
+        public static ref T negate<T>(ref T src)
             where T : struct, IEquatable<T>
         {
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = negate(src[i]);
-            return ref dst;
-        }
+            var kind = PrimalKinds.kind<T>();
 
-        [MethodImpl(Inline)]
-        public static ref Span<T> negate<T>(ReadOnlySpan<T> src, ref Span<T> dst)
-            where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = negate(src[i]);
-            return ref dst;
-        }
+            if(kind == PrimalKind.int8)
+                return ref negateI8(ref src);
 
-        [MethodImpl(Inline)]
-        public static void negate<T>(T[] src, T[] dst)
+            if(kind == PrimalKind.int16)
+                return ref negateI16(ref src);
+
+            if(kind == PrimalKind.int32)
+                return ref negateI32(ref src);
+
+            if(kind == PrimalKind.int64)
+                return ref negateI64(ref src);
+
+            if(kind == PrimalKind.float32)
+                return ref negateF32(ref src);
+
+            if(kind == PrimalKind.float64)
+                return ref negateF64(ref src);
+
+            throw unsupported(kind);
+        }           
+
+        [MethodImpl(NotInline)]
+        public static Span<T> negate<T>(ReadOnlySpan<T> src, Span<T> dst)
             where T : struct, IEquatable<T>
-            => negate(src, ref dst);
+                => fused.negate(src,dst);
+
+        [MethodImpl(NotInline)]
+        public static Span<T> negate<T>(ReadOnlySpan<T> src, T[] dst)
+            where T : struct, IEquatable<T>
+                => fused.negate(src,dst);
 
 
         #endregion
-
 
         #region inc
 
@@ -1356,27 +1274,53 @@ namespace Z0
         }           
 
         [MethodImpl(Inline)]
-        public static ref T[] inc<T>(T[] src, ref T[] dst)
+        public static ref T inc<T>(ref T src)
             where T : struct, IEquatable<T>
         {
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = inc(src[i]);
-            return ref dst;
-        }
+            var kind = PrimalKinds.kind<T>();
 
-        [MethodImpl(Inline)]
-        public static ref Span<T> inc<T>(ReadOnlySpan<T> src, ref Span<T> dst)
-            where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = inc(src[i]);
-            return ref dst;
-        }
+            if(kind == PrimalKind.int8)
+                return ref incI8(ref src);
 
-        [MethodImpl(Inline)]
-        public static void inc<T>(T[] src, T[] dst)
+            if(kind == PrimalKind.uint8)
+                return ref incU8(ref src);
+
+            if(kind == PrimalKind.int16)
+                return ref incI16(ref src);
+
+            if(kind == PrimalKind.uint16)
+                return ref incU16(ref src);
+
+            if(kind == PrimalKind.int32)
+                return ref incI32(ref src);
+
+            if(kind == PrimalKind.uint32)
+                return ref incU32(ref src);
+
+            if(kind == PrimalKind.int64)
+                return ref incI64(ref src);
+
+            if(kind == PrimalKind.uint64)
+                return ref incU64(ref src);
+
+            if(kind == PrimalKind.float32)
+                return ref incF32(ref src);
+
+            if(kind == PrimalKind.float64)
+                return ref incF64(ref src);
+
+            throw unsupported(kind);
+        }           
+
+        [MethodImpl(NotInline)]
+        public static Span<T> inc<T>(ReadOnlySpan<T> src, Span<T> dst)
             where T : struct, IEquatable<T>
-            => inc(src, ref dst);
+                => fused.inc(src,dst);
+
+        [MethodImpl(NotInline)]
+        public static Span<T> inc<T>(ReadOnlySpan<T> src, T[] dst)
+            where T : struct, IEquatable<T>
+                => fused.inc(src,dst);
 
         #endregion
 
@@ -1421,31 +1365,19 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-        [MethodImpl(Inline)]
-        public static ref T[] dec<T>(T[] src, ref T[] dst)
+        [MethodImpl(NotInline)]
+        public static Span<T> dec<T>(ReadOnlySpan<T> src, Span<T> dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = dec(src[i]);
-            return ref dst;
-        }
+                => fused.dec(src,dst);
 
-        [MethodImpl(Inline)]
-        public static ref Span<T> dec<T>(ReadOnlySpan<T> src, ref Span<T> dst)
+        [MethodImpl(NotInline)]
+        public static Span<T> dec<T>(ReadOnlySpan<T> src, T[] dst)
             where T : struct, IEquatable<T>
-        {
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = dec(src[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static void dec<T>(T[] src, T[] dst)
-            where T : struct, IEquatable<T>
-            => dec(src, ref dst);
-
+                => fused.dec(src,dst);
         #endregion
         
+        #region min/max
+
         [MethodImpl(Inline)]
         public static T min<T>(T lhs, T rhs)
             where T : struct, IEquatable<T>
@@ -1488,19 +1420,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T min<T>(params T[] src)
             where T : struct, IEquatable<T>
-        {
-            if(src.Length == 0)
-                return default;
-            
-            var result = src[0];
-            for(var i = 1; i< src.Length; i++)
-            {
-                var candidate = src[i];
-                if(lt(candidate, result))
-                    result = candidate;
-            }
-            return result;
-        }
+                => fused.min<T>(src);
+
+        [MethodImpl(Inline)]
+        public static T min<T>(ReadOnlySpan<T> src)
+            where T : struct, IEquatable<T>
+                => fused.min(src);
 
         [MethodImpl(Inline)]
         public static T max<T>(T lhs, T rhs)
@@ -1544,36 +1469,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T max<T>(params T[] src)
             where T : struct, IEquatable<T>
-        {
-            if(src.Length == 0)
-                return default;
-            
-            var result = src[0];
-            for(var i = 1; i< src.Length; i++)
-            {
-                var candidate = src[i];
-                if(gt(candidate, result))
-                    result = candidate;
-            }
-            return result;
-        }
+                => fused.max<T>(src);
 
         [MethodImpl(Inline)]
         public static T max<T>(ReadOnlySpan<T> src)
             where T : struct, IEquatable<T>
-        {
-            if(src.Length == 0)
-                return default;
-            
-            var result = src[0];
-            for(var i = 1; i< src.Length; i++)
-            {
-                var candidate = src[i];
-                if(gt(candidate, result))
-                    result = candidate;
-            }
-            return result;
-        }
+                => fused.max(src);
 
+        #endregion
     }
 }

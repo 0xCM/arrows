@@ -81,7 +81,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static num<T> operator - (num<T> src) 
-            => gmath.negate(Unsafe.As<num<T>,T>(ref src));
+            => gmath.negate((toVal(ref src)));
 
         [MethodImpl(Inline)]
         public static num<T> operator ++ (num<T> src) 

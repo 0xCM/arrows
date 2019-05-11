@@ -27,7 +27,7 @@ namespace Z0
             var right = MeasureCycles(~opid, data.Length, () => 
                 Num128.mul<float>(data.LeftSource, data.RightSource, data.RightTarget)); 
             
-            var comparison = Run("title", left, right);            
+            var comparison = Run(opid, left, right);            
             Claim.eq(data.LeftTarget, data.RightTarget);
 
             return comparison;
@@ -49,7 +49,7 @@ namespace Z0
                 Num128.mul<double>(data.LeftSource, data.RightSource, data.RightTarget); 
                 return data.Length;});
             
-            var comparison = Run("title", left, right);            
+            var comparison = Run(opid, left, right);            
             Claim.eq(data.LeftTarget, data.RightTarget);
 
             return comparison;

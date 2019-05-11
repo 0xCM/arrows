@@ -167,7 +167,6 @@ namespace Z0
             }
 
             var dst = Targets(opid);
-
             var comparison = Run(opid, 
                 Measure(~opid, () => baseline(dst.Left)), 
                 Measure(opid, () => add(dst.Right)));
@@ -192,7 +191,6 @@ namespace Z0
             }
 
             var dst = Targets(opid);
-
             var comparison = Run(opid, 
                 Measure(~opid, () => baseline(dst.Left)), 
                 Measure(opid, () => add(dst.Right)));
@@ -217,7 +215,6 @@ namespace Z0
             }
 
             var dst = Targets(opid);
-
             var comparison = Run(opid, 
                 Measure(~opid, () => baseline(dst.Left)), 
                 Measure(opid, () => add(dst.Right)));
@@ -242,7 +239,6 @@ namespace Z0
             }
 
             var dst = Targets(opid);
-
             var comparison = Run(opid, 
                 Measure(~opid, () => baseline(dst.Left)), 
                 Measure(opid, () => add(dst.Right)));
@@ -267,7 +263,6 @@ namespace Z0
             }
 
             var dst = Targets(opid);
-
             var comparison = Run(opid, 
                 Measure(~opid, () => baseline(dst.Left)), 
                 Measure(opid, () => add(dst.Right)));

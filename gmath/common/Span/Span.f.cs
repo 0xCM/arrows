@@ -139,12 +139,10 @@ partial class mfunc
         where T : struct
             =>  ref MemoryMarshal.AsRef<T>(src);
 
-
     [MethodImpl(Inline)]
     public static ref T first<T>(Span<byte> src)
         where T : struct
             =>  ref MemoryMarshal.AsRef<T>(src);
-
 
     [MethodImpl(Inline)]
     public static ReadOnlySpan<T> cast<S,T>(ReadOnlySpan<S> src)                
@@ -195,35 +193,50 @@ partial class mfunc
             => (ReadOnlySpan256<T>)MemoryMarshal.Cast<S,T>(src);
 
     [MethodImpl(Inline)]   
-    public static int length<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, 
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length,rhs.Length,file,line);
+    public static int length<S,T>(Span<S> lhs, Span<T> rhs, [CallerFilePath] string file = null, 
+        [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length,rhs.Length,file,line);
 
     [MethodImpl(Inline)]   
-    public static int length<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs,
-            [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)        
+    public static int length<S,T>(ReadOnlySpan<S> lhs, Span<T> rhs, [CallerFilePath] string file = null, 
+        [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length,rhs.Length,file,line);
+
+    [MethodImpl(Inline)]   
+    public static int length<S,T>(ReadOnlySpan<S> lhs, ReadOnlySpan<T> rhs, [CallerFilePath] string file = null, 
+        [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length,rhs.Length,file,line);
+
+    [MethodImpl(Inline)]   
+    public static int length<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, [CallerFilePath] string file = null, 
+        [CallerLineNumber] int? line = null)        
         where T : struct, IEquatable<T>
-            => lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length,rhs.Length,file,line);
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length,rhs.Length,file,line);
 
     [MethodImpl(Inline)]   
     public static int length<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs,
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
         where T : struct, IEquatable<T>
-            => lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length,rhs.Length,file,line);
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length,rhs.Length,file,line);
 
     [MethodImpl(Inline)]   
-    public static int length<T>(Span256<T> lhs, Span256<T> rhs, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-        where T : struct, IEquatable<T>
-            => lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, file, line);
+    public static int length<T>(Span256<T> lhs, Span256<T> rhs, [CallerFilePath] string file = null, 
+        [CallerLineNumber] int? line = null)
+            where T : struct, IEquatable<T>
+                => lhs.Length == rhs.Length ? lhs.Length 
+                    : throw Errors.LengthMismatch(lhs.Length, rhs.Length, file, line);
 
     [MethodImpl(Inline)]   
-    public static int length<T>(Span<T> lhs, Span<T> rhs,[CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, file, line);
-
-    [MethodImpl(Inline)]   
-    public static int length<T>(Span128<T> lhs, Span128<T> rhs,[CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-        where T : struct, IEquatable<T>
-            => lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, file, line);
+    public static int length<T>(Span128<T> lhs, Span128<T> rhs, [CallerFilePath] string file = null, 
+        [CallerLineNumber] int? line = null)
+            where T : struct, IEquatable<T>
+                => lhs.Length == rhs.Length ? lhs.Length 
+                    : throw Errors.LengthMismatch(lhs.Length, rhs.Length, file, line);
 
     /// <summary>
     /// Returns the common number of 128-bit blocks in the supplied spans, if possible. Otherwise,
@@ -233,10 +246,11 @@ partial class mfunc
     /// <param name="rhs">The right source</param>
     /// <typeparam name="T">The span element type</typeparam>
     [MethodImpl(Inline)]   
-    public static int blocks<T>(Span128<T> lhs, Span128<T> rhs,[CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-        where T : struct, IEquatable<T>
-            => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
-                : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, file,line);
+    public static int blocks<T>(Span128<T> lhs, Span128<T> rhs, [CallerFilePath] string file = null, 
+        [CallerLineNumber] int? line = null)
+            where T : struct, IEquatable<T>
+                => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
+                    : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, file,line);
 
     /// <summary>
     /// Returns the common number of 256-bit blocks in the supplied spans, if possible. Otherwise,
@@ -246,10 +260,11 @@ partial class mfunc
     /// <param name="rhs">The right source</param>
     /// <typeparam name="T">The span element type</typeparam>
     [MethodImpl(Inline)]   
-    public static int blocks<T>(Span256<T> lhs, Span256<T> rhs,[CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-        where T : struct, IEquatable<T>
-            => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
-                : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, file,line);
+    public static int blocks<T>(Span256<T> lhs, Span256<T> rhs,[CallerFilePath] string file = null, 
+        [CallerLineNumber] int? line = null)
+            where T : struct, IEquatable<T>
+                => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
+                    : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, file,line);
 
     /// <summary>
     /// Returns the common number of 128-bit blocks in the supplied spans, if possible. Otherwise,
@@ -273,9 +288,10 @@ partial class mfunc
     /// <param name="rhs">The right source</param>
     /// <typeparam name="T">The span element type</typeparam>
     [MethodImpl(Inline)]   
-    public static int blocks<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-        where T : struct, IEquatable<T>
-            => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
-                : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, file,line);
+    public static int blocks<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, [CallerFilePath] string file = null, 
+        [CallerLineNumber] int? line = null)
+            where T : struct, IEquatable<T>
+                => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
+                    : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, file,line);
 
 }
