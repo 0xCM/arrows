@@ -46,7 +46,7 @@ namespace Z0
 
         readonly T[] data;
 
-        public T[] release()
+        public T[] Release()
             => data;
 
         FixedArray<T> INullary<FixedArray<T>>.zero 
@@ -94,7 +94,7 @@ namespace Z0
 
         readonly IReadOnlyList<T> data;
 
-        public IReadOnlyList<T> release()
+        public IReadOnlyList<T> Release()
             => data;
 
         FixedList<T> INullary<FixedList<T>>.zero 
@@ -145,7 +145,7 @@ namespace Z0
 
         readonly IEnumerable<T> data;
 
-        public IEnumerable<T> release()
+        public IEnumerable<T> Release()
             => data;
 
 

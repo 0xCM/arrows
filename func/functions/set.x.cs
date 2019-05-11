@@ -12,10 +12,9 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
 
-    using static Z0.Bibliography;
-    using static zcore;
+    using static zfunc;
 
-    partial class xcore
+    partial class xfunc
     {
 
         /// <summary>
@@ -23,8 +22,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The item type</typeparam>
         /// <param name="items">The item sequence</param>
-        /// <returns></returns>
-        public static System.Collections.Generic.ISet<T> ToSet<T>(this IEnumerable<T> items)
+        [MethodImpl(Inline)]
+        public static ISet<T> ToSet<T>(this IEnumerable<T> items)
             => new HashSet<T>(items);
 
         /// <summary>
@@ -33,8 +32,8 @@ namespace Z0
         /// <typeparam name="T">The source element type</typeparam>
         /// <typeparam name="U">The targert element type</typeparam>
         /// <param name="items">The item sequence</param>
-        /// <returns></returns>
-        public static System.Collections.Generic.ISet<U> ToSet<T, U>(this IEnumerable<T> items, Func<T, U> selector)
+        [MethodImpl(Inline)]
+        public static ISet<U> ToSet<T, U>(this IEnumerable<T> items, Func<T, U> selector)
             => new HashSet<U>(items.Select(selector));
 
         /// <summary>
@@ -42,7 +41,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="items"></param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]
         public static HashSet<T> ToReadOnlySet<T>(this IEnumerable<T> items)
             => items.ToHashSet();
 
@@ -52,7 +51,8 @@ namespace Z0
         /// <typeparam name="T">The item type</typeparam>
         /// <param name="set">The set to which items will be added</param>
         /// <param name="items">The items to add</param>
-        public static void AddRange<T>(this System.Collections.Generic.ISet<T> set, IEnumerable<T> items)
+        [MethodImpl(Inline)]
+        public static void AddRange<T>(this ISet<T> set, IEnumerable<T> items)
             => items.Iterate(item => set.Add(item));
 
         /// <summary>
@@ -60,8 +60,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The type of element that may be contained in the set</typeparam>
         /// <param name="set">The set under examination</param>
-        /// <returns></returns>
-        public static bool IsEmpty<T>(this System.Collections.Generic.ISet<T> set)
+        [MethodImpl(Inline)]
+        public static bool IsEmpty<T>(this ISet<T> set)
             => set.Count == 0;
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The type of element that may be contained in the set</typeparam>
         /// <param name="set">The set under examination</param>
-        /// <returns></returns>
-        public static bool IsNonEmpty<T>(this System.Collections.Generic.ISet<T> set)
+        [MethodImpl(Inline)]
+        public static bool IsNonEmpty<T>(this ISet<T> set)
             => set.Count != 0; 
     }
 }

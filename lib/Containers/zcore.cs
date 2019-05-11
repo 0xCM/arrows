@@ -14,9 +14,10 @@ using System.Diagnostics;
 using Z0;
 using static zcore;
 using static zfunc;
+using static nats;
 
 using Array = Z0.Arr;
-using static nats;
+
 
 public static partial class zcore
 {
@@ -235,15 +236,6 @@ public static partial class zcore
 
 
     /// <summary>
-    /// Constructs an empty concurrent index 
-    /// </summary>
-    /// <typeparam name="K">The key type</typeparam>
-    /// <typeparam name="V">The value type</typeparam>
-    [MethodImpl(Inline)]   
-    public static ConcurrentIndex<K,V> cindex<K,V>()
-        => new ConcurrentIndex<K,V>();
-
-    /// <summary>
     /// Constructs a concurrent bag with optional initial items
     /// </summary>
     /// <typeparam name="T">The bagged type</typeparam>
@@ -303,79 +295,6 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static KeyedValue<K,V> kvp<K,V>( (K key, V value) kv)
         => new KeyedValue<K,V>(kv);
-
-    /// <summary>
-    /// Partitions a seequence into segments of a specified natural width
-    /// </summary>
-    /// <param name="src">The source sequence</param>
-    /// <typeparam name="W">The width type</typeparam>
-    /// <typeparam name="T">The element type</typeparam>
-    public static IEnumerable<IReadOnlyList<T>> partition<W,T>(IEnumerable<T> src)
-        where W : ITypeNat, new()
-    {
-        var width = natu<W>();
-        var sement = new T[width];
-        var current = 0UL;
-        foreach(var item in src)
-        {
-            if(current == width)
-            {
-                current = 0;
-                yield return sement;
-                sement = new T[width];
-            }
-                
-            sement[current++] = item;
-        }
-
-        for(var i = current; i < width; i++)
-            sement[i] = default(T);
-        
-        yield return sement;
-    }
-
-    /// <summary>
-    /// Transforms a sequence of elements into a sequence of singleton sequences 
-    /// </summary>
-    /// <param name="src">The source sequence</param>
-    /// <typeparam name="T">The item type</typeparam>
-    [MethodImpl(Inline)]
-    public static IEnumerable<IEnumerable<T>> singletons<T>(IEnumerable<T> src)
-        => from item in src select items(item);
-
-    /// <summary>
-    /// Constructs an array filled with a replicated value
-    /// </summary>
-    /// <param name="value">The value to replicate</param>
-    /// <param name="count">The number of replicants</param>
-    /// <typeparam name="T">The replicant type</typeparam>
-    [MethodImpl(Inline)]   
-    public static T[] repeat<T>(T value, ulong count)
-    {
-        var dst = alloc<T>((uint)count);
-        for(var idx = 0U; idx < count; idx ++)
-            dst[idx] = value;
-        return dst;            
-    }
-
-    [MethodImpl(Inline)]   
-    public static T[] repeat<T>(T value, int count)
-        => repeat(value, (ulong)count);
-
-    [MethodImpl(Inline)]   
-    public static T[] repeat<T>(T value, uint count)
-        => repeat(value, (ulong)count);
-
-    /// <summary>
-    /// Replicates a given value a specified number of times
-    /// </summary>
-    /// <param name="value">The value to replicate</param>
-    /// <typeparam name="N">The natural count type</typeparam>
-    /// <typeparam name="T">The replicant type</typeparam>
-    [MethodImpl(Inline)]   
-    public static T[] repeat<N,T>(T value)
-        where N : ITypeNat, new()
-        => repeat(value, natu<N>());
 
     /// <summary>
     /// Reverses the input sequence

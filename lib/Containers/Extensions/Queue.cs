@@ -47,17 +47,13 @@ namespace Z0
             }
         }
 
-
         /// <summary>
         /// Removes an element from the queue if one exists
         /// </summary>
         /// <typeparam name="T">The element type</typeparam>
         /// <param name="q">the queue</param>
-        /// <returns></returns>
         public static Option<T> TryPop<T>(this Queue<T> q)
             => q.IsEmpty() ? none<T>() : some(q.Dequeue());
-
-
 
     }
 

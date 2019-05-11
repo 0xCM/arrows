@@ -95,11 +95,11 @@ namespace Z0
             => lhs.concat(rhs);
                 
         public Atoms(IEnumerable<Atom> src)
-            => content = src;
+            => Content = src;
         
-        public IEnumerable<Atom> content {get;}
+        public IEnumerable<Atom> Content {get;}
 
         public Atoms concat(Atoms rhs)
-            => contain(content.Concat(rhs.content));
+            => contain(Content.Concat(rhs.Content));
     }
 }

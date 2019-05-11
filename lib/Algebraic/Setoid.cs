@@ -33,7 +33,7 @@ namespace Z0
         {
             this.membership = data;
             this.equivalence = equivalence;
-            this.parts = equivalence.Partition(data.content).ToArray();
+            this.parts = equivalence.Partition(data.Content).ToArray();
 
         }
         
@@ -50,10 +50,10 @@ namespace Z0
             => membership.eq(rhs.membership);
 
         public bool member(T candidate)
-            => membership.member(candidate);
+            => membership.IsMember(candidate);
 
         public bool member(object candidate)
-            => membership.member(candidate);
+            => membership.IsMember(candidate);
 
         public IEnumerable<FiniteEquivalenceClass<T>> partition()
             => parts;

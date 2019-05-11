@@ -56,4 +56,27 @@ partial class zfunc
         => src;
 
 
+    /// <summary>
+    /// Constructs an array filled with a replicated value
+    /// </summary>
+    /// <param name="value">The value to replicate</param>
+    /// <param name="count">The number of replicants</param>
+    /// <typeparam name="T">The replicant type</typeparam>
+    public static T[] repeat<T>(T value, ulong count)
+    {
+        var dst = alloc<T>((uint)count);
+        for(var idx = 0U; idx < count; idx ++)
+            dst[idx] = value;
+        return dst;            
+    }
+
+    [MethodImpl(Inline)]   
+    public static T[] repeat<T>(T value, int count)
+        => repeat(value, (ulong)count);
+
+    [MethodImpl(Inline)]   
+    public static T[] repeat<T>(T value, uint count)
+        => repeat(value, (ulong)count);
+
+
 }

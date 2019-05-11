@@ -18,21 +18,12 @@ public static class nats
     {
         var current = first;
         if(first < last)
-        {
             while(current<= last)
-            {
                 yield return current++;
-            }                
-        }
         else
-        {
             while(current >= last)
-            {
                 yield return current--;
-            }
-        }
     }
-
 
     /// <summary>
     /// Computes the integral divisors of a number, exluding 1 and the number itself
@@ -50,7 +41,6 @@ public static class nats
         }    
     }
 
-
     /// <summary>
     /// Determines whether an integer is prime
     /// </summary>
@@ -62,7 +52,6 @@ public static class nats
         var upperBound = x.ToFloatG64().sqrt().ceiling();
         return divisors(x).Count() == 0;
     }                
-
 
     /// <summary>
     /// Retrieves the value of the natural number associated with a typenat
@@ -91,8 +80,6 @@ public static class nats
         where N : ITypeNat, new()
             => (uint)natu<N>();
 
-
-
     /// <summary>
     /// Retrieves the value of a type natural represented as an integer
     /// </summary>
@@ -101,7 +88,6 @@ public static class nats
     public static int nati<N>(N rep) 
         where N : ITypeNat, new()
             => (int)rep.value;
-
 
     /// <summary>
     /// Constructs a natural representative
@@ -214,7 +200,6 @@ public static class nats
         where T : struct, IEquatable<T>
             => vector<N4,T>(x.x1, x.x2,x.x3,x.x4);
 
-
     /// <summary>
     /// Converts an homogenous 2-tuple to a 2-vector
     /// </summary>
@@ -226,4 +211,14 @@ public static class nats
         where T : struct, IEquatable<T>
             => vector<N2,T>(x.x1, x.x2);
 
+    /// <summary>
+    /// Replicates a given value a specified number of times
+    /// </summary>
+    /// <param name="value">The value to replicate</param>
+    /// <typeparam name="N">The natural count type</typeparam>
+    /// <typeparam name="T">The replicant type</typeparam>
+    [MethodImpl(Inline)]   
+    public static T[] repeat<N,T>(T value)
+        where N : ITypeNat, new()
+        => zfunc.repeat(value, natu<N>());
 }

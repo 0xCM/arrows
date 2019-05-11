@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;    
 using System.Runtime.Intrinsics;
 using System.Diagnostics;
+using System.Numerics;
 
 using Z0;
 using static zfunc;
@@ -47,7 +48,6 @@ public static partial class mfunc
 
         return (leftTime,rightTime);            
     }
-
 
     [MethodImpl(Inline)]   
     public static int length<T>(ReadOnlyMemory<T> lhs, ReadOnlyMemory<T> rhs, 
@@ -107,7 +107,6 @@ public static partial class mfunc
     public static bool anyNan(double x0, double x1)
         => isNaN(x0) || isNaN(x1);
 
-
     /// <summary>
     /// Replaces a NaN representive value with 0
     /// </summary>
@@ -115,7 +114,6 @@ public static partial class mfunc
     [MethodImpl(Inline)]
     public static double clearNaN(double x, double replacement = -1)
         => isNaN(x) ? replacement : x;
-
 
     /// <summary>
     /// Replaces a NaN representive value with 0
@@ -125,7 +123,6 @@ public static partial class mfunc
     public static float clearNaN(float x, float replacement = -1)
         => isNaN(x) ? replacement : x;
 
-
     /// <summary>
     /// Demands truth that is enforced with an exeption upon false
     /// </summary>
@@ -134,4 +131,50 @@ public static partial class mfunc
     [MethodImpl(Inline)]   
     public static bool demand(bool x, string message = null)
         => x ? x : throw new Exception(message ?? "demand failed");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(byte src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(sbyte src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(short src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(ushort src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(int src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(uint src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(long src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(ulong src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]   
+    public static string hexstring(BigInteger x)
+        => x.ToString("X");
+
+    [MethodImpl(Inline)]   
+    public static string hexstring(decimal src)
+        => apply(Z0.Bits.split(src), parts =>
+            append(
+                parts.x0.ToString("X8"),
+                parts.x1.ToString("X8"),
+                parts.x2.ToString("X8"),
+                parts.x3.ToString("X8")
+            ));
 }

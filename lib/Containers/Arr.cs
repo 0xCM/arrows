@@ -240,7 +240,7 @@ namespace Z0
 
         public T this[int i, int j] => data[i,j];
 
-        public IEnumerable<(int i, int j, T value)> content 
+        public IEnumerable<(int i, int j, T value)> Content 
         {
             get
             {
@@ -300,7 +300,7 @@ namespace Z0
 
         public T this[ulong i, ulong j, ulong k] => data[i,j,k];
 
-        public IEnumerable<(int i, int j, int k, T value)> content 
+        public IEnumerable<(int i, int j, int k, T value)> Content 
         {
             get
             {

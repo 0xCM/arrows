@@ -205,76 +205,10 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => map(src, unwrap);
 
-        [MethodImpl(Inline)]
-        public static T Sum<T>(this IEnumerable<T> src)
-            where T : IAdditive<T>, INullary<T>, new()
-                => sum(src);
-
-        [MethodImpl(Inline)]
-        public static T Sup<T>(this IEnumerable<T> src)
-            where T : struct, IOrderable<T>
-                => max(src);
-
-        [MethodImpl(Inline)]
-        public static T Inf<T>(this T[] src)
-            where T : struct, IOrderable<T>
-                => min(src);
-
-        [MethodImpl(Inline)]
-        public static IEnumerable<T> Pow<T>(this IEnumerable<T> src, int exp)
-            where T : INaturallyPowered<T>, new() 
-                => pow(src,exp);
-
-        [MethodImpl(Inline)]
-        public static Slice<T> Pow<T>(this Slice<T> src, int exp)
-            where T : struct, INaturallyPowered<T>
-                => slice(pow(src,exp));
-
-        [MethodImpl(Inline)]
-        public static T Avg<T>(this IEnumerable<T> src)
-            where T : IRealNumber<T>,new()
-                => avg(src);
-
-        [MethodImpl(Inline)]   
-        public static string ToHexString(this byte x)
-            => hexstring(x);
-
-        [MethodImpl(Inline)]   
-        public static string ToHexString(this sbyte x)
-            => hexstring(x);
-
-        [MethodImpl(Inline)]   
-        public static string ToHexString(this short x)
-            => hexstring(x);
-
-        [MethodImpl(Inline)]   
-        public static string ToHexString(this ushort x)
-            => hexstring(x);
-
-        [MethodImpl(Inline)]   
-        public static string ToHexString(this int x)
-            => hexstring(x);
-
-        [MethodImpl(Inline)]   
-        public static string ToHexString(this uint x)
-            => hexstring(x);
-
-        [MethodImpl(Inline)]   
-        public static string ToHexString(this long x)
-            => hexstring(x);
-
-        [MethodImpl(Inline)]   
-        public static string ToHexString(this ulong x)
-            => hexstring(x);
 
 
-        [MethodImpl(Inline)]   
-        public static string ToHexString(this BigInteger x)
-            => hexstring(x);
 
-        [MethodImpl(Inline)]   
-        public static string ToHexString(this decimal src)
-            => hexstring(src);
+
  
         public static IEnumerable<T> Collapse<T>(IEnumerable<IEnumerable<T>> src)
             => src.SelectMany(x => x);

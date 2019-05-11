@@ -16,7 +16,7 @@ namespace Z0
     public static class SpanX
     {
 
-        [MethodImpl(Inline)]
+        [MethodImpl(NotInline)]
         public static bool Contains<T>(this ReadOnlySpan<T> src, T match)        
             where T : struct, IEquatable<T>
         {
@@ -180,7 +180,7 @@ namespace Z0
                 => (Span256<T>)src;
 
 
-        [MethodImpl(Inline)]
+        [MethodImpl(NotInline)]
         public static bool Any<T>(this Span128<T> src, Func<T,bool> f)
              where T : struct, IEquatable<T>
         {
@@ -192,6 +192,15 @@ namespace Z0
             }
             return false;
         }
+ 
+        public static Span<T> MapRange<S, T>(this Span<S> src, int offset, int length, Func<S, T> f)
+        {
+            var dst = span<T>(length);
+            for (int i = offset; i <= length; i++)
+                dst[i] = f(src[i]);
+            return dst;
+        }
+
     }
 
 }

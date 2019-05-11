@@ -397,5 +397,49 @@ namespace Z0
                 => default;
    
    
+        /// <summary>
+        /// Partitions a seequence into segments of a specified natural width
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="W">The width type</typeparam>
+        /// <typeparam name="T">The element type</typeparam>
+        public static IEnumerable<IReadOnlyList<T>> partition<W,T>(IEnumerable<T> src)
+            where W : ITypeNat, new()
+        {
+            var width = natu<W>();
+            var sement = new T[width];
+            var current = 0UL;
+            foreach(var item in src)
+            {
+                if(current == width)
+                {
+                    current = 0;
+                    yield return sement;
+                    sement = new T[width];
+                }
+                    
+                sement[current++] = item;
+            }
+
+            for(var i = current; i < width; i++)
+                sement[i] = default(T);
+            
+            yield return sement;
+        }
+
     }
+
+    public static class NatX
+    {
+        /// <summary>
+        /// Partitions the source sequence into segments of natural length
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <typeparam name="N">The segment length</typeparam>
+        public static IEnumerable<IReadOnlyList<T>> Partition<N,T>(this IEnumerable<T> src)
+            where N : ITypeNat, new()
+                => Nat.partition<N,T>(src);    
+
+    }    
 }

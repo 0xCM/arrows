@@ -26,8 +26,5 @@ namespace  Z0
             where X : struct
             where Y : struct
                 => x.HasValue ? f(x.Value) : default(Y);
-
-
-
     }
 }

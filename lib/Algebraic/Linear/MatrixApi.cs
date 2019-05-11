@@ -9,6 +9,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
     using static zcore;
+    using static zfunc;
     using static Traits;
     using static nats;
 
@@ -162,7 +163,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Matrix<N, M, T> tranpose<T>(Matrix<M,N,T> src)
             where T : struct, IEquatable<T>    
-                => new Matrix<N,M,T>(map(src.vectors(), v => v.tranpose()));
+                => new Matrix<N,M,T>(zfunc.map(src.vectors(), v => v.tranpose()));
 
         public static Matrix<I,J,T> submatrix<I,J,T>(Matrix<M,N,T> src, Dim<I,J> dstdim, (uint r, uint c) origin)
             where I : ITypeNat, new()

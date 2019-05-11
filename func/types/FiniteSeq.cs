@@ -49,10 +49,10 @@ namespace Z0
 
         readonly T[] data;
 
-        public IEnumerable<T> content
+        public IEnumerable<T> Content
             => data;
 
-        public uint count 
+        public uint Count 
             => (uint)data.Length;
 
         public bool empty()

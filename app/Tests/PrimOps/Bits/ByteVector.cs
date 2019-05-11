@@ -67,25 +67,10 @@ namespace Z0.Tests
             Claim.eq(xval, Z0.Bits.pack(x0, x1, x2,x3));
 
             var xbsref = "10100111" + "00111000" + "11100101" + "10101000";
-            Claim.eq(xbsref, xval.ToBitChars());
+            Claim.eq(xbsref, xval.ToBitString());
 
 
-            // var y2 = Bits.pack(x3,x2);
-            // var y1 = Bits.pack(x1,x0);
-            // var y0 = Bits.pack(y2,y1);
-            // Claim.eq(xval, y0);
-
-            // var bv1 = BitVector.define<N32>(primops.bits(xval));
-            // var bv2 = BitVector.Parse<N32>(xbsref);
-            // Claim.eq(bv2, bv1);
-
-            // var bs1 = bv1.bitstring().format();
-            // Claim.eq(xbsref,bs1);
-
-            // var bs2 = primops.bitstring(xval).format();
-            // Claim.eq(xbsref,bs2);
         }
-
 
     }
 }

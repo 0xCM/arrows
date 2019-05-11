@@ -280,6 +280,61 @@ namespace  Z0
         public static T SecondOrDefault<T>(this IEnumerable<T> items)
             => items.Take(2).LastOrDefault();
 
+        /// <summary>
+        /// Constructs a sequence of singleton sequences from a sequence of elements
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The item type</typeparam>
+        public static IEnumerable<IEnumerable<T>> Singletons<T>(this IEnumerable<T> src)
+            => singletons(src);
+
+        /// <summary>
+        /// Determines whether two sequence,adjudicated by positional elemental equality, are equal
+        /// </summary>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <param name="lhs">The first sequence</param>
+        /// <param name="rhs">The second sequence</param>
+        public static bool ReallyEqual<T>(this IEnumerable<T> lhs, IEnumerable<T> rhs)
+            where T : IEquatable<T>
+        {            
+            var lenum = lhs.GetEnumerator();
+            var renum = rhs.GetEnumerator();
+            var lnext = lenum.MoveNext();
+            var rnext = renum.MoveNext();
+
+            while(lnext || rnext)
+            {
+                if( (lnext & not(rnext)) || (rnext && not(lnext)))
+                    return false;
+                
+                if(!lenum.Current.Equals(renum.Current))
+                    return false;
+
+                lnext = lenum.MoveNext();
+                rnext = renum.MoveNext();
+            }
+
+            return true;
+        } 
+
+        /// <summary>
+        /// Convenience wrapper for Enumerable.SelectMany that yields a sequence of elements from a sequence of sequences
+        /// </summary>
+        /// <typeparam name="T">The sequence element type</typeparam>
+        /// <param name="src"></param>
+        public static IEnumerable<T> Reduce<T>(this IEnumerable<IEnumerable<T>> src)
+            => src.SelectMany(y => y);
+
+        /// <summary>
+        /// Prepends one or more items to the head of the sequence
+        /// </summary>
+        /// <typeparam name="T">The item type</typeparam>
+        /// <param name="src">The sequence that will be prependend</param>
+        /// <param name="preceding">The items that will be prepended</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Prepend<T>(this IEnumerable<T> src, params T[] preceding)
+            => preceding.Concat(src);
+
     }
 
 }

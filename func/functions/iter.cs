@@ -92,11 +92,11 @@ partial class zfunc
             f(i);             
     }
 
-    [MethodImpl(Inline)]
-    public static IEnumerable<int> range(int start, int limit, int step)
-    {
-        for(var i = start; i< limit; i += step)
-            yield return i;
-    }
+    // [MethodImpl(Inline)]
+    // public static IEnumerable<int> range(int start, int limit, int step)
+    // {
+    //     for(var i = start; i< limit; i += step)
+    //         yield return i;
+    // }
 
 }

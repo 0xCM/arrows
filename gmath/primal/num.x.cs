@@ -13,21 +13,15 @@ namespace Z0
     
     using static mfunc;
 
-    public static class numx
+    public static class NumberX
     {
-
-        [MethodImpl(Inline)]
-        public static num<T>[] Add<T>(this num<T>[] lhs, num<T>[] rhs)
-            where T : struct, IEquatable<T>
-                => Number.add(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static num<T> Sum<T>(this num<T>[] src)        
             where T : struct, IEquatable<T>
                 => Number.sum(src);
 
-
-        [MethodImpl(Inline)]
+        [MethodImpl(NotInline)]
         public static void Scale<T>(this num<T>[] src, num<T> factor, num<T>[] dst)        
             where T : struct, IEquatable<T>
         {
@@ -44,12 +38,24 @@ namespace Z0
             return dst;
         }
 
-        [MethodImpl(Inline)]
+        [MethodImpl(NotInline)]
+        public static T[] Data<T>(this num<T>[] src)
+            where T : struct, IEquatable<T>        
+            => Unsafe.As<num<T>[], T[]>(ref src);
+        
+        [MethodImpl(NotInline)]
         public static IEnumerable<num<T>> Scale<T>(this IEnumerable<num<T>> src, num<T> factor)        
-            where T : struct, IEquatable<T>
+            where T : struct, IEquatable<T>        
                 => src.Select(x => x * factor);
 
+        [MethodImpl(NotInline)]
+        public static void CopyTo<T>(this numbers<T> src, T[] dst)
+            where T : struct, IEquatable<T>
+                =>  src.Extract().CopyTo(dst);
+                
+        [MethodImpl(NotInline)]
+        public static numbers<T> To<T>(this num<T> first, num<T> last)
+            where T : struct, IEquatable<T>
+                =>  new numbers<T>(range(first, last));
     }
-
-
 }

@@ -61,23 +61,23 @@ namespace  Z0
         /// Specifies whether the set is void of elements
         /// </summary>
         /// <value></value>
-        bool empty {get;}
+        bool IsEmpty {get;}
 
         /// <summary>
         /// Specifies whether the set is finite
         /// </summary>
-        bool finite {get;}
+        bool IsFinite {get;}
 
         /// <summary>
         /// Specifies whether the set is discrete
         /// </summary>
-        bool discrete {get;}
+        bool IsDiscrete {get;}
 
         /// <summary>
         /// Determines whether a value is a member
         /// </summary>
         /// <param name="candidate">The potential member to check</param>
-        bool member(object candidate);
+        bool IsMember(object candidate);
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ namespace  Z0
         /// Determines whether a supplied value is a member of the reified set
         /// </summary>
         /// <param name="candidate">The potential member to check</param>
-        bool member(T candidate);
+        bool IsMember(T candidate);
     
     }
 
@@ -113,7 +113,7 @@ namespace  Z0
     public interface IDiscreteContainer<S,T> : IContainer<S,T>
         where S : IDiscreteContainer<S,T>, new()
     {
-        IEnumerable<T> content {get;}
+        IEnumerable<T> Content {get;}
     }
 
     /// <summary>
@@ -145,7 +145,7 @@ namespace  Z0
         /// <summary>
         /// The count providing evidence that the content is finite
         /// </summary>
-        uint count {get;}
+        uint Count {get;}
     }
 
     /// <summary>
@@ -161,7 +161,7 @@ namespace  Z0
         /// </summary>
         /// <param name="index">The index value</param>
         /// <returns>The indexed value</returns>
-        T item(I index);
+        T Lookup(I index);
 
         /// <summary>
         /// Retrives an indexed value via an index operator
@@ -214,7 +214,7 @@ namespace  Z0
         where S : IFixedContainer<S,C,T>, new()
         where T : struct, IEquatable<T>
     {
-        C release();
+        C Release();
     }
 
 }

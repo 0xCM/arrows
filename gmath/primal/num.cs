@@ -14,6 +14,7 @@ namespace Z0
     
     using static mfunc;
     
+
     public readonly struct num<T> : IEquatable<num<T>>
         where T : struct, IEquatable<T>
     {
@@ -34,7 +35,84 @@ namespace Z0
         public static readonly num<T> Zero = gmath.zero<T>();
 
         public static readonly num<T> One = gmath.one<T>();
-        
+
+        [MethodImpl(Inline)]
+        public static explicit operator sbyte(num<T> src)
+            => ClrConverter.convert<T,sbyte>(toVal(ref src));
+
+        [MethodImpl(Inline)]
+        public static explicit operator byte(num<T> src)
+            => ClrConverter.convert<T,byte>(toVal(ref src));
+
+        [MethodImpl(Inline)]
+        public static explicit operator short(num<T> src)
+            => ClrConverter.convert<T,short>(toVal(ref src));
+
+        [MethodImpl(Inline)]
+        public static explicit operator ushort(num<T> src)
+            => ClrConverter.convert<T,ushort>(toVal(ref src));
+
+        [MethodImpl(Inline)]
+        public static explicit operator int(num<T> src)
+            => ClrConverter.convert<T,int>(toVal(ref src));
+
+        [MethodImpl(Inline)]
+        public static explicit operator uint(num<T> src)
+            => ClrConverter.convert<T,uint>(toVal(ref src));
+
+        [MethodImpl(Inline)]
+        public static explicit operator long(num<T> src)
+            => ClrConverter.convert<T,long>(toVal(ref src));
+
+        [MethodImpl(Inline)]
+        public static explicit operator ulong(num<T> src)
+            => ClrConverter.convert<T,ulong>(toVal(ref src));
+
+        [MethodImpl(Inline)]
+        public static explicit operator float(num<T> src)
+            => ClrConverter.convert<T,float>(toVal(ref src));
+
+        [MethodImpl(Inline)]
+        public static explicit operator double(num<T> src)
+            => ClrConverter.convert<T,double>(toVal(ref src));
+
+        [MethodImpl(Inline)]
+        public static implicit operator num<T>(sbyte src)
+            => As.generic<T>(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator num<T>(byte src)
+            => As.generic<T>(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator num<T>(short src)
+            => As.generic<T>(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator num<T>(ushort src)
+            => As.generic<T>(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator num<T>(int src)
+            => As.generic<T>(ref src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator num<T>(long src)
+            => As.generic<T>(ref src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator num<T>(ulong src)
+            => As.generic<T>(ref src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator num<T>(float src)
+            => As.generic<T>(ref src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator num<T>(double src)
+            => As.generic<T>(ref src);
+
+
         [MethodImpl(Inline)]
         static ref num<T> toNum(ref T src)
             => ref Unsafe.As<T,num<T>>(ref src);

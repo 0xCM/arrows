@@ -479,6 +479,10 @@ namespace Z0
             tm.Run();
         }
 
+        void TestRange()
+        {
+            range(1, 100);
+        }
 
         void Test32()
         {

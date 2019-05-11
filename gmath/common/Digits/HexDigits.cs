@@ -7,6 +7,9 @@ namespace Z0
     using System;
     using System.Numerics;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
+    using static mfunc;
+
     using static HexDigit;
 
     /// <summary>
@@ -115,7 +118,50 @@ namespace Z0
         Base = Last + X1
     }
 
+    public static class HexDigitX
+    {
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this byte x)
+            => hexstring(x);
 
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this sbyte x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this short x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this ushort x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this int x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this uint x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this long x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this ulong x)
+            => hexstring(x);
+
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this BigInteger x)
+            => hexstring(x);
+
+        [MethodImpl(Inline)]   
+        public static string ToHexString(this decimal src)
+            => hexstring(src);
+
+    }
     public static class HexDigits
     {
         /// <summary>

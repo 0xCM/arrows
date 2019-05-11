@@ -112,21 +112,12 @@ partial class zcore
     {
         var current = first;
         if(first < last)
-        {
             while(current<= last)
-            {
                 yield return current++;
-            }                
-        }
         else
-        {
             while(current >= last)
-            {
                 yield return current--;
-            }
-        }
     }
-
 
     /// <summary>
     /// Constructs the ring of integers for a given modulus
@@ -139,31 +130,6 @@ partial class zcore
         where T : struct, IEquatable<T>
             => new modg<N,T>(lhs);
 
-
-    [MethodImpl(Inline)]
-    public static int min(int x, int y)
-        => x < y ? x : y;
-
-    [MethodImpl(Inline)]
-    public static uint min(uint x, uint y)
-        => x < y ? x : y;
-
-    [MethodImpl(Inline)]
-    public static T min<T>(T x, T y)
-        where T : IOrderable<T>, new()
-            => x.lt(y) ? x : y;
-
-    /// <summary>
-    /// Raises each element of the source sequence to a specified power
-    /// </summary>
-    /// <param name="src">The source sequence</param>
-    /// <param name="exp">The exponent value</param>
-    /// <typeparam name="T">The operand type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static IEnumerable<T> pow<T>(IEnumerable<T> src, int exp)
-        where T : INaturallyPowered<T>, new() 
-            => map(src, x => x.pow(exp));
     
     [MethodImpl(Inline)]
     static Ordering compare<T>(T lhs, T rhs)
@@ -173,186 +139,9 @@ partial class zcore
                Ordering.EQ; 
 
     [MethodImpl(Inline)]
-    public static Index<(T lhs, Ordering, T rhs)> compare<T>(T[] lhs, T[] rhs)
+    public static (T lhs, Ordering, T rhs)[] compare<T>(T[] lhs, T[] rhs)
         where T: IOrderable<T>, new()
             => fuse(lhs,rhs, (l,r) =>  (l, compare(l,r), r));
-
-
-    /// <summary>
-    /// Calculates the square root of each element in the source sequence
-    /// </summary>
-    /// <param name="src">The source sequence</param>
-    /// <typeparam name="T">The operand type</typeparam>
-    /// <returns></returns>    
-    [MethodImpl(Inline)]
-    public static IEnumerable<T> sqrt<T>(IEnumerable<T> src)
-        where T: Structures.Floating<T>, new()
-            => map(src,x => x.sqrt());
-
-
-    /// Calculates the square root of each element in the source sequence
-    /// </summary>
-    /// <param name="src">The source sequence</param>
-    /// <typeparam name="T">The operand type</typeparam>
-    /// <returns></returns>    
-    [MethodImpl(Inline)]
-    public static T[] abs<T>(T[] src)
-        where T: INumber<T>, new()
-            => map(src,x => x.abs());
-
-
-    /// <summary>
-    /// Fuses two sequences via addition
-    /// </summary>
-    /// <param name="lhs">The left sequence</param>
-    /// <param name="rhs">The right sequence</param>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static T[] add<T>(T[] lhs, T[] rhs)
-        where T: IAdditive<T>, new()
-            => fuse(lhs,rhs, (l,r) =>  l.add(r));
-
-    /// <summary>
-    /// Fuses two sequences via subtraction
-    /// </summary>
-    /// <param name="lhs">The left sequence</param>
-    /// <param name="rhs">The right sequence</param>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static T[] sub<T>(T[] lhs, T[] rhs)
-        where T: ISubtractive<T>, new()
-            => fuse(lhs,rhs, (l,r) =>  l.sub(r));
-
-    /// <summary>
-    /// Fuses two sequences via multiplication
-    /// </summary>
-    /// <param name="lhs">The left sequence</param>
-    /// <param name="rhs">The right sequence</param>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static T[] mul<T>(T[] lhs, T[] rhs)
-        where T: IMultiplicative<T>, new()
-            => fuse(lhs,rhs, (l,r) =>  l.mul(r));
-
-    /// <summary>
-    /// Fuses two sequences via division
-    /// </summary>
-    /// <param name="lhs">The left sequence</param>
-    /// <param name="rhs">The right sequence</param>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static T[] div<T>(T[] lhs, T[] rhs)
-        where T: IDivisive<T>, new()
-            => fuse(lhs,rhs, (l,r) =>  l.div(r));
-
-    /// <summary>
-    /// Computes the minimum of the input sequence
-    /// </summary>
-    /// <param name="src">The input sequence</param>
-    /// <typeparam name="T">The operand type</typeparam>
-    [MethodImpl(Inline)]
-    public static T min<T>(params T[] src)
-        where T : struct, IOrderable<T>
-    {
-        T min = src.FirstOrDefault();
-        foreach(var item in src)
-            min = item.lt(min) ? item : min;
-        return min;
-    }
-
-    [MethodImpl(Inline)]
-    public static T max<T>(T x, T y)
-        where T : IOrderable<T>, new()
-            => x.gt(y) ? x : y;
-
-    [MethodImpl(Inline)]
-    public static T max<T>(IEnumerable<T> src)
-        where T : struct, IOrderable<T>
-    {
-        T max = src.FirstOrDefault();
-        foreach(var item in src)
-            max = item.gt(max) ? item : max;
-        return max;
-    }
-
-    [MethodImpl(Inline)]
-    public static T max<T>(params T[] src)
-        where T : struct, IOrderable<T>
-        => max((IEnumerable<T>)src);
-
-    /// <summary>
-    /// Accumulates the elements of the input sequence
-    /// </summary>
-    /// <param name="src"></param>
-    /// <typeparam name="T"></typeparam>
-    [MethodImpl(Inline)]
-    public static T sum<T>(IEnumerable<T> src)
-        where T : IAdditive<T>, INullary<T>, new()
-    {
-        var s = new T().zero;
-        iter(src, x => s = x.add(s));
-        return s;
-    }
-
-    public static T avg<T>(IEnumerable<T> src)
-        where T : IRealNumber<T>,new()
-    {
-        var prototype = new T();
-        var result = prototype.zero;
-        var count = prototype.zero;
-        foreach(var val in src)
-        {
-            result = result.add(val);
-            count = count.inc();
-        }
-        return !count.Equals(count.zero) ? result.div(count) : result;
-    }
-
-    [MethodImpl(Inline)]
-    public static string hexstring(byte src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(sbyte src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(short src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(ushort src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(int src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(uint src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(long src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(ulong src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]   
-    public static string hexstring(BigInteger x)
-        => x.ToString("X");
-
-    [MethodImpl(Inline)]   
-    public static string hexstring(decimal src)
-        => apply(Z0.Bits.split(src), parts =>
-            append(
-                parts.x0.ToString("X8"),
-                parts.x1.ToString("X8"),
-                parts.x2.ToString("X8"),
-                parts.x3.ToString("X8")
-            ));
 
 
     [MethodImpl(Inline)]   
@@ -417,14 +206,6 @@ partial class zcore
     /// </summary>
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]   
-    public static bool finite(float src)
-        => float.IsFinite(src);
-
-    /// <summary>
-    /// Determines whether a double value is bounded 
-    /// </summary>
-    /// <param name="src">The source value</param>
-    [MethodImpl(Inline)]   
     public static bool finite(double src)
         => double.IsFinite(src);
 
@@ -436,11 +217,4 @@ partial class zcore
     public static bool nonzero(double src)
         => src != 0;
 
-    /// <summary>
-    /// Determines whether a value is nonzero
-    /// </summary>
-    /// <param name="src">The source value</param>
-    [MethodImpl(Inline)]   
-    public static bool nonzero(float src)
-        => src != 0;
 }

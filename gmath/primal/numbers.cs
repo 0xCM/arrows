@@ -13,7 +13,7 @@ namespace Z0
     using static mfunc;
     using static zfunc;
 
-    public static class numbers
+    public static class Numbers
     {
         [MethodImpl(Inline)]
         public static numbers<T> define<T>(params T[] src)
@@ -27,21 +27,19 @@ namespace Z0
 
     }
 
-    public static class numbersX
-    {
-        public static void CopyTo<T>(this numbers<T> src, T[] dst)
-            where T : struct, IEquatable<T>
-                =>  src.Extract().CopyTo(dst);
-    }
-
     public ref struct numbers<T>
         where T : struct, IEquatable<T>
     {
         Span<T> data;
 
         [MethodImpl(Inline)]
-        public numbers(Span<T> data)
-            => this.data = data;
+        public numbers(Span<T> src)
+            => this.data = src;
+
+        [MethodImpl(Inline)]
+        public numbers(num<T>[] src)
+            => this.data = src.Data();
+
 
         [MethodImpl(Inline)]
         public Span<T> Extract(bool copy = false)
@@ -64,7 +62,6 @@ namespace Z0
         public T[] ToArray()
             => data.ToArray();
 
-    
 
         public ref T this[int i]
         {

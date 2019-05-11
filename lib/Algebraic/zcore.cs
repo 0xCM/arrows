@@ -48,23 +48,6 @@ partial class zcore
         return classes.KeyedValues.Select(kvp => new FiniteEquivalenceClass<T>(kvp.key,relation, kvp.value ));
     }
 
-    /// <summary>
-    /// Determines whether two lists, adjudicated by positional elemental equality, are equal
-    /// </summary>
-    /// <typeparam name="T">The type of value object</typeparam>
-    /// <param name="lhs">The first list</param>
-    /// <param name="rhs">The second list</param>
-    public static bool eq<T>(Index<T> lhs, Index<T> rhs)
-        where T : IEquatable<T>, new()
-    {    
-        if (lhs.Count != rhs.Count)
-            return false;
-
-        for (int i = 0; i < lhs.Count; i++)
-            if(!lhs[i].Equals(rhs[i]))
-                return false;
-        return true;
-    }
 
     /// <summary>
     /// Determines whether two sequences, adjudicated by positional elemental equality, are equal
@@ -72,7 +55,7 @@ partial class zcore
     /// <typeparam name="T">The type of value object</typeparam>
     /// <param name="lhs">The first list</param>
     /// <param name="rhs">The second list</param>
-   public static bool eq<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
+    public static bool eq<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
         where T : IEquatable<T>, new()
     {    
         
@@ -93,6 +76,5 @@ partial class zcore
         }
 
         return true;
-    }
- 
+    } 
 }

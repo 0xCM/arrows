@@ -35,29 +35,29 @@ namespace Z0
 
         public T representative {get;}
 
-        public bool empty 
+        public bool IsEmpty 
             => false;
 
-        public bool finite
+        public bool IsFinite
             => true;
 
-        public bool discrete
+        public bool IsDiscrete
             => true;
 
         public int count 
-            => membership.count;
+            => membership.Count;
 
-        public IEnumerable<T> content 
-            => membership.content;
+        public IEnumerable<T> Content 
+            => membership.Content;
 
-        public bool member(T candidate)
+        public bool IsMember(T candidate)
             => equivalence.related(representative, candidate);
 
-        public bool member(object candidate)
-            => candidate is T ? member((T)candidate) : false;
+        public bool IsMember(object candidate)
+            => candidate is T ? IsMember((T)candidate) : false;
 
         public IEnumerable<T> members()
-            => membership.content;
+            => membership.Content;
 
         public bool eq(FiniteEquivalenceClass<T> lhs, FiniteEquivalenceClass<T> rhs)
             => lhs.membership.Equals(rhs.membership);

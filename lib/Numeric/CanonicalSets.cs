@@ -21,19 +21,19 @@ namespace Z0
         public TotalSet<T> inhabitant 
             => Inhabitant;
 
-        public bool empty 
+        public bool IsEmpty 
             => false;
 
-        public bool member(T item) 
+        public bool IsMember(T item) 
             => true;
 
-        public bool finite
+        public bool IsFinite
             => false;
 
-        public bool discrete
+        public bool IsDiscrete
             => false;
 
-        public bool member(object candidate)
+        public bool IsMember(object candidate)
             => candidate is T ? true : false;
 
         public bool Equals(TotalSet<T> other)
@@ -56,19 +56,19 @@ namespace Z0
     {
         public static readonly EmptySet Inhabitant = default;
 
-        public bool empty 
+        public bool IsEmpty 
             => true;
 
-        public bool finite
+        public bool IsFinite
             => true;
 
-        public bool discrete
+        public bool IsDiscrete
             => true;
 
         public EmptySet inhabitant 
             => Inhabitant;
 
-        public bool member(object candidate)
+        public bool IsMember(object candidate)
             => false;
     }
 
@@ -83,13 +83,13 @@ namespace Z0
         public EmptySet<T> inhabitant 
             => Inhabitant;
 
-        public bool empty 
+        public bool IsEmpty 
             => false;
 
-        public bool finite
+        public bool IsFinite
             => true;
 
-        public bool discrete
+        public bool IsDiscrete
             => true;
 
         public bool eq(EmptySet<T> rhs)
@@ -103,12 +103,12 @@ namespace Z0
         public int hash()
             => 0;
 
-        public bool member(T item) 
+        public bool IsMember(T item) 
             => false;
 
-        public bool member(object candidate)
+        public bool IsMember(object candidate)
             => (candidate is T) 
-             ? member((T)candidate) 
+             ? IsMember((T)candidate) 
              : false;
 
         public bool neq(EmptySet<T> rhs)
@@ -122,7 +122,7 @@ namespace Z0
     {
         internal static readonly N Inhabitant = default;
 
-        public bool member(bigint item)
+        public bool IsMember(bigint item)
             => item >= bigint.Zero;
 
         static IEnumerable<bigint> peano()
@@ -132,27 +132,27 @@ namespace Z0
                 yield return p++;    
         }
 
-        public bool empty 
+        public bool IsEmpty 
             => false;
 
-        public bool finite
+        public bool IsFinite
             => false;
 
-        public bool discrete
+        public bool IsDiscrete
             => true;
 
         public N inhabitant 
             => Inhabitant;
 
-        public IEnumerable<bigint> content 
+        public IEnumerable<bigint> Content 
             => peano();
 
         public Seq<bigint> members()
             => peano().ToSeq();
 
-        public bool member(object candidate)
+        public bool IsMember(object candidate)
             => candidate is bigint 
-            ? member((bigint)candidate) 
+            ? IsMember((bigint)candidate) 
             : false;
 
 
@@ -179,13 +179,13 @@ namespace Z0
         public Z inhabitant 
             => Inhabitant;
 
-        public bool empty 
+        public bool IsEmpty 
             => false;
 
-        public bool finite
+        public bool IsFinite
             => false;
 
-        public bool discrete
+        public bool IsDiscrete
             => true;
 
         public bigint zero 
@@ -202,13 +202,13 @@ namespace Z0
             }
         }
 
-        public IEnumerable<bigint> content 
+        public IEnumerable<bigint> Content 
             => integers();
         
         public bigint add(bigint lhs, bigint rhs)
             => lhs + rhs;
 
-        public bool member(bigint item)
+        public bool IsMember(bigint item)
             => true;
 
         public bool eq(bigint lhs, bigint rhs)
@@ -223,7 +223,7 @@ namespace Z0
         public bigint sub(bigint lhs, bigint rhs)
             => lhs - rhs;
 
-        public bool member(object candidate)
+        public bool IsMember(object candidate)
             => candidate is bigint;
 
         public bool Equals(Z other)
@@ -249,13 +249,13 @@ namespace Z0
         public Q inhabitant 
             => Inhabitant;
 
-        public bool empty 
+        public bool IsEmpty 
             => false;
 
-        public bool finite
+        public bool IsFinite
             => false;
 
-        public bool discrete
+        public bool IsDiscrete
             => true;
 
         public bool Equals(Q other)
@@ -264,7 +264,7 @@ namespace Z0
         public bool member(Q item) 
             => true;
 
-        public bool member(object candidate)
+        public bool IsMember(object candidate)
             => candidate is Q;
     }
 
@@ -278,13 +278,13 @@ namespace Z0
         public R inhabitant 
             => Inhabitant;  
 
-        public bool empty 
+        public bool IsEmpty 
             => false;
 
-        public bool finite
+        public bool IsFinite
             => false;
 
-        public bool discrete
+        public bool IsDiscrete
             => false;
 
         public bool Equals(R other)
@@ -293,7 +293,7 @@ namespace Z0
         public bool member(R x) 
             => true;
 
-        public bool member(object x)
+        public bool IsMember(object x)
             => x is R;
     }
 

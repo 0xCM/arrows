@@ -53,7 +53,7 @@ namespace Z0
         
         readonly bool nonempty;
 
-        public IEnumerable<T> content 
+        public IEnumerable<T> Content 
             => stream;
 
         public bool empty()

@@ -61,16 +61,16 @@ namespace Z0
         public FiniteSet(HashSet<T> members)
             => this.data = members;
 
-        public int count 
+        public int Count 
             => data.Count;
 
-        public bool empty 
-            => count == 0;
+        public bool IsEmpty 
+            => Count == 0;
 
-        public bool finite
+        public bool IsFinite
             => true;
 
-        public bool discrete
+        public bool IsDiscrete
             => true;
         
 
@@ -79,15 +79,15 @@ namespace Z0
             => setcomparer.Equals(data, other.data);
 
         [MethodImpl(Inline)]   
-        public bool member(T candidate)
+        public bool IsMember(T candidate)
             => data.Contains(candidate);
 
         [MethodImpl(Inline)]   
-        public bool member(object candidate)
-            => candidate is T ? member((T)candidate) :false;
+        public bool IsMember(object candidate)
+            => candidate is T ? IsMember((T)candidate) :false;
 
         
-        public IEnumerable<T> content
+        public IEnumerable<T> Content
             => data;
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Z0
         /// <param name="rhs">The candidate superset</param>
         /// <param name="proper">Specifies whether only proper subsets are considered "subsets"</param>
         [MethodImpl(Inline)]   
-        public bool subset(FiniteSet<T> rhs, bool proper = true)
+        public bool IsSubset(FiniteSet<T> rhs, bool proper = true)
             => proper ? data.IsProperSubsetOf(rhs.data) : data.IsSubsetOf(rhs.data);
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Z0
         /// <param name="rhs">The candidate subset</param>
         /// <param name="proper">Specifies whether only proper subsets are considered "subsets"</param>
         [MethodImpl(Inline)]   
-        public bool superset(FiniteSet<T> rhs, bool proper = true)
+        public bool IsSuperset(FiniteSet<T> rhs, bool proper = true)
             => proper ? data.IsProperSupersetOf(rhs.data) : data.IsSubsetOf(rhs.data);
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Z0
         /// </summary>
         /// <param name="rhs">The set with which to union/param>
         [MethodImpl(Inline)]   
-        public FiniteSet<T> union(FiniteSet<T> rhs)
+        public FiniteSet<T> Union(FiniteSet<T> rhs)
         {
             var result = hashset(data);
             result.UnionWith(rhs.data);
@@ -127,7 +127,7 @@ namespace Z0
         /// </summary>
         /// <param name="rhs">The set with which to intersect</param>
         [MethodImpl(Inline)]   
-        public FiniteSet<T> intersect(FiniteSet<T> rhs)
+        public FiniteSet<T> Intersect(FiniteSet<T> rhs)
         {
             var result = hashset(data);
             result.IntersectWith(rhs.data);
@@ -141,7 +141,7 @@ namespace Z0
         /// <param name="rhs">The set that should be differenced</param>
         /// <remarks>See https://en.wikipedia.org/wiki/Symmetric_difference</remarks>
         [MethodImpl(Inline)]   
-        public FiniteSet<T> difference(FiniteSet<T> rhs, bool symmetric = false)
+        public FiniteSet<T> Difference(FiniteSet<T> rhs, bool symmetric = false)
         {
             var result = hashset(data);
             if(symmetric)

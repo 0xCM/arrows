@@ -8,7 +8,7 @@ namespace Z0
     using System.Linq;
     using System.Collections.Generic;
 
-    using static zcore;
+    using static zfunc;
 
     /// <summary>
     /// Implementation of a basic multiset
@@ -16,14 +16,12 @@ namespace Z0
     /// <remarks>See https://en.wikipedia.org/wiki/Multiset</remarks>
     public readonly struct Multiset<T> 
         where T : IOrderedOps<T>,  new()                
-    {
-        static IOrderedOps<T> Ops = new T();
-        
+    {        
         readonly SortedDictionary<T,int> data;
 
         public Multiset(IEnumerable<T> src)
         {            
-            data = new SortedDictionary<T,int>(Ops.ToComparer());
+            data = new SortedDictionary<T,int>();
             foreach(var item in src)
             {
                 if(data.ContainsKey(item))
@@ -48,7 +46,6 @@ namespace Z0
         public bool member(T candidate)
             => data.ContainsKey(candidate);
         
-
         public bool member(object candidate)
             => candidate is T ? member((T)candidate) : false;
 

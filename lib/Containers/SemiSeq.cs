@@ -80,7 +80,7 @@ namespace Z0
         public SemiSeq<T> zero 
             => Empty;
 
-        IEnumerable<T> IDiscreteContainer<SemiSeq<T>, T>.content 
+        IEnumerable<T> IDiscreteContainer<SemiSeq<T>, T>.Content 
             => content;
 
         [MethodImpl(Inline)]   

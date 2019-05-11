@@ -21,7 +21,7 @@ namespace Z0
         IReadOnlyDictionary<K,V> _items {get;}
         
         IEnumerator<KeyedValue<K, V>> enumerator()
-            => content.GetEnumerator();
+            => Content.GetEnumerator();
         
         IEnumerator<KeyedValue<K, V>> IEnumerable<KeyedValue<K, V>>.GetEnumerator()
             => enumerator();
@@ -50,7 +50,7 @@ namespace Z0
         public Option<V> lookup(K key)
             => _items.ContainsKey(key) ? _items[key] : none<V>();
 
-        public IEnumerable<KeyedValue<K,V>> content 
+        public IEnumerable<KeyedValue<K,V>> Content 
             => from i in _items select kvp(i.Key,i.Value);
 
         /// <summary>
