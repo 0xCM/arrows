@@ -16,6 +16,14 @@ partial class zfunc
 {
 
     /// <summary>
+    /// Gets the literal values for an enum type
+    /// </summary>
+    /// <typeparam name="T">The enum type</typeparam>
+    public static IEnumerable<T> literals<T>()
+        where T : Enum
+            => type<T>().GetEnumValues().AsQueryable().Cast<T>();
+
+    /// <summary>
     /// Gets the assembly in which the parametrized type is defined
     /// </summary>
     [MethodImpl(Inline)]

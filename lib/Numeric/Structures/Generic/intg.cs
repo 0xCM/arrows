@@ -276,7 +276,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public bool testbit(int pos)            
-            => Prim.testbit(data,pos);
+            => Prim.TestBit(data,pos);
 
         [MethodImpl(Inline)]
         public intg<T> and(intg<T> rhs)
@@ -342,7 +342,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public byte[] bytes()
-            => Prim.bytes(data);
+            => Prim.Bytes(data);
 
         [MethodImpl(Inline)]
         public intg<T> distributeL((intg<T> x, intg<T>y) rhs)
@@ -447,25 +447,6 @@ namespace Z0
         public int hash()
             => data.GetHashCode();
 
-        [MethodImpl(Inline)]
-        public intg<I> ToIntG<I>()
-            where I : struct, IEquatable<I>
-                => convert<T,I>(data);
-
-        [MethodImpl(Inline)]
-        public real<R> ToRealG<R>()
-            where R : struct, IEquatable<R>
-                => convert<T,R>(data);
-
-        [MethodImpl(Inline)]   
-        public C ToClr<C>()
-            where C : struct, IEquatable<C>
-                => convert<T,C>(data);
-
-        [MethodImpl(Inline)]
-        public floatg<F> ToFloatG<F>()
-            where F : struct, IEquatable<F>
-                => convert<T,F>(data);
 
          public override int GetHashCode()
             => hash();

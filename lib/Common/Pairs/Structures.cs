@@ -14,7 +14,7 @@ namespace Z0
     /// a left-value of one type and a right-value
     /// of another type
     /// </summary>
-    public readonly struct Pair<A,B> : Traits.Pair<A,B>
+    public readonly struct Pair<A,B> : IPair<A,B>
     {        
         public A left {get;}
 
@@ -32,7 +32,7 @@ namespace Z0
     /// a left-value of one type or a right value
     /// of another type
     /// </summary>
-    public readonly struct Copair<A,B> : Traits.Copair<A, B>
+    public readonly struct Copair<A,B> : ICopair<A, B>
     {
 
         /// <summary>

@@ -16,7 +16,6 @@ using static zfunc;
 
 partial class mfunc
 {
-
     /// <summary>
     /// Constructs a span from an array
     /// </summary>
@@ -102,7 +101,6 @@ partial class mfunc
     public static void write<T>(ref T src, Span<byte> dst)
         where T : struct
             => MemoryMarshal.Write(dst, ref src);
-
 
     [MethodImpl(Inline)]
     public static ref T first<T>(Span<T> src)

@@ -84,18 +84,18 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public byte[] bytes(float src)
+            public byte[] Bytes(float src)
                 => BitConverter.GetBytes(src);
 
             [MethodImpl(Inline)]
-            public bool testbit(float src, int pos)
-                => testbit(BitConverter.SingleToInt32Bits(src),pos);
+            public bool TestBit(float src, int pos)
+                => TestBit(BitConverter.SingleToInt32Bits(src),pos);
 
             [MethodImpl(Inline)]
-            public Bit[] bits(float src)
-                => bits(BitConverter.SingleToInt32Bits(src));
+            public Bit[] Bits(float src)
+                => Bits(BitConverter.SingleToInt32Bits(src));
 
-                public string bitstring(float src)
+                public string BitString(float src)
                 {
                     throw new NotImplementedException();
                 }

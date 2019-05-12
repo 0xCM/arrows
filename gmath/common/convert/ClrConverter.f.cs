@@ -16,57 +16,66 @@ using static zfunc;
 
 partial class mfunc
 {
-    /// <summary>
-    /// Converts from one value to another, provided the 
-    /// required conversion operation is defined; otherwise,
-    /// raises an error
-    /// </summary>
-    /// <param name="src">The source value</param>
-    /// <typeparam name="S">The source type</typeparam>
-    /// <typeparam name="T">The target type</typeparam>
+
+    [MethodImpl(Inline)]   
+    public static T convert<S,T>(S src, out T dst)
+        where T : struct, IEquatable<T>
+        where S : struct, IEquatable<S>
+            => dst = Converters.convert(src, out T target);  
+           
     [MethodImpl(Inline)]   
     public static T convert<S,T>(S src)
         where T : struct, IEquatable<T>
         where S : struct, IEquatable<S>
-            => ClrConverter.convert<S,T>(src);
-
-    /// <summary>
-    /// Vectorized conversion
-    /// </summary>
-    /// <typeparam name="S">The source type</typeparam>
-    /// <typeparam name="T">The target type</typeparam>
-    /// <param name="src">The source array</param>
+           => Converters.convert(src, out T dst);  
+    
     [MethodImpl(Inline)]   
-    public static T[] convert<S,T>(S[] src)
-        => ClrConverter.convert<S,T>(src);
+    public static T convert<T>(sbyte src)
+        where T : struct, IEquatable<T>
+            => Converters.convert(src, out T dst);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(byte src)
+        where T : struct, IEquatable<T>
+            => Converters.convert(src, out T dst);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(short src)
+        where T : struct, IEquatable<T>
+            => Converters.convert(src, out T dst);
+
+    [MethodImpl(Inline)]   
+    public static T convert<T>(ushort src)
+        where T : struct, IEquatable<T>
+            => Converters.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(int src)
         where T : struct, IEquatable<T>
-            => ClrConverter.convert<int,T>(src);
+            => Converters.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(uint src)
         where T : struct, IEquatable<T>
-            => ClrConverter.convert<uint,T>(src);
+            => Converters.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(long src)
         where T : struct, IEquatable<T>
-            => ClrConverter.convert<long,T>(src);
+            => Converters.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(ulong src)
         where T : struct, IEquatable<T>
-            => ClrConverter.convert<ulong,T>(src);
+            => Converters.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(float src)
         where T : struct, IEquatable<T>
-            => ClrConverter.convert<float,T>(src);
+            => Converters.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(double src)
         where T : struct, IEquatable<T>
-            => ClrConverter.convert<double,T>(src);
+            => Converters.convert(src, out T dst);
 }

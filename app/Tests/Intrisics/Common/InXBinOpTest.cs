@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Tests.InXTests
+namespace Z0.Test
 {
     using System;
     using System.Linq;
@@ -10,12 +10,9 @@ namespace Z0.Tests.InXTests
     using System.ComponentModel;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-
-    using Z0.Testing;
     
     using static zcore;
     using static zfunc;
-
 
    public abstract class InXBinOpTest<S,T> : InXTest<S,T>
         where S : InXBinOpTest<S,T>
@@ -23,8 +20,8 @@ namespace Z0.Tests.InXTests
 
     
     {
-        protected InXBinOpTest(string opname, Interval<T>? domain = null, int? sampleSize = null)
-            : base(opname, domain, sampleSize)
+        protected InXBinOpTest(OpId<T> OpId, Interval<T>? domain = null, int? sampleSize = null)
+            : base(OpId, domain, sampleSize)
         {
 
             _Expect = defer(() => Expected().ToIndex());
@@ -65,7 +62,6 @@ namespace Z0.Tests.InXTests
             return results;
         }
 
-
         protected void VerifyMatch(Index<Vec128<T>> lhs, Index<Vec128<T>> rhs)
         {
             Claim.eq(lhs.Length,rhs.Length);
@@ -96,7 +92,6 @@ namespace Z0.Tests.InXTests
 
             var statsMsg = $"{VecCount} vector pairs | {reps} reps";
             
-
             if(VecOp != null)
             {
                 var timing = stopwatch();

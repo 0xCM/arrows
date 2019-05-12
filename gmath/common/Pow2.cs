@@ -31,81 +31,15 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong pow(int exp)
             =>  PowerTable[exp];
-            // => exp switch {
-            //     0 => (ulong)T00,
-            //     1 => (ulong)T01,
-            //     2 => (ulong)T02,
-            //     3 => (ulong)T03,
-            //     4 => (ulong)T04,
-            //     5 => (ulong)T05,
-            //     6 => (ulong)T06,
-            //     7 => (ulong)T07,
-            //     8 => (ulong)T08,
-            //     9 => (ulong)T09,
-            //     10 => (ulong)T10,
-            //     11 => (ulong)T11,
-            //     12 => (ulong)T12,
-            //     13 => (ulong)T13,
-            //     14 => (ulong)T14,
-            //     15 => (ulong)T15,
-            //     16 => (ulong)T16,
-            //     17 => (ulong)T17,
-            //     18 => (ulong)T18,
-            //     19 => (ulong)T19,
-            //     20 => (ulong)T20,
-            //     21 => (ulong)T21,
-            //     22 => (ulong)T22,
-            //     23 => (ulong)T23,
-            //     24 => (ulong)T24,
-            //     25 => (ulong)T25,
-            //     26 => (ulong)T26,
-            //     27 => (ulong)T27,
-            //     28 => (ulong)T28,
-            //     29 => (ulong)T29,
-            //     30 => (ulong)T30,
-            //     31 => (ulong)T31,
-            //     32 => (ulong)T32,
-            //     33 => (ulong)T33,
-            //     34 => (ulong)T34,
-            //     35 => (ulong)T35,
-            //     36 => (ulong)T36,
-            //     37 => (ulong)T37,
-            //     38 => (ulong)T38,
-            //     39 => (ulong)T39,
-            //     40 => (ulong)T40,
-            //     41 => (ulong)T41,
-            //     42 => (ulong)T42,
-            //     43 => (ulong)T43,
-            //     44 => (ulong)T44,
-            //     45 => (ulong)T45,
-            //     46 => (ulong)T46,
-            //     47 => (ulong)T47,
-            //     48 => (ulong)T48,
-            //     49 => (ulong)T49,
-            //     50 => (ulong)T50,
-            //     51 => (ulong)T51,
-            //     52 => (ulong)T52,
-            //     53 => (ulong)T53,
-            //     54 => (ulong)T54,
-            //     55 => (ulong)T55,
-            //     56 => (ulong)T56,
-            //     57 => (ulong)T57,
-            //     58 => (ulong)T58,
-            //     59 => (ulong)T59,
-            //     60 => (ulong)T60,
-            //     61 => (ulong)T61,
-            //     62 => (ulong)T62,
-            //     63 => (ulong)T63,
-            //     _ => 0UL,
-            // };
 
         public static T[] powers<T>(int minExp, byte maxExp)
+            where T : struct, IEquatable<T>
         {   
             var dst = new T[maxExp - minExp + 1];
             var current = minExp;
             var i = 0;
             while(current <= maxExp)
-                dst[i++] = ClrConverter.convert<ulong,T>(pow(current++));
+                dst[i++] = convert<ulong,T>(pow(current++));
             return dst;
         }
 

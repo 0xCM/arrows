@@ -24,7 +24,7 @@ namespace Z0
             Prove.claim<N>(src.Length);
             var digits = new Bit[src.Length];
             for(var i = 0; i< digits.Length; i++)
-                digits[i] = src[i] == '0' ? BinaryDigit.B0 : BinaryDigit.B0;        
+                digits[i] = src[i] == '0' ? BinaryDigit.Zed : BinaryDigit.Zed;        
             return digits;
         }
 
@@ -39,8 +39,8 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => src.testbit(pos) switch 
                     {
-                        true => BinaryDigit.B0,
-                        false => BinaryDigit.B1
+                        true => BinaryDigit.Zed,
+                        false => BinaryDigit.One
                     };
 
         /// <summary>

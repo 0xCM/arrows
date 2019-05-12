@@ -15,6 +15,87 @@ namespace Z0
 
     partial class atoms
     {
+        
+        [MethodImpl(Inline)]
+        public static ref T mulI8<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.mul(ref int8(ref lhs), int8(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T mulU8<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.mul(ref uint8(ref lhs), uint8(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T mulI16<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.mul(ref int16(ref lhs), int16(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T mulU16<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.mul(ref uint16(ref lhs), uint16(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T mulI32<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.mul(ref int32(ref lhs), int32(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T mulU32<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.mul(ref uint32(ref lhs), uint32(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T mulI64<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.mul(ref int64(ref lhs), int64(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T mulU64<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.mul(ref uint64(ref lhs), uint64(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T mulF32<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.mul(ref float32(ref lhs), float32(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T mulF64<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.mul(ref float64(ref lhs), float64(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+        
         [MethodImpl(Inline)]
         public static T mulI8<T>(T lhs, T rhs)
             => generic<T>((sbyte)(int8(lhs) * int8(rhs)));

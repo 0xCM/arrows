@@ -117,6 +117,8 @@ namespace Z0
 
         Flip,
 
+        TestBit,
+
         Create,
         
         /// <summary>
@@ -145,24 +147,28 @@ namespace Z0
         /// <summary>
         /// Indicates a binary operator that returns the greater operand
         /// </summary>
-        Max,
+        BinaryMax,
 
         /// <summary>
         /// Indicates a binary operator that returns the smaller operand
         /// </summary>
-        Min,
+        BinaryMin,
+
+        Compare,
 
         /// <summary>
         /// Indicates a unary aggregate operator calculates the maximum value contained in a collection
         /// </summary>
-        MaxAggregate,
+        Max,
 
         /// <summary>
         /// Indicates a unary aggregate operator calculates the minimum value contained in a collection
         /// </summary>
-        MinAggregate,
+        Min,
 
-        Negate
+        Negate,
+
+        Stream
     }
 
 

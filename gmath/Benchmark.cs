@@ -131,12 +131,12 @@ namespace Z0
 
         }
 
-        void RunBench(BenchKind kind, params  OpKind[] opkinds)
-        {                    
-            var ops = opkinds.Select(o => o.ToString()).ToHashSet();
-            var bench = kind.CreateBench(Randomizer);
-            bench.Run(x => ops.Any(o => x.StartsWith(o)));
-        }
+        // void RunBench(BenchKind kind, params  OpKind[] opkinds)
+        // {                    
+        //     var ops = opkinds.Select(o => o.ToString()).ToHashSet();
+        //     var bench = kind.CreateBench(Randomizer);
+        //     bench.Run(x => ops.Any(o => x.StartsWith(o)));
+        // }
 
         void RunBench(BenchKind kind,  Func<string, bool> filter = null, BenchConfig config = null)
         {            
@@ -537,7 +537,9 @@ namespace Z0
             var app = new Benchmark();
             try
             {     
-                app.Bench51();
+                BenchSelector.RunBench(BenchKind.PrimalGeneric, OpKind.Lt, OpKind.LtEq, OpKind.Gt, OpKind.GtEq);
+                //app.RunTests();
+                //app.RunBench(BenchKind.PrimalGeneric, OpKind.Inc, OpKind.Dec);
                 //app.RunBench(BenchKind.PrimalDirect);
                 //app.RunBench(BenchKind.NumG);
                 //app.RunBench(BenchKind.PrimalAtomic);                

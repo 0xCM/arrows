@@ -9,10 +9,9 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
     using System.Runtime.InteropServices;    
-    using System.Diagnostics;
+    using System.Diagnostics;    
     
-    
-    using static global::mfunc;
+    using static mfunc;
 
     /// <summary>
     /// A System.Span[T] clone where the  encasulated data is always a multiple 

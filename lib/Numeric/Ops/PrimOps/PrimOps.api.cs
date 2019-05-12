@@ -223,10 +223,6 @@ namespace Z0
             where T : struct, IEquatable<T>
             => typeops<T>().and(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public static Index<T> and<T>(Index<T> lhs, Index<T> rhs)        
-            where T : struct, IEquatable<T>
-                => typeops<T>().and(lhs,rhs);
 
         [MethodImpl(Inline)]   
         public static T or<T>(T lhs, T rhs) 
@@ -256,12 +252,12 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static string bitstring<T>(T src) 
             where T : struct, IEquatable<T>
-                => typeops<T>().bitstring(src);
+                => typeops<T>().BitString(src);
 
         [MethodImpl(Inline)]
         public static bool testbit<T>(T src, int pos)
             where T : struct, IEquatable<T>
-                => typeops<T>().testbit(src,pos);
+                => typeops<T>().TestBit(src,pos);
 
         [MethodImpl(Inline)]
         public static Index<bool> testbit<T>(Index<T> src, int pos)
@@ -271,7 +267,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Bit[] bits<T>(T src)
             where T : struct, IEquatable<T>
-                => typeops<T>().bits(src);
+                => typeops<T>().Bits(src);
 
         [MethodImpl(Inline)]
         public static T sqrt<T>(T src)

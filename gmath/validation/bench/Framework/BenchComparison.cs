@@ -118,7 +118,14 @@ namespace Z0
         public double PerformanceRatio {get;}
 
         public string Delimited(char delimiter = ',')
-            => string.Join(delimiter, LeftOpUri, RightOpUri, LeftOpCount, RightOpCount, LeftWorkTime.Ms, RightWorkTime.Ms, PerformanceRatio);
+            => string.Join(string.Empty, 
+                $"{LeftOpUri.Trim()}{delimiter}".PadRight(50), 
+                $"{RightOpUri.Trim()}{delimiter}".PadRight(50), 
+                $"{LeftOpCount}{delimiter}".PadRight(12), 
+                $"{RightOpCount}{delimiter}".PadRight(12), 
+                $"{LeftWorkTime.Ms}{delimiter}".PadRight(8), 
+                $"{RightWorkTime.Ms}{delimiter}".PadRight(8), 
+                    PerformanceRatio);
 
 
         public override string ToString()

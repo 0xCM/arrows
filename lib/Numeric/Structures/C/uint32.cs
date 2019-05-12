@@ -309,12 +309,12 @@ namespace Z0
                 => Bits.bitstring(data);
 
             [MethodImpl(Inline)]
-            public byte[] bytes()
-                => Prim.bytes(data);
+            public byte[] Bytes()
+                => Prim.Bytes(data);
 
             [MethodImpl(Inline)]
-            bool IBitSource<structure>.testbit(int pos)
-                => Prim.testbit(data,pos);
+            bool IBitSource<structure>.TestBit(int pos)
+                => Prim.TestBit(data,pos);
 
             [MethodImpl(Inline)]
             public int hash()

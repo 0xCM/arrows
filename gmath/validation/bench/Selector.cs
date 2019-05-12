@@ -37,6 +37,19 @@ namespace Z0
 
     public static class BenchSelector
     {
+        public static void RunBench(BenchKind kind, params  OpKind[] opkinds)
+        {                    
+            var randomizer = Randomizer.define(RandSeeds.BenchSeed);
+            var bench = kind.CreateBench(randomizer);
+            if(opkinds.Length != 0)
+            {
+                var ops = opkinds.Select(o => o.ToString()).ToHashSet();
+                bench.Run(x => ops.Any(o => x.StartsWith(o)));
+            }
+            else
+                bench.Run();
+        }
+
         public static BenchContext CreateBench(this BenchKind kind, IRandomizer random, BenchConfig config = null)
         {
             switch(kind)
@@ -48,7 +61,7 @@ namespace Z0
                     return PrimalFusedBench.Create(random, config);
 
                 case BenchKind.PrimalDirect:
-                    return PrimalDirectBench.Create(random, config);
+                    return BaselineMetrics.Create(random, config);
 
                 case BenchKind.PrimalGeneric:
                     return PrimalGenericBench.Create(random, config);

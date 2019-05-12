@@ -9,6 +9,8 @@ namespace Z0
     using System.Runtime.Serialization;
     using System.Runtime.CompilerServices;
 
+    using static zfunc;
+
     public static class Errors
     {
         public static Exception NotEqual(object lhs, object rhs, string file, int? line)
@@ -30,22 +32,32 @@ namespace Z0
             => new Exception($"{file} line {line}: {msg ?? "The source value is required to be false and yet it is true"}");
 
         public static Exception CountMismatch(int lhs, int rhs, string file, int? line)
-            => throw new Exception($"{file} line {line}: Count mismatch, {lhs} != {rhs}");
+            => new Exception($"{file} line {line}: Count mismatch, {lhs} != {rhs}");
 
         public static Exception LengthMismatch(int lhs, int rhs, string file, int? line)
-            => throw new Exception($"{file} line {line}: Length mismatch, {lhs} != {rhs}");
+            => new Exception($"{file} line {line}: Length mismatch, {lhs} != {rhs}");
 
-        public static Exception KindUnsupported(PrimalKind kind, string file, int? line)
-            => throw new Exception($"{file} line {line}: Length mismatch, Primal kind {kind} not supported");
+        public static KindUnsupportedException KindUnsupported<T>(T kind, string file, int? line)
+            where T : Enum
+                => new KindUnsupportedException(kind);
 
+        public static KindUnsupportedException KindOpUnsupported<S,T>(S src, T dst, string file, int? line)
+            where S : Enum
+            where T : Enum
+                => new KindUnsupportedException(src,dst);
     }
 
     public static class ErrorMessage
     {
-        public static string NotSupported(PrimalKind kind)
-            => $"Primal kind {kind} not supported";
-        public static string NotSupported(PrimalKind src, PrimalKind dst)
+        public static string KindUnsupported<T>(T kind)
+            where T : Enum
+                => $"{kind} for {typename<T>()} not supported";
+
+        public static string KindOpUnsupported<S,T>(S src, T dst)
+            where S : Enum
+            where T : Enum
             => $"Operation {src} => {dst} not supported";
+
 
     }
 
@@ -54,25 +66,25 @@ namespace Z0
     /// does not exist
     /// </summary>
     [Serializable]
-    public class PrimalUnsupportedException : Exception
+    public class KindUnsupportedException : Exception
     {
-        public PrimalUnsupportedException() { }
+        public KindUnsupportedException() { }
      
-        public PrimalUnsupportedException(PrimalKind kind) 
-            : base(ErrorMessage.NotSupported(kind)) 
+        public KindUnsupportedException(Enum kind) 
+            : base(ErrorMessage.KindUnsupported(kind)) 
             { }
 
-        public PrimalUnsupportedException(PrimalKind src, PrimalKind dst) 
-            : base(ErrorMessage.NotSupported(src,dst)) 
+        public KindUnsupportedException(Enum src, Enum dst) 
+            : base(ErrorMessage.KindOpUnsupported(src,dst)) 
             { }
 
-        public PrimalUnsupportedException(PrimalKind kind, System.Exception inner) 
-            : base(ErrorMessage.NotSupported(kind), inner) { }
+        public KindUnsupportedException(Enum kind, System.Exception inner) 
+            : base(ErrorMessage.KindUnsupported(kind), inner) { }
 
-        public PrimalUnsupportedException(PrimalKind src, PrimalKind dst, System.Exception inner) 
-            : base(ErrorMessage.NotSupported(src,dst), inner) { }
+        public KindUnsupportedException(Enum src, Enum dst, System.Exception inner) 
+            : base(ErrorMessage.KindOpUnsupported(src,dst), inner) { }
      
-        protected PrimalUnsupportedException(SerializationInfo info, StreamingContext context) 
+        protected KindUnsupportedException(SerializationInfo info, StreamingContext context) 
             : base(info, context) { }
     }
 

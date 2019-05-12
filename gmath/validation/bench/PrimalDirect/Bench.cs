@@ -13,12 +13,21 @@ namespace Z0
     using static zfunc;
     using static mfunc;
 
-    public partial class PrimalDirectBench : PrimalBench
+    public partial class BaselineMetrics : PrimalBench
     {
-        public static PrimalDirectBench Create(IRandomizer random, BenchConfig config = null)
-            => new PrimalDirectBench(random, config);
+        public static BaselineMetrics Create(IRandomizer random, BenchConfig config = null)
+            => new BaselineMetrics(random, config);
 
-        PrimalDirectBench(IRandomizer random, BenchConfig config = null)
+        public static BaselineMetrics Create(ArraySampler LeftSrc, ArraySampler RightSrc, ArraySampler NonZeroSrc, IRandomizer random, BenchConfig config)
+            => new BaselineMetrics(LeftSrc, RightSrc, NonZeroSrc, random, config);
+
+
+        BaselineMetrics(ArraySampler LeftSrc, ArraySampler RightSrc, ArraySampler NonZeroSrc, IRandomizer random, BenchConfig config = null)
+            : base(LeftSrc, RightSrc, NonZeroSrc, random, config)
+        {
+        }
+
+        BaselineMetrics(IRandomizer random, BenchConfig config = null)
             : base(random, config)
         {
         }

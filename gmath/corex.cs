@@ -27,7 +27,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source digits</param>
         public static Bit[] ToBits(this IEnumerable<BinaryDigit> src)
-            => src.Select(d => d == BinaryDigit.B0 ? Bit.Off : Bit.On).ToArray();
+            => src.Select(d => d == BinaryDigit.Zed ? Bit.Off : Bit.On).ToArray();
 
         public static IEnumerable<ulong> ToLongs(this IEnumerable<Guid> guids)
         {

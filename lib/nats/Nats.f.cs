@@ -41,6 +41,9 @@ public static class nats
         }    
     }
 
+    static floatg<double> ToFloatG64(this ulong src)
+        => src;
+
     /// <summary>
     /// Determines whether an integer is prime
     /// </summary>

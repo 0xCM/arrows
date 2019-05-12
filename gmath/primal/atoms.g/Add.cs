@@ -19,7 +19,7 @@ namespace Z0
         public static ref T addI8<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.add(ref int8(ref lhs), int8(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -27,7 +27,7 @@ namespace Z0
         public static ref T addU8<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.add(ref uint8(ref lhs), uint8(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -35,7 +35,7 @@ namespace Z0
         public static ref T addI16<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.add(ref int16(ref lhs), int16(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -43,7 +43,7 @@ namespace Z0
         public static ref T addU16<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.add(ref uint16(ref lhs), uint16(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -52,7 +52,7 @@ namespace Z0
         public static ref T addI32<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.add(ref int32(ref lhs), int32(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -60,7 +60,7 @@ namespace Z0
         public static ref T addU32<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.add(ref uint32(ref lhs), uint32(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -68,7 +68,7 @@ namespace Z0
         public static ref T addI64<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.add(ref int64(ref lhs), int64(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -76,7 +76,7 @@ namespace Z0
         public static ref T addU64<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.add(ref uint64(ref lhs), uint64(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -84,7 +84,7 @@ namespace Z0
         public static ref T addF32<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.add(ref float32(ref lhs), float32(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -92,7 +92,7 @@ namespace Z0
         public static ref T addF64<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.add(ref float64(ref lhs), float64(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 

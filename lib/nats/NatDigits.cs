@@ -21,7 +21,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The digit's enumeration type</typeparam>
         /// <typeparam name="N">The natural base type</typeparam>
-        public static Digit<N,T> define<N,T>(T src)
+        public static Digit<N,T> Define<N,T>(T src)
             where N : ITypeNat, new()
             where T : Enum
                 => new Digit<N,T>(src);
@@ -33,7 +33,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The digit's enumeration type</typeparam>
         /// <typeparam name="N">The natural base type</typeparam>
-        public static Digit<N,T> define<N,T>(T src, N b)
+        public static Digit<N,T> Define<N,T>(T src, N b)
             where N : ITypeNat, new()
             where T : Enum
                 => new Digit<N,T>(src);
@@ -41,21 +41,9 @@ namespace Z0
 
     }
 
-    public static class NatDigitsX
-    {
-        /// <summary>
-        /// Expresses the digit in a natural base
-        /// </summary>
-        /// <param name="b">The natural base value</param>
-        /// <typeparam name="N">The natural base type</typeparam>
-        public static Digit<N,T> InBase<N,T>(this Digit<T> d, N b = default)
-            where T : Enum
-            where N : ITypeNat, new() => new Digit<N,T>(d.Unwrap());
-
-    }
 
 
-    public interface IDigit<N,S,T> : IDigit<S,T>, IEquatable<S>
+    public interface IDigit<N,S,T> :  IEquatable<S>
         where N : ITypeNat, new()
         where S : IDigit<N,S,T>
         where T : Enum
@@ -98,9 +86,6 @@ namespace Z0
         public static implicit operator T(Digit<N,T> src)
             => src.value;
 
-        [MethodImpl(Inline)]
-        public static implicit operator Digit<T>(Digit<N,T> src)
-            => new Digit<T>(src);
 
         readonly T value;
 

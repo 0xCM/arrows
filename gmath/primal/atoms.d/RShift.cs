@@ -16,6 +16,62 @@ namespace Z0
 
     partial class math
     {
+        [MethodImpl(Inline)]
+        public static ref sbyte rshift(ref sbyte lhs, int rhs)
+        {
+            lhs = (sbyte)(lhs >> rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref byte rshift(ref byte lhs, int rhs)
+        {
+            lhs = (byte)(lhs >> rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref short rshift(ref short lhs, int rhs)
+        {
+            lhs = (short)(lhs >> rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ushort rshift(ref ushort lhs, int rhs)
+        {
+            lhs = (ushort)(lhs >> rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref int rshift(ref int lhs, int rhs)
+        {
+            lhs = lhs >> rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint rshift(ref uint lhs, int rhs)
+        {
+            lhs = lhs >> rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long rshift(ref long lhs, int rhs)
+        {
+            lhs = lhs >> rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong rshift(ref ulong lhs, int rhs)
+        {
+            lhs = lhs >> rhs;
+            return ref lhs;
+        }
+
 
         [MethodImpl(Inline)]
         public static sbyte rshift(sbyte lhs, int rhs)

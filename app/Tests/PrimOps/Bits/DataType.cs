@@ -44,8 +44,8 @@ namespace Z0.Tests
             Claim.eq<ulong>(0, (ulong)off);
             Claim.eq<ulong>(1, (ulong)on);
 
-            Claim.enumeq<BinaryDigit>(BinaryDigit.B0, off);
-            Claim.enumeq<BinaryDigit>(BinaryDigit.B1, on);
+            Claim.enumeq<BinaryDigit>(BinaryDigit.Zed, off);
+            Claim.enumeq<BinaryDigit>(BinaryDigit.One, on);
 
         }
 

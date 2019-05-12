@@ -142,11 +142,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator BinaryDigit(Bit src)
-            => src.value ? BinaryDigit.B1 : BinaryDigit.B0;
+            => src.value ? BinaryDigit.One : BinaryDigit.Zed;
 
         [MethodImpl(Inline)]
         public static implicit operator Bit(BinaryDigit src)
-            => new Bit(src == BinaryDigit.B1);
+            => new Bit(src == BinaryDigit.One);
 
         [MethodImpl(Inline)]
         public static bool operator true(Bit src)

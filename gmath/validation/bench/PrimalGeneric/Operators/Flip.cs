@@ -9,226 +9,180 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
-
     
     using static zfunc;
     using static mfunc;
 
     partial class PrimalGenericBench
     {
-        OpMetrics flip<T>(T[] dst)
-            where T : struct, IEquatable<T>
-        {
-            var opid = Id<T>(OpKind.Flip);
-            var lhs = LeftSample(opid);
-            var rhs = RightSample(opid);
-            var sw = stopwatch();
-
-            var it = -1;
-            while(++it < SampleSize)
-                dst[it] = gmath.flip(lhs[it]);
-            return(dst.Length, snapshot(sw));
-        }
 
         public IBenchComparison FlipI8()
         {
             var opid = Id<sbyte>(OpKind.Flip);
+            var samples = Sampled(opid);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Flip, targets.Left);
 
-            OpMetrics baseline(sbyte[] dst)
+            OpMetrics bench()
             {
-                var lhs = LeftSample(opid);
-                var rhs = RightSample(opid);
                 var sw = stopwatch();
                 var it = -1;
                 while(++it < SampleSize)
-                    dst[it] = (sbyte)(~ lhs[it]);
-                return(dst.Length, snapshot(sw));
+                    targets.Right[it] = gmath.flip(samples.Left[it]);
+                return(SampleTime(snapshot(sw)));
             }
 
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(opid, () => baseline(dst.Left)), 
-                Measure(~opid, () => flip(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var benched = Measure(!~opid, bench);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison,targets);
         }
 
         public IBenchComparison FlipU8()
         {
             var opid = Id<byte>(OpKind.Flip);
+            var samples = Sampled(opid);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Flip, targets.Left);
 
-            OpMetrics baseline(byte[] dst)
+            OpMetrics bench()
             {
-                var lhs = LeftSample(opid);
-                var rhs = RightSample(opid);
                 var sw = stopwatch();
                 var it = -1;
                 while(++it < SampleSize)
-                    dst[it] = (byte)(~ lhs[it]);
-                return(dst.Length, snapshot(sw));
+                    targets.Right[it] = gmath.flip(samples.Left[it]);
+                return(SampleTime(snapshot(sw)));
             }
 
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(opid, () => baseline(dst.Left)), 
-                Measure(~opid, () => flip(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var benched = Measure(!~opid, bench);
+            var comparison = Run(opid, baselined, benched);                        
+            return Finish(comparison,targets);
         }
 
         public IBenchComparison FlipI16()
         {
             var opid = Id<short>(OpKind.Flip);
+            var samples = Sampled(opid);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Flip, targets.Left);
 
-            OpMetrics baseline(short[] dst)
+            OpMetrics bench()
             {
-                var lhs = LeftSample(opid);
-                var rhs = RightSample(opid);
                 var sw = stopwatch();
-
                 var it = -1;
                 while(++it < SampleSize)
-                    dst[it] = (short)(~ lhs[it]);
-                return(dst.Length, snapshot(sw));
+                    targets.Right[it] = gmath.flip(samples.Left[it]);
+                return(SampleTime(snapshot(sw)));
             }
 
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(opid, () => baseline(dst.Left)), 
-                Measure(~opid, () => flip(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var benched = Measure(!~opid, bench);
+            var comparison = Run(opid, baselined, benched);
+            return Finish(comparison,targets);
         }
 
         public IBenchComparison FlipU16()
         {
             var opid = Id<ushort>(OpKind.Flip);
+            var samples = Sampled(opid);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Flip, targets.Left);
 
-            OpMetrics baseline(ushort[] dst)
+            OpMetrics bench()
             {
-                var lhs = LeftSample(opid);
-                var rhs = RightSample(opid);
                 var sw = stopwatch();
-
                 var it = -1;
                 while(++it < SampleSize)
-                    dst[it] = (ushort)(~ lhs[it]);
-                return(dst.Length, snapshot(sw));
+                    targets.Right[it] = gmath.flip(samples.Left[it]);
+                return(SampleTime(snapshot(sw)));
             }
 
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(opid, () => baseline(dst.Left)), 
-                Measure(~opid, () => flip(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var benched = Measure(!~opid, bench);
+            var comparison = Run(opid, baselined, benched);                        
+            return Finish(comparison,targets);
         }
 
         public IBenchComparison FlipI32()
         {
             var opid = Id<int>(OpKind.Flip);
+            var samples = Sampled(opid);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Flip, targets.Left);
 
-            OpMetrics baseline(int[] dst)
+            OpMetrics bench()
             {
-                var lhs = LeftSample(opid);
-                var rhs = RightSample(opid);
                 var sw = stopwatch();
-                
                 var it = -1;
                 while(++it < SampleSize)
-                    dst[it] = ~ lhs[it];
-                return(dst.Length, snapshot(sw));
+                    targets.Right[it] = gmath.flip(samples.Left[it]);
+                return(SampleTime(snapshot(sw)));
             }
 
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(opid, () => baseline(dst.Left)), 
-                Measure(~opid, () => flip(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var benched = Measure(!~opid, bench);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison,targets);
         }
-
 
         public IBenchComparison FlipU32()
         {
             var opid = Id<uint>(OpKind.Flip);
+            var samples = Sampled(opid);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Flip, targets.Left);
 
-            OpMetrics baseline(uint[] dst)
+            OpMetrics bench()
             {
-                var lhs = LeftSample(opid);
-                var rhs = RightSample(opid);
                 var sw = stopwatch();
-                
                 var it = -1;
                 while(++it < SampleSize)
-                    dst[it] = ~ lhs[it];
-                return(dst.Length, snapshot(sw));
+                    targets.Right[it] = gmath.flip(samples.Left[it]);
+                return(SampleTime(snapshot(sw)));
             }
 
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(opid, () => baseline(dst.Left)), 
-                Measure(~opid, () => flip(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var benched = Measure(!~opid, bench);
+            var comparison = Run(opid, baselined, benched);
+            return Finish(comparison,targets);
         }
 
         public IBenchComparison FlipI64()
         {
             var opid = Id<long>(OpKind.Flip);
+            var samples = Sampled(opid);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Flip, targets.Left);
 
-            OpMetrics baseline(long[] dst)
+            OpMetrics bench()
             {
-                var lhs = LeftSample(opid);
-                var rhs = RightSample(opid);
                 var sw = stopwatch();
-                
                 var it = -1;
                 while(++it < SampleSize)
-                    dst[it] = ~ lhs[it];
-                return(dst.Length, snapshot(sw));
+                    targets.Right[it] = gmath.flip(samples.Left[it]);
+                return(SampleTime(snapshot(sw)));
             }
 
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(opid, () => baseline(dst.Left)), 
-                Measure(~opid, () => flip(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var benched = Measure(!~opid, bench);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison,targets);
         }
 
         public IBenchComparison FlipU64()
         {
             var opid = Id<ulong>(OpKind.Flip);
- 
-            OpMetrics baseline(ulong[] dst)
+            var samples = Sampled(opid);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Flip, targets.Left);
+
+            OpMetrics bench()
             {
-                var lhs = LeftSample(opid);
-                var rhs = RightSample(opid);
                 var sw = stopwatch();
-                
                 var it = -1;
                 while(++it < SampleSize)
-                    dst[it] = ~ lhs[it];
-                return(dst.Length, snapshot(sw));
+                    targets.Right[it] = gmath.flip(samples.Left[it]);
+                return(SampleTime(snapshot(sw)));
             }
 
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(opid, () => baseline(dst.Left)), 
-                Measure(~opid, () => flip(dst.Right)));
+            var benched = Measure(!~opid, bench);
+            var comparison = Run(opid, baselined, benched);                        
+            return Finish(comparison,targets);
+        }
 
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
-        } 
-
- 
-    }
+   }
 }

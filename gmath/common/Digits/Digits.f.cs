@@ -52,7 +52,4 @@ partial class mfunc
     [MethodImpl(Inline)]
     public static BinaryDigit[] digits(params BinaryDigit[] src)
         => src;
-
-
-
 }

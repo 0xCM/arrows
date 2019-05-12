@@ -68,23 +68,23 @@ namespace Z0
                 => zpad(Convert.ToString(src,2), primops.bitsize<uint>());
 
             [MethodImpl(Inline)]
-            public string bitstring(uint src)
-                => Bits.bitstring(src);
+            public string BitString(uint src)
+                => Z0.Bits.bitstring(src);
 
             [MethodImpl(Inline)]
-            public byte[] bytes(uint src)
+            public byte[] Bytes(uint src)
                 => BitConverter.GetBytes(src);
 
             [MethodImpl(Inline)]
-            public bool testbit(uint src, int pos)
+            public bool TestBit(uint src, int pos)
                 => (src & (1u << pos)) != 0u;
 
             [MethodImpl(Inline)]
-            public Bit[] bits(uint src)
+            public Bit[] Bits(uint src)
             {
                 var dst = array<Bit>(SizeOf<uint>.BitSize);
                 for(var i = 0; i < SizeOf<uint>.BitSize; i++)
-                    dst[i] = testbit(src,i);
+                    dst[i] = TestBit(src,i);
                 return dst; 
             }
 

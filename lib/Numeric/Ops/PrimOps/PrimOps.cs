@@ -322,20 +322,20 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public string bitstring(T x)
-                => Bitwise.bitstring(x);
+            public string BitString(T x)
+                => Bitwise.BitString(x);
 
             [MethodImpl(Inline)]
-            public byte[] bytes(T x)
-                => Bitwise.bytes(x);
+            public byte[] Bytes(T x)
+                => Bitwise.Bytes(x);
 
             [MethodImpl(Inline)]
-            public bool testbit(T src, int pos)
-                => Bitwise.testbit(src,pos);
+            public bool TestBit(T src, int pos)
+                => Bitwise.TestBit(src,pos);
 
             [MethodImpl(Inline)]
             public Index<bool> testbits(Index<T> src, int pos)
-                => map(src, x => Bitwise.testbit(x,pos));
+                => map(src, x => Bitwise.TestBit(x,pos));
 
             [MethodImpl(Inline)]
             public bool eq(T lhs, T rhs)
@@ -443,8 +443,8 @@ namespace Z0
                 => Special.pow(src,exp);
 
             [MethodImpl(Inline)]
-            public Bit[] bits(T src)
-                => Bitwise.bits(src);
+            public Bit[] Bits(T src)
+                => Bitwise.Bits(src);
 
             [MethodImpl(Inline)]
             public T fact(T src)
@@ -460,13 +460,13 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public string bitchars(Index<T> src)
-                => string.Join("", map(src, (Func<T, string>)this.bitstring));
+                => string.Join("", map(src, (Func<T, string>)this.BitString));
 
             public byte[] bytes(Index<T> src)
-                => Arr.concat(map(src,bytes));
+                => Arr.concat(map(src,Bytes));
 
             public Bit[] bits(Index<T> src)
-                => Arr.concat(map(src,bits));
+                => Arr.concat(map(src,Bits));
 
             public Index<T> div(Index<T> lhs, Index<T> rhs)
             {

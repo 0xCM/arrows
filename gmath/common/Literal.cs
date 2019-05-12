@@ -12,7 +12,32 @@ namespace Z0
     
     using static mfunc;
 
+    public static class Konst
+    {
+        [MethodImpl(Inline)]
+        public static Konst<T> Define<T>(T value)
+            where T : struct, IEquatable<T>
+            => new Konst<T>(value);
+    }
 
+
+    public readonly struct Konst<T>
+        where T : struct, IEquatable<T>
+    {
+        [MethodImpl(Inline)]
+        public static implicit operator T(Konst<T> src)
+            => src.Wrapped;
+
+        [MethodImpl(Inline)]
+        public static implicit operator Konst<T>(T src)
+            => new Konst<T>(src);
+
+        [MethodImpl(Inline)]
+        public Konst(T Value)
+            => this.Wrapped = Value;
+
+        public readonly T Wrapped;        
+    }
     public abstract class Literal<T,L>
         where T : Literal<T,L>
     {
@@ -24,8 +49,6 @@ namespace Z0
 
         protected Literal(L Value)
             => this.Value = Value;
-
     }
-
 
 }

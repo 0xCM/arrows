@@ -83,19 +83,19 @@ namespace Z0
                 => Reify.rshift(src,shift);
 
             [MethodImpl(Inline)]
-            public string bitstring(double src)
-                => Bits.bitstring(src);
+            public string BitString(double src)
+                => Z0.Bits.bitstring(src);
 
             [MethodImpl(Inline)]
-            public bool testbit(double src, int pos)
-                => testbit(bitsf(src),pos);
+            public bool TestBit(double src, int pos)
+                => TestBit(bitsf(src),pos);
 
             [MethodImpl(Inline)]
-            public Bit[] bits(double src)
-                => bits(bitsf(src));
+            public Bit[] Bits(double src)
+                => Bits(bitsf(src));
 
-            public byte[] bytes(double src)
-                => Bits.bytes(src);
+            public byte[] Bytes(double src)
+                => Z0.Bits.bytes(src);
         }
     }
 }}

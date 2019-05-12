@@ -52,24 +52,24 @@ namespace Z0
                 => (target)~ a;
 
             [MethodImpl(Inline)]
-            public string bitstring(target src)
+            public string BitString(target src)
                 => zpad(Convert.ToString(src,2), primops.bitsize<target>());
 
             [MethodImpl(Inline)]
-            public byte[] bytes(target src)
+            public byte[] Bytes(target src)
                 => BitConverter.GetBytes(src); 
 
             [MethodImpl(Inline)]
-            public bool testbit(target src, int pos)
+            public bool TestBit(target src, int pos)
                 => (src & (1 << pos)) != 0;
 
             [MethodImpl(Inline)]
-            public Bit[] bits(target src)
+            public Bit[] Bits(target src)
             {
                 var bitsize = SizeOf<target>.BitSize;
                 var dst = array<Bit>(bitsize);
                 for(var i = 0; i < bitsize; i++)
-                    dst[i] = testbit(src,i);
+                    dst[i] = TestBit(src,i);
                 return dst; 
             }
 

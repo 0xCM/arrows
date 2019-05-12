@@ -23,7 +23,7 @@ partial class mfunc
 
     [MethodImpl(Inline)]
     public static byte[] pack(params bool[] src)
-        => Z0.Bits.pack(src);
+        => Bits.pack(src);
 
     /// <summary>
     /// Reinterprets the Bits of a float as the Bits of an int

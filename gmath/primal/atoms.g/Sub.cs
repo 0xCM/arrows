@@ -19,7 +19,7 @@ namespace Z0
         public static ref T subI8<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.sub(ref int8(ref lhs), int8(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -27,7 +27,7 @@ namespace Z0
         public static ref T subU8<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.sub(ref uint8(ref lhs), uint8(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -35,7 +35,7 @@ namespace Z0
         public static ref T subI16<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.sub(ref int16(ref lhs), int16(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -43,7 +43,7 @@ namespace Z0
         public static ref T subU16<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.sub(ref uint16(ref lhs), uint16(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -52,7 +52,7 @@ namespace Z0
         public static ref T subI32<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.sub(ref int32(ref lhs), int32(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -60,7 +60,7 @@ namespace Z0
         public static ref T subU32<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.sub(ref uint32(ref lhs), uint32(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -68,7 +68,7 @@ namespace Z0
         public static ref T subI64<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.sub(ref int64(ref lhs), int64(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -76,7 +76,7 @@ namespace Z0
         public static ref T subU64<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.sub(ref uint64(ref lhs), uint64(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -84,7 +84,7 @@ namespace Z0
         public static ref T subF32<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.sub(ref float32(ref lhs), float32(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -92,7 +92,7 @@ namespace Z0
         public static ref T subF64<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.sub(ref float64(ref lhs), float64(ref rhs));
-            lhs = generic<T>(ref result);
+            lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
 

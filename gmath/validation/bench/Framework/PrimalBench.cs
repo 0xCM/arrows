@@ -29,8 +29,19 @@ namespace Z0
 
         }
 
+        protected PrimalBench(ArraySampler LeftSrc, ArraySampler RightSrc, ArraySampler NonZeroSrc, IRandomizer random, BenchConfig config = null)
+            : base(random, config ?? Config0)
+        {
+            this.LeftSrc = LeftSrc;
+            this.RightSrc = RightSrc;
+            this.NonZeroSrc = NonZeroSrc;
+        }
+
         protected int SampleSize
             => Config.SampleSize;
+
+        protected OpMetrics SampleTime(Duration workTime)
+                => (SampleSize, workTime);
 
         protected ReadOnlySpan<T> LeftSample<T>(OpId<T> op = default)
             where T : struct, IEquatable<T>
@@ -48,6 +59,24 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => span<T>(SampleSize);
 
+        protected T[] LeftTarget<T>(OpId<T> op = default, bool fill = true)
+            where T : struct, IEquatable<T>
+        {
+            var target = alloc<T>(SampleSize);
+            if(fill)
+                LeftSample(op).Copy(target);
+            return target;
+        }
+
+        protected T[] RightTarget<T>(OpId<T> op = default, bool fill = true)
+            where T : struct, IEquatable<T>
+        {
+            var target = alloc<T>(SampleSize);
+            if(fill)
+                RightSample(op).Copy(target);
+            return target;
+        }
+
         protected (T[] Left,T[] Right) Sampled<T>(OpId<T> opid = default, bool nonzero = false)
             where T : struct, IEquatable<T>
                 => (LeftSrc.Sampled(opid),  nonzero ? NonZeroSrc.Sampled(opid) : RightSrc.Sampled(opid));
@@ -56,6 +85,15 @@ namespace Z0
             where T : struct, IEquatable<T>
                 => ArrayTargets<T>();
 
+        protected (T[] Left,T[] Right) FilledTargets<T>(OpId<T> opid = default, bool nonzero = false)
+            where T : struct, IEquatable<T>
+        {
+            var targets = Targets(opid);
+            var sampled = Sampled(opid,nonzero);
+            sampled.Left.CopyTo(targets.Left, 0);
+            sampled.Right.CopyTo(targets.Right);
+            return targets;
+        }            
         protected abstract OpId<T> Id<T>(OpKind op, bool generic = false)
             where T : struct, IEquatable<T>;
 

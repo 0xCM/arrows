@@ -16,16 +16,33 @@ namespace Z0
     public static class SpanX
     {
 
+        /// <summary>
+        /// Constructs a span from a sequence selection
+        /// </summary>
+        /// <param name="src">The source sequence</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this T[] src)
+            => src;
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this Span<T> src)
+            => src;
+
+        /// <summary>
+        /// Determines whether any elements of the source match the target
+        /// </summary>
+        /// <param name="src">The source values</param>
+        /// <param name="match">The target value to match</param>
+        /// <typeparam name="T">The value type</typeparam>
         [MethodImpl(NotInline)]
         public static bool Contains<T>(this ReadOnlySpan<T> src, T match)        
             where T : struct, IEquatable<T>
         {
             var enumerator = src.GetEnumerator();
             while(enumerator.MoveNext())
-            {
                 if(enumerator.Current.Equals(match))
                     return true;
-            }
             return false;
         }
 
@@ -33,6 +50,39 @@ namespace Z0
         public static bool Contains<T>(this Span<T> src, T match)        
             where T : struct, IEquatable<T>
                 => src.Freeze().Contains(match);
+
+        [MethodImpl(NotInline)]
+        public static bool Any<T>(this ReadOnlySpan<T> src, Func<T,bool> f)
+             where T : struct, IEquatable<T>
+        {
+            var it = src.GetEnumerator();
+            while(it.MoveNext())
+                if(f(it.Current))
+                    return true;
+            return false;
+        }
+
+        [MethodImpl(Inline)]
+        public static bool Any<T>(this Span<T> src, Func<T,bool> f)
+             where T : struct, IEquatable<T>
+                => src.ToReadOnlySpan().Any(f);
+
+        [MethodImpl(NotInline)]
+        public static bool Any<T>(this Span128<T> src, Func<T,bool> f)
+             where T : struct, IEquatable<T>
+            => src.ToReadOnlySpan().Any(f);
+
+        [MethodImpl(NotInline)]
+        public static IEnumerable<T> ToEnumerable<T>(this ReadOnlySpan<T> src)
+        {
+            var enumerator = src.GetEnumerator();
+            while(enumerator.MoveNext())
+                yield return enumerator.Current;
+        }
+
+        [MethodImpl(Inline)]
+        public static IEnumerable<T> ToEnumerable<T>(this Span<T> src)
+            => src.ToReadOnlySpan().ToEnumerable();
 
         /// <summary>
         /// Constructs a span from the entireity of a sequence
@@ -61,19 +111,6 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Span<T> ToSpan<T>(this T[] src)
-            => src;
-
-        /// <summary>
-        /// Constructs a span from a sequence selection
-        /// </summary>
-        /// <param name="src">The source sequence</param>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this T[] src)
-            => src;
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this Span<T> src)
             => src;
 
         /// <summary>
@@ -126,7 +163,6 @@ namespace Z0
         public static ReadOnlySpan<T> Freeze<T>(this Span<T> src)
             => src;
 
-
         /// <summary>
         /// Constructs a subspan from a starting index to the end of the span
         /// </summary>
@@ -178,20 +214,6 @@ namespace Z0
         public static Span256<T> ToSpan256<T>(this Span<T> src)
              where T : struct, IEquatable<T>
                 => (Span256<T>)src;
-
-
-        [MethodImpl(NotInline)]
-        public static bool Any<T>(this Span128<T> src, Func<T,bool> f)
-             where T : struct, IEquatable<T>
-        {
-            var it = src.GetEnumerator();
-            while(it.MoveNext())
-            {
-                if(f(it.Current))
-                    return true;
-            }
-            return false;
-        }
  
         public static Span<T> MapRange<S, T>(this Span<S> src, int offset, int length, Func<S, T> f)
         {
@@ -200,7 +222,6 @@ namespace Z0
                 dst[i] = f(src[i]);
             return dst;
         }
-
     }
 
 }

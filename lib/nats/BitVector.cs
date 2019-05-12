@@ -128,7 +128,7 @@ namespace Z0
         /// <typeparam name="T">The underlying integral type</typeparam>
         /// <returns>Returns true if the identified bit is set, false otherwise</returns>
         [MethodImpl(Inline)]
-        public bool testbit(int pos)            
+        public bool TestBit(int pos)            
             => bits[pos];
 
         [MethodImpl(Inline)]
@@ -204,7 +204,7 @@ namespace Z0
         static byte turnBitOff(byte src, int pos)
             => (byte)(src & ~ (1 << pos));
            
-        public byte[] bytes()
+        public byte[] Bytes()
             => throw new NotImplementedException();
     } 
 }

@@ -444,5 +444,14 @@ namespace Z0
  
 
         #endregion
+    
+        #region ? => bitstring
+
+        public static string ToBitString<T>(this num<T> src)
+            where T : struct, IEquatable<T>
+                => Bits.bitstring(src);
+                
+        #endregion
+
     }
 }

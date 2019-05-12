@@ -373,11 +373,11 @@ namespace Z0
                 return result;
             }
 
-            bool IBitSource<structure>.testbit(int pos)
-                => Prim.testbit(data,pos);
+            bool IBitSource<structure>.TestBit(int pos)
+                => Prim.TestBit(data,pos);
 
-            public byte[] bytes()
-                => Prim.bytes(data);
+            public byte[] Bytes()
+                => Prim.Bytes(data);
         }
     }
 }

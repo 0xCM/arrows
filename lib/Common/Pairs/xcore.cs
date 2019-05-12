@@ -14,10 +14,10 @@ namespace Z0
     partial class xcore
     {
 
-        public static bool IsLeft<A,B>(this Traits.Copair<A,B> cp)
+        public static bool IsLeft<A,B>(this ICopair<A,B> cp)
             => cp.left.Exists;
 
-        public static bool IsRight<A,B>(this Traits.Copair<A,B> cp)
+        public static bool IsRight<A,B>(this ICopair<A,B> cp)
             => cp.right.Exists;
     }
 

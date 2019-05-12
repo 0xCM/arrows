@@ -18,6 +18,63 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static ref sbyte lshift(ref sbyte lhs, int rhs)
+        {
+            lhs = (sbyte)(lhs << rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref byte lshift(ref byte lhs, int rhs)
+        {
+            lhs = (byte)(lhs << rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref short lshift(ref short lhs, int rhs)
+        {
+            lhs = (short)(lhs << rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ushort lshift(ref ushort lhs, int rhs)
+        {
+            lhs = (ushort)(lhs << rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref int lshift(ref int lhs, int rhs)
+        {
+            lhs = lhs << rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint lshift(ref uint lhs, int rhs)
+        {
+            lhs = lhs << rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long lshift(ref long lhs, int rhs)
+        {
+            lhs = lhs << rhs;
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong lshift(ref ulong lhs, int rhs)
+        {
+            lhs = lhs << rhs;
+            return ref lhs;
+        }
+
+
+        [MethodImpl(Inline)]
         public static sbyte lshift(sbyte lhs, int rhs)
             => (sbyte)(lhs << rhs);
 

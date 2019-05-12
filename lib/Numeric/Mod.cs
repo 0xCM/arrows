@@ -5,6 +5,7 @@
 namespace Z0
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
@@ -27,7 +28,7 @@ namespace Z0
         static readonly intg<T> @base =  natu<N>().ToIntG<T>();
 
         public IEnumerable<T> members 
-            => range<T>(@base.zero.unwrap(), @base.dec().unwrap()).Unwrap();
+            => range<T>(@base.zero.unwrap(), @base.dec().unwrap()).Select(x => x.unwrap());
 
         public T one 
             => @base.one;

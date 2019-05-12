@@ -75,6 +75,57 @@ namespace Z0
             return BenchComparison.Define(lBench, rBench);
         }
 
+        protected Cycle Measure<S,T>(OpId<S> opid, Func<T[],OpMetrics> worker, T[] dst)
+            where S : struct, IEquatable<S>
+            where T : struct, IEquatable<T>
+        {
+            OpStats repeat(int cycles)
+            {
+                var totalOps = 0L;
+                var totalTime = Duration.Zero;
+
+                for(var cycle = 1; cycle <= cycles; cycle++)
+                {                    
+                    var cycleResult = worker(dst);
+                    totalOps += cycleResult.OpCount;
+                    totalTime += cycleResult.WorkTime;                                        
+                                        
+                    if(cycle % Config.AnnounceRate == 0)
+                        zfunc.print(BenchmarkMessages.CycleStatus(opid, cycle, totalOps, totalTime));                    
+                }
+                
+                return  OpStats.Define(opid, totalTime, cycles, totalOps);
+            }
+            
+            return repeat;
+        }
+
+
+        // protected Cycle Measure<T>(OpId<T> opid, Func<T[],OpMetrics> worker, T[] dst)
+        //     where T : struct, IEquatable<T>
+        // {
+        //     OpStats repeat(int cycles)
+        //     {
+        //         var totalOps = 0L;
+        //         var totalTime = Duration.Zero;
+
+        //         for(var cycle = 1; cycle <= cycles; cycle++)
+        //         {                    
+        //             var cycleResult = worker(dst);
+        //             totalOps += cycleResult.OpCount;
+        //             totalTime += cycleResult.WorkTime;                                        
+                                        
+        //             if(cycle % Config.AnnounceRate == 0)
+        //                 zfunc.print(BenchmarkMessages.CycleStatus(opid, cycle, totalOps, totalTime));                    
+        //         }
+                
+        //         return  OpStats.Define(opid, totalTime, cycles, totalOps);
+        //     }
+            
+        //     return repeat;
+        // }
+
+
         protected Cycle Measure(OpId opid, Func<OpMetrics> action)
         {
             OpStats repeat(int cycles)
@@ -155,7 +206,16 @@ namespace Z0
             Func<T,bool> filter = nonzero  ? x => !x.Equals(zero)  : (Func<T,bool>)null;    
             return Randomizer.Array<T>(samples ?? Config.SampleSize, filter);
         }
-        
+
+        protected IBenchComparison Finish<T>(IBenchComparison compared, (T[] LeftTarget, T[]  RightTarget) dst, 
+            [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where T : struct, IEquatable<T>
+        {
+            Claim.eq(dst.LeftTarget, dst.RightTarget,file,line);
+            GC.Collect();
+            return compared;
+        }
+
         protected IBenchComparison Finish(IBenchComparison compared)
         {
             GC.Collect();

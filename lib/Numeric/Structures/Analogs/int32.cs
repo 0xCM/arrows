@@ -254,12 +254,12 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public byte[] bytes()
-            => Prim.bytes(data);
+        public byte[] Bytes()
+            => Prim.Bytes(data);
 
         [MethodImpl]
-        public bool testbit(int pos)
-            => Prim.testbit(data,pos);
+        public bool TestBit(int pos)
+            => Prim.TestBit(data,pos);
 
         [MethodImpl(Inline)]
         public analog and(analog rhs)

@@ -216,51 +216,6 @@ namespace Z0
             where T : struct, IEquatable<T>
             => ClrConverter.convert<decimal,T>(src);
 
-        /// <summary>
-        /// x:intg[byte] => x:intg[T]
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]   
-        public static intg<T> ToIntG<T>(this intg<byte> src)
-            where T : struct, IEquatable<T>
-                => ClrConverter.convert<byte,T>(src);
-
-        /// <summary>
-        /// x:intg[sbyte] => x:intg[T]
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]   
-        public static intg<T> ToIntG<T>(this intg<sbyte> src)
-            where T : struct, IEquatable<T>
-                => ClrConverter.convert<sbyte,T>(src);
-
-
-        /// <summary>
-        /// x:intg[short] => x:intg[T]
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]   
-        public static intg<T> ToIntG<T>(this intg<short> src)
-            where T : struct, IEquatable<T>
-                => ClrConverter.convert<short,T>(src);
-        
-        /// <summary>
-        /// x:intg[ushort] => x:intg[T]
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]       
-        public static intg<T> ToIntG<T>(this intg<ushort> src)
-            where T : struct, IEquatable<T>
-                => ClrConverter.convert<ushort,T>(src);
-
-        /// <summary>
-        /// x:intg[int] => x:intg[T]
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]   
-        public static intg<T> ToIntG<T>(this intg<int> src)
-            where T : struct, IEquatable<T>
-                => ClrConverter.convert<int,T>(src);
 
         /// <summary>
         /// x:intg[uint] => x:intg[T]

@@ -17,51 +17,17 @@ namespace Z0
     partial class xcore
     {
         /// <summary>
-        /// Converts a binary digit to a generic digit in base 2
-        /// </summary>
-        /// <param name="src">The source digit</param>
-        public static Digit<N2,BinaryDigit> ToDigitG(this BinaryDigit src)
-            => NatDigits.define(src,Nats.N2);
-
-        /// <summary>
-        /// Converts a generic integer to a stream of decimal digts
-        /// </summary>
-        /// <param name="src">The source integer</param>
-        /// <typeparam name="T">The underlying primitive type</typeparam>
-        public static IEnumerable<DecimalDigit> ToDecimalDigits<T>(this intg<T> src)
-            where T : struct, IEquatable<T>    
-                =>  DecimalDigits.parse(src.format());
-
-        /// <summary>
         /// Converts a generic integer to a stream of generic digts in base 10
         /// </summary>
         /// <param name="src">The source integer</param>
         /// <typeparam name="T">The underlying primitive type</typeparam>
-        public static IEnumerable<Digit<N10,DecimalDigit>> ToDecimalDigitsG<T>(this intg<T> src)
+        public static IEnumerable<Digit<N10,DeciDigit>> ToDecimalDigitsG<T>(this num<T> src)
             where T : struct, IEquatable<T>    
-                =>  map(DecimalDigits.parse(src.format()), d => NatDigits.define(d,Nats.N10));
+        {
+            var it = DeciDigits.Parse(src.ToString()).GetEnumerator();
+            while(it.MoveNext())
+                yield return NatDigits.Define(it.Current, Nats.N10);
+        }
 
-        /// <summary>
-        /// Converts a generic integer to a stream of generic digts in base 10
-        /// </summary>
-        /// <param name="src">The source integer</param>
-        /// <typeparam name="T">The underlying primitive type</typeparam>
-        public static IEnumerable<Digit<N2,BinaryDigit>> ToBinaryDigitsG<T>(this intg<T> src)
-            where T : struct, IEquatable<T>    
-                => throw new NotImplementedException(); //map(src.bitstring().bits,b => NatDigits.define( b ? BinaryDigit.One : BinaryDigit.Zero, Nats.N2));
-
-        /// <summary>
-        /// Converts a decimal digit to a generic digit in base 10
-        /// </summary>
-        /// <param name="src">The source digit</param>
-        public static Digit<N10,DecimalDigit> ToDigitG(this DecimalDigit src)
-            => NatDigits.define(src,Nats.N10);
-
-        /// <summary>
-        /// Converts a hex digit to a generic digit in base 16
-        /// </summary>
-        /// <param name="src">The soruce digit</param>
-        public static Digit<N16,HexDigit> ToDigitG(this HexDigit src)
-            => NatDigits.define(src,Nats.N16);
     }
 }

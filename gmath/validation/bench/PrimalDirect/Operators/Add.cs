@@ -13,329 +13,126 @@ namespace Z0
     using static zfunc;
     using static mfunc;
 
-    partial class PrimalDirectBench
+    partial class BaselineMetrics
     {
-        public IBenchComparison AddI8()
+        public OpMetrics Add(sbyte[] dst)
         {
             var opid = Id<sbyte>(OpKind.Add);
             var src = Sampled(opid);
-            var dst = Targets(opid);            
-            
-            OpMetrics baseline()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Left[it] = (sbyte)(src.Left[it] + src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
+            var it = -1;
 
-            OpMetrics direct()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Right[it] = math.add(src.Left[it], src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var comparison = Run(opid, 
-                Measure(opid, baseline), 
-                Measure(!opid, direct));
-            
-            Claim.eq(dst.Left, dst.Right);            
-            return Finish(comparison);
-
+            var sw = stopwatch();
+            while(++it < SampleSize)
+                dst[it] = (sbyte)(src.Left[it] + src.Right[it]);
+            return SampleTime(snapshot(sw));
         }
 
-        public IBenchComparison AddU8()
+        public OpMetrics Add(byte[] dst)
         {
             var opid = Id<byte>(OpKind.Add);
             var src = Sampled(opid);
-            var dst = Targets(opid);            
-            
-            OpMetrics baseline()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Left[it] = (byte)(src.Left[it] + src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
+            var it = -1;
 
-            OpMetrics direct()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Right[it] = math.add(src.Left[it], src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var comparison = Run(opid, 
-                Measure(opid, baseline), 
-                Measure(!opid, direct));
-            
-            Claim.eq(dst.Left, dst.Right);            
-            return Finish(comparison);
+            var sw = stopwatch();
+            while(++it < SampleSize)
+                dst[it] = (byte)(src.Left[it] + src.Right[it]);
+            return SampleTime(snapshot(sw));
         }
 
-        public IBenchComparison AddI16()
+        public OpMetrics Add(short[] dst)
         {
             var opid = Id<short>(OpKind.Add);
             var src = Sampled(opid);
-            var dst = Targets(opid);            
-            
-            OpMetrics baseline()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Left[it] = (short)(src.Left[it] + src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
+            var it = -1;
 
-            OpMetrics direct()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Right[it] = math.add(src.Left[it], src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var comparison = Run(opid, 
-                Measure(opid, baseline), 
-                Measure(!opid, direct));
-            
-            Claim.eq(dst.Left, dst.Right);            
-            return Finish(comparison);
+            var sw = stopwatch();
+            while(++it < SampleSize)
+                dst[it] = (short)(src.Left[it] + src.Right[it]);
+            return SampleTime(snapshot(sw));
         }
 
-        public IBenchComparison AddU16()
+        public OpMetrics Add(ushort[] dst)
         {
             var opid = Id<ushort>(OpKind.Add);
             var src = Sampled(opid);
-            var dst = Targets(opid);            
-            
-            OpMetrics baseline()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Left[it] = (ushort)(src.Left[it] + src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
+            var it = -1;
 
-            OpMetrics direct()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Right[it] = math.add(src.Left[it], src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var comparison = Run(opid, 
-                Measure(opid, baseline), 
-                Measure(!opid, direct));
-            
-            Claim.eq(dst.Left, dst.Right);            
-            return Finish(comparison);
+            var sw = stopwatch();
+            while(++it < SampleSize)
+                dst[it] = (ushort)(src.Left[it] + src.Right[it]);
+            return SampleTime(snapshot(sw));
         }
 
-        public IBenchComparison AddI32()
+        public OpMetrics Add(int[] dst)
         {
             var opid = Id<int>(OpKind.Add);
             var src = Sampled(opid);
-            var dst = Targets(opid);            
-            
-            OpMetrics baseline()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Left[it] = src.Left[it] + src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
+            var it = -1;
 
-            OpMetrics direct()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Right[it] = math.add(src.Left[it], src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var comparison = Run(opid, 
-                Measure(opid, baseline), 
-                Measure(!opid, direct));
-            
-            Claim.eq(dst.Left, dst.Right);            
-            return Finish(comparison);
+            var sw = stopwatch();
+            while(++it < SampleSize)
+                dst[it] = src.Left[it] + src.Right[it];
+            return SampleTime(snapshot(sw));
         }
 
-        public IBenchComparison AddU32()
+        public OpMetrics Add(uint[] dst)
         {
             var opid = Id<uint>(OpKind.Add);
             var src = Sampled(opid);
-            var dst = Targets(opid);            
-            
-            OpMetrics baseline()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Left[it] = src.Left[it] + src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
+            var it = -1;
 
-            OpMetrics direct()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Right[it] = math.add(src.Left[it], src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var comparison = Run(opid, 
-                Measure(opid, baseline), 
-                Measure(!opid, direct));
-            
-            Claim.eq(dst.Left, dst.Right);            
-            return Finish(comparison);
+            var sw = stopwatch();
+            while(++it < SampleSize)
+                dst[it] = src.Left[it] + src.Right[it];
+            return SampleTime(snapshot(sw));
         }
 
-        public IBenchComparison AddI64()
+        public OpMetrics Add(long[] dst)
         {
             var opid = Id<long>(OpKind.Add);
             var src = Sampled(opid);
-            var dst = Targets(opid);            
-            
-            OpMetrics baseline()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Left[it] = src.Left[it] + src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
+            var it = -1;
 
-            OpMetrics direct()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Right[it] = math.add(src.Left[it], src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var comparison = Run(opid, 
-                Measure(opid, baseline), 
-                Measure(!opid, direct));
-            
-            Claim.eq(dst.Left, dst.Right);            
-            return Finish(comparison);
+            var sw = stopwatch();
+            while(++it < SampleSize)
+                dst[it] = src.Left[it] + src.Right[it];
+            return SampleTime(snapshot(sw));
         }
 
-        public IBenchComparison AddU64()
+        public OpMetrics Add(ulong[] dst)
         {
-            var opid = Id<ulong>(OpKind.Add);            
+            var opid = Id<ulong>(OpKind.Add);
             var src = Sampled(opid);
-            var dst = Targets(opid);            
-            
-            OpMetrics baseline()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Left[it] = src.Left[it] + src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
+            var it = -1;
 
-            OpMetrics direct()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Right[it] = math.add(src.Left[it], src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var comparison = Run(opid, 
-                Measure(opid, baseline), 
-                Measure(!opid, direct));
-            
-            Claim.eq(dst.Left, dst.Right);            
-            return Finish(comparison);
+            var sw = stopwatch();
+            while(++it < SampleSize)
+                dst[it] = src.Left[it] + src.Right[it];
+            return SampleTime(snapshot(sw));
         }
 
-        public IBenchComparison AddF32()
+        public OpMetrics Add(float[] dst)
         {
             var opid = Id<float>(OpKind.Add);
             var src = Sampled(opid);
-            var dst = Targets(opid);            
-            
-            OpMetrics baseline()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Left[it] = src.Left[it] + src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
+            var it = -1;
 
-            OpMetrics direct()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Right[it] = math.add(src.Left[it], src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var comparison = Run(opid, 
-                Measure(opid, baseline), 
-                Measure(!opid, direct));
-            
-            Claim.eq(dst.Left, dst.Right);            
-            return Finish(comparison);
+            var sw = stopwatch();
+            while(++it < SampleSize)
+                dst[it] = src.Left[it] + src.Right[it];
+            return SampleTime(snapshot(sw));
         }
 
-        public IBenchComparison AddF64()
+        public OpMetrics Add(double[] dst)
         {
             var opid = Id<double>(OpKind.Add);
- 
             var src = Sampled(opid);
-            var dst = Targets(opid);            
-            
-            OpMetrics baseline()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Left[it] = src.Left[it] + src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
+            var it = -1;
 
-            OpMetrics direct()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    dst.Right[it] = math.add(src.Left[it], src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var comparison = Run(opid, 
-                Measure(opid, baseline), 
-                Measure(!opid, direct));
-            
-            Claim.eq(dst.Left, dst.Right);            
-            return Finish(comparison);
+            var sw = stopwatch();
+            while(++it < SampleSize)
+                dst[it] = src.Left[it] + src.Right[it];
+            return SampleTime(snapshot(sw));
         }
- 
-    }
+   }
 }

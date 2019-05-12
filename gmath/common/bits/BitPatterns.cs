@@ -9,9 +9,6 @@ namespace Z0
     using System.Runtime.InteropServices;
     using System.Numerics;
 
-
-
-
     public static class BitPatterns
     {
 

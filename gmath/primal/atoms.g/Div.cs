@@ -16,6 +16,87 @@ namespace Z0
     partial class atoms
     {
         [MethodImpl(Inline)]
+        public static ref T divI8<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.div(ref int8(ref lhs), int8(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T divU8<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.div(ref uint8(ref lhs), uint8(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T divI16<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.div(ref int16(ref lhs), int16(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T divU16<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.div(ref uint16(ref lhs), uint16(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+
+        [MethodImpl(Inline)]
+        public static ref T divI32<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.div(ref int32(ref lhs), int32(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T divU32<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.div(ref uint32(ref lhs), uint32(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T divI64<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.div(ref int64(ref lhs), int64(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T divU64<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.div(ref uint64(ref lhs), uint64(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T divF32<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.div(ref float32(ref lhs), float32(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T divF64<T>(ref T lhs, T rhs)
+        {
+            ref var result = ref math.div(ref float64(ref lhs), float64(ref rhs));
+            lhs = ref generic<T>(ref result);
+            return ref lhs;
+        }            
+
+        [MethodImpl(Inline)]
         public static T divI8<T>(T lhs, T rhs)
             => generic<T>((sbyte)(int8(lhs) / int8(rhs)));
 

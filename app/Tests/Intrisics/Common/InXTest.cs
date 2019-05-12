@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Tests.InXTests
+namespace Z0.Test
 {
     using System;
     using System.Linq;
@@ -13,11 +13,10 @@ namespace Z0.Tests.InXTests
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
 
-    using Z0.Testing;
     
-    using static zcore;
+    using static zfunc;
 
-    public abstract class InXTest<S,T> : UnitTest<S>
+    public abstract class InXTest<S,T> : Testing.UnitTest<S>
         where S : InXTest<S,T>
         where T : struct, IEquatable<T>
     {
@@ -25,17 +24,16 @@ namespace Z0.Tests.InXTests
 
         protected static readonly int VecLength = Vec128<T>.Length;
 
-        protected static readonly Operative.PrimOps<T> PrimOps = primops.typeops<T>();
-
         protected override string OpName {get;}
 
         protected int VecCount
             => SampleSize / VecLength;
 
-        protected InXTest(string opname, Interval<T>? domain = null, int? sampleSize = null)
+        protected InXTest(OpId<T> OpId, Interval<T>? domain = null, int? sampleSize = null)
             :base(sampleSize)
         {
-            this.OpName = opname;
+            this.OpId = OpId;
+            this.OpName = OpId.ToString();
             this.Domain = domain ?? Defaults.get<T>().Domain;       
             
             this.UnarySrc = RandArray();
@@ -60,9 +58,8 @@ namespace Z0.Tests.InXTests
 
         }
 
-        protected PrimalKind PritiveKind {get;} 
-            = PrimalKinds.kind<T>();
-
+        public OpId<T> OpId {get;}
+        
         protected Interval<T> Domain {get;}
 
         protected Index<T> UnarySrc {get;}
@@ -148,7 +145,6 @@ namespace Z0.Tests.InXTests
             return offCount;
         }
                 
-
         /// Produces an array of random values
         /// </summary>
         /// <param name="count">The number of values in the produced array</param>
@@ -160,6 +156,5 @@ namespace Z0.Tests.InXTests
 
         protected void trace(int count, [CallerMemberName] string caller = null)
             => base.Trace($"Applied the {OpName} operator over {count} vectors", caller);
-
     }    
 }

@@ -14,6 +14,37 @@ namespace Z0
     
     partial class Bits
     {                
+        public static string bitstring<T>(num<T> src)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+            switch(kind)
+            {
+                case PrimalKind.int8:
+                    return bitstring(As.int8(src.Value));
+                case PrimalKind.uint8:
+                    return bitstring(As.uint8(src.Value));
+                case PrimalKind.int16:
+                    return bitstring(As.int16(src.Value));
+                case PrimalKind.uint16:
+                    return bitstring(As.uint16(src.Value));
+                case PrimalKind.int32:
+                    return bitstring(As.int32(src.Value));
+                case PrimalKind.uint32:
+                    return bitstring(As.uint32(src.Value));
+                case PrimalKind.int64:
+                    return bitstring(As.int64(src.Value));
+                case PrimalKind.uint64:
+                    return bitstring(As.uint64(src.Value));
+                case PrimalKind.float32:
+                    return bitstring(As.float32(src.Value));
+                case PrimalKind.float64:
+                    return bitstring(As.float64(src.Value));                
+                default:
+                    throw unsupported(kind);
+            }
+
+        }
 
         [MethodImpl(Inline)]
         public static string bitstring(sbyte src)

@@ -62,24 +62,24 @@ namespace Z0
                 => map(lhs,flip);
 
             [MethodImpl(Inline)]
-            public string bitstring(long src)
-                => Bits.bitstring(src);
+            public string BitString(long src)
+                => Z0.Bits.bitstring(src);
 
 
             [MethodImpl(Inline)]
-            public byte[] bytes(long src)
+            public byte[] Bytes(long src)
                 => BitConverter.GetBytes(src);
 
             [MethodImpl(Inline)]
-            public bool testbit(long src, int pos)
+            public bool TestBit(long src, int pos)
                 => (src & (1L << pos)) != 0L;
 
             [MethodImpl(Inline)]
-            public Bit[] bits(long src)
+            public Bit[] Bits(long src)
             {
                 var dst = array<Bit>(SizeOf<long>.BitSize);
                 for(var i = 0; i < SizeOf<long>.BitSize; i++)
-                    dst[i] = testbit(src,i);
+                    dst[i] = TestBit(src,i);
                 return dst; 
             }
             

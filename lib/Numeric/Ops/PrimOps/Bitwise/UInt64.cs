@@ -66,27 +66,27 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public static string bitchars64(target src)
-                => apply(Bits.split(src), parts 
+                => apply(Z0.Bits.split(src), ((uint x0, uint x1) parts) 
                     => bitcharsu32(parts.x0) + bitcharsu32(parts.x1));
 
             [MethodImpl(Inline)]
-            public string bitstring(target src)
-                => Bits.bitstring(src);
+            public string BitString(target src)
+                => Z0.Bits.bitstring(src);
 
             [MethodImpl(Inline)]
-            public byte[] bytes(target src)
+            public byte[] Bytes(target src)
                 => BitConverter.GetBytes(src);
 
             [MethodImpl(Inline)]
-            public bool testbit(target src, int pos)
+            public bool TestBit(target src, int pos)
                 => (src & (1ul << pos)) != 0ul;
 
             [MethodImpl(Inline)]
-            public Bit[] bits(target src)
+            public Bit[] Bits(target src)
             {
                 var dst = array<Bit>(SizeOf<target>.BitSize);
                 for(var i = 0; i < SizeOf<target>.BitSize; i++)
-                    dst[i] = testbit(src,i);
+                    dst[i] = TestBit(src,i);
                 return dst; 
             }
 

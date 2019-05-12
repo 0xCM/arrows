@@ -14,7 +14,6 @@ using Z0;
 partial class zfunc
 {
 
-
     /// <summary>
     /// The univeral identity function that returns the source value
     /// </summary>

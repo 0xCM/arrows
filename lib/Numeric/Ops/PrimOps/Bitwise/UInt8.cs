@@ -66,23 +66,23 @@ namespace Z0
             /// </summary>
             /// <param name="src">The source number</param>
             [MethodImpl(Inline)]
-            public string bitstring(byte src)
-                => Bits.bitstring(src);
+            public string BitString(byte src)
+                => Z0.Bits.bitstring(src);
 
             /// <summary>
             /// Determines whether a position-specified bit in the source is on
             /// </summary>
             /// <param name="src">The bit source</param>
             [MethodImpl(Inline)]
-            public bool testbit(byte src, int pos)
+            public bool TestBit(byte src, int pos)
                 => (src & (1 << pos)) != 0;
         
             [MethodImpl(Inline)]
-            public Bit[] bits(byte src)
+            public Bit[] Bits(byte src)
             {
                 var dst = array<Bit>(SizeOf<byte>.BitSize);
                 for(var i = 0; i < SizeOf<byte>.BitSize; i++)
-                    dst[i] = testbit(src,i);
+                    dst[i] = TestBit(src,i);
                 return dst; 
             }
 
@@ -91,7 +91,7 @@ namespace Z0
             /// </summary>
             /// <param name="src">The soruce value</param>
             [MethodImpl(Inline)]
-            public byte[] bytes(byte src)
+            public byte[] Bytes(byte src)
                 => new byte[]{src};
 
             /// <summary>

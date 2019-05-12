@@ -12,7 +12,7 @@ namespace Z0
     
     using static Structures;
 
-    public readonly struct real<T> : IEquatable<real<T>>  //RealNumber<real<T>, T>
+    public readonly struct real<T> : IEquatable<real<T>>  
         where T : struct, IEquatable<T>
     {
         static readonly Operative.PrimOps<T> Prim = primops.typeops<T>();
@@ -270,11 +270,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public byte[] bytes()
-            => Prim.bytes(data);
+            => Prim.Bytes(data);
 
         [MethodImpl]
         public bool testbit(int pos)
-            => Prim.testbit(data,pos);
+            => Prim.TestBit(data,pos);
 
         [MethodImpl(Inline)]
         public real<T> sin()
@@ -332,25 +332,6 @@ namespace Z0
         public int hash()
             => data.GetHashCode();
 
-         [MethodImpl(Inline)]
-        public intg<I> ToIntG<I>()
-            where I : struct, IEquatable<I>
-                => convert<T,I>(data);
-
-        [MethodImpl(Inline)]
-        public real<R> ToRealG<R>()
-            where R : struct, IEquatable<R>
-                => convert<T,R>(data);
-
-        [MethodImpl(Inline)]   
-        public C ToClr<C>()
-            where C : struct, IEquatable<C>
-                => convert<T,C>(data);
-
-        [MethodImpl(Inline)]
-        public floatg<F> ToFloatG<F>()
-            where F : struct, IEquatable<F>
-                => convert<T,F>(data);
 
         [MethodImpl(Inline)]
         public string format()
