@@ -2,23 +2,18 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace  Z0
 {
     using System;
     using System.Collections;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.CompilerServices;
+    using System.Runtime.CompilerServices;    
     using System.Diagnostics;
-
-    using static zcore;
+    
     using static zfunc;
-    using static mfunc;
-
-    partial class xcore
+    partial class xfunc
     {
- 
         /// <summary>
         /// Determines whether a collection contains any elements
         /// </summary>
@@ -51,6 +46,6 @@ namespace Z0
         {
             src.AddRange(items);
             return src;
-        }
+        }        
     }
 }

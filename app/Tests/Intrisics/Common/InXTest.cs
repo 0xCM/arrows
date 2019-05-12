@@ -15,6 +15,7 @@ namespace Z0.Test
 
     
     using static zfunc;
+    using static mfunc;
 
     public abstract class InXTest<S,T> : Testing.UnitTest<S>
         where S : InXTest<S,T>
@@ -87,8 +88,8 @@ namespace Z0.Test
         /// <param name="listop">The primitive operator</param>
         protected void Verify(Vec128BinOp<T> vecop, PrimalFusedBinOp<T> listop)
         {
-            var leftVals = Arr.partition(LeftDataSrc.ToArray(), VecLength).ToReadOnlyList();
-            var rightVals = Arr.partition(RightDataSrc.ToArray(), VecLength).ToReadOnlyList();
+            var leftVals = partition(LeftDataSrc.ToArray(), VecLength).ToReadOnlyList();
+            var rightVals =partition(RightDataSrc.ToArray(), VecLength).ToReadOnlyList();
             for(var i = 0; i<VecCount; i++)
             {
                 var lvec = LeftVecSrc[i];

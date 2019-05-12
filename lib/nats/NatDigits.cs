@@ -80,7 +80,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator uint(Digit<N,T> src)
-            => src.value.ToIntG<uint>();
+            => src.ToUInt();
 
         [MethodImpl(Inline)]
         public static implicit operator T(Digit<N,T> src)
@@ -94,7 +94,7 @@ namespace Z0
             => value = src;
         
         public uint ToUInt()
-            => value.ToIntG<uint>();
+            => (uint)Convert.ChangeType(value, typeof(uint));
 
         public uint @base
         {

@@ -142,42 +142,7 @@ public static partial class zcore
     public static T[] array<T>(IEnumerable<T> src)
         => src.ToArray();
 
-    /// <summary>
-    /// Constructs an array from a stream and a transformation function
-    /// </summary>
-    /// <param name="src">The source stream</param>
-    /// <param name="f">The transfomer</param>
-    /// <typeparam name="S">The source element type</typeparam>
-    /// <typeparam name="T">The target element type</typeparam>
-    [MethodImpl(Inline)]
-    public static T[] array<S,T>(IEnumerable<S> src, Func<S,T> f)
-        => array<T>(src.Select(f));
 
-    [MethodImpl(Inline)]
-    public static IEnumerable<T> concat<T>(params IEnumerable<T>[] src)
-        => src.SelectMany(x => x);
-
-    /// <summary>
-    /// Concatentates two arrays
-    /// </summary>
-    /// <param name="lhs">The first array of bytes</param>
-    /// <param name="rhs">The second array of bytes</param>
-    public static T[] concat<T>(T[] lhs, T[] rhs)
-        => Array.concat(lhs,rhs);
-
-    /// <summary>
-    /// Concatentates a parameter array of byte arrays
-    /// </summary>
-    public static byte[] concat(params byte[][] src)
-        => Array.concat(src);
-
-
-    /// <summary>
-    /// Concatenates a sequence of parameter arrays
-    /// </summary>
-    /// <param name="src">The source arrays</param>
-    public static T[] concat<T>(params T[][] src)
-        => Array.concat(src);
 
 
     /// <summary>

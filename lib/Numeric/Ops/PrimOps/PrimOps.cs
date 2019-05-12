@@ -463,10 +463,10 @@ namespace Z0
                 => string.Join("", map(src, (Func<T, string>)this.BitString));
 
             public byte[] bytes(Index<T> src)
-                => Arr.concat(map(src,Bytes));
+                => concat(map(src,Bytes));
 
             public Bit[] bits(Index<T> src)
-                => Arr.concat(map(src,Bits));
+                => concat(map(src,Bits));
 
             public Index<T> div(Index<T> lhs, Index<T> rhs)
             {

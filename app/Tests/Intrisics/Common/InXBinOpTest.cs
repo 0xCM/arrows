@@ -13,6 +13,7 @@ namespace Z0.Test
     
     using static zcore;
     using static zfunc;
+    using static mfunc;
 
    public abstract class InXBinOpTest<S,T> : InXTest<S,T>
         where S : InXBinOpTest<S,T>
@@ -37,10 +38,10 @@ namespace Z0.Test
             => Results(VecOp);
 
         protected IEnumerable<ArraySegment<T>> LeftSegments
-            => Arr.partition(LeftDataSrc.ToArray(), VecLength);
+            => partition(LeftDataSrc.ToArray(), VecLength);
 
         protected IEnumerable<ArraySegment<T>> RightSegments
-            => Arr.partition(RightDataSrc.ToArray(), VecLength);
+            => partition(RightDataSrc.ToArray(), VecLength);
 
         IEnumerable<Vec128<T>> Expected()
         {

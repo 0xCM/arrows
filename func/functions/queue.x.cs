@@ -11,12 +11,10 @@ namespace Z0
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
-
-    using static zcore;
+    
     using static zfunc;
 
-
-    partial class xcore
+    partial class xfunc
     {
 
         /// <summary>

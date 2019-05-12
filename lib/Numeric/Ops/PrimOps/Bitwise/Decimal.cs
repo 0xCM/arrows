@@ -81,7 +81,7 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public byte[] Bytes(decimal src)
-                => zcore.concat(map(decimal.GetBits(src), Bytes));
+                => concat(map(decimal.GetBits(src), Bytes));
 
             [MethodImpl(Inline)]
             public Bit[] Bits(decimal src)

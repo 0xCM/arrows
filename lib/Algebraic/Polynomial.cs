@@ -23,7 +23,7 @@ namespace Z0
         
         public static readonly PolynomialTerm<T> Zero = default;
 
-        public static implicit operator PolynomialTerm<T>((T coefficient, intg<uint> power) x)        
+        public static implicit operator PolynomialTerm<T>((T coefficient, uint power) x)        
             => new PolynomialTerm<T>(x.coefficient, x.power);
 
         public static implicit operator (T coefficient, intg<uint> power)(PolynomialTerm<T> x)        
@@ -92,7 +92,7 @@ namespace Z0
             var dst = new PolynomialTerm<T>[Math.Max(terms.length, rhs.terms.length)]; 
             var src = terms.conform(rhs.terms, PolynomialTerm<T>.Zero);
             for(var i = 0; i<= dst.Length(); i++)           
-                dst[i] = Polynomial.term(Ops.add(src.lhs[i].coefficient, src.rhs[i].coefficient), i.ToIntG<uint>());
+                dst[i] = Polynomial.term(Ops.add(src.lhs[i].coefficient, src.rhs[i].coefficient), (uint)i);
             return new Polynomial<T>(dst);
         }
     }
