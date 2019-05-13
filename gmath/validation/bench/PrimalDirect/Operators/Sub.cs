@@ -134,5 +134,96 @@ namespace Z0
                 dst[it] = src.Left[it] - src.Right[it];
             return SampleTime(snapshot(sw));
         }
+
+        public OpMetrics SubFused(sbyte[] dst)
+        {
+            var opid = Id<sbyte>(OpKind.Sub);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.sub(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics SubFused(byte[] dst)
+        {
+            var opid = Id<byte>(OpKind.Sub);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.sub(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics SubFused(short[] dst)
+        {
+            var opid = Id<short>(OpKind.Sub);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.sub(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics SubFused(ushort[] dst)
+        {
+            var opid = Id<ushort>(OpKind.Sub);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.sub(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics SubFused(int[] dst)
+        {
+            var opid = Id<int>(OpKind.Sub);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.sub(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics SubFused(uint[] dst)
+        {
+            var opid = Id<uint>(OpKind.Sub);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.sub(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics SubFused(long[] dst)
+        {
+            var opid = Id<long>(OpKind.Sub);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.sub(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics SubFused(ulong[] dst)
+        {
+            var opid = Id<ulong>(OpKind.Sub);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.sub(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics SubFused(float[] dst)
+        {
+            var opid = Id<float>(OpKind.Sub);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.sub(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics SubFused(double[] dst)
+        {
+            var opid = Id<double>(OpKind.Sub);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.sub(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
    }
 }

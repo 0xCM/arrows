@@ -11,7 +11,8 @@ namespace Z0
 
     
     using static mfunc;
-    
+    using static zfunc;
+
     public static class Pow2
     {
         static readonly ulong[] PowerTable = new ulong[]{

@@ -85,10 +85,6 @@ namespace Z0
              where T : struct, IEquatable<T>
                 => rms.stream(min,max);
 
-        [MethodImpl(Inline)]   
-        public static Index<T> Unwrap<T>(this Index<real<T>> src)
-            where T : struct, IEquatable<T>
-                => map(src, unwrap);                 
 
 
 

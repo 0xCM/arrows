@@ -11,91 +11,101 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
 
-    
     using static mfunc;
+    using static zfunc;
 
     partial class math
     {
 
         [MethodImpl(NotInline)]
-        public static void inc(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
+        public static Span<sbyte> inc(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
         {
             var len = length(src,dst);
             for(var i = 0; i< len; i++)
                 dst[i] = inc(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void inc(ReadOnlySpan<byte> src, Span<byte> dst)
+        public static Span<byte> inc(ReadOnlySpan<byte> src, Span<byte> dst)
         {
             var len = length(src,dst);
             for(var i = 0; i< len; i++)
                 dst[i] = inc(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void inc(ReadOnlySpan<short> src, Span<short> dst)
+        public static Span<short> inc(ReadOnlySpan<short> src, Span<short> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = inc(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void inc(ReadOnlySpan<ushort> src, Span<ushort> dst)
+        public static Span<ushort> inc(ReadOnlySpan<ushort> src, Span<ushort> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = inc(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void inc(ReadOnlySpan<int> src, Span<int> dst)
+        public static Span<int> inc(ReadOnlySpan<int> src, Span<int> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = inc(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void inc(ReadOnlySpan<uint> src, Span<uint> dst)
+        public static  Span<uint> inc(ReadOnlySpan<uint> src, Span<uint> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = inc(src[i]);
+            return dst;
         }
 
 
         [MethodImpl(NotInline)]
-        public static void inc(ReadOnlySpan<long> src, Span<long> dst)
+        public static Span<long> inc(ReadOnlySpan<long> src, Span<long> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = inc(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void inc(ReadOnlySpan<ulong> src, Span<ulong> dst)
+        public static Span<ulong> inc(ReadOnlySpan<ulong> src, Span<ulong> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = inc(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void inc(ReadOnlySpan<float> src, Span<float> dst)
+        public static Span<float> inc(ReadOnlySpan<float> src, Span<float> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = inc(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void inc(ReadOnlySpan<double> src, Span<double> dst)
+        public static Span<double> inc(ReadOnlySpan<double> src, Span<double> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = inc(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]

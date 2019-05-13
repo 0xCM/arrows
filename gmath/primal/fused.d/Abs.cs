@@ -10,9 +10,9 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
-
     
     using static mfunc;
+    using static zfunc;
 
     partial class math
     {
@@ -22,7 +22,7 @@ namespace Z0
         {
             var len = length(src,dst);
             for(var i = 0; i< len; i++)
-                dst[i] = abs(src[i]);
+                abs(src[i], out dst[i]);
             return dst;
         }
 
@@ -32,17 +32,16 @@ namespace Z0
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
-                dst[i] = abs(src[i]);
+                abs(src[i], out dst[i]);
             return dst;
         }
-
 
         [MethodImpl(NotInline)]
         public static Span<int> abs(ReadOnlySpan<int> src, Span<int> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
-                dst[i] = abs(src[i]);
+                abs(src[i], out dst[i]);
             return dst;
         }
 
@@ -52,7 +51,7 @@ namespace Z0
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
-                dst[i] = abs(src[i]);
+                abs(src[i], out dst[i]);
             return dst;
         }
 
@@ -61,7 +60,7 @@ namespace Z0
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
-                dst[i] = abs(src[i]);
+                abs(src[i], out dst[i]);
             return dst;
         }
 
@@ -70,7 +69,7 @@ namespace Z0
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
-                dst[i] = abs(src[i]);
+                abs(src[i], out dst[i]);
             return dst;
         }
 
@@ -78,7 +77,7 @@ namespace Z0
         public static ref Span<sbyte> abs(ref Span<sbyte> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = abs(io[i]);
+                abs(ref io[i]);
             return ref io;
         }
 
@@ -86,7 +85,7 @@ namespace Z0
         public static ref Span<short> abs(ref Span<short> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = abs(io[i]);
+                abs(ref io[i]);
             return ref io;
         }
 
@@ -95,7 +94,7 @@ namespace Z0
         public static ref Span<int> abs(ref Span<int> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = abs(io[i]);
+                abs(ref io[i]);
             return ref io;
         }
 
@@ -104,7 +103,7 @@ namespace Z0
         public static ref Span<long> abs(ref Span<long> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = abs(io[i]);
+                abs(ref io[i]);
             return ref io;
         }
 
@@ -112,7 +111,7 @@ namespace Z0
         public static ref Span<float> abs(ref Span<float> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = abs(io[i]);
+                abs(ref io[i]);
             return ref io;
         }
 
@@ -120,9 +119,8 @@ namespace Z0
         public static ref Span<double> abs(ref Span<double> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = abs(io[i]);
+                abs(ref io[i]);
             return ref io;
         }
-
     }
 }

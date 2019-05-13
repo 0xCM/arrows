@@ -11,7 +11,9 @@ namespace Z0
 
     
     using static As;
-    using static global::mfunc;
+    using static mfunc;
+    using static zfunc;
+
 
     partial class ginx
     {

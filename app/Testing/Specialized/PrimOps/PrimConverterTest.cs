@@ -23,7 +23,7 @@ namespace Z0.Testing
         where T : struct, IEquatable<T>
         where S : struct, IEquatable<S>
     {
-        protected const uint VectorSize = Defaults.SampleSize;
+        protected const uint VectorSize = Pow2.T14;
                 
         protected S MinPrimVal {get;}
 
@@ -36,15 +36,13 @@ namespace Z0.Testing
 
         protected ClrConverterTest(Interval<S>? bounds = null)
         {
-            this.MinPrimVal = (bounds ?? Defaults.get<S>().Domain).left;
-            this.MaxPrimVal = (bounds ?? Defaults.get<S>().Domain).right;
+            this.MinPrimVal = (bounds ?? SampleDefaults.get<S>().SampleDomain).Left;
+            this.MaxPrimVal = (bounds ?? SampleDefaults.get<S>().SampleDomain).Right;
             this.Src = source(MinPrimVal,MaxPrimVal);
         }
       
-        [Repeat(Defaults.Reps)]
         public abstract Index<T> Compute();
       
-        [Repeat(Defaults.Reps)]
         public abstract Index<T> Baseline();        
 
         public virtual void Verify()

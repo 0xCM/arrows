@@ -32,6 +32,15 @@ namespace Z0
             return dst;
         }
 
+        [MethodImpl(Inline)]
+        public static Span<num<T>> many<T>(Span<T> src)
+            where T : struct, IEquatable<T>
+        {
+            var dst = alloc<T>(src.Length);
+            for(var i=0; i<src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         public static num<T>[] add<T>(num<T>[] lhs, num<T>[] rhs)

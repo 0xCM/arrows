@@ -11,91 +11,101 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
 
-    
     using static mfunc;
+    using static zfunc;
 
     partial class math
     {
 
         [MethodImpl(NotInline)]
-        public static void dec(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
+        public static Span<sbyte> dec(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
         {
             var len = length(src,dst);
             for(var i = 0; i< len; i++)
                 dst[i] = dec(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void dec(ReadOnlySpan<byte> src, Span<byte> dst)
+        public static Span<byte> dec(ReadOnlySpan<byte> src, Span<byte> dst)
         {
             var len = length(src,dst);
             for(var i = 0; i< len; i++)
                 dst[i] = dec(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void dec(ReadOnlySpan<short> src, Span<short> dst)
+        public static Span<short> dec(ReadOnlySpan<short> src, Span<short> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = dec(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void dec(ReadOnlySpan<ushort> src, Span<ushort> dst)
+        public static Span<ushort> dec(ReadOnlySpan<ushort> src, Span<ushort> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = dec(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void dec(ReadOnlySpan<int> src, Span<int> dst)
+        public static Span<int> dec(ReadOnlySpan<int> src, Span<int> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = dec(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void dec(ReadOnlySpan<uint> src, Span<uint> dst)
+        public static Span<uint> dec(ReadOnlySpan<uint> src, Span<uint> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = dec(src[i]);
+            return dst;
         }
 
 
         [MethodImpl(NotInline)]
-        public static void dec(ReadOnlySpan<long> src, Span<long> dst)
+        public static Span<long> dec(ReadOnlySpan<long> src, Span<long> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = dec(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void dec(ReadOnlySpan<ulong> src, Span<ulong> dst)
+        public static Span<ulong> dec(ReadOnlySpan<ulong> src, Span<ulong> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = dec(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void dec(ReadOnlySpan<float> src, Span<float> dst)
+        public static Span<float> dec(ReadOnlySpan<float> src, Span<float> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = dec(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void dec(ReadOnlySpan<double> src, Span<double> dst)
+        public static Span<double> dec(ReadOnlySpan<double> src, Span<double> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = dec(src[i]);
+            return dst;                
         }
 
 

@@ -83,260 +83,101 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public Quorem<sbyte> divrem(sbyte lhs, sbyte rhs)
-            {
-                var x = Math.Abs(lhs);
-                var y = Math.Abs(rhs);
-                var quo = div(x, y);
-                var rem = (sbyte)(x - quo*y);
-                return Quorem.define(quo, rem);                   
-            }
+                => math.quorem(lhs,rhs);
 
             [MethodImpl(Inline)]
             public Quorem<byte> divrem(byte lhs, byte rhs)
-            {
-                var quo = div(lhs, rhs);
-                var rem = (byte)(lhs - quo*rhs);
-                return Quorem.define(quo, rem);                   
-            }
+                => math.quorem(lhs,rhs);
 
             [MethodImpl(Inline)]
             public Quorem<short> divrem(short lhs, short rhs)
-            {
-                var x = Math.Abs(lhs);
-                var y = Math.Abs(rhs);
-                var quo = div(x, y);
-                var rem = (short)(x - quo*y);
-                return Quorem.define(quo, rem);                   
-            }
+                => math.quorem(lhs,rhs);
 
             [MethodImpl(Inline)]
             public Quorem<ushort> divrem(ushort lhs, ushort rhs)
-            {
-                var quo = div(lhs, rhs);
-                var rem = (ushort)(lhs - quo*rhs);
-                return Quorem.define(quo, rem);                   
-            }
+                => math.quorem(lhs,rhs);
 
             [MethodImpl(Inline)]
             public Quorem<int> divrem(int lhs, int rhs)
-            {
-                var x = Math.Abs(lhs);
-                var y = Math.Abs(rhs);
-                var quo = div(x, y);
-                var rem = x - quo*y;
-                return Quorem.define(quo, rem);                   
-            }
+                => math.quorem(lhs,rhs);
 
             [MethodImpl(Inline)]
             public Quorem<uint> divrem(uint lhs, uint rhs)
-            {
-                var quo = div(lhs, rhs);
-                var rem = lhs - quo*rhs;
-                return Quorem.define(quo, rem);                   
-            }
+                => math.quorem(lhs,rhs);
 
             [MethodImpl(Inline)]
             public Quorem<long> divrem(long lhs, long rhs)
-            {
-                var x = Math.Abs(lhs);
-                var y = Math.Abs(rhs);
-                var quo = div(x, y);
-                var rem = x - quo*y;
-                return Quorem.define(quo, rem);                   
-            }
+                => math.quorem(lhs,rhs);
 
             [MethodImpl(Inline)]
             public Quorem<ulong> divrem(ulong lhs, ulong rhs)
-            {
-                var quo = div(lhs, rhs);
-                var rem = lhs - quo*rhs;
-                return Quorem.define(quo, rem);                   
-            }
+                => math.quorem(lhs,rhs);
 
             [MethodImpl(Inline)]
             public Quorem<float> divrem(float lhs, float rhs)
-            {
-                var quo = div(lhs, rhs);
-                var rem = lhs - quo*rhs;
-                return Quorem.define(quo, rem);                   
-            }
+                => math.quorem(lhs,rhs);
 
             [MethodImpl(Inline)]
             public Quorem<double> divrem(double lhs, double rhs)
-            {
-                var quo = div(lhs, rhs);
-                var rem = lhs - quo*rhs;
-                return Quorem.define(quo, rem);                   
-            }
+                => math.quorem(lhs,rhs);
 
             [MethodImpl(Inline)]
             public Quorem<decimal> divrem(decimal lhs, decimal rhs)
-            {
-                var quo = div(lhs, rhs);
-                var rem = lhs - quo*rhs;
-                return Quorem.define(quo, rem);                   
-            }
+                => math.quorem(lhs,rhs);
 
             [MethodImpl(Inline)]
             public Quorem<BigInteger> divrem(BigInteger lhs, BigInteger rhs)
-            {
-                var rem = BigInteger.Zero;
-                var div = BigInteger.DivRem(lhs, rhs, out rem);  
-                return Quorem.define(div,rem);                  
-            }
+                => math.quorem(lhs,rhs);
 
             [MethodImpl(Inline)]
             public byte gcd(byte lhs, byte rhs)
-            {
-                while (rhs != 0)
-                {
-                    var rem = mod(lhs,rhs);
-                    lhs = rhs;
-                    rhs = rem;
-                }
-                return lhs;
-            }
+                => math.gcd(lhs,rhs);
 
 
             [MethodImpl(Inline)]
             public sbyte gcd(sbyte lhs, sbyte rhs)
-            {
-                var x = abs(lhs);
-                var y = abs(rhs);
-                while (y != 0)
-                {
-                    var rem = (sbyte)(x % y);
-                    x = y;
-                    y = rem;
-                }
-                return x;
-            }
+                => math.gcd(lhs,rhs);
 
             [MethodImpl(Inline)]
             public short gcd(short lhs, short rhs)
-            {
-                var x = abs(lhs);
-                var y = abs(rhs);
-                while (y != 0)
-                {
-                    var rem = (short)(x % y);
-                    x = y;
-                    y = rem;
-                }
-                return x;
-            }
+                => math.gcd(lhs,rhs);
 
             [MethodImpl(Inline)]
             public ushort gcd(ushort lhs, ushort rhs)
-            {
-                while (rhs != 0)
-                {
-                    var rem = mod(lhs,rhs);
-                    lhs = rhs;
-                    rhs = rem;
-                }
-                return lhs;
-            }
+                => math.gcd(lhs,rhs);
 
             [MethodImpl(Inline)]
             public ulong gcd(ulong lhs, ulong rhs)
-            {
-                while (rhs != 0)
-                {
-                    var rem = mod(lhs,rhs);
-                    lhs = rhs;
-                    rhs = rem;
-                }
-                return lhs;
-            }
+                => math.gcd(lhs,rhs);
 
             [MethodImpl(Inline)]
             public double gcd(double lhs, double rhs)
-            {
-                var x = abs(lhs);
-                var y = abs(rhs);
-                while (y != 0)
-                {
-                    var rem = x % y;
-                    x = y;
-                    y = rem;
-                }
-                return x;
-            }
+                => math.gcd(lhs,rhs);
 
             [MethodImpl(Inline)]
             public decimal gcd(decimal lhs, decimal rhs)
-            {
-                var x = abs(lhs);
-                var y = abs(rhs);
-                while (y != 0)
-                {
-                    var rem = x % y;
-                    x = y;
-                    y = rem;
-                }
-                return x;
-            }
+                => math.gcd(lhs,rhs);
 
 
             [MethodImpl(Inline)]
             public int gcd(int lhs, int rhs)
-            {
-                var x = abs(lhs);
-                var y = abs(rhs);
-                while (y != 0)
-                {
-                    var rem = (x % y);
-                    x = y;
-                    y = rem;
-                }
-                return x;
-            }
+                => math.gcd(lhs,rhs);
 
             [MethodImpl(Inline)]
             public uint gcd(uint lhs, uint rhs)
-            {
-                while (rhs != 0)
-                {
-                    var rem = mod(lhs,rhs);
-                    lhs = rhs;
-                    rhs = rem;
-                }
-                return lhs;
-            }
+                => math.gcd(lhs,rhs);
 
             [MethodImpl(Inline)]
             public long gcd(long lhs, long rhs)
-            {
-                var x = abs(lhs);
-                var y = abs(rhs);
-                while (y != 0)
-                {
-                    var rem = (x % y);
-                    x = y;
-                    y = rem;
-                }
-                return x;
-            }
-
+                => math.gcd(lhs,rhs);
 
             [MethodImpl(Inline)]
             public float gcd(float lhs, float rhs)
-            {
-                var x = abs(lhs);
-                var y = abs(rhs);
-                while (y != 0)
-                {
-                    var rem = (x % y);
-                    x = y;
-                    y = rem;
-                }
-                return x;
-            }
+                => math.gcd(lhs,rhs);
 
             [MethodImpl(Inline)]
             public BigInteger gcd(BigInteger lhs, BigInteger rhs)
-                => BigInteger.GreatestCommonDivisor(lhs,rhs);
+                => math.gcd(lhs,rhs);
 
             [MethodImpl(Inline)]
             public sbyte mod(sbyte lhs, sbyte rhs)

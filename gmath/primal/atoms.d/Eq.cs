@@ -55,9 +55,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool eq(double lhs, double rhs)
             => lhs == rhs;
-
-
     }
-
 
 }

@@ -9,8 +9,14 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static nats;
-    using static zcore;
     using static zfunc;
+    using static nfunc;
+    
+    static class nfunc
+    {
+        public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
+
+    }
 
     public static class NatDigits
     {
@@ -37,8 +43,6 @@ namespace Z0
             where N : ITypeNat, new()
             where T : Enum
                 => new Digit<N,T>(src);
-
-
     }
 
 

@@ -16,140 +16,94 @@ namespace Z0
 
     partial class PrimalFusedBench
     {
+        OpMetrics And<T>(T[] dst)
+            where T : struct, IEquatable<T>
+        {
+            var opid = Id<T>(OpKind.And);
+            var samples = Sampled(opid);            
+            var sw = stopwatch();            
+            gmath.and(samples.Left, samples.Right, dst);
+            return(SampleTime(snapshot(sw)));
+        }
+
         public IBenchComparison AndI8()
         {
             var opid = Id<sbyte>(OpKind.And);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.and(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.and(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AndFused, targets.Left);
+            var benched = Measure(!~opid, And, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AndU8()
         {
             var opid = Id<byte>(OpKind.And);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.and(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.and(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AndFused, targets.Left);
+            var benched = Measure(!~opid, And, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AndI16()
         {
             var opid = Id<short>(OpKind.And);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.and(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.and(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AndFused, targets.Left);
+            var benched = Measure(!~opid, And, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AndU16()
         {
             var opid = Id<ushort>(OpKind.And);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.and(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.and(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AndFused, targets.Left);
+            var benched = Measure(!~opid, And, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AndI32()
         {
             var opid = Id<int>(OpKind.And);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.and(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.and(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AndFused, targets.Left);
+            var benched = Measure(!~opid, And, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AndU32()
         {
             var opid = Id<uint>(OpKind.And);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.and(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.and(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AndFused, targets.Left);
+            var benched = Measure(!~opid, And, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AndI64()
         {
             var opid = Id<long>(OpKind.And);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.and(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.and(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AndFused, targets.Left);
+            var benched = Measure(!~opid, And, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AndU64()
         {
             var opid = Id<ulong>(OpKind.And);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.and(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.and(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
-        }
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AndFused, targets.Left);
+            var benched = Measure(!~opid, And, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
+        } 
     }
 }

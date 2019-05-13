@@ -131,6 +131,14 @@ namespace Z0
 
         }
 
+        void TestParse()
+        {
+            var src = Randomizer.Array<int>(Pow2.T20);
+            var sw = stopwatch();
+            var dst = map(src, x => gmath.parse<int>(x.ToString()));
+            inform($"{snapshot(sw)}");
+        }
+
         // void RunBench(BenchKind kind, params  OpKind[] opkinds)
         // {                    
         //     var ops = opkinds.Select(o => o.ToString()).ToHashSet();
@@ -184,47 +192,47 @@ namespace Z0
         {
             Bench51<byte>();
         }
-        void Bench50<T>()
-            where T : struct, IEquatable<T>
-        {
-            var lhs = Randomizer.Array<T>(Pow2.T19);
-            var rhs = Randomizer.Array<T>(Pow2.T19);
-            var len = Pow2.T19;
-            var dst = span<T>(len);
-            var lhsBytes = As.uint8(lhs);
-            var rhsBytes = As.uint8(rhs);
-            var dstBytes = alloc<byte>(len);
+        // void Bench50<T>()
+        //     where T : struct, IEquatable<T>
+        // {
+        //     var lhs = Randomizer.Array<T>(Pow2.T19);
+        //     var rhs = Randomizer.Array<T>(Pow2.T19);
+        //     var len = Pow2.T19;
+        //     var dst = span<T>(len);
+        //     var lhsBytes = As.uint8(lhs);
+        //     var rhsBytes = As.uint8(rhs);
+        //     var dstBytes = alloc<byte>(len);
 
-            void add(byte[] lhs, byte[] rhs, byte[] dst)
-            {
-                for(var i =0; i<lhs.Length; i++)
-                {
-                    ref var x = ref lhs[i];
-                    ref var y = ref rhs[i];
-                    dst[i] = (byte)(x + y);                 
-                }
-            }
+        //     void add(byte[] lhs, byte[] rhs, byte[] dst)
+        //     {
+        //         for(var i =0; i<lhs.Length; i++)
+        //         {
+        //             ref var x = ref lhs[i];
+        //             ref var y = ref rhs[i];
+        //             dst[i] = (byte)(x + y);                 
+        //         }
+        //     }
 
-            var sw = stopwatch();
-            for(var i = 0; i<Pow2.T12; i++)
-            {
-                fused.addU8(lhs, rhs, dst);
-            }
-            inform($"Generic: {snapshot(sw)}");
+        //     var sw = stopwatch();
+        //     for(var i = 0; i<Pow2.T12; i++)
+        //     {
+        //         fused.addU8(lhs, rhs, dst);
+        //     }
+        //     inform($"Generic: {snapshot(sw)}");
 
-            sw.Restart();
-            for(var i = 0; i<Pow2.T12; i++)
-            {
-                add(lhsBytes, rhsBytes, dstBytes);
-            }
-            inform($"Direct: {snapshot(sw)}");
+        //     sw.Restart();
+        //     for(var i = 0; i<Pow2.T12; i++)
+        //     {
+        //         add(lhsBytes, rhsBytes, dstBytes);
+        //     }
+        //     inform($"Direct: {snapshot(sw)}");
 
-        }
+        // }
 
-        void Bench50()
-        {
-            Bench50<byte>();
-        }
+        // void Bench50()
+        // {
+        //     Bench50<byte>();
+        // }
 
         void TestMulFloat(int? count = null)
         {
@@ -396,12 +404,12 @@ namespace Z0
             {
                 var arrDst = alloc<double>(Pow2.T20);
                 fixed(double* pDst = &arrDst[0])                
-                    Randomizer.StreamTo<double>(Interval.closed(-250.0, 250.0), arrDst.Length, pDst);
+                    Randomizer.StreamTo<double>(closed(-250.0, 250.0), arrDst.Length, pDst);
                 inform($"Captured {arrDst.Length} elements into an array");
 
                 var spanDst = span<double>(Pow2.T20);
                 fixed(double* pDst = &spanDst[0])
-                    Randomizer.StreamTo<double>(Interval.closed(-250.0, 250.0), arrDst.Length, pDst);
+                    Randomizer.StreamTo<double>(closed(-250.0, 250.0), arrDst.Length, pDst);
                 inform($"Captured {spanDst.Length} elements into a span");
                 
             }
@@ -519,41 +527,155 @@ namespace Z0
             where T : struct, IEquatable<T>
             => ref atoms.flipU8(ref val);
 
-        void IncTest()
+        void ConvertTest()
         {
-            // var val = 3.0;
-            // math.inc(ref val);
-            // inform(val);
+            var samples = Pow2.T20;
+            var src = Randomizer.Array<double>(samples);
+            var lhs = span<long>(samples);
+            var rhs = span<long>(samples);
+            var it = -1;
+            var sw = stopwatch();
+            while(++it < samples)
+                Converter.convert(src[it], ref lhs[it]);
+            inform($"Converters: {snapshot(sw)}");
+
+            it = -1;
+            sw.Restart();
+            while(++it < samples)
+                rhs[it] = Convert.ToInt64(src[it]);
+            inform($"System.Convert: {snapshot(sw)}");
+
+            //Claim.eq(lhs,rhs);
+
+        }
+
+        void AbsSqrtGeneric<T>()
+            where T : struct, IEquatable<T>
+        {
+
+            var samples = Pow2.T21;
+            var src0 = Randomizer.Span<T>(samples).ToReadOnlySpan();
+            var dst0 = src0.Replicate();
+            var srcA = src0.Replicate();
+            var srcC = Number.many(src0.Replicate()); 
+            var dstB = span<T>(samples);
+
+            var srcD = srcC.Replicate().ToReadOnlySpan();           
+            var dstD = span<num<T>>(samples);
+
+            for(var i=0; i<samples; i++)
+                gmath.sqrt(ref gmath.abs(ref dst0[i]));
+
+            var sw = stopwatch();
+            for(var i=0; i < samples; i++)
+               gmath.sqrt(ref  gmath.abs(ref srcA[i]));
+            inform($"Abs+Sqrt Generic | By Reference: {snapshot(sw)}");
+
+            sw.Restart();
+            for(var i = 0; i< samples; i++)
+                dstB[i] = gmath.sqrt(gmath.abs(src0[i]));
+
+            inform($"Abs+Sqrt Generic | By Value: {snapshot(sw)}");
+            Claim.eq(dst0, dstB);
+
+            sw.Restart();
+            for(var i = 0; i< samples; i++)
+                srcC[i].Abs().Sqrt();
+
+            inform($"Abs+Sqrt Generic Num | By Reference: {snapshot(sw)}");
+
+            sw.Restart();
+            for(var i = 0; i< samples; i++)
+                dstD[i] = sqrt(abs(srcD[i]));
+            inform($"Abs+Sqrt Generic Num | By Value: {snapshot(sw)}");
+            Claim.eq(dst0, dstD.Extract());
+        }
+
+        void Distance<T>()
+            where T : struct, IEquatable<T>
+        {
+            var samples = Pow2.T21;
+            var src = Randomizer.Span<T>(samples);
+            var dst = span<T>(samples);
+            
+            var sw = stopwatch();
+            for(var i=0; i<samples; i++)
+                dst[i] = gmath.sqrt(gmath.add(gmath.square(src[i]), gmath.square(src[i])));
+            inform($"Distance | Generic | Atomic | By Value: {snapshot(sw)}");
+
+        }
+
+        void DistanceF64()
+        {
+            var samples = Pow2.T21;
+            var src = Randomizer.Span<double>(samples);
+            var dst = span<double>(samples);
+            
+            var sw = stopwatch();
+            for(var i=0; i<samples; i++)
+                dst[i] = Math.Sqrt(src[i]*src[i] + src[i]*src[i]);
+            inform($"Distance | Direct | Atomic | By Value: {snapshot(sw)}");
+
+        }
+
+        void AbsSqrtAtomic()
+        {
+            var samples = Pow2.T21;
+            var srcA = Randomizer.Span<int>(samples, leftclosed(Int32.MinValue, Int32.MaxValue));
+            var srcB = srcA.Replicate().ToReadOnlySpan();            
+            var dstB = span<int>(samples);
+            
+            var sw = stopwatch();
+            for(var i=0; i < samples; i++)
+                srcA[i].Abs().Sqrt();
+            inform($"Abs+Sqrt Direct | Atomic | By Reference: {snapshot(sw)}");
 
 
-            byte val = 0b01010101;
-            inform($"Input value:  {val.ToBitString()}");
-            DoFlip(ref val);
-            inform($"Output value: {val.ToBitString()}");
+            sw.Restart();
+            for(var i = 0; i< samples; i++)
+                dstB[i] = math.sqrt(math.abs(srcB[i]));
+            inform($"Abs+Sqrt Direct | Atomic | By Value: {snapshot(sw)}");
+        }
+        void AbsSqrtFused()
+        {
+            var samples = Pow2.T21;
+            var srcA = Randomizer.Span<int>(samples, leftclosed(Int32.MinValue, Int32.MaxValue));
+            var srcB = srcA.Replicate().ToReadOnlySpan();            
+            var dstB = span<int>(samples);
+            
+            var sw = stopwatch();
+            srcA.Abs().Sqrt();            
+            inform($"Abs+Sqrt Direct | Fused | By Reference: {snapshot(sw)}");
 
+
+            sw.Restart();
+            srcB.Abs(dstB).Sqrt(dstB);
+            inform($"Abs+Sqrt Direct | Fused | By Value: {snapshot(sw)}");
+            
+            //Claim.eq(srcA, dstB);
+
+        }
+
+        void Distance()
+        {
+            DistanceF64();
+            Distance<double>();
+        }
+        void AbsSqrt()
+        {
+            AbsSqrtAtomic();
+            AbsSqrtFused();
+            AbsSqrtGeneric<int>();
         }
         static void Main(params string[] args)
         {            
             var app = new Benchmark();
             try
             {     
-                BenchSelector.RunBench(BenchKind.PrimalGeneric, OpKind.Lt, OpKind.LtEq, OpKind.Gt, OpKind.GtEq);
-                //app.RunTests();
-                //app.RunBench(BenchKind.PrimalGeneric, OpKind.Inc, OpKind.Dec);
-                //app.RunBench(BenchKind.PrimalDirect);
-                //app.RunBench(BenchKind.NumG);
-                //app.RunBench(BenchKind.PrimalAtomic);                
-                //app.RunBench(BenchKind.PrimalFused);
-                //app.RunBench(BenchKind.NumG);
-                // app.RunBench(BenchKind.Numbers);
-                // app.RunBench(BenchKind.Vec128);
-                // app.RunBench(BenchKind.Vec256);
-                // app.RunBench(BenchKind.Num128);
-                //app.RunTests();                   
-                //app.TestEqual();
-                //app.NumberTest();
-                //app.RunTests();
-                //app.Pop();
+                //app.ConvertTest();
+                app.Distance();
+                //BenchSelector.RunBench(BenchKind.PrimalAtomic);
+                //BenchSelector.RunBench(BenchKind.PrimalFused);
 
             }
             catch(Exception e)

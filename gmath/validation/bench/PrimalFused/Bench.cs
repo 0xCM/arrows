@@ -17,10 +17,10 @@ namespace Z0
     public partial class PrimalFusedBench : PrimalBench
     {
         public static PrimalFusedBench Create(IRandomizer random, BenchConfig config = null)
-            => new PrimalFusedBench(random, config);
+            => new PrimalFusedBench(random, config ?? Config2);
 
 
-        PrimalFusedBench(IRandomizer random, BenchConfig config = null)
+        PrimalFusedBench(IRandomizer random, BenchConfig config)
             : base(random, config)
             {
 

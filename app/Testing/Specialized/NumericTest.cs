@@ -73,8 +73,8 @@ namespace Z0.Testing
             : base(sampleSize)
         {
             
-            this.MinPrimVal = Bounds.left;
-            this.MaxPrimVal = Bounds.right;            
+            this.MinPrimVal = Bounds.Left;
+            this.MaxPrimVal = Bounds.Right;            
             this.Filter = filter ?? (x => true);
         }
     }

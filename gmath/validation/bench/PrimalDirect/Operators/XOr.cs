@@ -110,5 +110,77 @@ namespace Z0
                 dst[it] = src.Left[it] ^ src.Right[it];
             return SampleTime(snapshot(sw));
         }
+
+        public OpMetrics XOrFused(sbyte[] dst)
+        {
+            var opid = Id<sbyte>(OpKind.XOr);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.xor(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics XOrFused(byte[] dst)
+        {
+            var opid = Id<byte>(OpKind.XOr);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.xor(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics XOrFused(short[] dst)
+        {
+            var opid = Id<short>(OpKind.XOr);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.xor(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics XOrFused(ushort[] dst)
+        {
+            var opid = Id<ushort>(OpKind.XOr);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.xor(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics XOrFused(int[] dst)
+        {
+            var opid = Id<int>(OpKind.XOr);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.xor(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics XOrFused(uint[] dst)
+        {
+            var opid = Id<uint>(OpKind.XOr);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.xor(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics XOrFused(long[] dst)
+        {
+            var opid = Id<long>(OpKind.XOr);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.xor(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics XOrFused(ulong[] dst)
+        {
+            var opid = Id<ulong>(OpKind.XOr);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.xor(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
    }
 }

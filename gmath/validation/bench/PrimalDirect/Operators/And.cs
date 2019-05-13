@@ -110,5 +110,78 @@ namespace Z0
                 dst[it] = src.Left[it] & src.Right[it];
             return SampleTime(snapshot(sw));
         }
+
+        public OpMetrics AndFused(sbyte[] dst)
+        {
+            var opid = Id<sbyte>(OpKind.And);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.and(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics AndFused(byte[] dst)
+        {
+            var opid = Id<byte>(OpKind.And);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.and(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics AndFused(short[] dst)
+        {
+            var opid = Id<short>(OpKind.And);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.and(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics AndFused(ushort[] dst)
+        {
+            var opid = Id<ushort>(OpKind.And);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.and(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics AndFused(int[] dst)
+        {
+            var opid = Id<int>(OpKind.And);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.and(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics AndFused(uint[] dst)
+        {
+            var opid = Id<uint>(OpKind.And);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.and(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics AndFused(long[] dst)
+        {
+            var opid = Id<long>(OpKind.And);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.and(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics AndFused(ulong[] dst)
+        {
+            var opid = Id<ulong>(OpKind.And);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.and(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
    }
 }

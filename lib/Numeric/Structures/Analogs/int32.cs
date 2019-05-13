@@ -25,7 +25,7 @@ namespace Z0
     
         static readonly Operative.PrimOps<primitive> Prim = primops.typeops<primitive>();
         
-        static readonly NumberInfo<primitive> NumInfo = Prim.numinfo;
+        static readonly NumberInfo<primitive> NumInfo = Prim.NumberInfo;
 
         public static readonly analog Zero = NumInfo.Zero;
 
@@ -315,7 +315,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Sign sign()
-            => Prim.sign(data);
+            => Prim.Sign(data);
 
         [MethodImpl(Inline)]
         public analog gcd(analog rhs)

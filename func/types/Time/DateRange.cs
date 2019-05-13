@@ -15,7 +15,7 @@ namespace Z0
     /// <summary>
     /// Represents a contiguous finite interval of time with calendar day resolution
     /// </summary>
-    public readonly struct DateRange : IInterval<Date>
+    public readonly struct DateRange : ITimeInterval<Date>
     {
         /// <summary>
         /// Converts a <see cref="DateRange"/> value to a <see cref="TimestampRange"/> value
@@ -193,10 +193,10 @@ namespace Z0
             => Max.DaysSince(Min);
 
 
-        bool IInterval.LeftInclusive
+        bool ITimeInterval.LeftInclusive
             => true;
 
-        bool IInterval.RightInclusive
+        bool ITimeInterval.RightInclusive
             => true;
 
         /// <summary>
@@ -218,10 +218,10 @@ namespace Z0
         public bool IsDegenerate
             => Min == Max;
 
-        object IInterval.Min
+        object ITimeInterval.Min
             => Min;
 
-        object IInterval.Max
+        object ITimeInterval.Max
             => Max;
 
         public override string ToString()

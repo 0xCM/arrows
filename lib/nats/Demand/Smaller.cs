@@ -6,10 +6,6 @@ namespace Z0
 {
     using System;
 
-    partial class Demands
-    {
-
-    }
 
     /// <summary>
     /// Requires n1:T1 & n2:T2 => n1 < T2

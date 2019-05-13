@@ -14,13 +14,42 @@ namespace Z0
     using Z0;
  
     using static zfunc;
-    using static mfunc;
     
     public static partial class Bits
     {                
+
+        const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
+
         const byte Zero = 0;
 
         const byte One = 1;
+
+        /// <summary>
+        /// Determines the binary digit in an integral value at a specified position
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="pos">The bit position</param>
+        /// <typeparam name="T">The underlying integral type</typeparam>
+        [MethodImpl(Inline)]
+        public static BinaryDigit digit<T>(int src, int pos)
+            where T : struct, IEquatable<T>
+                => Bits.test(src,pos) switch 
+                    {
+                        true => BinaryDigit.Zed,
+                        false => BinaryDigit.One
+                    };
+
+        /// <summary>
+        /// Constructs a bit from the data in an integral value at a specified position
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="pos">The bit position</param>
+        /// <typeparam name="T">The underlying integral type</typeparam>
+        [MethodImpl(Inline)]
+        public static Bit bit<T>(int src, int pos)
+            where T : struct, IEquatable<T>
+                => new Bit(Bits.test(src,pos));
+
 
         /// <summary>
         /// Calculates the base-2 log of the source

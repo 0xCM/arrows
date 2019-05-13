@@ -38,7 +38,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public numbers(num<T>[] src)
-            => this.data = src.Data();
+            => this.data = src.Extract();
 
 
         [MethodImpl(Inline)]

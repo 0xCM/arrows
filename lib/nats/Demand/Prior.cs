@@ -5,26 +5,21 @@
 namespace Z0
 {
     using System;
+    using static nfunc;
     using static zcore;
 
-    partial class Demands
+
+    /// <summary>
+    /// Requires k1: K1 & k2:K2 => k1 - 1 = k2
+    /// </summary>
+    /// <typeparam name="K1"></typeparam>
+    /// <typeparam name="K2"></typeparam>
+    public interface IPrior<K1,K2> : ILarger<K1,K2>
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
     {
 
-
-
-    }
-
-        /// <summary>
-        /// Requires k1: K1 & k2:K2 => k1 - 1 = k2
-        /// </summary>
-        /// <typeparam name="K1"></typeparam>
-        /// <typeparam name="K2"></typeparam>
-        public interface IPrior<K1,K2> : ILarger<K1,K2>
-            where K1 : ITypeNat, new()
-            where K2 : ITypeNat, new()
-        {
-
-        }       
+    }       
 
 
     /// <summary>

@@ -11,7 +11,7 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
-    using static mfunc;
+    using static zfunc;
 
     /// <summary>
     /// Encodes a natural number k such that k1:K1 & k2:K2 => k = k1 + k2
@@ -32,7 +32,7 @@ namespace Z0
         static readonly string description = $"{k1} + {k2} = {Value}";
 
         public static readonly byte[] Digits 
-            = mfunc.digits(Value);
+            = digits(Value);
 
         public static readonly NatSeq Seq
             = Nat.reflect(Digits);

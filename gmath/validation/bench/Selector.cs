@@ -14,12 +14,16 @@ namespace Z0
     public enum BenchKind
     {
         Common,
-        
-        PrimalFused,
 
-        PrimalAtomic,
+        /// <summary>
+        /// Identifies primal/generic/fused benchmarks
+        /// </summary>        
+        PrimalFused,
         
-        PrimalGeneric,
+        /// <summary>
+        /// Identifies primal/generic/atomic benchmarks
+        /// </summary>        
+        PrimalAtomic,
 
         PrimalDirect,
 
@@ -63,8 +67,8 @@ namespace Z0
                 case BenchKind.PrimalDirect:
                     return BaselineMetrics.Create(random, config);
 
-                case BenchKind.PrimalGeneric:
-                    return PrimalGenericBench.Create(random, config);
+                case BenchKind.PrimalAtomic:
+                    return PrimalAtomicBench.Create(random, config);
                 
                 case BenchKind.NumG:
                     return NumGBench.Create(random, config);

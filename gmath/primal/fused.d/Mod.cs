@@ -10,27 +10,29 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
-
     
-    using static mfunc;
+    using static mfunc;    
+    using static zfunc;
 
     partial class math
     {
         [MethodImpl(NotInline)]
-        public static void mod(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
+        public static Span<sbyte> mod(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
                 dst[i] = mod(lhs[i], rhs[i]);
+            return dst;                
         }
 
 
         [MethodImpl(NotInline)]
-        public static void mod(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
+        public static Span<byte> mod(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
                 dst[i] = mod(lhs[i], rhs[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]

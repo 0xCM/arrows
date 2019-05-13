@@ -32,7 +32,4 @@ namespace Z0
     {
         S add(S rhs);
     }
-
-
-
 }

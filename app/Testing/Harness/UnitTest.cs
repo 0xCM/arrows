@@ -32,7 +32,7 @@ namespace Z0.Testing
         protected UnitTest(int? SampleSize = null)
             : base(RandSeeds.TestSeed)            
         {
-            this.SampleSize = SampleSize ?? Defaults.SampleSize;            
+            this.SampleSize = SampleSize ?? Pow2.T14;            
         }
 
     }

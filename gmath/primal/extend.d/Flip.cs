@@ -17,10 +17,6 @@ namespace Z0
 
     partial class mathx
     {
-        /// <summary>
-        /// Computes a correctly-typed twos-complement of the source value
-        /// </summary>
-        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref sbyte Flip(this ref sbyte src)
         {
@@ -28,10 +24,6 @@ namespace Z0
             return ref src;
         }
 
-        /// <summary>
-        /// Computes a correctly-typed twos-complement of the source value
-        /// </summary>
-        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref byte Flip(this ref byte src)
         {
@@ -39,10 +31,6 @@ namespace Z0
             return ref src;
         }
 
-        /// <summary>
-        /// Computes a correctly-typed twos-complement of the source value
-        /// </summary>
-        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref short Flip(this ref short src)
         {
@@ -50,10 +38,6 @@ namespace Z0
             return ref src;
         }
 
-        /// <summary>
-        /// Computes a correctly-typed twos-complement of the source value
-        /// </summary>
-        /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref ushort Flip(this ref ushort src)
         {
@@ -61,10 +45,6 @@ namespace Z0
             return ref src;
         }
 
-        /// <summary>
-        /// Computes a bitwise complement of the operand
-        /// </summary>
-        /// <param name="src">The operand</param>
         [MethodImpl(Inline)]
         public static ref int Flip(this ref int src)
         {
@@ -72,10 +52,6 @@ namespace Z0
             return ref src;
         }
 
-        /// <summary>
-        /// Computes a bitwise complement of the operand
-        /// </summary>
-        /// <param name="src">The operand</param>
         [MethodImpl(Inline)]
         public static ref uint Flip(this ref uint src)
         {
@@ -83,10 +59,6 @@ namespace Z0
             return ref src;
         }
 
-        /// <summary>
-        /// Computes a bitwise complement of the operand
-        /// </summary>
-        /// <param name="src">The operand</param>
         [MethodImpl(Inline)]
         public static ref long Flip(this ref long src)
         {
@@ -94,10 +66,6 @@ namespace Z0
             return ref src;
         }
 
-        /// <summary>
-        /// Computes a bitwise complement of the operand
-        /// </summary>
-        /// <param name="src">The operand</param>
         [MethodImpl(Inline)]
         public static ref ulong Flip(this ref ulong src)
         {

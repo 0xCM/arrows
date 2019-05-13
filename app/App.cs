@@ -42,7 +42,7 @@ namespace Z0
         {
             var sw = stopwatch();
             var step = 50000UL;
-            var interval = Interval.closed(0UL,UInt32.MaxValue - step);
+            var interval = closed(0UL,UInt32.MaxValue - step);
             foreach(var d in Compute(interval,step))
             {
                 inform($"{d.Range}, count = {d.Lists.Count()} {sw.ElapsedMilliseconds}ms");
@@ -58,8 +58,8 @@ namespace Z0
         {
             var stream = Randomizer.Stream(domain);
             var samples = stream.Freeze(Pow2.T20);
-            var underflow = samples.Where(x => primops.lt(x,domain.left) );
-            var overflow = samples.Where(x => primops.gteq(x, domain.right));
+            var underflow = samples.Where(x => gmath.lt(x,domain.Left) );
+            var overflow = samples.Where(x => gmath.gteq(x, domain.Right));
             
             if(underflow.Count() != 0)
                 foreach(var i in underflow)
@@ -69,8 +69,8 @@ namespace Z0
                 foreach(var i in overflow)
                     babble(i);
 
-            Claim.eq(0, underflow.Count(), AppMsg.Define($"Generation underflow: numbers should be greater than or equal to {domain.left}"));
-            Claim.eq(0, overflow.Count(), AppMsg.Define($"Generation overlfow: numbers should be less than {domain.right}"));
+            Claim.eq(0, underflow.Count(), AppMsg.Define($"Generation underflow: numbers should be greater than or equal to {domain.Left}"));
+            Claim.eq(0, overflow.Count(), AppMsg.Define($"Generation overlfow: numbers should be less than {domain.Right}"));
 
         }
 
@@ -82,7 +82,7 @@ namespace Z0
 
         void TestRandomFloat()
         {
-            var domain = Interval.leftclosed(-150.0d, 150.0d).canonical();
+            var domain = Interval.leftclosed(-150.0d, 150.0d).AsCanonical();
             CheckRandomBounds(domain);            
             var stream = Randomizer.Stream(domain);
             var samples = stream.Freeze(Pow2.T20);

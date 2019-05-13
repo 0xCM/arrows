@@ -84,67 +84,67 @@ namespace Z0.Bench
 
 
         static readonly Interval<sbyte> Int8Domain 
-            = Interval.closed<sbyte>(sbyte.MinValue + 1, sbyte.MaxValue - 1);
+            = closed<sbyte>(sbyte.MinValue + 1, sbyte.MaxValue - 1);
 
         Interval<sbyte> Setting<sbyte>.Domain 
             => Int8Domain;
 
         static readonly Interval<byte> UInt8Domain 
-            = Interval.closed<byte>(byte.MinValue + 1, byte.MaxValue - 1);
+            = closed<byte>(byte.MinValue + 1, byte.MaxValue - 1);
 
         Interval<byte> Setting<byte>.Domain 
             => UInt8Domain;
 
         static readonly Interval<short> Int16Domain 
-            = Interval.closed<short>(short.MinValue + 1, short.MaxValue - 1);
+            = closed<short>(short.MinValue + 1, short.MaxValue - 1);
 
         Interval<short> Setting<short>.Domain 
             => Int16Domain;
 
         static readonly Interval<ushort> UInt16Range 
-            = Interval.closed<ushort>(ushort.MinValue + 1, ushort.MaxValue - 1);
+            = closed<ushort>(ushort.MinValue + 1, ushort.MaxValue - 1);
 
         Interval<ushort> Setting<ushort>.Domain 
             => UInt16Range;
 
         static readonly Interval<int> Int32Domain 
-            = Interval.closed(-250000,250000);
+            = closed(-250000,250000);
 
         Interval<int> Setting<int>.Domain 
             => Int32Domain;
 
         static readonly Interval<uint> UInt32Domain 
-            = Interval.closed(0u,500000u);
+            = closed(0u,500000u);
 
         Interval<uint> Setting<uint>.Domain 
             => UInt32Domain;
  
         static readonly Interval<long> Int64Domain 
-            = Interval.closed(-250000L,250000L);
+            = closed(-250000L,250000L);
 
         Interval<long> Setting<long>.Domain 
             => Int64Domain;
 
         static readonly Interval<ulong> UInt64Domaim 
-            = Interval.closed(0UL,500000UL);
+            = closed(0UL,500000UL);
 
         Interval<ulong> Setting<ulong>.Domain 
             => UInt64Domaim;
 
         static readonly Interval<float> Float32Domain 
-            = Interval.closed(-250000.00f,250000.00f);
+            = closed(-250000.00f,250000.00f);
 
         Interval<float> Setting<float>.Domain 
             => Float32Domain;
 
         static readonly Interval<double> Float64Domain 
-            = Interval.closed(-250000.00, 250000.00);
+            = closed(-250000.00, 250000.00);
 
         Interval<double> Setting<double>.Domain 
             => Float64Domain;
 
         static readonly Interval<BigInteger> BigIntRange 
-            = Interval.closed<BigInteger>(-250000,250000);
+            = closed<BigInteger>(-250000,250000);
 
         Interval<BigInteger> Setting<BigInteger>.Domain 
             => BigIntRange;

@@ -10,79 +10,85 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
-
     
     using static mfunc;
+    using static zfunc;
 
     partial class math
     {
 
         [MethodImpl(NotInline)]
-        public static void flip(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
+        public static Span<sbyte> flip(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
         {
             var len = length(src,dst);
             for(var i = 0; i< len; i++)
                 dst[i] = flip(src[i]);
+            return dst;                
         }
 
         [MethodImpl(NotInline)]
-        public static void flip(ReadOnlySpan<byte> src, Span<byte> dst)
+        public static Span<byte> flip(ReadOnlySpan<byte> src, Span<byte> dst)
         {
             var len = length(src,dst);
             for(var i = 0; i< len; i++)
                 dst[i] = flip(src[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void flip(ReadOnlySpan<short> src, Span<short> dst)
+        public static Span<short> flip(ReadOnlySpan<short> src, Span<short> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = flip(src[i]);
+            return dst;                
         }
 
         [MethodImpl(NotInline)]
-        public static void flip(ReadOnlySpan<ushort> src, Span<ushort> dst)
+        public static Span<ushort> flip(ReadOnlySpan<ushort> src, Span<ushort> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = flip(src[i]);
+            return dst;                
         }
 
         [MethodImpl(NotInline)]
-        public static void flip(ReadOnlySpan<int> src, Span<int> dst)
+        public static Span<int> flip(ReadOnlySpan<int> src, Span<int> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = flip(src[i]);
+            return dst;                
         }
 
         [MethodImpl(NotInline)]
-        public static void flip(ReadOnlySpan<uint> src, Span<uint> dst)
+        public static Span<uint> flip(ReadOnlySpan<uint> src, Span<uint> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = flip(src[i]);
+            return dst;                
         }
 
 
         [MethodImpl(NotInline)]
-        public static void flip(ReadOnlySpan<long> src, Span<long> dst)
+        public static Span<long> flip(ReadOnlySpan<long> src, Span<long> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = flip(src[i]);
+            return dst;                
         }
 
         [MethodImpl(NotInline)]
-        public static void flip(ReadOnlySpan<ulong> src, Span<ulong> dst)
+        public static Span<ulong> flip(ReadOnlySpan<ulong> src, Span<ulong> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
                 dst[i] = flip(src[i]);
+            return dst;                
         }
-
-
 
         [MethodImpl(NotInline)]
         public static ref Span<sbyte> flip(ref Span<sbyte> io)

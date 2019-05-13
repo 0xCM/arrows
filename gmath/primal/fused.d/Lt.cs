@@ -12,6 +12,7 @@ namespace Z0
     using System.Diagnostics;
     
     using static mfunc;
+    using static zfunc;
 
     partial class math
     {

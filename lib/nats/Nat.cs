@@ -13,11 +13,10 @@ namespace Z0
     using System.Collections.Concurrent;
     using System.Runtime.CompilerServices;
 
-    //using static zcore;
     using static zfunc;
     using static nats;
     using static mfunc;
-    
+
     /// <summary>
     /// Characterizes an enumerable with a known length as specified
     /// by a natural type parameter
@@ -115,7 +114,7 @@ namespace Z0
         public static NatSeq reflect(byte[] digits)
         {
             var dtypes = types(digits);
-            var nattype = seqtype(dtypes.Length()).MakeGenericType(dtypes);
+            var nattype = seqtype((uint)dtypes.Length).MakeGenericType(dtypes);
             return instance<NatSeq>(nattype);            
         }
         
@@ -190,17 +189,6 @@ namespace Z0
             where K1 : ITypeNat, new()
             where K3 : ITypeNat, new()
                 => (natu<K1>(),natu<K2>(), natu<K3>());            
-
-        /// <summary>
-        /// Reifies a natural value as a generic integer
-        /// </summary>
-        /// <typeparam name="K">The nat type</typeparam>
-        /// <typeparam name="Z">The underlying integral type</typeparam>
-        [MethodImpl(Inline)]   
-        public static intg<Z> natvalg<K,Z>()
-            where Z : struct, IEquatable<Z>
-            where K : ITypeNat, new()
-                => new K().value.ToIntG<Z>(); 
 
         /// <summary>
         /// Contructs the canonical 1-element natural sequence for a primitive natural

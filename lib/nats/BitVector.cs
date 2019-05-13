@@ -11,9 +11,9 @@ namespace Z0
     using System.Globalization;
     using System.Runtime.CompilerServices;
 
-    using static zcore;
     using static zfunc;
     using static nats;
+    using static zcore;
 
     /// <summary>
     /// Defines primary bitvector api
@@ -133,7 +133,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public string format()
-            => string.Join("", map(bits, b => b.format()));
+            => string.Join("", map(bits, b => b.ToString()));
 
         [MethodImpl(Inline)]
         public int hash()

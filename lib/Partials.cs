@@ -5,19 +5,15 @@
 namespace Z0
 {
 
-    public static partial class BitwiseX 
-    {
-        static readonly PrimOps.Reify.Bitwise Ops = default;
+    // public static partial class BitwiseX 
+    // {
 
-    }
+    // }
 
-    /// <summary>
-    /// Namescope for types supporting the Stateless Singleton Reification pattern
-    /// </summary>
-    public partial class SSR
-    {
+    // public partial class SSR
+    // {
 
-    }
+    // }
 
     public partial class InX
     {
@@ -30,15 +26,15 @@ namespace Z0
 
     }
 
-    public static partial class InXG
-    {
+    // public static partial class InXG
+    // {
 
-    }
+    // }
 
-    public partial class InX256
-    {
+    // public partial class InX256
+    // {
 
-    }
+    // }
 
     public static partial class InXX
     {

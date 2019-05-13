@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.gmath", "gmath/z0.gmath.csproj", "{5000C20B-C59A-4DF3-A7C5-9A3204464A51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.gmath", "gmath\z0.gmath.csproj", "{5000C20B-C59A-4DF3-A7C5-9A3204464A51}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.lib", "lib/z0.lib.csproj", "{03E1AD1A-482C-4034-AAA2-7D9D32FD5924}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.lib", "lib\z0.lib.csproj", "{03E1AD1A-482C-4034-AAA2-7D9D32FD5924}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.app", "app/z0.app.csproj", "{5182C20B-C59A-4DF3-A7C5-9A3204464A51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.app", "app\z0.app.csproj", "{5182C20B-C59A-4DF3-A7C5-9A3204464A51}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.zfunc", "func\z0.zfunc.csproj", "{59007E1D-0A00-42CC-9888-B6270C459F5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5000C20B-C59A-4DF3-A7C5-9A3204464A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5000C20B-C59A-4DF3-A7C5-9A3204464A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5000C20B-C59A-4DF3-A7C5-9A3204464A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5000C20B-C59A-4DF3-A7C5-9A3204464A51}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03E1AD1A-482C-4034-AAA2-7D9D32FD5924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{03E1AD1A-482C-4034-AAA2-7D9D32FD5924}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03E1AD1A-482C-4034-AAA2-7D9D32FD5924}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -23,10 +29,10 @@ Global
 		{5182C20B-C59A-4DF3-A7C5-9A3204464A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5182C20B-C59A-4DF3-A7C5-9A3204464A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5182C20B-C59A-4DF3-A7C5-9A3204464A51}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5000C20B-C59A-4DF3-A7C5-9A3204464A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5000C20B-C59A-4DF3-A7C5-9A3204464A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5000C20B-C59A-4DF3-A7C5-9A3204464A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5000C20B-C59A-4DF3-A7C5-9A3204464A51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59007E1D-0A00-42CC-9888-B6270C459F5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59007E1D-0A00-42CC-9888-B6270C459F5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59007E1D-0A00-42CC-9888-B6270C459F5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59007E1D-0A00-42CC-9888-B6270C459F5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

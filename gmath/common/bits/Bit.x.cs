@@ -8,13 +8,13 @@ namespace Z0
     using System.Numerics;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-
     
     using static zfunc;
-    using static mfunc;
 
     public static class  BitX
     {
+        const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
+        
         #region primitive => Bit[]
 
         /// <summary>

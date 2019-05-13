@@ -72,34 +72,6 @@ partial class zcore
 
 
     /// <summary>
-    /// Enumerates generic reals, with unit spacing, inclusively between specified bounds
-    /// If the first value is greater than the last, the range will be constructed
-    /// in descending order.
-    /// </summary>
-    /// <param name="first">The first number to yeild</param>
-    /// <param name="last">The last number to yield</param>
-    /// <typeparam name="T">The underlying numeric type</typeparam>
-    public static IEnumerable<real<T>> reals<T>(real<T> first, real<T> last)
-        where T : struct, IEquatable<T>
-    {
-        var current = first;
-        if(first < last)
-        {
-            while(current<= last)
-            {
-                yield return current++;
-            }                
-        }
-        else
-        {
-            while(current >= last)
-            {
-                yield return current--;
-            }
-        }
-    }
-
-    /// <summary>
     /// Constructs a contiguous range of integers inclusively between specified bounds
     /// If the first value is greater than the last, the range will be constructed
     /// in descending order.
@@ -161,7 +133,6 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static double abs(double x)
         => Math.Abs(x);
-
 
     [MethodImpl(Inline)]   
     public static float abs(float x)

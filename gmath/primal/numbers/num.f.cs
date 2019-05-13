@@ -68,5 +68,50 @@ partial class mfunc
         return dst;            
     }
 
+    [MethodImpl(Inline)]
+    public static num<T> abs<T>(num<T> src)
+        where T : struct, IEquatable<T>
+            => gmath.abs<T>(src);
+
+    [MethodImpl(Inline)]
+    public static num<T> sqrt<T>(num<T> src)
+        where T : struct, IEquatable<T>
+            => gmath.sqrt<T>(src);
+
+    [MethodImpl(Inline)]
+    public static num<T> add<T>(num<T> lhs, num<T> rhs)
+        where T : struct, IEquatable<T>
+            => lhs + rhs;
+    
+    [MethodImpl(Inline)]
+    public static num<T> mul<T>(num<T> lhs, num<T> rhs)
+        where T : struct, IEquatable<T>
+            => lhs * rhs;
+
+    [MethodImpl(Inline)]
+    public static num<T> div<T>(num<T> lhs, num<T> rhs)
+        where T : struct, IEquatable<T>
+            => lhs / rhs;
+    
+    [MethodImpl(Inline)]
+    public static num<T> mod<T>(num<T> lhs, num<T> rhs)
+        where T : struct, IEquatable<T>
+            => lhs % rhs;
+
+    [MethodImpl(Inline)]
+    public static num<T> and<T>(num<T> lhs, num<T> rhs)
+        where T : struct, IEquatable<T>
+            => lhs & rhs;
+
+    [MethodImpl(Inline)]
+    public static num<T> or<T>(num<T> lhs, num<T> rhs)
+        where T : struct, IEquatable<T>
+            => lhs | rhs;
+
+    [MethodImpl(Inline)]
+    public static num<T> xor<T>(num<T> lhs, num<T> rhs)
+        where T : struct, IEquatable<T>
+            => lhs ^ rhs;
+
 
 }

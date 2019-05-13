@@ -16,174 +16,117 @@ namespace Z0
 
     partial class PrimalFusedBench
     {
+
+
+
+        OpMetrics Add<T>(T[] dst)
+            where T : struct, IEquatable<T>
+        {
+            var opid = Id<T>(OpKind.Add);
+            var samples = Sampled(opid);            
+            var sw = stopwatch();            
+            gmath.add(samples.Left, samples.Right, dst);
+            return(SampleTime(snapshot(sw)));
+        }
+
         public IBenchComparison AddI8()
         {
             var opid = Id<sbyte>(OpKind.Add);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.add(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.add(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AddFused, targets.Left);
+            var benched = Measure(!~opid, Add, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AddU8()
         {
             var opid = Id<byte>(OpKind.Add);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.add(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.add(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AddFused, targets.Left);
+            var benched = Measure(!~opid, Add, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AddI16()
         {
             var opid = Id<short>(OpKind.Add);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.add(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.add(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AddFused, targets.Left);
+            var benched = Measure(!~opid, Add, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AddU16()
         {
             var opid = Id<ushort>(OpKind.Add);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.add(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.add(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AddFused, targets.Left);
+            var benched = Measure(!~opid, Add, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AddI32()
         {
             var opid = Id<int>(OpKind.Add);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.add(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.add(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AddFused, targets.Left);
+            var benched = Measure(!~opid, Add, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AddU32()
         {
             var opid = Id<uint>(OpKind.Add);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.add(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.add(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AddFused, targets.Left);
+            var benched = Measure(!~opid, Add, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AddI64()
         {
             var opid = Id<long>(OpKind.Add);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.add(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.add(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AddFused, targets.Left);
+            var benched = Measure(!~opid, Add, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AddU64()
         {
             var opid = Id<ulong>(OpKind.Add);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.add(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.add(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AddFused, targets.Left);
+            var benched = Measure(!~opid, Add, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AddF32()
         {
             var opid = Id<float>(OpKind.Add);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.add(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.add(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AddFused, targets.Left);
+            var benched = Measure(!~opid, Add, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison AddF64()
         {
             var opid = Id<double>(OpKind.Add);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.add(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.add(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.AddFused, targets.Left);
+            var benched = Measure(!~opid, Add, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
     }

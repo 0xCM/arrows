@@ -49,14 +49,14 @@ namespace Z0
         /// <summary>
         /// The dividend
         /// </summary>
-        T over();
+        T Over();
 
         /// <summary>
         /// The divisor
         /// </summary>
-        T under();
+        T Under();
 
-        (T over, T under) paired();
+        (T Over, T Under) Paired();
 
     }
     

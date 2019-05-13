@@ -10,6 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
+    using System.Numerics;
     
     using static mfunc;
 
@@ -59,6 +60,48 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static ref sbyte abs(sbyte src, out sbyte dst)
+        {
+            dst = Math.Abs(src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref short abs(short src, out short dst)
+        {
+            dst = Math.Abs(src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref int abs(int src, out int dst)
+        {
+            dst = Math.Abs(src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long abs(long src, out long dst)
+        {
+            dst = Math.Abs(src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref float abs(float src, out float dst)
+        {
+            dst = Math.Abs(src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref double abs(double src, out double dst)
+        {
+            dst = Math.Abs(src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
         public static sbyte abs(sbyte src)
             => Math.Abs(src);
 
@@ -81,6 +124,15 @@ namespace Z0
         [MethodImpl(Inline)]
         public static double abs(double src)
             => Math.Abs(src);
+ 
+        [MethodImpl(Inline)]
+        public static decimal abs(decimal src)
+            => src >= 0m ? src : -src;
+ 
+        [MethodImpl(Inline)]
+        public static BigInteger abs(BigInteger src)
+            => BigInteger.Abs(src);
+ 
     }
 
 }

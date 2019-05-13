@@ -18,11 +18,11 @@ namespace Z0.Test
     using static BitPatterns;
     using static BitPattern;
     using static BinaryDigit;
-
+    using static Bit;
     public class BitTests : UnitTest<BitTests>
     {
         
-        public void Convert()
+        public void COnvert()
         {
             static T toInt<T>(Bit b)
                 where T : struct, IEquatable<T>
@@ -33,21 +33,61 @@ namespace Z0.Test
             Claim.eq(1u, toInt<uint>(Bit.On)); 
             Claim.eq(0u, toInt<uint>(Bit.Off)); 
         }
-        // public void Extract1()
-        // {
-        //     var x0 = (byte)0b10100111;
-        //     var x1 = BitVector.define<N8>(Bits.pack(1,1,1,0,0,1,0,1));
-        //     var x2 = BitVector.define<N8>(x0.ToBits());
-        //     Claim.eq(x1,x2);
-        // }
 
-        // public void Extract2()
-        // {
-        //     var x = (byte)0b00010110;
-        //     var expect = BitVector.define<N8>(x.ToBits());
-        //     var actual= BitVector.define<N8>(Z0.Bits.pack(0,1,1,0,1,0,0,0));
-        //     Claim.eq(expect,actual);
-        // }
+        public void BitCOnvert()
+        {
+            Claim.eq<bool>(false, Off);
+            Claim.eq<bool>(true, On);
+
+            Claim.eq<byte>(0, (byte)Off);
+            Claim.eq<byte>(1, (byte)On);
+
+            Claim.eq<ushort>(0, (ushort)Off);
+            Claim.eq<ushort>(1, (ushort)On);
+
+            Claim.eq<uint>(0, (uint)Off);
+            Claim.eq<uint>(1, (uint)On);
+
+            Claim.eq<ulong>(0, (ulong)Off);
+            Claim.eq<ulong>(1, (ulong)On);
+
+            Claim.enumeq<BinaryDigit>(BinaryDigit.Zed, Off);
+            Claim.enumeq<BinaryDigit>(BinaryDigit.One, On);
+
+        }
+
+
+        public void BitOps()
+        {
+
+            //parse
+            Claim.eq(Off, Z0.Bit.Parse('0'));
+            Claim.eq(On, Z0.Bit.Parse('1'));
+
+            //flip
+            Claim.eq(On, ~ Off);
+            Claim.eq(Off, ~ On);
+
+            //and
+            Claim.eq(On, On & On);
+            Claim.eq(Off, On & Off);
+            Claim.eq(Off, Off & On);
+            Claim.eq(Off, Off & Off);
+
+            //or
+            Claim.eq(On, Off | On);
+            Claim.eq(On, On | Off);
+            Claim.eq(Off, Off | Off);
+            Claim.eq(On, On | On);
+            
+            
+            //xor
+            Claim.eq(On, Off ^ On);
+            Claim.eq(On, On ^ Off);
+            Claim.eq(Off, Off ^ Off);
+            Claim.eq(Off, On ^ On);
+        }
+
 
         public void Pack1()
         {

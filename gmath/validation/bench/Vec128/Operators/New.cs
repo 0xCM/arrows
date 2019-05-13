@@ -34,7 +34,7 @@ namespace Z0
                 });
 
             var generic = Measure(~opid, () => 
-                dinx.store(Vec128.define(data.Source), data.LeftTarget));
+                dinx.store(Vec128.define(ref src), data.LeftTarget));
 
             var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
@@ -51,7 +51,7 @@ namespace Z0
                 dinx.store(Vec128.define(src[0], src[1], src[2], src[3]), data.RightTarget));
 
             var generic = Measure(~opid, () => 
-                dinx.store(Vec128.define(data.Source), data.LeftTarget));
+                dinx.store(Vec128.define(ref src), data.LeftTarget));
 
             var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        
@@ -68,7 +68,7 @@ namespace Z0
                 dinx.store(Vec128.define(src[0], src[1]), data.RightTarget));
 
             var generic = Measure(~opid, () => 
-                dinx.store(Vec128.define(data.Source), data.LeftTarget));
+                dinx.store(Vec128.define(ref src), data.LeftTarget));
 
             var comparison = Compare(opid, direct, generic);
             Claim.eq(data.LeftTarget, data.RightTarget);        

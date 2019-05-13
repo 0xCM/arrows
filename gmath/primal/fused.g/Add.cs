@@ -12,6 +12,7 @@ namespace Z0
     
     
     using static mfunc;
+    using static zfunc;    
     using static As;
 
     public static partial class fused
@@ -80,8 +81,10 @@ namespace Z0
             }
         }
 
+
+
         [MethodImpl(NotInline)]
-        public static Span<T> addI8<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        static Span<T> addI8<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
         {
             var x = int8(lhs);
@@ -92,7 +95,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addU8<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        static Span<T> addU8<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
         {
             var x = uint8(lhs);
@@ -103,7 +106,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addI16<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        static Span<T> addI16<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
         {
             var x = int16(lhs);
@@ -114,7 +117,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addU16<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        static Span<T> addU16<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
         {
             var x = uint16(lhs);
@@ -125,7 +128,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addI32<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        static Span<T> addI32<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
         {
             var x = int32(lhs);
@@ -136,7 +139,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addU32<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        static Span<T> addU32<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
         {
             var x = uint32(lhs);
@@ -147,7 +150,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addI64<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        static Span<T> addI64<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
         {
             var x = int64(lhs);
@@ -159,7 +162,7 @@ namespace Z0
 
 
         [MethodImpl(NotInline)]
-        public static Span<T> addU64<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        static Span<T> addU64<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
         {
             var x = uint64(lhs);
@@ -170,7 +173,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addF32<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        static Span<T> addF32<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
         {
             var x = float32(lhs);
@@ -182,7 +185,7 @@ namespace Z0
 
 
         [MethodImpl(NotInline)]
-        public static Span<T> addF64<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        static Span<T> addF64<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct, IEquatable<T>
         {
             var x = float64(lhs);
@@ -193,7 +196,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addI8<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static Span<T> addI8<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             math.add(int8(lhs),int8(rhs));
@@ -201,7 +204,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addU8<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static Span<T> addU8<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             math.add(uint8(lhs),uint8(rhs));
@@ -209,7 +212,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addI16<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static Span<T> addI16<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             math.add(int16(lhs),int16(rhs));
@@ -217,7 +220,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addU16<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static Span<T> addU16<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             math.add(uint16(lhs),uint16(rhs));
@@ -225,7 +228,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addI32<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static Span<T> addI32<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             math.add(int32(lhs),int32(rhs));
@@ -233,7 +236,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addU32<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static Span<T> addU32<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             math.add(uint32(lhs),uint32(rhs));
@@ -241,7 +244,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addI64<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static Span<T> addI64<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             math.add(int64(lhs),int64(rhs));
@@ -250,7 +253,7 @@ namespace Z0
 
 
         [MethodImpl(NotInline)]
-        public static Span<T> addU64<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static Span<T> addU64<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             math.add(uint64(lhs),uint64(rhs));
@@ -258,7 +261,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addF32<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static Span<T> addF32<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             math.add(float32(lhs),float32(rhs));
@@ -266,7 +269,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> addF64<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static Span<T> addF64<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
             math.add(float64(lhs),float64(rhs));

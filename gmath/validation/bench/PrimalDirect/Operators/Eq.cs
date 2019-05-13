@@ -135,5 +135,95 @@ namespace Z0
                 dst[it] = src.Left[it] == src.Right[it];
             return SampleTime(snapshot(sw));
         }
+
+        public OpMetrics EqI8Fused(bool[] dst)
+        {
+            var opid = Id<sbyte>(OpKind.Eq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.eq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics EqU8Fused(bool[] dst)
+        {
+            var opid = Id<byte>(OpKind.Eq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.eq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics EqI16Fused(bool[] dst)
+        {
+            var opid = Id<short>(OpKind.Eq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.eq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics EqU16Fused(bool[] dst)
+        {
+            var opid = Id<ushort>(OpKind.Eq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.eq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics EqI32Fused(bool[] dst)
+        {
+            var opid = Id<int>(OpKind.Eq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.eq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics EqU32Fused(bool[] dst)
+        {
+            var opid = Id<uint>(OpKind.Eq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.eq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics EqI64Fused(bool[] dst)
+        {
+            var opid = Id<long>(OpKind.Eq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.eq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics EqU64Fused(bool[] dst)
+        {
+            var opid = Id<ulong>(OpKind.Eq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.eq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics EqF32Fused(bool[] dst)
+        {
+            var opid = Id<float>(OpKind.Eq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.eq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics EqF64Fused(bool[] dst)
+        {
+            var opid = Id<double>(OpKind.Eq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.eq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
    }
 }

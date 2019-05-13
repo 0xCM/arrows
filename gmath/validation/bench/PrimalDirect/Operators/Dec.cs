@@ -135,5 +135,95 @@ namespace Z0
             return SampleTime(snapshot(sw));
         }
 
+        public OpMetrics DecFused(sbyte[] dst)
+        {
+            var opid = Id<sbyte>(OpKind.Dec);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.dec(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DecFused(byte[] dst)
+        {
+            var opid = Id<byte>(OpKind.Dec);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.dec(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DecFused(short[] dst)
+        {
+            var opid = Id<short>(OpKind.Dec);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.dec(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DecFused(ushort[] dst)
+        {
+            var opid = Id<ushort>(OpKind.Dec);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.dec(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DecFused(int[] dst)
+        {
+            var opid = Id<int>(OpKind.Dec);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.dec(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DecFused(uint[] dst)
+        {
+            var opid = Id<uint>(OpKind.Dec);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.dec(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DecFused(long[] dst)
+        {
+            var opid = Id<long>(OpKind.Dec);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.dec(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DecFused(ulong[] dst)
+        {
+            var opid = Id<ulong>(OpKind.Dec);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.dec(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DecFused(float[] dst)
+        {
+            var opid = Id<float>(OpKind.Dec);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.dec(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DecFused(double[] dst)
+        {
+            var opid = Id<double>(OpKind.Dec);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.dec(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
    }
 }

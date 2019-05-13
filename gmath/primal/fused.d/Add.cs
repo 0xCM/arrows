@@ -13,6 +13,8 @@ namespace Z0
 
     
     using static mfunc;
+    using static zfunc;
+
 
     partial class math
     {
@@ -149,7 +151,6 @@ namespace Z0
         [MethodImpl(NotInline)]
         public static Span<double> add(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
             => add(lhs,rhs,span<double>(length(lhs,rhs)));
- 
  
         [MethodImpl(Inline)]
         public static Span<sbyte> add(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)

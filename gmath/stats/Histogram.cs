@@ -18,7 +18,7 @@ namespace Z0
         public static Histogram<T> define<T>(Interval<T> domain, T? grain = null)            
             where T : struct, IEquatable<T>
         {
-            var width = gmath.sub(domain.right, domain.left);
+            var width = gmath.sub(domain.Right, domain.Left);
             var histo = new Histogram<T>(domain, 
                 grain ?? gmath.div(width,convert<T>(100)));
             return histo;
@@ -33,7 +33,7 @@ namespace Z0
         {
             this.Domain =Domain;
             this.Grain = Grain;
-            this.Partitions = Domain.canonical().Discretize(Grain);
+            this.Partitions = Domain.AsCanonical().Discretize(Grain);
             this.Counts = alloc<int>(Partitions.Count);
         }
 
@@ -50,8 +50,8 @@ namespace Z0
         
         Interval<T> PartitionDomain(int ix)
             => ix == Partitions.Length - 1 
-             ? Interval.closed(Partitions[ix-1], Partitions[ix]).canonical() 
-             : Interval.leftclosed(Partitions[ix-1], Partitions[ix]).canonical();
+             ? closed(Partitions[ix-1], Partitions[ix]).AsCanonical() 
+             : leftclosed(Partitions[ix-1], Partitions[ix]).AsCanonical();
                     
         /// <summary>
         /// Distribute a single value to the histogram

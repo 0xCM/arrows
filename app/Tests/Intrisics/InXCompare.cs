@@ -33,10 +33,10 @@ namespace Z0.Test
         }
 
 
-        protected abstract bool[] Cmp(T[] x, T[] y, FloatCompareKind mode);
+        protected abstract bool[] Cmp(T[] x, T[] y, FloatComparisonMode mode);
 
 
-        public virtual void Verify(FloatCompareKind mode)
+        public virtual void Verify(FloatComparisonMode mode)
         {
             for(var i=0; i < VecCount; i++)
             {
@@ -59,39 +59,39 @@ namespace Z0.Test
             {
                 var result = mode switch{
 
-                    FloatComparisonMode.EqualUnorderedNonSignaling => x == y,
-                    FloatComparisonMode.EqualOrderedNonSignaling => x == y,
-                    FloatComparisonMode.EqualOrderedSignaling => x == y,
-                    FloatComparisonMode.EqualUnorderedSignaling => x == y,
+                    FloatComparisonMode.OrderedEqualNonSignaling => x == y,
+                    FloatComparisonMode.OrderedEqualSignaling => x == y,
+                    FloatComparisonMode.UnorderedEqualNonSignaling => x == y,
+                    FloatComparisonMode.UnorderedEqualSignaling => x == y,
 
-                    FloatComparisonMode.NotEqualOrderedNonSignaling => x != y,
-                    FloatComparisonMode.NotEqualUnorderedNonSignaling => x != y,
-                    FloatComparisonMode.NotEqualOrderedSignaling => x != y,
-                    FloatComparisonMode.NotEqualUnorderedSignaling => x != y,
+                    FloatComparisonMode.OrderedNotEqualNonSignaling => x != y,
+                    FloatComparisonMode.OrderedNotEqualSignaling => x != y,
+                    FloatComparisonMode.UnorderedNotEqualNonSignaling => x != y,
+                    FloatComparisonMode.UnorderedNotEqualSignaling => x != y,
 
-                    FloatComparisonMode.LessThanOrderedNonSignaling => x < y,
-                    FloatComparisonMode.LessThanOrderedSignaling => x < y,
+                    FloatComparisonMode.OrderedLessThanNonSignaling => x < y,
+                    FloatComparisonMode.OrderedLessThanSignaling => x < y,
 
-                    FloatComparisonMode.GreaterThanOrderedNonSignaling =>  x > y,
-                    FloatComparisonMode.GreaterThanOrderedSignaling =>  x > y,
+                    FloatComparisonMode.OrderedGreaterThanNonSignaling=>  x > y,
+                    FloatComparisonMode.OrderedGreaterThanSignaling =>  x > y,
 
-                    FloatComparisonMode.LessThanOrEqualOrderedNonSignaling =>  x <= y,
-                    FloatComparisonMode.LessThanOrEqualOrderedSignaling =>  x <= y,
+                    FloatComparisonMode.OrderedLessThanOrEqualNonSignaling =>  x <= y,
+                    FloatComparisonMode.OrderedLessThanOrEqualSignaling =>  x <= y,
                     
-                    FloatComparisonMode.GreaterThanOrEqualOrderedNonSignaling => x >= y,
-                    FloatComparisonMode.GreaterThanOrEqualOrderedSignaling => x >= y,
+                    FloatComparisonMode.OrderedGreaterThanOrEqualNonSignaling => x >= y,
+                    FloatComparisonMode.OrderedGreaterThanOrEqualSignaling => x >= y,
 
-                    FloatComparisonMode.NotGreaterThanOrEqualUnorderedNonSignaling => !(x >= y),                    
-                    FloatComparisonMode.NotGreaterThanOrEqualUnorderedSignaling => !(x >= y),                    
+                    FloatComparisonMode.UnorderedNotGreaterThanOrEqualNonSignaling => !(x >= y),                    
+                    FloatComparisonMode.UnorderedNotGreaterThanOrEqualSignaling => !(x >= y),                    
                     
-                    FloatComparisonMode.NotGreaterThanUnorderedSignaling => !(x > y),                    
-                    FloatComparisonMode.NotGreaterThanUnorderedNonSignaling => !(x > y),
+                    FloatComparisonMode.UnorderedNotGreaterThanNonSignaling => !(x > y),                    
+                    FloatComparisonMode.UnorderedNotGreaterThanSignaling => !(x > y),
 
-                    FloatComparisonMode.NotLessThanOrEqualUnorderedNonSignaling => !(x <= y),
-                    FloatComparisonMode.NotLessThanOrEqualUnorderedSignaling => !(x <= y),
+                    FloatComparisonMode.UnorderedNotLessThanOrEqualNonSignaling => !(x <= y),
+                    FloatComparisonMode.UnorderedNotLessThanOrEqualSignaling => !(x <= y),
                     
-                    FloatComparisonMode.NotLessThanUnorderedNonSignaling => !(x < y),
-                    FloatComparisonMode.NotLessThanUnorderedSignaling => !(x < y),
+                    FloatComparisonMode.UnorderedNotLessThanNonSignaling => !(x < y),
+                    FloatComparisonMode.UnorderedNotLessThanSignaling => !(x < y),
 
                     _ => throw new NotSupportedException()
                 };
@@ -99,7 +99,7 @@ namespace Z0.Test
                 return result; 
             }
             
-            protected override bool[] Cmp(double[] x, double[] y, FloatCompareKind kind)
+            protected override bool[] Cmp(double[] x, double[] y, FloatComparisonMode kind)
             {
                 var result = alloc<bool>(VecLength);
                 for(var i = 0; i< VecLength; i++)
@@ -120,35 +120,35 @@ namespace Z0.Test
                 Claim.eq(expect,result);
             }
 
-            public void CmpEq()
-                => Verify(FloatCompareKind.EqOrdNS);
+            public void CmpEq(bool ordered = true, bool signal = false)
+                => Verify(FloatComparisonMode.OrderedEqualNonSignaling);
 
-            public void CmpNEq()
-                => Verify(FloatCompareKind.NEqOrdNS);
+            public void CmpNEq(bool ordered = true, bool signal = false)
+                => Verify(FloatComparisonMode.OrderedNotEqualNonSignaling);
 
-            public void CmpLt()
-                => Verify(FloatCompareKind.LtOrdNS);
+            public void CmpLt(bool signal = false)
+                => Verify(FloatComparisonMode.OrderedLessThanNonSignaling);
 
-            public void CmpLtEq()
-                => Verify(FloatCompareKind.LtEqOrdNS);
+            public void CmpLtEq(bool signal = false)
+                => Verify(FloatComparisonMode.OrderedLessThanOrEqualNonSignaling);
 
             public void CmpNlt()
-                => Verify(FloatCompareKind.NLtUnOrdNS);
+                => Verify(FloatComparisonMode.OrderedLessThanOrEqualNonSignaling);
 
-            public void CmpNltEq()
-                => Verify(FloatCompareKind.NLtEqUnOrdNS);
+            public void CmpNltEq(bool signal = false)
+                => Verify(FloatComparisonMode.UnorderedNotLessThanOrEqualNonSignaling);
 
-            public void CmpGt()
-                => Verify(FloatCompareKind.GtOrdNS);
+            public void CmpGt(bool signal = false)
+                => Verify(FloatComparisonMode.OrderedGreaterThanNonSignaling);
 
-            public void CmpGtEq()
-                => Verify(FloatCompareKind.GtEqOrdNS);
+            public void CmpGtEq(bool signal = false)
+                => Verify(FloatComparisonMode.OrderedGreaterThanOrEqualNonSignaling);
 
-            public void CmpNgt()
-                => Verify(FloatCompareKind.NGtUnOrdNS);
+            public void CmpNgt(bool signal = false)
+                => Verify(FloatComparisonMode.UnorderedNotGreaterThanNonSignaling);
 
-            public void CmpNgtEq()
-                => Verify(FloatCompareKind.NGtEqUnOrdNS);
+            public void CmpNgtEq(bool signal = false)
+                => Verify(FloatComparisonMode.UnorderedNotGreaterThanOrEqualNonSignaling);
 
             private void Examples()
             {
@@ -157,7 +157,7 @@ namespace Z0.Test
                 {
                     var x0 = Vec128.define(-1.5, 8.9);
                     var x1 = Vec128.define(-4.7, 3.2);
-                    var result = dinx.cmpf(x0,x1,FloatCompareKind.LtOrdNS);
+                    var result = dinx.cmpf(x0,x1,FloatComparisonMode.OrderedLessThanNonSignaling);
                     trace($"{x0} < {x1} = {result}");                
                 }
 
@@ -165,7 +165,7 @@ namespace Z0.Test
                 {
                     var x0 = Vec128.define(-1.0, -1.0);
                     var x1 = Vec128.define(1.0, 1.0);
-                    var result = dinx.cmpf(x0,x1,FloatCompareKind.LtOrdNS);
+                    var result = dinx.cmpf(x0,x1,FloatComparisonMode.OrderedLessThanNonSignaling);
                     trace($"{x0} < {x1} = {result}");
                 }
 
@@ -173,7 +173,7 @@ namespace Z0.Test
                 {
                     var x0 = Vec128.define(1.0, -1.0);
                     var x1 = Vec128.define(1.0, 1.0);
-                    var result = dinx.cmpf(x0,x1,FloatCompareKind.LtOrdNS);
+                    var result = dinx.cmpf(x0,x1,FloatComparisonMode.OrderedLessThanNonSignaling);
                     trace($"{x0} < {x1} = {result}");
                 }
 

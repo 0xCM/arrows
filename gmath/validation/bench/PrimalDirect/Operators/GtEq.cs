@@ -135,5 +135,96 @@ namespace Z0
                 dst[it] = src.Left[it] >= src.Right[it];
             return SampleTime(snapshot(sw));
         }
+
+        public OpMetrics GtEqI8Fused(bool[] dst)
+        {
+            var opid = Id<sbyte>(OpKind.GtEq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.gteq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics GtEqU8Fused(bool[] dst)
+        {
+            var opid = Id<byte>(OpKind.GtEq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.gteq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics GtEqI16Fused(bool[] dst)
+        {
+            var opid = Id<short>(OpKind.GtEq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.gteq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics GtEqU16Fused(bool[] dst)
+        {
+            var opid = Id<ushort>(OpKind.GtEq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.gteq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics GtEqI32Fused(bool[] dst)
+        {
+            var opid = Id<int>(OpKind.GtEq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.gteq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics GtEqU32Fused(bool[] dst)
+        {
+            var opid = Id<uint>(OpKind.GtEq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.gteq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics GtEqI64Fused(bool[] dst)
+        {
+            var opid = Id<long>(OpKind.GtEq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.gteq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics GtEqU64Fused(bool[] dst)
+        {
+            var opid = Id<ulong>(OpKind.GtEq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.gteq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics GtEqF32Fused(bool[] dst)
+        {
+            var opid = Id<float>(OpKind.GtEq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.gteq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics GtEqF64Fused(bool[] dst)
+        {
+            var opid = Id<double>(OpKind.GtEq);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.gteq(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+         
    }
 }

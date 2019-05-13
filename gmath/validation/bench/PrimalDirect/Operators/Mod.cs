@@ -134,5 +134,95 @@ namespace Z0
                 dst[it] = src.Left[it] % src.Right[it];
             return SampleTime(snapshot(sw));
         }
+
+        public OpMetrics ModFused(sbyte[] dst)
+        {
+            var opid = Id<sbyte>(OpKind.Mod);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.mod(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics ModFused(byte[] dst)
+        {
+            var opid = Id<byte>(OpKind.Mod);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.mod(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics ModFused(short[] dst)
+        {
+            var opid = Id<short>(OpKind.Mod);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.mod(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics ModFused(ushort[] dst)
+        {
+            var opid = Id<ushort>(OpKind.Mod);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.mod(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics ModFused(int[] dst)
+        {
+            var opid = Id<int>(OpKind.Mod);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.mod(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics ModFused(uint[] dst)
+        {
+            var opid = Id<uint>(OpKind.Mod);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.mod(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics ModFused(long[] dst)
+        {
+            var opid = Id<long>(OpKind.Mod);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.mod(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics ModFused(ulong[] dst)
+        {
+            var opid = Id<ulong>(OpKind.Mod);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.mod(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics ModFused(float[] dst)
+        {
+            var opid = Id<float>(OpKind.Mod);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.mod(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics ModFused(double[] dst)
+        {
+            var opid = Id<double>(OpKind.Mod);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.mod(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
    }
 }

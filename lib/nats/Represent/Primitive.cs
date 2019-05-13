@@ -8,8 +8,7 @@ namespace Z0
     using System.Numerics;
     using System.Collections.Generic;
     using System.Collections.Concurrent;
-    using static zcore;
-    using static Traits;
+    using static zfunc;
 
     /// <summary>
     /// Characterizes an atom of the type natural grammar

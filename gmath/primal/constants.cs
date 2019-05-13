@@ -18,9 +18,9 @@ namespace Z0
     public static class Constants<T>
         where T : struct, IEquatable<T>
     {
-        public static readonly T Zero = Converters.convert(0, out Zero);
+        public static readonly T Zero = Converter.convert(0, out Zero);
         
-        public static readonly T One = Converters.convert(0, out One);
+        public static readonly T One = Converter.convert(0, out One);
          
     }
 

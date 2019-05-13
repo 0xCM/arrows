@@ -12,6 +12,7 @@ namespace Z0
 
     
     using static mfunc;
+    using static zfunc;
     using static As;
 
     public static partial class ginx
@@ -34,7 +35,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static bool cmpf<T>(in Num128<T> lhs, in Num128<T> rhs, FloatCompareKind mode)
+        public static bool cmpf<T>(in Num128<T> lhs, in Num128<T> rhs, FloatComparisonMode mode)
             where T : struct, IEquatable<T>
         {
             var kind = PrimalKinds.kind<T>();

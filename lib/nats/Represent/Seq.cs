@@ -9,7 +9,9 @@ namespace Z0
     using System.Collections.Generic;
     using System.Collections.Concurrent;
     using System.Reflection;
-    using static mfunc;
+
+    using static zfunc;
+    using static nfunc;
 
     /// <summary>
     /// Characterizes a type-level sequence of typenats
@@ -43,7 +45,7 @@ namespace Z0
             = Nat.nat<K1>().value;
         
         public static readonly byte[] Digits 
-            = mfunc.digits(Value);
+            = digits(Value);
         
         public ulong value 
             => Value;
@@ -80,7 +82,7 @@ namespace Z0
             + Nat.nat<K2>().value;
 
         public static readonly byte[] Digits 
-            = mfunc.digits(Value);
+            = digits(Value);
 
         public ulong value 
             => Value;
@@ -120,7 +122,7 @@ namespace Z0
             + Nat.nat<K3>().value;
 
         public static readonly byte[] Digits 
-            = mfunc.digits(Value);
+            = digits(Value);
 
         public ulong value 
             => Value;
@@ -163,7 +165,7 @@ namespace Z0
             + Nat.nat<K4>().value;
 
         public static readonly byte[] Digits 
-            = mfunc.digits(Value);
+            = digits(Value);
 
         public ulong value 
             => Value;
@@ -209,7 +211,7 @@ namespace Z0
             + Nat.nat<K5>().value;
 
         public static readonly byte[] Digits 
-            = mfunc.digits(Value);
+            = digits(Value);
 
         public ulong value 
             => Value;
@@ -252,7 +254,7 @@ namespace Z0
             + Nat.nat<K6>().value;
 
         public static readonly byte[] Digits 
-            = mfunc.digits(Value);
+            = digits(Value);
     
         public ulong value 
             => Value;
@@ -304,7 +306,7 @@ namespace Z0
             + Nat.nat<K7>().value;
 
         public static readonly byte[] Digits 
-            = mfunc.digits(Value);
+            = digits(Value);
 
         public ulong value 
             => Value;
@@ -359,7 +361,7 @@ namespace Z0
             + Nat.nat<K8>().value;
 
         public static readonly byte[] Digits 
-            = mfunc.digits(Value);
+            = digits(Value);
 
         public ulong value 
             => Value;
@@ -417,7 +419,7 @@ namespace Z0
             + Nat.nat<K9>().value; 
 
         public static readonly byte[] Digits 
-            = mfunc.digits(Value);
+            = digits(Value);
 
         public ulong value 
             => Value;

@@ -23,6 +23,7 @@ namespace Z0
             for(var i = 1; i< exp; i++)
                 result = result*i;
             return (sbyte)result;
+
         }
 
         [MethodImpl(Inline)]
@@ -84,7 +85,7 @@ namespace Z0
         {
             var result = 1ul;
             for(var i = 1u; i< exp; i++)
-                result = result*i;
+                result = result*i;            
             return result;
         }
 
@@ -103,9 +104,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static double pow(double src, double exp)
             => Math.Pow(src,exp);
-
-
-
 
     }
 

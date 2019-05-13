@@ -32,8 +32,8 @@ namespace Z0.Testing
             var kind = PrimalKinds.kind<T>();            
             var timing = stopwatch();
                         
-            var config = Defaults.get<T>();
-            var src = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
+            var config = SampleDefaults.get<T>();
+            var src = Randomizer.Array<T>(config.SampleDomain, config.SampleSize, filter);
             for(var i = 0; i<src.Length; i++)
             {
                 var x = src[i];
@@ -52,9 +52,9 @@ namespace Z0.Testing
             var kind = PrimalKinds.kind<T>();            
             var timing = stopwatch();
             
-            var config = Defaults.get<T>();
-            var lhs = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
-            var rhs = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
+            var config = SampleDefaults.get<T>();
+            var lhs = Randomizer.Array<T>(config.SampleDomain, config.SampleSize, filter);
+            var rhs = Randomizer.Array<T>(config.SampleDomain, config.SampleSize, filter);
             for(var i = 0; i<lhs.Length; i++)
             {
                 var x = lhs[i];
@@ -74,9 +74,9 @@ namespace Z0.Testing
             var kind = PrimalKinds.kind<T>();            
             var timing = stopwatch();
             
-            var config = Defaults.get<T>();
-            var lhs = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
-            var rhs = Randomizer.Array<T>(config.Domain, config.SampleSize, filter);
+            var config = SampleDefaults.get<T>();
+            var lhs = Randomizer.Array<T>(config.SampleDomain, config.SampleSize, filter);
+            var rhs = Randomizer.Array<T>(config.SampleDomain, config.SampleSize, filter);
             for(var i = 0; i<lhs.Length; i++)
             {
                 var x = lhs[i];
@@ -104,17 +104,17 @@ namespace Z0.Testing
         protected Interval<T> Domain {get;}
 
         protected T MinPrimVal 
-            => Domain.left;
+            => Domain.Left;
 
         protected T MaxPrimVal
-            => Domain.right;
+            => Domain.Right;
 
         protected Func<T,bool> Filter {get;}
 
         protected PrimOpsTest(Interval<T>? domain = null, Func<T,bool> filter = null, int? sampleSize = null)
             : base(sampleSize)
         {
-            this.Domain = domain ?? Defaults.get<T>().Domain;
+            this.Domain = domain ?? SampleDefaults.get<T>().SampleDomain;
             this.Filter = filter ?? (x => true);            
         }
 
@@ -125,11 +125,9 @@ namespace Z0.Testing
             => Randomizer.Random<T>().stream(MinPrimVal,MaxPrimVal).Where(Filter).Take(SampleSize).ToIndex();
 
       
-        [Repeat(Defaults.Reps)]
         public virtual Index<T> Compute() 
             => new T[]{};
       
-        [Repeat(Defaults.Reps)]
         public virtual Index<T> Baseline()
             => new T[]{};
 

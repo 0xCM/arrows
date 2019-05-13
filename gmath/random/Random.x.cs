@@ -36,7 +36,7 @@ namespace Z0
     {
         static Interval<T> domain<T>()
             where T : struct, IEquatable<T>
-                => Defaults.get<T>().Domain;
+                => SampleDefaults.get<T>().SampleDomain;
 
         public static IRandomizer<T> Random<T>(this IRandomizer random)
             where T : struct, IEquatable<T>
@@ -88,7 +88,7 @@ namespace Z0
         public static unsafe Span<T> Span<T>(this IRandomizer random, int samples, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct, IEquatable<T>
         {            
-            var dst = mfunc.span<T>(samples);
+            var dst = span<T>(samples);
             var pDst = pvoid(ref dst[0]);
             random.StreamTo(domain ?? domain<T>(), samples, pDst, filter);
             return dst;

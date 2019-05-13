@@ -11,78 +11,84 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
 
-    
     using static mfunc;
+    using static zfunc;
 
     partial class math
     {
 
 
         [MethodImpl(NotInline)]
-        public static void xor(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
+        public static Span<sbyte> xor(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
                 dst[i] = xor(lhs[i], rhs[i]);
+            return dst;
         }
 
 
         [MethodImpl(NotInline)]
-        public static void xor(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
+        public static Span<byte> xor(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
                 dst[i] = xor(lhs[i], rhs[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void xor(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
+        public static Span<short> xor(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
                 dst[i] = xor(lhs[i], rhs[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void xor(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
+        public static Span<ushort> xor(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
                 dst[i] = xor(lhs[i], rhs[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void xor(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
+        public static Span<int> xor(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
                 dst[i] = xor(lhs[i], rhs[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void xor(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
+        public static Span<uint> xor(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
                 dst[i] = xor(lhs[i], rhs[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void xor(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
+        public static Span<long> xor(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
                 dst[i] = xor(lhs[i], rhs[i]);
+            return dst;
         }
 
         [MethodImpl(NotInline)]
-        public static void xor(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
+        public static Span<ulong> xor(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
                 dst[i] = xor(lhs[i], rhs[i]);
+            return dst;
         }
-
-
     }
 }

@@ -109,13 +109,13 @@ namespace Z0
         /// <typeparam name="T"></typeparam>
         public IEnumerable<DivisorIndex<T>> Compute(Interval<T> interval, T step)
         {
-            var min = interval.leftclosed ? interval.left : gmath.inc(interval.left);
-            var max = interval.rightclosed ? interval.right : gmath.dec(interval.right);
+            var min = interval.LeftClosed ? interval.Left : gmath.inc(interval.Left);
+            var max = interval.RightClosed ? interval.Right : gmath.dec(interval.Right);
             for(var i=min; gmath.lt(i,max); i = gmath.add(i, step))
             {
                 var divMin = gmath.add(i, One);
                 var divMax = gmath.add(i, step);
-                var next = Interval.closed(divMin, divMax);
+                var next = closed(divMin, divMax);
                 yield return Compute(next);
             }
         }
@@ -123,8 +123,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public IEnumerable<T> Range(Interval<T> src)
         {
-            var first = src.leftclosed ? src.left : gmath.inc(src.left);
-            var last = src.rightclosed ? src.right : gmath.dec(src.right);
+            var first = src.LeftClosed ? src.Left : gmath.inc(src.Left);
+            var last = src.RightClosed ? src.Right : gmath.dec(src.Right);
             return Range(first,last);
         }
 

@@ -134,5 +134,96 @@ namespace Z0
                 dst[it] = src.Left[it] / src.Right[it];
             return SampleTime(snapshot(sw));
         }
+
+        public OpMetrics DivFused(sbyte[] dst)
+        {
+            var opid = Id<sbyte>(OpKind.Div);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.div(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DivFused(byte[] dst)
+        {
+            var opid = Id<byte>(OpKind.Div);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.div(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DivFused(short[] dst)
+        {
+            var opid = Id<short>(OpKind.Div);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.div(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DivFused(ushort[] dst)
+        {
+            var opid = Id<ushort>(OpKind.Div);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.div(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DivFused(int[] dst)
+        {
+            var opid = Id<int>(OpKind.Div);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.div(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DivFused(uint[] dst)
+        {
+            var opid = Id<uint>(OpKind.Div);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.div(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DivFused(long[] dst)
+        {
+            var opid = Id<long>(OpKind.Div);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.div(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DivFused(ulong[] dst)
+        {
+            var opid = Id<ulong>(OpKind.Div);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.div(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DivFused(float[] dst)
+        {
+            var opid = Id<float>(OpKind.Div);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.div(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics DivFused(double[] dst)
+        {
+            var opid = Id<double>(OpKind.Div);
+            var src = Sampled(opid, true);
+            var sw = stopwatch();
+            math.div(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
    }
 }

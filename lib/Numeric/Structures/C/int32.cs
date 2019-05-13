@@ -316,8 +316,8 @@ namespace Z0
             {
                 var qr = Prim.divrem(data, rhs.data);
                 return Quorem.define(
-                    new structure(qr.q), 
-                    new structure(qr.r)
+                    new structure(qr.Quotient), 
+                    new structure(qr.Remainder)
                     );
             }
 

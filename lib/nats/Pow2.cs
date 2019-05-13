@@ -10,8 +10,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     
-    using static zcore;
     using static zfunc;
+    using static nfunc;
     using static mfunc;
 
     public static class Pow2N

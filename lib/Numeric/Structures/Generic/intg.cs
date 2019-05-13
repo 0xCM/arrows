@@ -12,6 +12,7 @@ namespace Z0
 
     using static zcore;
     using static zfunc;
+    using static mfunc;
     
     using static Structures;
 
@@ -23,7 +24,7 @@ namespace Z0
     {
         static readonly Operative.PrimOps<T> Prim = primops.typeops<T>();
 
-        static readonly NumberInfo<T> BaseInfo = Prim.numinfo;
+        static readonly NumberInfo<T> BaseInfo = Prim.NumberInfo;
 
         public static readonly intg<T> Zero = BaseInfo.Zero;
 
@@ -43,72 +44,72 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static explicit operator intg<T>(sbyte src)
-            =>  ClrConverter.convert<sbyte,T>(src);
+            =>  convert<sbyte,T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator intg<T>(byte src)
-            =>  ClrConverter.convert<byte,T>(src);
+            =>  convert<byte,T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator intg<T>(short src)
-            =>  ClrConverter.convert<short,T>(src);
+            =>  convert<short,T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator intg<T>(ushort src)
-            =>  ClrConverter.convert<ushort,T>(src);
+            =>  convert<ushort,T>(src);
 
         
         [MethodImpl(Inline)]
         public static explicit operator intg<T>(int src)
-            =>  ClrConverter.convert<int,T>(src);
+            =>  convert<int,T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator intg<T>(uint src)
-            =>  ClrConverter.convert<uint,T>(src);
+            =>  convert<uint,T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator intg<T>(long src)
-            =>  ClrConverter.convert<long,T>(src);
+            =>  convert<long,T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator intg<T>(ulong src)
-            =>  ClrConverter.convert<ulong,T>(src);
+            =>  convert<ulong,T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator intg<T>(BigInteger src)
-            =>  ClrConverter.convert<BigInteger,T>(src);
+            =>  convert<BigInteger,T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator byte(intg<T> src)
-            =>  ClrConverter.convert<T,byte>(src.data);
+            =>  convert<T,byte>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator sbyte(intg<T> src)
-            => ClrConverter.convert<T,sbyte>(src.data);
+            => convert<T,sbyte>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator short(intg<T> src)
-            => ClrConverter.convert<T,short>(src.data);
+            => convert<T,short>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator ushort(intg<T> src)
-            => ClrConverter.convert<T,ushort>(src.data);
+            => convert<T,ushort>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator int(intg<T> src)
-            => ClrConverter.convert<T,int>(src.data);
+            => convert<T,int>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator uint(intg<T> src)
-            => ClrConverter.convert<T,uint>(src.data);
+            => convert<T,uint>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator long(intg<T> src)
-            => ClrConverter.convert<T,long>(src.data);
+            => convert<T,long>(src.data);
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(intg<T> src)
-            => ClrConverter.convert<T,ulong>(src.data);
+            => convert<T,ulong>(src.data);
 
         [MethodImpl(Inline)]
         public static implicit operator intg<T>(T src)
@@ -260,7 +261,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public bool divides(intg<T> rhs)
-            => Prim.divides(data, rhs);
+            => Prim.Divides(data, rhs);
 
         [MethodImpl(Inline)]
         public intg<T> pow(int rhs)
@@ -268,7 +269,7 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public bool even()
-            => Prim.even(data);
+            => Prim.Even(data);
 
         [MethodImpl(Inline)]
         public bool odd()
@@ -365,7 +366,7 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public intg<T> muladd(intg<T> y, intg<T> z)
-            => Prim.muladd(data, y.data, z.data);
+            => Prim.MulAdd(data, y.data, z.data);
 
         [MethodImpl(Inline)]
         public intg<T> sin()

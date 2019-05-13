@@ -35,19 +35,10 @@ namespace Z0
                 ISemigroupOps<T>,
                 ITrigonmetricOps<T>,
                 ISpecialOps<T>,
-                Parser<T>
+                IParser<T>
             where T : struct, IEquatable<T>
         {
             
-            Index<bool> testbits(Index<T> src, int pos);            
-
-            /// <summary>
-            /// Computes the component-wise division between two lists of equal length
-            /// </summary>
-            /// <param name="lhs">The first list</param>
-            /// <param name="rhs">The second list</param>
-            /// <returns>A list r whose i'th entry is deterimed by r[i] = lhs[i] / rhs[i] </returns>
-            Index<T> div(Index<T> lhs, Index<T> rhs);
         
             /// <summary>
             /// Implements .net-style comparison for compatibility
@@ -60,19 +51,19 @@ namespace Z0
             /// Computes the sign of the operand
             /// </summary>
             /// <param name="src">The source value</param>
-            Sign sign(T src);
+            Sign Sign(T src);
 
             /// <summary>
             /// Returns true if the operand is nonzero, false otherwisee
             /// </summary>
             /// <param name="src">The source value</param>
-            bool nonzero(T src);
+            bool Nonzero(T src);
 
             /// <summary>
             /// Returns true if the number is even, false otherwise
             /// </summary>
             /// <param name="src">The source value</param>
-            bool even(T src);
+            bool Even(T src);
 
             /// <summary>
             /// Computes the value x*y + z
@@ -80,7 +71,7 @@ namespace Z0
             /// <param name="x">The first operand</param>
             /// <param name="y">The second operand</param>
             /// <param name="z">The third operand</param>
-            T muladd(T x, T y, T z);
+            T MulAdd(T x, T y, T z);
 
             /// <summary>
             /// Determines whether ther right operand is evenly divisible by
@@ -89,18 +80,13 @@ namespace Z0
             /// <param name="lhs">The bottom</param>
             /// <param name="rhs">The top</param>
             /// <returns></returns>
-            bool divides(T lhs, T rhs);
+            bool Divides(T lhs, T rhs);
 
             /// <summary>
             /// Specifies various metadata pertaining to the numeric type
             /// </summary>
-            NumberInfo<T> numinfo {get;}
+            NumberInfo<T> NumberInfo {get;}
 
-            /// <summary>
-            /// For fixed-sized types, returns the number of bits required to represent a value
-            /// </summary>
-            /// <value></value>
-            uint bitsize {get;}
         }
 
     }
@@ -140,9 +126,9 @@ namespace Z0
 
             static readonly Operative.ISpecialOps<T> Special = Primal.Special.Operator<T>();
 
-            static readonly NumInfoProvider<T> NumInfo = Primal.NumInfo.Operator<T>();
+            static readonly NumberInfo<T> NumInfo = Z0.NumberInfo.Get<T>();
 
-            static readonly Parser<T> Parser = Primal.Parser.Operator<T>();
+            static readonly IParser<T> Parser = Primal.Parser.Operator<T>();
 
             public T zero
             {
@@ -159,13 +145,13 @@ namespace Z0
             public uint bitsize
             {
                 [MethodImpl(Inline)]
-                get => numinfo.BitSize;
+                get => NumberInfo.BitSize;
             }
 
-            public NumberInfo<T> numinfo
+            public NumberInfo<T> NumberInfo
             {
                 [MethodImpl(Inline)]
-                get => NumInfo.numinfo;
+                get => NumInfo;
             }
 
             [MethodImpl(Inline)]
@@ -350,7 +336,7 @@ namespace Z0
                 => Divisive.divrem(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public bool divides(T lhs, T rhs)
+            public bool Divides(T lhs, T rhs)
                 => eq(mod(rhs, lhs), zero);
 
             [MethodImpl(Inline)]
@@ -360,18 +346,18 @@ namespace Z0
                 : 0;
 
             [MethodImpl(Inline)]
-            public bool nonzero(T src)
+            public bool Nonzero(T src)
                 => neq(src,zero);
 
             [MethodImpl(Inline)]
-            public Sign sign(T src)
-                =>  nonzero(src) ? Sign.Neutral : 
-                    lt(src, zero) ? Sign.Negative :
-                    Sign.Positive;
+            public Sign Sign(T src)
+                => Nonzero(src) ? Z0.Sign.Neutral :
+                    lt(src, zero) ? Z0.Sign.Negative :
+                    Z0.Sign.Positive;
 
 
             [MethodImpl(Inline)]
-            public T muladd(T x, T y, T z)
+            public T MulAdd(T x, T y, T z)
                 => add(mul(x,y),z);
 
             [MethodImpl(Inline)]
@@ -423,7 +409,7 @@ namespace Z0
                 => Trig.atanh(x);
 
             [MethodImpl(Inline)]
-            public bool even(T src)
+            public bool Even(T src)
                 => eq(mod(src, inc(Unital.one)), Nullary.zero);
 
             [MethodImpl(Inline)]

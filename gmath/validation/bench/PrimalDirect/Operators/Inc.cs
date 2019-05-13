@@ -135,5 +135,95 @@ namespace Z0
             return SampleTime(snapshot(sw));
         }
 
+        public OpMetrics IncFused(sbyte[] dst)
+        {
+            var opid = Id<sbyte>(OpKind.Inc);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.inc(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics IncFused(byte[] dst)
+        {
+            var opid = Id<byte>(OpKind.Inc);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.inc(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics IncFused(short[] dst)
+        {
+            var opid = Id<short>(OpKind.Inc);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.inc(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics IncFused(ushort[] dst)
+        {
+            var opid = Id<ushort>(OpKind.Inc);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.inc(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics IncFused(int[] dst)
+        {
+            var opid = Id<int>(OpKind.Inc);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.inc(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics IncFused(uint[] dst)
+        {
+            var opid = Id<uint>(OpKind.Inc);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.inc(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics IncFused(long[] dst)
+        {
+            var opid = Id<long>(OpKind.Inc);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.inc(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics IncFused(ulong[] dst)
+        {
+            var opid = Id<ulong>(OpKind.Inc);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.inc(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics IncFused(float[] dst)
+        {
+            var opid = Id<float>(OpKind.Inc);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.inc(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics IncFused(double[] dst)
+        {
+            var opid = Id<double>(OpKind.Inc);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.inc(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
    }
 }

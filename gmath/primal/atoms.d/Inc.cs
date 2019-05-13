@@ -16,47 +16,6 @@ namespace Z0
 
     partial class math
     {
-
-        [MethodImpl(Inline)]
-        public static sbyte inc(sbyte src)
-            => ++src;
-
-        [MethodImpl(Inline)]
-        public static byte inc(byte src)
-            => ++src;
-
-        [MethodImpl(Inline)]
-        public static short inc(short src)
-            => ++src;
-
-        [MethodImpl(Inline)]
-        public static ushort inc(ushort src)
-            => ++src;
-
-        [MethodImpl(Inline)]
-        public static int inc(int src)
-            => ++src;
-
-        [MethodImpl(Inline)]
-        public static uint inc(uint src)
-            => ++src;
-
-        [MethodImpl(Inline)]
-        public static long inc(long src)
-            => ++src;
-
-        [MethodImpl(Inline)]
-        public static ulong inc(ulong src)
-            => ++src;
-
-        [MethodImpl(Inline)]
-        public static float inc(float src)
-            => ++src;
-
-        [MethodImpl(Inline)]
-        public static double inc(double src)
-            => ++src;
-
         [MethodImpl(Inline)]
         public static ref sbyte inc(ref sbyte src)
         {
@@ -126,11 +85,45 @@ namespace Z0
             src++;
             return ref src;
         }
-            
+ 
+        [MethodImpl(Inline)]
+        public static sbyte inc(sbyte src)
+            => ++src;
 
+        [MethodImpl(Inline)]
+        public static byte inc(byte src)
+            => ++src;
 
+        [MethodImpl(Inline)]
+        public static short inc(short src)
+            => ++src;
 
+        [MethodImpl(Inline)]
+        public static ushort inc(ushort src)
+            => ++src;
+
+        [MethodImpl(Inline)]
+        public static int inc(int src)
+            => ++src;
+
+        [MethodImpl(Inline)]
+        public static uint inc(uint src)
+            => ++src;
+
+        [MethodImpl(Inline)]
+        public static long inc(long src)
+            => ++src;
+
+        [MethodImpl(Inline)]
+        public static ulong inc(ulong src)
+            => ++src;
+
+        [MethodImpl(Inline)]
+        public static float inc(float src)
+            => ++src;
+
+        [MethodImpl(Inline)]
+        public static double inc(double src)
+            => ++src;
     }
-
-
 }

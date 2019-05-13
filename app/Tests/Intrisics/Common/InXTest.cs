@@ -35,7 +35,7 @@ namespace Z0.Test
         {
             this.OpId = OpId;
             this.OpName = OpId.ToString();
-            this.Domain = domain ?? Defaults.get<T>().Domain;       
+            this.Domain = domain ?? SampleDefaults.get<T>().SampleDomain;       
             
             this.UnarySrc = RandArray();
             Claim.eq(UnarySrc.Length, SampleSize);
@@ -105,16 +105,6 @@ namespace Z0.Test
             if(!expect.Equals(actual))
                 throw new Exception($"Operator failure during iteration {i}: {lvec} OpName {rvec} | Expected = {expect}, Actual = {actual}");
         }
-
-        protected IEnumerable<Vector128<T>> UnarySrcVectors
-        {
-            get
-            {
-                for(var i = 0; i< UnarySrc.Length; i += VecLength)
-                    yield return Vec128.define(UnarySrc.ToArray(), i);
-            }
-        }
-
 
         /// <summary>
         /// Interates the array indexes that are multiples of vector length into a receiver

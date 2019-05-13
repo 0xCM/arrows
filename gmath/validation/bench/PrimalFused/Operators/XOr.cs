@@ -16,140 +16,94 @@ namespace Z0
 
     partial class PrimalFusedBench
     {
+        OpMetrics XOr<T>(T[] dst)
+            where T : struct, IEquatable<T>
+        {
+            var opid = Id<T>(OpKind.XOr);
+            var samples = Sampled(opid);            
+            var sw = stopwatch();            
+            gmath.xor(samples.Left, samples.Right, dst);
+            return(SampleTime(snapshot(sw)));
+        }
+
         public IBenchComparison XOrI8()
         {
             var opid = Id<sbyte>(OpKind.XOr);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.xor(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.xor(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.XOrFused, targets.Left);
+            var benched = Measure(!~opid, XOr, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison XOrU8()
         {
             var opid = Id<byte>(OpKind.XOr);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.xor(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.xor(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.XOrFused, targets.Left);
+            var benched = Measure(!~opid, XOr, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison XOrI16()
         {
             var opid = Id<short>(OpKind.XOr);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.xor(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.xor(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.XOrFused, targets.Left);
+            var benched = Measure(!~opid, XOr, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison XOrU16()
         {
             var opid = Id<ushort>(OpKind.XOr);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.xor(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.xor(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.XOrFused, targets.Left);
+            var benched = Measure(!~opid, XOr, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison XOrI32()
         {
             var opid = Id<int>(OpKind.XOr);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.xor(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.xor(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.XOrFused, targets.Left);
+            var benched = Measure(!~opid, XOr, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison XOrU32()
         {
             var opid = Id<uint>(OpKind.XOr);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.xor(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.xor(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.XOrFused, targets.Left);
+            var benched = Measure(!~opid, XOr, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison XOrI64()
         {
             var opid = Id<long>(OpKind.XOr);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.xor(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.xor(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.XOrFused, targets.Left);
+            var benched = Measure(!~opid, XOr, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison XOrU64()
         {
             var opid = Id<ulong>(OpKind.XOr);
-            var src = Sampled(opid);
-            var dst = Targets(opid);
-
-            var lhs = Measure(opid, () => 
-                math.xor(src.Left, src.Right, dst.Left));
-
-            var rhs = Measure(!opid, () => 
-                gmath.xor(src.Left, src.Right, dst.Right));
-
-            var comparison = Compare(opid, lhs, rhs);
-            Claim.eq(dst.Left, dst.Right);        
-            return Finish(comparison);            
-        }
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.XOrFused, targets.Left);
+            var benched = Measure(!~opid, XOr, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
+        } 
     }
 }

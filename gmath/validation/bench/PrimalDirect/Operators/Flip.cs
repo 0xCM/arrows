@@ -110,5 +110,78 @@ namespace Z0
                 dst[it] = ~ src.Left[it];
             return SampleTime(snapshot(sw));
         }
+
+        public OpMetrics FlipFused(sbyte[] dst)
+        {
+            var opid = Id<sbyte>(OpKind.Flip);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.flip(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics FlipFused(byte[] dst)
+        {
+            var opid = Id<byte>(OpKind.Flip);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.flip(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics FlipFused(short[] dst)
+        {
+            var opid = Id<short>(OpKind.Flip);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.flip(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics FlipFused(ushort[] dst)
+        {
+            var opid = Id<ushort>(OpKind.Flip);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.flip(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics FlipFused(int[] dst)
+        {
+            var opid = Id<int>(OpKind.Flip);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.flip(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics FlipFused(uint[] dst)
+        {
+            var opid = Id<uint>(OpKind.Flip);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.flip(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics FlipFused(long[] dst)
+        {
+            var opid = Id<long>(OpKind.Flip);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.flip(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics FlipFused(ulong[] dst)
+        {
+            var opid = Id<ulong>(OpKind.Flip);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.flip(src.Left, dst);
+            return SampleTime(snapshot(sw));
+        }
+
    }
 }

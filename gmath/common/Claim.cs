@@ -8,9 +8,9 @@ namespace Z0
     using System.Numerics;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    
-    
-    using static global::mfunc;
+        
+    using static mfunc;
+    using static zfunc;
 
     public readonly struct Claim<T>
     {

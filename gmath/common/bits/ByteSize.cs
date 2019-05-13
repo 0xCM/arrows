@@ -12,28 +12,7 @@ namespace Z0
 
     
     using static zfunc;
-    using static mfunc;
 
-    public readonly struct OpStats
-    {
-        public static OpStats Define(OpId Op, Duration ExecTime, int Cycles, long OpCount)
-            => new OpStats(Op,ExecTime,Cycles,OpCount);
-
-        public OpStats(OpId Op, Duration ExecTime, int Cycles, long OpCount)
-        {
-            this.Op = Op;
-            this.ExecTime = ExecTime;
-            this.OpCount = OpCount;
-            this.Cycles = Cycles;
-        }
-
-        public readonly OpId Op;
-        
-        public readonly Duration ExecTime;
-        
-        public readonly int Cycles;
-        public readonly long OpCount;
-    }
 
     /// <summary>
     /// Defines size with respect to bytes
@@ -61,19 +40,15 @@ namespace Z0
         public static ByteSize operator %(ByteSize lhs, ByteSize rhs)
             => lhs.Bytes % rhs.Bytes;
 
-        [MethodImpl(Inline)]
         public static ByteSize Define(int bytes)
             => new ByteSize(bytes);
 
-        [MethodImpl(Inline)]
         public static implicit operator int(ByteSize src)
             => src.Bytes;
 
-        [MethodImpl(Inline)]
         public static implicit operator ByteSize(int src)
             => new ByteSize(src);
 
-        [MethodImpl(Inline)]
         public ByteSize(int Bytes)
             => this.Bytes = Bytes;
 

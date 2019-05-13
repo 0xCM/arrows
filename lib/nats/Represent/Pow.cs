@@ -10,7 +10,8 @@ namespace Z0
     using System.Collections.Concurrent;
     using System.Reflection;
     using System.Runtime.CompilerServices;
-    using static zcore;
+    
+    using static nfunc;
     using static zfunc;
 
     /// <summary>
@@ -64,7 +65,7 @@ namespace Z0
             = pow(Nat.nat<B>().value, Nat.nat<E>().value);
             
         public static readonly byte[] Digits 
-            = mfunc.digits(Value);
+            = digits(Value);
 
         public static readonly NatSeq Seq
             = Nat.reflect(Digits);

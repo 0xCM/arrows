@@ -59,16 +59,16 @@ namespace Z0
         /// </summary>
         public DateTime Max { get; }
 
-        bool IInterval.LeftInclusive
+        bool ITimeInterval.LeftInclusive
             => true;
 
-        bool IInterval.RightInclusive
+        bool ITimeInterval.RightInclusive
             => true;
 
-        object IInterval.Min
+        object ITimeInterval.Min
             => Min;
 
-        object IInterval.Max
+        object ITimeInterval.Max
             => Max;
 
         public override string ToString()

@@ -134,5 +134,96 @@ namespace Z0
                 dst[it] = src.Left[it] * src.Right[it];
             return SampleTime(snapshot(sw));
         }
+
+        public OpMetrics MulFused(sbyte[] dst)
+        {
+            var opid = Id<sbyte>(OpKind.Mul);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.mul(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics MulFused(byte[] dst)
+        {
+            var opid = Id<byte>(OpKind.Mul);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.mul(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics MulFused(short[] dst)
+        {
+            var opid = Id<short>(OpKind.Mul);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.mul(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics MulFused(ushort[] dst)
+        {
+            var opid = Id<ushort>(OpKind.Mul);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.mul(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics MulFused(int[] dst)
+        {
+            var opid = Id<int>(OpKind.Mul);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.mul(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics MulFused(uint[] dst)
+        {
+            var opid = Id<uint>(OpKind.Mul);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.mul(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics MulFused(long[] dst)
+        {
+            var opid = Id<long>(OpKind.Mul);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.mul(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics MulFused(ulong[] dst)
+        {
+            var opid = Id<ulong>(OpKind.Mul);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.mul(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics MulFused(float[] dst)
+        {
+            var opid = Id<float>(OpKind.Mul);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.mul(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics MulFused(double[] dst)
+        {
+            var opid = Id<double>(OpKind.Mul);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.mul(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
    }
 }

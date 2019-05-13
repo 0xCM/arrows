@@ -10,7 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    using static zcore;
+    using static nfunc;
     using static nats;
     using static zfunc;
 
@@ -101,7 +101,7 @@ namespace Z0
                 this.data = array<T>(nati<N>());
             else
             {
-                Prove.claim<N>(data.Length());
+                Prove.claim<N>(data.Length);
                 this.data = data;
             }
         }

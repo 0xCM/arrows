@@ -89,7 +89,7 @@ namespace Z0.Test
 
         protected void ApplyAll(int? reps = null)
         {
-            var repeat = reps ?? Defaults.OpApplyReps;
+            var repeat = reps ?? 1;
 
             var statsMsg = $"{VecCount} vector pairs | {reps} reps";
             

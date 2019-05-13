@@ -126,5 +126,4 @@ namespace Z0
         public static double mod(double lhs, double rhs)
             => lhs % rhs;
     }
-
 }

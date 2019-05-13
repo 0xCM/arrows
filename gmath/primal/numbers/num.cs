@@ -13,7 +13,7 @@ namespace Z0
     
     
     using static mfunc;
-    
+    using static zfunc;
 
     public readonly struct num<T> : IEquatable<num<T>>
         where T : struct, IEquatable<T>
@@ -38,43 +38,43 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static explicit operator sbyte(num<T> src)
-            => ClrConverter.convert<T,sbyte>(toVal(ref src));
+            => convert(src.Value, out sbyte x);
 
         [MethodImpl(Inline)]
         public static explicit operator byte(num<T> src)
-            => ClrConverter.convert<T,byte>(toVal(ref src));
+            => convert(src.Value, out byte x);
 
         [MethodImpl(Inline)]
         public static explicit operator short(num<T> src)
-            => ClrConverter.convert<T,short>(toVal(ref src));
+            => convert(src.Value, out short x);
 
         [MethodImpl(Inline)]
         public static explicit operator ushort(num<T> src)
-            => ClrConverter.convert<T,ushort>(toVal(ref src));
+            => convert(src.Value, out ushort x);
 
         [MethodImpl(Inline)]
         public static explicit operator int(num<T> src)
-            => ClrConverter.convert<T,int>(toVal(ref src));
+            => convert(src.Value, out int x);
 
         [MethodImpl(Inline)]
         public static explicit operator uint(num<T> src)
-            => ClrConverter.convert<T,uint>(toVal(ref src));
+            => convert(src.Value, out uint x);
 
         [MethodImpl(Inline)]
         public static explicit operator long(num<T> src)
-            => ClrConverter.convert<T,long>(toVal(ref src));
+            => convert(src.Value, out long x);
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(num<T> src)
-            => ClrConverter.convert<T,ulong>(toVal(ref src));
+            => convert(src.Value, out ulong x);
 
         [MethodImpl(Inline)]
         public static explicit operator float(num<T> src)
-            => ClrConverter.convert<T,float>(toVal(ref src));
+            => convert(src.Value, out float x);
 
         [MethodImpl(Inline)]
         public static explicit operator double(num<T> src)
-            => ClrConverter.convert<T,double>(toVal(ref src));
+            => convert(src.Value, out double x);
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(sbyte src)

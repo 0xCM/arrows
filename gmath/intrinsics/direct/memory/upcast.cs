@@ -82,16 +82,16 @@ namespace Z0
             => dst = Avx2.ConvertToVector256Int64(src);
 
         [MethodImpl(Inline)]
-        public static Vec256<ushort> upcast(in Vec128<byte> src, out Vec256<ushort> dst)
-            =>  dst = Avx2.ConvertToVector256UInt16(src);
+        public static Vec256<short> upcast(in Vec128<byte> src, out Vec256<short> dst)
+            =>  dst = Avx2.ConvertToVector256Int16(src);
 
         [MethodImpl(Inline)]
-        public static Vec256<uint> upcast(in Vec128<byte> src, out Vec256<uint> dst)
-            =>  dst = Avx2.ConvertToVector256UInt32(src);
+        public static Vec256<int> upcast(in Vec128<byte> src, out Vec256<int> dst)
+            =>  dst = Avx2.ConvertToVector256Int32(src);
 
         [MethodImpl(Inline)]
-        public static Vec256<ulong> upcast(in Vec128<byte> src, out Vec256<ulong> dst)
-            =>  dst = Avx2.ConvertToVector256UInt64(src);
+        public static Vec256<long> upcast(in Vec128<byte> src, out Vec256<long> dst)
+            =>  dst = Avx2.ConvertToVector256Int64(src);
 
 
         [MethodImpl(Inline)]
@@ -104,20 +104,20 @@ namespace Z0
             => dst = Avx2.ConvertToVector256Int64(src);
 
         [MethodImpl(Inline)]
-        public static Vec256<uint> upcast(in Vec128<ushort> src, out Vec256<uint> dst)
-            => dst = Avx2.ConvertToVector256UInt32(src);
+        public static Vec256<int> upcast(in Vec128<ushort> src, out Vec256<int> dst)
+            => dst = Avx2.ConvertToVector256Int32(src);
 
         [MethodImpl(Inline)]
-        public static Vec256<ulong> upcast(in Vec128<ushort> src, out Vec256<ulong> dst)
-            => dst = Avx2.ConvertToVector256UInt64(src);
+        public static Vec256<long> upcast(in Vec128<ushort> src, out Vec256<long> dst)
+            => dst = Avx2.ConvertToVector256Int64(src);
 
         [MethodImpl(Inline)]
         public static Vec256<long> upcast(in Vec128<int> src, out Vec256<long> dst)
             => dst = Avx2.ConvertToVector256Int64(src);
 
         [MethodImpl(Inline)]
-        public static Vec256<ulong> upcast(in Vec128<uint> src, out Vec256<ulong> dst)
-            => dst = Avx2.ConvertToVector256UInt64(src);
+        public static Vec256<long> upcast(in Vec128<uint> src, out Vec256<long> dst)
+            => dst = Avx2.ConvertToVector256Int64(src);
 
 
        #endregion

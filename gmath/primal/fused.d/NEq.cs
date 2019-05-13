@@ -13,6 +13,7 @@ namespace Z0
 
     
     using static mfunc;
+    using static zfunc;
 
     partial class math
     {

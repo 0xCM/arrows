@@ -91,78 +91,78 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool eq(in Num128<float> lhs,in Num128<float> rhs)
-            => CompareEqualScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarEqual(lhs, rhs).IsNaN(0);
         
         [MethodImpl(Inline)]
         public static bool eq(in Num128<double> lhs,in Num128<double> rhs)
-            => CompareEqualScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarEqual(lhs, rhs).IsNaN(0);
 
         [MethodImpl(Inline)]
         public static bool neq(Num128<float> lhs, Num128<float> rhs)
-            => CompareNotEqualScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarNotEqual(lhs, rhs).IsNaN(0);
         
         [MethodImpl(Inline)]
         public static bool neq(Num128<double> lhs, Num128<double> rhs)
-            => CompareNotEqualScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarNotEqual(lhs, rhs).IsNaN(0);
 
 
         [MethodImpl(Inline)]
         public static bool gt(in Num128<float> lhs, in Num128<float> rhs)
-            => CompareGreaterThanScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarGreaterThan(lhs, rhs).IsNaN(0);
         
         [MethodImpl(Inline)]
         public static bool gt(in Num128<double> lhs, in Num128<double> rhs)
-            => Avx2.CompareGreaterThanScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarGreaterThan(lhs, rhs).IsNaN(0);
 
         [MethodImpl(Inline)]
         public static bool gteq(Num128<float> lhs, Num128<float> rhs)
-            => CompareGreaterThanOrEqualScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarGreaterThanOrEqual(lhs, rhs).IsNaN(0);
         
         [MethodImpl(Inline)]
         public static bool gteq(Num128<double> lhs, Num128<double> rhs)
-            => CompareGreaterThanOrEqualScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarGreaterThanOrEqual(lhs, rhs).IsNaN(0);
 
         [MethodImpl(Inline)]
         public static bool lt(Num128<float> lhs, Num128<float> rhs)
-            => CompareLessThanScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarLessThan(lhs, rhs).IsNaN(0);
         
         [MethodImpl(Inline)]
         public static bool lt(Num128<double> lhs, Num128<double> rhs)
-            => CompareLessThanScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarLessThan(lhs, rhs).IsNaN(0);
 
         [MethodImpl(Inline)]
         public static bool ngt(Num128<float> lhs, Num128<float> rhs)
-            => CompareNotGreaterThanScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarNotGreaterThan(lhs, rhs).IsNaN(0);
 
         [MethodImpl(Inline)]
         public static bool ngt(Num128<double> lhs, Num128<double> rhs)
-            => CompareNotGreaterThanScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarNotGreaterThan(lhs, rhs).IsNaN(0);
 
         [MethodImpl(Inline)]
         public static bool lteq(Num128<float> lhs, Num128<float> rhs)
-            => CompareLessThanOrEqualScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarLessThanOrEqual(lhs, rhs).IsNaN(0);
         
         [MethodImpl(Inline)]
         public static bool lteq(Num128<double> lhs, Num128<double> rhs)
-            => CompareLessThanOrEqualScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarLessThanOrEqual(lhs, rhs).IsNaN(0);
 
 
         [MethodImpl(Inline)]
         public static bool nlt(Num128<float> lhs, Num128<float> rhs)
-            => CompareNotLessThanScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarNotLessThan(lhs, rhs).IsNaN(0);
         
         [MethodImpl(Inline)]
         public static bool nlt(Num128<double> lhs, Num128<double> rhs)
-            => CompareNotLessThanScalar(lhs, rhs).IsNaN(0);
+            => CompareScalarNotLessThan(lhs, rhs).IsNaN(0);
 
 
         [MethodImpl(Inline)]
-        public static bool cmpf(in Num128<float> lhs, in Num128<float> rhs, FloatCompareKind mode)
-            => CompareScalar(lhs,rhs,(FloatComparisonMode)mode).IsNaN(0);
+        public static bool cmpf(in Num128<float> lhs, in Num128<float> rhs, FloatComparisonMode mode)
+            => CompareScalar(lhs,rhs,mode).IsNaN(0);
 
         [MethodImpl(Inline)]
-        public static bool cmpf(in Num128<double> lhs,in Num128<double> rhs, FloatCompareKind mode)
-            => CompareScalar(lhs,rhs,(FloatComparisonMode)mode).IsNaN(0);
+        public static bool cmpf(in Num128<double> lhs,in Num128<double> rhs, FloatComparisonMode mode)
+            => CompareScalar(lhs,rhs, mode).IsNaN(0);
 
         #endregion
 

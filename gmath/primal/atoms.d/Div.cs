@@ -10,7 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
-
+    using System.Numerics;
     
     using static mfunc;
 
@@ -126,6 +126,14 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static double div(double lhs, double rhs)
+            => lhs / rhs;
+
+       [MethodImpl(Inline)]
+        public static decimal div(decimal lhs, decimal rhs)
+            => lhs / rhs;
+
+       [MethodImpl(Inline)]
+        public static BigInteger div(BigInteger lhs, BigInteger rhs)
             => lhs / rhs;
 
     }

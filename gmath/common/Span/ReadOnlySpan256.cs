@@ -12,6 +12,7 @@ namespace Z0
     using System.Diagnostics;    
     
     using static mfunc;
+    using static zfunc;
 
     /// <summary>
     /// A System.Span[T] clone where the  encasulated data is always a multiple 
@@ -160,7 +161,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Span<T> ToSpan()
-            => span(data);
+            => replicate(data);
 
         [MethodImpl(Inline)]
         public ReadOnlySpan<T> ToReadOnlySpan()

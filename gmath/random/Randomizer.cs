@@ -139,7 +139,7 @@ namespace Z0
 
         static ulong width<T>(Interval<T> domain)
             where T : struct, IEquatable<T>
-                => convert<T,ulong>(domain.right) - convert<T,ulong>(domain.left);
+                => convert<T,ulong>(domain.Right) - convert<T,ulong>(domain.Left);
 
         IEnumerable<ulong> stream()
         {
@@ -162,81 +162,81 @@ namespace Z0
         {
             var w = width(domain);
             while(true)
-                yield return (byte)(mod<int>(next(), w) + domain.left);                
+                yield return (byte)(mod<int>(next(), w) + domain.Left);                
         }
 
         public IEnumerable<byte> stream(byte min, byte max)
-            => stream(Interval.leftclosed(min,max)); 
+            => stream(leftclosed(min,max)); 
 
         public IEnumerable<sbyte> stream(Interval<sbyte> domain)        
         {
             var w = width(domain);
             while(true)
-                yield return (sbyte)(mod<int>(next(), w) + domain.left);
+                yield return (sbyte)(mod<int>(next(), w) + domain.Left);
         }
 
         public IEnumerable<sbyte> stream(sbyte min, sbyte max)
-            => stream(Interval.leftclosed(min,max));
+            => stream(leftclosed(min,max));
 
         public IEnumerable<ushort> stream(Interval<ushort> domain)        
         {
             var w = width(domain);
             while(true)
-                yield return (ushort) (mod<int>(next(), w) + domain.left);                
+                yield return (ushort) (mod<int>(next(), w) + domain.Left);                
         }
 
         public IEnumerable<ushort> stream(ushort min, ushort max)
-            => stream(Interval.leftclosed(min,max));
+            => stream(leftclosed(min,max));
 
         public IEnumerable<short> stream(Interval<short> domain)        
         {
             var w = width(domain);
             while(true)
-                yield return (short)(mod<int>(next(),w) + domain.left);                
+                yield return (short)(mod<int>(next(),w) + domain.Left);                
         }
 
         public IEnumerable<short> stream(short min, short max)
-            => stream(Interval.leftclosed(min,max));
+            => stream(leftclosed(min,max));
 
         public IEnumerable<int> stream(Interval<int> domain)
         {
             var w = width(domain);
             while(true)
-                yield return (int)(mod<long>(next(),w) + domain.left);                
+                yield return (int)(mod<long>(next(),w) + domain.Left);                
         }
 
         public IEnumerable<int> stream(int min, int max)
-            => stream(Interval.leftclosed(min,max));
+            => stream(leftclosed(min,max));
 
         public IEnumerable<uint> stream(Interval<uint> domain)
         {
             var w = width(domain);
             while(true)
-                yield return mod<uint>(next(), w) + domain.left;                
+                yield return mod<uint>(next(), w) + domain.Left;                
         }
 
         public IEnumerable<uint> stream(uint min, uint max)
-            => stream(Interval.closed(min,max));
+            => stream(closed(min,max));
 
         public IEnumerable<long> stream(Interval<long> domain)        
         {
             var w = width(domain);
             while(true)
-                yield return mod<long>(next(), w) + domain.left;                
+                yield return mod<long>(next(), w) + domain.Left;                
         }
 
         public IEnumerable<long> stream(long min, long max)
-            => stream(Interval.leftclosed(min,max));
+            => stream(leftclosed(min,max));
 
         public IEnumerable<ulong> stream(Interval<ulong> domain)        
         {
             var w = width(domain);
             while(true)
-                yield return next() % w + domain.left;
+                yield return next() % w + domain.Left;
         }
 
         public IEnumerable<ulong> stream(ulong min, ulong max)
-            => stream(Interval.leftclosed(min,max));
+            => stream(leftclosed(min,max));
 
        [MethodImpl(Inline)]
         float nextF32()        
@@ -250,17 +250,17 @@ namespace Z0
 
         public IEnumerable<float> stream(Interval<float> domain)        
         {
-            var width = domain.right - domain.left;            
+            var width = domain.Right - domain.Left;            
             while(true)
             {
                 var ratio = nextF32() + 1;
                 var sign = bits().Take(1).Single() ? -1.0f : 1.0f;
-                yield return sign * (domain.right - (ratio * width)/2.0f);
+                yield return sign * (domain.Right - (ratio * width)/2.0f);
             }
         }
 
         public IEnumerable<float> stream(float min, float max)
-            => stream(Interval.leftclosed(min,max));
+            => stream(leftclosed(min,max));
 
         [MethodImpl(Inline)]
         double nextF64()
@@ -272,32 +272,32 @@ namespace Z0
 
         public IEnumerable<double> stream(Interval<double> domain)        
         {
-            var width = domain.right - domain.left;            
+            var width = domain.Right - domain.Left;            
             while(true)
             {
                 var ratio = nextF64() + 1;
                 var sign =  nextSign();
-                yield return sign * (domain.right - (ratio * width)/2.0);
+                yield return sign * (domain.Right - (ratio * width)/2.0);
             }
         }
 
         public IEnumerable<double> stream(double min, double max)
-            => stream(Interval.closed(min,max));
+            => stream(closed(min,max));
 
 
         public IEnumerable<decimal> stream(Interval<decimal> domain)        
         {
-            var width = domain.right - domain.left;            
+            var width = domain.Right - domain.Left;            
             while(true)
             {
                 var ratio = (decimal)nextF64() + 1;
                 var sign = bits().Take(1).Single() ? -1.0m : 1.0m;
-                yield return sign * (domain.right - (ratio * width)/2.0m);
+                yield return sign * (domain.Right - (ratio * width)/2.0m);
             }
         }
  
         public IEnumerable<decimal> stream(decimal min, decimal max)
-            => stream(Interval.leftclosed(min,max));
+            => stream(leftclosed(min,max));
                     
         IEnumerable<sbyte> IRandomizer<sbyte>.stream()
             => stream(sbyte.MinValue,sbyte.MaxValue);
@@ -334,7 +334,7 @@ namespace Z0
                 select x * nextSign();
 
         public IEnumerable<BigInteger> stream(Interval<BigInteger> domain)
-            => stream((long)domain.left, (long)domain.right).Select(x => new BigInteger(x));
+            => stream((long)domain.Left, (long)domain.Right).Select(x => new BigInteger(x));
 
         public IEnumerable<BigInteger> stream(BigInteger min, BigInteger max)
             => stream((long)min, (long)max).Select(x => new BigInteger(x));

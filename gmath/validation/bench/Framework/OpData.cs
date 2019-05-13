@@ -41,13 +41,13 @@ namespace Z0
             this.Source = Source;
         }
     
-        public T[] LeftTarget {get;}
+        public T[] LeftTarget;
 
-        public T[] RightTarget {get;}
+        public T[] RightTarget;
 
-        public int Length {get;}
+        public int Length;
 
-        public T[] Source {get;}
+        public T[] Source;
 
     }
 

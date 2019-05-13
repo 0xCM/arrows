@@ -16,21 +16,25 @@ namespace Z0
     public abstract class PrimalBench : BenchContext
     {
 
-        static readonly BenchConfig Config0 = new BenchConfig(Cycles: Pow2.T13, Reps: 1, SampleSize: Pow2.T12, AnnounceRate: Pow2.T11);
-        
-        static readonly BenchConfig Config1 = new BenchConfig(Cycles: Pow2.T11, Reps: 1, SampleSize: Pow2.T11, AnnounceRate: Pow2.T09);
+        protected static readonly BenchConfig Config0 = new BenchConfig(Cycles: Pow2.T11, Reps: 1, SampleSize: Pow2.T11, AnnounceRate: Pow2.T09);
+
+        protected static readonly BenchConfig Config1 = new BenchConfig(Cycles: Pow2.T13, Reps: 1, SampleSize: Pow2.T12, AnnounceRate: Pow2.T11);
+
+        protected static readonly BenchConfig Config2 = new BenchConfig(Cycles: Pow2.T14, Reps: 1, SampleSize: Pow2.T13, AnnounceRate: Pow2.T11);
+
 
         protected PrimalBench(IRandomizer random, BenchConfig config = null)
-            : base(random, config ?? Config0)
+            : base(random, config ?? Config1)
         {
             LeftSrc = ArraySampler.Sample(random, Config.SampleSize);   
             RightSrc = ArraySampler.Sample(random, Config.SampleSize);
             NonZeroSrc = ArraySampler.Sample(random, Config.SampleSize,true);
+            Baselines = BaselineMetrics.Create(LeftSrc, RightSrc, NonZeroSrc, Z0.Randomizer.define(RandSeeds.BenchSeed), config);
 
         }
 
         protected PrimalBench(ArraySampler LeftSrc, ArraySampler RightSrc, ArraySampler NonZeroSrc, IRandomizer random, BenchConfig config = null)
-            : base(random, config ?? Config0)
+            : base(random, config ?? Config1)
         {
             this.LeftSrc = LeftSrc;
             this.RightSrc = RightSrc;
@@ -96,6 +100,8 @@ namespace Z0
         }            
         protected abstract OpId<T> Id<T>(OpKind op, bool generic = false)
             where T : struct, IEquatable<T>;
+
+        protected BaselineMetrics Baselines {get;}
 
         protected readonly ArraySampler LeftSrc;   
 

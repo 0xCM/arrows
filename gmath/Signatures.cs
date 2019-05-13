@@ -136,13 +136,13 @@ namespace Z0
     public unsafe delegate void Num128PStore<T>(in Num128<T> src, void* dst)
         where T : struct, IEquatable<T>;
 
-    public delegate bool Num128CmpFloat<T>(in Num128<T> lhs, in Num128<T> rhs, FloatCompareKind mode)
+    public delegate bool Num128CmpFloat<T>(in Num128<T> lhs, in Num128<T> rhs, FloatComparisonMode mode)
         where T : struct, IEquatable<T>;
 
     public delegate bool Num128BinPred<T>(in Num128<T> lhs, in Num128<T> rhs)
         where T : struct, IEquatable<T>;
 
-    public delegate bool[] Vec128CmpFloat<T>(in Vec128<T> lhs, in Vec128<T> rhs, FloatCompareKind mode)
+    public delegate bool[] Vec128CmpFloat<T>(in Vec128<T> lhs, in Vec128<T> rhs, FloatComparisonMode mode)
         where T : struct, IEquatable<T>;
 
     public delegate Vec128<T> Vec128TernaryOp<T>(in Vec128<T> x, in Vec128<T> y, in Vec128<T> z)

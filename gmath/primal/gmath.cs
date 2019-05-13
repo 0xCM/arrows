@@ -14,6 +14,7 @@ namespace Z0
     
     using static atoms;
     using static mfunc;
+    using static zfunc;
 
     partial class gmath
     {
@@ -29,41 +30,6 @@ namespace Z0
         public static T one<T>()
             where T : struct, IEquatable<T>
                 => Constants<T>.One;
-        // {
-        //         var kind = PrimalKinds.kind<T>();
-
-        //     if(kind == PrimalKind.int32)
-        //         return As.generic<T>(1);
-
-        //     if(kind == PrimalKind.uint32)
-        //         return As.generic<T>(1u);
-
-        //     if(kind == PrimalKind.int64)
-        //         return As.generic<T>(1L);
-
-        //     if(kind == PrimalKind.uint64)
-        //         return As.generic<T>(1UL);
-
-        //     if(kind == PrimalKind.int16)
-        //         return As.generic<T>((short)1);
-
-        //     if(kind == PrimalKind.uint16)
-        //         return As.generic<T>((ushort)1);
-
-        //     if(kind == PrimalKind.int8)
-        //         return As.generic<T>((sbyte)1);
-
-        //     if(kind == PrimalKind.uint8)
-        //         return As.generic<T>((byte)1);
-            
-        //         if(kind == PrimalKind.float32)
-        //         return As.generic<T>(1f);
-
-        //     if(kind == PrimalKind.float64)
-        //         return As.generic<T>(1d);
-
-        //     throw unsupported(kind);
-        // }
 
         [MethodImpl(Inline)]
         public static T value<T>(T src)
@@ -1932,5 +1898,217 @@ namespace Z0
                 => fused.max(src);
 
         #endregion
+ 
+        #region parse
+
+        [MethodImpl(Inline)]
+        public static T parse<T>(string src)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int8)
+                return atoms.parseI8<T>(src);
+
+            if(kind == PrimalKind.uint8)
+                return atoms.parseU8<T>(src);
+
+            if(kind == PrimalKind.int16)
+                return atoms.parseI16<T>(src);
+
+            if(kind == PrimalKind.uint16)
+                return atoms.parseU16<T>(src);
+            
+            if(kind == PrimalKind.int32)
+                return atoms.parseI32<T>(src);
+
+            if(kind == PrimalKind.uint32)
+                return atoms.parseU32<T>(src);
+
+            if(kind == PrimalKind.int64)
+                return atoms.parseI64<T>(src);
+
+            if(kind == PrimalKind.uint64)
+                return atoms.parseU64<T>(src);
+
+            if(kind == PrimalKind.float32)
+                return atoms.parseF32<T>(src);
+
+            if(kind == PrimalKind.float64)
+                return atoms.parseF64<T>(src);
+
+            throw unsupported(kind);
+        }
+        
+        #endregion        
+
+        #region sqrt
+
+        [MethodImpl(Inline)]
+        public static ref T sqrt<T>(ref T src)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int32)
+                return ref sqrtI32(ref src);
+
+            if(kind == PrimalKind.uint32)
+                return ref src;
+
+            if(kind == PrimalKind.int64)
+                return ref sqrtI64(ref src);
+
+            if(kind == PrimalKind.uint64)
+                return ref src;
+
+            if(kind == PrimalKind.int16)
+                return ref sqrtI16(ref src);
+
+            if(kind == PrimalKind.uint16)
+                return ref src;
+
+            if(kind == PrimalKind.int8)
+                return ref sqrtI8(ref src);
+
+            if(kind == PrimalKind.uint8)
+                return ref src;
+
+            if(kind == PrimalKind.float32)
+                return ref sqrtF32(ref src);
+
+            if(kind == PrimalKind.float64)
+                return ref sqrtF64(ref src);
+
+            throw unsupported(kind);
+        }           
+
+
+        [MethodImpl(Inline)]
+        public static T sqrt<T>(T src)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int8)
+                return sqrtI8(src);
+
+            if(kind == PrimalKind.uint8)
+                return src;
+
+            if(kind == PrimalKind.int16)
+                return sqrtI16(src);
+
+            if(kind == PrimalKind.uint16)
+                return src;
+
+            if(kind == PrimalKind.int32)
+                return sqrtI32(src);
+
+            if(kind == PrimalKind.uint32)
+                return src;
+
+            if(kind == PrimalKind.int64)
+                return sqrtI64(src);
+
+            if(kind == PrimalKind.uint64)
+                return src;
+
+            if(kind == PrimalKind.float32)
+                return sqrtF32(src);
+
+            if(kind == PrimalKind.float64)
+                return sqrtF64(src);
+
+            throw unsupported(kind);
+        }           
+
+
+        #endregion
+
+        #region square
+
+        [MethodImpl(Inline)]
+        public static ref T square<T>(ref T src)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int32)
+                return ref squareI32(ref src);
+
+            if(kind == PrimalKind.uint32)
+                return ref src;
+
+            if(kind == PrimalKind.int64)
+                return ref squareI64(ref src);
+
+            if(kind == PrimalKind.uint64)
+                return ref src;
+
+            if(kind == PrimalKind.int16)
+                return ref squareI16(ref src);
+
+            if(kind == PrimalKind.uint16)
+                return ref src;
+
+            if(kind == PrimalKind.int8)
+                return ref squareI8(ref src);
+
+            if(kind == PrimalKind.uint8)
+                return ref src;
+
+            if(kind == PrimalKind.float32)
+                return ref squareF32(ref src);
+
+            if(kind == PrimalKind.float64)
+                return ref squareF64(ref src);
+
+            throw unsupported(kind);
+        }           
+
+
+        [MethodImpl(Inline)]
+        public static T square<T>(T src)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int8)
+                return squareI8(src);
+
+            if(kind == PrimalKind.uint8)
+                return src;
+
+            if(kind == PrimalKind.int16)
+                return squareI16(src);
+
+            if(kind == PrimalKind.uint16)
+                return src;
+
+            if(kind == PrimalKind.int32)
+                return squareI32(src);
+
+            if(kind == PrimalKind.uint32)
+                return src;
+
+            if(kind == PrimalKind.int64)
+                return squareI64(src);
+
+            if(kind == PrimalKind.uint64)
+                return src;
+
+            if(kind == PrimalKind.float32)
+                return squareF32(src);
+
+            if(kind == PrimalKind.float64)
+                return squareF64(src);
+
+            throw unsupported(kind);
+        }           
+
+
+        #endregion
+
     }
 }

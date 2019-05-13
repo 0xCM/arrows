@@ -15,7 +15,8 @@ namespace Z0
 
     
     using static zfunc;
-    using static global::mfunc;
+    using static mfunc;
+    using static As;
 
     public static class Vec256
     {
@@ -23,7 +24,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<T> single<T>(T[] src)
             where T : struct, IEquatable<T>            
-                => define<T>(src,0);
+                => define<T>(ref src,0);
 
 
         [MethodImpl(Inline)]
@@ -151,7 +152,6 @@ namespace Z0
         {
             var maxpos = src.Length - 1;
             var finalpos = offset + Vector256<T>.Count - 1;
-
             if(finalpos > maxpos)
                 throw errlen(src.Length, Vector256<T>.Count, offset, maxpos, finalpos);
         }
@@ -371,11 +371,11 @@ namespace Z0
             => Avx2.BroadcastScalarToVector256(src);
 
         [MethodImpl(Inline)]
-        static Vec256<T> vInt8<T>(T[] data, int offset)
+        static Vec256<T> vInt8<T>(ref T[] data, int offset)
             where T : struct, IEquatable<T>
         {
             var i = offset;
-            var src = As.int8(data);
+            ref var src = ref int8(ref data);
             var dst = define(
                 src[i++],src[i++],src[i++],src[i++],
                 src[i++],src[i++],src[i++],src[i++],
@@ -386,15 +386,15 @@ namespace Z0
                 src[i++],src[i++],src[i++],src[i++],
                 src[i++],src[i++],src[i++],src[i++]
             );
-            return As.generic<T>(dst);
+            return generic<T>(dst);
         }
 
         [MethodImpl(Inline)]
-        static Vec256<T> vUInt8<T>(T[] data,int offset)
+        static Vec256<T> vUInt8<T>(ref T[] data,int offset)
             where T : struct, IEquatable<T>
         {
             var i = offset;
-            var src = As.uint8(data);
+            ref var src = ref uint8(ref data);
             var dst = define(
                 src[i++],src[i++],src[i++],src[i++],
                 src[i++],src[i++],src[i++],src[i++],
@@ -406,15 +406,15 @@ namespace Z0
                 src[i++],src[i++],src[i++],src[i++]
 
             );
-            return As.generic<T>(dst);
+            return generic<T>(dst);
         }
 
         [MethodImpl(Inline)]
-        static Vec256<T> vInt16<T>(T[] data,int offset)
+        static Vec256<T> vInt16<T>(ref T[] data,int offset)
             where T : struct, IEquatable<T>
         {
             var i = offset;
-            var src = As.int16(data);
+            ref var src = ref int16(ref data);
             var dst = define(
                 src[i++],src[i++],src[i++],src[i++],
                 src[i++],src[i++],src[i++],src[i++],
@@ -422,15 +422,15 @@ namespace Z0
                 src[i++],src[i++],src[i++],src[i++]
 
             );
-            return As.generic<T>(dst);
+            return generic<T>(dst);
         }
 
         [MethodImpl(Inline)]
-        static Vec256<T> vUInt16<T>(T[] data,int offset)
+        static Vec256<T> vUInt16<T>(ref T[] data,int offset)
             where T : struct, IEquatable<T>
         {
             var i = offset;
-            var src = As.uint16(data);
+            ref var src = ref uint16(ref data);
             var dst = define(
                 src[i++],src[i++],src[i++],src[i++],
                 src[i++],src[i++],src[i++],src[i++],
@@ -438,89 +438,83 @@ namespace Z0
                 src[i++],src[i++],src[i++],src[i++]
 
             );
-            return As.generic<T>(dst);
+            return generic<T>(dst);
         }
 
         [MethodImpl(Inline)]
-        static Vec256<T> vInt32<T>(T[] data,int offset)
+        static Vec256<T> vInt32<T>(ref T[] data,int offset)
             where T : struct, IEquatable<T>
         {
             var i = offset;
-            var src = As.int32(data);
+            ref var src = ref uint32(ref data);
             var dst = define(
                 src[i++],src[i++],src[i++],src[i++],
                 src[i++],src[i++],src[i++],src[i++]
 
             );
-            return As.generic<T>(dst);
+            return generic<T>(ref dst);
         }
 
         [MethodImpl(Inline)]
-        static Vec256<T> vUInt32<T>(T[] data,int offset)
+        static Vec256<T> vUInt32<T>(ref T[] data,int offset)
             where T : struct, IEquatable<T>
         {
             var i = offset;
-            var src = As.uint32(data);
+            ref var src = ref uint32(ref data);
             var dst = define(
                 src[i++],src[i++],src[i++],src[i++],
                 src[i++],src[i++],src[i++],src[i++]
 
             );
-            return As.generic<T>(dst);
+            return generic<T>(dst);
         }
 
         [MethodImpl(Inline)]
-        static Vec256<T> vInt64<T>(T[] data,int offset)
+        static Vec256<T> vInt64<T>(ref T[] data,int offset)
             where T : struct, IEquatable<T>
         {
             var i = offset;
-            var src = As.int64(data);
-            var dst = define(
-                src[i++],src[i++],src[i++],src[i++]
-
-            );
-            return As.generic<T>(dst);
+            ref var src = ref int64(ref data);
+            var dst = define(src[i++], src[i++], src[i++], src[i++]);
+            return generic<T>(dst);
         }
 
         [MethodImpl(Inline)]
-        static Vec256<T> vUInt64<T>(T[] data,int offset)
+        static Vec256<T> vUInt64<T>(ref T[] data,int offset)
             where T : struct, IEquatable<T>
         {
             var i = offset;
-            var src = As.uint64(data);
-            var dst = define(
-                src[i++],src[i++],src[i++],src[i++]
-
-            );
-            return As.generic<T>(dst);
+            ref var src = ref uint64(ref data);
+            var dst = define(src[i++], src[i++], src[i++], src[i++]);
+            return generic<T>(dst);
         }
 
         [MethodImpl(Inline)]
-        static Vec256<T> vFloat32<T>(T[] data,int offset)
+        static Vec256<T> vFloat32<T>(ref T[] data,int offset)
             where T : struct, IEquatable<T>
         {
             var i = offset;
-            var src = As.float32(data);
+            ref var src = ref float32(ref data);
             var dst = define(
                 src[i++],src[i++],src[i++],src[i++],
                 src[i++],src[i++],src[i++],src[i++]                
 
             );
-            return As.generic<T>(dst);
+            return generic<T>(dst);
         }
 
 
         [MethodImpl(Inline)]
-        static Vec256<T> vFloat64<T>(T[] data,int offset)
+        static Vec256<T> vFloat64<T>(ref T[] data,int offset)
             where T : struct, IEquatable<T>
         {
             var i = offset;
-            var src = As.float64(data);
+            ref var src = ref float64(ref data);
             var dst = define(
                 src[i++],src[i++],src[i++],src[i++]
 
             );
-            return As.generic<T>(dst);
+            return generic<T>(dst);
         }
 
 
@@ -532,41 +526,41 @@ namespace Z0
         /// <param name="src">The source list</param>
         /// <typeparam name="T">The primitive type</typeparam>        
         [MethodImpl(Inline)]
-        public static unsafe Vec256<T> define<T>(T[] src, int offset = 0)
+        public static unsafe Vec256<T> define<T>(ref T[] src, int offset = 0)
             where T : struct, IEquatable<T>
         {            
 
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.int8)            
-                return vInt8(src,offset);
+                return vInt8(ref src, offset);
 
             if(kind == PrimalKind.uint8)            
-                return vUInt8(src,offset);
+                return vUInt8(ref src, offset);
 
             if(kind == PrimalKind.int16)            
-                return vInt16(src,offset);
+                return vInt16(ref src, offset);
 
             if(kind == PrimalKind.uint16)            
-                return vUInt16(src,offset);
+                return vUInt16(ref src, offset);
 
             if(kind == PrimalKind.int32)            
-                return vInt32(src,offset);
+                return vInt32(ref src, offset);
 
             if(kind == PrimalKind.uint32)            
-                return vUInt32(src,offset);
+                return vUInt32(ref src, offset);
 
             if(kind == PrimalKind.int64)            
-                return vInt64(src,offset);
+                return vInt64(ref src, offset);
 
             if(kind == PrimalKind.uint64)            
-                return vUInt64(src,offset);
+                return vUInt64(ref src, offset);
 
             if(kind == PrimalKind.float32)            
-                return vFloat32(src,offset);
+                return vFloat32(ref src, offset);
 
             if(kind == PrimalKind.float64)            
-                return vFloat64(src,offset);
+                return vFloat64(ref src, offset);
 
             throw new NotSupportedException($"Kind {kind} not supported");
         }        

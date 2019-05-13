@@ -16,48 +16,6 @@ namespace Z0
 
     partial class math
     {
-
-
-        [MethodImpl(Inline)]
-        public static sbyte dec(sbyte src)
-            => --src;
-
-        [MethodImpl(Inline)]
-        public static byte dec(byte src)
-            => --src;
-
-        [MethodImpl(Inline)]
-        public static short dec(short src)
-            => --src;
-
-        [MethodImpl(Inline)]
-        public static ushort dec(ushort src)
-            => --src;
-
-        [MethodImpl(Inline)]
-        public static int dec(int src)
-            => --src;
-
-        [MethodImpl(Inline)]
-        public static uint dec(uint src)
-            => --src;
-
-        [MethodImpl(Inline)]
-        public static long dec(long src)
-            => --src;
-
-        [MethodImpl(Inline)]
-        public static ulong dec(ulong src)
-            => --src;
-
-        [MethodImpl(Inline)]
-        public static float dec(float src)
-            => --src;
-
-        [MethodImpl(Inline)]
-        public static double dec(double src)
-            => --src;
-
         [MethodImpl(Inline)]
         public static ref sbyte dec(ref sbyte src)
         {
@@ -127,7 +85,47 @@ namespace Z0
             src--;
             return ref src;
         }
-            
+                    
+
+        [MethodImpl(Inline)]
+        public static sbyte dec(sbyte src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static byte dec(byte src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static short dec(short src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static ushort dec(ushort src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static int dec(int src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static uint dec(uint src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static long dec(long src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static ulong dec(ulong src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static float dec(float src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static double dec(double src)
+            => --src;
 
 
     }

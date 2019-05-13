@@ -23,7 +23,6 @@ namespace Z0
 
         static IModNOps<N,T> Ops = ModOps<N,T>.Inhabitant;
         
-        static readonly intg<T> @base = Nat.natvalg<N,T>();
 
         [MethodImpl(Inline)]
         public static implicit operator modg<N,T>(T data)
@@ -108,7 +107,7 @@ namespace Z0
             => hash();
 
         public override string ToString()
-            => $"{data} (mod {@base})";
+            => $"{data} (mod {nats.natu<N>()})";
 
         public modg<N, T> negate()
         {

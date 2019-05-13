@@ -13,28 +13,58 @@ namespace Z0
     public static class SomeX
     {
         /// <summary>
+        /// Converts a number to a string of decimal digits
+        /// </summary>
+        /// <param name="src">The source integer</param>
+        /// <typeparam name="T">The underlying primitive type</typeparam>
+        [MethodImpl(Inline)]   
+        public static Span<DeciDigit> ToDecimalDigits<T>(this num<T> src)
+            where T : struct, IEquatable<T>    
+                =>  DeciDigits.Parse(src.Abs().ToString());
+
+        /// <summary>
+        /// Converts a number to a string of decimal digits
+        /// </summary>
+        /// <param name="src">The source integer</param>
+        /// <typeparam name="T">The underlying primitive type</typeparam>
+         [MethodImpl(Inline)]   
+        public static Span<HexDigit> ToHexDigits<T>(this num<T> src)
+            where T : struct, IEquatable<T>    
+                =>  HexDigits.Parse(src.ToString());
+
+        /// <summary>
+        /// Converts a number to a string of decimal digits
+        /// </summary>
+        /// <param name="src">The source integer</param>
+        /// <typeparam name="T">The underlying primitive type</typeparam>
+        [MethodImpl(Inline)]   
+        public static Span<BinaryDigit> ToBinaryDigits<T>(this num<T> src)
+            where T : struct, IEquatable<T>    
+                =>  BinaryDigits.Parse(src.ToBitString());
+
+        /// <summary>
         /// Determines whether the point lies within the interval
         /// </summary>
         /// <param name="src">The interval</param>
         /// <param name="point">The test point</param>
         /// <typeparam name="T">The domain of the point</typeparam>
         [MethodImpl(Inline)]
-        public static bool Contains<T>(this Interval<T> src, T point)
+        public static bool Contains<T>(this ITimeInterval<T> src, T point)
             where T : struct, IEquatable<T> 
                 => src.Contains(point);
 
         [MethodImpl(Inline)]
-        public static bool Contains<T>(this IIntervalX<T> interval, T point)
+        public static bool Contains<T>(this IInterval<T> interval, T point)
             where T : struct, IEquatable<T>
-                => interval.kind switch {
+                => interval.Kind switch {
                         IntervalKind.Closed 
-                            => gmath.gteq(point,interval.left) && gmath.lteq(point, interval.right),
+                            => gmath.gteq(point,interval.Left) && gmath.lteq(point, interval.Right),
                         IntervalKind.Open 
-                            => gmath.gt(point, interval.left) && gmath.lt(point, interval.right),
+                            => gmath.gt(point, interval.Left) && gmath.lt(point, interval.Right),
                         IntervalKind.LeftClosed 
-                            => gmath.gteq(point, interval.left) && gmath.lt(point, interval.right),
+                            => gmath.gteq(point, interval.Left) && gmath.lt(point, interval.Right),
                         IntervalKind.RightClosed 
-                            => gmath.gt(point, interval.left) && gmath.lteq(point, interval.right),
+                            => gmath.gt(point, interval.Left) && gmath.lteq(point, interval.Right),
                         _ => throw new ArgumentException()
                 };
 
@@ -50,18 +80,18 @@ namespace Z0
 
             var width = step ?? gmath.one<T>();            
 
-            if(src.leftclosed)
-                yield return src.left;
+            if(src.LeftClosed)
+                yield return src.Left;
             
-            var next = gmath.add(src.left, width);
-            while(gmath.lt(next,src.right))
+            var next = gmath.add(src.Left, width);
+            while(gmath.lt(next,src.Right))
             {
                 yield return next;
                 next = gmath.add(next, width);
             }
 
-            if(src.rightclosed)
-                yield return src.right;
+            if(src.RightClosed)
+                yield return src.Right;
         }
 
         // <summary>
@@ -70,22 +100,22 @@ namespace Z0
         /// <param name="src">The source interval</param>
         /// <param name="parts">The number of partition points</param>
         /// <typeparam name="T">The underlying interval type</typeparam>
-        public static IEnumerable<num<T>> Partition<T>(this IIntervalX<num<T>> src, num<T> parts)
+        public static IEnumerable<num<T>> Partition<T>(this IInterval<num<T>> src, num<T> parts)
             where T : struct, IEquatable<T>
         {
             
             if(parts != num<T>.Zero)
             {            
-                var width = (src.right - src.left)/parts;
-                var current = src.left;
+                var width = (src.Right - src.Left)/parts;
+                var current = src.Left;
                 
-                yield return src.left;
+                yield return src.Left;
                 for(var i = num<T>.Zero; i < parts - num<T>.One; i++)
                 {
                     current += width;
                     yield return current;
                 }
-                yield return src.right;
+                yield return src.Right;
             }
         }
 

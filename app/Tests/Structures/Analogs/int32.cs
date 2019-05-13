@@ -38,7 +38,7 @@ namespace Z0.Tests
 
 
         public Int32Analog()
-            : base(Defaults.Int32Domain)
+            : base(SampleDefaults.get<int>().SampleDomain)
         {
             LeftPrimVecs = MakeVectors<N128>(LeftPrimSrc).Freeze();
             RightPrimVecs = MakeVectors<N128>(RightPrimSrc).Freeze();
@@ -64,20 +64,15 @@ namespace Z0.Tests
             Claim.eq(result,0);                
         }
 
-        [Repeat(Defaults.Reps)]
         public Index<Vector<N128,int32>> AnalogSum()
             => fuse(LeftAnaVecs.ToArray(), RightAnaVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x + y));
 
-
-        [Repeat(Defaults.Reps)]
         public Index<Vector<N128,int>> BaselineSum()
             => fuse(LeftPrimVecs.ToArray(), RightPrimVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x + y));
 
-        [Repeat(Defaults.Reps)]
         public Index<Vector<N128,int32>> AnalogMul()
             => fuse(LeftAnaVecs.ToArray(), RightAnaVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x * y));
 
-        [Repeat(Defaults.Reps)]
         public Index<Vector<N128,int>> BaselineMul()
             => fuse(LeftPrimVecs.ToArray(), RightPrimVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x * y));
 

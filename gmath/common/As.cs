@@ -10,13 +10,13 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
     using System.Security;
-
     
     using static mfunc;
+    using static zfunc;
 
     public static class As
     {
-        #region primitives
+        #region generic => primal
 
         [MethodImpl(Inline)]
         public static sbyte int8<T>(T src)
@@ -99,6 +99,18 @@ namespace Z0
             => ref Unsafe.As<T,double>(ref src);
 
         [MethodImpl(Inline)]
+        public static decimal float128<T>(T src)
+            => Unsafe.As<T,decimal>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ref decimal float128<T>(ref T src)
+            => ref Unsafe.As<T,decimal>(ref src);
+
+        #endregion
+
+        #region primal => generic
+
+        [MethodImpl(Inline)]
         public static T generic<T>(sbyte src)
             => Unsafe.As<sbyte,T>(ref src);
 
@@ -109,7 +121,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T generic<T>(byte src)
             => Unsafe.As<byte,T>(ref src);
-
 
         [MethodImpl(Inline)]
         public static ref T generic<T>(ref byte src)
@@ -167,7 +178,6 @@ namespace Z0
         public static T generic<T>(float src)
             => Unsafe.As<float,T>(ref src);
 
-
         [MethodImpl(Inline)]
         public static ref T generic<T>(ref float src)
             => ref Unsafe.As<float,T>(ref src);
@@ -179,6 +189,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref T generic<T>(ref double src)
             => ref Unsafe.As<double,T>(ref src);
+
+        [MethodImpl(Inline)]
+        public static T generic<T>(decimal src)
+            => Unsafe.As<decimal,T>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ref T generic<T>(ref decimal src)
+            => ref Unsafe.As<decimal,T>(ref src);
 
         #endregion
 
@@ -196,28 +214,61 @@ namespace Z0
 
         #endregion
 
-        #region arrays
+        #region mem[T] => mem[Primal]
 
         [MethodImpl(Inline)]
-        public static ReadOnlyMemory<sbyte> uint8<T>(ReadOnlyMemory<T> src)
+        public static ref ReadOnlyMemory<sbyte> uint8<T>(ref ReadOnlyMemory<T> src)
             where T : struct
-            => Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<sbyte>>(ref src);
+                => ref Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<sbyte>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ReadOnlyMemory<byte> int8<T>(ReadOnlyMemory<T> src)
+        public static ref ReadOnlyMemory<byte> int8<T>(ref ReadOnlyMemory<T> src)
             where T : struct
-            => Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<byte>>(ref src);
+                => ref Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<byte>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ReadOnlyMemory<float> float32<T>(ReadOnlyMemory<T> src)
+        public static ref ReadOnlyMemory<short> int16<T>(ref ReadOnlyMemory<T> src)
             where T : struct
-            => Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<float>>(ref src);
-
+                => ref Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<short>>(ref src);
 
         [MethodImpl(Inline)]
-        public static ReadOnlyMemory<double> float64<T>(ReadOnlyMemory<T> src)
+        public static ref ReadOnlyMemory<ushort> uint16<T>(ref ReadOnlyMemory<T> src)
             where T : struct
-            => Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<double>>(ref src);
+                => ref Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<ushort>>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ref ReadOnlyMemory<int> int32<T>(ref ReadOnlyMemory<T> src)
+            where T : struct
+                => ref Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<int>>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ref ReadOnlyMemory<uint> uint32<T>(ref ReadOnlyMemory<T> src)
+            where T : struct
+                => ref Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<uint>>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ref ReadOnlyMemory<long> int64<T>(ref ReadOnlyMemory<T> src)
+            where T : struct
+                => ref Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<long>>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ref ReadOnlyMemory<ulong> uint64<T>(ref ReadOnlyMemory<T> src)
+            where T : struct
+                => ref Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<ulong>>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ref ReadOnlyMemory<float> float32<T>(ref ReadOnlyMemory<T> src)
+            where T : struct
+                => ref Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<float>>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ref ReadOnlyMemory<double> float64<T>(ref ReadOnlyMemory<T> src)
+            where T : struct
+                => ref Unsafe.As<ReadOnlyMemory<T>,ReadOnlyMemory<double>>(ref src);
+
+        #endregion
+
+        #region Arrays
 
         [MethodImpl(Inline)]
         public static sbyte[] int8<T>(T[] src)
@@ -230,7 +281,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static byte[] uint8<T>(T[] src)
             => Unsafe.As<T[],byte[]>(ref src);
-
 
         [MethodImpl(Inline)]
         public static ref byte[] uint8<T>(ref T[] src)
@@ -712,7 +762,6 @@ namespace Z0
         internal static ref  Num128<double> float64<T>(ref Num128<T> src)
             where T : struct, IEquatable<T>        
                 => ref Unsafe.As<Num128<T>,Num128<double>>(ref src);
-
 
         [MethodImpl(Inline)]
         internal static Num128<T> generic<T>(Num128<sbyte> src)

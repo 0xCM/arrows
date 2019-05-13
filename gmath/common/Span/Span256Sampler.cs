@@ -34,7 +34,7 @@ namespace Z0
 
         void TakeSamples(int blocks)
         {
-           Int8Samples = Random.Array256<sbyte>(blocks);            
+            Int8Samples = Random.Array256<sbyte>(blocks);            
             UInt8Samples = Random.Array256<byte>(blocks);
             Int16Samples = Random.Array256<short>(blocks);            
             UInt16Samples = Random.Array256<ushort>(blocks);
@@ -47,7 +47,6 @@ namespace Z0
  
         }
 
-
         /// <summary>
         /// Returns values for which samples have already been drawn
         /// </summary>
@@ -55,20 +54,18 @@ namespace Z0
         /// <returns></returns>
         public Span256<T> Sampled<T>(T specimen = default(T))
             where T : struct, IEquatable<T>
-            => PrimalKinds.kind<T>() switch {
-                PrimalKind.int8 => As.generic<T>(Int8Samples),
-                PrimalKind.uint8 => As.generic<T>(UInt8Samples),
-                PrimalKind.int16 => As.generic<T>(Int16Samples),
-                PrimalKind.uint16 => As.generic<T>(UInt16Samples),
-                PrimalKind.int32 => As.generic<T>(Int32Samples),
-                PrimalKind.uint32 => As.generic<T>(UInt32Samples),
-                PrimalKind.int64 => As.generic<T>(Int64Samples),
-                PrimalKind.uint64 => As.generic<T>(UInt64Samples),
-                PrimalKind.float32 => As.generic<T>(Float32Samples),
-                PrimalKind.float64 => As.generic<T>(Float64Samples),
-                _ => throw new Exception($"Kind not supported")
-            };
-
-
+                => PrimalKinds.kind<T>() switch {
+                    PrimalKind.int8 => As.generic<T>(Int8Samples),
+                    PrimalKind.uint8 => As.generic<T>(UInt8Samples),
+                    PrimalKind.int16 => As.generic<T>(Int16Samples),
+                    PrimalKind.uint16 => As.generic<T>(UInt16Samples),
+                    PrimalKind.int32 => As.generic<T>(Int32Samples),
+                    PrimalKind.uint32 => As.generic<T>(UInt32Samples),
+                    PrimalKind.int64 => As.generic<T>(Int64Samples),
+                    PrimalKind.uint64 => As.generic<T>(UInt64Samples),
+                    PrimalKind.float32 => As.generic<T>(Float32Samples),
+                    PrimalKind.float64 => As.generic<T>(Float64Samples),
+                    _ => throw new Exception($"Kind not supported")
+                };
     }
 }

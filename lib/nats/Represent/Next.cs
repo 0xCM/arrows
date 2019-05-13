@@ -10,6 +10,8 @@ namespace Z0
     using System.Collections.Concurrent;
     using System.Reflection;
     using System.Runtime.CompilerServices;
+
+    using static zfunc;    
     
 
     /// <summary>
@@ -29,7 +31,7 @@ namespace Z0
         static readonly string description = $"++{k.value} = {Value}";
 
         public static readonly byte[] Digits 
-            = mfunc.digits(Value);
+            = digits(Value);
 
         public static readonly NatSeq Seq
             = Nat.reflect(Digits);

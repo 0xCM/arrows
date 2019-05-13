@@ -23,7 +23,7 @@ namespace Z0.Test
         where T : struct, IEquatable<T>
     {
         protected InXStreamTest(Interval<T>? domain = null, uint? VecCount = null)
-            : base(OpKind.Stream.Vec128OpId<T>(), domain ?? Defaults.get<T>().Domain, 
+            : base(OpKind.Stream.Vec128OpId<T>(), domain ?? SampleDefaults.get<T>().SampleDomain, 
                 sampleSize: (int)(VecLength* (VecCount ?? Pow2.T16)))
         {
 

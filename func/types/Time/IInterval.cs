@@ -14,7 +14,7 @@ namespace Z0
     /// Delineates a contiguous interval between comparable inclusive lower and upper bounds of the same data type
     /// </summary>
     /// <typeparam name="T">The data type</typeparam>
-    public interface IRange<out T> : IInterval<T>
+    public interface IRange<out T> : ITimeInterval<T>
         where T : IComparable
     {
 
@@ -24,7 +24,7 @@ namespace Z0
     /// <summary>
     /// Represents the content of a contiguous interval between comparable lower and upper bounds of the same type
     /// </summary>
-    public interface IInterval 
+    public interface ITimeInterval 
     {
         /// <summary>
         /// The first endpoint
@@ -47,10 +47,7 @@ namespace Z0
         bool RightInclusive { get; }
     }
 
-    /// <summary>
-    /// Represents the content of a contiguous interval between comparable lower and upper bounds of the same type
-    /// </summary>
-    public interface IInterval<out T> : IInterval
+    public interface ITimeInterval<out T> : ITimeInterval
     {
         /// <summary>
         /// The inclusive lower bound
@@ -68,7 +65,7 @@ namespace Z0
     /// Defines inclusive lower and upper bounds for a comparable set of values
     /// </summary>
     /// <typeparam name="T">The element type</typeparam>
-    public struct Range<T> : IInterval<T>
+    public struct Range<T> : ITimeInterval<T>
         where T : IComparable
     {
         public Range(T Min, T Max)
@@ -87,16 +84,16 @@ namespace Z0
         /// </summary>
         public T Max { get; }
 
-        bool IInterval.LeftInclusive
+        bool ITimeInterval.LeftInclusive
             => true;
 
-        bool IInterval.RightInclusive
+        bool ITimeInterval.RightInclusive
             => true;
 
-        object IInterval.Min
+        object ITimeInterval.Min
             => Min;
 
-        object IInterval.Max
+        object ITimeInterval.Max
             => Max;
 
         /// <summary>

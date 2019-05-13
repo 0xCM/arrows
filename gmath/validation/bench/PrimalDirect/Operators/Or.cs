@@ -110,5 +110,79 @@ namespace Z0
                 dst[it] = src.Left[it] | src.Right[it];
             return SampleTime(snapshot(sw));
         }
+ 
+         public OpMetrics OrFused(sbyte[] dst)
+        {
+            var opid = Id<sbyte>(OpKind.Or);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.or(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics OrFused(byte[] dst)
+        {
+            var opid = Id<byte>(OpKind.Or);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.or(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics OrFused(short[] dst)
+        {
+            var opid = Id<short>(OpKind.Or);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.or(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics OrFused(ushort[] dst)
+        {
+            var opid = Id<ushort>(OpKind.Or);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.or(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics OrFused(int[] dst)
+        {
+            var opid = Id<int>(OpKind.Or);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.or(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics OrFused(uint[] dst)
+        {
+            var opid = Id<uint>(OpKind.Or);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.or(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics OrFused(long[] dst)
+        {
+            var opid = Id<long>(OpKind.Or);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.or(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+        public OpMetrics OrFused(ulong[] dst)
+        {
+            var opid = Id<ulong>(OpKind.Or);
+            var src = Sampled(opid);
+            var sw = stopwatch();
+            math.or(src.Left, src.Right, dst);
+            return SampleTime(snapshot(sw));
+        }
+
+ 
    }
 }
