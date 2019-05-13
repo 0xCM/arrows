@@ -12,7 +12,7 @@ namespace Z0.Testing
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    using static nats;
+    using static nfunc;
     
 
     /// <summary>

@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zcore;
-    using static nats;
+    using static nfunc;
 
     public interface RandomMatrixSource<M,N,T>
         where M : ITypeNat, new()

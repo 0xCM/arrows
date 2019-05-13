@@ -62,7 +62,7 @@ namespace Z0
         public Duration Half()
             => new Duration(Ticks/2);
 
-        public readonly long Ms
+        public long Ms
             => ticksToMs(Ticks);
 
         public override string ToString()

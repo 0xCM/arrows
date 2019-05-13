@@ -14,7 +14,7 @@ using System.Diagnostics;
 using Z0;
 using static zcore;
 using static zfunc;
-using static nats;
+using static nfunc;
 
 using Array = Z0.NatArray;
 
@@ -69,31 +69,6 @@ public static partial class zcore
             => new Slice<T>(src);
 
     /// <summary>
-    /// Constructs a slice of natural lengh from a stream
-    /// </summary>
-    /// <param name="src">The element source</param>
-    /// <typeparam name="N">The natural type</typeparam>
-    /// <typeparam name="T">The element type </typeparam>
-    [MethodImpl(Inline)]   
-    public static Z0.Slice<N,T> slice<N,T>(IEnumerable<T> src)
-        where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
-            => new Slice<N,T>(src);
-
-
-    /// <summary>
-    /// Constructs a slice of natural lengh from a parameter array
-    /// </summary>
-    /// <param name="src">The element source</param>
-    /// <typeparam name="N">The natural type</typeparam>
-    /// <typeparam name="T">The element type </typeparam>
-    [MethodImpl(Inline)]   
-    public static Z0.Slice<N,T> slice<N,T>(params T[] src)
-        where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
-            => new Slice<N,T>(src);
-
-    /// <summary>
     /// Constructs a Seq[T] from a parameter array
     /// </summary>
     /// <param name="src">The source items</param>
@@ -144,52 +119,6 @@ public static partial class zcore
 
 
 
-
-    /// <summary>
-    /// Constructs an N-array from a parameter array
-    /// </summary>
-    /// <param name="src">The element source</param>
-    /// <typeparam name="N">The length type</typeparam>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Array<N,T> array<N,T>(params T[] src)
-        where N : ITypeNat, new()
-            => NatArray.define<N, T>(src);
-
-    /// <summary>
-    /// Constructs an N-array from a parameter array
-    /// </summary>
-    /// <param name="len">The length of the array</param>
-    /// <param name="src">The element source</param>
-    /// <typeparam name="N">The length type</typeparam>
-    /// <typeparam name="T">The element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Array<N,T> array<N,T>(N len, params T[] src)
-        where N : ITypeNat, new()
-            => NatArray.define(len, src);
-
-    /// <summary>
-    /// Constructs an array of natural length from an enumerable
-    /// </summary>
-    /// <param name="src">The source values</param>
-    /// <typeparam name="N">The natural length type</typeparam>
-    /// <typeparam name="T">Then element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Array<N,T> array<N,T>(IEnumerable<T> src)
-        where N : ITypeNat, new()
-            => Z0.NatArray.define<N, T>(src);
-
-    /// <summary>
-    /// Constructs an array of natural length from an enumerable
-    /// </summary>
-    /// <param name="src">The source values</param>
-    /// <typeparam name="N">The natural length type</typeparam>
-    /// <typeparam name="T">Then element type</typeparam>
-    [MethodImpl(Inline)]
-    public static Array<N,T> array<N,T>(N len, IEnumerable<T> src)
-        where N : ITypeNat, new()
-            => Z0.NatArray.define(len, src);
-
     /// <summary>
     /// Constructs a mutable dictionary 
     /// </summary>
@@ -209,35 +138,7 @@ public static partial class zcore
     public static ConcurrentBag<T> cbag<T>(params T[] initial)
         => new ConcurrentBag<T>(initial);
 
-    /// <summary>
-    /// Constructs an associative array
-    /// </summary>
-    /// <param name="items">Item tuples that will be indexed/stored</param>
-    /// <typeparam name="K">The key type</typeparam>
-    /// <typeparam name="V">The value type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Index<K,V> index<K,V>(IEnumerable<(K key,V value)> items)
-        => new Index<K,V>(items);
 
-    /// <summary>
-    /// Constructs an associative array
-    /// </summary>
-    /// <param name="items">Keyed values that will be indexed/stored</param>
-    /// <typeparam name="K">The key type</typeparam>
-    /// <typeparam name="V">The value type</typeparam>
-    /// <returns></returns>
-    public static Index<K,V> index<K,V>(IEnumerable<KeyedValue<K,V>> items)
-        => new Index<K,V>(items);
-
-    /// <summary>
-    /// Constructs an index from a collection of of 2-tuples
-    /// </summary>
-    /// <param name="src">The collection of 2-tuples from which to construct an index</param>
-    /// <typeparam name="K">The key type</typeparam>
-    /// <typeparam name="V">The value type</typeparam>
-    /// <returns></returns>
-    public static Index<K,V> index<K,V>((K key, V value)[] src)
-        => new Index<K,V>(src.Select(x => (x.key, x.value)));
 
     /// <summary>
     /// Constructs a keyed value

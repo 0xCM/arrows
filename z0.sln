@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.app", "app\z0.app.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.zfunc", "func\z0.zfunc.csproj", "{59007E1D-0A00-42CC-9888-B6270C459F5E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.nats", "nats\z0.nats.csproj", "{3975DB8B-3EC5-4999-9078-E6BE73081E6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{59007E1D-0A00-42CC-9888-B6270C459F5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59007E1D-0A00-42CC-9888-B6270C459F5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59007E1D-0A00-42CC-9888-B6270C459F5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3975DB8B-3EC5-4999-9078-E6BE73081E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3975DB8B-3EC5-4999-9078-E6BE73081E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3975DB8B-3EC5-4999-9078-E6BE73081E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3975DB8B-3EC5-4999-9078-E6BE73081E6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

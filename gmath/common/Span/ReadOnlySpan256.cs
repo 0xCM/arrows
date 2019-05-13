@@ -127,17 +127,17 @@ namespace Z0
             get => ref data[ix];
         }
 
-        public ref readonly T this[Index ix] 
-        {
-            [MethodImpl(Inline)]
-            get => ref data[ix];
-        }
+        //public ref readonly T this[Index ix] 
+        //{
+        //    [MethodImpl(Inline)]
+        //    get => ref data[ix];
+        //}
 
-        public ReadOnlySpan<T> this[Range range]
-        {
-            [MethodImpl(Inline)]
-            get => data[range];
-        }
+        //public ReadOnlySpan<T> this[Range range]
+        //{
+        //    [MethodImpl(Inline)]
+        //    get => data[range];
+        //}
 
         [MethodImpl(Inline)]
         public ReadOnlySpan<T> Slice(int start)

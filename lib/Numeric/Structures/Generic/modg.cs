@@ -107,7 +107,7 @@ namespace Z0
             => hash();
 
         public override string ToString()
-            => $"{data} (mod {nats.natu<N>()})";
+            => $"{data} (mod {nfunc.natu<N>()})";
 
         public modg<N, T> negate()
         {

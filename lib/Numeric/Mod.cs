@@ -11,7 +11,7 @@ namespace Z0
 
     using static Traits;
     using static zcore;
-    using static nats;
+    using static nfunc;
 
     /// <summary>
     /// Defines interal operations modulo N

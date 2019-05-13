@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\gmath\z0.gmath.csproj" />
+    <ProjectReference Include="..\nats\z0.nats.csproj" />
   </ItemGroup>
 
 </Project>

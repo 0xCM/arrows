@@ -161,17 +161,17 @@ namespace Z0
             get => ref data[ix];
         }
 
-        public ref T this[Index ix] 
-        {
-            [MethodImpl(Inline)]
-            get => ref data[ix];
-        }
+        //public ref T this[Index ix] 
+        //{
+        //    [MethodImpl(Inline)]
+        //    get => ref data[ix];
+        //}
 
-        public Span<T> this[Range range]
-        {
-            [MethodImpl(Inline)]
-            get => data[range];
-        }
+        //public Span<T> this[Range range]
+        //{
+        //    [MethodImpl(Inline)]
+        //    get => data[range];
+        //}
 
         [MethodImpl(Inline)]
         public Span<T> Slice(int start)

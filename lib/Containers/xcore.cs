@@ -12,7 +12,7 @@ namespace Z0
     using static zcore;
     using static zfunc;
 
-    using static nats;
+    using static nfunc;
 
     partial class xcore
     {

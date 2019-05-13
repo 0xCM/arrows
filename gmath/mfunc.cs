@@ -49,7 +49,6 @@ public static partial class mfunc
     public static int length<T>(T[] lhs, T[] rhs,[CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, file, line);
 
-
     [MethodImpl(Inline)]
     public static void assert(bool condition, string msg = null, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)

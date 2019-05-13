@@ -15,6 +15,7 @@ namespace Z0.Tests
     
     using static zcore;
     using static ztest;
+    using static zfunc;
 
     using primitive = System.Int32;
     using PrimVec = Vector<N128,int>;
@@ -46,23 +47,23 @@ namespace Z0.Tests
             RightAnaVecs = map(RightPrimVecs, v => v.map(int32.define));
         }
 
-        public void VerifySum()
-        {
-            var expect = BaselineSum();
-            var actual = map(AnalogSum().ToArray(), v => v.map(x => (int)x));
-            var equality = Vector.equality(expect,actual);
-            var result = equality.Where(v => v.CountFalse() != 0).Count();
-            Claim.eq(result,0);                
-        }
+        // public void VerifySum()
+        // {
+        //     var expect = BaselineSum();
+        //     var actual = map(AnalogSum().ToArray(), v => v.map(x => (int)x));
+        //     var equality = Vector.equality(expect,actual);
+        //     var result = equality.Where(v => v.CountFalse() != 0).Count();
+        //     Claim.eq(result,0);                
+        // }
 
-        public void VerifyMul()
-        {
-            var expect = BaselineMul();
-            var actual = map(AnalogMul().ToArray(), v => v.map(x => (int)x));
-            var equality = Vector.equality(expect,actual);
-            var result = equality.Where(v => v.CountFalse() != 0).Count();
-            Claim.eq(result,0);                
-        }
+        // public void VerifyMul()
+        // {
+        //     var expect = BaselineMul();
+        //     var actual = map(AnalogMul().ToArray(), v => v.map(x => (int)x));
+        //     var equality = Vector.equality(expect,actual);
+        //     var result = equality.Where(v => v.CountFalse() != 0).Count();
+        //     Claim.eq(result,0);                
+        // }
 
         public Index<Vector<N128,int32>> AnalogSum()
             => fuse(LeftAnaVecs.ToArray(), RightAnaVecs, (lhs,rhs) => lhs.fuse(rhs, (x,y) => x + y));

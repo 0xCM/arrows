@@ -34,6 +34,7 @@
     <ProjectReference Include="..\lib\z0.lib.csproj" />
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\gmath\z0.gmath.csproj" />
+    <ProjectReference Include="..\nats\z0.nats.csproj" />
   </ItemGroup>
 
 

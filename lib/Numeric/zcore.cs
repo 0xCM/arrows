@@ -17,22 +17,6 @@ using static Z0.Traits;
 
 partial class zcore
 {
-    static ArgumentException mismatched<T>(Span<T> lhs, Span<T> rhs)
-        => new ArgumentException($"The left item count {lhs.Length} does not match the right item count {rhs.Length}");
-
-    [MethodImpl(Inline)]
-    static int matchedCount<T>(Span<T> lhs, Span<T> rhs)
-        => lhs.Length != rhs.Length? throw mismatched(lhs,rhs) : lhs.Length;
-
-    [MethodImpl(Inline)]
-    public static Span<T> fuse<T>(Span<T> lhs, Span<T> rhs, Func<T,T,T> f)
-    {
-        var len = matchedCount(lhs,rhs);
-        for(var i = 0; i < len ; i++)
-            lhs[i] = f(lhs[i], rhs[i]);
-        return lhs;
-    }
-
     /// <summary>
     /// Constructs a bit vector from a bit parameter array
     /// </summary>
