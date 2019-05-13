@@ -118,11 +118,11 @@ namespace Z0
 
             static readonly IStepwiseOps<T> Stepwise = Primal.Stepwise.Operator<T>();
 
-            static readonly IBitwiseOps<T> Bitwise = Primal.Bitwise.Operator<T>();
+            //static readonly IBitwiseOps<T> Bitwise = Bitwise.Operator<T>();
 
             static readonly ISemigroupOps<T> Equality = Primal.Equality.Operator<T>();
             
-            static readonly ITrigonmetricOps<T> Trig = Primal.Trig.Operator<T>();
+            //static readonly ITrigonmetricOps<T> Trig = Primal.Trig.Operator<T>();
 
             static readonly Operative.ISpecialOps<T> Special = Primal.Special.Operator<T>();
 
@@ -258,70 +258,12 @@ namespace Z0
             public Index<T> dec(Index<T> src)
                 =>  map(src,dec);
 
-            [MethodImpl(Inline)]
-            public T and(T lhs, T rhs)
-                => Bitwise.and(lhs,rhs);
-
-            [MethodImpl(Inline)]
-            public Index<T> and(T[] lhs, T[] rhs)
-                =>  fuse(lhs,rhs, and);
-
-            [MethodImpl(Inline)]
-            public T or(T lhs, T rhs)
-                => Bitwise.or(lhs,rhs);
-
-            [MethodImpl(Inline)]
-            public Index<T> or(T[] lhs, T[] rhs)
-                =>  fuse(lhs,rhs,or);
-
-            [MethodImpl(Inline)]
-            public T xor(T lhs, T rhs)
-                => Bitwise.xor(lhs,rhs);            
-
-            [MethodImpl(Inline)]
-            public Index<T> xor(T[] lhs, T[] rhs)
-                =>  fuse(lhs,rhs,xor);
-
-            [MethodImpl(Inline)]
-            public T flip(T x)
-                => Bitwise.flip(x);
-
-            [MethodImpl(Inline)]
-            public Index<T> flip(Index<T> src)
-                =>  map(src,flip);
-
-            [MethodImpl(Inline)]
-            public T lshift(T lhs, int rhs)
-                => Bitwise.lshift(lhs,rhs);
-
-            [MethodImpl(Inline)]
-            public Index<T> lshift(Index<T> lhs, int rhs)
-            {
-                var dst = array<T>(lhs.Count);
-                iter(lhs.Count, i => dst[i] = Bitwise.lshift(lhs[i],rhs));
-                return dst;
-            }                
-
-            [MethodImpl(Inline)]
-            public T rshift(T lhs, int rhs)
-                => Bitwise.rshift(lhs,rhs);
 
 
-            [MethodImpl(Inline)]
-            public string BitString(T x)
-                => Bitwise.BitString(x);
 
-            [MethodImpl(Inline)]
-            public byte[] Bytes(T x)
-                => Bitwise.Bytes(x);
 
-            [MethodImpl(Inline)]
-            public bool TestBit(T src, int pos)
-                => Bitwise.TestBit(src,pos);
 
-            [MethodImpl(Inline)]
-            public Index<bool> testbits(Index<T> src, int pos)
-                => map(src, x => Bitwise.TestBit(x,pos));
+
 
             [MethodImpl(Inline)]
             public bool eq(T lhs, T rhs)
@@ -360,53 +302,6 @@ namespace Z0
             public T MulAdd(T x, T y, T z)
                 => add(mul(x,y),z);
 
-            [MethodImpl(Inline)]
-            public T sin(T x)
-                => Trig.sin(x);
-
-            [MethodImpl(Inline)]
-            public T sinh(T x)
-                => Trig.sinh(x);
-
-            [MethodImpl(Inline)]
-            public T asin(T x)
-                => Trig.asin(x);
-
-            [MethodImpl(Inline)]
-            public T asinh(T x)
-                => Trig.asinh(x);
-
-            [MethodImpl(Inline)]
-            public T cos(T x)
-                => Trig.cos(x);
-
-            [MethodImpl(Inline)]
-            public T cosh(T x)
-                => Trig.cosh(x);
-
-            [MethodImpl(Inline)]
-            public T acos(T x)
-                => Trig.acos(x);
-
-            [MethodImpl(Inline)]
-            public T acosh(T x)
-                => Trig.acosh(x);
-
-            [MethodImpl(Inline)]
-            public T tan(T x)
-                => Trig.tan(x);
-
-            [MethodImpl(Inline)]
-            public T tanh(T x)
-                => Trig.tanh(x);
-
-            [MethodImpl(Inline)]
-            public T atan(T x)
-                => Trig.atan(x);
-
-            [MethodImpl(Inline)]
-            public T atanh(T x)
-                => Trig.atanh(x);
 
             [MethodImpl(Inline)]
             public bool Even(T src)
@@ -428,9 +323,6 @@ namespace Z0
             public T pow(T src, int exp)
                 => Special.pow(src,exp);
 
-            [MethodImpl(Inline)]
-            public Bit[] Bits(T src)
-                => Bitwise.Bits(src);
 
             [MethodImpl(Inline)]
             public T fact(T src)
@@ -444,15 +336,7 @@ namespace Z0
             public T parse(string src)
                 => Parser.parse(src);
 
-            [MethodImpl(Inline)]
-            public string bitchars(Index<T> src)
-                => string.Join("", map(src, (Func<T, string>)this.BitString));
 
-            public byte[] bytes(Index<T> src)
-                => concat(map(src,Bytes));
-
-            public Bit[] bits(Index<T> src)
-                => concat(map(src,Bits));
 
             public Index<T> div(Index<T> lhs, Index<T> rhs)
             {
@@ -470,6 +354,116 @@ namespace Z0
             }
 
             public Index<T> xor(Index<T> lhs, Index<T> rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T and(T lhs, T rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T or(T lhs, T rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T xor(T lhs, T rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T flip(T x)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T lshift(T lhs, int rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T rshift(T lhs, int rhs)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string BitString(T src)
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool TestBit(T src, int pos)
+            {
+                throw new NotImplementedException();
+            }
+
+            public byte[] Bytes(T src)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Bit[] Bits(T src)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T sin(T x)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T sinh(T x)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T asin(T x)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T asinh(T x)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T cos(T x)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T cosh(T x)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T acos(T x)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T acosh(T x)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T tan(T x)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T tanh(T x)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T atan(T x)
+            {
+                throw new NotImplementedException();
+            }
+
+            public T atanh(T x)
             {
                 throw new NotImplementedException();
             }

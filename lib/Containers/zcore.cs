@@ -16,7 +16,7 @@ using static zcore;
 using static zfunc;
 using static nats;
 
-using Array = Z0.Arr;
+using Array = Z0.NatArray;
 
 
 public static partial class zcore
@@ -154,7 +154,7 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(params T[] src)
         where N : ITypeNat, new()
-            => Arr.define<N, T>(src);
+            => NatArray.define<N, T>(src);
 
     /// <summary>
     /// Constructs an N-array from a parameter array
@@ -166,7 +166,7 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(N len, params T[] src)
         where N : ITypeNat, new()
-            => Arr.define(len, src);
+            => NatArray.define(len, src);
 
     /// <summary>
     /// Constructs an array of natural length from an enumerable
@@ -177,7 +177,7 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(IEnumerable<T> src)
         where N : ITypeNat, new()
-            => Z0.Arr.define<N, T>(src);
+            => Z0.NatArray.define<N, T>(src);
 
     /// <summary>
     /// Constructs an array of natural length from an enumerable
@@ -188,7 +188,7 @@ public static partial class zcore
     [MethodImpl(Inline)]
     public static Array<N,T> array<N,T>(N len, IEnumerable<T> src)
         where N : ITypeNat, new()
-            => Z0.Arr.define(len, src);
+            => Z0.NatArray.define(len, src);
 
     /// <summary>
     /// Constructs a mutable dictionary 

@@ -96,7 +96,7 @@ namespace Z0
         /// Reverses the slice elements
         /// </summary>
         [MethodImpl(Inline)]   
-        public Z0.Slice<T> reverse()
+        public Z0.Slice<T> Reverse()
             => slice(data.Reverse());
 
         /// <summary>
@@ -223,8 +223,8 @@ namespace Z0
         /// Reverses the slice elements
         /// </summary>
         [MethodImpl(Inline)]   
-        public Z0.Slice<N,T> reverse()
-            => slice<N,T>(data.Reverse());
+        public Z0.Slice<N,T> Reverse()
+            => slice<N, T>(Enumerable.Reverse(data));
 
         [MethodImpl(Inline)]   
         public bool eq(Slice<N, T> rhs)

@@ -16,15 +16,6 @@ namespace Z0
         
     }
 
-    public interface Formatter<T>
-    {
-        string format(T value);
-    }
-
-    public interface Formatter<T,O> : Formatter<T>
-    {
-        string format(T value, O options);
-    }
 
 
 }

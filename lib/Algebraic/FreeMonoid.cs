@@ -28,19 +28,19 @@ namespace Z0
 
             var level2 = from x in generators
                          from y in generators
-                         select fm.concat(x,y);
+                         select fm.Concat(x,y);
             foreach(var s in level2)
                 yield return s;                         
 
             var level3 = from x in level1
                          from y in level2 
-                         select fm.concat(x,y);
+                         select fm.Concat(x,y);
             foreach(var s in level3)
                 yield return s;                         
 
             var level4 = from x in level1
                          from y in level3
-                         select fm.concat(x,y);
+                         select fm.Concat(x,y);
             foreach(var s in level4)
                 yield return s;
         }

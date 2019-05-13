@@ -81,7 +81,7 @@ namespace Z0
 
         public intg<uint> degree()
             => nonzero 
-            ? terms.reverse().filter(t => !t.coefficient.Equals(FZero)).data.First().power 
+            ? terms.Reverse().filter(t => !t.coefficient.Equals(FZero)).data.First().power 
             : 0;
 
         public bool nonzero

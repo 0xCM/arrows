@@ -11,27 +11,27 @@ namespace Z0
     
     using static zcore;
 
-    public class Box<T>
-        where T : struct
-    {
-        [MethodImpl(Inline)]
-        public static implicit operator T(Box<T> box)
-            => box.unbox();
+    // public class Box<T>
+    //     where T : struct
+    // {
+    //     [MethodImpl(Inline)]
+    //     public static implicit operator T(Box<T> box)
+    //         => box.unbox();
 
-        [MethodImpl(Inline)]
-        public static implicit operator Box<T>(T value)
-            => new Box<T>(value);
+    //     [MethodImpl(Inline)]
+    //     public static implicit operator Box<T>(T value)
+    //         => new Box<T>(value);
 
-        readonly T boxed;
+    //     readonly T boxed;
         
-        [MethodImpl(Inline)]
-        public Box(T boxed)
-            => this.boxed = boxed;
+    //     [MethodImpl(Inline)]
+    //     public Box(T boxed)
+    //         => this.boxed = boxed;
 
-        [MethodImpl(Inline)]
-        public T unbox()
-            => boxed;
-    }
+    //     [MethodImpl(Inline)]
+    //     public T unbox()
+    //         => boxed;
+    // }
 
 
     /// <summary>

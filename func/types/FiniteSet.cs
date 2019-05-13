@@ -9,7 +9,6 @@ namespace Z0
     using System.Linq;
     using System.Runtime.CompilerServices;
 
-    using static zcore;
     using static zfunc;
 
     public static class FiniteSet
@@ -85,7 +84,6 @@ namespace Z0
         [MethodImpl(Inline)]   
         public bool IsMember(object candidate)
             => candidate is T ? IsMember((T)candidate) :false;
-
         
         public IEnumerable<T> Content
             => data;
@@ -156,7 +154,7 @@ namespace Z0
         /// </summary>
         /// <param name="rhs">The set to compare</param>
         [MethodImpl(Inline)]   
-        public bool intersects(FiniteSet<T> rhs)
+        public bool Intersects(FiniteSet<T> rhs)
             => data.Overlaps(rhs.data);
 
         /// <summary>
@@ -164,17 +162,5 @@ namespace Z0
         /// </summary>
         public bool eq(FiniteSet<T> rhs)
             => data.SetEquals(rhs.data);
-
-        /// <summary>
-        /// Adjudicates inequality between the current set and a specified set
-        /// </summary>
-        [MethodImpl(Inline)]   
-        public bool neq(FiniteSet<T> rhs)
-            => not(eq(rhs));
-
-        [MethodImpl(Inline)]   
-        public int hash()
-            => data.GetHashCode();
-
     }
 }

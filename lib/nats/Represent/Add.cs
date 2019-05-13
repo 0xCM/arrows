@@ -37,16 +37,13 @@ namespace Z0
         public static readonly NatSeq Seq
             = Nat.reflect(Digits);
 
-        public ITypeNat rep 
-            => Rep;
-
-        public NatSeq seq
+        NatSeq ITypeNat.seq
             => Seq;
 
-        public ulong value 
+        ulong ITypeNat.value 
             => Value;
 
-        byte[] ITypeNat. Digits()
+        byte[] ITypeNat.Digits()
             => Digits;
 
         public NatSeq natseq()

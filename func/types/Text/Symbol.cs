@@ -57,7 +57,7 @@ namespace Z0
             => new Symbol(new Atom(atom.data + rhs.atom.data));
 
         [MethodImpl(Inline)]
-        public Symbol concat(Symbol rhs)
+        public Symbol Concat(Symbol rhs)
             => append(rhs);
 
         [MethodImpl(Inline)]

@@ -20,8 +20,7 @@ namespace Z0
         : IDiscreteEqivalenceClass<FiniteEquivalenceClass<T>,T>,  
             ISemigroup<FiniteEquivalenceClass<T>>
             where T : ISemigroup<T>, new()
-    {
-                
+    {                
         IEquivalenceOps<T> equivalence {get;}
         
         FiniteSet<T> membership {get;}
@@ -44,11 +43,11 @@ namespace Z0
         public bool IsDiscrete
             => true;
 
-        public int count 
-            => membership.Count;
-
-        public IEnumerable<T> Content 
+        public IEnumerable<T> Members
             => membership.Content;
+
+        IEnumerable<T> IDiscreteContainer<FiniteEquivalenceClass<T>, T>.Content 
+            => Members;
 
         public bool IsMember(T candidate)
             => equivalence.related(representative, candidate);
@@ -56,27 +55,9 @@ namespace Z0
         public bool IsMember(object candidate)
             => candidate is T ? IsMember((T)candidate) : false;
 
-        public IEnumerable<T> members()
-            => membership.Content;
-
-        public bool eq(FiniteEquivalenceClass<T> lhs, FiniteEquivalenceClass<T> rhs)
-            => lhs.membership.Equals(rhs.membership);
-
-        public bool neq(FiniteEquivalenceClass<T> lhs, FiniteEquivalenceClass<T> rhs)
-            => not(eq(lhs,rhs));
 
         public bool Equals(FiniteEquivalenceClass<T> rhs)
-            => eq(this, rhs);
+            => membership.Equals(rhs.membership);
 
-        public bool eq(FiniteEquivalenceClass<T> rhs)
-            => membership.eq(rhs.membership);
-        
-        public bool neq(FiniteEquivalenceClass<T> rhs)
-            => ! membership.eq(rhs.membership);
-
-        public int hash()
-            => membership.GetHashCode();
     }
-
-
 }

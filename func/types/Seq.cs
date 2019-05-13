@@ -34,7 +34,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static Seq<T> operator + (Seq<T> lhs, Seq<T> rhs)
-            => lhs.concat(rhs);
+            => lhs.Concat(rhs);
 
         /// <summary>
         /// Implicitly constructs a sequence from an array
@@ -62,7 +62,7 @@ namespace Z0
         public Seq<T> redefine(IEnumerable<T> src)
             => new Seq<T>(src);
 
-        public Seq<T> concat(Seq<T> rhs)
+        public Seq<T> Concat(Seq<T> rhs)
             => new Seq<T>(stream.Concat(rhs.stream));
 
         public Seq<Y> Select<Y>(Func<T, Y> selector)       

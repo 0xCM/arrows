@@ -8,7 +8,10 @@ namespace Z0
     using System.Collections.Generic;    
     using System.Runtime.CompilerServices;
     using System.Linq;
+    
     using static zcore;
+    using static zfunc;
+    
     using Z0;
 
     /// <summary>
@@ -58,7 +61,7 @@ namespace Z0
         public Word append(Word rhs)
             => new Word(this.symbols.data.Concat(rhs.symbols.data));
 
-        public Word concat(Word rhs)     
+        public Word Concat(Word rhs)     
             => new Word(symbols + rhs.symbols);
 
         [MethodImpl(Inline)]

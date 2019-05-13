@@ -12,31 +12,31 @@ namespace Z0
 
     public static class Fixed
     {
-        public static FixedList<T> list<T>(IReadOnlyList<T> src)
+        public static ListSemigroup<T> list<T>(IReadOnlyList<T> src)
             where T : struct, IEquatable<T>
-                => new FixedList<T>(src);
+                => new ListSemigroup<T>(src);
 
-        public static FixedArray<T> array<T>(params T[] src)
+        public static ArraySemigroup<T> array<T>(params T[] src)
             where T : struct, IEquatable<T>
-                => new FixedArray<T>(src);
+                => new ArraySemigroup<T>(src);
 
-        public static FixedStream<T> stream<T>(IEnumerable<T> src)
+        public static StreamSemigroup<T> stream<T>(IEnumerable<T> src)
             where T : struct, IEquatable<T>
-                => new FixedStream<T>(src);
+                => new StreamSemigroup<T>(src);
 
     }
 
-    public readonly struct FixedArray<T> : IFixedContainer<FixedArray<T>, T[],T>
+    public readonly struct ArraySemigroup<T> : IFixedContainer<ArraySemigroup<T>, T[],T>
         where T : struct, IEquatable<T>
     {
 
-        public static readonly FixedArray<T> Empty = new FixedArray<T>(new T[]{});
+        public static readonly ArraySemigroup<T> Empty = new ArraySemigroup<T>(new T[]{});
         
         public static readonly T Zero = default(T);
 
         static readonly ImplicitSemigroup<T> ISG = default;
 
-        public FixedArray(T[] src)
+        public ArraySemigroup(T[] src)
         {
             data = src;
             _hash = defer(() => src.HashCode());
@@ -49,17 +49,17 @@ namespace Z0
         public T[] Release()
             => data;
 
-        FixedArray<T> INullary<FixedArray<T>>.zero 
+        ArraySemigroup<T> INullary<ArraySemigroup<T>>.zero 
             => Empty;
 
         T INullaryOps<T>.zero 
             =>  Zero;
         
-        bool eq(FixedArray<T> rhs)
+        bool eq(ArraySemigroup<T> rhs)
             => System.Linq.Enumerable.SequenceEqual(data, rhs.data, ISG.comparer());
 
 
-        bool IEquatable<FixedArray<T>>.Equals(FixedArray<T> rhs)
+        bool IEquatable<ArraySemigroup<T>>.Equals(ArraySemigroup<T> rhs)
             => eq(rhs);
 
         bool ISemigroupOps<T>.eq(T lhs, T rhs)
@@ -71,20 +71,20 @@ namespace Z0
         string format()
             => ISG.format();
 
-        IEqualityComparer<T> IImplicitSemigroup<FixedArray<T>, T>.comparer(Func<T, int> hasher)
+        IEqualityComparer<T> IImplicitSemigroup<ArraySemigroup<T>, T>.comparer(Func<T, int> hasher)
             => ISG.comparer(hasher);
     }
 
-    public readonly struct FixedList<T> : IFixedContainer<FixedList<T>, IReadOnlyList<T>,T>
+    public readonly struct ListSemigroup<T> : IFixedContainer<ListSemigroup<T>, IReadOnlyList<T>,T>
         where T : struct, IEquatable<T>
     {
-        public static readonly FixedList<T> Empty = new FixedList<T>(new T[]{});
+        public static readonly ListSemigroup<T> Empty = new ListSemigroup<T>(new T[]{});
 
         public static readonly T Zero = default(T);
 
         static readonly ImplicitSemigroup<T> ISG = default;
 
-        public FixedList(IReadOnlyList<T> src)
+        public ListSemigroup(IReadOnlyList<T> src)
         {
             data = src;
             _hash = defer(() => src.HashCode());
@@ -97,17 +97,17 @@ namespace Z0
         public IReadOnlyList<T> Release()
             => data;
 
-        FixedList<T> INullary<FixedList<T>>.zero 
+        ListSemigroup<T> INullary<ListSemigroup<T>>.zero 
             => Empty;
 
         T INullaryOps<T>.zero 
             =>  Zero;
         
-        bool eq(FixedList<T> rhs)
+        bool eq(ListSemigroup<T> rhs)
             => System.Linq.Enumerable.SequenceEqual(data, rhs.data, ISG.comparer());
 
 
-        bool IEquatable<FixedList<T>>.Equals(FixedList<T> rhs)
+        bool IEquatable<ListSemigroup<T>>.Equals(ListSemigroup<T> rhs)
             => eq(rhs);
 
         
@@ -117,50 +117,38 @@ namespace Z0
         bool ISemigroupOps<T>.neq(T lhs, T rhs)
             => not(lhs.Equals(rhs));
 
-        string format()
-            => ISG.format();
-
-        IEqualityComparer<T> IImplicitSemigroup<FixedList<T>, T>.comparer(Func<T, int> hasher)
+        IEqualityComparer<T> IImplicitSemigroup<ListSemigroup<T>, T>.comparer(Func<T, int> hasher)
             => ISG.comparer(hasher);
-
 
     }
 
-    public readonly struct FixedStream<T> : IFixedContainer<FixedStream<T>, IEnumerable<T>,T>
+    public readonly struct StreamSemigroup<T> : IFixedContainer<StreamSemigroup<T>, IEnumerable<T>,T>
         where T : struct, IEquatable<T>
     {
-        public static readonly FixedStream<T> Empty = new FixedStream<T>(new T[]{});
+        public static readonly StreamSemigroup<T> Empty = new StreamSemigroup<T>(new T[]{});
 
         public static readonly T Zero = default(T);
 
         static readonly ImplicitSemigroup<T> ISG = default;
 
-        public FixedStream(IEnumerable<T> src)
+        public StreamSemigroup(IEnumerable<T> src)
         {
             data = src;
-            _hash = defer(() => src.HashCode());
         }     
-
-        readonly Lazy<int> _hash;
 
         readonly IEnumerable<T> data;
 
         public IEnumerable<T> Release()
             => data;
 
-
-        FixedStream<T> INullary<FixedStream<T>>.zero 
+        StreamSemigroup<T> INullary<StreamSemigroup<T>>.zero 
             => Empty;
 
         T INullaryOps<T>.zero 
             =>  Zero;
         
-        bool eq(FixedStream<T> rhs)
+        bool IEquatable<StreamSemigroup<T>>.Equals(StreamSemigroup<T> rhs)
             => System.Linq.Enumerable.SequenceEqual(data, rhs.data, ISG.comparer());
-
-
-        bool IEquatable<FixedStream<T>>.Equals(FixedStream<T> rhs)
-            => eq(rhs);
 
         bool ISemigroupOps<T>.eq(T lhs, T rhs)
             => lhs.Equals(rhs);
@@ -168,10 +156,7 @@ namespace Z0
         bool ISemigroupOps<T>.neq(T lhs, T rhs)
             => not(lhs.Equals(rhs));
 
-        string format()
-            => ISG.format();
-
-        IEqualityComparer<T> IImplicitSemigroup<FixedStream<T>, T>.comparer(Func<T, int> hasher)
+        IEqualityComparer<T> IImplicitSemigroup<StreamSemigroup<T>, T>.comparer(Func<T, int> hasher)
             => ISG.comparer(hasher);
     }
 }

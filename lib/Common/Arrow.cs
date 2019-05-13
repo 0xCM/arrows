@@ -17,7 +17,7 @@ namespace Z0
     /// Represents a directed path from a source space to a target space
     /// with no particular basepoint selection
     /// </summary>
-    public readonly struct Arrow<A,B> : Traits.Arrow<A,B>
+    public readonly struct Arrow<A,B> 
     {
         public static implicit operator Arrow<A,B>(Func<A,B> carrier)
             => new Arrow<A,B>(carrier);
@@ -51,7 +51,7 @@ namespace Z0
     /// Represents a directed path from a specific basepoint in one space to a
     /// specific basepoint in another space
     /// </summary>
-    public readonly struct PointedArrow<X,Y> : Traits.PointedArrow<X,Y>
+    public readonly struct PointedArrow<X,Y>
     {
         /// <summary>
         /// The source-valued basepoint

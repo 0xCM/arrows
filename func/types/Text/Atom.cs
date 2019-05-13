@@ -92,14 +92,14 @@ namespace Z0
             => new Atoms(src);
 
         public static Atoms operator + (Atoms lhs, Atoms rhs)
-            => lhs.concat(rhs);
+            => lhs.Concat(rhs);
                 
         public Atoms(IEnumerable<Atom> src)
             => Content = src;
         
         public IEnumerable<Atom> Content {get;}
 
-        public Atoms concat(Atoms rhs)
+        public Atoms Concat(Atoms rhs)
             => contain(Content.Concat(rhs.Content));
     }
 }

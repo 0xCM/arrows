@@ -16,7 +16,7 @@ namespace Z0
     /// and http://localhost:9000/refs/books/Y2007GRAA.pdf#page=39&view=fit</remarks>
     public interface IFreeMonoidOps<T> : IMonoidOps<T>, IConcatenableOps<T>
     {
-        T empty {get;}
+        T IsEmpty {get;}
 
     }
 

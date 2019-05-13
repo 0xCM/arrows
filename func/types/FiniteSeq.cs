@@ -81,7 +81,7 @@ namespace Z0
         public bool neq(FiniteSeq<T> rhs)
             => not(eq(rhs));
 
-        public FiniteSeq<T> concat(FiniteSeq<T> rhs)
+        public FiniteSeq<T> Concat(FiniteSeq<T> rhs)
             => new FiniteSeq<T>(data.Concat(rhs.data));
     }
 }

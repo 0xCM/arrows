@@ -18,43 +18,43 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static bool Divides(sbyte lhs, sbyte rhs)
+        public static bool divides(sbyte lhs, sbyte rhs)
             => mod(rhs, lhs) == 0;
 
         [MethodImpl(Inline)]
-        public static bool Divides(byte lhs, byte rhs)
+        public static bool divides(byte lhs, byte rhs)
             => mod(rhs, lhs) == 0;
 
         [MethodImpl(Inline)]
-        public static bool Divides(short lhs, short rhs)
+        public static bool divides(short lhs, short rhs)
             => mod(rhs, lhs) == 0;
 
         [MethodImpl(Inline)]
-        public static bool Divides(ushort lhs, ushort rhs)
+        public static bool divides(ushort lhs, ushort rhs)
             => mod(rhs, lhs) == 0;
 
         [MethodImpl(Inline)]
-        public static bool Divides(int lhs, int rhs)
+        public static bool divides(int lhs, int rhs)
             => mod(rhs, lhs) == 0;
 
         [MethodImpl(Inline)]
-        public static bool Divides(uint lhs, uint rhs)
+        public static bool divides(uint lhs, uint rhs)
             => mod(rhs, lhs) == 0;
 
         [MethodImpl(Inline)]
-        public static bool Divides(long lhs, long rhs)
+        public static bool divides(long lhs, long rhs)
             => mod(rhs, lhs) == 0;
 
         [MethodImpl(Inline)]
-        public static bool Divides(ulong lhs, ulong rhs)
+        public static bool divides(ulong lhs, ulong rhs)
             => mod(rhs, lhs) == 0;
 
         [MethodImpl(Inline)]
-        public static bool Divides(float lhs, float rhs)
+        public static bool divides(float lhs, float rhs)
             => mod(rhs, lhs) == 0;
 
         [MethodImpl(Inline)]
-        public static bool Divides(double lhs, double rhs)
+        public static bool divides(double lhs, double rhs)
             => mod(rhs, lhs) == 0;
 
 

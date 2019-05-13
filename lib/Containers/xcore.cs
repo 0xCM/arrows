@@ -27,15 +27,6 @@ namespace Z0
         public static Seq<T> ToSeq<T>(this IEnumerable<T> src)
                 => Seq.define(src);
     
-        /// <summary>
-        /// Reifies an enumerable as a finite sequence
-        /// </summary>
-        /// <param name="src">The source sequence</param>
-        /// <typeparam name="T">The item type</typeparam>
-        [MethodImpl(Inline)]
-        public static FiniteSeq<T> ToFiniteSeq<T>(this IEnumerable<T> src)
-            where T : struct, IEquatable<T>
-                => Seq.finite(src);
 
         /// <summary>
         /// Wraps an array within an index
@@ -55,26 +46,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Index<T> ToIndex<T>(this IEnumerable<T> src)
                 => src.ToArray();
-
-        /// <summary>
-        /// Constructs a semi-sequence from a stream
-        /// </summary>
-        /// <param name="src">The element source</param>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]
-        public static SemiSeq<T> ToSemiSeq<T>(this IEnumerable<T> src)
-            where T : struct, ISemigroup<T>
-                => semiseq(src);
-
-        /// <summary>
-        /// Constructs a semi-sequence from a parameter array
-        /// </summary>
-        /// <param name="src">The element source</param>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]
-        public static SemiSeq<T> ToSemiSeq<T>(this T[] src)
-            where T : struct, ISemigroup<T>
-                => semiseq(src);
 
         /// <summary>
         /// Constructs a slice from a sequence

@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
+using System.Globalization;
+using System.Collections.Concurrent;
 
 using Z0;
 
@@ -423,7 +426,6 @@ partial class zfunc
     /// <summary>
     /// Renders a sequence of items as a comma-separated list of values
     /// </summary>
-    /// <param name="content"></param>
     [MethodImpl(Inline)]
     public static string csv(IEnumerable<object> content)
         => string.Join(',', content);
@@ -635,5 +637,171 @@ partial class zfunc
         => string.Join(delimiter, src.Select(x => x.ToString()));
 
 
+    /// <summary>
+    /// Defines a symbol
+    /// </summary>
+    /// <param name="name">The name of the symbol</param>
+    /// <param name="description">Formal or informal description depending on context/needs</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]   
+    public static Symbol symbol(string name)
+        => new Symbol(name);
+
+    /// <summary>
+    /// Encloses the potential text in quotation marks
+    /// </summary>
+    /// <param name="text">The text to be quoted</param>
+    [MethodImpl(Inline)]
+    public static string enquote(Option<string> text)
+        => enquote(text ? text.ValueOrDefault() ?? String.Empty : String.Empty);
+    static readonly ConcurrentDictionary<string, Regex> _regexCache
+        = new ConcurrentDictionary<string, Regex>();
+
+    /// <summary>
+    /// Formats and concatenates an arbitrary number of elements
+    /// </summary>
+    /// <param name="rest">The formattables to be rendered and concatenated</param>
+    [MethodImpl(Inline)]   
+    public static string format(object first, params object[] rest)
+        => first.ToString() + append(rest.Select(x => x.ToString()));
+
+    /// <summary>
+    /// Conditionally emits the value of a command flag predicated on the evaluation of a given value
+    /// </summary>
+    /// <param name="value">The value to evaluate</param>
+    /// <param name="flag">The text to emit when the value is evaluated to true</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static string cmdFlag(bool value, string flag, string arg = null)
+        => not(value) ? estring() : flag + arg ?? estring();
+
+    /// <summary>
+    /// Conditionally emits the value of a command flag predicated on the evaluation of a given value
+    /// </summary>
+    /// <param name="value">The value to evaluate</param>
+    /// <param name="flag">The text to emit when the value is evaluated to true</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static string cmdFlag(string value, string flag, string arg = null)
+        => isBlank(value) ? estring() : flag + arg ?? estring();
+
+    /// <summary>
+    /// Conditionally emits the value of a command option predicated on its nullity
+    /// </summary>
+    /// <param name="value">The value to evaluate</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static string cmdOption(object value)
+        => show(value);
+
+    /// <summary>
+    /// Creates a complied regular expression from the supplied pattern
+    /// </summary>
+    /// <param name="pattern">The regex pattern/></param>
+    /// <returns></returns>
+    [DebuggerStepThrough]
+    public static Regex regex(string pattern)
+        => new Regex(pattern, RegexOptions.Compiled);
+
+    /// <summary>
+    /// Creates a complied regular expression and (c)aches it
+    /// </summary>
+    /// <param name="pattern">The regex pattern/></param>
+    /// <returns></returns>
+    [DebuggerStepThrough]
+    public static Regex regexc(string pattern)
+        => _regexCache.GetOrAdd(pattern, p => regex(p));
+    
+    /// <summary>
+    /// Constructs a depiction of the empty set, {∅}
+    /// </summary>
+    [MethodImpl(Inline)]
+    public static string emptyset()
+        => embrace(MathSym.emptyset);
+
+    /// <summary>
+    /// Splits the string into delimited and nonempy parts
+    /// </summary>
+    /// <param name="src">The text to split</param>
+    /// <param name="c">The delimiter</param>
+    [MethodImpl(Inline)]
+    public static IReadOnlyList<string> split(string src, char c)
+        => isBlank(src)
+        ? zfunc.array<string>()
+        : src.Split(new char[] { c }, StringSplitOptions.RemoveEmptyEntries);
+
+    /// <summary>
+    /// Returns the substring [0,chars-1]
+    /// </summary>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static string left(string src, int chars)
+        => isBlank(src)
+        ? src
+        : src.Substring(0, src.Length < chars ? src.Length : chars);
+
+    /// <summary>
+    /// Returns the substring [0,chars-1]
+    /// </summary>
+    public static string reverse(string src)
+    {
+        if (isBlank(src))
+            return src;
+
+        var dst = new char[src.Length];
+        int j = 0;
+        for (var i = src.Length - 1; i >= 0; i--)
+            dst[j++] = src[i];
+        return new string(dst);
+    }
+
+    public static string right(string src, int chars)
+    {
+        if (isBlank(src))
+            return src;
+
+        var len = src.Length < chars ? src.Length : chars;
+        var dst = new char[len];
+        for (var i = 0; i < len; i++)
+            dst[i] = src[src.Length - len + i];
+        return new string(dst);
+    }
+
+    /// <summary>
+    /// Compares two strings using ordinal/case-insensitive comparison
+    /// </summary>
+    /// <param name="x">The first string</param>
+    /// <param name="y">The second string</param>
+    [MethodImpl(Inline)]
+    public static bool equals(string x, string y)
+        => ifBlank(x, string.Empty).Equals(y, StringComparison.OrdinalIgnoreCase);
+
+    /// <summary>
+    /// Functional equivalalent of <see cref="string.Join(string, object[])"/>
+    /// </summary>
+    /// <param name="values">The values to be rendered as text</param>
+    /// <param name="sep">The item delimiter</param>
+    [MethodImpl(Inline)]
+    public static string join<T>(string sep, IEnumerable<T> values)
+        => string.Join(sep, values);
+
+    /// <summary>
+    /// Does what you would expect when supplying a sequence of characters to a 
+    /// concatenation function (!)
+    /// </summary>
+    /// <param name="chars">The characters to concatenate</param>
+    [MethodImpl(Inline)]
+    public static string concat(IEnumerable<char> chars)
+        => new string(chars.ToArray());
+
+    /// <summary>
+    /// Does what you would expect when supplying a sequence of characters to a 
+    /// concatenation function (!)
+    /// </summary>
+    /// <param name="chars">The characters to concatenate</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static string concat(this char[] chars)
+        => new string(chars);
 
 }

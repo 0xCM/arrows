@@ -54,7 +54,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static SemiSeq<T> operator + (SemiSeq<T> lhs, SemiSeq<T> rhs)
-            => lhs.concat(rhs);
+            => lhs.Concat(rhs);
 
         [MethodImpl(Inline)]   
         public static bool operator != (SemiSeq<T> lhs, SemiSeq<T> rhs)
@@ -102,7 +102,7 @@ namespace Z0
             => not(eq(rhs));
 
         [MethodImpl(Inline)]   
-        public SemiSeq<T> concat(SemiSeq<T> rhs)
+        public SemiSeq<T> Concat(SemiSeq<T> rhs)
             => new SemiSeq<T>(content.Concat(rhs.content));
 
         [MethodImpl(Inline)]   

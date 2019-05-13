@@ -7,7 +7,7 @@ namespace Z0
     /// <summary>
     /// Characterizes a type-level natural number, a *typenat*
     /// </summary>
-    public interface ITypeNat : Formattable
+    public interface ITypeNat
     {
         /// <summary>
         /// Specifies the value of the associated natural number

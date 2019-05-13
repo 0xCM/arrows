@@ -117,7 +117,7 @@ namespace Z0
             => new Listing<U>(content.Select(f));
 
         [MethodImpl(Inline)]
-        public Listing<T> reverse()
+        public Listing<T> Reverse()
             => new Listing<T>(src.Reverse());
  
         [MethodImpl(Inline)]

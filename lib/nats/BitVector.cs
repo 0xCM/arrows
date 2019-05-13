@@ -24,7 +24,7 @@ namespace Z0
         /// Constructs a BitVector from an array of bits
         /// </summary>
         /// <param name="src">The source bits</param>
-        public static BitVector<N> define<N>(params Bit[] src)
+        public static BitVector<N> Define<N>(params Bit[] src)
             where N : ITypeNat, new()
                 => new BitVector<N>(src);
 
@@ -32,7 +32,7 @@ namespace Z0
         /// Constructs a BitVector from an array of binary digits
         /// </summary>
         /// <param name="src">The source bits</param>
-        public static BitVector<N> define<N>(params BinaryDigit[] src)
+        public static BitVector<N> Define<N>(params BinaryDigit[] src)
             where N : ITypeNat, new()
                 => new BitVector<N>(src.ToBits());
    
@@ -43,7 +43,7 @@ namespace Z0
             var bits = alloc<Bit>(src.Length);
             for(var i=0; i< len; i++)
                 bits[i] = Bit.Parse(src[i]);
-            return define<N>(bits);
+            return Define<N>(bits);
 
         }
     }  

@@ -15,7 +15,7 @@ namespace Z0
     using static Operative;
 
 
-    public readonly struct Text : IFreeMonoid<Text>, Formattable, IComparable<String>, IReversible<Text>
+    public readonly struct Text : IFreeMonoid<Text>, IComparable<String>, IReversible<Text>
     {    
         public static readonly Text Empty = new Text(string.Empty);
 
@@ -29,7 +29,7 @@ namespace Z0
 
         [MethodImpl(Inline)]        
         public static Text operator +(Text lhs, Text rhs)
-            => lhs.concat(rhs);
+            => lhs.Concat(rhs);
         
         [MethodImpl(Inline)]        
         public static implicit operator string(Text src)
@@ -61,18 +61,6 @@ namespace Z0
         public Text(char[] src)
             => this._content = new string(src);
 
-        [MethodImpl(Inline)]        
-        public bool eq(Text rhs)
-            => content?.Equals(rhs.content) ?? false;
-
-        [MethodImpl(Inline)]        
-        public bool neq(Text rhs)
-            => not(eq(rhs));
-
-        [MethodImpl(Inline)]        
-        public int hash()
-            => content.GetHashCode();
-
         public char this[int i]
         {
             [MethodImpl(Inline)]        
@@ -81,38 +69,33 @@ namespace Z0
 
         [MethodImpl(Inline)]        
         public bool Equals(Text rhs)
-            => eq(rhs);
+            => content?.Equals(rhs.content) ?? false;
 
         [MethodImpl(Inline)]        
-        public Text concat(Text rhs)
+        public Text Concat(Text rhs)
             => new Text(rhs.content + rhs.content);
 
-        [MethodImpl(Inline)]        
-        public string format()
-            => content.ToString();
  
         public override int GetHashCode()
-            => hash();
+            => content.GetHashCode();
         
         public override string ToString() 
-            => format();
+            => content.ToString();
     
         public override bool Equals(object rhs)
-            => rhs is Text ? eq((Text)rhs) : false;
+            => rhs is Text ? Equals((Text)rhs) : false;
 
         [MethodImpl(Inline)]        
         public int CompareTo(string rhs)
             => content.CompareTo(rhs);
 
         [MethodImpl(Inline)]        
-        public char[] chars()
+        public char[] Chars()
             => content.ToCharArray();
 
         [MethodImpl(Inline)]        
-        public Text reverse()
-            => chars().Reverse();
-
+        public Text Reverse()
+            => Chars().Reverse();
     }
-    
 
 }

@@ -12,7 +12,7 @@ namespace Z0
     public interface IReversibleOps<T> 
     
     {
-        T reverse(T src);
+        T Reverse(T src);
     }
 
     /// <summary>
@@ -22,6 +22,6 @@ namespace Z0
     public interface IReversible<S>
         where S : IReversible<S>, new()
     {
-        S reverse();
+        S Reverse();
     }    
 }
