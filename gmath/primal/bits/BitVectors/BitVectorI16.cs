@@ -11,7 +11,7 @@ namespace Z0
 
     using static mfunc;
 
-    public struct BitVectorI16 : IEquatable<BitVectorI16>
+    public struct BitVectorI16
     {
         [MethodImpl(Inline)]
         public static implicit operator BitVectorI16(short src)

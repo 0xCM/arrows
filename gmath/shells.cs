@@ -113,5 +113,63 @@ namespace Z0
             throw unsupported(kind);
 
         }
+
+        [MethodImpl(Inline)]
+        public static unsafe void IfIfIf<T>(in T src)
+            where T : struct, IEquatable<T>
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int8)
+            {
+
+            }
+
+            if(kind == PrimalKind.uint8)
+            {
+
+            }
+
+            if(kind == PrimalKind.int16)
+            {
+
+            }
+
+            if(kind == PrimalKind.uint16)
+            {
+            }
+
+            if(kind == PrimalKind.int32)
+            {
+            }
+
+            if(kind == PrimalKind.uint32)
+            {
+            }
+
+            if(kind == PrimalKind.int64)
+            {
+                
+            }
+
+            if(kind == PrimalKind.uint64)
+            {
+                
+            }
+
+            if(kind == PrimalKind.float32)
+            {
+                
+            }
+
+            if(kind == PrimalKind.float64)
+            {
+                
+            }
+
+            throw unsupported(kind);
+
+        }
+
     }
 }

@@ -21,8 +21,24 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
+        public static int pop(sbyte src)
+            => (int)Popcnt.PopCount((byte)src);
+
+        /// <summary>
+        /// Counts the enabled bits in the source
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
         public static int pop(byte src)
             => (int)Popcnt.PopCount(src);
+
+        /// <summary>
+        /// Counts the enabled bits in the source
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static int pop(short src)
+            => (int)Popcnt.PopCount((ushort)src);
 
         /// <summary>
         /// Counts the enabled bits in the source
@@ -37,8 +53,24 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
+        public static int pop(int src)
+            => (int)Popcnt.PopCount((uint)src);
+
+        /// <summary>
+        /// Counts the enabled bits in the source
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
         public static int pop(uint src)
             => (int)Popcnt.PopCount(src);
+
+        /// <summary>
+        /// Counts the enabled bits in the source
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        [MethodImpl(Inline)]
+        public static int pop(long src)
+            => (int)Popcnt.X64.PopCount((ulong)src);
 
         /// <summary>
         /// Counts the enabled bits in the source
@@ -61,6 +93,10 @@ namespace Z0
                 dst[i++] = pop(current++);
             return dst;
         }
+
+        [MethodImpl(Inline)]
+        public static int[] pops(sbyte min, sbyte max)
+            => pops((byte)min, (byte)max);
 
         /// <summary>
         /// Counts the enabled bits in each value within a specified range

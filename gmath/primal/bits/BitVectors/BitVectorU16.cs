@@ -13,7 +13,7 @@ namespace Z0
 
 
 
-    public struct BitVectorU16 : IEquatable<BitVectorU16>
+    public struct BitVectorU16
     {
         ushort data;
 

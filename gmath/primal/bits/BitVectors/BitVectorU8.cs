@@ -12,7 +12,7 @@ namespace Z0
     using static mfunc;
 
 
-    public struct BitVectorU8 : IEquatable<BitVectorU8>
+    public struct BitVectorU8
     {
         [MethodImpl(Inline)]
         public static implicit operator BitVectorU8(byte src)

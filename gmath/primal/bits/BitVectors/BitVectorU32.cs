@@ -12,7 +12,7 @@ namespace Z0
     using static mfunc;
 
 
-    public struct BitVectorU32 : IEquatable<BitVectorU32>
+    public struct BitVectorU32
     {
         uint data;
 

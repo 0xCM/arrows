@@ -12,7 +12,7 @@ namespace Z0
     using static mfunc;
 
 
-    public struct BitVectorI64 : IEquatable<BitVectorI64>
+    public struct BitVectorI64
     {
         long data;
 

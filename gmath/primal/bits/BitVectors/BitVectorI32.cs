@@ -12,7 +12,7 @@ namespace Z0
     using static mfunc;
 
 
-    public struct BitVectorI32 : IEquatable<BitVectorI32>
+    public struct BitVectorI32
     {
 
         public static readonly BitVectorI32 Zero = Define(0);

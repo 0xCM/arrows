@@ -746,6 +746,13 @@ namespace Z0
         // {
             
 
+        void TestBits()
+        {
+            Claim.@true(gbits.test(BitPattern.B00000101, 0));
+            Claim.@false(gbits.test(BitPattern.B00000101, 1));
+            Claim.@true(gbits.test(BitPattern.B00000101, 2));
+        }
+
         void TestBitPatterns()
         {
             var l1 = BitLayouts.Define(8u);
@@ -763,7 +770,8 @@ namespace Z0
             {     
                 //app.ConvertTest();
                 //app.Distance();
-                BenchSelector.RunBench(BenchKind.PrimalAtomic);
+                app.TestBits();
+                //BenchSelector.RunBench(BenchKind.PrimalAtomic);
                 //BenchSelector.RunBench(BenchKind.PrimalFused);
 
             }

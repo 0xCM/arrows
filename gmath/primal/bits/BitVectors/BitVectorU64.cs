@@ -11,7 +11,7 @@ namespace Z0
 
     using static mfunc;
 
-    public struct BitVectorU64 : IEquatable<BitVectorU64>
+    public struct BitVectorU64
     {
         public static readonly BitVectorU64 Zero = Define(0);
         
