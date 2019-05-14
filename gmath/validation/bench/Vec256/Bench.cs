@@ -30,9 +30,9 @@ namespace Z0
 
         }
 
-       static OpId<T> Id<T>(OpKind op, bool generic = false)
+       static OpId<T> Id<T>(OpKind op)
             where T : struct, IEquatable<T>
-                => op.Vec256OpId<T>(generic);
+                => op.Vec256OpId<T>();
 
         readonly Span256Sampler LeftSrc;   
 

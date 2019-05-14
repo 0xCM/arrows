@@ -19,7 +19,7 @@ namespace Z0
     {
         [MethodImpl(NotInline)]
         public static Span<T> negate<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -43,7 +43,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> negateI8<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int8(src);
             var z = int8(dst);
@@ -54,7 +54,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> negateI16<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int16(src);
             var z = int16(dst);
@@ -65,7 +65,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> negateI32<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int32(src);
             var z = int32(dst);
@@ -76,7 +76,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> negateI64<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int64(src);
             var z = int64(dst);
@@ -86,7 +86,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> negateF32<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = float32(src);
             var z = float32(dst);
@@ -96,7 +96,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> negateF64<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = float64(src);
             var z = float64(dst);

@@ -17,43 +17,6 @@ using static Z0.Traits;
 
 partial class zcore
 {
-    /// <summary>
-    /// Constructs a bit vector from a bit parameter array
-    /// </summary>
-    /// <param name="src">The bit source</param>
-
-    [MethodImpl(Inline)]   
-    public static BitVector<N> bitvector<N>(params Bit[] src)
-        where N : ITypeNat, new()
-            => BitVector.Define<N>(src);
-
-    /// <summary>
-    /// Constructs a bit vector from a parameter array of integers
-    /// </summary>
-    /// <param name="src">The bit source</param>
-    [MethodImpl(Inline)]   
-    public static BitVector<N> bitvector<N>(params uint[] src)
-        where N : ITypeNat, new()
-            => BitVector.Define<N>(map(src, x => x == 0 ? Bit.Off : Bit.On));
-
-    /// <summary>
-    /// Constructs a bit vector of natural length 8 from a parameter array of integers
-    /// where there constructed vector is left-padded with zeros should there be
-    /// fewer than 8 bits specified
-    /// </summary>
-    /// <param name="src">The bit source</param>
-    [MethodImpl(Inline)]   
-    public static BitVector<N8> bytevector(params uint[] src)
-        => BitVector.Define<N8>(map(src, x => x == 0 ? Bit.Off : Bit.On));
-
-    /// <summary>
-    /// Defines a bitvector of natural length 8 from a parameter array of binary digits
-    /// </summary>
-    /// <param name="src">The source digits</param>
-    [MethodImpl(Inline)]   
-    public static BitVector<N8> bytevector(params BinaryDigit[] src)
-        => BitVector.Define<N8>(map(src, x => x == 0 ? Bit.Off : Bit.On));
-
 
     /// <summary>
     /// Constructs a contiguous range of integers inclusively between specified bounds

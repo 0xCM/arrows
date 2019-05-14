@@ -26,8 +26,8 @@ namespace Z0
 
         }
 
-        protected override OpId<T> Id<T>(OpKind op, bool baseline = true)
-            => op.NumGOpId<T>(baseline);
+        protected override OpId<T> Id<T>(OpKind op)
+            => op.NumG<T>(OpFusion.Atomic);
 
     }
 

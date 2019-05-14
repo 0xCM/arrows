@@ -18,8 +18,8 @@ partial class zfunc
 
     [MethodImpl(Inline)]   
     public static T convert<S,T>(S src, out T dst)
-        where T : struct, IEquatable<T>
-        where S : struct, IEquatable<S>
+        where T : struct
+        where S : struct
             => dst = Converter.convert(src, out T target);  
            
     [MethodImpl(Inline)]   

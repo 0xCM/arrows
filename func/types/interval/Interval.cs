@@ -37,7 +37,7 @@ namespace Z0
     /// enabling representations such as (-∞,3] and (-3, ∞).
     /// </remarks>
     public readonly struct Interval<T> : IInterval<Interval<T>,T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         
         public Interval(T left, bool leftclosed, T right, bool rightclosed)

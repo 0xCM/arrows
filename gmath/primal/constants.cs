@@ -15,13 +15,13 @@ namespace Z0
     using static atoms;
     using static mfunc;
 
-    public static class Constants<T>
-        where T : struct, IEquatable<T>
+    public readonly struct Constants<T>
+        where T : struct
     {
-        public static readonly T Zero = Converter.convert(0, out Zero);
+        public static readonly T Zero = gmath.zero<T>();
         
-        public static readonly T One = Converter.convert(0, out One);
-         
+        public static readonly T One = gmath.one<T>();
+
     }
 
 

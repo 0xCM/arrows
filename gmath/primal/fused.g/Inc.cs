@@ -19,7 +19,7 @@ namespace Z0
     {
         [MethodImpl(NotInline)]
         public static Span<T> inc<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -51,7 +51,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static ref Span<T> inc<T>(ref Span<T> io)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -84,7 +84,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> incI8<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int8(src);
             var z = int8(dst);
@@ -94,7 +94,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> incU8<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint8(src);
             var z = uint8(dst);
@@ -104,7 +104,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> incI16<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int16(src);
             var z = int16(dst);
@@ -114,7 +114,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> incU16<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint16(src);
             var z = uint16(dst);
@@ -124,7 +124,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> incI32<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int32(src);
             var z = int32(dst);
@@ -134,7 +134,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> incU32<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint32(src);
             var z = uint32(dst);
@@ -144,7 +144,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> incI64<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int64(src);
             var z = int64(dst);
@@ -155,7 +155,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> incU64<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint64(src);
             var z = uint64(dst);
@@ -165,7 +165,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> incF32<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = float32(src);
             var z = float32(dst);
@@ -175,7 +175,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> incF64<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = float64(src);
             var z = float64(dst);
@@ -185,7 +185,7 @@ namespace Z0
 
        [MethodImpl(NotInline)]
         public static ref Span<T> incI8<T>(ref Span<T> io)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int8(io);
             math.dec(ref x);
@@ -194,7 +194,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static ref Span<T> incU8<T>(ref Span<T> io)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint8(io);
             math.dec(ref x);
@@ -203,7 +203,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static ref Span<T> incI16<T>(ref Span<T> io)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int16(io);
             math.dec(ref x);
@@ -213,7 +213,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static ref Span<T> incU16<T>(ref Span<T> io)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint16(io);
             math.dec(ref x);
@@ -222,7 +222,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static ref Span<T> incI32<T>(ref Span<T> io)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int32(io);
             math.dec(ref x);
@@ -231,7 +231,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static ref Span<T> incU32<T>(ref Span<T> io)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint32(io);
             math.dec(ref x);
@@ -241,7 +241,7 @@ namespace Z0
         
         [MethodImpl(NotInline)]
         public static ref Span<T> incI64<T>(ref Span<T> io)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int64(io);
             math.dec(ref x);
@@ -250,7 +250,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static ref Span<T> incU64<T>(ref Span<T> io)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint64(io);
             math.dec(ref x);
@@ -259,7 +259,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static ref Span<T> incF32<T>(ref Span<T> io)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = float32(io);
             math.dec(ref x);
@@ -268,7 +268,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static ref Span<T> incF64<T>(ref Span<T> io)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = float64(io);
             math.dec(ref x);

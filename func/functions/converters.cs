@@ -19,8 +19,8 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T convert<S,T>(S src, out T dst)
-            where S : struct, IEquatable<S>
-            where T : struct, IEquatable<T>
+            where S : struct
+            where T : struct
         {
             var srcKind = PrimalKinds.kind<S>();
             switch(srcKind)
@@ -65,7 +65,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T convert<T>(sbyte src, out T dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -110,7 +110,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T convert<T>(byte src, out T dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -156,7 +156,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T convert<T>(short src, out T dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -201,7 +201,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T convert<T>(ushort src, out T dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -246,7 +246,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T convert<T>(int src, out T dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -291,7 +291,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T convert<T>(uint src, out T dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -337,7 +337,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T convert<T>(long src, out T dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -383,7 +383,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T convert<T>(ulong src, out T dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -428,7 +428,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T convert<T>(float src, out T dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -473,7 +473,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T convert<T>(double src, out T dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -1128,7 +1128,7 @@ namespace Z0
        [MethodImpl(Inline)]
        public static ref T to<S,T>(S src, ref T dst)
             where S : struct, IEquatable<S>
-            where T : struct, IEquatable<T>            
+            where T : struct            
         {
             var dstKind = PrimalKinds.kind<T>();
             switch(dstKind)
@@ -1172,7 +1172,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static sbyte convert<T>(T src, ref sbyte dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -1216,7 +1216,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static byte convert<T>(T src, ref byte dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -1261,7 +1261,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static short convert<T>(T src, ref short dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -1305,7 +1305,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ushort convert<T>(T src, ref ushort dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -1349,7 +1349,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static int convert<T>(T src, ref int dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -1393,7 +1393,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static uint convert<T>(T src, ref uint dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -1437,7 +1437,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static long convert<T>(T src, ref long dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -1481,7 +1481,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ulong convert<T>(T src, ref ulong dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -1525,7 +1525,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static float convert<T>(T src, ref float dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -1570,7 +1570,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static double convert<T>(T src, ref double dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)

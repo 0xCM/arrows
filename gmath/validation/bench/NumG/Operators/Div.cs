@@ -21,8 +21,8 @@ namespace Z0
             where T : struct, IEquatable<T>
         {
             var opid =  Id<T>(OpKind.Div);
-            var lhs = Number.many(LeftSrc.Sampled(opid));
-            var rhs = Number.many(NonZeroSrc.Sampled(opid));
+            var lhs = Num.many(LeftSrc.Sampled(opid));
+            var rhs = Num.many(NonZeroSrc.Sampled(opid));
             var sw = stopwatch();
 
             var it = -1;

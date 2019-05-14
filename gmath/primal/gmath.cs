@@ -16,6 +16,8 @@ namespace Z0
     using static mfunc;
     using static zfunc;
 
+    using static As;
+
     partial class gmath
     {
 
@@ -23,17 +25,17 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T zero<T>()
-            where T : struct, IEquatable<T>
-                => Constants<T>.Zero;
+            where T : struct
+                => convert(0, out T x);
 
         [MethodImpl(Inline)]
         public static T one<T>()
-            where T : struct, IEquatable<T>
-                => Constants<T>.One;
+            where T : struct
+                => convert(1, out T x);
 
         [MethodImpl(Inline)]
         public static T value<T>(T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -71,13 +73,92 @@ namespace Z0
         }
 
 
+        [MethodImpl(Inline)]
+        public static T minval<T>()
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int32)
+                return generic<T>(int.MinValue);
+
+            if(kind == PrimalKind.uint32)
+                return generic<T>(uint.MinValue);
+
+            if(kind == PrimalKind.int64)
+                return generic<T>(long.MinValue);
+
+            if(kind == PrimalKind.uint64)
+                return generic<T>(ulong.MinValue);
+
+            if(kind == PrimalKind.int16)
+                return generic<T>(short.MinValue);
+
+            if(kind == PrimalKind.uint16)
+                return generic<T>(ushort.MinValue);
+
+            if(kind == PrimalKind.int8)
+                return generic<T>(sbyte.MinValue);
+
+            if(kind == PrimalKind.uint8)
+                return generic<T>(byte.MinValue);
+            
+            if(kind == PrimalKind.float32)
+                return generic<T>(float.MinValue);
+
+            if(kind == PrimalKind.float64)
+                return generic<T>(double.MinValue);
+
+            throw unsupported(kind);
+        }
+
+        [MethodImpl(Inline)]
+        public static T maxval<T>()
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int32)
+                return generic<T>(int.MaxValue);
+
+            if(kind == PrimalKind.uint32)
+                return generic<T>(uint.MaxValue);
+
+            if(kind == PrimalKind.int64)
+                return generic<T>(long.MaxValue);
+
+            if(kind == PrimalKind.uint64)
+                return generic<T>(ulong.MaxValue);
+
+            if(kind == PrimalKind.int16)
+                return generic<T>(short.MaxValue);
+
+            if(kind == PrimalKind.uint16)
+                return generic<T>(ushort.MaxValue);
+
+            if(kind == PrimalKind.int8)
+                return generic<T>(sbyte.MaxValue);
+
+            if(kind == PrimalKind.uint8)
+                return generic<T>(byte.MaxValue);
+            
+            if(kind == PrimalKind.float32)
+                return generic<T>(float.MaxValue);
+
+            if(kind == PrimalKind.float64)
+                return generic<T>(double.MaxValue);
+
+            throw unsupported(kind);
+        }
+
+
         #endregion
 
         #region add
 
         [MethodImpl(Inline)]
         public static ref T add<T>(ref T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -116,7 +197,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T add<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             
@@ -155,12 +236,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.add(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.add(lhs,rhs,dst);
 
         #endregion
@@ -169,7 +250,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T sub<T>(ref T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -210,7 +291,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T sub<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -249,12 +330,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.sub(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.sub(lhs,rhs,dst);
 
         #endregion sub
@@ -263,7 +344,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T mul<T>(ref T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -303,7 +384,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T mul<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -343,12 +424,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.mul(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.mul(lhs,rhs,dst);
 
 
@@ -358,7 +439,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T div<T>(ref T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -398,7 +479,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T div<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -438,12 +519,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<T> div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.div(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<T> div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.div(lhs,rhs,dst);
 
         #endregion
@@ -452,7 +533,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T mod<T>(ref T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -491,7 +572,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T mod<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -530,12 +611,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.mod(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.mod(lhs,rhs,dst);
         
         #endregion
@@ -544,7 +625,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T and<T>(ref T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -579,7 +660,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T and<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -612,12 +693,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.and(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.and(lhs,rhs,dst);
 
 
@@ -627,7 +708,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T or<T>(ref T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -661,7 +742,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T or<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -694,12 +775,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.or(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.or(lhs,rhs,dst);
 
         #endregion
@@ -708,7 +789,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T xor<T>(ref T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -742,7 +823,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T xor<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -775,12 +856,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.xor(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.xor(lhs,rhs,dst);
         
         #endregion
@@ -789,7 +870,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T lshift<T>(ref T lhs, int rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -822,7 +903,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T lshift<T>(T lhs, int rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -855,7 +936,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref Span<T> lshift<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs, ref Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var len  = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -865,7 +946,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T rshift<T>(ref T lhs, int rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -898,7 +979,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T rshift<T>(T lhs, int rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -931,7 +1012,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref Span<T> rshift<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs, ref Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var len  = length(lhs,rhs);
             for(var i = 0; i< len; i++)
@@ -945,7 +1026,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T flip<T>(ref T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -978,7 +1059,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T flip<T>(T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1012,13 +1093,13 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<T> flip<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.flip(src,dst);
 
 
         [MethodImpl(Inline)]
         public static Span<T> flip<T>(ReadOnlySpan<T> src, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.flip(src,dst);
 
         #endregion
@@ -1027,7 +1108,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T abs<T>(ref T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1067,7 +1148,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T abs<T>(T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1107,12 +1188,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<T> abs<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.abs(src,dst);
 
         [MethodImpl(Inline)]
         public static Span<T> abs<T>(ReadOnlySpan<T> src, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.abs(src,dst);
 
         #endregion
@@ -1121,7 +1202,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool eq<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1159,16 +1240,6 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
-                => fused.eq(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
-            where T : struct, IEquatable<T>
-                => fused.eq(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
         public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct, IEquatable<T>
         {
@@ -1182,7 +1253,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool neq<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1243,7 +1314,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool lt<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1282,17 +1353,17 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.lt(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.lt(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = span<bool>(length(lhs,rhs));
             return fused.lt(lhs,rhs,dst);
@@ -1304,7 +1375,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool lteq<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1343,17 +1414,17 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.lteq(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.lteq(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = span<bool>(length(lhs,rhs));
             return fused.lteq(lhs,rhs,dst);
@@ -1365,7 +1436,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool gt<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1404,17 +1475,17 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.gt(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.gt(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = span<bool>(length(lhs,rhs));
             return fused.gt(lhs,rhs,dst);
@@ -1426,7 +1497,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool gteq<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1465,17 +1536,17 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.gteq(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.gteq(lhs,rhs,dst);
 
         [MethodImpl(Inline)]
         public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = span<bool>(length(lhs,rhs));
             return fused.gteq(lhs,rhs,dst);
@@ -1487,7 +1558,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T pow<T>(T src, uint exp)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1526,7 +1597,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T pow<T>(T src, T exp)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1545,7 +1616,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T negate<T>(ref T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1572,7 +1643,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T negate<T>(T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1600,12 +1671,12 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> negate<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.negate(src,dst);
 
         [MethodImpl(NotInline)]
         public static Span<T> negate<T>(ReadOnlySpan<T> src, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.negate(src,dst);
 
 
@@ -1615,47 +1686,48 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T inc<T>(ref T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.int8)
+            
+            if(kind == PrimalKind.int8)            
                 return ref incI8(ref src);
-
-            if(kind == PrimalKind.uint8)
+            
+            if(kind == PrimalKind.uint8)            
                 return ref incU8(ref src);
-
-            if(kind == PrimalKind.int16)
+            
+            if(kind == PrimalKind.int16)            
                 return ref incI16(ref src);
-
+            
             if(kind == PrimalKind.uint16)
                 return ref incU16(ref src);
-
+            
             if(kind == PrimalKind.int32)
                 return ref incI32(ref src);
 
             if(kind == PrimalKind.uint32)
                 return ref incU32(ref src);
-
+            
             if(kind == PrimalKind.int64)
                 return ref incI64(ref src);
-
+            
             if(kind == PrimalKind.uint64)
                 return ref incU64(ref src);
-
+            
             if(kind == PrimalKind.float32)
                 return ref incF32(ref src);
-
+            
             if(kind == PrimalKind.float64)
                 return ref incF64(ref src);
-
+            
             throw unsupported(kind);
+
         }           
 
 
         [MethodImpl(Inline)]
         public static T inc<T>(T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1694,12 +1766,12 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> inc<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.inc(src,dst);
 
         [MethodImpl(NotInline)]
         public static Span<T> inc<T>(ReadOnlySpan<T> src, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.inc(src,dst);
 
         #endregion
@@ -1708,7 +1780,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T dec<T>(ref T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1749,7 +1821,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T dec<T>(T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1788,12 +1860,12 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> dec<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.dec(src,dst);
 
         [MethodImpl(NotInline)]
         public static Span<T> dec<T>(ReadOnlySpan<T> src, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.dec(src,dst);
         #endregion
         
@@ -1801,7 +1873,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T min<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1840,17 +1912,17 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T min<T>(params T[] src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.min<T>(src);
 
         [MethodImpl(Inline)]
         public static T min<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.min(src);
 
         [MethodImpl(Inline)]
         public static T max<T>(T lhs, T rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1889,12 +1961,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T max<T>(params T[] src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.max<T>(src);
 
         [MethodImpl(Inline)]
         public static T max<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => fused.max(src);
 
         #endregion
@@ -1903,7 +1975,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T parse<T>(string src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1946,7 +2018,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T sqrt<T>(ref T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -1986,7 +2058,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T sqrt<T>(T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -2030,7 +2102,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref T square<T>(ref T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -2070,7 +2142,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T square<T>(T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 

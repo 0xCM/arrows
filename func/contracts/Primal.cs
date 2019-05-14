@@ -25,7 +25,7 @@ namespace Z0
     }
     
     public interface IPrimalInfo<T> : IPrimalInfo
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         T MinVal {get;}
 

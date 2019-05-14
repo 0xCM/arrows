@@ -37,6 +37,9 @@ namespace Z0
         public static Exception LengthMismatch(int lhs, int rhs, string file, int? line)
             => new Exception($"{file} line {line}: Length mismatch, {lhs} != {rhs}");
 
+        public static IndexOutOfRangeException OutOfRange(int index, int min, int max)
+            => new IndexOutOfRangeException($"The supplied index {index} must be larger or equal to {min} and  less than {max}");
+
         public static KindUnsupportedException KindUnsupported<T>(T kind, string file, int? line)
             where T : Enum
                 => new KindUnsupportedException(kind);

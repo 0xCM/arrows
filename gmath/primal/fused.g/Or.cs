@@ -19,7 +19,7 @@ namespace Z0
     {
         [MethodImpl(NotInline)]
         public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -47,7 +47,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> orI8<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int8(lhs);
             var y = int8(rhs);
@@ -58,7 +58,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> orU8<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint8(lhs);
             var y = uint8(rhs);
@@ -69,7 +69,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> orI16<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int16(lhs);
             var y = int16(rhs);
@@ -80,7 +80,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> orU16<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint16(lhs);
             var y = uint16(rhs);
@@ -91,7 +91,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> orI32<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int32(lhs);
             var y = int32(rhs);
@@ -102,7 +102,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> orU32<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint32(lhs);
             var y = uint32(rhs);
@@ -113,7 +113,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> orI64<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int64(lhs);
             var y = int64(rhs);
@@ -125,7 +125,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> orU64<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint64(lhs);
             var y = uint64(rhs);

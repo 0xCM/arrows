@@ -28,7 +28,7 @@ namespace Z0
     }
 
     public ref struct numbers<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         Span<T> data;
 
@@ -77,7 +77,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public bool Equals(numbers<T> rhs)
-            => not(eq(this, rhs).Contains(false));
+            =>  throw new NotImplementedException(); //not(eq(this, rhs).Contains(false));
 
         [MethodImpl(Inline)]
         public static implicit operator numbers<T>(T[] src)
@@ -91,13 +91,13 @@ namespace Z0
         public static implicit operator Span<T>(numbers<T> src)
             =>  src.data;
 
-        [MethodImpl(Inline)]
-        public static Span<bool> operator == (numbers<T> lhs, numbers<T> rhs) 
-            => eq(lhs,rhs);
+        // [MethodImpl(Inline)]
+        // public static Span<bool> operator == (numbers<T> lhs, numbers<T> rhs) 
+        //     => eq(lhs,rhs);
 
-        [MethodImpl(Inline)]
-        public static Span<bool> operator != (numbers<T> lhs, numbers<T> rhs) 
-            => neq(lhs,rhs);
+        // [MethodImpl(Inline)]
+        // public static Span<bool> operator != (numbers<T> lhs, numbers<T> rhs) 
+        //     => neq(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static numbers<T> operator + (numbers<T> lhs, numbers<T> rhs) 
@@ -207,13 +207,13 @@ namespace Z0
             return gmath.gteq<T>(lhs.data, rhs.data);            
         }
 
-        [MethodImpl(Inline)]
-        public static Span<bool> eq(numbers<T> lhs, numbers<T> rhs)
-            => gmath.eq<T>(lhs.data,rhs.data);            
+        // [MethodImpl(Inline)]
+        // public static Span<bool> eq(numbers<T> lhs, numbers<T> rhs)
+        //     => gmath.eq<T>(lhs.data,rhs.data);            
 
-        [MethodImpl(Inline)]
-        public static Span<bool> neq(numbers<T> lhs, numbers<T> rhs)
-            => gmath.neq<T>(lhs.data,rhs.data);            
+        // [MethodImpl(Inline)]
+        // public static Span<bool> neq(numbers<T> lhs, numbers<T> rhs)
+        //     => gmath.neq<T>(lhs.data,rhs.data);            
 
         [MethodImpl(Inline)]
         public static Span<bool> lt(numbers<T> lhs, numbers<T> rhs)

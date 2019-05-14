@@ -19,7 +19,7 @@ namespace Z0
     {
         [MethodImpl(NotInline)]
         public static T min<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -51,52 +51,52 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static T minI8<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.min(int8(src)));
 
         [MethodImpl(NotInline)]
         public static T minU8<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.min(uint8(src)));
 
         [MethodImpl(NotInline)]
         public static T minI16<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.min(int16(src)));
 
         [MethodImpl(NotInline)]
         public static T minU16<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.min(uint16(src)));
 
         [MethodImpl(NotInline)]
         public static T minI32<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.min(int32(src)));
 
         [MethodImpl(NotInline)]
         public static T minU32<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.min(uint32(src)));
 
         [MethodImpl(NotInline)]
         public static T minI64<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.min(int64(src)));
 
         [MethodImpl(NotInline)]
         public static T minU64<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.min(uint64(src)));
 
         [MethodImpl(NotInline)]
         public static T minF32<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.min(float32(src)));
 
         [MethodImpl(NotInline)]
         public static T minF64<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.min(float64(src)));
 
     }

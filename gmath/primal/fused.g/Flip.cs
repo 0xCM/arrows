@@ -19,7 +19,7 @@ namespace Z0
     {
         [MethodImpl(NotInline)]
         public static Span<T> flip<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -47,7 +47,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> flipI8<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int8(src);
             var z = int8(dst);
@@ -57,7 +57,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> flipU8<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint8(src);
             var z = uint8(dst);
@@ -67,7 +67,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> flipI16<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int16(src);
             var z = int16(dst);
@@ -77,7 +77,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> flipU16<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint16(src);
             var z = uint16(dst);
@@ -87,7 +87,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> flipI32<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int32(src);
             var z = int32(dst);
@@ -97,7 +97,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> flipU32<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint32(src);
             var z = uint32(dst);
@@ -107,7 +107,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> flipI64<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int64(src);
             var z = int64(dst);
@@ -118,7 +118,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<T> flipU64<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint64(src);
             var z = uint64(dst);

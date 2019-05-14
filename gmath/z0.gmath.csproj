@@ -8,9 +8,12 @@
     <Deterministic>true</Deterministic>
     <NullableReferenceTypes>true</NullableReferenceTypes>
     <NullableContextOptions>disable</NullableContextOptions>
-    <Optimize>true</Optimize>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
+
+
 
   <ItemGroup>
     <ProjectReference Include="..\func\z0.zfunc.csproj" />

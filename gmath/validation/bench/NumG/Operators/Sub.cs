@@ -22,8 +22,8 @@ namespace Z0
         {
             var opid =  Id<T>(OpKind.Sub);
             var src = Sampled(opid);
-            var lhs = Number.many(src.Left);
-            var rhs = Number.many(src.Right);
+            var lhs = Num.many(src.Left);
+            var rhs = Num.many(src.Right);
 
             var sw = stopwatch();
             var it = -1;

@@ -26,8 +26,8 @@ namespace Z0
 
             }
 
-        protected override OpId<T> Id<T>(OpKind op, bool baseline = true)
-            => op.PrimalFused<T>(generic: baseline ? false : true , baseline: baseline);
+        protected override OpId<T> Id<T>(OpKind op)
+            => op.NativeFused<T>();
 
     }
 }

@@ -18,7 +18,7 @@ namespace Z0
     /// enabling representations such as (-∞,3] and (-3, ∞).
     /// </remarks>
     public interface IInterval<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
     
         /// <summary>
@@ -51,8 +51,8 @@ namespace Z0
     }
 
     public interface IInterval<S,T> : IInterval<T>
-        where T : struct, IEquatable<T>
-            where S : IInterval<S,T>, new()
+        where T : struct
+        where S : IInterval<S,T>, new()
     {
 
     }

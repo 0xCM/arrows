@@ -23,13 +23,12 @@ namespace Z0
         PrimalAtomicBench(IRandomizer random, BenchConfig config = null)
             : base(random, config)
         {
-            //this.Baselines = BaselineMetrics.Create(LeftSrc, RightSrc, NonZeroSrc, Z0.Randomizer.define(RandSeeds.BenchSeed), config);
+            
         }
 
-        //protected BaselineMetrics Baselines {get;}
 
-        protected override OpId<T> Id<T>(OpKind op, bool generic = false)
-            => op.PrimalAtomic<T>(generic);
+        protected override OpId<T> Id<T>(OpKind op)
+            => op.PrimalAtomic<T>();
 
     }
 

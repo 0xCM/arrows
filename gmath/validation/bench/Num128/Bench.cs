@@ -92,9 +92,9 @@ namespace Z0
 
         }
 
-        static OpId<T> Id<T>(OpKind op, bool generic = false)
+        static OpId<T> Id<T>(OpKind op)
             where T : struct, IEquatable<T>
-                => op.Num128OpId<T>(generic);
+                => op.Num128OpId<T>();
 
     }
 

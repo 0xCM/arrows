@@ -100,32 +100,6 @@ namespace Z0
             return repeat;
         }
 
-
-        // protected Cycle Measure<T>(OpId<T> opid, Func<T[],OpMetrics> worker, T[] dst)
-        //     where T : struct, IEquatable<T>
-        // {
-        //     OpStats repeat(int cycles)
-        //     {
-        //         var totalOps = 0L;
-        //         var totalTime = Duration.Zero;
-
-        //         for(var cycle = 1; cycle <= cycles; cycle++)
-        //         {                    
-        //             var cycleResult = worker(dst);
-        //             totalOps += cycleResult.OpCount;
-        //             totalTime += cycleResult.WorkTime;                                        
-                                        
-        //             if(cycle % Config.AnnounceRate == 0)
-        //                 zfunc.print(BenchmarkMessages.CycleStatus(opid, cycle, totalOps, totalTime));                    
-        //         }
-                
-        //         return  OpStats.Define(opid, totalTime, cycles, totalOps);
-        //     }
-            
-        //     return repeat;
-        // }
-
-
         protected Cycle Measure(OpId opid, Func<OpMetrics> action)
         {
             OpStats repeat(int cycles)

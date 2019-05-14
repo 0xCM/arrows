@@ -70,7 +70,7 @@ namespace Z0
 
     public abstract class PrimalInfo<S,T> : PrimalInfo<S>, IPrimalInfo<T>
         where S : PrimalInfo<S,T>, new()
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         public T MinVal {get;}
 
@@ -91,7 +91,7 @@ namespace Z0
     {
 
         public static IPrimalInfo<T> Get<T>()
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             if(kind == PrimalKind.int8)

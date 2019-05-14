@@ -139,13 +139,6 @@ namespace Z0
             inform($"{snapshot(sw)}");
         }
 
-        // void RunBench(BenchKind kind, params  OpKind[] opkinds)
-        // {                    
-        //     var ops = opkinds.Select(o => o.ToString()).ToHashSet();
-        //     var bench = kind.CreateBench(Randomizer);
-        //     bench.Run(x => ops.Any(o => x.StartsWith(o)));
-        // }
-
         void RunBench(BenchKind kind,  Func<string, bool> filter = null, BenchConfig config = null)
         {            
             var bench = kind.CreateBench(Randomizer,config);
@@ -192,47 +185,6 @@ namespace Z0
         {
             Bench51<byte>();
         }
-        // void Bench50<T>()
-        //     where T : struct, IEquatable<T>
-        // {
-        //     var lhs = Randomizer.Array<T>(Pow2.T19);
-        //     var rhs = Randomizer.Array<T>(Pow2.T19);
-        //     var len = Pow2.T19;
-        //     var dst = span<T>(len);
-        //     var lhsBytes = As.uint8(lhs);
-        //     var rhsBytes = As.uint8(rhs);
-        //     var dstBytes = alloc<byte>(len);
-
-        //     void add(byte[] lhs, byte[] rhs, byte[] dst)
-        //     {
-        //         for(var i =0; i<lhs.Length; i++)
-        //         {
-        //             ref var x = ref lhs[i];
-        //             ref var y = ref rhs[i];
-        //             dst[i] = (byte)(x + y);                 
-        //         }
-        //     }
-
-        //     var sw = stopwatch();
-        //     for(var i = 0; i<Pow2.T12; i++)
-        //     {
-        //         fused.addU8(lhs, rhs, dst);
-        //     }
-        //     inform($"Generic: {snapshot(sw)}");
-
-        //     sw.Restart();
-        //     for(var i = 0; i<Pow2.T12; i++)
-        //     {
-        //         add(lhsBytes, rhsBytes, dstBytes);
-        //     }
-        //     inform($"Direct: {snapshot(sw)}");
-
-        // }
-
-        // void Bench50()
-        // {
-        //     Bench50<byte>();
-        // }
 
         void TestMulFloat(int? count = null)
         {
@@ -297,28 +249,6 @@ namespace Z0
 
         }
 
-        public void TestInlining()
-        {
-            var lhs = Randomizer.Span<byte>(Pow2.T19);
-            var rhs = Randomizer.Span<byte>(Pow2.T19);
-            var len = Pow2.T19;
-            var dst = span<byte>(len);
-
-            var sw = stopwatch();
-            for(var i = 0; i<Pow2.T12; i++)
-            {
-                math.add(lhs, rhs, dst);
-            }
-            inform($"Inline: {snapshot(sw)}");
-
-            sw.Restart();
-            for(var i = 0; i<Pow2.T12; i++)
-            {
-                //math.addNI(lhs,rhs,dst);
-            }
-            inform($"Not Inline: {snapshot(sw)}");
-
-        }
 
         void TestMulInt32(int? count = null)
         {
@@ -446,7 +376,7 @@ namespace Z0
 
         void Pop()
         {
-            var counts = Bits.popcounts(0u, Byte.MaxValue);
+            var counts = Bits.pops(0u, Byte.MaxValue);
             var text = counts.Format();
             inform(text);
             
@@ -557,7 +487,7 @@ namespace Z0
             var src0 = Randomizer.Span<T>(samples).ToReadOnlySpan();
             var dst0 = src0.Replicate();
             var srcA = src0.Replicate();
-            var srcC = Number.many(src0.Replicate()); 
+            var srcC = Num.many(src0.Replicate()); 
             var dstB = span<T>(samples);
 
             var srcD = srcC.Replicate().ToReadOnlySpan();           
@@ -591,30 +521,130 @@ namespace Z0
             Claim.eq(dst0, dstD.Extract());
         }
 
-        void Distance<T>()
+        Duration Distance1<T>(int cycles, int samples)
             where T : struct, IEquatable<T>
         {
-            var samples = Pow2.T21;
             var src = Randomizer.Span<T>(samples);
             var dst = span<T>(samples);
-            
-            var sw = stopwatch();
-            for(var i=0; i<samples; i++)
-                dst[i] = gmath.sqrt(gmath.add(gmath.square(src[i]), gmath.square(src[i])));
-            inform($"Distance | Generic | Atomic | By Value: {snapshot(sw)}");
+            var opcount = 0L;     
+            var opsPerCycle = 4*samples;
+
+            var sw = stopwatch();            
+            for(var cycle = 1; cycle <= cycles; cycle++)
+            {
+                for(var i=0; i<samples; i++)
+                    dst[i] = gmath.sqrt(gmath.add(gmath.square(src[i]), gmath.square(src[i])));
+                opcount += opsPerCycle;
+            }
+
+            var time = snapshot(sw);
+            var msg = AppMsg.Define($"dist | Generic | Native  | Atomic | By Value | Cycles = {cycles} | Samples = {samples} | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+            print(msg);
+            return time;
+        }
+
+        Duration Distance2<T>(int cycles, int samples)
+            where T : struct, IEquatable<T>
+        {
+            var leftSrc = Num.many(Randomizer.Span<T>(samples)).ToReadOnlySpan();
+            var rightSrc = Num.many(Randomizer.Span<T>(samples)).ToReadOnlySpan();
+            var lhs = leftSrc.Replicate();
+            var rhs = rightSrc.Replicate();       
+            var opcount = 0L;     
+            var opsPerCycle = 4*samples;
+
+            var sw = stopwatch(false);
+            for(var cycle = 1; cycle <= cycles; cycle++)
+            {
+                sw.Start();
+                for(var i=0; i<samples; i++)
+                    lhs[i].Square().Add(rhs[i].Square()).Sqrt();                
+                sw.Stop();
+                
+                opcount += opsPerCycle;
+
+                leftSrc.CopyTo(lhs);
+                rightSrc.CopyTo(rhs);            
+            }
+            var time = snapshot(sw);
+            var msg = AppMsg.Define($"dist | Generic | Derived | Atomic | By Reference | Cycles = {cycles} | Samples = {samples} | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+            print(msg);            
+            return time;
 
         }
 
-        void DistanceF64()
+        Duration Distance3<T>(int cycles, int samples)
+            where T : struct, IEquatable<T>
         {
-            var samples = Pow2.T21;
-            var src = Randomizer.Span<double>(samples);
+            var lhs = Num.many(Randomizer.Span<T>(samples)).ToReadOnlySpan();
+            var rhs = Num.many(Randomizer.Span<T>(samples)).ToReadOnlySpan();
+            var opcount = 0L;     
+            var opsPerCycle = 4*samples;
+
+            var sw = stopwatch(false);
+            for(var cycle = 1; cycle <= cycles; cycle++)
+            {
+                sw.Start();
+                for(var i=0; i<samples; i++)
+                    Num.sqrt((lhs[i]*lhs[i] + rhs[i]*rhs[i]));
+                sw.Stop();
+                
+                opcount += opsPerCycle;
+
+            }
+            var time = snapshot(sw);
+            var msg = AppMsg.Define($"dist | Generic | Derived | Atomic | By Value | Cycles = {cycles} | Samples = {samples} | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+            print(msg);            
+            return time;
+
+        }
+
+
+        Duration DistanceF64A(int cycles, int samples)
+        {
+            var lhs = Randomizer.Span<double>(samples);
+            var rhs = Randomizer.Span<double>(samples);
             var dst = span<double>(samples);
             
-            var sw = stopwatch();
-            for(var i=0; i<samples; i++)
-                dst[i] = Math.Sqrt(src[i]*src[i] + src[i]*src[i]);
-            inform($"Distance | Direct | Atomic | By Value: {snapshot(sw)}");
+            var opcount = 0L;     
+            var opsPerCycle = 4*samples;
+
+            var sw = stopwatch();            
+            for(var cycle = 1; cycle <= cycles; cycle++)
+            {
+                for(var i=0; i<samples; i++)
+                    dst[i] = Math.Sqrt(math.add(math.square(lhs[i]), math.square(rhs[i])));
+
+                opcount += opsPerCycle;
+            }
+            var time = snapshot(sw);
+            var msg = AppMsg.Define($"dist | Primal  | Native  | Atomic | By Value | Cycles = {cycles} | Samples = {samples} | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+            print(msg);            
+            return time;
+
+        }
+
+        Duration DistanceF64B(int cycles, int samples)
+        {
+            var lhs = Randomizer.Span<double>(samples);
+            var rhs = Randomizer.Span<double>(samples);
+            var dst = span<double>(samples);
+            
+            var opcount = 0L;     
+            var opsPerCycle = 4*samples;
+
+            var sw = stopwatch();            
+            for(var cycle = 1; cycle <= cycles; cycle++)
+            {
+                for(var i=0; i<samples; i++)
+                    dst[i] = Math.Sqrt(lhs[i]*lhs[i] + rhs[i]*rhs[i]);
+
+                opcount += opsPerCycle;
+            }
+            var time = snapshot(sw);
+            var msg = AppMsg.Define($"dist | Primal  | Native  | Atomic | By Value | Cycles = {cycles} | Samples = {samples} | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+            print(msg);            
+            return time;
 
         }
 
@@ -658,8 +688,18 @@ namespace Z0
 
         void Distance()
         {
-            DistanceF64();
-            Distance<double>();
+            var cycles = Pow2.T10;
+            var samples = Pow2.T14;
+            GC.Collect();
+            Distance1<double>(cycles, samples);
+            GC.Collect();
+            Distance2<double>(cycles, samples);
+            GC.Collect();
+            DistanceF64A(cycles,samples);
+            GC.Collect();
+            DistanceF64B(cycles,samples);
+            GC.Collect();
+            Distance3<double>(cycles,samples);
         }
         void AbsSqrt()
         {
@@ -667,14 +707,63 @@ namespace Z0
             AbsSqrtFused();
             AbsSqrtGeneric<int>();
         }
+
+        void TestIncrement()
+        {
+            void Num()
+            {
+                var start = 0L;
+                var sw = stopwatch();
+                for(var i = 0; i< Pow2.T26; i++, gmath.inc(ref start))
+                {
+
+                }
+                var opcount = start;
+                var time = snapshot(sw);
+                var msg = AppMsg.Define($"dist | Generic  | Derived  | Atomic | By Value | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+                print(msg);
+            }
+
+            void Native()
+            {
+                var start = 0L;
+                var sw = stopwatch();
+                for(var i = 0; i< Pow2.T26; i++, start++)
+                {
+
+                }
+                var opcount = start;
+                var time = snapshot(sw);
+                var msg = AppMsg.Define($"dist | Generic  | Native  | Atomic | By Value | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+                print(msg);
+            }
+            Num();
+            Native();
+
+        }
+
+        // void TestLoops(long cycles, long reps)
+        // {
+            
+
+        void TestBitPatterns()
+        {
+            var l1 = BitLayouts.Define(8u);
+            Claim.eq(l1.src,8);
+            Claim.eq(l1.x00,8);
+            Claim.eq(l1.x000,8);
+
+            l1[1] |= 0b101;
+            Claim.eq(l1[1], 0b101);
+        }
         static void Main(params string[] args)
         {            
             var app = new Benchmark();
             try
             {     
                 //app.ConvertTest();
-                app.Distance();
-                //BenchSelector.RunBench(BenchKind.PrimalAtomic);
+                //app.Distance();
+                BenchSelector.RunBench(BenchKind.PrimalAtomic);
                 //BenchSelector.RunBench(BenchKind.PrimalFused);
 
             }

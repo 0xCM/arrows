@@ -116,17 +116,17 @@ namespace Z0.Test
 
         public void Pack3()
         {                
-            var r1 = pack(false,true, true, false);
+            var r1 = Bits.pack(false,true, true, false);
             var e1 = (byte)0b0110;
             Claim.eq(1,r1.Length);
             Claim.eq(e1, r1[0]);
 
-            var r2 = pack(false, true, true, true);
+            var r2 = Bits.pack(false, true, true, true);
             var e2 = (byte)0b1110;
             Claim.eq(1,r2.Length);
             Claim.eq(e2, r2[0]);
 
-            var r3 = pack(false, true, true, true, true, false);
+            var r3 = Bits.pack(false, true, true, true, true, false);
             var e3 = (byte)0b011110;
             Claim.eq(1,r3.Length);
             Claim.eq(e3, r3[0]);

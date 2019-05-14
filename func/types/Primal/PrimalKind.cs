@@ -14,7 +14,43 @@ namespace Z0
     {
         public static readonly Type Type = typeof(T);
 
-        public static readonly PrimalKind Kind = PrimalKinds.kind(Type);
+        static PrimalKind GetKind()
+        {
+            var code = Type.GetTypeCode(Type);
+            switch(code)
+            {
+                case TypeCode.SByte:
+                    return PrimalKind.int8;
+                case TypeCode.Byte:
+                    return PrimalKind.uint8;
+                case TypeCode.Int16:
+                    return PrimalKind.int16;
+                case TypeCode.UInt16:
+                    return PrimalKind.uint16;
+                case TypeCode.Int32:
+                    return PrimalKind.int32;
+                case TypeCode.UInt32:
+                    return PrimalKind.uint32;
+                case TypeCode.Int64:
+                    return PrimalKind.int64;
+                case TypeCode.UInt64:
+                    return PrimalKind.uint64;
+                case TypeCode.Single:
+                    return PrimalKind.float32;
+                case TypeCode.Double:
+                    return PrimalKind.float64;
+                case TypeCode.Decimal:
+                    return PrimalKind.float128;
+
+                default:
+                    if (Type == type<System.Numerics.BigInteger>())
+                        return PrimalKind.bigint;
+                    else
+                        throw unsupported(code);
+            }
+        }
+
+        public static readonly PrimalKind Kind = GetKind();
     }
 
     public enum PrimalKind : byte

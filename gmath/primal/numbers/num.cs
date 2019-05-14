@@ -14,9 +14,10 @@ namespace Z0
     
     using static mfunc;
     using static zfunc;
+    using static As;
 
-    public readonly struct num<T> : IEquatable<num<T>>
-        where T : struct, IEquatable<T>
+    public readonly struct num<T>
+        where T : struct
     {
         readonly T x;
 
@@ -32,9 +33,9 @@ namespace Z0
 
         public static readonly num<T> MaxVal = NumInfo.MaxVal;
 
-        public static readonly num<T> Zero = gmath.zero<T>();
+        public static readonly num<T> Zero = Num.zero<T>();
 
-        public static readonly num<T> One = gmath.one<T>();
+        public static readonly num<T> One = Num.one<T>();
 
         [MethodImpl(Inline)]
         public static explicit operator sbyte(num<T> src)
@@ -78,27 +79,27 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(sbyte src)
-            => As.generic<T>(src);
+            => generic<T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(byte src)
-            => As.generic<T>(src);
+            => generic<T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(short src)
-            => As.generic<T>(src);
+            => generic<T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(ushort src)
-            => As.generic<T>(src);
+            => generic<T>(src);
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(int src)
-            => As.generic<T>(ref src);
+            => generic<T>(ref src);
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(uint src)
-            => As.generic<T>(ref src);
+            => generic<T>(ref src);
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(long src)
@@ -116,14 +117,9 @@ namespace Z0
         public static explicit operator num<T>(double src)
             => As.generic<T>(ref src);
 
-
         [MethodImpl(Inline)]
         static ref num<T> toNum(ref T src)
             => ref Unsafe.As<T,num<T>>(ref src);
-
-        [MethodImpl(Inline)]
-        static ref T toVal(ref num<T> src)
-            => ref Unsafe.As<num<T>,T>(ref src);
 
         [MethodImpl(Inline)]
         public static implicit operator num<T>(T src)
@@ -131,93 +127,105 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator T(num<T> src)
-            => toVal(ref src);
-
-        [MethodImpl(Inline)]
-        public static bool operator == (num<T> lhs, num<T> rhs) 
-            => gmath.eq(toVal(ref lhs),toVal(ref rhs));
-
-        [MethodImpl(Inline)]
-        public static bool operator != (num<T> lhs, num<T> rhs) 
-            => gmath.neq(toVal(ref lhs),toVal(ref rhs));
+            => scalar(ref src);
 
         [MethodImpl(Inline)]
         public static num<T> operator + (num<T> lhs, num<T> rhs) 
-            => gmath.add(toVal(ref lhs),toVal(ref rhs));
+        {
+            gmath.add(ref scalar(ref lhs), scalar(ref rhs));            
+            return lhs;
+        }
 
         [MethodImpl(Inline)]
         public static num<T> operator - (num<T> lhs, num<T> rhs) 
-            => gmath.sub(toVal(ref lhs),toVal(ref rhs));
+        {
+            gmath.sub(ref scalar(ref lhs), scalar(ref rhs));            
+            return lhs;
+        }
 
         [MethodImpl(Inline)]
         public static num<T> operator * (num<T> lhs, num<T> rhs) 
-            => gmath.mul(toVal(ref lhs),toVal(ref rhs));
+        {
+            gmath.mul(ref scalar(ref lhs), scalar(ref rhs));            
+            return lhs;
+        }
 
         [MethodImpl(Inline)]
         public static num<T> operator / (num<T> lhs, num<T> rhs) 
-            => gmath.div(toVal(ref lhs),toVal(ref rhs));
+        {
+            gmath.div(ref scalar(ref lhs), scalar(ref rhs));            
+            return lhs;
+        }
 
         [MethodImpl(Inline)]
         public static num<T> operator % (num<T> lhs, num<T> rhs)
-            => gmath.mod(toVal(ref lhs),toVal(ref rhs));
+            => gmath.mod(scalar(ref lhs),scalar(ref rhs));
 
         [MethodImpl(Inline)]
         public static num<T> operator - (num<T> src) 
-            => gmath.negate((toVal(ref src)));
+            => src.Dec();
 
         [MethodImpl(Inline)]
         public static num<T> operator ++ (num<T> src) 
-            => gmath.inc(Unsafe.As<num<T>,T>(ref src));
+            => src.Inc();
 
         [MethodImpl(Inline)]
         public static num<T> operator -- (num<T> src) 
-            => gmath.dec(Unsafe.As<num<T>,T>(ref src));
+            => gmath.dec(ref scalar(ref src));
+
+        [MethodImpl(Inline)]
+        public static bool operator == (num<T> lhs, num<T> rhs) 
+            => gmath.eq(scalar(ref lhs), scalar(ref rhs));
+
+        [MethodImpl(Inline)]
+        public static bool operator != (num<T> lhs, num<T> rhs) 
+            => gmath.neq(scalar(ref lhs), scalar(ref rhs));
 
         [MethodImpl(Inline)]
         public static bool operator < (num<T> lhs, num<T> rhs) 
-            => gmath.lt(toVal(ref lhs),toVal(ref rhs));
+            => gmath.lt(scalar(ref lhs), scalar(ref rhs));
 
         [MethodImpl(Inline)]
         public static bool operator <= (num<T> lhs, num<T> rhs) 
-            => gmath.lteq(toVal(ref lhs),toVal(ref rhs));
+            => gmath.lteq(scalar(ref lhs),scalar(ref rhs));
 
         [MethodImpl(Inline)]
         public static bool operator > (num<T> lhs, num<T> rhs) 
-            => gmath.gt(toVal(ref lhs),toVal(ref rhs));
+            => gmath.gt(scalar(ref lhs),scalar(ref rhs));
 
         [MethodImpl(Inline)]
         public static bool operator >= (num<T> lhs, num<T> rhs) 
-            => gmath.gteq(toVal(ref lhs),toVal(ref rhs));
+            => gmath.gteq(scalar(ref lhs),scalar(ref rhs));
 
         [MethodImpl(Inline)]
         public static num<T> operator & (num<T> lhs, num<T> rhs) 
-            => gmath.and(toVal(ref lhs),toVal(ref rhs));
+            => gmath.and(ref scalar(ref lhs),scalar(ref rhs));
 
         [MethodImpl(Inline)]
         public static num<T> operator | (num<T> lhs, num<T> rhs) 
-            => gmath.or(toVal(ref lhs),toVal(ref rhs));
+            => gmath.or(ref scalar(ref lhs),scalar(ref rhs));
 
         [MethodImpl(Inline)]
         public static num<T> operator ^ (num<T> lhs, num<T> rhs) 
-            => gmath.xor(toVal(ref lhs),toVal(ref rhs));
+            => gmath.xor(ref scalar(ref lhs),scalar(ref rhs));
 
         [MethodImpl(Inline)]
         public static num<T> operator ~ (num<T> src) 
-            => gmath.flip(toVal(ref src));
+            => gmath.flip(ref scalar(ref src));
 
         [MethodImpl(Inline)]
         public static num<T> abs(num<T> src)
-            => gmath.abs(toVal(ref src));
+            => gmath.abs(ref scalar(ref src));
 
         [MethodImpl(Inline)]
         public static num<T> pow(num<T> src, uint exp)
-            => gmath.pow(toVal(ref src), exp);
+            => gmath.pow(scalar(ref src), exp);
 
         [MethodImpl(Inline)]
         public bool Equals(num<T> rhs)
         {
             var lhs = this;
-            return gmath.eq(toVal(ref lhs),toVal(ref rhs));
+            return gmath.eq(scalar(ref lhs), scalar(ref rhs));
         }
          
         public T Value
@@ -226,16 +234,14 @@ namespace Z0
             get
             {
                 var src = this;
-                return toVal(ref src);
+                return scalar(ref src);
             }            
         }   
-            
+
+
         [MethodImpl(Inline)]
         public override int GetHashCode()
-        {
-            var src = this;
-            return toVal(ref src).GetHashCode();
-        }
+            => throw new NotSupportedException();
 
         public override bool Equals(object rhs)
             => throw new NotSupportedException();
@@ -243,7 +249,7 @@ namespace Z0
         public override string ToString()
         {
             var src = this;
-            return toVal(ref src).ToString();
+            return scalar(ref src).ToString();
         }
     }
 }

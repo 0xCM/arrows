@@ -19,7 +19,7 @@ namespace Z0
     {
         [MethodImpl(NotInline)]
         public static T max<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -51,52 +51,52 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static T maxI8<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.max(int8(src)));
 
         [MethodImpl(NotInline)]
         public static T maxU8<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.max(uint8(src)));
 
         [MethodImpl(NotInline)]
         public static T maxI16<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.max(int16(src)));
 
         [MethodImpl(NotInline)]
         public static T maxU16<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.max(uint16(src)));
 
         [MethodImpl(NotInline)]
         public static T maxI32<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.max(int32(src)));
 
         [MethodImpl(NotInline)]
         public static T maxU32<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.max(uint32(src)));
 
         [MethodImpl(NotInline)]
         public static T maxI64<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.max(int64(src)));
 
         [MethodImpl(NotInline)]
         public static T maxU64<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.max(uint64(src)));
 
         [MethodImpl(NotInline)]
         public static T maxF32<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.max(float32(src)));
 
         [MethodImpl(NotInline)]
         public static T maxF64<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => generic<T>(math.max(float64(src)));
 
     }

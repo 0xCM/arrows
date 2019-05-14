@@ -47,9 +47,9 @@ namespace Z0
 
         readonly Span128Sampler RightSamples;   
 
-        static OpId<T> Id<T>(OpKind op, bool generic = false)
+        static OpId<T> Id<T>(OpKind op)
             where T : struct, IEquatable<T>
-                => op.Vec128OpId<T>(generic);
+                => op.Vec128OpId<T>();
 
         Span128<T>  LeftSample<T>(OpId<T> opid = default)
             where T : struct, IEquatable<T>

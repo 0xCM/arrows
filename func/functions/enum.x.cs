@@ -285,6 +285,7 @@ namespace  Z0
         /// </summary>
         /// <param name="src">The source sequence</param>
         /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]   
         public static IEnumerable<IEnumerable<T>> Singletons<T>(this IEnumerable<T> src)
             => singletons(src);
 
@@ -322,6 +323,7 @@ namespace  Z0
         /// </summary>
         /// <typeparam name="T">The sequence element type</typeparam>
         /// <param name="src"></param>
+        [MethodImpl(Inline)]   
         public static IEnumerable<T> Reduce<T>(this IEnumerable<IEnumerable<T>> src)
             => src.SelectMany(y => y);
 
@@ -331,10 +333,12 @@ namespace  Z0
         /// <typeparam name="T">The item type</typeparam>
         /// <param name="src">The sequence that will be prependend</param>
         /// <param name="preceding">The items that will be prepended</param>
-        /// <returns></returns>
+        [MethodImpl(Inline)]   
         public static IEnumerable<T> Prepend<T>(this IEnumerable<T> src, params T[] preceding)
             => preceding.Concat(src);
 
+        [MethodImpl(Inline)]   
+        public static IEnumerable<T> Collapse<T>(this IEnumerable<IEnumerable<T>> src)
+            => src.SelectMany(x => x);
     }
-
 }

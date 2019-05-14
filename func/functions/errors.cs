@@ -32,6 +32,9 @@ partial class zfunc
             where S : Enum
                 => Errors.KindOpUnsupported(src, dst, file, line);
 
+    public static IndexOutOfRangeException outOfRange(int index, int min, int max)
+        => Errors.OutOfRange(index,min,max);
+        
     public static HashSet<T> set<T>(params T[] src)
         => new HashSet<T>(src);
 

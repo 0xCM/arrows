@@ -98,7 +98,7 @@ namespace Z0
             sampled.Right.CopyTo(targets.Right);
             return targets;
         }            
-        protected abstract OpId<T> Id<T>(OpKind op, bool generic = false)
+        protected abstract OpId<T> Id<T>(OpKind op)
             where T : struct, IEquatable<T>;
 
         protected BaselineMetrics Baselines {get;}

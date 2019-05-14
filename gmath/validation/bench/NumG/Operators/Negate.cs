@@ -20,7 +20,7 @@ namespace Z0
             where T : struct, IEquatable<T>
         {
             var opid =  Id<T>(OpKind.Negate);
-            var src = Number.many(Sampled(opid).Left);            
+            var src = Num.many(Sampled(opid).Left);            
             var sw = stopwatch();
 
             var it = -1;

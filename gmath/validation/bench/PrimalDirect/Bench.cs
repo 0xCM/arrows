@@ -32,8 +32,8 @@ namespace Z0
         {
         }
         
-        protected override OpId<T> Id<T>(OpKind op, bool baseline = true)
-            => op.PrimalDirect<T>(OpFusion.Atomic, baseline);
+        protected override OpId<T> Id<T>(OpKind op)
+            => op.PrimalDirect<T>(NumericKind.Native);
 
     }
 
