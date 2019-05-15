@@ -60,22 +60,49 @@ namespace Z0
             => ref Unsafe.As<num<T>,T>(ref src);
 
         [MethodImpl(Inline)]
-        public static num<T> add<T>(num<T> lhs, num<T> rhs)
+        public static ref readonly T immutable<T>(ref num<T> src)
             where T : struct
-                => lhs.Add(rhs);
-        
-        [MethodImpl(Inline)]
-        public static num<T> mul<T>(num<T> lhs, num<T> rhs)
-            where T : struct
-                => lhs.Mul(rhs);
+            => ref Unsafe.As<num<T>,T>(ref src);
 
         [MethodImpl(Inline)]
-        public static num<T> div<T>(num<T> lhs, num<T> rhs)
+        public static ref num<T> add<T>(ref num<T> lhs, in num<T> rhs)
             where T : struct
-        {
-            div(ref lhs, rhs);
-            return lhs;
-        }
+                => ref lhs.Add(rhs);
+
+        [MethodImpl(Inline)]
+        public static ref num<T> sub<T>(ref num<T> lhs, in num<T> rhs)
+            where T : struct
+                => ref lhs.Sub(rhs);
+
+        [MethodImpl(Inline)]
+        public static ref num<T> mul<T>(ref num<T> lhs, in num<T> rhs)
+            where T : struct
+                => ref lhs.Mul(rhs);
+
+        [MethodImpl(Inline)]
+        public static ref num<T> div<T>(ref num<T> lhs, in num<T> rhs)
+            where T : struct
+                => ref lhs.Div(rhs);
+
+        [MethodImpl(Inline)]
+        public static ref num<T> inc<T>(ref num<T> src)
+            where T : struct
+                => ref src.Inc();
+
+        [MethodImpl(Inline)]
+        public static ref num<T> dec<T>(ref num<T> src)
+            where T : struct
+                => ref src.Inc();
+
+        [MethodImpl(Inline)]
+        public static ref num<T> abs<T>(ref num<T> src)
+            where T : struct
+            => ref src.Abs();
+
+        [MethodImpl(Inline)]
+        public static ref num<T> negate<T>(ref num<T> src)
+            where T : struct 
+                => ref src.Negate();
 
         [MethodImpl(Inline)]
         public static num<T> abs<T>(num<T> src)
@@ -86,52 +113,5 @@ namespace Z0
         public static num<T> sqrt<T>(num<T> src)
             where T : struct
                 => src.Sqrt();
-
-        [MethodImpl(Inline)]
-        public static ref num<T> add<T>(ref num<T> lhs, num<T> rhs)
-            where T : struct
-                => ref lhs.Add(rhs);
-
-        [MethodImpl(Inline)]
-        public static ref num<T> sub<T>(ref num<T> lhs, num<T> rhs)
-            where T : struct
-                => ref lhs.Sub(rhs);
-
-        [MethodImpl(Inline)]
-        public static ref num<T> mul<T>(ref num<T> lhs, num<T> rhs)
-            where T : struct
-                => ref lhs.Mul(rhs);
-
-        [MethodImpl(Inline)]
-        public static ref num<T> div<T>(ref num<T> lhs, num<T> rhs)
-            where T : struct
-                => ref lhs.Div(rhs);
-
-        [MethodImpl(Inline)]
-        public static ref num<T> inc<T>(ref num<T> src)
-            where T : struct
-        {
-            gmath.inc(ref scalar(ref src));
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref num<T> dec<T>(ref num<T> src)
-            where T : struct
-        {
-            gmath.inc(ref scalar(ref src));
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref num<T> abs<T>(ref num<T> src)
-            where T : struct
-            => ref mfunc.num(ref gmath.abs(ref mfunc.scalar(ref src)));            
-
-
-        [MethodImpl(Inline)]
-        public static ref num<T> negate<T>(ref num<T> src)
-            where T : struct 
-                => ref mfunc.num(ref gmath.negate(ref mfunc.scalar(ref src)));
     }
 }

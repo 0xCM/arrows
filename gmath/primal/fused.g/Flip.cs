@@ -45,10 +45,33 @@ namespace Z0
             }
         }
 
-        [MethodImpl(Inline)]
-        public static Span<T> flip<T>(ReadOnlySpan<T> src, T[] dst)
+        [MethodImpl(NotInline)]
+        public static ref Span<T> flip<T>(ref Span<T> io)
             where T : struct
-                => fused.flip(src,dst);
+        {
+            var kind = PrimalKinds.kind<T>();
+            switch(kind)
+            {
+                case PrimalKind.int8:
+                    return ref flipI8(ref io);
+                case PrimalKind.uint8:
+                    return ref flipU8(ref io);
+                case PrimalKind.int16:
+                    return ref flipI16(ref io);
+                case PrimalKind.uint16:
+                    return ref flipU16(ref io);
+                case PrimalKind.int32:
+                    return ref flipI32(ref io);
+                case PrimalKind.uint32:
+                    return ref flipU32(ref io);
+                case PrimalKind.int64:
+                    return ref flipI64(ref io);
+                case PrimalKind.uint64:
+                    return ref flipU64(ref io);
+                default:
+                    throw unsupported(kind);                
+            }
+        }
 
 
         [MethodImpl(NotInline)]
@@ -130,6 +153,81 @@ namespace Z0
             var z = uint64(dst);
             math.flip(x,z);
             return dst;
+        }
+
+ 
+        [MethodImpl(NotInline)]
+        public static ref Span<T> flipI8<T>(ref Span<T> io)
+            where T : struct
+        {
+            var x = int8(io);
+            math.flip(ref x);
+            return ref io;
+        }
+
+        [MethodImpl(NotInline)]
+        public static ref Span<T> flipU8<T>(ref Span<T> io)
+            where T : struct
+        {
+            var x = uint8(io);
+            math.flip(ref x);
+            return ref io;
+        }
+
+        [MethodImpl(NotInline)]
+        public static ref Span<T> flipI16<T>(ref Span<T> io)
+            where T : struct
+        {
+            var x = int16(io);
+            math.flip(ref x);
+            return ref io;
+        }
+        
+
+        [MethodImpl(NotInline)]
+        public static ref Span<T> flipU16<T>(ref Span<T> io)
+            where T : struct
+        {
+            var x = uint16(io);
+            math.flip(ref x);
+            return ref io;
+        }        
+
+        [MethodImpl(NotInline)]
+        public static ref Span<T> flipI32<T>(ref Span<T> io)
+            where T : struct
+        {
+            var x = int32(io);
+            math.flip(ref x);
+            return ref io;
+        }
+
+        [MethodImpl(NotInline)]
+        public static ref Span<T> flipU32<T>(ref Span<T> io)
+            where T : struct
+        {
+            var x = uint32(io);
+            math.flip(ref x);
+            return ref io;
+        }
+
+        
+        [MethodImpl(NotInline)]
+        public static ref Span<T> flipI64<T>(ref Span<T> io)
+            where T : struct
+        {
+            var x = int64(io);
+            math.flip(ref x);
+            return ref io;
+        }
+
+        [MethodImpl(NotInline)]
+        public static ref Span<T> flipU64<T>(ref Span<T> io)
+            where T : struct
+        {
+            var x = uint64(io);
+            math.flip(ref x);
+            return ref io;
         }
 
     }

@@ -259,7 +259,7 @@ namespace Z0
  
         [MethodImpl(Inline)]
         public static Atoms Contain(this IEnumerable<Atom> src)
-           => Atoms.contain(src);
+           => Atoms.Contain(src);
 
     }
 }

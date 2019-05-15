@@ -21,7 +21,7 @@ namespace Z0
 
 
         PrimalFusedBench(IRandomizer random, BenchConfig config)
-            : base(random, config)
+            : base(BenchKind.PrimalFused, random, config)
             {
 
             }

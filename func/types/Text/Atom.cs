@@ -16,6 +16,8 @@ namespace Z0
     /// </summary>
     public readonly struct Atom :  INullary<Atom>
     {
+        public static Atom Define(string text)
+            => new Atom(text);
         public static readonly Atom Empty = new Atom(string.Empty);
 
         public static bool operator == (Atom lhs, Atom rhs)
@@ -31,7 +33,6 @@ namespace Z0
             => new Atom(s);
 
         public string data {get;}
-
 
         public Atom zero 
             => Empty;
@@ -88,7 +89,13 @@ namespace Z0
     /// </summary>
     public readonly struct Atoms : ISeq<Atoms, Atom>
     {
-        public static Atoms contain(IEnumerable<Atom> src)
+        public static Atoms FromType<T>()
+            => Contain(type<AsciSym>().Literals().Values<string>().Select(Atom.Define));
+        
+        public static Atoms Contain(IEnumerable<Atom> src)
+            => new Atoms(src);
+
+        public static Atoms Many(params Atom[] src)
             => new Atoms(src);
 
         public static Atoms operator + (Atoms lhs, Atoms rhs)
@@ -100,6 +107,6 @@ namespace Z0
         public IEnumerable<Atom> Content {get;}
 
         public Atoms Concat(Atoms rhs)
-            => contain(Content.Concat(rhs.Content));
+            => Contain(Content.Concat(rhs.Content));
     }
 }

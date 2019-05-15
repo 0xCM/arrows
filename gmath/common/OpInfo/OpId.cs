@@ -10,19 +10,21 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.IO;
 
-    public readonly struct OpId<T> : IOpId<T>
+    public class OpId<T> : IOpId<T>
         where T : struct
     {
         public static implicit operator OpId(OpId<T> src)
-            =>  src.OpKind.OpId(src.OperandType, src.NumKind, src.Generic, src.Intrinsic, src.Fusion, src.OperandSize, src.Baseline);
+            =>  src.OpKind.OpId(src.OperandType, src.NumKind, src.Generic, src.Intrinsic, 
+                    src.Fusion, src.OperandSize, src.Mode, src.Role);
 
         public static OpId<T> operator ~(OpId<T> src)
-            => src.FlipGeneric();
+            => src.ToggleGeneric();
 
         public static OpId<T> operator !(OpId<T> src)
-            => src.FlipBaseline();
+            => src.ToggleRole();
 
-        public OpId(OpKind OpKind, NumericKind NumKind, bool Generic, bool Intrinsic, OpFusion Fusion, ByteSize? OperandSize, bool Baseline)
+        public OpId(OpKind OpKind, NumericKind NumKind, bool Generic, bool Intrinsic, 
+            OpFusion Fusion, ByteSize? OperandSize, OpMode? Mode, bool Role)
         {
             this.OpKind = OpKind;
             this.NumKind = NumKind;
@@ -31,7 +33,8 @@ namespace Z0
             this.Intrinsic = Intrinsic;
             this.Fusion = Fusion;
             this.OperandSize = OperandSize ?? 0;
-            this.Baseline = Baseline;
+            this.Role = Role;
+            this.Mode = Mode ?? OpMode.ReadOnly;
         }
         
         public OpKind OpKind {get;}
@@ -48,20 +51,24 @@ namespace Z0
 
         public OpFusion Fusion {get;}
 
-        public bool Baseline {get;}
+        public OpMode Mode {get;}
 
+        public bool Role {get;}
 
         public override string ToString()
             => this.BuildUri();
 
-        public OpId<T> FlipGeneric()
-            => new OpId<T>(OpKind, NumKind, !Generic, Intrinsic, Fusion, OperandSize, Baseline);
+        public OpId<T> ToggleGeneric()
+            => new OpId<T>(OpKind, NumKind, !Generic, Intrinsic, Fusion, OperandSize, Mode, Role);
 
-        public OpId<T> FlipBaseline()
-            => new OpId<T>(OpKind, NumKind, Generic, Intrinsic, Fusion, OperandSize, !Baseline);
+        public OpId<T> ToggleRole()
+            => new OpId<T>(OpKind, NumKind, Generic, Intrinsic, Fusion, OperandSize, Mode, !Role);
+        
+        public OpId<T> WithMode(OpMode Mode)
+            => new OpId<T>(OpKind, NumKind, Generic, Intrinsic, Fusion, OperandSize, Mode, Role);
     }
 
-    public readonly struct OpId : IOpId
+    public class OpId : IOpId
     {   
         public static IEnumerable<OpKind> OpKinds
             => typeof(OpKind).GetEnumValues().AsQueryable().Cast<OpKind>();
@@ -69,16 +76,8 @@ namespace Z0
         public static IEnumerable<PrimalKind> Primitives
             => typeof(PrimalKind).GetEnumValues().AsQueryable().Cast<PrimalKind>();
 
-        public static readonly OpId Zero = new OpId(OpKind.None, PrimalKind.none, NumericKind.Native, false, false, OpFusion.Atomic, 0, true);     
-        
-        // public static OpId Define(OpKind Kind, PrimalKind Primitive, NumericKind NumKind = NumericKind.Native, bool Generic = false, bool Intrinsic = false, 
-        //     OpFusion Fusion = OpFusion.Atomic, ByteSize? OperandSize = null, bool baseline = true)
-        //         => new OpId(Kind, Primitive, NumKind, Generic, Intrinsic, Fusion,OperandSize, baseline);
-
-        // public static OpId<T> Define<T>(OpKind Kind, NumericKind NumKind = NumericKind.Native, bool Generic = false, bool Intrinsic = false, 
-        //     OpFusion Fusion = OpFusion.Atomic, ByteSize? OperandSize = null, bool baseline = true)
-        //     where T : struct
-        //         => new OpId<T>(Kind, NumKind, Generic, Intrinsic, Fusion, OperandSize ?? Unsafe.SizeOf<T>(), baseline);
+        public static readonly OpId Zero = new OpId(OpKind.None, PrimalKind.none, NumericKind.Native, 
+            false, false, OpFusion.Atomic, 0, OpMode.ReadOnly, true);     
 
         public static OpId operator !(OpId src)
             => src.FlipBaseline();
@@ -86,7 +85,8 @@ namespace Z0
         public static OpId operator ~(OpId src)
             => src.FlipGeneric();
         
-        public OpId(OpKind OpKind, PrimalKind OperandKind, NumericKind NumericKind, bool Generic, bool Intrinsic, OpFusion Fusion, ByteSize? OperandSize, bool Baseline)
+        public OpId(OpKind OpKind, PrimalKind OperandKind, NumericKind NumericKind, bool Generic, bool Intrinsic, 
+            OpFusion Fusion, ByteSize? OperandSize, OpMode? Mode, bool Baseline)
         {
             this.OpKind = OpKind;
             this.OperandType = OperandKind;
@@ -95,7 +95,8 @@ namespace Z0
             this.Intrinsic = Intrinsic;
             this.Fusion = Fusion;
             this.OperandSize = OperandSize ?? 0;
-            this.Baseline = Baseline;
+            this.Mode = Mode ?? OpMode.ReadOnly;
+            this.Role = Baseline;
        }
         
         public OpKind OpKind {get;}
@@ -112,18 +113,24 @@ namespace Z0
 
         public OpFusion Fusion {get;}
 
-        public bool Baseline {get;}
+        public bool Role {get;}
+
+        public OpMode Mode {get;}
 
         public override string ToString() 
             => this.BuildUri();
 
         public OpId FlipBaseline()
-            => new OpId(OpKind, OperandType, NumKind, Generic, Intrinsic, Fusion, OperandSize, !Baseline);
+            => new OpId(OpKind, OperandType, NumKind, Generic, Intrinsic, Fusion, OperandSize, Mode, !Role);
 
         public OpId FlipGeneric()
-            => new OpId(OpKind, OperandType, NumKind, !Generic, Intrinsic, Fusion, OperandSize, Baseline);
+            => new OpId(OpKind, OperandType, NumKind, !Generic, Intrinsic, Fusion, OperandSize, Mode, Role);
     
         public OpId ResizeOperand(int OperandSize)
-            => new OpId(OpKind, OperandType, NumKind, Generic, Intrinsic, Fusion, OperandSize, Baseline);
+            => new OpId(OpKind, OperandType, NumKind, Generic, Intrinsic, Fusion, OperandSize, Mode, Role);
+
+        public OpId WithMode(OpMode Mode)
+            => new OpId(OpKind, OperandType, NumKind, Generic, Intrinsic, Fusion, OperandSize, Mode, Role);
+
     }
 }

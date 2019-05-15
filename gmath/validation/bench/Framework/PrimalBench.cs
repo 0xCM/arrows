@@ -13,7 +13,7 @@ namespace Z0
     using static zfunc;
     using static mfunc;
 
-    public abstract class PrimalBench : BenchContext
+    public abstract class PrimalBench : BenchContext<BenchKind>
     {
 
         protected static readonly BenchConfig Config0 = new BenchConfig(Cycles: Pow2.T11, Reps: 1, SampleSize: Pow2.T11, AnnounceRate: Pow2.T09);
@@ -23,8 +23,8 @@ namespace Z0
         protected static readonly BenchConfig Config2 = new BenchConfig(Cycles: Pow2.T14, Reps: 1, SampleSize: Pow2.T13, AnnounceRate: Pow2.T11);
 
 
-        protected PrimalBench(IRandomizer random, BenchConfig config = null)
-            : base(random, config ?? Config1)
+        protected PrimalBench(BenchKind kind, IRandomizer random, BenchConfig config = null)
+            : base(kind, random, config ?? Config1)
         {
             LeftSrc = ArraySampler.Sample(random, Config.SampleSize);   
             RightSrc = ArraySampler.Sample(random, Config.SampleSize);
@@ -33,8 +33,8 @@ namespace Z0
 
         }
 
-        protected PrimalBench(ArraySampler LeftSrc, ArraySampler RightSrc, ArraySampler NonZeroSrc, IRandomizer random, BenchConfig config = null)
-            : base(random, config ?? Config1)
+        protected PrimalBench(BenchKind kind, ArraySampler LeftSrc, ArraySampler RightSrc, ArraySampler NonZeroSrc, IRandomizer random, BenchConfig config = null)
+            : base(kind, random, config ?? Config1)
         {
             this.LeftSrc = LeftSrc;
             this.RightSrc = RightSrc;

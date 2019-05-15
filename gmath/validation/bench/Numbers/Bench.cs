@@ -14,7 +14,7 @@ namespace Z0
     using static zfunc;
     using static mfunc;
 
-    public partial class NumbersBench : BenchContext
+    public partial class NumbersBench : BenchContext<BenchKind>
     {
         public static NumbersBench Create(IRandomizer random, BenchConfig config = null)
             => new NumbersBench(random, config);
@@ -24,7 +24,7 @@ namespace Z0
         static readonly BenchConfig Config1 = new BenchConfig(Cycles: Pow2.T11, Reps: 1, SampleSize: Pow2.T11, AnnounceRate: Pow2.T09);
 
         NumbersBench(IRandomizer random, BenchConfig config = null)
-            : base(random, config ?? Config0)
+            : base(BenchKind.Numbers, random, config ?? Config0)
         {
             LeftSrc = ArraySampler.Sample(random, Config.SampleSize);   
             RightSrc = ArraySampler.Sample(random, Config.SampleSize);

@@ -13,12 +13,20 @@ namespace Z0
     
     using static zfunc;
 
-    public partial class Num128Bench : BenchContext
+    public partial class Num128Bench : BenchContext<BenchKind>
     {   
         static readonly BenchConfig DefaultConfig = new BenchConfig(Cycles: Pow2.T14, Reps: 1, SampleSize: Pow2.T12, AnnounceRate: Pow2.T10);
 
         public static Num128Bench Create(IRandomizer random, BenchConfig config = null)
             => new Num128Bench(random, config ?? DefaultConfig);
+
+        Num128Bench(IRandomizer random, BenchConfig config)
+            : base(BenchKind.Num128, random, config)
+        {
+
+
+
+        }
 
         protected BinOpData<T> BinOpInit<T>(bool nonzero = false)                
             where T : struct
@@ -84,13 +92,6 @@ namespace Z0
             return repeat;
         }
 
-        Num128Bench(IRandomizer random, BenchConfig config)
-            : base(random, config)
-        {
-
-
-
-        }
 
         static OpId<T> Id<T>(OpKind op)
             where T : struct

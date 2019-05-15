@@ -90,7 +90,7 @@ namespace Z0
         {
             var messages = Flush(addenda);
             zfunc.print(messages);
-            log(messages, LogTarget.TestLog);            
+            log(messages, LogArea.Test);            
         }
     }   
 }

@@ -130,40 +130,32 @@ namespace Z0
             => scalar(ref src);
 
         [MethodImpl(Inline)]
-        public static num<T> operator + (num<T> lhs, num<T> rhs) 
-        {
-            gmath.add(ref scalar(ref lhs), scalar(ref rhs));            
-            return lhs;
-        }
+        public static num<T> operator + (num<T> lhs, in num<T> rhs) 
+            => lhs.Add(rhs);
+        
+        [MethodImpl(Inline)]
+        public static num<T> operator - (num<T> lhs, in num<T> rhs) 
+            => lhs.Sub(rhs);
 
         [MethodImpl(Inline)]
-        public static num<T> operator - (num<T> lhs, num<T> rhs) 
-        {
-            gmath.sub(ref scalar(ref lhs), scalar(ref rhs));            
-            return lhs;
-        }
+        public static num<T> operator * (num<T> lhs, in num<T> rhs) 
+            => lhs.Mul(rhs);
+        // {
+        //     ref var result = ref gmath.mul(ref scalar(ref lhs), rhs.Value);
+        //     return toNum(ref result);
+        // }
 
         [MethodImpl(Inline)]
-        public static num<T> operator * (num<T> lhs, num<T> rhs) 
-        {
-            gmath.mul(ref scalar(ref lhs), scalar(ref rhs));            
-            return lhs;
-        }
+        public static num<T> operator / (num<T> lhs, in num<T> rhs) 
+            => lhs.Div(rhs);
 
         [MethodImpl(Inline)]
-        public static num<T> operator / (num<T> lhs, num<T> rhs) 
-        {
-            gmath.div(ref scalar(ref lhs), scalar(ref rhs));            
-            return lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static num<T> operator % (num<T> lhs, num<T> rhs)
-            => gmath.mod(scalar(ref lhs),scalar(ref rhs));
+        public static num<T> operator % (num<T> lhs, in num<T> rhs)
+            => lhs.Mod(rhs);
 
         [MethodImpl(Inline)]
         public static num<T> operator - (num<T> src) 
-            => src.Dec();
+            => src.Negate();
 
         [MethodImpl(Inline)]
         public static num<T> operator ++ (num<T> src) 
@@ -174,67 +166,56 @@ namespace Z0
             => gmath.dec(ref scalar(ref src));
 
         [MethodImpl(Inline)]
-        public static bool operator == (num<T> lhs, num<T> rhs) 
-            => gmath.eq(scalar(ref lhs), scalar(ref rhs));
+        public static bool operator == (in num<T> lhs, in num<T> rhs) 
+            => lhs.Eq(rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator != (num<T> lhs, num<T> rhs) 
-            => gmath.neq(scalar(ref lhs), scalar(ref rhs));
+        public static bool operator != (in num<T> lhs, in num<T> rhs) 
+            => lhs.NEq(rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator < (num<T> lhs, num<T> rhs) 
-            => gmath.lt(scalar(ref lhs), scalar(ref rhs));
+        public static bool operator < (num<T> lhs, in num<T> rhs) 
+            => lhs.Lt(rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator <= (num<T> lhs, num<T> rhs) 
-            => gmath.lteq(scalar(ref lhs),scalar(ref rhs));
+        public static bool operator <= (num<T> lhs, in num<T> rhs) 
+            => lhs.LtEq(rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator > (num<T> lhs, num<T> rhs) 
-            => gmath.gt(scalar(ref lhs),scalar(ref rhs));
+        public static bool operator > (num<T> lhs, in num<T> rhs) 
+            => lhs.Gt(rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator >= (num<T> lhs, num<T> rhs) 
-            => gmath.gteq(scalar(ref lhs),scalar(ref rhs));
+        public static bool operator >= (num<T> lhs, in num<T> rhs) 
+            => lhs.GtEq(rhs);
 
         [MethodImpl(Inline)]
-        public static num<T> operator & (num<T> lhs, num<T> rhs) 
-            => gmath.and(ref scalar(ref lhs),scalar(ref rhs));
+        public static num<T> operator & (num<T> lhs, in num<T> rhs) 
+            => lhs.And(rhs);
 
         [MethodImpl(Inline)]
-        public static num<T> operator | (num<T> lhs, num<T> rhs) 
-            => gmath.or(ref scalar(ref lhs),scalar(ref rhs));
+        public static num<T> operator | (num<T> lhs, in num<T> rhs) 
+            => lhs.Or(rhs);
 
         [MethodImpl(Inline)]
-        public static num<T> operator ^ (num<T> lhs, num<T> rhs) 
-            => gmath.xor(ref scalar(ref lhs),scalar(ref rhs));
+        public static num<T> operator ^ (num<T> lhs, in num<T> rhs) 
+            => lhs.XOr(rhs);
 
         [MethodImpl(Inline)]
         public static num<T> operator ~ (num<T> src) 
-            => gmath.flip(ref scalar(ref src));
+            => src.Flip();
 
         [MethodImpl(Inline)]
-        public static num<T> abs(num<T> src)
-            => gmath.abs(ref scalar(ref src));
+        public bool Equals(in num<T> rhs)
+            => this.Eq(rhs);
 
-        [MethodImpl(Inline)]
-        public static num<T> pow(num<T> src, uint exp)
-            => gmath.pow(scalar(ref src), exp);
-
-        [MethodImpl(Inline)]
-        public bool Equals(num<T> rhs)
-        {
-            var lhs = this;
-            return gmath.eq(scalar(ref lhs), scalar(ref rhs));
-        }
-         
         public T Value
         {
             [MethodImpl(Inline)]
             get
             {
-                var src = this;
-                return scalar(ref src);
+                var x = this;
+                return scalar(ref x);
             }            
         }   
 

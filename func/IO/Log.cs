@@ -18,87 +18,97 @@ namespace Z0
         
         void Log(AppMsg src);
 
-        void Log(IRecord record, char delimiter);
-
-        void Log(IEnumerable<IRecord> records, char delimiter, bool writeHeader);
+        void Log<T>(IEnumerable<IRecord> records, LogTarget<T> target, char delimiter, bool writeHeader, bool newFile, FileExtension ext = null)
+            where T : Enum;
 
         void Log(string text);
     }
 
     public static class Log
     {
-        public static ILogger Get(LogTarget dst)
-            => dst switch{
-                LogTarget.AppLog => AppLog.TheOnly,
-                LogTarget.BenchLog => BenchLog.TheOnly,
-                LogTarget.TestLog => TestLog.TheOnly,
+        public static ILogger Get(ILogTarget dst)
+            => dst.Area switch{
+                LogArea.App => AppLog.TheOnly,
+                LogArea.Bench => BenchLog.TheOnly,
+                LogArea.Test => TestLog.TheOnly,
                 _ => throw new ArgumentException()
             };
 
-        abstract class Logger<T> : ILogger
-            where T : Logger<T>, new()
+        abstract class Logger<A> : ILogger
+            where A : Logger<A>, new()
         {
-            public static ILogger TheOnly = new T();
+            public static ILogger TheOnly = new A();
             
             protected object locker = new object();
             
-            protected Logger(LogTarget Target)
+            protected Logger(LogArea Area)
             {
-                this.Target = Target;
+                this.Area = Area;
             }
 
-            FilePath LogPath
-                => LogSettings.Get().LogPath(Target);
+            FilePath LogPath()
+                => LogSettings.Get().LogPath(Area);
+
+            FilePath LogPath<T>(LogTarget<T> target)
+                where T : Enum
+                    => LogSettings.Get().LogPath(target);
+
+            FilePath UniqueLogPath(FileExtension ext = null)
+                    => LogSettings.Get().UniqueLogPath(Area, ext);
+
+            FilePath UniqueLogPath<T>(LogTarget<T> target, FileExtension ext = null)
+                where T : Enum
+                    => LogSettings.Get().UniqueLogPath(target,ext);
 
             public void Log(AppMsg src)
             {
                 lock(locker)
-                    LogPath.Append(src.ToString());
-
+                    LogPath().Append(src.ToString());
             }
 
             public void Log(IEnumerable<AppMsg> src)
             {
                 lock(locker)
-                    LogPath.Append(src.Select(x => x.ToString()));
+                    LogPath().Append(src.Select(x => x.ToString()));
             }
 
-            public void Log(IEnumerable<IRecord> records, char delimiter, bool writeHeader = true)
+            void LogRecords(IReadOnlyList<IRecord> records, char delimiter, bool writeHeader, FilePath dstFile)
+            {
+                if(writeHeader)
+                    dstFile.Append(string.Join(delimiter, records[0].Headers()));
+                
+                iter(records, r => dstFile.Append(r.Delimited(delimiter)));
+            }
+
+            public void Log<T>(IEnumerable<IRecord> records, LogTarget<T> target, char delimiter, bool writeHeader = true, 
+                bool newFile = true, FileExtension ext = null)
+                    where T : Enum
             {
                 var frozen = records.Freeze();
                 if(frozen.Length == 0)
                     return;
 
-                lock(locker)
-                {                        
-                    if(writeHeader)
-                        LogPath.Append(string.Join(delimiter, frozen[0].Headers()));
-                    
-                    iter(frozen, r => LogPath.Append(r.Delimited(delimiter)));
-                    
-                }
-            }
-
-            public void Log(IRecord record, char delimiter)
-            {
-                lock(locker)
-                    LogPath.Append(record.Delimited(delimiter));
+                if(newFile)
+                     LogRecords(frozen, delimiter, writeHeader, UniqueLogPath(target,ext));
+                else
+                    lock(locker)
+                        LogRecords(frozen, delimiter, writeHeader, LogPath(target));
             }
 
             public void Log(string text)
             {
                 lock(locker)
-                    LogPath.Append(text);
+                    LogPath().Append(text);
             }
 
-            public LogTarget Target {get;}
+            public LogArea Area {get;}
             
         }
 
         class AppLog : Logger<AppLog>
         {
             public AppLog()            
-             : base(LogTarget.AppLog)
+             : base(LogArea.App)
             {
 
             }
@@ -107,7 +117,7 @@ namespace Z0
         class TestLog : Logger<TestLog>
         {
             public TestLog()            
-             : base(LogTarget.TestLog)
+             : base(LogArea.Test)
             {
 
             }
@@ -116,7 +126,7 @@ namespace Z0
         class BenchLog : Logger<BenchLog>
         {
             public BenchLog()            
-             : base(LogTarget.BenchLog)
+             : base(LogArea.Bench)
             {
 
             }

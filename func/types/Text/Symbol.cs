@@ -17,12 +17,29 @@ namespace Z0
     {
     }
 
+    [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
+    public class SymbolAttribute : Attribute
+    {
+        public SymbolAttribute(string Symbol, bool Primary = true)
+        {
+            this.Symbol = Z0.Symbol.Define(Symbol);
+            this.Primary = Primary;
+        }
+
+        public Symbol Symbol {get;}
+
+        public bool Primary {get;}
+    }
+
     /// <summary>
     /// Represents a symbol comprising a finite ordered sequence of atoms
     /// </summary>
     public readonly struct Symbol : ISymbol<Symbol,Atom>
     {
         public static readonly Symbol Empty = new Symbol(string.Empty);
+
+        public static Symbol Define(string text)
+            => new Symbol(text);
 
         [MethodImpl(Inline)]
         public static Symbol operator +(Symbol lhs, Symbol rhs)
@@ -50,7 +67,7 @@ namespace Z0
             => Empty;
 
         public uint Length 
-            => 1;
+            => (uint)atom.data.Length;
 
         [MethodImpl(Inline)]
         public Symbol append(Symbol rhs)

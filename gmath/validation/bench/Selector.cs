@@ -54,7 +54,7 @@ namespace Z0
                 bench.Run();
         }
 
-        public static BenchContext CreateBench(this BenchKind kind, IRandomizer random, BenchConfig config = null)
+        public static BenchContext<BenchKind> CreateBench(this BenchKind kind, IRandomizer random, BenchConfig config = null)
         {
             switch(kind)
             {

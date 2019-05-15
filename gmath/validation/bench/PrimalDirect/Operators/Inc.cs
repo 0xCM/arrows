@@ -345,7 +345,5 @@ namespace Z0
                 gmath.inc(ref io[it]);
             return SampleTime(snapshot(sw));            
         }
-
-
    }
 }

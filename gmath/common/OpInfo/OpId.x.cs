@@ -21,8 +21,9 @@ namespace Z0
             bool intrinsic = false, 
             OpFusion fusion = OpFusion.Atomic, 
             ByteSize? operandSize = null, 
+            OpMode? mode = null,
             bool baseline = true)
-                => new OpId(op, Primitive, NumKind, generic, intrinsic, fusion,operandSize, baseline);
+                => new OpId(op, Primitive, NumKind, generic, intrinsic, fusion,operandSize, mode,  baseline);
 
         public static OpId<T> OpId<T>(this OpKind op, 
             NumericKind NumKind = NumericKind.Native, 
@@ -30,9 +31,10 @@ namespace Z0
             bool intrinsic = false,             
             OpFusion fusion = OpFusion.Atomic, 
             ByteSize? operandSize = null, 
+            OpMode? mode = null,
             bool baseline = true)
                 where T : struct
-                    => new OpId<T>(op, NumKind, generic, intrinsic, fusion, operandSize ?? Unsafe.SizeOf<T>(), baseline);
+                    => new OpId<T>(op, NumKind, generic, intrinsic, fusion, operandSize ?? Unsafe.SizeOf<T>(), mode, baseline);
     
         /// <summary>
         /// Describes vectored intrinsic operators
@@ -88,7 +90,7 @@ namespace Z0
         /// </summary>
         public static OpId<T> NumG<T>(this OpKind kind, OpFusion fusion = OpFusion.Atomic)
             where T : struct
-                => kind.OpId<T>(NumericKind.Derived, generic: true, intrinsic: false, fusion: fusion);
+                => kind.OpId<T>(NumericKind.Derived, fusion: fusion);
 
         /// <summary>
         /// Describes an operator on a numbers type
@@ -136,7 +138,7 @@ namespace Z0
 
             uri += $"{src.OpKind.ToString().ToLower()}/";
 
-            if(src.Baseline)
+            if(src.Role)
                 uri += "baseline ";
             else
                 uri += "benchmark";
@@ -146,7 +148,7 @@ namespace Z0
 
         public static OpId FlipBaseline(this IOpId src)
             => src.OpKind.OpId(src.OperandType, src.NumKind, src.Generic, 
-                src.Intrinsic, src.Fusion, src.OperandSize, !src.Baseline);
+                src.Intrinsic, src.Fusion, src.OperandSize, src.Mode, !src.Role);
 
         public static OpId<T> FlipBaseline<T>(this IOpId<T> src)
             where T : struct
@@ -154,7 +156,7 @@ namespace Z0
             
         public static OpId FlipGeneric(this IOpId src)
             => src.OpKind.OpId(src.OperandType, src.NumKind, !src.Generic, 
-                src.Intrinsic, src.Fusion, src.OperandSize, !src.Baseline);
+                src.Intrinsic, src.Fusion, src.OperandSize, src.Mode, !src.Role);
 
         public static OpId<T> FlipGeneric<T>(this IOpId<T> src)
             where T : struct
@@ -162,7 +164,7 @@ namespace Z0
 
         public static OpId ResizeOperand(this IOpId src, int OperandSize)
             => src.OpKind.OpId( src.OperandType, src.NumKind, src.Generic, 
-                src.Intrinsic, src.Fusion, OperandSize, !src.Baseline);
+                src.Intrinsic, src.Fusion, OperandSize, src.Mode, !src.Role);
 
     }
 

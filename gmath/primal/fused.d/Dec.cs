@@ -113,7 +113,7 @@ namespace Z0
         public static ref Span<sbyte> dec(ref Span<sbyte> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = dec(io[i]);
+                dec(ref io[i]);
             return ref io;
         }
 
@@ -121,7 +121,7 @@ namespace Z0
         public static ref Span<byte> dec(ref Span<byte> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = dec(io[i]);
+                dec(ref io[i]);
             return ref io;
         }
 
@@ -129,7 +129,7 @@ namespace Z0
         public static ref Span<short> dec(ref Span<short> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = dec(io[i]);
+                dec(ref io[i]);
             return ref io;
         }
 
@@ -137,7 +137,7 @@ namespace Z0
         public static ref Span<ushort> dec(ref Span<ushort> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = dec(io[i]);
+                dec(ref io[i]);
             return ref io;
         }
 
@@ -145,7 +145,7 @@ namespace Z0
         public static ref Span<int> dec(ref Span<int> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = dec(io[i]);
+                dec(ref io[i]);
             return ref io;
         }
 
@@ -153,7 +153,7 @@ namespace Z0
         public static ref Span<uint> dec(ref Span<uint> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = dec(io[i]);
+                dec(ref io[i]);
             return ref io;
         }
 
@@ -161,7 +161,7 @@ namespace Z0
         public static ref Span<long> dec(ref Span<long> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = dec(io[i]);
+                dec(ref io[i]);
             return ref io;
         }
 
@@ -169,7 +169,7 @@ namespace Z0
         public static ref Span<ulong> dec(ref Span<ulong> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = dec(io[i]);
+                dec(ref io[i]);
             return ref io;
         }
 
@@ -177,7 +177,7 @@ namespace Z0
         public static ref Span<float> dec(ref Span<float> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = dec(io[i]);
+                dec(ref io[i]);
             return ref io;
         }
 
@@ -185,7 +185,7 @@ namespace Z0
         public static ref Span<double> dec(ref Span<double> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = dec(io[i]);
+                dec(ref io[i]);
             return ref io;
         }
 

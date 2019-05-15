@@ -5,7 +5,8 @@
 namespace Z0
 {
     using System;
- 
+    using static zfunc;
+
     public class LogSettings
     {
         public static LogSettings Get()
@@ -16,28 +17,53 @@ namespace Z0
 
         }
         
-        public FolderPath LogDir
+        public FolderPath RootLogDir
             => FolderPath.Define(@"J:\dev\projects\z0-logs");
 
         public FolderPath AppLogDir
-            => LogDir + FolderName.Define("app");
+            => RootLogDir + FolderName.Define("app");
 
         public FolderPath TestLogDir
-            => LogDir + FolderName.Define("test");
+            => RootLogDir + FolderName.Define("test");
 
         public FolderPath BenchLogDir
-            => LogDir + FolderName.Define("bench");
+            => RootLogDir + FolderName.Define("bench");
 
-        int LogDate
+        FolderPath LogDir(LogArea target)        
+            => RootLogDir + FolderName.Define(target.ToString().ToLower());
+
+
+        long LogDate
             => Date.Today.ToDateKey();
 
-        public FilePath LogPath(LogTarget target)
-            => target switch{
-                LogTarget.AppLog =>  AppLogDir + FileName.Define($"App.{LogDate}.log"),
-                LogTarget.BenchLog => BenchLogDir + FileName.Define($"Bench.{LogDate}.log"),
-                LogTarget.TestLog => TestLogDir + FileName.Define($"Test.{LogDate}.log"),
-                _ => throw new ArgumentException()
-            };
+        FileExtension DefaultExtension
+            => FileExtension.Define("log");
+        
+        public FilePath UniqueLogPath(LogArea area, FileExtension ext = null)
+        {
+            var first = new DateTime(2019,1,1);
+            var current = now();
+            var elapsed = (long) (current - first).TotalMilliseconds;
+            return LogPath(area, ext, elapsed);
+        }
+
+        public FilePath UniqueLogPath<T>(LogTarget<T> target, FileExtension ext = null)
+            where T : Enum
+        {
+            var first = new DateTime(2019,1,1);
+            var current = now();
+            var elapsed = (long) (current - first).TotalMilliseconds;
+            return LogPath(target, ext, elapsed);
+        }
+
+        public FilePath LogPath(LogArea area, FileExtension ext = null, long? timestamp = null)
+            => LogDir(area) + FileName.Define($"{area}.{timestamp ?? LogDate}.{ext ?? DefaultExtension}");
+
+
+        public FilePath LogPath<T>(LogTarget<T> target, FileExtension ext = null, long? timestamp = null)
+            where T : Enum
+            => LogDir(target.Area) + FileName.Define($"{target.Area}.{target.KindName}.{timestamp ?? LogDate}.{ext ?? DefaultExtension}");
+
     }
 
 

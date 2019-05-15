@@ -31,12 +31,12 @@ partial class zfunc
             where T : Enum
             where S : Enum
                 => Errors.KindOpUnsupported(src, dst, caller, file, line);
-
+    public static NotSupportedException unsupported([CallerFilePath] string caller = null,  
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => new NotSupportedException(ErrorMessages.Unsupported(caller, file, line).ToString());
     public static IndexOutOfRangeException outOfRange(int index, int min, int max, [CallerFilePath] string caller = null, 
         [CallerFilePath] string file = null,  [CallerLineNumber] int? line = null)
         => Errors.OutOfRange(index,min,max, caller, file, line);
         
-    public static HashSet<T> set<T>(params T[] src)
-        => new HashSet<T>(src);
 
 }

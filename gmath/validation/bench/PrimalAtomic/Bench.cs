@@ -21,7 +21,7 @@ namespace Z0
         protected int Baseline = 2;
         
         PrimalAtomicBench(IRandomizer random, BenchConfig config = null)
-            : base(random, config)
+            : base(BenchKind.PrimalAtomic, random, config)
         {
             
         }

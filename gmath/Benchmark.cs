@@ -448,9 +448,6 @@ namespace Z0
 
         }
 
-        static ref T DoFlip<T>(ref T val)
-            where T : struct
-            => ref atoms.flipU8(ref val);
 
         void ConvertTest()
         {
@@ -703,6 +700,182 @@ namespace Z0
             AbsSqrtGeneric<int>();
         }
 
+        static string BinOpSig<T>(string OpSymbol)
+            {
+                var domain = type<T>().Name;
+                return $"{OpSymbol}:{domain} -> {domain} -> {domain}".PadRight(30);
+            }
+        void TestU32()
+        {
+            var cycles = Pow2.T14;
+            var samples = Pow2.T12;
+            var lhs = Randomizer.Array<uint>(samples);
+            var rhs = Randomizer.Array<uint>(samples);
+            var dst = alloc<uint>(samples);
+            var xDst = alloc<U32>(samples);
+            var xLhs = U32.Many(lhs).ToArray();
+            var xRhs = U32.Many(rhs).ToArray();
+
+            void Native()
+            {
+                var sw = stopwatch();
+                var opcount = 0L;
+                var sig = BinOpSig<uint>("&");
+
+                for(var cycle = 0; cycle< cycles; cycle++)
+                {
+                    for(var sample = 0; sample < samples; sample++)
+                        lhs[sample] &= rhs[sample];
+                    opcount += samples;
+                }
+                var time = snapshot(sw);
+                var msg = AppMsg.Define($"{sig} | Primal | Native  | Atomic | By Value | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+                print(msg);
+            }
+
+            void Derived()
+            {
+                var sw = stopwatch();
+                var opcount = 0L;
+                var sig = BinOpSig<U32>("&");
+
+                for(var cycle = 0; cycle< cycles; cycle++)
+                {
+                    for(var sample = 0; sample < samples; sample++)
+                        xLhs[sample].And(rhs[sample]);
+                    opcount += samples;
+                }
+                var time = snapshot(sw);
+                var msg = AppMsg.Define($"{sig} | Primal | Derived | Atomic | By Value | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+                print(msg);
+            }
+
+            Native();
+            Derived();
+            Native();
+            Derived();
+            Native();
+            Derived();
+            Native();
+            Derived();
+
+        }
+
+
+        void TestI64()
+        {
+            var cycles = Pow2.T14;
+            var samples = Pow2.T12;
+            var lhs = Randomizer.Array<long>(samples);
+            var rhs = Randomizer.Array<long>(samples);
+            var dst = alloc<long>(samples);
+            var xDst = alloc<I64>(samples);
+            var xLhs = I64.Many(lhs).ToArray();
+            var xRhs = I64.Many(rhs).ToArray();
+
+            void Native()
+            {
+                var sw = stopwatch();
+                var opcount = 0L;
+                var sig = BinOpSig<long>("&");
+
+                for(var cycle = 0; cycle< cycles; cycle++)
+                {
+                    for(var sample = 0; sample < samples; sample++)
+                        lhs[sample] &= rhs[sample];
+                    opcount += samples;
+                }
+                var time = snapshot(sw);
+                var msg = AppMsg.Define($"{sig} | Primal | Native  | Atomic | By Value | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+                print(msg);
+            }
+
+            void Derived()
+            {
+                var sw = stopwatch();
+                var opcount = 0L;
+                var sig = BinOpSig<I64>("&");
+
+                for(var cycle = 0; cycle< cycles; cycle++)
+                {
+                    for(var sample = 0; sample < samples; sample++)
+                        xLhs[sample].And(rhs[sample]);
+                    opcount += samples;
+                }
+                var time = snapshot(sw);
+                var msg = AppMsg.Define($"{sig} | Primal | Derived | Atomic | By Value | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+                print(msg);
+            }
+
+            Native();
+            Derived();
+            Native();
+            Derived();
+            Native();
+            Derived();
+            Native();
+            Derived();
+
+        }
+
+
+
+        void TestU8()
+        {
+            var cycles = Pow2.T14;
+            var samples = Pow2.T12;
+            var lhs = Randomizer.Array<byte>(samples);
+            var rhs = Randomizer.Array<byte>(samples);
+            var dst = alloc<byte>(samples);
+            var xDst = alloc<U8>(samples);
+            var xLhs = U8.Many(lhs).ToArray();
+            var xRhs = U8.Many(rhs).ToArray();
+
+            void Native()
+            {
+                var sw = stopwatch();
+                var opcount = 0L;
+                var sig = BinOpSig<byte>("&");
+
+                for(var cycle = 0; cycle< cycles; cycle++)
+                {
+                    for(var sample = 0; sample < samples; sample++)
+                        lhs[sample] &= rhs[sample];
+                    opcount += samples;
+                }
+                var time = snapshot(sw);
+                var msg = AppMsg.Define($"{sig} | Primal | Native  | Atomic | By Value | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+                print(msg);
+            }
+
+            void Derived()
+            {
+                var sw = stopwatch();
+                var opcount = 0L;
+                var sig = BinOpSig<U8>("&");
+
+                for(var cycle = 0; cycle< cycles; cycle++)
+                {
+                    for(var sample = 0; sample < samples; sample++)
+                        xLhs[sample].And(rhs[sample]);
+                    opcount += samples;
+                }
+                var time = snapshot(sw);
+                var msg = AppMsg.Define($"{sig} | Primal | Derived | Atomic | By Value | OpCount = {opcount} | Time = {time.Ms} ms", SeverityLevel.Perform);
+                print(msg);
+            }
+
+            Native();
+            Derived();
+            Native();
+            Derived();
+            Native();
+            Derived();
+            Native();
+            Derived();
+
+        }
+
         void TestIncrement()
         {
             void Num()
@@ -747,11 +920,10 @@ namespace Z0
             var app = new Benchmark();
             try
             {     
-                //app.ConvertTest();
-                //app.Distance();
                 //app.RunTests();
-                BenchSelector.RunBench(BenchKind.PrimalAtomic);
+                //BenchSelector.RunBench(BenchKind.PrimalAtomic);
                 //BenchSelector.RunBench(BenchKind.PrimalFused);
+                BenchSelector.RunBench(BenchKind.NumG);
 
             }
             catch(Exception e)

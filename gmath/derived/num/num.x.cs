@@ -27,44 +27,44 @@ namespace Z0
                 => ref num(ref gmath.sqrt(ref scalar(ref src)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> Add<T>(this ref num<T> lhs, num<T> rhs)
+        public static ref num<T> Add<T>(this ref num<T> lhs, in num<T> rhs)
             where T : struct
-                => ref num(ref gmath.add(ref scalar(ref lhs), scalar(ref rhs)));            
+                => ref num(ref gmath.add(ref scalar(ref lhs), rhs.Value));            
 
         [MethodImpl(Inline)]
-        public static ref num<T> Sub<T>(this ref num<T> lhs, num<T> rhs)
+        public static ref num<T> Sub<T>(this ref num<T> lhs, in num<T> rhs)
             where T : struct
-                => ref num(ref gmath.sub(ref scalar(ref lhs), scalar(ref rhs)));            
+                => ref num(ref gmath.sub(ref scalar(ref lhs), rhs.Value));            
 
         [MethodImpl(Inline)]
-        public static ref num<T> Mul<T>(this ref num<T> lhs, num<T> rhs)
+        public static ref num<T> Mul<T>(this ref num<T> lhs, in num<T> rhs)
             where T : struct
-                => ref num(ref gmath.mul(ref scalar(ref lhs), scalar(ref rhs)));            
+                => ref num(ref gmath.mul(ref scalar(ref lhs), rhs.Value));            
 
         [MethodImpl(Inline)]
-        public static ref num<T> Div<T>(this ref num<T> lhs, num<T> rhs)
+        public static ref num<T> Div<T>(this ref num<T> lhs, in num<T> rhs)
             where T : struct
-                => ref num(ref gmath.div(ref scalar(ref lhs), scalar(ref rhs)));            
+                => ref num(ref gmath.div(ref scalar(ref lhs), rhs.Value));            
 
         [MethodImpl(Inline)]
-        public static ref num<T> Mod<T>(this ref num<T> lhs, num<T> rhs)
+        public static ref num<T> Mod<T>(this ref num<T> lhs, in num<T> rhs)
             where T : struct
-                => ref num(ref gmath.mod(ref scalar(ref lhs), scalar(ref rhs)));            
+                => ref num(ref gmath.mod(ref scalar(ref lhs), rhs.Value));            
 
         [MethodImpl(Inline)]
-        public static ref num<T> And<T>(this ref num<T> lhs, num<T> rhs)
+        public static ref num<T> And<T>(this ref num<T> lhs, in num<T> rhs)
             where T : struct
-                => ref num(ref gmath.and(ref scalar(ref lhs), scalar(ref rhs)));            
+                => ref num(ref gmath.and(ref scalar(ref lhs), rhs.Value));            
 
         [MethodImpl(Inline)]
-        public static ref num<T> Or<T>(this ref num<T> lhs, num<T> rhs)
+        public static ref num<T> Or<T>(this ref num<T> lhs, in num<T> rhs)
             where T : struct
-                => ref num(ref gmath.or(ref scalar(ref lhs), scalar(ref rhs)));            
+                => ref num(ref gmath.or(ref scalar(ref lhs), rhs.Value));            
 
         [MethodImpl(Inline)]
-        public static ref num<T> XOr<T>(this ref num<T> lhs, num<T> rhs)
+        public static ref num<T> XOr<T>(this ref num<T> lhs, in num<T> rhs)
             where T : struct
-                => ref num(ref gmath.xor(ref scalar(ref lhs), scalar(ref rhs)));            
+                => ref num(ref gmath.xor(ref scalar(ref lhs), rhs.Value));            
 
         [MethodImpl(Inline)]
         public static ref num<T> Flip<T>(this ref num<T> src)
@@ -95,6 +95,36 @@ namespace Z0
         public static PrimalKind PrimalKind<T>(this num<T> src)
             where T : struct
                 => PrimalKinds.kind<T>();
+
+        [MethodImpl(Inline)]
+        public static bool Eq<T>(this in num<T> lhs, in num<T> rhs)
+            where T : struct
+                => gmath.eq(lhs.Value, rhs.Value);
+
+        [MethodImpl(Inline)]
+        public static bool NEq<T>(this in num<T> lhs, in num<T> rhs)
+            where T : struct
+                => gmath.neq(lhs.Value, rhs.Value);
+
+        [MethodImpl(Inline)]
+        public static bool Gt<T>(this in num<T> lhs, in num<T> rhs)
+            where T : struct
+                => gmath.gt(lhs.Value, rhs.Value);
+
+        [MethodImpl(Inline)]
+        public static bool GtEq<T>(this in num<T> lhs, in num<T> rhs)
+            where T : struct
+                => gmath.gteq(lhs.Value, rhs.Value);
+
+        [MethodImpl(Inline)]
+        public static bool LtEq<T>(this in num<T> lhs, in num<T> rhs)
+            where T : struct
+                => gmath.lteq(lhs.Value, rhs.Value);
+
+        [MethodImpl(Inline)]
+        public static bool Lt<T>(this in num<T> lhs, in num<T> rhs)
+            where T : struct
+                => gmath.lt(lhs.Value, rhs.Value);
 
         [MethodImpl(NotInline)]
         public static num<T> Sum<T>(this ReadOnlySpan<num<T>> src)        

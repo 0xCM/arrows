@@ -9,21 +9,22 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
+
     
     using static zfunc;
     using static mfunc;
 
     partial class NumGBench
     {
-        OpMetrics or<T>(T[] dst)
+       OpMetrics Or<T>(T[] dst)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Or);
             var src = Sampled(opid);
             var lhs = Num.many(src.Left);
-            var rhs = Num.many(src.Right);            
+            var rhs = Num.many(src.Right);
+            
             var sw = stopwatch();
-
             var it = -1;
             while(++it < SampleSize)
                 dst[it] = lhs[it] | rhs[it];
@@ -32,194 +33,84 @@ namespace Z0
 
         public IBenchComparison OrI8()
         {
-            var opid =  Id<sbyte>(OpKind.Or);
-
-            OpMetrics baseline(sbyte[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = (sbyte)(src.Left[it] | src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => or(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);
-            return Finish(comparison);
+            var opid = Id<sbyte>(OpKind.Or);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Or, targets.Left);
+            var benched = Measure(!~opid, Or, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison OrU8()
         {
             var opid =  Id<byte>(OpKind.Or);
-
-            OpMetrics baseline(byte[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = (byte)(src.Left[it] | src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => or(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Or, targets.Left);
+            var benched = Measure(!~opid, Or, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison OrI16()
         {
-            var opid = Id<short>(OpKind.Or);
-
-            OpMetrics baseline(short[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = (short)(src.Left[it] | src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => or(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var opid =  Id<short>(OpKind.Or);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Or, targets.Left);
+            var benched = Measure(!~opid, Or, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison OrU16()
         {
-            var opid = Id<ushort>(OpKind.Or);
-
-            OpMetrics baseline(ushort[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = (ushort)(src.Left[it] | src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-                        
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => or(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var opid =  Id<ushort>(OpKind.Or);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Or, targets.Left);
+            var benched = Measure(!~opid, Or, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
+
 
         public IBenchComparison OrI32()
         {
-            var opid = Id<int>(OpKind.Or);
-
-            OpMetrics baseline(int[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = src.Left[it] | src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => or(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var opid =  Id<int>(OpKind.Or);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Or, targets.Left);
+            var benched = Measure(!~opid, Or, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison OrU32()
         {
-            var opid = Id<uint>(OpKind.Or);
-            
-            OpMetrics baseline(uint[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = src.Left[it] |src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => or(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var opid =  Id<uint>(OpKind.Or);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Or, targets.Left);
+            var benched = Measure(!~opid, Or, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison OrI64()
         {
-            var opid = Id<long>(OpKind.Or);
-            
-            OpMetrics baseline(long[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = src.Left[it] | src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
-            
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => or(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var opid =  Id<long>(OpKind.Or);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Or, targets.Left);
+            var benched = Measure(!~opid, Or, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison OrU64()
         {
-            var opid = Id<ulong>(OpKind.Or);
- 
-            OpMetrics baseline(ulong[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                   dst[it] = src.Left[it] | src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => or(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);            
-            return Finish(comparison);
+            var opid =  Id<ulong>(OpKind.Or);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Or, targets.Left);
+            var benched = Measure(!~opid, Or, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
+
     }
 }

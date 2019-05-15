@@ -354,6 +354,13 @@ namespace Z0
             => src.GetFields(BF_Declared);
 
         /// <summary>
+        /// Selects all instance/static and public/non-public fields declared by a type
+        /// </summary>
+        /// <param name="src">The type to examine</param>
+        public static IEnumerable<FieldInfo> Fields(this Type src, bool declared = true)
+            => src.GetFields(declared ? BF_Declared : BF_All);
+
+        /// <summary>
         /// Selects the public immutable  fields defined by the type
         /// </summary>
         /// <param name="t">The type to examine</param>
@@ -383,14 +390,14 @@ namespace Z0
         /// </summary>
         /// <param name="t">The type to examine</param>
         static IEnumerable<FieldInfo> DeclaredImmutableFields(this Type t)
-              => t.DeclaredFields().Immutable();
+              => t.Fields().Immutable();
 
         /// <summary>
         /// Selects all instance/static and public/non-public fields inhertited by a type
         /// </summary>
         /// <param name="t">The type to examine</param>
         public static IEnumerable<FieldInfo> InheritedFields(this Type t)
-            => t.AllFields().Except(t.DeclaredFields());
+            => t.Fields(false).Except(t.Fields(true));
 
 
         /// <summary>
@@ -429,7 +436,7 @@ namespace Z0
         /// <param name="t">The declaring type</param>
         /// <param name="name">The name of the method</param>
         public static Option<FieldInfo> DeclaredStaticField(this Type t, string name) 
-            => t.DeclaredFields().Static().Where(f => f.Name == name).FirstOrDefault();
+            => t.Fields().Static().Where(f => f.Name == name).FirstOrDefault();
 
 
         /// <summary>
@@ -446,7 +453,6 @@ namespace Z0
         public static Option<MethodInfo> Getter(this PropertyInfo p)
             => p.GetGetMethod() ?? p.GetGetMethod(true);
 
-
         /// <summary>
         /// Retrieves all instance/static and public/non-public properties declared by a type
         /// </summary>
@@ -462,7 +468,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The types to examine</param>
         public static IEnumerable<PropertyInfo> Properties(this IEnumerable<Type> src, bool declared = true)
-            => (declared ? src.Select(DeclaredProperties) : src.Select(AllProperties)).SelectMany(x => x);
+            => (declared ? src.Select(DeclaredProperties) : src.Select(x => x.Properties(declared))).SelectMany(x => x);
 
         /// <summary>
         /// Retrieves all instance/static and public/non-public properties 
@@ -470,7 +476,6 @@ namespace Z0
         /// <param name="src">The type to examine</param>
         public static IEnumerable<PropertyInfo> Properties(this Type src, bool declared = true)
             => src.GetProperties(declared ? BF_Declared : BF_All);
-
 
         /// <summary>
         /// Selects the public/non-public static/instance methods declared by a type
@@ -480,12 +485,22 @@ namespace Z0
             => src.GetMethods(BF_Declared);
 
         /// <summary>
+        /// Selects the public/non-public static/instance methods declared or exposed by a type
+        /// </summary>
+        /// <param name="src">The type to examine</param>
+        public static IEnumerable<MethodInfo> Methods(this Type src, bool declared = true)
+            => declared ? src.GetMethods(BF_Declared) : src.GetMethods(BF_All);
+ 
+        /// <summary>
         /// Selects the public/non-public static/instance methods declared by stream of types
         /// </summary>
         /// <param name="src">The types to examine</param>
         public static IEnumerable<MethodInfo> DeclaredMethods(this IEnumerable<Type> src)
             => src.Select(x => x.DeclaredMethods()).SelectMany(x => x);
-            
+
+        public static IEnumerable<MethodInfo> Methods(this IEnumerable<Type> src, bool declared = true)
+            => src.Select(x => x.Methods(declared)).SelectMany(x => x);
+
         public static IEnumerable<object> Values(this IEnumerable<FieldInfo> src, object o = null)
             => src.Select(x => x.GetValue(o));
 
@@ -524,14 +539,14 @@ namespace Z0
         /// </summary>
         /// <param name="t">The type to examine</param>
         static IEnumerable<FieldInfo> GetDeclaredPublicStaticImmutableFields(this Type t)
-            =>  t.DeclaredFields().Public().Immutable().Static();
+            =>  t.Fields().Public().Immutable().Static();
 
         /// <summary>
         /// Retrieves the values of the public, staticic and immutable fields defined by the type
         /// </summary>
         /// <param name="t">The type to examine</param>
         static IEnumerable<object> GetDeclaredPublicStaticImmutableFieldValues(this Type t)
-            =>  t.DeclaredFields().Public().Static().Immutable().Values();
+            =>  t.Fields().Public().Static().Immutable().Values();
 
         /// <summary>
         /// Retrieves the T-values of the public, static and immutable fields defined by the type
@@ -545,14 +560,14 @@ namespace Z0
         /// </summary>
         /// <param name="src">The type to examine</param>
         static IEnumerable<FieldInfo> GetDeclaredPublicInstanceImmutableFields(this Type src)
-            =>  src.DeclaredFields().Public().Instance().Immutable();
+            =>  src.Fields().Public().Instance().Immutable();
 
         /// <summary>
         /// Retrieves the nonpublic immutable fields defined by a type
         /// </summary>
         /// <param name="src">The type to examine</param>
         static IEnumerable<FieldInfo> GetDeclaredNonPublicInstanceImmutableFields(this Type src)
-            =>  src.DeclaredFields().NonPublic().Instance().Immutable();
+            =>  src.Fields().NonPublic().Instance().Immutable();
         
         /// <summary>
         /// Retrieves the type's public inherited immutable instance fields
@@ -581,7 +596,7 @@ namespace Z0
         /// </summary>
         /// <param name="t">The type to examine</param>
         public static IEnumerable<FieldInfo> DeclaredNonPublicImmutableInstanceFields(this Type t)
-            =>  t.DeclaredFields().NonPublic().Immutable().Instance();  
+            =>  t.Fields().NonPublic().Immutable().Instance();  
 
         /// <summary>
         /// Retrieves the non-public immutable instance fields inherited by the type

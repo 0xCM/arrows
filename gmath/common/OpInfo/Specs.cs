@@ -26,7 +26,9 @@ namespace Z0
 
         OpFusion Fusion {get;}
 
-        bool Baseline {get;}
+        OpMode Mode {get;}
+
+        bool Role {get;}
 
     }
 

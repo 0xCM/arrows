@@ -22,7 +22,7 @@ namespace Z0
             var opid = Id<T>(OpKind.Flip);
             var samples = Sampled(opid);            
             var sw = stopwatch();            
-            fused.flip(samples.Left, dst);
+            fused.flip<T>(samples.Left, dst);
             return(SampleTime(snapshot(sw)));
         }
 
@@ -85,7 +85,6 @@ namespace Z0
             var comparison = Run(opid, baselined, benched);            
             return Finish(comparison, targets);
         }
-
 
         public IBenchComparison FlipI64()
         {

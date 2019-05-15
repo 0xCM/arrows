@@ -16,7 +16,7 @@ namespace Z0
 
     using Aligned = Span128;
 
-    public partial class Vec128Bench : BenchContext
+    public partial class Vec128Bench : BenchContext<BenchKind>
     {   
         static readonly BenchConfig Config0 = new BenchConfig(Cycles: Pow2.T12, Reps: 1, SampleSize: Pow2.T11, AnnounceRate: Pow2.T11);        
         
@@ -24,7 +24,7 @@ namespace Z0
             => new Vec128Bench(random, config ?? Config0);
         
         Vec128Bench(IRandomizer random, BenchConfig config)
-            : base(random, config)
+            : base(BenchKind.Vec128, random, config)
         {
 
             LeftSamples = Span128Sampler.Sample(random, config.SampleSize);   

@@ -13,13 +13,56 @@ namespace Z0
 
     using static zfunc;
 
-    public enum LogTarget
+    public enum LogArea
     {
-        TestLog,
+        Test,
 
-        BenchLog,
+        Bench,
 
-        AppLog
+        App
+    }
+
+    public static class LogTarget
+    {
+        public static LogTarget<T> Define<T>(LogArea Area, T Kind)
+            where T : Enum
+                => new LogTarget<T>(Area, Kind);
+
+        public static LogTarget<LogArea> AreaRoot(LogArea Area)
+            => new LogTarget<LogArea>(Area,Area);
+
+    }
+
+    public interface ILogTarget
+    {
+        LogArea Area {get;}
+
+        string KindName {get;}
+
+        bool AreaRoot {get;}
+    }
+
+    public readonly struct LogTarget<T> : ILogTarget
+        where T : Enum
+    {
+        public LogTarget(LogArea Area, T LogKind)
+        {
+            this.Area = Area;
+            this.Kind = LogKind;
+        }
+
+        public readonly LogArea Area {get;}
+        
+        public readonly T Kind {get;}
+
+        public bool AreaRoot 
+            => typeof(T) == typeof(LogArea);
+
+        public string KindName 
+            => Kind.ToString();
+
+        public override string ToString()
+            => $"{Area}/{Kind}";
     }
 
     public static class IOX

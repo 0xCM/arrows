@@ -41,6 +41,10 @@ namespace Latex
         public static Syntax syntax(Atom identifier, string expression)
             => new Syntax(identifier,cmd(expression), expression);
 
+        [MethodImpl(Inline)]   
+        public static Syntax syntax(string identifier, string expression)
+            => new Syntax(identifier,cmd(expression), expression);
+
     }
 
 

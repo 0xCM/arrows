@@ -13,7 +13,7 @@ namespace Z0
     using static zfunc;
     using static mfunc;
 
-    public class CommonBench : BenchContext
+    public class CommonBench : BenchContext<BenchKind>
     {   
         static readonly BenchConfig DefaultConfig = new BenchConfig(Cycles: Pow2.T12, Reps: Pow2.T12, SampleSize: Pow2.T11, AnnounceRate: Pow2.T10);        
         
@@ -21,7 +21,7 @@ namespace Z0
             => new CommonBench(random, config ?? DefaultConfig);
         
         CommonBench(IRandomizer random, BenchConfig config)
-            : base(random, config)
+            : base(BenchKind.Common, random, config)
         {
         
         }

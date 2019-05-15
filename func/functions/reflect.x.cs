@@ -131,6 +131,8 @@ namespace Z0
         public static IEnumerable<FieldInfo> Literal(this IEnumerable<FieldInfo> src)
             => src.Where(x => x.IsLiteral);
 
+        public static IEnumerable<FieldInfo> Literals(this Type src, bool declared = true)
+            => src.Fields(declared).Literal();
 
         /// <summary>
         /// Selects the immutable fields from a stream

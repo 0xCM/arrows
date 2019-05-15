@@ -19,7 +19,7 @@ namespace Z0
         public IBenchComparison CreateI8()
         {
             var data = UnaryOpInit<sbyte>();
-            var opid = Id<sbyte>(OpKind.Create);
+            var opid = Id<sbyte>(OpKind.New);
 
             var src = data.Source;
             var direct = Measure(opid, () => 
@@ -44,7 +44,7 @@ namespace Z0
         public IBenchComparison CreateI32()
         {
             var data = UnaryOpInit<int>();
-            var opid = Id<int>(OpKind.Create);
+            var opid = Id<int>(OpKind.New);
 
             var src = data.Source;
             var direct = Measure(opid, () => 
@@ -61,7 +61,7 @@ namespace Z0
         public IBenchComparison CreateF64()
         {
             var data = UnaryOpInit<double>();
-            var opid = Id<double>(OpKind.Create);
+            var opid = Id<double>(OpKind.New);
 
             var src = data.Source;
             var direct = Measure(opid, () => 

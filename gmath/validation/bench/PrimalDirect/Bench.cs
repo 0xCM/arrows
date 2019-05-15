@@ -23,12 +23,12 @@ namespace Z0
 
 
         BaselineMetrics(ArraySampler LeftSrc, ArraySampler RightSrc, ArraySampler NonZeroSrc, IRandomizer random, BenchConfig config = null)
-            : base(LeftSrc, RightSrc, NonZeroSrc, random, config)
+            : base(BenchKind.PrimalDirect, LeftSrc, RightSrc, NonZeroSrc, random, config)
         {
         }
 
         BaselineMetrics(IRandomizer random, BenchConfig config = null)
-            : base(random, config)
+            : base(BenchKind.PrimalDirect, random, config)
         {
         }
         

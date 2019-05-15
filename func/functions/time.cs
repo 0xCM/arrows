@@ -32,4 +32,10 @@ partial class zfunc
     public static long ticksToMs(long ticks)
         => ticks/TicksPerMs;
 
+    public static DateTime now()
+        => DateTime.Now;
+
+    public static Date today()
+        => DateTime.Today;
+
 }

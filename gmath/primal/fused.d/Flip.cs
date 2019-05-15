@@ -94,7 +94,7 @@ namespace Z0
         public static ref Span<sbyte> flip(ref Span<sbyte> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = flip(io[i]);
+                flip(ref io[i]);
             return ref io;
         }
 
@@ -102,7 +102,7 @@ namespace Z0
         public static ref Span<byte> flip(ref Span<byte> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = flip(io[i]);
+                flip(ref io[i]);
             return ref io;
         }
 
@@ -110,7 +110,7 @@ namespace Z0
         public static ref Span<short> flip(ref Span<short> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = flip(io[i]);
+                flip(ref io[i]);
             return ref io;
         }
 
@@ -118,7 +118,7 @@ namespace Z0
         public static ref Span<ushort> flip(ref Span<ushort> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = flip(io[i]);
+                flip(ref io[i]);
             return ref io;
         }
 
@@ -126,7 +126,7 @@ namespace Z0
         public static ref Span<int> flip(ref Span<int> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = flip(io[i]);
+                flip(ref io[i]);
             return ref io;
         }
 
@@ -134,7 +134,7 @@ namespace Z0
         public static ref Span<uint> flip(ref Span<uint> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = flip(io[i]);
+                flip(ref io[i]);
             return ref io;
         }
 
@@ -142,7 +142,7 @@ namespace Z0
         public static ref Span<long> flip(ref Span<long> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = flip(io[i]);
+                flip(ref io[i]);
             return ref io;
         }
 
@@ -150,7 +150,7 @@ namespace Z0
         public static ref Span<ulong> flip(ref Span<ulong> io)
         {
             for(var i = 0; i< io.Length; i++)
-                io[i] = flip(io[i]);
+                flip(ref io[i]);
             return ref io;
         }
 

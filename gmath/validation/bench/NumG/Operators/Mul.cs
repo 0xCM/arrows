@@ -9,21 +9,22 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
+
     
     using static zfunc;
     using static mfunc;
 
     partial class NumGBench
     {
-        OpMetrics mul<T>(T[] dst)
+       OpMetrics Mul<T>(T[] dst)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Mul);
             var src = Sampled(opid);
             var lhs = Num.many(src.Left);
             var rhs = Num.many(src.Right);
-            var sw = stopwatch();
             
+            var sw = stopwatch();
             var it = -1;
             while(++it < SampleSize)
                 dst[it] = lhs[it] * rhs[it];
@@ -33,242 +34,102 @@ namespace Z0
         public IBenchComparison MulI8()
         {
             var opid = Id<sbyte>(OpKind.Mul);
-            
-            OpMetrics baseline(sbyte[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = (sbyte)(src.Left[it] * src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-            
-            var dst = ArrayTargets<sbyte>();
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => mul(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Mul, targets.Left);
+            var benched = Measure(!~opid, Mul, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison MulU8()
         {
-            var opid = Id<byte>(OpKind.Mul);
-
-            OpMetrics baseline(byte[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = (byte)(src.Left[it] * src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => mul(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var opid =  Id<byte>(OpKind.Mul);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Mul, targets.Left);
+            var benched = Measure(!~opid, Mul, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison MulI16()
         {
-            var opid = Id<short>(OpKind.Mul);
-
-            OpMetrics baseline(short[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = (short)(src.Left[it] * src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => mul(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var opid =  Id<short>(OpKind.Mul);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Mul, targets.Left);
+            var benched = Measure(!~opid, Mul, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison MulU16()
         {
-            var opid = Id<ushort>(OpKind.Mul);
-
-            OpMetrics baseline(ushort[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = (ushort)(src.Left[it] * src.Right[it]);
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => mul(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var opid =  Id<ushort>(OpKind.Mul);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Mul, targets.Left);
+            var benched = Measure(!~opid, Mul, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
 
         public IBenchComparison MulI32()
         {
-            var opid = Id<int>(OpKind.Mul);
-
-            OpMetrics baseline(int[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = src.Left[it] * src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => mul(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var opid =  Id<int>(OpKind.Mul);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Mul, targets.Left);
+            var benched = Measure(!~opid, Mul, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison MulU32()
         {
-            var opid = Id<uint>(OpKind.Mul);
-
-            OpMetrics baseline(uint[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = src.Left[it] * src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => mul(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var opid =  Id<uint>(OpKind.Mul);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Mul, targets.Left);
+            var benched = Measure(!~opid, Mul, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison MulI64()
         {
-            var opid = Id<long>(OpKind.Mul);
-
-            OpMetrics baseline(long[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = src.Left[it] * src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => mul(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var opid =  Id<long>(OpKind.Mul);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Mul, targets.Left);
+            var benched = Measure(!~opid, Mul, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison MulU64()
         {
-            var opid = Id<ulong>(OpKind.Mul);
-            
-            OpMetrics baseline(ulong[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = src.Left[it] * src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => mul(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
+            var opid =  Id<ulong>(OpKind.Mul);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Mul, targets.Left);
+            var benched = Measure(!~opid, Mul, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison MulF32()
         {
-            var opid = Id<float>(OpKind.Mul);
-            
-            OpMetrics baseline(float[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = src.Left[it] * src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
-
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => mul(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);            
-            return Finish(comparison);
+            var opid =  Id<float>(OpKind.Mul);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Mul, targets.Left);
+            var benched = Measure(!~opid, Mul, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
         }
 
         public IBenchComparison MulF64()
         {
-            var opid = Id<double>(OpKind.Mul);
-            
-            OpMetrics baseline(double[] dst)
-            {
-                var src = Sampled(opid);
-                var sw = stopwatch();
-                
-                var it = -1;
-                while(++it < SampleSize)
-                    dst[it] = src.Left[it] * src.Right[it];
-                return(SampleSize, snapshot(sw));
-            }
-    
-            var dst = Targets(opid);
-            var comparison = Run(opid, 
-                Measure(~opid, () => baseline(dst.Left)), 
-                Measure(opid, () => mul(dst.Right)));
-
-            Claim.eq(dst.Left, dst.Right);                    
-            return Finish(comparison);
-        }
+            var opid =  Id<double>(OpKind.Mul);
+            var targets = Targets(opid);
+            var baselined = Measure(opid, Baselines.Mul, targets.Left);
+            var benched = Measure(!~opid, Mul, targets.Right);
+            var comparison = Run(opid, baselined, benched);            
+            return Finish(comparison, targets);
+        } 
     }
 }

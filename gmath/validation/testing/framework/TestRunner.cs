@@ -85,7 +85,7 @@ namespace Z0.Test
             finally
             {            
                 print(messages);
-                log(messages, LogTarget.TestLog);
+                log(messages, LogArea.Test);
             }
         }            
     }

@@ -8,20 +8,21 @@ namespace Latex
 
     using static zcore;
     using static LatexCmd;
+    using static Z0.MathSym;
 
     public static class Greek
     {
                 
-        public static readonly Syntax alpha = syntax(GreekSym.alpha, "alpha");
-        public static readonly Syntax Alpha = syntax(GreekSym.Alpha, "Alpha");
-        public static readonly Syntax beta = syntax(GreekSym.beta, "beta");
-        public static readonly Syntax Beta = syntax(GreekSym.Beta, "Beta");
-        public static readonly Syntax gamma = syntax(GreekSym.gamma, "gamma");
-        public static readonly Syntax Gamma = syntax(GreekSym.Gamma, "Gamma");        
-        public static readonly Syntax rho = syntax(GreekSym.rho, "rho");        
-        public static readonly Syntax Rho = syntax(GreekSym.Rho, "Rho");
-        public static readonly Syntax sigma = syntax(GreekSym.sigma, "sigma");
-        public static readonly Syntax Sigma = syntax(GreekSym.Sigma, "Sigma");        
+        public static readonly Syntax alpha = syntax(Greek.alpha, "alpha");
+        public static readonly Syntax Alpha = syntax(Greek.Alpha, "Alpha");
+        public static readonly Syntax beta = syntax(Greek.beta, "beta");
+        public static readonly Syntax Beta = syntax(Greek.Beta, "Beta");
+        public static readonly Syntax gamma = syntax(Greek.gamma, "gamma");
+        public static readonly Syntax Gamma = syntax(Greek.Gamma, "Gamma");        
+        public static readonly Syntax rho = syntax(Greek.rho, "rho");        
+        public static readonly Syntax Rho = syntax(Greek.Rho, "Rho");
+        public static readonly Syntax sigma = syntax(Greek.sigma, "sigma");
+        public static readonly Syntax Sigma = syntax(Greek.Sigma, "Sigma");        
 
 
         

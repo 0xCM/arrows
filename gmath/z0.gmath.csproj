@@ -10,7 +10,7 @@
     <NullableContextOptions>disable</NullableContextOptions>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <!-- <DefineConstants>DEBUG;TRACE</DefineConstants> -->
   </PropertyGroup>
 
 

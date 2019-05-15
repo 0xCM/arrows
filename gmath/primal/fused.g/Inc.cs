@@ -88,7 +88,7 @@ namespace Z0
         {
             var x = int8(src);
             var z = int8(dst);
-            math.dec(x,z);
+            math.inc(x,z);
             return dst;
         }
 
@@ -98,7 +98,7 @@ namespace Z0
         {
             var x = uint8(src);
             var z = uint8(dst);
-            math.dec(x,z);
+            math.inc(x,z);
             return dst;
         }
 
@@ -108,7 +108,7 @@ namespace Z0
         {
             var x = int16(src);
             var z = int16(dst);
-            math.dec(x,z);
+            math.inc(x,z);
             return dst;
         }
 
@@ -118,7 +118,7 @@ namespace Z0
         {
             var x = uint16(src);
             var z = uint16(dst);
-            math.dec(x,z);
+            math.inc(x,z);
             return dst;
         }
 
@@ -128,7 +128,7 @@ namespace Z0
         {
             var x = int32(src);
             var z = int32(dst);
-            math.dec(x,z);
+            math.inc(x,z);
             return dst;
         }
 
@@ -138,7 +138,7 @@ namespace Z0
         {
             var x = uint32(src);
             var z = uint32(dst);
-            math.dec(x,z);
+            math.inc(x,z);
             return dst;
         }
 
@@ -148,7 +148,7 @@ namespace Z0
         {
             var x = int64(src);
             var z = int64(dst);
-            math.dec(x,z);
+            math.inc(x,z);
             return dst;
         }
 
@@ -159,7 +159,7 @@ namespace Z0
         {
             var x = uint64(src);
             var z = uint64(dst);
-            math.dec(x,z);
+            math.inc(x,z);
             return dst;
         }
 
@@ -169,7 +169,7 @@ namespace Z0
         {
             var x = float32(src);
             var z = float32(dst);
-            math.dec(x,z);
+            math.inc(x,z);
             return dst;
         }
 
@@ -179,7 +179,7 @@ namespace Z0
         {
             var x = float64(src);
             var z = float64(dst);
-            math.dec(x,z);
+            math.inc(x,z);
             return dst;
         }
 
@@ -188,7 +188,7 @@ namespace Z0
             where T : struct
         {
             var x = int8(io);
-            math.dec(ref x);
+            math.inc(ref x);
             return ref io;
         }
 
@@ -197,7 +197,7 @@ namespace Z0
             where T : struct
         {
             var x = uint8(io);
-            math.dec(ref x);
+            math.inc(ref x);
             return ref io;
         }
 
@@ -206,7 +206,7 @@ namespace Z0
             where T : struct
         {
             var x = int16(io);
-            math.dec(ref x);
+            math.inc(ref x);
             return ref io;
         }
         
@@ -216,7 +216,7 @@ namespace Z0
             where T : struct
         {
             var x = uint16(io);
-            math.dec(ref x);
+            math.inc(ref x);
             return ref io;
         }        
 
@@ -225,7 +225,7 @@ namespace Z0
             where T : struct
         {
             var x = int32(io);
-            math.dec(ref x);
+            math.inc(ref x);
             return ref io;
         }
 
@@ -234,7 +234,7 @@ namespace Z0
             where T : struct
         {
             var x = uint32(io);
-            math.dec(ref x);
+            math.inc(ref x);
             return ref io;
         }
 
@@ -244,7 +244,7 @@ namespace Z0
             where T : struct
         {
             var x = int64(io);
-            math.dec(ref x);
+            math.inc(ref x);
             return ref io;
         }
 
@@ -253,7 +253,7 @@ namespace Z0
             where T : struct
         {
             var x = uint64(io);
-            math.dec(ref x);
+            math.inc(ref x);
             return ref io;
         }
 
@@ -262,7 +262,7 @@ namespace Z0
             where T : struct
         {
             var x = float32(io);
-            math.dec(ref x);
+            math.inc(ref x);
             return ref io;
         }
 
@@ -271,7 +271,7 @@ namespace Z0
             where T : struct
         {
             var x = float64(io);
-            math.dec(ref x);
+            math.inc(ref x);
             return ref io;
         }
 

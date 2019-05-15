@@ -717,7 +717,7 @@ partial class zfunc
     /// </summary>
     [MethodImpl(Inline)]
     public static string emptyset()
-        => embrace(MathSym.emptyset);
+        => embrace(MathSym.EmptySet);
 
     /// <summary>
     /// Splits the string into delimited and nonempy parts

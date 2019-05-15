@@ -21,7 +21,7 @@ namespace Z0
 
 
         NumGBench(IRandomizer random, BenchConfig config = null)
-            : base(random, config)
+            : base(BenchKind.NumG, random, config)
         {
 
         }

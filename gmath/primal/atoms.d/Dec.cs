@@ -17,11 +17,53 @@ namespace Z0
     partial class math
     {
         [MethodImpl(Inline)]
+        public static sbyte dec(sbyte src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static byte dec(byte src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static short dec(short src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static ushort dec(ushort src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static int dec(int src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static uint dec(uint src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static long dec(long src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static ulong dec(ulong src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static float dec(float src)
+            => --src;
+
+        [MethodImpl(Inline)]
+        public static double dec(double src)
+            => --src;
+
+
+        [MethodImpl(Inline)]
         public static ref sbyte dec(ref sbyte src)
         {
             src--;
             return ref src;
         }
+
 
         [MethodImpl(Inline)]
         public static ref byte dec(ref byte src)
@@ -85,48 +127,78 @@ namespace Z0
             src--;
             return ref src;
         }
-                    
+
 
         [MethodImpl(Inline)]
-        public static sbyte dec(sbyte src)
-            => --src;
+        public static ref sbyte dec(sbyte src, out sbyte dst)
+        {
+            dst = --src;
+            return ref dst;
+        }
 
         [MethodImpl(Inline)]
-        public static byte dec(byte src)
-            => --src;
+        public static ref byte dec(byte src, out byte dst)
+        {
+            dst = --src;
+            return ref dst;
+        }
 
         [MethodImpl(Inline)]
-        public static short dec(short src)
-            => --src;
+        public static ref short dec(short src, out short dst)
+        {
+            dst = --src;
+            return ref dst;
+        }
 
         [MethodImpl(Inline)]
-        public static ushort dec(ushort src)
-            => --src;
+        public static ref ushort dec(ushort src, out ushort dst)
+        {
+            dst = --src;
+            return ref dst;
+        }
+
 
         [MethodImpl(Inline)]
-        public static int dec(int src)
-            => --src;
+        public static ref int dec(int src, out int dst)
+        {
+            dst = --src;
+            return ref dst;
+        }
 
         [MethodImpl(Inline)]
-        public static uint dec(uint src)
-            => --src;
+        public static ref uint dec(uint src, out uint dst)
+        {
+            dst = --src;
+            return ref dst;
+        }
 
         [MethodImpl(Inline)]
-        public static long dec(long src)
-            => --src;
+        public static ref long dec(long src, out long dst)
+        {
+            dst = --src;
+            return ref dst;
+        }
 
         [MethodImpl(Inline)]
-        public static ulong dec(ulong src)
-            => --src;
+        public static ref ulong dec(ulong src, out ulong dst)
+        {
+            dst = --src;
+            return ref dst;
+        }
 
         [MethodImpl(Inline)]
-        public static float dec(float src)
-            => --src;
+        public static ref float dec(float src, out float dst)
+        {
+            dst = --src;
+            return ref dst;
+        }
 
         [MethodImpl(Inline)]
-        public static double dec(double src)
-            => --src;
-
+        public static ref double dec(double src, out double dst)
+        {
+            dst = --src;
+            return ref dst;
+        }
 
     }
 

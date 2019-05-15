@@ -43,7 +43,10 @@ namespace Z0
         public static AppException KindUnsupported<T>(T kind, string caller, string file, int? line)
             where T : Enum
                 => AppException.Define(ErrorMessages.KindUnsupported(kind, caller, file, line));
-                
+
+        public static AppException KindUnsupported(string caller, string file, int? line)
+                => AppException.Define(ErrorMessages.Unsupported(caller, file, line));
+
         public static AppException KindOpUnsupported<S,T>(S src, T dst, string caller, string file, int? line)
             where S : Enum
             where T : Enum

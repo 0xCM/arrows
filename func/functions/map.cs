@@ -13,6 +13,8 @@ using Z0;
 
 partial class zfunc
 {
+    public static HashSet<T> set<T>(params T[] src)
+        => new HashSet<T>(src);
 
     [MethodImpl(Inline)]   
     public static IEnumerable<T> map<S,T>(IEnumerable<S> src, Func<S,T> f)

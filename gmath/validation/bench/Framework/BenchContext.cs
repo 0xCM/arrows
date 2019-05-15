@@ -16,14 +16,17 @@ namespace Z0
     
     public delegate IBenchComparison OpRunner();
 
-    public abstract class BenchContext : Context
+    public abstract class BenchContext<K> : Context
+        where K : Enum
     {
-        public BenchContext(IRandomizer Randomizer, BenchConfig Config)
+        public BenchContext(K BenchKind, IRandomizer Randomizer, BenchConfig Config)
             : base(Randomizer)
         {
+            this.BenchKind = BenchKind;
             this.Config = Config;
         }
 
+        public K BenchKind {get;}
         public void Run(Func<string,bool> filter = null)
         {
             filter = filter ?? (s => true);
@@ -32,7 +35,9 @@ namespace Z0
             foreach(var runner in Runners().Where(r => filter(r.name)).Select(r => r.runner))
                 comparisons.Add(runner());
 
-            log(map(comparisons, c => c.ToRecord()), LogTarget.BenchLog);
+            var logTarget = LogTarget.Define(LogArea.Bench, BenchKind);
+            var records = map(comparisons, c => c.ToRecord());
+            log(records, logTarget, ext: FileExtension.Define("csv"));
                     
             zfunc.print(AppMsg.Define(string.Join(',', BenchComparisonRecord.GetHeaders()), SeverityLevel.Info));
             foreach(var c in comparisons)            

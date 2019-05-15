@@ -16,6 +16,104 @@ namespace Z0
 
     partial class math
     {
+        #region in
+
+        [MethodImpl(Inline)]
+        public static sbyte flip(sbyte src)
+            => (sbyte)(~ src);
+
+        [MethodImpl(Inline)]
+        public static byte flip(byte src)
+            => (byte)(~ src);
+
+        [MethodImpl(Inline)]
+        public static short flip(short src)
+            => (short)(~ src);
+
+        [MethodImpl(Inline)]
+        public static ushort flip(ushort src)
+            => (ushort)(~ src);
+
+        [MethodImpl(Inline)]
+        public static int flip(int src)
+            => ~ src;
+
+        [MethodImpl(Inline)]
+        public static uint flip(uint src)
+            => ~ src;
+
+        [MethodImpl(Inline)]
+        public static long flip(long src)
+            => ~ src;
+
+        [MethodImpl(Inline)]
+        public static ulong flip(ulong src)
+            => ~ src;
+
+        #endregion
+
+        #region out
+
+        [MethodImpl(Inline)]
+        public static ref sbyte flip(sbyte src, out sbyte dst)
+        {
+            dst = (sbyte) ~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref byte flip(byte src, out byte dst)
+        {
+            dst = (byte) ~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref short flip(short src, out short dst)
+        {
+            dst = (short) ~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ushort flip(ushort src, out ushort dst)
+        {
+            dst = (ushort) ~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref int flip(int src, out int dst)
+        {
+            dst = ~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint flip(uint src, out uint dst)
+        {
+            dst = ~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long flip(long src, out long dst)
+        {
+            dst = ~src;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong flip(ulong src, out ulong dst)
+        {
+            dst = ~src;
+            return ref dst;
+        }
+
+        #endregion
+
+        #region io
+
 
         [MethodImpl(Inline)]
         public static ref sbyte flip(ref sbyte src)
@@ -73,37 +171,8 @@ namespace Z0
             return ref src;
         }
  
-         [MethodImpl(Inline)]
-        public static sbyte flip(sbyte src)
-            => (sbyte)(~ src);
+        #endregion
 
-        [MethodImpl(Inline)]
-        public static byte flip(byte src)
-            => (byte)(~ src);
-
-        [MethodImpl(Inline)]
-        public static short flip(short src)
-            => (short)(~ src);
-
-        [MethodImpl(Inline)]
-        public static ushort flip(ushort src)
-            => (ushort)(~ src);
-
-        [MethodImpl(Inline)]
-        public static int flip(int src)
-            => ~ src;
-
-        [MethodImpl(Inline)]
-        public static uint flip(uint src)
-            => ~ src;
-
-        [MethodImpl(Inline)]
-        public static long flip(long src)
-            => ~ src;
-
-        [MethodImpl(Inline)]
-        public static ulong flip(ulong src)
-            => ~ src;
 
     }
 
