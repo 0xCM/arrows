@@ -13,12 +13,12 @@ namespace Z0
     public static class Polynomial
     {
         public static PolynomialTerm<T> term<T>(T coefficient, intg<uint> power)
-            where  T: IEquatable<T>, new()
-                => new PolynomialTerm<T>(coefficient,power);
+            where T : new()
+               => new PolynomialTerm<T>(coefficient,power);
     }
     
-    public readonly struct PolynomialTerm<T> : IEquatable<PolynomialTerm<T>>
-        where  T: IEquatable<T>, new()
+    public readonly struct PolynomialTerm<T>
+        where T : new()
     {
         
         public static readonly PolynomialTerm<T> Zero = default;
@@ -62,7 +62,7 @@ namespace Z0
     }
 
     public readonly struct Polynomial<T>
-        where T : IMonoidAOps<T>, IEquatable<T>, new()
+        where T : IMonoidAOps<T>, new()
     {
         static readonly IMonoidAOps<T> Ops = new T();
         
@@ -71,7 +71,7 @@ namespace Z0
         public static Polynomial<T> operator +(Polynomial<T> lhs, Polynomial<T> rhs)
             => throw new Exception();
 
-        readonly Slice<PolynomialTerm<T>> terms;
+        readonly PolynomialTerm<T>[] terms;
     
         public Polynomial(params PolynomialTerm<T>[] terms)
             => this.terms = terms;
@@ -79,18 +79,31 @@ namespace Z0
         public override string ToString()
             => append(AsciSym.Plus, terms);
 
-        public intg<uint> degree()
-            => nonzero 
-            ? terms.Reverse().filter(t => !t.coefficient.Equals(FZero)).data.First().power 
-            : 0;
+        public uint degree()
+            => nonzero ? terms.Reverse().Where(t => !t.coefficient.Equals(FZero)).Max(x => x.power): 0;
 
         public bool nonzero
             => any(terms, t => !t.coefficient.Equals(FZero));
 
+        static (PolynomialTerm<T>[] lhs, PolynomialTerm<T>[] rhs) Conform(PolynomialTerm<T>[] lhs, PolynomialTerm<T>[] rhs, PolynomialTerm<T> filler)
+        {
+            var lhsLen = lhs.Length;
+            var rhsLen = rhs.Length;
+            if(lhsLen == rhsLen)
+                return(lhs,rhs);
+
+            var filled = repeat(filler, lhsLen > rhsLen ? lhsLen - rhsLen : lhsLen - rhsLen);
+            if(lhsLen > rhsLen)
+                return (lhs, concat(rhs, filled));
+            else
+                return (concat(lhs,filled), rhs);
+
+        }
+
         public Polynomial<T> add(Polynomial<T> rhs)
         {
-            var dst = new PolynomialTerm<T>[Math.Max(terms.length, rhs.terms.length)]; 
-            var src = terms.conform(rhs.terms, PolynomialTerm<T>.Zero);
+            var dst = new PolynomialTerm<T>[Math.Max(terms.Length, rhs.terms.Length)]; 
+            var src = Conform(terms, rhs.terms, PolynomialTerm<T>.Zero);
             for(var i = 0; i<= dst.Length(); i++)           
                 dst[i] = Polynomial.term(Ops.add(src.lhs[i].coefficient, src.rhs[i].coefficient), (uint)i);
             return new Polynomial<T>(dst);

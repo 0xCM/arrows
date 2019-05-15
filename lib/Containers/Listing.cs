@@ -73,7 +73,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public bool eq(Listing<T> rhs)
-            => data.eq(rhs.data);
+            => data.Equals(rhs.data);
 
         [MethodImpl(Inline)]
         public bool eq(Listing<T> lhs, Listing<T> rhs)
@@ -85,7 +85,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public bool neq(Listing<T> rhs)
-            => data.neq(rhs.data);
+            => !data.Equals(rhs.data);
 
         [MethodImpl(Inline)]
         public bool neq(Listing<T> lhs, Listing<T> rhs)

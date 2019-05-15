@@ -31,5 +31,22 @@ partial class zfunc
     /// <param name="dst">The destination log</param>
     public static void log(AppMsg message, LogTarget dst)
         => Log.Get(dst).Log(message);
+
+    /// <summary>
+    /// Writes a message to a log
+    /// </summary>
+    /// <param name="messages">The message to emit</param>
+    /// <param name="dst">The destination log</param>
+    public static void log<T>(T record, LogTarget dst, char delimiter = ',')
+        where T : IRecord<T>
+    {
+        Log.Get(dst).Log(record, delimiter);
+    }
+
+    public static void log(IEnumerable<IRecord> records, LogTarget dst, char delimiter = ',', bool writeHeader = true)
+        => Log.Get(dst).Log(records,delimiter, true);
+
+    public static void log(string text, LogTarget dst)
+        => Log.Get(dst).Log(text);
 }
 

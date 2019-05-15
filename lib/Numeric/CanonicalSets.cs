@@ -14,7 +14,6 @@ namespace Z0
     /// Represents the set that contains all potential values of a specified type
     /// </summary>
     public readonly struct TotalSet<T> : IMathSet<TotalSet<T>,T>
-        where T : IEquatable<T>
     {
         public static readonly TotalSet<T> Inhabitant = default;
 
@@ -76,7 +75,6 @@ namespace Z0
     /// Represents the set that contains no values of a specified type
     /// </summary>
     public readonly struct EmptySet<T> : IMathSet<EmptySet<T>, T>
-        where T : IEquatable<T>
     {
         public static readonly EmptySet<T> Inhabitant = default;
 

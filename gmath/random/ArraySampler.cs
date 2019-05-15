@@ -27,7 +27,7 @@ namespace Z0
         {
                         
             bool Filter<T>(T value)                        
-                where T : struct, IEquatable<T>
+                where T : struct
             {
                 if(nonzero)                    
                 {
@@ -61,7 +61,7 @@ namespace Z0
         public int SampleSize {get;}                
 
         public T[] Sampled<T>(OpId<T> op)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Sampled<T>();
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Z0
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public T[] Sampled<T>(T specimen = default(T))
-            where T : struct, IEquatable<T>
+            where T : struct
             => PrimalKinds.kind<T>() switch {
                 PrimalKind.int8 => As.generic<T>(Int8Samples),
                 PrimalKind.uint8 => As.generic<T>(UInt8Samples),

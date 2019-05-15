@@ -17,7 +17,7 @@ namespace Z0
         IResignableOps<T>, 
         ISubtractiveOps<T>, 
         ITrigonmetricOps<T>
-            where T : struct, IEquatable<T>
+            where T : struct
     {
         /// <summary>
         /// The minimal resolution of the data type
@@ -39,7 +39,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The underlying numeric type</typeparam>
     public interface IFiniteFloatOps<T> : IFloatingOps<T>, IBoundRealOps<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
 
     { }
         
@@ -50,7 +50,7 @@ namespace Z0
     /// <typeparam name="R">The reification type</typeparam>
     /// <typeparam name="T">The operand type</typeparam>
     public interface IFiniteFloatOps<R,T> : IFiniteFloatOps<T>
-        where T : struct, IEquatable<T>
+        where T : struct
         where R : IFiniteFloatOps<R,T>, new() { }
 
     public interface IFloating<S> : 

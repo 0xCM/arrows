@@ -19,7 +19,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<T> and<T>(in Vec128<T> lhs, in Vec128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -51,7 +51,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe void and<T>(in Vec128<T> lhs, in Vec128<T> rhs, void* dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -93,7 +93,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span128<T> and<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();        
             switch(kind)
@@ -167,7 +167,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span256<T> and<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();        
             switch(kind)

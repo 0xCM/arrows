@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Collections.Generic;
 
-    public interface IListed<S> : IEquatable<S>, INullary<S>, IReversible<S>, ILengthwise<S>
+    public interface IListed<S> : INullary<S>, IReversible<S>, ILengthwise<S>
         where S : IListed<S>, new()
     {
         /// <summary>

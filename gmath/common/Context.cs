@@ -9,12 +9,15 @@ namespace Z0
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
     using System.Linq;
-
     
+    using static zfunc;
+
 
     public interface IContext
     {
         IReadOnlyList<AppMsg> Emit(params AppMsg[] addenda);
+        
+        IReadOnlyList<AppMsg> Flush(params AppMsg[] addenda);
     }
     
     public abstract class Context : IContext
@@ -42,8 +45,6 @@ namespace Z0
             this.Randomizer = Randomizer;
         }
 
-        protected void HiLite(string msg, [CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define(msg, SeverityLevel.HiliteCL, GetType().DisplayName() + caller));            
 
         protected void NotifyError(Exception e)
         {
@@ -51,8 +52,17 @@ namespace Z0
             Emit(msg);
         }
 
-        protected void Trace(string msg, [CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define(msg, SeverityLevel.Info, GetType().DisplayName() + caller));
+        protected void HiLite(string msg, [CallerMemberName] string caller = null, 
+            [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+                => Messages.Add(AppMsg.Define(msg, SeverityLevel.HiliteCL, caller, file, line));
+
+
+        protected void Trace(string msg, [CallerMemberName] string caller = null, 
+            [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+                => Messages.Add(AppMsg.Define(msg, SeverityLevel.Babble, caller, file, line));
+
+        protected void Trace(AppMsg msg)
+            => Messages.Add(msg.WithLevel(SeverityLevel.Babble));
 
         IReadOnlyList<AppMsg> IContext.Emit(params AppMsg[] addenda)
         {
@@ -80,7 +90,7 @@ namespace Z0
         {
             var messages = Flush(addenda);
             zfunc.print(messages);
-            //log(messages, LogTarget.TestLog);            
+            log(messages, LogTarget.TestLog);            
         }
     }   
 }

@@ -80,10 +80,18 @@ namespace Z0
             );
     }
 
-    public class BenchComparisonRecord
+
+    public static class Record
     {
-        public static IReadOnlyList<string> Headers()
-            =>  type<BenchComparisonRecord>().DeclaredProperties().Select(p => p.Name).ToReadOnlyList();
+        public static IEnumerable<string> Delimited<T>(this IEnumerable<IRecord<T>> records, char delimiter  = ',')
+            => records.Select(r => r.Delimited(delimiter));
+    }
+
+
+    public class BenchComparisonRecord : IRecord<BenchComparisonRecord>
+    {
+        public static IReadOnlyList<string> GetHeaders()
+            => type<BenchComparisonRecord>().DeclaredProperties().Select(p => p.Name).ToReadOnlyList();
 
         public BenchComparisonRecord(
             string LeftOpUri, string RightOpUri, 
@@ -131,7 +139,8 @@ namespace Z0
         public override string ToString()
             => Delimited();
 
-
+        public IReadOnlyList<string> Headers()
+            => GetHeaders();
     }
     public class BenchComparison : BenchComparison<OpId>
     {

@@ -40,7 +40,7 @@ namespace Z0
 
 
 
-    public interface IDigit<N,S,T> :  IEquatable<S>
+    public interface IDigit<N,S,T>
         where N : ITypeNat, new()
         where S : IDigit<N,S,T>
         where T : Enum

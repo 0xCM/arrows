@@ -38,7 +38,7 @@ namespace Z0
             => index = src;
         
         public V lookup<K,V>()
-            where K : struct, IEquatable<K>
+            where K : struct
         {
             var del = index[PrimalKinds.key<K>()];
             return Unsafe.As<object,V>(ref del);

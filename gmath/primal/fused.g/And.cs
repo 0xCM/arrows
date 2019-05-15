@@ -133,6 +133,5 @@ namespace Z0
             math.and(x,y,z);
             return dst;
         }
-
     }
 }

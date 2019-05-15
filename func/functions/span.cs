@@ -102,22 +102,22 @@ partial class zfunc
             => dst = MemoryMarshal.Cast<S,T>(src);
 
     [MethodImpl(Inline)]   
-    public static int length<S,T>(Span<S> lhs, Span<T> rhs, [CallerFilePath] string file = null, 
-        [CallerLineNumber] int? line = null)
+    public static int length<S,T>(Span<S> lhs, Span<T> rhs, [CallerFilePath] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length,rhs.Length,file,line);
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
     [MethodImpl(Inline)]   
-    public static int length<S,T>(ReadOnlySpan<S> lhs, Span<T> rhs, [CallerFilePath] string file = null, 
-        [CallerLineNumber] int? line = null)
+    public static int length<S,T>(ReadOnlySpan<S> lhs, Span<T> rhs, [CallerFilePath] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length,rhs.Length,file,line);
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
     [MethodImpl(Inline)]   
-    public static int length<S,T>(ReadOnlySpan<S> lhs, ReadOnlySpan<T> rhs, [CallerFilePath] string file = null, 
-        [CallerLineNumber] int? line = null)
+    public static int length<S,T>(ReadOnlySpan<S> lhs, ReadOnlySpan<T> rhs, [CallerFilePath] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length,rhs.Length,file,line);
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
     /// <summary>
     /// Constructs a span from an array

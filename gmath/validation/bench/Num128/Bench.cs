@@ -21,7 +21,7 @@ namespace Z0
             => new Num128Bench(random, config ?? DefaultConfig);
 
         protected BinOpData<T> BinOpInit<T>(bool nonzero = false)                
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             GC.Collect();
             return new BinOpData<T>(
@@ -93,7 +93,7 @@ namespace Z0
         }
 
         static OpId<T> Id<T>(OpKind op)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => op.Num128OpId<T>();
 
     }

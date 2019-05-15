@@ -11,33 +11,11 @@ namespace Z0
     
     using static zcore;
 
-    // public class Box<T>
-    //     where T : struct
-    // {
-    //     [MethodImpl(Inline)]
-    //     public static implicit operator T(Box<T> box)
-    //         => box.unbox();
-
-    //     [MethodImpl(Inline)]
-    //     public static implicit operator Box<T>(T value)
-    //         => new Box<T>(value);
-
-    //     readonly T boxed;
-        
-    //     [MethodImpl(Inline)]
-    //     public Box(T boxed)
-    //         => this.boxed = boxed;
-
-    //     [MethodImpl(Inline)]
-    //     public T unbox()
-    //         => boxed;
-    // }
-
 
     /// <summary>
     /// Represents a (.Net) hash code and defines related operations
     /// </summary>
-    public readonly struct HashCode : IEquatable<HashCode>
+    public readonly struct HashCode
     {
         public static readonly HashCode Zero = new HashCode(0);
 

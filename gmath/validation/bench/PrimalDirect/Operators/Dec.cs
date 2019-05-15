@@ -15,6 +15,7 @@ namespace Z0
 
     partial class BaselineMetrics
     {
+        
         public OpMetrics Dec(sbyte[] dst)
         {
             var opid = Id<sbyte>(OpKind.Dec);
@@ -224,6 +225,128 @@ namespace Z0
             math.dec(src.Left, dst);
             return SampleTime(snapshot(sw));
         }
+
+
+        public OpMetrics DecIO(sbyte[] io)
+        {
+            var opid = Id<sbyte>(OpKind.Dec);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.dec(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics DecIO(byte[] io)
+        {
+            var opid = Id<byte>(OpKind.Dec);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.dec(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics DecIO(short[] io)
+        {
+            var opid = Id<short>(OpKind.Dec);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.dec(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics DecIO(ushort[] io)
+        {
+            var opid = Id<ushort>(OpKind.Dec);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.dec(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics DecIO(int[] io)
+        {
+            var opid = Id<int>(OpKind.Dec);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.dec(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics DecIO(uint[] io)
+        {
+            var opid = Id<uint>(OpKind.Dec);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.dec(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics DecIO(long[] io)
+        {
+            var opid = Id<long>(OpKind.Dec);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.dec(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics DecIO(ulong[] io)
+        {
+            var opid = Id<float>(OpKind.Dec);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.dec(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics DecIO(float[] io)
+        {
+            var opid = Id<float>(OpKind.Dec);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.dec(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics DecIO(double[] io)
+        {
+            var opid = Id<double>(OpKind.Dec);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.dec(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
 
    }
 }

@@ -78,7 +78,7 @@ namespace Z0
         /// <typeparam name="T">The value type</typeparam>
         [MethodImpl(NotInline)]
         public static bool Contains<T>(this ReadOnlySpan<T> src, T match)        
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var enumerator = src.GetEnumerator();
             while(enumerator.MoveNext())
@@ -89,12 +89,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool Contains<T>(this Span<T> src, T match)        
-            where T : struct, IEquatable<T>
+            where T : struct
                 => src.Freeze().Contains(match);
 
         [MethodImpl(NotInline)]
         public static bool Any<T>(this ReadOnlySpan<T> src, Func<T,bool> f)
-             where T : struct, IEquatable<T>
+             where T : struct
         {
             var it = src.GetEnumerator();
             while(it.MoveNext())
@@ -105,7 +105,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool Any<T>(this Span<T> src, Func<T,bool> f)
-             where T : struct, IEquatable<T>
+             where T : struct
                 => src.ToReadOnlySpan().Any(f);
 
         /// <summary>
@@ -152,6 +152,12 @@ namespace Z0
             src.CopyTo(dst);
             return dst;
         }
+
+        [MethodImpl(Inline)]
+        public static (T[] Left, T[] Right) PairReplicate<T>(this ReadOnlySpan<T> src)
+            where T : struct
+                => (src.Replicate().ToArray(), src.Replicate().ToArray());
+
 
         [MethodImpl(Inline)]
         public static Span<T> Replicate<T>(this Span<T> src)

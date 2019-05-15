@@ -56,7 +56,7 @@ partial class zcore
     /// <param name="lhs">The first list</param>
     /// <param name="rhs">The second list</param>
     public static bool eq<T>(IEnumerable<T> lhs, IEnumerable<T> rhs)
-        where T : IEquatable<T>, new()
+        where T : new()
     {    
         
         var lenum = lhs.GetEnumerator();

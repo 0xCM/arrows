@@ -16,13 +16,13 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static Konst<T> Define<T>(T value)
-            where T : struct, IEquatable<T>
+            where T : struct
             => new Konst<T>(value);
     }
 
 
     public readonly struct Konst<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         [MethodImpl(Inline)]
         public static implicit operator T(Konst<T> src)

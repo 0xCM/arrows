@@ -296,7 +296,6 @@ namespace  Z0
         /// <param name="lhs">The first sequence</param>
         /// <param name="rhs">The second sequence</param>
         public static bool ReallyEqual<T>(this IEnumerable<T> lhs, IEnumerable<T> rhs)
-            where T : IEquatable<T>
         {            
             var lenum = lhs.GetEnumerator();
             var renum = rhs.GetEnumerator();

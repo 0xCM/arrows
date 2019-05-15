@@ -17,8 +17,8 @@ namespace Z0
     using static mfunc;
 
     [StructLayout(LayoutKind.Sequential, Size = 16)]
-    public readonly struct Vec128<T> : IEquatable<Vec128<T>>
-        where T : struct, IEquatable<T>
+    public readonly struct Vec128<T>
+        where T : struct
     {
 
         
@@ -65,7 +65,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Vec128<U> As<U>() 
-            where U : struct, IEquatable<U>
+            where U : struct
                 => Unsafe.As<Vec128<T>, Vec128<U>>(ref Unsafe.AsRef(in this));         
 
         [MethodImpl(Inline)]

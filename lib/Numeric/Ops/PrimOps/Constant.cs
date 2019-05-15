@@ -11,7 +11,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The value type</typeparam>
     public interface Constant<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         T Value {get;}
     }

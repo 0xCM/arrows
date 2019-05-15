@@ -18,12 +18,12 @@ namespace Z0
     {
 
         OpMetrics Div<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid = Id<T>(OpKind.Div);
             var samples = Sampled(opid, true);            
             var sw = stopwatch();            
-            gmath.div(samples.Left, samples.Right, dst);
+            fused.div<T>(samples.Left, samples.Right, dst);
             return(SampleTime(snapshot(sw)));
         }
 

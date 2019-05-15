@@ -12,8 +12,8 @@ namespace Z0
     
     using static global::mfunc;
 
-   public readonly struct Num128<T> : IEquatable<Num128<T>>
-        where T : struct, IEquatable<T>
+   public readonly struct Num128<T>
+        where T : struct
     {        
         readonly Vector128<T> data;            
 

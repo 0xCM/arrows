@@ -16,7 +16,7 @@ namespace Z0
     partial class PrimalAtomicBench
     {
         OpMetrics Sub<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid = Id<T>(OpKind.Sub);
             var samples = Sampled(opid);

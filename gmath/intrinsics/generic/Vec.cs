@@ -21,7 +21,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T Component<T>(this Vec128<T> src, int idx)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             ref T e0 = ref Unsafe.As<Vec128<T>, T>(ref src);
             return Unsafe.Add(ref e0, idx);
@@ -30,17 +30,22 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<T> ToVec128<T>(this Vector128<T> src)
-            where T : struct, IEquatable<T>            
+            where T : struct            
                 => src;
 
         [MethodImpl(Inline)]
         public static Vector128<T> ToVector128<T>(this Vec128<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => src;
 
         [MethodImpl(Inline)]
-        public unsafe static T[] ToArray<T>(this Vec128<T> src)
-            where T : struct, IEquatable<T>
-                => Unsafe.As<Vec128<T>,T[]>(ref src);
+        public static ref Span<T> Extract<T>(this Vec128<T> src, ref Span<T> dst)
+            where T : struct
+        {
+            for(var i = 0; i< Vec128<T>.Length; i++)
+                dst[i] = src.Component(i);
+            return ref dst;
+        }
+                
     }
 }

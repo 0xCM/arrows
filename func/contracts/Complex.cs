@@ -15,7 +15,7 @@ namespace Z0
     /// <typeparam name="T">The underlying numeric component type</typeparam>
     /// <typeparam name="C">The complex number type</typeparam>
     public interface IComplex<S,T,C> : INumber<S>
-        where S : struct, IComplex<S,T,C>, IEquatable<S>  
+        where S : struct, IComplex<S,T,C>
     {
         /// <summary>
         /// The real part

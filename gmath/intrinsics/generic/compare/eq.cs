@@ -18,7 +18,7 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static bool eq<T>(in Vec128<T> lhs, in Vec128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)

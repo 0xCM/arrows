@@ -15,7 +15,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="S">The reification type</typeparam>
     /// <typeparam name="T">The member type</typeparam>
-    public interface IFiniteSet<S,T> : IDiscreteSet<S,T>, IEquatable<S>
+    public interface IFiniteSet<S,T> : IDiscreteSet<S,T>
         where S : IFiniteSet<S,T>, new()
     {
         /// <summary>

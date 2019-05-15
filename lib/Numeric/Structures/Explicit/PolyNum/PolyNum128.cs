@@ -16,7 +16,7 @@ namespace Z0
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public partial struct PolyNum128 : IEquatable<PolyNum128>
+    public partial struct PolyNum128
     {
 
         const int DataOffset0 = 0;

@@ -32,9 +32,11 @@ namespace Z0
             foreach(var runner in Runners().Where(r => filter(r.name)).Select(r => r.runner))
                 comparisons.Add(runner());
 
-            zfunc.print(AppMsg.Define(string.Join(',', BenchComparisonRecord.Headers()), SeverityLevel.Info));
-            foreach(var c in comparisons)
-                print(c.ToRecord());
+            log(map(comparisons, c => c.ToRecord()), LogTarget.BenchLog);
+                    
+            zfunc.print(AppMsg.Define(string.Join(',', BenchComparisonRecord.GetHeaders()), SeverityLevel.Info));
+            foreach(var c in comparisons)            
+                 print(c.ToRecord());
         }
 
         public IEnumerable<(string name, OpRunner runner)> Runners()
@@ -64,7 +66,7 @@ namespace Z0
         }
 
         protected BenchComparison Run<T>(OpId<T> opid, Cycle left, Cycle right)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var lStats = left(Config.Cycles);
             var rStats = right(Config.Cycles);
@@ -76,8 +78,8 @@ namespace Z0
         }
 
         protected Cycle Measure<S,T>(OpId<S> opid, Func<T[],OpMetrics> worker, T[] dst)
-            where S : struct, IEquatable<S>
-            where T : struct, IEquatable<T>
+            where S : struct
+            where T : struct
         {
             OpStats repeat(int cycles)
             {
@@ -124,7 +126,7 @@ namespace Z0
         }
 
         protected Cycle Measure<T>(OpId<T> opid, Func<OpMetrics<T>> run)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             OpStats repeat(int cycles)
             {
@@ -148,7 +150,7 @@ namespace Z0
         }
 
         protected OpMeasurer Measure<T>(OpId<T> opid, Action action, int? OpCountPerRep = null)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             OpMetrics repeat(int cycles, int reps)
             {
@@ -174,7 +176,7 @@ namespace Z0
         }
 
         protected T[] Sample<T>(int? samples = null, bool nonzero = false)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var zero = gmath.zero<T>();
             Func<T,bool> filter = nonzero  ? x => !x.Equals(zero)  : (Func<T,bool>)null;    
@@ -182,10 +184,10 @@ namespace Z0
         }
 
         protected IBenchComparison Finish<T>(IBenchComparison compared, (T[] LeftTarget, T[]  RightTarget) dst, 
-            [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            where T : struct, IEquatable<T>
+            [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where T : struct
         {
-            Claim.eq(dst.LeftTarget, dst.RightTarget,file,line);
+            Claim.eq(dst.LeftTarget, dst.RightTarget, caller, file,line);
             GC.Collect();
             return compared;
         }
@@ -200,7 +202,7 @@ namespace Z0
             => src.FirstOrDefault();
 
         protected (T[] Left,T[] Right) ArrayTargets<T>(T specimen = default(T))
-            where T : struct, IEquatable<T>
+            where T : struct
                 => (alloc<T>(Config.SampleSize),
                     alloc<T>(Config.SampleSize));                
     }

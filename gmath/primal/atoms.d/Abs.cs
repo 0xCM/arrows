@@ -17,6 +17,7 @@ namespace Z0
     partial class math
     {
 
+
         [MethodImpl(Inline)]
         public static ref sbyte abs(ref sbyte src)
         {

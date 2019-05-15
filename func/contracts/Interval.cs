@@ -62,7 +62,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The value type</typeparam>
     public interface IDiscreteInterval<T> : IInterval<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
     }
@@ -72,7 +72,7 @@ namespace Z0
     /// Characterizes an interval that does not contain its upper bound
     /// </summary>
     public interface IRightOpenInterval<T> : IInterval<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
     }
@@ -81,7 +81,7 @@ namespace Z0
     /// Characterizes an interval that contains its lower bound
     /// </summary>
     public interface ILeftClosedInterval<T> : IInterval<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
     }
@@ -90,7 +90,7 @@ namespace Z0
     /// Characterizes an interval that does not contain its lower bound
     /// </summary>
     public interface ILeftOpenInterval<T> : IInterval<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
     }
@@ -99,7 +99,7 @@ namespace Z0
     /// Characterizes an interval that contains its upper bound
     /// </summary>
     public interface IRightClosedInterval<T> : IInterval<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
     }
@@ -108,14 +108,14 @@ namespace Z0
     /// Characterizes an interval that contains neither  of its endpoints
     /// </summary>
     public interface IOpenInterval<T> : ILeftOpenInterval<T>, IRightOpenInterval<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
     }
 
     public interface IOpenInterval<S,T> : IOpenInterval<T>, IInterval<S,T>
         where S : IOpenInterval<S,T>, new()
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
     }
@@ -124,14 +124,14 @@ namespace Z0
     /// Characterizes an interval that contains its endpoints
     /// </summary>
     public interface IClosedInterval<T> : ILeftClosedInterval<T>, IRightClosedInterval<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
     }
 
     public interface IClosedInterval<S,T> : IClosedInterval<T>, IInterval<S,T>
         where S : IClosedInterval<S,T>, new()
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
     }

@@ -17,7 +17,7 @@ namespace Z0
     /// <summary>
     /// Defines an integrally-indexed associative array
     /// </summary>
-    public readonly struct Index<T> : IReadOnlyList<T>, IEquatable<Index<T>>
+    public readonly struct Index<T> : IReadOnlyList<T>
     {
         static readonly T[] EmptyArray = new T[]{};
         

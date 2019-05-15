@@ -15,7 +15,7 @@ namespace Z0
     /// Represents a potential value
     /// </summary>
     /// <typeparam name="T">The potential value type</typeparam>
-    public readonly struct Option<T> : IEquatable<Option<T>>, IOption<T>
+    public readonly struct Option<T> :  IOption<T>
     {
         /// <summary>
         /// Defines a non-valued option

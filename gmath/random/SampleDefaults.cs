@@ -17,7 +17,7 @@ namespace Z0
     }
     
     public interface ISampleDefaults<T> : ISampleDefaults
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         Interval<T> SampleDomain {get;}
     }
@@ -40,7 +40,7 @@ namespace Z0
         static readonly SampleDefaults TheOnly = default;
 
         public static ISampleDefaults<T> get<T>()
-            where T : struct, IEquatable<T>
+            where T : struct
                 => (ISampleDefaults<T>)(object)(TheOnly);
 
         const int SampleSize = (int)Pow2.T14;

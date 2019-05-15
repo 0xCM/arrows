@@ -19,7 +19,7 @@ namespace Z0
         /// <typeparam name="T">The underlying primitive type</typeparam>
         [MethodImpl(Inline)]   
         public static Span<DeciDigit> ToDecimalDigits<T>(this num<T> src)
-            where T : struct, IEquatable<T>    
+            where T : struct    
                 =>  DeciDigits.Parse(src.Abs().ToString());
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Z0
         /// <typeparam name="T">The underlying primitive type</typeparam>
          [MethodImpl(Inline)]   
         public static Span<HexDigit> ToHexDigits<T>(this num<T> src)
-            where T : struct, IEquatable<T>    
+            where T : struct    
                 =>  HexDigits.Parse(src.ToString());
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Z0
         /// <typeparam name="T">The underlying primitive type</typeparam>
         [MethodImpl(Inline)]   
         public static Span<BinaryDigit> ToBinaryDigits<T>(this num<T> src)
-            where T : struct, IEquatable<T>    
+            where T : struct    
                 =>  BinaryDigits.Parse(src.ToBitString());
 
         /// <summary>
@@ -50,12 +50,12 @@ namespace Z0
         /// <typeparam name="T">The domain of the point</typeparam>
         [MethodImpl(Inline)]
         public static bool Contains<T>(this ITimeInterval<T> src, T point)
-            where T : struct, IEquatable<T> 
+            where T : struct 
                 => src.Contains(point);
 
         [MethodImpl(Inline)]
         public static bool Contains<T>(this IInterval<T> interval, T point)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => interval.Kind switch {
                         IntervalKind.Closed 
                             => gmath.gteq(point,interval.Left) && gmath.lteq(point, interval.Right),
@@ -71,11 +71,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T[] Discretize<T>(this Interval<T> src, T? step = null)
-            where T : struct, IEquatable<T> 
+            where T : struct 
                 => DiscretizationStream(src, step).ToArray();
 
         static IEnumerable<T> DiscretizationStream<T>(this Interval<T> src, T? step = null)
-            where T : struct, IEquatable<T>
+            where T : struct
         {            
 
             var width = step ?? gmath.one<T>();            

@@ -67,7 +67,7 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static Index<T> map<T>(int len, Func<int,T> f)
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         var dst = alloc<T>(len);
         for(var i =0; i< len; i++)
@@ -77,7 +77,7 @@ partial class zcore
 
     [MethodImpl(Inline)]
     public static Index<T> map<T>(int offset, int max, Func<int,T> f)
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         var len = max - offset + 1;
         var dst = alloc<T>(len);

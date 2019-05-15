@@ -18,7 +18,7 @@ namespace Z0
     {
 
         OpMetrics div<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid =  Id<T>(OpKind.Div);
             var lhs = Num.many(LeftSrc.Sampled(opid));

@@ -17,7 +17,7 @@ namespace Z0
     /// <summary>
     /// Encodes a natural number k such that k1:K1 & k2:K2 => k = k1 + 1
     /// </summary>
-    public readonly struct Next<K> : ITypeNat, IEquatable<Next<K>>
+    public readonly struct Next<K> : ITypeNat
         where K : ITypeNat, new()
     {
         

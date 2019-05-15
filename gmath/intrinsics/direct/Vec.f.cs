@@ -24,7 +24,7 @@ partial class mfunc
     /// <typeparam name="T">The vector primitive type</typeparam>
     [MethodImpl(Inline)]
     public static T component<T>(Vector128<T> src, int index)
-        where T : struct, IEquatable<T>
+        where T : struct
             => src.GetElement(index);
 
     /// <summary>
@@ -35,7 +35,7 @@ partial class mfunc
     /// <typeparam name="T">The vector primitive type</typeparam>
     [MethodImpl(Inline)]
     public static T component<T>(Vector256<T> src, int index)
-        where T : struct, IEquatable<T>
+        where T : struct
             => src.GetElement(index);
 
     /// <summary>

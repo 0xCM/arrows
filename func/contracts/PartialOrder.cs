@@ -25,7 +25,6 @@ namespace Z0
     /// <typeparam name="T"></typeparam>
     /// <remarks>See https://en.wikipedia.org/wiki/Partially_ordered_set </remarks>
     public interface IPosetOps<T> : IPartialOrderOps<T>
-        where T : IEquatable<T>
 
     {
         /// <summary>

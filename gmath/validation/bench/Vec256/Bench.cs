@@ -31,7 +31,7 @@ namespace Z0
         }
 
        static OpId<T> Id<T>(OpKind op)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => op.Vec256OpId<T>();
 
         readonly Span256Sampler LeftSrc;   
@@ -39,7 +39,7 @@ namespace Z0
         readonly Span256Sampler RightSrc;   
 
         (T[] Left,T[] Right) Targets<T>(OpId<T> id = default)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => (Span256.blockalloc<T>(Config.SampleSize).ToArray(),
                     Span256.blockalloc<T>(Config.SampleSize).ToArray());                
 

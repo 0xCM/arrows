@@ -52,7 +52,7 @@ partial class zfunc
     /// <typeparam name="T">The stream element type</typeparam>
     [MethodImpl(Inline)]
     public static T fold<T>(IEnumerable<T> src, IMonoidalOps<T> monoid)
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         
         var cumulant = monoid.identity;

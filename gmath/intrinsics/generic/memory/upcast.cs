@@ -19,8 +19,8 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void upcast<S,T>(in Vec128<S> lhs, out Vec128<T> rhs)
-            where S : struct, IEquatable<S>
-            where T : struct, IEquatable<T>
+            where S : struct
+            where T : struct
         {
             var srcKind = PrimalKinds.kind<S>();
             var dstKind = PrimalKinds.kind<T>();

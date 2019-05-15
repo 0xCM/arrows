@@ -34,8 +34,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref T divI16<T>(ref T lhs, T rhs)
         {
-            ref var result = ref math.div(ref int16(ref lhs), int16(ref rhs));
-            lhs = ref generic<T>(ref result);
+            var result = (short) (int16(ref lhs) / int16(ref rhs));
+            lhs = generic<T>(ref result);
             return ref lhs;
         }            
 
@@ -67,9 +67,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref T divI64<T>(ref T lhs, T rhs)
         {
-            ref var result = ref math.div(ref int64(ref lhs), int64(ref rhs));
-            lhs = ref generic<T>(ref result);
+            // ref var result = ref math.div(ref int64(ref lhs), int64(ref rhs));
+            // lhs = ref generic<T>(ref result);
+            // return ref lhs;
+            lhs = generic<T>(int64(ref lhs) / int64(ref rhs));
             return ref lhs;
+
         }            
 
         [MethodImpl(Inline)]
@@ -83,16 +86,18 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref T divF32<T>(ref T lhs, T rhs)
         {
-            ref var result = ref math.div(ref float32(ref lhs), float32(ref rhs));
-            lhs = ref generic<T>(ref result);
+            // ref var result = ref math.div(ref float32(ref lhs), float32(ref rhs));
+            // lhs = ref generic<T>(ref result);
+            lhs = generic<T>(float32(ref lhs) / float32(ref rhs));
             return ref lhs;
         }            
 
         [MethodImpl(Inline)]
         public static ref T divF64<T>(ref T lhs, T rhs)
         {
-            ref var result = ref math.div(ref float64(ref lhs), float64(ref rhs));
-            lhs = ref generic<T>(ref result);
+            // ref var result = ref math.div(ref float64(ref lhs), float64(ref rhs));
+            // lhs = ref generic<T>(ref result);
+            lhs = generic<T>(float64(ref lhs) / float64(ref rhs));
             return ref lhs;
         }            
 

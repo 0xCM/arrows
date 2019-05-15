@@ -216,7 +216,7 @@ namespace Z0
        }
 
         OpMetrics gsub<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid = Id<T>(OpKind.Sub);
             var lhs = LeftSample(opid);

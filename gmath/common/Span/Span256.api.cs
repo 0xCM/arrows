@@ -24,7 +24,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Span256<T> blockalloc<T>(int blocks)
-            where T : struct, IEquatable<T>        
+            where T : struct        
                 => Span256<T>.BlockAlloc(blocks);
 
         /// <summary>
@@ -34,32 +34,32 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Span256<T> alloc<T>(int length)
-            where T : struct, IEquatable<T>        
+            where T : struct        
                 =>Span256<T>.Alloc(length);
 
         [MethodImpl(Inline)]
         public static Span256<T> load<T>(Span<T> src, int offset, int length)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span256<T>.Load(src, offset,length);
 
         [MethodImpl(Inline)]
         public static Span256<T> load<T>(ReadOnlySpan<T> src, int offset, int length)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span256<T>.Load(src, offset,length);
 
         [MethodImpl(Inline)]
         public static Span256<T> load<T>(T[] src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span256<T>.Load(src);
 
         [MethodImpl(Inline)]
         public static Span256<T> load<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span256<T>.Load(src);
 
         [MethodImpl(Inline)]
         public static Span256<T> single<T>(params T[] src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span256<T>.Load(src);
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Z0
         /// <typeparam name="T">The block constituent type</typeparam>
         [MethodImpl(Inline)]
         public static int cellsize<T>()
-            where T : struct, IEquatable<T>        
+            where T : struct        
                 => Span256<T>.CellSize;
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Z0
         /// <typeparam name="T">The block constituent type</typeparam>
         [MethodImpl(Inline)]
         public static int blocksize<T>()
-            where T : struct, IEquatable<T>        
+            where T : struct        
                 => Span256<T>.BlockSize;
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Z0
         /// <typeparam name="T">The block constituent type</typeparam>
         [MethodImpl(Inline)]
         public static int blocklength<T>(int blocks = 1)
-            where T : struct, IEquatable<T>        
+            where T : struct        
                 => blocks * Span256<T>.BlockLength;
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Z0
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
         public static int blockcount<T>(int length)
-            where T : struct, IEquatable<T>  
+            where T : struct  
                 => length / blocklength<T>();
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Z0
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
         public static int bytes<T>(in Span<T> src)
-            where T : struct, IEquatable<T>        
+            where T : struct        
             => src.Length * cellsize<T>();
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Z0
         /// <typeparam name="T">The span constituent type</typeparam>
         [MethodImpl(Inline)]
         public static int blockcount<T>(in Span<T> src)
-            where T : struct, IEquatable<T>  
+            where T : struct  
                 =>  blockcount<T>(src.Length);
 
         /// <summary>
@@ -126,12 +126,12 @@ namespace Z0
         /// <typeparam name="T">The block constituent type</typeparam>
         [MethodImpl(Inline)]
         public static bool aligned<T>(int length)
-            where T : struct, IEquatable<T>        
+            where T : struct        
             => Span256<T>.Aligned(length);
         
         [MethodImpl(Inline)]
         public static int align<T>(int length)
-            where T : struct, IEquatable<T>        
+            where T : struct        
         {
             var remainder = length % blocklength<T>();
             if(remainder == 0)
@@ -142,7 +142,7 @@ namespace Z0
 
 
         public static bool eq<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)        
-            where T : struct, IEquatable<T>        
+            where T : struct        
         {
             for(var i = 0; i< length(lhs,rhs); i++)
             {
@@ -153,7 +153,7 @@ namespace Z0
         }
 
         public static bool eq<T>(Span256<T> lhs, Span256<T> rhs)        
-            where T : struct, IEquatable<T>        
+            where T : struct        
                 => eq(lhs.ToReadOnlySpan(), lhs.ToReadOnlySpan());
 
    }

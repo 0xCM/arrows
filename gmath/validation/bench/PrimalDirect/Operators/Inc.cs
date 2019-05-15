@@ -225,5 +225,127 @@ namespace Z0
             return SampleTime(snapshot(sw));
         }
 
+
+        public OpMetrics IncIO(sbyte[] io)
+        {
+            var opid = Id<sbyte>(OpKind.Inc);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.inc(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics IncIO(byte[] io)
+        {
+            var opid = Id<byte>(OpKind.Inc);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.inc(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics IncIO(short[] io)
+        {
+            var opid = Id<short>(OpKind.Inc);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.inc(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics IncIO(ushort[] io)
+        {
+            var opid = Id<ushort>(OpKind.Inc);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.inc(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics IncIO(int[] io)
+        {
+            var opid = Id<int>(OpKind.Inc);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.inc(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics IncIO(uint[] io)
+        {
+            var opid = Id<uint>(OpKind.Inc);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.inc(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics IncIO(long[] io)
+        {
+            var opid = Id<long>(OpKind.Inc);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.inc(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics IncIO(ulong[] io)
+        {
+            var opid = Id<float>(OpKind.Inc);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.inc(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics IncIO(float[] io)
+        {
+            var opid = Id<float>(OpKind.Inc);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.inc(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+        public OpMetrics IncIO(double[] io)
+        {
+            var opid = Id<double>(OpKind.Inc);
+            var it = -1;
+            var len = io.Length;
+
+            var sw = stopwatch();
+            while(++it < len)
+                gmath.inc(ref io[it]);
+            return SampleTime(snapshot(sw));            
+        }
+
+
    }
 }

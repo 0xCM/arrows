@@ -17,7 +17,7 @@ namespace Latex
     /// <summary>
     /// Represents a Syntax
     /// </summary>
-    public readonly struct Syntax : IEquatable<Syntax>
+    public readonly struct Syntax
     {
         public static readonly Syntax Empty = new Syntax(string.Empty, string.Empty);
 

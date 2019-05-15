@@ -23,7 +23,7 @@ namespace Z0
             ISemiringOps<T>, 
             IDivisiveOps<T>, 
             IPoweredOps<T,int> 
-        where T : struct, IEquatable<T>
+        where T : struct
 
     {                                
         NumberInfo<T> numinfo {get;}
@@ -37,7 +37,6 @@ namespace Z0
     public interface INumber<S> : 
             ISubtractive<S>, 
             Absolitive<S>, 
-            IEquatable<S>, 
             IGroupA<S>, 
             ISemigroupM<S>, 
             ISemiring<S>, 

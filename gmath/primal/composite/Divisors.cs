@@ -17,17 +17,17 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static T[] Compute<T>(T src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Divisors<T>.Inhabitant.divisors(src);
 
         [MethodImpl(Inline)]
         public static DivisorIndex<T> Compute<T>(Interval<T> interval)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Divisors<T>.Inhabitant.Compute(interval);
 
         [MethodImpl(Inline)]
         public static IEnumerable<DivisorIndex<T>> Compute<T>(Interval<T> interval, T step)        
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Divisors<T>.Inhabitant.Compute(interval,step);
 
         public static ulong[] Compute(ulong src)
@@ -72,7 +72,7 @@ namespace Z0
     }
 
     public readonly struct Divisors<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         public static readonly Divisors<T> Inhabitant = default;
             

@@ -17,7 +17,7 @@ namespace Z0
     partial class NumGBench
     {
        OpMetrics negate<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid =  Id<T>(OpKind.Negate);
             var src = Num.many(Sampled(opid).Left);            

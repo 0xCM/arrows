@@ -50,6 +50,38 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
+        public static ref Span<T> sub<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            switch(kind)
+            {
+                case PrimalKind.int8:
+                    return ref subI8(ref lhs,rhs);
+                case PrimalKind.uint8:
+                    return ref subU8(ref lhs,rhs);
+                case PrimalKind.int16:
+                    return ref subI16(ref lhs,rhs);
+                case PrimalKind.uint16:
+                    return ref subU16(ref lhs,rhs);
+                case PrimalKind.int32:
+                    return ref subI32(ref lhs,rhs);
+                case PrimalKind.uint32:
+                    return ref subU32(ref lhs,rhs);
+                case PrimalKind.int64:
+                    return ref subI64(ref lhs,rhs);
+                case PrimalKind.uint64:
+                    return ref subU64(ref lhs,rhs);
+                case PrimalKind.float32:
+                    return ref subF32(ref lhs,rhs);
+                case PrimalKind.float64:
+                    return ref subF64(ref lhs,rhs);
+                default:
+                    throw unsupported(kind);                
+            }
+        }
+
+        [MethodImpl(NotInline)]
         public static Span<T> subI8<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T :  struct
         {
@@ -161,6 +193,86 @@ namespace Z0
             return dst;
         }
 
+        [MethodImpl(NotInline)]
+        static ref Span<T> subI8<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            math.sub(int8(lhs),int8(rhs));
+            return ref lhs;
+        }
+
+        [MethodImpl(NotInline)]
+        static ref Span<T> subU8<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            math.sub(uint8(lhs),uint8(rhs));
+            return ref lhs;
+        }
+
+        [MethodImpl(NotInline)]
+        static ref Span<T> subI16<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            math.sub(int16(lhs), int16(rhs));
+            return ref lhs;
+        }
+
+        [MethodImpl(NotInline)]
+        static ref Span<T> subU16<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            math.sub(uint16(lhs), uint16(rhs));
+            return ref lhs;
+        }
+
+        [MethodImpl(NotInline)]
+        static ref Span<T> subI32<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            math.sub(int32(lhs),int32(rhs));
+            return ref lhs;
+        }
+
+        [MethodImpl(NotInline)]
+        static ref Span<T> subU32<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            math.sub(uint32(lhs),uint32(rhs));
+            return ref lhs;
+        }
+
+        [MethodImpl(NotInline)]
+        static ref Span<T> subI64<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            math.sub(int64(lhs),int64(rhs));
+            return ref lhs;
+        }
+
+
+        [MethodImpl(NotInline)]
+        static ref Span<T> subU64<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            math.sub(uint64(lhs),uint64(rhs));
+            return ref lhs;
+        }
+
+        [MethodImpl(NotInline)]
+        static ref Span<T> subF32<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            math.sub(float32(lhs),float32(rhs));
+            return ref lhs;
+        }
+
+        [MethodImpl(NotInline)]
+        static ref Span<T> subF64<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            math.sub(float64(lhs),float64(rhs));
+            return ref lhs;
+        } 
     }
 
 }

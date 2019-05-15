@@ -33,7 +33,7 @@ namespace Z0
 
 
         protected UnaryOpData<T> UnaryOpInit<T>(bool nonzero = false)                
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             GC.Collect();
             return new UnaryOpData<T>(
@@ -48,28 +48,28 @@ namespace Z0
         readonly Span128Sampler RightSamples;   
 
         static OpId<T> Id<T>(OpKind op)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => op.Vec128OpId<T>();
 
         Span128<T>  LeftSample<T>(OpId<T> opid = default)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => LeftSamples.Sampled<T>();
 
         Span128<T>  RightSample<T>(OpId<T> opid = default)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => RightSamples.Sampled<T>();
 
         Span128<T> Target<T>(OpId<T> opid = default)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span128.blockalloc<T>(Config.SampleSize);
 
         (T[] Left,T[] Right) Targets<T>(OpId<T> opid)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => (Span128.blockalloc<T>(Config.SampleSize).ToArray(),
                     Span128.blockalloc<T>(Config.SampleSize).ToArray());                
 
         (T[] Left,T[] Right) Targets<T>(T specimen = default(T))
-            where T : struct, IEquatable<T>
+            where T : struct
                 => (Span128.blockalloc<T>(Config.SampleSize).ToArray(),
                     Span128.blockalloc<T>(Config.SampleSize).ToArray());                
     

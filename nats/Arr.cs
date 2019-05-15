@@ -170,7 +170,6 @@ namespace Z0
         where K1 : ITypeNat, new()
         where K2 : ITypeNat, new()
         where K3 : ITypeNat, new()
-        where T : IEquatable<T>
     {
         T[,,] data;
         

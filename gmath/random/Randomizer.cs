@@ -38,7 +38,7 @@ namespace Z0
         /// </summary>
         /// <param name="seed">The seed upon which generation is predicated</param>
         public static IRandomizer<T> define<T>(ulong[] seed)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => (IRandomizer<T>)new Randomizer(seed);
 
         /// <summary>
@@ -134,11 +134,11 @@ namespace Z0
         }
 
         static T mod<T>(ulong lhs, ulong rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => convert<ulong,T>(lhs % rhs);
 
         static ulong width<T>(Interval<T> domain)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => convert<T,ulong>(domain.Right) - convert<T,ulong>(domain.Left);
 
         IEnumerable<ulong> stream()
@@ -344,7 +344,7 @@ namespace Z0
 
 
         static IRandomizer<T> GetGeneric<T>(Randomizer src)
-            where T : struct, IEquatable<T>        
+            where T : struct        
             => Unsafe.As<Randomizer,IRandomizer<T>>(ref src);
 
         

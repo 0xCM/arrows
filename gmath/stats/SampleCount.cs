@@ -15,11 +15,11 @@ namespace Z0
     public static class SampleCount
     {
         public static SampleCount<T> define<T>(Interval<T> domain, int count)
-            where T : struct, IEquatable<T>
+            where T : struct
             => new SampleCount<T>(domain,count);
 
         public static Func<Interval<T>,int, SampleCount<T>> factory<T>()
-            where T : struct, IEquatable<T> => define;        
+            where T : struct => define;        
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The value domain</typeparam>
     public class SampleCount<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         public SampleCount(Interval<T> Domain, int Count)
         {
@@ -46,7 +46,7 @@ namespace Z0
     public static class SampleCountX
     {
         public static ulong TotalCount<T>(this IEnumerable<SampleCount<T>> counts)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var sum = 0ul;
             iter(counts, c => sum += (ulong)c.Count);

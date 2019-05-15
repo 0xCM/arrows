@@ -13,7 +13,7 @@ namespace Z0
     public static class DivisorIndex
     {
         public static DivisorIndex<T> define<T>(Interval<T> range, IReadOnlyList<DivisorList<T>> lists)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new DivisorIndex<T>(range, lists);
     }
 
@@ -22,7 +22,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class DivisorIndex<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         public DivisorIndex(Interval<T> Range, IReadOnlyList<DivisorList<T>> Lists)
         {

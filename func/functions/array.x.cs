@@ -144,9 +144,11 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static bool ReallyEqual<T>(this T[] lhs, T[] rhs)
-            where T: IEquatable<T>
+        public static bool ReallyEqual<T>(this T[] lhs, T[] rhs, Func<T,T,bool> predicate = null)
         {
+            bool test(T x, T y)
+                => predicate?.Invoke(x,y) ?? x.Equals(y);
+                
             if(lhs.Length != rhs.Length)
                 return false;
             for(var i = 0; i<lhs.Length; i++)

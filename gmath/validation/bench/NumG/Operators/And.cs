@@ -16,7 +16,7 @@ namespace Z0
     partial class NumGBench
     {
         OpMetrics and<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid =  Id<T>(OpKind.And);
             var src = Sampled(opid);

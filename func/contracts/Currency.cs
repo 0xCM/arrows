@@ -14,7 +14,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The primitive type</typeparam>
     public interface ICurrencyOps<T> : IBoundRealOps<T>, IFractionalOps<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
 
     {
 

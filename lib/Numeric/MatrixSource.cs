@@ -15,7 +15,7 @@ namespace Z0
     public interface RandomMatrixSource<M,N,T>
         where M : ITypeNat, new()
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
 
     {
         IEnumerable<Matrix<M,N,T>> stream(T min, T max);
@@ -24,7 +24,7 @@ namespace Z0
     public readonly struct MatrixSource<M,N,T> : RandomMatrixSource<M,N,T>
         where N : ITypeNat, new()
         where M : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         public static MatrixSource<M,N,T> Inhabitant = default;
 

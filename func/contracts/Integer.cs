@@ -13,13 +13,13 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The operand type</typeparam>
     public interface IIntegerOps<T> : IRealNumberOps<T>, IStepwiseOps<T>, IBitwiseOps<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     { 
 
     }
 
     public interface IFiniteIntOps<T> : IIntegerOps<T>, IBoundRealOps<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     { 
 
     }
@@ -28,7 +28,7 @@ namespace Z0
     /// Characterizes operations over unbound integers
     /// </summary>
     public interface IInfiniteIntOps<T> : IIntegerOps<T>, IInfiniteOps<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     { 
 
     }
@@ -38,7 +38,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The operand type</typeparam>
     public interface ISignedIntOps<T> : IIntegerOps<T>, ISignableOps<T>, ISubtractiveOps<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     { 
 
     }
@@ -48,7 +48,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The operand type</typeparam>
     public interface IFiniteSignedIntOps<T> : ISignedIntOps<T>, IBoundRealOps<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     { 
 
     } 
@@ -58,7 +58,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The operand type</typeparam>
     public interface IInfiniteSignedIntOps<T> : IInfiniteIntOps<T>, ISignedIntOps<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
     }

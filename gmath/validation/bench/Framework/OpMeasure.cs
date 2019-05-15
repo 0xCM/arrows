@@ -17,7 +17,7 @@ namespace Z0
 
 
     public abstract class OpMeasure<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         protected OpMeasure(OpId<T> OpId, ArraySampler LeftSrc, ArraySampler RightSrc, ArraySampler NonZeroSrc)
         {   
@@ -67,12 +67,12 @@ namespace Z0
     public static class AddMeasure
     {
         public static AddMeasure<T> DefineMeasure<T>(OpId<T> OpId, IRandomizer random, int SampleSize)
-          where T : struct, IEquatable<T>
+          where T : struct
                 => new AddMeasure<T>(OpId, random, SampleSize);
 
     }
     public class AddMeasure<T> : OpMeasure<T>
-         where T : struct, IEquatable<T>
+         where T : struct
     {
         public AddMeasure(OpId<T> OpId, IRandomizer random, int SampleSize)
             : base(OpId, random, SampleSize)

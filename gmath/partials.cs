@@ -20,7 +20,7 @@ namespace Z0
     public static partial class ginx
     {
         public class InitContext<T>
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             public readonly T one;
 

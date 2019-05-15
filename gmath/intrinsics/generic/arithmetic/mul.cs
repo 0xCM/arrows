@@ -20,7 +20,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<T> mul<T>(in Vec128<T> lhs, in Vec128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -36,7 +36,7 @@ namespace Z0
 
        [MethodImpl(Inline)]
         public static Vec256<T> mul<T>(in Vec256<T> lhs, in Vec256<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -56,8 +56,8 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<S> mul<S,T>(in Vec128<T> lhs, in Vec128<T> rhs)
-            where S : struct, IEquatable<S>
-            where T : struct, IEquatable<T>
+            where S : struct
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -78,8 +78,8 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref Vec128<S> mul<S,T>(in Vec128<T> lhs, in Vec128<T> rhs, ref Vec128<S> dst)
-            where S : struct, IEquatable<S>
-            where T : struct, IEquatable<T>
+            where S : struct
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -103,8 +103,8 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe Span<T> mul<S,T>(in Vec128<S> lhs, in Vec128<S> rhs, Span<T> dst)
-            where S : struct, IEquatable<S>
-            where T : struct, IEquatable<T>
+            where S : struct
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -134,7 +134,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span128<T> mul<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();        
             switch(kind)
@@ -171,7 +171,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span256<T> mul<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
 
             var kind = PrimalKinds.kind<T>();        
@@ -211,7 +211,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe void mul<T>(in Vec128<T> lhs, in Vec128<T> rhs, void* dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)

@@ -16,7 +16,7 @@ namespace Z0
     /// <summary>
     /// Encodes a natural number k such that k1:K1 & k2:K2 => k = k1*k2
     /// </summary>
-    public readonly struct Mul<K1, K2> : ITypeNat, IEquatable<Pow<K1,K2>>, IEquatable<NatSeq> 
+    public readonly struct Mul<K1, K2> : ITypeNat
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
     {

@@ -15,7 +15,7 @@ namespace Z0
     using static zfunc;
 
     public interface PolyNum<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         T abs(T src);
         T negate(T src);
@@ -27,9 +27,9 @@ namespace Z0
         T mod(T lhs, T rhs);
     }
 
-    public interface PolyNum<S,T> : IEquatable<S>
+    public interface PolyNum<S,T>
         where S : struct, PolyNum<S,T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         T add(T rhs);
     }

@@ -27,7 +27,7 @@ partial class zcore
     /// <param name="last">The last integer to yield</param>
     /// <typeparam name="T">The underlying integer type</typeparam>
     public static IEnumerable<intg<T>> range<T>(intg<T> first, intg<T> last)
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         var current = first;
         if(first < last)
@@ -46,7 +46,7 @@ partial class zcore
     [MethodImpl(Inline)]   
     public static modg<N,T> modring<N,T>(intg<T> lhs)
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
             => new modg<N,T>(lhs);
 
     

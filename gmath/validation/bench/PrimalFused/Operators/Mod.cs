@@ -18,12 +18,12 @@ namespace Z0
     {
 
         OpMetrics Mod<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid = Id<T>(OpKind.Mod);
             var samples = Sampled(opid, true);            
             var sw = stopwatch();            
-            gmath.mod(samples.Left, samples.Right, dst);
+            fused.mod<T>(samples.Left, samples.Right, dst);
             return(SampleTime(snapshot(sw)));
         }
 

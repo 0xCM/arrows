@@ -31,70 +31,70 @@ namespace Z0
             OpFusion fusion = OpFusion.Atomic, 
             ByteSize? operandSize = null, 
             bool baseline = true)
-                where T : struct, IEquatable<T>
+                where T : struct
                     => new OpId<T>(op, NumKind, generic, intrinsic, fusion, operandSize ?? Unsafe.SizeOf<T>(), baseline);
     
         /// <summary>
         /// Describes vectored intrinsic operators
         /// </summary>
         static OpId<T> InXOpId<T>(this OpKind kind, ByteSize operandSize)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => kind.OpId<T>(NumericKind.Derived, intrinsic: true, fusion: OpFusion.Fused, operandSize : operandSize);
 
         /// <summary>
         /// Describes intrinsic scalar operators on Num128 values
         /// </summary>
         public static OpId<T> Num128OpId<T>(this OpKind kind)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => kind.OpId<T>(NumericKind.Derived, intrinsic: true, fusion: OpFusion.Atomic);
 
         /// <summary>
         /// Describes intrinsic scalar operators on Vec128 values
         /// </summary>
         public static OpId<T> Vec128OpId<T>(this OpKind kind)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => kind.InXOpId<T>(DataSize.Size16);
 
         /// <summary>
         /// Describes intrinsic scalar operators on Vec128 values
         /// </summary>
         public static OpId<T> Vec256OpId<T>(this OpKind kind)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => kind.InXOpId<T>(DataSize.Size32);
 
         /// <summary>
         /// Describes vectored/fused primal operations
         /// </summary>
         public static OpId<T> NativeFused<T>(this OpKind kind)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => kind.OpId<T>(NumericKind.Native, false, intrinsic: false, fusion: OpFusion.Fused, baseline: true);
 
         /// <summary>
         /// Describes atomic primal operations
         /// </summary>
         public static OpId<T> PrimalDirect<T>(this OpKind kind, NumericKind numKind = NumericKind.Native)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => kind.OpId<T>(numKind, intrinsic: false, baseline : true);
 
         /// <summary>
         /// Describes atomal primal operations
         /// </summary>
         public static OpId<T> PrimalAtomic<T>(this OpKind kind, NumericKind numKind = NumericKind.Native)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => kind.OpId<T>(numKind);
 
         /// <summary>
         /// Describes an operator on a generic number type
         /// </summary>
         public static OpId<T> NumG<T>(this OpKind kind, OpFusion fusion = OpFusion.Atomic)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => kind.OpId<T>(NumericKind.Derived, generic: true, intrinsic: false, fusion: fusion);
 
         /// <summary>
         /// Describes an operator on a numbers type
         /// </summary>
         public static OpId<T> Numbers<T>(this OpKind kind)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => kind.OpId<T>(NumericKind.Derived, fusion: OpFusion.Fused);
 
         public static string BuildUri(this IOpId src)

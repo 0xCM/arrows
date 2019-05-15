@@ -13,7 +13,7 @@ namespace Z0
     
 
     public readonly struct LeftClosedInterval<T> : ILeftClosedInterval<T>, IRightOpenInterval<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
 
     {
 

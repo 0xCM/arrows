@@ -24,7 +24,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]   
         public static intg<T> ToIntG<T>(this ulong src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => convert<ulong,T>(src);
         
 

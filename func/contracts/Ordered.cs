@@ -25,7 +25,7 @@ namespace Z0
     /// Characterizes a totally ordered structure
     /// </summary>
     /// <typeparam name="S">The structure reification type</typeparam>
-    public interface IOrderable<S> : IEquatable<S>
+    public interface IOrderable<S>
         where S : IOrderable<S>, new()
     {   
         /// <summary>

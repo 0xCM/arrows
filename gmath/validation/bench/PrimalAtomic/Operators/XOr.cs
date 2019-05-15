@@ -16,7 +16,7 @@ namespace Z0
     partial class PrimalAtomicBench
     {
         OpMetrics XOr<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid = Id<T>(OpKind.XOr);
             var samples = Sampled(opid);

@@ -13,7 +13,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The operand type</typeparam>
     public interface IFractionalOps<T> : IRealNumberOps<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         T ceiling(T x);
         

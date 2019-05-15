@@ -146,7 +146,7 @@ namespace Z0
         }
 
         void Bench51<T>()
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var samples = Pow2.T19;
             var cycles = Pow2.T12;
@@ -158,7 +158,7 @@ namespace Z0
             Duration LeftBench()
             {
                 var sw = stopwatch();
-                gmath.add(src.Left, src.Right, dst.Left);
+                fused.add<T>(src.Left, src.Right, dst.Left);
                 return snapshot(sw);
             }
 
@@ -403,18 +403,13 @@ namespace Z0
 
         }
 
-        public void BitTest()
-        {
-
-            var bs1 = "10001000111";
-            var value = Bits.parse<ulong>(bs1).ToBitVector();
-            inform(value);
-        }
 
         void RunTests()
         {
-            var tm = new TestManager();
-            tm.Run();
+            TestRunner.RunTests(string.Empty, false);
+        
+            // var tm = new TestManager();
+            // tm.Run();
         }
 
         void TestRange()
@@ -428,7 +423,7 @@ namespace Z0
             var samples = Pow2.T19;
 
             void RunTest<T>()
-                where T : struct, IEquatable<T>
+                where T : struct
             {
                 var lhsA = Randomizer.Array<T>(samples);
                 var lhsS = lhsA.ToReadOnlySpan();
@@ -444,7 +439,7 @@ namespace Z0
 
                 sw.Restart();
                 for(var i = 0; i<cycles; i++)
-                    gmath.add(lhsS, rhsS, dstS);
+                    fused.add(lhsS, rhsS, dstS);
                 inform($"Spans B: {snapshot(sw)}");
 
             }
@@ -454,7 +449,7 @@ namespace Z0
         }
 
         static ref T DoFlip<T>(ref T val)
-            where T : struct, IEquatable<T>
+            where T : struct
             => ref atoms.flipU8(ref val);
 
         void ConvertTest()
@@ -480,7 +475,7 @@ namespace Z0
         }
 
         void AbsSqrtGeneric<T>()
-            where T : struct, IEquatable<T>
+            where T : struct
         {
 
             var samples = Pow2.T21;
@@ -522,7 +517,7 @@ namespace Z0
         }
 
         Duration Distance1<T>(int cycles, int samples)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var src = Randomizer.Span<T>(samples);
             var dst = span<T>(samples);
@@ -544,7 +539,7 @@ namespace Z0
         }
 
         Duration Distance2<T>(int cycles, int samples)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var leftSrc = Num.many(Randomizer.Span<T>(samples)).ToReadOnlySpan();
             var rightSrc = Num.many(Randomizer.Span<T>(samples)).ToReadOnlySpan();
@@ -574,7 +569,7 @@ namespace Z0
         }
 
         Duration Distance3<T>(int cycles, int samples)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var lhs = Num.many(Randomizer.Span<T>(samples)).ToReadOnlySpan();
             var rhs = Num.many(Randomizer.Span<T>(samples)).ToReadOnlySpan();
@@ -746,23 +741,7 @@ namespace Z0
         // {
             
 
-        void TestBits()
-        {
-            Claim.@true(gbits.test(BitPattern.B00000101, 0));
-            Claim.@false(gbits.test(BitPattern.B00000101, 1));
-            Claim.@true(gbits.test(BitPattern.B00000101, 2));
-        }
 
-        void TestBitPatterns()
-        {
-            var l1 = BitLayouts.Define(8u);
-            Claim.eq(l1.src,8);
-            Claim.eq(l1.x00,8);
-            Claim.eq(l1.x000,8);
-
-            l1[1] |= 0b101;
-            Claim.eq(l1[1], 0b101);
-        }
         static void Main(params string[] args)
         {            
             var app = new Benchmark();
@@ -770,8 +749,8 @@ namespace Z0
             {     
                 //app.ConvertTest();
                 //app.Distance();
-                app.TestBits();
-                //BenchSelector.RunBench(BenchKind.PrimalAtomic);
+                //app.RunTests();
+                BenchSelector.RunBench(BenchKind.PrimalAtomic);
                 //BenchSelector.RunBench(BenchKind.PrimalFused);
 
             }

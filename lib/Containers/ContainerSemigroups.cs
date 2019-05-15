@@ -13,21 +13,21 @@ namespace Z0
     public static class Fixed
     {
         public static ListSemigroup<T> list<T>(IReadOnlyList<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new ListSemigroup<T>(src);
 
         public static ArraySemigroup<T> array<T>(params T[] src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new ArraySemigroup<T>(src);
 
         public static StreamSemigroup<T> stream<T>(IEnumerable<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new StreamSemigroup<T>(src);
 
     }
 
     public readonly struct ArraySemigroup<T> : IFixedContainer<ArraySemigroup<T>, T[],T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
         public static readonly ArraySemigroup<T> Empty = new ArraySemigroup<T>(new T[]{});
@@ -59,8 +59,6 @@ namespace Z0
             => System.Linq.Enumerable.SequenceEqual(data, rhs.data, ISG.comparer());
 
 
-        bool IEquatable<ArraySemigroup<T>>.Equals(ArraySemigroup<T> rhs)
-            => eq(rhs);
 
         bool ISemigroupOps<T>.eq(T lhs, T rhs)
             => lhs.Equals(rhs);
@@ -76,7 +74,7 @@ namespace Z0
     }
 
     public readonly struct ListSemigroup<T> : IFixedContainer<ListSemigroup<T>, IReadOnlyList<T>,T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         public static readonly ListSemigroup<T> Empty = new ListSemigroup<T>(new T[]{});
 
@@ -105,11 +103,6 @@ namespace Z0
         
         bool eq(ListSemigroup<T> rhs)
             => System.Linq.Enumerable.SequenceEqual(data, rhs.data, ISG.comparer());
-
-
-        bool IEquatable<ListSemigroup<T>>.Equals(ListSemigroup<T> rhs)
-            => eq(rhs);
-
         
         bool ISemigroupOps<T>.eq(T lhs, T rhs)
             => lhs.Equals(rhs);
@@ -123,7 +116,7 @@ namespace Z0
     }
 
     public readonly struct StreamSemigroup<T> : IFixedContainer<StreamSemigroup<T>, IEnumerable<T>,T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         public static readonly StreamSemigroup<T> Empty = new StreamSemigroup<T>(new T[]{});
 
@@ -147,8 +140,6 @@ namespace Z0
         T INullaryOps<T>.zero 
             =>  Zero;
         
-        bool IEquatable<StreamSemigroup<T>>.Equals(StreamSemigroup<T> rhs)
-            => System.Linq.Enumerable.SequenceEqual(data, rhs.data, ISG.comparer());
 
         bool ISemigroupOps<T>.eq(T lhs, T rhs)
             => lhs.Equals(rhs);

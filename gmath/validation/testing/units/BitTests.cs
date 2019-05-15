@@ -19,13 +19,14 @@ namespace Z0.Test
     using static BitPattern;
     using static BinaryDigit;
     using static Bit;
+    
     public class BitTests : UnitTest<BitTests>
     {
         
-        public void COnvert()
+        public void Convert()
         {
             static T toInt<T>(Bit b)
-                where T : struct, IEquatable<T>
+                where T : struct
                     => convert<int,T>((int)b); 
 
             Claim.eq(1, toInt<int>(Bit.On)); 
@@ -34,7 +35,7 @@ namespace Z0.Test
             Claim.eq(0u, toInt<uint>(Bit.Off)); 
         }
 
-        public void BitCOnvert()
+        public void BitConvert()
         {
             Claim.eq<bool>(false, Off);
             Claim.eq<bool>(true, On);
@@ -88,6 +89,40 @@ namespace Z0.Test
             Claim.eq(Off, On ^ On);
         }
 
+        public void BitLayoutTest()
+        {
+            var l1 = BitLayouts.Define(8u);
+            Claim.eq(l1.src,8);
+            Claim.eq(l1.x00,8);
+            Claim.eq(l1.x000,8);
+
+            l1[1] |= 0b101;
+            Claim.eq(l1[1], 0b101);
+        }
+
+        public void BitTest()
+        {
+            Claim.@true(gbits.test(BitPattern.B00000101, 0));
+            Claim.@false(gbits.test(BitPattern.B00000101, 1));
+            Claim.@true(gbits.test(BitPattern.B00000101, 2));
+            
+            Claim.@true(gbits.test(BitPattern.B00000111, 0));
+            Claim.@true(gbits.test(BitPattern.B00000111, 1));
+            Claim.@true(gbits.test(BitPattern.B00000111, 2));
+        }
+
+        public void BitParse()
+        {
+            
+            var bs1 = "10001000111";
+            var value = gbits.parse<ulong>(bs1).ToBitVector();
+            Claim.eq(value,0b10001000111);
+
+            var x1 = 0b10100111001110001110010110101000;
+            var y1 = "0b10100111001110001110010110101000";
+            var z1 = gbits.parse<uint>(y1).ToBitVector();
+            Claim.eq(x1, z1);
+        }
 
         public void Pack1()
         {
@@ -96,7 +131,7 @@ namespace Z0.Test
             var x1 = (byte)0b11100101;
             var x2 = (byte)0b00111000;
             var x3 = (byte)0b10100111;
-            Claim.eq(xval, Z0.Bits.pack(x0, x1, x2,x3));
+            Claim.eq(xval, Bits.pack(x0, x1, x2,x3));
 
             var xbsref = "10100111" + "00111000" + "11100101" + "10101000";
             Claim.eq(xbsref, xval.ToBitString());

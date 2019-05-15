@@ -16,9 +16,9 @@ namespace Z0
     /// <summary>
     /// Strutural represention of the dual of an N-dimensional vector
     /// </summary>
-    public readonly struct Covector<N, T> : IEquatable<Covector<N,T>>, IEnumerable<T>, ILengthwise
+    public readonly struct Covector<N, T> : IEnumerable<T>, ILengthwise
         where N : ITypeNat, new() 
-        where T : struct, IEquatable<T>    
+        where T : struct    
     {
         /// <summary>
         /// Vector => Slice

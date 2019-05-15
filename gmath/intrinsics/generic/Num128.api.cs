@@ -44,7 +44,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static void mul<T>(T[] lhs, T[] rhs, T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             var len = length(lhs,rhs);
@@ -125,7 +125,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(byte src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = stackalloc byte[16];            
             dst[0] = src;
@@ -134,7 +134,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(sbyte src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = stackalloc sbyte[16];            
             dst[0] = src;
@@ -143,7 +143,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(short src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = stackalloc short[8];            
             dst[0] = src;
@@ -152,7 +152,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(ushort src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = stackalloc ushort[8];            
             dst[0] = src;
@@ -161,7 +161,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(int src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = stackalloc int[4];            
             dst[0] = src;
@@ -170,7 +170,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(uint src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = stackalloc uint[4];            
             dst[0] = src;
@@ -179,7 +179,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(long src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = stackalloc long[2];            
             dst[0] = src;
@@ -188,7 +188,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(ulong src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = stackalloc ulong[2];            
             dst[0] = src;
@@ -197,7 +197,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(float src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = stackalloc float[4];            
             dst[0] = src;
@@ -206,7 +206,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(double src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var dst = stackalloc double[2];            
             dst[0] = src;
@@ -215,7 +215,7 @@ namespace Z0
 
 
         public static Num128<T> define<T>(T value)
-            where T : struct, IEquatable<T>        
+            where T : struct        
         {
             var kind = PrimalKinds.kind<T>();
             

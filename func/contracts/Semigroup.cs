@@ -36,7 +36,7 @@ namespace Z0
 
     }
 
-    public interface ISemigroup<S> : IEquatable<S>
+    public interface ISemigroup<S>
         where S : ISemigroup<S>, new()
     {
 
@@ -78,7 +78,7 @@ namespace Z0
         INullaryOps<T>, 
         ISemigroupOps<T>
     where S : IImplicitSemigroup<S,T>, new()
-    where T : struct, IEquatable<T>
+    where T : struct
     
     {
         IEqualityComparer<T> comparer(Func<T,int> hasher = null);

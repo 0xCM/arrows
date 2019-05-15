@@ -19,8 +19,8 @@ namespace Z0
     /// <summary>
     /// Represents an integer predicated on (and constrained by) an underlying type
     /// </summary>
-    public readonly struct intg<T> : IEquatable<intg<T>>
-        where T : struct, IEquatable<T>
+    public readonly struct intg<T>
+        where T : struct
     {
         static readonly Operative.PrimOps<T> Prim = primops.typeops<T>();
 

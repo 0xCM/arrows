@@ -22,7 +22,7 @@ partial class zfunc
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]
     public static ClosedInterval<T> closed<T>(T left, T right)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Interval.closed(left,right);
 
     /// <summary>
@@ -33,7 +33,7 @@ partial class zfunc
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]
     public static LeftOpenInterval<T> leftopen<T>(T left, T right)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Interval.leftopen(left,right);
 
     /// <summary>
@@ -44,7 +44,7 @@ partial class zfunc
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]
     public static LeftClosedInterval<T> leftclosed<T>(T left, T right)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Interval.leftclosed(left,right);
 
     /// <summary>
@@ -55,6 +55,6 @@ partial class zfunc
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]
     public static OpenInterval<T> open<T>(T left, T right)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Interval.open(left,right);
 }

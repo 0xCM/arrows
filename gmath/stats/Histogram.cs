@@ -16,7 +16,7 @@ namespace Z0
     public class Histogram
     {
         public static Histogram<T> define<T>(Interval<T> domain, T? grain = null)            
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var width = gmath.sub(domain.Right, domain.Left);
             var histo = new Histogram<T>(domain, 
@@ -27,7 +27,7 @@ namespace Z0
 
 
     public class Histogram<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         public Histogram(Interval<T> Domain, T Grain)
         {

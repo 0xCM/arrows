@@ -10,7 +10,6 @@ namespace Z0
     using System.Threading;
     using System.Threading.Tasks;
     using Testing;
-    using Tests;
     using System.IO;
     using System.Runtime.CompilerServices;
     using System.Runtime.Intrinsics;
@@ -22,6 +21,7 @@ namespace Z0
 
     using static primops;
     using static Divisors;
+    using Z0.Test;
 
     public sealed class ZTest : ZTest<ZTest>
     {
@@ -54,7 +54,7 @@ namespace Z0
 
 
         void CheckRandomBounds<T>(Interval<T> domain)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var stream = Randomizer.Stream(domain);
             var samples = stream.Freeze(Pow2.T20);
@@ -94,15 +94,7 @@ namespace Z0
             inform($"(+) = {pos} | (-) = {neg}");                                         
         }
 
-        void RunBenchmarks()
-        {
-            var opSets = items(OpSet.All);
-            var opKinds = literals<OpKind>();
-            var primKinds = literals<PrimalKind>();
-            // var specs = BenchSpecs.Choose(opKinds, opSets, primKinds);
-            // Benchmarker.Run(specs);
-        }
-
+        
         void RunTests()
         {
             var paths = new[]{""};            

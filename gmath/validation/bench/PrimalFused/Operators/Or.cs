@@ -17,12 +17,12 @@ namespace Z0
     partial class PrimalFusedBench
     {
         OpMetrics Or<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid = Id<T>(OpKind.Or);
             var samples = Sampled(opid);            
             var sw = stopwatch();            
-            gmath.or(samples.Left, samples.Right, dst);
+            fused.or<T>(samples.Left, samples.Right, dst);
             return(SampleTime(snapshot(sw)));
         }
 

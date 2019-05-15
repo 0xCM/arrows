@@ -13,9 +13,9 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
-    public readonly struct Vector<N, T> : IEquatable<Vector<N,T>>, ILengthwise
+    public readonly struct Vector<N, T> : ILengthwise
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>    
+        where T : struct    
     {
 
         public static bool operator ==(Vector<N,T> lhs, Vector<N,T> rhs)
@@ -111,7 +111,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public Vector<N,Y> fuse<Y>(Vector<N,T> rhs, Func<T,T,Y> composer)
-            where Y : struct, IEquatable<Y>    
+            where Y : struct
                 => new Vector<N,Y>(zfunc.fuse(data, rhs.data, composer));
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Z0
         /// <typeparam name="Y">The transformation codomain</typeparam>
         [MethodImpl(Inline)]   
         public Vector<N,Y> map<Y>(Func<T,Y> f)
-            where Y : struct, IEquatable<Y>    
+            where Y : struct
                 => new Vector<N, Y>(zfunc.map(data,f));
 
         [MethodImpl(Inline)]   

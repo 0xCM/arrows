@@ -16,13 +16,13 @@ namespace Z0
     public static class UnaryOpData
     {
         static T[] Sample<T>(IRandomizer random, BenchConfig config, bool nonzero = false)
-            where T : struct, IEquatable<T>        
+            where T : struct        
                 => nonzero 
                  ? random.Array<T>(config.Reps,x => gmath.neq(x,gmath.zero<T>())) 
                  : random.Array<T>(config.Reps);
         
         public static UnaryOpData<T> Configure<T>(BenchConfig config, IRandomizer random, bool nonzero = false)
-            where T : struct, IEquatable<T>        
+            where T : struct        
             => new UnaryOpData<T>(
                 Sample<T>(random, config,nonzero), 
                 alloc<T>(config.Reps),
@@ -31,7 +31,7 @@ namespace Z0
     }
 
     public class UnaryOpData<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         public UnaryOpData(T[] Source, T[] LeftTarget, T[] RightTarget)
         {
@@ -54,13 +54,13 @@ namespace Z0
     public static class BinOpData
     {
         static T[] Sample<T>(IRandomizer random, BenchConfig config, bool nonzero = false)
-            where T : struct, IEquatable<T>        
+            where T : struct        
                 => nonzero 
                  ? random.Array<T>(config.Reps,x => gmath.neq(x,gmath.zero<T>())) 
                  : random.Array<T>(config.Reps);
         
         public static BinOpData<T> Configure<T>(BenchConfig config, IRandomizer random, bool nonzero = false)
-            where T : struct, IEquatable<T>        
+            where T : struct        
             => new BinOpData<T>(
                 Sample<T>(random, config,nonzero), 
                 Sample<T>(random, config,nonzero), 
@@ -70,7 +70,7 @@ namespace Z0
     }
 
     public class BinOpData<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
         public BinOpData(T[] LeftSource, T[] RightSource, T[] LeftTarget, T[] RightTarget)

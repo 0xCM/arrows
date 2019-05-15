@@ -12,7 +12,7 @@ namespace Z0
 
 
     public readonly struct OpenInterval<T> : IOpenInterval<OpenInterval<T>,T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
         public static implicit operator Interval<T>(OpenInterval<T> x)

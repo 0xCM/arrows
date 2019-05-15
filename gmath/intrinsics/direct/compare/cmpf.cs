@@ -66,8 +66,9 @@ namespace Z0
         public static Vec256<double> cmpf(in Vec256<double> lhs, in Vec256<double> rhs, FloatComparisonMode mode)
             => clearNaN(Avx2.Compare(lhs,rhs,mode));
 
-    }
 
+
+    }
 
 
 }

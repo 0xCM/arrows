@@ -16,8 +16,8 @@ namespace Z0
     /// <summary>
     /// Encodes a natural number k such that k:K & j:Prior[K] => k = j + 1
     /// </summary>
-    public readonly struct Prior<K> : ITypeNat, IEquatable<Prior<K>>
-            where K : ITypeNat, new()
+    public readonly struct Prior<K> : ITypeNat
+        where K : ITypeNat, new()
     {
         
         static K k = default;

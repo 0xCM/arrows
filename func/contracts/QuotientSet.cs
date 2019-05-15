@@ -16,7 +16,7 @@ namespace Z0
     /// <typeparam name="T">The set domain</typeparam>
     public interface IQuotientSet<C,T> 
         where C : IEquivalenceClass<C,T>, new()
-        where T : IEquatable<T>, new()
+        where T : new()
     {
         /// <summary>
         /// Effects a partition via the equivalence

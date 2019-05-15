@@ -26,7 +26,7 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]   
         public static T apply<N,T>(Covector<N,T> cv, Vector<N,T> v)
-            where T : struct, ISemiringOps<T>, IEquatable<T>
+            where T : struct, ISemiringOps<T>
             where N : ITypeNat, new()        
 
         {
@@ -46,7 +46,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(Dim<N> dim, params T[] src) 
             where N : ITypeNat, new() 
-            where T : struct, IEquatable<T>    
+            where T : struct    
                 => new Covector<N,T>(src);
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(IEnumerable<T> src) 
-            where T : struct, IEquatable<T>    
+            where T : struct    
             where N : ITypeNat, new() 
                 => new Covector<N,T>(src);
         
@@ -69,7 +69,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
         public static Covector<N,T> define<N,T>(params T[] src) 
-            where T : struct, IEquatable<T>    
+            where T : struct    
             where N : ITypeNat, new() 
                 => new Covector<N,T>(src);
 

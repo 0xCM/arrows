@@ -21,8 +21,6 @@ namespace Z0
     partial class gmath
     {
 
-        #region constants
-
         [MethodImpl(Inline)]
         public static T zero<T>()
             where T : struct
@@ -152,10 +150,6 @@ namespace Z0
         }
 
 
-        #endregion
-
-        #region add
-
         [MethodImpl(Inline)]
         public static ref T add<T>(ref T lhs, T rhs)
             where T : struct
@@ -233,20 +227,6 @@ namespace Z0
                                     
             throw unsupported(kind);
         }
-
-        [MethodImpl(Inline)]
-        public static Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct
-                => fused.add(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct
-                => fused.add(lhs,rhs,dst);
-
-        #endregion
-
-        #region sub
 
         [MethodImpl(Inline)]
         public static ref T sub<T>(ref T lhs, T rhs)
@@ -329,20 +309,6 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct
-                => fused.sub(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct
-                => fused.sub(lhs,rhs,dst);
-
-        #endregion sub
-
-        #region mul
-
-        [MethodImpl(Inline)]
         public static ref T mul<T>(ref T lhs, T rhs)
             where T : struct
         {
@@ -420,22 +386,6 @@ namespace Z0
 
             throw unsupported(kind);
         }
-
-
-        [MethodImpl(Inline)]
-        public static Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct
-                => fused.mul(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct
-                => fused.mul(lhs,rhs,dst);
-
-
-        #endregion
-
-        #region div
 
         [MethodImpl(Inline)]
         public static ref T div<T>(ref T lhs, T rhs)
@@ -518,19 +468,44 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Span<T> div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+        public static bool divides<T>(T lhs, T rhs)
             where T : struct
-                => fused.div(lhs,rhs,dst);
+        {
+            var kind = PrimalKinds.kind<T>();
 
-        [MethodImpl(Inline)]
-        public static Span<T> div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct
-                => fused.div(lhs,rhs,dst);
+            if(kind == PrimalKind.int32)
+                return dividesI32(lhs,rhs);
 
-        #endregion
+            if(kind == PrimalKind.uint32)
+                return dividesU32(lhs,rhs);
 
-        #region mod
+            if(kind == PrimalKind.int64)
+                return dividesI64(lhs,rhs);
 
+            if(kind == PrimalKind.uint64)
+                return dividesU64(lhs,rhs);
+
+            if(kind == PrimalKind.int16)
+                return dividesI16(lhs,rhs);
+
+            if(kind == PrimalKind.uint16)
+                return dividesU16(lhs,rhs);
+
+            if(kind == PrimalKind.int8)
+                return dividesI8(lhs,rhs);
+
+            if(kind == PrimalKind.uint8)
+                return dividesU8(lhs,rhs);
+
+            if(kind == PrimalKind.float32)
+                return dividesF32(lhs,rhs);
+
+            if(kind == PrimalKind.float64)
+                return dividesF64(lhs,rhs);
+
+            throw unsupported(kind);
+        }
+        
         [MethodImpl(Inline)]
         public static ref T mod<T>(ref T lhs, T rhs)
             where T : struct
@@ -609,19 +584,6 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-        [MethodImpl(Inline)]
-        public static Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct
-                => fused.mod(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct
-                => fused.mod(lhs,rhs,dst);
-        
-        #endregion
-
-        #region and
 
         [MethodImpl(Inline)]
         public static ref T and<T>(ref T lhs, T rhs)
@@ -657,7 +619,6 @@ namespace Z0
             throw unsupported(kind);
         }
 
-
         [MethodImpl(Inline)]
         public static T and<T>(T lhs, T rhs)
             where T : struct
@@ -690,21 +651,6 @@ namespace Z0
 
             throw unsupported(kind);
         }           
-
-        [MethodImpl(Inline)]
-        public static Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct
-                => fused.and(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct
-                => fused.and(lhs,rhs,dst);
-
-
-        #endregion
-
-        #region or
 
         [MethodImpl(Inline)]
         public static ref T or<T>(ref T lhs, T rhs)
@@ -773,19 +719,7 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-        [MethodImpl(Inline)]
-        public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct
-                => fused.or(lhs,rhs,dst);
 
-        [MethodImpl(Inline)]
-        public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct
-                => fused.or(lhs,rhs,dst);
-
-        #endregion
-
-        #region xor
 
         [MethodImpl(Inline)]
         public static ref T xor<T>(ref T lhs, T rhs)
@@ -854,19 +788,6 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-        [MethodImpl(Inline)]
-        public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct
-                => fused.xor(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, T[] dst)
-            where T : struct
-                => fused.xor(lhs,rhs,dst);
-        
-        #endregion
-
-        #region lshift / rshift
 
         [MethodImpl(Inline)]
         public static ref T lshift<T>(ref T lhs, int rhs)
@@ -934,15 +855,6 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-        [MethodImpl(Inline)]
-        public static ref Span<T> lshift<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs, ref Span<T> dst)
-            where T : struct
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = lshift(lhs[i],rhs[i]);
-            return ref dst;
-        }
 
         [MethodImpl(Inline)]
         public static ref T rshift<T>(ref T lhs, int rhs)
@@ -1010,19 +922,6 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-        [MethodImpl(Inline)]
-        public static ref Span<T> rshift<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs, ref Span<T> dst)
-            where T : struct
-        {
-            var len  = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = rshift(lhs[i],rhs[i]);
-            return ref dst;
-        }
-
-        #endregion
-
-        #region flip
 
         [MethodImpl(Inline)]
         public static ref T flip<T>(ref T src)
@@ -1090,21 +989,6 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-
-        [MethodImpl(Inline)]
-        public static Span<T> flip<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct
-                => fused.flip(src,dst);
-
-
-        [MethodImpl(Inline)]
-        public static Span<T> flip<T>(ReadOnlySpan<T> src, T[] dst)
-            where T : struct
-                => fused.flip(src,dst);
-
-        #endregion
-
-        #region abs
 
         [MethodImpl(Inline)]
         public static ref T abs<T>(ref T src)
@@ -1186,19 +1070,8 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-        [MethodImpl(Inline)]
-        public static Span<T> abs<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct
-                => fused.abs(src,dst);
 
-        [MethodImpl(Inline)]
-        public static Span<T> abs<T>(ReadOnlySpan<T> src, T[] dst)
-            where T : struct
-                => fused.abs(src,dst);
 
-        #endregion
-
-        #region eq
 
         [MethodImpl(Inline)]
         public static bool eq<T>(T lhs, T rhs)
@@ -1239,17 +1112,7 @@ namespace Z0
             throw unsupported(kind);
         }
 
-        [MethodImpl(Inline)]
-        public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct, IEquatable<T>
-        {
-            var dst = span<bool>(length(lhs,rhs));
-            return fused.eq(lhs,rhs,dst);
-        }
 
-        #endregion
-
-        #region neq
 
         [MethodImpl(Inline)]
         public static bool neq<T>(T lhs, T rhs)
@@ -1290,27 +1153,6 @@ namespace Z0
             throw unsupported(kind);
         }
 
-        [MethodImpl(Inline)]
-        public static Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
-                => fused.neq(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
-            where T : struct, IEquatable<T>
-                => fused.neq(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct, IEquatable<T>
-        {
-            var dst = span<bool>(length(lhs,rhs));
-            return fused.neq(lhs,rhs,dst);
-        }
-
-        #endregion
-
-        #region lt
 
         [MethodImpl(Inline)]
         public static bool lt<T>(T lhs, T rhs)
@@ -1351,27 +1193,7 @@ namespace Z0
             throw unsupported(kind);
         }
 
-        [MethodImpl(Inline)]
-        public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct
-                => fused.lt(lhs,rhs,dst);
 
-        [MethodImpl(Inline)]
-        public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
-            where T : struct
-                => fused.lt(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var dst = span<bool>(length(lhs,rhs));
-            return fused.lt(lhs,rhs,dst);
-        }
-
-        #endregion
-
-        #region lteq        
 
         [MethodImpl(Inline)]
         public static bool lteq<T>(T lhs, T rhs)
@@ -1413,28 +1235,6 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct
-                => fused.lteq(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
-            where T : struct
-                => fused.lteq(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var dst = span<bool>(length(lhs,rhs));
-            return fused.lteq(lhs,rhs,dst);
-        }
-
-        #endregion
-
-        #region gt
-
-        [MethodImpl(Inline)]
         public static bool gt<T>(T lhs, T rhs)
             where T : struct
         {
@@ -1474,28 +1274,6 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct
-                => fused.gt(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
-            where T : struct
-                => fused.gt(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var dst = span<bool>(length(lhs,rhs));
-            return fused.gt(lhs,rhs,dst);
-        }
-
-        #endregion
-
-        #region gteq
-
-        [MethodImpl(Inline)]
         public static bool gteq<T>(T lhs, T rhs)
             where T : struct
         {
@@ -1533,28 +1311,6 @@ namespace Z0
 
             throw unsupported(kind);
         }
-
-        [MethodImpl(Inline)]
-        public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct
-                => fused.gteq(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, bool[] dst)
-            where T : struct
-                => fused.gteq(lhs,rhs,dst);
-
-        [MethodImpl(Inline)]
-        public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var dst = span<bool>(length(lhs,rhs));
-            return fused.gteq(lhs,rhs,dst);
-        }
-
-        #endregion
-
-        #region pow
 
         [MethodImpl(Inline)]
         public static T pow<T>(T src, uint exp)
@@ -1610,10 +1366,6 @@ namespace Z0
             throw unsupported(kind);
         }
 
-        #endregion
-
-        #region negate
-
         [MethodImpl(Inline)]
         public static ref T negate<T>(ref T src)
             where T : struct
@@ -1668,22 +1420,6 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-
-        [MethodImpl(NotInline)]
-        public static Span<T> negate<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct
-                => fused.negate(src,dst);
-
-        [MethodImpl(NotInline)]
-        public static Span<T> negate<T>(ReadOnlySpan<T> src, T[] dst)
-            where T : struct
-                => fused.negate(src,dst);
-
-
-        #endregion
-
-        #region inc
-
         [MethodImpl(Inline)]
         public static ref T inc<T>(ref T src)
             where T : struct
@@ -1721,9 +1457,7 @@ namespace Z0
                 return ref incF64(ref src);
             
             throw unsupported(kind);
-
         }           
-
 
         [MethodImpl(Inline)]
         public static T inc<T>(T src)
@@ -1764,20 +1498,6 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-        [MethodImpl(NotInline)]
-        public static Span<T> inc<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct
-                => fused.inc(src,dst);
-
-        [MethodImpl(NotInline)]
-        public static Span<T> inc<T>(ReadOnlySpan<T> src, T[] dst)
-            where T : struct
-                => fused.inc(src,dst);
-
-        #endregion
-
-        #region dec
-
         [MethodImpl(Inline)]
         public static ref T dec<T>(ref T src)
             where T : struct
@@ -1816,8 +1536,6 @@ namespace Z0
 
             throw unsupported(kind);
         }           
-
-
 
         [MethodImpl(Inline)]
         public static T dec<T>(T src)
@@ -1858,19 +1576,7 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-        [MethodImpl(NotInline)]
-        public static Span<T> dec<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct
-                => fused.dec(src,dst);
-
-        [MethodImpl(NotInline)]
-        public static Span<T> dec<T>(ReadOnlySpan<T> src, T[] dst)
-            where T : struct
-                => fused.dec(src,dst);
-        #endregion
         
-        #region min/max
-
         [MethodImpl(Inline)]
         public static T min<T>(T lhs, T rhs)
             where T : struct
@@ -1915,10 +1621,6 @@ namespace Z0
             where T : struct
                 => fused.min<T>(src);
 
-        [MethodImpl(Inline)]
-        public static T min<T>(ReadOnlySpan<T> src)
-            where T : struct
-                => fused.min(src);
 
         [MethodImpl(Inline)]
         public static T max<T>(T lhs, T rhs)
@@ -1963,16 +1665,7 @@ namespace Z0
         public static T max<T>(params T[] src)
             where T : struct
                 => fused.max<T>(src);
-
-        [MethodImpl(Inline)]
-        public static T max<T>(ReadOnlySpan<T> src)
-            where T : struct
-                => fused.max(src);
-
-        #endregion
  
-        #region parse
-
         [MethodImpl(Inline)]
         public static T parse<T>(string src)
             where T : struct
@@ -2012,10 +1705,6 @@ namespace Z0
             throw unsupported(kind);
         }
         
-        #endregion        
-
-        #region sqrt
-
         [MethodImpl(Inline)]
         public static ref T sqrt<T>(ref T src)
             where T : struct
@@ -2095,11 +1784,6 @@ namespace Z0
             throw unsupported(kind);
         }           
 
-
-        #endregion
-
-        #region square
-
         [MethodImpl(Inline)]
         public static ref T square<T>(ref T src)
             where T : struct
@@ -2178,9 +1862,5 @@ namespace Z0
 
             throw unsupported(kind);
         }           
-
-
-        #endregion
-
     }
 }

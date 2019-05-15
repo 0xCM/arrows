@@ -49,6 +49,14 @@ namespace Z0
             }
         }
 
+        [MethodImpl(Inline)]
+        public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            return fused.lteq(lhs,rhs,dst);
+        }
+
         [MethodImpl(NotInline)]
         public static Span<bool> lteqI8<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
             where T : struct

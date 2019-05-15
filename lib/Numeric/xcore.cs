@@ -24,7 +24,7 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         public static IEnumerable<Vector<N,T>> Vectors<N,T>(this IRandomizer rand, T min, T max)        
             where N : ITypeNat, new()
-            where T : struct, IEquatable<T>
+            where T : struct
         {
                 var primal = rand.Random<T>();
             
@@ -47,13 +47,13 @@ namespace Z0
         /// <typeparam name="T">The component type</typeparam>
         public static IEnumerable<Vector<N,T>> Vectors<N,T>(this IRandomizer rand, N len, T min, T max)
             where N : ITypeNat, new()
-            where T : struct, IEquatable<T>
+            where T : struct
                 => rand.Vectors<N,T>(min,max);
 
         public static RandomMatrixSource<M,N,T> MatrixSource<M,N,T>(this IRandomizer rand)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new MatrixSource<M,N,T>(rand);
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Z0
         public static IEnumerable<Matrix<M,N,T>> matrices<M,N,T>(this RandomMatrixSource<M,N,T> rms, T min, T max)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
-            where T : struct, IEquatable<T>
+            where T : struct
                 => rms.stream(min,max);
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Z0
         public static IEnumerable<Matrix<M,N,T>> matrices<M,N,T>(this RandomMatrixSource<M,N,T> rms, Dim<M,N> dim, T min, T max)
              where M : ITypeNat, new()
              where N : ITypeNat, new()
-             where T : struct, IEquatable<T>
+             where T : struct
                 => rms.stream(min,max);
 
 

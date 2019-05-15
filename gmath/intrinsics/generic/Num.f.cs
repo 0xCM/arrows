@@ -19,7 +19,7 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static bool eq<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -36,7 +36,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool cmpf<T>(in Num128<T> lhs, in Num128<T> rhs, FloatComparisonMode mode)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -54,7 +54,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool neq<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -71,7 +71,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool gt<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -88,7 +88,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool ngt<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -106,7 +106,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool gteq<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -123,7 +123,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool lt<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -140,7 +140,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool nlt<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -157,7 +157,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool lteq<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -174,7 +174,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> add<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -189,7 +189,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> sub<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -205,7 +205,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> mul<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -222,7 +222,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> div<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -237,7 +237,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> max<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -252,7 +252,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> min<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -267,7 +267,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> muladd<T>(Num128<T> x, Num128<T> y, Num128<T> z)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -282,7 +282,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> recip<T>(in Num128<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -294,7 +294,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> recipsqrt<T>(in Num128<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -306,7 +306,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> sqrt<T>(in Num128<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -321,7 +321,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> ceiling<T>(in Num128<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -337,7 +337,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> floor<T>(in Num128<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 

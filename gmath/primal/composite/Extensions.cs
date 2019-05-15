@@ -16,7 +16,7 @@ namespace Z0
     partial class mathx
     {
         public static Option<int> WriteTo<T>(this DivisorIndex<T> src, FolderPath dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var filename = FileName.Define($"divisors{src.Range}.csv");
             var outpath = dst + filename;

@@ -8,7 +8,7 @@ namespace Z0
     using System.Collections.Generic;
 
     public interface IRealNumberOps<T> : IOrderedNumberOps<T>, ITrigonmetricOps<T>
-        where T : struct, IEquatable<T>
+        where T : struct
 
     {
 
@@ -20,7 +20,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The operand type</typeparam>
     public interface IBoundRealOps<T> : IRealNumberOps<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
     }

@@ -16,7 +16,7 @@ namespace Z0
         B pow(B b, E exp);
     }
 
-    public interface IPowered<B,E> : IEquatable<B>
+    public interface IPowered<B,E> 
         where B : IPowered<B,E>, new()
     {
         B pow(E exp);

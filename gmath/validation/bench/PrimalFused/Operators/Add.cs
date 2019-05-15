@@ -20,12 +20,12 @@ namespace Z0
 
 
         OpMetrics Add<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid = Id<T>(OpKind.Add);
             var samples = Sampled(opid);            
             var sw = stopwatch();            
-            gmath.add(samples.Left, samples.Right, dst);
+            fused.add<T>(samples.Left, samples.Right, dst);
             return(SampleTime(snapshot(sw)));
         }
 

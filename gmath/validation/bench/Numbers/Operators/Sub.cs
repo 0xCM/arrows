@@ -18,7 +18,7 @@ namespace Z0
     partial class NumbersBench
     {
        OpMetrics<T> sub<T>(OpId<T> opid)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var lhs = numbers(LeftSample(opid));
             var rhs = numbers(RightSample(opid));

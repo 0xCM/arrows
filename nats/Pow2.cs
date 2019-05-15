@@ -23,7 +23,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T value<N,T>()
             where N : ITypeNat, new()
-            where T : struct, IEquatable<T>
+            where T : struct
                 => cast<Pow2<N,T>>(Pow2G<T>.TheOne).Value;
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Z0
         /// <typeparam name="T">The base value type</typeparam>
         [MethodImpl(Inline)]
         public static T value<T>(N0 exp)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => value<N0,T>();
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Z0
         /// <typeparam name="T">The base value type</typeparam>
         [MethodImpl(Inline)]
         public static T  value<T>(N1 exp)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => value<N1,T>();
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Z0
         /// <typeparam name="T">The base value type</typeparam>
         [MethodImpl(Inline)]
         public static T  value<T>(N2 exp)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => value<N2,T>();
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Z0
         /// <typeparam name="T">The base value type</typeparam>
         [MethodImpl(Inline)]
         public static T  value<T>(N3 exp)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => value<N3,T>();
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Z0
         /// <typeparam name="T">The base value type</typeparam>
         [MethodImpl(Inline)]
         public static T  value<T>(N4 exp)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => value<N4,T>();
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Z0
         /// <typeparam name="T">The base value type</typeparam>
         [MethodImpl(Inline)]
         public static T  value<T>(N5 exp)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => value<N5,T>();
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Z0
         /// <typeparam name="T">The base value type</typeparam>
         [MethodImpl(Inline)]
         public static T value<T>(N6 exp)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => value<N6,T>();
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Z0
         /// <typeparam name="T">The base value type</typeparam>
         [MethodImpl(Inline)]
         public static T value<T>(N7 exp)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => value<N7,T>();
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Z0
         /// <typeparam name="T">The base value type</typeparam>
         [MethodImpl(Inline)]
         public static T value<T>(N8 exp)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => value<N8,T>();
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Z0
         /// <typeparam name="T">The base value type</typeparam>
         [MethodImpl(Inline)]
         public static T value<T>(N9 exp)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => value<N9,T>();
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Z0
 
     public interface Pow2<N,T>
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         T Value {get;}
 
@@ -183,7 +183,7 @@ namespace Z0
         Pow2<N20,T>,
         Pow2<N32,T>,
         Pow2<N64,T>
-            where T : struct, IEquatable<T>
+            where T : struct
     {
         public static readonly Pow2G<T> TheOne = default;
 

@@ -24,57 +24,57 @@ partial class zfunc
            
     [MethodImpl(Inline)]   
     public static T convert<S,T>(S src)
-        where T : struct, IEquatable<T>
-        where S : struct, IEquatable<S>
+        where T : struct
+        where S : struct
            => Converter.convert(src, out T dst);  
     
     [MethodImpl(Inline)]   
     public static T convert<T>(sbyte src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(byte src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(short src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(ushort src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(int src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(uint src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(long src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(ulong src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(float src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(double src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => Converter.convert(src, out T dst);
 }

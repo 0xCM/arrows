@@ -18,12 +18,12 @@ namespace Z0
     {
 
         OpMetrics Mul<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid = Id<T>(OpKind.Mul);
             var samples = Sampled(opid);            
             var sw = stopwatch();            
-            gmath.mul(samples.Left, samples.Right, dst);
+            fused.mul<T>(samples.Left, samples.Right, dst);
             return(SampleTime(snapshot(sw)));
         }
 

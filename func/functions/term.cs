@@ -86,7 +86,8 @@ partial class zfunc
     /// <param name="caller">The calling member</param>
     public static void babble(object msg, [CallerMemberName] string caller = null)
         => terminal.WriteMessage(
-                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Verbose, caller));
+                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Babble, caller));
+
 
     /// <summary>
     /// Emits a verbose-level message
@@ -96,7 +97,7 @@ partial class zfunc
     /// <param name="caller">The calling member</param>
     public static void babble<T>(object msg, T host, [CallerMemberName] string caller = null)
         => terminal.WriteMessage(
-                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Verbose, $"{name<T>()}/{caller}"));
+                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Babble, $"{name<T>()}/{caller}"));
 
     /// <summary>
     /// Emits an error-level message

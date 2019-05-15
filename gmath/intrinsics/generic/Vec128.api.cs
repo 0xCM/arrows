@@ -30,7 +30,7 @@ namespace Z0
 
 
         public static Vec128<T>[] exhaust<T>(T[] src)
-            where T : struct, IEquatable<T>
+            where T : struct
 
         {
             var vLen = Vec128<T>.Length;
@@ -371,7 +371,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<T> zero<T>()
-            where T : struct, IEquatable<T>                    
+            where T : struct                    
         {
             var space = new T[Vec128<T>.Length];
             return define(ref space);
@@ -380,13 +380,13 @@ namespace Z0
             
         [MethodImpl(Inline)]
         public static Vec128<T> define<T>(Vector128<T> src)
-            where T : struct, IEquatable<T>            
+            where T : struct            
                 => src.ToVec128();
 
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<T> define<T>(Span128<T> src, int blockOffset = 0)
-            where T : struct, IEquatable<T>
+            where T : struct
         {            
 
             var kind = PrimalKinds.kind<T>();
@@ -420,7 +420,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<T> define<T>(ref T[] src, int offset = 0)
-            where T : struct, IEquatable<T>
+            where T : struct
         {            
 
             var kind = PrimalKinds.kind<T>();
@@ -455,22 +455,22 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Num128<T> scalar<T>(Vec128<T> src, int index)
-            where T : struct, IEquatable<T>            
+            where T : struct            
                 => Num128.define(src[index]);
 
         [MethodImpl(Inline)]
         public static Vec128<T> single<T>(params T[] src)
-            where T : struct, IEquatable<T>            
+            where T : struct            
                 => define<T>(src);
 
         [MethodImpl(Inline)]
         public static Vec128<T> single<T>(T[] src, int offset = 0)
-            where T : struct, IEquatable<T>            
+            where T : struct            
                 => define<T>(src,offset);
 
         [MethodImpl(Inline)]
         public static Vec128<T> single<T>(Span128<T> src, int blockIndex)
-            where T : struct, IEquatable<T>            
+            where T : struct            
                 => define<T>(src.Block(blockIndex));
 
 
@@ -651,7 +651,7 @@ namespace Z0
  
         [MethodImpl(Inline)]
         static Vec128<T> vInt8<T>(ref T[] data, int offset)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var i = offset;
             var src = int8(ref data);
@@ -666,7 +666,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static unsafe Vec128<T> vUInt8<T>(ref T[] data, int offset)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var src = uint8(data);
             var i = offset;
@@ -682,7 +682,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec128<T> vInt16<T>(ref T[] data,int offset)
-            where T : struct, IEquatable<T>            
+            where T : struct            
         {
             var i = offset;
             var src = int16(data);
@@ -695,7 +695,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec128<T> vUInt16<T>(ref T[] data,int offset)
-            where T : struct, IEquatable<T>            
+            where T : struct            
         {
             var i = offset;
             var src = uint16(data);
@@ -708,7 +708,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec128<T> vInt32<T>(ref T[] data,int startpos)
-            where T : struct, IEquatable<T>            
+            where T : struct            
         {
             var i = startpos;
             var src = int32(data);
@@ -718,7 +718,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec128<T> vUInt32<T>(ref T[] data, int startpos)
-            where T : struct, IEquatable<T>            
+            where T : struct            
         {
             var i = startpos;
             var src = uint32(data);
@@ -728,7 +728,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec128<T> vInt64<T>(ref T[] data,int startpos)
-            where T : struct, IEquatable<T>            
+            where T : struct            
         {
             var i = startpos;
             var src = int64(data);
@@ -738,7 +738,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec128<T> vUInt64<T>(ref T[] data,int startpos)
-            where T : struct, IEquatable<T>            
+            where T : struct            
         {
             var i = startpos;
             var src = uint64(data);
@@ -749,7 +749,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec128<T> vFloat32<T>(ref T[] data, int startpos)
-            where T : struct, IEquatable<T>            
+            where T : struct            
         {
             var i = startpos;
             var src = float32(data);
@@ -759,7 +759,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec128<T> vFloat64<T>(ref T[] data,int startpos)
-            where T : struct, IEquatable<T>            
+            where T : struct            
         {
             var i = startpos;
             var src = float64(data);

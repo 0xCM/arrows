@@ -23,13 +23,13 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<T> single<T>(T[] src)
-            where T : struct, IEquatable<T>            
+            where T : struct            
                 => define<T>(ref src,0);
 
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<T> define<T>(Span256<T> src, int blockOffset = 0)
-            where T : struct, IEquatable<T>
+            where T : struct
         {            
 
             var kind = PrimalKinds.kind<T>();
@@ -67,7 +67,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static T[] datasource<T>(object data, int count, int startpos = 0)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var src = (T[])data;
             checklen(src, startpos);
@@ -148,7 +148,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static void checklen<T>(T[] src, int offset = 0)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var maxpos = src.Length - 1;
             var finalpos = offset + Vector256<T>.Count - 1;
@@ -372,7 +372,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec256<T> vInt8<T>(ref T[] data, int offset)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var i = offset;
             ref var src = ref int8(ref data);
@@ -391,7 +391,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec256<T> vUInt8<T>(ref T[] data,int offset)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var i = offset;
             ref var src = ref uint8(ref data);
@@ -411,7 +411,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec256<T> vInt16<T>(ref T[] data,int offset)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var i = offset;
             ref var src = ref int16(ref data);
@@ -427,7 +427,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec256<T> vUInt16<T>(ref T[] data,int offset)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var i = offset;
             ref var src = ref uint16(ref data);
@@ -443,7 +443,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec256<T> vInt32<T>(ref T[] data,int offset)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var i = offset;
             ref var src = ref uint32(ref data);
@@ -457,7 +457,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec256<T> vUInt32<T>(ref T[] data,int offset)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var i = offset;
             ref var src = ref uint32(ref data);
@@ -471,7 +471,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec256<T> vInt64<T>(ref T[] data,int offset)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var i = offset;
             ref var src = ref int64(ref data);
@@ -481,7 +481,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec256<T> vUInt64<T>(ref T[] data,int offset)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var i = offset;
             ref var src = ref uint64(ref data);
@@ -491,7 +491,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec256<T> vFloat32<T>(ref T[] data,int offset)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var i = offset;
             ref var src = ref float32(ref data);
@@ -506,7 +506,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static Vec256<T> vFloat64<T>(ref T[] data,int offset)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var i = offset;
             ref var src = ref float64(ref data);
@@ -527,7 +527,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>        
         [MethodImpl(Inline)]
         public static unsafe Vec256<T> define<T>(ref T[] src, int offset = 0)
-            where T : struct, IEquatable<T>
+            where T : struct
         {            
 
             var kind = PrimalKinds.kind<T>();

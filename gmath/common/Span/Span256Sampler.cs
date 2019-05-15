@@ -53,7 +53,7 @@ namespace Z0
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public Span256<T> Sampled<T>(T specimen = default(T))
-            where T : struct, IEquatable<T>
+            where T : struct
                 => PrimalKinds.kind<T>() switch {
                     PrimalKind.int8 => As.generic<T>(Int8Samples),
                     PrimalKind.uint8 => As.generic<T>(UInt8Samples),

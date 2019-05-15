@@ -17,7 +17,7 @@ namespace  Z0
     /// a reifiable abstraction
     /// </summary>
     /// <typeparam name="S">The reification type</typeparam>
-    public interface IStructure<S> : IEquatable<S>
+    public interface IStructure<S>
         where S : IStructure<S>, new()
     {
 

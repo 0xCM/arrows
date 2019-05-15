@@ -45,6 +45,12 @@ namespace Z0
             }
         }
 
+        [MethodImpl(Inline)]
+        public static Span<T> flip<T>(ReadOnlySpan<T> src, T[] dst)
+            where T : struct
+                => fused.flip(src,dst);
+
+
         [MethodImpl(NotInline)]
         public static Span<T> flipI8<T>(ReadOnlySpan<T> src, Span<T> dst)
             where T : struct

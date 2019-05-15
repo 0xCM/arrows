@@ -15,7 +15,14 @@ namespace Z0
     public interface ILogger
     {
         void Log(IEnumerable<AppMsg> src);
+        
         void Log(AppMsg src);
+
+        void Log(IRecord record, char delimiter);
+
+        void Log(IEnumerable<IRecord> records, char delimiter, bool writeHeader);
+
+        void Log(string text);
     }
 
     public static class Log
@@ -54,6 +61,34 @@ namespace Z0
             {
                 lock(locker)
                     LogPath.Append(src.Select(x => x.ToString()));
+            }
+
+            public void Log(IEnumerable<IRecord> records, char delimiter, bool writeHeader = true)
+            {
+                var frozen = records.Freeze();
+                if(frozen.Length == 0)
+                    return;
+
+                lock(locker)
+                {                        
+                    if(writeHeader)
+                        LogPath.Append(string.Join(delimiter, frozen[0].Headers()));
+                    
+                    iter(frozen, r => LogPath.Append(r.Delimited(delimiter)));
+                    
+                }
+            }
+
+            public void Log(IRecord record, char delimiter)
+            {
+                lock(locker)
+                    LogPath.Append(record.Delimited(delimiter));
+            }
+
+            public void Log(string text)
+            {
+                lock(locker)
+                    LogPath.Append(text);
             }
 
             public LogTarget Target {get;}

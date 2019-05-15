@@ -18,12 +18,12 @@ namespace Z0
     {
 
         OpMetrics Sub<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid = Id<T>(OpKind.Sub);
             var samples = Sampled(opid);            
             var sw = stopwatch();            
-            gmath.sub(samples.Left, samples.Right, dst);
+            fused.sub<T>(samples.Left, samples.Right, dst);
             return(SampleTime(snapshot(sw)));
         }
 

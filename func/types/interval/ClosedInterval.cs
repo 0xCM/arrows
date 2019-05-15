@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     public readonly struct ClosedInterval<T> : IClosedInterval<T>
-        where T : struct, IEquatable<T>
+        where T : struct
 
     {
 

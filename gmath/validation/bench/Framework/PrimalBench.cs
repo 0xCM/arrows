@@ -48,23 +48,23 @@ namespace Z0
                 => (SampleSize, workTime);
 
         protected ReadOnlySpan<T> LeftSample<T>(OpId<T> op = default)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => LeftSrc.Sampled<T>();
 
         protected ReadOnlySpan<T> RightSample<T>(OpId<T> op = default)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => RightSrc.Sampled<T>();
 
         protected ReadOnlySpan<T> NonZeroSample<T>(OpId<T> op = default)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => NonZeroSrc.Sampled<T>();
 
         protected Span<T> Target<T>(OpId<T> op = default)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => span<T>(SampleSize);
 
         protected T[] LeftTarget<T>(OpId<T> op = default, bool fill = true)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var target = alloc<T>(SampleSize);
             if(fill)
@@ -73,7 +73,7 @@ namespace Z0
         }
 
         protected T[] RightTarget<T>(OpId<T> op = default, bool fill = true)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var target = alloc<T>(SampleSize);
             if(fill)
@@ -82,15 +82,15 @@ namespace Z0
         }
 
         protected (T[] Left,T[] Right) Sampled<T>(OpId<T> opid = default, bool nonzero = false)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => (LeftSrc.Sampled(opid),  nonzero ? NonZeroSrc.Sampled(opid) : RightSrc.Sampled(opid));
 
         protected (T[] Left,T[] Right) Targets<T>(OpId<T> opid = default)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => ArrayTargets<T>();
 
         protected (T[] Left,T[] Right) FilledTargets<T>(OpId<T> opid = default, bool nonzero = false)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var targets = Targets(opid);
             var sampled = Sampled(opid,nonzero);
@@ -99,7 +99,7 @@ namespace Z0
             return targets;
         }            
         protected abstract OpId<T> Id<T>(OpKind op)
-            where T : struct, IEquatable<T>;
+            where T : struct;
 
         protected BaselineMetrics Baselines {get;}
 

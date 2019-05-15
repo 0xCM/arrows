@@ -36,7 +36,7 @@ namespace Z0
                 ITrigonmetricOps<T>,
                 ISpecialOps<T>,
                 IParser<T>
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             
         
@@ -94,7 +94,7 @@ namespace Z0
     partial class Reify
     {
         public readonly struct PrimOps<T> : Operative.PrimOps<T>
-            where T : struct, IEquatable<T>
+            where T : struct
 
         {
             public static readonly PrimOps<T> Inhabitant = default;
@@ -158,59 +158,36 @@ namespace Z0
             public T add(T lhs, T rhs)
                 => Additive.add(lhs,rhs);
 
-            [MethodImpl(Inline)]
-            public Index<T> add(T[] lhs, T[] rhs)
-                =>  fuse(lhs,rhs,add);
 
             [MethodImpl(Inline)]
             public T mul(T lhs, T rhs)
                 => Multiplicative.mul(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public Index<T> mul(T[] lhs, T[] rhs)
-                => fuse(lhs,rhs,mul);
-
-            [MethodImpl(Inline)]
             public T div(T lhs, T rhs)
                 => Divisive.div(lhs,rhs);
 
-            [MethodImpl(Inline)]
-            public Index<T> div(T[] lhs, T[] rhs)
-                =>  fuse(lhs,rhs,div);
 
             [MethodImpl(Inline)]
             public T mod(T lhs, T rhs)
                 => Divisive.mod(lhs,rhs);
 
             [MethodImpl(Inline)]
-            public Index<T> mod(T[] lhs, T[] rhs)
-                =>  fuse(lhs,rhs,mod);
-
-            [MethodImpl(Inline)]
             public T gcd(T lhs, T rhs)
                 => Divisive.gcd(lhs,rhs);
 
-            [MethodImpl(Inline)]
-            public Index<T> gcd(T[] lhs, T[] rhs)
-                =>  fuse(lhs,rhs,gcd);
             
             [MethodImpl(Inline)]
             public T negate(T x)
                 => Negatable.negate(x);
 
 
-            [MethodImpl(Inline)]
-            public Index<T> negate(Index<T> src)
-                =>  map(src,negate);
 
             [MethodImpl(Inline)]
             public T sub(T lhs, T rhs)
                 => Subtractive.sub(lhs,rhs);
 
             
-            [MethodImpl(Inline)]
-            public Index<T> sub(T[] lhs, T[] rhs)
-                =>  fuse(lhs,rhs,sub);
 
             [MethodImpl(Inline)]
             public T abs(T x)
@@ -218,19 +195,12 @@ namespace Z0
 
 
             [MethodImpl(Inline)]
-            public Index<T> abs(Index<T> src)
-                =>  map(src,abs);
-
-            [MethodImpl(Inline)]
             public bool lt(T lhs, T rhs)
                 => Ordered.lt(lhs,rhs);
-
-
 
             [MethodImpl(Inline)]
             public bool lteq(T lhs, T rhs)
                 => Ordered.lteq(lhs,rhs);
-
 
             [MethodImpl(Inline)]
             public bool gt(T lhs, T rhs)
@@ -241,37 +211,21 @@ namespace Z0
             public bool gteq(T lhs, T rhs)
                 => Ordered.gteq(lhs,rhs);
 
-
             [MethodImpl(Inline)]
             public T inc(T x)
                 => Stepwise.inc(x);
 
             [MethodImpl(Inline)]
-            public Index<T> inc(Index<T> src)
-                =>  map(src,inc);
-
-            [MethodImpl(Inline)]
-            public T dec(T x)
-                => Stepwise.dec(x);
-
-            [MethodImpl(Inline)]
-            public Index<T> dec(Index<T> src)
-                =>  map(src,dec);
-
-
-
-
-
-
-
+            public T dec(T src)
+                => gmath.dec(src);
 
             [MethodImpl(Inline)]
             public bool eq(T lhs, T rhs)
-                => Equality.eq(lhs,rhs);
+                => gmath.eq(lhs,rhs);
 
             [MethodImpl(Inline)]
             public bool neq(T lhs, T rhs)
-                => Equality.neq(lhs,rhs);
+                => gmath.neq(lhs,rhs);
 
             [MethodImpl(Inline)]
             public Quorem<T> divrem(T lhs, T rhs)
@@ -289,7 +243,8 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public bool Nonzero(T src)
-                => neq(src,zero);
+                => gmath.neq(src, zero);
+
 
             [MethodImpl(Inline)]
             public Sign Sign(T src)
@@ -297,11 +252,9 @@ namespace Z0
                     lt(src, zero) ? Z0.Sign.Negative :
                     Z0.Sign.Positive;
 
-
             [MethodImpl(Inline)]
             public T MulAdd(T x, T y, T z)
-                => add(mul(x,y),z);
-
+                => gmath.add(gmath.mul(x,y),z);
 
             [MethodImpl(Inline)]
             public bool Even(T src)
@@ -309,7 +262,7 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public T sqrt(T src)
-                => Special.sqrt(src);
+                => gmath.sqrt(src);
 
             [MethodImpl(Inline)]
             public T floor(T src)
@@ -338,55 +291,24 @@ namespace Z0
 
 
 
-            public Index<T> div(Index<T> lhs, Index<T> rhs)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Index<T> and(Index<T> lhs, Index<T> rhs)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Index<T> or(Index<T> lhs, Index<T> rhs)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Index<T> xor(Index<T> lhs, Index<T> rhs)
-            {
-                throw new NotImplementedException();
-            }
 
             public T and(T lhs, T rhs)
-            {
-                throw new NotImplementedException();
-            }
+                => gmath.and(lhs,rhs);
 
             public T or(T lhs, T rhs)
-            {
-                throw new NotImplementedException();
-            }
+                => gmath.or(lhs,rhs);
 
             public T xor(T lhs, T rhs)
-            {
-                throw new NotImplementedException();
-            }
+                => gmath.xor(lhs,rhs);
 
-            public T flip(T x)
-            {
-                throw new NotImplementedException();
-            }
+            public T flip(T src)
+                => gmath.flip(src);
 
             public T lshift(T lhs, int rhs)
-            {
-                throw new NotImplementedException();
-            }
+                => gmath.lshift(lhs,rhs);
 
             public T rshift(T lhs, int rhs)
-            {
-                throw new NotImplementedException();
-            }
+                => gmath.rshift(lhs,rhs);
 
             public string BitString(T src)
             {
@@ -394,9 +316,7 @@ namespace Z0
             }
 
             public bool TestBit(T src, int pos)
-            {
-                throw new NotImplementedException();
-            }
+                => gbits.test(src,pos);
 
             public byte[] Bytes(T src)
             {

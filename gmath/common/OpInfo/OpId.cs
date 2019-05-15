@@ -77,7 +77,7 @@ namespace Z0
 
         // public static OpId<T> Define<T>(OpKind Kind, NumericKind NumKind = NumericKind.Native, bool Generic = false, bool Intrinsic = false, 
         //     OpFusion Fusion = OpFusion.Atomic, ByteSize? OperandSize = null, bool baseline = true)
-        //     where T : struct, IEquatable<T>
+        //     where T : struct
         //         => new OpId<T>(Kind, NumKind, Generic, Intrinsic, Fusion, OperandSize ?? Unsafe.SizeOf<T>(), baseline);
 
         public static OpId operator !(OpId src)

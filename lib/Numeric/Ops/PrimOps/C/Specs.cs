@@ -209,7 +209,7 @@ namespace Z0
               IMultiplicativeOps<T>, 
               IDivisiveOps<T>, 
               IBitwiseOps<T>
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             
             NumberInfo<T> numinfo(T x);

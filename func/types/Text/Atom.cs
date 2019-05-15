@@ -14,7 +14,7 @@ namespace Z0
     /// <summary>
     /// Defines an indivisible sequence of characters
     /// </summary>
-    public readonly struct Atom : IEquatable<Atom>, INullary<Atom>
+    public readonly struct Atom :  INullary<Atom>
     {
         public static readonly Atom Empty = new Atom(string.Empty);
 

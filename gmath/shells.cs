@@ -47,7 +47,7 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public static unsafe void PerformOpAndStoreResultToPointer<T>(in Vec128<T> lhs, in Vec128<T> rhs, void* dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             var vLen = Vec128<T>.Length;
@@ -116,7 +116,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe void IfIfIf<T>(in T src)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 

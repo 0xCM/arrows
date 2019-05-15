@@ -17,7 +17,6 @@ namespace Z0
 
     public static class Span128
     {
-
         /// <summary>
         /// Allocates a span to hold a specified number of blocks
         /// </summary>
@@ -25,42 +24,42 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Span128<T> blockalloc<T>(int blocks)
-            where T : struct, IEquatable<T>        
+            where T : struct        
                 =>Span128<T>.BlockAlloc(blocks);
 
         [MethodImpl(Inline)]
         public static Span128<T> load<T>(Span<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span128<T>.Load(src);
 
         [MethodImpl(Inline)]
         public static Span128<T> load<T>(Span<T> src, int offset, int length)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span128<T>.Load(src, offset,length);
 
         [MethodImpl(Inline)]
         public static Span128<T> load<T>(ReadOnlySpan<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span128<T>.Load(src);
 
         [MethodImpl(Inline)]
         public static Span128<T> load<T>(ReadOnlySpan<T> src, int offset, int length)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span128<T>.Load(src, offset,length);
 
         [MethodImpl(Inline)]
         public static Span128<T> load<T>(T[] src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span128<T>.Load(src);
 
         [MethodImpl(Inline)]
         public static Span128<T> load<T>(T[] src, int offset, int length)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span128<T>.Load(src,offset, length);
 
         [MethodImpl(Inline)]
         public static Span128<T> single<T>(params T[] src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Span128<T>.Load(src);
 
         /// <summary>
@@ -69,7 +68,7 @@ namespace Z0
         /// <typeparam name="T">The block constituent type</typeparam>
         [MethodImpl(Inline)]
         public static int cellsize<T>()
-            where T : struct, IEquatable<T>        
+            where T : struct        
                 => Span128<T>.CellSize;
 
         /// <summary>
@@ -78,7 +77,7 @@ namespace Z0
         /// <typeparam name="T">The block constituent type</typeparam>
         [MethodImpl(Inline)]
         public static int blocksize<T>()
-            where T : struct, IEquatable<T>        
+            where T : struct        
                 => Span128<T>.BlockSize;
 
         /// <summary>
@@ -87,7 +86,7 @@ namespace Z0
         /// <typeparam name="T">The block constituent type</typeparam>
         [MethodImpl(Inline)]
         public static int blocklength<T>(int blocks = 1)
-            where T : struct, IEquatable<T>        
+            where T : struct        
                 => blocks * Span128<T>.BlockLength;
 
         /// <summary>
@@ -97,7 +96,7 @@ namespace Z0
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
         public static int blockcount<T>(int length)
-            where T : struct, IEquatable<T>  
+            where T : struct  
                 => length / blocklength<T>();
 
         /// <summary>
@@ -107,7 +106,7 @@ namespace Z0
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
         public static int bytes<T>(in Span<T> src)
-            where T : struct, IEquatable<T>        
+            where T : struct        
             => src.Length * cellsize<T>();
 
         /// <summary>
@@ -117,7 +116,7 @@ namespace Z0
         /// <typeparam name="T">The span constituent type</typeparam>
         [MethodImpl(Inline)]
         public static int blockcount<T>(in Span<T> src)
-            where T : struct, IEquatable<T>  
+            where T : struct  
                 =>  blockcount<T>(src.Length);
 
         /// <summary>
@@ -127,13 +126,13 @@ namespace Z0
         /// <typeparam name="T">The block constituent type</typeparam>
         [MethodImpl(Inline)]
         public static bool aligned<T>(int length)
-            where T : struct, IEquatable<T>        
+            where T : struct        
             => Span128<T>.Aligned(length);
 
 
         [MethodImpl(Inline)]
         public static int align<T>(int length)
-            where T : struct, IEquatable<T>        
+            where T : struct        
         {
             var remainder = length % blocklength<T>();
             if(remainder == 0)

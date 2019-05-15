@@ -17,8 +17,8 @@ namespace Z0
     /// <summary>
     /// Encapsulates a linear data segment with length determined at runtime
     /// </summary>
-    public readonly struct Slice<T> : Structures.Slice<Slice<T>, T>
-        where T : struct, IEquatable<T>
+    public readonly struct Slice<T> : IEnumerable<T> 
+        where T : struct
     {                    
         
         [MethodImpl(Inline)]   
@@ -73,32 +73,6 @@ namespace Z0
         public T this[ulong i] 
             => data[(int)i];
 
-        public (Slice<T> lhs, Slice<T> rhs) conform(Slice<T> rhs, T filler)
-        {
-            var lhsLen = length;
-            var rhsLen = rhs.length;
-            if(lhsLen == rhsLen)
-                return(this,rhs);
-
-            var filled = repeat(filler, lhsLen > rhsLen ? lhsLen - rhsLen : lhsLen - rhsLen);
-            if(lhsLen > rhsLen)
-                return (this, rhs + filled);
-            else
-                return (this + filled, rhs);
-        }
-
-        [MethodImpl(Inline)]   
-        public Slice<N,T> ToNatLenth<N>()
-            where N : ITypeNat, new()
-                => new Slice<N,T>(data);
-
-        /// <summary>
-        /// Reverses the slice elements
-        /// </summary>
-        [MethodImpl(Inline)]   
-        public Z0.Slice<T> Reverse()
-            => slice(data.Reverse());
-
         /// <summary>
         /// Reverses the slice elements
         /// </summary>
@@ -112,34 +86,19 @@ namespace Z0
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
 
-        public bool eq(Slice<T> lhs, Slice<T> rhs)
+        [MethodImpl(Inline)]   
+        public bool Equals(Slice<T> rhs)
         {
-            if(lhs.length != rhs.length)
+            if(this.length != rhs.length)
                 return false;
 
             for(var i = 0; i<length; i++)
             {
-                if(!lhs[i].Equals(rhs[i]))
+                if(!this[i].Equals(rhs[i]))
                     return false;
             }
             return true;            
         }
-
-        [MethodImpl(Inline)]   
-        public bool neq(Slice<T> lhs, Slice<T> rhs)
-            => not(eq(lhs,rhs));
-
-        [MethodImpl(Inline)]   
-        public bool eq(Slice<T> rhs)
-            => eq(this, rhs);
-
-        [MethodImpl(Inline)]   
-        public bool neq(Slice<T> rhs)
-            => neq(this, rhs);
-
-        [MethodImpl(Inline)]   
-        public bool Equals(Slice<T> rhs)
-            => eq(this,rhs);
 
         [MethodImpl(Inline)]   
         public int hash()

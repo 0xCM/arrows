@@ -16,20 +16,20 @@ namespace Z0
     public static class RVar
     {
         public static RVar<T> define<T>(Interval<T> domain)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => define(domain, Randomizer.define<T>(RandSeeds.AppSeed));
 
         public static RVar<T> define<T>(Interval<T> domain, ulong[] seed)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => define(domain, Randomizer.define<T>(seed));
 
         public static RVar<T> define<T>(Interval<T> domain, IRandomizer<T> random)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new RVar<T>(domain,random);
     }
 
     public readonly struct RVar<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         readonly IEnumerable<T> stream;
 

@@ -50,38 +50,36 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> add<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        public static ref Span<T> add<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
             {
                 case PrimalKind.int8:
-                    return addI8(lhs,rhs);
+                    return ref addI8(ref lhs,rhs);
                 case PrimalKind.uint8:
-                    return addU8(lhs,rhs);
+                    return ref addU8(ref lhs,rhs);
                 case PrimalKind.int16:
-                    return addI16(lhs,rhs);
+                    return ref addI16(ref lhs,rhs);
                 case PrimalKind.uint16:
-                    return addU16(lhs,rhs);
+                    return ref addU16(ref lhs,rhs);
                 case PrimalKind.int32:
-                    return addI32(lhs,rhs);
+                    return ref addI32(ref lhs,rhs);
                 case PrimalKind.uint32:
-                    return addU32(lhs,rhs);
+                    return ref addU32(ref lhs,rhs);
                 case PrimalKind.int64:
-                    return addI64(lhs,rhs);
+                    return ref addI64(ref lhs,rhs);
                 case PrimalKind.uint64:
-                    return addU64(lhs,rhs);
+                    return ref addU64(ref lhs,rhs);
                 case PrimalKind.float32:
-                    return addF32(lhs,rhs);
+                    return ref addF32(ref lhs,rhs);
                 case PrimalKind.float64:
-                    return addF64(lhs,rhs);
+                    return ref addF64(ref lhs,rhs);
                 default:
                     throw unsupported(kind);                
             }
         }
-
-
 
         [MethodImpl(NotInline)]
         static Span<T> addI8<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
@@ -196,86 +194,84 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        static Span<T> addI8<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static ref Span<T> addI8<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             math.add(int8(lhs),int8(rhs));
-            return lhs;
+            return ref lhs;
         }
 
         [MethodImpl(NotInline)]
-        static Span<T> addU8<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static ref Span<T> addU8<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             math.add(uint8(lhs),uint8(rhs));
-            return lhs;
+            return ref lhs;
         }
 
         [MethodImpl(NotInline)]
-        static Span<T> addI16<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static ref Span<T> addI16<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
-            math.add(int16(lhs),int16(rhs));
-            return lhs;
+            math.add(int16(lhs), int16(rhs));
+            return ref lhs;
         }
 
         [MethodImpl(NotInline)]
-        static Span<T> addU16<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static ref Span<T> addU16<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
-            math.add(uint16(lhs),uint16(rhs));
-            return lhs;
+            math.add(uint16(lhs), uint16(rhs));
+            return ref lhs;
         }
 
         [MethodImpl(NotInline)]
-        static Span<T> addI32<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static ref Span<T> addI32<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             math.add(int32(lhs),int32(rhs));
-            return lhs;
+            return ref lhs;
         }
 
         [MethodImpl(NotInline)]
-        static Span<T> addU32<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static ref Span<T> addU32<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             math.add(uint32(lhs),uint32(rhs));
-            return lhs;
+            return ref lhs;
         }
 
         [MethodImpl(NotInline)]
-        static Span<T> addI64<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static ref Span<T> addI64<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             math.add(int64(lhs),int64(rhs));
-            return lhs;
+            return ref lhs;
         }
 
 
         [MethodImpl(NotInline)]
-        static Span<T> addU64<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static ref Span<T> addU64<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             math.add(uint64(lhs),uint64(rhs));
-            return lhs;
+            return ref lhs;
         }
 
         [MethodImpl(NotInline)]
-        static Span<T> addF32<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static ref Span<T> addF32<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             math.add(float32(lhs),float32(rhs));
-            return lhs;
+            return ref lhs;
         }
 
         [MethodImpl(NotInline)]
-        static Span<T> addF64<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
+        static ref Span<T> addF64<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             math.add(float64(lhs),float64(rhs));
-            return lhs;
+            return ref lhs;
         }
-
     }
-
 }

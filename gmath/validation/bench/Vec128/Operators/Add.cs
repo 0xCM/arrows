@@ -218,7 +218,7 @@ namespace Z0
 
 
         OpMetrics gadd<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid = Id<T>(OpKind.Add);
             var lhs = LeftSample(opid);

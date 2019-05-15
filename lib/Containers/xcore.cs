@@ -35,8 +35,7 @@ namespace Z0
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
         public static Index<T> ToIndex<T>(this T[] src)
-            where T : IEquatable<T>
-                => src;
+            => src;
 
         /// <summary>
         /// Wraps an array within an index
@@ -54,7 +53,7 @@ namespace Z0
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
         public static Slice<T> ToSlice<T>(this IEnumerable<T> src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new Slice<T>(src);
 
     }

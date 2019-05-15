@@ -16,7 +16,7 @@ namespace Z0
     partial class Vec256Bench 
     {   
         OpMetrics gadd<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var lhs = LeftSrc.Sampled(head(dst));
             var rhs = RightSrc.Sampled(head(dst));

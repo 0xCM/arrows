@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     public readonly struct LeftOpenInterval<T> : ILeftOpenInterval<T>, IRightClosedInterval<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
 
         public static implicit operator Interval<T>(LeftOpenInterval<T> x)

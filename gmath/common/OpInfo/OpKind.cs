@@ -24,6 +24,19 @@ namespace Z0
         Derived = 1,
     }
 
+    public enum Multiplicity
+    {
+        Zero,
+        
+        One,
+        
+        ZeroOrOne,
+        
+        ZeroOrMore,
+        
+        OneOrMore
+    }
+
     public enum OpArity
     {
         /// <summary>
@@ -181,7 +194,12 @@ namespace Z0
 
         Negate,
 
-        Stream
+        Stream,
+
+        /// <summary>
+        /// Indicates a binary float comparison predicate
+        /// </summary>
+        FCmp
     }
 
 

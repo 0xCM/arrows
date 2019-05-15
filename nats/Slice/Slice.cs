@@ -18,7 +18,7 @@ namespace Z0
     /// </summary>
     public readonly struct Slice<N,T> //: ISlice<Slice<N,T>,T>
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
     {                    
         
         /// <summary>
@@ -130,7 +130,7 @@ namespace Z0
         /// <typeparam name="Y">The transformation codomain</typeparam>
         [MethodImpl(Inline)]   
         public Slice<N,Y> map<Y>(Func<T,Y> f)
-            where Y : struct, IEquatable<Y>    
+            where Y : struct
                 => new Slice<N, Y>(data.Select(x => f(x)));
 
         /// <summary>

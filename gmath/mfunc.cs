@@ -41,20 +41,23 @@ public static partial class mfunc
     }
 
     [MethodImpl(Inline)]   
-    public static int length<T>(ReadOnlyMemory<T> lhs, ReadOnlyMemory<T> rhs, 
+    public static int length<T>(ReadOnlyMemory<T> lhs, ReadOnlyMemory<T> rhs,  [CallerMemberName] string caller = null,
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, file, line);
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
     [MethodImpl(Inline)]   
-    public static int length<T>(T[] lhs, T[] rhs,[CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, file, line);
+    public static int length<T>(T[] lhs, T[] rhs, [CallerMemberName] string caller = null,  
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
     [MethodImpl(Inline)]
     public static void assert(bool condition, string msg = null, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
     {
         if(!condition)
-            throw new Exception( $"{caller} {file} line{line}: {msg ?? "Assertion Failed" }" );
+            throw new Exception($"{caller} {file} line{line}: {msg ?? "Assertion Failed" }" );
     }
          
     [MethodImpl(Inline)]

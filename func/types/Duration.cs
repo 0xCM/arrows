@@ -15,7 +15,7 @@ namespace Z0
     using static zfunc;
 
 
-    public readonly struct Duration : IEquatable<Duration>
+    public readonly struct Duration
     {
         public static readonly Duration Zero = new Duration(0);
         

@@ -19,7 +19,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static bool Any<T>(this Span128<T> src, Func<T,bool> f)
-             where T : struct, IEquatable<T>
+             where T : struct
             => src.ToReadOnlySpan().Any(f);
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Span256<T> ToSpan256<T>(this T[] src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => (Span256<T>)src;
 
         /// <summary>
@@ -39,18 +39,18 @@ namespace Z0
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Span128<T> ToSpan128<T>(this T[] src)
-            where T : struct, IEquatable<T>
+            where T : struct
             => (Span128<T>)src;
 
 
         [MethodImpl(Inline)]
         public static Span128<T> ToSpan128<T>(this Span<T> src)
-             where T : struct, IEquatable<T>
+             where T : struct
                 => (Span128<T>)src;
 
         [MethodImpl(Inline)]
         public static Span256<T> ToSpan256<T>(this Span<T> src)
-             where T : struct, IEquatable<T>
+             where T : struct
                 => (Span256<T>)src; 
     }
 

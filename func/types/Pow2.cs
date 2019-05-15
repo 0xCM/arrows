@@ -33,7 +33,7 @@ namespace Z0
             =>  PowerTable[exp];
 
         public static T[] powers<T>(int minExp, byte maxExp)
-            where T : struct, IEquatable<T>
+            where T : struct
         {   
             var dst = new T[maxExp - minExp + 1];
             var current = minExp;

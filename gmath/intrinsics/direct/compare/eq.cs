@@ -90,8 +90,8 @@ namespace Z0
         public static BitVectorU16 eq(in Vec256<short> lhs, in Vec256<short> rhs)
         {
             var result = CompareEqual(lhs, rhs);
-            var x0 = extract(result,0).ToArray();
-            var x1 = extract(result,1).ToArray();
+            var x0 = extract(result,0);
+            var x1 = extract(result,1);
 
             return BitVectorU16.Define(            
                 x0[0], x0[1], x0[2], x0[3],

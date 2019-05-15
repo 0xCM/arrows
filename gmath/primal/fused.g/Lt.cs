@@ -17,6 +17,7 @@ namespace Z0
 
     public static partial class fused
     {
+
         [MethodImpl(NotInline)]
         public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
             where T : struct
@@ -47,6 +48,14 @@ namespace Z0
                 default:
                     throw unsupported(kind);                
             }
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            return lt(lhs,rhs,dst);
         }
 
         [MethodImpl(NotInline)]

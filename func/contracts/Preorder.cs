@@ -25,7 +25,6 @@ namespace Z0
     /// <typeparam name="T">The element type</typeparam>
     /// <remarks>See https://en.wikipedia.org/wiki/Preorder </remarks>
     public interface IProsetOps<T> : IPreorderOps<T>
-        where T : IEquatable<T>
 
     {
 

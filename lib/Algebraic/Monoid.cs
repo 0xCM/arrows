@@ -31,7 +31,7 @@ namespace Z0
     }
 
     public readonly struct Monoidal<T> : IMonoidalOps<T>
-        where T : struct, IEquatable<T> 
+        where T : struct 
     {
 
         readonly Func<T,T,T> composer;

@@ -12,7 +12,7 @@ namespace Z0
     using static global::mfunc;
 
     public unsafe delegate Index<T> Vec128Fuser<T>(in Vec128BinOp<T> Op, in Index<T> lhs, in Index<T> rhs)
-        where T : struct, IEquatable<T>;
+        where T : struct;
 
     public static class Vectorizer
     {

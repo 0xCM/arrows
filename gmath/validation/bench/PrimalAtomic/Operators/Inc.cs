@@ -16,377 +16,125 @@ namespace Z0
     partial class PrimalAtomicBench
     {
 
+        OpMetrics Inc<T>(T[] io)
+            where T : struct
+        {
+            var sw = stopwatch();
+            var it = -1;
+            while(++it < SampleSize)
+                gmath.inc(ref io[it]);
+            return(SampleTime(snapshot(sw)));
+        }
+
         public IBenchComparison IncI8()
         {
             var opid = Id<sbyte>(OpKind.Inc);
-            var ioLeft = LeftTarget(opid);
-            var ioRight = LeftTarget(opid);
-
-            OpMetrics baseline1()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    math.inc(ref ioLeft[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics baseline2()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    ++ioLeft[it];
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics bench()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    gmath.inc(ref ioRight[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            var baselined = Baseline switch 
-            {
-                2 => Measure(opid, baseline2),                
-                _ => Measure(opid, baseline1)
-            };
-
-            var benched = Measure(!~opid, bench);
-
-            var comparison = Run(opid, baselined, benched);            
-            Claim.eq(ioLeft, ioRight);                        
+            var io = LeftSample(opid).PairReplicate();
+            var baselined = Measure(opid, Baselines.IncIO, io.Left);            
+            var benched = Measure(!~opid, Inc, io.Right);
+            var comparison = Run(opid, baselined, benched);                        
+            Claim.eq(io.Left, io.Right);                        
             return Finish(comparison);
         }
 
         public IBenchComparison IncU8()
         {
-            var opid = Id<sbyte>(OpKind.Inc);
-            var ioLeft = LeftTarget(opid);
-            var ioRight = LeftTarget(opid);
-
-            OpMetrics baseline1()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    math.inc(ref ioLeft[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics baseline2()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    ++ioLeft[it];
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics bench()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    gmath.inc(ref ioRight[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            var baselined = Baseline switch 
-            {
-                2 => Measure(opid, baseline2),                
-                _ => Measure(opid, baseline1)
-            };
-
-            var benched = Measure(!~opid, bench);
-
-            var comparison = Run(opid, baselined, benched);            
-            Claim.eq(ioLeft, ioRight);                        
+            var opid = Id<byte>(OpKind.Inc);
+            var io = LeftSample(opid).PairReplicate();
+            var baselined = Measure(opid, Baselines.IncIO, io.Left);            
+            var benched = Measure(!~opid, Inc, io.Right);
+            var comparison = Run(opid, baselined, benched);                        
+            Claim.eq(io.Left, io.Right);                        
             return Finish(comparison);
         }
 
         public IBenchComparison IncI16()
         {
             var opid = Id<short>(OpKind.Inc);
-            var ioLeft = LeftTarget(opid);
-            var ioRight = LeftTarget(opid);
-
-            OpMetrics baseline1()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    math.inc(ref ioLeft[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics baseline2()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    ++ioLeft[it];
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics bench()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    gmath.inc(ref ioRight[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            var baselined = Baseline switch 
-            {
-                2 => Measure(opid, baseline2),                
-                _ => Measure(opid, baseline1)
-            };
-            
-            var benched = Measure(!~opid, bench);
-
-            var comparison = Run(opid, baselined, benched);            
-            Claim.eq(ioLeft, ioRight);                        
+            var io = LeftSample(opid).PairReplicate();
+            var baselined = Measure(opid, Baselines.IncIO, io.Left);            
+            var benched = Measure(!~opid, Inc, io.Right);
+            var comparison = Run(opid, baselined, benched);                        
+            Claim.eq(io.Left, io.Right);                        
             return Finish(comparison);
         }
-
 
         public IBenchComparison IncU16()
         {
             var opid = Id<ushort>(OpKind.Inc);
-            var ioLeft = LeftTarget(opid);
-            var ioRight = LeftTarget(opid);
-
-            OpMetrics baseline1()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    math.inc(ref ioLeft[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics baseline2()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    ++ioLeft[it];
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics bench()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    gmath.inc(ref ioRight[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            var baselined = Baseline switch 
-            {
-                2 => Measure(opid, baseline2),                
-                _ => Measure(opid, baseline1)
-            };
-
-            var benched = Measure(!~opid, bench);
-
-            var comparison = Run(opid, baselined, benched);            
-            Claim.eq(ioLeft, ioRight);                        
+            var io = LeftSample(opid).PairReplicate();
+            var baselined = Measure(opid, Baselines.IncIO, io.Left);            
+            var benched = Measure(!~opid, Inc, io.Right);
+            var comparison = Run(opid, baselined, benched);                        
+            Claim.eq(io.Left, io.Right);                        
             return Finish(comparison);
         }
-
 
         public IBenchComparison IncI32()
         {
             var opid = Id<int>(OpKind.Inc);
-            var ioLeft = LeftTarget(opid);
-            var ioRight = LeftTarget(opid);
-
-            OpMetrics baseline1()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    math.inc(ref ioLeft[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics baseline2()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    ++ioLeft[it];
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics bench()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    gmath.inc(ref ioRight[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            var baselined = Baseline switch 
-            {
-                2 => Measure(opid, baseline2),                
-                _ => Measure(opid, baseline1)
-            };
-
-            var benched = Measure(!~opid, bench);
-
-            var comparison = Run(opid, baselined, benched);            
-            Claim.eq(ioLeft, ioRight);                        
+            var io = LeftSample(opid).PairReplicate();
+            var baselined = Measure(opid, Baselines.IncIO, io.Left);            
+            var benched = Measure(!~opid, Inc, io.Right);
+            var comparison = Run(opid, baselined, benched);                        
+            Claim.eq(io.Left, io.Right);                        
             return Finish(comparison);
         }
 
         public IBenchComparison IncU32()
         {
             var opid = Id<uint>(OpKind.Inc);
-            var ioLeft = LeftTarget(opid);
-            var ioRight = LeftTarget(opid);
-
-            OpMetrics baseline1()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    math.inc(ref ioLeft[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics baseline2()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    ++ioLeft[it];
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics bench()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    gmath.inc(ref ioRight[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            var baselined = Baseline switch 
-            {
-                2 => Measure(opid, baseline2),                
-                _ => Measure(opid, baseline1)
-            };
-
-            var benched = Measure(!~opid, bench);
-
-            var comparison = Run(opid, baselined, benched);            
-            Claim.eq(ioLeft, ioRight);                        
+            var io = LeftSample(opid).PairReplicate();
+            var baselined = Measure(opid, Baselines.IncIO, io.Left);            
+            var benched = Measure(!~opid, Inc, io.Right);
+            var comparison = Run(opid, baselined, benched);                        
+            Claim.eq(io.Left, io.Right);                        
             return Finish(comparison);
         }
 
         public IBenchComparison IncI64()
         {
             var opid = Id<long>(OpKind.Inc);
-            var ioLeft = LeftTarget(opid);
-            var ioRight = LeftTarget(opid);
-
-            OpMetrics baseline1()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    math.inc(ref ioLeft[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-
-            OpMetrics bench()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    gmath.inc(ref ioRight[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics baseline2()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    ++ioLeft[it];
-                return(SampleTime(snapshot(sw)));
-            }
-
-            var baselined = Baseline switch 
-            {
-                2 => Measure(opid, baseline2),                
-                _ => Measure(opid, baseline1)
-            };
-
-            var benched = Measure(!~opid, bench);
-
-            var comparison = Run(opid, baselined, benched);            
-            Claim.eq(ioLeft, ioRight);                        
+            var io = LeftSample(opid).PairReplicate();
+            var baselined = Measure(opid, Baselines.IncIO, io.Left);            
+            var benched = Measure(!~opid, Inc, io.Right);
+            var comparison = Run(opid, baselined, benched);                        
+            Claim.eq(io.Left, io.Right);                        
             return Finish(comparison);
         }
 
         public IBenchComparison IncU64()
         {
             var opid = Id<ulong>(OpKind.Inc);
-            var ioLeft = LeftTarget(opid);
-            var ioRight = LeftTarget(opid);
-
-            OpMetrics baseline1()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    math.inc(ref ioLeft[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics baseline2()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    ++ioLeft[it];
-                return(SampleTime(snapshot(sw)));
-            }
-
-            OpMetrics bench()
-            {
-                var sw = stopwatch();
-                var it = -1;
-                while(++it < SampleSize)
-                    gmath.inc(ref ioRight[it]);
-                return(SampleTime(snapshot(sw)));
-            }
-
-            var baselined = Baseline switch 
-            {
-                2 => Measure(opid, baseline2),                
-                _ => Measure(opid, baseline1)
-            };
-
-            var benched = Measure(!~opid, bench);
-
-            var comparison = Run(opid, baselined, benched);            
-            Claim.eq(ioLeft, ioRight);                        
+            var io = LeftSample(opid).PairReplicate();
+            var baselined = Measure(opid, Baselines.IncIO, io.Left);            
+            var benched = Measure(!~opid, Inc, io.Right);
+            var comparison = Run(opid, baselined, benched);                        
+            Claim.eq(io.Left, io.Right);                        
             return Finish(comparison);
         }
 
+        public IBenchComparison IncF32()
+        {
+            var opid = Id<float>(OpKind.Inc);
+            var io = LeftSample(opid).PairReplicate();
+            var baselined = Measure(opid, Baselines.IncIO, io.Left);            
+            var benched = Measure(!~opid, Inc, io.Right);
+            var comparison = Run(opid, baselined, benched);                        
+            Claim.eq(io.Left, io.Right);                        
+            return Finish(comparison);
+        }
+
+        public IBenchComparison IncF64()
+        {
+            var opid = Id<double>(OpKind.Inc);
+            var io = LeftSample(opid).PairReplicate();
+            var baselined = Measure(opid, Baselines.IncIO, io.Left);            
+            var benched = Measure(!~opid, Inc, io.Right);
+            var comparison = Run(opid, baselined, benched);                        
+            Claim.eq(io.Left, io.Right);                        
+            return Finish(comparison);
+        }
 
     }
 

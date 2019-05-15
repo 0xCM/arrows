@@ -43,11 +43,9 @@ namespace Z0
     /// <summary>
     /// Reifies a natural k such that b:B & e:E => k = b^e
     /// </summary>
-    public readonly struct Pow<B,E> : IPow<Pow<B, E>, B, E>,
-          IEquatable<Pow<B,E>>,
-          IEquatable<NatSeq>
-            where B : ITypeNat, new()
-            where E : ITypeNat, new()
+    public readonly struct Pow<B,E> : IPow<Pow<B, E>, B, E>
+        where B : ITypeNat, new()
+        where E : ITypeNat, new()
     {
         public static readonly Pow<B,E> Rep = default;
 

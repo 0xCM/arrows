@@ -7,7 +7,7 @@ namespace Z0
     using System;
     
     public interface INaturalOps<T> : IIntegerOps<T>, INonNegativeOps<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {}
 
 
@@ -16,7 +16,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T">The type over which operations are defined</typeparam>
     public interface IFiniteNaturalOps<T> : INaturalOps<T>, IBoundRealOps<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     { }
 
     /// <summary>
@@ -26,7 +26,7 @@ namespace Z0
     /// <typeparam name="T">The operand type</typeparam>
     public interface IFiniteNaturalOps<R,T> : IFiniteNaturalOps<T>
         where R : IFiniteNaturalOps<R,T>, new() 
-        where T : struct, IEquatable<T>
+        where T : struct
         {  
 
         }

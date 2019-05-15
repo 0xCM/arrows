@@ -17,12 +17,12 @@ namespace Z0
     partial class PrimalFusedBench
     {
         OpMetrics Flip<T>(T[] dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var opid = Id<T>(OpKind.Flip);
             var samples = Sampled(opid);            
             var sw = stopwatch();            
-            gmath.flip(samples.Left, dst);
+            fused.flip(samples.Left, dst);
             return(SampleTime(snapshot(sw)));
         }
 

@@ -21,7 +21,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<T> add<T>(in Vec128<T> lhs, in Vec128<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -53,7 +53,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe Span128<T> add<T>(in Vec128<T> lhs, in Vec128<T> rhs, Span128<T> dst, int blockIndex)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -106,7 +106,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe void add<T>(in Vec128<T> lhs, in Vec128<T> rhs, void* dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -150,7 +150,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<T> add<T>(in Vec256<T> lhs, in Vec256<T> rhs)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -182,7 +182,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe Span256<T> add<T>(in Vec256<T> lhs, in Vec256<T> rhs, Span256<T> dst, int blockIndex)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
@@ -233,7 +233,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span128<T> add<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();        
             switch(kind)
@@ -306,7 +306,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span256<T> add<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();        
             switch(kind)

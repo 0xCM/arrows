@@ -13,8 +13,8 @@ namespace Z0
     
     using static mfunc;
 
-   public readonly struct Vec256<T> : IEquatable<Vec256<T>>
-        where T : struct, IEquatable<T>
+   public readonly struct Vec256<T>
+        where T : struct
     {
 
         public static readonly int Length = Vector256<T>.Count;

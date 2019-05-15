@@ -50,7 +50,7 @@ public static partial class zcore
     /// <typeparam name="T">The element type </typeparam>
     [MethodImpl(Inline)]   
     public static Z0.Slice<T> slice<T>(params T[] src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => new Slice<T>(src);
 
     /// <summary>
@@ -60,12 +60,12 @@ public static partial class zcore
     /// <typeparam name="T">The element type </typeparam>
     [MethodImpl(Inline)]   
     public static Z0.Slice<T> slice<T>(IEnumerable<T> src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => new Slice<T>(src);
 
     [MethodImpl(Inline)]   
     public static Z0.Slice<T> slice<T>(Index<T> src)
-        where T : struct, IEquatable<T>
+        where T : struct
             => new Slice<T>(src);
 
     /// <summary>
@@ -85,7 +85,6 @@ public static partial class zcore
     /// <typeparam name="T">The element type/typeparam>
     [MethodImpl(Inline)]
     public static Index<T> index<T>(params T[] src)
-        where T : IEquatable<T>
         => new Index<T>(src);
 
     /// <summary>
@@ -190,7 +189,7 @@ public static partial class zcore
     /// <param name="f">The predicate used to test values from the input sequence</param>
     /// <typeparam name="T">The input sequence type</typeparam>
     public static Slice<T> filter<T>(Slice<T> src, Func<T,bool> f)
-        where T : struct, IEquatable<T>
+        where T : struct
             => slice(src.Where(f));        
 
     /// <summary>

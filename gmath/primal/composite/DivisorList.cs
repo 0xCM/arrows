@@ -21,11 +21,11 @@ namespace Z0
         /// <param name="divisors">The values that divide the dividend</param>
         /// <typeparam name="T">The numeric type</typeparam>
         public static DivisorList<T> Define<T>(T dividend, T[] divisors)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new DivisorList<T>(dividend, divisors);
 
         public static DivisorList<T> Define<T>(T dividend, IReadOnlyList<T> divisors)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new DivisorList<T>(dividend, divisors);
 
     }
@@ -34,7 +34,7 @@ namespace Z0
     /// Encapsulates a divisor along with its dividends
     /// </summary>
     public readonly struct DivisorList<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         public DivisorList(T Dividend, IReadOnlyList<T> Divisors)
         {

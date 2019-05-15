@@ -18,7 +18,7 @@ namespace Z0
     /// </summary>
     public readonly struct ModOps<N,T> : IModNOps<N,T>
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
 
     {
         public static readonly ModOps<N,T> Inhabitant = default;

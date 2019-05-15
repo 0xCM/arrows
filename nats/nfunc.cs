@@ -185,7 +185,7 @@ public static class nfunc
     /// <typeparam name="T">The coordinate type</typeparam>
     [MethodImpl(Inline)]
     public static (T x1, T x2, T x3, T x4) tuple<T>(Vector<N4,T> v)
-        where T : struct, IEquatable<T>
+        where T : struct
             => (v[0], v[1], v[2], v[3]);
 
     /// <summary>
@@ -198,7 +198,7 @@ public static class nfunc
     /// <typeparam name="T">The coordinate type</typeparam>
     [MethodImpl(Inline)]
     public static Vector<N4,T> vector<T>((T x1, T x2, T x3, T x4) x)
-        where T : struct, IEquatable<T>
+        where T : struct
             => vector<N4,T>(x.x1, x.x2,x.x3,x.x4);
 
     /// <summary>
@@ -209,7 +209,7 @@ public static class nfunc
     /// <typeparam name="T">The coordinate type</typeparam>
     [MethodImpl(Inline)]
     public static Vector<N2,T> vector<T>((T x1, T x2) x)
-        where T : struct, IEquatable<T>
+        where T : struct
             => vector<N2,T>(x.x1, x.x2);
 
     /// <summary>
@@ -232,7 +232,7 @@ public static class nfunc
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(params T[] components)
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
             => new Z0.Vector<N,T>(components);
 
     /// <summary>
@@ -244,7 +244,7 @@ public static class nfunc
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(T component)
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
             => new Vector<N,T>(repeat<N,T>(component));
 
     /// <summary>
@@ -257,7 +257,7 @@ public static class nfunc
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(IEnumerable<T> src)
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
                 => new Vector<N,T>(src);
 
     /// <summary>
@@ -269,7 +269,7 @@ public static class nfunc
     [MethodImpl(Inline)]   
     public static Vector<N,T> vector<N,T>(N len, IEnumerable<T> components)
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
             => vector(len,components);
 
     /// <summary>
@@ -281,7 +281,7 @@ public static class nfunc
     /// <remarks>No allocation occurs during construction</remarks>
     public static Vector<N,T> vector<N,T>(N len, IReadOnlyList<T> components)
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
             => vector(len,components);
 
     /// <summary>
@@ -293,7 +293,7 @@ public static class nfunc
     [MethodImpl(Inline)]   
     public static Covector<N,T> covector<N,T>(Dim<N> dim, params T[] components)
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
             => Covector.define<N,T>(dim, components);
 
     /// <summary>
@@ -305,7 +305,7 @@ public static class nfunc
     [MethodImpl(Inline)]   
     public static Covector<N,T> covector<N,T>(IEnumerable<T> components)
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>
+        where T : struct
             => Covector.define<N,T>(components);
 
     /// <summary>
@@ -317,7 +317,7 @@ public static class nfunc
     [MethodImpl(Inline)]   
     public static Covector<N,T> covector<N,T>(params T[] components)
         where N : ITypeNat, new()
-        where T : struct, IEquatable<T>  
+        where T : struct  
             => Covector.define<N,T>(components);
 
     /// <summary>
@@ -329,7 +329,7 @@ public static class nfunc
     [MethodImpl(Inline)]
     public static Slice<N,T> slice<N,T>(params T[] src)
         where N : ITypeNat, new() 
-        where T : struct, IEquatable<T>
+        where T : struct
             => new Slice<N,T>(src);
 
 
@@ -342,7 +342,7 @@ public static class nfunc
     [MethodImpl(Inline)]
     public static Slice<N,T> slice<N,T>(IEnumerable<T> src)
         where N : ITypeNat, new() 
-        where T : struct, IEquatable<T>
+        where T : struct
             => new Slice<N,T>(src);
 
 
@@ -375,13 +375,13 @@ public static class nfunc
     [MethodImpl(Inline)]
     public static Vector<N,bool> equality<N,T>(Vector<N,T> lhs, Vector<N,T> rhs)
         where N : ITypeNat, new() 
-        where T : struct, IEquatable<T>
+        where T : struct
             => vector<N,bool>(lhs == rhs);
 
     [MethodImpl(Inline)]
     public static Vector<N,bool>[] equality<N,T>(Vector<N,T>[] lhs, Vector<N,T>[] rhs)
         where N : ITypeNat, new() 
-        where T : struct, IEquatable<T>
+        where T : struct
             => fuse(lhs, rhs, (v1,v2) =>  vector<N,bool>(v1 == v2));
 
 

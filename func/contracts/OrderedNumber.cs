@@ -11,7 +11,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface IOrderedNumberOps<T> : IStepwiseOps<T>,  IOrderedOps<T>, INumberOps<T> 
-        where T : struct, IEquatable<T>
+        where T : struct
         { }
 
     public interface IOrderedNumber<S> :  IStepwise<S>,  IOrderable<S>,  INumber<S>

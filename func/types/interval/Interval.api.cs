@@ -23,7 +23,7 @@ namespace Z0
         /// <typeparam name="T">The underlying type</typeparam>
         [MethodImpl(Inline)]
         public static ClosedInterval<T> closed<T>(T left, T right)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new ClosedInterval<T>(left,right);
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Z0
         /// <typeparam name="T">The underlying type</typeparam>
         [MethodImpl(Inline)]
         public static LeftOpenInterval<T> leftopen<T>(T left, T right)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new LeftOpenInterval<T>(left,right);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Z0
         /// <typeparam name="T">The underlying type</typeparam>
         [MethodImpl(Inline)]
         public static LeftClosedInterval<T> leftclosed<T>(T left, T right)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new LeftClosedInterval<T>(left,right);
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Z0
         /// <typeparam name="T">The underlying type</typeparam>
         [MethodImpl(Inline)]
         public static OpenInterval<T> open<T>(T left, T right)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new OpenInterval<T>(left,right);                        
     }
 }

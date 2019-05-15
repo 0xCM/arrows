@@ -204,14 +204,14 @@ namespace  Z0
 
     public interface IFixedContainer<S,T> : IImplicitSemigroup<S,T>
         where S : IFixedContainer<S,T>, new()
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         
     }
     
     public interface IFixedContainer<S,C,T> : IContainer<S>, IFixedContainer<S,T>
         where S : IFixedContainer<S,C,T>, new()
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         C Release();
     }

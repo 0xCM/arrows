@@ -19,7 +19,7 @@ namespace Z0
     {
         [MethodImpl(NotInline)]
         public static Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             switch(kind)
@@ -51,7 +51,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<bool> neqI8<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int8(lhs);
             var y = int8(rhs);
@@ -62,7 +62,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<bool> neqU8<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint8(lhs);
             var y = uint8(rhs);
@@ -73,7 +73,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<bool> neqI16<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int16(lhs);
             var y = int16(rhs);
@@ -84,7 +84,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<bool> neqU16<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint16(lhs);
             var y = uint16(rhs);
@@ -95,7 +95,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<bool> neqI32<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int32(lhs);
             var y = int32(rhs);
@@ -106,7 +106,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<bool> neqU32<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint32(lhs);
             var y = uint32(rhs);
@@ -117,7 +117,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<bool> neqI64<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = int64(lhs);
             var y = int64(rhs);
@@ -129,7 +129,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<bool> neqU64<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = uint64(lhs);
             var y = uint64(rhs);
@@ -140,7 +140,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<bool> neqF32<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = float32(lhs);
             var y = float32(rhs);
@@ -152,7 +152,7 @@ namespace Z0
 
         [MethodImpl(NotInline)]
         public static Span<bool> neqF64<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct, IEquatable<T>
+            where T : struct
         {
             var x = float64(lhs);
             var y = float64(rhs);

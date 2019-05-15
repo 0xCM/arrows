@@ -1127,7 +1127,7 @@ namespace Z0
 
        [MethodImpl(Inline)]
        public static ref T to<S,T>(S src, ref T dst)
-            where S : struct, IEquatable<S>
+            where S : struct
             where T : struct            
         {
             var dstKind = PrimalKinds.kind<T>();

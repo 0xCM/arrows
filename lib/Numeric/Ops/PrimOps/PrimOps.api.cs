@@ -25,7 +25,7 @@ namespace Z0
         /// <typeparam name="T">The type for which primitive operations are desired</typeparam>
         [MethodImpl(Inline)]    
         public static Operative.PrimOps<T> typeops<T>()
-            where T : struct, IEquatable<T>
+            where T : struct
                 => Z0.Reify.PrimOps<T>.Inhabitant;
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
         public static uint bitsize<T>()        
-            where T : struct, IEquatable<T>
+            where T : struct
                 => (uint)Unsafe.SizeOf<T>()*8;
 
                  

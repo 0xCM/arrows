@@ -17,13 +17,12 @@ namespace Z0
     public static class ImplicitSemigroup 
     {
         public static ImplicitSemigroup<T> define<T>(T src)
-            where T : struct, IEquatable<T>
+            where T : struct
                 => new ImplicitSemigroup<T>(src);
     }
     
 
     public readonly struct Equality<T> : IEqualityComparer<T>
-        where T : IEquatable<T>
     {
         public static Equality<T> Inhabitant = default;
 
@@ -44,7 +43,7 @@ namespace Z0
     }
 
     public readonly struct ImplicitSemigroup<T> : IImplicitSemigroup<ImplicitSemigroup<T>,T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         public static readonly ImplicitSemigroup<T> Inhabitant = default;
 

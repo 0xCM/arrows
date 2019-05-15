@@ -19,7 +19,7 @@ namespace Z0
     /// of 16 bytes = 256 bits
     /// </summary>
     public ref struct ReadOnlySpan256<T>
-        where T : struct, IEquatable<T>
+        where T : struct
     {
         /// <summary>
         /// The number of cells in the block
@@ -189,7 +189,7 @@ namespace Z0
                 
         [MethodImpl(Inline)]
         public ReadOnlySpan256<S> As<S>()                
-            where S : struct, IEquatable<S>
+            where S : struct
                 => (ReadOnlySpan256<S>)MemoryMarshal.Cast<T,S>(data);                    
         public int Length 
         {
