@@ -21,25 +21,25 @@ namespace Z0
             switch(kind)
             {
                 case PrimalKind.int8:
-                    return bitstring(As.int8(src.Value));
+                    return bitstring(As.int8(ref src.Scalar()));
                 case PrimalKind.uint8:
-                    return bitstring(As.uint8(src.Value));
+                    return bitstring(As.uint8(ref src.Scalar()));
                 case PrimalKind.int16:
-                    return bitstring(As.int16(src.Value));
+                    return bitstring(As.int16(ref src.Scalar()));
                 case PrimalKind.uint16:
-                    return bitstring(As.uint16(src.Value));
+                    return bitstring(As.uint16(ref src.Scalar()));
                 case PrimalKind.int32:
-                    return bitstring(As.int32(src.Value));
+                    return bitstring(As.int32(ref src.Scalar()));
                 case PrimalKind.uint32:
-                    return bitstring(As.uint32(src.Value));
+                    return bitstring(As.uint32(ref src.Scalar()));
                 case PrimalKind.int64:
-                    return bitstring(As.int64(src.Value));
+                    return bitstring(As.int64(ref src.Scalar()));
                 case PrimalKind.uint64:
-                    return bitstring(As.uint64(src.Value));
+                    return bitstring(As.uint64(ref src.Scalar()));
                 case PrimalKind.float32:
-                    return bitstring(As.float32(src.Value));
+                    return bitstring(As.float32(ref src.Scalar()));
                 case PrimalKind.float64:
-                    return bitstring(As.float64(src.Value));                
+                    return bitstring(As.float64(ref src.Scalar()));                
                 default:
                     throw unsupported(kind);
             }

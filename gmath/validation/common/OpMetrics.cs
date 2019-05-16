@@ -16,6 +16,18 @@ namespace Z0
             where T : struct
                 => (OpId, OpCount, WorkTime, results);
 
+        public static OpMetrics<T> Define<T>(in OpId<T> OpId, long OpCount, Duration WorkTime, params num<T>[] results)
+            where T : struct
+                => new OpMetrics<T>(OpId, OpCount, WorkTime, results.Extract());
+
+        public static OpMetrics<T> Define<T>(in OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> results)
+            where T : struct
+                => (OpId, OpCount, WorkTime, results);
+
+        public static OpMetrics<T> Define<T>(in OpId<T> OpId, long OpCount, Duration WorkTime, Span<T> results)
+            where T : struct
+            => new OpMetrics<T>(OpId, OpCount, WorkTime, results);
+
         public static OpMetrics Define(long OpCount, Duration WorkTime)
             => (OpCount, WorkTime);
 
@@ -40,7 +52,7 @@ namespace Z0
         public readonly Duration WorkTime;
     }
 
-    public readonly struct OpMetrics<T>
+    public struct OpMetrics<T>
         where T : struct
     {
         public static OpMetrics<T> Define(in OpId<T> OpId, long OpCount, Duration WorkTime, T[] result)
@@ -49,13 +61,18 @@ namespace Z0
         public static implicit operator OpMetrics<T>(in (OpId<T> OpId, long OpCount, Duration WorkTime, T[] Result) src)
             => new OpMetrics<T>(src.OpId, src.OpCount, src.WorkTime, src.Result);
 
+
+        public static implicit operator OpMetrics<T>(in (OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result) src)
+            => new OpMetrics<T>(src.OpId, src.OpCount, src.WorkTime, src.Result);
+
+
         public static implicit operator OpMetrics(in OpMetrics<T> src)
             => (src.OpCount, src.WorkTime);
 
-        public static implicit operator (OpId<T> OpId, long OpCount, Duration WorkTime, T[] Result)(in OpMetrics<T> src)
+        public static implicit operator (OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result)(in OpMetrics<T> src)
             => (src.OpId, src.OpCount, src.WorkTime, src.Result);
 
-        public static (OpId<T> OpId, long OpCount, Duration WorkTime, T[] Result) Deconstruct(OpMetrics<T> src)
+        public static (OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result) Deconstruct(OpMetrics<T> src)
             => src;
 
         public OpMetrics(in OpId<T> OpId, long OpCount, Duration WorkTime, T[] Result)
@@ -66,14 +83,32 @@ namespace Z0
             this.WorkTime = WorkTime;
             this.Result = Result;
         }
-        
+
+        public OpMetrics(in OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result)
+        {
+            Claim.nonzero(OpCount);
+            this.OpId = OpId;
+            this.OpCount = OpCount;
+            this.WorkTime = WorkTime;
+            this.Result = Result;
+        }
+
+        public OpMetrics(in OpId<T> OpId, long OpCount, Duration WorkTime, Span<T> Result)
+        {
+            Claim.nonzero(OpCount);
+            this.OpId = OpId;
+            this.OpCount = OpCount;
+            this.WorkTime = WorkTime;
+            this.Result = Result.ToArray();
+        }
+
         public readonly OpId<T> OpId;
         
         public readonly long OpCount;
 
         public readonly Duration WorkTime;
 
-        public readonly T[] Result;
+        public readonly ReadOnlyMemory<T> Result;
 
         public AppMsg Describe()
         {
@@ -83,6 +118,10 @@ namespace Z0
             msg += $" | Duration = {WorkTime.Ticks} ticks = {WorkTime.Ms} ms";
             return AppMsg.Define(msg, SeverityLevel.Info);
         }
+
+        public OpMetrics<S> As<S>()
+            where S : struct
+                => Unsafe.As<OpMetrics<T>, OpMetrics<S>>(ref this);
 
     }    
 }

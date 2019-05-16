@@ -281,7 +281,7 @@ namespace Z0.Test
             for(var i = 0; i<src.Length; i++)
                 Claim.eq(baseline(src[i]),op(src[i]), caller, file, line);
             
-            var metrics = OpMetrics.Define(opid, src.Length, elapsed(timing));                        
+            var metrics = OpMetrics.Define(opid, src.Length, elapsed(timing), array<T>(0));                        
             if(Verbose)
                 Trace(metrics.Describe().WithLevel(SeverityLevel.Babble));
             return metrics;
@@ -301,7 +301,7 @@ namespace Z0.Test
             for(var i = 0; i<len; i++)
                 Claim.eq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);
             
-            var metrics = OpMetrics.Define(opid, lhs.Length, elapsed(timing));                        
+            var metrics = OpMetrics.Define(opid, lhs.Length, elapsed(timing), array<T>(0));                        
             if(Verbose)
                 Trace(metrics.Describe().WithLevel(SeverityLevel.Babble));
             return metrics;
@@ -321,7 +321,7 @@ namespace Z0.Test
             for(var i = 0; i<len; i++)
                 Claim.eq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);
             
-            var metrics = OpMetrics.Define(opid, lhs.Length, elapsed(timing));                        
+            var metrics = OpMetrics.Define(opid, lhs.Length, elapsed(timing), array<T>(0));                        
             if(Verbose)
                 Trace(metrics.Describe().WithLevel(SeverityLevel.Babble));
             return metrics;

@@ -16,7 +16,7 @@ namespace Z0
     using static zfunc;
     using static As;
 
-    public readonly struct num<T>
+    public struct num<T>
         where T : struct
     {
         readonly T x;
@@ -29,105 +29,104 @@ namespace Z0
 
         public static readonly int BitSize = NumInfo.Size*8;
 
-        public static readonly num<T> MinVal = NumInfo.MinVal;
+        // public static readonly num<T> MinVal = NumInfo.MinVal;
 
-        public static readonly num<T> MaxVal = NumInfo.MaxVal;
+        // public static readonly num<T> MaxVal = NumInfo.MaxVal;
 
         public static readonly num<T> Zero = Num.zero<T>();
 
         public static readonly num<T> One = Num.one<T>();
 
         [MethodImpl(Inline)]
+        static ref T scalar(ref num<T> src)
+            => ref Unsafe.As<num<T>,T>(ref src);
+
+        [MethodImpl(Inline)]
         public static explicit operator sbyte(num<T> src)
-            => convert(src.Value, out sbyte x);
+            => convert(scalar(ref src), out sbyte x);
 
         [MethodImpl(Inline)]
         public static explicit operator byte(num<T> src)
-            => convert(src.Value, out byte x);
+            => convert(scalar(ref src), out byte x);
 
         [MethodImpl(Inline)]
         public static explicit operator short(num<T> src)
-            => convert(src.Value, out short x);
+            => convert(scalar(ref src), out short x);
 
         [MethodImpl(Inline)]
         public static explicit operator ushort(num<T> src)
-            => convert(src.Value, out ushort x);
+            => convert(scalar(ref src), out ushort x);
 
         [MethodImpl(Inline)]
         public static explicit operator int(num<T> src)
-            => convert(src.Value, out int x);
+            => convert(scalar(ref src), out int x);
 
         [MethodImpl(Inline)]
         public static explicit operator uint(num<T> src)
-            => convert(src.Value, out uint x);
+            => convert(scalar(ref src), out uint x);
 
         [MethodImpl(Inline)]
         public static explicit operator long(num<T> src)
-            => convert(src.Value, out long x);
+            => convert(scalar(ref src), out long x);
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(num<T> src)
-            => convert(src.Value, out ulong x);
+            => convert(scalar(ref src), out ulong x);
 
         [MethodImpl(Inline)]
         public static explicit operator float(num<T> src)
-            => convert(src.Value, out float x);
+            => convert(scalar(ref src), out float x);
 
         [MethodImpl(Inline)]
         public static explicit operator double(num<T> src)
-            => convert(src.Value, out double x);
+            => convert(scalar(ref src), out double x);
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(sbyte src)
-            => generic<T>(src);
+            => toNum(ref generic<T>(ref src));
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(byte src)
-            => generic<T>(src);
+            => toNum(ref generic<T>(ref src));
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(short src)
-            => generic<T>(src);
+            => toNum(ref generic<T>(ref src));
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(ushort src)
-            => generic<T>(src);
+            => toNum(ref generic<T>(ref src));
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(int src)
-            => generic<T>(ref src);
+            => toNum(ref generic<T>(ref src));
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(uint src)
-            => generic<T>(ref src);
+            => toNum(ref generic<T>(ref src));
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(long src)
-            => As.generic<T>(ref src);
+            => toNum(ref generic<T>(ref src));
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(ulong src)
-            => As.generic<T>(ref src);
+            => toNum(ref generic<T>(ref src));
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(float src)
-            => As.generic<T>(ref src);
+            => toNum(ref generic<T>(ref src));
 
         [MethodImpl(Inline)]
         public static explicit operator num<T>(double src)
-            => As.generic<T>(ref src);
+            => toNum(ref generic<T>(ref src));
 
-        [MethodImpl(Inline)]
         static ref num<T> toNum(ref T src)
-            => ref Unsafe.As<T,num<T>>(ref src);
+            => ref Unsafe.As<T,num<T>>(ref  src);
 
         [MethodImpl(Inline)]
         public static implicit operator num<T>(T src)
-            =>  toNum(ref src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator T(num<T> src)
-            => scalar(ref src);
+            => Unsafe.As<T,num<T>>(ref  src);
 
         [MethodImpl(Inline)]
         public static num<T> operator + (num<T> lhs, in num<T> rhs) 
@@ -140,10 +139,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static num<T> operator * (num<T> lhs, in num<T> rhs) 
             => lhs.Mul(rhs);
-        // {
-        //     ref var result = ref gmath.mul(ref scalar(ref lhs), rhs.Value);
-        //     return toNum(ref result);
-        // }
 
         [MethodImpl(Inline)]
         public static num<T> operator / (num<T> lhs, in num<T> rhs) 
@@ -163,7 +158,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static num<T> operator -- (num<T> src) 
-            => gmath.dec(ref scalar(ref src));
+            => src.Negate();
 
         [MethodImpl(Inline)]
         public static bool operator == (in num<T> lhs, in num<T> rhs) 
@@ -209,17 +204,6 @@ namespace Z0
         public bool Equals(in num<T> rhs)
             => this.Eq(rhs);
 
-        public T Value
-        {
-            [MethodImpl(Inline)]
-            get
-            {
-                var x = this;
-                return scalar(ref x);
-            }            
-        }   
-
-
         [MethodImpl(Inline)]
         public override int GetHashCode()
             => throw new NotSupportedException();
@@ -227,10 +211,16 @@ namespace Z0
         public override bool Equals(object rhs)
             => throw new NotSupportedException();
 
+        // public T Scalar
+        // {
+        //     [MethodImpl(Inline)]
+        //     get => scalar(ref this);                    
+        // }
         public override string ToString()
         {
-            var src = this;
-            return scalar(ref src).ToString();
+            var x = scalar(ref this);
+            return x.ToString();
         }
+            
     }
 }

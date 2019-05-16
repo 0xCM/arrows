@@ -27,7 +27,7 @@ namespace Z0
         {
             var dst = alloc<T>(src.Length);
             for(var i=0; i<src.Length; i++)
-                dst[i] = src[i];
+                dst[i] = single(ref src[i]);
             return dst;
         }
 
@@ -37,17 +37,24 @@ namespace Z0
         {
             var dst = alloc<T>(src.Length);
             for(var i=0; i<src.Length; i++)
-                dst[i] = src[i];
+                dst[i] = single(ref src[i]);
             return dst;
         }
 
+        [MethodImpl(Inline)]
         public static num<T> zero<T>()
                 where T : struct
-            => gmath.zero<T>();
+            => single(gmath.zero<T>());
 
+        [MethodImpl(Inline)]
         public static num<T> one<T>()
                 where T : struct
-            => gmath.one<T>();
+            => single(gmath.one<T>());
+
+        [MethodImpl(Inline)]
+        public static num<T> single<T>(T src)
+            where T : struct
+                => Unsafe.As<T,num<T>>(ref src);
 
         [MethodImpl(Inline)]
         public static ref num<T> single<T>(ref T src)
@@ -65,53 +72,23 @@ namespace Z0
             => ref Unsafe.As<num<T>,T>(ref src);
 
         [MethodImpl(Inline)]
-        public static ref num<T> add<T>(ref num<T> lhs, in num<T> rhs)
+        public static ref num<T> add<T>(ref num<T> lhs, num<T> rhs)
             where T : struct
-                => ref lhs.Add(rhs);
+                =>  ref num(ref gmath.add(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> sub<T>(ref num<T> lhs, in num<T> rhs)
+        public static ref num<T> sub<T>(ref num<T> lhs, num<T> rhs)
             where T : struct
-                => ref lhs.Sub(rhs);
+                =>  ref num(ref gmath.sub(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> mul<T>(ref num<T> lhs, in num<T> rhs)
+        public static ref num<T> mul<T>(ref num<T> lhs, num<T> rhs)
             where T : struct
-                => ref lhs.Mul(rhs);
+                =>  ref num(ref gmath.mul(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> div<T>(ref num<T> lhs, in num<T> rhs)
+        public static ref num<T> div<T>(ref num<T> lhs, num<T> rhs)
             where T : struct
-                => ref lhs.Div(rhs);
-
-        [MethodImpl(Inline)]
-        public static ref num<T> inc<T>(ref num<T> src)
-            where T : struct
-                => ref src.Inc();
-
-        [MethodImpl(Inline)]
-        public static ref num<T> dec<T>(ref num<T> src)
-            where T : struct
-                => ref src.Inc();
-
-        [MethodImpl(Inline)]
-        public static ref num<T> abs<T>(ref num<T> src)
-            where T : struct
-            => ref src.Abs();
-
-        [MethodImpl(Inline)]
-        public static ref num<T> negate<T>(ref num<T> src)
-            where T : struct 
-                => ref src.Negate();
-
-        [MethodImpl(Inline)]
-        public static num<T> abs<T>(num<T> src)
-            where T : struct
-                => src.Abs();
-
-        [MethodImpl(Inline)]
-        public static num<T> sqrt<T>(num<T> src)
-            where T : struct
-                => src.Sqrt();
+                =>  ref num(ref gmath.div(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
     }
 }

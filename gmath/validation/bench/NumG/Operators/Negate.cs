@@ -21,12 +21,16 @@ namespace Z0
         {
             var opid =  Id<T>(OpKind.Negate);
             var src = Num.many(Sampled(opid).Left);
+            var stage = alloc<num<T>>(dst.Length);
             
             var sw = stopwatch();
             var it = -1;
             while(++it < SampleSize)
-                dst[it] = - src[it];
-            return(SampleSize, snapshot(sw));
+                stage[it] = - src[it];
+
+            var time = snapshot(sw);
+            stage.Extract().CopyTo(dst);
+            return(SampleSize, time);
         }
 
         public IBenchComparison NegateI8()

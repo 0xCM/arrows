@@ -29,7 +29,7 @@ namespace Z0.Test
 
         public void ByteToBinaryDigits()
         {
-            BinaryMatch<byte>("0b00000100",0b00000100);
+            BinaryMatch<byte>("0b00000100", 0b00000100);
             BinaryMatch<byte>("0b00000101",0b00000101);
             BinaryMatch<byte>("0b01000101",0b01000101);
             BinaryMatch<byte>("0b11010101",0b11010101);

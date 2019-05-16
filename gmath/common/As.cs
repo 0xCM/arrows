@@ -94,6 +94,7 @@ namespace Z0
         public static double float64<T>(T src)
             => Unsafe.As<T,double>(ref src);
 
+
         [MethodImpl(Inline)]
         public static ref double float64<T>(ref T src)
             => ref Unsafe.As<T,double>(ref src);
@@ -105,6 +106,77 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref decimal float128<T>(ref T src)
             => ref Unsafe.As<T,decimal>(ref src);
+
+
+        [MethodImpl(Inline)]
+        public static ref sbyte int8<T>(T src, out sbyte dst)
+        {
+            dst = Unsafe.As<T,sbyte>(ref src);
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref byte uint8<T>(T src, out byte dst)
+        {
+            dst = Unsafe.As<T,byte>(ref src);
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref short int16<T>(T src, out short dst)
+        {
+            dst = Unsafe.As<T,short>(ref src);
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref ushort uint16<T>(T src, out ushort dst)
+        {
+            dst = Unsafe.As<T,ushort>(ref src);
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref int int32<T>(T src, out int dst)
+        {
+            dst = Unsafe.As<T,int>(ref src);
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref uint uint32<T>(T src, out uint dst)
+        {
+            dst = Unsafe.As<T,uint>(ref src);
+            return ref dst;
+        }            
+        
+        [MethodImpl(Inline)]
+        public static ref long int64<T>(T src, out long dst)
+        {
+            dst = Unsafe.As<T,long>(ref src);
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref ulong uint64<T>(T src, out ulong dst)
+        {
+            dst = Unsafe.As<T,ulong>(ref src);
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref float float32<T>(T src, out float dst)
+        {
+            dst = Unsafe.As<T,float>(ref src);
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref double float64<T>(T src, out double dst)
+        {
+            dst = Unsafe.As<T,double>(ref src);
+            return ref dst;
+        }            
 
         #endregion
 
@@ -197,6 +269,77 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref T generic<T>(ref decimal src)
             => ref Unsafe.As<decimal,T>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ref T generic<T>(sbyte src, out T dst)
+        {
+            dst = Unsafe.As<sbyte,T>(ref src);
+            return ref dst;
+        }
+            
+        [MethodImpl(Inline)]
+        public static ref T generic<T>(byte src, out T dst)
+        {
+            dst = Unsafe.As<byte,T>(ref src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T generic<T>(short src, out T dst)
+        {
+            dst = Unsafe.As<short,T>(ref src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T generic<T>(ushort src, out T dst)
+        {
+            dst = Unsafe.As<ushort,T>(ref src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T generic<T>(int src, out T dst)
+        {
+            dst = Unsafe.As<int,T>(ref src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T generic<T>(uint src, out T dst)
+        {
+            dst = Unsafe.As<uint,T>(ref src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T generic<T>(long src, out T dst)
+        {
+            dst = Unsafe.As<long,T>(ref src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T generic<T>(ulong src, out T dst)
+        {
+            dst = Unsafe.As<ulong,T>(ref src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T generic<T>(float src, out T dst)
+        {
+            dst = Unsafe.As<float,T>(ref src);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T generic<T>(double src, out T dst)
+        {
+            dst = Unsafe.As<double,T>(ref src);
+            return ref dst;
+        }
+
 
         #endregion
 

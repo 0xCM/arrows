@@ -24,12 +24,16 @@ namespace Z0
             var src = Sampled(opid,true);
             var lhs = Num.many(src.Left);
             var rhs = Num.many(src.Right);
+            var stage = alloc<num<T>>(dst.Length);
             
             var sw = stopwatch();
             var it = -1;
             while(++it < SampleSize)
-                dst[it] = lhs[it] % rhs[it];
-            return(SampleSize, snapshot(sw));
+                stage[it] = lhs[it] % rhs[it];
+            
+            var time = snapshot(sw);
+            stage.Extract().CopyTo(dst);
+            return(SampleSize, time);
         }
 
         public IBenchComparison ModI8()

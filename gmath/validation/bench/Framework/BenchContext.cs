@@ -46,8 +46,8 @@ namespace Z0
 
         public IEnumerable<(string name, OpRunner runner)> Runners()
         {
-            var methods = GetType().GetMethods().Where(
-                    m => m.IsPublic && !m.IsStatic && !m.IsAbstract  
+            var methods = GetType().Methods().Where(
+                    m => !m.IsStatic && !m.IsAbstract  
                     && m.DeclaringType == this.GetType()
                     && m.GetParameters().Length == 0 
                     && m.ReturnType == type<IBenchComparison>());            

@@ -101,7 +101,7 @@ namespace Z0
         protected abstract OpId<T> Id<T>(OpKind op)
             where T : struct;
 
-        protected BaselineMetrics Baselines {get;}
+        public BaselineMetrics Baselines {get;}
 
         protected readonly ArraySampler LeftSrc;   
 

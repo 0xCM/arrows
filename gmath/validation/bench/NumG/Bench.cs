@@ -23,7 +23,9 @@ namespace Z0
         NumGBench(IRandomizer random, BenchConfig config = null)
             : base(BenchKind.NumG, random, config)
         {
-
+            gmath.one<double>();
+            gmath.one<float>();
+            gmath.one<long>();
         }
 
         protected override OpId<T> Id<T>(OpKind op)

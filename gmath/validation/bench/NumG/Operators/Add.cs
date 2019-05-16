@@ -9,29 +9,52 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
-
-    
+   
     using static zfunc;
     using static mfunc;
 
     partial class NumGBench
     {
-       OpMetrics Add<T>(T[] dst)
+       public OpMetrics Add<T>(T[] dst)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Add);
             var src = Sampled(opid);
             var lhs = Num.many(src.Left);
             var rhs = Num.many(src.Right);
-            
-            var sw = stopwatch();
+            var stage = alloc<num<T>>(dst.Length);            
             var it = -1;
+
+            var sw = stopwatch();
             while(++it < SampleSize)
-                dst[it] = lhs[it] + rhs[it];
-            return(SampleSize, snapshot(sw));
+                stage[it] = lhs[it] + rhs[it];
+            
+            var time = snapshot(sw);
+            stage.Extract().CopyTo(dst);
+            return(SampleSize, time);
         }
 
-        public IBenchComparison AddI8()
+       public OpMetrics<T> Add<T>()
+            where T : struct
+        {
+            var opid =  ~!Id<T>(OpKind.Add);
+            var src = Sampled(opid);
+            var lhs = Num.many(src.Left);
+            var rhs = Num.many(src.Right);
+            var dst = alloc<num<T>>(SampleSize);
+            var cycle = 0;
+
+            var sw = stopwatch();
+            while(++cycle <= Config.Cycles)
+            {
+                var it = -1;
+                while(++it < SampleSize)
+                    dst[it] = lhs[it] + rhs[it];
+            }            
+            return OpMetrics.Define(opid, SampleSize, snapshot(sw), dst);
+        }
+
+        IBenchComparison AddI8()
         {
             var opid = Id<sbyte>(OpKind.Add);
             var targets = Targets(opid);
@@ -41,7 +64,7 @@ namespace Z0
             return Finish(comparison, targets);
         }
 
-        public IBenchComparison AddU8()
+        IBenchComparison AddU8()
         {
             var opid =  Id<byte>(OpKind.Add);
             var targets = Targets(opid);
@@ -51,7 +74,7 @@ namespace Z0
             return Finish(comparison, targets);
         }
 
-        public IBenchComparison AddI16()
+        IBenchComparison AddI16()
         {
             var opid =  Id<short>(OpKind.Add);
             var targets = Targets(opid);
@@ -61,7 +84,7 @@ namespace Z0
             return Finish(comparison, targets);
         }
 
-        public IBenchComparison AddU16()
+        IBenchComparison AddU16()
         {
             var opid =  Id<ushort>(OpKind.Add);
             var targets = Targets(opid);
@@ -72,7 +95,7 @@ namespace Z0
         }
 
 
-        public IBenchComparison AddI32()
+        IBenchComparison AddI32()
         {
             var opid =  Id<int>(OpKind.Add);
             var targets = Targets(opid);
@@ -82,7 +105,7 @@ namespace Z0
             return Finish(comparison, targets);
         }
 
-        public IBenchComparison AddU32()
+        IBenchComparison AddU32()
         {
             var opid =  Id<uint>(OpKind.Add);
             var targets = Targets(opid);
@@ -92,7 +115,7 @@ namespace Z0
             return Finish(comparison, targets);
         }
 
-        public IBenchComparison AddI64()
+        IBenchComparison AddI64()
         {
             var opid =  Id<long>(OpKind.Add);
             var targets = Targets(opid);
@@ -102,7 +125,7 @@ namespace Z0
             return Finish(comparison, targets);
         }
 
-        public IBenchComparison AddU64()
+        IBenchComparison AddU64()
         {
             var opid =  Id<ulong>(OpKind.Add);
             var targets = Targets(opid);
@@ -112,7 +135,7 @@ namespace Z0
             return Finish(comparison, targets);
         }
 
-        public IBenchComparison AddF32()
+        IBenchComparison AddF32()
         {
             var opid =  Id<float>(OpKind.Add);
             var targets = Targets(opid);
@@ -122,7 +145,7 @@ namespace Z0
             return Finish(comparison, targets);
         }
 
-        public IBenchComparison AddF64()
+        IBenchComparison AddF64()
         {
             var opid =  Id<double>(OpKind.Add);
             var targets = Targets(opid);

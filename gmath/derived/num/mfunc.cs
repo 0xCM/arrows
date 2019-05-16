@@ -35,10 +35,6 @@ partial class mfunc
         where T : struct
             => Unsafe.As<T,num<T>>(ref src);
 
-    [MethodImpl(Inline)]
-    public static ref T scalar<T>(ref num<T> src)
-        where T : struct
-            => ref Unsafe.As<num<T>,T>(ref src);
 
     /// <summary>
     /// Constructs a contiguous range of integers inclusively between specified bounds

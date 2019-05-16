@@ -190,6 +190,37 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static ref T add<T>(in T lhs, in T rhs, out T dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if (kind == PrimalKind.int8)
+                dst = addI8(lhs, rhs, out dst);            
+            else if(kind == PrimalKind.uint8)
+                dst = addU8(lhs, rhs, out dst);
+            else if(kind == PrimalKind.int16)
+                dst = addI16(lhs, rhs, out dst);
+            else if(kind == PrimalKind.uint16)
+                dst = addU16(lhs, rhs, out dst);
+            else if(kind == PrimalKind.int32)
+                dst = addI32(lhs, rhs, out dst);            
+            else if(kind == PrimalKind.uint32)
+                dst = addU32(lhs, rhs, out dst);            
+            else if(kind == PrimalKind.int64)
+                dst = addI64(lhs, rhs, out dst);            
+            else if(kind == PrimalKind.uint64)
+                dst = addU64(lhs, rhs, out dst);            
+            else if(kind == PrimalKind.float32)
+                dst = addF32(lhs, rhs, out dst);            
+            else if(kind == PrimalKind.float64)
+                dst = addF64(lhs, rhs, out dst);
+            else            
+                throw unsupported(kind);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
         public static T add<T>(T lhs, T rhs)
             where T : struct
         {

@@ -15,81 +15,87 @@ namespace Z0
 
     public static class NumX
     {
-    
+
+        [MethodImpl(Inline)]
+        public static ref T Scalar<T>(this ref num<T> src)
+            where T : struct
+            => ref Unsafe.As<num<T>,T>(ref src);
+
+
         [MethodImpl(Inline)]
         public static ref num<T> Abs<T>(this ref num<T> src)
             where T : struct
-                => ref num(ref gmath.abs(ref scalar(ref src)));
+                =>  ref num(ref gmath.abs(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Sqrt<T>(this ref num<T> src)
             where T : struct 
-                => ref num(ref gmath.sqrt(ref scalar(ref src)));
+                =>  ref num(ref gmath.sqrt(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> Add<T>(this ref num<T> lhs, in num<T> rhs)
+        public static ref num<T> Add<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                => ref num(ref gmath.add(ref scalar(ref lhs), rhs.Value));            
+                =>  ref num(ref gmath.add(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> Sub<T>(this ref num<T> lhs, in num<T> rhs)
+        public static ref num<T> Sub<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                => ref num(ref gmath.sub(ref scalar(ref lhs), rhs.Value));            
+                =>  ref num(ref gmath.sub(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> Mul<T>(this ref num<T> lhs, in num<T> rhs)
+        public static ref num<T> Mul<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                => ref num(ref gmath.mul(ref scalar(ref lhs), rhs.Value));            
+                =>  ref num(ref gmath.mul(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> Div<T>(this ref num<T> lhs, in num<T> rhs)
+        public static ref num<T> Div<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                => ref num(ref gmath.div(ref scalar(ref lhs), rhs.Value));            
+                =>  ref num(ref gmath.div(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> Mod<T>(this ref num<T> lhs, in num<T> rhs)
+        public static ref num<T> Mod<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                => ref num(ref gmath.mod(ref scalar(ref lhs), rhs.Value));            
+                =>  ref num(ref gmath.mod(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> And<T>(this ref num<T> lhs, in num<T> rhs)
+        public static ref num<T> And<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                => ref num(ref gmath.and(ref scalar(ref lhs), rhs.Value));            
+                =>  ref num(ref gmath.and(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> Or<T>(this ref num<T> lhs, in num<T> rhs)
+        public static ref num<T> Or<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                => ref num(ref gmath.or(ref scalar(ref lhs), rhs.Value));            
+                =>  ref num(ref gmath.or(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> XOr<T>(this ref num<T> lhs, in num<T> rhs)
+        public static ref num<T> XOr<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                => ref num(ref gmath.xor(ref scalar(ref lhs), rhs.Value));            
+                =>  ref num(ref gmath.xor(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Flip<T>(this ref num<T> src)
             where T : struct
-                => ref num(ref gmath.flip(ref scalar(ref src)));            
+                =>  ref num(ref gmath.flip(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Inc<T>(this ref num<T> src)
             where T : struct
-                => ref num(ref gmath.inc(ref scalar(ref src)));            
+                =>  ref num(ref gmath.inc(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Dec<T>(this ref num<T> src)
             where T : struct
-                => ref num(ref gmath.dec(ref scalar(ref src)));            
+                =>  ref num(ref gmath.dec(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Square<T>(this ref num<T> src)
             where T : struct
-                => ref num(ref gmath.square(ref scalar(ref src)));            
+                =>  ref num(ref gmath.square(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Negate<T>(this ref num<T> src)
             where T : struct
-               => ref num(ref gmath.negate(ref scalar(ref src)));
+                =>  ref num(ref gmath.negate(ref Num.scalar(ref src)));
  
         [MethodImpl(Inline)]
         public static PrimalKind PrimalKind<T>(this num<T> src)
@@ -97,40 +103,40 @@ namespace Z0
                 => PrimalKinds.kind<T>();
 
         [MethodImpl(Inline)]
-        public static bool Eq<T>(this in num<T> lhs, in num<T> rhs)
+        public static bool Eq<T>(this num<T> lhs, num<T> rhs)
             where T : struct
-                => gmath.eq(lhs.Value, rhs.Value);
+                => gmath.eq(lhs.Scalar(), rhs.Scalar());
 
         [MethodImpl(Inline)]
-        public static bool NEq<T>(this in num<T> lhs, in num<T> rhs)
+        public static bool NEq<T>(this num<T> lhs, num<T> rhs)
             where T : struct
-                => gmath.neq(lhs.Value, rhs.Value);
+                => gmath.neq(lhs.Scalar(), rhs.Scalar());
 
         [MethodImpl(Inline)]
-        public static bool Gt<T>(this in num<T> lhs, in num<T> rhs)
+        public static bool Gt<T>(this num<T> lhs, num<T> rhs)
             where T : struct
-                => gmath.gt(lhs.Value, rhs.Value);
+                => gmath.gt(lhs.Scalar(), rhs.Scalar());
 
         [MethodImpl(Inline)]
-        public static bool GtEq<T>(this in num<T> lhs, in num<T> rhs)
+        public static bool GtEq<T>(this num<T> lhs, num<T> rhs)
             where T : struct
-                => gmath.gteq(lhs.Value, rhs.Value);
+                => gmath.gteq(lhs.Scalar(), rhs.Scalar());
 
         [MethodImpl(Inline)]
-        public static bool LtEq<T>(this in num<T> lhs, in num<T> rhs)
+        public static bool LtEq<T>(this num<T> lhs, num<T> rhs)
             where T : struct
-                => gmath.lteq(lhs.Value, rhs.Value);
+                => gmath.lteq(lhs.Scalar(), rhs.Scalar());
 
         [MethodImpl(Inline)]
-        public static bool Lt<T>(this in num<T> lhs, in num<T> rhs)
+        public static bool Lt<T>(this num<T> lhs, num<T> rhs)
             where T : struct
-                => gmath.lt(lhs.Value, rhs.Value);
+                => gmath.lt(lhs.Scalar(), rhs.Scalar());
 
         [MethodImpl(NotInline)]
         public static num<T> Sum<T>(this ReadOnlySpan<num<T>> src)        
             where T : struct
         {
-            var result = gmath.zero<T>();
+            var result = num<T>.Zero;
             var it = src.GetEnumerator();
             while(it.MoveNext())
                 result += it.Current;
@@ -159,13 +165,15 @@ namespace Z0
             where T : struct        
                 => Unsafe.As<num<T>[], T[]>(ref src);
 
+
+
         [MethodImpl(NotInline)]
         public static Span<T> Extract<T>(this Span<num<T>> src)
             where T : struct        
         {
             var dst = span<T>(src.Length);
             for(var i=0; i< src.Length; i++)
-                dst[i] = src[i];
+                dst[i] = src[i].Scalar();
             return dst;
         }
 

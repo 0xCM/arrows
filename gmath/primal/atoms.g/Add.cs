@@ -96,6 +96,98 @@ namespace Z0
             return ref lhs;
         }            
 
+
+        [MethodImpl(Inline)]
+        public static ref T addI8<T>(in T lhs, in T rhs, out T dst)
+        {
+            int8(lhs, out sbyte x);
+            int8(rhs, out sbyte y);                        
+            dst = generic((sbyte)(x + y), out dst);            
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T addU8<T>(in T lhs, in T rhs, out T dst)
+        {
+            uint8(lhs, out byte x);
+            uint8(rhs, out byte y);                        
+            dst = generic((byte)(x + y), out dst);            
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T addI16<T>(in T lhs, in T rhs, out T dst)
+        {
+            int16(lhs, out short x);
+            int16(rhs, out short y);                        
+            dst = generic((short)(x + y), out dst);            
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T addU16<T>(in T lhs, in T rhs, out T dst)
+        {
+            uint16(lhs, out ushort x);
+            uint16(rhs, out ushort y);                        
+            dst = generic((ushort)(x + y), out dst);            
+            return ref dst;
+        }            
+
+
+        [MethodImpl(Inline)]
+        public static ref T addI32<T>(in T lhs, in T rhs, out T dst)
+        {
+            int32(lhs, out int x);
+            int32(rhs, out int y);                        
+            dst = generic(x + y, out dst);            
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T addU32<T>(in T lhs, in T rhs, out T dst)
+        {
+            uint32(lhs, out uint x);
+            uint32(rhs, out uint y);                        
+            dst = generic(x + y, out dst);            
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T addI64<T>(in T lhs, in T rhs, out T dst)
+        {
+            int64(lhs, out long x);
+            int64(rhs, out long y);                        
+            dst = generic(x + y, out dst);            
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T addU64<T>(in T lhs, in T rhs, out T dst)
+        {
+            uint64(lhs, out ulong x);
+            uint64(rhs, out ulong y);                        
+            dst = generic(x + y, out dst);            
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T addF32<T>(in T lhs, in T rhs, out T dst)
+        {
+            float32(lhs, out float x);
+            float32(rhs, out float y);                        
+            dst = generic(x + y, out dst);            
+            return ref dst;
+        }            
+
+        [MethodImpl(Inline)]
+        public static ref T addF64<T>(in T lhs, in T rhs, out T dst)
+        {
+            float64(lhs, out double x);
+            float64(rhs, out double y);                        
+            dst = generic(x + y, out dst);            
+            return ref dst;
+        }            
+
         [MethodImpl(Inline)]
         public static T addI8<T>(T lhs, T rhs)
             => generic<T>((sbyte)(int8(lhs) + int8(rhs)));
