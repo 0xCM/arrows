@@ -20,4 +20,10 @@ namespace Z0
 
     }
 
+    public static class Record
+    {
+        public static IEnumerable<string> Delimited<T>(this IEnumerable<IRecord<T>> records, char delimiter  = ',')
+            => records.Select(r => r.Delimited(delimiter));
+    }
+
 }

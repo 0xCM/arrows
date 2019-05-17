@@ -802,9 +802,6 @@ namespace Z0
 
         #region Num128
 
-        //! Num128
-        //! -------------------------------------------------------------------
-
         [MethodImpl(Inline)]
         internal static Num128<sbyte> int8<T>(Num128<T> src)
             where T : struct        
@@ -1437,8 +1434,6 @@ namespace Z0
 
         #region Vec256
 
-        //! Vec256
-        //! -------------------------------------------------------------------
 
         [MethodImpl(Inline)]
         internal static Vec256<sbyte> int8<T>(Vec256<T> src)
@@ -1651,10 +1646,8 @@ namespace Z0
 
         #region Vector128
 
-        //! Vector128
-        //! -------------------------------------------------------------------
 
-         [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         internal static Vector128<sbyte> int8<T>(Vector128<T> src)
             where T : struct        
                 => Unsafe.As<Vector128<T>,Vector128<sbyte>>(ref src);
@@ -1865,8 +1858,6 @@ namespace Z0
 
         #region Vector256
 
-        //! Vector128
-        //! -------------------------------------------------------------------
 
          [MethodImpl(Inline)]
         internal static Vector256<sbyte> int8<T>(Vector256<T> src)
@@ -2710,6 +2701,9 @@ namespace Z0
 
         #endregion
 
+        #region generic -> generic
 
+        
+        #endregion
     }
 }

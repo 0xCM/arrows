@@ -13,6 +13,22 @@ namespace Z0
     public class OpId<T> : IOpId<T>
         where T : struct
     {
+        public static readonly OpId<T> Zero = new OpId<T>(OpKind.None, NumericKind.Default, false, false, OpFusion.Default, 0, OpMode.Default, false);
+        
+        public static bool operator ==(OpId<T> lhs, OpId<T> rhs)
+            => lhs.OpKind == rhs.OpKind
+            && lhs.NumKind == rhs.NumKind
+            && lhs.OperandType == rhs.OperandType
+            && lhs.OperandSize == rhs.OperandSize
+            && lhs.Generic == rhs.Generic
+            && lhs.Intrinsic == rhs.Intrinsic
+            && lhs.Fusion == rhs.Fusion
+            && lhs.Mode == rhs.Mode
+            && lhs.Role == rhs.Role;
+
+        public static bool operator !=(OpId<T> lhs, OpId<T> rhs)
+            => !(lhs == rhs);
+
         public static implicit operator OpId(OpId<T> src)
             =>  src.OpKind.OpId(src.OperandType, src.NumKind, src.Generic, src.Intrinsic, 
                     src.Fusion, src.OperandSize, src.Mode, src.Role);
@@ -55,8 +71,17 @@ namespace Z0
 
         public bool Role {get;}
 
+        public bool NonZero
+            => OpKind != OpKind.None;
+
         public override string ToString()
             => this.BuildUri();
+
+        public override bool Equals(object obj)
+            => obj is OpId<T> ? (OpId<T>)obj == this : false;
+
+        public override int GetHashCode()
+            => ToString().GetHashCode();
 
         public OpId<T> ToggleGeneric()
             => new OpId<T>(OpKind, NumKind, !Generic, Intrinsic, Fusion, OperandSize, Mode, Role);

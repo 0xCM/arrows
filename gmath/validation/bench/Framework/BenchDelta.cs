@@ -21,7 +21,7 @@ namespace Z0
         {
             this.Comparison = Comparison;
             this.Description = Comparison.Describe();
-            Claim.eq(Comparison.LeftMeasure.OpCount, Comparison.RightMeasure.OpCount);
+            Claim.eq(Comparison.LeftMetrics.OpCount, Comparison.RightMetrics.OpCount);
         }
 
         public IBenchComparison Comparison {get;}
@@ -35,13 +35,13 @@ namespace Z0
             => Comparison.RightTitle;
         
         public long OpCount
-            => Comparison.LeftMeasure.OpCount;
+            => Comparison.LeftMetrics.OpCount;
 
         public Duration LeftDuration
-            => Comparison.LeftMeasure.WorkTime;
+            => Comparison.LeftMetrics.WorkTime;
 
         public Duration RightDuration
-            => Comparison.RightMeasure.WorkTime;
+            => Comparison.RightMetrics.WorkTime;
 
         public Duration TimingDelta
             => LeftDuration - RightDuration;

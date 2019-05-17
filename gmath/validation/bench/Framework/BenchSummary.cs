@@ -10,73 +10,40 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     
-    public interface IBenchSummary
+    public class BenchSummary : IBenchSummary
     {
-        int Cycles {get;}
+        public static readonly BenchSummary Zero = new BenchSummary();
 
-        OpMetrics Measure {get;}
+        public static BenchSummary<T> Define<T>(OpMetrics<T> metrics)        
+            where T : struct
+                => new BenchSummary<T>(metrics);
 
-        AppMsg Description {get;}
+        public static BenchSummary Define(IOpMetrics metrics)
+            => new BenchSummary(metrics);
 
-    }
-    
-    public class BenchSummary<T> : IBenchSummary
-    {
-        public BenchSummary(T Title, int Cycles,  long OpCount,  Duration ExecTime)
+        BenchSummary()
         {
-            this.Title = Title;
-            this.Cycles = Cycles;
-            this.OpCount = OpCount;
-            this.ExecTime = ExecTime;
-            this.Measure = OpMetrics.Define(OpCount, ExecTime);
-            this.Description = BenchmarkMessages.BenchmarkEnd(Title, OpCount, ExecTime);
+
         }
 
-        public BenchSummary(T Title, int Cycles,  OpMetrics Measure)
+        public BenchSummary(IOpMetrics Metrics)
         {
-            this.Title = Title;
-            this.Cycles = Cycles;
-            this.OpCount = Measure.OpCount;
-            this.ExecTime = Measure.WorkTime;
-            this.Measure = Measure;
-            this.Description = BenchmarkMessages.BenchmarkEnd(Title, OpCount, ExecTime);
+            this.Metrics = Metrics;
+            this.Description = BenchmarkMessages.BenchmarkEnd(Metrics);             
         }
 
-        public int Cycles {get;}
-
-        public OpMetrics Measure {get;}
-
-        public long OpCount {get;}
-
-        public Duration ExecTime {get;}
+        public IOpMetrics Metrics {get;}
 
         public AppMsg Description {get;}
 
-        public T Title {get;}
+        public OpId OpId 
+            => Metrics.OpId;
 
-    }
-    
-    public class BenchSummary : BenchSummary<OpId>
-    {
-        public static readonly BenchSummary Zero = new BenchSummary(OpId.Zero, 0, 0, Duration.Zero);
+        public long OpCount 
+            => Metrics.OpCount;
 
-        public static BenchSummary<T> Define<T>(T title, int Cycles, long OpCount, Duration Measured)
-            => new BenchSummary<T>(title, Cycles, OpCount, Measured);
-
-        public static BenchSummary<T> Define<T>(T title, int Cycles, OpMetrics Measure)
-            => new BenchSummary<T>(title, Cycles, Measure);
-
-        public static BenchSummary Define(OpId Operator, int Cycles, long OpCount, Duration Measured)
-            => new BenchSummary(Operator, Cycles, OpCount, Measured);
-
-        public BenchSummary(OpId Operator, int Cycles,  long OpCount,  Duration ExecTime)
-            : base(Operator, Cycles, OpCount, ExecTime)
-        {
-            this.Operator = Operator;
-        }
-
-        public OpId Operator {get;}
-
+        public Duration WorkTime 
+            => Metrics.WorkTime;
 
         public override string ToString()
             => Description.ToString();

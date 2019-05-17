@@ -20,7 +20,7 @@ namespace Z0
         public static ref T Scalar<T>(this ref num<T> src)
             where T : struct
             => ref Unsafe.As<num<T>,T>(ref src);
-
+        
 
         [MethodImpl(Inline)]
         public static ref num<T> Abs<T>(this ref num<T> src)
@@ -165,8 +165,6 @@ namespace Z0
             where T : struct        
                 => Unsafe.As<num<T>[], T[]>(ref src);
 
-
-
         [MethodImpl(NotInline)]
         public static Span<T> Extract<T>(this Span<num<T>> src)
             where T : struct        
@@ -182,8 +180,7 @@ namespace Z0
             where T : struct
                 =>  new numbers<T>(range(first, last));
  
- 
-         // <summary>
+        // <summary>
         /// Partitions an interval into a specified number of pieces
         /// </summary>
         /// <param name="src">The source interval</param>
@@ -222,5 +219,93 @@ namespace Z0
         public static num<T>[] Discretize<T>(this Interval<num<T>> src, num<T> parts)   
             where T : struct
                 => src.Partition(parts).ToArray(); 
+ 
+        [MethodImpl(Inline)]
+        public static num<byte> ToNumber(this byte src)
+            => src;
+
+        [MethodImpl(Inline)]
+        public static num<sbyte> ToNumber(this sbyte src)
+            => src;
+
+        [MethodImpl(Inline)]
+        public static num<short> ToNumber(this short src)
+            => src;
+
+        [MethodImpl(Inline)]
+        public static num<ushort> ToNumber(this ushort src)
+            => src;
+
+        [MethodImpl(Inline)]
+        public static num<int> ToNumber(this int src)
+            => src;
+
+        [MethodImpl(Inline)]
+        public static num<uint> ToNumber(this uint src)
+            => src;
+
+        [MethodImpl(Inline)]
+        public static num<long> ToNumber(this long src)
+            => src;
+
+        [MethodImpl(Inline)]
+        public static num<float> ToNumber(this float src)
+            => src;
+
+        [MethodImpl(Inline)]
+        public static num<double> ToNumber(this double src)
+            => src;
+
+        [MethodImpl(NotInline)]
+        static Span<num<T>> ToNumbers<T>(this ReadOnlySpan<T> src)        
+            where T : struct
+        {
+            var dst = span<num<T>>(src.Length);
+            for(var i=0; i< src.Length; i++)
+                dst[i] = src[i];
+            return dst;                        
+
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<num<sbyte>> ToNumbers(this ReadOnlySpan<sbyte> src)
+            => src.ToNumbers<sbyte>();
+
+        [MethodImpl(Inline)]
+        public static Span<num<byte>> ToNumbers(this ReadOnlySpan<byte> src)
+            => src.ToNumbers<byte>();
+
+        [MethodImpl(Inline)]
+        public static Span<num<short>> ToNumbers(this ReadOnlySpan<short> src)
+            => src.ToNumbers<short>();
+
+        [MethodImpl(Inline)]
+        public static Span<num<ushort>> ToNumbers(this ReadOnlySpan<ushort> src)
+            => src.ToNumbers<ushort>();
+
+        [MethodImpl(Inline)]
+        public static Span<num<int>> ToNumbers(this ReadOnlySpan<int> src)
+            => src.ToNumbers<int>();
+
+        [MethodImpl(Inline)]
+        public static Span<num<uint>> ToNumbers(this ReadOnlySpan<uint> src)
+            => src.ToNumbers<uint>();
+
+        [MethodImpl(Inline)]
+        public static Span<num<long>> ToNumbers(this ReadOnlySpan<long> src)
+            => src.ToNumbers<long>();
+
+        [MethodImpl(Inline)]
+        public static Span<num<ulong>> ToNumbers(this ReadOnlySpan<ulong> src)
+            => src.ToNumbers<ulong>();
+
+        [MethodImpl(Inline)]
+        public static Span<num<float>> ToNumbers(this ReadOnlySpan<float> src)
+            => src.ToNumbers<float>();
+
+        [MethodImpl(Inline)]
+        public static Span<num<double>> ToNumbers(this ReadOnlySpan<double> src)
+            => src.ToNumbers<double>();
+
     }
 }

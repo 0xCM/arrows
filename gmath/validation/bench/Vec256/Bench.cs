@@ -14,7 +14,7 @@ namespace Z0
     using static mfunc;
     using Aligned = Span256;
 
-    public partial class Vec256Bench : BenchContext<BenchKind>
+    public partial class Vec256Bench : BenchContext<MetricKind>
     {   
         static readonly BenchConfig DefaultConfig = new BenchConfig(Cycles: Pow2.T14, Reps: 1, SampleSize: Pow2.T13, AnnounceRate: Pow2.T13);
 
@@ -22,7 +22,7 @@ namespace Z0
             => new Vec256Bench(random, config ?? DefaultConfig);
         
         Vec256Bench(IRandomizer random, BenchConfig config)
-            : base(BenchKind.Vec256,random, config)
+            : base(MetricKind.Vec256,random, config)
         {
 
             LeftSrc = Span256Sampler.Sample(random, config.SampleSize);   
@@ -35,6 +35,14 @@ namespace Z0
                 => op.Vec256OpId<T>();
 
         readonly Span256Sampler LeftSrc;   
+
+        Span256<T> LeftSample<T>(OpId<T> op)
+            where T : struct
+            => LeftSrc.Sampled<T>();
+
+        Span256<T> RightSample<T>(OpId<T> op)
+            where T : struct
+            => RightSrc.Sampled<T>();
 
         readonly Span256Sampler RightSrc;   
 

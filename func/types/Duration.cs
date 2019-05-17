@@ -34,6 +34,10 @@ namespace Z0
         public static Duration operator -(Duration lhs, Duration rhs)
             => new Duration(lhs.Ticks - rhs.Ticks);
 
+        public static double operator /(Duration lhs, Duration rhs)        
+            => Math.Round((double)lhs.Ticks / (double) rhs.Ticks, 4);
+                    
+
         public static bool operator !=(Duration lhs, Duration rhs)
             => lhs.Ticks != rhs.Ticks;
 

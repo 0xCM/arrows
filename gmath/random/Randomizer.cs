@@ -13,6 +13,23 @@ namespace Z0
     using static zfunc;
     using static mfunc;
 
+    public interface IRandomizer 
+    {
+        
+    }
+
+    public interface IRandomizer<T> : IRandomizer
+        where T : struct
+    {
+        IEnumerable<T> stream(Interval<T> domain);
+        
+        IEnumerable<T> stream(T min, T max); 
+
+        IEnumerable<T> stream();    
+
+        unsafe void StreamTo(Interval<T> domain, int count, void* dst, Func<T,bool> filter = null); 
+    }
+
     /// <summary>
     /// Defines pseudorandom number generator
     /// </summary>
@@ -31,8 +48,7 @@ namespace Z0
         IRandomizer<decimal>,
         IRandomizer<BigInteger>
 
-    {
-        
+    {        
         /// <summary>
         /// Constructs a random stream using a specific seed
         /// </summary>
@@ -298,7 +314,7 @@ namespace Z0
  
         public IEnumerable<decimal> stream(decimal min, decimal max)
             => stream(leftclosed(min,max));
-                    
+
         IEnumerable<sbyte> IRandomizer<sbyte>.stream()
             => stream(sbyte.MinValue,sbyte.MaxValue);
 
@@ -342,13 +358,12 @@ namespace Z0
         IEnumerable<BigInteger> IRandomizer<BigInteger>.stream()
             => stream(long.MinValue, long.MaxValue).Select(x => new BigInteger(x));
 
-
         static IRandomizer<T> GetGeneric<T>(Randomizer src)
             where T : struct        
             => Unsafe.As<Randomizer,IRandomizer<T>>(ref src);
-
         
-        public unsafe void StreamTo(Interval<byte> domain, int count, void* dst, Func<byte,bool> filter = null)
+        public unsafe void StreamTo(Interval<byte> domain, int count, 
+            void* dst, Func<byte,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (byte*)dst;                    
@@ -363,7 +378,8 @@ namespace Z0
             }            
         }
 
-        public unsafe void StreamTo(Interval<sbyte> domain, int count, void* dst, Func<sbyte,bool> filter = null)
+        public unsafe void StreamTo(Interval<sbyte> domain, int count, void* dst, 
+            Func<sbyte,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (sbyte*)dst;                    
@@ -377,7 +393,8 @@ namespace Z0
                     Buffer.MemoryCopy(&current, pDst++, size, size);
             }            
         }
-        public unsafe void StreamTo(Interval<short> domain, int count, void* dst, Func<short,bool> filter = null)
+        public unsafe void StreamTo(Interval<short> domain, int count, void* dst, 
+            Func<short,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (short*)dst;                    
@@ -392,7 +409,8 @@ namespace Z0
             }            
         }
 
-        public unsafe void StreamTo(Interval<ushort> domain, int count, void* dst, Func<ushort,bool> filter = null)
+        public unsafe void StreamTo(Interval<ushort> domain, int count, void* dst, 
+            Func<ushort,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (ushort*)dst;                    
@@ -407,7 +425,8 @@ namespace Z0
             }            
         }
 
-        public unsafe void StreamTo(Interval<int> domain, int count, void* dst, Func<int,bool> filter = null)
+        public unsafe void StreamTo(Interval<int> domain, int count, void* dst, 
+            Func<int,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (int*)dst;                    
@@ -422,7 +441,8 @@ namespace Z0
             }            
         }
 
-        public unsafe void StreamTo(Interval<uint> domain, int count, void* dst, Func<uint,bool> filter = null)
+        public unsafe void StreamTo(Interval<uint> domain, int count, void* dst, 
+            Func<uint,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (uint*)dst;                    
@@ -437,7 +457,8 @@ namespace Z0
             }            
         }
 
-        public unsafe void StreamTo(Interval<long> domain, int count, void* dst, Func<long,bool> filter = null)
+        public unsafe void StreamTo(Interval<long> domain, int count, void* dst, 
+            Func<long,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (long*)dst;                    
@@ -452,7 +473,8 @@ namespace Z0
             }            
         }
 
-        public unsafe void StreamTo(Interval<ulong> domain, int count, void* dst, Func<ulong,bool> filter = null)
+        public unsafe void StreamTo(Interval<ulong> domain, int count, void* dst, 
+            Func<ulong,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (ulong*)dst;                    
@@ -467,7 +489,8 @@ namespace Z0
             }            
         }
 
-        public unsafe void StreamTo(Interval<float> domain, int count, void* dst, Func<float,bool> filter = null)
+        public unsafe void StreamTo(Interval<float> domain, int count, void* dst, 
+            Func<float,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (float*)dst;                    
@@ -482,7 +505,8 @@ namespace Z0
             }            
         }
 
-        public unsafe void StreamTo(Interval<double> domain, int count, void* dst, Func<double,bool> filter = null)
+        public unsafe void StreamTo(Interval<double> domain, int count, void* dst, 
+            Func<double,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (double*)dst;                    
@@ -497,7 +521,8 @@ namespace Z0
             }            
         }
 
-        public unsafe void StreamTo(Interval<decimal> domain, int count, void* dst, Func<decimal,bool> filter = null)
+        public unsafe void StreamTo(Interval<decimal> domain, int count, void* dst, 
+            Func<decimal,bool> filter = null)
         {
             var it = stream(domain).Take(count).GetEnumerator();
             var pDst = (decimal*)dst;                    
@@ -512,8 +537,8 @@ namespace Z0
             }            
         }
 
-         public unsafe void StreamTo(Interval<BigInteger> domain, int count, void* dst, Func<BigInteger, bool> filter = null)
-            => throw new NotSupportedException();
-
+         public unsafe void StreamTo(Interval<BigInteger> domain, int count, void* dst, 
+            Func<BigInteger, bool> filter = null)
+                => throw new NotSupportedException();
     }
 }

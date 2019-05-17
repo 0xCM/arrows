@@ -29,7 +29,6 @@ partial class zfunc
     public static void print(IEnumerable<AppMsg> messages)
         => terminal.WriteMessages(messages);    
 
-
     /// <summary>
     /// Emits an information-level message
     /// </summary>
@@ -42,8 +41,6 @@ partial class zfunc
     /// <summary>
     /// Renders the supplied value to the console with no carriage return
     /// </summary>
-    /// <param name="x"></param>
-    [MethodImpl(Inline)]   
     public static void write(object x)
         => terminal.Write(x);
 
@@ -87,7 +84,6 @@ partial class zfunc
     public static void babble(object msg, [CallerMemberName] string caller = null)
         => terminal.WriteMessage(
                 AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Babble, caller));
-
 
     /// <summary>
     /// Emits a verbose-level message

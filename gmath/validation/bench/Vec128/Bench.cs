@@ -16,7 +16,7 @@ namespace Z0
 
     using Aligned = Span128;
 
-    public partial class Vec128Bench : BenchContext<BenchKind>
+    public partial class Vec128Bench : BenchContext<MetricKind>
     {   
         static readonly BenchConfig Config0 = new BenchConfig(Cycles: Pow2.T12, Reps: 1, SampleSize: Pow2.T11, AnnounceRate: Pow2.T11);        
         
@@ -24,28 +24,19 @@ namespace Z0
             => new Vec128Bench(random, config ?? Config0);
         
         Vec128Bench(IRandomizer random, BenchConfig config)
-            : base(BenchKind.Vec128, random, config)
+            : base(MetricKind.Vec128, random, config)
         {
 
-            LeftSamples = Span128Sampler.Sample(random, config.SampleSize);   
-            RightSamples = Span128Sampler.Sample(random, config.SampleSize);            
+            LeftSrc = Span128Sampler.Sample(random, config.SampleSize);   
+            RightSrc = Span128Sampler.Sample(random, config.SampleSize);   
+            NonZeroSrc = Span128Sampler.Sample(random, config.SampleSize,true);
         }
 
+        readonly Span128Sampler LeftSrc;   
 
-        protected UnaryOpData<T> UnaryOpInit<T>(bool nonzero = false)                
-            where T : struct
-        {
-            GC.Collect();
-            return new UnaryOpData<T>(
-                Sample<T>(Config.SampleSize, nonzero), 
-                alloc<T>(Config.SampleSize),
-                alloc<T>(Config.SampleSize)
-            );
-        }
+        readonly Span128Sampler RightSrc;   
 
-        readonly Span128Sampler LeftSamples;   
-
-        readonly Span128Sampler RightSamples;   
+        protected readonly Span128Sampler NonZeroSrc;   
 
         static OpId<T> Id<T>(OpKind op)
             where T : struct
@@ -53,11 +44,11 @@ namespace Z0
 
         Span128<T>  LeftSample<T>(OpId<T> opid = default)
             where T : struct
-                => LeftSamples.Sampled<T>();
+                => LeftSrc.Sampled<T>();
 
         Span128<T>  RightSample<T>(OpId<T> opid = default)
             where T : struct
-                => RightSamples.Sampled<T>();
+                => RightSrc.Sampled<T>();
 
         Span128<T> Target<T>(OpId<T> opid = default)
             where T : struct

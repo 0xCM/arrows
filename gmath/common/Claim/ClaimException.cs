@@ -22,6 +22,7 @@ namespace Z0
     {
         public static ClaimException Define(ClaimOpKind op, AppMsg msg)
             => new ClaimException(op, msg);
+        
 
         public static ClaimException Define(ClaimOpKind op, string msg, string caller, string file, int? line)
             => new ClaimException(op, msg, caller, file, line);

@@ -20,6 +20,9 @@ public static partial class mfunc
     internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
     internal const MethodImplOptions NotInline = MethodImplOptions.NoInlining;
 
+    public static IEnumerable<T> items<T>(ValueTuple<T,T> tuple)
+        => zfunc.items(tuple.Item1, tuple.Item2);
+
     public static TimedPair measure(Action left, Action right, int reps)
     {
         var i = 0;        

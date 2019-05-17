@@ -22,29 +22,33 @@ namespace Z0
         /// </summary>
         /// <param name="random">The randomizer from which data will be obtained</param>
         /// <param name="blocks">The number of blocks to sample for each primitive</param>
-        public static Span128Sampler Sample(IRandomizer random, int blocks)
-            => new Span128Sampler(random, blocks);
+        public static Span128Sampler Sample(IRandomizer random, int blocks, bool nonzero = false)
+            => new Span128Sampler(random, blocks, nonzero);
 
-
-        void CollectSamples(int blocks)
+        T[] CollectSamples<T>(int blocks, bool nonzero)
+            where T : struct
         {
-            Int8Samples = Random.Array128<sbyte>(blocks);            
-            UInt8Samples = Random.Array128<byte>(blocks);
-            Int16Samples = Random.Array128<short>(blocks);            
-            UInt16Samples = Random.Array128<ushort>(blocks);
-            Int32Samples = Random.Array128<int>(blocks);            
-            UInt32Samples = Random.Array128<uint>(blocks);
-            Int64Samples = Random.Array128<long>(blocks);            
-            UInt64Samples = Random.Array128<ulong>(blocks);
-            Float32Samples = Random.Array128<float>(blocks);
-            Float64Samples = Random.Array128<double>(blocks);            
-
+            Func<T,bool> filter = nonzero ? new Func<T,bool>(gmath.nonzero) : null;
+            return Random.Array128<T>(blocks,filter);
+        }
+        void CollectSamples(int blocks, bool nonzero)
+        {            
+            Int8Samples =  CollectSamples<sbyte>(blocks, nonzero);               
+            UInt8Samples = CollectSamples<byte>(blocks, nonzero);
+            Int16Samples = CollectSamples<short>(blocks, nonzero);            
+            UInt16Samples = CollectSamples<ushort>(blocks, nonzero);
+            Int32Samples = CollectSamples<int>(blocks, nonzero);            
+            UInt32Samples = CollectSamples<uint>(blocks, nonzero);
+            Int64Samples = CollectSamples<long>(blocks, nonzero);            
+            UInt64Samples = CollectSamples<ulong>(blocks, nonzero);
+            Float32Samples = CollectSamples<float>(blocks, nonzero);
+            Float64Samples = CollectSamples<double>(blocks, nonzero);            
         }
 
-        Span128Sampler(IRandomizer random, int blocks)
+        Span128Sampler(IRandomizer random, int blocks, bool nonzero)
             : base(random)
         {
-            CollectSamples(blocks);
+            CollectSamples(blocks, nonzero);
         }
 
         /// <summary>

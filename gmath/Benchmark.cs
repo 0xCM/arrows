@@ -61,27 +61,8 @@ namespace Z0
             }
         }
         
-        void TestAdd()
-        {
-            var lhsVecs = Randomizer.Vec128<long>(Pow2.T10);
-            var rhsVecs = Randomizer.Vec128<long>(Pow2.T10);            
-            var len = length(lhsVecs, rhsVecs);
-            Claim.eq(Pow2.T10, len);
-            for(var i = 0; i< len; i++)
-            {
-                var lVec = lhsVecs[i];
-                var rVec = rhsVecs[i];
-                var result = dinx.add(lVec,rVec);
-                var lX = lVec.Scalar(0).value;
-                var lY = lVec.Scalar(1).value;
-
-                var rX = rVec.Scalar(0).value;
-                var rY = rVec.Scalar(1).value;
-                Claim.eq(lX + rX, result.Scalar(0).value);
-                Claim.eq(lY + rY, result.Scalar(1).value);            
-            }
-
-        }
+        
+        
 
         void TestNumbers()
         {
@@ -139,7 +120,7 @@ namespace Z0
             inform($"{snapshot(sw)}");
         }
 
-        void RunBench(BenchKind kind,  Func<string, bool> filter = null, BenchConfig config = null)
+        void RunBench(MetricKind kind,  Func<string, bool> filter = null, BenchConfig config = null)
         {            
             var bench = kind.CreateBench(Randomizer,config);
             bench.Run(filter);
@@ -312,23 +293,6 @@ namespace Z0
                 var v3 = Vec128.add(ref v1, v2);
             }
 
-            void RunGMathBench()
-            {
-                var operators = set(OpKind.Mul.ToString());
-                var bench = PrimalFusedBench.Create(Randomizer);
-                bench.Run(name => name.ContainsAny(operators));
-            }
-            
-            void RunAdHocBench()
-            {
-                var bench = PrimalFusedBench.Create(Randomizer);
-                var comparisons = new List<IBenchComparison>();
-                comparisons.Add(bench.MulF32());
-                comparisons.Add(bench.MulF64());
-                var q = from c in comparisons
-                        select c.Describe();
-                print(q);
-            }
 
             unsafe void TestRandom()
             {
@@ -346,43 +310,9 @@ namespace Z0
            
             //TestPermutation();                        
             TestMutation();
-            RunGMathBench();
-            RunAdHocBench();
             TestRandom();
         }
 
-        static readonly byte[] PopCounts = new byte[]
-        {
-            0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4, 
-            1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 
-            1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 
-            2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 
-            1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 
-            2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 
-            2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 
-            3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7, 
-            1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 
-            2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 
-            2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 
-            3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7, 
-            2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 
-            3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7, 
-            3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7, 
-            4, 5, 5, 6, 5, 6, 6, 7, 5, 6, 6, 7, 6, 7, 7, 8
-        };
-
-        static readonly byte[] Mask = Pow2.powers<byte>(0, 7);
-        
-
-        void Pop()
-        {
-            var counts = Bits.pops(0u, Byte.MaxValue);
-            var text = counts.Format();
-            inform(text);
-            
-            inform(Mask.Format());
-
-        }
 
         public void TestEqual()
         {
@@ -717,14 +647,19 @@ namespace Z0
         {
             var cycles = Pow2.T12;
             var samples = Pow2.T14;
+            var leftTime = Duration.Zero;
+            var rightTime = Duration.Zero;
             for(var i = 0; i<20; i++)
             {
-                DistanceF64A(cycles,samples);
-                DistanceByRef<double>(cycles, samples);
-                //DistanceByValue<double>(cycles, samples);
+                leftTime += DistanceF64A(cycles,samples);
+                rightTime += DistanceByRef<double>(cycles, samples);
+                //rightTime += DistanceByValue<double>(cycles, samples);
 
             }
+
+            inform($"Performance Ratio {leftTime/rightTime}");
         }
+
         void AbsSqrt()
         {
             AbsSqrtAtomic();
@@ -942,90 +877,119 @@ namespace Z0
 
         }
 
-        // void TestLoops(long cycles, long reps)
-        // {
-            
 
-        void RunNumG()
+       void BenchNumG()
+       {
+            var config = MetricConfig.Define(runs: Pow2.T03, cycles: Pow2.T13, samples: Pow2.T12, dops: true);
+            var comparisons = items(
+                // MetricKind.PrimalDirect.DefineComparison(MetricKind.NumG, PrimalKind.int64, OpKind.Add),
+                // MetricKind.PrimalDirect.DefineComparison(MetricKind.NumG, PrimalKind.int64, OpKind.Sub),
+                // MetricKind.PrimalDirect.DefineComparison(MetricKind.NumG, PrimalKind.uint32, OpKind.Add),
+                // MetricKind.PrimalDirect.DefineComparison(MetricKind.NumG, PrimalKind.uint32, OpKind.Sub),
+                MetricKind.PrimalDirect.DefineComparison(MetricKind.Number, PrimalKind.float32, OpKind.Eq),
+                MetricKind.PrimalDirect.DefineComparison(MetricKind.Number, PrimalKind.float32, OpKind.Gt),
+                MetricKind.PrimalDirect.DefineComparison(MetricKind.Number, PrimalKind.float32, OpKind.GtEq),
+                MetricKind.PrimalDirect.DefineComparison(MetricKind.Number, PrimalKind.float32, OpKind.Lt),
+                MetricKind.PrimalDirect.DefineComparison(MetricKind.Number, PrimalKind.float32, OpKind.LtEq)
+                );
+            var records = comparisons.Run(config).ToList();
+
+       }
+
+        public static IEnumerable<IOpMetrics> Run(IEnumerable<MetricKind> metrics, IEnumerable<OpKind> ops, 
+            IEnumerable<PrimalKind> primitives, MetricConfig config = null, IRandomizer random = null)
         {
-            gmath.zero<double>();
-            var bench = NumGBench.Create(Randomizer);
-
-            AppMsg Describe<T>(OpMetrics<T> metrics)
-                where T : struct
-            {
-                var text = $"{metrics.OpId}".PadRight(50);
-                text += $" | OpCount = {metrics.OpCount}".PadRight(15);
-                text += $" | Time = {metrics.WorkTime.Ms}";
-                return AppMsg.Define(text, SeverityLevel.Perform);
-            }            
-
-            void Bench<T>(int count)
-                where T : struct
-            {
-                for(var i = 0; i < count; i++)
-                {
-                    var result = bench.Add<T>();
-                    var msg = Describe(result);
-                    print(msg);
-                }
-
-            }
-
-            void Baseline<T>(int count)
-                where T : struct
-            {
-                for(var i = 0; i < count; i++)
-                {
-                    var result = bench.Baselines.Add<T>();
-                    var msg = Describe(result);
-                    print(msg);
-                }
-
-            }
-
-            var count = 20;
-
-            Baseline<double>(count);
-            Bench<double>(count);
-
-            // Baseline<sbyte>(count);            
-            // Bench<sbyte>(count);            
-
-            // Bench<byte>(count);
-            // Bench<short>(count);
-            // Bench<ushort>(count);            
-            // Bench<int>(count);
-            // Bench<uint>(count);            
-            // Bench<long>(count);            
-            // Bench<ulong>(count);            
-            // Bench<float>(count);
-
-            // Baseline<byte>(count);
-            // Baseline<short>(count);
-            // Baseline<ushort>(count);            
-            // Baseline<int>(count);
-            // Baseline<uint>(count);            
-            // Baseline<long>(count);            
-            // Baseline<ulong>(count);            
-            // Baseline<float>(count);
-
-
-
-            //BenchSelector.RunBench(BenchKind.NumG, OpKind.Add);
+            var query = from m in metrics
+                        from o in ops
+                        from p in primitives
+                        select m.Run(o,p, config, random);
+            return query;
         }
 
+        public static void TryThis()
+        {
+            gmath.init();
+            var baselines = new List<IOpMetrics>();
+            var benchmarks = new List<IOpMetrics>();
+            var config = MetricConfig.Define(runs: Pow2.T04, cycles: Pow2.T14, samples: Pow2.T13, dops: false);
+            var metrics = items(MetricKind.PrimalDirect, MetricKind.Number, MetricKind.PrimalGeneric);
+            var ops = items(OpKind.Add);
+            var primitives = items(PrimalKind.int32);
+            var runs = Run(metrics, ops, primitives, config);            
+            foreach(var run in runs)
+            {
+                print(run.Describe());
+                if(run.PrimalDirect)
+                    baselines.Add(run);
+                else
+                    benchmarks.Add(run);
+
+                GC.Collect();
+            }
+
+        }
+       
+       void BenchPrimalGeneric()
+       {
+            gmath.init();
+            var config = MetricConfig.Define(runs: Pow2.T04, cycles: Pow2.T14, samples: Pow2.T13, dops: false);
+            
+            while(true)
+            {
+                var m1 = MetricKind.PrimalDirect.Run(OpKind.And, PrimalKind.int32, config);
+                print(m1.Describe());
+
+                var m2 = MetricKind.PrimalGeneric.Run(OpKind.And, PrimalKind.int32, config);
+                print(m2.Describe());
+
+                print(items(m1.Compare(m2).ToRecord()).FormatMessages());
+            }
+            // var primal = PrimalKind.int32;
+            // var op = OpKind.Add;
+
+            // var pd1 = MetricKind.PrimalDirect.Run(op, primal, config);
+            // print(pd1.Describe(true));
+            // GC.Collect();
+            // var pg1 = MetricKind.PrimalGeneric.Run(op, primal, config);
+            // print(pg1.Describe(true));
+
+            // GC.Collect();
+            // var num1 = MetricKind.Number.Run(op, primal, config);
+            // print(num1.Describe(true));
+
+            // print(items(pd1.Compare(pg1).ToRecord()).FormatMessages());
+            // print(items(pd1.Compare(num1).ToRecord()).FormatMessages());
+
+            // var comparisons = items(
+            //     MetricKind.PrimalDirect.DefineComparison(MetricKind.PrimalGeneric, PrimalKind.int32, OpKind.Add),
+            //     MetricKind.PrimalDirect.DefineComparison(MetricKind.PrimalGeneric, PrimalKind.int32, OpKind.Sub),
+            //     MetricKind.PrimalDirect.DefineComparison(MetricKind.PrimalGeneric, PrimalKind.int32, OpKind.Mul),
+            //     MetricKind.PrimalDirect.DefineComparison(MetricKind.PrimalGeneric, PrimalKind.int32, OpKind.Mod)
+            //     );
+            // var records = comparisons.Run(config).ToList();
+            // log(records, LogTarget.Define(LogArea.Bench, MetricKind.PrimalGeneric));
+
+       }
+
+        void RunBenchmarks()
+        {
+            //gmath.init();
+            BenchPrimalGeneric();
+        }
         static void Main(params string[] args)
         {            
             var app = new Benchmark();
             try
             {     
-                //gmath.one<double>();
-               //app.Distance();
+                //gmath.one<byte>();
+                //app.Distance();
+                app.RunBenchmarks();
+                                
                 //app.RunTests();
                 //BenchSelector.RunBench(BenchKind.PrimalAtomic);
-                //BenchSelector.RunBench(BenchKind.PrimalFused);
-                app.RunNumG();   
+                // BenchSelector.RunBench(BenchKind.PrimalFused);
+                // BenchSelector.RunBench(BenchKind.Vec128);
+                //app.RunNumG();   
 
             }
             catch(Exception e)

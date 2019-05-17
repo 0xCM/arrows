@@ -81,16 +81,16 @@ namespace Z0
         /// <summary>
         /// Describes atomal primal operations
         /// </summary>
-        public static OpId<T> PrimalAtomic<T>(this OpKind kind, NumericKind numKind = NumericKind.Native)
+        public static OpId<T> PrimalGeneric<T>(this OpKind kind, NumericKind numKind = NumericKind.Native)
             where T : struct
-                => kind.OpId<T>(numKind);
+                => kind.OpId<T>(numKind, generic: true);
 
         /// <summary>
         /// Describes an operator on a generic number type
         /// </summary>
-        public static OpId<T> NumG<T>(this OpKind kind, OpFusion fusion = OpFusion.Atomic)
+        public static OpId<T> NumG<T>(this OpKind kind)
             where T : struct
-                => kind.OpId<T>(NumericKind.Derived, fusion: fusion);
+                => kind.OpId<T>(NumericKind.Derived, generic: true);
 
         /// <summary>
         /// Describes an operator on a numbers type
@@ -120,7 +120,12 @@ namespace Z0
             }
             else
             {
-                uri += "primal/";
+                if(src.NumKind == NumericKind.Derived)
+                    uri += $"number";
+                else
+                    uri += $"primal";
+
+                uri += $"[{src.OperandType}]/";
 
                 if(src.Generic)
                     uri += "generic/";
@@ -132,16 +137,15 @@ namespace Z0
                 else
                     uri += "atomic/";
 
-                uri += $"{src.OperandType}/";
 
             }
 
-            uri += $"{src.OpKind.ToString().ToLower()}/";
+            uri += $"{src.OpKind.ToString().ToLower()}";
 
-            if(src.Role)
-                uri += "baseline ";
-            else
-                uri += "benchmark";
+            // if(src.Role)
+            //     uri += "baseline ";
+            // else
+            //     uri += "benchmark";
 
             return uri;
         }

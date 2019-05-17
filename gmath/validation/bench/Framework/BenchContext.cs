@@ -27,6 +27,23 @@ namespace Z0
         }
 
         public K BenchKind {get;}
+
+        protected void print(BenchComparisonRecord src)
+        {
+            zfunc.print(src, SeverityLevel.Perform);
+        }
+
+        protected void print(IReadOnlyList<BenchComparisonRecord> src, char delimiter = ',')
+        {
+            if(src.Count == 0)
+                return;
+
+
+            zfunc.print(AppMsg.Define(src[0].HeaderText(delimiter), SeverityLevel.HiliteCL));
+            foreach(var record in src)
+                zfunc.print(record, SeverityLevel.Perform);
+        }
+
         public void Run(Func<string,bool> filter = null)
         {
             filter = filter ?? (s => true);
@@ -56,145 +73,50 @@ namespace Z0
 
         public BenchConfig Config {get;}
     
-        protected void print(BenchComparisonRecord src)
-        {
-            zfunc.print(src, SeverityLevel.Perform);
-        }
         
-        protected IBenchComparison Compare(OpId opid, OpMeasurer left, OpMeasurer right)
-        {
-            var leftMeasure = left(Config.Cycles, Config.Reps);
-            var rightMeasure = right(Config.Cycles, Config.Reps);            
-            var lBench = BenchSummary.Define(opid, Config.Cycles, leftMeasure);
-            var rBench = BenchSummary.Define(~opid, Config.Cycles, rightMeasure);
-            return BenchComparison.Define(lBench,rBench);
-        }
+        // protected IBenchComparison Compare(OpMeasurer left, OpMeasurer right)
+        // {
+        //     var leftMeasure = left(Config.Cycles, Config.Reps);
+        //     var rightMeasure = right(Config.Cycles, Config.Reps);            
+        //     var lBench = leftMeasure.Summarize();            
+        //     var rBench = rightMeasure.Summarize();
+        //     return BenchComparison.Define(lBench,rBench);
+        // }
 
         protected BenchComparison Run<T>(OpId<T> opid, Cycle left, Cycle right)
             where T : struct
         {
-            var lStats = left(Config.Cycles);
-            var rStats = right(Config.Cycles);
-            Claim.eq(lStats.OpCount, rStats.OpCount);
-            Claim.eq(lStats.Cycles, rStats.Cycles);
-            var lBench = BenchSummary.Define(lStats.Op, Config.Cycles, lStats.OpCount, lStats.ExecTime);
-            var rBench = new BenchSummary(rStats.Op, Config.Cycles,  rStats.OpCount, rStats.ExecTime);
+            var lMetrics = left(Config.Cycles);
+            var rMetrics = right(Config.Cycles);
+
+            Claim.eq(lMetrics.OpCount, rMetrics.OpCount);
+            var lBench = lMetrics.Summarize();
+            var rBench = rMetrics.Summarize();
             return BenchComparison.Define(lBench, rBench);
         }
 
-        protected Cycle Measure<S,T>(OpId<S> opid, Func<T[],OpMetrics> worker, T[] dst)
-            where S : struct
+        protected Cycle Measure<T>(OpId<T> opid, Func<IOpMetrics> run)
             where T : struct
         {
-            OpStats repeat(int cycles)
+            IOpMetrics repeat(int cycles)
             {
                 var totalOps = 0L;
                 var totalTime = Duration.Zero;
+                var lastCycle = default(IOpMetrics);
 
                 for(var cycle = 1; cycle <= cycles; cycle++)
                 {                    
-                    var cycleResult = worker(dst);
-                    totalOps += cycleResult.OpCount;
-                    totalTime += cycleResult.WorkTime;                                        
-                                        
-                    if(cycle % Config.AnnounceRate == 0)
-                        zfunc.print(BenchmarkMessages.CycleStatus(opid, cycle, totalOps, totalTime));                    
-                }
-                
-                return  OpStats.Define(opid, totalTime, cycles, totalOps);
-            }
-            
-            return repeat;
-        }
-
-        protected Cycle Measure(OpId opid, Func<OpMetrics> action)
-        {
-            OpStats repeat(int cycles)
-            {
-                var totalOps = 0L;
-                var totalTime = Duration.Zero;
-
-                for(var cycle = 1; cycle <= cycles; cycle++)
-                {                    
-                    var cycleResult = action();
-                    totalOps += cycleResult.OpCount;
-                    totalTime += cycleResult.WorkTime;                                        
-                                        
-                    if(cycle % Config.AnnounceRate == 0)
-                        zfunc.print(BenchmarkMessages.CycleStatus(opid, cycle, totalOps, totalTime));                    
-                }
-                
-                return  OpStats.Define(opid, totalTime, cycles, totalOps);
-            }
-            
-            return repeat;
-        }
-
-        protected Cycle Measure<T>(OpId<T> opid, Func<OpMetrics<T>> run)
-            where T : struct
-        {
-            OpStats repeat(int cycles)
-            {
-                var totalOps = 0L;
-                var totalTime = Duration.Zero;
-
-                for(var cycle = 1; cycle <= cycles; cycle++)
-                {                    
-                    var result = run();
-                    totalOps += result.OpCount;
-                    totalTime += result.WorkTime;
+                    lastCycle = run();
+                    totalOps += lastCycle.OpCount;
+                    totalTime += lastCycle.WorkTime;
                                                                                 
                     if(cycle % Config.AnnounceRate == 0)
                         zfunc.print(BenchmarkMessages.CycleStatus(opid, cycle, totalOps, totalTime));                    
-                }
-                
-                return OpStats.Define(opid, totalTime, cycles, totalOps);
+                }                
+                return Metrics.Define<T>(opid, totalOps, totalTime, lastCycle.Results<T>());
             }
             
             return repeat;
-        }
-
-        protected OpMeasurer Measure<T>(OpId<T> opid, Action action, int? OpCountPerRep = null)
-            where T : struct
-        {
-            OpMetrics repeat(int cycles, int reps)
-            {
-                var timer = stopwatch(false);
-                var opcount = 0L;
-
-                for(var cycle = 1; cycle <= cycles; cycle++)
-                {
-                    timer.Start();                    
-                    for(var rep = 1; rep <= reps; rep++)
-                        action();                    
-                    timer.Stop();
-                    
-                    opcount += (OpCountPerRep ?? Config.SampleSize);
-                    if(cycle % Config.AnnounceRate == 0)
-                        zfunc.print(BenchmarkMessages.CycleStatus(opid, cycle, opcount, elapsed(timer)));                    
-                }
-                
-                return (opcount, elapsed(timer));
-            }
-            
-            return  repeat;
-        }
-
-        protected T[] Sample<T>(int? samples = null, bool nonzero = false)
-            where T : struct
-        {
-            var zero = gmath.zero<T>();
-            Func<T,bool> filter = nonzero  ? x => !x.Equals(zero)  : (Func<T,bool>)null;    
-            return Randomizer.Array<T>(samples ?? Config.SampleSize, filter);
-        }
-
-        protected IBenchComparison Finish<T>(IBenchComparison compared, (T[] LeftTarget, T[]  RightTarget) dst, 
-            [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            where T : struct
-        {
-            Claim.eq(dst.LeftTarget, dst.RightTarget, caller, file,line);
-            GC.Collect();
-            return compared;
         }
 
         protected IBenchComparison Finish(IBenchComparison compared)

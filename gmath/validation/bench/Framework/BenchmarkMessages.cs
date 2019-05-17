@@ -36,18 +36,18 @@ namespace Z0
 
 
         static string deltaTitle(BenchComparison c)               
-            => $"{c.LeftBench.Title} vs {c.RightBench.Title}";
+            => $"{c.LeftBench.OpId} vs {c.RightBench.OpId}";
 
         static Duration deltaTiming(BenchComparison c)               
-            => c.LeftBench.ExecTime - c.RightBench.ExecTime;
+            => c.LeftBench.WorkTime - c.RightBench.WorkTime;
 
         public static AppMsg Describe(this IBenchComparison comparison)
         {
             var title = $"{comparison.LeftTitle} / {comparison.RightTitle}";
-            var delta = comparison.LeftMeasure.WorkTime - comparison.RightMeasure.WorkTime;
+            var delta = comparison.LeftMetrics.WorkTime - comparison.RightMetrics.WorkTime;
             var width = Math.Abs(delta.Ms);
-            var leftDuration = comparison.LeftMeasure.WorkTime;
-            var rightDuration = comparison.RightMeasure.WorkTime;
+            var leftDuration = comparison.LeftMetrics.WorkTime;
+            var rightDuration = comparison.RightMetrics.WorkTime;
             var ratio = Math.Round((double)leftDuration.Ticks / (double)rightDuration.Ticks, 4);
             var description = append(
                 $"{title}", 
@@ -68,5 +68,9 @@ namespace Z0
  
         public static AppMsg BenchmarkEnd(OpId opid,  long totalOpCount, Duration totalDuration)
             => BenchmarkEnd<OpId>(opid, totalOpCount, totalDuration);
+
+        public static AppMsg BenchmarkEnd(IOpMetrics metrics)
+            => BenchmarkEnd<OpId>(metrics.OpId, metrics.OpCount, metrics.WorkTime);
+
     }
 }

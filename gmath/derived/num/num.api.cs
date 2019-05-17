@@ -32,6 +32,16 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static ReadOnlySpan<num<T>> many<T>(ReadOnlySpan<T> src)
+            where T : struct
+        {
+            var dst = span<num<T>>(src.Length);
+            for(var i=0; i<src.Length; i++)
+                dst[i] = single(src[i]);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
         public static Span<num<T>> many<T>(Span<T> src)
             where T : struct
         {
@@ -70,6 +80,11 @@ namespace Z0
         public static ref readonly T immutable<T>(ref num<T> src)
             where T : struct
             => ref Unsafe.As<num<T>,T>(ref src);
+
+        [MethodImpl(Inline)]
+        public static num<T> abs<T>(num<T> lhs)
+            where T : struct
+                =>  lhs.Abs();
 
         [MethodImpl(Inline)]
         public static ref num<T> add<T>(ref num<T> lhs, num<T> rhs)

@@ -29,9 +29,6 @@ namespace Z0
 
         public static readonly int BitSize = NumInfo.Size*8;
 
-        // public static readonly num<T> MinVal = NumInfo.MinVal;
-
-        // public static readonly num<T> MaxVal = NumInfo.MaxVal;
 
         public static readonly num<T> Zero = Num.zero<T>();
 

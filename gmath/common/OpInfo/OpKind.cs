@@ -17,14 +17,9 @@ namespace Z0
     {
         Native = 0,
 
-        Derived = 1
-    }
-
-    public enum OpApplyKind
-    {
-        Native = 0,
-
         Derived = 1,
+
+        Default = Native
     }
 
     public enum Multiplicity
@@ -37,7 +32,9 @@ namespace Z0
         
         ZeroOrMore,
         
-        OneOrMore
+        OneOrMore,
+
+        Default = Zero
     }
 
     public enum OpArity
@@ -55,21 +52,27 @@ namespace Z0
         /// <summary>
         /// Indicates an operator that accepts three inputs
         /// </summary>
-        Ternary = 3
+        Ternary = 3,
+
+        Default = Binary
     }
 
     public enum OpFusion
     {
         Atomic,
 
-        Fused
+        Fused,
+
+        Default = Atomic
     }
 
     public enum OpRole
     {
         Baseline,
 
-        Benchmark
+        Benchmark,
+
+        Default = Baseline
     }
 
     public enum OpMode
@@ -88,7 +91,9 @@ namespace Z0
         /// This describes the behavior of native operator invocations such
         /// as x += y, x |= y, etc.
         /// </remarks>
-        Overwrite
+        Overwrite,
+
+        Default = ReadOnly
     }
     
     public enum OpKind : byte
@@ -214,6 +219,7 @@ namespace Z0
         /// </summary>
         Min,
 
+
         [Symbol(Arrows.RightSquiggle)]
         Stream,
 
@@ -255,5 +261,11 @@ namespace Z0
         /// </summary>
         [Symbol(AsciCompound.LtEq), Symbol(MathSym.LTEQ, false)]
         LtEq,
+
+        Sqrt,
+
+        Square,
+
+        Parse
     }
 }

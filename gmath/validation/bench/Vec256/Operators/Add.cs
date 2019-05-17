@@ -15,108 +15,119 @@ namespace Z0
 
     partial class Vec256Bench 
     {   
-        OpMetrics gadd<T>(T[] dst)
+        IOpMetrics gadd<T>(T[] dst)
             where T : struct
         {
-            var lhs = LeftSrc.Sampled(head(dst));
-            var rhs = RightSrc.Sampled(head(dst));
+           var opid = Id<T>(OpKind.Add);
+           var lhs = LeftSample(opid);
+            var rhs = RightSample(opid);
             var sw = stopwatch();
             ginx.add(lhs, rhs, dst.ToSpan256());
-            return(lhs.Length, snapshot(sw));
+            return Metrics.Define(opid, lhs.Length, snapshot(sw), dst);
         }
 
-        OpMetrics dadd(Span256<byte> dst)
+        IOpMetrics dadd(Span256<byte> dst)
         {
-            var lhs = LeftSrc.Sampled(dst.Head);
+            var opid = Id<byte>(OpKind.Add);
+           var lhs = LeftSample(opid);
             Claim.nonzero(lhs.Length);
 
-            var rhs = RightSrc.Sampled(dst.Head);
+            var rhs = RightSample(opid);
             var sw = stopwatch();
             dinx.add(lhs, rhs, ref dst);
-            return(lhs.Length, snapshot(sw));
+            return Metrics.Define(opid, lhs.Length, snapshot(sw), dst);
         }
 
-        OpMetrics dadd(Span256<sbyte> dst)
+        IOpMetrics dadd(Span256<sbyte> dst)
         {
-            var lhs = LeftSrc.Sampled(dst.Head);
+            var opid = Id<sbyte>(OpKind.Add);
+            var lhs = LeftSample(opid);
             Claim.nonzero(lhs.Length);
 
-            var rhs = RightSrc.Sampled(dst.Head);
+            var rhs = RightSample(opid);
             var sw = stopwatch();
             dinx.add(lhs, rhs, ref dst);
-            return(lhs.Length, snapshot(sw));
+            return Metrics.Define(opid, lhs.Length, snapshot(sw), dst);
         }
 
-        OpMetrics dadd(Span256<short> dst)
+        IOpMetrics dadd(Span256<short> dst)
         {
+            var opid = Id<short>(OpKind.Add);
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
             var sw = stopwatch();
             dinx.add(lhs, rhs, ref dst);
-            return(lhs.Length, snapshot(sw));
+            return Metrics.Define(opid, lhs.Length, snapshot(sw), dst);
         }
 
-        OpMetrics dadd(Span256<ushort> dst)
+        IOpMetrics dadd(Span256<ushort> dst)
         {
+            var opid = Id<ushort>(OpKind.Add);
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
             var sw = stopwatch();
             dinx.add(lhs, rhs, ref dst);
-            return(lhs.Length, snapshot(sw));
+            return Metrics.Define(opid, lhs.Length, snapshot(sw), dst);
         }
 
-        OpMetrics dadd(Span256<int> dst)
+        IOpMetrics dadd(Span256<int> dst)
         {
+            var opid = Id<int>(OpKind.Add);
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
             var sw = stopwatch();
             dinx.add(lhs, rhs, ref dst);
-            return(lhs.Length, snapshot(sw));
+            return Metrics.Define(opid, lhs.Length, snapshot(sw), dst);
         }
 
-        OpMetrics dadd(Span256<uint> dst)
+        IOpMetrics dadd(Span256<uint> dst)
         {
+            var opid = Id<uint>(OpKind.Add);
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
             var sw = stopwatch();
             dinx.add(lhs, rhs, ref dst);
-            return(lhs.Length, snapshot(sw));
+            return Metrics.Define(opid, lhs.Length, snapshot(sw), dst);
         }
 
-        OpMetrics dadd(Span256<long> dst)
+        IOpMetrics dadd(Span256<long> dst)
         {
+            var opid = Id<long>(OpKind.Add);
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
             var sw = stopwatch();
             dinx.add(lhs, rhs, ref dst);
-            return(lhs.Length, snapshot(sw));
+            return Metrics.Define(opid, lhs.Length, snapshot(sw), dst);
         }
 
-        OpMetrics dadd(Span256<ulong> dst)
+        IOpMetrics dadd(Span256<ulong> dst)
         {
+            var opid = Id<ulong>(OpKind.Add);
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
             var sw = stopwatch();
             dinx.add(lhs, rhs, ref dst);
-            return(lhs.Length, snapshot(sw));
+            return Metrics.Define(opid, lhs.Length, snapshot(sw),dst);
         }
 
-        OpMetrics dadd(Span256<float> dst)
+        IOpMetrics dadd(Span256<float> dst)
         {
+            var opid = Id<float>(OpKind.Add);
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
             var sw = stopwatch();
             dinx.add(lhs, rhs, ref dst);
-            return(lhs.Length, snapshot(sw));
+            return Metrics.Define(opid, lhs.Length, snapshot(sw), dst);
         }
 
-        OpMetrics dadd(Span256<double> dst)
+        IOpMetrics dadd(Span256<double> dst)
         {
+            var opid = Id<double>(OpKind.Add);
             var lhs = LeftSrc.Sampled(dst.Head);
             var rhs = RightSrc.Sampled(dst.Head);
             var sw = stopwatch();
             dinx.add(lhs, rhs, ref dst);
-            return(lhs.Length, snapshot(sw));
+            return Metrics.Define(opid, lhs.Length, snapshot(sw), dst);
         }
 
 
@@ -127,7 +138,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(opid, () => dadd(dst.Left)), 
-                Measure(~opid, () => gadd(dst.Right)));
+                Measure(~opid, () => dadd(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -141,7 +152,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(opid, () => dadd(dst.Left)), 
-                Measure(~opid, () => gadd(dst.Right)));            
+                Measure(~opid, () => dadd(dst.Right)));            
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -155,7 +166,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(opid, () => dadd(dst.Left)), 
-                Measure(~opid, () => gadd(dst.Right)));
+                Measure(~opid, () => dadd(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -169,7 +180,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(opid, () => dadd(dst.Left)), 
-                Measure(~opid, () => gadd(dst.Right)));            
+                Measure(~opid, () => dadd(dst.Right)));            
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -183,7 +194,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(opid, () => dadd(dst.Left)), 
-                Measure(~opid, () => gadd(dst.Right)));
+                Measure(~opid, () => dadd(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -197,7 +208,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(opid, () => dadd(dst.Left)), 
-                Measure(~opid, () => gadd(dst.Right)));            
+                Measure(~opid, () => dadd(dst.Right)));            
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -211,7 +222,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(opid, () => dadd(dst.Left)), 
-                Measure(~opid, () => gadd(dst.Right)));
+                Measure(~opid, () => dadd(dst.Right)));
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -225,7 +236,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(opid, () => dadd(dst.Left)), 
-                Measure(~opid, () => gadd(dst.Right)));            
+                Measure(~opid, () => dadd(dst.Right)));            
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -240,7 +251,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(opid, () => dadd(dst.Left)), 
-                Measure(~opid, () => gadd(dst.Right)));            
+                Measure(~opid, () => dadd(dst.Right)));            
 
             Claim.eq(dst.Left, dst.Right);        
             
@@ -254,7 +265,7 @@ namespace Z0
 
             var comparison = Run(opid, 
                 Measure(opid, () => dadd(dst.Left)), 
-                Measure(~opid, () => gadd(dst.Right)));            
+                Measure(~opid, () => dadd(dst.Right)));            
 
             Claim.eq(dst.Left, dst.Right);        
             
