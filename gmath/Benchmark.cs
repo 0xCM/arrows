@@ -929,7 +929,16 @@ namespace Z0
 
         }
        
-       void BenchPrimalGeneric()
+       void MeasureIntrinsicDirect()
+       {
+            gmath.init();
+            var config = InXMetricConfig128.Define(runs: Pow2.T04, cycles: Pow2.T14, samples: Pow2.T13, dops: false);
+            var m1Select = MetricKind.Vec128;
+            var m1Measure = m1Select.Run(OpKind.And, PrimalKind.int32, config);
+            print(m1Measure.Describe());
+
+       }
+       void MeasurePrimalGeneric()
        {
             gmath.init();
             var config = MetricConfig.Define(runs: Pow2.T04, cycles: Pow2.T14, samples: Pow2.T13, dops: false);
@@ -973,8 +982,9 @@ namespace Z0
 
         void RunBenchmarks()
         {
-            //gmath.init();
-            BenchPrimalGeneric();
+            gmath.init();
+            MeasureIntrinsicDirect();
+            //MeasurePrimalGeneric();
         }
         static void Main(params string[] args)
         {            
