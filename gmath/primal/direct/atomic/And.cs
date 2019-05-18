@@ -17,6 +17,38 @@ namespace Z0
     partial class math
     {
         [MethodImpl(Inline)]
+        public static sbyte and(sbyte lhs, sbyte rhs)
+            => (sbyte)(lhs & rhs);
+
+        [MethodImpl(Inline)]
+        public static byte and(byte lhs, byte rhs)
+            => (byte)(lhs & rhs);
+
+        [MethodImpl(Inline)]
+        public static short and(short lhs, short rhs)
+            => (short)(lhs & rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort and(ushort lhs, ushort rhs)
+            => (ushort)(lhs & rhs);
+
+        [MethodImpl(Inline)]
+        public static int and(int lhs, int rhs)
+            => lhs & rhs;
+
+        [MethodImpl(Inline)]
+        public static uint and(uint lhs, uint rhs)
+            => lhs & rhs;
+
+        [MethodImpl(Inline)]
+        public static long and(long lhs, long rhs)
+            => lhs & rhs;
+
+        [MethodImpl(Inline)]
+        public static ulong and(ulong lhs, ulong rhs)
+            => lhs & rhs;
+
+        [MethodImpl(Inline)]
         public static ref sbyte and(ref sbyte lhs, sbyte rhs)
         {
             lhs = (sbyte)(lhs & rhs);
@@ -71,39 +103,6 @@ namespace Z0
             lhs = lhs & rhs;
             return ref lhs;
         }
-
-        [MethodImpl(Inline)]
-        public static sbyte and(sbyte lhs, sbyte rhs)
-            => (sbyte)(lhs & rhs);
-
-        [MethodImpl(Inline)]
-        public static byte and(byte lhs, byte rhs)
-            => (byte)(lhs & rhs);
-
-        [MethodImpl(Inline)]
-        public static short and(short lhs, short rhs)
-            => (short)(lhs & rhs);
-
-        [MethodImpl(Inline)]
-        public static ushort and(ushort lhs, ushort rhs)
-            => (ushort)(lhs & rhs);
-
-        [MethodImpl(Inline)]
-        public static int and(int lhs, int rhs)
-            => lhs & rhs;
-
-        [MethodImpl(Inline)]
-        public static uint and(uint lhs, uint rhs)
-            => lhs & rhs;
-
-        [MethodImpl(Inline)]
-        public static long and(long lhs, long rhs)
-            => lhs & rhs;
-
-        [MethodImpl(Inline)]
-        public static ulong and(ulong lhs, ulong rhs)
-            => lhs & rhs;
-
    }
 
 }

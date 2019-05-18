@@ -16,6 +16,45 @@ namespace Z0
 
     partial class math
     {
+       [MethodImpl(Inline)]
+        public static sbyte mul(sbyte lhs, sbyte rhs)
+            => (sbyte)(lhs * rhs);
+
+        [MethodImpl(Inline)]
+        public static byte mul(byte lhs, byte rhs)
+            => (byte)(lhs * rhs);
+
+        [MethodImpl(Inline)]
+        public static short mul(short lhs, short rhs)
+            => (short)(lhs * rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort mul(ushort lhs, ushort rhs)
+            => (ushort)(lhs * rhs);
+
+        [MethodImpl(Inline)]
+        public static int mul(int lhs, int rhs)
+            => lhs * rhs;
+
+        [MethodImpl(Inline)]
+        public static uint mul(uint lhs, uint rhs)
+            => lhs * rhs;
+
+        [MethodImpl(Inline)]
+        public static long mul(long lhs, long rhs)
+            => lhs * rhs;
+
+        [MethodImpl(Inline)]
+        public static ulong mul(ulong lhs, ulong rhs)
+            => lhs * rhs;
+
+        [MethodImpl(Inline)]
+        public static float mul(float lhs, float rhs)
+            => lhs * rhs;
+
+        [MethodImpl(Inline)]
+        public static double mul(double lhs, double rhs)
+            => lhs * rhs;
 
         [MethodImpl(Inline)]
         public static ref sbyte mul(ref sbyte lhs, sbyte rhs)
@@ -86,49 +125,5 @@ namespace Z0
             lhs = lhs * rhs;
             return ref lhs;
         }
-
-        [MethodImpl(Inline)]
-        public static sbyte mul(sbyte lhs, sbyte rhs)
-            => (sbyte)(lhs * rhs);
-
-        [MethodImpl(Inline)]
-        public static byte mul(byte lhs, byte rhs)
-            => (byte)(lhs * rhs);
-
-        [MethodImpl(Inline)]
-        public static short mul(short lhs, short rhs)
-            => (short)(lhs * rhs);
-
-        [MethodImpl(Inline)]
-        public static ushort mul(ushort lhs, ushort rhs)
-            => (ushort)(lhs * rhs);
-
-        [MethodImpl(Inline)]
-        public static int mul(int lhs, int rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public static uint mul(uint lhs, uint rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public static long mul(long lhs, long rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public static ulong mul(ulong lhs, ulong rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public static float mul(float lhs, float rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public static double mul(double lhs, double rhs)
-            => lhs * rhs;
-
-
-
     }
-
 }

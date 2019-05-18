@@ -21,34 +21,29 @@ namespace Z0
             bool intrinsic = false, 
             OpFusion fusion = OpFusion.Atomic, 
             ByteSize? operandSize = null, 
-            OpMode? mode = null,
+            OpVariance? mode = null,
             bool baseline = true)
                 => new OpId(op, Primitive, NumKind, generic, intrinsic, fusion,operandSize, mode,  baseline);
 
         public static OpId<T> OpId<T>(this OpKind op, 
             NumericKind NumKind = NumericKind.Native, 
             bool generic = false, 
-            bool intrinsic = false,             
+            NumericSystem system = NumericSystem.Primal,             
             OpFusion fusion = OpFusion.Atomic, 
             ByteSize? operandSize = null, 
-            OpMode? mode = null,
-            bool baseline = true)
+            OpVariance? mode = null)
                 where T : struct
-                    => new OpId<T>(op, NumKind, generic, intrinsic, fusion, operandSize ?? Unsafe.SizeOf<T>(), mode, baseline);
+                    => new OpId<T>(op, NumKind, generic, system, fusion, operandSize ?? Unsafe.SizeOf<T>(), mode);
     
-        /// <summary>
-        /// Describes vectored intrinsic operators
-        /// </summary>
         static OpId<T> InXOpId<T>(this OpKind kind, ByteSize operandSize)
             where T : struct
-                => kind.OpId<T>(NumericKind.Derived, intrinsic: true, fusion: OpFusion.Fused, operandSize : operandSize);
+                => kind.OpId<T>(NumericKind.Number, system: NumericSystem.Intrinsic, fusion: OpFusion.Fused, operandSize : operandSize);
 
-        /// <summary>
-        /// Describes intrinsic scalar operators on Num128 values
-        /// </summary>
-        public static OpId<T> Num128OpId<T>(this OpKind kind)
-            where T : struct
-                => kind.OpId<T>(NumericKind.Derived, intrinsic: true, fusion: OpFusion.Atomic);
+        public static OpId<T> Num128OpId<N,T>(this OpKind kind)
+            where N : ITypeNat, new()
+            where T : struct            
+                => kind.OpId<T>(NumericKind.Number, system: NumericSystem.Intrinsic, 
+                        operandSize: new N().value/8);
 
         /// <summary>
         /// Describes intrinsic scalar operators on Vec128 values
@@ -69,14 +64,24 @@ namespace Z0
         /// </summary>
         public static OpId<T> NativeFused<T>(this OpKind kind)
             where T : struct
-                => kind.OpId<T>(NumericKind.Native, false, intrinsic: false, fusion: OpFusion.Fused, baseline: true);
+                => kind.OpId<T>(NumericKind.Native, generic:false, system: NumericSystem.Primal, fusion: OpFusion.Fused);
 
         /// <summary>
         /// Describes atomic primal operations
         /// </summary>
         public static OpId<T> PrimalDirect<T>(this OpKind kind, NumericKind numKind = NumericKind.Native)
             where T : struct
-                => kind.OpId<T>(numKind, intrinsic: false, baseline : true);
+                => kind.OpId<T>(numKind, system: NumericSystem.Primal);
+        
+        public static OpId<T> IntrinsicDirect<N,T>(this OpKind kind,  bool scalar = false)
+            where N : ITypeNat, new()
+            where T : struct
+                => kind.OpId<T>(NumKind : InferInXNumKind<N>(scalar), generic: false, system: NumericSystem.Intrinsic, operandSize : new N().value/8);
+
+        public static OpId<T> IntrinsicGeneric<N,T>(this OpKind kind,  bool scalar = false)
+            where N : ITypeNat, new()
+            where T : struct
+                => kind.OpId<T>(NumKind : InferInXNumKind<N>(scalar), generic : true, system: NumericSystem.Intrinsic, operandSize : new N().value/8);
 
         /// <summary>
         /// Describes atomal primal operations
@@ -90,14 +95,14 @@ namespace Z0
         /// </summary>
         public static OpId<T> NumG<T>(this OpKind kind)
             where T : struct
-                => kind.OpId<T>(NumericKind.Derived, generic: true);
+                => kind.OpId<T>(NumericKind.Number, generic: true);
 
         /// <summary>
         /// Describes an operator on a numbers type
         /// </summary>
         public static OpId<T> Numbers<T>(this OpKind kind)
             where T : struct
-                => kind.OpId<T>(NumericKind.Derived, fusion: OpFusion.Fused);
+                => kind.OpId<T>(NumericKind.Number, fusion: OpFusion.Fused);
 
         public static string BuildUri(this IOpId src)
         {
@@ -111,7 +116,7 @@ namespace Z0
                 else 
                     uri += "direct/";
                 
-                if(src.Fusion == OpFusion.Fused)
+                if(src.NumKind == NumericKind.Vec128 || src.NumKind == NumericKind.Vec256)
                     uri += "Vec";
                 else
                     uri += "Num";
@@ -120,7 +125,7 @@ namespace Z0
             }
             else
             {
-                if(src.NumKind == NumericKind.Derived)
+                if(src.NumKind == NumericKind.Number)
                     uri += $"number";
                 else
                     uri += $"primal";
@@ -141,11 +146,6 @@ namespace Z0
             }
 
             uri += $"{src.OpKind.ToString().ToLower()}";
-
-            // if(src.Role)
-            //     uri += "baseline ";
-            // else
-            //     uri += "benchmark";
 
             return uri;
         }
@@ -169,6 +169,28 @@ namespace Z0
         public static OpId ResizeOperand(this IOpId src, int OperandSize)
             => src.OpKind.OpId( src.OperandType, src.NumKind, src.Generic, 
                 src.Intrinsic, src.Fusion, OperandSize, src.Mode, !src.Role);
+
+        static NumericKind InferInXNumKind<N>(bool scalar)
+            where N : ITypeNat, new()
+        {
+            var size = new N().value;
+            if(scalar)
+            {
+                if(size == 128)
+                    return NumericKind.Num128;
+                else if(size == 256)
+                    return NumericKind.Num256;                
+            }
+            else 
+            {
+                if(size == 128)
+                    return NumericKind.Vec128;
+                else if(size == 256)
+                    return NumericKind.Vec256;                
+            }
+            var @class = scalar ? "Num" : "Vec";
+            throw unsupported($"Intrinsic {@class}[{size}]");
+        }
 
     }
 

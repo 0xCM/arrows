@@ -16,6 +16,46 @@ namespace Z0
     partial class bridge
     {
         [MethodImpl(Inline)]
+        public static T subI8<T>(T lhs, T rhs)
+            => generic<T>((sbyte)(int8(lhs) - int8(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T subU8<T>(T lhs, T rhs)
+            => generic<T>((byte)(uint8(lhs) - uint8(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T subI16<T>(T lhs, T rhs)
+            => generic<T>((short)(int16(lhs) - int16(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T subU16<T>(T lhs, T rhs)
+            => generic<T>((ushort)(uint16(lhs) - uint16(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T subI32<T>(T lhs, T rhs)
+            => generic<T>(int32(lhs) - int32(rhs));
+        
+        [MethodImpl(Inline)]
+        public static T subU32<T>(T lhs, T rhs)
+            => generic<T>(uint32(lhs) - uint32(rhs));
+
+        [MethodImpl(Inline)]
+        public static T subI64<T>(T lhs, T rhs)
+            => generic<T>(int64(lhs) - int64(rhs));
+
+        [MethodImpl(Inline)]
+        public static T subU64<T>(T lhs, T rhs)
+            => generic<T>(uint64(lhs) - uint64(rhs));
+
+        [MethodImpl(Inline)]
+        public static T subF32<T>(T lhs, T rhs)
+            => generic<T>(float32(lhs) - float32(rhs));
+
+        [MethodImpl(Inline)]
+        public static T subF64<T>(T lhs, T rhs)
+            => generic<T>(float64(lhs) - float64(rhs));
+
+        [MethodImpl(Inline)]
         public static ref T subI8<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.sub(ref int8(ref lhs), int8(ref rhs));
@@ -94,49 +134,6 @@ namespace Z0
             ref var result = ref math.sub(ref float64(ref lhs), float64(ref rhs));
             lhs = ref generic<T>(ref result);
             return ref lhs;
-        }            
-
-        [MethodImpl(Inline)]
-        public static T subI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) - int8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T subU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) - uint8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T subI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) - int16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T subU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) - uint16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T subI32<T>(T lhs, T rhs)
-            => generic<T>(int32(lhs) - int32(rhs));
-        
-        [MethodImpl(Inline)]
-        public static T subU32<T>(T lhs, T rhs)
-            => generic<T>(uint32(lhs) - uint32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T subI64<T>(T lhs, T rhs)
-            => generic<T>(int64(lhs) - int64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T subU64<T>(T lhs, T rhs)
-            => generic<T>(uint64(lhs) - uint64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T subF32<T>(T lhs, T rhs)
-            => generic<T>(float32(lhs) - float32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T subF64<T>(T lhs, T rhs)
-            => generic<T>(float64(lhs) - float64(rhs));
-
+        }
     }
 }
-
-

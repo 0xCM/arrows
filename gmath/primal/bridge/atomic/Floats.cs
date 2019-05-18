@@ -65,7 +65,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T atanF64<T>(T src)
             => generic<T>(Math.Acos(float64(src)));
-
  
         [MethodImpl(Inline)]
         public static T ceilingF32<T>(T src)

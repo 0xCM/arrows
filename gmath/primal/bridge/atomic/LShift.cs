@@ -9,13 +9,44 @@ namespace Z0
     using System.Reflection;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    
-    
+        
     using static mfunc;
     using static As;
 
     partial class bridge
     {
+        [MethodImpl(Inline)]
+        public static T lshiftI8<T>(T lhs, int rhs)
+            => generic<T>((sbyte)(int8(lhs) << rhs));
+
+        [MethodImpl(Inline)]
+        public static T lshiftU8<T>(T lhs, int rhs)
+            => generic<T>((byte)(uint8(lhs) << rhs));
+
+        [MethodImpl(Inline)]
+        public static T lshiftI16<T>(T lhs, int rhs)
+            => generic<T>((short)(int16(lhs) << rhs));
+
+        [MethodImpl(Inline)]
+        public static T lshiftU16<T>(T lhs, int rhs)
+            => generic<T>((ushort)(uint16(lhs) << rhs));
+
+        [MethodImpl(Inline)]
+        public static T lshiftI32<T>(T lhs, int rhs)
+            => generic<T>(int32(lhs) << rhs);
+        
+        [MethodImpl(Inline)]
+        public static T lshiftU32<T>(T lhs, int rhs)
+            => generic<T>(uint32(lhs) << rhs);
+
+        [MethodImpl(Inline)]
+        public static T lshiftI64<T>(T lhs, int rhs)
+            => generic<T>(int64(lhs)  << rhs);
+
+        [MethodImpl(Inline)]
+        public static T lshiftU64<T>(T lhs, int rhs)
+            => generic<T>(uint64(lhs)  << rhs);
+
         [MethodImpl(Inline)]
         public static ref T lshiftI8<T>(ref T lhs, int rhs)
         {
@@ -82,37 +113,6 @@ namespace Z0
         }            
 
 
-        [MethodImpl(Inline)]
-        public static T lshiftI8<T>(T lhs, int rhs)
-            => generic<T>((sbyte)(int8(lhs) << rhs));
-
-        [MethodImpl(Inline)]
-        public static T lshiftU8<T>(T lhs, int rhs)
-            => generic<T>((byte)(uint8(lhs) << rhs));
-
-        [MethodImpl(Inline)]
-        public static T lshiftI16<T>(T lhs, int rhs)
-            => generic<T>((short)(int16(lhs) << rhs));
-
-        [MethodImpl(Inline)]
-        public static T lshiftU16<T>(T lhs, int rhs)
-            => generic<T>((ushort)(uint16(lhs) << rhs));
-
-        [MethodImpl(Inline)]
-        public static T lshiftI32<T>(T lhs, int rhs)
-            => generic<T>(int32(lhs) << rhs);
-        
-        [MethodImpl(Inline)]
-        public static T lshiftU32<T>(T lhs, int rhs)
-            => generic<T>(uint32(lhs) << rhs);
-
-        [MethodImpl(Inline)]
-        public static T lshiftI64<T>(T lhs, int rhs)
-            => generic<T>(int64(lhs)  << rhs);
-
-        [MethodImpl(Inline)]
-        public static T lshiftU64<T>(T lhs, int rhs)
-            => generic<T>(uint64(lhs)  << rhs);
 
 
     }

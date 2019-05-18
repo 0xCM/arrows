@@ -15,7 +15,30 @@ namespace Z0
 
     partial class math
     {
+        [MethodImpl(Inline)]
+        public static sbyte negate(sbyte src)
+            => (sbyte)(- src);
 
+        [MethodImpl(Inline)]
+        public static short negate(short src)
+            => (short)(- src);
+
+        [MethodImpl(Inline)]
+        public static int negate(int src)
+            => -src;
+
+        [MethodImpl(Inline)]
+        public static long negate(long src)
+            => -src;
+
+        [MethodImpl(Inline)]
+        public static float negate(float src)
+            => -src;
+
+        [MethodImpl(Inline)]
+        public static double negate(double src)
+            => -src;
+ 
         [MethodImpl(Inline)]
         public static ref sbyte negate(ref sbyte lhs)
         {
@@ -57,30 +80,6 @@ namespace Z0
             lhs = - lhs;
             return ref lhs;
         }
-
-        [MethodImpl(Inline)]
-        public static sbyte negate(sbyte src)
-            => (sbyte)(- src);
-
-        [MethodImpl(Inline)]
-        public static short negate(short src)
-            => (short)(- src);
-
-        [MethodImpl(Inline)]
-        public static int negate(int src)
-            => -src;
-
-        [MethodImpl(Inline)]
-        public static long negate(long src)
-            => -src;
-
-        [MethodImpl(Inline)]
-        public static float negate(float src)
-            => -src;
-
-        [MethodImpl(Inline)]
-        public static double negate(double src)
-            => -src;
-    }
+   }
 
 }

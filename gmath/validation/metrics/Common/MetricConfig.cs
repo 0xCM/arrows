@@ -79,8 +79,12 @@ namespace Z0
             => new InXMetricConfig256(src.Runs, src.Cycles, src.Blocks);
 
     }
+    
     public class InXMetricConfig128 : InXMetricConfig<N128>
     {
+        public static InXMetricConfig128 Define(int runs, int cycles, int blocks)
+            => new InXMetricConfig128(runs, cycles, blocks);
+
         public static new readonly InXMetricConfig128 Default 
             = InXMetricConfig.Define<N128>(runs: Pow2.T03, cycles: Pow2.T14, blocks: Pow2.T12).Monomorphic();        
 
@@ -94,6 +98,9 @@ namespace Z0
 
     public class InXMetricConfig256 : InXMetricConfig<N256>
     {
+        public static InXMetricConfig256 Define(int runs, int cycles, int blocks)
+            => new InXMetricConfig256(runs, cycles, blocks);
+
         public static new readonly InXMetricConfig256 Default 
             = InXMetricConfig.Define<N256>(runs: Pow2.T03, cycles: Pow2.T14, blocks: Pow2.T12).Monomorphic();        
         public InXMetricConfig256(int Runs, int Cycles, int Blocks)

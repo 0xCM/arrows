@@ -17,6 +17,37 @@ namespace Z0
     partial class bridge
     {
         [MethodImpl(Inline)]
+        public static T orI8<T>(T lhs, T rhs)
+            => generic<T>((sbyte)(int8(lhs) | int8(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T orU8<T>(T lhs, T rhs)
+            => generic<T>((byte)(uint8(lhs) | uint8(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T orI16<T>(T lhs, T rhs)
+            => generic<T>((short)(int16(lhs) | int16(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T orU16<T>(T lhs, T rhs)
+            => generic<T>((ushort)(uint16(lhs) | uint16(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T orI32<T>(T lhs, T rhs)
+            => generic<T>(int32(lhs) | int32(rhs));
+        
+        [MethodImpl(Inline)]
+        public static T orU32<T>(T lhs, T rhs)
+            => generic<T>(uint32(lhs) | uint32(rhs));
+
+        [MethodImpl(Inline)]
+        public static T orI64<T>(T lhs, T rhs)
+            => generic<T>(int64(lhs) | int64(rhs));
+
+        [MethodImpl(Inline)]
+        public static T orU64<T>(T lhs, T rhs)
+            => generic<T>(uint64(lhs) | uint64(rhs));
+                    [MethodImpl(Inline)]
         public static ref T orI8<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.or(ref int8(ref lhs), int8(ref rhs));
@@ -80,41 +111,5 @@ namespace Z0
             lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
-
-        [MethodImpl(Inline)]
-        public static T orI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) | int8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T orU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) | uint8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T orI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) | int16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T orU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) | uint16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T orI32<T>(T lhs, T rhs)
-            => generic<T>(int32(lhs) | int32(rhs));
-        
-        [MethodImpl(Inline)]
-        public static T orU32<T>(T lhs, T rhs)
-            => generic<T>(uint32(lhs) | uint32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T orI64<T>(T lhs, T rhs)
-            => generic<T>(int64(lhs) | int64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T orU64<T>(T lhs, T rhs)
-            => generic<T>(uint64(lhs) | uint64(rhs));
-
-
-
     }
-
 }

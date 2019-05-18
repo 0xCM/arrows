@@ -89,11 +89,6 @@ partial class zfunc
         where T : struct
             => MemoryMarshal.Cast<S,T>(src);
 
-    [MethodImpl(Inline)]
-    public static Span<T> cast<S,T>(ref Span<S> src)                
-        where S : struct
-        where T : struct
-            => MemoryMarshal.Cast<S,T>(src);
 
     [MethodImpl(Inline)]
     public static Span<T> cast<S,T>(Span<S> src, out Span<T> dst)                
@@ -178,4 +173,3 @@ partial class zfunc
         where T : struct
             =>  ref MemoryMarshal.GetReference<T>(src);
 }
-

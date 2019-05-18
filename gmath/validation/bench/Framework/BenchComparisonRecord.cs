@@ -47,11 +47,15 @@ namespace Z0
         
         const int MetricLen = 12;
 
-        public string Delimited(char delimiter = ',')
+
+        string FormatOpCount(char delimiter = ',', bool digitcommas = false)
+            => $"{OpCount.ToString(digitcommas ? "#,#" : string.Empty)}{delimiter}".PadRight(MetricLen);
+        public string Delimited(char delimiter = ',', bool digitcommas = false)
             => string.Join(string.Empty, 
                 $"{LeftOp.Trim()}{delimiter}".PadRight(OpNameLen), 
                 $"{RightOp.Trim()}{delimiter}".PadRight(OpNameLen), 
-                $"{OpCount}{delimiter}".PadRight(MetricLen), 
+                //$"{OpCount}{delimiter}".PadRight(MetricLen), 
+                FormatOpCount(delimiter, digitcommas),
                 $"{LeftTime.Ms} ms{delimiter}".PadRight(MetricLen), 
                 $"{RightTime.Ms} ms{delimiter}".PadRight(MetricLen), 
                     Ratio);

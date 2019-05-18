@@ -18,6 +18,38 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static sbyte lshift(sbyte lhs, int rhs)
+            => (sbyte)(lhs << rhs);
+
+        [MethodImpl(Inline)]
+        public static byte lshift(byte lhs, int rhs)
+            => (byte)(lhs << rhs);
+
+        [MethodImpl(Inline)]
+        public static short lshift(short lhs, int rhs)
+            => (short)(lhs << rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort lshift(ushort lhs, int rhs)
+            => (ushort)(lhs << rhs);
+
+        [MethodImpl(Inline)]
+        public static int lshift(int lhs, int rhs)
+            => lhs << rhs;
+
+        [MethodImpl(Inline)]
+        public static uint lshift(uint lhs, int rhs)
+            => lhs << rhs;
+
+        [MethodImpl(Inline)]
+        public static long lshift(long lhs, int rhs)
+            => lhs << rhs;
+
+        [MethodImpl(Inline)]
+        public static ulong lshift(ulong lhs, int rhs)
+            => lhs << rhs;
+
+        [MethodImpl(Inline)]
         public static ref sbyte lshift(ref sbyte lhs, int rhs)
         {
             lhs = (sbyte)(lhs << rhs);
@@ -72,41 +104,6 @@ namespace Z0
             lhs = lhs << rhs;
             return ref lhs;
         }
-
-
-        [MethodImpl(Inline)]
-        public static sbyte lshift(sbyte lhs, int rhs)
-            => (sbyte)(lhs << rhs);
-
-        [MethodImpl(Inline)]
-        public static byte lshift(byte lhs, int rhs)
-            => (byte)(lhs << rhs);
-
-        [MethodImpl(Inline)]
-        public static short lshift(short lhs, int rhs)
-            => (short)(lhs << rhs);
-
-        [MethodImpl(Inline)]
-        public static ushort lshift(ushort lhs, int rhs)
-            => (ushort)(lhs << rhs);
-
-        [MethodImpl(Inline)]
-        public static int lshift(int lhs, int rhs)
-            => lhs << rhs;
-
-        [MethodImpl(Inline)]
-        public static uint lshift(uint lhs, int rhs)
-            => lhs << rhs;
-
-        [MethodImpl(Inline)]
-        public static long lshift(long lhs, int rhs)
-            => lhs << rhs;
-
-        [MethodImpl(Inline)]
-        public static ulong lshift(ulong lhs, int rhs)
-            => lhs << rhs;
-
-
     }
 
 }

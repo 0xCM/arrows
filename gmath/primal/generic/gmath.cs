@@ -1953,5 +1953,44 @@ namespace Z0
 
             throw unsupported(kind);
         }           
+
+        [MethodImpl(Inline)]
+        public static T gcd<T>(T lhs, T rhs)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int8)
+                return gcdI8(lhs, rhs);
+
+            if(kind == PrimalKind.uint8)
+                return gcdU8(lhs, rhs);
+
+            if(kind == PrimalKind.int16)
+                return gcdI16(lhs, rhs);
+
+            if(kind == PrimalKind.uint16)
+                return gcdU16(lhs, rhs);
+
+            if(kind == PrimalKind.int32)
+                return gcdI32(lhs, rhs);
+
+            if(kind == PrimalKind.uint32)
+                return gcdU32(lhs, rhs);
+
+            if(kind == PrimalKind.int64)
+                return gcdI64(lhs, rhs);
+
+            if(kind == PrimalKind.uint64)
+                return gcdU64(lhs, rhs);
+
+            if(kind == PrimalKind.float32)
+                return gcdF32(lhs, rhs);
+
+            if(kind == PrimalKind.float64)
+                return gcdF64(lhs, rhs);
+
+            throw unsupported(kind);
+        }           
     }
 }

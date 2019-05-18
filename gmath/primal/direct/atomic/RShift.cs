@@ -17,6 +17,38 @@ namespace Z0
     partial class math
     {
         [MethodImpl(Inline)]
+        public static sbyte rshift(sbyte lhs, int rhs)
+            => (sbyte)(lhs >> rhs);
+
+        [MethodImpl(Inline)]
+        public static byte rshift(byte lhs, int rhs)
+            => (byte)(lhs >> rhs);
+
+        [MethodImpl(Inline)]
+        public static short rshift(short lhs, int rhs)
+            => (short)(lhs >> rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort rshift(ushort lhs, int rhs)
+            => (ushort)(lhs >> rhs);
+
+        [MethodImpl(Inline)]
+        public static int rshift(int lhs, int rhs)
+            => lhs >> rhs;
+
+        [MethodImpl(Inline)]
+        public static uint rshift(uint lhs, int rhs)
+            => lhs >> rhs;
+
+        [MethodImpl(Inline)]
+        public static long rshift(long lhs, int rhs)
+            => lhs >> rhs;
+
+        [MethodImpl(Inline)]
+        public static ulong rshift(ulong lhs, int rhs)
+            => lhs >> rhs;
+
+        [MethodImpl(Inline)]
         public static ref sbyte rshift(ref sbyte lhs, int rhs)
         {
             lhs = (sbyte)(lhs >> rhs);
@@ -71,41 +103,5 @@ namespace Z0
             lhs = lhs >> rhs;
             return ref lhs;
         }
-
-
-        [MethodImpl(Inline)]
-        public static sbyte rshift(sbyte lhs, int rhs)
-            => (sbyte)(lhs >> rhs);
-
-        [MethodImpl(Inline)]
-        public static byte rshift(byte lhs, int rhs)
-            => (byte)(lhs >> rhs);
-
-        [MethodImpl(Inline)]
-        public static short rshift(short lhs, int rhs)
-            => (short)(lhs >> rhs);
-
-        [MethodImpl(Inline)]
-        public static ushort rshift(ushort lhs, int rhs)
-            => (ushort)(lhs >> rhs);
-
-        [MethodImpl(Inline)]
-        public static int rshift(int lhs, int rhs)
-            => lhs >> rhs;
-
-        [MethodImpl(Inline)]
-        public static uint rshift(uint lhs, int rhs)
-            => lhs >> rhs;
-
-        [MethodImpl(Inline)]
-        public static long rshift(long lhs, int rhs)
-            => lhs >> rhs;
-
-        [MethodImpl(Inline)]
-        public static ulong rshift(ulong lhs, int rhs)
-            => lhs >> rhs;
-
-
     }
-
 }

@@ -17,7 +17,47 @@ namespace Z0
     partial class math
     {
 
+       [MethodImpl(Inline)]
+        public static sbyte square(sbyte src)
+            => mul(src,src);
+
         [MethodImpl(Inline)]
+        public static byte square(byte src)
+            => mul(src,src);
+
+        [MethodImpl(Inline)]
+        public static short square(short src)
+            => mul(src,src);
+
+        [MethodImpl(Inline)]
+        public static ushort square(ushort src)
+            => mul(src,src);
+
+        [MethodImpl(Inline)]
+        public static int square(int src)
+            => mul(src,src);
+
+        [MethodImpl(Inline)]
+        public static uint square(uint src)
+            => mul(src,src);
+
+        [MethodImpl(Inline)]
+        public static long square(long src)
+            => (long)Math.Sqrt(src);
+
+        [MethodImpl(Inline)]
+        public static ulong square(ulong src)
+            => mul(src,src);
+
+        [MethodImpl(Inline)]
+        public static float square(float src)
+            => mul(src,src);
+
+        [MethodImpl(Inline)]
+        public static double square(double src)
+            => mul(src,src);
+                 
+        [MethodImpl(Inline)] 
         public static ref sbyte square(ref sbyte src)
         {
             mul(ref src, src);
@@ -158,46 +198,5 @@ namespace Z0
             dst = square(ref src);
             return ref dst;
         }
-
-        [MethodImpl(Inline)]
-        public static sbyte square(sbyte src)
-            => mul(src,src);
-
-        [MethodImpl(Inline)]
-        public static byte square(byte src)
-            => mul(src,src);
-
-        [MethodImpl(Inline)]
-        public static short square(short src)
-            => mul(src,src);
-
-        [MethodImpl(Inline)]
-        public static ushort square(ushort src)
-            => mul(src,src);
-
-        [MethodImpl(Inline)]
-        public static int square(int src)
-            => mul(src,src);
-
-        [MethodImpl(Inline)]
-        public static uint square(uint src)
-            => mul(src,src);
-
-        [MethodImpl(Inline)]
-        public static long square(long src)
-            => (long)Math.Sqrt(src);
-
-        [MethodImpl(Inline)]
-        public static ulong square(ulong src)
-            => mul(src,src);
-
-        [MethodImpl(Inline)]
-        public static float square(float src)
-            => mul(src,src);
-
-        [MethodImpl(Inline)]
-        public static double square(double src)
-            => mul(src,src);
     }
-
 }

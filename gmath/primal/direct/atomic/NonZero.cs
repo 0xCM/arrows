@@ -17,8 +17,6 @@ namespace Z0
 
     partial class math
     {
-
-
         [MethodImpl(Inline)]
         public static bool nonzero(sbyte src)
             => src != 0;
@@ -57,7 +55,6 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool nonzero(double src)
-            => src != 0;
- 
+            => src != 0; 
     }
 }

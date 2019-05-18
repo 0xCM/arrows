@@ -18,6 +18,31 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static T negateI8<T>(T src)        
+            => generic<T>(math.negate(ref int8(ref src)));            
+        
+        [MethodImpl(Inline)]
+        public static T negateI16<T>(T src)        
+            => generic<T>(math.negate(ref int16(ref src)));            
+
+        [MethodImpl(Inline)]
+        public static T negateI32<T>(T src)        
+            => generic<T>(math.negate(ref int32(ref src)));            
+        
+        [MethodImpl(Inline)]
+        public static T negateI64<T>(T src)        
+            => generic<T>(math.negate(ref int64(ref src)));            
+
+        [MethodImpl(Inline)]
+        public static T negateF32<T>(T src)        
+            => generic<T>(math.negate(ref float32(ref src)));            
+        
+        [MethodImpl(Inline)]
+        public static T negateF64<T>(T src)        
+            => generic<T>(math.negate(ref float64(ref src)));            
+
+
+        [MethodImpl(Inline)]
         public static ref T negateI8<T>(ref T io)
         {
             math.negate(ref int8(ref io));
@@ -58,31 +83,5 @@ namespace Z0
             math.negate(ref float64(ref io));
             return ref io;
         }
- 
-        [MethodImpl(Inline)]
-        public static T negateI8<T>(T src)        
-            => negateI8(ref src);
-        
-        [MethodImpl(Inline)]
-        public static T negateI16<T>(T src)        
-            => negateI16(ref src);
-
-        [MethodImpl(Inline)]
-        public static T negateI32<T>(T src)        
-            => negateI32(ref src);
-        
-        [MethodImpl(Inline)]
-        public static T negateI64<T>(T src)        
-            => negateI64(ref src);
-
-        [MethodImpl(Inline)]
-        public static T negateF32<T>(T src)        
-            => negateF32(ref src);
-        
-        [MethodImpl(Inline)]
-        public static T negateF64<T>(T src)        
-            => negateF64(ref src);
-
     }
-
 }

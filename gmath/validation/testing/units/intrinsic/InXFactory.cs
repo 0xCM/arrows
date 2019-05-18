@@ -16,15 +16,6 @@ namespace Z0.Test
     
     public class InXFactoryTest : UnitTest<InXFactoryTest>
     {        
-        public void StoreInt32Vec()
-        {
-            var src = new int[]{-50,-25,25,50};
-            var dst = new int[src.Length];
-            var v1 = Vec128.single(src);
-            dinx.store(v1, dst, 0);
-            var v2 = Vec128.single(dst);
-            Claim.eq(v1,v2);
-        }
 
         public void DefineFloat64Vec()
         {

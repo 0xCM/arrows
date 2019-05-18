@@ -19,6 +19,46 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static T decI8<T>(T src)
+            => decI8(ref src);
+
+        [MethodImpl(Inline)]
+        public static T decU8<T>(T src)
+            => decU8(ref src);
+
+        [MethodImpl(Inline)]
+        public static T decI16<T>(T src)
+            => decI16(ref src);
+
+        [MethodImpl(Inline)]
+        public static T decU16<T>(T src)
+            => decU16(ref src);
+
+        [MethodImpl(Inline)]
+        public static T decI32<T>(T src)
+            => decI32(ref src);
+        
+        [MethodImpl(Inline)]
+        public static T decU32<T>(T src)
+            => decU32(ref src);
+
+        [MethodImpl(Inline)]
+        public static T decI64<T>(T src)
+            => decI64(ref src);
+
+        [MethodImpl(Inline)]
+        public static T decU64<T>(T src)
+            => decU64(ref src);
+
+        [MethodImpl(Inline)]
+        public static T decF32<T>(T src)
+            => decF32(ref src);
+
+        [MethodImpl(Inline)]
+        public static T decF64<T>(T src)
+            => decF64(ref src);
+
+        [MethodImpl(Inline)]
         public static ref T decI8<T>(ref T io)
         {
             math.dec(ref int8(ref io));
@@ -86,48 +126,6 @@ namespace Z0
         {
             math.dec(ref float64(ref io));
             return ref io;
-        }
-
-        [MethodImpl(Inline)]
-        public static T decI8<T>(T src)
-            => decI8(ref src);
-
-        [MethodImpl(Inline)]
-        public static T decU8<T>(T src)
-            => decU8(ref src);
-
-        [MethodImpl(Inline)]
-        public static T decI16<T>(T src)
-            => decI16(ref src);
-
-        [MethodImpl(Inline)]
-        public static T decU16<T>(T src)
-            => decU16(ref src);
-
-        [MethodImpl(Inline)]
-        public static T decI32<T>(T src)
-            => decI32(ref src);
-        
-        [MethodImpl(Inline)]
-        public static T decU32<T>(T src)
-            => decU32(ref src);
-
-        [MethodImpl(Inline)]
-        public static T decI64<T>(T src)
-            => decI64(ref src);
-
-        [MethodImpl(Inline)]
-        public static T decU64<T>(T src)
-            => decU64(ref src);
-
-        [MethodImpl(Inline)]
-        public static T decF32<T>(T src)
-            => decF32(ref src);
-
-        [MethodImpl(Inline)]
-        public static T decF64<T>(T src)
-            => decF64(ref src);
-
+        } 
     }
-
 }

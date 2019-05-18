@@ -13,7 +13,7 @@ namespace Z0
     public class OpId<T> : IOpId<T>
         where T : struct
     {
-        public static readonly OpId<T> Zero = new OpId<T>(OpKind.None, NumericKind.Default, false, false, OpFusion.Default, 0, OpMode.Default, false);
+        public static readonly OpId<T> Zero = new OpId<T>(OpKind.None, NumericKind.Default, false, NumericSystem.Primal, OpFusion.Default, 0, OpVariance.Default, false);
         
         public static bool operator ==(OpId<T> lhs, OpId<T> rhs)
             => lhs.OpKind == rhs.OpKind
@@ -24,7 +24,8 @@ namespace Z0
             && lhs.Intrinsic == rhs.Intrinsic
             && lhs.Fusion == rhs.Fusion
             && lhs.Mode == rhs.Mode
-            && lhs.Role == rhs.Role;
+            && lhs.Role == rhs.Role
+            && lhs.NumSystem == rhs.NumSystem;
 
         public static bool operator !=(OpId<T> lhs, OpId<T> rhs)
             => !(lhs == rhs);
@@ -39,18 +40,18 @@ namespace Z0
         public static OpId<T> operator !(OpId<T> src)
             => src.ToggleRole();
 
-        public OpId(OpKind OpKind, NumericKind NumKind, bool Generic, bool Intrinsic, 
-            OpFusion Fusion, ByteSize? OperandSize, OpMode? Mode, bool Role)
+        public OpId(OpKind OpKind, NumericKind NumKind, bool Generic, NumericSystem NumSystem, 
+            OpFusion Fusion, ByteSize? OperandSize, OpVariance? Mode, bool Role = true)
         {
             this.OpKind = OpKind;
             this.NumKind = NumKind;
             this.OperandType = PrimalKinds.kind<T>();
             this.Generic = Generic;
-            this.Intrinsic = Intrinsic;
+            this.NumSystem= NumSystem;
             this.Fusion = Fusion;
             this.OperandSize = OperandSize ?? 0;
             this.Role = Role;
-            this.Mode = Mode ?? OpMode.ReadOnly;
+            this.Mode = Mode ?? OpVariance.In;
         }
         
         public OpKind OpKind {get;}
@@ -61,18 +62,25 @@ namespace Z0
 
         public ByteSize OperandSize {get;}
 
+        public NumericSystem NumSystem {get;}
+        
         public bool Generic {get;}
-
-        public bool Intrinsic {get;}
 
         public OpFusion Fusion {get;}
 
-        public OpMode Mode {get;}
+        public OpVariance Mode {get;}
 
         public bool Role {get;}
 
         public bool NonZero
             => OpKind != OpKind.None;
+
+        public bool Intrinsic 
+            => NumSystem == NumericSystem.Intrinsic;
+
+        public bool Primal
+            => NumSystem == NumericSystem.Primal;
+
 
         public override string ToString()
             => this.BuildUri();
@@ -84,13 +92,13 @@ namespace Z0
             => ToString().GetHashCode();
 
         public OpId<T> ToggleGeneric()
-            => new OpId<T>(OpKind, NumKind, !Generic, Intrinsic, Fusion, OperandSize, Mode, Role);
+            => new OpId<T>(OpKind, NumKind, !Generic, NumSystem, Fusion, OperandSize, Mode, Role);
 
         public OpId<T> ToggleRole()
-            => new OpId<T>(OpKind, NumKind, Generic, Intrinsic, Fusion, OperandSize, Mode, !Role);
+            => new OpId<T>(OpKind, NumKind, Generic, NumSystem, Fusion, OperandSize, Mode, !Role);
         
-        public OpId<T> WithMode(OpMode Mode)
-            => new OpId<T>(OpKind, NumKind, Generic, Intrinsic, Fusion, OperandSize, Mode, Role);
+        public OpId<T> WithMode(OpVariance Mode)
+            => new OpId<T>(OpKind, NumKind, Generic, NumSystem, Fusion, OperandSize, Mode, Role);
     }
 
     public class OpId : IOpId
@@ -102,7 +110,7 @@ namespace Z0
             => typeof(PrimalKind).GetEnumValues().AsQueryable().Cast<PrimalKind>();
 
         public static readonly OpId Zero = new OpId(OpKind.None, PrimalKind.none, NumericKind.Native, 
-            false, false, OpFusion.Atomic, 0, OpMode.ReadOnly, true);     
+            false, false, OpFusion.Atomic, 0, OpVariance.In, true);     
 
         public static OpId operator !(OpId src)
             => src.FlipBaseline();
@@ -111,7 +119,7 @@ namespace Z0
             => src.FlipGeneric();
         
         public OpId(OpKind OpKind, PrimalKind OperandKind, NumericKind NumericKind, bool Generic, bool Intrinsic, 
-            OpFusion Fusion, ByteSize? OperandSize, OpMode? Mode, bool Baseline)
+            OpFusion Fusion, ByteSize? OperandSize, OpVariance? Mode, bool Baseline)
         {
             this.OpKind = OpKind;
             this.OperandType = OperandKind;
@@ -120,7 +128,7 @@ namespace Z0
             this.Intrinsic = Intrinsic;
             this.Fusion = Fusion;
             this.OperandSize = OperandSize ?? 0;
-            this.Mode = Mode ?? OpMode.ReadOnly;
+            this.Mode = Mode ?? OpVariance.In;
             this.Role = Baseline;
        }
         
@@ -140,7 +148,7 @@ namespace Z0
 
         public bool Role {get;}
 
-        public OpMode Mode {get;}
+        public OpVariance Mode {get;}
 
         public override string ToString() 
             => this.BuildUri();
@@ -154,7 +162,7 @@ namespace Z0
         public OpId ResizeOperand(int OperandSize)
             => new OpId(OpKind, OperandType, NumKind, Generic, Intrinsic, Fusion, OperandSize, Mode, Role);
 
-        public OpId WithMode(OpMode Mode)
+        public OpId WithMode(OpVariance Mode)
             => new OpId(OpKind, OperandType, NumKind, Generic, Intrinsic, Fusion, OperandSize, Mode, Role);
 
     }

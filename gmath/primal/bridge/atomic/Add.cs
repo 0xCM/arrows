@@ -16,6 +16,46 @@ namespace Z0
     partial class bridge
     {
         [MethodImpl(Inline)]
+        public static T addI8<T>(T lhs, T rhs)
+            => generic<T>((sbyte)(int8(lhs) + int8(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T addU8<T>(T lhs, T rhs)
+            => generic<T>((byte)(uint8(lhs) + uint8(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T addI16<T>(T lhs, T rhs)
+            => generic<T>((short)(int16(lhs) + int16(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T addU16<T>(T lhs, T rhs)
+            => generic<T>((ushort)(uint16(lhs) + uint16(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T addI32<T>(T lhs, T rhs)
+            => generic<T>(int32(lhs) + int32(rhs));
+        
+        [MethodImpl(Inline)]
+        public static T addU32<T>(T lhs, T rhs)
+            => generic<T>(uint32(lhs) + uint32(rhs));
+
+        [MethodImpl(Inline)]
+        public static T addI64<T>(T lhs, T rhs)
+            => generic<T>(int64(lhs) + int64(rhs));
+
+        [MethodImpl(Inline)]
+        public static T addU64<T>(T lhs, T rhs)
+            => generic<T>(uint64(lhs) + uint64(rhs));
+
+        [MethodImpl(Inline)]
+        public static T addF32<T>(T lhs, T rhs)
+            => generic<T>(float32(lhs) + float32(rhs));
+
+        [MethodImpl(Inline)]
+        public static T addF64<T>(T lhs, T rhs)
+            => generic<T>(float64(lhs) + float64(rhs));
+
+        [MethodImpl(Inline)]
         public static ref T addI8<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.add(ref int8(ref lhs), int8(ref rhs));
@@ -46,7 +86,6 @@ namespace Z0
             lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
-
 
         [MethodImpl(Inline)]
         public static ref T addI32<T>(ref T lhs, T rhs)
@@ -186,49 +225,6 @@ namespace Z0
             float64(rhs, out double y);                        
             dst = generic(x + y, out dst);            
             return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        public static T addI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) + int8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T addU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) + uint8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T addI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) + int16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T addU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) + uint16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T addI32<T>(T lhs, T rhs)
-            => generic<T>(int32(lhs) + int32(rhs));
-        
-        [MethodImpl(Inline)]
-        public static T addU32<T>(T lhs, T rhs)
-            => generic<T>(uint32(lhs) + uint32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T addI64<T>(T lhs, T rhs)
-            => generic<T>(int64(lhs) + int64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T addU64<T>(T lhs, T rhs)
-            => generic<T>(uint64(lhs) + uint64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T addF32<T>(T lhs, T rhs)
-            => generic<T>(float32(lhs) + float32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T addF64<T>(T lhs, T rhs)
-            => generic<T>(float64(lhs) + float64(rhs));
-
+        }
     }
 }
-
-

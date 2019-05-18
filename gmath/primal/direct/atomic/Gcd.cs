@@ -120,20 +120,6 @@ namespace Z0
             return lhs;
         }
 
-        [MethodImpl(NotInline)]
-        public static double gcd(double lhs, double rhs)
-        {
-            var x = abs(lhs);
-            var y = abs(rhs);
-            while (y != 0)
-            {
-                var rem = x % y;
-                x = y;
-                y = rem;
-            }
-
-            return x;
-        }
 
         [MethodImpl(NotInline)]
         public static float gcd(float lhs, float rhs)
@@ -143,6 +129,21 @@ namespace Z0
             while (y != 0)
             {
                 var rem = (x % y);
+                x = y;
+                y = rem;
+            }
+
+            return x;
+        }
+
+        [MethodImpl(NotInline)]
+        public static double gcd(double lhs, double rhs)
+        {
+            var x = abs(lhs);
+            var y = abs(rhs);
+            while (y != 0)
+            {
+                var rem = x % y;
                 x = y;
                 y = rem;
             }
@@ -167,5 +168,76 @@ namespace Z0
         [MethodImpl(NotInline)]
         public static BigInteger gcd(BigInteger lhs, BigInteger rhs)
             => BigInteger.GreatestCommonDivisor(lhs,rhs);
+   
+ 
+        [MethodImpl(Inline)]
+        public static ref sbyte gcd(ref sbyte lhs, sbyte rhs)
+        {
+            lhs = gcd(lhs,rhs);
+            return ref lhs;
+        }
+   
+        [MethodImpl(Inline)]
+        public static ref byte gcd(ref byte lhs, byte rhs)
+        {
+            lhs = gcd(lhs,rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref short gcd(ref short lhs, short rhs)
+        {
+            lhs = gcd(lhs,rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ushort gcd(ref ushort lhs, ushort rhs)
+        {
+            lhs = gcd(lhs,rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref int gcd(ref int lhs, int rhs)
+        {
+            lhs = gcd(lhs,rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint gcd(ref uint lhs, uint rhs)
+        {
+            lhs = gcd(lhs,rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long gcd(ref long lhs, long rhs)
+        {
+            lhs = gcd(lhs,rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong gcd(ref ulong lhs, ulong rhs)
+        {
+            lhs = gcd(lhs,rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref float gcd(ref float lhs, float rhs)
+        {
+            lhs = gcd(lhs,rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref double gcd(ref double lhs, double rhs)
+        {
+            lhs = gcd(lhs,rhs);
+            return ref lhs;
+        } 
     }
 }

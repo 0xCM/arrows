@@ -25,6 +25,7 @@ namespace Z0
         public static double acos(double x)
             => Math.Acos(x);
 
+
         #endregion 
 
         #region acosh

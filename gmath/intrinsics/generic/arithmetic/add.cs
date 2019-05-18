@@ -19,11 +19,11 @@ namespace Z0
     {
 
 
-        [MethodImpl(Inline)]
         public static Vec128<T> add<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
+            
             switch(kind)
             {
                 case PrimalKind.int8:
@@ -49,6 +49,7 @@ namespace Z0
                 default:
                     throw unsupported(kind);
             }            
+
         }
 
         [MethodImpl(Inline)]

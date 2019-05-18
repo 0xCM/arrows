@@ -34,29 +34,16 @@ namespace Z0
                 case MetricKind.Common:
                     return CommonBench.Create(random, config);
                 
-                // case BenchKind.PrimalFused:
-                //     return PrimalFusedBench.Create(random, config);
-
-                // case BenchKind.PrimalDirect:
-                //     return PrimalBaseline.Create(random, config);
-
-                // case BenchKind.PrimalAtomic:
-                //     return PrimalAtomicBench.Create(random, config);
-                
-                // case BenchKind.NumG:
-                //     return NumGBench.Create(random, config);
                 
                 case MetricKind.Numbers:
                     return NumbersBench.Create(random, config);
                 
-                case MetricKind.Num128:
-                    return Num128Bench.Create(random, config);
                 
                 case MetricKind.Vec128:
-                    return Vec128Bench.Create(random, config);
+                    return InX128Bench.Create(random, config);
                 
                 case MetricKind.Vec256:
-                    return Vec256Bench.Create(random, config);
+                    return InX256Bench.Create(random, config);
 
             }
 

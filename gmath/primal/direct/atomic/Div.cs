@@ -18,6 +18,55 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static sbyte div(sbyte lhs, sbyte rhs)
+            => (sbyte)(lhs / rhs);
+
+        [MethodImpl(Inline)]
+        public static byte div(byte lhs, byte rhs)
+            => (byte)(lhs / rhs);
+
+        [MethodImpl(Inline)]
+        public static short div(short lhs, short rhs)
+            => (short)(lhs / rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort div(ushort lhs, ushort rhs)
+            => (ushort)(lhs / rhs);
+
+        [MethodImpl(Inline)]
+        public static int div(int lhs, int rhs)
+            => lhs / rhs;
+
+        [MethodImpl(Inline)]
+        public static uint div(uint lhs, uint rhs)
+            => lhs / rhs;
+
+        [MethodImpl(Inline)]
+        public static long div(long lhs, long rhs)
+            => lhs / rhs;
+
+        [MethodImpl(Inline)]
+        public static ulong div(ulong lhs, ulong rhs)
+            => lhs / rhs;
+
+        [MethodImpl(Inline)]
+        public static float div(float lhs, float rhs)
+            => lhs / rhs;
+
+        [MethodImpl(Inline)]
+        public static double div(double lhs, double rhs)
+            => lhs / rhs;
+
+       [MethodImpl(Inline)]
+        public static decimal div(decimal lhs, decimal rhs)
+            => lhs / rhs;
+
+       [MethodImpl(Inline)]
+        public static BigInteger div(BigInteger lhs, BigInteger rhs)
+            => lhs / rhs;
+
+ 
+        [MethodImpl(Inline)]
         public static ref sbyte div(ref sbyte lhs, sbyte rhs)
         {
             lhs = (sbyte)(lhs / rhs);
@@ -86,56 +135,5 @@ namespace Z0
             lhs = lhs / rhs;
             return ref lhs;
         }
-
-
-        [MethodImpl(Inline)]
-        public static sbyte div(sbyte lhs, sbyte rhs)
-            => (sbyte)(lhs / rhs);
-
-        [MethodImpl(Inline)]
-        public static byte div(byte lhs, byte rhs)
-            => (byte)(lhs / rhs);
-
-        [MethodImpl(Inline)]
-        public static short div(short lhs, short rhs)
-            => (short)(lhs / rhs);
-
-        [MethodImpl(Inline)]
-        public static ushort div(ushort lhs, ushort rhs)
-            => (ushort)(lhs / rhs);
-
-        [MethodImpl(Inline)]
-        public static int div(int lhs, int rhs)
-            => lhs / rhs;
-
-        [MethodImpl(Inline)]
-        public static uint div(uint lhs, uint rhs)
-            => lhs / rhs;
-
-        [MethodImpl(Inline)]
-        public static long div(long lhs, long rhs)
-            => lhs / rhs;
-
-        [MethodImpl(Inline)]
-        public static ulong div(ulong lhs, ulong rhs)
-            => lhs / rhs;
-
-        [MethodImpl(Inline)]
-        public static float div(float lhs, float rhs)
-            => lhs / rhs;
-
-        [MethodImpl(Inline)]
-        public static double div(double lhs, double rhs)
-            => lhs / rhs;
-
-       [MethodImpl(Inline)]
-        public static decimal div(decimal lhs, decimal rhs)
-            => lhs / rhs;
-
-       [MethodImpl(Inline)]
-        public static BigInteger div(BigInteger lhs, BigInteger rhs)
-            => lhs / rhs;
-
-    }
-
+   }
 }

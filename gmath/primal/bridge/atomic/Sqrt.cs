@@ -15,6 +15,48 @@ namespace Z0
 
     partial class bridge
     {
+
+        [MethodImpl(Inline)]
+        public static T sqrtI8<T>(T src)
+            => sqrtI8(ref src);
+
+        [MethodImpl(Inline)]
+        public static T sqrtU8<T>(T src)
+            => sqrtU8(ref src);
+
+        [MethodImpl(Inline)]
+        public static T sqrtI16<T>(T src)
+            => sqrtI16(ref src);
+
+        [MethodImpl(Inline)]
+        public static T sqrtU16<T>(T src)
+            => sqrtU16(ref src);
+
+        [MethodImpl(Inline)]
+        public static T sqrtI32<T>(T src)
+            => sqrtI32(ref src);
+        
+        [MethodImpl(Inline)]
+        public static T sqrtU32<T>(T src)
+            => sqrtU32(ref src);
+
+        [MethodImpl(Inline)]
+        public static T sqrtI64<T>(T src)
+            => sqrtI64(ref src);
+
+        [MethodImpl(Inline)]
+        public static T sqrtU64<T>(T src)
+            => sqrtU64(ref src);
+
+        [MethodImpl(Inline)]
+        public static T sqrtF32<T>(T src)
+            => sqrtU32(ref src);
+
+        [MethodImpl(Inline)]
+        public static T sqrtF64<T>(T src)
+            => sqrtI64(ref src);
+
+
         [MethodImpl(Inline)]
         public static ref T sqrtI8<T>(ref T src)
         {
@@ -84,48 +126,5 @@ namespace Z0
             math.sqrt(ref float64(ref src));            
             return ref src;
         }
-
-        [MethodImpl(Inline)]
-        public static T sqrtI8<T>(T src)
-            => sqrtI8(ref src);
-
-        [MethodImpl(Inline)]
-        public static T sqrtU8<T>(T src)
-            => sqrtU8(ref src);
-
-        [MethodImpl(Inline)]
-        public static T sqrtI16<T>(T src)
-            => sqrtI16(ref src);
-
-        [MethodImpl(Inline)]
-        public static T sqrtU16<T>(T src)
-            => sqrtU16(ref src);
-
-        [MethodImpl(Inline)]
-        public static T sqrtI32<T>(T src)
-            => sqrtI32(ref src);
-        
-        [MethodImpl(Inline)]
-        public static T sqrtU32<T>(T src)
-            => sqrtU32(ref src);
-
-        [MethodImpl(Inline)]
-        public static T sqrtI64<T>(T src)
-            => sqrtI64(ref src);
-
-        [MethodImpl(Inline)]
-        public static T sqrtU64<T>(T src)
-            => sqrtU64(ref src);
-
-        [MethodImpl(Inline)]
-        public static T sqrtF32<T>(T src)
-            => sqrtU32(ref src);
-
-        [MethodImpl(Inline)]
-        public static T sqrtF64<T>(T src)
-            => sqrtI64(ref src);
-
-
     }
-
 }

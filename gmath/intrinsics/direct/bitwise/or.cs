@@ -10,11 +10,10 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
     
     
-    using static global::mfunc;
+    using static mfunc;
 
     partial class dinx
     {
-
         #region or:vec -> vec -> vec
 
         [MethodImpl(Inline)]
@@ -363,7 +362,7 @@ namespace Z0
                 {
                     var vLhs = Vec128.load(pLhs);
                     var vRhs = Vec128.load(pRhs);
-                    dinx.store(dinx.or(vLhs,vRhs), pDst);
+                    store(or(vLhs,vRhs), pDst);
                 }
             }
             

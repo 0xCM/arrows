@@ -25,6 +25,7 @@ namespace Z0
         public static unsafe void store(in Vec128<byte> src, byte* dst)
             => Store(dst,src);            
 
+
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec128<sbyte> src, sbyte* dst)
             => Store(dst,src);            
@@ -103,8 +104,153 @@ namespace Z0
 
         #endregion
 
-        #region store:vec -> span -> offset
+        #region storeio
 
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec128<sbyte> storeio(in Vec128<sbyte> src, sbyte* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec128<byte> storeio(in Vec128<byte> src, byte* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec128<short> storeio(in Vec128<short> src, short* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec128<ushort> storeio(in Vec128<ushort> src, ushort* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec128<int> storeio(in Vec128<int> src, int* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec128<uint> storeio(in Vec128<uint> src, uint* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec128<long> storeio(in Vec128<long> src, long* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec128<ulong> storeio(in Vec128<ulong> src, ulong* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec128<float> storeio(in Vec128<float> src, float* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec128<double> storeio(in Vec128<double> src, double* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec256<sbyte> storeio(in Vec256<sbyte> src, sbyte* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec256<byte> storeio(in Vec256<byte> src, byte* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec256<short> storeio(in Vec256<short> src, short* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec256<ushort> storeio(in Vec256<ushort> src, ushort* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec256<int> storeio(in Vec256<int> src, int* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec256<uint> storeio(in Vec256<uint> src, uint* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec256<long> storeio(in Vec256<long> src, long* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec256<ulong> storeio(in Vec256<ulong> src, ulong* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec256<float> storeio(in Vec256<float> src, float* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref readonly Vec256<double> storeio(in Vec256<double> src, double* dst)
+        {
+            Store(dst,src);
+            return ref src;
+        }
+
+        #endregion
+
+        #region store:vec -> span -> offset
+        /* 
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec128<byte> src, Span<byte> dst, int offset = 0)
         {
@@ -174,7 +320,7 @@ namespace Z0
             fixed (double* pdst = &dst[offset])
                 Store(pdst,src);
         }
-
+        */
         #endregion        
     }
 

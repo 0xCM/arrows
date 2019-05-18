@@ -34,7 +34,7 @@ namespace Z0
             }            
         }
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static Vec256<T> mul<T>(in Vec256<T> lhs, in Vec256<T> rhs)
             where T : struct
         {

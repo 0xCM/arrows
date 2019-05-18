@@ -16,6 +16,46 @@ namespace Z0
     partial class bridge
     {
         [MethodImpl(Inline)]
+        public static T squareI8<T>(T src)
+            => squareI8(ref src);
+
+        [MethodImpl(Inline)]
+        public static T squareU8<T>(T src)
+            => squareU8(ref src);
+
+        [MethodImpl(Inline)]
+        public static T squareI16<T>(T src)
+            => squareI16(ref src);
+
+        [MethodImpl(Inline)]
+        public static T squareU16<T>(T src)
+            => squareU16(ref src);
+
+        [MethodImpl(Inline)]
+        public static T squareI32<T>(T src)
+            => squareI32(ref src);
+        
+        [MethodImpl(Inline)]
+        public static T squareU32<T>(T src)
+            => squareU32(ref src);
+
+        [MethodImpl(Inline)]
+        public static T squareI64<T>(T src)
+            => squareI64(ref src);
+
+        [MethodImpl(Inline)]
+        public static T squareU64<T>(T src)
+            => squareU64(ref src);
+
+        [MethodImpl(Inline)]
+        public static T squareF32<T>(T src)
+            => squareU32(ref src);
+
+        [MethodImpl(Inline)]
+        public static T squareF64<T>(T src)
+            => squareI64(ref src);
+
+        [MethodImpl(Inline)]
         public static ref T squareI8<T>(ref T src)
         {
             math.square(ref int8(ref src));            
@@ -84,48 +124,5 @@ namespace Z0
             math.square(ref float64(ref src));            
             return ref src;
         }
-
-        [MethodImpl(Inline)]
-        public static T squareI8<T>(T src)
-            => squareI8(ref src);
-
-        [MethodImpl(Inline)]
-        public static T squareU8<T>(T src)
-            => squareU8(ref src);
-
-        [MethodImpl(Inline)]
-        public static T squareI16<T>(T src)
-            => squareI16(ref src);
-
-        [MethodImpl(Inline)]
-        public static T squareU16<T>(T src)
-            => squareU16(ref src);
-
-        [MethodImpl(Inline)]
-        public static T squareI32<T>(T src)
-            => squareI32(ref src);
-        
-        [MethodImpl(Inline)]
-        public static T squareU32<T>(T src)
-            => squareU32(ref src);
-
-        [MethodImpl(Inline)]
-        public static T squareI64<T>(T src)
-            => squareI64(ref src);
-
-        [MethodImpl(Inline)]
-        public static T squareU64<T>(T src)
-            => squareU64(ref src);
-
-        [MethodImpl(Inline)]
-        public static T squareF32<T>(T src)
-            => squareU32(ref src);
-
-        [MethodImpl(Inline)]
-        public static T squareF64<T>(T src)
-            => squareI64(ref src);
-
-
     }
-
 }

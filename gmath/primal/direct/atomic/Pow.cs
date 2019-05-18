@@ -15,6 +15,21 @@ namespace Z0
 
     partial class math
     {
+        [MethodImpl(Inline)]
+        public static float pow(float src, uint exp)
+            => MathF.Pow(src,exp);
+
+        [MethodImpl(Inline)]
+        public static double pow(double src, uint exp)
+            => Math.Pow(src,exp);
+
+        [MethodImpl(Inline)]
+        public static float pow(float src, float exp)
+            => MathF.Pow(src,exp);
+
+        [MethodImpl(Inline)]
+        public static double pow(double src, double exp)
+            => Math.Pow(src,exp);
 
         [MethodImpl(Inline)]
         public static sbyte pow(sbyte src, uint exp)
@@ -88,23 +103,5 @@ namespace Z0
                 result = result*i;            
             return result;
         }
-
-        [MethodImpl(Inline)]
-        public static float pow(float src, uint exp)
-            => MathF.Pow(src,exp);
-
-        [MethodImpl(Inline)]
-        public static double pow(double src, uint exp)
-            => Math.Pow(src,exp);
-
-        [MethodImpl(Inline)]
-        public static float pow(float src, float exp)
-            => MathF.Pow(src,exp);
-
-        [MethodImpl(Inline)]
-        public static double pow(double src, double exp)
-            => Math.Pow(src,exp);
-
     }
-
 }

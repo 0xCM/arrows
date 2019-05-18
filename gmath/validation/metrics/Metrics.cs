@@ -77,11 +77,11 @@ namespace Z0
 
         public ReadOnlyMemory<T> Result {get;}
 
-        public AppMsg Describe(bool total = false)
+        public AppMsg Describe(bool total = false, bool digitcommas = true)
         {
             var msg = string.Empty;
             msg += OpId.ToString().PadRight(50);
-            msg += $" | OpCount = {OpCount.ToString().PadRight(12)}";
+            msg += $" | OpCount = {OpCount.ToString(digitcommas ? "#,#" : string.Empty).PadRight(14)}";
             msg += $" | Duration = {WorkTime.Ms} ms";
             if(total)
                 msg += " (total)";

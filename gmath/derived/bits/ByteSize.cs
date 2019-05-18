@@ -60,6 +60,10 @@ namespace Z0
             => new ByteSize(src);
 
         [MethodImpl(Inline)]
+        public static implicit operator ByteSize(ulong src)
+            => new ByteSize((int)src);
+
+        [MethodImpl(Inline)]
         public ByteSize(int Bytes)
             => this.Bytes = Bytes;
 

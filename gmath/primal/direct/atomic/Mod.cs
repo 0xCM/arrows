@@ -17,6 +17,46 @@ namespace Z0
     partial class math
     {
         [MethodImpl(Inline)]
+        public static sbyte mod(sbyte lhs, sbyte rhs)
+            => (sbyte)(lhs % rhs);
+
+        [MethodImpl(Inline)]
+        public static byte mod(byte lhs, byte rhs)
+            => (byte)(lhs % rhs);
+
+        [MethodImpl(Inline)]
+        public static short mod(short lhs, short rhs)
+            => (short)(lhs % rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort mod(ushort lhs, ushort rhs)
+            => (ushort)(lhs % rhs);
+
+        [MethodImpl(Inline)]
+        public static int mod(int lhs, int rhs)
+            => lhs % rhs;
+
+        [MethodImpl(Inline)]
+        public static uint mod(uint lhs, uint rhs)
+            => lhs % rhs;
+
+        [MethodImpl(Inline)]
+        public static long mod(long lhs, long rhs)
+            => lhs % rhs;
+
+        [MethodImpl(Inline)]
+        public static ulong mod(ulong lhs, ulong rhs)
+            => lhs % rhs;
+
+        [MethodImpl(Inline)]
+        public static float mod(float lhs, float rhs)
+            => lhs % rhs;
+
+        [MethodImpl(Inline)]
+        public static double mod(double lhs, double rhs)
+            => lhs % rhs;
+
+        [MethodImpl(Inline)]
         public static ref sbyte mod(ref sbyte lhs, sbyte rhs)
         {
             lhs = (sbyte)(lhs % rhs);
@@ -85,45 +125,5 @@ namespace Z0
             lhs = lhs % rhs;
             return ref lhs;
         }
-
-        [MethodImpl(Inline)]
-        public static sbyte mod(sbyte lhs, sbyte rhs)
-            => (sbyte)(lhs % rhs);
-
-        [MethodImpl(Inline)]
-        public static byte mod(byte lhs, byte rhs)
-            => (byte)(lhs % rhs);
-
-        [MethodImpl(Inline)]
-        public static short mod(short lhs, short rhs)
-            => (short)(lhs % rhs);
-
-        [MethodImpl(Inline)]
-        public static ushort mod(ushort lhs, ushort rhs)
-            => (ushort)(lhs % rhs);
-
-        [MethodImpl(Inline)]
-        public static int mod(int lhs, int rhs)
-            => lhs % rhs;
-
-        [MethodImpl(Inline)]
-        public static uint mod(uint lhs, uint rhs)
-            => lhs % rhs;
-
-        [MethodImpl(Inline)]
-        public static long mod(long lhs, long rhs)
-            => lhs % rhs;
-
-        [MethodImpl(Inline)]
-        public static ulong mod(ulong lhs, ulong rhs)
-            => lhs % rhs;
-
-        [MethodImpl(Inline)]
-        public static float mod(float lhs, float rhs)
-            => lhs % rhs;
-
-        [MethodImpl(Inline)]
-        public static double mod(double lhs, double rhs)
-            => lhs % rhs;
     }
 }

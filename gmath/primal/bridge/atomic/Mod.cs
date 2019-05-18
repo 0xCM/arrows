@@ -17,6 +17,47 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static T modI8<T>(T lhs, T rhs)
+            => generic<T>((sbyte)(int8(lhs) % int8(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T modU8<T>(T lhs, T rhs)
+            => generic<T>((byte)(uint8(lhs) % uint8(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T modI16<T>(T lhs, T rhs)
+            => generic<T>((short)(int16(lhs) % int16(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T modU16<T>(T lhs, T rhs)
+            => generic<T>((ushort)(uint16(lhs) % uint16(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T modI32<T>(T lhs, T rhs)
+            => generic<T>(int32(lhs) % int32(rhs));
+        
+        [MethodImpl(Inline)]
+        public static T modU32<T>(T lhs, T rhs)
+            => generic<T>(uint32(lhs) % uint32(rhs));
+
+        [MethodImpl(Inline)]
+        public static T modI64<T>(T lhs, T rhs)
+            => generic<T>(int64(lhs) % int64(rhs));
+
+        [MethodImpl(Inline)]
+        public static T modU64<T>(T lhs, T rhs)
+            => generic<T>(uint64(lhs) % uint64(rhs));
+
+        [MethodImpl(Inline)]
+        public static T modF32<T>(T lhs, T rhs)
+            => generic<T>(float32(lhs) % float32(rhs));
+
+        [MethodImpl(Inline)]
+        public static T modF64<T>(T lhs, T rhs)
+            => generic<T>(float64(lhs) % float64(rhs));
+
+
+        [MethodImpl(Inline)]
         public static ref T modI8<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.mod(ref int8(ref lhs), int8(ref rhs));
@@ -47,7 +88,6 @@ namespace Z0
             lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
-
 
         [MethodImpl(Inline)]
         public static ref T modI32<T>(ref T lhs, T rhs)
@@ -96,50 +136,5 @@ namespace Z0
             lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
-
-
-        [MethodImpl(Inline)]
-        public static T modI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) % int8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T modU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) % uint8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T modI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) % int16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T modU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) % uint16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T modI32<T>(T lhs, T rhs)
-            => generic<T>(int32(lhs) % int32(rhs));
-        
-        [MethodImpl(Inline)]
-        public static T modU32<T>(T lhs, T rhs)
-            => generic<T>(uint32(lhs) % uint32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T modI64<T>(T lhs, T rhs)
-            => generic<T>(int64(lhs) % int64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T modU64<T>(T lhs, T rhs)
-            => generic<T>(uint64(lhs) % uint64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T modF32<T>(T lhs, T rhs)
-            => generic<T>(float32(lhs) % float32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T modF64<T>(T lhs, T rhs)
-            => generic<T>(float64(lhs) % float64(rhs));
-
-
     }
 }
-
-

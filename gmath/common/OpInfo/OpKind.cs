@@ -13,31 +13,62 @@ namespace Z0
     using static MathSym;
     using AsciCompound = AsciSym.Compound;
 
-    public enum NumericKind
+    public enum NumericKind : byte
     {
+        /// <summary>
+        /// Classifier for system-defined numeric types, more specifically, those 
+        /// types which listed in the PrimalKind enumeration
+        /// </summary>
         Native = 0,
 
-        Derived = 1,
+        /// <summary>
+        /// Identifies the custom generic number type, num[T]
+        /// </summary>
+        Number = 1,
+
+        /// <summary>
+        /// Identifies a 128-bit intrinsic scalar
+        /// </summary>
+        Num128 = 2,
+
+        /// <summary>
+        /// Identifies a 128-bit intrinsic vector
+        /// </summary>
+        Vec128 = 3,
+
+        /// <summary>
+        /// Identifies a 256-bit intrinsic scalar
+        /// </summary>
+        Num256 = 4,
+        
+        /// <summary>
+        /// Identifies a 256-bit intrinsic vector
+        /// </summary>
+        Vec256 = 5,
 
         Default = Native
     }
 
-    public enum Multiplicity
+    public enum NumericSystem : byte
     {
-        Zero,
-        
-        One,
-        
-        ZeroOrOne,
-        
-        ZeroOrMore,
-        
-        OneOrMore,
+        Primal = 0,
 
-        Default = Zero
+        Intrinsic = 1
     }
 
-    public enum OpArity
+
+    public enum Genericity : byte
+    {
+        Direct = 1,
+
+
+        Generic = 2,
+
+        Default = Direct,
+
+    }
+
+    public enum OpArity : byte
     {
         /// <summary>
         /// Indicates an operator that accepts one input
@@ -57,7 +88,7 @@ namespace Z0
         Default = Binary
     }
 
-    public enum OpFusion
+    public enum OpFusion : byte
     {
         Atomic,
 
@@ -66,34 +97,32 @@ namespace Z0
         Default = Atomic
     }
 
-    public enum OpRole
+    public enum OpRole : byte
     {
         Baseline,
 
         Benchmark,
 
-        Default = Baseline
     }
 
-    public enum OpMode
-    {
-        
+    public enum OpVariance : byte
+    {        
         /// <summary>
-        /// Indicates that an operator does not modify incoming operands
+        /// Indicates that an operator does not modify its operands
         /// </summary>
-        ReadOnly,
+        In,
 
         /// <summary>
-        /// Indicates that the left-most operand is overwritten by the
-        /// value produced by applying the operator
+        /// Indicates that an operator may modify one or more operands
         /// </summary>
-        /// <remarks>
-        /// This describes the behavior of native operator invocations such
-        /// as x += y, x |= y, etc.
-        /// </remarks>
-        Overwrite,
+        Ref,
 
-        Default = ReadOnly
+        /// <summary>
+        /// Indicates that an operator must modify one or more operands
+        /// </summary>
+        Out,
+
+        Default = In
     }
     
     public enum OpKind : byte
@@ -187,7 +216,6 @@ namespace Z0
         [Symbol(AsciCompound.Decrement)]
         Dec,
 
-
         New,
 
         /// <summary>
@@ -268,4 +296,20 @@ namespace Z0
 
         Parse
     }
+
+    public enum Multiplicity : byte
+    {
+        Zero,
+        
+        One,
+        
+        ZeroOrOne,
+        
+        ZeroOrMore,
+        
+        OneOrMore,
+
+        Default = Zero
+    }
+
 }

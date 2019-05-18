@@ -8,17 +8,15 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
-    
-    
-    using static global::mfunc;
+        
+    using static mfunc;
 
     partial class dinx
     {
-
+        
         [MethodImpl(Inline)]
         public static Vec128<byte> abs(Vec128<sbyte> src)
             => Avx2.Abs(src);
-
 
         [MethodImpl(Inline)]
         public static Vec128<ushort> abs(Vec128<short> src)
@@ -39,8 +37,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<uint> abs(Vec256<int> src)
             => Avx2.Abs(src);
-
-
     }
 
 }

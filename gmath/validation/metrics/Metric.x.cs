@@ -54,7 +54,37 @@ namespace Z0
             throw unsupported(metric);
         }
 
-        public static IOpMetrics Run(this MetricKind metric, OpKind op, PrimalKind primal, MetricConfig config = null, IRandomizer random = null)
+        public static IOpMetrics Run(this MetricKind metric, OpKind op, PrimalKind primal, 
+            InXMetricConfig config = null, Genericity genericity = Genericity.Default, 
+            IRandomizer random = null)
+        {
+            switch(genericity)
+            {
+                case Genericity.Direct:
+                    switch(metric)
+                    {
+                        case MetricKind.Vec128:
+                            return IntrinsicDirect.Run(op, primal, (InXMetricConfig128)config, random);
+                        case MetricKind.Vec256:
+                            return IntrinsicDirect.Run(op, primal, (InXMetricConfig256)config, random);
+                    }
+                    break;
+                case Genericity.Generic:
+                    switch(metric)
+                    {
+                        case MetricKind.Vec128:
+                            return IntrinsicGeneric.Run(op, primal, (InXMetricConfig128)config, random);
+                        case MetricKind.Vec256:
+                            return IntrinsicGeneric.Run(op, primal, (InXMetricConfig256)config, random);
+                    }
+                break;
+            }
+
+            throw unsupported(metric);
+        }
+
+        public static IOpMetrics Run(this MetricKind metric, OpKind op, PrimalKind primal, 
+            MetricConfig config = null, IRandomizer random = null)
         {
             switch(metric)
             {
@@ -64,15 +94,9 @@ namespace Z0
                     return PrimalDMetrics.Run(op, primal, config, random);
                 case MetricKind.PrimalGeneric:
                     return PrimalGMetrics.Run(op, primal, config, random);
-                case MetricKind.Vec128:
-                    return IntrinsicDirect.Run(op, primal, (InXMetricConfig128)config, random);
-                case MetricKind.Vec256:
-                    return IntrinsicDirect.Run(op, primal, (InXMetricConfig256)config, random);
             }
             throw unsupported(metric);
         }
-
-
 
         public static IOpMetrics Run(this MetricId metric, bool baseline = true, MetricConfig config = null, IRandomizer random = null)
         {
@@ -95,9 +119,10 @@ namespace Z0
             }
         }
 
+        public static AppMsg FormatMessage(this BenchComparisonRecord src, char delimiter = ',', bool digitcommas = false)        
+            => AppMsg.Define(src.Delimited(delimiter,digitcommas), SeverityLevel.Perform);
         
-
-        public static IReadOnlyList<AppMsg> FormatMessages(this IEnumerable<BenchComparisonRecord> src, char delimiter = ',')
+        public static IReadOnlyList<AppMsg> FormatMessages(this IEnumerable<BenchComparisonRecord> src, char delimiter = ',', bool digitcommas = false)
         {
             var records = src.ToList();
             if(records.Count == 0)
@@ -106,11 +131,13 @@ namespace Z0
             var messages = new List<AppMsg>(records.Count + 1);
             messages.Add(AppMsg.Define(records[0].HeaderText(delimiter), SeverityLevel.HiliteCL));
             foreach(var record in src)
-                messages.Add(AppMsg.Define(record.Delimited(delimiter), SeverityLevel.Perform));
+                messages.Add(record.FormatMessage(delimiter, digitcommas));
             return messages;
 
         }
 
+        public static OpMetricPair PairWith(this OpMetricSpec lhs, OpMetricSpec rhs)
+            => OpMetricPair.Define(lhs,rhs);
     }
 
 }

@@ -18,6 +18,38 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static sbyte xor(sbyte lhs, sbyte rhs)
+            => (sbyte)(lhs ^ rhs);
+
+        [MethodImpl(Inline)]
+        public static byte xor(byte lhs, byte rhs)
+            => (byte)(lhs ^ rhs);
+
+        [MethodImpl(Inline)]
+        public static short xor(short lhs, short rhs)
+            => (short)(lhs ^ rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort xor(ushort lhs, ushort rhs)
+            => (ushort)(lhs ^ rhs);
+
+        [MethodImpl(Inline)]
+        public static int xor(int lhs, int rhs)
+            => lhs ^ rhs;
+
+        [MethodImpl(Inline)]
+        public static uint xor(uint lhs, uint rhs)
+            => lhs ^ rhs;
+
+        [MethodImpl(Inline)]
+        public static long xor(long lhs, long rhs)
+            => lhs ^ rhs;
+
+        [MethodImpl(Inline)]
+        public static ulong xor(ulong lhs, ulong rhs)
+            => lhs ^ rhs;
+
+        [MethodImpl(Inline)]
         public static ref sbyte xor(ref sbyte lhs, sbyte rhs)
         {
             lhs = (sbyte)(lhs ^ rhs);
@@ -72,41 +104,5 @@ namespace Z0
             lhs = lhs ^ rhs;
             return ref lhs;
         }
-
-
-        [MethodImpl(Inline)]
-        public static sbyte xor(sbyte lhs, sbyte rhs)
-            => (sbyte)(lhs ^ rhs);
-
-        [MethodImpl(Inline)]
-        public static byte xor(byte lhs, byte rhs)
-            => (byte)(lhs ^ rhs);
-
-        [MethodImpl(Inline)]
-        public static short xor(short lhs, short rhs)
-            => (short)(lhs ^ rhs);
-
-        [MethodImpl(Inline)]
-        public static ushort xor(ushort lhs, ushort rhs)
-            => (ushort)(lhs ^ rhs);
-
-        [MethodImpl(Inline)]
-        public static int xor(int lhs, int rhs)
-            => lhs ^ rhs;
-
-        [MethodImpl(Inline)]
-        public static uint xor(uint lhs, uint rhs)
-            => lhs ^ rhs;
-
-        [MethodImpl(Inline)]
-        public static long xor(long lhs, long rhs)
-            => lhs ^ rhs;
-
-        [MethodImpl(Inline)]
-        public static ulong xor(ulong lhs, ulong rhs)
-            => lhs ^ rhs;
-
-
     }
-
 }

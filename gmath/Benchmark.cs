@@ -928,72 +928,117 @@ namespace Z0
             }
 
         }
-       
-       void MeasureIntrinsicDirect()
-       {
-            gmath.init();
-            var config = InXMetricConfig128.Define(runs: Pow2.T04, cycles: Pow2.T14, samples: Pow2.T13, dops: false);
-            var m1Select = MetricKind.Vec128;
-            var m1Measure = m1Select.Run(OpKind.And, PrimalKind.int32, config);
-            print(m1Measure.Describe());
 
-       }
        void MeasurePrimalGeneric()
        {
-            gmath.init();
             var config = MetricConfig.Define(runs: Pow2.T04, cycles: Pow2.T14, samples: Pow2.T13, dops: false);
             
-            while(true)
-            {
-                var m1 = MetricKind.PrimalDirect.Run(OpKind.And, PrimalKind.int32, config);
-                print(m1.Describe());
+            var m1 = MetricKind.PrimalDirect.Run(OpKind.And, PrimalKind.int32, config);
+            print(m1.Describe());
 
-                var m2 = MetricKind.PrimalGeneric.Run(OpKind.And, PrimalKind.int32, config);
-                print(m2.Describe());
+            var m2 = MetricKind.PrimalGeneric.Run(OpKind.And, PrimalKind.int32, config);
+            print(m2.Describe());
 
-                print(items(m1.Compare(m2).ToRecord()).FormatMessages());
-            }
-            // var primal = PrimalKind.int32;
-            // var op = OpKind.Add;
-
-            // var pd1 = MetricKind.PrimalDirect.Run(op, primal, config);
-            // print(pd1.Describe(true));
-            // GC.Collect();
-            // var pg1 = MetricKind.PrimalGeneric.Run(op, primal, config);
-            // print(pg1.Describe(true));
-
-            // GC.Collect();
-            // var num1 = MetricKind.Number.Run(op, primal, config);
-            // print(num1.Describe(true));
-
-            // print(items(pd1.Compare(pg1).ToRecord()).FormatMessages());
-            // print(items(pd1.Compare(num1).ToRecord()).FormatMessages());
-
-            // var comparisons = items(
-            //     MetricKind.PrimalDirect.DefineComparison(MetricKind.PrimalGeneric, PrimalKind.int32, OpKind.Add),
-            //     MetricKind.PrimalDirect.DefineComparison(MetricKind.PrimalGeneric, PrimalKind.int32, OpKind.Sub),
-            //     MetricKind.PrimalDirect.DefineComparison(MetricKind.PrimalGeneric, PrimalKind.int32, OpKind.Mul),
-            //     MetricKind.PrimalDirect.DefineComparison(MetricKind.PrimalGeneric, PrimalKind.int32, OpKind.Mod)
-            //     );
-            // var records = comparisons.Run(config).ToList();
-            // log(records, LogTarget.Define(LogArea.Bench, MetricKind.PrimalGeneric));
+            print(items(m1.Compare(m2).ToRecord()).FormatMessages());
 
        }
 
-        void RunBenchmarks()
+        void RunForever()
         {
             gmath.init();
-            MeasureIntrinsicDirect();
-            //MeasurePrimalGeneric();
+            var config128 = InXMetricConfig128.Define(runs: Pow2.T04, cycles: Pow2.T14, blocks: Pow2.T09);            
+            var config256 = InXMetricConfig256.Define(runs: Pow2.T04, cycles: Pow2.T14, blocks: Pow2.T12);            
+            while(true)
+            {
+                iter(InXBench.Compare(OpKind.XOr, PrimalKind.uint64, config128), x => {});
+                iter(InXBench.Compare(OpKind.XOr, PrimalKind.uint64, config256), x => {});
+            }
+        }
+
+        unsafe void TestInline()
+        {
+            var blocks = Pow2.T13;
+            var cycles = Pow2.T08;
+            var blocklen = Span128.blocklength<int>();
+            var lhs = Randomizer.Span128<int>(blocks);
+            var rhs = Randomizer.Span128<int>(blocks);
+            var dst = Span128.blockalloc<int>(blocks);
+            var run = 0L;
+            var timeTotal = Duration.Zero;
+            while(++run > 0)
+            {
+                var sw = stopwatch();
+                for(var cycle = 1; cycle <= cycles; cycle++)
+                {
+                    fixed(int* pDst = &first(dst))
+                    {
+                        int* pDstIt = pDst;
+                        for(var block = 0; block < blocks; block++, pDstIt += blocklen)
+                        {
+                            var x = Vec128.single(lhs, block);
+                            var y = Vec128.single(rhs, block);
+                            dinx.store(ginx.add(x,y), pDstIt);                    
+                        }
+                    }
+                }
+                var time = snapshot(sw);
+                timeTotal += time;
+                var timeAvg = ticksToMs((long)( (double)timeTotal.Ticks / (double)run));
+                inform($"Run {run} {time}, Total Runs = {run}, Average Run Time = {timeAvg}");
+            }
+        }
+
+        void Compare50()
+        {
+            var config = MetricConfig.Define(runs: Pow2.T04, cycles: Pow2.T14, samples: Pow2.T13, dops: false);
+            var lhs = Randomizer.Array<int>(config.Samples);
+            var rhs = Randomizer.Array<int>(config.Samples);
+            var dst = alloc<int>(config.Samples);
+
+            void Version1()
+            {
+                var sw = stopwatch();
+                for(var cycle = 1; cycle <= config.Cycles; cycle++)
+                {
+                    for(var i = 0; i<dst.Length; i++)
+                    {
+                        var x = lhs[i];
+                        var y = rhs[i];
+                        dst[i] = math.add(ref x, y);                                    
+                    }
+                }
+                inform($"Version1: {snapshot(sw)}");
+            }
+
+            void Version2()
+            {
+                var sw = stopwatch();
+                for(var cycle = 1; cycle <= config.Cycles; cycle++)
+                {
+                    for(var i = 0; i<dst.Length; i++)
+                    {
+                        var x = lhs[i];
+                        var y = rhs[i];
+                        dst[i] = math.add(x, y);                                    
+                    }
+                }
+                inform($"Version2: {snapshot(sw)}");
+            }
+            for(var i =1; i<=config.Runs; i++)
+            {
+                Version1();
+                Version2();
+            }
         }
         static void Main(params string[] args)
         {            
             var app = new Benchmark();
             try
             {     
-                //gmath.one<byte>();
+                gmath.one<byte>();
                 //app.Distance();
-                app.RunBenchmarks();
+                //app.RunForever();
+                app.Compare50();
                                 
                 //app.RunTests();
                 //BenchSelector.RunBench(BenchKind.PrimalAtomic);

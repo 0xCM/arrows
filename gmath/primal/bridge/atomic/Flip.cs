@@ -17,6 +17,60 @@ namespace Z0
     partial class bridge
     {
         [MethodImpl(Inline)]
+        public static T flipI8<T>(T src)
+            => generic<T>(math.flip(ref int8(ref src)));            
+            
+
+        [MethodImpl(Inline)]
+        public static T flipU8<T>(T src)
+        {
+            math.flip(ref uint8(ref src));            
+            return src;
+        }
+
+        [MethodImpl(Inline)]
+        public static T flipI16<T>(T src)
+        {
+            math.flip(ref int16(ref src));            
+            return src;
+        }
+
+        [MethodImpl(Inline)]
+        public static T flipU16<T>(T src)
+        {
+            math.flip(ref uint16(ref src));            
+            return src;
+        }
+
+        [MethodImpl(Inline)]
+        public static T flipI32<T>(T src)
+        {
+            math.flip(ref int32(ref src));            
+            return src;
+        }
+        
+        [MethodImpl(Inline)]
+        public static T flipU32<T>(T src)
+        {
+            math.flip(ref uint32(ref src));            
+            return src;
+        }
+
+        [MethodImpl(Inline)]
+        public static T flipI64<T>(T src)
+        {
+            math.flip(ref int64(ref src));            
+            return src;
+        }
+
+        [MethodImpl(Inline)]
+        public static T flipU64<T>(T src)
+        {
+            math.flip(ref uint64(ref src));            
+            return src;
+        }
+
+        [MethodImpl(Inline)]
         public static ref T flipI8<T>(ref T src)
         {
             math.flip(ref int8(ref src));            
@@ -72,61 +126,7 @@ namespace Z0
             return ref src;
         }
 
-        [MethodImpl(Inline)]
-        public static T flipI8<T>(T src)
-        {
-            math.flip(ref int8(ref src));            
-            return src;
-        }
 
-        [MethodImpl(Inline)]
-        public static T flipU8<T>(T src)
-        {
-            math.flip(ref uint8(ref src));            
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        public static T flipI16<T>(T src)
-        {
-            math.flip(ref int16(ref src));            
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        public static T flipU16<T>(T src)
-        {
-            math.flip(ref uint16(ref src));            
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        public static T flipI32<T>(T src)
-        {
-            math.flip(ref int32(ref src));            
-            return src;
-        }
-        
-        [MethodImpl(Inline)]
-        public static T flipU32<T>(T src)
-        {
-            math.flip(ref uint32(ref src));            
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        public static T flipI64<T>(T src)
-        {
-            math.flip(ref int64(ref src));            
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        public static T flipU64<T>(T src)
-        {
-            math.flip(ref uint64(ref src));            
-            return src;
-        }
 
     }
 

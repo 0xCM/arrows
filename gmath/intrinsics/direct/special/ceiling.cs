@@ -15,12 +15,9 @@ namespace Z0
     partial class dinx
     {
 
-
-
         [MethodImpl(Inline)]
         public static Vec128<float> ceiling(Vec128<float> src)
             => Avx2.Ceiling(src);
-
 
         [MethodImpl(Inline)]
         public static Vec128<double> ceiling(Vec128<double> src)
@@ -33,7 +30,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<double> ceiling(Vec256<double> src)
             => Avx2.Ceiling(src);
-
     }
 
 }

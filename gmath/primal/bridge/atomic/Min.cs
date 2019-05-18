@@ -56,8 +56,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T minF64<T>(T lhs, T rhs)
             => generic<T>((Math.Min(float64(lhs), float64(rhs))));
-
-
     }
-
 }

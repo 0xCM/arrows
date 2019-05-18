@@ -18,6 +18,46 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static sbyte sqrt(sbyte src)
+            => (sbyte)MathF.Sqrt(src);
+
+        [MethodImpl(Inline)]
+        public static byte sqrt(byte src)
+            => (byte)MathF.Sqrt(src);
+
+        [MethodImpl(Inline)]
+        public static short sqrt(short src)
+            => (short)MathF.Sqrt(src);
+
+        [MethodImpl(Inline)]
+        public static ushort sqrt(ushort src)
+            => (ushort)MathF.Sqrt(src);
+
+        [MethodImpl(Inline)]
+        public static int sqrt(int src)
+            => (int)MathF.Sqrt(src);
+
+        [MethodImpl(Inline)]
+        public static uint sqrt(uint src)
+            => (uint)MathF.Sqrt(src);
+
+        [MethodImpl(Inline)]
+        public static long sqrt(long src)
+            => (long)Math.Sqrt(src);
+
+        [MethodImpl(Inline)]
+        public static ulong sqrt(ulong src)
+            => (ulong)Math.Sqrt(src);
+
+        [MethodImpl(Inline)]
+        public static float sqrt(float src)
+            => MathF.Sqrt(src);
+
+        [MethodImpl(Inline)]
+        public static double sqrt(double src)
+            => Math.Sqrt(src); 
+ 
+         [MethodImpl(Inline)]
         public static ref sbyte sqrt(ref sbyte src)
         {
             src = (sbyte)MathF.Sqrt(src);
@@ -158,46 +198,5 @@ namespace Z0
             dst = sqrt(ref src);
             return ref dst;
         }
-
-        [MethodImpl(Inline)]
-        public static sbyte sqrt(sbyte src)
-            => (sbyte)MathF.Sqrt(src);
-
-        [MethodImpl(Inline)]
-        public static byte sqrt(byte src)
-            => (byte)MathF.Sqrt(src);
-
-        [MethodImpl(Inline)]
-        public static short sqrt(short src)
-            => (short)MathF.Sqrt(src);
-
-        [MethodImpl(Inline)]
-        public static ushort sqrt(ushort src)
-            => (ushort)MathF.Sqrt(src);
-
-        [MethodImpl(Inline)]
-        public static int sqrt(int src)
-            => (int)MathF.Sqrt(src);
-
-        [MethodImpl(Inline)]
-        public static uint sqrt(uint src)
-            => (uint)MathF.Sqrt(src);
-
-        [MethodImpl(Inline)]
-        public static long sqrt(long src)
-            => (long)Math.Sqrt(src);
-
-        [MethodImpl(Inline)]
-        public static ulong sqrt(ulong src)
-            => (ulong)Math.Sqrt(src);
-
-        [MethodImpl(Inline)]
-        public static float sqrt(float src)
-            => MathF.Sqrt(src);
-
-        [MethodImpl(Inline)]
-        public static double sqrt(double src)
-            => Math.Sqrt(src); 
-    }
-
+   }
 }

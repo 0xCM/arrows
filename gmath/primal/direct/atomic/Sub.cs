@@ -16,6 +16,46 @@ namespace Z0
     partial class math
     {
 
+       [MethodImpl(Inline)]
+        public static sbyte sub(sbyte lhs, sbyte rhs)
+            => (sbyte)(lhs - rhs);
+
+        [MethodImpl(Inline)]
+        public static byte sub(byte lhs, byte rhs)
+            => (byte)(lhs - rhs);
+
+        [MethodImpl(Inline)]
+        public static short sub(short lhs, short rhs)
+            => (short)(lhs - rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort sub(ushort lhs, ushort rhs)
+            => (ushort)(lhs - rhs);
+
+        [MethodImpl(Inline)]
+        public static int sub(int lhs, int rhs)
+            => lhs - rhs;
+
+        [MethodImpl(Inline)]
+        public static uint sub(uint lhs, uint rhs)
+            => lhs - rhs;
+
+        [MethodImpl(Inline)]
+        public static long sub(long lhs, long rhs)
+            => lhs - rhs;
+
+        [MethodImpl(Inline)]
+        public static ulong sub(ulong lhs, ulong rhs)
+            => lhs - rhs;
+
+        [MethodImpl(Inline)]
+        public static float sub(float lhs, float rhs)
+            => lhs - rhs;
+
+        [MethodImpl(Inline)]
+        public static double sub(double lhs, double rhs)
+            => lhs - rhs;
+
         [MethodImpl(Inline)]
         public static ref sbyte sub(ref sbyte lhs, sbyte rhs)
         {
@@ -85,49 +125,5 @@ namespace Z0
             lhs = lhs - rhs;
             return ref lhs;
         }
-
-        [MethodImpl(Inline)]
-        public static sbyte sub(sbyte lhs, sbyte rhs)
-            => (sbyte)(lhs - rhs);
-
-        [MethodImpl(Inline)]
-        public static byte sub(byte lhs, byte rhs)
-            => (byte)(lhs - rhs);
-
-        [MethodImpl(Inline)]
-        public static short sub(short lhs, short rhs)
-            => (short)(lhs - rhs);
-
-        [MethodImpl(Inline)]
-        public static ushort sub(ushort lhs, ushort rhs)
-            => (ushort)(lhs - rhs);
-
-        [MethodImpl(Inline)]
-        public static int sub(int lhs, int rhs)
-            => lhs - rhs;
-
-        [MethodImpl(Inline)]
-        public static uint sub(uint lhs, uint rhs)
-            => lhs - rhs;
-
-        [MethodImpl(Inline)]
-        public static long sub(long lhs, long rhs)
-            => lhs - rhs;
-
-        [MethodImpl(Inline)]
-        public static ulong sub(ulong lhs, ulong rhs)
-            => lhs - rhs;
-
-        [MethodImpl(Inline)]
-        public static float sub(float lhs, float rhs)
-            => lhs - rhs;
-
-        [MethodImpl(Inline)]
-        public static double sub(double lhs, double rhs)
-            => lhs - rhs;
-
-
-
     }
-
 }

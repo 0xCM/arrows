@@ -12,7 +12,7 @@ namespace Z0
 
     public interface IRecord
     {
-        string Delimited(char delimiter = ',');
+        string Delimited(char delimiter = ',', bool digitcommas = false);
         IReadOnlyList<string> Headers();
     }
     public interface IRecord<T> : IRecord

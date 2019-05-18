@@ -16,7 +16,46 @@ namespace Z0
 
     partial class math
     {
+       [MethodImpl(Inline)]
+        public static sbyte add(sbyte lhs, sbyte rhs)
+            => (sbyte)(lhs + rhs);
 
+        [MethodImpl(Inline)]
+        public static byte add(byte lhs, byte rhs)
+            => (byte)(lhs + rhs);
+
+        [MethodImpl(Inline)]
+        public static short add(short lhs, short rhs)
+            => (short)(lhs + rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort add(ushort lhs, ushort rhs)
+            => (ushort)(lhs + rhs);
+
+        [MethodImpl(Inline)]
+        public static int add(int lhs, int rhs)
+            => lhs + rhs;
+
+        [MethodImpl(Inline)]
+        public static uint add(uint lhs, uint rhs)
+            => lhs + rhs;
+
+        [MethodImpl(Inline)]
+        public static long add(long lhs, long rhs)
+            => lhs + rhs;
+
+        [MethodImpl(Inline)]
+        public static ulong add(ulong lhs, ulong rhs)
+            => lhs + rhs;
+
+        [MethodImpl(Inline)]
+        public static float add(float lhs, float rhs)
+            => lhs + rhs;
+
+        [MethodImpl(Inline)]
+        public static double add(double lhs, double rhs)
+            => lhs + rhs;
+ 
         [MethodImpl(Inline)]
         public static ref sbyte add(ref sbyte lhs, sbyte rhs)
         {
@@ -87,46 +126,45 @@ namespace Z0
             return ref lhs;
         }
 
-        [MethodImpl(Inline)]
-        public static sbyte add(sbyte lhs, sbyte rhs)
-            => (sbyte)(lhs + rhs);
+         [MethodImpl(Inline)]
+        public static sbyte add(sbyte lhs, sbyte rhs, out sbyte dst)
+            => dst = (sbyte)(lhs + rhs);
 
         [MethodImpl(Inline)]
-        public static byte add(byte lhs, byte rhs)
-            => (byte)(lhs + rhs);
+        public static byte add(byte lhs, byte rhs, out byte dst)
+            => dst = (byte)(lhs + rhs);
 
         [MethodImpl(Inline)]
-        public static short add(short lhs, short rhs)
-            => (short)(lhs + rhs);
+        public static short add(short lhs, short rhs, out short dst)
+            => dst = (short)(lhs + rhs);
 
         [MethodImpl(Inline)]
-        public static ushort add(ushort lhs, ushort rhs)
-            => (ushort)(lhs + rhs);
+        public static ushort add(ushort lhs, ushort rhs, out ushort dst)
+            => dst = (ushort)(lhs + rhs);
 
         [MethodImpl(Inline)]
-        public static int add(int lhs, int rhs)
-            => lhs + rhs;
+        public static int add(int lhs, int rhs, out int dst)
+            => dst = lhs + rhs;
 
         [MethodImpl(Inline)]
-        public static uint add(uint lhs, uint rhs)
-            => lhs + rhs;
+        public static uint add(uint lhs, uint rhs, out uint dst)
+            => dst = lhs + rhs;
 
         [MethodImpl(Inline)]
-        public static long add(long lhs, long rhs)
-            => lhs + rhs;
+        public static long add(long lhs, long rhs, out long dst)
+            => dst = lhs + rhs;
 
         [MethodImpl(Inline)]
-        public static ulong add(ulong lhs, ulong rhs)
-            => lhs + rhs;
+        public static ulong add(ulong lhs, ulong rhs, out ulong dst)
+            => dst = lhs + rhs;
 
         [MethodImpl(Inline)]
-        public static float add(float lhs, float rhs)
-            => lhs + rhs;
+        public static float add(float lhs, float rhs, out float dst)
+            => dst = lhs + rhs;
 
         [MethodImpl(Inline)]
-        public static double add(double lhs, double rhs)
-            => lhs + rhs;
-
+        public static double add(double lhs, double rhs, out double dst)
+            => dst = lhs + rhs;
     }
 
 }

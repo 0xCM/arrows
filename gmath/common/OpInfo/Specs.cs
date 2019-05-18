@@ -26,7 +26,7 @@ namespace Z0
 
         OpFusion Fusion {get;}
 
-        OpMode Mode {get;}
+        OpVariance Mode {get;}
 
         bool Role {get;}
 

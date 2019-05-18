@@ -207,27 +207,6 @@ namespace Z0
             return ref dst;
         }
 
-        public static unsafe ref Span256<float> mul(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
-        {
-            var len = length(lhs,rhs);
-            var vLen = Span256<float>.BlockLength;
-
-            fixed(float* pLhs0 = &first(lhs))
-            fixed(float* pRhs0 = &first(rhs))
-            fixed(float* pDst0 =  &first(dst))
-            {
-                float* pDst = pDst0, pLhs = pLhs0, pRhs = pRhs0;
-                for(var i =0; i < len; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    var vRhs = Vec256.load(pRhs);
-                    store(mul(vLhs,vRhs), pDst);
-                }
-            }
-
-            return ref dst;
-        }
-
         public static unsafe ref Span256<ulong> mul(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, ref Span256<ulong> dst)
         {
             var vLen = Span256<uint>.BlockLength;
@@ -248,6 +227,27 @@ namespace Z0
                 }
             }            
             return ref dst;            
+        }
+
+        public static unsafe ref Span256<float> mul(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
+        {
+            var len = length(lhs,rhs);
+            var vLen = Span256<float>.BlockLength;
+
+            fixed(float* pLhs0 = &first(lhs))
+            fixed(float* pRhs0 = &first(rhs))
+            fixed(float* pDst0 =  &first(dst))
+            {
+                float* pDst = pDst0, pLhs = pLhs0, pRhs = pRhs0;
+                for(var i =0; i < len; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+                {
+                    var vLhs = Vec256.load(pLhs);
+                    var vRhs = Vec256.load(pRhs);
+                    store(mul(vLhs,vRhs), pDst);
+                }
+            }
+
+            return ref dst;
         }
 
         public static unsafe ref Span256<double> mul(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs,ref Span256<double> dst)

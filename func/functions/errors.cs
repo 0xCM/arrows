@@ -25,16 +25,15 @@ partial class zfunc
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : Enum
                 => Errors.KindUnsupported(kind, caller, file, line);
-
     
     public static AppException unsupported<S,T>(S src, T dst, [CallerFilePath] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : Enum
             where S : Enum
                 => Errors.KindOpUnsupported(src, dst, caller, file, line);
-    public static NotSupportedException unsupported([CallerFilePath] string caller = null,  
+    public static NotSupportedException unsupported(string feature, [CallerFilePath] string caller = null,  
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => new NotSupportedException(ErrorMessages.Unsupported(caller, file, line).ToString());
+            => new NotSupportedException(ErrorMessages.FeatureUnsupported(feature, caller, file, line).ToString());
     public static IndexOutOfRangeException outOfRange(int index, int min, int max, [CallerFilePath] string caller = null, 
         [CallerFilePath] string file = null,  [CallerLineNumber] int? line = null)
         => Errors.OutOfRange(index,min,max, caller, file, line);

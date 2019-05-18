@@ -9,10 +9,8 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
     using System.Collections.Generic;
-    
-    
+        
     using static mfunc;
-
 
     partial class dinx
     {
@@ -36,10 +34,12 @@ namespace Z0
             where T : struct
                 => Avx2.Insert(dst,src,offset);
 
+
         [MethodImpl(Inline)]
         public static Vec128<int> insert<T>(int src, Vec128<int> dst, byte offset)        
             where T : struct
                 => Avx2.Insert(dst,src,offset);
+
 
         [MethodImpl(Inline)]
         public static Vec128<uint> insert<T>(uint src, Vec128<uint> dst, byte offset)        
@@ -55,7 +55,6 @@ namespace Z0
         public static Vec128<ulong> insert<T>(ulong src, Vec128<ulong> dst, byte offset)        
             where T : struct
                 => Avx2.X64.Insert(dst,src,offset);
-
     }
 
 }

@@ -632,6 +632,7 @@ namespace Z0
             where T : struct
                 => cast<T,double>(src);
 
+
         [MethodImpl(Inline)]
         public static Span<T> generic<T>(Span<sbyte> src)
             where T : struct
@@ -642,36 +643,30 @@ namespace Z0
             where T : struct
                 => cast<byte,T>(src);
 
-
         [MethodImpl(Inline)]
         public static Span<T> generic<T>(Span<short> src)
             where T : struct
                 => cast<short,T>(src);
-
 
         [MethodImpl(Inline)]
         public static Span<T> generic<T>(Span<ushort> src)
             where T : struct
                 => cast<ushort,T>(src);
 
-
         [MethodImpl(Inline)]
         public static Span<T> generic<T>(Span<int> src)
             where T : struct
                 => cast<int,T>(src);
-
 
         [MethodImpl(Inline)]
         public static Span<T> generic<T>(Span<uint> src)
             where T : struct
                 => cast<uint,T>(src);
 
-
         [MethodImpl(Inline)]
         public static Span<T> generic<T>(Span<long> src)
             where T : struct
                 => cast<long,T>(src);
-
 
         [MethodImpl(Inline)]
         public static Span<T> generic<T>(Span<ulong> src)
@@ -696,6 +691,7 @@ namespace Z0
         public static ReadOnlySpan<sbyte> int8<T>(ReadOnlySpan<T> src)
             where T : struct
                 => cast<T,sbyte>(src);
+
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan<byte> uint8<T>(ReadOnlySpan<T> src)

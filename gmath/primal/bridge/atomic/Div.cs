@@ -16,6 +16,47 @@ namespace Z0
     partial class bridge
     {
         [MethodImpl(Inline)]
+        public static T divI8<T>(T lhs, T rhs)
+            => generic<T>((sbyte)(int8(lhs) / int8(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T divU8<T>(T lhs, T rhs)
+            => generic<T>((byte)(uint8(lhs) / uint8(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T divI16<T>(T lhs, T rhs)
+            => generic<T>((short)(int16(lhs) / int16(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T divU16<T>(T lhs, T rhs)
+            => generic<T>((ushort)(uint16(lhs) / uint16(rhs)));
+
+        [MethodImpl(Inline)]
+        public static T divI32<T>(T lhs, T rhs)
+            => generic<T>(int32(lhs) / int32(rhs));
+        
+        [MethodImpl(Inline)]
+        public static T divU32<T>(T lhs, T rhs)
+            => generic<T>(uint32(lhs) / uint32(rhs));
+
+        [MethodImpl(Inline)]
+        public static T divI64<T>(T lhs, T rhs)
+            => generic<T>(int64(lhs) / int64(rhs));
+
+        [MethodImpl(Inline)]
+        public static T divU64<T>(T lhs, T rhs)
+            => generic<T>(uint64(lhs) / uint64(rhs));
+
+        [MethodImpl(Inline)]
+        public static T divF32<T>(T lhs, T rhs)
+            => generic<T>(float32(lhs) / float32(rhs));
+
+        [MethodImpl(Inline)]
+        public static T divF64<T>(T lhs, T rhs)
+            => generic<T>(float64(lhs) / float64(rhs));
+
+
+        [MethodImpl(Inline)]
         public static ref T divI8<T>(ref T lhs, T rhs)
         {
             ref var result = ref math.div(ref int8(ref lhs), int8(ref rhs));
@@ -67,12 +108,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref T divI64<T>(ref T lhs, T rhs)
         {
-            // ref var result = ref math.div(ref int64(ref lhs), int64(ref rhs));
-            // lhs = ref generic<T>(ref result);
-            // return ref lhs;
             lhs = generic<T>(int64(ref lhs) / int64(ref rhs));
             return ref lhs;
-
         }            
 
         [MethodImpl(Inline)]
@@ -86,8 +123,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref T divF32<T>(ref T lhs, T rhs)
         {
-            // ref var result = ref math.div(ref float32(ref lhs), float32(ref rhs));
-            // lhs = ref generic<T>(ref result);
             lhs = generic<T>(float32(ref lhs) / float32(ref rhs));
             return ref lhs;
         }            
@@ -95,54 +130,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref T divF64<T>(ref T lhs, T rhs)
         {
-            // ref var result = ref math.div(ref float64(ref lhs), float64(ref rhs));
-            // lhs = ref generic<T>(ref result);
             lhs = generic<T>(float64(ref lhs) / float64(ref rhs));
             return ref lhs;
-        }            
-
-        [MethodImpl(Inline)]
-        public static T divI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) / int8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T divU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) / uint8(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T divI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) / int16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T divU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) / uint16(rhs)));
-
-        [MethodImpl(Inline)]
-        public static T divI32<T>(T lhs, T rhs)
-            => generic<T>(int32(lhs) / int32(rhs));
-        
-        [MethodImpl(Inline)]
-        public static T divU32<T>(T lhs, T rhs)
-            => generic<T>(uint32(lhs) / uint32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T divI64<T>(T lhs, T rhs)
-            => generic<T>(int64(lhs) / int64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T divU64<T>(T lhs, T rhs)
-            => generic<T>(uint64(lhs) / uint64(rhs));
-
-        [MethodImpl(Inline)]
-        public static T divF32<T>(T lhs, T rhs)
-            => generic<T>(float32(lhs) / float32(rhs));
-
-        [MethodImpl(Inline)]
-        public static T divF64<T>(T lhs, T rhs)
-            => generic<T>(float64(lhs) / float64(rhs));
-
-
+        }
     }
 }
-
-

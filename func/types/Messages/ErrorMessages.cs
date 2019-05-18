@@ -13,8 +13,8 @@ namespace Z0
 
     public static class ErrorMessages
     {
-        public static AppMsg Unsupported(string caller, string file, int? line)
-                => AppMsg.Define($"Feature unsupported", 
+        public static AppMsg FeatureUnsupported(string feature, string caller, string file, int? line)
+                => AppMsg.Define($"Unsupported: {feature}", 
                         SeverityLevel.Error, caller, file, line);
         public static AppMsg KindUnsupported<T>(T kind, string caller, string file, int? line)
             where T : Enum
