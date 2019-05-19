@@ -64,9 +64,9 @@ namespace Z0
                     switch(metric)
                     {
                         case MetricKind.Vec128:
-                            return IntrinsicDirect.Run(op, primal, (InXMetricConfig128)config, random);
+                            return InXDirectVec.Run(op, primal, (InXMetricConfig128)config, random);
                         case MetricKind.Vec256:
-                            return IntrinsicDirect.Run(op, primal, (InXMetricConfig256)config, random);
+                            return InXDirectVec.Run(op, primal, (InXMetricConfig256)config, random);
                     }
                     break;
                 case Genericity.Generic:

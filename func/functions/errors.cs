@@ -36,7 +36,11 @@ partial class zfunc
             => new NotSupportedException(ErrorMessages.FeatureUnsupported(feature, caller, file, line).ToString());
     public static IndexOutOfRangeException outOfRange(int index, int min, int max, [CallerFilePath] string caller = null, 
         [CallerFilePath] string file = null,  [CallerLineNumber] int? line = null)
-        => Errors.OutOfRange(index,min,max, caller, file, line);
-        
+            => Errors.OutOfRange(index,min,max, caller, file, line);
+
+    public static ArgumentException badarg(string name, object value, [CallerFilePath] string caller = null, 
+        [CallerFilePath] string file = null,  [CallerLineNumber] int? line = null)
+            => new ArgumentException($"An invalid argument {name} = {value}  was specified");
+
 
 }

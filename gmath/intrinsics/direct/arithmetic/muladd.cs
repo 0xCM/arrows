@@ -16,13 +16,20 @@ namespace Z0
     {
         // dst = x*y + z
         [MethodImpl(Inline)]
-        public static Vec128<float> mulAdd(in Vec128<float> x, in Vec128<float> y, in Vec128<float> z)
-            => Fma.MultiplyAdd(x,y,z);
+        public static ref Vec128<float> mulAdd(ref Vec128<float> x, in Vec128<float> y, in Vec128<float> z)
+        {
+            x =  Fma.MultiplyAdd(x,y,z);
+            return ref x;
+        }
+            
         
         // dst = x*y + z
         [MethodImpl(Inline)]
-        public static Vec128<double> mulAdd(in Vec128<double> x, in Vec128<double> y, in Vec128<double> z)
-            => Fma.MultiplyAdd(x,y,z);
+        public static ref Vec128<double> mulAdd(ref Vec128<double> x, in Vec128<double> y, in Vec128<double> z)
+        {
+            x =  Fma.MultiplyAdd(x,y,z);
+            return ref x;
+        }
 
         [MethodImpl(Inline)]
         public static Vec128<float> mulAddNegated(in Vec128<float> x, in Vec128<float> y, in Vec128<float> z)

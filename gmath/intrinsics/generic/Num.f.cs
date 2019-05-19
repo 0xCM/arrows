@@ -22,33 +22,35 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.float32:
-                    return dinx.eq(float32(lhs), float32(rhs));
-                case PrimalKind.float64:
-                    return dinx.eq(float64(lhs), float64(rhs));
-                default:
-                    throw unsupported(kind);
-            }
+            var x = rhs;
+            var y = lhs;
+            
+            if(kind == PrimalKind.float32)
+                return dinx.eq(in float32(ref x), in float32(ref y));
+
+            if(kind == PrimalKind.float64)
+                return dinx.eq(in float64(ref x), in float64(ref y));            
+
+            throw unsupported(kind);
 
         }
+
 
         [MethodImpl(Inline)]
         public static bool cmpf<T>(in Num128<T> lhs, in Num128<T> rhs, FloatComparisonMode mode)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.float32:
-                    return dinx.cmpf(float32(lhs), float32(rhs),mode);
-                case PrimalKind.float64:
-                    return dinx.cmpf(float64(lhs), float64(rhs),mode);
-                default:
-                    throw unsupported(kind);
-            }
-
+            var x = rhs;
+            var y = lhs;
+            
+            if(kind == PrimalKind.float32)
+                return dinx.cmpf(in float32(ref x), in float32(ref y), mode);
+            
+            if(kind == PrimalKind.float64)
+                return dinx.cmpf(in float64(ref x), in float64(ref y), mode);
+                
+            throw unsupported(kind);
         }
 
 
@@ -57,15 +59,16 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.float32:
-                    return dinx.neq(float32(lhs), float32(rhs));
-                case PrimalKind.float64:
-                    return dinx.neq(float64(lhs), float64(rhs));
-                default:
-                    throw unsupported(kind);
-            }
+            var x = rhs;
+            var y = lhs;
+
+            if(kind == PrimalKind.float32)
+                return dinx.neq(in float32(ref x), in float32(ref y));
+            
+            if(kind == PrimalKind.float64)
+                return dinx.neq(in float64(ref x), in float64(ref y));
+
+            throw unsupported(kind);
 
         }
 
@@ -74,15 +77,16 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.float32:
-                    return dinx.gt(float32(lhs), float32(rhs));
-                case PrimalKind.float64:
-                    return dinx.gt(float64(lhs), float64(rhs));
-                default:
-                    throw unsupported(kind);
-            }
+            var x = rhs;
+            var y = lhs;
+
+            if(kind == PrimalKind.float32)
+                return dinx.gt(in float32(ref x), in float32(ref y));
+            
+            if(kind == PrimalKind.float64)
+                return dinx.gt(in float64(ref x), in float64(ref y));
+
+            throw unsupported(kind);
 
         }
 
@@ -91,15 +95,16 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.float32:
-                    return dinx.ngt(float32(lhs), float32(rhs));
-                case PrimalKind.float64:
-                    return dinx.ngt(float64(lhs), float64(rhs));
-                default:
-                    throw unsupported(kind);
-            }
+            var x = rhs;
+            var y = lhs;
+
+            if(kind == PrimalKind.float32)
+                return dinx.ngt(in float32(ref x), in float32(ref y));
+            
+            if(kind == PrimalKind.float64)
+                return dinx.ngt(in float64(ref x), in float64(ref y));
+
+            throw unsupported(kind);
 
         }
 
@@ -109,15 +114,16 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.float32:
-                    return dinx.gteq(float32(lhs), float32(rhs));
-                case PrimalKind.float64:
-                    return dinx.gteq(float64(lhs), float64(rhs));
-                default:
-                    throw unsupported(kind);
-            }
+            var x = rhs;
+            var y = lhs;
+
+            if(kind == PrimalKind.float32)
+                return dinx.gteq(in float32(ref x), in float32(ref y));
+            
+            if(kind == PrimalKind.float64)
+                return dinx.gteq(in float64(ref x), in float64(ref y));
+
+            throw unsupported(kind);
 
         }
 
@@ -126,16 +132,16 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.float32:
-                    return dinx.lt(float32(lhs), float32(rhs));
-                case PrimalKind.float64:
-                    return dinx.lt(float64(lhs), float64(rhs));
-                default:
-                    throw unsupported(kind);
-            }
+            var x = rhs;
+            var y = lhs;
 
+            if(kind == PrimalKind.float32)
+                return dinx.lt(in float32(ref x), in float32(ref y));
+            
+            if(kind == PrimalKind.float64)
+                return dinx.lt(in float64(ref x), in float64(ref y));
+
+            throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
@@ -143,16 +149,16 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.float32:
-                    return dinx.nlt(float32(lhs), float32(rhs));
-                case PrimalKind.float64:
-                    return dinx.nlt(float64(lhs), float64(rhs));
-                default:
-                    throw unsupported(kind);
-            }
+            var x = rhs;
+            var y = lhs;
 
+            if(kind == PrimalKind.float32)
+                return dinx.nlt(in float32(ref x), in float32(ref y));
+
+            if(kind == PrimalKind.float64)
+                return dinx.nlt(in float64(ref x), in float64(ref y));
+            
+            throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
@@ -160,195 +166,258 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            switch(kind)
+            var x = rhs;
+            var y = lhs;
+
+            if(kind == PrimalKind.float32)
+                return dinx.lteq(in float32(ref x), in float32(ref y));
+            
+            if(kind == PrimalKind.float64)
+                return dinx.lteq(in float64(ref x), in float64(ref y));
+
+            throw unsupported(kind);
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Num128<T> add<T>(ref Num128<T> lhs, in Num128<T> rhs)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.float32)
             {
-                case PrimalKind.float32:
-                    return dinx.lteq(float32(lhs), float32(rhs));
-                case PrimalKind.float64:
-                    return dinx.lteq(float64(lhs), float64(rhs));
-                default:
-                    throw unsupported(kind);
+                dinx.add(ref float32(ref lhs), float32(rhs));
+                return ref lhs;
+            }                
+
+            if(kind == PrimalKind.float64)
+            {
+                dinx.add(ref float64(ref lhs), float64(rhs));
+                return ref lhs;
             }
 
+            throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
-        public static Num128<T> add<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static ref Num128<T> sub<T>(ref Num128<T> lhs, in Num128<T> rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.float32)
-                return generic<T>(Avx2.AddScalar(float32(lhs), float32(rhs)));
+            {
+                dinx.sub(ref float32(ref lhs), float32(rhs));
+                return ref lhs;
+            }
+                
+            if(kind == PrimalKind.float64)
+            {
+                dinx.sub(ref float64(ref lhs), float64(rhs));
+                return ref lhs;
+            }
+
+            throw unsupported(kind);
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Num128<T> mul<T>(ref Num128<T> lhs, in Num128<T> rhs)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.float32)
+            {
+                dinx.mul(ref float32(ref lhs), float32(rhs));
+                return ref lhs;
+            }
+                
+            if(kind == PrimalKind.float64)
+            {
+                dinx.mul(ref float64(ref lhs), float64(rhs));
+                return ref lhs;
+            }
+
+            throw unsupported(kind);
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Num128<T> div<T>(ref Num128<T> lhs, in Num128<T> rhs)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.float32)
+            {
+                dinx.div(ref float32(ref lhs), float32(rhs));
+                return ref lhs;
+            }
+                
+            if(kind == PrimalKind.float64)
+            {
+                dinx.div(ref float64(ref lhs), float64(rhs));
+                return ref lhs;
+            }
+
+            throw unsupported(kind);
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Num128<T> max<T>(ref Num128<T> lhs, in Num128<T> rhs)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.float32)
+            {
+                dinx.max(ref float32(ref lhs), float32(rhs));
+                return ref lhs;
+            }
 
             if(kind == PrimalKind.float64)
-                return generic<T>(Avx2.AddScalar(float64(lhs), float64(rhs)));
+            {
+                dinx.max(ref float64(ref lhs), float64(rhs));
+                return ref lhs;
+            }
 
             throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
-        public static Num128<T> sub<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static ref Num128<T> min<T>(ref Num128<T> lhs, in Num128<T> rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.float32)
-                return generic<T>(dinx.add(float32(lhs), float32(rhs)));
+            {
+                dinx.min(ref float32(ref lhs), float32(rhs));
+                return ref lhs;
+            }
 
             if(kind == PrimalKind.float64)
-                return generic<T>(dinx.add(float64(lhs), float64(rhs)));
+            {
+                dinx.min(ref float64(ref lhs), float64(rhs));
+                return ref lhs;
+            }
 
             throw unsupported(kind);
         }
 
-
         [MethodImpl(Inline)]
-        public static Num128<T> mul<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static ref Num128<T> muladd<T>(ref Num128<T> x, in Num128<T> y, in Num128<T> z)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.float32)
-                return generic<T>(dinx.mul(float32(lhs), float32(rhs)));
+            {
+                dinx.mulAdd(ref float32(ref x), float32(y), float32(z));
+                return ref x;
+            }
+                
+            if(kind == PrimalKind.float64)
+            {
+                dinx.mulAdd(ref float64(ref x), float64(y), float64(z));
+                return ref x;
+            }
+                
+
+            throw unsupported(kind);
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Num128<T> recip<T>(ref Num128<T> src)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.float32)
+            {
+                dinx.recip(ref float32(ref src));
+                return ref src;
+            }
+
+            throw unsupported(kind);
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Num128<T> sqrt<T>(ref Num128<T> src)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.float32)
+            {
+                dinx.sqrt(ref float32(ref src));
+                return ref src;
+            }
+                
 
             if(kind == PrimalKind.float64)
-                return generic<T>(dinx.mul(float64(lhs), float64(rhs)));
-
-            throw unsupported(kind);
-        }
-
-
-
-        [MethodImpl(Inline)]
-        public static Num128<T> div<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.float32)
-                return generic<T>(dinx.div(float32(lhs), float32(rhs)));
-
-            if(kind == PrimalKind.float64)
-                return generic<T>(dinx.div(float64(lhs), float64(rhs)));
+            {
+                dinx.sqrt(ref float64(ref src));
+                return ref src;
+            }
 
             throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
-        public static Num128<T> max<T>(in Num128<T> lhs, in Num128<T> rhs)
+        public static ref Num128<T> recipsqrt<T>(ref Num128<T> src)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.float32)
-                return generic<T>(dinx.max(float32(lhs), float32(rhs)));
-
-            if(kind == PrimalKind.float64)
-                return generic<T>(dinx.max(float64(lhs), float64(rhs)));
-
-            throw unsupported(kind);
-        }
-
-        [MethodImpl(Inline)]
-        public static Num128<T> min<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.float32)
-                return generic<T>(dinx.min(float32(lhs), float32(rhs)));
-
-            if(kind == PrimalKind.float64)
-                return generic<T>(dinx.min(float64(lhs), float64(rhs)));
-
-            throw unsupported(kind);
-        }
-
-        [MethodImpl(Inline)]
-        public static Num128<T> muladd<T>(Num128<T> x, Num128<T> y, Num128<T> z)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.float32)
-                return generic<T>(dinx.mulAdd(float32(x), float32(y), float32(z)));
-
-            if(kind == PrimalKind.float64)
-                return generic<T>(dinx.mulAdd(float64(x), float64(y), float64(z)));
-
-            throw unsupported(kind);
-        }
-
-        [MethodImpl(Inline)]
-        public static Num128<T> recip<T>(in Num128<T> src)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.float32)
-                return generic<T>(dinx.recip(float32(src)));
-
-            throw unsupported(kind);
-        }
-
-        [MethodImpl(Inline)]
-        public static Num128<T> recipsqrt<T>(in Num128<T> src)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.float32)
-                return generic<T>(dinx.recipsqrt(float32(src)));
-
-            throw unsupported(kind);
-        }
-
-        [MethodImpl(Inline)]
-        public static Num128<T> sqrt<T>(in Num128<T> src)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.float32)
-                return generic<T>(dinx.sqrt(float32(src)));
-
-            if(kind == PrimalKind.float64)
-                return generic<T>(dinx.sqrt(float64(src)));
-
-            throw unsupported(kind);
-        }
-
-        [MethodImpl(Inline)]
-        public static Num128<T> ceiling<T>(in Num128<T> src)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.float32)
-                return generic<T>(dinx.ceiling(float32(src)));
-
-            if(kind == PrimalKind.float64)
-                return generic<T>(dinx.ceiling(float64(src)));
+            {
+                dinx.recipsqrt(ref float32(ref src));
+                return ref src;
+            }
 
             throw unsupported(kind);
         }
 
 
         [MethodImpl(Inline)]
-        public static Num128<T> floor<T>(in Num128<T> src)
+        public static ref Num128<T> ceiling<T>(ref Num128<T> src)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.float32)
-                return generic<T>(dinx.floor(float32(src)));
-
-            if(kind == PrimalKind.float64)
-                return generic<T>(dinx.floor(float64(src)));
-
-            throw unsupported(kind);
+            {
+                dinx.ceiling(ref float32(ref src));
+                return ref src;
+            }
+            else if(kind == PrimalKind.float64)
+            {
+                dinx.ceiling(ref float64(ref src));
+                return ref src;
+            }
+            else
+                throw unsupported(kind);
         }
 
+
+        [MethodImpl(Inline)]
+        public static ref Num128<T> floor<T>(ref Num128<T> src)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.float32)
+            {
+                dinx.floor(ref float32(ref src));
+                return ref src;
+            }
+            else if(kind == PrimalKind.float64)
+            {
+                dinx.floor(ref float64(ref src));
+                return ref src;
+            }
+            else        
+                throw unsupported(kind);
+        }
     }
 }

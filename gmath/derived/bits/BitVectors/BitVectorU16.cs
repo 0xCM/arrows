@@ -13,7 +13,7 @@ namespace Z0
 
 
 
-    public struct BitVectorU16
+    public ref struct BitVectorU16
     {
         ushort data;
 
@@ -21,7 +21,6 @@ namespace Z0
         public BitVectorU16(ushort data)
             => this.data = data;
 
-        public static readonly BitVectorU16 Zero = Define(0);
 
         [MethodImpl(Inline)]
         public static BitVectorU16 Define(Bit x00, Bit x01, Bit x02, Bit x03, Bit x04, Bit x05, Bit x06, Bit x07,
@@ -31,6 +30,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitVectorU16 Define(ushort src)
             => new BitVectorU16(src);    
+
+        [MethodImpl(Inline)]
+        public static BitVectorU16 Define(Span<Bit> src)
+            => Bits.pack16(src);
 
         [MethodImpl(Inline)]
         public static implicit operator BitVectorU16(ushort src)
@@ -73,10 +76,24 @@ namespace Z0
             set
             {
                 if(value)
-                    Bits.set(ref data, pos);
+                    Bits.enable(ref data, pos);
                 else
-                     Bits.unset(data,pos);                    
+                     Bits.disable(data,pos);                    
             }            
+        }
+
+        public BitVectorU8 Hi
+        {
+            [MethodImpl(Inline)]
+            get => Bits.hi(data);
+        
+        }
+        
+        public BitVectorU8 Lo
+        {
+            [MethodImpl(Inline)]
+            get => Bits.lo(data);
+        
         }
 
         [MethodImpl(Inline)]
@@ -88,16 +105,16 @@ namespace Z0
             => Bits.bitstring(data);
 
         [MethodImpl(Inline)]
+        public Span<byte> Bytes()
+            => Bits.bytes(data);
+
+        [MethodImpl(Inline)]
         public Bit[] BitData()
             => Bits.bits(data);
 
         [MethodImpl(Inline)]
         public int PopCount()
             => (int)Bits.pop(data);
-
-        [MethodImpl(Inline)]
-        public (BitVectorU8 x0, BitVectorU8 x1) Split()
-            => Bits.split(data);
 
 
         [MethodImpl(Inline)]

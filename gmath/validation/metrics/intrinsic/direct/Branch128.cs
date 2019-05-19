@@ -15,7 +15,7 @@ namespace Z0
     using static As;
     using static InXMetrics;
 
-    partial class IntrinsicDirect
+    partial class InXDirectVec
     {
 
        public static OpMetrics<T> Branch<T>(OpKind op, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)

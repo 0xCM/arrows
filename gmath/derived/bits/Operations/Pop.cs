@@ -80,6 +80,14 @@ namespace Z0
         public static int pop(ulong src)
             => (int)Popcnt.X64.PopCount(src);
 
+        [MethodImpl(Inline)]
+        public static int pop(in U128 src)
+            => (int)(Popcnt.X64.PopCount(src.x0) + Popcnt.X64.PopCount(src.x1));
+
+       [MethodImpl(Inline)]
+        public static int pop(in I128 src)
+            => (int)(pop(src.x0) + pop(src.x1));
+
         /// <summary>
         /// Counts the enabled bits in each value within a specified range
         /// </summary>

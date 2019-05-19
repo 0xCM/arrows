@@ -89,68 +89,93 @@ namespace Z0
         public static string bitstring(double src)
             => bitstring(Bits.bitsI64(src));
 
+        [MethodImpl(Inline)]
+        public static string bitstring(in U128 src)
+            => bitstring(src.x0) + bitstring(src.x1);
 
         [MethodImpl(Inline)]
-        public static byte[] bytes(short src)
+        public static string bitstring(in I128 src)
+            => bitstring(src.x0) + bitstring(src.x1);
+
+        [MethodImpl(Inline)]
+        public static Span<byte> bytes(short src)
             => BitConverter.GetBytes(src);
 
         [MethodImpl(Inline)]
-        public static byte[] bytes(ushort src)
+        public static Span<byte> bytes(ushort src)
             => BitConverter.GetBytes(src);
 
         [MethodImpl(Inline)]
-        public static byte[] bytes(int src)
+        public static Span<byte> bytes(int src)
             => BitConverter.GetBytes(src); 
 
         [MethodImpl(Inline)]
-        public static byte[] bytes(uint src)
+        public static Span<byte> bytes(uint src)
             => BitConverter.GetBytes(src);
 
         [MethodImpl(Inline)]
-        public static byte[] bytes(long src)
+        public static Span<byte> bytes(long src)
             => BitConverter.GetBytes(src);
 
         [MethodImpl(Inline)]
-        public static byte[] bytes(ulong src)
+        public static Span<byte> bytes(ulong src)
             => BitConverter.GetBytes(src);
 
         [MethodImpl(Inline)]
-        public static byte[] bytes(float src)
+        public static Span<byte> bytes(float src)
             => BitConverter.GetBytes(src);
 
         [MethodImpl(Inline)]
-        public static byte[] bytes(double src)
+        public static Span<byte> bytes(double src)
             => BitConverter.GetBytes(src);
+
+        [MethodImpl(Inline)]
+        public static Span<byte> bytes(this in U128 src)
+            => span(
+                src.x0000, src.x0001, src.x0010, src.x0011,
+                src.x0100, src.x0101, src.x0110, src.x0111,                        
+                src.x1100, src.x1101, src.x1110, src.x1111,            
+                src.x1000, src.x1001, src.x1010, src.x1011
+            );
+
+        [MethodImpl(Inline)]
+        public static Span<byte> bytes(this in I128 src)
+            => span(
+                src.x0000, src.x0001, src.x0010, src.x0011,
+                src.x0100, src.x0101, src.x0110, src.x0111,                        
+                src.x1100, src.x1101, src.x1110, src.x1111,            
+                src.x1000, src.x1001, src.x1010, src.x1011
+            );
 
         [MethodImpl(NotInline)]
-        public static Bit[] bits(sbyte src)
+        public static Span<Bit> bits(sbyte src)
         {
             var bitsize = SizeOf<sbyte>.BitSize;
-            var dst = array<Bit>(bitsize);
+            var dst = span<Bit>(bitsize);
             for(var i = 0; i < bitsize; i++)
                 dst[i] = test(src,i);
             return dst; 
         }
 
         [MethodImpl(NotInline)]
-        public static Bit[] bits(int src)
+        public static Span<Bit> bits(int src)
         {
-            var dst = array<Bit>(SizeOf<int>.BitSize);
+            var dst = span<Bit>(SizeOf<int>.BitSize);
             for(var i = 0; i < SizeOf<int>.BitSize; i++)
                 dst[i] = test(src,i);
             return dst; 
         }
 
         [MethodImpl(Inline)]
-        public static Bit[] bits(float src)
+        public static Span<Bit> bits(float src)
             => bits(BitConverter.SingleToInt32Bits(src));
 
         [MethodImpl(Inline)]
-        public static Bit[] bits(double src)
+        public static Span<Bit> bits(double src)
             => bits(Bits.bitsI64(src));
  
         [MethodImpl(NotInline)]
-        public static Bit[] bits(long src)
+        public static Span<Bit> bits(long src)
         {
             var dst = array<Bit>(SizeOf<long>.BitSize);
             for(var i = 0; i < SizeOf<long>.BitSize; i++)
@@ -184,6 +209,34 @@ namespace Z0
                 dst[i] = test(src,i);
             return dst; 
         }
+    
+        [MethodImpl(NotInline)]
+        public static Bit[] bits(ulong src)
+        {
+            var dst = array<Bit>(64);
+            for(var i = 0; i < 64; i++)
+                dst[i] = test(src,i);
+            return dst; 
+        }
+
+        [MethodImpl(NotInline)]
+        public static Bit[] bits(in U128 src)
+        {
+            var dst = array<Bit>(128);
+            for(var i = 0; i < 128; i++)
+                dst[i] = test(src,i);
+            return dst; 
+        }
+
+        [MethodImpl(NotInline)]
+        public static Bit[] bits(in I128 src)
+        {
+            var dst = array<Bit>(128);
+            for(var i = 0; i < 128; i++)
+                dst[i] = test(src,i);
+            return dst; 
+        }
+
     }
 
 }

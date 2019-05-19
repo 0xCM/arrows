@@ -17,7 +17,7 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static void mul(float[] lhs, float[] rhs, float[] dst)
+        public static void mul(float[] lhs, float[] rhs)
         {
             var len = length(lhs,rhs);
             
@@ -25,12 +25,12 @@ namespace Z0
             {
                 var x = Num128.define(lhs[i]);
                 var y = Num128.define(rhs[i]);
-                dst[i] = dinx.mul(x,y);                
+                lhs[i] = dinx.mul(ref x,y);                
             }
         }
 
         [MethodImpl(Inline)]
-        public static void mul(double[] lhs, double[] rhs, double[] dst)
+        public static void mul(double[] lhs, double[] rhs)
         {
             var len = length(lhs,rhs);
             
@@ -38,12 +38,12 @@ namespace Z0
             {
                 var x = Num128.define(lhs[i]);
                 var y = Num128.define(rhs[i]);
-                dst[i] = dinx.mul(x,y);                
+                lhs[i] = dinx.mul(ref x,y);                
             }
         }
 
         [MethodImpl(Inline)]
-        public static void mul<T>(T[] lhs, T[] rhs, T[] dst)
+        public static void mul<T>(T[] lhs, T[] rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -53,7 +53,7 @@ namespace Z0
             {
                 var x = Num128.define(lhs[i]);
                 var y = Num128.define(rhs[i]);
-                dst[i] = ginx.mul(x,y);                
+                lhs[i] = ginx.mul(ref x,y);                
             }
 
         }
@@ -84,44 +84,13 @@ namespace Z0
             => Avx2.LoadScalarVector128(src);
      
         [MethodImpl(Inline)]
-        public static Vec128<byte> broadcast(Num128<byte> src)
-            => Avx2.BroadcastScalarToVector128(src);
+        public static ref Vec128<byte> broadcast(in Num128<byte> src, out Vec128<byte> dst)
+        {
+            dst = Avx2.BroadcastScalarToVector128(src);
+            return ref dst;
+        }
+            
 
-        [MethodImpl(Inline)]
-        public static Vec128<sbyte> broadcast(Num128<sbyte> src)
-            => Avx2.BroadcastScalarToVector128(src);
-
-        [MethodImpl(Inline)]
-        public static Vec128<short> broadcast(Num128<short> src)
-            => Avx2.BroadcastScalarToVector128(src);
-
-        [MethodImpl(Inline)]
-        public static Vec128<ushort> broadcast(Num128<ushort> src)
-            => Avx2.BroadcastScalarToVector128(src);
-
-        [MethodImpl(Inline)]
-        public static Vec128<int> broadcast(Num128<int> src)
-            => Avx2.BroadcastScalarToVector128(src);
-
-        [MethodImpl(Inline)]
-        public static Vec128<uint> broadcast(Num128<uint> src)
-            => Avx2.BroadcastScalarToVector128(src);
-
-        [MethodImpl(Inline)]
-        public static Vec128<long> broadcast(Num128<long> src)
-            => Avx2.BroadcastScalarToVector128(src);
-
-        [MethodImpl(Inline)]
-        public static Vec128<ulong> broadcast(Num128<ulong> src)
-            => Avx2.BroadcastScalarToVector128(src);
-
-        [MethodImpl(Inline)]
-        public static Vec128<float> broadcast(Num128<float> src)
-            => Avx2.BroadcastScalarToVector128(src);
-
-        [MethodImpl(Inline)]
-        public static Vec128<double> broadcast(Num128<double> src)
-            => Avx2.BroadcastScalarToVector128(src);
 
         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(byte src)

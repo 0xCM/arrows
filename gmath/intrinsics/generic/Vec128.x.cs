@@ -17,9 +17,9 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static Num128<T> Add<T>(this in Num128<T> lhs, in Num128<T> rhs)
+        public static ref Num128<T> Add<T>(this ref Num128<T> lhs, in Num128<T> rhs)
             where T : struct
-                => ginx.add(lhs,rhs);
+                => ref ginx.add(ref lhs,rhs);
 
 
         [MethodImpl(Inline)]

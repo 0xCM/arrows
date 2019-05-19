@@ -45,8 +45,9 @@ namespace Z0
             => (src & (1L << pos)) != 0L;
 
         [MethodImpl(Inline)]
-        public static bool testbit(ulong src, int pos)
+        public static bool test(ulong src, int pos)
             => (src & (1ul << pos)) != 0ul;
+
 
         [MethodImpl(Inline)]
         public static bool test(double src, int pos)
@@ -56,6 +57,13 @@ namespace Z0
         public static bool test(float src, int pos)
             => test(BitConverter.SingleToInt32Bits(src),pos);
  
+        [MethodImpl(Inline)]
+        public static bool test(in U128 src, int pos)
+            => pos < 64 ? test(src.x0, pos) : test(src.x1, pos) ;
+
+        [MethodImpl(Inline)]
+        public static bool test(in I128 src, int pos)
+            => pos < 64 ? test(src.x0, pos) : test(src.x1, pos) ;
 
     }
 

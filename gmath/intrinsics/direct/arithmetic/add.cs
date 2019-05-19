@@ -10,7 +10,7 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     
-    using static global::mfunc;
+    using static mfunc;
 
 
     partial class dinx
@@ -20,7 +20,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<byte> add(in Vec128<byte> lhs, in Vec128<byte> rhs)
             => Avx2.Add(lhs, rhs);
-
 
         [MethodImpl(Inline)]
         public static Vec128<sbyte> add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)

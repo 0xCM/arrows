@@ -16,13 +16,13 @@ namespace Z0
     /// <summary>
     /// Encodes a natural number k such that k:K & j:Prior[K] => k = j + 1
     /// </summary>
-    public readonly struct Prior<K> : ITypeNat
-        where K : ITypeNat, new()
+    public readonly struct Prior<K1> : ITypeNat
+        where K1 : ITypeNat, new()
     {
         
-        static K k = default;
+        static K1 k = default;
 
-        public static readonly Prior<K> Rep = default;
+        public static readonly Prior<K1> Rep = default;
 
         public static readonly ulong Value
             = k.value - 1u;
@@ -51,7 +51,7 @@ namespace Z0
         public NatSeq natseq()
             => Seq;
 
-        public bool Equals(Prior<K> rhs)
+        public bool Equals(Prior<K1> rhs)
             => Value == rhs.value;
 
         public bool Equals(NatSeq rhs)

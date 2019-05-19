@@ -15,85 +15,83 @@ namespace Z0
     partial class Bits
     {                
         [MethodImpl(NotInline)]
-        public static byte parse(string bitstring, int offset, out byte dst)
+        public static byte parse(string bs, int offset, out byte dst)
         {
-            var max = Math.Min(8, bitstring.Length);            
+            var max = Math.Min(8, bs.Length);            
             var pos = max - 1;
             dst = 0;
             for(var i = offset; i< max; i++, pos--)
-                if(bitstring[i] != '0')
-                    set(ref dst, pos);            
+                if(bs[i] != '0')
+                    enable(ref dst, pos);            
             return dst;                                                
         }
 
         [MethodImpl(NotInline)]
-        public static sbyte parse(string bitstring, int offset, out sbyte dst)
+        public static sbyte parse(string bs, int offset, out sbyte dst)
         {
-            parse(bitstring, offset, out byte x);
+            parse(bs, offset, out byte x);
             dst = (sbyte)x;
-            return dst;
-            
-
+            return dst;        
         }
 
         [MethodImpl(NotInline)]
-        public static ushort parse(string bitstring, int offset, out ushort dst)
+        public static ushort parse(string bs, int offset, out ushort dst)
         {
-            var max = Math.Min(16, bitstring.Length);            
+            var max = Math.Min(16, bs.Length);            
             var pos = max - 1;
             dst = 0;
             for(var i = offset; i< max; i++, pos--)
-                if(bitstring[i] != '0')
-                    set(ref dst, pos);            
+                if(bs[i] != '0')
+                    enable(ref dst, pos);            
             return dst;                                                
         }
 
         [MethodImpl(NotInline)]
-        public static short parse(string bitstring, int offset, out short dst)
+        public static short parse(string bs, int offset, out short dst)
         {
-            parse(bitstring, offset, out short x);
+            parse(bs, offset, out short x);
             dst = (short)x;
             return dst;
             
         }
 
         [MethodImpl(NotInline)]
-        public static uint parse(string bitstring, int offset, out uint dst)
+        public static uint parse(string bs, int offset, out uint dst)
         {
-            var max = Math.Min(32, bitstring.Length);            
+            var max = Math.Min(32, bs.Length);            
             var pos = max - 1;
             dst = 0;
             for(var i = offset; i< max; i++, pos--)
-                if(bitstring[i] != '0')
-                    set(ref dst, pos);            
+                if(bs[i] != '0')
+                    enable(ref dst, pos);            
             return dst;                                                
         }
 
         [MethodImpl(NotInline)]
-        public static int parse(string bitstring, int offset, out int dst)
+        public static int parse(string bs, int offset, out int dst)
         {
-            parse(bitstring, offset, out int x);
+            parse(bs, offset, out int x);
             dst = (int)x;
             return dst;            
         }
 
         [MethodImpl(NotInline)]
-        public static ulong parse(string bitstring, int offset, out ulong dst)
+        public static ulong parse(string bs, int offset, out ulong dst)
         {
-            var max = Math.Min(64, bitstring.Length);            
+            var max = Math.Min(64, bs.Length);            
             var pos = max - 1;
             dst = 0;
             for(var i = offset; i< max; i++, pos--)
-                if(bitstring[i] != '0')
-                    set(ref dst, pos);            
+                if(bs[i] != '0')
+                    enable(ref dst, pos);            
             return dst;                                                
 
         }
 
         [MethodImpl(NotInline)]
-        public static long parse(string bitstring, int offset, out long dst)
+        public static long parse(string bs, int offset, out long dst)
         {
-            parse(bitstring, offset, out long x);
+            parse(bs, offset, out long x);
             dst = (long)x;
             return dst;
         }

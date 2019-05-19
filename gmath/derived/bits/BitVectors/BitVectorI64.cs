@@ -10,17 +10,15 @@ namespace Z0
     using System.Numerics;
 
     using static mfunc;
+    using static Z0.Bits;
 
-
-    public struct BitVectorI64
+    public ref struct BitVectorI64
     {
         long data;
 
         [MethodImpl(Inline)]
         public BitVectorI64(long data)
             => this.data = data;
-
-        public static readonly BitVectorI64 Zero = Define(0);
 
         [MethodImpl(Inline)]
         public static BitVectorI64 Define(long src)
@@ -36,7 +34,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator ==(BitVectorI64 lhs, BitVectorI64 rhs)
-            => lhs.Equals(rhs);
+            => lhs.data == rhs.data;
 
         [MethodImpl(Inline)]
         public static bool operator !=(BitVectorI64 lhs, BitVectorI64 rhs)
@@ -44,15 +42,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVectorI64 operator |(BitVectorI64 lhs, BitVectorI64 rhs)
-            => lhs.data.Or(rhs.data);
+            => lhs.data | rhs.data;
 
         [MethodImpl(Inline)]
         public static BitVectorI64 operator &(BitVectorI64 lhs, BitVectorI64 rhs)
-            => lhs.data.And(rhs.data);
+            => lhs.data & rhs.data;
 
         [MethodImpl(Inline)]
         public static BitVectorI64 operator ^(BitVectorI64 lhs, BitVectorI64 rhs)
-            => lhs.data.XOr(rhs.data);
+            => lhs.data ^ rhs.data;
 
         [MethodImpl(Inline)]
         public static BitVectorI64 operator ~(BitVectorI64 src)
@@ -61,37 +59,49 @@ namespace Z0
         public Bit this[int pos]
         {
             [MethodImpl(Inline)]
-            get => Bits.test(data, pos);
+            get => test(data, pos);
             
             [MethodImpl(Inline)]
             set
             {
                 if(value)
-                    Bits.set(ref data, pos);
+                    enable(ref data, pos);
                 else
-                     Bits.unset(data,pos);                    
+                    disable(data,pos);                    
             }            
         }
 
         [MethodImpl(Inline)]
-        public bool IsSet(int index)
-            => Bits.test(data,index);
+        public bool TestBit(int index)
+            => test(data,index);
 
-        [MethodImpl(Inline)]
-        public (BitVectorI32 x0, BitVectorI32 x1) Split()
-            => Bits.split(data);
+        public BitVectorI32 Hi
+        {
+            [MethodImpl(Inline)]
+            get => hi(data);        
+        }
+        
+        public BitVectorI32 Lo
+        {
+            [MethodImpl(Inline)]
+            get => lo(data);        
+        }
 
         [MethodImpl(Inline)]
         public string BitString()
-            => Bits.bitstring(data);
+            => data.ToBitString();
 
         [MethodImpl(Inline)]
-        public Bit[] BitData()
+        public Span<byte> Bytes()
+            => data.ToBytes();
+
+        [MethodImpl(Inline)]        
+        public Span<Bit> BitData()
             => Bits.bits(data);
 
         [MethodImpl(Inline)]
         public int PopCount()
-            => (int)Bits.pop((ulong)data) + (data < 0 ? 1 : 0);
+            => (int)pop((ulong)data) + (data < 0 ? 1 : 0);
 
         [MethodImpl(Inline)]
         public bool Equals(BitVectorI64 rhs)
@@ -106,6 +116,5 @@ namespace Z0
         public override int GetHashCode()
             => throw new NotSupportedException();
     }
-
 
 }

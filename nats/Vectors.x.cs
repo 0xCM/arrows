@@ -14,7 +14,6 @@ namespace Z0
 
     using static zfunc;
     using static nfunc;
-    using static natvec;
 
 
     public static class VectorX
@@ -77,7 +76,6 @@ namespace Z0
         public static Vector<N4,T> ToVector<T>(this (T x1, T x2, T x3, T x4) x)
             where T : struct
                 => vector(x);
-
 
         /// <summary>
         /// Converts a 3-vector to a 3-tuple

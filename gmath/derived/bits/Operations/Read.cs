@@ -45,7 +45,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static Bit read(ulong src, int pos)
-            => Bits.testbit(src, pos);
+            => Bits.test(src, pos);
 
         [MethodImpl(Inline)]   
         public static Bit read(float src, int pos)

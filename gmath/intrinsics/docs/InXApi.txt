@@ -372,1257 +372,1257 @@ docs: __int64 _mm_cvttss_si64 (__m128 a) CVTTSS2SI r64, xmm/m32 This intrinisc i
 docs: available on 64-bit processes
 clr-sig: long ConvertToInt64WithTruncation(Vector128<float> value);
 
-Sse2
+Sse2 -> Sse
 -------------------------------------------------------------------------------
 docs: __m128i _mm_add_epi64 (__m128i a, __m128i b) PADDQ xmm, xmm/m128
-public static Vector128<ulong> Add(Vector128<ulong> left, Vector128<ulong> right);
+clr-sig: Vector128<ulong> Add(Vector128<ulong> left, Vector128<ulong> right);
 
 
 docs: __m128i _mm_add_epi32 (__m128i a, __m128i b) PADDD xmm, xmm/m128
-public static Vector128<uint> Add(Vector128<uint> left, Vector128<uint> right);
+clr-sig: Vector128<uint> Add(Vector128<uint> left, Vector128<uint> right);
 
 
 docs: __m128i _mm_add_epi16 (__m128i a, __m128i b) PADDW xmm, xmm/m128
-public static Vector128<ushort> Add(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> Add(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128i _mm_add_epi8 (__m128i a, __m128i b) PADDB xmm, xmm/m128
-public static Vector128<sbyte> Add(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> Add(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: __m128i _mm_add_epi8 (__m128i a, __m128i b) PADDB xmm, xmm/m128
-public static Vector128<byte> Add(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> Add(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128i _mm_add_epi32 (__m128i a, __m128i b) PADDD xmm, xmm/m128
-public static Vector128<int> Add(Vector128<int> left, Vector128<int> right);
+clr-sig: Vector128<int> Add(Vector128<int> left, Vector128<int> right);
 
 
 docs: __m128d _mm_add_pd (__m128d a, __m128d b) ADDPD xmm, xmm/m128
-public static Vector128<double> Add(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> Add(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_add_epi64 (__m128i a, __m128i b) PADDQ xmm, xmm/m128
-public static Vector128<long> Add(Vector128<long> left, Vector128<long> right);
+clr-sig: Vector128<long> Add(Vector128<long> left, Vector128<long> right);
 
 
 docs: __m128i _mm_add_epi16 (__m128i a, __m128i b) PADDW xmm, xmm/m128
-public static Vector128<short> Add(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> Add(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128i _mm_adds_epu8 (__m128i a, __m128i b) PADDUSB xmm, xmm/m128
-public static Vector128<byte> AddSaturate(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> AddSaturate(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128i _mm_adds_epi16 (__m128i a, __m128i b) PADDSW xmm, xmm/m128
-public static Vector128<short> AddSaturate(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> AddSaturate(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128i _mm_adds_epi8 (__m128i a, __m128i b) PADDSB xmm, xmm/m128
-public static Vector128<sbyte> AddSaturate(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> AddSaturate(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: __m128i _mm_adds_epu16 (__m128i a, __m128i b) PADDUSW xmm, xmm/m128
-public static Vector128<ushort> AddSaturate(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> AddSaturate(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128d _mm_add_sd (__m128d a, __m128d b) ADDSD xmm, xmm/m64
-public static Vector128<double> AddScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> AddScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_and_si128 (__m128i a, __m128i b) PAND xmm, xmm/m128
-public static Vector128<uint> And(Vector128<uint> left, Vector128<uint> right);
+clr-sig: Vector128<uint> And(Vector128<uint> left, Vector128<uint> right);
 
 
 docs: __m128i _mm_and_si128 (__m128i a, __m128i b) PAND xmm, xmm/m128
-public static Vector128<ushort> And(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> And(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128i _mm_and_si128 (__m128i a, __m128i b) PAND xmm, xmm/m128
-public static Vector128<sbyte> And(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> And(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: __m128i _mm_and_si128 (__m128i a, __m128i b) PAND xmm, xmm/m128
-public static Vector128<ulong> And(Vector128<ulong> left, Vector128<ulong> right);
+clr-sig: Vector128<ulong> And(Vector128<ulong> left, Vector128<ulong> right);
 
 
 docs: __m128i _mm_and_si128 (__m128i a, __m128i b) PAND xmm, xmm/m128
-public static Vector128<int> And(Vector128<int> left, Vector128<int> right);
+clr-sig: Vector128<int> And(Vector128<int> left, Vector128<int> right);
 
 
 docs: __m128i _mm_and_si128 (__m128i a, __m128i b) PAND xmm, xmm/m128
-public static Vector128<short> And(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> And(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128d _mm_and_pd (__m128d a, __m128d b) ANDPD xmm, xmm/m128
-public static Vector128<double> And(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> And(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_and_si128 (__m128i a, __m128i b) PAND xmm, xmm/m128
-public static Vector128<byte> And(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> And(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128i _mm_and_si128 (__m128i a, __m128i b) PAND xmm, xmm/m128
-public static Vector128<long> And(Vector128<long> left, Vector128<long> right);
+clr-sig: Vector128<long> And(Vector128<long> left, Vector128<long> right);
 
 
 docs: __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
-public static Vector128<ulong> AndNot(Vector128<ulong> left, Vector128<ulong> right);
+clr-sig: Vector128<ulong> AndNot(Vector128<ulong> left, Vector128<ulong> right);
 
 
 docs: __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
-public static Vector128<uint> AndNot(Vector128<uint> left, Vector128<uint> right);
+clr-sig: Vector128<uint> AndNot(Vector128<uint> left, Vector128<uint> right);
 
 
 docs: __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
-public static Vector128<ushort> AndNot(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> AndNot(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
-public static Vector128<sbyte> AndNot(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> AndNot(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
-public static Vector128<long> AndNot(Vector128<long> left, Vector128<long> right);
+clr-sig: Vector128<long> AndNot(Vector128<long> left, Vector128<long> right);
 
 
 docs: __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
-public static Vector128<short> AndNot(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> AndNot(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128d _mm_andnot_pd (__m128d a, __m128d b) ADDNPD xmm, xmm/m128
-public static Vector128<double> AndNot(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> AndNot(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
-public static Vector128<byte> AndNot(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> AndNot(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128i _mm_andnot_si128 (__m128i a, __m128i b) PANDN xmm, xmm/m128
-public static Vector128<int> AndNot(Vector128<int> left, Vector128<int> right);
+clr-sig: Vector128<int> AndNot(Vector128<int> left, Vector128<int> right);
 
 
 docs: __m128i _mm_avg_epu8 (__m128i a, __m128i b) PAVGB xmm, xmm/m128
-public static Vector128<byte> Average(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> Average(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128i _mm_avg_epu16 (__m128i a, __m128i b) PAVGW xmm, xmm/m128
-public static Vector128<ushort> Average(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> Average(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128i _mm_cmpeq_epi16 (__m128i a, __m128i b) PCMPEQW xmm, xmm/m128
-public static Vector128<ushort> CompareEqual(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> CompareEqual(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128i _mm_cmpeq_epi8 (__m128i a, __m128i b) PCMPEQB xmm, xmm/m128
-public static Vector128<sbyte> CompareEqual(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> CompareEqual(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: __m128i _mm_cmpeq_epi32 (__m128i a, __m128i b) PCMPEQD xmm, xmm/m128
-public static Vector128<uint> CompareEqual(Vector128<uint> left, Vector128<uint> right);
+clr-sig: Vector128<uint> CompareEqual(Vector128<uint> left, Vector128<uint> right);
 
 
 docs: __m128i _mm_cmpeq_epi16 (__m128i a, __m128i b) PCMPEQW xmm, xmm/m128
-public static Vector128<short> CompareEqual(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> CompareEqual(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128d _mm_cmpeq_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(0)
-public static Vector128<double> CompareEqual(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareEqual(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_cmpeq_epi32 (__m128i a, __m128i b) PCMPEQD xmm, xmm/m128
-public static Vector128<int> CompareEqual(Vector128<int> left, Vector128<int> right);
+clr-sig: Vector128<int> CompareEqual(Vector128<int> left, Vector128<int> right);
 
 
 docs: __m128i _mm_cmpeq_epi8 (__m128i a, __m128i b) PCMPEQB xmm, xmm/m128
-public static Vector128<byte> CompareEqual(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> CompareEqual(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: int _mm_comieq_sd (__m128d a, __m128d b) COMISS xmm, xmm/m64
-public static bool CompareEqualOrderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: bool CompareEqualOrderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpeq_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(0)
-public static Vector128<double> CompareEqualScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareEqualScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: int _mm_ucomieq_sd (__m128d a, __m128d b) UCOMISS xmm, xmm/m64
-public static bool CompareEqualUnorderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: bool CompareEqualUnorderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpgt_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(6)
-public static Vector128<double> CompareGreaterThan(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareGreaterThan(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_cmpgt_epi16 (__m128i a, __m128i b) PCMPGTW xmm, xmm/m128
-public static Vector128<short> CompareGreaterThan(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> CompareGreaterThan(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128i _mm_cmpgt_epi32 (__m128i a, __m128i b) PCMPGTD xmm, xmm/m128
-public static Vector128<int> CompareGreaterThan(Vector128<int> left, Vector128<int> right);
+clr-sig: Vector128<int> CompareGreaterThan(Vector128<int> left, Vector128<int> right);
 
 
 docs: __m128i _mm_cmpgt_epi8 (__m128i a, __m128i b) PCMPGTB xmm, xmm/m128
-public static Vector128<sbyte> CompareGreaterThan(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> CompareGreaterThan(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: int _mm_comigt_sd (__m128d a, __m128d b) COMISS xmm, xmm/m64
-public static bool CompareGreaterThanOrderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: bool CompareGreaterThanOrderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpge_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(5)
-public static Vector128<double> CompareGreaterThanOrEqual(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareGreaterThanOrEqual(Vector128<double> left, Vector128<double> right);
 
 
 docs: int _mm_comige_sd (__m128d a, __m128d b) COMISS xmm, xmm/m64
-public static bool CompareGreaterThanOrEqualOrderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: bool CompareGreaterThanOrEqualOrderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpge_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(5)
-public static Vector128<double> CompareGreaterThanOrEqualScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareGreaterThanOrEqualScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: int _mm_ucomige_sd (__m128d a, __m128d b) UCOMISS xmm, xmm/m64
-public static bool CompareGreaterThanOrEqualUnorderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: bool CompareGreaterThanOrEqualUnorderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpgt_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(6)
-public static Vector128<double> CompareGreaterThanScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareGreaterThanScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: int _mm_ucomigt_sd (__m128d a, __m128d b) UCOMISS xmm, xmm/m64
-public static bool CompareGreaterThanUnorderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: bool CompareGreaterThanUnorderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_cmplt_epi32 (__m128i a, __m128i b) PCMPGTD xmm, xmm/m128
-public static Vector128<int> CompareLessThan(Vector128<int> left, Vector128<int> right);
+clr-sig: Vector128<int> CompareLessThan(Vector128<int> left, Vector128<int> right);
 
 
 docs: __m128i _mm_cmplt_epi8 (__m128i a, __m128i b) PCMPGTB xmm, xmm/m128
-public static Vector128<sbyte> CompareLessThan(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> CompareLessThan(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: __m128d _mm_cmplt_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(1)
-public static Vector128<double> CompareLessThan(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareLessThan(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_cmplt_epi16 (__m128i a, __m128i b) PCMPGTW xmm, xmm/m128
-public static Vector128<short> CompareLessThan(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> CompareLessThan(Vector128<short> left, Vector128<short> right);
 
 
 docs: int _mm_comilt_sd (__m128d a, __m128d b) COMISS xmm, xmm/m64
-public static bool CompareLessThanOrderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: bool CompareLessThanOrderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmple_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(2)
-public static Vector128<double> CompareLessThanOrEqual(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareLessThanOrEqual(Vector128<double> left, Vector128<double> right);
 
 
 docs: int _mm_comile_sd (__m128d a, __m128d b) COMISS xmm, xmm/m64
-public static bool CompareLessThanOrEqualOrderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: bool CompareLessThanOrEqualOrderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmple_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(2)
-public static Vector128<double> CompareLessThanOrEqualScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareLessThanOrEqualScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: int _mm_ucomile_sd (__m128d a, __m128d b) UCOMISS xmm, xmm/m64
-public static bool CompareLessThanOrEqualUnorderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: bool CompareLessThanOrEqualUnorderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmplt_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(1)
-public static Vector128<double> CompareLessThanScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareLessThanScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: int _mm_ucomilt_sd (__m128d a, __m128d b) UCOMISS xmm, xmm/m64
-public static bool CompareLessThanUnorderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: bool CompareLessThanUnorderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpneq_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(4)
-public static Vector128<double> CompareNotEqual(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareNotEqual(Vector128<double> left, Vector128<double> right);
 
 
 docs: int _mm_comineq_sd (__m128d a, __m128d b) COMISS xmm, xmm/m64
-public static bool CompareNotEqualOrderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: bool CompareNotEqualOrderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpneq_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(4)
-public static Vector128<double> CompareNotEqualScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareNotEqualScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: int _mm_ucomineq_sd (__m128d a, __m128d b) UCOMISS xmm, xmm/m64
-public static bool CompareNotEqualUnorderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: bool CompareNotEqualUnorderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpngt_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(2)
-public static Vector128<double> CompareNotGreaterThan(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareNotGreaterThan(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpnge_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(1)
-public static Vector128<double> CompareNotGreaterThanOrEqual(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareNotGreaterThanOrEqual(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpnge_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(1)
-public static Vector128<double> CompareNotGreaterThanOrEqualScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareNotGreaterThanOrEqualScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpngt_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(2)
-public static Vector128<double> CompareNotGreaterThanScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareNotGreaterThanScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpnlt_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(5)
-public static Vector128<double> CompareNotLessThan(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareNotLessThan(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpnle_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(6)
-public static Vector128<double> CompareNotLessThanOrEqual(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareNotLessThanOrEqual(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpnle_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(6)
-public static Vector128<double> CompareNotLessThanOrEqualScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareNotLessThanOrEqualScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpnlt_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(5)
-public static Vector128<double> CompareNotLessThanScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareNotLessThanScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpord_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(7)
-public static Vector128<double> CompareOrdered(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareOrdered(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpord_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(7)
-public static Vector128<double> CompareOrderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareOrderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpunord_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(3)
-public static Vector128<double> CompareUnordered(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareUnordered(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cmpunord_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(3)
-public static Vector128<double> CompareUnorderedScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> CompareUnorderedScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_cvtsi32_sd (__m128d a, int b) CVTSI2SD xmm, reg/m32
-public static Vector128<double> ConvertScalarToVector128Double(Vector128<double> upper, int value);
+clr-sig: Vector128<double> ConvertScalarToVector128Double(Vector128<double> upper, int value);
 
 
 docs: __m128d _mm_cvtss_sd (__m128d a, __m128 b) CVTSS2SD xmm, xmm/m32
-public static Vector128<double> ConvertScalarToVector128Double(Vector128<double> upper, Vector128<float> value);
+clr-sig: Vector128<double> ConvertScalarToVector128Double(Vector128<double> upper, Vector128<float> value);
 
 
 docs: __m128i _mm_cvtsi32_si128 (int a) MOVD xmm, reg/m32
-public static Vector128<int> ConvertScalarToVector128Int32(int value);
+clr-sig: Vector128<int> ConvertScalarToVector128Int32(int value);
 
 
 docs: __m128 _mm_cvtsd_ss (__m128 a, __m128d b) CVTSD2SS xmm, xmm/m64
-public static Vector128<float> ConvertScalarToVector128Single(Vector128<float> upper, Vector128<double> value);
+clr-sig: Vector128<float> ConvertScalarToVector128Single(Vector128<float> upper, Vector128<double> value);
 
 
 docs: __m128i _mm_cvtsi32_si128 (int a) MOVD xmm, reg/m32
-public static Vector128<uint> ConvertScalarToVector128UInt32(uint value);
+clr-sig: Vector128<uint> ConvertScalarToVector128UInt32(uint value);
 
 
 docs: int _mm_cvtsd_si32 (__m128d a) CVTSD2SI r32, xmm/m64
-public static int ConvertToInt32(Vector128<double> value);
+clr-sig: int ConvertToInt32(Vector128<double> value);
 
 
 docs: int _mm_cvtsi128_si32 (__m128i a) MOVD reg/m32, xmm
-public static int ConvertToInt32(Vector128<int> value);
+clr-sig: int ConvertToInt32(Vector128<int> value);
 
 
 docs: int _mm_cvttsd_si32 (__m128d a) CVTTSD2SI reg, xmm/m64
-public static int ConvertToInt32WithTruncation(Vector128<double> value);
+clr-sig: int ConvertToInt32WithTruncation(Vector128<double> value);
 
 
 docs: int _mm_cvtsi128_si32 (__m128i a) MOVD reg/m32, xmm
-public static uint ConvertToUInt32(Vector128<uint> value);
+clr-sig: uint ConvertToUInt32(Vector128<uint> value);
 
 
 docs: __m128d _mm_cvtepi32_pd (__m128i a) CVTDQ2PD xmm, xmm/m128
-public static Vector128<double> ConvertToVector128Double(Vector128<int> value);
+clr-sig: Vector128<double> ConvertToVector128Double(Vector128<int> value);
 
 
 docs: __m128d _mm_cvtps_pd (__m128 a) CVTPS2PD xmm, xmm/m128
-public static Vector128<double> ConvertToVector128Double(Vector128<float> value);
+clr-sig: Vector128<double> ConvertToVector128Double(Vector128<float> value);
 
 
 docs: __m128i _mm_cvtpd_epi32 (__m128d a) CVTPD2DQ xmm, xmm/m128
-public static Vector128<int> ConvertToVector128Int32(Vector128<double> value);
+clr-sig: Vector128<int> ConvertToVector128Int32(Vector128<double> value);
 
 
 docs: __m128i _mm_cvtps_epi32 (__m128 a) CVTPS2DQ xmm, xmm/m128
-public static Vector128<int> ConvertToVector128Int32(Vector128<float> value);
+clr-sig: Vector128<int> ConvertToVector128Int32(Vector128<float> value);
 
 
 docs: __m128i _mm_cvttpd_epi32 (__m128d a) CVTTPD2DQ xmm, xmm/m128
-public static Vector128<int> ConvertToVector128Int32WithTruncation(Vector128<double> value);
+clr-sig: Vector128<int> ConvertToVector128Int32WithTruncation(Vector128<double> value);
 
 
 docs: __m128i _mm_cvttps_epi32 (__m128 a) CVTTPS2DQ xmm, xmm/m128
-public static Vector128<int> ConvertToVector128Int32WithTruncation(Vector128<float> value);
+clr-sig: Vector128<int> ConvertToVector128Int32WithTruncation(Vector128<float> value);
 
 
 docs: __m128 _mm_cvtpd_ps (__m128d a) CVTPD2PS xmm, xmm/m128
-public static Vector128<float> ConvertToVector128Single(Vector128<double> value);
+clr-sig: Vector128<float> ConvertToVector128Single(Vector128<double> value);
 
 
 docs: __m128 _mm_cvtepi32_ps (__m128i a) CVTDQ2PS xmm, xmm/m128
-public static Vector128<float> ConvertToVector128Single(Vector128<int> value);
+clr-sig: Vector128<float> ConvertToVector128Single(Vector128<int> value);
 
 
 docs: __m128d _mm_div_pd (__m128d a, __m128d b) DIVPD xmm, xmm/m128
-public static Vector128<double> Divide(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> Divide(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_div_sd (__m128d a, __m128d b) DIVSD xmm, xmm/m64
-public static Vector128<double> DivideScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> DivideScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: int _mm_extract_epi16 (__m128i a, int immediate) PEXTRW reg, xmm, imm8
-public static ushort Extract(Vector128<ushort> value, byte index);
+clr-sig: ushort Extract(Vector128<ushort> value, byte index);
 
 
 docs: __m128i _mm_insert_epi16 (__m128i a, int i, int immediate) PINSRW xmm, reg/m16,
 docs: imm8
-public static Vector128<short> Insert(Vector128<short> value, short data, byte index);
+clr-sig: Vector128<short> Insert(Vector128<short> value, short data, byte index);
 
 
 docs: __m128i _mm_insert_epi16 (__m128i a, int i, int immediate) PINSRW xmm, reg/m16,
 docs: imm8
-public static Vector128<ushort> Insert(Vector128<ushort> value, ushort data, byte index);
+clr-sig: Vector128<ushort> Insert(Vector128<ushort> value, ushort data, byte index);
 
 
 docs: __m128i _mm_load_si128 (__m128i const* mem_address) MOVDQA xmm, m128
-public static Vector128<ushort> LoadAlignedVector128(ushort* address);
+clr-sig: Vector128<ushort> LoadAlignedVector128(ushort* address);
 
 
 docs: __m128i _mm_load_si128 (__m128i const* mem_address) MOVDQA xmm, m128
-public static Vector128<uint> LoadAlignedVector128(uint* address);
+clr-sig: Vector128<uint> LoadAlignedVector128(uint* address);
 
 
 docs: __m128i _mm_load_si128 (__m128i const* mem_address) MOVDQA xmm, m128
-public static Vector128<sbyte> LoadAlignedVector128(sbyte* address);
+clr-sig: Vector128<sbyte> LoadAlignedVector128(sbyte* address);
 
 
 docs: __m128i _mm_load_si128 (__m128i const* mem_address) MOVDQA xmm, m128
-public static Vector128<ulong> LoadAlignedVector128(ulong* address);
+clr-sig: Vector128<ulong> LoadAlignedVector128(ulong* address);
 
 
 docs: __m128i _mm_load_si128 (__m128i const* mem_address) MOVDQA xmm, m128
-public static Vector128<int> LoadAlignedVector128(int* address);
+clr-sig: Vector128<int> LoadAlignedVector128(int* address);
 
 
 docs: __m128i _mm_load_si128 (__m128i const* mem_address) MOVDQA xmm, m128
-public static Vector128<short> LoadAlignedVector128(short* address);
+clr-sig: Vector128<short> LoadAlignedVector128(short* address);
 
 
 docs: __m128d _mm_load_pd (double const* mem_address) MOVAPD xmm, m128
-public static Vector128<double> LoadAlignedVector128(double* address);
+clr-sig: Vector128<double> LoadAlignedVector128(double* address);
 
 
 docs: __m128i _mm_load_si128 (__m128i const* mem_address) MOVDQA xmm, m128
-public static Vector128<long> LoadAlignedVector128(long* address);
+clr-sig: Vector128<long> LoadAlignedVector128(long* address);
 
 
 docs: __m128i _mm_load_si128 (__m128i const* mem_address) MOVDQA xmm, m128
-public static Vector128<byte> LoadAlignedVector128(byte* address);
+clr-sig: Vector128<byte> LoadAlignedVector128(byte* address);
 
 
 docs: void _mm_lfence(void) LFENCE
-public static void LoadFence();
+clr-sig: void LoadFence();
 
 
 docs: __m128d _mm_loadh_pd (__m128d a, double const* mem_addr) MOVHPD xmm, m64
-public static Vector128<double> LoadHigh(Vector128<double> lower, double* address);
+clr-sig: Vector128<double> LoadHigh(Vector128<double> lower, double* address);
 
 
 docs: __m128d _mm_loadl_pd (__m128d a, double const* mem_addr) MOVLPD xmm, m64
-public static Vector128<double> LoadLow(Vector128<double> upper, double* address);
+clr-sig: Vector128<double> LoadLow(Vector128<double> upper, double* address);
 
 
 docs: __m128d _mm_load_sd (double const* mem_address) MOVSD xmm, m64
-public static Vector128<double> LoadScalarVector128(double* address);
+clr-sig: Vector128<double> LoadScalarVector128(double* address);
 
 
 docs: __m128i _mm_loadl_epi32 (__m128i const* mem_addr) MOVD xmm, reg/m32 The above
 docs: native signature does not exist. We provide this additional overload for completeness.
-public static Vector128<int> LoadScalarVector128(int* address);
+clr-sig: Vector128<int> LoadScalarVector128(int* address);
 
 
 docs: __m128i _mm_loadl_epi64 (__m128i const* mem_addr) MOVQ xmm, reg/m64
-public static Vector128<long> LoadScalarVector128(long* address);
+clr-sig: Vector128<long> LoadScalarVector128(long* address);
 
 
 docs: __m128i _mm_loadl_epi32 (__m128i const* mem_addr) MOVD xmm, reg/m32 The above
 docs: native signature does not exist. We provide this additional overload for completeness.
-public static Vector128<uint> LoadScalarVector128(uint* address);
+clr-sig: Vector128<uint> LoadScalarVector128(uint* address);
 
 
 docs: __m128i _mm_loadl_epi64 (__m128i const* mem_addr) MOVQ xmm, reg/m64
-public static Vector128<ulong> LoadScalarVector128(ulong* address);
+clr-sig: Vector128<ulong> LoadScalarVector128(ulong* address);
 
 
 docs: __m128i _mm_loadu_si128 (__m128i const* mem_address) MOVDQU xmm, m128
-public static Vector128<uint> LoadVector128(uint* address);
+clr-sig: Vector128<uint> LoadVector128(uint* address);
 
 
 docs: __m128i _mm_loadu_si128 (__m128i const* mem_address) MOVDQU xmm, m128
-public static Vector128<ushort> LoadVector128(ushort* address);
+clr-sig: Vector128<ushort> LoadVector128(ushort* address);
 
 
 docs: __m128i _mm_loadu_si128 (__m128i const* mem_address) MOVDQU xmm, m128
-public static Vector128<sbyte> LoadVector128(sbyte* address);
+clr-sig: Vector128<sbyte> LoadVector128(sbyte* address);
 
 
 docs: __m128i _mm_loadu_si128 (__m128i const* mem_address) MOVDQU xmm, m128
-public static Vector128<ulong> LoadVector128(ulong* address);
+clr-sig: Vector128<ulong> LoadVector128(ulong* address);
 
 
 docs: __m128i _mm_loadu_si128 (__m128i const* mem_address) MOVDQU xmm, m128
-public static Vector128<int> LoadVector128(int* address);
+clr-sig: Vector128<int> LoadVector128(int* address);
 
 
 docs: __m128i _mm_loadu_si128 (__m128i const* mem_address) MOVDQU xmm, m128
-public static Vector128<short> LoadVector128(short* address);
+clr-sig: Vector128<short> LoadVector128(short* address);
 
 
 docs: __m128d _mm_loadu_pd (double const* mem_address) MOVUPD xmm, m128
-public static Vector128<double> LoadVector128(double* address);
+clr-sig: Vector128<double> LoadVector128(double* address);
 
 
 docs: __m128i _mm_loadu_si128 (__m128i const* mem_address) MOVDQU xmm, m128
-public static Vector128<long> LoadVector128(long* address);
+clr-sig: Vector128<long> LoadVector128(long* address);
 
 
 docs: __m128i _mm_loadu_si128 (__m128i const* mem_address) MOVDQU xmm, m128
-public static Vector128<byte> LoadVector128(byte* address);
+clr-sig: Vector128<byte> LoadVector128(byte* address);
 
 
 docs: void _mm_maskmoveu_si128 (__m128i a, __m128i mask, char* mem_address) MASKMOVDQU
 docs: xmm, xmm
-public static void MaskMove(Vector128<byte> source, Vector128<byte> mask, byte* address);
+clr-sig: void MaskMove(Vector128<byte> source, Vector128<byte> mask, byte* address);
 
 
 docs: void _mm_maskmoveu_si128 (__m128i a, __m128i mask, char* mem_address) MASKMOVDQU
 docs: xmm, xmm
-public static void MaskMove(Vector128<sbyte> source, Vector128<sbyte> mask, sbyte* address);
+clr-sig: void MaskMove(Vector128<sbyte> source, Vector128<sbyte> mask, sbyte* address);
 
 
 docs: __m128i _mm_max_epi16 (__m128i a, __m128i b) PMAXSW xmm, xmm/m128
-public static Vector128<short> Max(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> Max(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128i _mm_max_epu8 (__m128i a, __m128i b) PMAXUB xmm, xmm/m128
-public static Vector128<byte> Max(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> Max(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128d _mm_max_pd (__m128d a, __m128d b) MAXPD xmm, xmm/m128
-public static Vector128<double> Max(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> Max(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128d _mm_max_sd (__m128d a, __m128d b) MAXSD xmm, xmm/m64
-public static Vector128<double> MaxScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> MaxScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: void _mm_mfence(void) MFENCE
-public static void MemoryFence();
+clr-sig: void MemoryFence();
 
 
 docs: __m128d _mm_min_pd (__m128d a, __m128d b) MINPD xmm, xmm/m128
-public static Vector128<double> Min(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> Min(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_min_epi16 (__m128i a, __m128i b) PMINSW xmm, xmm/m128
-public static Vector128<short> Min(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> Min(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128i _mm_min_epu8 (__m128i a, __m128i b) PMINUB xmm, xmm/m128
-public static Vector128<byte> Min(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> Min(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128d _mm_min_sd (__m128d a, __m128d b) MINSD xmm, xmm/m64
-public static Vector128<double> MinScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> MinScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: int _mm_movemask_epi8 (__m128i a) PMOVMSKB reg, xmm
-public static int MoveMask(Vector128<byte> value);
+clr-sig: int MoveMask(Vector128<byte> value);
 
 
 docs: int _mm_movemask_pd (__m128d a) MOVMSKPD reg, xmm
-public static int MoveMask(Vector128<double> value);
+clr-sig: int MoveMask(Vector128<double> value);
 
 
 docs: int _mm_movemask_epi8 (__m128i a) PMOVMSKB reg, xmm
-public static int MoveMask(Vector128<sbyte> value);
+clr-sig: int MoveMask(Vector128<sbyte> value);
 
 
 docs: __m128d _mm_move_sd (__m128d a, __m128d b) MOVSD xmm, xmm
-public static Vector128<double> MoveScalar(Vector128<double> upper, Vector128<double> value);
+clr-sig: Vector128<double> MoveScalar(Vector128<double> upper, Vector128<double> value);
 
 
 docs: __m128i _mm_move_epi64 (__m128i a) MOVQ xmm, xmm
-public static Vector128<long> MoveScalar(Vector128<long> value);
+clr-sig: Vector128<long> MoveScalar(Vector128<long> value);
 
 
 docs: __m128i _mm_move_epi64 (__m128i a) MOVQ xmm, xmm
-public static Vector128<ulong> MoveScalar(Vector128<ulong> value);
+clr-sig: Vector128<ulong> MoveScalar(Vector128<ulong> value);
 
 
 docs: __m128i _mm_mul_epu32 (__m128i a, __m128i b) PMULUDQ xmm, xmm/m128
-public static Vector128<ulong> Multiply(Vector128<uint> left, Vector128<uint> right);
+clr-sig: Vector128<ulong> Multiply(Vector128<uint> left, Vector128<uint> right);
 
 
 docs: __m128d _mm_mul_pd (__m128d a, __m128d b) MULPD xmm, xmm/m128
-public static Vector128<double> Multiply(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> Multiply(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_madd_epi16 (__m128i a, __m128i b) PMADDWD xmm, xmm/m128
-public static Vector128<int> MultiplyAddAdjacent(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<int> MultiplyAddAdjacent(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128i _mm_mulhi_epu16 (__m128i a, __m128i b) PMULHUW xmm, xmm/m128
-public static Vector128<ushort> MultiplyHigh(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> MultiplyHigh(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128i _mm_mulhi_epi16 (__m128i a, __m128i b) PMULHW xmm, xmm/m128
-public static Vector128<short> MultiplyHigh(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> MultiplyHigh(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128i _mm_mullo_epi16 (__m128i a, __m128i b) PMULLW xmm, xmm/m128
-public static Vector128<ushort> MultiplyLow(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> MultiplyLow(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128i _mm_mullo_epi16 (__m128i a, __m128i b) PMULLW xmm, xmm/m128
-public static Vector128<short> MultiplyLow(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> MultiplyLow(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128d _mm_mul_sd (__m128d a, __m128d b) MULSD xmm, xmm/m64
-public static Vector128<double> MultiplyScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> MultiplyScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_or_si128 (__m128i a, __m128i b) POR xmm, xmm/m128
-public static Vector128<ulong> Or(Vector128<ulong> left, Vector128<ulong> right);
+clr-sig: Vector128<ulong> Or(Vector128<ulong> left, Vector128<ulong> right);
 
 
 docs: __m128i _mm_or_si128 (__m128i a, __m128i b) POR xmm, xmm/m128
-public static Vector128<ushort> Or(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> Or(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128i _mm_or_si128 (__m128i a, __m128i b) POR xmm, xmm/m128
-public static Vector128<sbyte> Or(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> Or(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: __m128i _mm_or_si128 (__m128i a, __m128i b) POR xmm, xmm/m128
-public static Vector128<uint> Or(Vector128<uint> left, Vector128<uint> right);
+clr-sig: Vector128<uint> Or(Vector128<uint> left, Vector128<uint> right);
 
 
 docs: __m128i _mm_or_si128 (__m128i a, __m128i b) POR xmm, xmm/m128
-public static Vector128<int> Or(Vector128<int> left, Vector128<int> right);
+clr-sig: Vector128<int> Or(Vector128<int> left, Vector128<int> right);
 
 
 docs: __m128i _mm_or_si128 (__m128i a, __m128i b) POR xmm, xmm/m128
-public static Vector128<short> Or(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> Or(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128d _mm_or_pd (__m128d a, __m128d b) ORPD xmm, xmm/m128
-public static Vector128<double> Or(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> Or(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_or_si128 (__m128i a, __m128i b) POR xmm, xmm/m128
-public static Vector128<byte> Or(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> Or(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128i _mm_or_si128 (__m128i a, __m128i b) POR xmm, xmm/m128
-public static Vector128<long> Or(Vector128<long> left, Vector128<long> right);
+clr-sig: Vector128<long> Or(Vector128<long> left, Vector128<long> right);
 
 
 docs: __m128i _mm_packs_epi16 (__m128i a, __m128i b) PACKSSWB xmm, xmm/m128
-public static Vector128<sbyte> PackSignedSaturate(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<sbyte> PackSignedSaturate(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128i _mm_packs_epi32 (__m128i a, __m128i b) PACKSSDW xmm, xmm/m128
-public static Vector128<short> PackSignedSaturate(Vector128<int> left, Vector128<int> right);
+clr-sig: Vector128<short> PackSignedSaturate(Vector128<int> left, Vector128<int> right);
 
 
 docs: __m128i _mm_packus_epi16 (__m128i a, __m128i b) PACKUSWB xmm, xmm/m128
-public static Vector128<byte> PackUnsignedSaturate(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<byte> PackUnsignedSaturate(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128i _mm_slli_epi32 (__m128i a, int immediate) PSLLD xmm, imm8
-public static Vector128<uint> ShiftLeftLogical(Vector128<uint> value, byte count);
+clr-sig: Vector128<uint> ShiftLeftLogical(Vector128<uint> value, byte count);
 
 
 docs: __m128i _mm_sll_epi64 (__m128i a, __m128i count) PSLLQ xmm, xmm/m128
-public static Vector128<ulong> ShiftLeftLogical(Vector128<ulong> value, Vector128<ulong> count);
+clr-sig: Vector128<ulong> ShiftLeftLogical(Vector128<ulong> value, Vector128<ulong> count);
 
 
 docs: __m128i _mm_slli_epi64 (__m128i a, int immediate) PSLLQ xmm, imm8
-public static Vector128<ulong> ShiftLeftLogical(Vector128<ulong> value, byte count);
+clr-sig: Vector128<ulong> ShiftLeftLogical(Vector128<ulong> value, byte count);
 
 
 docs: __m128i _mm_sll_epi32 (__m128i a, __m128i count) PSLLD xmm, xmm/m128
-public static Vector128<uint> ShiftLeftLogical(Vector128<uint> value, Vector128<uint> count);
+clr-sig: Vector128<uint> ShiftLeftLogical(Vector128<uint> value, Vector128<uint> count);
 
 
 docs: __m128i _mm_sll_epi16 (__m128i a, __m128i count) PSLLW xmm, xmm/m128
-public static Vector128<ushort> ShiftLeftLogical(Vector128<ushort> value, Vector128<ushort> count);
+clr-sig: Vector128<ushort> ShiftLeftLogical(Vector128<ushort> value, Vector128<ushort> count);
 
 
 docs: __m128i _mm_sll_epi32 (__m128i a, __m128i count) PSLLD xmm, xmm/m128
-public static Vector128<int> ShiftLeftLogical(Vector128<int> value, Vector128<int> count);
+clr-sig: Vector128<int> ShiftLeftLogical(Vector128<int> value, Vector128<int> count);
 
 
 docs: __m128i _mm_sll_epi64 (__m128i a, __m128i count) PSLLQ xmm, xmm/m128
-public static Vector128<long> ShiftLeftLogical(Vector128<long> value, Vector128<long> count);
+clr-sig: Vector128<long> ShiftLeftLogical(Vector128<long> value, Vector128<long> count);
 
 
 docs: __m128i _mm_slli_epi64 (__m128i a, int immediate) PSLLQ xmm, imm8
-public static Vector128<long> ShiftLeftLogical(Vector128<long> value, byte count);
+clr-sig: Vector128<long> ShiftLeftLogical(Vector128<long> value, byte count);
 
 
 docs: __m128i _mm_sll_epi16 (__m128i a, __m128i count) PSLLW xmm, xmm/m128
-public static Vector128<short> ShiftLeftLogical(Vector128<short> value, Vector128<short> count);
+clr-sig: Vector128<short> ShiftLeftLogical(Vector128<short> value, Vector128<short> count);
 
 
 docs: __m128i _mm_slli_epi16 (__m128i a, int immediate) PSLLW xmm, imm8
-public static Vector128<short> ShiftLeftLogical(Vector128<short> value, byte count);
+clr-sig: Vector128<short> ShiftLeftLogical(Vector128<short> value, byte count);
 
 
 docs: __m128i _mm_slli_epi16 (__m128i a, int immediate) PSLLW xmm, imm8
-public static Vector128<ushort> ShiftLeftLogical(Vector128<ushort> value, byte count);
+clr-sig: Vector128<ushort> ShiftLeftLogical(Vector128<ushort> value, byte count);
 
 
 docs: __m128i _mm_slli_epi32 (__m128i a, int immediate) PSLLD xmm, imm8
-public static Vector128<int> ShiftLeftLogical(Vector128<int> value, byte count);
+clr-sig: Vector128<int> ShiftLeftLogical(Vector128<int> value, byte count);
 
 
 docs: __m128i _mm_bslli_si128 (__m128i a, int imm8) PSLLDQ xmm, imm8
-public static Vector128<byte> ShiftLeftLogical128BitLane(Vector128<byte> value, byte numBytes);
+clr-sig: Vector128<byte> ShiftLeftLogical128BitLane(Vector128<byte> value, byte numBytes);
 
 
 docs: __m128i _mm_bslli_si128 (__m128i a, int imm8) PSLLDQ xmm, imm8
-public static Vector128<short> ShiftLeftLogical128BitLane(Vector128<short> value, byte numBytes);
+clr-sig: Vector128<short> ShiftLeftLogical128BitLane(Vector128<short> value, byte numBytes);
 
 
 docs: __m128i _mm_bslli_si128 (__m128i a, int imm8) PSLLDQ xmm, imm8
-public static Vector128<int> ShiftLeftLogical128BitLane(Vector128<int> value, byte numBytes);
+clr-sig: Vector128<int> ShiftLeftLogical128BitLane(Vector128<int> value, byte numBytes);
 
 
 docs: __m128i _mm_bslli_si128 (__m128i a, int imm8) PSLLDQ xmm, imm8
-public static Vector128<long> ShiftLeftLogical128BitLane(Vector128<long> value, byte numBytes);
+clr-sig: Vector128<long> ShiftLeftLogical128BitLane(Vector128<long> value, byte numBytes);
 
 
 docs: __m128i _mm_bslli_si128 (__m128i a, int imm8) PSLLDQ xmm, imm8
-public static Vector128<sbyte> ShiftLeftLogical128BitLane(Vector128<sbyte> value, byte numBytes);
+clr-sig: Vector128<sbyte> ShiftLeftLogical128BitLane(Vector128<sbyte> value, byte numBytes);
 
 
 docs: __m128i _mm_bslli_si128 (__m128i a, int imm8) PSLLDQ xmm, imm8
-public static Vector128<ushort> ShiftLeftLogical128BitLane(Vector128<ushort> value, byte numBytes);
+clr-sig: Vector128<ushort> ShiftLeftLogical128BitLane(Vector128<ushort> value, byte numBytes);
 
 
 docs: __m128i _mm_bslli_si128 (__m128i a, int imm8) PSLLDQ xmm, imm8
-public static Vector128<uint> ShiftLeftLogical128BitLane(Vector128<uint> value, byte numBytes);
+clr-sig: Vector128<uint> ShiftLeftLogical128BitLane(Vector128<uint> value, byte numBytes);
 
 
 docs: __m128i _mm_bslli_si128 (__m128i a, int imm8) PSLLDQ xmm, imm8
-public static Vector128<ulong> ShiftLeftLogical128BitLane(Vector128<ulong> value, byte numBytes);
+clr-sig: Vector128<ulong> ShiftLeftLogical128BitLane(Vector128<ulong> value, byte numBytes);
 
 
 docs: __m128i _mm_sra_epi32 (__m128i a, __m128i count) PSRAD xmm, xmm/m128
-public static Vector128<int> ShiftRightArithmetic(Vector128<int> value, Vector128<int> count);
+clr-sig: Vector128<int> ShiftRightArithmetic(Vector128<int> value, Vector128<int> count);
 
 
 docs: __m128i _mm_sra_epi16 (__m128i a, __m128i count) PSRAW xmm, xmm/m128
-public static Vector128<short> ShiftRightArithmetic(Vector128<short> value, Vector128<short> count);
+clr-sig: Vector128<short> ShiftRightArithmetic(Vector128<short> value, Vector128<short> count);
 
 
 docs: __m128i _mm_srai_epi16 (__m128i a, int immediate) PSRAW xmm, imm8
-public static Vector128<short> ShiftRightArithmetic(Vector128<short> value, byte count);
+clr-sig: Vector128<short> ShiftRightArithmetic(Vector128<short> value, byte count);
 
 
 docs: __m128i _mm_srai_epi32 (__m128i a, int immediate) PSRAD xmm, imm8
-public static Vector128<int> ShiftRightArithmetic(Vector128<int> value, byte count);
+clr-sig: Vector128<int> ShiftRightArithmetic(Vector128<int> value, byte count);
 
 
 docs: __m128i _mm_srl_epi16 (__m128i a, __m128i count) PSRLW xmm, xmm/m128
-public static Vector128<short> ShiftRightLogical(Vector128<short> value, Vector128<short> count);
+clr-sig: Vector128<short> ShiftRightLogical(Vector128<short> value, Vector128<short> count);
 
 
 docs: __m128i _mm_srli_epi32 (__m128i a, int immediate) PSRLD xmm, imm8
-public static Vector128<int> ShiftRightLogical(Vector128<int> value, byte count);
+clr-sig: Vector128<int> ShiftRightLogical(Vector128<int> value, byte count);
 
 
 docs: __m128i _mm_srl_epi32 (__m128i a, __m128i count) PSRLD xmm, xmm/m128
-public static Vector128<int> ShiftRightLogical(Vector128<int> value, Vector128<int> count);
+clr-sig: Vector128<int> ShiftRightLogical(Vector128<int> value, Vector128<int> count);
 
 
 docs: __m128i _mm_srli_epi64 (__m128i a, int immediate) PSRLQ xmm, imm8
-public static Vector128<long> ShiftRightLogical(Vector128<long> value, byte count);
+clr-sig: Vector128<long> ShiftRightLogical(Vector128<long> value, byte count);
 
 
 docs: __m128i _mm_srl_epi64 (__m128i a, __m128i count) PSRLQ xmm, xmm/m128
-public static Vector128<long> ShiftRightLogical(Vector128<long> value, Vector128<long> count);
+clr-sig: Vector128<long> ShiftRightLogical(Vector128<long> value, Vector128<long> count);
 
 
 docs: __m128i _mm_srli_epi16 (__m128i a, int immediate) PSRLW xmm, imm8
-public static Vector128<ushort> ShiftRightLogical(Vector128<ushort> value, byte count);
+clr-sig: Vector128<ushort> ShiftRightLogical(Vector128<ushort> value, byte count);
 
 
 docs: __m128i _mm_srli_epi32 (__m128i a, int immediate) PSRLD xmm, imm8
-public static Vector128<uint> ShiftRightLogical(Vector128<uint> value, byte count);
+clr-sig: Vector128<uint> ShiftRightLogical(Vector128<uint> value, byte count);
 
 
 docs: __m128i _mm_srl_epi32 (__m128i a, __m128i count) PSRLD xmm, xmm/m128
-public static Vector128<uint> ShiftRightLogical(Vector128<uint> value, Vector128<uint> count);
+clr-sig: Vector128<uint> ShiftRightLogical(Vector128<uint> value, Vector128<uint> count);
 
 
 docs: __m128i _mm_srli_epi64 (__m128i a, int immediate) PSRLQ xmm, imm8
-public static Vector128<ulong> ShiftRightLogical(Vector128<ulong> value, byte count);
+clr-sig: Vector128<ulong> ShiftRightLogical(Vector128<ulong> value, byte count);
 
 
 docs: __m128i _mm_srl_epi64 (__m128i a, __m128i count) PSRLQ xmm, xmm/m128
-public static Vector128<ulong> ShiftRightLogical(Vector128<ulong> value, Vector128<ulong> count);
+clr-sig: Vector128<ulong> ShiftRightLogical(Vector128<ulong> value, Vector128<ulong> count);
 
 
 docs: __m128i _mm_srli_epi16 (__m128i a, int immediate) PSRLW xmm, imm8
-public static Vector128<short> ShiftRightLogical(Vector128<short> value, byte count);
+clr-sig: Vector128<short> ShiftRightLogical(Vector128<short> value, byte count);
 
 
 docs: __m128i _mm_srl_epi16 (__m128i a, __m128i count) PSRLW xmm, xmm/m128
-public static Vector128<ushort> ShiftRightLogical(Vector128<ushort> value, Vector128<ushort> count);
+clr-sig: Vector128<ushort> ShiftRightLogical(Vector128<ushort> value, Vector128<ushort> count);
 
 
 docs: __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
-public static Vector128<ushort> ShiftRightLogical128BitLane(Vector128<ushort> value, byte numBytes);
+clr-sig: Vector128<ushort> ShiftRightLogical128BitLane(Vector128<ushort> value, byte numBytes);
 
 
 docs: __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
-public static Vector128<ulong> ShiftRightLogical128BitLane(Vector128<ulong> value, byte numBytes);
+clr-sig: Vector128<ulong> ShiftRightLogical128BitLane(Vector128<ulong> value, byte numBytes);
 
 
 docs: __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
-public static Vector128<uint> ShiftRightLogical128BitLane(Vector128<uint> value, byte numBytes);
+clr-sig: Vector128<uint> ShiftRightLogical128BitLane(Vector128<uint> value, byte numBytes);
 
 
 docs: __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
-public static Vector128<sbyte> ShiftRightLogical128BitLane(Vector128<sbyte> value, byte numBytes);
+clr-sig: Vector128<sbyte> ShiftRightLogical128BitLane(Vector128<sbyte> value, byte numBytes);
 
 
 docs: __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
-public static Vector128<int> ShiftRightLogical128BitLane(Vector128<int> value, byte numBytes);
+clr-sig: Vector128<int> ShiftRightLogical128BitLane(Vector128<int> value, byte numBytes);
 
 
 docs: __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
-public static Vector128<short> ShiftRightLogical128BitLane(Vector128<short> value, byte numBytes);
+clr-sig: Vector128<short> ShiftRightLogical128BitLane(Vector128<short> value, byte numBytes);
 
 
 docs: __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
-public static Vector128<byte> ShiftRightLogical128BitLane(Vector128<byte> value, byte numBytes);
+clr-sig: Vector128<byte> ShiftRightLogical128BitLane(Vector128<byte> value, byte numBytes);
 
 
 docs: __m128i _mm_bsrli_si128 (__m128i a, int imm8) PSRLDQ xmm, imm8
-public static Vector128<long> ShiftRightLogical128BitLane(Vector128<long> value, byte numBytes);
+clr-sig: Vector128<long> ShiftRightLogical128BitLane(Vector128<long> value, byte numBytes);
 
 
 docs: __m128d _mm_shuffle_pd (__m128d a, __m128d b, int immediate) SHUFPD xmm, xmm/m128,
 docs: imm8
-public static Vector128<double> Shuffle(Vector128<double> left, Vector128<double> right, byte control);
+clr-sig: Vector128<double> Shuffle(Vector128<double> left, Vector128<double> right, byte control);
 
 
 docs: __m128i _mm_shuffle_epi32 (__m128i a, int immediate) PSHUFD xmm, xmm/m128, imm8
-public static Vector128<int> Shuffle(Vector128<int> value, byte control);
+clr-sig: Vector128<int> Shuffle(Vector128<int> value, byte control);
 
 
 docs: __m128i _mm_shuffle_epi32 (__m128i a, int immediate) PSHUFD xmm, xmm/m128, imm8
-public static Vector128<uint> Shuffle(Vector128<uint> value, byte control);
+clr-sig: Vector128<uint> Shuffle(Vector128<uint> value, byte control);
 
 
 docs: __m128i _mm_shufflehi_epi16 (__m128i a, int immediate) PSHUFHW xmm, xmm/m128,
 docs: imm8
-public static Vector128<short> ShuffleHigh(Vector128<short> value, byte control);
+clr-sig: Vector128<short> ShuffleHigh(Vector128<short> value, byte control);
 
 
 docs: __m128i _mm_shufflehi_epi16 (__m128i a, int control) PSHUFHW xmm, xmm/m128, imm8
-public static Vector128<ushort> ShuffleHigh(Vector128<ushort> value, byte control);
+clr-sig: Vector128<ushort> ShuffleHigh(Vector128<ushort> value, byte control);
 
 
 docs: __m128i _mm_shufflelo_epi16 (__m128i a, int control) PSHUFLW xmm, xmm/m128, imm8
-public static Vector128<short> ShuffleLow(Vector128<short> value, byte control);
+clr-sig: Vector128<short> ShuffleLow(Vector128<short> value, byte control);
 
 
 docs: __m128i _mm_shufflelo_epi16 (__m128i a, int control) PSHUFLW xmm, xmm/m128, imm8
-public static Vector128<ushort> ShuffleLow(Vector128<ushort> value, byte control);
+clr-sig: Vector128<ushort> ShuffleLow(Vector128<ushort> value, byte control);
 
 
 docs: __m128d _mm_sqrt_pd (__m128d a) SQRTPD xmm, xmm/m128
-public static Vector128<double> Sqrt(Vector128<double> value);
+clr-sig: Vector128<double> Sqrt(Vector128<double> value);
 
 
 docs: __m128d _mm_sqrt_sd (__m128d a) SQRTSD xmm, xmm/64 The above native signature
 docs: does not exist. We provide this additional overload for the recommended use case
 docs: of this intrinsic.
-public static Vector128<double> SqrtScalar(Vector128<double> value);
+clr-sig: Vector128<double> SqrtScalar(Vector128<double> value);
 
 
 docs: __m128d _mm_sqrt_sd (__m128d a, __m128d b) SQRTSD xmm, xmm/64
-public static Vector128<double> SqrtScalar(Vector128<double> upper, Vector128<double> value);
+clr-sig: Vector128<double> SqrtScalar(Vector128<double> upper, Vector128<double> value);
 
 
 docs: void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm
-public static void Store(ulong* address, Vector128<ulong> source);
+clr-sig: void Store(ulong* address, Vector128<ulong> source);
 
 
 docs: void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm
-public static void Store(uint* address, Vector128<uint> source);
+clr-sig: void Store(uint* address, Vector128<uint> source);
 
 
 docs: void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm
-public static void Store(ushort* address, Vector128<ushort> source);
+clr-sig: void Store(ushort* address, Vector128<ushort> source);
 
 
 docs: void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm
-public static void Store(sbyte* address, Vector128<sbyte> source);
+clr-sig: void Store(sbyte* address, Vector128<sbyte> source);
 
 
 docs: void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm
-public static void Store(int* address, Vector128<int> source);
+clr-sig: void Store(int* address, Vector128<int> source);
 
 
 docs: void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm
-public static void Store(short* address, Vector128<short> source);
+clr-sig: void Store(short* address, Vector128<short> source);
 
 
 docs: void _mm_storeu_pd (double* mem_addr, __m128d a) MOVUPD m128, xmm
-public static void Store(double* address, Vector128<double> source);
+clr-sig: void Store(double* address, Vector128<double> source);
 
 
 docs: void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm
-public static void Store(byte* address, Vector128<byte> source);
+clr-sig: void Store(byte* address, Vector128<byte> source);
 
 
 docs: void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm
-public static void Store(long* address, Vector128<long> source);
+clr-sig: void Store(long* address, Vector128<long> source);
 
 
 docs: void _mm_store_si128 (__m128i* mem_addr, __m128i a) MOVDQA m128, xmm
-public static void StoreAligned(ulong* address, Vector128<ulong> source);
+clr-sig: void StoreAligned(ulong* address, Vector128<ulong> source);
 
 
 docs: void _mm_store_si128 (__m128i* mem_addr, __m128i a) MOVDQA m128, xmm
-public static void StoreAligned(uint* address, Vector128<uint> source);
+clr-sig: void StoreAligned(uint* address, Vector128<uint> source);
 
 
 docs: void _mm_store_si128 (__m128i* mem_addr, __m128i a) MOVDQA m128, xmm
-public static void StoreAligned(ushort* address, Vector128<ushort> source);
+clr-sig: void StoreAligned(ushort* address, Vector128<ushort> source);
 
 
 docs: void _mm_store_si128 (__m128i* mem_addr, __m128i a) MOVDQA m128, xmm
-public static void StoreAligned(sbyte* address, Vector128<sbyte> source);
+clr-sig: void StoreAligned(sbyte* address, Vector128<sbyte> source);
 
 
 docs: void _mm_store_si128 (__m128i* mem_addr, __m128i a) MOVDQA m128, xmm
-public static void StoreAligned(int* address, Vector128<int> source);
+clr-sig: void StoreAligned(int* address, Vector128<int> source);
 
 
 docs: void _mm_store_si128 (__m128i* mem_addr, __m128i a) MOVDQA m128, xmm
-public static void StoreAligned(short* address, Vector128<short> source);
+clr-sig: void StoreAligned(short* address, Vector128<short> source);
 
 
 docs: void _mm_store_pd (double* mem_addr, __m128d a) MOVAPD m128, xmm
-public static void StoreAligned(double* address, Vector128<double> source);
+clr-sig: void StoreAligned(double* address, Vector128<double> source);
 
 
 docs: void _mm_store_si128 (__m128i* mem_addr, __m128i a) MOVDQA m128, xmm
-public static void StoreAligned(byte* address, Vector128<byte> source);
+clr-sig: void StoreAligned(byte* address, Vector128<byte> source);
 
 
 docs: void _mm_store_si128 (__m128i* mem_addr, __m128i a) MOVDQA m128, xmm
-public static void StoreAligned(long* address, Vector128<long> source);
+clr-sig: void StoreAligned(long* address, Vector128<long> source);
 
 
 docs: void _mm_stream_si128 (__m128i* mem_addr, __m128i a) MOVNTDQ m128, xmm
-public static void StoreAlignedNonTemporal(ushort* address, Vector128<ushort> source);
+clr-sig: void StoreAlignedNonTemporal(ushort* address, Vector128<ushort> source);
 
 
 docs: void _mm_stream_si128 (__m128i* mem_addr, __m128i a) MOVNTDQ m128, xmm
-public static void StoreAlignedNonTemporal(ulong* address, Vector128<ulong> source);
+clr-sig: void StoreAlignedNonTemporal(ulong* address, Vector128<ulong> source);
 
 
 docs: void _mm_stream_si128 (__m128i* mem_addr, __m128i a) MOVNTDQ m128, xmm
-public static void StoreAlignedNonTemporal(uint* address, Vector128<uint> source);
+clr-sig: void StoreAlignedNonTemporal(uint* address, Vector128<uint> source);
 
 
 docs: void _mm_stream_si128 (__m128i* mem_addr, __m128i a) MOVNTDQ m128, xmm
-public static void StoreAlignedNonTemporal(sbyte* address, Vector128<sbyte> source);
+clr-sig: void StoreAlignedNonTemporal(sbyte* address, Vector128<sbyte> source);
 
 
 docs: void _mm_stream_si128 (__m128i* mem_addr, __m128i a) MOVNTDQ m128, xmm
-public static void StoreAlignedNonTemporal(int* address, Vector128<int> source);
+clr-sig: void StoreAlignedNonTemporal(int* address, Vector128<int> source);
 
 
 docs: void _mm_stream_si128 (__m128i* mem_addr, __m128i a) MOVNTDQ m128, xmm
-public static void StoreAlignedNonTemporal(short* address, Vector128<short> source);
+clr-sig: void StoreAlignedNonTemporal(short* address, Vector128<short> source);
 
 
 docs: void _mm_stream_pd (double* mem_addr, __m128d a) MOVNTPD m128, xmm
-public static void StoreAlignedNonTemporal(double* address, Vector128<double> source);
+clr-sig: void StoreAlignedNonTemporal(double* address, Vector128<double> source);
 
 
 docs: void _mm_stream_si128 (__m128i* mem_addr, __m128i a) MOVNTDQ m128, xmm
-public static void StoreAlignedNonTemporal(byte* address, Vector128<byte> source);
+clr-sig: void StoreAlignedNonTemporal(byte* address, Vector128<byte> source);
 
 
 docs: void _mm_stream_si128 (__m128i* mem_addr, __m128i a) MOVNTDQ m128, xmm
-public static void StoreAlignedNonTemporal(long* address, Vector128<long> source);
+clr-sig: void StoreAlignedNonTemporal(long* address, Vector128<long> source);
 
 
 docs: void _mm_storeh_pd (double* mem_addr, __m128d a) MOVHPD m64, xmm
-public static void StoreHigh(double* address, Vector128<double> source);
+clr-sig: void StoreHigh(double* address, Vector128<double> source);
 
 
 docs: void _mm_storel_pd (double* mem_addr, __m128d a) MOVLPD m64, xmm
-public static void StoreLow(double* address, Vector128<double> source);
+clr-sig: void StoreLow(double* address, Vector128<double> source);
 
 
 docs: void _mm_storel_epi64 (__m128i* mem_addr, __m128i a) MOVQ m64, xmm
-public static void StoreLow(long* address, Vector128<long> source);
+clr-sig: void StoreLow(long* address, Vector128<long> source);
 
 
 docs: void _mm_storel_epi64 (__m128i* mem_addr, __m128i a) MOVQ m64, xmm
-public static void StoreLow(ulong* address, Vector128<ulong> source);
+clr-sig: void StoreLow(ulong* address, Vector128<ulong> source);
 
 
 docs: void _mm_stream_si32(int *p, int a) MOVNTI m32, r32
-public static void StoreNonTemporal(int* address, int value);
+clr-sig: void StoreNonTemporal(int* address, int value);
 
 
 docs: void _mm_stream_si32(int *p, int a) MOVNTI m32, r32
-public static void StoreNonTemporal(uint* address, uint value);
+clr-sig: void StoreNonTemporal(uint* address, uint value);
 
 
 docs: void _mm_store_sd (double* mem_addr, __m128d a) MOVSD m64, xmm
-public static void StoreScalar(double* address, Vector128<double> source);
+clr-sig: void StoreScalar(double* address, Vector128<double> source);
 
 
 docs: __m128i _mm_sub_epi16 (__m128i a, __m128i b) PSUBW xmm, xmm/m128
-public static Vector128<ushort> Subtract(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> Subtract(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128i _mm_sub_epi64 (__m128i a, __m128i b) PSUBQ xmm, xmm/m128
-public static Vector128<ulong> Subtract(Vector128<ulong> left, Vector128<ulong> right);
+clr-sig: Vector128<ulong> Subtract(Vector128<ulong> left, Vector128<ulong> right);
 
 
 docs: __m128i _mm_sub_epi8 (__m128i a, __m128i b) PSUBB xmm, xmm/m128
-public static Vector128<sbyte> Subtract(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> Subtract(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: __m128i _mm_sub_epi32 (__m128i a, __m128i b) PSUBD xmm, xmm/m128
-public static Vector128<uint> Subtract(Vector128<uint> left, Vector128<uint> right);
+clr-sig: Vector128<uint> Subtract(Vector128<uint> left, Vector128<uint> right);
 
 
 docs: __m128i _mm_sub_epi32 (__m128i a, __m128i b) PSUBD xmm, xmm/m128
-public static Vector128<int> Subtract(Vector128<int> left, Vector128<int> right);
+clr-sig: Vector128<int> Subtract(Vector128<int> left, Vector128<int> right);
 
 
 docs: __m128i _mm_sub_epi16 (__m128i a, __m128i b) PSUBW xmm, xmm/m128
-public static Vector128<short> Subtract(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> Subtract(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128d _mm_sub_pd (__m128d a, __m128d b) SUBPD xmm, xmm/m128
-public static Vector128<double> Subtract(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> Subtract(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_sub_epi8 (__m128i a, __m128i b) PSUBB xmm, xmm/m128
-public static Vector128<byte> Subtract(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> Subtract(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128i _mm_sub_epi64 (__m128i a, __m128i b) PSUBQ xmm, xmm/m128
-public static Vector128<long> Subtract(Vector128<long> left, Vector128<long> right);
+clr-sig: Vector128<long> Subtract(Vector128<long> left, Vector128<long> right);
 
 
 docs: __m128i _mm_subs_epu8 (__m128i a, __m128i b) PSUBUSB xmm, xmm/m128
-public static Vector128<byte> SubtractSaturate(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> SubtractSaturate(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128i _mm_subs_epi16 (__m128i a, __m128i b) PSUBSW xmm, xmm/m128
-public static Vector128<short> SubtractSaturate(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> SubtractSaturate(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128i _mm_subs_epi8 (__m128i a, __m128i b) PSUBSB xmm, xmm/m128
-public static Vector128<sbyte> SubtractSaturate(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> SubtractSaturate(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: __m128i _mm_subs_epu16 (__m128i a, __m128i b) PSUBUSW xmm, xmm/m128
-public static Vector128<ushort> SubtractSaturate(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> SubtractSaturate(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128d _mm_sub_sd (__m128d a, __m128d b) SUBSD xmm, xmm/m64
-public static Vector128<double> SubtractScalar(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> SubtractScalar(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_sad_epu8 (__m128i a, __m128i b) PSADBW xmm, xmm/m128
-public static Vector128<ushort> SumAbsoluteDifferences(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<ushort> SumAbsoluteDifferences(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128i _mm_unpackhi_epi64 (__m128i a, __m128i b) PUNPCKHQDQ xmm, xmm/m128
-public static Vector128<ulong> UnpackHigh(Vector128<ulong> left, Vector128<ulong> right);
+clr-sig: Vector128<ulong> UnpackHigh(Vector128<ulong> left, Vector128<ulong> right);
 
 
 docs: __m128i _mm_unpackhi_epi32 (__m128i a, __m128i b) PUNPCKHDQ xmm, xmm/m128
-public static Vector128<uint> UnpackHigh(Vector128<uint> left, Vector128<uint> right);
+clr-sig: Vector128<uint> UnpackHigh(Vector128<uint> left, Vector128<uint> right);
 
 
 docs: __m128i _mm_unpackhi_epi16 (__m128i a, __m128i b) PUNPCKHWD xmm, xmm/m128
-public static Vector128<ushort> UnpackHigh(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> UnpackHigh(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128i _mm_unpackhi_epi8 (__m128i a, __m128i b) PUNPCKHBW xmm, xmm/m128
-public static Vector128<sbyte> UnpackHigh(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> UnpackHigh(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: __m128d _mm_unpackhi_pd (__m128d a, __m128d b) UNPCKHPD xmm, xmm/m128
-public static Vector128<double> UnpackHigh(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> UnpackHigh(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_unpackhi_epi32 (__m128i a, __m128i b) PUNPCKHDQ xmm, xmm/m128
-public static Vector128<int> UnpackHigh(Vector128<int> left, Vector128<int> right);
+clr-sig: Vector128<int> UnpackHigh(Vector128<int> left, Vector128<int> right);
 
 
 docs: __m128i _mm_unpackhi_epi16 (__m128i a, __m128i b) PUNPCKHWD xmm, xmm/m128
-public static Vector128<short> UnpackHigh(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> UnpackHigh(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128i _mm_unpackhi_epi8 (__m128i a, __m128i b) PUNPCKHBW xmm, xmm/m128
-public static Vector128<byte> UnpackHigh(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> UnpackHigh(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128i _mm_unpackhi_epi64 (__m128i a, __m128i b) PUNPCKHQDQ xmm, xmm/m128
-public static Vector128<long> UnpackHigh(Vector128<long> left, Vector128<long> right);
+clr-sig: Vector128<long> UnpackHigh(Vector128<long> left, Vector128<long> right);
 
 
 docs: __m128i _mm_unpacklo_epi16 (__m128i a, __m128i b) PUNPCKLWD xmm, xmm/m128
-public static Vector128<ushort> UnpackLow(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> UnpackLow(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128i _mm_unpacklo_epi64 (__m128i a, __m128i b) PUNPCKLQDQ xmm, xmm/m128
-public static Vector128<ulong> UnpackLow(Vector128<ulong> left, Vector128<ulong> right);
+clr-sig: Vector128<ulong> UnpackLow(Vector128<ulong> left, Vector128<ulong> right);
 
 
 docs: __m128i _mm_unpacklo_epi32 (__m128i a, __m128i b) PUNPCKLDQ xmm, xmm/m128
-public static Vector128<uint> UnpackLow(Vector128<uint> left, Vector128<uint> right);
+clr-sig: Vector128<uint> UnpackLow(Vector128<uint> left, Vector128<uint> right);
 
 
 docs: __m128i _mm_unpacklo_epi8 (__m128i a, __m128i b) PUNPCKLBW xmm, xmm/m128
-public static Vector128<sbyte> UnpackLow(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> UnpackLow(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: __m128i _mm_unpacklo_epi8 (__m128i a, __m128i b) PUNPCKLBW xmm, xmm/m128
-public static Vector128<byte> UnpackLow(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> UnpackLow(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128i _mm_unpacklo_epi32 (__m128i a, __m128i b) PUNPCKLDQ xmm, xmm/m128
-public static Vector128<int> UnpackLow(Vector128<int> left, Vector128<int> right);
+clr-sig: Vector128<int> UnpackLow(Vector128<int> left, Vector128<int> right);
 
 
 docs: __m128i _mm_unpacklo_epi16 (__m128i a, __m128i b) PUNPCKLWD xmm, xmm/m128
-public static Vector128<short> UnpackLow(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> UnpackLow(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128d _mm_unpacklo_pd (__m128d a, __m128d b) UNPCKLPD xmm, xmm/m128
-public static Vector128<double> UnpackLow(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> UnpackLow(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_unpacklo_epi64 (__m128i a, __m128i b) PUNPCKLQDQ xmm, xmm/m128
-public static Vector128<long> UnpackLow(Vector128<long> left, Vector128<long> right);
+clr-sig: Vector128<long> UnpackLow(Vector128<long> left, Vector128<long> right);
 
 
 docs: __m128i _mm_xor_si128 (__m128i a, __m128i b) PXOR xmm, xmm/m128
-public static Vector128<byte> Xor(Vector128<byte> left, Vector128<byte> right);
+clr-sig: Vector128<byte> Xor(Vector128<byte> left, Vector128<byte> right);
 
 
 docs: __m128d _mm_xor_pd (__m128d a, __m128d b) XORPD xmm, xmm/m128
-public static Vector128<double> Xor(Vector128<double> left, Vector128<double> right);
+clr-sig: Vector128<double> Xor(Vector128<double> left, Vector128<double> right);
 
 
 docs: __m128i _mm_xor_si128 (__m128i a, __m128i b) PXOR xmm, xmm/m128
-public static Vector128<short> Xor(Vector128<short> left, Vector128<short> right);
+clr-sig: Vector128<short> Xor(Vector128<short> left, Vector128<short> right);
 
 
 docs: __m128i _mm_xor_si128 (__m128i a, __m128i b) PXOR xmm, xmm/m128
-public static Vector128<int> Xor(Vector128<int> left, Vector128<int> right);
+clr-sig: Vector128<int> Xor(Vector128<int> left, Vector128<int> right);
 
 
 docs: __m128i _mm_xor_si128 (__m128i a, __m128i b) PXOR xmm, xmm/m128
-public static Vector128<long> Xor(Vector128<long> left, Vector128<long> right);
+clr-sig: Vector128<long> Xor(Vector128<long> left, Vector128<long> right);
 
 
 docs: __m128i _mm_xor_si128 (__m128i a, __m128i b) PXOR xmm, xmm/m128
-public static Vector128<sbyte> Xor(Vector128<sbyte> left, Vector128<sbyte> right);
+clr-sig: Vector128<sbyte> Xor(Vector128<sbyte> left, Vector128<sbyte> right);
 
 
 docs: __m128i _mm_xor_si128 (__m128i a, __m128i b) PXOR xmm, xmm/m128
-public static Vector128<ushort> Xor(Vector128<ushort> left, Vector128<ushort> right);
+clr-sig: Vector128<ushort> Xor(Vector128<ushort> left, Vector128<ushort> right);
 
 
 docs: __m128i _mm_xor_si128 (__m128i a, __m128i b) PXOR xmm, xmm/m128
-public static Vector128<uint> Xor(Vector128<uint> left, Vector128<uint> right);
+clr-sig: Vector128<uint> Xor(Vector128<uint> left, Vector128<uint> right);
 
 
 docs: __m128i _mm_xor_si128 (__m128i a, __m128i b) PXOR xmm, xmm/m128
-public static Vector128<ulong> Xor(Vector128<ulong> left, Vector128<ulong> right);
+clr-sig: Vector128<ulong> Xor(Vector128<ulong> left, Vector128<ulong> right);
 
 public abstract class X64 : Sse.X64
 {
-public static bool IsSupported { get; }
+clr-sig: bool IsSupported { get; }
 
 
 
 docs: __m128d _mm_cvtsi64_sd (__m128d a, __int64 b) CVTSI2SD xmm, reg/m64 This intrinisc
 docs: is only available on 64-bit processes
-public static Vector128<double> ConvertScalarToVector128Double(Vector128<double> upper, long value);
+clr-sig: Vector128<double> ConvertScalarToVector128Double(Vector128<double> upper, long value);
 
 
 docs: __m128i _mm_cvtsi64_si128 (__int64 a) MOVQ xmm, reg/m64 This intrinisc is only
 docs: available on 64-bit processes
-public static Vector128<long> ConvertScalarToVector128Int64(long value);
+clr-sig: Vector128<long> ConvertScalarToVector128Int64(long value);
 
 
 docs: __m128i _mm_cvtsi64_si128 (__int64 a) MOVQ xmm, reg/m64 This intrinisc is only
 docs: available on 64-bit processes
-public static Vector128<ulong> ConvertScalarToVector128UInt64(ulong value);
+clr-sig: Vector128<ulong> ConvertScalarToVector128UInt64(ulong value);
 
 
 docs: __int64 _mm_cvtsd_si64 (__m128d a) CVTSD2SI r64, xmm/m64 This intrinisc is only
 docs: available on 64-bit processes
-public static long ConvertToInt64(Vector128<double> value);
+clr-sig: long ConvertToInt64(Vector128<double> value);
 
 
 docs: __int64 _mm_cvtsi128_si64 (__m128i a) MOVQ reg/m64, xmm This intrinisc is only
 docs: available on 64-bit processes
-public static long ConvertToInt64(Vector128<long> value);
+clr-sig: long ConvertToInt64(Vector128<long> value);
 
 
 docs: __int64 _mm_cvttsd_si64 (__m128d a) CVTTSD2SI reg, xmm/m64 This intrinisc is
 docs: only available on 64-bit processes
-public static long ConvertToInt64WithTruncation(Vector128<double> value);
+clr-sig: long ConvertToInt64WithTruncation(Vector128<double> value);
 
 
 docs: __int64 _mm_cvtsi128_si64 (__m128i a) MOVQ reg/m64, xmm This intrinisc is only
 docs: available on 64-bit processes
-public static ulong ConvertToUInt64(Vector128<ulong> value);
+clr-sig: ulong ConvertToUInt64(Vector128<ulong> value);
 
 
 docs: void _mm_stream_si64(__int64 *p, __int64 a) MOVNTI m64, r64 This intrinisc is
 docs: only available on 64-bit processes
-public static void StoreNonTemporal(long* address, long value);
+clr-sig: void StoreNonTemporal(long* address, long value);
 
 
 docs: void _mm_stream_si64(__int64 *p, __int64 a) MOVNTI m64, r64 This intrinisc is
 docs: only available on 64-bit processes
-public static void StoreNonTemporal(ulong* address, ulong value);
+clr-sig: void StoreNonTemporal(ulong* address, ulong value);
 
 
-Sse3
+Sse3 -> Sse2 -> Sse
 -------------------------------------------------------------------------------
 
 docs: __m128d _mm_addsub_pd (__m128d a, __m128d b) ADDSUBPD xmm, xmm/m128
@@ -1675,8 +1675,7 @@ clr-sig: Vector128<float> MoveHighAndDuplicate(Vector128<float> source);
 docs: __m128 _mm_moveldup_ps (__m128 a) MOVSLDUP xmm, xmm/m128
 clr-sig: Vector128<float> MoveLowAndDuplicate(Vector128<float> source);
 
-
-Ssse3
+Ssse3 -> Sse3 -> Sse2 -> Sse
 -------------------------------------------------------------------------------
 
 docs: __m128i _mm_abs_epi8 (__m128i a) PABSB xmm, xmm/m128
@@ -1789,7 +1788,7 @@ clr-sig: Vector128<int> Sign(Vector128<int> left, Vector128<int> right);
 docs: __m128i _mm_sign_epi8 (__m128i a, __m128i b) PSIGNB xmm, xmm/m128
 clr-sig: Vector128<sbyte> Sign(Vector128<sbyte> left, Vector128<sbyte> right);
 
-Sse41
+Sse41 -> Ssse3 -> Sse3 -> Sse2 -> Sse
 -------------------------------------------------------------------------------
 
 docs: __m128i _mm_blend_epi16 (__m128i a, __m128i b, const int imm8) PBLENDW xmm, xmm/m128
@@ -2358,7 +2357,7 @@ docs:     __m128i _mm_insert_epi64 (__m128i a, __int64 i, const int imm8) PINSRQ
 docs:     imm8 This intrinisc is only available on 64-bit processes
     clr-sig: Vector128<ulong> Insert(Vector128<ulong> value, ulong data, byte index);
 
-Sse42
+Sse42 -> Sse41 -> Ssse3 -> Sse3 -> Sse2 -> Sse
 -------------------------------------------------------------------------------
 docs: __m128i _mm_cmpgt_epi64 (__m128i a, __m128i b) PCMPGTQ xmm, xmm/m128
 clr sig: Vector128<long> CompareGreaterThan(Vector128<long> left, Vector128<long> right);
@@ -2379,7 +2378,7 @@ docs: unsigned __int64 _mm_crc32_u64 (unsigned __int64 crc, unsigned __int64 v) 
 docs: reg, reg/m64 This intrinisc is only available on 64-bit processes
 clr sig: ulong Crc32(ulong crc, ulong data);
 
-Avx
+Avx -> Sse42 -> Sse41 -> Ssse3 -> Sse3 -> Sse2 -> Sse
 -------------------------------------------------------------------------------
 docs: __m256d _mm256_add_pd (__m256d a, __m256d b) VADDPD ymm, ymm, ymm/m256
 clr-sig: Vector256<double> Add(Vector256<double> left, Vector256<double> right);
@@ -3317,7 +3316,148 @@ clr-sig: Vector256<double> Xor(Vector256<double> left, Vector256<double> right);
 docs: __m256 _mm256_xor_ps (__m256 a, __m256 b) VXORPS ymm, ymm, ymm/m256
 clr-sig: Vector256<float> Xor(Vector256<float> left, Vector256<float> right);
 
-Avx2
+Fma -> Avx -> Sse42 -> Sse41 -> Ssse3 -> Sse3 -> Sse2 -> Sse
+-------------------------------------------------------------------------------
+
+docs: __m256 _mm256_fmadd_ps (__m256 a, __m256 b, __m256 c) VFMADDPS ymm, ymm, ymm/m256
+clr-sig: Vector256<float> MultiplyAdd(Vector256<float> a, Vector256<float> b, Vector256<float> c);
+
+
+docs: __m128d _mm_fmadd_pd (__m128d a, __m128d b, __m128d c) VFMADDPD xmm, xmm, xmm/m128
+clr-sig: Vector128<double> MultiplyAdd(Vector128<double> a, Vector128<double> b, Vector128<double> c);
+
+
+docs: __m128 _mm_fmadd_ps (__m128 a, __m128 b, __m128 c) VFMADDPS xmm, xmm, xmm/m128
+clr-sig: Vector128<float> MultiplyAdd(Vector128<float> a, Vector128<float> b, Vector128<float> c);
+
+
+docs: __m256d _mm256_fmadd_pd (__m256d a, __m256d b, __m256d c) VFMADDPS ymm, ymm,
+docs: ymm/m256
+clr-sig: Vector256<double> MultiplyAdd(Vector256<double> a, Vector256<double> b, Vector256<double> c);
+
+
+docs: __m128d _mm_fnmadd_pd (__m128d a, __m128d b, __m128d c) VFNMADDPD xmm, xmm, xmm/m128
+clr-sig: Vector128<double> MultiplyAddNegated(Vector128<double> a, Vector128<double> b, Vector128<double> c);
+
+
+docs: __m128 _mm_fnmadd_ps (__m128 a, __m128 b, __m128 c) VFNMADDPS xmm, xmm, xmm/m128
+clr-sig: Vector128<float> MultiplyAddNegated(Vector128<float> a, Vector128<float> b, Vector128<float> c);
+
+
+docs: __m256d _mm256_fnmadd_pd (__m256d a, __m256d b, __m256d c) VFNMADDPD ymm, ymm,
+docs: ymm/m256
+clr-sig: Vector256<double> MultiplyAddNegated(Vector256<double> a, Vector256<double> b, Vector256<double> c);
+
+
+docs: __m256 _mm256_fnmadd_ps (__m256 a, __m256 b, __m256 c) VFNMADDPS ymm, ymm, ymm/m256
+clr-sig: Vector256<float> MultiplyAddNegated(Vector256<float> a, Vector256<float> b, Vector256<float> c);
+
+
+docs: __m128d _mm_fnmadd_sd (__m128d a, __m128d b, __m128d c) VFNMADDSD xmm, xmm, xmm/m64
+clr-sig: Vector128<double> MultiplyAddNegatedScalar(Vector128<double> a, Vector128<double> b, Vector128<double> c);
+
+
+docs: __m128 _mm_fnmadd_ss (__m128 a, __m128 b, __m128 c) VFNMADDSS xmm, xmm, xmm/m32
+clr-sig: Vector128<float> MultiplyAddNegatedScalar(Vector128<float> a, Vector128<float> b, Vector128<float> c);
+
+
+docs: __m128d _mm_fmadd_sd (__m128d a, __m128d b, __m128d c) VFMADDSS xmm, xmm, xmm/m64
+clr-sig: Vector128<double> MultiplyAddScalar(Vector128<double> a, Vector128<double> b, Vector128<double> c);
+
+
+docs: __m128 _mm_fmadd_ss (__m128 a, __m128 b, __m128 c) VFMADDSS xmm, xmm, xmm/m32
+clr-sig: Vector128<float> MultiplyAddScalar(Vector128<float> a, Vector128<float> b, Vector128<float> c);
+
+
+docs: __m128d _mm_fmaddsub_pd (__m128d a, __m128d b, __m128d c) VFMADDSUBPD xmm, xmm,
+docs: xmm/m128
+clr-sig: Vector128<double> MultiplyAddSubtract(Vector128<double> a, Vector128<double> b, Vector128<double> c);
+
+
+docs: __m128 _mm_fmaddsub_ps (__m128 a, __m128 b, __m128 c) VFMADDSUBPS xmm, xmm, xmm/m128
+clr-sig: Vector128<float> MultiplyAddSubtract(Vector128<float> a, Vector128<float> b, Vector128<float> c);
+
+
+docs: __m256d _mm256_fmaddsub_pd (__m256d a, __m256d b, __m256d c) VFMADDSUBPD ymm,
+docs: ymm, ymm/m256
+clr-sig: Vector256<double> MultiplyAddSubtract(Vector256<double> a, Vector256<double> b, Vector256<double> c);
+
+
+docs: __m256 _mm256_fmaddsub_ps (__m256 a, __m256 b, __m256 c) VFMADDSUBPS ymm, ymm,
+docs: ymm/m256
+clr-sig: Vector256<float> MultiplyAddSubtract(Vector256<float> a, Vector256<float> b, Vector256<float> c);
+
+
+docs: __m256 _mm256_fmsub_ps (__m256 a, __m256 b, __m256 c) VFMSUBPS ymm, ymm, ymm/m256
+clr-sig: Vector256<float> MultiplySubtract(Vector256<float> a, Vector256<float> b, Vector256<float> c);
+
+
+docs: __m128 _mm_fmsub_ps (__m128 a, __m128 b, __m128 c) VFMSUBPS xmm, xmm, xmm/m128
+clr-sig: Vector128<float> MultiplySubtract(Vector128<float> a, Vector128<float> b, Vector128<float> c);
+
+
+docs: __m256d _mm256_fmsub_pd (__m256d a, __m256d b, __m256d c) VFMSUBPD ymm, ymm,
+docs: ymm/m256
+clr-sig: Vector256<double> MultiplySubtract(Vector256<double> a, Vector256<double> b, Vector256<double> c);
+
+
+docs: __m128d _mm_fmsub_pd (__m128d a, __m128d b, __m128d c) VFMSUBPS xmm, xmm, xmm/m128
+clr-sig: Vector128<double> MultiplySubtract(Vector128<double> a, Vector128<double> b, Vector128<double> c);
+
+
+docs: __m128d _mm_fmsubadd_pd (__m128d a, __m128d b, __m128d c) VFMSUBADDPD xmm, xmm,
+docs: xmm/m128
+clr-sig: Vector128<double> MultiplySubtractAdd(Vector128<double> a, Vector128<double> b, Vector128<double> c);
+
+
+docs: __m128 _mm_fmsubadd_ps (__m128 a, __m128 b, __m128 c) VFMSUBADDPS xmm, xmm, xmm/m128
+clr-sig: Vector128<float> MultiplySubtractAdd(Vector128<float> a, Vector128<float> b, Vector128<float> c);
+
+
+docs: __m256d _mm256_fmsubadd_pd (__m256d a, __m256d b, __m256d c) VFMSUBADDPD ymm,
+docs: ymm, ymm/m256
+clr-sig: Vector256<double> MultiplySubtractAdd(Vector256<double> a, Vector256<double> b, Vector256<double> c);
+
+
+docs: __m256 _mm256_fmsubadd_ps (__m256 a, __m256 b, __m256 c) VFMSUBADDPS ymm, ymm,
+docs: ymm/m256
+clr-sig: Vector256<float> MultiplySubtractAdd(Vector256<float> a, Vector256<float> b, Vector256<float> c);
+
+
+docs: __m128d _mm_fnmsub_pd (__m128d a, __m128d b, __m128d c) VFNMSUBPD xmm, xmm, xmm/m128
+clr-sig: Vector128<double> MultiplySubtractNegated(Vector128<double> a, Vector128<double> b, Vector128<double> c);
+
+
+docs: __m128 _mm_fnmsub_ps (__m128 a, __m128 b, __m128 c) VFNMSUBPS xmm, xmm, xmm/m128
+clr-sig: Vector128<float> MultiplySubtractNegated(Vector128<float> a, Vector128<float> b, Vector128<float> c);
+
+
+docs: __m256d _mm256_fnmsub_pd (__m256d a, __m256d b, __m256d c) VFNMSUBPD ymm, ymm,
+docs: ymm/m256
+clr-sig: Vector256<double> MultiplySubtractNegated(Vector256<double> a, Vector256<double> b, Vector256<double> c);
+
+
+docs: __m256 _mm256_fnmsub_ps (__m256 a, __m256 b, __m256 c) VFNMSUBPS ymm, ymm, ymm/m256
+clr-sig: Vector256<float> MultiplySubtractNegated(Vector256<float> a, Vector256<float> b, Vector256<float> c);
+
+
+docs: __m128d _mm_fnmsub_sd (__m128d a, __m128d b, __m128d c) VFNMSUBSD xmm, xmm, xmm/m64
+clr-sig: Vector128<double> MultiplySubtractNegatedScalar(Vector128<double> a, Vector128<double> b, Vector128<double> c);
+
+
+docs: __m128 _mm_fnmsub_ss (__m128 a, __m128 b, __m128 c) VFNMSUBSS xmm, xmm, xmm/m32
+clr-sig: Vector128<float> MultiplySubtractNegatedScalar(Vector128<float> a, Vector128<float> b, Vector128<float> c);
+
+
+docs: __m128 _mm_fmsub_ss (__m128 a, __m128 b, __m128 c) VFMSUBSS xmm, xmm, xmm/m32
+clr-sig: Vector128<float> MultiplySubtractScalar(Vector128<float> a, Vector128<float> b, Vector128<float> c);
+
+
+docs: __m128d _mm_fmsub_sd (__m128d a, __m128d b, __m128d c) VFMSUBSD xmm, xmm, xmm/m64
+clr-sig: Vector128<double> MultiplySubtractScalar(Vector128<double> a, Vector128<double> b, Vector128<double> c);
+
+
+Avx2 -> Avx -> Sse42 -> Sse41 -> Ssse3 -> Sse3 -> Sse2 -> Sse
 -------------------------------------------------------------------------------
 
 docs: __m256i _mm256_abs_epi8 (__m256i a) VPABSB ymm, ymm/m256
@@ -4852,16 +4992,13 @@ clr-sig: Vector256<uint> ShiftRightLogicalVariable(Vector256<uint> value, Vector
     
 docs: __m256i _mm256_srlv_epi64 (__m256i a, __m256i count) VPSRLVQ ymm, ymm, ymm/m256
 clr-sig: Vector256<ulong> ShiftRightLogicalVariable(Vector256<ulong> value, Vector256<ulong> count);
-
     
 docs: __m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256
 clr-sig: Vector256<sbyte> Shuffle(Vector256<sbyte> value, Vector256<sbyte> mask);
-
     
 docs: __m256i _mm256_shuffle_epi32 (__m256i a, const int imm8) VPSHUFD ymm, ymm/m256,
 docs: imm8
 clr-sig: Vector256<uint> Shuffle(Vector256<uint> value, byte control);
-
     
 docs: __m256i _mm256_shuffle_epi8 (__m256i a, __m256i b) VPSHUFB ymm, ymm, ymm/m256
 clr-sig: Vector256<byte> Shuffle(Vector256<byte> value, Vector256<byte> mask);
@@ -5050,3 +5187,163 @@ clr-sig: Vector256<uint> Xor(Vector256<uint> left, Vector256<uint> right);
     
 docs: __m256i _mm256_xor_si256 (__m256i a, __m256i b) VPXOR ymm, ymm, ymm/m256
 clr-sig: Vector256<byte> Xor(Vector256<byte> left, Vector256<byte> right);
+
+Bmi1
+-------------------------------------------------------------------------------
+
+docs: unsigned int _andn_u32 (unsigned int a, unsigned int b) ANDN r32a, r32b, reg/m32
+clr-sig: uint AndNot(uint left, uint right);
+
+
+docs: unsigned int _bextr_u32 (unsigned int a, unsigned int start, unsigned int len)
+docs: BEXTR r32a, reg/m32, r32b
+clr-sig: uint BitFieldExtract(uint value, byte start, byte length);
+
+
+docs: unsigned int _bextr2_u32 (unsigned int a, unsigned int control) BEXTR r32a, reg/m32,
+docs: r32b
+clr-sig: uint BitFieldExtract(uint value, ushort control);
+
+
+docs: unsigned int _blsi_u32 (unsigned int a) BLSI reg, reg/m32
+clr-sig: uint ExtractLowestSetBit(uint value);
+
+
+docs: unsigned int _blsmsk_u32 (unsigned int a) BLSMSK reg, reg/m32
+clr-sig: uint GetMaskUpToLowestSetBit(uint value);
+
+
+docs: unsigned int _blsr_u32 (unsigned int a) BLSR reg, reg/m32
+clr-sig: uint ResetLowestSetBit(uint value);
+
+
+docs: int _mm_tzcnt_32 (unsigned int a) TZCNT reg, reg/m32
+clr-sig: uint TrailingZeroCount(uint value);
+
+Bmi1.X64
+-------------------------------------------------------------------------------
+
+docs: unsigned __int64 _andn_u64 (unsigned __int64 a, unsigned __int64 b) ANDN r64a,
+docs: r64b, reg/m64 This intrinisc is only available on 64-bit processes
+clr-sig: ulong AndNot(ulong left, ulong right);
+
+
+docs: unsigned __int64 _bextr_u64 (unsigned __int64 a, unsigned int start, unsigned
+docs: int len) BEXTR r64a, reg/m64, r64b This intrinisc is only available on 64-bit
+docs: processes
+clr-sig: ulong BitFieldExtract(ulong value, byte start, byte length);
+
+
+docs: unsigned __int64 _bextr2_u64 (unsigned __int64 a, unsigned __int64 control) BEXTR
+docs: r64a, reg/m64, r64b This intrinisc is only available on 64-bit processes
+clr-sig: ulong BitFieldExtract(ulong value, ushort control);
+
+
+docs: unsigned __int64 _blsi_u64 (unsigned __int64 a) BLSI reg, reg/m64 This intrinisc
+docs: is only available on 64-bit processes
+clr-sig: ulong ExtractLowestSetBit(ulong value);
+
+
+docs: unsigned __int64 _blsmsk_u64 (unsigned __int64 a) BLSMSK reg, reg/m64 This intrinisc
+docs: is only available on 64-bit processes
+clr-sig: ulong GetMaskUpToLowestSetBit(ulong value);
+
+
+docs: unsigned __int64 _blsr_u64 (unsigned __int64 a) BLSR reg, reg/m64 This intrinisc
+docs: is only available on 64-bit processes
+clr-sig: ulong ResetLowestSetBit(ulong value);
+
+
+docs: __int64 _mm_tzcnt_64 (unsigned __int64 a) TZCNT reg, reg/m64 This intrinisc is
+docs: only available on 64-bit processes
+clr-sig: ulong TrailingZeroCount(ulong value);
+
+
+Bmi2
+-------------------------------------------------------------------------------
+docs: unsigned int _mulx_u32 (unsigned int a, unsigned int b, unsigned int* hi) MULX
+docs: r32a, r32b, reg/m32 The above native signature does not directly correspond to
+docs: the managed signature.
+clr-sig: uint MultiplyNoFlags(uint left, uint right);
+
+
+docs: unsigned int _mulx_u32 (unsigned int a, unsigned int b, unsigned int* hi) MULX
+docs: r32a, r32b, reg/m32 The above native signature does not directly correspond to
+docs: the managed signature.
+clr-sig: uint MultiplyNoFlags(uint left, uint right, uint* low);
+
+
+docs: unsigned int _pdep_u32 (unsigned int a, unsigned int mask) PDEP r32a, r32b, reg/m32
+clr-sig: uint ParallelBitDeposit(uint value, uint mask);
+
+
+docs: unsigned int _pext_u32 (unsigned int a, unsigned int mask) PEXT r32a, r32b, reg/m32
+clr-sig: uint ParallelBitExtract(uint value, uint mask);
+
+
+docs: unsigned int _bzhi_u32 (unsigned int a, unsigned int index) BZHI r32a, reg/m32,
+docs: r32b
+clr-sig: uint ZeroHighBits(uint value, uint index);
+
+Bmi2.X64
+
+docs: unsigned __int64 _mulx_u64 (unsigned __int64 a, unsigned __int64 b, unsigned
+docs: __int64* hi) MULX r64a, r64b, reg/m64 The above native signature does not directly
+docs: correspond to the managed signature. This intrinisc is only available on 64-bit
+docs: processes
+clr-sig: ulong MultiplyNoFlags(ulong left, ulong right);
+
+
+docs: unsigned __int64 _mulx_u64 (unsigned __int64 a, unsigned __int64 b, unsigned
+docs: __int64* hi) MULX r64a, r64b, reg/m64 The above native signature does not directly
+docs: correspond to the managed signature. This intrinisc is only available on 64-bit
+docs: processes
+clr-sig: ulong MultiplyNoFlags(ulong left, ulong right, ulong* low);
+
+
+docs: unsigned __int64 _pdep_u64 (unsigned __int64 a, unsigned __int64 mask) PDEP r64a,
+docs: r64b, reg/m64 This intrinisc is only available on 64-bit processes
+clr-sig: ulong ParallelBitDeposit(ulong value, ulong mask);
+
+
+docs: unsigned __int64 _pext_u64 (unsigned __int64 a, unsigned __int64 mask) PEXT r64a,
+docs: r64b, reg/m64 This intrinisc is only available on 64-bit processes
+clr-sig: ulong ParallelBitExtract(ulong value, ulong mask);
+
+
+docs: unsigned __int64 _bzhi_u64 (unsigned __int64 a, unsigned int index) BZHI r64a,
+docs: reg/m32, r64b This intrinisc is only available on 64-bit processes
+clr-sig: ulong ZeroHighBits(ulong value, ulong index);
+
+
+Aes -> Sse2 
+-------------------------------------------------------------------------------
+docs: __m128i _mm_aesdec_si128 (__m128i a, __m128i RoundKey) AESDEC xmm, xmm/m128
+clr-sig: Vector128<byte> Decrypt(Vector128<byte> value, Vector128<byte> roundKey);
+
+docs: __m128i _mm_aesdeclast_si128 (__m128i a, __m128i RoundKey) AESDECLAST xmm, xmm/m128
+clr-sig: Vector128<byte> DecryptLast(Vector128<byte> value, Vector128<byte> roundKey);
+
+docs: __m128i _mm_aesenc_si128 (__m128i a, __m128i RoundKey) AESENC xmm, xmm/m128
+clr-sig: Vector128<byte> Encrypt(Vector128<byte> value, Vector128<byte> roundKey);
+
+docs: __m128i _mm_aesenclast_si128 (__m128i a, __m128i RoundKey) AESENCLAST xmm, xmm/m128
+clr-sig: Vector128<byte> EncryptLast(Vector128<byte> value, Vector128<byte> roundKey);
+
+docs: __m128i _mm_aesimc_si128 (__m128i a) AESIMC xmm, xmm/m128
+clr-sig: Vector128<byte> InverseMixColumns(Vector128<byte> value);
+
+docs: __m128i _mm_aeskeygenassist_si128 (__m128i a, const int imm8) AESKEYGENASSIST
+docs: xmm, xmm/m128, imm8
+clr-sig: Vector128<byte> KeygenAssist(Vector128<byte> value, byte control);
+
+Pclmulqdq -> Sse2 
+-------------------------------------------------------------------------------
+
+docs: __m128i _mm_clmulepi64_si128 (__m128i a, __m128i b, const int imm8) PCLMULQDQ
+docs: xmm, xmm/m128, imm8
+public static Vector128<ulong> CarrylessMultiply(Vector128<ulong> left, Vector128<ulong> right, byte control);
+
+docs: __m128i _mm_clmulepi64_si128 (__m128i a, __m128i b, const int imm8) PCLMULQDQ
+docs: xmm, xmm/m128, imm8
+clr-sig: Vector128<long> CarrylessMultiply(Vector128<long> left, Vector128<long> right, byte control);

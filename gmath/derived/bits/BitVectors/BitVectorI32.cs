@@ -12,10 +12,8 @@ namespace Z0
     using static mfunc;
 
 
-    public struct BitVectorI32
+    public ref struct BitVectorI32
     {
-
-        public static readonly BitVectorI32 Zero = Define(0);
         
         [MethodImpl(Inline)]
         public static BitVectorI32 Define(int src)
@@ -68,15 +66,28 @@ namespace Z0
             set
             {
                 if(value)
-                    Bits.set(ref data, pos);
+                    Bits.enable(ref data, pos);
                 else
-                     Bits.unset(data,pos);                    
-            }
-            
+                     Bits.disable(data,pos);                    
+            }            
+        }
+
+        public BitVectorI16 Hi
+        {
+            [MethodImpl(Inline)]
+            get => Bits.hi(data);
+        
+        }
+        
+        public BitVectorI16 Lo
+        {
+            [MethodImpl(Inline)]
+            get => Bits.lo(data);
+        
         }
 
         [MethodImpl(Inline)]
-        public bool IsSet(int index)
+        public bool TestBit(int index)
             => Bits.test(data,index);
 
         [MethodImpl(Inline)]
@@ -84,7 +95,11 @@ namespace Z0
             => Bits.bitstring(data);
 
         [MethodImpl(Inline)]
-        public Bit[] BitData()
+        public Span<byte> Bytes()
+            => Bits.bytes(data);
+
+        [MethodImpl(Inline)]
+        public Span<Bit> BitData()
             => Bits.bits(data);
 
         [MethodImpl(Inline)]

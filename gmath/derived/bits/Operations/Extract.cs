@@ -81,7 +81,7 @@ namespace Z0
         public static uint lo(ulong src)
             => (uint)src;
  
-         /// <summary>
+        /// <summary>
         /// Extract bits from a source interger at the corresponding bit 
         /// locations specified by mask to contiguous low bits in dst; the remaining 
         /// upper bits in dst are set to zero.
@@ -92,21 +92,6 @@ namespace Z0
         public static uint extract(uint src, uint mask)        
             => Bmi2.ParallelBitExtract(src,mask);
 
-        [MethodImpl(Inline)]
-        public static uint extract(uint value, int start, int length)
-            => Bmi1.BitFieldExtract(value,(byte)start,(byte)length);
-
-        /// <summary>
-        /// Extracts a run of bits from the source beginning at a specified offset
-        /// </summary>
-        /// <param name="value">The source value</param>
-        /// <param name="offset">The offset value</param>
-        /// <param name="length">The length of the run</param>
-        /// <returns></returns>
-        [MethodImpl(Inline)]
-        public static ulong extract(ulong value, int offset, int length)
-            => Bmi1.X64.BitFieldExtract(value,(byte)offset,(byte)length);
-
         /// <summary>
         /// Extracts mask-identified bits from the source 
         /// </summary>
@@ -115,5 +100,33 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong extract(ulong src, ulong mask)        
             => Bmi2.X64.ParallelBitExtract(src,mask);
+
+        [MethodImpl(Inline)]
+        public static uint extract(uint src, int start, int length)
+            => Bmi1.BitFieldExtract(src, (byte)start, (byte)length);
+
+        /// <summary>
+        /// Extracts a run of bits from the source beginning at a specified offset
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The offset value</param>
+        /// <param name="length">The length of the run</param>
+        /// <returns></returns>
+        [MethodImpl(Inline)]
+        public static ulong extract(ulong src, int offset, int length)
+            => Bmi1.X64.BitFieldExtract(src, (byte)offset, (byte)length);
+
+        /// <summary>
+        /// Sets mask-identified bits in the soruce
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="mask">The extraction mask</param>
+        [MethodImpl(Inline)]
+        public static ulong deposit(ulong src, ulong mask)        
+            => Bmi2.X64.ParallelBitDeposit(src,mask);
+
+        [MethodImpl(Inline)]
+        public static uint deposit(uint src, uint mask)        
+            => Bmi2.ParallelBitDeposit(src,mask); 
     }
 }

@@ -47,7 +47,7 @@ namespace Z0
                  return Bits.test(int64(ref src), pos);
 
             if(kind == PrimalKind.uint64)
-                 return Bits.test(uint64(ref src), pos);
+                 return Bits.test((float)uint64(ref src), pos);
 
             if(kind == PrimalKind.float32)
                  return Bits.test(float32(ref src), pos);

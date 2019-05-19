@@ -53,28 +53,28 @@ namespace Z0
             var dst = Zero;
             
             if(x00 != Zero)
-                dst |= set(dst,0);
+                dst |= enable(dst,0);
             
             if(x01 != Zero)
-                dst |= set(dst,1);
+                dst |= enable(dst,1);
             
             if(x02 != Zero)
-                dst |= set(dst,2);
+                dst |= enable(dst,2);
 
             if(x03 != Zero)
-                dst |= set(dst,3);
+                dst |= enable(dst,3);
 
             if(x04 != Zero)
-                dst |= set(dst,4);
+                dst |= enable(dst,4);
 
             if(x05 != Zero)
-                dst |= set(dst,5);
+                dst |= enable(dst,5);
 
             if(x06 != Zero)
-                dst |= set(dst,6);
+                dst |= enable(dst,6);
 
             if(x07 != Zero)
-                dst |= set(dst,7);
+                dst |= enable(dst,7);
             
             return dst;
         }
@@ -84,28 +84,28 @@ namespace Z0
         {
             var dst = (byte)0;
             if(x00)
-                dst |= set(dst,0);
+                dst |= enable(dst,0);
             
             if(x01)
-                dst |= set(dst,1);
+                dst |= enable(dst,1);
             
             if(x02)
-                dst |= set(dst,2);
+                dst |= enable(dst,2);
 
             if(x03)
-                dst |= set(dst,3);
+                dst |= enable(dst,3);
 
             if(x04)
-                dst |= set(dst,4);
+                dst |= enable(dst,4);
 
             if(x05)
-                dst |= set(dst,5);
+                dst |= enable(dst,5);
 
             if(x06)
-                dst |= set(dst,6);
+                dst |= enable(dst,6);
 
             if(x07)
-                dst |= set(dst,7);
+                dst |= enable(dst,7);
             
             return dst;
         }
@@ -116,25 +116,25 @@ namespace Z0
             var dst = (sbyte)0;
 
             if(x00)
-                dst |= set(dst,0);
+                dst |= enable(dst,0);
             
             if(x01)
-                dst |= set(dst,1);
+                dst |= enable(dst,1);
             
             if(x02)
-                dst |= set(dst,2);
+                dst |= enable(dst,2);
 
             if(x03)
-                dst |= set(dst,3);
+                dst |= enable(dst,3);
 
             if(x04)
-                dst |= set(dst,4);
+                dst |= enable(dst,4);
 
             if(x05)
-                dst |= set(dst,5);
+                dst |= enable(dst,5);
 
             if(x06)
-                dst |= set(dst,6);
+                dst |= enable(dst,6);
 
             
             return sign == Sign.Negative ? dst.Negate() : dst;
@@ -149,54 +149,97 @@ namespace Z0
             var dst = (ushort)0;
 
             if(x00)
-                dst |= set(dst,0);
+                dst |= enable(dst,0);
             
             if(x01)
-                dst |= set(dst,1);
+                dst |= enable(dst,1);
             
             if(x02)
-                dst |= set(dst,2);
+                dst |= enable(dst,2);
 
             if(x03)
-                dst |= set(dst,3);
+                dst |= enable(dst,3);
 
             if(x04)
-                dst |= set(dst,4);
+                dst |= enable(dst,4);
 
             if(x05)
-                dst |= set(dst,5);
+                dst |= enable(dst,5);
 
             if(x06)
-                dst |= set(dst,6);
+                dst |= enable(dst,6);
 
             if(x07)
-                dst |= set(dst,7);
+                dst |= enable(dst,7);
 
             if(x08)
-                dst |= set(dst,8);
+                dst |= enable(dst,8);
             
             if(x09)
-                dst |= set(dst,9);
+                dst |= enable(dst,9);
             
             if(x10)
-                dst |= set(dst,10);
+                dst |= enable(dst,10);
 
             if(x11)
-                dst |= set(dst,11);
+                dst |= enable(dst,11);
 
             if(x12)
-                dst |= set(dst,12);
+                dst |= enable(dst,12);
 
             if(x13)
-                dst |= set(dst,13);
+                dst |= enable(dst,13);
 
             if(x14)
-                dst |= set(dst,14);
+                dst |= enable(dst,14);
 
             if(x15)
-                dst |= set(dst,15);
+                dst |= enable(dst,15);
 
             return dst;
+        }
+
+        public static byte pack8(Span<Bit> src)
+        {
+            var dst = Byte.MinValue; 
+            for(var i = 0; i < math.min(Pow2.T03, src.Length); i++)
+                if(src[i])
+                    dst |= Pow2.PowU8(i);
+            return dst;
+        }
+
+        public static ushort pack16(Span<Bit> src)
+        {
+            var dst = UInt16.MinValue; 
+            for(var i = 0; i < math.min(Pow2.T04, src.Length); i++)
+                if(src[i])
+                    dst |= Pow2.PowU16(i);
+            return dst;
+        }
+
+        public static uint pack32(Span<Bit> src)
+        {
+            var dst = UInt32.MinValue; 
+            for(var i = 0; i < math.min(Pow2.T05, src.Length); i++)
+                if(src[i])
+                    dst |= Pow2.PowU32(i);
+            return dst;
+        }
+
+        public static ulong pack64(Span<Bit> src)
+        {
+            var dst = UInt64.MinValue; 
+            for(var i = 0; i < math.min(Pow2.T06, src.Length); i++)
+                if(src[i])
+                    dst |= Pow2.PowU32(i);
+            return dst;
+        }
+
+        public static U128 pack128(Span<Bit> src)
+        {
+            var x0 = pack64(src);
+            var x1 = src.Length >= 64 ? pack64(src.Slice(64)) : 0ul;
+            return U128.Define(x0,x1);
         }
 
         [MethodImpl(Inline)]
@@ -211,100 +254,100 @@ namespace Z0
             var dst = 0u;
 
             if(x00)
-                dst |= set(dst,0);
+                dst |= enable(dst,0);
             
             if(x01)
-                dst |= set(dst,1);
+                dst |= enable(dst,1);
             
             if(x02)
-                dst |= set(dst,2);
+                dst |= enable(dst,2);
 
             if(x03)
-                dst |= set(dst,3);
+                dst |= enable(dst,3);
 
             if(x04)
-                dst |= set(dst,4);
+                dst |= enable(dst,4);
 
             if(x05)
-                dst |= set(dst,5);
+                dst |= enable(dst,5);
 
             if(x06)
-                dst |= set(dst,6);
+                dst |= enable(dst,6);
 
             if(x07)
-                dst |= set(dst,7);
+                dst |= enable(dst,7);
 
             if(x08)
-                dst |= set(dst,8);
+                dst |= enable(dst,8);
             
             if(x09)
-                dst |= set(dst,9);
+                dst |= enable(dst,9);
             
             if(x10)
-                dst |= set(dst,10);
+                dst |= enable(dst,10);
 
             if(x11)
-                dst |= set(dst,11);
+                dst |= enable(dst,11);
 
             if(x12)
-                dst |= set(dst,12);
+                dst |= enable(dst,12);
 
             if(x13)
-                dst |= set(dst,13);
+                dst |= enable(dst,13);
 
             if(x14)
-                dst |= set(dst,14);
+                dst |= enable(dst,14);
 
             if(x15)
-                dst |= set(dst,15);
+                dst |= enable(dst,15);
 
             if(x16)
-                dst |= set(dst,16);
+                dst |= enable(dst,16);
             
             if(x17)
-                dst |= set(dst,17);
+                dst |= enable(dst,17);
 
             if(x18)
-                dst |= set(dst,18);
+                dst |= enable(dst,18);
 
             if(x19)
-                dst |= set(dst,19);
+                dst |= enable(dst,19);
 
             if(x20)
-                dst |= set(dst,20);
+                dst |= enable(dst,20);
 
             if(x21)
-                dst |= set(dst,21);
+                dst |= enable(dst,21);
 
             if(x22)
-                dst |= set(dst,22);
+                dst |= enable(dst,22);
 
             if(x23)
-                dst |= set(dst,23);
+                dst |= enable(dst,23);
 
             if(x24)
-                dst |= set(dst,24);
+                dst |= enable(dst,24);
 
             if(x25)
-                dst |= set(dst,25);
+                dst |= enable(dst,25);
             
             if(x26)
-                dst |= set(dst,26);
+                dst |= enable(dst,26);
             
             if(x27)
-                dst |= set(dst,27);
+                dst |= enable(dst,27);
 
             if(x28)
-                dst |= set(dst,28);
+                dst |= enable(dst,28);
 
             if(x29)
-                dst |= set(dst,29);
+                dst |= enable(dst,29);
 
             if(x30)
-                dst |= set(dst,30);
+                dst |= enable(dst,30);
 
             if(x31)
-                dst |= set(dst,31);
+                dst |= enable(dst,31);
 
             return dst;
         }

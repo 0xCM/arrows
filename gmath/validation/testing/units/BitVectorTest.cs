@@ -20,7 +20,7 @@ namespace Z0.Test
 
         public void SetBits()
         {
-            var bv = BitVectorU64.Zero;
+            var bv = default(BitVectorU64);
             var it = It.Define(Pow2.MinExponent, Pow2.MaxExponent + 1);
             while(++it)
                 bv[it] = 1;
@@ -32,9 +32,8 @@ namespace Z0.Test
         public void Split()
         {
             var bv = BitVectorU64.Define(UInt64.MaxValue);
-            (var lo, var hi) = bv.Split();
-            Claim.eq(UInt32.MaxValue, lo);
-            Claim.eq(UInt32.MaxValue, hi);
+            Claim.eq(UInt32.MaxValue, bv.Lo);
+            Claim.eq(UInt32.MaxValue, bv.Hi);
         }
     }
 

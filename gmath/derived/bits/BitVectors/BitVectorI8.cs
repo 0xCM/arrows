@@ -10,8 +10,9 @@ namespace Z0
     using System.Numerics;
 
     using static mfunc;
+    using static Bits;
 
-    public struct BitVectorI8 
+    public ref struct BitVectorI8 
     {
         [MethodImpl(Inline)]
         public static implicit operator BitVectorI8(sbyte src)
@@ -19,7 +20,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator sbyte(BitVectorI8 src)
-            => new BitVectorI8(src);
+            => src.data;
 
         [MethodImpl(Inline)]
         public BitVectorI8(sbyte data)
@@ -33,7 +34,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVectorI8 Define(Bit b0, Bit b1, Bit b2, Bit b3, Bit b4, Bit b5, Bit b6, Sign sign)
-            => Bits.bitpack(b0,b1,b2,b3,b4,b5,b6,sign);
+            => bitpack(b0, b1, b2, b3, b4, b5, b6, sign);
 
         [MethodImpl(Inline)]
         public static bool operator ==(BitVectorI8 lhs, BitVectorI8 rhs)
@@ -62,27 +63,27 @@ namespace Z0
         public Bit this[int index]
         {
             [MethodImpl(Inline)]
-            get => Bits.test(data, index);
+            get => test(data, index);
             
             [MethodImpl(Inline)]
-            set => data = value ? Bits.set(data,index) : Bits.unset(data,index);
+            set => data = value ? enable(data, index) : disable(data, index);
         }
 
         [MethodImpl(Inline)]
         public bool IsSet(int index)
-            => Bits.test(data,index);
+            => test(data, index);
 
         [MethodImpl(Inline)]
         public string BitString()
-            => Bits.bitstring(data);
+            => bitstring(data);
 
         [MethodImpl(Inline)]
-        public Bit[] BitData()
-            => Bits.bits(data);
+        public Span<Bit> Bits()
+            => bits(data);
 
         [MethodImpl(Inline)]
         public int PopCount()
-            => (int)Bits.pop((uint)data) + (data < 0 ? 1 : 0);
+            => (int)Z0.Bits.pop((uint)data) + (data < 0 ? 1 : 0);
 
         [MethodImpl(Inline)]
         public bool Equals(BitVectorI8 rhs)

@@ -10,6 +10,7 @@ namespace Z0
     using System.Numerics;
 
     using static mfunc;
+    using static Z0.Bits;
 
     public struct BitVectorI16
     {
@@ -26,8 +27,6 @@ namespace Z0
             => this.data = data;
         
         short data;
-
-        public static readonly BitVectorI16 Zero = Define(0);
         
         [MethodImpl(Inline)]
         public static BitVectorI16 Define(short src)
@@ -61,38 +60,49 @@ namespace Z0
         public Bit this[int pos]
         {
             [MethodImpl(Inline)]
-            get => Bits.test(data, pos);
+            get => test(data, pos);
             
             [MethodImpl(Inline)]
             set
             {
                 if(value)
-                    Bits.set(ref data, pos);
+                    enable(ref data, pos);
                 else
-                     Bits.unset(data,pos);                    
-            }
-            
+                    disable(data, pos);                    
+            }            
+        }
+
+        public BitVectorI8 Hi
+        {
+            [MethodImpl(Inline)]
+            get => hi(data);        
+        }
+        
+        public BitVectorI8 Lo
+        {
+            [MethodImpl(Inline)]
+            get => lo(data);        
         }
 
         [MethodImpl(Inline)]
         public bool IsSet(int index)
-            => Bits.test(data,index);
+            => test(data, index);
 
         [MethodImpl(Inline)]
         public string BitString()
-            => Bits.bitstring(data);
+            => bitstring(data);
 
         [MethodImpl(Inline)]
-        public Bit[] BitData()
-            => Bits.bits(data);
+        public Span<byte> Bytes()
+            => bytes(data);
+
+        [MethodImpl(Inline)]
+        public Span<Bit> Bits()
+            => bits(data);
 
         [MethodImpl(Inline)]
         public int PopCount()
-            => (int)Bits.pop((uint)data) + (data < 0 ? 1 : 0);
-
-        [MethodImpl(Inline)]
-        public (BitVectorI8 x0, BitVectorI8 x1) Split()
-            => Bits.split(data);
+            => (int)pop((uint)data) + (data < 0 ? 1 : 0);
 
         [MethodImpl(Inline)]
         public bool Equals(BitVectorI16 rhs)
@@ -107,6 +117,4 @@ namespace Z0
         public override int GetHashCode()
             => throw new NotSupportedException();
     }
-
-
 }

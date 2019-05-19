@@ -23,7 +23,7 @@ partial class mfunc
     /// <param name="index">The index</param>
     /// <typeparam name="T">The vector primitive type</typeparam>
     [MethodImpl(Inline)]
-    public static T component<T>(Vector128<T> src, int index)
+    public static T component<T>(in Vector128<T> src, int index)
         where T : struct
             => src.GetElement(index);
 
@@ -34,7 +34,7 @@ partial class mfunc
     /// <param name="index">The index</param>
     /// <typeparam name="T">The vector primitive type</typeparam>
     [MethodImpl(Inline)]
-    public static T component<T>(Vector256<T> src, int index)
+    public static T component<T>(in Vector256<T> src, int index)
         where T : struct
             => src.GetElement(index);
 
@@ -44,7 +44,7 @@ partial class mfunc
     /// <param name="src">The source vector</param>
     /// <param name="ix">The 0-based component index</param>
     [MethodImpl(Inline)]
-    public static bool isNaN(Vector128<float> src, int ix)
+    public static bool isNaN(in Vector128<float> src, int ix)
         => float.IsNaN(src.GetElement(ix));
 
     /// <summary>
@@ -52,7 +52,7 @@ partial class mfunc
     /// </summary>
     /// <param name="src">The source vector</param>
     [MethodImpl(Inline)]
-    public static bool anyNaN(Vector128<float> src)
+    public static bool anyNaN(in Vector128<float> src)
         => anyNaN(component(src,0), component(src, 1), component(src,2), component(src,3));
 
     /// <summary>
@@ -60,7 +60,7 @@ partial class mfunc
     /// </summary>
     /// <param name="x">The source value</param>
     [MethodImpl(Inline)]
-    public static bool isNaN(Vector128<double> src, int index)
+    public static bool isNaN(in Vector128<double> src, int index)
         => double.IsNaN(src.GetElement(index));
 
     /// <summary>
@@ -68,7 +68,7 @@ partial class mfunc
     /// </summary>
     /// <param name="src">The source vector</param>
     [MethodImpl(Inline)]
-    public static bool anyNaN(Vector128<double> src)
+    public static bool anyNaN(in Vector128<double> src)
         => anyNan(component(src,0), component(src, 1));
 
     /// <summary>
@@ -76,7 +76,7 @@ partial class mfunc
     /// </summary>
     /// <param name="src">The source vector to sanitize</param>
     [MethodImpl(Inline)]
-    public static Vector128<float> clearNaN(Vector128<float> src, int ix, float replacement = -1)
+    public static Vector128<float> clearNaN(in Vector128<float> src, int ix, float replacement = -1)
         => src.WithElement(ix,clearNaN(src.GetElement(ix), replacement));
 
     /// <summary>
@@ -84,7 +84,7 @@ partial class mfunc
     /// </summary>
     /// <param name="src">The source vector to sanitize</param>
     [MethodImpl(Inline)]
-    public static Vector128<float> clearNaN(Vector128<float> src, float replacement = -1)
+    public static Vector128<float> clearNaN(in Vector128<float> src, float replacement = -1)
     {
         var lolo = clearNaN(src.GetElement(0), replacement);
         var lohi = clearNaN(src.GetElement(1), replacement);
@@ -98,7 +98,7 @@ partial class mfunc
     /// </summary>
     /// <param name="src">The source vector to sanitize</param>
     [MethodImpl(Inline)]
-    public static Vector128<double> clearNaN(Vector128<double> src, int ix, double replacement = -1)
+    public static Vector128<double> clearNaN(in Vector128<double> src, int ix, double replacement = -1)
         => src.WithElement(ix,clearNaN(src.GetElement(ix), replacement));
 
     /// <summary>
@@ -106,7 +106,7 @@ partial class mfunc
     /// </summary>
     /// <param name="src">The source vector to sanitize</param>
     [MethodImpl(Inline)]
-    public static Vec128<double> clearNaN(Vector128<double> src, double replacement = -1)
+    public static Vec128<double> clearNaN(in Vector128<double> src, double replacement = -1)
     {
         var lo = clearNaN(src.GetElement(0),replacement);
         var hi = clearNaN(src.GetElement(1),replacement);
@@ -118,7 +118,7 @@ partial class mfunc
     /// </summary>
     /// <param name="src">The source vector to sanitize</param>
     [MethodImpl(Inline)]
-    public static Vec256<double> clearNaN(Vector256<double> src, double replacement = -1)
+    public static Vec256<double> clearNaN(in Vector256<double> src, double replacement = -1)
     {
         var x0 = clearNaN(src.GetElement(0),replacement);
         var x1 = clearNaN(src.GetElement(1),replacement);
@@ -132,7 +132,7 @@ partial class mfunc
     /// </summary>
     /// <param name="src">The source vector to sanitize</param>
     [MethodImpl(Inline)]
-    public static Vec256<float> clearNaN(Vector256<float> src, float replacement = -1)
+    public static Vec256<float> clearNaN(in Vector256<float> src, float replacement = -1)
     {
         var x0 = clearNaN(src.GetElement(0),replacement);
         var x1 = clearNaN(src.GetElement(1),replacement);

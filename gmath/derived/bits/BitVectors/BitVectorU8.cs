@@ -11,13 +11,8 @@ namespace Z0
 
     using static mfunc;
 
-
-    public struct BitVectorU8
+    public ref struct BitVectorU8
     {
-        [MethodImpl(Inline)]
-        public static implicit operator BitVectorU8(byte src)
-            => new BitVectorU8(src);
-
         [MethodImpl(Inline)]
         public BitVectorU8(byte data)
             => this.data = data;
@@ -25,8 +20,19 @@ namespace Z0
         byte data;
 
         [MethodImpl(Inline)]
+        public static implicit operator BitVectorU8(byte src)
+            => new BitVectorU8(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator byte(BitVectorU8 src)
+            => src.data;
+
+        [MethodImpl(Inline)]
         public static BitVectorU8 Define(byte src)
             => new BitVectorU8(src);
+
+        public static BitVectorU8 Define(Span<Bit> src)
+            => Bits.pack8(src);
 
         [MethodImpl(Inline)]
         public static BitVectorU8 Define(Bit b0, Bit b1, Bit b2, Bit b3, Bit b4, Bit b5, Bit b6, Bit b7)
@@ -56,14 +62,13 @@ namespace Z0
         public static BitVectorU8 operator ~(BitVectorU8 src)
             => src.data.Flip();
 
-
         public Bit this[int index]
         {
             [MethodImpl(Inline)]
             get => Bits.test(data, index);
             
             [MethodImpl(Inline)]
-            set => data = value ? Bits.set(data,index) : Bits.unset(data,index);
+            set => data = value ? Bits.enable(data,index) : Bits.disable(data,index);
         }
 
         [MethodImpl(Inline)]
@@ -79,6 +84,10 @@ namespace Z0
             => Bits.bits(data);
 
         [MethodImpl(Inline)]
+        public Span<byte> Bytes()
+            => Bits.bytes(data);
+
+        [MethodImpl(Inline)]
         public int PopCount()
             => (int)Bits.pop(data);
 
@@ -86,12 +95,12 @@ namespace Z0
         public bool Equals(BitVectorU8 rhs)
             => data == rhs.data;
 
+       public override string ToString()
+            => BitString();
+ 
         public override bool Equals(object obj)
             => throw new NotSupportedException();
-
-        public override string ToString()
-            => BitString();
-        
+       
         public override int GetHashCode()
             => throw new NotSupportedException();
     }

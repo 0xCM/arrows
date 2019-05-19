@@ -799,6 +799,88 @@ namespace Z0
         #region Num128
 
         [MethodImpl(Inline)]
+        internal static ref Num128<sbyte> primal<T>(ref Num128<T> src, out Num128<sbyte> dst)
+            where T : struct        
+        {            
+             dst = Unsafe.As<Num128<T>, Num128<sbyte>>(ref src);
+             return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        internal static ref Num128<byte> primal<T>(ref Num128<T> src, out Num128<byte> dst)
+            where T : struct        
+        {            
+             dst = Unsafe.As<Num128<T>, Num128<byte>>(ref src);
+             return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        internal static ref Num128<short> primal<T>(ref Num128<T> src, out Num128<short> dst)
+            where T : struct        
+        {            
+             dst = Unsafe.As<Num128<T>, Num128<short>>(ref src);
+             return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        internal static ref Num128<ushort> primal<T>(ref Num128<T> src, out Num128<ushort> dst)
+            where T : struct        
+        {            
+             dst = Unsafe.As<Num128<T>, Num128<ushort>>(ref src);
+             return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        internal static ref Num128<int> primal<T>(ref Num128<T> src, out Num128<int> dst)
+            where T : struct        
+        {            
+             dst = Unsafe.As<Num128<T>, Num128<int>>(ref src);
+             return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        internal static ref Num128<uint> primal<T>(ref Num128<T> src, out Num128<uint> dst)
+            where T : struct        
+        {            
+             dst = Unsafe.As<Num128<T>, Num128<uint>>(ref src);
+             return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        internal static ref Num128<long> primal<T>(ref Num128<T> src, out Num128<long> dst)
+            where T : struct        
+        {            
+             dst = Unsafe.As<Num128<T>, Num128<long>>(ref src);
+             return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        internal static ref Num128<ulong> primal<T>(ref Num128<T> src, out Num128<ulong> dst)
+            where T : struct        
+        {            
+             dst = Unsafe.As<Num128<T>, Num128<ulong>>(ref src);
+             return ref dst;
+        }
+
+
+        [MethodImpl(Inline)]
+        internal static ref Num128<float> primal<T>(ref Num128<T> src, out Num128<float> dst)
+            where T : struct        
+        {            
+             dst = Unsafe.As<Num128<T>, Num128<float>>(ref src);
+             return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        internal static ref Num128<double> primal<T>(ref Num128<T> src, out Num128<double> dst)
+            where T : struct        
+        {            
+             dst = Unsafe.As<Num128<T>, Num128<double>>(ref src);
+             return ref dst;
+        }
+
+
+        [MethodImpl(Inline)]
         internal static Num128<sbyte> int8<T>(Num128<T> src)
             where T : struct        
                 => Unsafe.As<Num128<T>,Num128<sbyte>>(ref src);
@@ -875,7 +957,7 @@ namespace Z0
                 => Unsafe.As<Num128<T>,Num128<ulong>>(ref src);
 
         [MethodImpl(Inline)]
-        internal static ref  Num128<ulong> uint64<T>(ref Num128<T> src)
+        internal static ref Num128<ulong> uint64<T>(ref Num128<T> src)
             where T : struct        
                 => ref Unsafe.As<Num128<T>,Num128<ulong>>(ref src);
 
@@ -884,6 +966,7 @@ namespace Z0
             where T : struct        
                 => Unsafe.As<Num128<T>,Num128<float>>(ref src);
 
+                        
         [MethodImpl(Inline)]
         internal static ref  Num128<float> float32<T>(ref Num128<T> src)
             where T : struct        
@@ -895,7 +978,7 @@ namespace Z0
                 => Unsafe.As<Num128<T>,Num128<double>>(ref src);
 
         [MethodImpl(Inline)]
-        internal static ref  Num128<double> float64<T>(ref Num128<T> src)
+        internal static ref Num128<double> float64<T>(ref Num128<T> src)
             where T : struct        
                 => ref Unsafe.As<Num128<T>,Num128<double>>(ref src);
 

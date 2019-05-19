@@ -22,7 +22,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Bit[] ToBits(this sbyte src)
+        public static Span<Bit> ToBits(this sbyte src)
             => Bits.bits(src);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Bit[] ToBits(this byte src)
+        public static Span<Bit> ToBits(this byte src)
             => Bits.bits(src);
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Bit[] ToBits(this short src)
+        public static Span<Bit> ToBits(this short src)
             => Bits.bits(src);
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Bit[] ToBits(this ushort src)
+        public static Span<Bit> ToBits(this ushort src)
             => Bits.bits(src);
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Bit[] ToBits(this int src)
+        public static Span<Bit> ToBits(this int src)
             => Bits.bits(src);
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Bit[] ToBits(this uint src)
+        public static Span<Bit> ToBits(this uint src)
             => Bits.bits(src);
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Bit[] ToBits(this long src)
+        public static Span<Bit> ToBits(this long src)
             => Bits.bits(src);
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Bit[] ToBits(this ulong src)
+        public static Span<Bit> ToBits(this ulong src)
             => Bits.bits(src);
 
         /// <summary>
@@ -86,23 +86,15 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Bit[] ToBits(this float src)
+        public static Span<Bit> ToBits(this float src)
             => Bits.bits(src);
-
-        [MethodImpl(Inline)]
-        public static int ToInt32Bits(this float src)
-            => Bits.bitsI32(src);
-
-        [MethodImpl(Inline)]
-        public static long ToInt64Bits(this double src)
-            => Bits.bitsI64(src);
 
         /// <summary>
         /// Converts the source value to an array of bits
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Bit[] ToBits(this double src)
+        public static Span<Bit> ToBits(this double src)
             => Bits.bits(src);
 
         /// <summary>
@@ -117,9 +109,13 @@ namespace Z0
         /// Consructs a bit sream from a stream of bools
         /// </summary>
         /// <param name="src">The bitstring source</param>
-        [MethodImpl(Inline)]   
-        public static IEnumerable<Bit> ToBits(this IEnumerable<bool> src)
-            => map(src,x => x.ToBit()); 
+        public static Span<Bit> ToBits(this ReadOnlySpan<bool> src)
+        {
+            var dst = span<Bit>(src.Length);
+            for(var i = 0; i < src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+        }
 
         #endregion
 
@@ -195,7 +191,7 @@ namespace Z0
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
         public static bool TestBit(this ulong src, int pos)
-            => Bits.testbit(src,pos);
+            => Bits.test(src,pos);
 
         #endregion
 
@@ -214,7 +210,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte[] ToBytes(this long src)
+        public static Span<byte> ToBytes(this long src)
             => Bits.bytes(src);
 
         /// <summary>
@@ -222,7 +218,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte[] ToBytes(this ushort src)
+        public static Span<byte> ToBytes(this ushort src)
             => Bits.bytes(src);
 
         /// <summary>
@@ -230,7 +226,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte[] ToBytes(this ulong src)
+        public static Span<byte> ToBytes(this ulong src)
             => Bits.bytes(src);
 
 
@@ -239,7 +235,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte[] ToBytes(this uint src)
+        public static Span<byte> ToBytes(this uint src)
             => Bits.bytes(src);
 
        /// <summary>
@@ -247,7 +243,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte[] ToBytes(this short src)
+        public static Span<byte> ToBytes(this short src)
             => Bits.bytes(src);
  
 
@@ -256,7 +252,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte[] ToBytes(this int src)
+        public static Span<byte> ToBytes(this int src)
             => Bits.bytes(src);  
  
         #endregion
@@ -289,6 +285,10 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVectorI64 ToBitVector(this long src)
+            => src;
+
+        [MethodImpl(Inline)]
+        public static BitVectorU128 ToBitVector(this U128 src)
             => src;
 
         #endregion
@@ -460,9 +460,5 @@ namespace Z0
                 => Bits.bitstring(src);
                 
         #endregion
-
-        public static BitVectorU8 ToBitVector(this BitPattern src)
-            => (byte)src;
-
     }
 }

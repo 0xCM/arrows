@@ -21,14 +21,15 @@ namespace Z0
             => double.IsNaN(test);
 
         [MethodImpl(Inline)]
-        static bool[] TestNaN(Vector128<double> src)
+        static bool[] TestNaN(this in Vector128<double> src)
             => array(
                 IsNaN(src.GetElement(0)), 
                 IsNaN(src.GetElement(1))
                 );
 
+
         [MethodImpl(Inline)]
-        static bool[] TestNaN(Vector128<float> src)
+        static bool[] TestNaN(this in Vector128<float> src)
             => array(
                 IsNaN(src.GetElement(0)), 
                 IsNaN(src.GetElement(1)),
@@ -36,8 +37,9 @@ namespace Z0
                 IsNaN(src.GetElement(3))
                 );
 
+
         [MethodImpl(Inline)]
-        static bool[] TestNaN(Vector256<float> src)
+        static bool[] TestNaN(this in Vector256<float> src)
             => array(
                 IsNaN(src.GetElement(0)), 
                 IsNaN(src.GetElement(1)),
@@ -50,13 +52,15 @@ namespace Z0
                 );
 
 
+
+
         [MethodImpl(Inline)]
         public static bool[] cmpf(in Vec128<float> lhs,in Vec128<float> rhs, FloatComparisonMode mode)
-            => TestNaN(Avx2.Compare(lhs,rhs,mode));
+            => Avx2.Compare(lhs,rhs,mode).TestNaN();
 
         [MethodImpl(Inline)]
         public static bool[] cmpf(in Vec128<double> lhs,in Vec128<double> rhs, FloatComparisonMode mode)
-            => TestNaN(Avx2.Compare(lhs,rhs,mode));
+            => Avx2.Compare(lhs,rhs,mode).TestNaN();
 
         [MethodImpl(Inline)]
         public static Vec256<float> cmpf(in Vec256<float> lhs,in Vec256<float> rhs, FloatComparisonMode mode)
@@ -66,7 +70,21 @@ namespace Z0
         public static Vec256<double> cmpf(in Vec256<double> lhs, in Vec256<double> rhs, FloatComparisonMode mode)
             => clearNaN(Avx2.Compare(lhs,rhs,mode));
 
+        [MethodImpl(Inline)]
+        public static bool[] cmpfr(ref Vec128<float> lhs, ref Vec128<float> rhs, FloatComparisonMode mode)
+            => TestNaN(Avx2.Compare(lhs,rhs,mode));
 
+        [MethodImpl(Inline)]
+        public static bool[] cmpfr(ref Vec128<double> lhs, ref Vec128<double> rhs, FloatComparisonMode mode)
+            => TestNaN(Avx2.Compare(lhs,rhs,mode));
+
+        [MethodImpl(Inline)]
+        public static Vec256<float> cmpfr(ref Vec256<float> lhs, ref Vec256<float> rhs, FloatComparisonMode mode)
+            => clearNaN(Avx2.Compare(lhs,rhs,mode));
+
+        [MethodImpl(Inline)]
+        public static Vec256<double> cmpfr(ref Vec256<double> lhs, ref Vec256<double> rhs, FloatComparisonMode mode)
+            => clearNaN(Avx2.Compare(lhs,rhs,mode));
 
     }
 

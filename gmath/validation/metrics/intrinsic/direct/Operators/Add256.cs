@@ -15,7 +15,7 @@ namespace Z0
     using static As;
     using static InXMetrics;
 
-    partial class IntrinsicDirect
+    partial class InXDirectVec
     {
         public static OpMetrics<T> Add<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct

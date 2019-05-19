@@ -12,7 +12,7 @@ namespace Z0
     using static mfunc;
 
 
-    public struct BitVectorU32
+    public ref struct BitVectorU32
     {
         uint data;
 
@@ -26,19 +26,18 @@ namespace Z0
             this.data = 0;
             for(var i = 0; i< Math.Min(32, src.Length); i++)
                 if(src[i])
-                    Bits.set(ref data, i);
+                    Bits.enable(ref data, i);
         }
 
-
-        public static readonly BitVectorU32 Zero = Define(0);
+        public static BitVectorU32 Zero() 
+            => Define(0);
 
         [MethodImpl(Inline)]
         public static BitVectorU32 Define(uint src)
             => new BitVectorU32(src);    
 
-        [MethodImpl(Inline)]
-        public static BitVectorU32 Define(Bit[] src)
-            => new BitVectorU32(src);    
+        public static BitVectorU32 Define(Span<Bit> src)
+            => Bits.pack32(src);
 
         [MethodImpl(Inline)]
         public static implicit operator BitVectorU32(uint src)
@@ -81,12 +80,27 @@ namespace Z0
             set
             {
                 if(value)
-                    Bits.set(ref data, pos);
+                    Bits.enable(ref data, pos);
                 else
-                     Bits.unset(data,pos);                    
+                     Bits.disable(data,pos);                    
             }
             
         }
+
+        public BitVectorU16 Hi
+        {
+            [MethodImpl(Inline)]
+            get => Bits.hi(data);
+        
+        }
+        
+        public BitVectorU16 Lo
+        {
+            [MethodImpl(Inline)]
+            get => Bits.lo(data);
+        
+        }
+
 
         [MethodImpl(Inline)]
         public bool IsSet(int index)
@@ -97,7 +111,7 @@ namespace Z0
             => Bits.bitstring(data);
 
         [MethodImpl(Inline)]
-        public byte[] Bytes()
+        public Span<byte> Bytes()
             => Bits.bytes(data);
 
         [MethodImpl(Inline)]
@@ -107,14 +121,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public int PopCount()
             => (int)Bits.pop(data);
-
-        [MethodImpl(Inline)]
-        public (BitVectorU16 x0, BitVectorU16 x1) Split()
-        {
-            (var hi, var lo) = Bits.split(data);
-            return (hi, lo);
-        }
-
+        
 
         [MethodImpl(Inline)]
         public bool Equals(BitVectorU32 rhs)

@@ -52,8 +52,8 @@ namespace Z0.Test
             Claim.eq<ulong>(0, (ulong)Off);
             Claim.eq<ulong>(1, (ulong)On);
 
-            Claim.enumeq<BinaryDigit>(BinaryDigit.Zed, Off);
-            Claim.enumeq<BinaryDigit>(BinaryDigit.One, On);
+            Claim.eq(BinaryDigit.Zed, Off);
+            Claim.eq(BinaryDigit.One, On);
 
         }
 
@@ -94,10 +94,10 @@ namespace Z0.Test
             var l1 = BitLayouts.Define(8u);
             Claim.eq(l1.src,8);
             Claim.eq(l1.x00,8);
-            Claim.eq(l1.x000,8);
+            Claim.eq(l1.x000,(byte)8);
 
             l1[1] |= 0b101;
-            Claim.eq(l1[1], 0b101);
+            Claim.eq(l1[1], (byte)0b101);
         }
 
         public void BitTest()
@@ -166,6 +166,19 @@ namespace Z0.Test
             Claim.eq(1,r3.Length);
             Claim.eq(e3, r3[0]);
         }
+
+        public void Pack4()
+        {
+            var bv1 = BitVectorU8.Define(0b10110111);   
+            var bs1 = Bits.many(
+                    Bit.On, Bit.On,Bit.On, Bit.Off,
+                    Bit.On, Bit.On, Bit.Off, Bit.On
+                    );
+            var bv2 = BitVectorU8.Define(bs1);
+            Claim.eq(bv1,bv2);
+            
+        }
+
 
     }
 }

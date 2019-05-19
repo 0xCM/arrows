@@ -15,7 +15,9 @@ namespace Z0
     using static As;
     using static InXMetrics;
 
-    public static partial class IntrinsicDirect
+
+    
+    public static partial class InXDirectVec
     {
         static OpId<T> Id<T>(OpKind op, InXMetricConfig128 config)
             where T : struct
@@ -31,8 +33,7 @@ namespace Z0
             random = Random(random);
             config = Configure(config);            
             var lhs = random.Span128<T>(config.Blocks);
-            var rhs = op.NonZeroRight() ? random.NonZeroSpan128<T>(config.Blocks) : random.Span128<T>(config.Blocks);
-            
+            var rhs = op.NonZeroRight() ? random.NonZeroSpan128<T>(config.Blocks) : random.Span128<T>(config.Blocks);            
             var metrics = Metrics.Zero<T>();
 
             GC.Collect();            
@@ -47,12 +48,11 @@ namespace Z0
             random = Random(random);
             config = Configure(config);            
             var lhs = random.Span256<T>(config.Blocks);
-            var rhs = op.NonZeroRight() ? random.NonZeroSpan256<T>(config.Blocks) : random.Span256<T>(config.Blocks);
-            
+            var rhs = op.NonZeroRight() ? random.NonZeroSpan256<T>(config.Blocks) : random.Span256<T>(config.Blocks);            
             var metrics = Metrics.Zero<T>();
 
             GC.Collect();            
-            for(var i=0; i<config.Runs; i++)
+            for(var i=0; i < config.Runs; i++)
                 metrics += Branch<T>(op, lhs, rhs, config);
             return metrics;            
         }
@@ -116,9 +116,5 @@ namespace Z0
                     throw unsupported(op, prim);
             }
         }
-
-
-
-
    }
 }

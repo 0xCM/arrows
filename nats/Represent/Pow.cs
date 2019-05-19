@@ -19,7 +19,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="B">The base type</typeparam>
     /// <typeparam name="E">The exponent type</typeparam>
-    public interface IPow<B,E> : ITypeNat
+    public interface INatPow<B,E> : ITypeNat
         where B : ITypeNat, new()
         where E : ITypeNat, new()
     {
@@ -32,8 +32,8 @@ namespace Z0
     /// </summary>
     /// <typeparam name="B">The base type</typeparam>
     /// <typeparam name="E">The exponent type</typeparam>
-    public interface IPow<S,B,E> : IPow<B,E>, TypeNat<S>
-        where S : IPow<S,B,E>, new()
+    public interface INatPow<S,B,E> : INatPow<B,E>, TypeNat<S>
+        where S : INatPow<S,B,E>, new()
         where B : ITypeNat, new()
         where E : ITypeNat, new()
     {
@@ -43,7 +43,7 @@ namespace Z0
     /// <summary>
     /// Reifies a natural k such that b:B & e:E => k = b^e
     /// </summary>
-    public readonly struct Pow<B,E> : IPow<Pow<B, E>, B, E>
+    public readonly struct Pow<B,E> : INatPow<Pow<B, E>, B, E>
         where B : ITypeNat, new()
         where E : ITypeNat, new()
     {

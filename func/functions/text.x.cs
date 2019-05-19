@@ -88,6 +88,46 @@ namespace Z0
         public static string ToHexString(this byte[] bytes)
             => "0x" + BitConverter.ToString(bytes).Replace("-", String.Empty);
 
+        [MethodImpl(Inline)]
+        public static string ToHexString(this sbyte src)
+            => "0x" + src.ToString("x").PadLeft(2, '0');
+
+        [MethodImpl(Inline)]
+        public static string ToHexString(this byte src)
+            => "0x" + src.ToString("x").PadLeft(2, '0');
+
+        [MethodImpl(Inline)]
+        public static string ToHexString(this short src)
+            => "0x" + src.ToString("x").PadLeft(4, '0');
+
+        [MethodImpl(Inline)]
+        public static string ToHexString(this ushort src)
+            => "0x" + src.ToString("x").PadLeft(4, '0');
+
+        [MethodImpl(Inline)]
+        public static string ToHexString(this int src)
+            => "0x" + src.ToString("x").PadLeft(8, '0');
+
+        [MethodImpl(Inline)]
+        public static string ToHexString(this uint src)
+            => "0x" + src.ToString("x").PadLeft(8, '0');
+
+        [MethodImpl(Inline)]
+        public static string ToHexString(this long src)
+            => "0x" + src.ToString("x").PadLeft(16, '0');
+        
+        [MethodImpl(Inline)]
+        public static string ToHexString(this ulong src)
+            => "0x" + src.ToString("x").PadLeft(16, '0');
+
+        [MethodImpl(Inline)]
+        public static string ToHexString(this float src)
+            => "0x" + BitConverter.SingleToInt32Bits(src).ToString("x").PadLeft(8, '0');
+
+       [MethodImpl(Inline)]
+        public static string ToHexString(this double src)
+            => "0x" + BitConverter.DoubleToInt64Bits(src).ToString("x").PadLeft(16, '0');
+
         /// <summary>
         /// Determines whether a string starts with a value from a supplied set
         /// </summary>
@@ -214,7 +254,6 @@ namespace Z0
         /// </summary>
         /// <param name="s">The string to search</param>
         /// <param name="idx">The index</param>
-        /// <returns></returns>
         public static string LeftOf(this string s, int idx)
             => (idx >= s.Length - 1) ? String.Empty : s.Substring(0, idx);
 
@@ -223,7 +262,6 @@ namespace Z0
         /// </summary>
         /// <param name="s">The string to search</param>
         /// <param name="c">The character</param>
-        /// <returns></returns>
         public static string LeftOf(this string s, char c)
             => s.Substring(0, apply(s.IndexOf(c), idx => idx == -1 ? s.Length - 1 : idx));
 
@@ -232,7 +270,6 @@ namespace Z0
         /// </summary>
         /// <param name="s">The string to search</param>
         /// <param name="c">The character</param>
-        /// <returns></returns>
         public static string RightOf(this string s, char c)
             => s.RightOf(s.IndexOf(c));
 
@@ -242,7 +279,6 @@ namespace Z0
         /// <param name="s">The string to partition</param>
         /// <param name="marker">The demarcator</param>
         /// <param name="trim">Whether to trim the parts prior to packing the resulting tuple</param>
-        /// <returns></returns>
         public static (string Left, string Right) Split(this string s, string marker, bool trim = true)
             => (ifTrue(trim, LeftOf(s, marker),x => x.Trim()), 
                 ifTrue(trim, RightOf(s, marker),x => x.Trim()));

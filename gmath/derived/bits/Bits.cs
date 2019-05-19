@@ -50,7 +50,6 @@ namespace Z0
             where T : struct
                 => new Bit(Bits.test(src,pos));
 
-
         /// <summary>
         /// Calculates the base-2 log of the source
         /// </summary>
@@ -101,29 +100,18 @@ namespace Z0
         public static uint andnot(uint lhs, uint rhs)
             => Bmi1.AndNot(lhs,rhs);
 
-        /// <summary>
-        /// Sets mask-identified bits in the soruce
-        /// </summary>
-        /// <param name="src">The source value</param>
-        /// <param name="mask">The extraction mask</param>
-        [MethodImpl(Inline)]
-        public static ulong deposit(ulong src, ulong mask)        
-            => Bmi2.X64.ParallelBitDeposit(src,mask);
-
-        [MethodImpl(Inline)]
-        public static uint deposit(uint src, uint mask)        
-            => Bmi2.ParallelBitDeposit(src,mask); 
 
         [MethodImpl(Inline)]
         public static uint leastOnBit(uint src)
             => Bmi1.ExtractLowestSetBit(src);
+
 
         [MethodImpl(Inline)]
         public static ulong leastOnBit(ulong src)
             => Bmi1.X64.ExtractLowestSetBit(src);
  
         [MethodImpl(Inline)]
-        public static Bit[] many(params Bit[] src)
+        public static Span<Bit> many(params Bit[] src)
             => src;
 
         /// <summary>
@@ -156,7 +144,6 @@ namespace Z0
         /// <param name="src">The source value to reinterpret</param>
         [MethodImpl(Inline)]   
         public static double bitsF64(long src)
-            => BitConverter.Int64BitsToDouble(src);
-
+            => BitConverter.Int64BitsToDouble(src);        
     }
 }

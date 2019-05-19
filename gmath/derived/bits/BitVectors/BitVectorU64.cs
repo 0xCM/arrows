@@ -10,38 +10,42 @@ namespace Z0
     using System.Numerics;
 
     using static mfunc;
+    using static Bits;
 
-    public struct BitVectorU64
+    public ref struct BitVectorU64
     {
-        public static readonly BitVectorU64 Zero = Define(0);
         
         [MethodImpl(Inline)]
         public static BitVectorU64 Define(ulong src)
             => new BitVectorU64(src);    
 
         [MethodImpl(Inline)]
+        public static BitVectorU64 Define(Span<Bit> src)
+            => pack64(src);
+
+        [MethodImpl(Inline)]
         public static bool operator ==(BitVectorU64 lhs, BitVectorU64 rhs)
-            => lhs.Equals(rhs);
+            => lhs.data == rhs.data;
 
         [MethodImpl(Inline)]
         public static bool operator !=(BitVectorU64 lhs, BitVectorU64 rhs)
-            => !lhs.Equals(rhs);
+            => lhs.data != rhs.data;
 
         [MethodImpl(Inline)]
         public static BitVectorU64 operator |(BitVectorU64 lhs, BitVectorU64 rhs)
-            => lhs.data.Or(rhs.data);
+            => lhs.data | rhs.data;
 
         [MethodImpl(Inline)]
         public static BitVectorU64 operator &(BitVectorU64 lhs, BitVectorU64 rhs)
-            => lhs.data.And(rhs.data);
+            => lhs.data & rhs.data;
 
         [MethodImpl(Inline)]
         public static BitVectorU64 operator ^(BitVectorU64 lhs, BitVectorU64 rhs)
-            => lhs.data.XOr(rhs.data);
+            => lhs.data ^ rhs.data;
 
         [MethodImpl(Inline)]
         public static BitVectorU64 operator ~(BitVectorU64 src)
-            => src.data.Flip();
+            => ~ src.data;
 
         [MethodImpl(Inline)]
         public static implicit operator BitVectorU64(ulong src)
@@ -60,43 +64,49 @@ namespace Z0
         public Bit this[int pos]
         {
             [MethodImpl(Inline)]
-            get => Bits.test(data, pos);
+            get => Z0.Bits.test((float)data, pos);
             
             [MethodImpl(Inline)]
             set
             {
                 if(value)
-                    Bits.set(ref data, pos);
+                    enable(ref data, pos);
                 else
-                     Bits.unset(data,pos);                    
-            }
-            
+                     disable(data,pos);                    
+            }            
+        }
+
+        public BitVectorU32 Hi
+        {
+            [MethodImpl(Inline)]
+            get => hi(data);        
+        }
+        
+        public BitVectorU32 Lo
+        {
+            [MethodImpl(Inline)]
+            get => lo(data);        
         }
 
         [MethodImpl(Inline)]
-        public bool IsSet(int index)
-            => Bits.test(data,index);
+        public bool TestBit(int pos)
+            => data.TestBit(pos);
 
         [MethodImpl(Inline)]
         public string BitString()
-            => Bits.bitstring(data);
+            => data.ToBitString();
 
         [MethodImpl(Inline)]
-        public byte[] Bytes()
-            => Bits.bytes(data);
+        public Span<byte> Bytes()
+            => data.ToBytes();
 
         [MethodImpl(Inline)]
-        public Bit[] BitData()
-            => Bits.bits(data);
+        public Span<Bit> Bits()
+            => data.ToBits();
 
         [MethodImpl(Inline)]
         public int PopCount()
-            => (int)Bits.pop(data);
-
-        [MethodImpl(Inline)]
-        public (BitVectorU32 x0, BitVectorU32 x1) Split()
-            => Bits.split(data);
-
+            => (int)pop(data);
 
         [MethodImpl(Inline)]
         public bool Equals(BitVectorU64 rhs)

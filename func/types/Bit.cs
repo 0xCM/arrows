@@ -65,6 +65,11 @@ namespace Z0
         public static explicit operator ushort(Bit src)
             => src.value ? (ushort)1 : (ushort)0;
 
+
+        [MethodImpl(Inline)]
+        public static explicit operator int(Bit src)
+            => src.value ? 1 : 0;
+
         [MethodImpl(Inline)]
         public static explicit operator uint(Bit src)
             => src.value ? 1u : 0u;

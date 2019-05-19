@@ -130,18 +130,6 @@ namespace Z0
             where T : struct    
             => rows(src).Format();
 
-        // [MethodImpl(Inline)]
-        // public static bool eq<T>(Matrix<M, N, T> lhs, Matrix<M, N, T> rhs)
-        //     where T : struct    
-        // {
-        //     var sr = ImplicitSemigroup<T>.Inhabitant;
-        //     for(var i = 0u; i< dim.i; i++)                
-        //         for(var j = 0u; j < dim.j; j++)
-        //             if(sr.neq(lhs[i,j], rhs[i,j]))
-        //                 return(false);
-        //     return true;
-        // }
-
         public static Matrix<Prior<M>, Prior<N>,T> delete<T>(Matrix<M,N,T> src, uint rowix, uint colix)
             where T : struct    
         {            

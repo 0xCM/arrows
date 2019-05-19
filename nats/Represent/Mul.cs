@@ -14,9 +14,23 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
+    /// Characterizes the reification of a natural number k such that 
+    /// a:K1 & b:K2 & k = a * b
+    /// </summary>
+    /// <typeparam name="K2">The base type</typeparam>
+    /// <typeparam name="E">The exponent type</typeparam>
+    public interface INatMul<S,K1,K2> : ITypeNat
+        where S : INatMul<S,K1,K2>, new()
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
+    {
+
+    }
+
+    /// <summary>
     /// Encodes a natural number k such that k1:K1 & k2:K2 => k = k1*k2
     /// </summary>
-    public readonly struct Mul<K1, K2> : ITypeNat
+    public readonly struct Mul<K1, K2> : INatMul<Mul<K1,K2>, K1,K2>
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
     {

@@ -8,13 +8,21 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
+    using static System.Runtime.Intrinsics.X86.Pclmulqdq;
     
-    
-    using static global::mfunc;
+    using static mfunc;
 
 
     partial class dinx
     {
+
+        [MethodImpl(Inline)]
+        public static Vec128<long> clmul(in Vec128<long> lhs, in Vec128<long> rhs, byte control)
+            =>  CarrylessMultiply(lhs, rhs,control);
+
+        [MethodImpl(Inline)]
+        public static Vec128<ulong> clmul(in Vec128<ulong> lhs, in Vec128<ulong> rhs, byte control)
+            =>  CarrylessMultiply(lhs, rhs,control);
 
         #region mul:vec -> vec -> vec
 

@@ -14,15 +14,52 @@ namespace Z0
 
     public static class Pow2
     {
-        static readonly ulong[] PowerTable = new ulong[]{
-            T00, T01, T02, T03, T04, T05, T06, T07, T08, T09,
-            T10, T11, T12, T13, T14, T15, T16, T17, T18, T19,
-            T20, T21, T22, T23, T24, T25, T26, T27, T28, T29,
-            T30, T31, T32, T33, T34, T35, T36, T37, T28, T39,
-            T40, T41, T42, T43, T44, T45, T46, T47, T48, T49,
-            T50, T51, T52, T53, T54, T55, T56, T57, T58, T59,
-            T60, T61, T62, T63};
+        static readonly byte[] _PowU8 = new byte[]
+        {
+            T00, T01, T02, T03, T04, T05, T06, T07            
+        };
 
+        static readonly ushort[] _PowU16 = new ushort[]
+        {
+            T00, T01, T02, T03, T04, T05, T06, T07, 
+            T08, T09, T10, T11, T12, T13, T14, T15, 
+        };
+
+        static readonly uint[] _PowU32 = new uint[]
+        {
+            T00, T01, T02, T03, T04, T05, T06, T07, 
+            T08, T09, T10, T11, T12, T13, T14, T15, 
+            T16, T17, T18, T19, T20, T21, T22, T23, 
+            T24, T25, T26, T27, T28, T29, T30, T31, 
+        };
+
+        static readonly ulong[] _PowU64 = new ulong[]{
+            T00, T01, T02, T03, T04, T05, T06, T07, 
+            T08, T09, T10, T11, T12, T13, T14, T15, 
+            T16, T17, T18, T19, T20, T21, T22, T23, 
+            T24, T25, T26, T27, T28, T29, T30, T31, 
+            T32, T33, T34, T35, T36, T37, T28, T39,
+            T40, T41, T42, T43, T44, T45, T46, T47, 
+            T48, T49, T50, T51, T52, T53, T54, T55, 
+            T56, T57, T58, T59, T60, T61, T62, T63};
+
+        [MethodImpl(Inline)]
+        public static byte PowU8(int exp)
+            => _PowU8[exp];
+
+
+        [MethodImpl(Inline)]
+        public static ushort PowU16(int exp)
+            => _PowU16[exp];
+
+        [MethodImpl(Inline)]
+        public static uint PowU32(int exp)
+            => _PowU32[exp];
+
+
+        [MethodImpl(Inline)]
+        public static ulong PowU64(int exp)
+            => _PowU64[exp];
 
         /// <summary>
         /// Computes 2^i 
@@ -30,7 +67,7 @@ namespace Z0
         /// <param name="exp">The exponent</param>
         [MethodImpl(Inline)]
         public static ulong pow(int exp)
-            =>  PowerTable[exp];
+            =>  _PowU64[exp];
 
         public static T[] powers<T>(int minExp, byte maxExp)
             where T : struct
@@ -196,17 +233,17 @@ namespace Z0
         /// <summary>
         /// 2^30 = _
         /// </summary>
-        public const long T30 = 2*T29;
+        public const int T30 = 2*T29;
         
         /// <summary>
         /// 2^31 = _
         /// </summary>
-        public const long T31 = 2*T30;
+        public const uint T31 = 2*(uint)T30;
         
         /// <summary>
         /// 2^32 = _
         /// </summary>
-        public const long T32 = 2*T31;
+        public const long T32 = 2*(long)T31;
         
         public const long T33 = 2*T32;
         
@@ -272,7 +309,6 @@ namespace Z0
         /// <summary>
         /// 9223372036854775808
         /// </summary>
-        /// <returns></returns>
         public const ulong T63 = 2* (ulong)T62;
 
         public const int MinExponent = 0;
