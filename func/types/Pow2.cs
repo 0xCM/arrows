@@ -44,21 +44,19 @@ namespace Z0
             T56, T57, T58, T59, T60, T61, T62, T63};
 
         [MethodImpl(Inline)]
-        public static byte PowU8(int exp)
+        public static byte PowU8(in int exp)
             => _PowU8[exp];
 
-
         [MethodImpl(Inline)]
-        public static ushort PowU16(int exp)
+        public static ushort PowU16(in int exp)
             => _PowU16[exp];
 
         [MethodImpl(Inline)]
-        public static uint PowU32(int exp)
+        public static uint PowU32(in int exp)
             => _PowU32[exp];
 
-
         [MethodImpl(Inline)]
-        public static ulong PowU64(int exp)
+        public static ulong PowU64(in int exp)
             => _PowU64[exp];
 
         /// <summary>
@@ -66,10 +64,10 @@ namespace Z0
         /// </summary>
         /// <param name="exp">The exponent</param>
         [MethodImpl(Inline)]
-        public static ulong pow(int exp)
+        public static ulong pow(in int exp)
             =>  _PowU64[exp];
 
-        public static T[] powers<T>(int minExp, byte maxExp)
+        public static T[] powers<T>(in byte minExp, in byte maxExp)
             where T : struct
         {   
             var dst = new T[maxExp - minExp + 1];
@@ -315,5 +313,4 @@ namespace Z0
 
         public const int MaxExponent = 63;        
     }
-
 }

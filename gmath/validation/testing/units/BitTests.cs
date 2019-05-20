@@ -15,8 +15,6 @@ namespace Z0.Test
     using static zfunc;
     using static mfunc;
 
-    using static BitPatterns;
-    using static BitPattern;
     using static BinaryDigit;
     using static Bit;
     
@@ -91,7 +89,7 @@ namespace Z0.Test
 
         public void BitLayoutTest()
         {
-            var l1 = BitLayouts.Define(8u);
+            var l1 = new U32(8u);
             Claim.eq(l1.src,8);
             Claim.eq(l1.x00,8);
             Claim.eq(l1.x000,(byte)8);
@@ -102,13 +100,13 @@ namespace Z0.Test
 
         public void BitTest()
         {
-            Claim.@true(gbits.test(BitPattern.B00000101, 0));
-            Claim.@false(gbits.test(BitPattern.B00000101, 1));
-            Claim.@true(gbits.test(BitPattern.B00000101, 2));
+            Claim.@true(gbits.test(0b00000101, 0));
+            Claim.@false(gbits.test(0b00000101, 1));
+            Claim.@true(gbits.test(0b00000101, 2));
             
-            Claim.@true(gbits.test(BitPattern.B00000111, 0));
-            Claim.@true(gbits.test(BitPattern.B00000111, 1));
-            Claim.@true(gbits.test(BitPattern.B00000111, 2));
+            Claim.@true(gbits.test(0b00000111, 0));
+            Claim.@true(gbits.test(0b00000111, 1));
+            Claim.@true(gbits.test(0b00000111, 2));
         }
 
         public void BitParse()
@@ -131,7 +129,7 @@ namespace Z0.Test
             var x1 = (byte)0b11100101;
             var x2 = (byte)0b00111000;
             var x3 = (byte)0b10100111;
-            Claim.eq(xval, Bits.pack(x0, x1, x2,x3));
+            Claim.eq(xval, Bits.pack32(x0, x1, x2,x3));
 
             var xbsref = "10100111" + "00111000" + "11100101" + "10101000";
             Claim.eq(xbsref, xval.ToBitString());
@@ -139,13 +137,13 @@ namespace Z0.Test
 
         public void Pack2()
         {
-            Claim.eq((byte)0b01110011, Bits.bitpack(1,1,0,0,1,1,1,0));
+            Claim.eq((byte)0b01110011, Bits.pack8(1,1,0,0,1,1,1,0));
 
-            Claim.eq((byte)0b00000001, Bits.bitpack(1,0,0,0,0,0,0,0));
+            Claim.eq((byte)0b00000001, Bits.pack8(1,0,0,0,0,0,0,0));
 
-            Claim.eq((byte)0b00000010, Bits.bitpack(0,1,0,0,0,0,0,0));
+            Claim.eq((byte)0b00000010, Bits.pack8(0,1,0,0,0,0,0,0));
 
-            Claim.eq((byte)0b11111111, Bits.bitpack(1,1,1,1,1,1,1,1));
+            Claim.eq((byte)0b11111111, Bits.pack8(1,1,1,1,1,1,1,1));
 
         }
 

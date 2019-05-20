@@ -23,6 +23,13 @@ partial class zfunc
         => terminal.WriteMessage(msg);
 
     /// <summary>
+    /// Writes a single line to the terminal
+    /// </summary>
+    /// <param name="msg">The message to print</param>    
+    public static void print(string msg)
+        => terminal.WriteLine(msg);
+
+    /// <summary>
     /// Prints a sequence of messages in an unbroken block
     /// </summary>
     /// <param name="messages">The messages to print</param>    

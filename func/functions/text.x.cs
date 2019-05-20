@@ -290,7 +290,7 @@ namespace Z0
         /// <param name="sep">The item separator</param>
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
-        public static string Format<T>(this IEnumerable<T> src, string sep = ", ")
+        public static string FormatMany<T>(this IEnumerable<T> src, string sep = ", ")
                 => embrace(string.Join(sep, src.Select(x => x.ToString())).TrimEnd());
  
         [MethodImpl(Inline)]

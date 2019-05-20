@@ -12,6 +12,18 @@ namespace Z0
 
     public static class SomeX
     {
+        [MethodImpl(Inline)]   
+        public static string Format(this ReadOnlySpan<char> src)
+            => new string(src);
+
+        [MethodImpl(Inline)]   
+        public static string Format(this Span<char> src)
+            => new string(src);
+
+        [MethodImpl(Inline)]   
+        public static ReadOnlySpan<char> Concat(this ReadOnlySpan<char> lhs, ReadOnlySpan<char> rhs)
+            => lhs.Format() + rhs.Format();
+
         /// <summary>
         /// Converts a number to a string of decimal digits
         /// </summary>

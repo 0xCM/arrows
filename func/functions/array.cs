@@ -13,6 +13,37 @@ using Z0;
 
 partial class zfunc
 {
+    public const sbyte ZeroI8 = 0;
+
+    public const byte ZeroU8 = 0;
+
+    public const short ZeroI16 = 0;
+
+    public const ushort ZeroU16 = 0;
+
+    public const int ZeroI32 = 0;
+
+    public const uint ZeroU32 = 0u;
+
+    public const long ZeroI64 = 0L;
+
+    public const ulong ZeroU64 = 0ul;
+
+    public const sbyte OneI8 = 1;
+
+    public const byte OneU8 = 1;
+
+    public const short OneI16 = 1;
+    
+    public const ushort OneU16 = 1;
+
+    public const int OneI32 = 1;
+
+    public const uint OneU32 = 1u;
+
+    public const long OneI64 = 1L;
+
+    public const ulong OneU64 = 1UL;
 
     /// <summary>
     /// Creates, but does not populate, a mutable array

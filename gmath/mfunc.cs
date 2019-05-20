@@ -18,7 +18,10 @@ using static zfunc;
 public static partial class mfunc
 {
     internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
+    
     internal const MethodImplOptions NotInline = MethodImplOptions.NoInlining;
+
+    internal const MethodImplOptions Optimize = MethodImplOptions.AggressiveOptimization;
 
     public static IEnumerable<T> items<T>(ValueTuple<T,T> tuple)
         => zfunc.items(tuple.Item1, tuple.Item2);
@@ -166,11 +169,8 @@ public static partial class mfunc
 
     [MethodImpl(Inline)]   
     public static string hexstring(decimal src)
-        => apply(Z0.Bits.split(src), parts =>
-            append(
-                parts.x0.ToString("X8"),
-                parts.x1.ToString("X8"),
-                parts.x2.ToString("X8"),
-                parts.x3.ToString("X8")
-            ));
+    {
+        var parts = Decimal.GetBits(src);        
+        return hexstring(parts[0]) + hexstring(parts[1]) + hexstring(parts[2]) + hexstring(parts[3]);
+    }
 }

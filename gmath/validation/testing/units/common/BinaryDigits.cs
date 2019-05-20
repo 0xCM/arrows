@@ -10,13 +10,9 @@ namespace Z0.Test
     using System.ComponentModel;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-
-    
     
     using static zfunc;
-    
-    using static BitPatterns;
-    
+        
     public class BinaryDigitTest : UnitTest<BinaryDigitTest>
     {
         static void BinaryMatch<T>(string digits, num<T> value)

@@ -27,7 +27,7 @@ namespace Z0
         /// that aren't digits
         /// </summary>
         /// <param name="src">The source string</param>
-        public static Span<BinaryDigit> Parse(string src)
+        public static Span<BinaryDigit> Parse(ReadOnlySpan<char> src)
         {
             var offset = src.StartsWith("0b") ? 2 : 0;
             var len = src.Length - offset;

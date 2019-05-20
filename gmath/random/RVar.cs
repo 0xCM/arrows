@@ -38,7 +38,7 @@ namespace Z0
         public RVar(Interval<T> domain, IRandomizer<T> random)
         {
             this.domain = domain;
-            this.stream = random.stream(domain);
+            this.stream = random.Stream(domain);
         }
 
         /// <summary>

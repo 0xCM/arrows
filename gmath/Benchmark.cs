@@ -30,39 +30,6 @@ namespace Z0
         }
 
 
-        void TestScalar()
-        {
-            {
-                var vec1 = Vec128.single(2,0,3,0);
-                var vec2 = Vec128.single(5,0,7,0);
-                var expect = Vec128.single(10L,21L);
-                var result = Vec128<long>.Zero;
-                ginx.mul(vec1, vec2,ref result);
-                Claim.eq(expect,result);
-            }
-
-            {
-                var vec1 = Vec128.single(2,0,3,0);
-                var vec2 = Vec128.single(5,0,7,0);                            
-                var result = Vec128<long>.Zero;
-                ginx.mul(vec1, vec2,ref result);
-                var expect =  Vec128.single<long>(vec1.Scalar(0) * vec2.Scalar(0), vec1.Scalar(2) * vec2.Scalar(2));
-                Claim.eq(expect, result);                        
-            
-            }
-
-            {
-                var vec1 = Vec128.single(2.0, 3.0, 4.0, 5.0);
-                var vec2 = Vec128.single(5.0, 2.0, 8.0, 4.0);
-                var expect = Vec128.single(10.0, 6.0, 32.0, 20.0);
-                var result = Vec128<double>.Zero;
-                ginx.mul(vec1, vec2,ref result);
-                Claim.eq(expect,result);
-            }
-        }
-        
-        
-        
 
         void TestNumbers()
         {
@@ -1032,198 +999,196 @@ namespace Z0
         }
 
 
-        static void GenU8Masks()
+        public readonly struct UnaryFunc<S,T>
+            where S : struct            
         {
-            var masks = new byte[8];
+            public static readonly UnaryFunc<S,T> TheOnly = default;
+            
+            public T Eval(S arg)
+                => throw new NotImplementedException();
 
-            for(var i = 1; i <= 8; i++)
-            {
-                    
-                byte mask = (byte)(i < 8 ? ((byte)1 << i) - (byte)1 : Byte.MaxValue);
-                var format01 = mask.ToBitString();
-                var formatX = mask.ToHexString();
-                var format = mask.ToString();
-                var idx = i -1;
-                print(AppMsg.Define($"masks[{idx}] = 0b{format01};", SeverityLevel.Info));
-            }
-
-            masks[0] = 0b00000001;  
-            masks[1] = 0b00000011;  
-            masks[2] = 0b00000111;  
-            masks[3] = 0b00001111;  
-            masks[4] = 0b00011111;  
-            masks[5] = 0b00111111;  
-            masks[6] = 0b01111111;  
-            masks[7] = 0b11111111;              
         }
 
-        static void GenU16Masks()
+        public readonly struct BitString<S,T>
+            where S : struct            
         {
-            var masks = new ushort[16];
+            public static readonly BitString<S,T> TheOnly = default;
 
-            for(var i = 1; i <= 16; i++)
-            {
-                    
-                ushort mask = (ushort)(i < 16 ? ((ushort)1 << i) - (ushort)1 : UInt16.MaxValue);
-                var format01 = mask.ToBitString();
-                var formatX = mask.ToHexString();
-                var format = mask.ToString();
-                var idx = i -1;
-                print(AppMsg.Define($"masks[{idx}] = 0b{format01};", SeverityLevel.Info));
-            }
-
-                masks[0] = 0b0000000000000001;
-                masks[1] = 0b0000000000000011;
-                masks[2] = 0b0000000000000111;
-                masks[3] = 0b0000000000001111;
-                masks[4] = 0b0000000000011111;
-                masks[5] = 0b0000000000111111;
-                masks[6] = 0b0000000001111111;
-                masks[7] = 0b0000000011111111;
-                masks[8] = 0b0000000111111111;
-                masks[9] = 0b0000001111111111;
-                masks[10] = 0b0000011111111111;
-                masks[11] = 0b0000111111111111;
-                masks[12] = 0b0001111111111111;
-                masks[13] = 0b0011111111111111;
-                masks[14] = 0b0111111111111111;
-                masks[15] = 0b1111111111111111;
+            [MethodImpl(Inline)]
+            public string Eval(S arg)
+                => Bits.bitstring(arg);
         }
 
-        static void GenU32Masks()
+        [MethodImpl(Optimize)]
+        void Measure<S,T>(string name, int cycles, int samples, UnaryFunc<S,T> f)
+            where S : struct
         {
-            for(var i = 1; i <= 32; i++)
-            {
-                    
-                var mask = i < 32 ? (1u << i) - 1u : UInt32.MaxValue;
-                var format01 = mask.ToBitString();
-                var formatX = mask.ToHexString();
-                var format = mask.ToString();
-                var idx = i -1;
-                print(AppMsg.Define($"masks[{idx}] = 0b{format01};", SeverityLevel.Info));
-            }
+            var _f = Unsafe.As<UnaryFunc<S,T>, BitString<S,T>>(ref f);
+            var src = Randomizer.Span<S>(samples);                
+            var sw = stopwatch(false);
+            sw.Start();
+            for(var cycle=1; cycle<= cycles; cycle++)
+            for(var i = 0; i < samples; i++)
+                _f.Eval(src[i]);                            
+            sw.Stop();
+            var time1 = snapshot(sw);
 
-            var masks = new uint[32];
-            masks[0] = 0b00000000000000000000000000000001;
-            masks[1] = 0b00000000000000000000000000000011;
-            masks[2] = 0b00000000000000000000000000000111;
-            masks[3] = 0b00000000000000000000000000001111;
-            masks[4] = 0b00000000000000000000000000011111;
-            masks[5] = 0b00000000000000000000000000111111;
-            masks[6] = 0b00000000000000000000000001111111;
-            masks[7] = 0b00000000000000000000000011111111;
-            masks[8] = 0b00000000000000000000000111111111;
-            masks[9] = 0b00000000000000000000001111111111;
-            masks[10] = 0b00000000000000000000011111111111;
-            masks[11] = 0b00000000000000000000111111111111;
-            masks[12] = 0b00000000000000000001111111111111;
-            masks[13] = 0b00000000000000000011111111111111;
-            masks[14] = 0b00000000000000000111111111111111;
-            masks[15] = 0b00000000000000001111111111111111;
-            masks[16] = 0b00000000000000011111111111111111;
-            masks[17] = 0b00000000000000111111111111111111;
-            masks[18] = 0b00000000000001111111111111111111;
-            masks[19] = 0b00000000000011111111111111111111;
-            masks[20] = 0b00000000000111111111111111111111;
-            masks[21] = 0b00000000001111111111111111111111;
-            masks[22] = 0b00000000011111111111111111111111;
-            masks[23] = 0b00000000111111111111111111111111;
-            masks[24] = 0b00000001111111111111111111111111;
-            masks[25] = 0b00000011111111111111111111111111;
-            masks[26] = 0b00000111111111111111111111111111;
-            masks[27] = 0b00001111111111111111111111111111;
-            masks[28] = 0b00011111111111111111111111111111;
-            masks[29] = 0b00111111111111111111111111111111;
-            masks[30] = 0b01111111111111111111111111111111;
-            masks[31] = 0b11111111111111111111111111111111;            
+            sw.Restart();
+            for(var cycle=1; cycle<= cycles; cycle++)
+            for(var i = 0; i < samples; i++)
+                Bits.bitstring(src[i]);
+            sw.Stop();
+            var time2 = snapshot(sw);
+
+
+            print($"{name} | Time1 = {time1.Ms} ms | Time2 = {time2.Ms} ms");
         }
-        static ulong[] GetU64Masks()
+
+
+        [MethodImpl(Optimize)]
+        void Measure<S,T>(string name, int cycles, int samples, Func<S,T> f, Func<S,T> g)
+            where S : struct
         {
-            for(var i = 1; i <= 64; i++)
-            {
-                    
-                var mask = i < 64 ? (1ul << i) - 1ul : UInt64.MaxValue;
-                var format01 = mask.ToBitString();
-                var formatX = mask.ToHexString();
-                var format = mask.ToString();
-                var idx = i -1;
-                print(AppMsg.Define($"masks[{idx}] = 0b{format01};", SeverityLevel.Info));
-            }
-                        
-            var masks = new ulong[64];
-            masks[0] =  0b0000000000000000000000000000000000000000000000000000000000000001;
-            masks[1] =  0b0000000000000000000000000000000000000000000000000000000000000011;
-            masks[2] =  0b0000000000000000000000000000000000000000000000000000000000000111;
-            masks[3] =  0b0000000000000000000000000000000000000000000000000000000000001111;
-            masks[4] =  0b0000000000000000000000000000000000000000000000000000000000011111;
-            masks[5] =  0b0000000000000000000000000000000000000000000000000000000000111111;
-            masks[6] =  0b0000000000000000000000000000000000000000000000000000000001111111;
-            masks[7] =  0b0000000000000000000000000000000000000000000000000000000011111111;
-            masks[8] =  0b0000000000000000000000000000000000000000000000000000000111111111;
-            masks[9] =  0b0000000000000000000000000000000000000000000000000000001111111111;
-            masks[10] = 0b0000000000000000000000000000000000000000000000000000011111111111;
-            masks[11] = 0b0000000000000000000000000000000000000000000000000000111111111111;
-            masks[12] = 0b0000000000000000000000000000000000000000000000000001111111111111;
-            masks[13] = 0b0000000000000000000000000000000000000000000000000011111111111111;
-            masks[14] = 0b0000000000000000000000000000000000000000000000000111111111111111;
-            masks[15] = 0b0000000000000000000000000000000000000000000000001111111111111111;
-            masks[16] = 0b0000000000000000000000000000000000000000000000011111111111111111;
-            masks[17] = 0b0000000000000000000000000000000000000000000000111111111111111111;
-            masks[18] = 0b0000000000000000000000000000000000000000000001111111111111111111;
-            masks[19] = 0b0000000000000000000000000000000000000000000011111111111111111111;
-            masks[20] = 0b0000000000000000000000000000000000000000000111111111111111111111;
-            masks[21] = 0b0000000000000000000000000000000000000000001111111111111111111111;
-            masks[22] = 0b0000000000000000000000000000000000000000011111111111111111111111;
-            masks[23] = 0b0000000000000000000000000000000000000000111111111111111111111111;
-            masks[24] = 0b0000000000000000000000000000000000000001111111111111111111111111;
-            masks[25] = 0b0000000000000000000000000000000000000011111111111111111111111111;
-            masks[26] = 0b0000000000000000000000000000000000000111111111111111111111111111;
-            masks[27] = 0b0000000000000000000000000000000000001111111111111111111111111111;
-            masks[28] = 0b0000000000000000000000000000000000011111111111111111111111111111;
-            masks[29] = 0b0000000000000000000000000000000000111111111111111111111111111111;
-            masks[30] = 0b0000000000000000000000000000000001111111111111111111111111111111;
-            masks[31] = 0b0000000000000000000000000000000011111111111111111111111111111111;
-            masks[32] = 0b0000000000000000000000000000000111111111111111111111111111111111;
-            masks[33] = 0b0000000000000000000000000000001111111111111111111111111111111111;
-            masks[34] = 0b0000000000000000000000000000011111111111111111111111111111111111;
-            masks[35] = 0b0000000000000000000000000000111111111111111111111111111111111111;
-            masks[36] = 0b0000000000000000000000000001111111111111111111111111111111111111;
-            masks[37] = 0b0000000000000000000000000011111111111111111111111111111111111111;
-            masks[38] = 0b0000000000000000000000000111111111111111111111111111111111111111;
-            masks[39] = 0b0000000000000000000000001111111111111111111111111111111111111111;
-            masks[40] = 0b0000000000000000000000011111111111111111111111111111111111111111;
-            masks[41] = 0b0000000000000000000000111111111111111111111111111111111111111111;
-            masks[42] = 0b0000000000000000000001111111111111111111111111111111111111111111;
-            masks[43] = 0b0000000000000000000011111111111111111111111111111111111111111111;
-            masks[44] = 0b0000000000000000000111111111111111111111111111111111111111111111;
-            masks[45] = 0b0000000000000000001111111111111111111111111111111111111111111111;
-            masks[46] = 0b0000000000000000011111111111111111111111111111111111111111111111;
-            masks[47] = 0b0000000000000000111111111111111111111111111111111111111111111111;
-            masks[48] = 0b0000000000000001111111111111111111111111111111111111111111111111;
-            masks[49] = 0b0000000000000011111111111111111111111111111111111111111111111111;
-            masks[50] = 0b0000000000000111111111111111111111111111111111111111111111111111;
-            masks[51] = 0b0000000000001111111111111111111111111111111111111111111111111111;
-            masks[52] = 0b0000000000011111111111111111111111111111111111111111111111111111;
-            masks[53] = 0b0000000000111111111111111111111111111111111111111111111111111111;
-            masks[54] = 0b0000000001111111111111111111111111111111111111111111111111111111;
-            masks[55] = 0b0000000011111111111111111111111111111111111111111111111111111111;
-            masks[56] = 0b0000000111111111111111111111111111111111111111111111111111111111;
-            masks[57] = 0b0000001111111111111111111111111111111111111111111111111111111111;
-            masks[58] = 0b0000011111111111111111111111111111111111111111111111111111111111;
-            masks[59] = 0b0000111111111111111111111111111111111111111111111111111111111111;
-            masks[60] = 0b0001111111111111111111111111111111111111111111111111111111111111;
-            masks[61] = 0b0011111111111111111111111111111111111111111111111111111111111111;
-            masks[62] = 0b0111111111111111111111111111111111111111111111111111111111111111;
-            masks[63] = 0b1111111111111111111111111111111111111111111111111111111111111111;
-            return masks;            
+            var src = Randomizer.Span<S>(samples);
+            var fDst = span<T>(samples);
+            var gDst = span<T>(samples);
+                
+
+            var sw = stopwatch(false);
+            sw.Start();
+            for(var cycle=1; cycle<= cycles; cycle++)
+            for(var i = 0; i < samples; i++)
+                fDst[i] = f(src[i]);
+                
+            sw.Stop();
+            var time1 = snapshot(sw);
+
+            sw.Restart();
+            for(var cycle=1; cycle<= cycles; cycle++)
+            for(var i = 0; i < samples; i++)
+                gDst[i] = g(src[i]);
+                
+            sw.Stop();
+            var time2 = snapshot(sw);
+
+            print($"{name} | Time1 = {time1.Ms} ms | Time2 = {time2.Ms} ms");
         }
+
+
+        void Measure<S>(string name, int cycles, int samples, bool verify = true)
+            where S : struct
+        {
+            var src = Randomizer.Span<S>(samples);
+            if(verify)
+                for(var i = 0; i<samples; i++)
+                {
+                    var x = Bits.bitspan(src[i]);
+                    var y = Bits.bitstring(src[i]);
+                    var len = length<Bit,char>(x,y);
+                    for(var j = 0; j < len; j++)
+                        Claim.eq(x[j], y[j]);                
+                }
+                
+
+            var sw = stopwatch(false);
+            sw.Start();
+            for(var cycle=1; cycle<= cycles; cycle++)
+            for(var i = 0; i < samples; i++)
+                Bits.bitspan(src[i]);
+                                
+            sw.Stop();
+            var time1 = snapshot(sw);
+
+            sw.Restart();
+            for(var cycle=1; cycle<= cycles; cycle++)
+            for(var i = 0; i < samples; i++)
+                Bits.bitstring(src[i]);
+                
+            sw.Stop();
+            var time2 = snapshot(sw);
+
+            print($"{name} | Time1 = {time1.Ms} ms | Time2 = {time2.Ms} ms");
+        }
+
+        static void GenPow2Bits()
+        {
+            for(var pos = 0; pos < 64; pos++)
+                print($"1 << {pos} = {(1ul << pos).ToBitString()}");
+
+        }
+
+        void BitVectors<T>(int cycles, int samples)
+            where T : struct
+        {
+            var src = Randomizer.Span<T>(samples);
+
+            var sw = stopwatch(false);
+            sw.Start();
+            for(var cycle=1; cycle<= cycles; cycle++)
+            for(var i = 0; i < samples; i++)
+            {
+                var x = Bits.bitspan(src[i]);
+                Bits.bitpack<T>(x, out T y);
+                Claim.eq(src[i], y);
+                
+                // var bvX = BitVectorU64.Define(src[i]);
+                // var bvY = bvX.BitSpan();
+                // var bvZ = BitVectorU64.Define(bvY);
+                // Claim.@true(bvX.Eq(bvZ), $"{bvX.Format()} != {bvZ.Format()}");
+            }
+                
+
+            sw.Stop();
+            var time1 = snapshot(sw);
+            print($"{time1.Ms} ms");
+
+            // sw.Restart();
+            // for(var cycle=1; cycle<= cycles; cycle++)
+            // for(var i = 0; i < samples; i++)
+            //     Bits.bitstring(src[i]);
+                
+            // sw.Stop();
+            // var time2 = snapshot(sw);
+
+            // print($"{nameof(BitVectors)} | Time1 = {time1.Ms} ms | Time2 = {time2.Ms} ms");
+
+        }
+        void BitTests()
+        {
+            var cycles = Pow2.T06;
+            var samples = Pow2.T16;
+            var loop = true;            
         
+            if(!loop)
+                return;
+
+            while(loop)
+                BitVectors<byte>(cycles,samples);
+
+            while(loop)
+                Measure<ulong>("bits", cycles, samples);
+            
+            while(loop)
+                Measure<uint,string>("bitstring", cycles, samples, UnaryFunc<uint,string>.TheOnly); 
+
+
+
+            // byte src = 0b1010100;
+            // var dst = src;
+            // var bv1 = src.ToBitVector().Format();
+            // var bv2 = Bits.loOff(ref src).ToBitVector().Format();
+            // print($"{nameof(Bits.loOff)}({bv1}) = {bv2}");
+
+            // print($"{nameof(Bits.loOff)}({Pow2.T09.ToBitVector().Format()}) = {Bits.loOff(Pow2.T09).ToBitVector().Format()}");
+
+        }       
         static void Main(params string[] args)
         {            
             var app = new Benchmark();
             try
             {     
                 gmath.one<byte>();
+                app.BitTests();
                 //app.Distance();
                 //app.RunForever();
                 //app.Compare50();

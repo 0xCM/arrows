@@ -42,6 +42,9 @@ namespace Z0
                 Console.Write(src);
         }
 
+        public void WriteLine(string text)
+            => WriteLine(text, SeverityLevel.Info);
+        
         public void WriteLine<T>(IEnumerable<T> items, string sep = ",")
         {
             lock(locker)
@@ -84,13 +87,11 @@ namespace Z0
             lock(locker)            
             {
                 var fg = Console.ForegroundColor;
-
                 foreach(var msg in messages)
                 {
                     Console.ForegroundColor = ForeColor(msg.Level);
                     Console.WriteLine(msg);
-                }
-                
+                }                
                 Console.ForegroundColor = fg;
             }            
         }

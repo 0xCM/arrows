@@ -38,6 +38,11 @@ namespace Z0
                 =>Span256<T>.Alloc(length);
 
         [MethodImpl(Inline)]
+        public static Span256<T> load<T>(Span<T> src)
+            where T : struct
+                => Span256<T>.Load(src, 0, src.Length);
+
+        [MethodImpl(Inline)]
         public static Span256<T> load<T>(Span<T> src, int offset, int length)
             where T : struct
                 => Span256<T>.Load(src, offset,length);

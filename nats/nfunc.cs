@@ -170,7 +170,6 @@ public static class nfunc
     /// Demands truth that is enforced with an exeption upon false
     /// </summary>
     /// <param name="x">The value to test</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
     public static bool demand(bool x, string message = null)
         => x ? x : throw new Exception(message ?? "demand failed");
@@ -345,7 +344,6 @@ public static class nfunc
         where T : struct
             => new Slice<N,T>(src);
 
-
     /// <summary>
     /// Constructs a vector from the componentwise-sum of two others
     /// </summary>
@@ -391,48 +389,15 @@ public static class nfunc
             where T : struct, ISemiring<T>
                 => fold(s.data,reducer);
 
-
     [MethodImpl(Inline)]
     public static T sum<N,T>(Slice<N,T> x)
         where N : Z0.ITypeNat, new() 
         where T : struct, ISemiring<T>
             => reduce(x, (a,b) => a.add(b));
 
-
-    /// <summary>
-    /// Constructs a bit vector from a bit parameter array
-    /// </summary>
-    /// <param name="src">The bit source</param>
-
-    [MethodImpl(Inline)]   
-    public static BitVector<N> bitvector<N>(params Bit[] src)
+    [MethodImpl(Inline)]
+    public static void require<N>(int value)
         where N : ITypeNat, new()
-            => BitVector.Define<N>(src);
+        => demand(nati<N>() == value, $"The source value {value} does not match the required natural {new N()}");
 
-    /// <summary>
-    /// Constructs a bit vector from a parameter array of integers
-    /// </summary>
-    /// <param name="src">The bit source</param>
-    [MethodImpl(Inline)]   
-    public static BitVector<N> bitvector<N>(params uint[] src)
-        where N : ITypeNat, new()
-            => BitVector.Define<N>(map(src, x => x == 0 ? Bit.Off : Bit.On));
-
-    /// <summary>
-    /// Constructs a bit vector of natural length 8 from a parameter array of integers
-    /// where there constructed vector is left-padded with zeros should there be
-    /// fewer than 8 bits specified
-    /// </summary>
-    /// <param name="src">The bit source</param>
-    [MethodImpl(Inline)]   
-    public static BitVector<N8> bytevector(params uint[] src)
-        => BitVector.Define<N8>(map(src, x => x == 0 ? Bit.Off : Bit.On));
-
-    /// <summary>
-    /// Defines a bitvector of natural length 8 from a parameter array of binary digits
-    /// </summary>
-    /// <param name="src">The source digits</param>
-    [MethodImpl(Inline)]   
-    public static BitVector<N8> bytevector(params BinaryDigit[] src)
-        => BitVector.Define<N8>(map(src, x => x == 0 ? Bit.Off : Bit.On));
 }

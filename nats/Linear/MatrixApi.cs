@@ -128,7 +128,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static string format<T>(Matrix<M,N,T> src)
             where T : struct    
-            => rows(src).Format();
+            => rows(src).FormatMany();
 
         public static Matrix<Prior<M>, Prior<N>,T> delete<T>(Matrix<M,N,T> src, uint rowix, uint colix)
             where T : struct    

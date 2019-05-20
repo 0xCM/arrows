@@ -34,6 +34,7 @@ namespace Z0
         public static ref byte uint8<T>(ref T src)
             => ref Unsafe.As<T,byte>(ref src);
 
+            
         [MethodImpl(Inline)]
         public static short int16<T>(T src)
             => Unsafe.As<T,short>(ref src);
