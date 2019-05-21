@@ -11,6 +11,7 @@ namespace Z0
 
     using static mfunc;
     using static Bits;
+    using static Bytes;
 
     public ref struct BitVectorI32
     {
@@ -105,20 +106,20 @@ namespace Z0
         public BitVectorI16 Lo
         {
             [MethodImpl(Inline)]
-            get => Bits.lo(data);        
+            get => lo(data);        
         }
 
         [MethodImpl(Inline)]
         public string BitString()
-            => Bits.bitstring(data);
+            => bitstring(data);
 
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
-            => Bits.bytes(data);
+            => bytes(in data);
 
         [MethodImpl(Inline)]
         public Span<Bit> BitData()
-            => Bits.bitspan(data);
+            => bitspan(data);
 
         [MethodImpl(Inline)]
         public int PopCount()

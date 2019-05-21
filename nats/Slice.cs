@@ -40,21 +40,21 @@ namespace Z0
         public Slice(params T[] src)
         {
              this.data = src;
-             this.length = (uint)Prove.claim<N>(data.Length);
+             this.length = (uint)NatProve.eq<N>(data.Length);
         }
 
         [MethodImpl(Inline)]
         public Slice(IReadOnlyList<T> src)
         {
             this.data = src.ToArray();
-            this.length = (uint)Prove.claim<N>(data.Length);
+            this.length = (uint)NatProve.eq<N>(data.Length);
         }
 
         [MethodImpl(Inline)]
         public Slice(IEnumerable<T> src)
         {
             this.data = src.Take((int)natu<N>()).ToArray();
-            this.length = (uint)Prove.claim<N>(data.Length);
+            this.length = (uint)NatProve.eq<N>(data.Length);
         }
 
         public T this[int i] 

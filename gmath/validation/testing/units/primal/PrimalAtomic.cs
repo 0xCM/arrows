@@ -319,7 +319,7 @@ namespace Z0.Test
             var timing = stopwatch();
             
             for(var i = 0; i<len; i++)
-                Claim.eq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);
+                Claim.numeq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);
             
             var metrics = Metrics.Define(opid, lhs.Length, elapsed(timing), array<T>(0));                        
             if(Verbose)

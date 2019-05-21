@@ -24,7 +24,7 @@ namespace Z0
         public static T value<N,T>()
             where N : ITypeNat, new()
             where T : struct
-                => cast<Pow2<N,T>>(Pow2G<T>.TheOne).Value;
+                => cast<IPow2G<N,T>>(Pow2G<T>.TheOne).Value;
 
         /// <summary>
         /// Computes 2^0:T = 1:T
@@ -151,7 +151,7 @@ namespace Z0
 
 
 
-    public interface Pow2<N,T>
+    public interface IPow2G<N,T>
         where N : ITypeNat, new()
         where T : struct
     {
@@ -160,166 +160,166 @@ namespace Z0
     }
 
     readonly struct Pow2G<T> : 
-        Pow2<N0,T>, 
-        Pow2<N1,T>, 
-        Pow2<N2,T>, 
-        Pow2<N3,T>, 
-        Pow2<N4,T>, 
-        Pow2<N5,T>, 
-        Pow2<N6,T>, 
-        Pow2<N7,T>, 
-        Pow2<N8,T>, 
-        Pow2<N9,T>, 
-        Pow2<N10,T>, 
-        Pow2<N11,T>, 
-        Pow2<N12,T>, 
-        Pow2<N13,T>, 
-        Pow2<N14,T>, 
-        Pow2<N15,T>, 
-        Pow2<N16,T>,
-        Pow2<N17,T>,
-        Pow2<N18,T>,
-        Pow2<N19,T>,
-        Pow2<N20,T>,
-        Pow2<N32,T>,
-        Pow2<N64,T>
+        IPow2G<N0,T>, 
+        IPow2G<N1,T>, 
+        IPow2G<N2,T>, 
+        IPow2G<N3,T>, 
+        IPow2G<N4,T>, 
+        IPow2G<N5,T>, 
+        IPow2G<N6,T>, 
+        IPow2G<N7,T>, 
+        IPow2G<N8,T>, 
+        IPow2G<N9,T>, 
+        IPow2G<N10,T>, 
+        IPow2G<N11,T>, 
+        IPow2G<N12,T>, 
+        IPow2G<N13,T>, 
+        IPow2G<N14,T>, 
+        IPow2G<N15,T>, 
+        IPow2G<N16,T>,
+        IPow2G<N17,T>,
+        IPow2G<N18,T>,
+        IPow2G<N19,T>,
+        IPow2G<N20,T>,
+        IPow2G<N32,T>,
+        IPow2G<N64,T>
             where T : struct
     {
         public static readonly Pow2G<T> TheOne = default;
 
-        T Pow2<N0, T>.Value 
+        T IPow2G<N0, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<byte,T>(Pow2.T00);
         }
 
-        T Pow2<N1, T>.Value 
+        T IPow2G<N1, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<byte,T>(Pow2.T01);
         }
 
-        T Pow2<N2, T>.Value 
+        T IPow2G<N2, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<byte,T>(Pow2.T02);
         }
 
-        T Pow2<N3, T>.Value 
+        T IPow2G<N3, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<byte,T>(Pow2.T03);
         }
 
-        T Pow2<N4, T>.Value 
+        T IPow2G<N4, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<byte,T>(Pow2.T04);
         }
 
-        T Pow2<N5, T>.Value 
+        T IPow2G<N5, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ushort,T>(Pow2.T05);
         }
 
-        T Pow2<N6, T>.Value 
+        T IPow2G<N6, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ushort,T>(Pow2.T06);
         }
 
-        T Pow2<N7, T>.Value 
+        T IPow2G<N7, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ushort,T>(Pow2.T07);
         }
 
-        T Pow2<N8, T>.Value 
+        T IPow2G<N8, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ushort,T>(Pow2.T08);
         }
 
-        T Pow2<N9, T>.Value 
+        T IPow2G<N9, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ushort,T>(Pow2.T09);
         }
 
-        T Pow2<N10, T>.Value 
+        T IPow2G<N10, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ushort,T>(Pow2.T10);
         }
 
-        T Pow2<N11, T>.Value 
+        T IPow2G<N11, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ushort,T>(Pow2.T11);
         }
 
-        T Pow2<N12, T>.Value 
+        T IPow2G<N12, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ushort,T>(Pow2.T12);
         }
 
-        T Pow2<N13, T>.Value 
+        T IPow2G<N13, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ushort,T>(Pow2.T13);
         }
 
-        T Pow2<N14, T>.Value 
+        T IPow2G<N14, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ushort,T>(Pow2.T14);
         }
 
-        T Pow2<N15, T>.Value 
+        T IPow2G<N15, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ushort,T>(Pow2.T15);
         }
 
-        T Pow2<N16, T>.Value 
+        T IPow2G<N16, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<uint,T>(Pow2.T16);
         }
 
-        T Pow2<N17, T>.Value 
+        T IPow2G<N17, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<uint,T>(Pow2.T17);
         }
 
-        T Pow2<N18, T>.Value 
+        T IPow2G<N18, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<uint,T>(Pow2.T18);
         }
 
-        T Pow2<N19, T>.Value 
+        T IPow2G<N19, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<uint,T>(Pow2.T19);
         }
 
-        T Pow2<N20, T>.Value 
+        T IPow2G<N20, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<uint,T>(Pow2.T20);
         }
 
-        T Pow2<N32, T>.Value 
+        T IPow2G<N32, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ulong,T>(Pow2.T32);
         }
 
-        T Pow2<N64, T>.Value 
+        T IPow2G<N64, T>.Value 
         {
             [MethodImpl(Inline)]
             get => convert<ulong,T>(Pow2.T32);

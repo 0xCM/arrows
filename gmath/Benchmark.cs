@@ -289,7 +289,7 @@ namespace Z0
             for(var i = 0; i< Vec256<uint>.Length; i++)
             {
                 inform($"{v1[i]} == {v2[i]} => {v3[i]}");
-                Claim.eq(v1[i] == v2[i], v3[i]);
+                //Claim.eq(v1[i] == v2[i], v3[i]);
             }
 
         }
@@ -1016,7 +1016,7 @@ namespace Z0
 
             [MethodImpl(Inline)]
             public string Eval(S arg)
-                => Bits.bitstring(arg);
+                => gbits.bitstring(arg);
         }
 
         [MethodImpl(Optimize)]
@@ -1036,7 +1036,7 @@ namespace Z0
             sw.Restart();
             for(var cycle=1; cycle<= cycles; cycle++)
             for(var i = 0; i < samples; i++)
-                Bits.bitstring(src[i]);
+                gbits.bitstring(src[i]);
             sw.Stop();
             var time2 = snapshot(sw);
 
@@ -1082,8 +1082,8 @@ namespace Z0
             if(verify)
                 for(var i = 0; i<samples; i++)
                 {
-                    var x = Bits.bitspan(src[i]);
-                    var y = Bits.bitstring(src[i]);
+                    var x = gbits.bitspan(src[i]);
+                    var y = gbits.bitstring(src[i]);
                     var len = length<Bit,char>(x,y);
                     for(var j = 0; j < len; j++)
                         Claim.eq(x[j], y[j]);                
@@ -1094,7 +1094,7 @@ namespace Z0
             sw.Start();
             for(var cycle=1; cycle<= cycles; cycle++)
             for(var i = 0; i < samples; i++)
-                Bits.bitspan(src[i]);
+                gbits.bitspan(src[i]);
                                 
             sw.Stop();
             var time1 = snapshot(sw);
@@ -1102,7 +1102,7 @@ namespace Z0
             sw.Restart();
             for(var cycle=1; cycle<= cycles; cycle++)
             for(var i = 0; i < samples; i++)
-                Bits.bitstring(src[i]);
+                gbits.bitstring(src[i]);
                 
             sw.Stop();
             var time2 = snapshot(sw);
@@ -1127,9 +1127,9 @@ namespace Z0
             for(var cycle=1; cycle<= cycles; cycle++)
             for(var i = 0; i < samples; i++)
             {
-                var x = Bits.bitspan(src[i]);
-                Bits.bitpack<T>(x, out T y);
-                Claim.eq(src[i], y);
+                var x = gbits.bitspan(src[i]);
+                gbits.bitpack<T>(x, out T y);
+                Claim.numeq(src[i], y);
                 
                 // var bvX = BitVectorU64.Define(src[i]);
                 // var bvY = bvX.BitSpan();
@@ -1153,14 +1153,82 @@ namespace Z0
             // print($"{nameof(BitVectors)} | Time1 = {time1.Ms} ms | Time2 = {time2.Ms} ms");
 
         }
+
+
+        // Converts a double into an array of bytes with length 
+        // eight.
+        public static byte[] GetBytes(double value)
+        {
+            byte[] bytes = new byte[sizeof(double)];
+            Unsafe.As<byte, double>(ref bytes[0]) = value;
+            return bytes;
+        }
+
+        // Converts an array of bytes into an int.
+        public static int ToInt32(byte[] value, int startIndex)
+        {
+
+            return Unsafe.ReadUnaligned<int>(ref value[startIndex]);
+        }
+
+         // Converts an array of bytes into a long.  
+        public static long ToInt64(byte[] value, int startIndex)
+        {
+
+            return Unsafe.ReadUnaligned<long>(ref value[startIndex]);
+        }
+
+        /// <summary>
+        /// Taken from MS CoreFX software fallback implementation for pop count
+        /// </summary>
+        [MethodImpl(Inline)]
+        static ulong SWPopCount(ulong value)
+        {
+            const ulong c1 = 0x_55555555_55555555ul;
+            const ulong c2 = 0x_33333333_33333333ul;
+            const ulong c3 = 0x_0F0F0F0F_0F0F0F0Ful;
+            const ulong c4 = 0x_01010101_01010101ul;
+
+            value = value - ((value >> 1) & c1);
+            value = (value & c2) + ((value >> 2) & c2);
+            value = (((value + (value >> 4)) & c3) * c4) >> 56;
+
+            return value;
+        }
+        void PopCounts(int cycles, int samples)
+        {            
+            var src = Randomizer.Span<byte>(samples);
+            var pcY = 0ul;
+            var pcX = 0ul;
+
+            var xTimer = stopwatch();
+            for(var cycle = 0; cycle <= cycles; cycle++)
+                for(var i = 0; i < samples; i++)
+                    pcX += SWPopCount(src[i]);
+            var xTime = snapshot(xTimer);
+        
+            var yTimer = stopwatch();
+            for(var cycle = 0; cycle <= cycles; cycle++)
+                pcY += src.PopCount();                                    
+            var yTime = snapshot(yTimer);
+
+            Claim.eq(pcX, pcY);
+
+            print($"{nameof(PopCounts)} | Time1 = {xTime.Ms} ms | Time2 = {yTime.Ms} ms | pcX = {pcX}, pcY = {pcY}");
+
+        }
         void BitTests()
         {
-            var cycles = Pow2.T06;
-            var samples = Pow2.T16;
+            var cycles = Pow2.T10;
+            var samples = Pow2.T17;
             var loop = true;            
-        
+
+
             if(!loop)
                 return;
+
+            while(loop)        
+                PopCounts(cycles,samples);
 
             while(loop)
                 BitVectors<byte>(cycles,samples);
@@ -1188,12 +1256,12 @@ namespace Z0
             try
             {     
                 gmath.one<byte>();
-                app.BitTests();
+                //app.BitTests();
                 //app.Distance();
                 //app.RunForever();
                 //app.Compare50();
                                 
-                //app.RunTests();
+                app.RunTests();
                 //BenchSelector.RunBench(BenchKind.PrimalAtomic);
                 // BenchSelector.RunBench(BenchKind.PrimalFused);
                 // BenchSelector.RunBench(BenchKind.Vec128);

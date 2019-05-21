@@ -13,47 +13,15 @@ namespace Z0
     using static nfunc;
 
 
-    /// <summary>
-    /// Requires n:T => n is prime
-    /// </summary>
-    /// <typeparam name="K">A prime nat type</typeparam>
-    public interface IPrime<K> : IDemand<K>
-        where K : ITypeNat, new()
-    {
-        
-    }
-
-    /// <summary>
-    /// Requires n:T =>  n = p^m for some prime number p and and integer m
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface IPrimePower<T> : IDemand<T>
-        where T : ITypeNat, new()
-    {
-
-    }
-
-    /// <summary>
-    /// Requires m:T =>  m = p^n for some prime number p and and natural n
-    /// </summary>
-    /// <typeparam name="P">The prime type</typeparam>
-    /// <typeparam name="N">The power type</typeparam>
-    public interface IPrimePower<P,N> : IDemand<P,N>
-        where P : ITypeNat, IPrime<P>,new()
-        where N : ITypeNat, new()
-    {
-
-    }
-
    /// <summary>
    // Captures evidence that k:K => k is prime
    // </summary>
-   public readonly struct Prime<K> : IPrime<K>
+   public readonly struct NatPrime<K> : INatPrime<K>
         where K : ITypeNat, new()
     {
         static readonly K k = default;
 
-        public Prime(K n)
+        public NatPrime(K n)
             => valid = demand(prime(n.value));
 
         public bool valid {get;}

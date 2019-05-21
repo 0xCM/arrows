@@ -14,123 +14,158 @@ namespace Z0
     
     partial class Bits
     {                
-
         [MethodImpl(Optimize)]
-        public static string bitstring<T>(T src)
-            where T : struct
+        public static string bitstring(in byte src, bool tlz = false, bool pfs = false)
         {
-            var kind = PrimalKinds.kind<T>();
+            Span<char> dst = stackalloc char[Pow2.T03];
+            var last = Pow2.T03 - 1;
 
-            if(kind == PrimalKind.int8)
-                return bitstring(in As.int8(ref src));
-
-            if(kind == PrimalKind.uint8)
-                return bitstring(in As.uint8(ref src));
-
-            if(kind == PrimalKind.int16)
-                return bitstring(in As.int16(ref src));
-
-            if(kind == PrimalKind.uint16)
-                return bitstring(in As.uint16(ref src));
-
-            if(kind == PrimalKind.int32)
-                return bitstring(in As.int32(ref src));
-
-            if(kind == PrimalKind.uint32)
-                return bitstring(in As.uint32(ref src));
-
-            if(kind == PrimalKind.int64)
-                return bitstring(in As.int64(ref src));
-
-            if(kind == PrimalKind.uint64)
-                return bitstring(in As.uint64(ref src));
-
-            throw unsupported(kind);
+            for(var i=0; i <= last; i++)
+                dst[last - i] = Bits.test(src,i) ? Bit.One : Bit.Zero;
+            
+            var bsRaw = new string(dst);
+            if(!tlz && ! pfs)
+                return bsRaw;
                 
+            bsRaw = tlz ? bsRaw.TrimStart(Bit.Zero) : bsRaw;
+            bsRaw = pfs ? "0b" + bsRaw : bsRaw;
+            return bsRaw;
         }
 
         [MethodImpl(Optimize)]
-        public static string bitstring(in byte src)
+        public static string bitstring(in sbyte src, bool tlz = false, bool pfs = false)
         {
             Span<char> dst = stackalloc char[Pow2.T03];
             var last = Pow2.T03 - 1;
+
             for(var i=0; i <= last; i++)
                 dst[last - i] = Bits.test(src,i) ? Bit.One : Bit.Zero;
-            return new string(dst);
+            
+            var bsRaw = new string(dst);
+            if(!tlz && ! pfs)
+                return bsRaw;
+                
+            bsRaw = tlz ? bsRaw.TrimStart(Bit.Zero) : bsRaw;
+            bsRaw = pfs ? "0b" + bsRaw : bsRaw;
+            return bsRaw;
         }
 
         [MethodImpl(Optimize)]
-        public static string bitstring(in sbyte src)
-        {
-            Span<char> dst = stackalloc char[Pow2.T03];
-            var last = Pow2.T03 - 1;
-            for(var i=0; i <= last; i++)
-                dst[last - i] = Bits.test(src,i) ? Bit.One : Bit.Zero;
-            return new string(dst);
-        }
-
-        [MethodImpl(Optimize)]
-        public static string bitstring(in short src)
+        public static string bitstring(in short src, bool tlz = false, bool pfs = false)
         {
             Span<char> dst = stackalloc char[Pow2.T04];
             var last = Pow2.T04 - 1;
+
             for(var i=0; i <= last; i++)
                 dst[last - i] = Bits.test(src,i) ? Bit.One : Bit.Zero;
-            return new string(dst);
+            
+            var bsRaw = new string(dst);
+            if(!tlz && ! pfs)
+                return bsRaw;
+                
+            bsRaw = tlz ? bsRaw.TrimStart(Bit.Zero) : bsRaw;
+            bsRaw = pfs ? "0b" + bsRaw : bsRaw;
+            return bsRaw;
         }
 
         [MethodImpl(Optimize)]
-        public static string bitstring(in ushort src)
+        public static string bitstring(in ushort src, bool tlz = false, bool pfs = false)
         {
             Span<char> dst = stackalloc char[Pow2.T04];
             var last = Pow2.T04 - 1;
+
             for(var i=0; i <= last; i++)
                 dst[last - i] = Bits.test(src,i) ? Bit.One : Bit.Zero;
-            return new string(dst);
+            
+            var bsRaw = new string(dst);
+            if(!tlz && ! pfs)
+                return bsRaw;
+                
+            bsRaw = tlz ? bsRaw.TrimStart(Bit.Zero) : bsRaw;
+            bsRaw = pfs ? "0b" + bsRaw : bsRaw;
+            return bsRaw;
         }
 
         [MethodImpl(Optimize)]
-        public static string bitstring(in int src)
+        public static string bitstring(in int src, bool tlz = false, bool pfs = false)
         {
             Span<char> dst = stackalloc char[Pow2.T05];
             var last = Pow2.T05 - 1;
+
             for(var i=0; i <= last; i++)
                 dst[last - i] = Bits.test(src,i) ? Bit.One : Bit.Zero;
-            return new string(dst);
+            
+            var bsRaw = new string(dst);
+            if(!tlz && ! pfs)
+                return bsRaw;
+                
+            bsRaw = tlz ? bsRaw.TrimStart(Bit.Zero) : bsRaw;
+            bsRaw = pfs ? "0b" + bsRaw : bsRaw;
+            return bsRaw;
         }
 
         [MethodImpl(Optimize)]
-        public static string bitstring(in uint src)
+        public static string bitstring(in uint src, bool tlz = false, bool pfs = false)
         {
             Span<char> dst = stackalloc char[Pow2.T05];
             var last = Pow2.T05 - 1;
+
             for(var i=0; i <= last; i++)
                 dst[last - i] = Bits.test(src,i) ? Bit.One : Bit.Zero;
-            return new string(dst);
+            
+            var bsRaw = new string(dst);
+            if(!tlz && ! pfs)
+                return bsRaw;
+                
+            bsRaw = tlz ? bsRaw.TrimStart(Bit.Zero) : bsRaw;
+            bsRaw = pfs ? "0b" + bsRaw : bsRaw;
+            return bsRaw;
         }
 
         [MethodImpl(Optimize)]
-        public static string bitstring(in long src)
+        public static string bitstring(in long src, bool tlz = false, bool pfs = false)
         {
             Span<char> dst = stackalloc char[Pow2.T06];
             var last = Pow2.T06 - 1;
             for(var i=0; i <= last; i++)
                 dst[last - i] = Bits.test(src,i) ? Bit.One : Bit.Zero;
-            return new string(dst);
+            
+            var bsRaw = new string(dst);
+            if(!tlz && ! pfs)
+                return bsRaw;
+                
+            bsRaw = tlz ? bsRaw.TrimStart(Bit.Zero) : bsRaw;
+            bsRaw = pfs ? "0b" + bsRaw : bsRaw;
+            return bsRaw;
         }
 
         [MethodImpl(Optimize)]
-        public static string bitstring(in ulong src)
+        public static string bitstring(in ulong src, bool tlz = false, bool pfs = false)
         {
             Span<char> dst = stackalloc char[Pow2.T06];
             var last = Pow2.T06 - 1;
+
             for(var i=0; i <= last; i++)
                 dst[last - i] = Bits.test(src,i) ? Bit.One : Bit.Zero;
-            return new string(dst);
+            
+            var bsRaw = new string(dst);
+            if(!tlz && ! pfs)
+                return bsRaw;
+                
+            bsRaw = tlz ? bsRaw.TrimStart(Bit.Zero) : bsRaw;
+            bsRaw = pfs ? "0b" + bsRaw : bsRaw;
+            return bsRaw;
         }
 
-
-
+        [MethodImpl(Optimize)]
+        public static string bitstring(Span<Bit> src)
+        {
+            var len = src.Length;
+            var dst = span<char>(len);
+            var last = len - 1;
+            for(var i=0; i <= last; i++)
+                dst[last -i] = src[i];
+            return new string(dst);
+        }
     }
-
 }

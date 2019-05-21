@@ -22,54 +22,64 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static BitVector<N8> Define(sbyte src)
+        public static BitVector<N8> Define(in sbyte src)
             => BitVector<N8>.Define(src.ToBits());
 
         [MethodImpl(Inline)]
-        public static BitVector<N8> Define(byte src)
+        public static BitVector<N8> Define(in byte src)
             => BitVector<N8>.Define(src.ToBits());
 
         [MethodImpl(Inline)]
-        public static BitVector<N16> Define(short src)
+        public static BitVector<N16> Define(in short src)
             => BitVector<N16>.Define(src.ToBits());
 
         [MethodImpl(Inline)]
-        public static BitVector<N16> Define(ushort src)
+        public static BitVector<N16> Define(in ushort src)
             => BitVector<N16>.Define(src.ToBits());
 
         [MethodImpl(Inline)]
-        public static BitVector<N32> Define(int src)
+        public static BitVector<N32> Define(in int src)
             => BitVector<N32>.Define(src.ToBits());
 
         [MethodImpl(Inline)]
-        public static BitVector<N32> Define(uint src)
+        public static BitVector<N32> Define(in uint src)
             => BitVector<N32>.Define(src.ToBits());
 
         [MethodImpl(Inline)]
-        public static BitVector<N64> Define(long src)
+        public static BitVector<N64> Define(in long src)
             => BitVector<N64>.Define(src.ToBits());
 
         [MethodImpl(Inline)]
-        public static BitVector<N64> Define(ulong src)
+        public static BitVector<N64> Define(in ulong src)
             => BitVector<N64>.Define(src.ToBits());
 
         [MethodImpl(Inline)]
-        public static BitVector<N128> Define(i128 src)
+        public static BitVector<N128> Define(in i128 src)
             => BitVector<N128>.Define(src.ToBits());
 
         [MethodImpl(Inline)]
-        public static BitVector<N128> Define(u128 src)
+        public static BitVector<N128> Define(in u128 src)
             => BitVector<N128>.Define(src.ToBits());
 
         [MethodImpl(Inline)]
-        public static BitVector<N> Define<N>(Span<char> src)
-            where N : ITypeNat, new()
+        public static BitVector<N> Define<N>(in ReadOnlySpan<char> src)
+            where N : INatPow2, new()
                 => BitVector<N>.Define(src);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> Define<N>(Span<Bit> src)
-            where N : ITypeNat, new()
+        public static BitVector<N> Define<N>(in ReadOnlySpan<Bit> src)
+            where N : INatPow2, new()
                 => BitVector<N>.Define(src);
+
+        [MethodImpl(Inline)]
+        public static BitVector<N> Define<N>(in ReadOnlySpan<byte> src)
+            where N : INatPow2, new()
+                => BitVector<N>.Define(src);
+
+        [MethodImpl(Inline)]
+        public static BitVector<N> Define<N>(ref Span<byte> src)
+            where N : INatPow2, new()
+                => BitVector<N>.Define(ref src);
 
     }  
 }

@@ -73,14 +73,13 @@ namespace Z0
             return dst;
         }    
 
-
         [MethodImpl(Inline)]
         public Vector256<U> As<U>() 
             where U : struct        
                 => Unsafe.As<Vector256<T>, Vector256<U>>(ref Unsafe.AsRef(in data));        
 
         [MethodImpl(Inline)]
-        public bool Equals(Vec256<T> rhs)
+        public bool Eq(Vec256<T> rhs)
             => data.Equals(rhs.data);
 
         public override string ToString()

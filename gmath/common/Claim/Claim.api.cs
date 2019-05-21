@@ -40,16 +40,37 @@ namespace Z0
                 : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
 
         [MethodImpl(Inline)]
-        public static bool eq<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+        public static bool numeq<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
-                => gmath.eq(lhs,rhs) ? true
-                    : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
-        
+                => gmath.eq(lhs,rhs) ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
+
         [MethodImpl(Inline)]
-        public static bool eq<T>(T lhs, T rhs, AppMsg msg)
+        public static bool numeq<T>(T lhs, T rhs, AppMsg msg)
             where T : struct 
                 => gmath.eq(lhs,rhs) ? true : throw failed(ClaimOpKind.Eq, msg);
-        
+
+        public static void numeq<T>(T[] lhs, T[] rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct 
+        {            
+            for(var i = 0; i< length(lhs,rhs); i++)
+                if(!gmath.eq(lhs[i],rhs[i]))
+                    throw failed(ClaimOpKind.EqItem, ItemsNotEqual(i, lhs[i], rhs[i], caller, file, line));
+        }
+
+        [MethodImpl(Inline)]
+        public static bool eq(object lhs, object rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs.Equals(rhs) ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool eq<T>(Vec128<T> lhs, Vec128<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct 
+                => lhs.Eq(rhs) ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool eq<T>(Vec256<T> lhs, Vec256<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct 
+                => lhs.Eq(rhs) ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
+
         public static void eq<T>(Span128<T> lhs, Span128<T> rhs,  [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
         {
@@ -89,14 +110,14 @@ namespace Z0
             var rSpan = rhs.Span;
             eq<T>(lSpan, rSpan, caller, file, line);
         }
-        
-        public static void eq<T>(T[] lhs, T[] rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            where T : struct 
+
+        public static void eq(bool[] lhs, bool[] rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
         {            
             for(var i = 0; i< length(lhs,rhs); i++)
-                if(!gmath.eq(lhs[i],rhs[i]))
+                if(lhs[i] != rhs[i])
                     throw failed(ClaimOpKind.EqItem, ItemsNotEqual(i, lhs[i], rhs[i], caller, file, line));
         }
+
 
         [MethodImpl(Inline)]
         public static bool eq<T>(num<T> lhs, num<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
@@ -108,12 +129,28 @@ namespace Z0
                 => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs, rhs, caller, file, line));
 
         [MethodImpl(Inline)]
+        public static bool eq(Bit lhs, Bit rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+                => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
         public static bool eq(byte lhs, byte rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs, rhs, caller, file, line));
 
         [MethodImpl(Inline)]
-        public static bool lt(int lhs, int rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));
+        public static bool eq(sbyte lhs, sbyte rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool eq(short lhs, short rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool eq(ushort lhs, ushort rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool eq(int lhs, int rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs, rhs, caller, file, line));
 
         [MethodImpl(Inline)]
         public static bool eq(uint lhs, uint rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
@@ -126,6 +163,19 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool eq(ulong lhs, ulong rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool eq(float lhs, float rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool eq(double lhs, double rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs == rhs ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool lt(int lhs, int rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));
+
 
         [MethodImpl(Inline)]
         public static bool lt(ulong lhs, ulong rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)

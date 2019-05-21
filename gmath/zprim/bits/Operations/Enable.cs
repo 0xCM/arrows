@@ -14,33 +14,6 @@ namespace Z0
     
     partial class Bits
     {                
-          [MethodImpl(Optimize)]
-          public static ref T enable<T>(ref T src, in int pos)
-               where T : struct
-          {
-               var kind = PrimalKinds.kind<T>();
-
-               if(kind == PrimalKind.int8)            
-                    enable(ref As.int8(ref src), in pos);
-               else if(kind == PrimalKind.uint8)
-                    enable(ref As.uint8(ref src), in pos);
-               else if(kind == PrimalKind.int16)
-                    enable(ref As.int16(ref src), in pos);
-               else if(kind == PrimalKind.uint16)
-                    enable(ref As.uint16(ref src), in pos);
-               else if(kind == PrimalKind.int32)
-                    enable(ref As.int32(ref src), in pos);
-               else if(kind == PrimalKind.uint32)
-                    enable(ref As.uint32(ref src), in pos);
-               else if(kind == PrimalKind.int64)
-                    enable(ref As.int64(ref src), in pos);
-               else if(kind == PrimalKind.uint64)
-                    enable(ref As.uint64(ref src), in pos);
-               else
-                    throw unsupported(kind);
-
-               return ref src;                            
-          }
 
           [MethodImpl(Inline)]
           public static ref sbyte enable(ref sbyte src, in int pos)

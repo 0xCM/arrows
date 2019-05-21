@@ -10,7 +10,7 @@ namespace Z0
     /// </summary>
     public readonly struct PrimePow<P, E> : ITypeNat
         where E : ITypeNat, new()
-        where P : ITypeNat, IPrime<P>, new()
+        where P : ITypeNat, INatPrime<P>, new()
     {
         public static readonly PrimePow<P,E> Rep = default;
 

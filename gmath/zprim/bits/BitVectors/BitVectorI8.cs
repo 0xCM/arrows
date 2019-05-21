@@ -11,6 +11,7 @@ namespace Z0
 
     using static mfunc;
     using static Bits;
+    using static Bytes;
 
     public ref struct BitVectorI8 
     {
@@ -76,6 +77,7 @@ namespace Z0
                     disable(ref data, in index);
             }
         }
+        
 
         [MethodImpl(Inline)]
         public void EnableBit(in int pos)
@@ -97,6 +99,10 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public Span<byte> Bytes()
+            =>  bytes(in data);
+
+        [MethodImpl(Inline)]
         public string BitString()
             => bitstring(data);
 
@@ -105,8 +111,8 @@ namespace Z0
             => bitspan(data);
 
         [MethodImpl(Inline)]
-        public int PopCount()
-            => pop((uint)data) + (data < 0 ? 1 : 0);
+        public ulong PopCount()
+            => pop((uint)data) + (data < 0 ? 1ul : 0ul);
 
         [MethodImpl(Inline)]
         public bool Eq(in BitVectorI8 rhs)

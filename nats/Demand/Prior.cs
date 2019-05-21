@@ -8,18 +8,31 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
-
     /// <summary>
-    /// Requires k1: K1 & k2:K2 => k1 - 1 = k2
+    /// Captures evidence that k1: K1 & k2:K2 => k1 + 1 = k2
     /// </summary>
-    /// <typeparam name="K1"></typeparam>
-    /// <typeparam name="K2"></typeparam>
-    public interface IPrior<K1,K2> : ILarger<K1,K2>
-        where K1 : ITypeNat, new()
-        where K2 : ITypeNat, new()
+    /// <typeparam name="K1">The first nat type</typeparam>
+    /// <typeparam name="K2">The second nat type</typeparam>
+    public readonly struct NatNext<K1,K2> : INatNext<K1,K2>
+        where K1: ITypeNat, new()
+        where K2: ITypeNat, new()
     {
+        static readonly K1 k1 = default;
+        static readonly K2 k2 = default;
+        
+        static readonly string description = $"++{k1} = {k2}";
 
-    }       
+        public NatNext(K1 n1, K2 n2)
+            => valid = demand(n1.value + 1 == n2.value);
+
+        public bool valid {get;}
+
+        
+        public override string ToString()
+            => valid ? description : $"invalid({description})";    
+
+
+    }
 
 
     /// <summary>
@@ -27,15 +40,16 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K1">The first nat type</typeparam>
     /// <typeparam name="K2">The second nat type</typeparam>
-    public readonly struct Prior<K1,K2> : Demands.Next<K1,K2>
+    public readonly struct NatPrior<K1,K2> : INatPrior<K1,K2>
         where K1: ITypeNat, new()
         where K2: ITypeNat, new()
     {
         static readonly K1 k1 = default;
         static readonly K2 k2 = default;
+        
         static readonly string description = $"{k1} - 1 = {k2}";
 
-        public Prior(K1 n1, K2 n2)
+        public NatPrior(K1 n1, K2 n2)
             => valid = demand(n1.value - 1 == n2.value);
 
         public bool valid {get;}

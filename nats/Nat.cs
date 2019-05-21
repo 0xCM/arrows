@@ -17,29 +17,6 @@ namespace Z0
     using static nfunc;
 
     /// <summary>
-    /// Characterizes an enumerable with a known length as specified
-    /// by a natural type parameter
-    /// </summary>
-    public interface IEnumerable<N,I> : IEnumerable<I>
-        where N : ITypeNat, new()
-    {
-        /// <summary>
-        /// The value of the natural parameter
-        /// </summary>
-        uint length {get;}
-    }
-
-    public interface IArray<N,T> : IEnumerable<N,T>
-        where N : ITypeNat, new()
-    {
-        /// <summary>
-        /// Specifies or retrieves an array value via an unchecked index
-        /// </summary>
-        ref T this[int ix] {get;}
-    }
-
-
-    /// <summary>
     /// Constructs natural number prepresentatives and calculates related values
     /// </summary>
     public static class Nat
@@ -144,7 +121,7 @@ namespace Z0
         {                        
             var tval = Nat.nat<T>();
             var sval = Nat.nat<S>();
-            Prove.equal(tval, sval);
+            NatProve.eq(tval, sval);
             return tval;
         }
 
@@ -195,7 +172,7 @@ namespace Z0
         /// <typeparam name="K">A representative type</typeparam>
         [MethodImpl(Inline)]   
         public static NatSeq natseq<K>()
-            where K : NatPrimitive<K>,new()
+            where K : INatPrimitive<K>,new()
                 => new K().seq;
 
         /// <summary>
@@ -206,8 +183,8 @@ namespace Z0
         /// <typeparam name="K2">The second nat type, corresponding the second digit of the associated value</typeparam>
         [MethodImpl(Inline)]   
         public static NatSeq<K1,K2> seq<K1,K2>()
-            where K1 : NatPrimitive<K1>, new()        
-            where K2 : NatPrimitive<K2>, new()
+            where K1 : INatPrimitive<K1>, new()        
+            where K2 : INatPrimitive<K2>, new()
                 => NatSeq<K1,K2>.Rep;
 
         /// <summary>
@@ -218,7 +195,7 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]   
         public static NatInterval<K1,K2> interval<K1,K2>()
-            where K1 : ITypeNat, ISmaller<K1,K2>, new()
+            where K1 : ITypeNat, INatLt<K1,K2>, new()
             where K2 : ITypeNat, new()
                 => new NatInterval<K1,K2>(natrep<K1>(), natrep<K2>());
 
@@ -275,7 +252,7 @@ namespace Z0
         /// <typeparam name="E">The exponent type</typeparam>
         [MethodImpl(Inline)]   
         public static PrimePow<P,E> primepow<P,E>()
-            where P : ITypeNat, IPrime<P>, new()        
+            where P : ITypeNat, INatPrime<P>, new()        
             where E : ITypeNat, new()
                 => PrimePow<P,E>.Rep;
 
@@ -324,9 +301,9 @@ namespace Z0
         /// <typeparam name="K3">The third nat type, corresponding the third digit of the associated value</typeparam>
         [MethodImpl(Inline)]   
         public static NatSeq<K1,K2,K3> seq<K1,K2,K3>()
-            where K1 : NatPrimitive<K1>, new()        
-            where K2 : NatPrimitive<K2>, new()
-            where K3 : NatPrimitive<K3>, new()
+            where K1 : INatPrimitive<K1>, new()        
+            where K2 : INatPrimitive<K2>, new()
+            where K3 : INatPrimitive<K3>, new()
                 => NatSeq<K1,K2,K3>.Rep;
         
         /// <summary>
@@ -339,10 +316,10 @@ namespace Z0
         /// <typeparam name="K4">The fourth nat type, corresponding the fourth digit of the associated value</typeparam>
         [MethodImpl(Inline)]   
         public static NatSeq<K1,K2,K3,K4> seq<K1,K2,K3,K4>()
-            where K1 : NatPrimitive<K1>, new()        
-            where K2 : NatPrimitive<K2>, new()
-            where K3 : NatPrimitive<K3>, new()
-            where K4 : NatPrimitive<K4>, new()
+            where K1 : INatPrimitive<K1>, new()        
+            where K2 : INatPrimitive<K2>, new()
+            where K3 : INatPrimitive<K3>, new()
+            where K4 : INatPrimitive<K4>, new()
                 => default;
 
         /// <summary>
@@ -356,11 +333,11 @@ namespace Z0
         /// <typeparam name="K5">The fifth nat type, corresponding the fifth digit of the associated value</typeparam>
         [MethodImpl(Inline)]   
         public static NatSeq<K1,K2,K3,K4,K5> seq<K1,K2,K3,K4,K5>()
-            where K1 : NatPrimitive<K1>, new()        
-            where K2 : NatPrimitive<K2>, new()
-            where K3 : NatPrimitive<K3>, new()
-            where K4 : NatPrimitive<K4>, new()
-            where K5 : NatPrimitive<K5>, new()
+            where K1 : INatPrimitive<K1>, new()        
+            where K2 : INatPrimitive<K2>, new()
+            where K3 : INatPrimitive<K3>, new()
+            where K4 : INatPrimitive<K4>, new()
+            where K5 : INatPrimitive<K5>, new()
                 => default;
 
         /// <summary>
@@ -375,12 +352,12 @@ namespace Z0
         /// <typeparam name="K6">The sixth nat type, corresponding the sixth digit of the associated value</typeparam>
         [MethodImpl(Inline)]   
         public static NatSeq<K1,K2,K3,K4,K5,K6> seq<K1,K2,K3,K4,K5,K6>()
-            where K1 : NatPrimitive<K1>, new()        
-            where K2 : NatPrimitive<K2>, new()
-            where K3 : NatPrimitive<K3>, new()
-            where K4 : NatPrimitive<K4>, new()
-            where K5 : NatPrimitive<K5>, new()
-            where K6 : NatPrimitive<K6>, new()
+            where K1 : INatPrimitive<K1>, new()        
+            where K2 : INatPrimitive<K2>, new()
+            where K3 : INatPrimitive<K3>, new()
+            where K4 : INatPrimitive<K4>, new()
+            where K5 : INatPrimitive<K5>, new()
+            where K6 : INatPrimitive<K6>, new()
                 => default;
    
    

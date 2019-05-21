@@ -11,6 +11,7 @@ namespace Z0
 
     using static mfunc;
     using static Bits;
+    using static Bytes;
 
     public ref struct BitVectorU32
     {
@@ -74,15 +75,15 @@ namespace Z0
         public Bit this[in int pos]
         {
             [MethodImpl(Inline)]
-            get => Bits.test(data, in pos);
+            get => test(data, in pos);
             
             [MethodImpl(Inline)]
             set
             {
                 if(value)
-                    Bits.enable(ref data, in pos);
+                    enable(ref data, in pos);
                 else
-                     Bits.disable(ref data, in pos);                    
+                    disable(ref data, in pos);                    
             }            
         }
 

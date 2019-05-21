@@ -12,7 +12,7 @@ namespace Z0
 
     using static nfunc;
 
-    partial class Prove
+    partial class NatProve
     {
 
        /// <summary>
@@ -20,25 +20,25 @@ namespace Z0
         /// raises an error
         /// </summary>
         /// <typeparam name="K">The subject</typeparam>
-        public static Prime<K> prime<K>()
+        public static NatPrime<K> prime<K>()
             where K: ITypeNat, new()
-                => new Prime<K>(natrep<K>());
+                => new NatPrime<K>(natrep<K>());
 
         /// <summary>
         /// If possible, constructs evidence that n:K => n prime; otherwise,
         /// raises an error
         /// </summary>
         /// <typeparam name="K">The subject</typeparam>
-        public static Prime<K> prime<K>(K k)
+        public static NatPrime<K> prime<K>(K k)
             where K: ITypeNat, new()
-                => new Prime<K>(k);
+                => new NatPrime<K>(k);
 
         /// <summary>
         /// If possible, constructs evidence that n:K => n prime; otherwise,
         /// yields none
         /// </summary>
         /// <typeparam name="K">The subject</typeparam>
-        public static Option<Prime<K>> tryPrime<K>()
+        public static Option<NatPrime<K>> tryPrime<K>()
             where K: ITypeNat, new()
                 => Try(() => prime<K>());
 
@@ -47,7 +47,7 @@ namespace Z0
         /// yields none
         /// </summary>
         /// <typeparam name="K">The subject</typeparam>
-        public static Option<Prime<K>> tryPrime<K>(K k)
+        public static Option<NatPrime<K>> tryPrime<K>(K k)
             where K: ITypeNat, new()
                 => Try(() => prime<K>(k));
 

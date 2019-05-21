@@ -14,113 +14,131 @@ namespace Z0
     using static zfunc;
     using static nfunc;
     using static mfunc;
+    using static Bits;
 
     /// <summary>
     /// Defines an integrally and naturally typed bitvector
     /// </summary>
     public ref struct BitVector<N> 
-        where N : ITypeNat, new()
+        where N : INatPow2, new()
     {
-        Span<Bit> bits;
-
-        BitVector(Span<char> src)
-            => bits = src.ToBits();
-
-        BitVector(ReadOnlySpan<char> src)
-            => bits = src.ToBits();
-
-        BitVector(Span<Bit> src)
-        {
-            nfunc.require<N>(src.Length);
-            bits = src;
-            for(var i =0; i< Length; i++)
-                bits[i] = src[i];
-        }
-
-        public static readonly int Length = nati<N>();        
-
         [MethodImpl(Inline)]
-        public static BitVector<N> Define(Span<Bit> src)
+        public static BitVector<N> Define(in ReadOnlySpan<Bit> src)
             => new BitVector<N>(src);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> Define(Span<char> src)
-                => new BitVector<N>(src);
+        public static BitVector<N> Define(in ReadOnlySpan<char> src)
+            => new BitVector<N>(src);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> Define(ReadOnlySpan<char> src)
-                => new BitVector<N>(src);
+        public static BitVector<N> Define(in ReadOnlySpan<byte> src)
+            => new BitVector<N>(src);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> Define(ReadOnlySpan<BinaryDigit> src)
+        public static BitVector<N> Define(ref Span<byte> src)
+            => new BitVector<N>(ref src);
+
+        public static readonly int BitCount = nati<N>();     
+
+        public static readonly int ByteCount = BitCount / 8;
+
+        static readonly uint Exponent = (uint)new N().Exponent.value;
+
+        Span<byte> bits;
+        
+        BitVector(in ReadOnlySpan<char> src)
         {
-            var dst = span<char>(src.Length);
-            for(var i=0; i<Length; i++)
-                dst[i] = src[i].ToBit();            
-            return new BitVector<N>(dst);
+            Claim.eq(src.Length, ByteCount);
+            bits = src.FromBitString(out bits);                 
+        }
+            
+        BitVector(in ReadOnlySpan<BinaryDigit> src)
+        {
+            Claim.eq(src.Length, ByteCount);
+            bits = src.FromDigits(out bits);
         }
 
+        BitVector(in ReadOnlySpan<Bit> src)
+        {
+            Claim.eq(src.Length, ByteCount);
+            bits = src.FromBits(out bits);
+        }
+
+        BitVector(in ReadOnlySpan<byte> src)
+        {
+            Claim.eq(src.Length, ByteCount);
+            bits = src.Replicate();
+        }
+
+        BitVector(ref Span<byte> src)
+        {
+            Claim.eq(src.Length, ByteCount);
+            bits = src;
+        }
         
         [MethodImpl(Inline)]
-        public static bool operator == (BitVector<N> lhs, in BitVector<N> rhs) 
+        public static bool operator == (in BitVector<N> lhs, in BitVector<N> rhs) 
             => lhs.Eq(rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator != (BitVector<N> lhs, in BitVector<N> rhs) 
+        public static bool operator != (in BitVector<N> lhs, in BitVector<N> rhs) 
             => lhs.NEq(rhs);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> operator & (BitVector<N> lhs, in BitVector<N> rhs) 
-        {
-            lhs.And(rhs);
-            return lhs;
-        }
+        public static BitVector<N> operator & (in BitVector<N> lhs, in BitVector<N> rhs) 
+            => lhs.And(rhs);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> operator | (BitVector<N> lhs, in BitVector<N> rhs) 
-        {
-            lhs.Or(rhs);
-            return lhs;
-        }
+        public static BitVector<N> operator | (in BitVector<N> lhs, in BitVector<N> rhs) 
+            => lhs.Or(rhs);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> operator ^ (BitVector<N> lhs, in BitVector<N> rhs) 
-        {
-            lhs.XOr(rhs);
-            return lhs;
-        }
+        public static BitVector<N> operator ^ (in BitVector<N> lhs, in BitVector<N> rhs) 
+            => lhs.XOr(rhs);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> operator ~ (BitVector<N> src) 
+        public static BitVector<N> operator ~ (in BitVector<N> src) 
+            => src.Flip();
+                    
+        [MethodImpl(Optimize)]
+        BitVector<N> And(in BitVector<N> rhs)
         {
-            src.Flip();
-            return src;
-        }
-        
-            
-
-        public void And(in BitVector<N> rhs)
-        {
-            for(var i =0; i<  Length; i++)
-                bits[i] = Bit.And(bits[i], rhs.bits[i]);            
+            for(var i =0; i < ByteCount; i++)
+                bits[i] &= rhs.bits[i];
+            return this;
         }
 
-        public void Or(in BitVector<N> rhs)
+        [MethodImpl(Optimize)]
+        BitVector<N> Or(in BitVector<N> rhs)
         {
-            for(var i =0; i<  Length; i++)
-                bits[i] = Bit.Or(bits[i], rhs.bits[i]);            
+            for(var i =0; i < ByteCount; i++)
+                bits[i] |= rhs.bits[i];
+            return this;
         }
 
-        public void XOr(in BitVector<N> rhs)
+        [MethodImpl(Optimize)]
+        BitVector<N> XOr(in BitVector<N> rhs)
         {
-            for(var i =0; i<  Length; i++)
-                bits[i] = Bit.XOr(bits[i], rhs.bits[i]);            
+            for(var i =0; i < ByteCount; i++)
+                bits[i] ^= rhs.bits[i];
+            return this;
         }
 
-        public void Flip()
+        [MethodImpl(Optimize)]
+        BitVector<N> Flip()
         {
-            for(var i =0; i<  Length; i++)
-                bits[i] = Bit.Flip(bits[i]);
+            for(var i =0; i < ByteCount; i++)
+                bits[i] = (byte)(~ bits[i]);
+            return this;
+        }
+
+        public Bit this[in int pos]
+        {
+            [MethodImpl(Inline)]
+            get => TestBit(in pos);
+                        
+            [MethodImpl(Inline)]
+            set => SetBit(in pos, in value);
         }
 
         /// <summary>
@@ -131,27 +149,63 @@ namespace Z0
         /// <typeparam name="T">The underlying integral type</typeparam>
         /// <returns>Returns true if the identified bit is set, false otherwise</returns>
         [MethodImpl(Inline)]
-        public bool TestBit(int pos)            
-            => bits[pos] == Bit.One;
-
+        public bool TestBit(in int pos)            
+        {
+            math.quorem(in pos, 8, out Quorem<int> qr);
+            return test(bits[qr.Quotient], qr.Remainder);                
+        }
         
         [MethodImpl(Inline)]
-        public string Format()
-            => bits.ToBitString();
-
+        public void EnableBit(in int pos)            
+        {
+            math.quorem(in pos, 8, out Quorem<int> qr);
+            enable(ref bits[qr.Quotient], in qr.Remainder);
+        }
 
         [MethodImpl(Inline)]
-        public bool Eq(BitVector<N> rhs)
+        public void DisableBit(in int pos)            
         {
-            for(var i = 0; i< Length; i++)
+            math.quorem(in pos, 8, out Quorem<int> qr);
+            disable(ref bits[qr.Quotient], in qr.Remainder);
+        }
+
+        [MethodImpl(Inline)]
+        public void SetBit(in int pos, in Bit value)
+        {
+            if(value)
+                EnableBit(pos);
+            else
+                DisableBit(pos);
+        }
+
+        [MethodImpl(Inline)]
+        public ulong PopCount()
+            => bits.PopCount();
+
+        [MethodImpl(Inline)]
+        public Span<byte> Bytes()
+            => bits;
+
+        [MethodImpl(Inline)]
+        public string BitString()
+            => bits.ToBitString();
+
+        [MethodImpl(Inline)]
+        public string Format()
+            => BitString();
+
+        [MethodImpl(Inline)]
+        public bool Eq(in BitVector<N> rhs)
+        {
+            for(var i = 0; i< BitCount; i++)
                 if(bits[i] != rhs.bits[i])
                     return false;
             return true;
         }  
         
         [MethodImpl(Inline)]
-        public bool NEq(BitVector<N> rhs)
-            => not(Eq(rhs));
+        public bool NEq(in BitVector<N> rhs)
+            => !Eq(rhs);
  
         public override int GetHashCode()
             => throw unsupported(nameof(GetHashCode));

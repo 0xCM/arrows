@@ -9,17 +9,16 @@ namespace Z0
     using System.Collections.Generic;
     using static nfunc;
 
-
     /// <summary>
     /// Reifies a nondegenerate interval of natural numbers
     /// </summary>
-    public readonly struct NatInterval<K1,K2> //: Traits.NatInterval<NatInterval<K1,K2>, K1,K2>
-        where K1: ITypeNat, ISmaller<K1,K2>, new()
+    public readonly struct NatInterval<K1,K2>
+        where K1: ITypeNat, INatLt<K1,K2>, new()
         where K2 : ITypeNat, new()
         
     {
-        public static Option<Between<T,K1,K2>> contains<T>()
-            where T : ITypeNat, new() => Prove.tryBetween<T,K1,K2>();
+        public static Option<NatBetween<T,K1,K2>> contains<T>()
+            where T : ITypeNat, new() => NatProve.tryBetween<T,K1,K2>();
                  
         public static IEnumerable<ulong> values()
         {

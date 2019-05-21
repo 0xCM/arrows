@@ -14,7 +14,7 @@ namespace Z0
 
     using static nfunc;
 
-    partial class Prove
+    partial class NatProve
     {
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Z0
         /// <param name="expected">The expected natural value</param>
         /// <typeparam name="K">The natural type</typeparam>
         [MethodImpl(Inline)]   
-        public static ulong claim<K>(ulong expected)
+        public static ulong eq<K>(ulong expected)
             where K : ITypeNat, new()
                 => natu<K>() == expected  ? expected : failure<K,ulong>("eq", expected);
 
@@ -38,7 +38,7 @@ namespace Z0
         /// <param name="expected">The expected natural value</param>
         /// <typeparam name="K">The natural type</typeparam>
         [MethodImpl(Inline)]   
-        public static ulong claim<K>(K k, ulong expected)
+        public static ulong eq<K>(K k, ulong expected)
                 where K : ITypeNat, new()
                     => k.value == expected  ? expected : failure<K,ulong>("eq", expected);
 
@@ -50,7 +50,7 @@ namespace Z0
         /// <param name="expected">The expected natural value</param>
         /// <typeparam name="K">The natural type</typeparam>
         [MethodImpl(Inline)]   
-        public static uint claim<K>(int expected)
+        public static uint eq<K>(int expected)
             where K : ITypeNat, new()
                 => natu<K>() == (uint)expected ? (uint)expected : failure<K,uint>("eq", (uint)expected);
 
@@ -63,7 +63,7 @@ namespace Z0
         /// <param name="expected">The expected natural value</param>
         /// <typeparam name="K">The natural type</typeparam>
         [MethodImpl(Inline)]   
-        public static uint claim<K>(K k, int expected)
+        public static uint eq<K>(K k, int expected)
                 where K : ITypeNat, new()
                     => k.value == (uint)expected ? (uint)expected : failure<K,uint>("eq", (uint)expected);
 
@@ -78,6 +78,17 @@ namespace Z0
             where K : ITypeNat, new() 
                 =>  natu<K>() == test ? true : failure<K>("eq", test, raise);
 
+        /// <summary>
+        /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 = k2; otherwise
+        /// raises an error
+        /// </summary>
+        /// <typeparam name="K1">The first type</typeparam>
+        /// <typeparam name="K2">The second type</typeparam>
+        /// <returns></returns>
+        public static NatEq<K1,K2> eq<K1,K2>()
+            where K1: ITypeNat, new()
+            where K2: ITypeNat, new()
+                => new NatEq<K1,K2>(natrep<K1>(),natrep<K2>());                             
 
         /// <summary>
         /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 = k2; otherwise
@@ -86,10 +97,10 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
-        public static Equal<K1,K2> equal<K1,K2>()
+        public static NatEq<K1,K2> eq<K1,K2>(K1 k1, K2 k2)
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
-                => new Equal<K1,K2>(natrep<K1>(),natrep<K2>());                             
+                => new NatEq<K1,K2>(k1,k2);                             
 
         /// <summary>
         /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 = k2; otherwise
@@ -98,10 +109,10 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
-        public static Equal<K1,K2> equal<K1,K2>(K1 k1, K2 k2)
+        public static Option<NatEq<K1,K2>> tryEqual<K1,K2>()
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
-                => new Equal<K1,K2>(k1,k2);                             
+                => Try(() => new NatEq<K1,K2>(natrep<K1>(),natrep<K2>()));
 
         /// <summary>
         /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 = k2; otherwise
@@ -110,10 +121,10 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
-        public static Option<Equal<K1,K2>> tryEqual<K1,K2>()
+        public static Option<NatEq<K1,K2>> tryEqual<K1,K2>(K1 k1, K2 k2)
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
-                => Try(() => new Equal<K1,K2>(natrep<K1>(),natrep<K2>()));
+                => Try(() => new NatEq<K1,K2>(k1,k2));                             
 
         /// <summary>
         /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 = k2; otherwise
@@ -122,10 +133,10 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
-        public static Option<Equal<K1,K2>> tryEqual<K1,K2>(K1 k1, K2 k2)
+        public static NatNEq<K1,K2> neq<K1,K2>()
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
-                => Try(() => new Equal<K1,K2>(k1,k2));                             
+                => new NatNEq<K1,K2>(natrep<K1>(),natrep<K2>());                             
 
         /// <summary>
         /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 = k2; otherwise
@@ -134,22 +145,10 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
-        public static Different<K1,K2> different<K1,K2>()
+        public static NatNEq<K1,K2> neq<K1,K2>(K1 k1, K2 k2)
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()
-                => new Different<K1,K2>(natrep<K1>(),natrep<K2>());                             
-
-        /// <summary>
-        /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 = k2; otherwise
-        /// raises an error
-        /// </summary>
-        /// <typeparam name="K1">The first type</typeparam>
-        /// <typeparam name="K2">The second type</typeparam>
-        /// <returns></returns>
-        public static Different<K1,K2> different<K1,K2>(K1 k1, K2 k2)
-            where K1: ITypeNat, new()
-            where K2: ITypeNat, new()
-                => new Different<K1,K2>(k1,k2);
+                => new NatNEq<K1,K2>(k1,k2);
 
 
     }

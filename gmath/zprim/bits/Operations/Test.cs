@@ -14,62 +14,6 @@ namespace Z0
     
     partial class Bits
     {                
-        [MethodImpl(Optimize)]
-        public static ref Bit test<T>(T src, in int pos, out Bit dst)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.int8)            
-                dst = test(in As.int8(ref src), in pos, out dst);
-            else if(kind == PrimalKind.uint8)
-                dst = test(in As.uint8(ref src), in pos, out dst);
-            else if(kind == PrimalKind.int16)
-                dst = test(in As.int16(ref src), in pos, out dst);
-            else if(kind == PrimalKind.uint16)
-                dst = test(in As.uint16(ref src), in pos, out dst);
-            else if(kind == PrimalKind.int32)
-                dst = test(in As.int32(ref src), in pos, out dst);
-            else if(kind == PrimalKind.uint32)
-                dst = test(in As.uint32(ref src), in pos, out dst);
-            else if(kind == PrimalKind.int64)
-                dst = test(in As.int64(ref src), in pos, out dst);
-            else if(kind == PrimalKind.uint64)
-                dst = test(in As.uint64(ref src), in pos, out dst);
-            else
-                throw unsupported(kind);
-
-            return ref dst;                
-            
-        }
-
-
-        [MethodImpl(Optimize)]
-        public static Bit test<T>(T src, in int pos)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.int8)            
-                return test(in As.int8(ref src), in pos);
-            else if(kind == PrimalKind.uint8)
-                return test(in As.uint8(ref src), in pos);
-            else if(kind == PrimalKind.int16)
-                return test(in As.int16(ref src), in pos);
-            else if(kind == PrimalKind.uint16)
-                return test(in As.uint16(ref src), in pos);
-            else if(kind == PrimalKind.int32)
-                return test(in As.int32(ref src), in pos);
-            else if(kind == PrimalKind.uint32)
-                return test(in As.uint32(ref src), in pos);
-            else if(kind == PrimalKind.int64)
-                return test(in As.int64(ref src), in pos);
-            else if(kind == PrimalKind.uint64)
-                return test(in As.uint64(ref src), in pos);
-            else
-                throw unsupported(kind);            
-        }
-
 
         [MethodImpl(Inline)]
         public static bool test(in sbyte src, in int pos)
@@ -167,7 +111,6 @@ namespace Z0
             dst = (src & (OneU64 << pos)) != ZeroU64;
             return ref dst;
         }
-
     }
 
 }

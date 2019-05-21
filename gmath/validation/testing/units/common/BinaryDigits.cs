@@ -12,6 +12,7 @@ namespace Z0.Test
     using System.Runtime.CompilerServices;
     
     using static zfunc;
+    using static mfunc;
         
     public class BinaryDigitTest : UnitTest<BinaryDigitTest>
     {
@@ -25,10 +26,10 @@ namespace Z0.Test
 
         public void ByteToBinaryDigits()
         {
-            BinaryMatch<byte>("0b00000100", 0b00000100);
-            BinaryMatch<byte>("0b00000101",0b00000101);
-            BinaryMatch<byte>("0b01000101",0b01000101);
-            BinaryMatch<byte>("0b11010101",0b11010101);
+            Claim.eq("0b00000100", num(0b00000100).ToBitString());
+            Claim.eq("0b00000101", num(0b00000101).ToBitString());
+            Claim.eq("0b01000101", num(0b01000101).ToBitString());
+            Claim.eq("0b11010101", num(0b11010101).ToBitString());
         }
 
         public void SByteToBinaryDigits()
@@ -60,12 +61,12 @@ namespace Z0.Test
             DecimalMatch<int>("255", -255);
         }
 
-        public void UInt16ToBinaryDigits()
-        {
-            BinaryMatch<ushort>("0b0000010000000100",0b0000010000000100);
-            BinaryMatch<ushort>("0b0000010100000101",0b0000010100000101);
-            BinaryMatch<ushort>("0b0100010101000101",0b0100010101000101);
-            BinaryMatch<ushort>("0b1101010111010101",0b1101010111010101);
-        }
+        // public void UInt16ToBinaryDigits()
+        // {
+        //     BinaryMatch<ushort>("0b0000010000000100",0b0000010000000100);
+        //     BinaryMatch<ushort>("0b0000010100000101",0b0000010100000101);
+        //     BinaryMatch<ushort>("0b0100010101000101",0b0100010101000101);
+        //     BinaryMatch<ushort>("0b1101010111010101",0b1101010111010101);
+        // }
     }
 }

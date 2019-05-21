@@ -14,31 +14,6 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
-    /// <summary>
-    /// Characterizes a natural k such that b:B & e:E => k = b^e
-    /// </summary>
-    /// <typeparam name="B">The base type</typeparam>
-    /// <typeparam name="E">The exponent type</typeparam>
-    public interface INatPow<B,E> : ITypeNat
-        where B : ITypeNat, new()
-        where E : ITypeNat, new()
-    {
-
-    }
-
-    /// <summary>
-    /// Characterizes the reification of a natural k such that 
-    /// b:B & e:E => k = b^e
-    /// </summary>
-    /// <typeparam name="B">The base type</typeparam>
-    /// <typeparam name="E">The exponent type</typeparam>
-    public interface INatPow<S,B,E> : INatPow<B,E>, TypeNat<S>
-        where S : INatPow<S,B,E>, new()
-        where B : ITypeNat, new()
-        where E : ITypeNat, new()
-    {
-        
-    }
 
     /// <summary>
     /// Reifies a natural k such that b:B & e:E => k = b^e
@@ -82,6 +57,9 @@ namespace Z0
 
         public NatSeq natseq()
             => Seq;
+
+        public E Exponent 
+            => new E();
 
          public string format()
             => Value.ToString();

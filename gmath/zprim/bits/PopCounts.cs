@@ -36,10 +36,23 @@ namespace Z0
 
         static readonly byte[] Mask = Pow2.powers<byte>(0, 7);
         
+        /// <summary>
+        /// Counts the enabled bits in each value within a specified range
+        /// </summary>
+        [MethodImpl(NotInline)]
+        public static ulong[] pops(in uint min, in uint max)
+        {
+            var current = min;
+            var i = 0;
+            var dst = new ulong[max - min + 1];
+            while(current <= max)
+                dst[i++] = Bits.pop(current++);
+            return dst;
+        }
 
         static void Generate()
         {
-            var counts = Bits.pops(0u, Byte.MaxValue);
+            var counts = pops(0u, Byte.MaxValue);
             var text = counts.FormatMany();
             inform(text);
             

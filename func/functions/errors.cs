@@ -26,6 +26,13 @@ partial class zfunc
             where T : Enum
                 => Errors.KindUnsupported(kind, caller, file, line);
     
+    public static AppException unsupported<T>([CallerFilePath] string caller = null,  
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => Errors.TypeUnsupported(typeof(T), caller,file, line);
+    public static AppException unsupported(Type t, [CallerFilePath] string caller = null,  
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => Errors.TypeUnsupported(t, caller,file, line);
+
     public static AppException unsupported<S,T>(S src, T dst, [CallerFilePath] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : Enum

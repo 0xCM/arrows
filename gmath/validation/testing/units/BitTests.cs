@@ -35,20 +35,18 @@ namespace Z0.Test
 
         public void BitConvert()
         {
-            Claim.eq<bool>(false, Off);
-            Claim.eq<bool>(true, On);
 
-            Claim.eq<byte>(0, (byte)Off);
-            Claim.eq<byte>(1, (byte)On);
+            Claim.eq(ZeroU8, (byte)Off);
+            Claim.eq(OneU8, (byte)On);
 
-            Claim.eq<ushort>(0, (ushort)Off);
-            Claim.eq<ushort>(1, (ushort)On);
+            Claim.eq(ZeroU16, (ushort)Off);
+            Claim.eq(OneU16, (ushort)On);
 
-            Claim.eq<uint>(0, (uint)Off);
-            Claim.eq<uint>(1, (uint)On);
+            Claim.eq(0u, (uint)Off);
+            Claim.eq(1u, (uint)On);
 
-            Claim.eq<ulong>(0, (ulong)Off);
-            Claim.eq<ulong>(1, (ulong)On);
+            Claim.eq(0ul, (ulong)Off);
+            Claim.eq(1ul, (ulong)On);
 
             Claim.eq(BinaryDigit.Zed, Off);
             Claim.eq(BinaryDigit.One, On);
@@ -90,8 +88,8 @@ namespace Z0.Test
         public void BitLayoutTest()
         {
             var l1 = new U32(8u);
-            Claim.eq(l1.src,8);
-            Claim.eq(l1.x00,8);
+            Claim.eq(l1.src,8u);
+            Claim.eq(l1.x00,8u);
             Claim.eq(l1.x000,(byte)8);
 
             l1[1] |= 0b101;
@@ -177,6 +175,107 @@ namespace Z0.Test
             
         }
 
+        public void BitConversionTest()
+        {
+            var x =  0b111010010110011010111001110000100001101ul;
+            var xbs = "111010010110011010111001110000100001101";
+            var ybs = x.ToBitString(true);
+            Claim.eq(xbs, ybs);                
+
+            var y = gbits.parse<ulong>(xbs);
+            Claim.eq(x, y);
+
+            var z = gbits.parse<ulong>(ybs);
+            Claim.eq(x, z);
+
+            var byx = BitConverter.GetBytes(x).ToSpan();
+            Bytes.write(x, out Span<byte> byy);
+            Claim.eq(byx,byy);
+
+
+        }
+
+        public void PopCount1()
+        {
+            var src = (ushort)3209;
+            var bits = src.ToBits();
+            var bitsPC = bits.PopCount();
+            var bytes = src.ToBytes();
+            var bytesPC = bytes.PopCount();
+            Claim.eq(bitsPC, bytesPC);
+
+        }
+
+        public void PopCount2()
+        {
+            var src = 32093283484328432ul;
+            var bits = src.ToBits();
+            var bitsPC = bits.PopCount();
+            var bytes = src.ToBytes();
+            var bytesPC = bytes.PopCount();
+            Claim.eq(bitsPC, bytesPC);
+
+        }
+
+        public void PopCount3()
+        {
+            var src = 39238923;
+            var bits = src.ToBits();
+            var bitsPC = bits.PopCount();
+            var bytes = src.ToBytes();
+            var bytesPC = bytes.PopCount();
+            Claim.eq(bitsPC, bytesPC);
+
+        }
+
+        public void PopCount4()
+        {
+            var x =  0b111010010110011010111001110000100001101ul;
+            var xbs = "111010010110011010111001110000100001101";
+            var y = gbits.parse<ulong>(xbs);
+            Claim.eq(x, y);
+
+            var pcx = Bits.pop(x);
+            Claim.eq(pcx, 20);
+
+            Claim.eq(Bits.pop(x), Bits.pop(y));
+        }
+
+        public void PopCount5()
+        {
+            var xBytes = BitConverter.GetBytes(0b111010010110011010111001110000100001101ul).ToSpan();
+            var xBits = xBytes.ToBits();
+            var xBitsPC = xBits.PopCount();
+            var xBytesPC = xBytes.PopCount();
+
+            Claim.eq(xBitsPC, xBytesPC);
+
+        }
+
+        public void PopCount6()
+        {
+            var xBytes = Randomizer.Span<byte>(5);
+            var x = Bytes.read<ulong>(xBytes);
+            var xPC = Bits.pop(x);
+            var xBits = xBytes.ToBits();
+            var xBitsPC = xBits.PopCount();
+            var xBytesPC = xBytes.PopCount();
+            var xBitsBS = xBits.ToBitString();
+            var xBytesBS = xBytes.ToBitString();
+
+            Claim.eq(xBitsBS, xBytesBS);
+            Claim.eq(xPC, xBitsPC);
+            Claim.eq(xPC, xBytesPC);
+        }
+
+        public void PopCount7()
+        {
+            var xBytes = Randomizer.Span<byte>(Pow2.T10 - 3);
+            var xBytesPC = xBytes.PopCount();
+            var xBitsPC = xBytes.ToBits().PopCount();
+            Claim.eq(xBitsPC, xBytesPC);
+
+        }
 
     }
 }

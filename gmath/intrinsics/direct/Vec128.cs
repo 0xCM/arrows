@@ -69,7 +69,7 @@ namespace Z0
                 => Unsafe.As<Vec128<T>, Vec128<U>>(ref Unsafe.AsRef(in this));         
 
         [MethodImpl(Inline)]
-        public bool Equals(Vec128<T> rhs)
+        public bool Eq(Vec128<T> rhs)
             => this.ToVector128().Equals(rhs);
 
         public override string ToString()

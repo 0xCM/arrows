@@ -13,19 +13,6 @@ namespace Z0
 
     using static zfunc;
 
-    /// <summary>
-    /// Characterizes the reification of a natural number k such that 
-    /// a:K1 & b:K2 & k = a - b
-    /// </summary>
-    /// <typeparam name="K2">The base type</typeparam>
-    /// <typeparam name="E">The exponent type</typeparam>
-    public interface INatSub<S,K1,K2> : ITypeNat
-        where S : INatSub<S,K1,K2>, new()
-        where K1 : ITypeNat, new()
-        where K2 : ITypeNat, new()
-    {
-
-    }
 
 
 

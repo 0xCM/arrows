@@ -158,7 +158,7 @@ namespace Z0
             => src.Negate();
 
         [MethodImpl(Inline)]
-        public static bool operator == (in num<T> lhs, in num<T> rhs) 
+        public static bool operator == (num<T> lhs, in num<T> rhs) 
             => lhs.Eq(rhs);
 
         [MethodImpl(Inline)]
@@ -198,9 +198,9 @@ namespace Z0
             => src.Flip();
 
         [MethodImpl(Inline)]
-        public bool Equals(in num<T> rhs)
-            => this.Eq(rhs);
-
+        public bool Eq(num<T> rhs)
+            => gmath.eq(this.Scalar(), rhs.Scalar());
+        
         [MethodImpl(Inline)]
         public override int GetHashCode()
             => throw new NotSupportedException();
@@ -208,11 +208,6 @@ namespace Z0
         public override bool Equals(object rhs)
             => throw new NotSupportedException();
 
-        // public T Scalar
-        // {
-        //     [MethodImpl(Inline)]
-        //     get => scalar(ref this);                    
-        // }
         public override string ToString()
         {
             var x = scalar(ref this);

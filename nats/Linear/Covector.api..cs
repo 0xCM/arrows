@@ -13,7 +13,6 @@ namespace Z0
     using static zfunc;
     using static nfunc;
 
-
     public static class Covector
     {
         /// <summary>

@@ -348,7 +348,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong pack64(in ushort x0, in ushort x1, in ushort x2, in ushort x3)
             => pack64(pack32(x0,x1), pack32(x2,x3));    
- 
 
         public static u128 pack128(in Span<Bit> src)
         {

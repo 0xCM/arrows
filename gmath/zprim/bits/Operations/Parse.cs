@@ -11,90 +11,115 @@ namespace Z0
  
     using static zfunc;
     using static mfunc;
-    
+    using static As;
     partial class Bits
     {                
-        [MethodImpl(NotInline)]
-        public static byte parse(ReadOnlySpan<char> bs, int offset, out byte dst)
+
+        [MethodImpl(Inline)]
+        static bool HasBitSpecifier(in ReadOnlySpan<char> bs)
         {
-            var max = Math.Min(8, bs.Length);            
-            var pos = max - 1;
-            dst = 0;
-            for(var i = offset; i< max; i++, pos--)
-                if(bs[i] != '0')
-                    enable(ref dst, pos);            
-            return dst;                                                
+            if(bs.Length < 2)
+                return false;
+            var last = bs.Length - 1;
+            return bs[last] == '0' && bs[last -1] == 'b';        
         }
 
-        [MethodImpl(NotInline)]
-        public static sbyte parse(ReadOnlySpan<char> bs, int offset, out sbyte dst)
+        [MethodImpl(Inline)]
+        static ReadOnlySpan<char> IgnoreBitSpecifier(in ReadOnlySpan<char> bs)
+            =>  HasBitSpecifier(bs) ? bs.Slice(bs.Length - 2) : bs;
+
+
+        [MethodImpl(Inline)]
+        public static ref sbyte parse(in ReadOnlySpan<char> bs, in int offset, out sbyte dst)
         {
             parse(bs, offset, out byte x);
             dst = (sbyte)x;
-            return dst;        
+            return ref dst;                                                
         }
 
-        [MethodImpl(NotInline)]
-        public static ushort parse(ReadOnlySpan<char> bs, int offset, out ushort dst)
+        [MethodImpl(Optimize)]
+        public static ref byte parse(in ReadOnlySpan<char> bs, in int offset, out byte dst)
         {
-            var max = Math.Min(16, bs.Length);            
-            var pos = max - 1;
+            var src = IgnoreBitSpecifier(bs);
+            var last = Math.Min(BitSizeU8, src.Length) - 1;                        
+            var pos = last - 1;            
+            
             dst = 0;
-            for(var i = offset; i< max; i++, pos--)
-                if(bs[i] != '0')
-                    enable(ref dst, pos);            
-            return dst;                                                
+            for(var i=0; i<= last; i++)
+                if(src[i] == Bit.One)
+                    enable(ref dst, last - i);
+                        
+            return ref dst;
         }
 
-        [MethodImpl(NotInline)]
-        public static short parse(ReadOnlySpan<char> bs, int offset, out short dst)
+        [MethodImpl(Inline)]
+        public static ref short parse(in ReadOnlySpan<char> bs, in int offset, out short dst)
         {
             parse(bs, offset, out short x);
             dst = (short)x;
-            return dst;
-            
+            return ref dst;                                                            
         }
 
-        [MethodImpl(NotInline)]
-        public static uint parse(ReadOnlySpan<char> bs, int offset, out uint dst)
+        [MethodImpl(Optimize)]
+        public static ref ushort parse(in ReadOnlySpan<char> bs, in int offset, out ushort dst)
         {
-            var max = Math.Min(32, bs.Length);            
-            var pos = max - 1;
+            var src = IgnoreBitSpecifier(bs);
+            var last = Math.Min(BitSizeU16, src.Length) - 1;                        
+            var pos = last - 1;            
+            
             dst = 0;
-            for(var i = offset; i< max; i++, pos--)
-                if(bs[i] != '0')
-                    enable(ref dst, pos);            
-            return dst;                                                
+            for(var i=0; i<= last; i++)
+                if(src[i] == Bit.One)
+                    enable(ref dst, last - i);
+                        
+            return ref dst;
         }
 
-        [MethodImpl(NotInline)]
-        public static int parse(ReadOnlySpan<char> bs, int offset, out int dst)
+
+        [MethodImpl(Optimize)]
+        public static ref int parse(in ReadOnlySpan<char> bs, in int offset, out int dst)
         {
             parse(bs, offset, out int x);
             dst = (int)x;
-            return dst;            
+            return ref dst;                                                
         }
 
-        [MethodImpl(NotInline)]
-        public static ulong parse(ReadOnlySpan<char> bs, int offset, out ulong dst)
+        [MethodImpl(Optimize)]
+        public static ref uint parse(in ReadOnlySpan<char> bs, in int offset, out uint dst)
         {
-            var max = Math.Min(64, bs.Length);            
-            var pos = max - 1;
+            var src = IgnoreBitSpecifier(bs);
+            var last = Math.Min(BitSizeU32, src.Length) - 1;                        
+            var pos = last - 1;            
+            
             dst = 0;
-            for(var i = offset; i< max; i++, pos--)
-                if(bs[i] != '0')
-                    enable(ref dst, pos);            
-            return dst;                                                
-
+            for(var i=0; i<= last; i++)
+                if(src[i] == Bit.One)
+                    enable(ref dst, last - i);
+                        
+            return ref dst;
         }
 
-        [MethodImpl(NotInline)]
-        public static long parse(ReadOnlySpan<char> bs, int offset, out long dst)
+        [MethodImpl(Inline)]
+        public static ref long parse(in ReadOnlySpan<char> bs, in int offset, out long dst)
         {
             parse(bs, offset, out long x);
             dst = (long)x;
-            return dst;
+            return ref dst;                                                
         }
 
+        [MethodImpl(Optimize)]
+        public static ref ulong parse(in ReadOnlySpan<char> bs, in int offset, out ulong dst)
+        {            
+            var src = IgnoreBitSpecifier(bs);
+            var last = Math.Min(BitSizeU64, src.Length) - 1;                        
+            var pos = last - 1;            
+            
+            dst = 0;
+            for(var i=0; i<= last; i++)
+                if(src[i] == Bit.One)
+                    enable(ref dst, last - i);
+                        
+            return ref dst;
+        }
     }
 }

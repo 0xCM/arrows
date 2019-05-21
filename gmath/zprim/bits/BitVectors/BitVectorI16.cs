@@ -11,6 +11,7 @@ namespace Z0
 
     using static mfunc;
     using static Z0.Bits;
+    using static Bytes;
 
     public struct BitVectorI16
     {
@@ -109,7 +110,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
-            => bytes(data);
+            =>  bytes(in data);
 
         [MethodImpl(Inline)]
         public Span<Bit> Bits()

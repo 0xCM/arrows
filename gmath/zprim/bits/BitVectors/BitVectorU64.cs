@@ -11,6 +11,8 @@ namespace Z0
 
     using static mfunc;
     using static Bits;
+    using static Bytes;
+
     using source = System.UInt64;
 
     public ref struct BitVectorU64

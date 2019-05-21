@@ -98,7 +98,7 @@ namespace Z0
         /// <typeparam name="N">The vector length</typeparam>
         /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> NatVec<N,T>(this Z0.TypeNat<N> n, IEnumerable<T> components)
+        public static Vector<N,T> NatVec<N,T>(this Z0.ITypeNat<N> n, IEnumerable<T> components)
             where N : ITypeNat, new()
             where T :struct
                 => new Vector<N, T>(components);

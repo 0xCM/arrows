@@ -11,8 +11,9 @@ namespace Z0
     
     using static zfunc;
     using static mfunc;
+    using static Bits;
 
-    public static class  BitX
+    public static partial class BitX
     {
         
         #region primitive => Bit[]
@@ -23,7 +24,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this in sbyte src)
-            => Bits.bitspan(in src);
+            => bitspan(src);
 
         /// <summary>
         /// Converts the source value to an array of bits
@@ -31,7 +32,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this in byte src)
-            => Bits.bitspan(in src);
+            => bitspan(src);
 
         /// <summary>
         /// Converts the source value to an array of bits
@@ -39,7 +40,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this in short src)
-            => Bits.bitspan(in src);
+            => bitspan(src);
 
         /// <summary>
         /// Converts the source value to an array of bits
@@ -47,7 +48,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this in ushort src)
-            => Bits.bitspan(in src);
+            => bitspan(src);
 
         /// <summary>
         /// Converts the source value to an array of bits
@@ -55,7 +56,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this in int src)
-            => Bits.bitspan(in src);
+            => bitspan(src);
 
         /// <summary>
         /// Converts the source value to an array of bits
@@ -63,7 +64,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this in uint src)
-            => Bits.bitspan(in src);
+            => bitspan(src);
 
         /// <summary>
         /// Converts the source value to an array of bits
@@ -71,7 +72,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this in long src)
-            => Bits.bitspan(in src);
+            => bitspan(src);
 
         /// <summary>
         /// Converts the source value to an array of bits
@@ -79,15 +80,15 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this in ulong src)
-            => Bits.bitspan(in src);
+            => bitspan(src);
 
         /// <summary>
         /// Converts the source value to an array of bits
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Span<Bit> ToBits(this float src)
-            => Bits.bitspan(in src);
+        public static Span<Bit> ToBits(this in float src)
+            => bitspan(src);
 
         /// <summary>
         /// Converts the source value to an array of bits
@@ -95,7 +96,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this in double src)
-            => Bits.bitspan(in src);
+            => bitspan(src);
 
         /// <summary>
         /// Converts a bool to a bit
@@ -119,314 +120,12 @@ namespace Z0
 
         #endregion
 
-        #region testbit
-
-        /// <summary>
-        /// Determines whether a bit in a specified position is on
-        /// </summary>
-        /// <param name="src">The value to examine</param>
-        /// <param name="pos">The position to check</param>
-        [MethodImpl(Inline)]
-        public static bool TestBit(this in sbyte src, in int pos)
-            => Bits.test(src,pos);
-
-        /// <summary>
-        /// Determines whether a bit in a specified position is on
-        /// </summary>
-        /// <param name="src">The value to examine</param>
-        /// <param name="pos">The position to check</param>
-        [MethodImpl(Inline)]
-        public static bool TestBit(this in byte src, in int pos)
-            => Bits.test(src,pos);
-
-        /// <summary>
-        /// Determines whether a bit in a specified position is on
-        /// </summary>
-        /// <param name="src">The value to examine</param>
-        /// <param name="pos">The position to check</param>
-        [MethodImpl(Inline)]
-        public static bool TestBit(this in ushort src, in int pos)
-            => Bits.test(src,pos);
-
-        /// <summary>
-        /// Determines whether a bit in a specified position is on
-        /// </summary>
-        /// <param name="src">The value to examine</param>
-        /// <param name="pos">The position to check</param>
-        [MethodImpl(Inline)]
-        public static bool TestBit(this in short src, in int pos)
-            => Bits.test(src,pos);
-
-        /// <summary>
-        /// Determines whether a bit in a specified position is on
-        /// </summary>
-        /// <param name="src">The value to examine</param>
-        /// <param name="pos">The position to check</param>
-        [MethodImpl(Inline)]
-        public static bool TestBit(this in int src, in int pos)
-            => Bits.test(src,pos);
-
-       /// <summary>
-        /// Determines whether a bit in a specified position is on
-        /// </summary>
-        /// <param name="src">The value to examine</param>
-        /// <param name="pos">The position to check</param>
-        [MethodImpl(Inline)]
-        public static bool TestBit(this in uint src, in int pos)
-            => Bits.test(src,pos);
-
-        /// <summary>
-        /// Determines whether a bit in a specified position is on
-        /// </summary>
-        /// <param name="src">The value to examine</param>
-        /// <param name="pos">The position to check</param>
-        [MethodImpl(Inline)]
-        public static bool TestBit(this in long src, in int pos)
-            => Bits.test(src,pos);
- 
-        /// <summary>
-        /// Determines whether a bit in a specified position is on
-        /// </summary>
-        /// <param name="src">The value to examine</param>
-        /// <param name="pos">The position to check</param>
-        [MethodImpl(Inline)]
-        public static bool TestBit(this in ulong src, in int pos)
-            => Bits.test(src,pos);
-
-
-        [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in sbyte src, in int pos, out Bit dst)
-             => ref Bits.test(src, pos, out dst);            
-
-        [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in byte src, in int pos, out Bit dst)
-             => ref Bits.test(src, pos, out dst);            
-
-        [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in short src, in int pos, out Bit dst)
-             => ref Bits.test(src, pos, out dst);            
-
-        [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in ushort src, in int pos, out Bit dst)
-             => ref Bits.test(src, pos, out dst);            
-
-        [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in int src, in int pos, out Bit dst)
-             => ref Bits.test(src, pos, out dst);            
-
-        [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in uint src, in int pos, out Bit dst)
-             => ref Bits.test(src, pos, out dst);            
-
-        [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in long src, in int pos, out Bit dst)
-             => ref Bits.test(src, pos, out dst);            
-        
-        [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in ulong src, in int pos, out Bit dst)
-             => ref Bits.test(src, pos, out dst);            
-
-        #endregion
-
-        # region primitive => byte[]
-
-        /// <summary>
-        /// Converts a bit to a byte
-        /// </summary>
-        /// <param name="src">The source value to convert</param>
-        [MethodImpl(Inline)]   
-        public static byte ToByte(this Bit src)
-            => src ? (byte)1 : (byte)0;
-
-        /// <summary>
-        /// Interprets the source as an array of bytes
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static Span<byte> ToBytes(this long src)
-            => Bits.bytes(src);
-
-        /// <summary>
-        /// Interprets the source as an array of bytes
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static Span<byte> ToBytes(this ushort src)
-            => Bits.bytes(src);
-
-        /// <summary>
-        /// Interprets the source as an array of bytes
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static Span<byte> ToBytes(this ulong src)
-            => Bits.bytes(src);
-
-
-        /// <summary>
-        /// Interprets the source as an array of bytes
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static Span<byte> ToBytes(this uint src)
-            => Bits.bytes(src);
-
-       /// <summary>
-        /// Interprets the source as an array of bytes
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static Span<byte> ToBytes(this short src)
-            => Bits.bytes(src);
- 
-
-        /// <summary>
-        /// Interprets the source as an array of bytes
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static Span<byte> ToBytes(this int src)
-            => Bits.bytes(src);  
- 
-        #endregion
         
         #region  primitive => bitvector
 
-        [MethodImpl(Inline)]
-        public static BitVectorU8 ToBitVector(this byte src)
-            => src;
-
-        [MethodImpl(Inline)]
-        public static BitVectorI8 ToBitVector(this sbyte src)
-            => src;
-
-        [MethodImpl(Inline)]
-        public static BitVectorU16 ToBitVector(this ushort src)
-            => src;
-
-        [MethodImpl(Inline)]
-        public static BitVectorI32 ToBitVector(this int src)
-            => src;
-
-        [MethodImpl(Inline)]
-        public static BitVectorU32 ToBitVector(this uint src)
-            => src;
-
-        [MethodImpl(Inline)]
-        public static BitVectorU64 ToBitVector(this ulong src)
-            => src;
-
-        [MethodImpl(Inline)]
-        public static BitVectorI64 ToBitVector(this long src)
-            => src;
-
-        [MethodImpl(Inline)]
-        public static BitVectorU128 ToBitVector(this u128 src)
-            => src;
 
         #endregion
 
-        #region primitive => bitstring
-
-        /// <summary>
-        /// Produces a string 8 characters in length that encodes the bits in the source
-        /// where set bits are represented with the character '1' and unset bits are
-        /// represented with the character '0;
-        /// </summary>
-        /// <param name="src">The value for which a bitstring will be produced</param>
-        [MethodImpl(Inline)]
-        public static string ToBitString(this in sbyte src)
-            => Bits.bitstring(src);
-
-        /// <summary>
-        /// Produces a string 8 characters in length that encodes the bits in the source
-        /// where set bits are represented with the character '1' and unset bits are
-        /// represented with the character '0;
-        /// </summary>
-        /// <param name="src">The value for which a bitstring will be produced</param>
-        [MethodImpl(Inline)]
-        public static string ToBitString(this in byte src)
-            => Bits.bitstring(src);
-
-        /// <summary>
-        /// Produces a string 16 characters in length that encodes the bits in the source
-        /// where set bits are represented with the character '1' and unset bits are
-        /// represented with the character '0;
-        /// </summary>
-        /// <param name="src">The value for which a bitstring will be produced</param>
-        [MethodImpl(Inline)]
-        public static string ToBitString(this in short src)
-            => Bits.bitstring(src);
-
-        /// <summary>
-        /// Produces a string 16 characters in length that encodes the bits in the source
-        /// where set bits are represented with the character '1' and unset bits are
-        /// represented with the character '0;
-        /// </summary>
-        /// <param name="src">The value for which a bitstring will be produced</param>
-        [MethodImpl(Inline)]
-        public static string ToBitString(this in ushort src)
-            => Bits.bitstring(src);
-
-        /// <summary>
-        /// Produces a string 32 characters in length that encodes the bits in the source
-        /// where set bits are represented with the character '1' and unset bits are
-        /// represented with the character '0;
-        /// </summary>
-        /// <param name="src">The value for which a bitstring will be produced</param>
-        [MethodImpl(Inline)]
-        public static string ToBitString(this int src)
-            => Bits.bitstring(src);
-
-        /// <summary>
-        /// Produces a string 32 characters in length that encodes the bits in the source
-        /// where set bits are represented with the character '1' and unset bits are
-        /// represented with the character '0;
-        /// </summary>
-        /// <param name="src">The value for which a bitstring will be produced</param>
-        [MethodImpl(Inline)]
-        public static string ToBitString(this uint src)
-            => Bits.bitstring(src);
-
-        /// <summary>
-        /// Produces a string 64 characters in length that encodes the bits in the source
-        /// where set bits are represented with the character '1' and unset bits are
-        /// represented with the character '0;
-        /// </summary>
-        /// <param name="src">The value for which a bitstring will be produced</param>
-        [MethodImpl(Inline)]
-        public static string ToBitString(this long src)
-            => Bits.bitstring(src);
-
-        /// <summary>
-        /// Produces a string 64 characters in length that encodes the bits in the source
-        /// where set bits are represented with the character '1' and unset bits are
-        /// represented with the character '0;
-        /// </summary>
-        /// <param name="src">The value for which a bitstring will be produced</param>
-        [MethodImpl(Inline)]
-        public static string ToBitString(this ulong src)
-            => Bits.bitstring(src);
-            
-        /// <summary>
-        /// Produces a string 32 characters in length that encodes the bits in the source
-        /// where set bits are represented with the character '1' and unset bits are
-        /// represented with the character '0;
-        /// </summary>
-        /// <param name="src">The value for which a bitstring will be produced</param>
-        [MethodImpl(Inline)]
-        public static string ToBitString(this float src)
-            => Bits.bitstring(src);
-
-        /// <summary>
-        /// Produces a string 64 characters in length that encodes the bits in the source
-        /// where set bits are represented with the character '1' and unset bits are
-        /// represented with the character '0;
-        /// </summary>
-        /// <param name="src">The value for which a bitstring will be produced</param>
-        [MethodImpl(Inline)]
-        public static string ToBitString(this double src)
-            => Bits.bitstring(src);
 
         /// <summary>
         /// Extracts the IEEE parts from the source value
@@ -470,46 +169,45 @@ namespace Z0
 
             return (negative ? Sign.Negative : Sign.Positive, exponent,mantissa);
         }
-        // [MethodImpl(Inline)]   
-        // public static string ToIeeeBitString(this double x)
-        //     => zpad(apply(split(x), 
-        //         ieee => append(ieee.sign == Sign.Negative ? "1" : "0",
-        //                     Bits.bitstring(ieee.exponent),
-        //                     Bits.bitstring(ieee.mantissa)
-        //             )), sizeof(double)); 
+
+        [MethodImpl(Inline)]   
+        public static string ToIeeeBitString(this double x)
+            => zpad(apply(split(x), 
+                ieee => append(ieee.sign == Sign.Negative ? "1" : "0",
+                            bitstring(ieee.exponent),
+                            bitstring(ieee.mantissa)
+                    )), sizeof(double)); 
  
-
-        #endregion
-    
-        #region ? => bitstring
-
-        [MethodImpl(Inline)]
-        public static string ToBitString<T>(this num<T> src)
-            where T : struct
-                => Bits.bitstring(src);
-
-        public static string ToBitString(this Span<Bit> src)
-        {
-            var dst = span<char>(src.Length);
-            for(var i=0; i < src.Length; i++)
-                dst[i] = src[i];
-            return new string(dst);
-        }
-
-
-        
-        #endregion
-
         [MethodImpl(Inline)]
         public static BitVector<N> ToBitVector<N>(this Span<Bit> src)
-            where N : ITypeNat, new()
-            => BitVector.Define<N>(src);
-
+            where N : INatPow2, new()
+                => BitVector.Define<N>(src);
 
         [MethodImpl(Inline)]
         public static Bit ToBit(this BinaryDigit digit)
             => digit == BinaryDigit.One;
 
+        [MethodImpl(Optimize)]
+        public static Span<Bit> ToBits(this ReadOnlySpan<BinaryDigit> src)
+        {
+            var dst = span<Bit>(src.Length);
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = src[i].ToBit();
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<byte> ToBytes(this Span<BinaryDigit> src)
+            => src.ToBits().ToBytes();
+
+        [MethodImpl(Inline)]
+        public static Span<byte> ToBytes(this ReadOnlySpan<BinaryDigit> src)
+            => src.ToBits().ToBytes();
+
+        [MethodImpl(Inline)]
+        public static Span<Bit> ToBits(this Span<BinaryDigit> src)
+            => src.ToReadOnlySpan().ToBits();
+                
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this ReadOnlySpan<char> src)
         {
@@ -522,7 +220,58 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this Span<char> src)
             => src.ToReadOnlySpan().ToBits();
-            
+
+
+        [MethodImpl(Optimize)]
+        public static ref Span<byte> FromBits(this ReadOnlySpan<Bit> src, out Span<byte> dst)
+        {
+            dst = span<byte>(src.Length/8);
+            for(var i=0; i<src.Length; i++)
+            for(var j=0; j < 8; j++)
+               if(src[i]) enable(ref dst[i], j);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<byte> FromBits(this Span<Bit> src, out Span<byte> dst)
+            => ref src.ToReadOnlySpan().FromBits(out dst);
+
+        [MethodImpl(Inline)]
+        public static ref Span<byte> FromDigits(this Span<BinaryDigit> src, out Span<byte> dst)
+            => ref src.ToBits().FromBits(out dst);
+
+        [MethodImpl(Inline)]
+        public static ref Span<byte> FromDigits(this ReadOnlySpan<BinaryDigit> src, out Span<byte> dst)
+            => ref src.ToBits().FromBits(out dst);
+
+        [MethodImpl(Optimize)]        
+        public static Span<Bit> ToBits(this ReadOnlySpan<byte> src)
+        {
+            var dst = span<Bit>(src.Length*8);
+            var offset = 0;
+            for(var i = 0; i<src.Length; i++, offset += 8)
+                src[i].ToBits().CopyTo(dst.Slice(offset));
+            return dst;
+        }
+
+        [MethodImpl(Inline)]        
+        public static Span<Bit> ToBits(this Span<byte> src)
+            => src.ToReadOnlySpan().ToBits();
+
+
+        [MethodImpl(Optimize)]        
+        public static ulong PopCount(this ReadOnlySpan<Bit> src)
+        {
+            var count = 0ul;
+            for(var i=0; i<src.Length; i++)
+                if(src[i]) count++;
+            return count;
+        }
+
+        [MethodImpl(Inline)]        
+        public static ulong PopCount(this Span<Bit> src)
+            => src.ToReadOnlySpan().PopCount();
+
 
     }
 }

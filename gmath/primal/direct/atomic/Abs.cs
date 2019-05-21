@@ -61,42 +61,42 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref sbyte abs(sbyte src, out sbyte dst)
+        public static ref sbyte abs(in sbyte src, out sbyte dst)
         {
             dst = Math.Abs(src);
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref short abs(short src, out short dst)
+        public static ref short abs(in short src, out short dst)
         {
             dst = Math.Abs(src);
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref int abs(int src, out int dst)
+        public static ref int abs(in int src, out int dst)
         {
             dst = Math.Abs(src);
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref long abs(long src, out long dst)
+        public static ref long abs(in long src, out long dst)
         {
             dst = Math.Abs(src);
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref float abs(float src, out float dst)
+        public static ref float abs(in float src, out float dst)
         {
             dst = Math.Abs(src);
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref double abs(double src, out double dst)
+        public static ref double abs(in double src, out double dst)
         {
             dst = Math.Abs(src);
             return ref dst;

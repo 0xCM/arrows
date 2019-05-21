@@ -40,13 +40,13 @@ namespace Z0
                 case TypeCode.Double:
                     return PrimalKind.float64;
                 case TypeCode.Decimal:
-                    return PrimalKind.float128;
+                    return PrimalKind.float128;                    
 
                 default:
                     if (Type == type<System.Numerics.BigInteger>())
                         return PrimalKind.bigint;
                     else
-                        throw unsupported(code);
+                        throw unsupported(Type);
             }
         }
 

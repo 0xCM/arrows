@@ -12,7 +12,19 @@ using System.Runtime.Intrinsics;
 using System.Diagnostics;
 
 using Z0;
-
+// MemoryMarshall
+// public static ReadOnlySpan<T> CreateReadOnlySpan<T>(ref T reference, int length);
+// public static Span<T> CreateSpan<T>(ref T reference, int length);
+// public static Span<TTo> Cast<TFrom, TTo>(Span<TFrom> span)
+// public static ReadOnlySpan<TTo> Cast<TFrom, TTo>(ReadOnlySpan<TFrom> span)
+// public static Span<byte> AsBytes<T>(Span<T> span) where T : struct;           
+// public static Memory<T> AsMemory<T>(ReadOnlyMemory<T> memory);
+// public static ref readonly T AsRef<T>(ReadOnlySpan<byte> span) where T : struct;
+// public static ref T AsRef<T>(Span<byte> span) where T : struct;
+// public static IEnumerable<T> ToEnumerable<T>(ReadOnlyMemory<T> memory);
+// public static bool TryGetString(ReadOnlyMemory<char> memory, out string text, out int start, out int length);
+// public static void Write<T>(Span<byte> destination, ref T value) where T : struct;
+// public static bool TryRead<T>(ReadOnlySpan<byte> source, out T value) where T : struct;
 partial class zfunc
 {
     /// <summary>

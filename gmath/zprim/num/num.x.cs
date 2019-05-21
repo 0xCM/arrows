@@ -102,10 +102,6 @@ namespace Z0
             where T : struct
                 => PrimalKinds.kind<T>();
 
-        [MethodImpl(Inline)]
-        public static bool Eq<T>(this num<T> lhs, num<T> rhs)
-            where T : struct
-                => gmath.eq(lhs.Scalar(), rhs.Scalar());
 
         [MethodImpl(Inline)]
         public static bool NEq<T>(this num<T> lhs, num<T> rhs)

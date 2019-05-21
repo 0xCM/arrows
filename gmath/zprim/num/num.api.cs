@@ -22,6 +22,17 @@ namespace Z0
                 => new num<T>[len];
 
         [MethodImpl(Inline)]
+        public static num<T> single<T>(T src)
+            where T : struct
+                => Unsafe.As<T,num<T>>(ref src);
+
+        [MethodImpl(Inline)]
+        public static ref num<T> single<T>(ref T src)
+            where T : struct
+                => ref Unsafe.As<T,num<T>>(ref src);
+
+
+        [MethodImpl(Inline)]
         public static num<T>[] many<T>(params T[] src)
             where T : struct
         {
@@ -60,16 +71,6 @@ namespace Z0
         public static num<T> one<T>()
                 where T : struct
             => single(gmath.one<T>());
-
-        [MethodImpl(Inline)]
-        public static num<T> single<T>(T src)
-            where T : struct
-                => Unsafe.As<T,num<T>>(ref src);
-
-        [MethodImpl(Inline)]
-        public static ref num<T> single<T>(ref T src)
-            where T : struct
-                => ref Unsafe.As<T,num<T>>(ref src);
 
         [MethodImpl(Inline)]
         public static ref T scalar<T>(ref num<T> src)

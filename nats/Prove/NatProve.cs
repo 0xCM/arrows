@@ -14,7 +14,7 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
-    public static partial class Prove
+    public static partial class NatProve
     {
         /// <summary>
         /// Evaluates a function within a try block and returns the value of the computation if 

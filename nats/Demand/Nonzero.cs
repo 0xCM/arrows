@@ -7,25 +7,12 @@ namespace Z0
     using System;
     using static nfunc;
     
-    partial class Demands
-    {
-        /// <summary>
-        /// Requires k:K => k != 0
-        /// </summary>
-        /// <typeparam name="K">A nonzero natural type</typeparam>
-        public interface Nonzero<K> : IDemand<K>, ILarger<K,N0>
-            where K : ITypeNat, new()
-        {
-
-        }
-
-    }
 
     /// <summary>
     /// Captures evidence that k:K => k != 0
     /// </summary>
     /// <typeparam name="K">A nonzero natural type</typeparam>
-    public readonly struct Nonzero<K> : Demands.Nonzero<K>
+    public readonly struct Nonzero<K> : INatNonZero<K>
         where K: ITypeNat, new()
     {
         static readonly K k = default;

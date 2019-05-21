@@ -13,7 +13,7 @@ namespace Z0
 
     using static nfunc;
 
-    partial class Prove
+    partial class NatProve
     {
         /// <summary>
         /// Attempts to prove that the k:K => src.length = k

@@ -191,12 +191,14 @@ namespace Z0
             return ref src;
         }
 
+
         [MethodImpl(Inline)]
         public static ref uint extract(ref uint src, in byte start, in byte length)
         {
             src = Bmi1.BitFieldExtract(src, start, length);
             return ref src;
         }
+
 
         /// <summary>
         /// Extracts a run of bits from the source beginning at a specified offset

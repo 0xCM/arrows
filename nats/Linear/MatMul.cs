@@ -27,8 +27,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public Matrix<M, P, T> mul(Matrix<N, P, T> rhs)
         {            
-            var m = Prove.claim<M>(rhs.dim().i);
-            var p = Prove.claim<P>(rhs.dim().j);
+            var m = NatProve.eq<M>(rhs.dim().i);
+            var p = NatProve.eq<P>(rhs.dim().j);
             var product = new T[m*p];
             for(var i = 0u; i< m; i++)
                 for(var j =0u; j< p; j++)

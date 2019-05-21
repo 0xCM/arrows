@@ -14,7 +14,7 @@ namespace Z0
     public static class Quorem
     {
         [MethodImpl(Inline)]
-        public static Quorem<T> define<T>(T q, T r)
+        public static Quorem<T> define<T>(in T q, in T r)
             => new Quorem<T>(q,r);
 
         [MethodImpl(Inline)]
@@ -37,7 +37,7 @@ namespace Z0
             => src.Deconstruct();
 
         [MethodImpl(Inline)]
-        public Quorem(T q, T r)
+        public Quorem(in T q, in T r)
         {
             this.Quotient = q;
             this.Remainder = r;

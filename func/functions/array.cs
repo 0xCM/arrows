@@ -45,6 +45,26 @@ partial class zfunc
 
     public const ulong OneU64 = 1UL;
 
+    public const int BitSizeI8 = Pow2.T03;
+
+    public const int BitSizeU8 = Pow2.T03;
+    
+    public const int BitSizeI16 = Pow2.T04;
+
+    public const int BitSizeU16 = Pow2.T04;
+
+    public const int BitSizeI32 = Pow2.T05;
+
+    public const int BitSizeU32 = Pow2.T05;
+
+    public const int BitSizeI64 = Pow2.T06;
+
+    public const int BitSizeU64 = Pow2.T06;
+
+    public const int BitSizeF32 = Pow2.T05;
+
+    public const int BitSizeF64 = Pow2.T06;
+
     /// <summary>
     /// Creates, but does not populate, a mutable array
     /// </summary>

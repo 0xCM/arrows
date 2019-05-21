@@ -200,7 +200,7 @@ namespace Z0
             where J : ITypeNat, new()
             where T : struct    
         {
-            Prove.equal<I,J>();
+            NatProve.eq<I,J>();
             return new Matrix<I, J, T>(src.data);        
         }
 
@@ -217,7 +217,7 @@ namespace Z0
             where J : ITypeNat, new()
             where T : struct    
         {
-            Prove.equal<I,J>();
+            NatProve.eq<I,J>();
             return new Matrix<I, J, T>(src.data);
         }
 
@@ -262,8 +262,8 @@ namespace Z0
             where P : ITypeNat, new()
             where T : struct, ISemiringOps<T>
         {            
-            var m = Prove.claim<M>(rhs.dim().i);
-            var p = Prove.claim<P>(rhs.dim().j);
+            var m = NatProve.eq<M>(rhs.dim().i);
+            var p = NatProve.eq<P>(rhs.dim().j);
             var product = new T[m*p];
             for(var i = 0u; i< m; i++)
                 for(var j =0u; j< p; j++)

@@ -11,6 +11,7 @@ namespace Z0
 
     using static mfunc;
     using static Bits;
+    using static Bytes;
 
 
     public ref struct BitVectorU16
@@ -132,7 +133,7 @@ namespace Z0
             => bitspan(data);
 
         [MethodImpl(Inline)]
-        public int PopCount()
+        public ulong PopCount()
             => pop(data);
 
         [MethodImpl(Inline)]

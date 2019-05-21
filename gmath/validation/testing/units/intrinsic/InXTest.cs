@@ -90,7 +90,7 @@ namespace Z0.Test
 
         protected virtual void ClaimEq(Vec128<T> lvec, Vec128<T> rvec, Vec128<T> expect, Vec128<T> actual, int i)
         {
-            if(!expect.Equals(actual))
+            if(!expect.Eq(actual))
                 throw new Exception($"Operator failure during iteration {i}: {lvec} OpName {rvec} | Expected = {expect}, Actual = {actual}");
         }
 

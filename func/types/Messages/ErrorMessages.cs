@@ -20,6 +20,9 @@ namespace Z0
             where T : Enum
                 => AppMsg.Define($"{kind} for {typename<T>()} not supported", 
                         SeverityLevel.Error, caller, file, line);
+        public static AppMsg TypeUnsupported(Type t, string caller, string file, int? line)
+                => AppMsg.Define($"Type {t.Name} is not supported in the current context", 
+                        SeverityLevel.Error, caller, file, line);
         public static AppMsg KindOpUnsupported<S,T>(S src, T dst, string caller, string file, int? line)
             where S : Enum
             where T : Enum

@@ -80,7 +80,7 @@ namespace Z0
         [MethodImpl(Inline)]
         internal Array(int len)
         {
-            Prove.claim<N>(len);
+            NatProve.eq<N>(len);
             data = new T[len];
         }
 
@@ -98,7 +98,7 @@ namespace Z0
                 this.data = array<T>(nati<N>());
             else
             {
-                Prove.claim<N>(data.Length);
+                NatProve.eq<N>(data.Length);
                 this.data = data;
             }
         }

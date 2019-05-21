@@ -13,8 +13,22 @@ namespace Z0
 
     using static nfunc;
 
-    partial class Prove
+    partial class NatProve
     {
+        /// <summary>
+        /// Attempts to prove that k1:K1 & k2:K2 & k3:K3 => k1 % k2 = k3
+        /// Signals success by returning evidence
+        /// Signals failure by raising an error
+        /// </summary>
+        /// <typeparam name="K1">The first natural type</typeparam>
+        /// <typeparam name="K2">The second natural type</typeparam>
+        /// <typeparam name="K3">The third natural type</typeparam>
+        [MethodImpl(Inline)]
+        public static NatMod<K1,K2,K3> mod<K1,K2,K3>()
+            where K1 : ITypeNat, new()
+            where K2 : ITypeNat, new()
+            where K3 : ITypeNat, new()
+                => new NatMod<K1,K2,K3>(natrep<K1>(), natrep<K2>(),natrep<K3>());
 
         /// <summary>
         /// Attempts to prove that k1:K1 & k2:K2 & k3:K3 => k1 % k2 = k3
@@ -25,26 +39,11 @@ namespace Z0
         /// <typeparam name="K2">The second natural type</typeparam>
         /// <typeparam name="K3">The third natural type</typeparam>
         [MethodImpl(Inline)]
-        public static Mod<K1,K2,K3> mod<K1,K2,K3>()
+        public static NatMod<K1,K2,K3> mod<K1,K2,K3>(K1 k1, K2 k2, K3 k3)
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
             where K3 : ITypeNat, new()
-                => new Mod<K1,K2,K3>(natrep<K1>(), natrep<K2>(),natrep<K3>());
-
-        /// <summary>
-        /// Attempts to prove that k1:K1 & k2:K2 & k3:K3 => k1 % k2 = k3
-        /// Signals success by returning evidence
-        /// Signals failure by raising an error
-        /// </summary>
-        /// <typeparam name="K1">The first natural type</typeparam>
-        /// <typeparam name="K2">The second natural type</typeparam>
-        /// <typeparam name="K3">The third natural type</typeparam>
-        [MethodImpl(Inline)]
-        public static Mod<K1,K2,K3> mod<K1,K2,K3>(K1 k1, K2 k2, K3 k3)
-            where K1 : ITypeNat, new()
-            where K2 : ITypeNat, new()
-            where K3 : ITypeNat, new()
-                => new Mod<K1,K2,K3>(k1, k2, k3);
+                => new NatMod<K1,K2,K3>(k1, k2, k3);
 
         /// <summary>
         /// Attempts to prove that k1:K1 & k2:K2 & k3:K3 => k1 % k2 = k3
@@ -55,11 +54,11 @@ namespace Z0
         /// <typeparam name="K2">The second natural type</typeparam>
         /// <typeparam name="K3">The third natural type</typeparam>
         [MethodImpl(Inline)]
-        public static Option<Mod<K1,K2,K3>> tryMod<K1,K2,K3>()
+        public static Option<NatMod<K1,K2,K3>> tryMod<K1,K2,K3>()
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
             where K3 : ITypeNat, new()
-                => Try( () => new Mod<K1,K2,K3>(natrep<K1>(), natrep<K2>(),natrep<K3>()));
+                => Try( () => new NatMod<K1,K2,K3>(natrep<K1>(), natrep<K2>(),natrep<K3>()));
 
         /// <summary>
         /// Attempts to prove that k1:K1 & k2:K2 & k3:K3 => k1 % k2 = k3
@@ -70,11 +69,11 @@ namespace Z0
         /// <typeparam name="K2">The second natural type</typeparam>
         /// <typeparam name="K3">The third natural type</typeparam>
         [MethodImpl(Inline)]
-        public static Option<Mod<K1,K2,K3>> tryMod<K1,K2,K3>(K1 k1, K2 k2, K3 k3)
+        public static Option<NatMod<K1,K2,K3>> tryMod<K1,K2,K3>(K1 k1, K2 k2, K3 k3)
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
             where K3 : ITypeNat, new()
-                => Try( () => new Mod<K1,K2,K3>(k1, k2, k3));
+                => Try( () => new NatMod<K1,K2,K3>(k1, k2, k3));
 
 
         /// <summary>
@@ -84,9 +83,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">An even natural type</typeparam>
         [MethodImpl(Inline)]
-        public static Even<K> even<K>()
+        public static NatEven<K> even<K>()
             where K: ITypeNat, new()
-                => new Even<K>(natrep<K>());
+                => new NatEven<K>(natrep<K>());
 
         /// <summary>
         /// Attempts to prove that k:K1 => k % 2 == 0
@@ -95,9 +94,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">An even natural type</typeparam>
         [MethodImpl(Inline)]
-        public static Even<K> even<K>(K k)
+        public static NatEven<K> even<K>(K k)
             where K: ITypeNat, new()
-                => new Even<K>(k);
+                => new NatEven<K>(k);
 
         /// <summary>
         /// Attempts to prove that k:K1 => k % 2 == 0
@@ -106,9 +105,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">An even natural type</typeparam>
         [MethodImpl(Inline)]
-        public static Option<Even<K>> tryEven<K>()
+        public static Option<NatEven<K>> tryEven<K>()
             where K: ITypeNat, new()
-                => Try(() => new Even<K>(natrep<K>()));
+                => Try(() => new NatEven<K>(natrep<K>()));
 
         /// <summary>
         /// Attempts to prove that k:K1 => k % 2 == 0
@@ -117,9 +116,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">An even natural type</typeparam>
         [MethodImpl(Inline)]
-        public static Option<Even<K>> tryEven<K>(K k)
+        public static Option<NatEven<K>> tryEven<K>(K k)
             where K: ITypeNat, new()
-                => Try(() => new Even<K>(k));
+                => Try(() => new NatEven<K>(k));
 
         /// <summary>
         /// Attempts to prove that k:K1 => k % 2 != 0
@@ -128,9 +127,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">An odd natural type</typeparam>
         [MethodImpl(Inline)]
-        public static Odd<K> odd<K>()
+        public static NatOdd<K> odd<K>()
             where K: ITypeNat, new()
-                => new Odd<K>(natrep<K>());
+                => new NatOdd<K>(natrep<K>());
 
         /// <summary>
         /// Attempts to prove that k:K1 => k % 2 != 0
@@ -139,9 +138,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">An odd natural type</typeparam>
         [MethodImpl(Inline)]
-        public static Odd<K> odd<K>(K k)
+        public static NatOdd<K> odd<K>(K k)
             where K: ITypeNat, new()
-                => new Odd<K>(k);
+                => new NatOdd<K>(k);
 
         /// <summary>
         /// Attempts to prove that k:K1 => k % 2 != 0
@@ -150,9 +149,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">An odd natural type</typeparam>
         [MethodImpl(Inline)]
-        public static Option<Odd<K>> tryOdd<K>()
+        public static Option<NatOdd<K>> tryOdd<K>()
             where K: ITypeNat, new()
-                => Try(() => new Odd<K>(natrep<K>()));
+                => Try(() => new NatOdd<K>(natrep<K>()));
 
         /// <summary>
         /// Attempts to prove that k:K1 => k % 2 != 0
@@ -161,9 +160,9 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K">An odd natural type</typeparam>
         [MethodImpl(Inline)]
-        public static Option<Odd<K>> tryOdd<K>(K k)
+        public static Option<NatOdd<K>> tryOdd<K>(K k)
             where K: ITypeNat, new()
-                => Try( () => new Odd<K>(k));
+                => Try( () => new NatOdd<K>(k));
 
     }
 

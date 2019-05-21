@@ -10,7 +10,8 @@ namespace Z0
     using System.Numerics;
 
     using static mfunc;
-    using static Z0.Bits;
+    using static Bits;
+    using static Bytes;
 
     public ref struct BitVectorI64
     {
@@ -113,7 +114,7 @@ namespace Z0
 
         [MethodImpl(Inline)]        
         public Span<Bit> Bits()
-            => bitspan(in data);
+            => bitspan(data);
 
         [MethodImpl(Inline)]
         public int PopCount()
