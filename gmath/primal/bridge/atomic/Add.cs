@@ -16,8 +16,8 @@ namespace Z0
     partial class bridge
     {
         [MethodImpl(Inline)]
-        public static T addI8<T>(T lhs, T rhs)
-            => generic<T>((sbyte)(int8(lhs) + int8(rhs)));
+        public static T addI8<T>(T lhs, T rhs)        
+            => generic<T>((sbyte)(uint8(lhs) + uint8(rhs)));
 
         [MethodImpl(Inline)]
         public static T addU8<T>(T lhs, T rhs)

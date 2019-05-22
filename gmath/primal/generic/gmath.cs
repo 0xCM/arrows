@@ -10,6 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
+    using System.Runtime.Intrinsics.X86;
     
     
     using static bridge;
@@ -163,6 +164,75 @@ namespace Z0
         }
 
 
+
+        [MethodImpl(Inline)]
+        public static ref T add<T>(in T lhs, in T rhs, out T dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>(); 
+
+            if (kind == PrimalKind.int8)
+                dst = addI8(lhs, rhs, out dst);            
+            else if(kind == PrimalKind.uint8)
+                dst = addU8(lhs, rhs, out dst);
+            else if(kind == PrimalKind.int16)
+                dst = addI16(lhs, rhs, out dst);
+            else if(kind == PrimalKind.uint16)
+                dst = addU16(lhs, rhs, out dst);
+            else if(kind == PrimalKind.int32)
+                dst = addI32(lhs, rhs, out dst);            
+            else if(kind == PrimalKind.uint32)
+                dst = addU32(lhs, rhs, out dst);            
+            else if(kind == PrimalKind.int64)
+                dst = addI64(lhs, rhs, out dst);            
+            else if(kind == PrimalKind.uint64)
+                dst = addU64(lhs, rhs, out dst);            
+            else if(kind == PrimalKind.float32)
+                dst = addF32(lhs, rhs, out dst);            
+            else if(kind == PrimalKind.float64)
+                dst = addF64(lhs, rhs, out dst);
+            else            
+                throw unsupported(kind);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static T add<T>(T lhs, T rhs)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind.IsFloat())
+            {
+                if(kind == PrimalKind.float32)
+                    return addF32(lhs,rhs);
+                else if(kind == PrimalKind.float64)
+                    return addF64(lhs,rhs);
+            }
+            else
+            {
+                if(kind == PrimalKind.int32)
+                    return addI32(lhs,rhs);
+                else if(kind == PrimalKind.uint32)
+                    return addU32(lhs,rhs);
+                else if(kind == PrimalKind.int64)
+                    return addI64(lhs,rhs);
+                else if(kind == PrimalKind.uint64)
+                    return addU64(lhs,rhs);
+                else if(kind == PrimalKind.int16)
+                    return addI16(lhs,rhs);
+                else if(kind == PrimalKind.uint16)
+                    return addU16(lhs,rhs);
+                else if(kind == PrimalKind.int8)
+                    return addI8(lhs,rhs);
+                else if(kind == PrimalKind.uint8)
+                    return addU8(lhs,rhs);
+            }
+            
+            throw unsupported(kind);
+            
+        }
+                        
+
         [MethodImpl(Inline)]
         public static ref T add<T>(ref T lhs, T rhs)
             where T : struct
@@ -203,74 +273,37 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref T add<T>(in T lhs, in T rhs, out T dst)
+        public static ref T sub<T>(in T lhs, in T rhs, out T dst)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
             if (kind == PrimalKind.int8)
-                dst = addI8(lhs, rhs, out dst);            
+                dst = subI8(in lhs, in rhs, out dst);            
             else if(kind == PrimalKind.uint8)
-                dst = addU8(lhs, rhs, out dst);
+                dst = subU8(in lhs, in rhs, out dst);
             else if(kind == PrimalKind.int16)
-                dst = addI16(lhs, rhs, out dst);
+                dst = subI16(in lhs, in rhs, out dst);
             else if(kind == PrimalKind.uint16)
-                dst = addU16(lhs, rhs, out dst);
+                dst = subU16(in lhs, in rhs, out dst);
             else if(kind == PrimalKind.int32)
-                dst = addI32(lhs, rhs, out dst);            
+                dst = subI32(in lhs, in rhs, out dst);            
             else if(kind == PrimalKind.uint32)
-                dst = addU32(lhs, rhs, out dst);            
+                dst = subU32(in lhs, in rhs, out dst);            
             else if(kind == PrimalKind.int64)
-                dst = addI64(lhs, rhs, out dst);            
+                dst = subI64(in lhs, in rhs, out dst);            
             else if(kind == PrimalKind.uint64)
-                dst = addU64(lhs, rhs, out dst);            
+                dst = subU64(in lhs, in rhs, out dst);            
             else if(kind == PrimalKind.float32)
-                dst = addF32(lhs, rhs, out dst);            
+                dst = subF32(in lhs, in rhs, out dst);            
             else if(kind == PrimalKind.float64)
-                dst = addF64(lhs, rhs, out dst);
+                dst = subF64(in lhs, in rhs, out dst);
             else            
                 throw unsupported(kind);
             return ref dst;
         }
 
-        [MethodImpl(Inline)]
-        public static T add<T>(T lhs, T rhs)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-            
-            if (kind == PrimalKind.int8)
-                return addI8(lhs,rhs);
-            
-            if(kind == PrimalKind.uint8)
-                return addU8(lhs,rhs);
 
-            if(kind == PrimalKind.int16)
-                return addI16(lhs,rhs);
-
-            if(kind == PrimalKind.uint16)
-                return addU16(lhs,rhs);
-
-            if(kind == PrimalKind.int32)
-                return addI32(lhs,rhs);
-            
-            if(kind == PrimalKind.uint32)
-                return addU32(lhs,rhs);
-            
-            if(kind == PrimalKind.int64)
-                return addI64(lhs,rhs);
-            
-            if(kind == PrimalKind.uint64)
-                return addU64(lhs,rhs);
-            
-            if(kind == PrimalKind.float32)
-                return addF32(lhs,rhs);
-            
-            if(kind == PrimalKind.float64)
-                return addF64(lhs,rhs);
-                                    
-            throw unsupported(kind);
-        }
 
         [MethodImpl(Inline)]
         public static ref T sub<T>(ref T lhs, T rhs)
@@ -311,6 +344,10 @@ namespace Z0
             throw unsupported(kind);
         }
 
+        [MethodImpl(Inline)]
+        public static T sub<T>(in T lhs, in T rhs)
+            where T : struct
+                => sub(in lhs, in rhs, out T result);
 
 
         [MethodImpl(Inline)]
@@ -866,38 +903,49 @@ namespace Z0
             throw unsupported(kind);
         }           
 
+
         [MethodImpl(Inline)]
-        public static T lshift<T>(T lhs, int rhs)
+        public static T lshift<T>(in T lhs, in int rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.int32)
-                return lshiftI32(lhs,rhs);
+                return lshiftI32(in lhs, in rhs);
 
             if(kind == PrimalKind.uint32)
-                return lshiftU32(lhs,rhs);
+                return lshiftU32(in lhs, in rhs);
 
             if(kind == PrimalKind.int64)
-                return lshiftI64(lhs,rhs);
+                return lshiftI64(in lhs, in rhs);
 
             if(kind == PrimalKind.uint64)
-                return lshiftU64(lhs,rhs);
+                return lshiftU64(in lhs, in rhs);
 
             if(kind == PrimalKind.int16)
-                return lshiftI16(lhs,rhs);
+                return lshiftI16(in lhs, in rhs);
 
             if(kind == PrimalKind.uint16)
-                return lshiftU16(lhs,rhs);
+                return lshiftU16(in lhs, in rhs);
 
             if(kind == PrimalKind.int8)
-                return lshiftI8(lhs,rhs);
+                return lshiftI8(in lhs, in rhs);
 
             if(kind == PrimalKind.uint8)
-                return lshiftU8(lhs,rhs);
+                return lshiftU8(in lhs,in rhs);
 
             throw unsupported(kind);
         }           
+
+        [MethodImpl(Inline)]
+        public static T lshift<T>(in T lhs, in uint rhs)
+            where T : struct
+                => lshift(in lhs, (int)rhs);
+        
+        [MethodImpl(Inline)]
+        public static T lshift<T>(in T lhs, in ulong rhs)
+            where T : struct
+                => lshift(in lhs, (int)rhs);
 
 
         [MethodImpl(Inline)]

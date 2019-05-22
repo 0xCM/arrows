@@ -80,17 +80,17 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan256<T> Load(Span<T> src, int offset, int length)
+        public static ReadOnlySpan256<T> Load(Span<T> src, int offset = 0)
         {
-            assert(Aligned(length));
-            return new ReadOnlySpan256<T>(src.Slice(offset, length));
+            assert(Aligned(src.Length - offset));
+            return new ReadOnlySpan256<T>(src.Slice(offset));
         }
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan256<T> Load(ReadOnlySpan<T> src, int offset, int length)
+        public static ReadOnlySpan256<T> Load(ReadOnlySpan<T> src, int offset = 0)
         {
-            assert(Aligned(length));
-            return new ReadOnlySpan256<T>(src.Slice(offset, length));
+            assert(Aligned(src.Length - offset));
+            return new ReadOnlySpan256<T>(src.Slice(offset));
         }
 
         [MethodImpl(Inline)]
@@ -127,17 +127,6 @@ namespace Z0
             get => ref data[ix];
         }
 
-        //public ref readonly T this[Index ix] 
-        //{
-        //    [MethodImpl(Inline)]
-        //    get => ref data[ix];
-        //}
-
-        //public ReadOnlySpan<T> this[Range range]
-        //{
-        //    [MethodImpl(Inline)]
-        //    get => data[range];
-        //}
 
         [MethodImpl(Inline)]
         public ReadOnlySpan<T> Slice(int start)
@@ -156,16 +145,8 @@ namespace Z0
             => (ReadOnlySpan256<T>)Slice(blockIndex * BlockLength, blockCount * BlockLength );
             
         [MethodImpl(Inline)]
-        public Span256<T> ToSpan256()
-            => Span256.load(data);
-
-        [MethodImpl(Inline)]
-        public Span<T> ToSpan()
-            => replicate(data);
-
-        [MethodImpl(Inline)]
-        public ReadOnlySpan<T> ToReadOnlySpan()
-            => data;
+        public Span256<T> ToBlockedSpan()
+            => Span256.load(data.ToSpan());
 
         [MethodImpl(Inline)]
         public T[] ToArray()

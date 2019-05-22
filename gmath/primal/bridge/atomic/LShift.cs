@@ -16,35 +16,35 @@ namespace Z0
     partial class bridge
     {
         [MethodImpl(Inline)]
-        public static T lshiftI8<T>(T lhs, int rhs)
-            => generic<T>((sbyte)(int8(lhs) << rhs));
+        public static T lshiftI8<T>(in T lhs, in int rhs)
+            => AsIn.generic<T>((sbyte)(AsIn.int8(in lhs)) << rhs);            
 
         [MethodImpl(Inline)]
-        public static T lshiftU8<T>(T lhs, int rhs)
+        public static T lshiftU8<T>(in T lhs, in int rhs)
             => generic<T>((byte)(uint8(lhs) << rhs));
 
         [MethodImpl(Inline)]
-        public static T lshiftI16<T>(T lhs, int rhs)
+        public static T lshiftI16<T>(in T lhs, in int rhs)
             => generic<T>((short)(int16(lhs) << rhs));
 
         [MethodImpl(Inline)]
-        public static T lshiftU16<T>(T lhs, int rhs)
+        public static T lshiftU16<T>(in T lhs, in int rhs)
             => generic<T>((ushort)(uint16(lhs) << rhs));
 
         [MethodImpl(Inline)]
-        public static T lshiftI32<T>(T lhs, int rhs)
+        public static T lshiftI32<T>(in T lhs, in int rhs)
             => generic<T>(int32(lhs) << rhs);
         
         [MethodImpl(Inline)]
-        public static T lshiftU32<T>(T lhs, int rhs)
+        public static T lshiftU32<T>(in T lhs, in int rhs)
             => generic<T>(uint32(lhs) << rhs);
 
         [MethodImpl(Inline)]
-        public static T lshiftI64<T>(T lhs, int rhs)
+        public static T lshiftI64<T>(in T lhs, in int rhs)
             => generic<T>(int64(lhs)  << rhs);
 
         [MethodImpl(Inline)]
-        public static T lshiftU64<T>(T lhs, int rhs)
+        public static T lshiftU64<T>(in T lhs, in int rhs)
             => generic<T>(uint64(lhs)  << rhs);
 
         [MethodImpl(Inline)]

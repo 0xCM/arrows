@@ -52,22 +52,9 @@ namespace Z0
         const string OneS = "1";
         
 
-        /// <summary>
-        /// Parses the bits from a string of bit characters
-        /// </summary>
-        /// <param name="src"></param>
-        [MethodImpl(Inline)]
-        public static Span<Bit> Parse(ReadOnlySpan<char> src)
-        {
-            var dst = span<Bit>(src.Length);            
-            for(var i = 0; i< src.Length; i++)
-                dst[i] = Parse(src[i]);
-            return dst;            
-        }
-
         public static Bit Parse(char c)
-            => c;
-        
+            => c == One;
+
         [MethodImpl(Inline)]
         public static implicit operator bool(Bit src)
             => src.value;

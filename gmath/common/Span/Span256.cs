@@ -42,14 +42,9 @@ namespace Z0
         /// <typeparam name="T">The primitive type</typeparam>
         public static readonly int CellSize = BlockSize / BlockLength;
 
-
         [MethodImpl(Inline)]
         public static implicit operator Span<T>(Span256<T> src)
             => src.data;
-
-        [MethodImpl(Inline)]
-        public static explicit operator Span256<T>(Span<T> src)
-            => new Span256<T>(src);
 
         [MethodImpl(Inline)]
         public static implicit operator ReadOnlySpan<T> (Span256<T> src)
@@ -59,9 +54,6 @@ namespace Z0
         public static implicit operator ReadOnlySpan256<T> (Span256<T> src)
             => Load(src);
 
-        [MethodImpl(Inline)]
-        public static implicit operator Span256<T> (T[] src)
-            => new Span256<T>(src);
 
         [MethodImpl(Inline)]
         public static bool operator == (Span256<T> lhs, Span256<T> rhs)
@@ -76,12 +68,9 @@ namespace Z0
             => length % BlockLength == 0;
         
         [MethodImpl(Inline)]
-        public static Span256<T> BlockAlloc(int count)
-            => new Span256<T>(new T[count * BlockLength]);
+        public static Span256<T> Alloc(int blocks)
+            => new Span256<T>(new T[blocks * BlockLength]);
 
-        [MethodImpl(Inline)]
-        public static Span256<T> Alloc(int length)
-            => Load(new T[length]);
 
         [MethodImpl(Inline)]
         public static Span256<T> Load(T[] src)
@@ -91,10 +80,10 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Span256<T> Load(ReadOnlySpan<T> src)
+        public static ReadOnlySpan256<T> Load(ReadOnlySpan<T> src, int offset = 0)
         {
-            assert(Aligned(src.Length));
-            return new Span256<T>(src);
+            assert(Aligned(src.Length - offset));
+            return ReadOnlySpan256<T>.Load(src, offset);
         }
 
         [MethodImpl(Inline)]
@@ -102,18 +91,12 @@ namespace Z0
             => ReadOnlySpan256<T>.Load(src);
 
         [MethodImpl(Inline)]
-        public static Span256<T> Load(Span<T> src, int offset, int length)
+        public static Span256<T> Load(Span<T> src, int offset = 0)
         {
-            assert(Aligned(length));
-            return new Span256<T>(src.Slice(offset, length));
+            assert(Aligned(src.Length - offset));
+            return new Span256<T>(src.Slice(offset));
         }
 
-        [MethodImpl(Inline)]
-        public static Span256<T> Load(ReadOnlySpan<T> src, int offset, int length)
-        {
-            assert(Aligned(length));
-            return new Span256<T>(src.Slice(offset, length));
-        }
 
         [MethodImpl(Inline)]
         public static unsafe Span256<T> Load(void* src, int length)
@@ -182,7 +165,7 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public Span256<T> Blocks(int blockIndex, int blockCount)
-            => (Span256<T>)Slice(blockIndex * BlockLength, blockCount * BlockLength );
+            => Span256.load(Slice(blockIndex * BlockLength, blockCount * BlockLength));
             
         [MethodImpl(Inline)]
         public Span<T> Unblock()
@@ -219,7 +202,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span256<S> As<S>()                
             where S : struct
-                => (Span256<S>)MemoryMarshal.Cast<T,S>(data);                    
+                => Span256.load(MemoryMarshal.Cast<T,S>(data));                    
         public int Length 
         {
             [MethodImpl(Inline)]
@@ -238,12 +221,6 @@ namespace Z0
             get => data.IsEmpty;
         }
                     
-        public ref T Head
-        {
-            [MethodImpl(Inline)]
-            get => ref data[0];                        
-        }            
-
         public override string ToString() 
             => data.ToString();
 

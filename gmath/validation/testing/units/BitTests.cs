@@ -107,17 +107,22 @@ namespace Z0.Test
             Claim.@true(gbits.test(0b00000111, 2));
         }
 
-        public void BitParse()
+        public void BitParse1()
         {
             
             var bs1 = "10001000111";
             var value = gbits.parse<ulong>(bs1).ToBitVector();
             Claim.eq(value,0b10001000111);
 
+        }
+
+        public void BitParse2()
+        {
             var x1 = 0b10100111001110001110010110101000;
             var y1 = "0b10100111001110001110010110101000";
             var z1 = gbits.parse<uint>(y1).ToBitVector();
             Claim.eq(x1, z1);
+
         }
 
         public void Pack1()
@@ -166,12 +171,10 @@ namespace Z0.Test
         public void Pack4()
         {
             var bv1 = BitVectorU8.Define(0b10110111);   
-            var bs1 = Bits.many(
-                    Bit.On, Bit.On,Bit.On, Bit.Off,
-                    Bit.On, Bit.On, Bit.Off, Bit.On
-                    );
+            var bs1 = Bits.many(Bit.On, Bit.On, Bit.On, Bit.Off,
+                    Bit.On, Bit.On, Bit.Off, Bit.On);
             var bv2 = BitVectorU8.Define(bs1);
-            Claim.eq(bv1,bv2);
+            Claim.eq(bv1, bv2);
             
         }
 
@@ -260,10 +263,7 @@ namespace Z0.Test
             var xBits = xBytes.ToBits();
             var xBitsPC = xBits.PopCount();
             var xBytesPC = xBytes.PopCount();
-            var xBitsBS = xBits.ToBitString();
-            var xBytesBS = xBytes.ToBitString();
 
-            Claim.eq(xBitsBS, xBytesBS);
             Claim.eq(xPC, xBitsPC);
             Claim.eq(xPC, xBytesPC);
         }

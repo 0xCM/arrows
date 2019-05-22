@@ -18,54 +18,57 @@ namespace Z0
     public static class Span256
     {
         /// <summary>
+        /// Loads a single blocked span from a parameter array
+        /// </summary>
+        /// <param name="src">The source parameters</param>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
+        public static Span256<T> single<T>(params T[] src)
+            where T : struct
+                => Span256<T>.Load(src);
+
+        /// <summary>
         /// Allocates a span to hold a specified number of blocks
         /// </summary>
         /// <param name="blocks">The number of blocks for which memory should be alocated</param>
         /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> blockalloc<T>(int blocks)
+        public static Span256<T> alloc<T>(int blocks)
             where T : struct        
-                => Span256<T>.BlockAlloc(blocks);
+                => Span256<T>.Alloc(blocks);
 
         /// <summary>
-        /// Allocates a span to hold a specified number of cells
+        /// Loads a blocked span from an unblocked span
         /// </summary>
-        /// <param name="blocks">The number of blocks for which memory should be alocated</param>
-        /// <typeparam name="T">The element type</typeparam>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The span index at which to begin the load</param>
+        /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> alloc<T>(int length)
-            where T : struct        
-                =>Span256<T>.Alloc(length);
-
-        [MethodImpl(Inline)]
-        public static Span256<T> load<T>(Span<T> src)
+        public static Span256<T> load<T>(Span<T> src, int offset = 0)
             where T : struct
-                => Span256<T>.Load(src, 0, src.Length);
+                => Span256<T>.Load(src, offset);
 
+        /// <summary>
+        /// Loads a blocked span from an array
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The span index at which to begin the load</param>
+        /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> load<T>(Span<T> src, int offset, int length)
+        public static Span256<T> load<T>(T[] src, int offset = 0)
             where T : struct
-                => Span256<T>.Load(src, offset,length);
+                => Span256<T>.Load(src, offset);
 
+        /// <summary>
+        /// Loads a blocked readonly span from an unblocked readonly span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The span index at which to begin the load</param>
+        /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static Span256<T> load<T>(ReadOnlySpan<T> src, int offset, int length)
+        public static ReadOnlySpan256<T> load<T>(ReadOnlySpan<T> src, int offset = 0)
             where T : struct
-                => Span256<T>.Load(src, offset,length);
-
-        [MethodImpl(Inline)]
-        public static Span256<T> load<T>(T[] src)
-            where T : struct
-                => Span256<T>.Load(src);
-
-        [MethodImpl(Inline)]
-        public static Span256<T> load<T>(ReadOnlySpan<T> src)
-            where T : struct
-                => Span256<T>.Load(src);
-
-        [MethodImpl(Inline)]
-        public static Span256<T> single<T>(params T[] src)
-            where T : struct
-                => Span256<T>.Load(src);
+                => Span256<T>.Load(src ,offset);
 
         /// <summary>
         /// Calculates the number of bytes required to represent a block constituent
@@ -100,7 +103,7 @@ namespace Z0
         /// <param name="length">The length of the cell sequence</param>
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
-        public static int blockcount<T>(int length)
+        public static int blocks<T>(int length)
             where T : struct  
                 => length / blocklength<T>();
 
@@ -110,7 +113,7 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The cell type</typeparam>
         [MethodImpl(Inline)]
-        public static int bytes<T>(in Span<T> src)
+        public static ByteSize bytes<T>(in ReadOnlySpan<T> src)
             where T : struct        
             => src.Length * cellsize<T>();
 
@@ -120,9 +123,9 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The span constituent type</typeparam>
         [MethodImpl(Inline)]
-        public static int blockcount<T>(in Span<T> src)
+        public static int blocks<T>(in ReadOnlySpan<T> src)
             where T : struct  
-                =>  blockcount<T>(src.Length);
+                =>  blocks<T>(src.Length);
 
         /// <summary>
         /// Determines whether data of a specified length can be evenly covered by blocks
@@ -134,6 +137,17 @@ namespace Z0
             where T : struct        
             => Span256<T>.Aligned(length);
         
+        /// <summary>
+        /// Determines whether an unblocked span is block-aligned
+        /// </summary>
+        /// <param name="src">The span to examine</param>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
+        public static bool aligned<T>(ReadOnlySpan<T> src)
+            where T : struct        
+                => aligned<T>(src.Length);
+
+ 
         [MethodImpl(Inline)]
         public static int align<T>(int length)
             where T : struct        
@@ -150,10 +164,8 @@ namespace Z0
             where T : struct        
         {
             for(var i = 0; i< length(lhs,rhs); i++)
-            {
-                if(!lhs[i].Equals(rhs[i]))
+                if(gmath.neq(lhs[i],rhs[i]))
                     return false;
-            }
             return true;
         }
 

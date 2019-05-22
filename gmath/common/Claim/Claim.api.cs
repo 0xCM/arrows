@@ -58,7 +58,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static bool eq(object lhs, object rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+        public static bool eq<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => lhs.Equals(rhs) ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
 
         [MethodImpl(Inline)]

@@ -59,14 +59,12 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            var x = rhs;
-            var y = lhs;
 
             if(kind == PrimalKind.float32)
-                return dinx.neq(in float32(ref x), in float32(ref y));
+                return dinx.neq(in float32(ref asRef(in lhs)), in float32(ref asRef(in rhs)));
             
             if(kind == PrimalKind.float64)
-                return dinx.neq(in float64(ref x), in float64(ref y));
+                return dinx.neq(in float64(ref asRef(in lhs)), in float64(ref asRef(in rhs)));
 
             throw unsupported(kind);
 
@@ -81,10 +79,10 @@ namespace Z0
             var y = lhs;
 
             if(kind == PrimalKind.float32)
-                return dinx.gt(in float32(ref x), in float32(ref y));
+                return dinx.gt(in float32(ref asRef(in lhs)), in float32(ref asRef(in rhs)));
             
             if(kind == PrimalKind.float64)
-                return dinx.gt(in float64(ref x), in float64(ref y));
+                return dinx.gt(in float64(ref asRef(in lhs)), in float64(ref asRef(in rhs)));
 
             throw unsupported(kind);
 
@@ -95,14 +93,12 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            var x = rhs;
-            var y = lhs;
 
             if(kind == PrimalKind.float32)
-                return dinx.ngt(in float32(ref x), in float32(ref y));
+                return dinx.ngt(in float32(ref asRef(in lhs)), in float32(ref asRef(in rhs)));
             
             if(kind == PrimalKind.float64)
-                return dinx.ngt(in float64(ref x), in float64(ref y));
+                return dinx.ngt(in float64(ref asRef(in lhs)), in float64(ref asRef(in rhs)));
 
             throw unsupported(kind);
 
@@ -114,14 +110,12 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            var x = rhs;
-            var y = lhs;
-
+            
             if(kind == PrimalKind.float32)
-                return dinx.gteq(in float32(ref x), in float32(ref y));
+                return dinx.gteq(in float32(ref asRef(in lhs)), in float32(ref asRef(in rhs)));
             
             if(kind == PrimalKind.float64)
-                return dinx.gteq(in float64(ref x), in float64(ref y));
+                return dinx.gteq(in float64(ref asRef(in lhs)), in float64(ref asRef(in rhs)));
 
             throw unsupported(kind);
 
@@ -132,14 +126,12 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            var x = rhs;
-            var y = lhs;
 
             if(kind == PrimalKind.float32)
-                return dinx.lt(in float32(ref x), in float32(ref y));
+                return dinx.lt(in float32(ref asRef(in lhs)), in float32(ref asRef(in rhs)));
             
             if(kind == PrimalKind.float64)
-                return dinx.lt(in float64(ref x), in float64(ref y));
+                return dinx.lt(in float64(ref asRef(in lhs)), in float64(ref asRef(in rhs)));
 
             throw unsupported(kind);
         }
@@ -149,14 +141,12 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            var x = rhs;
-            var y = lhs;
 
             if(kind == PrimalKind.float32)
-                return dinx.nlt(in float32(ref x), in float32(ref y));
-
+                return dinx.nlt(in float32(ref asRef(in lhs)), in float32(ref asRef(in rhs)));
+            
             if(kind == PrimalKind.float64)
-                return dinx.nlt(in float64(ref x), in float64(ref y));
+                return dinx.nlt(in float64(ref asRef(in lhs)), in float64(ref asRef(in rhs)));
             
             throw unsupported(kind);
         }
@@ -166,14 +156,12 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            var x = rhs;
-            var y = lhs;
 
             if(kind == PrimalKind.float32)
-                return dinx.lteq(in float32(ref x), in float32(ref y));
+                return dinx.lteq(in float32(ref asRef(in lhs)), in float32(ref asRef(in rhs)));
             
             if(kind == PrimalKind.float64)
-                return dinx.lteq(in float64(ref x), in float64(ref y));
+                return dinx.lteq(in float64(ref asRef(in lhs)), in float64(ref asRef(in rhs)));
 
             throw unsupported(kind);
         }
@@ -186,13 +174,13 @@ namespace Z0
 
             if(kind == PrimalKind.float32)
             {
-                dinx.add(ref float32(ref lhs), float32(rhs));
+                dinx.add(ref float32(ref lhs), in float32(ref asRef(in rhs)));
                 return ref lhs;
             }                
 
             if(kind == PrimalKind.float64)
             {
-                dinx.add(ref float64(ref lhs), float64(rhs));
+                dinx.add(ref float64(ref lhs), in float64(ref asRef(in rhs)));
                 return ref lhs;
             }
 
@@ -207,13 +195,13 @@ namespace Z0
 
             if(kind == PrimalKind.float32)
             {
-                dinx.sub(ref float32(ref lhs), float32(rhs));
+                dinx.sub(ref float32(ref lhs), in float32(ref asRef(in rhs)));
                 return ref lhs;
             }
                 
             if(kind == PrimalKind.float64)
             {
-                dinx.sub(ref float64(ref lhs), float64(rhs));
+                dinx.sub(ref float64(ref lhs), in float64(ref asRef(in rhs)));
                 return ref lhs;
             }
 
@@ -228,13 +216,13 @@ namespace Z0
 
             if(kind == PrimalKind.float32)
             {
-                dinx.mul(ref float32(ref lhs), float32(rhs));
+                dinx.mul(ref float32(ref lhs), in float32(ref asRef(in rhs)));
                 return ref lhs;
             }
                 
             if(kind == PrimalKind.float64)
             {
-                dinx.mul(ref float64(ref lhs), float64(rhs));
+                dinx.mul(ref float64(ref lhs), in float64(ref asRef(in rhs)));
                 return ref lhs;
             }
 
@@ -249,13 +237,13 @@ namespace Z0
 
             if(kind == PrimalKind.float32)
             {
-                dinx.div(ref float32(ref lhs), float32(rhs));
+                dinx.div(ref float32(ref lhs), in float32(ref asRef(in rhs)));
                 return ref lhs;
             }
                 
             if(kind == PrimalKind.float64)
             {
-                dinx.div(ref float64(ref lhs), float64(rhs));
+                dinx.div(ref float64(ref lhs), in float64(ref asRef(in rhs)));
                 return ref lhs;
             }
 
@@ -270,13 +258,13 @@ namespace Z0
 
             if(kind == PrimalKind.float32)
             {
-                dinx.max(ref float32(ref lhs), float32(rhs));
+                dinx.max(ref float32(ref lhs), in float32(ref asRef(in rhs)));
                 return ref lhs;
             }
 
             if(kind == PrimalKind.float64)
             {
-                dinx.max(ref float64(ref lhs), float64(rhs));
+                dinx.max(ref float64(ref lhs), in float64(ref asRef(in rhs)));
                 return ref lhs;
             }
 
@@ -291,13 +279,13 @@ namespace Z0
 
             if(kind == PrimalKind.float32)
             {
-                dinx.min(ref float32(ref lhs), float32(rhs));
+                dinx.min(ref float32(ref lhs), in float32(ref asRef(in rhs)));
                 return ref lhs;
             }
 
             if(kind == PrimalKind.float64)
             {
-                dinx.min(ref float64(ref lhs), float64(rhs));
+                dinx.min(ref float64(ref lhs), in float64(ref asRef(in rhs)));
                 return ref lhs;
             }
 
@@ -312,16 +300,15 @@ namespace Z0
 
             if(kind == PrimalKind.float32)
             {
-                dinx.mulAdd(ref float32(ref x), float32(y), float32(z));
+                dinx.mulAdd(ref float32(ref x), in float32(ref asRef(in y)), in float32(ref asRef(in z)));
                 return ref x;
             }
                 
             if(kind == PrimalKind.float64)
             {
-                dinx.mulAdd(ref float64(ref x), float64(y), float64(z));
+                dinx.mulAdd(ref float64(ref x), in float64(ref asRef(in y)), in float64(ref asRef(in z)));
                 return ref x;
-            }
-                
+            }                
 
             throw unsupported(kind);
         }

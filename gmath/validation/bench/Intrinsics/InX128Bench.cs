@@ -77,17 +77,17 @@ namespace Z0
 
         Span128<T> Target<T>(OpId<T> opid = default)
             where T : struct
-                => Span128.blockalloc<T>(Config.SampleSize);
+                => Span128.alloc<T>(Config.SampleSize);
 
         (T[] Left,T[] Right) Targets<T>(OpId<T> opid)
             where T : struct
-                => (Span128.blockalloc<T>(Config.SampleSize).ToArray(),
-                    Span128.blockalloc<T>(Config.SampleSize).ToArray());                
+                => (Span128.alloc<T>(Config.SampleSize).ToArray(),
+                    Span128.alloc<T>(Config.SampleSize).ToArray());                
 
         (T[] Left,T[] Right) Targets<T>(T specimen = default(T))
             where T : struct
-                => (Span128.blockalloc<T>(Config.SampleSize).ToArray(),
-                    Span128.blockalloc<T>(Config.SampleSize).ToArray());                
+                => (Span128.alloc<T>(Config.SampleSize).ToArray(),
+                    Span128.alloc<T>(Config.SampleSize).ToArray());                
     
     }
 }

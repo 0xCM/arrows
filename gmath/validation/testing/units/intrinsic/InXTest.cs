@@ -30,7 +30,7 @@ namespace Z0.Test
         /// </summary>
         /// <param name="count">The number of values in the produced array</param>
         protected T[] RandArray()
-            => Randomizer.Array(Config.Get<T>().SampleDomain, Config.SampleSize);
+            => Randomizer.Array<T>(Config.SampleSize,Config.Get<T>().SampleDomain);
 
         protected InXTest(OpId<T> OpId, ITestConfig config = null)
             : base((config ?? TestConfigDefaults.Default()).WithSampleSize(4 * Pow2.T08))
@@ -56,10 +56,10 @@ namespace Z0.Test
         protected T[] RightSamples;
 
         protected Vec128<T> LeftVector(int index)
-            => Vec128.define(ref LeftSamples, index*VecLength);
+            => Vec128.define(LeftSamples, index*VecLength);
 
         protected Vec128<T> RightVector(int index)
-            => Vec128.define(ref RightSamples, index*VecLength);
+            => Vec128.define(RightSamples, index*VecLength);
 
         protected IEnumerable<Vec128<T>> Results(Vec128BinOp<T> op)
         {

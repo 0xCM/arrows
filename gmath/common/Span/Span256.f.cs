@@ -47,7 +47,7 @@ partial class mfunc
     public static Span256<T> cast<S,T>(Span256<S> src)                
         where S : struct
         where T : struct
-            => (Span256<T>)MemoryMarshal.Cast<S,T>(src);
+            => Span256.load(MemoryMarshal.Cast<S,T>(src));
 
     /// <summary>
     /// Reimagines a readonly span of one element type as a readonly span of another element type
@@ -62,13 +62,22 @@ partial class mfunc
             => (ReadOnlySpan256<T>)MemoryMarshal.Cast<S,T>(src);
 
 
-    [MethodImpl(Inline)]   
-    public static int length<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, [CallerMemberName] string caller = null, 
-            [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-        where T : struct
-            => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length,rhs.Length, caller, file,line);
+    // [MethodImpl(Inline)]   
+    // public static int length<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, [CallerMemberName] string caller = null, 
+    //         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+    //     where T : struct
+    //         => lhs.Length == rhs.Length ? lhs.Length 
+    //             : throw Errors.LengthMismatch(lhs.Length,rhs.Length, caller, file,line);
  
+    [MethodImpl(Inline)]   
+    public static int length<S,T>(ReadOnlySpan256<S> lhs, ReadOnlySpan256<T> rhs, [CallerFilePath] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)        
+        where T : struct
+        where S : struct
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
+
     [MethodImpl(Inline)]   
     public static int length<T>(Span256<T> lhs, Span256<T> rhs, [CallerMemberName] string caller = null,
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)

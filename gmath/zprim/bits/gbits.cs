@@ -113,11 +113,10 @@ namespace Z0
                 => dst = parse<T>(bitstring);
 
         [MethodImpl(NotInline)]
-        public static T parse<T>(string bitstring)
+        public static T parse<T>(string bitstring, int offset = 0)
             where T : struct
         {
             var prim = PrimalKinds.kind<T>();
-            var offset = bitstring.StartsWith("0b") ? 2 : 0;
             switch(prim)
             {
                 case PrimalKind.int8:
@@ -253,31 +252,31 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static string bitstring<T>(T src)
+        public static string bitstring<T>(T src, bool tlz = false, bool pfs = false)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.int8)
-                return Bits.bitstring(in int8(ref src));
+                return Bits.bitstring(in int8(ref src), tlz, pfs);
 
             if(kind == PrimalKind.uint8)
-                return Bits.bitstring(in uint8(ref src));
+                return Bits.bitstring(in uint8(ref src), tlz, pfs);
 
             if(kind == PrimalKind.int16)
-                return Bits.bitstring(in int16(ref src));
+                return Bits.bitstring(in int16(ref src), tlz, pfs);
 
             if(kind == PrimalKind.uint16)
-                return Bits.bitstring(in uint16(ref src));
+                return Bits.bitstring(in uint16(ref src), tlz, pfs);
 
             if(kind == PrimalKind.int32)
-                return Bits.bitstring(in int32(ref src));
+                return Bits.bitstring(in int32(ref src), tlz, pfs);
 
             if(kind == PrimalKind.uint32)
-                return Bits.bitstring(in uint32(ref src));
+                return Bits.bitstring(in uint32(ref src), tlz, pfs);
 
             if(kind == PrimalKind.int64)
-                return Bits.bitstring(in int64(ref src));
+                return Bits.bitstring(in int64(ref src), tlz, pfs);
 
             if(kind == PrimalKind.uint64)
                 return Bits.bitstring(in uint64(ref src));

@@ -18,7 +18,7 @@ namespace Z0
         static T[] Sample<T>(IRandomizer random, BenchConfig config, bool nonzero = false)
             where T : struct        
                 => nonzero 
-                 ? random.Array<T>(config.Reps,x => gmath.neq(x,gmath.zero<T>())) 
+                 ? random.NonZeroArray<T>(config.Reps) 
                  : random.Array<T>(config.Reps);
         
         public static UnaryOpData<T> Configure<T>(BenchConfig config, IRandomizer random, bool nonzero = false)
@@ -56,7 +56,7 @@ namespace Z0
         static T[] Sample<T>(IRandomizer random, BenchConfig config, bool nonzero = false)
             where T : struct        
                 => nonzero 
-                 ? random.Array<T>(config.Reps,x => gmath.neq(x,gmath.zero<T>())) 
+                 ? random.NonZeroArray<T>(config.Reps) 
                  : random.Array<T>(config.Reps);
         
         public static BinOpData<T> Configure<T>(BenchConfig config, IRandomizer random, bool nonzero = false)

@@ -30,7 +30,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span256<T> ToSpan256<T>(this T[] src)
             where T : struct
-            => (Span256<T>)src;
+            => Span256.load<T>(src);
 
         /// <summary>
         /// Constructs a span from a sequence selection
@@ -40,18 +40,18 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span128<T> ToSpan128<T>(this T[] src)
             where T : struct
-            => (Span128<T>)src;
+            => Span128.load(src);
 
 
         [MethodImpl(Inline)]
         public static Span128<T> ToSpan128<T>(this Span<T> src)
              where T : struct
-                => (Span128<T>)src;
+                => Span128.load(src);
 
         [MethodImpl(Inline)]
         public static Span256<T> ToSpan256<T>(this Span<T> src)
              where T : struct
-                => (Span256<T>)src; 
+                => Span256.load(src);
     }
 
 }

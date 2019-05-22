@@ -56,8 +56,8 @@ namespace Z0
             var cycles = Pow2.T14;
             inform($"Operating on {blocks} blocks = {cells} cells for {cycles} cycles");
 
-            var dstA = Span256.blockalloc<long>(blocks);
-            var dstB = Span256.blockalloc<long>(blocks);
+            var dstA = Span256.alloc<long>(blocks);
+            var dstB = Span256.alloc<long>(blocks);
             var cycle = 0;
             
             var sw = stopwatch();
@@ -139,8 +139,8 @@ namespace Z0
             var blocks = count ?? Pow2.T18;
             var lhs = Randomizer.Span256<float>(blocks);
             var rhs = Randomizer.Span256<float>(blocks);
-            var dstA = Span256.blockalloc<float>(blocks);
-            var dstB = Span256.blockalloc<float>(blocks);
+            var dstA = Span256.alloc<float>(blocks);
+            var dstB = Span256.alloc<float>(blocks);
 
             var len = length(lhs, rhs);
             var cycles = 100;
@@ -170,8 +170,8 @@ namespace Z0
             var blocks = count ?? Pow2.T18;
             var lhs = Randomizer.Span256<double>(blocks);
             var rhs = Randomizer.Span256<double>(blocks);
-            var dstA = Span256.blockalloc<double>(blocks).Unblock();
-            var dstB = Span256.blockalloc<double>(blocks);
+            var dstA = Span256.alloc<double>(blocks).Unblock();
+            var dstB = Span256.alloc<double>(blocks);
 
             var len = length(lhs, rhs);
             var cycles = 100;
@@ -203,8 +203,8 @@ namespace Z0
             var blocks = count ?? Pow2.T18;
             var lhs = Randomizer.Span256<int>(blocks);
             var rhs = Randomizer.Span256<int>(blocks);
-            var dstA = Span256.blockalloc<int>(blocks).Unblock();
-            var dstB = Span256.blockalloc<long>(blocks);
+            var dstA = Span256.alloc<int>(blocks).Unblock();
+            var dstB = Span256.alloc<long>(blocks);
             Claim.eq(dstA.Length, dstB.Length * 2);
 
             var len = length(lhs, rhs);
@@ -253,30 +253,21 @@ namespace Z0
 
             }
 
-            void TestMutation()
-            {
-                var v1 = Vec128.define(1,2,3,4);
-                var v2 = Vec128.define(4,5,6,7);
-                var v3 = Vec128.add(ref v1, v2);
-            }
-
-
             unsafe void TestRandom()
             {
-                var arrDst = alloc<double>(Pow2.T20);
-                fixed(double* pDst = &arrDst[0])                
-                    Randomizer.StreamTo<double>(closed(-250.0, 250.0), arrDst.Length, pDst);
-                inform($"Captured {arrDst.Length} elements into an array");
+                // var arrDst = alloc<double>(Pow2.T20);
+                // fixed(double* pDst = &arrDst[0])                
+                //     Randomizer.StreamTo<double>(arrDst.Length, closed(-250.0, 250.0), null,  pDst);
+                // inform($"Captured {arrDst.Length} elements into an array");
 
-                var spanDst = span<double>(Pow2.T20);
-                fixed(double* pDst = &spanDst[0])
-                    Randomizer.StreamTo<double>(closed(-250.0, 250.0), arrDst.Length, pDst);
-                inform($"Captured {spanDst.Length} elements into a span");
+                // var spanDst = span<double>(Pow2.T20);
+                // fixed(double* pDst = &spanDst[0])
+                //     Randomizer.StreamTo<double>(arrDst.Length, closed(-250.0, 250.0), null,  pDst);
+                // inform($"Captured {spanDst.Length} elements into a span");
                 
             }
            
             //TestPermutation();                        
-            TestMutation();
             TestRandom();
         }
 
@@ -873,42 +864,21 @@ namespace Z0
             return query;
         }
 
-        public static void TryThis()
-        {
-            gmath.init();
-            var baselines = new List<IOpMetrics>();
-            var benchmarks = new List<IOpMetrics>();
-            var config = MetricConfig.Define(runs: Pow2.T04, cycles: Pow2.T14, samples: Pow2.T13, dops: false);
-            var metrics = items(MetricKind.PrimalDirect, MetricKind.Number, MetricKind.PrimalGeneric);
-            var ops = items(OpKind.Add);
-            var primitives = items(PrimalKind.int32);
-            var runs = Run(metrics, ops, primitives, config);            
-            foreach(var run in runs)
-            {
-                print(run.Describe());
-                if(run.PrimalDirect)
-                    baselines.Add(run);
-                else
-                    benchmarks.Add(run);
-
-                GC.Collect();
-            }
-
-        }
 
        void MeasurePrimalGeneric()
        {
             var config = MetricConfig.Define(runs: Pow2.T04, cycles: Pow2.T14, samples: Pow2.T13, dops: false);
             
-            var m1 = MetricKind.PrimalDirect.Run(OpKind.And, PrimalKind.int32, config);
+            var m1 = MetricKind.PrimalDirect.Run(OpKind.Add, PrimalKind.float64, config);
             print(m1.Describe());
 
-            var m2 = MetricKind.PrimalGeneric.Run(OpKind.And, PrimalKind.int32, config);
+            var m2 = MetricKind.PrimalGeneric.Run(OpKind.Add, PrimalKind.float64, config);
             print(m2.Describe());
 
             print(items(m1.Compare(m2).ToRecord()).FormatMessages());
 
        }
+
 
         void RunForever()
         {
@@ -929,7 +899,7 @@ namespace Z0
             var blocklen = Span128.blocklength<int>();
             var lhs = Randomizer.Span128<int>(blocks);
             var rhs = Randomizer.Span128<int>(blocks);
-            var dst = Span128.blockalloc<int>(blocks);
+            var dst = Span128.alloc<int>(blocks);
             var run = 0L;
             var timeTotal = Duration.Zero;
             while(++run > 0)
@@ -1256,17 +1226,9 @@ namespace Z0
             try
             {     
                 gmath.one<byte>();
-                //app.BitTests();
-                //app.Distance();
-                //app.RunForever();
-                //app.Compare50();
-                                
                 app.RunTests();
-                //BenchSelector.RunBench(BenchKind.PrimalAtomic);
-                // BenchSelector.RunBench(BenchKind.PrimalFused);
-                // BenchSelector.RunBench(BenchKind.Vec128);
-                //app.RunNumG();   
-
+                //app.MeasurePrimalGeneric();
+                
             }
             catch(Exception e)
             {

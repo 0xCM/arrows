@@ -11,6 +11,7 @@ namespace Z0.Test
     using System.IO;
     
     using static mfunc;
+    using static zfunc;
 
 
     public class InXBitwiseOps : UnitTest<InXBitwiseOps>
@@ -24,7 +25,66 @@ namespace Z0.Test
             Claim.@false(dinx.allOn(v2));                
         }     
 
-    }
+        public void LeftShiftV256U32()
+        {
+            var src = Randomizer.Vec256<uint>();
+            var shifts = Randomizer.Vec256<uint>(closed(1u,7u));            
+            
+            var expect = src.ToSpan();
+            for(var i = 0; i < src.Length(); i ++)
+                expect[i] = gmath.lshift(src[i], shifts[i]);
+            
+            var v1 = expect.Vector();
+            var v2 = ginx.lshiftv(src, shifts);            
 
+            Claim.eq(v1,v2);            
+        }
+        
+        public void LeftShiftV128U32()
+        {
+            var src = Randomizer.Vec128<uint>();
+            var shifts = Randomizer.Vec128<uint>(closed(1u,7u));            
+
+            var expect = src.ToSpan();
+            for(var i = 0; i < src.Length(); i ++)
+                expect[i] = gmath.lshift(src[i], shifts[i]);
+            
+            var v1 = expect.Vector();
+            var v2 = ginx.lshiftv(src, shifts);            
+
+            Claim.eq(v1,v2);            
+        }
+
+        public void LeftShiftV128U64()
+        {
+            var src = Randomizer.Vec128<ulong>();
+            var shifts = Randomizer.Vec128<ulong>(closed(1ul,7ul));            
+
+            var expect = src.ToSpan();
+            for(var i = 0; i < src.Length(); i ++)
+                expect[i] = gmath.lshift(src[i], shifts[i]);
+            
+            var v1 = expect.Vector();
+            var v2 = ginx.lshiftv(src, shifts);            
+
+            Claim.eq(v1,v2);            
+        }
+
+        public void LeftShiftV256U64()
+        {
+            var src = Randomizer.Vec256<ulong>();
+            var shifts = Randomizer.Vec256<ulong>(closed(1ul,7ul));            
+            
+            var expect = src.ToSpan();
+            for(var i = 0; i < src.Length(); i ++)
+                expect[i] = gmath.lshift(src[i], shifts[i]);
+            
+            var v1 = expect.Vector();
+            var v2 = ginx.lshiftv(src, shifts);            
+
+            Claim.eq(v1,v2);            
+        }
+
+    }
 
 }

@@ -167,10 +167,9 @@ namespace Z0
         {
             while(true)
             {
-                var i = next();
-                var bits = Bit.Parse(Bits.bitstring(i)).ToArray();
-                foreach(var b in bits)
-                    yield return b;
+                var bits = next();
+                for(var i = 0; i< 64; i++)
+                    yield return Bits.test(bits,i);
             }
         }
 

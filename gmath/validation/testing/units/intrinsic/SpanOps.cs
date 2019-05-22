@@ -23,8 +23,8 @@ namespace Z0.Test
         {            
             var lhs = Randomizer.Span128<float>(Blocks);
             var rhs = Randomizer.Span128<float>(Blocks);
-            var dDst = Span128.blockalloc<float>(Blocks);
-            var gDst = Span128.blockalloc<float>(Blocks);
+            var dDst = Span128.alloc<float>(Blocks);
+            var gDst = Span128.alloc<float>(Blocks);
             Claim.eq(dinx.sub(lhs,rhs, ref dDst), ginx.sub(lhs,rhs, gDst));
         }
 
@@ -32,8 +32,8 @@ namespace Z0.Test
         {            
             var lhs = Randomizer.Span128<double>(Blocks);
             var rhs = Randomizer.Span128<double>(Blocks);
-            var dDst = Span128.blockalloc<double>(Blocks);
-            var gDst = Span128.blockalloc<double>(Blocks);
+            var dDst = Span128.alloc<double>(Blocks);
+            var gDst = Span128.alloc<double>(Blocks);
                 
             Claim.eq(dinx.sub(lhs,rhs, ref dDst), ginx.sub(lhs,rhs, gDst));
         }

@@ -91,7 +91,6 @@ namespace Z0
             }
         }
 
-        [MethodImpl(Inline)]
         public static Span128<T> or<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct
         {
@@ -165,7 +164,6 @@ namespace Z0
         }
 
 
-        [MethodImpl(Inline)]
         public static Span256<T> or<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
             where T : struct
         {
@@ -229,15 +227,12 @@ namespace Z0
                 case PrimalKind.float64:
                 {
                     var xDst = float64(dst);
-                    dinx.or(float64(lhs), float64(rhs), ref  xDst);
+                    dinx.or(float64(lhs), float64(rhs), ref xDst);
                     return dst;
                 }
                 default:
                     throw unsupported(kind);
             }
         }
- 
-
     }
-
 }

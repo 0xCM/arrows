@@ -171,7 +171,7 @@ namespace Z0
  
         [MethodImpl(Inline)]
         public static Span<Bit> many(params Bit[] src)
-            => src;
+            => src.Reverse();
 
         /// <summary>
         /// Reinterprets the Bits of a float as the Bits of an int

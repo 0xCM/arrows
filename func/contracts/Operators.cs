@@ -12,7 +12,9 @@ namespace Z0
 
 
     public delegate T BinaryOp<T>(T lhs, T rhs);
-    
+
+    public delegate T BinaryOpIn<T>(in T lhs, in T rhs);
+
     public delegate ref T BinaryOpRef<T>(ref T lhs, T rhs);
     
     public delegate T BinaryOpOut<T>(T lhs, T rhs, out T dst);

@@ -99,33 +99,33 @@ namespace Z0.Test
 
         public void BlockCount()
         {
-            Claim.eq(1, Span128.blockcount<sbyte>(16));
-            Claim.eq(1, Span128.blockcount<byte>(16));
+            Claim.eq(1, Span128.blocks<sbyte>(16));
+            Claim.eq(1, Span128.blocks<byte>(16));
 
-            Claim.eq(1, Span128.blockcount<short>(8));
-            Claim.eq(1, Span128.blockcount<ushort>(8));
+            Claim.eq(1, Span128.blocks<short>(8));
+            Claim.eq(1, Span128.blocks<ushort>(8));
 
-            Claim.eq(1, Span128.blockcount<int>(4));
-            Claim.eq(1, Span128.blockcount<uint>(4));
-            Claim.eq(1, Span128.blockcount<float>(4));
+            Claim.eq(1, Span128.blocks<int>(4));
+            Claim.eq(1, Span128.blocks<uint>(4));
+            Claim.eq(1, Span128.blocks<float>(4));
 
-            Claim.eq(1, Span128.blockcount<long>(2));
-            Claim.eq(1, Span128.blockcount<ulong>(2));
-            Claim.eq(1, Span128.blockcount<double>(2));
+            Claim.eq(1, Span128.blocks<long>(2));
+            Claim.eq(1, Span128.blocks<ulong>(2));
+            Claim.eq(1, Span128.blocks<double>(2));
 
-            Claim.eq(1, Span256.blockcount<sbyte>(32));
-            Claim.eq(1, Span256.blockcount<byte>(32));
+            Claim.eq(1, Span256.blocks<sbyte>(32));
+            Claim.eq(1, Span256.blocks<byte>(32));
 
-            Claim.eq(1, Span256.blockcount<short>(16));
-            Claim.eq(1, Span256.blockcount<ushort>(16));
+            Claim.eq(1, Span256.blocks<short>(16));
+            Claim.eq(1, Span256.blocks<ushort>(16));
 
-            Claim.eq(1, Span256.blockcount<int>(8));
-            Claim.eq(1, Span256.blockcount<uint>(8));
-            Claim.eq(1, Span256.blockcount<float>(8));
+            Claim.eq(1, Span256.blocks<int>(8));
+            Claim.eq(1, Span256.blocks<uint>(8));
+            Claim.eq(1, Span256.blocks<float>(8));
 
-            Claim.eq(1, Span256.blockcount<long>(4));
-            Claim.eq(1, Span256.blockcount<ulong>(4));
-            Claim.eq(1, Span256.blockcount<double>(4));
+            Claim.eq(1, Span256.blocks<long>(4));
+            Claim.eq(1, Span256.blocks<ulong>(4));
+            Claim.eq(1, Span256.blocks<double>(4));
         }
 
 

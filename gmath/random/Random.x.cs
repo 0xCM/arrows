@@ -18,10 +18,6 @@ namespace Z0
     
     public static class RandomX
     {
-        static Interval<T> domain<T>()
-            where T : struct
-                => SampleDefaults.get<T>().SampleDomain;
-
         static Interval<T> Domain<T>(Interval<T>? domain)
             where T : struct
                 => domain ?? SampleDefaults.get<T>().SampleDomain;
@@ -32,45 +28,41 @@ namespace Z0
 
         public static IEnumerable<T> Stream<T>(this IRandomizer random, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
-                    => filter != null 
-                    ? random.Random<T>().Stream(Domain(domain)).Where(filter) 
-                    : random.Random<T>().Stream(Domain(domain));
+                => filter != null 
+                ? random.Random<T>().Stream(Domain(domain)).Where(filter) 
+                : random.Random<T>().Stream(Domain(domain));
 
-        public static unsafe void StreamTo<T>(this IRandomizer random, Interval<T> domain, int count, void* pDst, Func<T,bool> filter = null)
+        static unsafe void StreamTo<T>(this IRandomizer random, int length, Interval<T>? domain, Func<T,bool> filter, void* pDst)
             where T : struct
-                => random.Random<T>().StreamTo(domain, count, pDst, filter);
+                => random.Random<T>().StreamTo(Domain(domain), length, pDst, filter);
 
         public static T Single<T>(this IRandomizer src, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
                 => src.Stream<T>(domain).Single();
 
-        public static T[] Array<T>(this IRandomizer random, int length, Func<T,bool> filter = null)
+        public static T[] Array<T>(this IRandomizer random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
-                => random.Stream(domain<T>(), filter).TakeArray((int)length);
-
-        public static T[] Array<T>(this IRandomizer random, Interval<T> domain, int length,  Func<T,bool> filter = null)
+                => random.Stream(Domain(domain), filter).TakeArray((int)length);
+        
+        /// <summary>
+        /// Produces a random array that occupies 128 bits = 16 bytes of memory
+        /// </summary>
+        public static T[] Array128<T>(this IRandomizer random, int blocks = 1, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
-                => random.Stream(domain,filter).TakeArray(length);
+                => random.Array<T>(Z0.Vec128<T>.Length * blocks, domain, filter);
 
         /// <summary>
         /// Produces a random array that occupies 128 bits = 16 bytes of memory
         /// </summary>
-        public static T[] Array128<T>(this IRandomizer random, int blocks = 1, Func<T,bool> filter = null)
+        public static T[] Array256<T>(this IRandomizer random, int blocks = 1, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
-                => random.Array<T>(Z0.Vec128<T>.Length*blocks, filter);
+                => random.Array<T>(Z0.Vec256<T>.Length * blocks, Domain(domain), filter);
 
-        /// <summary>
-        /// Produces a random array that occupies 128 bits = 16 bytes of memory
-        /// </summary>
-        public static T[] Array256<T>(this IRandomizer random, int blocks = 1, Func<T,bool> filter = null)
-            where T : struct
-                => random.Array<T>(Z0.Vec256<T>.Length*blocks, filter);
-
-        public static unsafe Span<T> Span<T>(this IRandomizer random, int samples, Interval<T>? domain = null, Func<T,bool> filter = null)
+        public static unsafe Span<T> Span<T>(this IRandomizer random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
         {            
-            var dst = span<T>(samples);
-            random.StreamTo(Domain(domain), samples, pvoid(ref dst[0]), filter);
+            var dst = span<T>(length);
+            random.StreamTo(length, Domain(domain), filter, pvoid(ref dst[0]));
             return dst;
         }
         
@@ -78,7 +70,7 @@ namespace Z0
             where T : struct
         {
             var dst = span<T>(Z0.Span128.blocklength<T>(blocks));
-            random.StreamTo(domain ?? domain<T>(), blocks, pvoid(ref dst[0]), filter);
+            random.StreamTo(dst.Length, Domain(domain), filter, pvoid(ref dst[0]));
             return Z0.Span128.load(dst);
         }
 
@@ -86,21 +78,38 @@ namespace Z0
             where T : struct
         {
             var dst = span<T>(Z0.Span256.blocklength<T>(blocks));            
-            random.StreamTo(domain ?? domain<T>(), blocks, pvoid(ref dst[0]), filter);
+            random.StreamTo(dst.Length, Domain(domain), filter, pvoid(ref dst[0]));
             return Z0.Span256.load(dst);
         }
 
-        public static Vec128<T> Vec128<T>(this IRandomizer random)        
+        public static Vec128<T> Vec128<T>(this IRandomizer random, Interval<T>? domain = null, Func<T,bool> filter = null)        
             where T : struct
-                => Z0.Vec128.single<T>(random.Array128<T>(1));
+                => random.Span128<T>(1, domain, filter).Vector();
 
-        public static Vec256<T> Vec256<T>(this IRandomizer random, Func<T,bool> filter = null)        
+        public static Vec256<T> Vec256<T>(this IRandomizer random, Interval<T>? domain = null, Func<T,bool> filter = null)        
             where T : struct
-                => Z0.Vec256.single<T>(random.Array256<T>(1,filter));
+                => random.Span256<T>(1, domain, filter).Vector();
 
-        public static T[] Array<T>(this IRandomizer random, uint len, Func<T,bool> filter = null)
+        public static (Vec128<T> Left, Vec128<T> Right) Vec128Pair<T>(this IRandomizer random, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
-                => random.Stream(domain<T>(),filter).TakeArray((int)len);
+        {
+            var left = random.Span128<T>(1, Domain(domain), filter);
+            var right = random.Span128<T>(1, Domain(domain), filter);
+            return (Z0.Vec128.single(left),Z0.Vec128.single(right));
+        }
+
+        public static (Vec256<T> Left, Vec256<T> Right) Vec256Pair<T>(this IRandomizer random, Interval<T>? domain = null, Func<T,bool> filter = null)
+            where T : struct
+        {
+            var left = random.Span256<T>(1, Domain(domain), filter);
+            var right = random.Span256<T>(1, Domain(domain), filter);
+            return (Z0.Vec256.single(left),Z0.Vec256.single(right));
+        }
+
+
+        public static T[] Array<T>(this IRandomizer random, uint len, Interval<T>? domain = null, Func<T,bool> filter = null)
+            where T : struct
+                => random.Stream(Domain(domain), filter).TakeArray((int)len);
 
         public static IEnumerable<T> NonZeroStream<T>(this IRandomizer random, Interval<T>? domain = null)
                 where T : struct
@@ -109,13 +118,13 @@ namespace Z0
             where T : struct
                 => random.Stream(domain, gmath.nonzero).TakeArray(length);
 
-        public static T[] NonZeroArray128<T>(this IRandomizer random, int blocks = 1)
+        public static T[] NonZeroArray128<T>(this IRandomizer random, int blocks = 1, Interval<T>? domain = null)
             where T : struct
-                => random.Array128<T>(blocks, gmath.nonzero);
+                => random.Array128<T>(blocks, domain, gmath.nonzero);
 
-        public static T[] NonZeroArray256<T>(this IRandomizer random, int blocks = 1)
+        public static T[] NonZeroArray256<T>(this IRandomizer random, int blocks = 1, Interval<T>? domain = null)
             where T : struct
-                => random.Array256<T>(blocks, gmath.nonzero);       
+                => random.Array256<T>(blocks, domain, gmath.nonzero);       
         
         public static unsafe Span<T> NonZeroSpan<T>(this IRandomizer random, int samples, Interval<T>? domain = null)
                 where T : struct
@@ -132,6 +141,5 @@ namespace Z0
         public static T NonZeroSingle<T>(this IRandomizer src, Interval<T>? domain = null)
             where T : struct
                 => src.NonZeroStream<T>(domain).Single();
-
     }
 }

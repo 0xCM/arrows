@@ -15,7 +15,6 @@ namespace Z0
     
     public static class Num128
     {
-
         [MethodImpl(Inline)]
         public static void mul(float[] lhs, float[] rhs)
         {
@@ -53,7 +52,7 @@ namespace Z0
             {
                 var x = Num128.define(lhs[i]);
                 var y = Num128.define(rhs[i]);
-                lhs[i] = ginx.mul(ref x,y);                
+                lhs[i] = ginx.mul(ref x, in y);                
             }
 
         }

@@ -187,6 +187,8 @@ namespace Z0
         [Symbol(AsciCompound.LShift), Symbol(MathSym.LT2,false)]
         LShift,
 
+        LShiftV,
+
         /// <summary>
         /// Indicates a right-shift bitwise operator
         /// </summary>

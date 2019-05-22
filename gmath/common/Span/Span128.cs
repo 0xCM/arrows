@@ -46,20 +46,12 @@ namespace Z0
             => src.data;
 
         [MethodImpl(Inline)]
-        public static implicit operator ReadOnlySpan128<T> (Span128<T> src)
-            => ReadOnlySpan128<T>.Load(src);
-
-        [MethodImpl(Inline)]
         public static implicit operator ReadOnlySpan<T> (Span128<T> src)
             => src.ToReadOnlySpan();
 
         [MethodImpl(Inline)]
-        public static implicit operator Span128<T> (T[] src)
-            => Load(src);
-
-        [MethodImpl(Inline)]
-        public static explicit operator Span128<T>(Span<T> src)
-            => new Span128<T>(src);
+        public static implicit operator ReadOnlySpan128<T> (Span128<T> src)
+            => ReadOnlySpan128<T>.Load(src);
 
         [MethodImpl(Inline)]
         public static bool operator == (Span128<T> lhs, Span128<T> rhs)
@@ -74,50 +66,28 @@ namespace Z0
             => length % BlockLength == 0;
 
         [MethodImpl(Inline)]
-        public static Span128<T> BlockAlloc(int count)
+        public static Span128<T> Alloc(int count)
             => new Span128<T>(new T[count * BlockLength]);
 
-
         [MethodImpl(Inline)]
-        public static Span128<T> Load(T[] src)
+        public static Span128<T> Load(T[] src, int offset = 0)
         {
-            assert(Aligned(src.Length));
-            return new Span128<T>(src);
+            assert(Aligned(src.Length - offset));
+            return new Span128<T>(src, offset, src.Length - offset);
         }
 
         [MethodImpl(Inline)]
-        public static Span128<T> Load(T[] src, int offset, int length)
+        public static Span128<T> Load(ReadOnlySpan<T> src, int offset = 0)
         {
-            assert(Aligned(length));
-            return new Span128<T>(src, offset, length);
+            assert(Aligned(src.Length - offset));
+            return new Span128<T>( offset == 0 ? src : src.Slice(offset));
         }
 
         [MethodImpl(Inline)]
-        public static Span128<T> Load(ReadOnlySpan<T> src)
+        public static Span128<T> Load(Span<T> src, int offset = 0)
         {
-            assert(Aligned(src.Length));
-            return new Span128<T>(src);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span128<T> Load(ReadOnlySpan<T> src, int offset, int length)
-        {
-            assert(Aligned(length));
-            return new Span128<T>(src.Slice(offset, length));
-        }
-
-        [MethodImpl(Inline)]
-        public static Span128<T> Load(Span<T> src)
-        {
-            assert(Aligned(src.Length));
-            return new Span128<T>(src);
-        }
-
-        [MethodImpl(Inline)]
-        public static Span128<T> Load(Span<T> src, int offset, int length)
-        {
-            assert(Aligned(length));
-            return new Span128<T>(src.Slice(offset, length));
+            assert(Aligned(src.Length - offset));
+            return new Span128<T>(offset == 0 ? src : src.Slice(offset));
         }
 
         [MethodImpl(Inline)]
@@ -161,8 +131,7 @@ namespace Z0
             get => ref data[ix];
         }
 
-        
-
+    
         [MethodImpl(Inline)]
         public Span<T> Slice(int start)
             => data.Slice(start);
@@ -177,7 +146,7 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public Span128<T> Blocks(int blockIndex, int blockCount)
-            => (Span128<T>)Slice(blockIndex * BlockLength, blockCount * BlockLength );
+            => new Span128<T>(Slice(blockIndex * BlockLength, blockCount * BlockLength ));
             
         [MethodImpl(Inline)]
         public Span<T> Unblock()
@@ -214,7 +183,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span128<S> As<S>()                
             where S : struct
-                => (Span128<S>)MemoryMarshal.Cast<T,S>(data);                    
+                => Span128.load(MemoryMarshal.Cast<T,S>(data));                    
 
         public int Length 
         {
@@ -234,11 +203,6 @@ namespace Z0
             get => data.IsEmpty;
         }
 
-        public ref T Head
-        {
-            [MethodImpl(Inline)]
-            get => ref data[0];                        
-        }            
 
         public override string ToString() 
             => data.ToString();

@@ -305,8 +305,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static uint pack32(byte x0, byte x1, byte x2, byte x3)
         {
-            Span<byte> src = stackalloc byte[4] {x0, x1,x2,x3};
-            return BitConverter.ToUInt32(src);
+            return BitConverter.ToUInt32(new byte[] {x0, x1,x2,x3});
         }
             
 

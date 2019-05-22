@@ -21,12 +21,12 @@ namespace Z0
             if(bs.Length < 2)
                 return false;
             var last = bs.Length - 1;
-            return bs[last] == '0' && bs[last -1] == 'b';        
+            return bs[0] == '0' && bs[1] == 'b';        
         }
 
         [MethodImpl(Inline)]
         static ReadOnlySpan<char> IgnoreBitSpecifier(in ReadOnlySpan<char> bs)
-            =>  HasBitSpecifier(bs) ? bs.Slice(bs.Length - 2) : bs;
+            =>  HasBitSpecifier(bs) ? bs.Slice(2) : bs;
 
 
         [MethodImpl(Inline)]
@@ -45,7 +45,7 @@ namespace Z0
             var pos = last - 1;            
             
             dst = 0;
-            for(var i=0; i<= last; i++)
+            for(var i=offset; i<= last; i++)
                 if(src[i] == Bit.One)
                     enable(ref dst, last - i);
                         
@@ -68,7 +68,7 @@ namespace Z0
             var pos = last - 1;            
             
             dst = 0;
-            for(var i=0; i<= last; i++)
+            for(var i=offset; i<= last; i++)
                 if(src[i] == Bit.One)
                     enable(ref dst, last - i);
                         
@@ -92,7 +92,7 @@ namespace Z0
             var pos = last - 1;            
             
             dst = 0;
-            for(var i=0; i<= last; i++)
+            for(var i=offset; i<= last; i++)
                 if(src[i] == Bit.One)
                     enable(ref dst, last - i);
                         
@@ -115,7 +115,7 @@ namespace Z0
             var pos = last - 1;            
             
             dst = 0;
-            for(var i=0; i<= last; i++)
+            for(var i=offset; i<= last; i++)
                 if(src[i] == Bit.One)
                     enable(ref dst, last - i);
                         

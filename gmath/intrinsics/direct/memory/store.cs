@@ -19,7 +19,10 @@ namespace Z0
     partial class dinx
     {
 
-        #region store:vec -> *
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec128<sbyte> src, sbyte* dst)
+            => Store(dst,src);            
+
 
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec128<byte> src, byte* dst)
@@ -27,12 +30,9 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<sbyte> src, sbyte* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
         public static unsafe void store(in Vec128<short> src, short* dst)
             => Store(dst,src);            
+
 
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec128<ushort> src, ushort* dst)
@@ -101,10 +101,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec256<double> src, double* dst)
             => Store(dst,src);            
-
-        #endregion
-
-        #region storeio
 
         [MethodImpl(Inline)]
         public static unsafe ref readonly Vec128<sbyte> storeio(in Vec128<sbyte> src, sbyte* dst)
@@ -247,81 +243,89 @@ namespace Z0
             return ref src;
         }
 
-        #endregion
 
-        #region store:vec -> span -> offset
-        /* 
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<byte> src, Span<byte> dst, int offset = 0)
-        {
-            fixed (byte* pdst = &dst[offset])
-                Store(pdst,src);
-        }
 
         [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<sbyte> src, Span<sbyte> dst, int offset = 0)
-        {
-            fixed (sbyte* pdst = &dst[offset])
-                Store(pdst,src);
-        }
+        public static unsafe void store(in Vec128<sbyte> src, ref sbyte dst)
+            => Store(As.pint8(ref dst),src);            
 
         [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<short> src, Span<short> dst, int offset = 0)
-        {
-            fixed (short* pdst = &dst[offset])
-                Store(pdst,src);
-        }
+        public static unsafe void store(in Vec128<byte> src, ref byte dst)
+            => Store(As.puint8(ref dst),src);            
 
         [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<ushort> src, Span<ushort> dst, int offset = 0)
-        {
-            fixed (ushort* pdst = &dst[offset])
-                Store(pdst,src);
-        }
+        public static unsafe void store(in Vec128<short> src, ref short dst)
+            => Store(As.pint16(ref dst),src);            
 
         [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<int> src, Span<int> dst, int offset = 0)
-        {
-            fixed (int* pdst = &dst[offset])
-                Store(pdst,src);
-        }
+        public static unsafe void store(in Vec128<ushort> src, ref ushort dst)
+            => Store(As.puint16(ref dst),src);            
 
         [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<uint> src, Span<uint> dst, int offset = 0)
-        {
-            fixed (uint* pdst = &dst[offset])
-                Store(pdst,src);
-        }
+        public static unsafe void store(in Vec128<int> src, ref int dst)
+            => Store(As.pint32(ref dst),src);            
 
         [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<long> src, Span<long> dst, int offset = 0)
-        {
-            fixed (long* pdst = &dst[offset])
-                Store(pdst,src);
-        }
+        public static unsafe void store(in Vec128<uint> src, ref uint dst)
+            => Store(As.puint32(ref dst),src);            
 
         [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<ulong> src, Span<ulong> dst, int offset = 0)
-        {
-            fixed (ulong* pdst = &dst[offset])
-                Store(pdst,src);
-        }
+        public static unsafe void store(in Vec128<long> src, ref long dst)
+            => Store(As.pint64(ref dst),src);            
 
         [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<float> src, Span<float> dst, int offset = 0)
-        {
-            fixed (float* pdst = &dst[offset])
-                Store(pdst,src);
-        }
+        public static unsafe void store(in Vec128<ulong> src, ref ulong dst)
+            => Store(As.puint64(ref dst),src);            
 
         [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<double> src, Span<double> dst, int offset = 0)
-        {
-            fixed (double* pdst = &dst[offset])
-                Store(pdst,src);
-        }
-        */
-        #endregion        
+        public static unsafe void store(in Vec128<float> src, ref float dst)
+            => Store(As.pfloat32(ref dst),src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec128<double> src, ref double dst)
+            => Store(As.pfloat64(ref dst),src);            
+
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<sbyte> src, ref sbyte dst)
+            => Store(As.pint8(ref dst),src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<byte> src, ref byte dst)
+            => Store(As.puint8(ref dst),src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<short> src, ref short dst)
+            => Store(As.pint16(ref dst),src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<ushort> src, ref ushort dst)
+            => Store(As.puint16(ref dst),src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<int> src, ref int dst)
+            => Store(As.pint32(ref dst),src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<uint> src, ref uint dst)
+            => Store(As.puint32(ref dst),src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<long> src, ref long dst)
+            => Store(As.pint64(ref dst),src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<ulong> src, ref ulong dst)
+            => Store(As.puint64(ref dst),src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<float> src, ref float dst)
+            => Store(As.pfloat32(ref dst),src);            
+
+        [MethodImpl(Inline)]
+        public static unsafe void store(in Vec256<double> src, ref double dst)
+            => Store(As.pfloat64(ref dst),src);            
+
     }
 
 }

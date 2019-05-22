@@ -89,6 +89,12 @@ namespace Z0
             }            
         }
 
+        public int BitCount
+        {
+            [MethodImpl(Inline)]
+            get => BitSize;
+        }
+
         [MethodImpl(Inline)]
         public void EnableBit(in int pos)
             => enable(ref data, in pos);
@@ -149,6 +155,7 @@ namespace Z0
         public bool NEq(in BitVectorU64 rhs)
             => data != rhs.data;
 
+        
         public override bool Equals(object obj)
             => throw new NotSupportedException();
         

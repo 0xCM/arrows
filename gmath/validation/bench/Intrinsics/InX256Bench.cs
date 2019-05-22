@@ -75,8 +75,8 @@ namespace Z0
 
         (T[] Left,T[] Right) Targets<T>(OpId<T> id = default)
             where T : struct
-                => (Span256.blockalloc<T>(Config.SampleSize).ToArray(),
-                    Span256.blockalloc<T>(Config.SampleSize).ToArray());                
+                => (Span256.alloc<T>(Config.SampleSize).ToArray(),
+                    Span256.alloc<T>(Config.SampleSize).ToArray());                
 
     
     }

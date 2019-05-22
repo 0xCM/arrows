@@ -97,10 +97,14 @@ namespace Z0
             where T : struct
                 => LtEq<T>.Op;
                         
+        [MethodImpl(Inline)]
+        public static T add<T>(T lhs, T rhs)
+            where T : struct
+                => gmath.add(lhs,rhs);
         readonly struct Add<T>
             where T : struct
         {
-            public static readonly BinaryOp<T> Op = gmath.add<T>;
+            public static readonly BinaryOp<T> Op = add<T>;
         }
 
        readonly struct Sub<T>

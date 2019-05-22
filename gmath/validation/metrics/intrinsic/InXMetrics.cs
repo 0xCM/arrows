@@ -34,19 +34,28 @@ namespace Z0
 
         public static Span128<T> alloc<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
-                => zfunc.alloc<T>(length(lhs,rhs));
+                => Span128.alloc<T>(length(lhs,rhs));
 
         public static Span128<T> alloc<T>(ReadOnlySpan128<T> src)
             where T : struct
-                => zfunc.alloc<T>(src.Length);
+                => Span128.alloc<T>(src.Length);
 
+        public static Span128<T> alloc128<T>(int blocks)
+            where T : struct
+                => Span128.alloc<T>(blocks);
+
+        public static Span256<T> alloc256<T>(int blocks)
+            where T : struct
+                => Span256.alloc<T>(blocks);
+
+        [MethodImpl(Inline)]
         public static Span256<T> alloc<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct
-                => zfunc.alloc<T>(length(lhs,rhs));
+                => Span256.alloc<T>(length(lhs,rhs));
 
         public static Span256<T> alloc<T>(ReadOnlySpan256<T> src)
             where T : struct
-                => zfunc.alloc<T>(src.Length);
+                => Span256.alloc<T>(src.Length);
 
         public static OpMetrics<T> metrics<T>(in OpId<T> OpId, InXMetricConfig config, Duration WorkTime, Span128<T> results)
             where T : struct

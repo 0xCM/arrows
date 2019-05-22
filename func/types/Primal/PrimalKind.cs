@@ -88,21 +88,15 @@ namespace Z0
 
     public static class PrimalX
     {
-        public static bool IsUnsignedIntegral(this PrimalKind kind)
-            => kind == PrimalKind.uint8 ||
-               kind == PrimalKind.uint16 ||
-               kind == PrimalKind.uint32 ||
-               kind == PrimalKind.uint64;
 
-        public static bool IsSignedIntegral(this PrimalKind kind)
-            => kind == PrimalKind.int8 ||
-               kind == PrimalKind.int16 ||
-               kind == PrimalKind.int32 ||
-               kind == PrimalKind.int64 ||
-               kind == PrimalKind.bigint;
-
+        [MethodImpl(Inline)]
         public static bool IsIntegral(this PrimalKind kind)
-            => kind.IsSignedIntegral() || kind.IsUnsignedIntegral();
+            => (byte)kind < (byte)PrimalKind.float32;
+
+        [MethodImpl(Inline)]
+        public static bool IsFloat(this PrimalKind kind)
+            => (byte)(kind) > (byte)PrimalKind.uint64;
+
 
     }
 }

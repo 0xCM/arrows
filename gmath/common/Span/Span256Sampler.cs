@@ -55,16 +55,16 @@ namespace Z0
         public Span256<T> Sampled<T>(T specimen = default(T))
             where T : struct
                 => PrimalKinds.kind<T>() switch {
-                    PrimalKind.int8 => As.generic<T>(Int8Samples),
-                    PrimalKind.uint8 => As.generic<T>(UInt8Samples),
-                    PrimalKind.int16 => As.generic<T>(Int16Samples),
-                    PrimalKind.uint16 => As.generic<T>(UInt16Samples),
-                    PrimalKind.int32 => As.generic<T>(Int32Samples),
-                    PrimalKind.uint32 => As.generic<T>(UInt32Samples),
-                    PrimalKind.int64 => As.generic<T>(Int64Samples),
-                    PrimalKind.uint64 => As.generic<T>(UInt64Samples),
-                    PrimalKind.float32 => As.generic<T>(Float32Samples),
-                    PrimalKind.float64 => As.generic<T>(Float64Samples),
+                PrimalKind.int8 => As.generic<T>(Span256.load(Int8Samples)),
+                PrimalKind.uint8 => As.generic<T>(Span256.load(UInt8Samples)),
+                PrimalKind.int16 => As.generic<T>(Span256.load(Int16Samples)),
+                PrimalKind.uint16 => As.generic<T>(Span256.load(UInt16Samples)),
+                PrimalKind.int32 => As.generic<T>(Span256.load(Int32Samples)),
+                PrimalKind.uint32 => As.generic<T>(Span256.load(UInt32Samples)),
+                PrimalKind.int64 => As.generic<T>(Span256.load(Int64Samples)),
+                PrimalKind.uint64 => As.generic<T>(Span256.load(UInt64Samples)),
+                PrimalKind.float32 => As.generic<T>(Span256.load(Float32Samples)),
+                PrimalKind.float64 => As.generic<T>(Span256.load(Float64Samples)),
                     _ => throw new Exception($"Kind not supported")
                 };
     }

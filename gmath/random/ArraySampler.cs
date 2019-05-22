@@ -38,16 +38,16 @@ namespace Z0
 
             }
 
-            Int8Samples = Random.Array<sbyte>(samples,Filter);            
-            UInt8Samples = Random.Array<byte>(samples,Filter);
-            Int16Samples = Random.Array<short>(samples,Filter);            
-            UInt16Samples = Random.Array<ushort>(samples,Filter);
-            Int32Samples = Random.Array<int>(samples,Filter);            
-            UInt32Samples = Random.Array<uint>(samples,Filter);
-            Int64Samples = Random.Array<long>(samples,Filter);            
-            UInt64Samples = Random.Array<ulong>(samples,Filter);
-            Float32Samples = Random.Array<float>(samples,Filter);
-            Float64Samples = Random.Array<double>(samples,Filter);            
+            Int8Samples = nonzero ? Random.NonZeroArray<sbyte>(samples) : Random.Array<sbyte>(samples);
+            UInt8Samples = nonzero ? Random.NonZeroArray<byte>(samples) : Random.Array<byte>(samples);
+            Int16Samples = nonzero ? Random.NonZeroArray<short>(samples) : Random.Array<short>(samples);
+            UInt16Samples = nonzero ? Random.NonZeroArray<ushort>(samples) : Random.Array<ushort>(samples);
+            Int32Samples = nonzero ? Random.NonZeroArray<int>(samples) : Random.Array<int>(samples);
+            UInt32Samples = nonzero ? Random.NonZeroArray<uint>(samples) : Random.Array<uint>(samples);
+            Int64Samples = nonzero ? Random.NonZeroArray<long>(samples) : Random.Array<long>(samples);            
+            UInt64Samples = nonzero ? Random.NonZeroArray<ulong>(samples) : Random.Array<ulong>(samples);
+            Float32Samples = nonzero ? Random.NonZeroArray<float>(samples) : Random.Array<float>(samples);
+            Float64Samples = nonzero ? Random.NonZeroArray<double>(samples) : Random.Array<double>(samples);
  
         }
 
