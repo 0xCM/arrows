@@ -17,6 +17,8 @@ namespace Z0
     
     public static class InXMetrics
     {
+
+
         public static OpId<T> InXId<T>(this OpKind op, InXMetricConfig config = null, bool generic = false)
             where T : struct
                 => (config is InXMetricConfig256) 
@@ -57,11 +59,11 @@ namespace Z0
             where T : struct
                 => Span256.alloc<T>(src.Length);
 
-        public static OpMetrics<T> metrics<T>(in OpId<T> OpId, InXMetricConfig config, Duration WorkTime, Span128<T> results)
+        public static Metrics<T> metrics<T>(in OpId<T> OpId, InXMetricConfig config, Duration WorkTime, Span128<T> results)
             where T : struct
                 => Metrics.Define(OpId, config.Cycles*results.Length, WorkTime, results.Unblock());
 
-        public static OpMetrics<T> metrics<T>(in OpId<T> OpId, InXMetricConfig config, Duration WorkTime, Span256<T> results)
+        public static Metrics<T> metrics<T>(in OpId<T> OpId, InXMetricConfig config, Duration WorkTime, Span256<T> results)
             where T : struct
                 => Metrics.Define(OpId, config.Cycles*results.Length, WorkTime, results.Unblock());
     }

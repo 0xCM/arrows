@@ -15,7 +15,7 @@ namespace Z0
 
     partial class PrimalDMetrics
     {
-        public static OpMetrics<sbyte> LtEq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, MetricConfig config = null)
+        public static Metrics<sbyte> LtEq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, MetricConfig config = null)
         {
             var opid = Id<sbyte>(OpKind.LtEq);            
             var cycles = Cycles(config);
@@ -36,7 +36,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst.ToScalars(opid));                
         }
 
-        public static OpMetrics<byte> LtEq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, MetricConfig config = null)
+        public static Metrics<byte> LtEq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, MetricConfig config = null)
         {
             var opid = Id<byte>(OpKind.LtEq);            
             var cycles = Cycles(config);
@@ -57,7 +57,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static OpMetrics<short> LtEq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, MetricConfig config = null)
+        public static Metrics<short> LtEq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, MetricConfig config = null)
         {
             var opid = Id<short>(OpKind.LtEq);            
             var cycles = Cycles(config);
@@ -78,7 +78,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static OpMetrics<ushort> LtEq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, MetricConfig config = null)
+        public static Metrics<ushort> LtEq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, MetricConfig config = null)
         {
             var opid = Id<ushort>(OpKind.LtEq);            
             var cycles = Cycles(config);
@@ -99,7 +99,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static OpMetrics<int> LtEq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
+        public static Metrics<int> LtEq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<int>(OpKind.LtEq);            
             var cycles = Cycles(config);
@@ -120,7 +120,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static OpMetrics<uint> LtEq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, MetricConfig config = null)
+        public static Metrics<uint> LtEq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, MetricConfig config = null)
         {
             var opid = Id<uint>(OpKind.LtEq);            
             var cycles = Cycles(config);
@@ -141,7 +141,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static OpMetrics<long> LtEq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, MetricConfig config = null)
+        public static Metrics<long> LtEq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, MetricConfig config = null)
         {
             var opid = Id<long>(OpKind.LtEq);            
             var cycles = Cycles(config);
@@ -162,7 +162,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static OpMetrics<ulong> LtEq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, MetricConfig config = null)
+        public static Metrics<ulong> LtEq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, MetricConfig config = null)
         {
             var opid = Id<ulong>(OpKind.LtEq);            
             var cycles = Cycles(config);
@@ -183,7 +183,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static OpMetrics<float> LtEq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, MetricConfig config = null)
+        public static Metrics<float> LtEq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, MetricConfig config = null)
         {
             var opid = Id<float>(OpKind.LtEq);            
             var cycles = Cycles(config);
@@ -204,7 +204,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static OpMetrics<double> LtEq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, MetricConfig config = null)
+        public static Metrics<double> LtEq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, MetricConfig config = null)
         {
             var opid = Id<double>(OpKind.LtEq);            
             var cycles = Cycles(config);

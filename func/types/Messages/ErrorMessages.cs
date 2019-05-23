@@ -18,7 +18,7 @@ namespace Z0
                         SeverityLevel.Error, caller, file, line);
         public static AppMsg KindUnsupported<T>(T kind, string caller, string file, int? line)
             where T : Enum
-                => AppMsg.Define($"{kind} for {typename<T>()} not supported", 
+                => AppMsg.Define($"{typename<T>()}.{kind} not supported", 
                         SeverityLevel.Error, caller, file, line);
         public static AppMsg TypeUnsupported(Type t, string caller, string file, int? line)
                 => AppMsg.Define($"Type {t.Name} is not supported in the current context", 

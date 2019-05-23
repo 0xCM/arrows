@@ -11,7 +11,8 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     
-    using static global::mfunc;
+    using static zfunc;
+    using static mfunc;
     
     public static class Num128
     {

@@ -106,15 +106,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public string BitString()
-            => bitstring(data);
+            => data.ToBitString();
 
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
             =>  bytes(in data);
 
-        [MethodImpl(Inline)]
-        public Span<Bit> Bits()
-            => bitspan(data);
 
         [MethodImpl(Inline)]
         public int PopCount()

@@ -17,7 +17,7 @@ namespace Z0
 
     partial class InXDirectVec
     {
-        public static OpMetrics<T> Sub<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
+        public static Metrics<T> Sub<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -49,7 +49,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<sbyte> Sub(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, InXMetricConfig256 config = null)
+        public static Metrics<sbyte> Sub(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<sbyte>(OpKind.Sub, config);            
@@ -63,7 +63,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<byte> Sub(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, InXMetricConfig256 config = null)
+        public static Metrics<byte> Sub(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<byte>(OpKind.Sub, config);            
@@ -77,7 +77,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<short> Sub(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, InXMetricConfig256 config = null)
+        public static Metrics<short> Sub(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<short>(OpKind.Sub, config);            
@@ -91,7 +91,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<ushort> Sub(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, InXMetricConfig256 config = null)
+        public static Metrics<ushort> Sub(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<ushort>(OpKind.Sub, config);            
@@ -105,7 +105,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<int> Sub(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, InXMetricConfig256 config = null)
+        public static Metrics<int> Sub(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<int>(OpKind.Sub, config);            
@@ -119,7 +119,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<uint> Sub(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXMetricConfig256 config = null)
+        public static Metrics<uint> Sub(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<uint>(OpKind.Sub, config);            
@@ -133,7 +133,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<long> Sub(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, InXMetricConfig256 config = null)
+        public static Metrics<long> Sub(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<long>(OpKind.Sub, config);
@@ -147,7 +147,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<ulong> Sub(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXMetricConfig256 config = null)
+        public static Metrics<ulong> Sub(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<ulong>(OpKind.Sub, config);            
@@ -161,7 +161,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<float> Sub(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXMetricConfig256 config = null)
+        public static Metrics<float> Sub(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<float>(OpKind.Sub, config);            
@@ -175,7 +175,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<double> Sub(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXMetricConfig256 config = null)
+        public static Metrics<double> Sub(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<double>(OpKind.Sub, config);            

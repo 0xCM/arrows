@@ -18,7 +18,7 @@ namespace Z0
     partial class InXDirectVec
     {
 
-        public static OpMetrics<T> LShiftV<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
+        public static Metrics<T> LShiftV<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -38,7 +38,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<int> LShiftV(ReadOnlySpan256<int> lhs, ReadOnlySpan256<uint> rhs, InXMetricConfig256 config = null)
+        public static Metrics<int> LShiftV(ReadOnlySpan256<int> lhs, ReadOnlySpan256<uint> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<int>(OpKind.LShiftV, config);            
@@ -52,7 +52,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<uint> LShiftV(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXMetricConfig256 config = null)
+        public static Metrics<uint> LShiftV(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<uint>(OpKind.LShiftV, config);            
@@ -66,7 +66,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<long> LShiftV(ReadOnlySpan256<long> lhs, ReadOnlySpan256<ulong> rhs, InXMetricConfig256 config = null)
+        public static Metrics<long> LShiftV(ReadOnlySpan256<long> lhs, ReadOnlySpan256<ulong> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<long>(OpKind.LShiftV, config);            
@@ -80,7 +80,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<ulong> LShiftV(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXMetricConfig256 config = null)
+        public static Metrics<ulong> LShiftV(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<ulong>(OpKind.LShiftV, config);            

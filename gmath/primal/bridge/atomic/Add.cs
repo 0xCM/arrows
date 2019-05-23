@@ -17,19 +17,19 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static T addI8<T>(T lhs, T rhs)        
-            => generic<T>((sbyte)(uint8(lhs) + uint8(rhs)));
+            => generic<T>(int8(lhs) + int8(rhs));
 
         [MethodImpl(Inline)]
         public static T addU8<T>(T lhs, T rhs)
-            => generic<T>((byte)(uint8(lhs) + uint8(rhs)));
+            => generic<T>(uint8(lhs) + uint8(rhs));
 
         [MethodImpl(Inline)]
         public static T addI16<T>(T lhs, T rhs)
-            => generic<T>((short)(int16(lhs) + int16(rhs)));
+            => generic<T>(int16(lhs) + int16(rhs));
 
         [MethodImpl(Inline)]
         public static T addU16<T>(T lhs, T rhs)
-            => generic<T>((ushort)(uint16(lhs) + uint16(rhs)));
+            => generic<T>(uint16(lhs) + uint16(rhs));
 
         [MethodImpl(Inline)]
         public static T addI32<T>(T lhs, T rhs)
@@ -50,7 +50,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T addF32<T>(T lhs, T rhs)
             => generic<T>(float32(lhs) + float32(rhs));
-
+            
         [MethodImpl(Inline)]
         public static T addF64<T>(T lhs, T rhs)
             => generic<T>(float64(lhs) + float64(rhs));

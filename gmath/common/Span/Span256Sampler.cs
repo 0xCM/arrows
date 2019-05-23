@@ -10,11 +10,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.IO;
 
-    
-
     using static zfunc;
-    using static global::mfunc;
-
+    using static mfunc;
 
     public class Span256Sampler : Sampler<Span256Sampler>
     {
@@ -29,30 +26,28 @@ namespace Z0
         Span256Sampler(IRandomizer random, int blocks)
             : base(random)
         {
-            TakeSamples(blocks);
+            CaptureSamples(blocks);
         }
 
-        void TakeSamples(int blocks)
+        void CaptureSamples(int blocks)
         {
-            Int8Samples = Random.Array256<sbyte>(blocks);            
-            UInt8Samples = Random.Array256<byte>(blocks);
-            Int16Samples = Random.Array256<short>(blocks);            
-            UInt16Samples = Random.Array256<ushort>(blocks);
-            Int32Samples = Random.Array256<int>(blocks);            
-            UInt32Samples = Random.Array256<uint>(blocks);
-            Int64Samples = Random.Array256<long>(blocks);            
-            UInt64Samples = Random.Array256<ulong>(blocks);
-            Float32Samples = Random.Array256<float>(blocks);
-            Float64Samples = Random.Array256<double>(blocks);            
- 
+            Int8Samples = Random.Span256<sbyte>(blocks);            
+            UInt8Samples = Random.Span256<byte>(blocks);
+            Int16Samples = Random.Span256<short>(blocks);            
+            UInt16Samples = Random.Span256<ushort>(blocks);
+            Int32Samples = Random.Span256<int>(blocks);            
+            UInt32Samples = Random.Span256<uint>(blocks);
+            Int64Samples = Random.Span256<long>(blocks);            
+            UInt64Samples = Random.Span256<ulong>(blocks);
+            Float32Samples = Random.Span256<float>(blocks);
+            Float64Samples = Random.Span256<double>(blocks); 
         }
 
         /// <summary>
         /// Returns values for which samples have already been drawn
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public Span256<T> Sampled<T>(T specimen = default(T))
+        /// <typeparam name="T">The primitive type</typeparam>
+        public Span256<T> Sampled<T>()
             where T : struct
                 => PrimalKinds.kind<T>() switch {
                 PrimalKind.int8 => As.generic<T>(Span256.load(Int8Samples)),

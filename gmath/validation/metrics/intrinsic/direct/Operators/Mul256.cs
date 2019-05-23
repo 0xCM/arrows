@@ -17,7 +17,7 @@ namespace Z0
 
     partial class InXDirectVec
     {
-        public static OpMetrics<T> Mul<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
+        public static Metrics<T> Mul<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -35,7 +35,7 @@ namespace Z0
 
         }
 
-        public static OpMetrics<float> Mul(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXMetricConfig256 config = null)
+        public static Metrics<float> Mul(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<float>(OpKind.Mul, config);            
@@ -49,7 +49,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<double> Mul(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXMetricConfig256 config = null)
+        public static Metrics<double> Mul(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<double>(OpKind.Mul, config);            

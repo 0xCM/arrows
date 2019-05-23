@@ -24,7 +24,7 @@ namespace Z0
     /// <param name="reps">The number of reps</param>
     public delegate Duration Repeat(int cycles, int reps);
 
-    public delegate IOpMetrics OpMeasurer(int cycles, int reps);
+    public delegate IMetrics OpMeasurer(int cycles, int reps);
 
     // public delegate OpMetrics<T> OpMeasurer<T>(int cycles, int reps)
     //     where T : struct;
@@ -36,7 +36,7 @@ namespace Z0
     /// </summary>
     /// <param name="cycles">The number of cycles</param>
     /// <param name="reps">The number of reps</param>
-    public delegate IOpMetrics Cycle(int reps);
+    public delegate IMetrics Cycle(int reps);
 
 
     public delegate void FusedBinOpInspector<T>(Index<T> lhs, Index<T> rhs, Index<T> result)

@@ -97,6 +97,10 @@ namespace Z0
         public static bool IsFloat(this PrimalKind kind)
             => (byte)(kind) > (byte)PrimalKind.uint64;
 
+        [MethodImpl(Inline)]
+        public static bool IsSmallInt(this PrimalKind kind)
+            => (byte)(kind) < (byte)PrimalKind.int32;
+
 
     }
 }

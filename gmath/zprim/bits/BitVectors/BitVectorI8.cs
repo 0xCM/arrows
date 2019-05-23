@@ -104,11 +104,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public string BitString()
-            => bitstring(data);
-
-        [MethodImpl(Inline)]
-        public Span<Bit> Bits()
-            => bitspan(data);
+            => data.ToBitString();
 
         [MethodImpl(Inline)]
         public ulong PopCount()

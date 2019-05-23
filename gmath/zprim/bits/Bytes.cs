@@ -15,10 +15,8 @@ namespace Z0
     using static mfunc;
     using static As;
 
-
     public static class Bytes
     {
-
 
         [MethodImpl(Inline)]
         public static T read<T>(byte[] src, in int offset = 0)
@@ -85,7 +83,7 @@ namespace Z0
         [MethodImpl(Optimize)]
         public static ulong pop(in Span<byte> src)
         {
-            var count = ZeroU64;
+            var count = U64Zero;
             var blocksize = Pow2.T03;
             math.quorem(src.Length, blocksize, out Quorem<int> qr);
             for(var i = 0; i < src.Length; i+=blocksize)

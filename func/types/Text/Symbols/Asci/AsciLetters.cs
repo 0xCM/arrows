@@ -7,6 +7,14 @@ namespace Z0
     
     using static zfunc;
 
+    public class AsciEscape
+    {
+        public const string EOL = "\r\n";
+
+        public const string Tab = "\t";
+
+        public const char TabChar = '\t';
+    }
 
     public class AsciLower
     {

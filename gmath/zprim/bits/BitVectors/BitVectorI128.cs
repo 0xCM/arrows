@@ -20,11 +20,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator ==(BitVectorI128 lhs, BitVectorI128 rhs)
-            => lhs.Equals(rhs);
+            => lhs.Eq(rhs);
 
         [MethodImpl(Inline)]
         public static bool operator !=(BitVectorI128 lhs, BitVectorI128 rhs)
-            => !lhs.Equals(rhs);
+            => !lhs.Eq(rhs);
 
         [MethodImpl(Inline)]
         public static BitVectorI128 operator |(BitVectorI128 lhs, BitVectorI128 rhs)
@@ -106,12 +106,11 @@ namespace Z0
         public BitVectorI64 Lo
         {
             [MethodImpl(Inline)]
-            get => data.x0;
-        
+            get => data.x0;       
         }
 
         [MethodImpl(Inline)]
-        public bool Equals(BitVectorI128 rhs)
+        public bool Eq(BitVectorI128 rhs)
             => data == rhs.data;
 
         [MethodImpl(Inline)]

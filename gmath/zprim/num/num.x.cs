@@ -21,7 +21,6 @@ namespace Z0
             where T : struct
             => ref Unsafe.As<num<T>,T>(ref src);
         
-
         [MethodImpl(Inline)]
         public static ref num<T> Abs<T>(this ref num<T> src)
             where T : struct
@@ -102,7 +101,6 @@ namespace Z0
             where T : struct
                 => PrimalKinds.kind<T>();
 
-
         [MethodImpl(Inline)]
         public static bool NEq<T>(this num<T> lhs, num<T> rhs)
             where T : struct
@@ -159,7 +157,12 @@ namespace Z0
         [MethodImpl(NotInline)]
         public static Span<T> Extract<T>(this num<T>[] src)
             where T : struct        
-                => Unsafe.As<num<T>[], T[]>(ref src);
+        {
+            var dst = span<T>(src.Length);
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = src[i].Scalar();
+            return dst;
+        }
 
         [MethodImpl(NotInline)]
         public static Span<T> Extract<T>(this Span<num<T>> src)

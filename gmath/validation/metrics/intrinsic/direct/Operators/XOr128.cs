@@ -18,7 +18,7 @@ namespace Z0
     partial class InXDirectVec
     {
 
-        public static OpMetrics<T> XOr<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+        public static Metrics<T> XOr<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -50,7 +50,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<sbyte> XOr(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, InXMetricConfig128 config = null)
+        public static Metrics<sbyte> XOr(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<sbyte>(OpKind.XOr, config);            
@@ -64,7 +64,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<byte> XOr(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, InXMetricConfig128 config = null)
+        public static Metrics<byte> XOr(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<byte>(OpKind.XOr, config);            
@@ -78,7 +78,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<short> XOr(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, InXMetricConfig128 config = null)
+        public static Metrics<short> XOr(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<short>(OpKind.XOr, config);            
@@ -92,7 +92,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<ushort> XOr(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, InXMetricConfig128 config = null)
+        public static Metrics<ushort> XOr(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<ushort>(OpKind.XOr, config);            
@@ -106,7 +106,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<int> XOr(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, InXMetricConfig128 config = null)
+        public static Metrics<int> XOr(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<int>(OpKind.XOr, config);            
@@ -120,7 +120,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<uint> XOr(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, InXMetricConfig128 config = null)
+        public static Metrics<uint> XOr(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<uint>(OpKind.XOr, config);            
@@ -134,7 +134,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<long> XOr(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, InXMetricConfig128 config = null)
+        public static Metrics<long> XOr(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<long>(OpKind.XOr, config);            
@@ -148,7 +148,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<ulong> XOr(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, InXMetricConfig128 config = null)
+        public static Metrics<ulong> XOr(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<ulong>(OpKind.XOr, config);            
@@ -162,7 +162,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<float> XOr(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXMetricConfig128 config = null)
+        public static Metrics<float> XOr(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<float>(OpKind.XOr, config);            
@@ -176,7 +176,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<double> XOr(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXMetricConfig128 config = null)
+        public static Metrics<double> XOr(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<double>(OpKind.XOr, config);            

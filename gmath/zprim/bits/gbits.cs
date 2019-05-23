@@ -20,91 +20,64 @@ namespace Z0
     public static class gbits
     {
         [MethodImpl(Inline)]
-        public static bool test<T>(T src, int pos)
+        public static bool test<T>(in T src, int pos)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.int8)
-                 return Bits.test(int8(ref src), pos);
+                 return Bits.test(in AsIn.int8(asRef(in src)), pos);
 
             if(kind == PrimalKind.uint8)
-                 return Bits.test(uint8(ref src), pos);
+                 return Bits.test(in AsIn.uint8(asRef(in src)), pos);
 
             if(kind == PrimalKind.int16)
-                 return Bits.test(int16(ref src), pos);
+                 return Bits.test(in AsIn.int16(asRef(in src)), pos);
 
             if(kind == PrimalKind.uint16)
-                 return Bits.test(uint16(ref src), pos);
+                 return Bits.test(in AsIn.uint16(asRef(in src)), pos);
 
             if(kind == PrimalKind.int32)
-                 return Bits.test(int32(ref src), pos);
+                 return Bits.test(in AsIn.int32(asRef(in src)), pos);
 
             if(kind == PrimalKind.uint32)
-                 return Bits.test(uint32(ref src), pos);
+                 return Bits.test(in AsIn.uint32(asRef(in src)), pos);
 
             if(kind == PrimalKind.int64)
-                 return Bits.test(int64(ref src), pos);
+                 return Bits.test(in AsIn.int64(asRef(in src)), pos);
 
             if(kind == PrimalKind.uint64)
-                 return Bits.test((float)uint64(ref src), pos);
+                 return Bits.test(in AsIn.uint64(asRef(in src)), pos);
 
             throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
-        public static ref Bit test<T>(T src, in int pos, out Bit dst)
+        public static ref Bit test<T>(in T src, in int pos, out Bit dst)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.int8)            
-                dst = Bits.test(in As.int8(ref src), in pos, out dst);
+                dst = Bits.test(in AsIn.int8(in asRef(in src)), in pos, out dst);
             else if(kind == PrimalKind.uint8)
-                dst = Bits.test(in As.uint8(ref src), in pos, out dst);
+                dst = Bits.test(in AsIn.uint8(in asRef(in src)), in pos, out dst);
             else if(kind == PrimalKind.int16)
-                dst = Bits.test(in As.int16(ref src), in pos, out dst);
+                dst = Bits.test(in AsIn.int16(in asRef(in src)), in pos, out dst);
             else if(kind == PrimalKind.uint16)
-                dst = Bits.test(in As.uint16(ref src), in pos, out dst);
+                dst = Bits.test(in AsIn.uint16(in asRef(in src)), in pos, out dst);
             else if(kind == PrimalKind.int32)
-                dst = Bits.test(in As.int32(ref src), in pos, out dst);
+                dst = Bits.test(in AsIn.int32(in asRef(in src)), in pos, out dst);
             else if(kind == PrimalKind.uint32)
-                dst = Bits.test(in As.uint32(ref src), in pos, out dst);
+                dst = Bits.test(in AsIn.uint32(in asRef(in src)), in pos, out dst);
             else if(kind == PrimalKind.int64)
-                dst = Bits.test(in As.int64(ref src), in pos, out dst);
+                dst = Bits.test(in AsIn.int64(in asRef(in src)), in pos, out dst);
             else if(kind == PrimalKind.uint64)
-                dst = Bits.test(in As.uint64(ref src), in pos, out dst);
+                dst = Bits.test(in AsIn.uint64(in asRef(in src)), in pos, out dst);
             else
                 throw unsupported(kind);
 
-            return ref dst;                
-            
-        }
-
-        [MethodImpl(Inline)]
-        public static Bit test<T>(T src, in int pos)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.int8)            
-                return Bits.test(in As.int8(ref src), in pos);
-            else if(kind == PrimalKind.uint8)
-                return Bits.test(in As.uint8(ref src), in pos);
-            else if(kind == PrimalKind.int16)
-                return Bits.test(in As.int16(ref src), in pos);
-            else if(kind == PrimalKind.uint16)
-                return Bits.test(in As.uint16(ref src), in pos);
-            else if(kind == PrimalKind.int32)
-                return Bits.test(in As.int32(ref src), in pos);
-            else if(kind == PrimalKind.uint32)
-                return Bits.test(in As.uint32(ref src), in pos);
-            else if(kind == PrimalKind.int64)
-                return Bits.test(in As.int64(ref src), in pos);
-            else if(kind == PrimalKind.uint64)
-                return Bits.test(in As.uint64(ref src), in pos);
-            else
-                throw unsupported(kind);            
+            return ref dst;                            
         }
 
         [MethodImpl(Inline)]
@@ -250,40 +223,24 @@ namespace Z0
             return ref dst;
         }
 
-
-        [MethodImpl(Inline)]
-        public static string bitstring<T>(T src, bool tlz = false, bool pfs = false)
+        public static string bitstring<T>(in T src, bool tlz = false, bool pfs = false)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.int8)
-                return Bits.bitstring(in int8(ref src), tlz, pfs);
-
-            if(kind == PrimalKind.uint8)
-                return Bits.bitstring(in uint8(ref src), tlz, pfs);
-
-            if(kind == PrimalKind.int16)
-                return Bits.bitstring(in int16(ref src), tlz, pfs);
-
-            if(kind == PrimalKind.uint16)
-                return Bits.bitstring(in uint16(ref src), tlz, pfs);
-
-            if(kind == PrimalKind.int32)
-                return Bits.bitstring(in int32(ref src), tlz, pfs);
-
-            if(kind == PrimalKind.uint32)
-                return Bits.bitstring(in uint32(ref src), tlz, pfs);
-
-            if(kind == PrimalKind.int64)
-                return Bits.bitstring(in int64(ref src), tlz, pfs);
-
-            if(kind == PrimalKind.uint64)
-                return Bits.bitstring(in uint64(ref src));
-
-            throw unsupported(kind);
+            var count = SizeOf<T>.BitSize;
+            var dst = new char[count];
+            var last = count - 1;
+            for(var i=0; i <= last; i++)
+                dst[last - i] = gbits.test(in src,i) ? '1' : '0';
+            
+            var bsRaw = new string(dst);
+            if(!tlz && ! pfs)
+                return bsRaw;
                 
+            bsRaw = tlz ? bsRaw.TrimStart('0') : bsRaw;
+            bsRaw = pfs ? "0b" + bsRaw : bsRaw;
+            return bsRaw;            
         }
+
 
         [MethodImpl(Inline)]
         public static ref T enable<T>(ref T src, in int pos)
@@ -412,71 +369,101 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ulong pop<T>(T src)
+        public static ulong pop<T>(in T src)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.int8)
-                 return Bits.pop(int8(ref src));
+                 return Bits.pop(in AsIn.int8(in asRef(in src)));
 
             if(kind == PrimalKind.uint8)
-                 return Bits.pop(uint8(ref src));
+                 return Bits.pop(AsIn.uint8(in asRef(in src)));
 
             if(kind == PrimalKind.int16)
-                 return Bits.pop(int16(ref src));
+                 return Bits.pop(AsIn.int16(in asRef(in src)));
 
             if(kind == PrimalKind.uint16)
-                 return Bits.pop(uint16(ref src));
+                 return Bits.pop(AsIn.uint16(in asRef(in src)));
 
             if(kind == PrimalKind.int32)
-                 return Bits.pop(int32(ref src));
+                 return Bits.pop(AsIn.int32(in asRef(in src)));
 
             if(kind == PrimalKind.uint32)
-                 return Bits.pop(uint32(ref src));
+                 return Bits.pop(AsIn.uint32(in asRef(in src)));
 
             if(kind == PrimalKind.int64)
-                 return Bits.pop(int64(ref src));
+                 return Bits.pop(AsIn.int64(in asRef(in src)));
 
             if(kind == PrimalKind.uint64)
-                 return Bits.pop(uint64(ref src));
+                 return Bits.pop(AsIn.uint64(in asRef(in src)));
 
             throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]
-        public static ulong ntz<T>(T src)
+        public static ulong ntz<T>(in T src)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.int8)
-                 return Bits.ntz(int8(ref src));
+                 return Bits.ntz(AsIn.int8(in asRef(in src)));
 
             if(kind == PrimalKind.uint8)
-                 return Bits.ntz(uint8(ref src));
+                 return Bits.ntz(AsIn.uint8(in asRef(in src)));
 
             if(kind == PrimalKind.int16)
-                 return Bits.ntz(int16(ref src));
+                 return Bits.ntz(AsIn.int16(in asRef(in src)));
 
             if(kind == PrimalKind.uint16)
-                 return Bits.ntz(uint16(ref src));
+                 return Bits.ntz(AsIn.uint16(in asRef(in src)));
 
             if(kind == PrimalKind.int32)
-                 return Bits.ntz(int32(ref src));
+                 return Bits.ntz(AsIn.int32(in asRef(in src)));
 
             if(kind == PrimalKind.uint32)
-                 return Bits.ntz(uint32(ref src));
+                 return Bits.ntz(AsIn.uint32(in asRef(in src)));
 
             if(kind == PrimalKind.int64)
-                 return Bits.ntz(int64(ref src));
+                 return Bits.ntz(AsIn.int64(in asRef(in src)));
 
             if(kind == PrimalKind.uint64)
-                 return Bits.ntz(uint64(ref src));
+                 return Bits.ntz(AsIn.uint64(in asRef(in src)));
 
             throw unsupported(kind);
         }
 
+        [MethodImpl(Inline)]
+        public static ref T loOff<T>(ref T src)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int8)
+                 Bits.loOff(ref int8(ref src));
+            else if(kind == PrimalKind.uint8)
+                 Bits.loOff(ref uint8(ref src));
+            else if(kind == PrimalKind.int16)
+                 Bits.loOff(ref int16(ref src));
+            else if(kind == PrimalKind.uint16)
+                 Bits.loOff(ref uint16(ref src));
+            else if(kind == PrimalKind.int32)
+                 Bits.loOff(ref int32(ref src));
+            else if(kind == PrimalKind.uint32)
+                 Bits.loOff(ref uint32(ref src));
+            else if(kind == PrimalKind.int64)
+                 Bits.loOff(ref int64(ref src));
+            else if(kind == PrimalKind.uint64)
+                 Bits.loOff(ref uint64(ref src));
+            else
+                throw unsupported(kind);
+
+            return ref src;
+        }
+        
+
+        
     }
 
 

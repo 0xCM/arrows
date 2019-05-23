@@ -46,18 +46,6 @@ public static partial class mfunc
         return (leftTime,rightTime);            
     }
 
-    [MethodImpl(Inline)]   
-    public static int length<T>(ReadOnlyMemory<T> lhs, ReadOnlyMemory<T> rhs,  [CallerMemberName] string caller = null,
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
-
-    [MethodImpl(Inline)]   
-    public static int length<T>(T[] lhs, T[] rhs, [CallerMemberName] string caller = null,  
-        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-            => lhs.Length == rhs.Length ? lhs.Length 
-                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
-
     [MethodImpl(Inline)]
     public static void assert(bool condition, string msg = null, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
@@ -131,46 +119,5 @@ public static partial class mfunc
     public static bool demand(bool x, string message = null)
         => x ? x : throw new Exception(message ?? "demand failed");
 
-    [MethodImpl(Inline)]
-    public static string hexstring(byte src)
-        => src.ToString("X");
 
-    [MethodImpl(Inline)]
-    public static string hexstring(sbyte src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(short src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(ushort src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(int src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(uint src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(long src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]
-    public static string hexstring(ulong src)
-        => src.ToString("X");
-
-    [MethodImpl(Inline)]   
-    public static string hexstring(BigInteger x)
-        => x.ToString("X");
-
-    [MethodImpl(Inline)]   
-    public static string hexstring(decimal src)
-    {
-        var parts = Decimal.GetBits(src);        
-        return hexstring(parts[0]) + hexstring(parts[1]) + hexstring(parts[2]) + hexstring(parts[3]);
-    }
 }

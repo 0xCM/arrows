@@ -11,21 +11,21 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zfunc;
     
-    public struct OpMetrics<T> : IOpMetrics
+    public struct Metrics<T> : IMetrics
         where T : struct
     {
-        public static readonly OpMetrics<T> Zero = new OpMetrics<T>(OpId<T>.Zero, -1, Duration.Zero, new T[]{});
+        public static readonly Metrics<T> Zero = new Metrics<T>(OpId<T>.Zero, -1, Duration.Zero, new T[]{});
         
-        public static implicit operator OpMetrics<T>(in (OpId<T> OpId, long OpCount, Duration WorkTime, T[] Result) src)
-            => new OpMetrics<T>(src.OpId, src.OpCount, src.WorkTime, src.Result);
+        public static implicit operator Metrics<T>(in (OpId<T> OpId, long OpCount, Duration WorkTime, T[] Result) src)
+            => new Metrics<T>(src.OpId, src.OpCount, src.WorkTime, src.Result);
 
-        public static implicit operator OpMetrics<T>(in (OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result) src)
-            => new OpMetrics<T>(src.OpId, src.OpCount, src.WorkTime, src.Result);
+        public static implicit operator Metrics<T>(in (OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result) src)
+            => new Metrics<T>(src.OpId, src.OpCount, src.WorkTime, src.Result);
 
-        public static implicit operator (OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result)(in OpMetrics<T> src)
+        public static implicit operator (OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result)(in Metrics<T> src)
             => (src.OpId, src.OpCount, src.WorkTime, src.Result);
 
-        public static OpMetrics<T> operator +(OpMetrics<T> lhs, OpMetrics<T> rhs)
+        public static Metrics<T> operator +(Metrics<T> lhs, Metrics<T> rhs)
         {
             if(lhs.NonZero && !rhs.NonZero)
                 return lhs;
@@ -39,10 +39,10 @@ namespace Z0
                     throw new Exception($"Metrics Result Length mismatch: {lhs.Result.Length} != {rhs.Result.Length}");
                 if(lhs.OpId != rhs.OpId)
                     throw new Exception($"Metrics OpId mismatch: {lhs.OpId} != {rhs.OpId}");
-                return new OpMetrics<T>(lhs.OpId, lhs.OpCount + rhs.OpCount, lhs.WorkTime + rhs.WorkTime, rhs.Result);
+                return new Metrics<T>(lhs.OpId, lhs.OpCount + rhs.OpCount, lhs.WorkTime + rhs.WorkTime, rhs.Result);
             }            
         }
-        public OpMetrics(in OpId<T> OpId, long OpCount, Duration WorkTime, T[] Result)
+        public Metrics(in OpId<T> OpId, long OpCount, Duration WorkTime, T[] Result)
         {
             Claim.nonzero(OpCount);
             this.OpId = OpId;
@@ -51,7 +51,7 @@ namespace Z0
             this.Result = Result;
         }
 
-        public OpMetrics(in OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result)
+        public Metrics(in OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result)
         {
             Claim.nonzero(OpCount);
             this.OpId = OpId;
@@ -60,7 +60,7 @@ namespace Z0
             this.Result = Result;
         }
 
-        public OpMetrics(in OpId<T> OpId, long OpCount, Duration WorkTime, Span<T> Result)
+        public Metrics(in OpId<T> OpId, long OpCount, Duration WorkTime, Span<T> Result)
         {
             Claim.nonzero(OpCount);
             this.OpId = OpId;
@@ -91,7 +91,7 @@ namespace Z0
         public bool NonZero
             => OpId.NonZero;
 
-        OpId IOpMetrics.OpId 
+        OpId IMetrics.OpId 
             => OpId;
 
         public bool PrimalDirect
@@ -99,11 +99,11 @@ namespace Z0
             && OpId.Intrinsic == false 
             && OpId.Generic == false;
 
-        public OpMetrics<S> As<S>()
+        public Metrics<S> As<S>()
             where S : struct
-                => Unsafe.As<OpMetrics<T>, OpMetrics<S>>(ref this);
+                => Unsafe.As<Metrics<T>, Metrics<S>>(ref this);
 
-        ReadOnlyMemory<R> IOpMetrics.Results<R>() 
+        ReadOnlyMemory<R> IMetrics.Results<R>() 
             => As<R>().Result;
     }    
 }

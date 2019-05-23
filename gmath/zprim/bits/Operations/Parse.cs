@@ -41,7 +41,7 @@ namespace Z0
         public static ref byte parse(in ReadOnlySpan<char> bs, in int offset, out byte dst)
         {
             var src = IgnoreBitSpecifier(bs);
-            var last = Math.Min(BitSizeU8, src.Length) - 1;                        
+            var last = Math.Min(U8BitCount, src.Length) - 1;                        
             var pos = last - 1;            
             
             dst = 0;
@@ -64,7 +64,7 @@ namespace Z0
         public static ref ushort parse(in ReadOnlySpan<char> bs, in int offset, out ushort dst)
         {
             var src = IgnoreBitSpecifier(bs);
-            var last = Math.Min(BitSizeU16, src.Length) - 1;                        
+            var last = Math.Min(U16BitCount, src.Length) - 1;                        
             var pos = last - 1;            
             
             dst = 0;
@@ -88,7 +88,7 @@ namespace Z0
         public static ref uint parse(in ReadOnlySpan<char> bs, in int offset, out uint dst)
         {
             var src = IgnoreBitSpecifier(bs);
-            var last = Math.Min(BitSizeU32, src.Length) - 1;                        
+            var last = Math.Min(U32BitCount, src.Length) - 1;                        
             var pos = last - 1;            
             
             dst = 0;
@@ -111,7 +111,7 @@ namespace Z0
         public static ref ulong parse(in ReadOnlySpan<char> bs, in int offset, out ulong dst)
         {            
             var src = IgnoreBitSpecifier(bs);
-            var last = Math.Min(BitSizeU64, src.Length) - 1;                        
+            var last = Math.Min(U64BitCount, src.Length) - 1;                        
             var pos = last - 1;            
             
             dst = 0;

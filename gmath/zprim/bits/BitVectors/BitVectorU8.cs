@@ -106,11 +106,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public string BitString()
-            => bitstring(data);
-
-        [MethodImpl(Inline)]
-        public Span<Bit> BitData()
-            => bitspan(data);
+            => data.ToBitString();
 
         [MethodImpl(Inline)]
         public Span<byte> Bytes()

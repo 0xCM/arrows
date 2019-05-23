@@ -13,7 +13,6 @@ namespace Z0
     using static zfunc;
     using static mfunc;
 
-
     public enum MetricKind
     {
         Common,

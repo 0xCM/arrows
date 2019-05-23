@@ -15,7 +15,7 @@ namespace Z0
 
     partial class PrimalDMetrics
     {
-        public  static OpMetrics<sbyte> Sub(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, MetricConfig config = null)
+        public  static Metrics<sbyte> Sub(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, MetricConfig config = null)
         {
             var opid = Id<sbyte>(OpKind.Sub);            
             var cycles = Cycles(config);
@@ -36,7 +36,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<byte> Sub(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, MetricConfig config = null)
+        public  static Metrics<byte> Sub(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, MetricConfig config = null)
         {
             var opid = Id<byte>(OpKind.Sub);            
             var cycles = Cycles(config);
@@ -57,7 +57,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<short> Sub(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, MetricConfig config = null)
+        public  static Metrics<short> Sub(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, MetricConfig config = null)
         {
             var opid = Id<short>(OpKind.Sub);            
             var cycles = Cycles(config);
@@ -78,7 +78,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<ushort> Sub(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, MetricConfig config = null)
+        public  static Metrics<ushort> Sub(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, MetricConfig config = null)
         {
             var opid = Id<ushort>(OpKind.Sub);            
             var cycles = Cycles(config);
@@ -99,7 +99,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<int> Sub(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
+        public  static Metrics<int> Sub(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<int>(OpKind.Sub);            
             var cycles = Cycles(config);
@@ -120,7 +120,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<uint> Sub(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, MetricConfig config = null)
+        public  static Metrics<uint> Sub(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, MetricConfig config = null)
         {
             var opid = Id<uint>(OpKind.Sub);            
             var cycles = Cycles(config);
@@ -141,7 +141,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<long> Sub(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, MetricConfig config = null)
+        public  static Metrics<long> Sub(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, MetricConfig config = null)
         {
             var opid = Id<long>(OpKind.Sub);            
             var cycles = Cycles(config);
@@ -162,7 +162,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<ulong> Sub(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, MetricConfig config = null)
+        public  static Metrics<ulong> Sub(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, MetricConfig config = null)
         {
             var opid = Id<ulong>(OpKind.Sub);            
             var cycles = Cycles(config);
@@ -183,7 +183,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<float> Sub(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, MetricConfig config = null)
+        public  static Metrics<float> Sub(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, MetricConfig config = null)
         {
             var opid = Id<float>(OpKind.Sub);            
             var cycles = Cycles(config);
@@ -204,7 +204,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<double> Sub(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, MetricConfig config = null)
+        public  static Metrics<double> Sub(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, MetricConfig config = null)
         {
             var opid = Id<double>(OpKind.Sub);            
             var cycles = Cycles(config);

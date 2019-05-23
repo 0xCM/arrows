@@ -69,59 +69,59 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static explicit operator byte(Bit src)
-            => src.value ? OneU8 : ZeroU8;
+            => src.value ? U8One : U8Zero;
 
         [MethodImpl(Inline)]
         public static explicit operator ushort(Bit src)
-            => src.value ? OneU16 : ZeroU16;
+            => src.value ? U16One : U16Zero;
 
         [MethodImpl(Inline)]
         public static explicit operator int(Bit src)
-            => src.value ? OneI32 : ZeroI32;
+            => src.value ? I32One : I32Zero;
 
         [MethodImpl(Inline)]
         public static explicit operator uint(Bit src)
-            => src.value ? OneU32 : ZeroU32;
+            => src.value ? U32One : U32Zero;
 
         [MethodImpl(Inline)]
         public static explicit operator long(Bit src)
-            => src.value ? OneI64 : ZeroI64;
+            => src.value ? I64One : I64Zero;
 
         [MethodImpl(Inline)]
         public static explicit operator ulong(Bit src)
-            => src.value ? OneU64 : ZeroU64;
+            => src.value ? U64One : U64Zero;
 
         [MethodImpl(Inline)]
         public static implicit operator Bit(sbyte src)
-            => src == ZeroI8 ? Off : On;
+            => src == I8Zero ? Off : On;
 
         [MethodImpl(Inline)]
         public static implicit operator Bit(byte src)
-            => src == ZeroU8 ? Off : On;
+            => src == U8Zero ? Off : On;
 
         [MethodImpl(Inline)]
         public static implicit operator Bit(short src)
-            => src == ZeroI16 ? Off : On;
+            => src == I16Zero ? Off : On;
 
         [MethodImpl(Inline)]
         public static implicit operator Bit(ushort src)
-            => src == ZeroU16 ? Off : On;
+            => src == U16Zero ? Off : On;
 
         [MethodImpl(Inline)]
         public static implicit operator Bit(int src)
-            => src == ZeroI32 ? Off : On;
+            => src == I32Zero ? Off : On;
 
         [MethodImpl(Inline)]
         public static implicit operator Bit(uint src)
-            => src == ZeroU32 ? Off : On;
+            => src == U32Zero ? Off : On;
 
         [MethodImpl(Inline)]
         public static implicit operator Bit(long src)
-            => src == ZeroI64 ? Off : On;
+            => src == I64Zero ? Off : On;
 
         [MethodImpl(Inline)]
         public static implicit operator Bit(ulong src)
-            => src == ZeroU64 ? Off : On;
+            => src == U64Zero ? Off : On;
 
         [MethodImpl(Inline)]
         public static implicit operator BinaryDigit(Bit src)
@@ -198,7 +198,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public override int GetHashCode()
-            => value ? OneI32 : ZeroI32;
+            => value ? I32One : I32Zero;
     
         [MethodImpl(Inline)]
         public override string ToString()

@@ -8,10 +8,8 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices;
-
     
     using static mfunc;
-
 
     public static class RVar
     {

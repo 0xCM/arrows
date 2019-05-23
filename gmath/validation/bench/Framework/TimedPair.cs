@@ -10,7 +10,26 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Linq;
 
-    
+    public readonly struct OpTime
+    {
+        public static implicit operator (long OpCount, Duration WorkTime)(OpTime src)
+            => (src.OpCount, src.WorkTime);
+
+        public static implicit operator OpTime((long OpCount, Duration WorkTime) src)
+            => Define(src.OpCount, src.WorkTime);
+
+        public static OpTime Define(long OpCount, Duration WorkTime)
+            => new OpTime(OpCount, WorkTime);
+        public OpTime(long OpCount, Duration WorkTime)
+        {
+            this.OpCount = OpCount;
+            this.WorkTime = WorkTime;
+        }
+            
+        public readonly long OpCount {get;}
+
+        public readonly Duration WorkTime {get;}
+    }
 
 
     public readonly struct TimedPair
@@ -35,6 +54,5 @@ namespace Z0
 
         public readonly Duration Right;
     }
-
 
 }

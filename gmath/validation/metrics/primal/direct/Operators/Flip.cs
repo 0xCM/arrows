@@ -16,7 +16,7 @@ namespace Z0
     partial class PrimalDMetrics
     {
 
-        public  static OpMetrics<sbyte> Flip(ReadOnlySpan<sbyte> src, MetricConfig config = null)
+        public  static Metrics<sbyte> Flip(ReadOnlySpan<sbyte> src, MetricConfig config = null)
         {
             var opid = Id<sbyte>(OpKind.Flip);            
             var cycles = Cycles(config);
@@ -37,7 +37,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<byte> Flip(ReadOnlySpan<byte> src, MetricConfig config = null)
+        public  static Metrics<byte> Flip(ReadOnlySpan<byte> src, MetricConfig config = null)
         {
             var opid = Id<byte>(OpKind.Flip);            
             var cycles = Cycles(config);
@@ -58,7 +58,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<short> Flip(ReadOnlySpan<short> src, MetricConfig config = null)
+        public  static Metrics<short> Flip(ReadOnlySpan<short> src, MetricConfig config = null)
         {
             var opid = Id<short>(OpKind.Flip);            
             var cycles = Cycles(config);
@@ -80,7 +80,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<ushort> Flip(ReadOnlySpan<ushort> src, MetricConfig config = null)
+        public  static Metrics<ushort> Flip(ReadOnlySpan<ushort> src, MetricConfig config = null)
         {
             var opid = Id<ushort>(OpKind.Flip);            
             var cycles = Cycles(config);
@@ -102,7 +102,7 @@ namespace Z0
         }
 
 
-        public static OpMetrics<int> Flip(ReadOnlySpan<int> src, MetricConfig config = null)
+        public static Metrics<int> Flip(ReadOnlySpan<int> src, MetricConfig config = null)
         {
             var opid = Id<int>(OpKind.Flip);            
             var cycles = Cycles(config);
@@ -123,7 +123,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<uint> Flip(ReadOnlySpan<uint> src, MetricConfig config = null)
+        public static Metrics<uint> Flip(ReadOnlySpan<uint> src, MetricConfig config = null)
         {
             var opid = Id<uint>(OpKind.Flip);            
             var cycles = Cycles(config);
@@ -144,7 +144,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<long> Flip(ReadOnlySpan<long> src, MetricConfig config = null)
+        public  static Metrics<long> Flip(ReadOnlySpan<long> src, MetricConfig config = null)
         {
             var opid = Id<long>(OpKind.Flip);            
             var cycles = Cycles(config);
@@ -165,7 +165,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<ulong> Flip(ReadOnlySpan<ulong> src, MetricConfig config = null)
+        public  static Metrics<ulong> Flip(ReadOnlySpan<ulong> src, MetricConfig config = null)
         {
             var opid = Id<ulong>(OpKind.Flip);            
             var cycles = Cycles(config);

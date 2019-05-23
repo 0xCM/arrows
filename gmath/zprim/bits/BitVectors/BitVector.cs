@@ -22,6 +22,8 @@ namespace Z0
     public ref struct BitVector<N> 
         where N : INatPow2, new()
     {
+        Span<byte> bits;
+
         [MethodImpl(Inline)]
         public static BitVector<N> Define(in ReadOnlySpan<Bit> src)
             => new BitVector<N>(src);
@@ -44,12 +46,11 @@ namespace Z0
 
         static readonly uint Exponent = (uint)new N().Exponent.value;
 
-        Span<byte> bits;
         
         BitVector(in ReadOnlySpan<char> src)
         {
             Claim.eq(src.Length, ByteCount);
-            bits = src.FromBitString(out bits);                 
+            bits = src.BitStringBytes(out bits);                 
         }
             
         BitVector(in ReadOnlySpan<BinaryDigit> src)

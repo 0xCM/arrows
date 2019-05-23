@@ -27,7 +27,7 @@ namespace Z0
             where T : struct
                 => op.InXId<T>(config, false);
 
-        public static OpMetrics<T> Run<T>(OpKind op, InXMetricConfig128 config = null, IRandomizer random = null)        
+        public static Metrics<T> Run<T>(OpKind op, InXMetricConfig128 config = null, IRandomizer random = null)        
             where T : struct
         {
             random = Random(random);
@@ -42,7 +42,7 @@ namespace Z0
             return metrics;            
         }
 
-        public static OpMetrics<T> Run<T>(OpKind op, InXMetricConfig256 config = null, IRandomizer random = null)        
+        public static Metrics<T> Run<T>(OpKind op, InXMetricConfig256 config = null, IRandomizer random = null)        
             where T : struct
         {
             random = Random(random);
@@ -57,7 +57,7 @@ namespace Z0
             return metrics;            
         }
 
-        public static IOpMetrics Run(OpKind op, PrimalKind prim, InXMetricConfig128 config, IRandomizer random = null)
+        public static IMetrics Run(OpKind op, PrimalKind prim, InXMetricConfig128 config, IRandomizer random = null)
         {
             random = Random(random);
             switch(prim)
@@ -87,7 +87,7 @@ namespace Z0
             }
         }
 
-        public static IOpMetrics Run(OpKind op, PrimalKind prim, InXMetricConfig256 config, IRandomizer random = null)
+        public static IMetrics Run(OpKind op, PrimalKind prim, InXMetricConfig256 config, IRandomizer random = null)
         {
             random = Random(random);
             switch(prim)

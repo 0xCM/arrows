@@ -23,7 +23,7 @@ namespace Z0
             var last = math.min(Pow2.T03, src.Length) - 1;
             for(var i = 0; i <= last; i++)
                 if(src[last - i])
-                    dst |= (sbyte)(OneI32 << i);
+                    dst |= (sbyte)(I32One << i);
             return ref dst;
         }
 
@@ -34,7 +34,7 @@ namespace Z0
             var last = math.min(Pow2.T03, src.Length) - 1;
             for(var i = 0; i <= last; i++)
                 if(src[last - i])
-                    dst |= (byte)(OneI32 << i);
+                    dst |= (byte)(I32One << i);
             return ref dst;
         }
 
@@ -45,7 +45,7 @@ namespace Z0
             var last = math.min(Pow2.T04, src.Length) - 1;
             for(var i = 0; i <= last; i++)
                 if(src[last - i])
-                    dst |= (ushort)(OneI32 << i);
+                    dst |= (ushort)(I32One << i);
             return ref dst;
         }
 
@@ -56,7 +56,7 @@ namespace Z0
             var last = math.min(Pow2.T04, src.Length) - 1;
             for(var i = 0; i <= last; i++)
                 if(src[last - i])
-                    dst |= (short)(OneI32 << i);
+                    dst |= (short)(I32One << i);
             return ref dst;
         }
 

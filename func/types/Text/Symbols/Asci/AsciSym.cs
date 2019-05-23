@@ -32,6 +32,8 @@ namespace Z0
 
         public const string Dollar = "$";
 
+        public const string Dot = ".";
+
         public const string Eq = "=";
 
         public const string FSlash = "/";
@@ -65,6 +67,10 @@ namespace Z0
         public const string Star = "*";
 
         public const string Tilde = "~";
+
+        public const string SQuote = "'";
+
+        public const string Quote = "\"";
 
         public class Compound
         {

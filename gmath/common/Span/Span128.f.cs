@@ -69,17 +69,10 @@ partial class mfunc
                 : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
 
-
-    // [MethodImpl(Inline)]   
-    // public static int length<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, [CallerFilePath] string caller = null, 
-    //     [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)        
-    //     where T : struct
-    //         => lhs.Length == rhs.Length ? lhs.Length 
-    //             : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
-
     [MethodImpl(Inline)]   
-    public static int length<T>(Span128<T> lhs, Span128<T> rhs, [CallerFilePath] string caller = null,
+    public static int length<S,T>(Span128<S> lhs, Span128<T> rhs, [CallerFilePath] string caller = null,
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where S : struct
             where T : struct
                 => lhs.Length == rhs.Length ? lhs.Length 
                     : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);

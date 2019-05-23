@@ -41,11 +41,8 @@ namespace Z0
             lock(locker)
                 Console.Write(src);
         }
-
-        public void WriteLine(string text)
-            => WriteLine(text, SeverityLevel.Info);
         
-        public void WriteLine<T>(IEnumerable<T> items, string sep = ",")
+        public void WriteLine<T>(IEnumerable<T> items, string sep)
         {
             lock(locker)
             {

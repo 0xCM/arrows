@@ -119,16 +119,16 @@ namespace Z0
         {
             var source = string.Empty;
             
-            if(isNotBlank(Caller))
+            if(nonempty(Caller))
                 source += $"{Caller}";
 
             if(FileLine != null)
                 source += $" Line {FileLine}";
 
-            if(isNotBlank(FilePath))
+            if(nonempty(FilePath))
                 source += $" {FilePath} ";
 
-            return isNotBlank(source) ? $"{source.Trim()}: {Content}" : Content;
+            return nonempty(source) ? $"{source.Trim()}: {Content}" : Content;
         }
 
         public AppMsg WithPrependedContent(string Content)    

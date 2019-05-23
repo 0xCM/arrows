@@ -14,7 +14,6 @@ namespace Z0
     using static zfunc;
     using static mfunc;
     
-    public delegate IBenchComparison OpRunner();
 
     public abstract class BenchContext<K> : Context
         where K : Enum
@@ -28,12 +27,12 @@ namespace Z0
 
         public K BenchKind {get;}
 
-        protected void print(BenchComparisonRecord src)
+        protected void print(MetricComparisonRecord src)
         {
             zfunc.print(src, SeverityLevel.Perform);
         }
 
-        protected void print(IReadOnlyList<BenchComparisonRecord> src, char delimiter = ',')
+        protected void print(IReadOnlyList<MetricComparisonRecord> src, char delimiter = ',')
         {
             if(src.Count == 0)
                 return;
@@ -48,7 +47,7 @@ namespace Z0
         {
             filter = filter ?? (s => true);
             
-            var comparisons = new List<IBenchComparison>();
+            var comparisons = new List<IMetricComparison>();
             foreach(var runner in Runners().Where(r => filter(r.name)).Select(r => r.runner))
                 comparisons.Add(runner());
 
@@ -56,7 +55,7 @@ namespace Z0
             var records = map(comparisons, c => c.ToRecord());
             log(records, logTarget, ext: FileExtension.Define("csv"));
                     
-            zfunc.print(AppMsg.Define(string.Join(',', BenchComparisonRecord.GetHeaders()), SeverityLevel.Info));
+            zfunc.print(AppMsg.Define(string.Join(',', MetricComparisonRecord.GetHeaders()), SeverityLevel.Info));
             foreach(var c in comparisons)            
                  print(c.ToRecord());
         }
@@ -67,7 +66,7 @@ namespace Z0
                     m => !m.IsStatic && !m.IsAbstract  
                     && m.DeclaringType == this.GetType()
                     && m.GetParameters().Length == 0 
-                    && m.ReturnType == type<IBenchComparison>());            
+                    && m.ReturnType == type<IMetricComparison>());            
             return methods.Select(m => (m.Name, (OpRunner)Delegate.CreateDelegate(typeof(OpRunner),this,m))).OrderBy(x => x.Name);
         }
 
@@ -83,7 +82,7 @@ namespace Z0
         //     return BenchComparison.Define(lBench,rBench);
         // }
 
-        protected BenchComparison Run<T>(OpId<T> opid, Cycle left, Cycle right)
+        protected MetricComparison Run<T>(OpId<T> opid, Cycle left, Cycle right)
             where T : struct
         {
             var lMetrics = left(Config.Cycles);
@@ -92,17 +91,17 @@ namespace Z0
             Claim.eq(lMetrics.OpCount, rMetrics.OpCount);
             var lBench = lMetrics.Summarize();
             var rBench = rMetrics.Summarize();
-            return BenchComparison.Define(lBench, rBench);
+            return MetricComparison.Define(lBench, rBench);
         }
 
-        protected Cycle Measure<T>(OpId<T> opid, Func<IOpMetrics> run)
+        protected Cycle Measure<T>(OpId<T> opid, Func<IMetrics> run)
             where T : struct
         {
-            IOpMetrics repeat(int cycles)
+            IMetrics repeat(int cycles)
             {
                 var totalOps = 0L;
                 var totalTime = Duration.Zero;
-                var lastCycle = default(IOpMetrics);
+                var lastCycle = default(IMetrics);
 
                 for(var cycle = 1; cycle <= cycles; cycle++)
                 {                    
@@ -119,7 +118,7 @@ namespace Z0
             return repeat;
         }
 
-        protected IBenchComparison Finish(IBenchComparison compared)
+        protected IMetricComparison Finish(IMetricComparison compared)
         {
             GC.Collect();
             return compared;

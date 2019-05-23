@@ -90,7 +90,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public void DisableBit(in int pos)
             => disable(ref data, in pos);
-
             
         public BitVectorI32 Hi
         {
@@ -106,15 +105,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public string BitString()
-            => bitstring(in data);
+            => data.ToBitString();
 
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
             => bytes(in data);
-
-        [MethodImpl(Inline)]        
-        public Span<Bit> Bits()
-            => bitspan(data);
 
         [MethodImpl(Inline)]
         public int PopCount()
@@ -130,5 +125,4 @@ namespace Z0
         public override int GetHashCode()
             => throw new NotSupportedException();
     }
-
 }

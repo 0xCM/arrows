@@ -39,7 +39,7 @@ namespace Z0
         }
         
         public override string ToString()
-            => ifBlank(Symbol, $"{Kind}".ToLower());
+            => ifEmpty(Symbol, $"{Kind}".ToLower());
 
         public override bool Equals(object obj)
             => (obj as OpInfo<T>) != null 

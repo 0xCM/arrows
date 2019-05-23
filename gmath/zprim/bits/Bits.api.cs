@@ -21,93 +21,7 @@ namespace Z0
         const byte Zero = 0;
 
         const byte One = 1;
-
-        [MethodImpl(Inline)]
-        public static ref sbyte loOff(ref sbyte src)
-        {
-            src &= (sbyte)(src - 1);
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref byte loOff(ref byte src)
-        {
-            src &= (byte)(src - 1);
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref short loOff(ref short src)
-        {
-            src &= (short)(src - 1);
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref ushort loOff(ref ushort src)
-        {
-            src &= (ushort)(src - 1);
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref int loOff(ref int src)
-        {
-            src &= src - 1;
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref uint loOff(ref uint src)
-        {
-            src &= src - 1;
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref long loOff(ref long src)
-        {
-            src &= src - 1;
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ulong loOff(ulong src)
-            => src & (src - 1);
  
-
-        [MethodImpl(Inline)]
-        public static ref ulong loOff(ref ulong src)
-        {
-            src &= src - 1;
-            return ref src;
-        }
-
-        /// <summary>
-        /// Determines the binary digit in an integral value at a specified position
-        /// </summary>
-        /// <param name="src">The source value</param>
-        /// <param name="pos">The bit position</param>
-        /// <typeparam name="T">The underlying integral type</typeparam>
-        [MethodImpl(Inline)]
-        public static BinaryDigit digit<T>(int src, int pos)
-            where T : struct
-                => Bits.test(src,pos) switch 
-                    {
-                        true => BinaryDigit.Zed,
-                        false => BinaryDigit.One
-                    };
-
-        /// <summary>
-        /// Constructs a bit from the data in an integral value at a specified position
-        /// </summary>
-        /// <param name="src">The source value</param>
-        /// <param name="pos">The bit position</param>
-        /// <typeparam name="T">The underlying integral type</typeparam>
-        [MethodImpl(Inline)]
-        public static Bit bit<T>(int src, int pos)
-            where T : struct
-                => new Bit(Bits.test(src,pos));
 
         /// <summary>
         /// Calculates the base-2 log of the source
@@ -159,11 +73,9 @@ namespace Z0
         public static uint andnot(uint lhs, uint rhs)
             => Bmi1.AndNot(lhs,rhs);
 
-
         [MethodImpl(Inline)]
         public static uint leastOnBit(uint src)
             => Bmi1.ExtractLowestSetBit(src);
-
 
         [MethodImpl(Inline)]
         public static ulong leastOnBit(ulong src)

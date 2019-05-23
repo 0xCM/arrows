@@ -15,14 +15,19 @@ namespace Z0
 
     public ref struct BitVectorI32
     {
+        int data;
         
         [MethodImpl(Inline)]
-        public static BitVectorI32 Define(int src)
+        public static BitVectorI32 Define(in int src)
             => new BitVectorI32(src);    
 
         [MethodImpl(Inline)]
-        public static implicit operator BitVector<N32>(BitVectorI32 src)
-            => BitVector.Define(src.data);
+        public static implicit operator BitVector<N32>(in BitVectorI32 src)
+            => BitVector.Define(in src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVectorI32(in int src)
+            => new BitVectorI32(in src);
 
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVectorI32 lhs, in BitVectorI32 rhs)
@@ -33,39 +38,66 @@ namespace Z0
             => !lhs.Eq(rhs);
 
         [MethodImpl(Inline)]
-        public static BitVectorI32 operator |(BitVectorI32 lhs, in BitVectorI32 rhs)
-            => lhs.data.Or(rhs.data);
+        public static BitVectorI32 operator |(in BitVectorI32 lhs, in BitVectorI32 rhs)
+            => lhs.data | rhs.data;
 
         [MethodImpl(Inline)]
-        public static BitVectorI32 operator &(BitVectorI32 lhs, in BitVectorI32 rhs)
-            => lhs.data.And(rhs.data);
+        public static BitVectorI32 operator &(in BitVectorI32 lhs, in BitVectorI32 rhs)
+            => lhs.data & rhs.data;
 
         [MethodImpl(Inline)]
-        public static BitVectorI32 operator ^(BitVectorI32 lhs, in BitVectorI32 rhs)
-            => lhs.data.XOr(rhs.data);
+        public static BitVectorI32 operator ^(in BitVectorI32 lhs, in BitVectorI32 rhs)
+            => lhs.data ^ rhs.data;
 
         [MethodImpl(Inline)]
-        public static BitVectorI32 operator ~(BitVectorI32 src)
-            => src.data.Flip();
+        public static BitVectorI32 operator ~(in BitVectorI32 src)
+            => ~ src.data;            
 
         [MethodImpl(Inline)]
-        public static implicit operator BitVectorI32(int src)
-            => new BitVectorI32(src);
+        public static BitVectorI32 operator <<(in BitVectorI32 lhs, in int rhs)
+            => lhs.data << rhs;
+
+        [MethodImpl(Inline)]
+        public static BitVectorI32 operator >>(in BitVectorI32 lhs, in int rhs)
+            => lhs.data >> rhs;
+        
+        [MethodImpl(Inline)]
+        public static BitVectorI32 operator +(in BitVectorI32 lhs, in BitVectorI32 rhs)
+            => lhs.data + rhs.data;
+
+        [MethodImpl(Inline)]
+        public static BitVectorI32 operator -(in BitVectorI32 lhs, in BitVectorI32 rhs)
+            => lhs.data - rhs.data;
+
+        [MethodImpl(Inline)]
+        public static BitVectorI32 operator *(in BitVectorI32 lhs, in BitVectorI32 rhs)
+            => lhs.data * rhs.data;
+
+        [MethodImpl(Inline)]
+        public static BitVectorI32 operator /(in BitVectorI32 lhs, in BitVectorI32 rhs)
+            => lhs.data / rhs.data;
+
+        [MethodImpl(Inline)]
+        public static BitVectorI32 operator %(in BitVectorI32 lhs, in BitVectorI32 rhs)
+            => lhs.data & rhs.data;
+
+        [MethodImpl(Inline)]
+        public static BitVectorI32 operator -(in BitVectorI32 src)
+            => - src.data;            
 
         [MethodImpl(Inline)]
         public static implicit operator int(in BitVectorI32 src)
             => src.data;
 
         [MethodImpl(Inline)]
-        public BitVectorI32(int data)
+        public BitVectorI32(in int data)
             => this.data = data;
         
-        int data;
 
-        public Bit this[int pos]
+        public Bit this[in int pos]
         {
             [MethodImpl(Inline)]
-            get => Bits.test(data, pos);
+            get => Bits.test(in data, pos);
             
             [MethodImpl(Inline)]
             set
@@ -99,37 +131,30 @@ namespace Z0
         public BitVectorI16 Hi
         {
             [MethodImpl(Inline)]
-            get => Bits.hi(data);
-        
+            get => Bits.hi(in data);        
         }
         
         public BitVectorI16 Lo
         {
             [MethodImpl(Inline)]
-            get => lo(data);        
+            get => lo(in data);        
         }
-
-        [MethodImpl(Inline)]
-        public string BitString()
-            => bitstring(data);
 
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
             => bytes(in data);
 
         [MethodImpl(Inline)]
-        public Span<Bit> BitData()
-            => bitspan(data);
+        public string BitString()
+            => data.ToBitString();
 
         [MethodImpl(Inline)]
-        public int PopCount()
-            => (int)Bits.pop((uint)data) + (data < 0 ? 1 : 0);
-
+        public ulong PopCount()
+            => Bits.pop((uint)data) + (data < 0 ? 1ul : 0ul);
 
         [MethodImpl(Inline)]
         public bool Eq(in BitVectorI32 rhs)
             => data == rhs.data;
-
 
         [MethodImpl(Inline)]
         public string Format()
@@ -141,5 +166,4 @@ namespace Z0
         public override int GetHashCode()
             => throw new NotSupportedException();
     }
-
 }

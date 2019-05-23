@@ -20,7 +20,6 @@ namespace Z0
     /// </summary>
     public static class BitVector
     {
-
         [MethodImpl(Inline)]
         public static BitVector<N8> Define(in sbyte src)
             => BitVector<N8>.Define(src.ToBits());

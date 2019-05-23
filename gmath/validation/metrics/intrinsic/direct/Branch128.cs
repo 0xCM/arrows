@@ -18,10 +18,10 @@ namespace Z0
     partial class InXDirectVec
     {
 
-       public static OpMetrics<T> Branch<T>(OpKind op, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+       public static Metrics<T> Branch<T>(OpKind op, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
             where T : struct
         {
-            var metrics = OpMetrics<T>.Zero;
+            var metrics = Metrics<T>.Zero;
             config = Configure(config);
 
             switch(op)

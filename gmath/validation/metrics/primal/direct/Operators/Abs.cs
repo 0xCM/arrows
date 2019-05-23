@@ -16,7 +16,7 @@ namespace Z0
     partial class PrimalDMetrics
     {
 
-        public  static OpMetrics<sbyte> Abs(ReadOnlySpan<sbyte> src, MetricConfig config = null)
+        public  static Metrics<sbyte> Abs(ReadOnlySpan<sbyte> src, MetricConfig config = null)
         {
             var opid = Id<sbyte>(OpKind.Abs);            
             var cycles = Cycles(config);
@@ -37,7 +37,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<short> Abs(ReadOnlySpan<short> src, MetricConfig config = null)
+        public  static Metrics<short> Abs(ReadOnlySpan<short> src, MetricConfig config = null)
         {
             var opid = Id<short>(OpKind.Abs);            
             var cycles = Cycles(config);
@@ -60,7 +60,7 @@ namespace Z0
         }
 
 
-        public static OpMetrics<int> Abs(ReadOnlySpan<int> src, MetricConfig config = null)
+        public static Metrics<int> Abs(ReadOnlySpan<int> src, MetricConfig config = null)
         {
             var opid = Id<int>(OpKind.Abs);            
             var cycles = Cycles(config);
@@ -81,7 +81,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<long> Abs(ReadOnlySpan<long> src, MetricConfig config = null)
+        public  static Metrics<long> Abs(ReadOnlySpan<long> src, MetricConfig config = null)
         {
             var opid = Id<long>(OpKind.Abs);            
             var cycles = Cycles(config);
@@ -102,7 +102,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<float> Abs(ReadOnlySpan<float> src, MetricConfig config = null)
+        public  static Metrics<float> Abs(ReadOnlySpan<float> src, MetricConfig config = null)
         {
             var opid = Id<float>(OpKind.Abs);            
             var cycles = Cycles(config);
@@ -123,7 +123,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<double> Abs(ReadOnlySpan<double> src, MetricConfig config = null)
+        public  static Metrics<double> Abs(ReadOnlySpan<double> src, MetricConfig config = null)
         {
             var opid = Id<double>(OpKind.Abs);            
             var cycles = Cycles(config);

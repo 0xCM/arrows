@@ -13,7 +13,6 @@ namespace Z0
     using static zfunc;
     using static mfunc;
 
-
     public readonly struct MetricId
     {
         public static MetricId Define(MetricKind Classifier, PrimalKind Primitive, OpKind Operator)

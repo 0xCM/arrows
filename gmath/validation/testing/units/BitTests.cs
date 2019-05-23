@@ -36,11 +36,11 @@ namespace Z0.Test
         public void BitConvert()
         {
 
-            Claim.eq(ZeroU8, (byte)Off);
-            Claim.eq(OneU8, (byte)On);
+            Claim.eq(U8Zero, (byte)Off);
+            Claim.eq(U8One, (byte)On);
 
-            Claim.eq(ZeroU16, (ushort)Off);
-            Claim.eq(OneU16, (ushort)On);
+            Claim.eq(U16Zero, (ushort)Off);
+            Claim.eq(U16One, (ushort)On);
 
             Claim.eq(0u, (uint)Off);
             Claim.eq(1u, (uint)On);

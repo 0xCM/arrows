@@ -11,21 +11,21 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Collections.Concurrent;
+using System.Numerics;
 
 using Z0;
 
 partial class zfunc
-{
-    const string EOL = "\r\n";
-    const string LBrace = "{";
-    const string RBrace = "}";
- 
+{ 
+    static readonly ConcurrentDictionary<string, Regex> _regexCache
+        = new ConcurrentDictionary<string, Regex>();
+
     /// <summary>
     /// Renders an end-of-line marker
     /// </summary>
     [MethodImpl(Inline)]   
     public static string eol() 
-        => EOL;
+        => AsciEscape.EOL;
 
     /// <summary>
     /// Formats the source value as a string
@@ -52,9 +52,8 @@ partial class zfunc
     /// Encloses text content between left and right braces
     /// </summary>
     /// <param name="content">The content to be embraced</param>
-    /// <returns></returns>
     public static string embrace(object content)      
-        => $"{LBrace}{content}{RBrace}";
+        => $"{AsciSym.LBrace}{content}{AsciSym.RBrace}";
 
     /// <summary>
     /// Left-Pads the input string with an optionally-specified character.
@@ -113,7 +112,7 @@ partial class zfunc
     /// </summary>
     /// <param name="subject">The string to evaluate</param>
     [MethodImpl(Inline)]
-    public static bool isBlank(string subject)
+    public static bool empty(string subject)
         => String.IsNullOrWhiteSpace(subject);
 
     /// <summary>
@@ -121,16 +120,16 @@ partial class zfunc
     /// </summary>
     /// <param name="subject">The string to evaluate</param>
     [MethodImpl(Inline)]
-    public static bool isNotBlank(string subject)
-        => not(isBlank(subject));
+    public static bool nonempty(string subject)
+        => not(empty(subject));
 
     /// <summary>
     /// Determines whether a string 2-tuple consists of only the empty string
     /// </summary>
     /// <returns></returns>
     [MethodImpl(Inline)]
-    public static bool isNotBlank((string s1, string s2) s)
-        => isNotBlank(s.s1) || isNotBlank(s.s2);
+    public static bool nonempty((string s1, string s2) s)
+        => nonempty(s.s1) || nonempty(s.s2);
 
     /// <summary>
     /// A string-specific coalescing operation
@@ -139,8 +138,8 @@ partial class zfunc
     /// <param name="replace">The replacement value if blank</param>
     /// <returns></returns>
     [MethodImpl(Inline)]
-    public static string ifBlank(string subject, string replace)
-        => isBlank(subject) ? replace : subject;
+    public static string ifEmpty(string subject, string replace)
+        => empty(subject) ? replace : subject;
 
     /// <summary>
     /// Replacement returned if the input is not blank
@@ -148,40 +147,8 @@ partial class zfunc
     /// <param name="subject">The subject string</param>
     /// <param name="replace">The replacement value if input is not blank</param>
     [MethodImpl(Inline)]
-    public static string ifNotBlank(string subject, string replace)
-        => isNotBlank(subject) ? replace : subject;
-
-    /// <summary>
-    /// Appends the tail to the head, separating the two by a new line
-    /// </summary>
-    /// <param name="head">The first part of the string</param>
-    /// <param name="tail">The last part of the string</param>
-    [MethodImpl(Inline)]
-    public static string appendl(string head, string tail)
-        => head + Environment.NewLine + tail;
-
-    /// <summary>
-    /// Appends the tail to the head
-    /// </summary>
-    /// <param name="head">The first part of the string</param>
-    /// <param name="tail">The last part of the string</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static string append(string head, string tail)
-        => isBlank(head) ? tail : head + tail;
-
-    /// <summary>
-    /// Conditionally appends the tail to the head
-    /// </summary>
-    /// <param name="head">The first part of the string</param>
-    /// <param name="tail">The last part of the string</param>
-    /// <param name="onlyIfMissing">Indicated whether the head should be suffixed with the tail only if the head
-    /// does not end with the tail</param>
-    [MethodImpl(Inline)]
-    public static string append(string head, string tail, bool onlyIfMissing)
-        => onlyIfMissing
-        ? (head.EndsWith(tail) ? head : append(head, tail))
-        : append(head, tail);
+    public static string ifNonempty(string subject, string replace)
+        => nonempty(subject) ? replace : subject;
 
     /// <summary>
     /// Produces the empty string
@@ -298,7 +265,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string semicolon()
-        => ";";
+        => AsciSym.Semicolon;
 
     /// <summary>
     /// Produces a "." character
@@ -306,7 +273,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string dot()
-        => ".";
+        => AsciSym.Dot;
 
     /// <summary>
     /// Produces a colon character
@@ -314,69 +281,66 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string colon()
-        => ":";
+        => AsciSym.Colon;
 
     /// <summary>
     /// Encloses the supplied text in quotation marks
     /// </summary>
     /// <param name="text">The text to be quoted</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string enquote(string text)
-        => "\"" + text + "\"";
+        => $"{AsciSym.Quote}{text}{AsciSym.Quote}";
+
+
+
+    /// <summary>
+    /// Encloses text within (possibly distinct) left and right boundaries
+    /// </summary>
+    /// <param name="content">The text to be bounded</param>
+    /// <param name="left">The text on the left</param>
+    /// <param name="right">The text on the right</param>
+    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static string enclose(string content, string left, string right)
+        => $"{left}{content}{right}";
 
     /// <summary>
     /// Encloses text within a bounding string
     /// </summary>
-    /// <param name="text">The text to enclose</param>
-    /// <param name="boundary">The surrounding text</param>
-    /// <returns></returns>
+    /// <param name="content">The text to enclose</param>
+    /// <param name="delimiter">The left and right boundary</param>
     [MethodImpl(Inline)]
-    public static string enclose(string text, string boundary)
-        => boundary + text + boundary;
+    public static string enclose(string content, string delimiter)
+        => $"{delimiter}{content}{delimiter}";
+
+    /// <summary>
+    /// Encloses text within (possibly distinct) left and right boundaries
+    /// </summary>
+    /// <param name="content">The text to be surrounded by the left and right delimiters</param>
+    /// <param name="left">The left delimiter</param>
+    /// <param name="right">The right delimiter</param>
+    [MethodImpl(Inline)]
+    public static string enclose(string content, char left, char right)
+        => $"{left}{content}{right}";
 
     /// <summary>
     /// Encloses a character within uniform left/right bounding string
     /// </summary>
-    /// <param name="c">The character to enclose</param>
-    /// <param name="boundary">The surrounding text</param>
-    /// <returns></returns>
+    /// <param name="content">The character to be surrounded by the left and right delimiters</param>
+    /// <param name="delimiter">The boundary delimiter</param>
     [MethodImpl(Inline)]
-    public static string enclose(char c, string boundary)
-        => $"{boundary}{c}{boundary}";
-
-    /// <summary>
-    /// Encloses text within (possibly distinct) left and right boundaries
-    /// </summary>
-    /// <param name="text">The text to be bounded</param>
-    /// <param name="left">The text on the left</param>
-    /// <param name="right">The text on the right</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static string enclose(string text, string left, string right)
-        => left + text + right;
-
-    /// <summary>
-    /// Encloses text within (possibly distinct) left and right boundaries
-    /// </summary>
-    /// <param name="text">The text to be bounded</param>
-    /// <param name="left">The character on the left</param>
-    /// <param name="right">The character on the right</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static string enclose(string text, char left, char right)
-        => $"{left}{text}{right}";
+    public static string enclose(char content, string delimiter)
+        => $"{delimiter}{content}{delimiter}";
 
     /// <summary>
     /// Encloses a character within (possibly distinct) left and right boundaries
     /// </summary>
-    /// <param name="c">The character to be bounded</param>
+    /// <param name="content">The character to be bounded</param>
     /// <param name="left">The text on the left</param>
     /// <param name="right">The text on the right</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
-    public static string enclose(char c, string left, string right)
-        => $"{left}{c}{right}";
+    public static string enclose(char content, string left, string right)
+        => $"{left}{content}{right}";
 
     /// <summary>
     /// Encloses content within specified boundaries
@@ -396,7 +360,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string squote(string text)
-        => enclose(text, "'");
+        => enclose(text, AsciSym.SQuote);
 
     /// <summary>
     /// Encloses a character between single quote (') characters
@@ -405,7 +369,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string squote(char c)
-        => enclose(c, "'");
+        => enclose(c, AsciSym.SQuote);
 
     /// <summary>
     /// Encloses text between '(' and ')' characters
@@ -421,14 +385,14 @@ partial class zfunc
     /// <param name="content"></param>
     [MethodImpl(Inline)]
     public static string csv(object o1, object o2, params object[] content)
-        =>  string.Join(',', o1, o2) + string.Join(',', content);
+        =>  string.Join(AsciSym.Comma, o1, o2) + string.Join(AsciSym.Comma, content);
 
     /// <summary>
     /// Renders a sequence of items as a comma-separated list of values
     /// </summary>
     [MethodImpl(Inline)]
     public static string csv(IEnumerable<object> content)
-        => string.Join(',', content);
+        => string.Join(AsciSym.Comma, content);
 
     /// <summary>
     /// Renders a sequence of items as an x-separated list of values
@@ -444,7 +408,7 @@ partial class zfunc
     /// <param name="src">The source items</param>
     [MethodImpl(Inline)]
     public static string csv<T>(IEnumerable<T> src)
-        => string.Join(',', src);
+        => string.Join(AsciSym.Comma, src);
 
     /// <summary>
     /// Renders each item from a sequence as list of values, delimited by end-of-line
@@ -486,7 +450,7 @@ partial class zfunc
     /// <param name="chars">The leading characters to remove</param>
     [MethodImpl(Inline)]
     public static string ltrim(string src, params char[] chars)
-        => isBlank(src) ? string.Empty : src.TrimStart(chars);
+        => empty(src) ? string.Empty : src.TrimStart(chars);
 
     /// <summary>
     /// Trims trailing characters when matched
@@ -495,7 +459,7 @@ partial class zfunc
     /// <param name="chars">The leading characters to remove</param>
     [MethodImpl(Inline)]
     public static string rtrim(string src, params char[] chars)
-        => isBlank(src) ? string.Empty : src.TrimEnd(chars);
+        => empty(src) ? string.Empty : src.TrimEnd(chars);
 
     /// <summary>
     /// Produces a string containing a specified number of tab characters
@@ -505,7 +469,7 @@ partial class zfunc
     public static string tabs(int count)
         => count == 0
         ? estring()
-        : new string('\t', count);
+        : new string(AsciEscape.TabChar, count);
 
     /// <summary>
     /// Produces a string containing a specified number of '.' characters
@@ -524,7 +488,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string tabs(int count, string content)
-        => append(tabs(count), content);
+        => tabs(count) + content;
 
     /// <summary>
     /// Produces a string containing a specified number of spaces
@@ -580,7 +544,7 @@ partial class zfunc
     /// <param name="subject">The subject</param>
     [MethodImpl(Inline)]
     static string toString(string subject, string ifBlank = null)
-        => isNotBlank(subject) ? subject : ifBlank ?? String.Empty;
+        => nonempty(subject) ? subject : ifBlank ?? String.Empty;
 
     /// <summary>
     /// If subject is not null, invokes its ToString() method; otherwise, returns an empty string or a supplied marker
@@ -598,7 +562,6 @@ partial class zfunc
     /// </summary>
     /// <typeparam name="T">The subject type</typeparam>
     /// <param name="subject">The subject</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static string show<T>(T subject)
         => (subject is string)
@@ -606,37 +569,48 @@ partial class zfunc
             : (subject != null ? subject.ToString() : estring());
 
 
-    /// <summary>
-    /// Concatenates an arbitrary number of strings
-    /// </summary>
-    /// <param name="src">The strings to be concatenated</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static string append(params string[] src) 
-        => string.Concat(src);
-    
-    /// <summary>
-    /// Concatenates an arbitrary number of string representations
-    /// </summary>
-    /// <param name="src">The strings to be concatenated</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static string append<T>(IEnumerable<T> src) 
-        => string.Concat(src);
+    [MethodImpl(Inline)]
+    public static string hexstring(byte src)
+        => src.ToString("X");
 
-    /// <summary>
-    /// Concatenates an arbitrary number of string representations,
-    /// separated by a specified delimiter
-    /// </summary>
-    /// <param name="delimiter">The separator</param>
-    /// <param name="src">The values for which string representations will
-    /// be formed</param>
-    /// <returns></returns>
+    [MethodImpl(Inline)]
+    public static string hexstring(sbyte src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(short src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(ushort src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(int src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(uint src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(long src)
+        => src.ToString("X");
+
+    [MethodImpl(Inline)]
+    public static string hexstring(ulong src)
+        => src.ToString("X");
+
     [MethodImpl(Inline)]   
-    public static string append<T>(string delimiter, IEnumerable<T> src) 
-        => string.Join(delimiter, src.Select(x => x.ToString()));
+    public static string hexstring(BigInteger x)
+        => x.ToString("X");
 
-
+    [MethodImpl(Inline)]   
+    public static string hexstring(decimal src)
+    {
+        var parts = Decimal.GetBits(src);        
+        return hexstring(parts[0]) + hexstring(parts[1]) + hexstring(parts[2]) + hexstring(parts[3]);
+    }
     /// <summary>
     /// Defines a symbol
     /// </summary>
@@ -654,8 +628,6 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static string enquote(Option<string> text)
         => enquote(text ? text.ValueOrDefault() ?? String.Empty : String.Empty);
-    static readonly ConcurrentDictionary<string, Regex> _regexCache
-        = new ConcurrentDictionary<string, Regex>();
 
     /// <summary>
     /// Formats and concatenates an arbitrary number of elements
@@ -663,7 +635,7 @@ partial class zfunc
     /// <param name="rest">The formattables to be rendered and concatenated</param>
     [MethodImpl(Inline)]   
     public static string format(object first, params object[] rest)
-        => first.ToString() + append(rest.Select(x => x.ToString()));
+        => first.ToString() + concat(rest.Select(x => x.ToString()));
 
     /// <summary>
     /// Conditionally emits the value of a command flag predicated on the evaluation of a given value
@@ -683,7 +655,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string cmdFlag(string value, string flag, string arg = null)
-        => isBlank(value) ? estring() : flag + arg ?? estring();
+        => empty(value) ? estring() : flag + arg ?? estring();
 
     /// <summary>
     /// Conditionally emits the value of a command option predicated on its nullity
@@ -726,7 +698,7 @@ partial class zfunc
     /// <param name="c">The delimiter</param>
     [MethodImpl(Inline)]
     public static IReadOnlyList<string> split(string src, char c)
-        => isBlank(src)
+        => empty(src)
         ? zfunc.array<string>()
         : src.Split(new char[] { c }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -736,7 +708,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string left(string src, int chars)
-        => isBlank(src)
+        => empty(src)
         ? src
         : src.Substring(0, src.Length < chars ? src.Length : chars);
 
@@ -745,7 +717,7 @@ partial class zfunc
     /// </summary>
     public static string reverse(string src)
     {
-        if (isBlank(src))
+        if (empty(src))
             return src;
 
         var dst = new char[src.Length];
@@ -757,7 +729,7 @@ partial class zfunc
 
     public static string right(string src, int chars)
     {
-        if (isBlank(src))
+        if (empty(src))
             return src;
 
         var len = src.Length < chars ? src.Length : chars;
@@ -774,34 +746,73 @@ partial class zfunc
     /// <param name="y">The second string</param>
     [MethodImpl(Inline)]
     public static bool equals(string x, string y)
-        => ifBlank(x, string.Empty).Equals(y, StringComparison.OrdinalIgnoreCase);
+        => ifEmpty(x, string.Empty).Equals(y, StringComparison.OrdinalIgnoreCase);
+
 
     /// <summary>
-    /// Functional equivalalent of <see cref="string.Join(string, object[])"/>
+    /// Joins the string representation of a sequence of values
     /// </summary>
-    /// <param name="values">The values to be rendered as text</param>
-    /// <param name="sep">The item delimiter</param>
+    /// <param name="values">The values to be joined</param>
+    /// <param name="delimiter">The value delimiter</param>
     [MethodImpl(Inline)]
-    public static string join<T>(string sep, IEnumerable<T> values)
-        => string.Join(sep, values);
+    public static string join(string delimiter, IEnumerable<object> values)
+        => string.Join(delimiter, values);
 
     /// <summary>
-    /// Does what you would expect when supplying a sequence of characters to a 
-    /// concatenation function (!)
+    /// Concatenates a sequence of strings
     /// </summary>
-    /// <param name="chars">The characters to concatenate</param>
+    /// <param name="items">The characters to concatenate</param>
     [MethodImpl(Inline)]
-    public static string concat(IEnumerable<char> chars)
-        => new string(chars.ToArray());
+    public static string concat(IEnumerable<string> items)
+        => join(space(), items);
 
     /// <summary>
-    /// Does what you would expect when supplying a sequence of characters to a 
-    /// concatenation function (!)
+    /// Concatenates a sequence of characters
     /// </summary>
-    /// <param name="chars">The characters to concatenate</param>
-    /// <returns></returns>
+    /// <param name="items">The characters to concatenate</param>
     [MethodImpl(Inline)]
-    public static string concat(this char[] chars)
-        => new string(chars);
+    public static string concat(IEnumerable<char> items)
+        => new string(items.ToArray());
+
+    /// <summary>
+    /// Concatenates a character array
+    /// </summary>
+    /// <param name="items">The characters to concatenate</param>
+    [MethodImpl(Inline)]
+    public static string concat(params char[] items)
+        => new string(items);
+
+    /// <summary>
+    /// Concatenates an array of strings
+    /// </summary>
+    /// <param name="items">The strings to concatenate</param>
+    [MethodImpl(Inline)]
+    public static string concat(params string[] items)
+        => string.Join(space(), items);
+
+    /// <summary>
+    /// Concatenates an arbitrary number of string representations
+    /// </summary>
+    /// <param name="src">The strings to be concatenated</param>
+    [MethodImpl(Inline)]   
+    public static string concat(IEnumerable<object> src)    
+        => string.Concat(src);
+
+     /// <summary>
+    /// Concatenates an arbitrary number of strings
+    /// </summary>
+    /// <param name="src">The strings to be concatenated</param>
+    [MethodImpl(Inline)]   
+    public static string append(params string[] src) 
+        => concat(src);
+    
+
+    /// <summary>
+    /// Concatenates an arbitrary number of string representations
+    /// </summary>
+    /// <param name="src">The strings to be concatenated</param>
+    [MethodImpl(Inline)]   
+    public static string append<T>(IEnumerable<T> src) 
+        => concat(src.Select(x => (object)x));
 
 }

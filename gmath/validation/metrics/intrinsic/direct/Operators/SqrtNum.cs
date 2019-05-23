@@ -17,7 +17,7 @@ namespace Z0
 
     partial class InXDirectNum
     {
-        public static OpMetrics<T> Sqrt<T>(ReadOnlySpan128<T> src, InXMetricConfig128 config = null)
+        public static Metrics<T> Sqrt<T>(ReadOnlySpan128<T> src, InXMetricConfig128 config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -33,7 +33,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<float> Sqrt(ReadOnlySpan128<float> src, InXMetricConfig128 config = null)
+        public static Metrics<float> Sqrt(ReadOnlySpan128<float> src, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<float>(OpKind.Sqrt, config);            
@@ -54,7 +54,7 @@ namespace Z0
             return metrics(opid, config, time, dst);
         }
 
-        public static OpMetrics<double> Sqrt(ReadOnlySpan128<double> src, InXMetricConfig128 config = null)
+        public static Metrics<double> Sqrt(ReadOnlySpan128<double> src, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<double>(OpKind.Sqrt, config);            

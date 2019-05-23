@@ -269,7 +269,7 @@ namespace Z0.Test
                 : Randomizer.Array<T>(config.SampleSize);
         }
 
-        public OpMetrics<T> Verify<T>(OpKind opKind, UnaryOp<T> op, UnaryOp<T> baseline, bool nonzero = false, [CallerMemberName] string caller = null, 
+        public Metrics<T> Verify<T>(OpKind opKind, UnaryOp<T> op, UnaryOp<T> baseline, bool nonzero = false, [CallerMemberName] string caller = null, 
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct
         {
@@ -287,7 +287,7 @@ namespace Z0.Test
             return metrics;
         }
 
-        public OpMetrics<T> Verify<T>(OpKind opKind, BinaryPredicate<T> baseline, BinaryPredicate<T> op, bool nonzero = false, 
+        public Metrics<T> Verify<T>(OpKind opKind, BinaryPredicate<T> baseline, BinaryPredicate<T> op, bool nonzero = false, 
             [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct
         {
@@ -307,7 +307,7 @@ namespace Z0.Test
             return metrics;
         }
 
-        public OpMetrics<T> Verify<T>(OpKind opKind, BinaryOp<T> baseline, BinaryOp<T> op, bool nonzero = false, [CallerMemberName] string caller = null, 
+        public Metrics<T> Verify<T>(OpKind opKind, BinaryOp<T> baseline, BinaryOp<T> op, bool nonzero = false, [CallerMemberName] string caller = null, 
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct
         {

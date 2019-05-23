@@ -29,7 +29,7 @@ namespace Z0
             => random ?? Randomizer.define(RandSeeds.BenchSeed);
 
 
-        public static OpMetrics<T> Run<T>(OpKind op, MetricConfig config = null, IRandomizer random = null)        
+        public static Metrics<T> Run<T>(OpKind op, MetricConfig config = null, IRandomizer random = null)        
             where T : struct
         {
             config = Configure(config);    
@@ -46,7 +46,7 @@ namespace Z0
         }
 
 
-        public static IOpMetrics Run(OpKind op, PrimalKind prim, MetricConfig config = null, IRandomizer random = null)
+        public static IMetrics Run(OpKind op, PrimalKind prim, MetricConfig config = null, IRandomizer random = null)
         {
             config = Configure(config);    
             random = Random(random);
@@ -77,10 +77,10 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> Run<T>(OpKind op, ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Run<T>(OpKind op, ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
-            var metrics = OpMetrics<T>.Zero;
+            var metrics = Metrics<T>.Zero;
             switch(op)
             {
                 case OpKind.Flip:
@@ -118,10 +118,10 @@ namespace Z0
             return metrics;
         }
 
-        public static OpMetrics<T> Run<T>(OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Run<T>(OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
-            var metrics = OpMetrics<T>.Zero;
+            var metrics = Metrics<T>.Zero;
             switch(op)
             {
                 case OpKind.Add:
@@ -172,7 +172,7 @@ namespace Z0
             return metrics;
         }
 
-        public static OpMetrics<T> Add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Add);
@@ -188,7 +188,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Sub);
@@ -204,7 +204,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Mul);
@@ -220,7 +220,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Div);
@@ -236,7 +236,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Mod);
@@ -252,7 +252,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> And<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> And<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.And);
@@ -268,7 +268,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Or);
@@ -284,7 +284,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> XOr<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> XOr<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.XOr);
@@ -300,7 +300,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-       public static OpMetrics<T> Flip<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+       public static Metrics<T> Flip<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Flip);
@@ -316,7 +316,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Eq);
@@ -333,7 +333,7 @@ namespace Z0
                 map(dst, x => x ? gmath.one<T>() : gmath.zero<T>()));
         }
 
-        public static OpMetrics<T> Gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Gt);
@@ -350,7 +350,7 @@ namespace Z0
                 
         }
 
-        public static OpMetrics<T> GtEq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> GtEq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.GtEq);
@@ -366,7 +366,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst.ToScalars<T>());
         }
 
-        public static OpMetrics<T> Lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Lt);
@@ -382,7 +382,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst.ToScalars<T>());
         }
 
-        public static OpMetrics<T> LtEq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> LtEq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.LtEq);
@@ -398,7 +398,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst.ToScalars<T>());
         }
 
-        public static OpMetrics<T> Negate<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Negate<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Negate);
@@ -414,7 +414,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Inc<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Inc<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Inc);
@@ -430,7 +430,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Dec<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Dec<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Dec);
@@ -446,7 +446,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Abs<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Abs<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Negate);
@@ -462,7 +462,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
  
-        public static OpMetrics<T> Sqrt<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Sqrt<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Sqrt);
@@ -478,7 +478,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Square<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Square<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Square);
@@ -494,7 +494,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Max<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Max<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Max);
@@ -510,7 +510,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Min<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Min<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Min);
@@ -526,7 +526,7 @@ namespace Z0
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 
-        public static OpMetrics<T> Parse<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Parse<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var opid =  Id<T>(OpKind.Parse);

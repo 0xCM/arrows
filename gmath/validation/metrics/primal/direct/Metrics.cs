@@ -45,7 +45,7 @@ namespace Z0
             where T : struct
                 => src.ToScalars<T>();
 
-        public static OpMetrics<T> Run<T>(OpKind op, MetricConfig config = null, IRandomizer random = null)        
+        public static Metrics<T> Run<T>(OpKind op, MetricConfig config = null, IRandomizer random = null)        
             where T : struct
         {
             config = Configure(config);
@@ -60,7 +60,7 @@ namespace Z0
             return metrics;            
         }
 
-        public static IOpMetrics Run(OpKind op, PrimalKind prim,  MetricConfig config = null, IRandomizer random = null)
+        public static IMetrics Run(OpKind op, PrimalKind prim,  MetricConfig config = null, IRandomizer random = null)
         {
             config = Configure(config);
             random = Random(random);
@@ -92,10 +92,10 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> Run<T>(OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Run<T>(OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
-            var metrics = OpMetrics<T>.Zero;
+            var metrics = Metrics<T>.Zero;
             config = Configure(config);
             switch(op)
             {
@@ -148,11 +148,11 @@ namespace Z0
             return metrics;
         }
 
-        public static OpMetrics<T> Run<T>(OpKind op, ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Run<T>(OpKind op, ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             config = Configure(config);
-            var metrics = OpMetrics<T>.Zero;
+            var metrics = Metrics<T>.Zero;
             switch(op)
             {
                 case OpKind.Abs:
@@ -175,7 +175,7 @@ namespace Z0
         }
 
 
-        public static OpMetrics<T> Add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -207,7 +207,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> Sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -239,7 +239,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> Mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -271,7 +271,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> Div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -303,7 +303,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> Mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -335,7 +335,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> And<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> And<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -363,7 +363,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> Or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -392,7 +392,7 @@ namespace Z0
         }
 
 
-        public static OpMetrics<T> Negate<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Negate<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -416,7 +416,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> XOr<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> XOr<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -444,7 +444,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> Eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -476,7 +476,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> Gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -508,7 +508,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> GtEq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> GtEq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -540,7 +540,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> Lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> Lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -572,7 +572,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> LtEq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+        public static Metrics<T> LtEq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -604,7 +604,7 @@ namespace Z0
             }
         }
 
-        public static OpMetrics<T> Abs<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+        public static Metrics<T> Abs<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -628,7 +628,7 @@ namespace Z0
             }
         }
 
-       public static OpMetrics<T> Flip<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+       public static Metrics<T> Flip<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();

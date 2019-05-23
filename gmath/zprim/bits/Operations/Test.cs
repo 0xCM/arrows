@@ -33,19 +33,19 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool test(in int src, in int pos)
-            => (src & (OneI32 << pos)) != 0;
+            => (src & (I32One << pos)) != 0;
 
         [MethodImpl(Inline)]
         public static bool test(in uint src, in int pos)
-            => (src & (OneU32 << pos)) != 0u;
+            => (src & (U32One << pos)) != 0u;
 
         [MethodImpl(Inline)]
         public static bool test(in long src, in int pos)
-            => (src & (OneI64 << pos)) != 0L;
+            => (src & (I64One << pos)) != 0L;
 
         [MethodImpl(Inline)]
         public static bool test(in ulong src, in int pos)
-            => (src & (OneU64 << pos)) != 0ul;
+            => (src & (U64One << pos)) != 0ul;
 
         [MethodImpl(Inline)]
         public static bool test(in double src, in int pos)
@@ -59,56 +59,56 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref Bit test(in sbyte src, in int pos, out Bit dst)
         {
-            dst = (src & (OneI32 << pos)) != 0;
+            dst = (src & (I32One << pos)) != 0;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
         public static ref Bit test(in byte src, in int pos, out Bit dst)
         {
-            dst = (src & (OneI32 << pos)) != 0;
+            dst = (src & (I32One << pos)) != 0;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
         public static ref Bit test(in short src, in int pos, out Bit dst)
         {
-            dst = (src & (OneI32 << pos)) != 0;
+            dst = (src & (I32One << pos)) != 0;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
         public static ref Bit test(in ushort src, in int pos, out Bit dst)
         {
-            dst = (src & (OneI32 << pos)) != 0;
+            dst = (src & (I32One << pos)) != 0;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
         public static ref Bit test(in int src, in int pos, out Bit dst)
         {
-            dst = (src & (OneI32 << pos)) != ZeroI32;
+            dst = (src & (I32One << pos)) != I32Zero;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
         public static ref Bit test(in uint src, in int pos, out Bit dst)
         {
-            dst = (src & (OneU32 << pos)) != ZeroU32;
+            dst = (src & (U32One << pos)) != U32Zero;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
         public static ref Bit test(in long src, in int pos, out Bit dst)
         {
-            dst = (src & (OneI64 << pos)) != ZeroI64;
+            dst = (src & (I64One << pos)) != I64Zero;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
         public static ref Bit test(in ulong src, in int pos, out Bit dst)
         {
-            dst = (src & (OneU64 << pos)) != ZeroU64;
+            dst = (src & (U64One << pos)) != U64Zero;
             return ref dst;
         }
     }

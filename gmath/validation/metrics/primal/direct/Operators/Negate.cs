@@ -16,7 +16,7 @@ namespace Z0
     partial class PrimalDMetrics
     {
 
-        public  static OpMetrics<sbyte> Negate(ReadOnlySpan<sbyte> src, MetricConfig config = null)
+        public  static Metrics<sbyte> Negate(ReadOnlySpan<sbyte> src, MetricConfig config = null)
         {
             var opid = Id<sbyte>(OpKind.Negate);            
             var cycles = Cycles(config);
@@ -38,7 +38,7 @@ namespace Z0
         }
 
 
-        public  static OpMetrics<short> Negate(ReadOnlySpan<short> src, MetricConfig config = null)
+        public  static Metrics<short> Negate(ReadOnlySpan<short> src, MetricConfig config = null)
         {
             var opid = Id<short>(OpKind.Negate);            
             var cycles = Cycles(config);
@@ -60,7 +60,7 @@ namespace Z0
         }
 
 
-        public static OpMetrics<int> Negate(ReadOnlySpan<int> src, MetricConfig config = null)
+        public static Metrics<int> Negate(ReadOnlySpan<int> src, MetricConfig config = null)
         {
             var opid = Id<int>(OpKind.Negate);            
             var cycles = Cycles(config);
@@ -81,7 +81,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<long> Negate(ReadOnlySpan<long> src, MetricConfig config = null)
+        public  static Metrics<long> Negate(ReadOnlySpan<long> src, MetricConfig config = null)
         {
             var opid = Id<long>(OpKind.Negate);            
             var cycles = Cycles(config);
@@ -102,7 +102,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<float> Negate(ReadOnlySpan<float> src, MetricConfig config = null)
+        public  static Metrics<float> Negate(ReadOnlySpan<float> src, MetricConfig config = null)
         {
             var opid = Id<float>(OpKind.Negate);            
             var cycles = Cycles(config);
@@ -123,7 +123,7 @@ namespace Z0
             return Metrics.Define(opid, cycles*dst.Length, time, dst);
         }
 
-        public  static OpMetrics<double> Negate(ReadOnlySpan<double> src, MetricConfig config = null)
+        public  static Metrics<double> Negate(ReadOnlySpan<double> src, MetricConfig config = null)
         {
             var opid = Id<double>(OpKind.Negate);            
             var cycles = Cycles(config);

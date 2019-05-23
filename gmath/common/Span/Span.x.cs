@@ -52,6 +52,13 @@ namespace Z0
         public static Span256<T> ToSpan256<T>(this Span<T> src)
              where T : struct
                 => Span256.load(src);
+
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpanPair<T> PairWith<T>(this ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)        
+            => new ReadOnlySpanPair<T>(lhs,rhs);
+                 
+
     }
 
 }

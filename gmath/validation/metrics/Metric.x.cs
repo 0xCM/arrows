@@ -18,6 +18,34 @@ namespace Z0
         static IRandomizer Random(IRandomizer random = null)
             => random ?? Z0.Randomizer.define(RandSeeds.BenchSeed);
 
+        public static MetricComparison Compare(this IMetrics lhs, IMetrics rhs)        
+            => MetricComparison.Define(lhs.Summarize(), rhs.Summarize());
+
+        public static Metrics<T> DefineMetrics<T>(this OpId<T> OpId, long OpCount, Duration WorkTime, num<T>[] Results)
+            where T : struct
+                => Metrics.Define(OpId, OpCount, WorkTime, Results);
+        
+        public static Metrics<T> DefineMetrics<T>(this OpId<T> OpId, long OpCount, Duration WorkTime, T[] Results)
+            where T : struct
+                => Metrics.Define(OpId, OpCount, WorkTime, Results);
+
+       public static MetricDelta CalcDelta(this IMetricComparison comparison)
+            => MetricDelta.Calc(comparison);
+
+        public static bool NonZeroRight(this OpKind op)
+            => op == OpKind.Div || op == OpKind.Mod;
+
+        public static MetricSummary<T> Summarize<T>(this Metrics<T> metrics)        
+            where T : struct
+            => MetricSummary.Define(metrics);
+
+        public static MetricSummary Summarize(this IMetrics metrics)        
+            => MetricSummary.Define(metrics);
+
+        public static MetricComparison<T> Compare<T>(this Metrics<T> lhs, Metrics<T> rhs)
+            where T : struct
+                => MetricComparison.Define(lhs.Summarize(), rhs.Summarize());
+
         public static MetricId Identify(this MetricKind metric, PrimalKind primitive, OpKind op)
             => MetricId.Define(metric, primitive, op);
 
@@ -39,7 +67,7 @@ namespace Z0
             where T : struct
                 => MetricComparisonSpec.Define(Baseline, Bench, PrimalKinds.kind<T>(), Operator);
 
-        public static OpMetrics<T> Run<T>(this MetricKind metric, OpKind op, MetricConfig config = null, IRandomizer random = null)
+        public static Metrics<T> Run<T>(this MetricKind metric, OpKind op, MetricConfig config = null, IRandomizer random = null)
             where T : struct
         {
             switch(metric)
@@ -54,7 +82,7 @@ namespace Z0
             throw unsupported(metric);
         }
 
-        public static IOpMetrics Run(this MetricKind metric, OpKind op, PrimalKind primal, 
+        public static IMetrics Run(this MetricKind metric, OpKind op, PrimalKind primal, 
             InXMetricConfig config = null, Genericity genericity = Genericity.Default, 
             IRandomizer random = null)
         {
@@ -83,7 +111,7 @@ namespace Z0
             throw unsupported(metric);
         }
 
-        public static IOpMetrics Run(this MetricKind metric, OpKind op, PrimalKind primal, 
+        public static IMetrics Run(this MetricKind metric, OpKind op, PrimalKind primal, 
             MetricConfig config = null, IRandomizer random = null)
         {
             switch(metric)
@@ -98,14 +126,12 @@ namespace Z0
             throw unsupported(metric);
         }
 
-        public static IOpMetrics Run(this MetricId metric, bool baseline = true, MetricConfig config = null, IRandomizer random = null)
+        public static IMetrics Run(this MetricId metric, MetricConfig config = null, IRandomizer random = null)
         {
             (var @class, var prim, var op) = metric;
             
             random = Random(random);
 
-            if(!baseline)
-                op = ~op;
             switch(@class)
             {
                 case MetricKind.PrimalDirect:
@@ -119,10 +145,10 @@ namespace Z0
             }
         }
 
-        public static AppMsg FormatMessage(this BenchComparisonRecord src, char delimiter = ',', bool digitcommas = false)        
+        public static AppMsg FormatMessage(this MetricComparisonRecord src, char delimiter = ',', bool digitcommas = false)        
             => AppMsg.Define(src.Delimited(delimiter,digitcommas), SeverityLevel.Perform);
         
-        public static IReadOnlyList<AppMsg> FormatMessages(this IEnumerable<BenchComparisonRecord> src, char delimiter = ',', bool digitcommas = false)
+        public static IReadOnlyList<AppMsg> FormatMessages(this IEnumerable<MetricComparisonRecord> src, char delimiter = ',', bool digitcommas = false)
         {
             var records = src.ToList();
             if(records.Count == 0)
@@ -135,9 +161,6 @@ namespace Z0
             return messages;
 
         }
-
-        public static OpMetricPair PairWith(this OpMetricSpec lhs, OpMetricSpec rhs)
-            => OpMetricPair.Define(lhs,rhs);
     }
 
 }

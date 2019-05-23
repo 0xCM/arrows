@@ -24,38 +24,32 @@ namespace Z0
         /// <param name="blocks">The number of blocks to sample for each primitive</param>
         public static Span128Sampler Sample(IRandomizer random, int blocks, bool nonzero = false)
             => new Span128Sampler(random, blocks, nonzero);
-
-        T[] CollectSamples<T>(int blocks, bool nonzero)
-            where T : struct
-        {
-            Func<T,bool> filter = nonzero ? new Func<T,bool>(gmath.nonzero) : null;
-            return Random.Array128<T>(blocks, null, filter);
-        }
-        void CollectSamples(int blocks, bool nonzero)
+        
+        void CaptureSamples(int blocks, bool nonzero)
         {            
-            Int8Samples =  CollectSamples<sbyte>(blocks, nonzero);               
-            UInt8Samples = CollectSamples<byte>(blocks, nonzero);
-            Int16Samples = CollectSamples<short>(blocks, nonzero);            
-            UInt16Samples = CollectSamples<ushort>(blocks, nonzero);
-            Int32Samples = CollectSamples<int>(blocks, nonzero);            
-            UInt32Samples = CollectSamples<uint>(blocks, nonzero);
-            Int64Samples = CollectSamples<long>(blocks, nonzero);            
-            UInt64Samples = CollectSamples<ulong>(blocks, nonzero);
-            Float32Samples = CollectSamples<float>(blocks, nonzero);
-            Float64Samples = CollectSamples<double>(blocks, nonzero);            
+            Int8Samples =  Random.Span128<sbyte>(blocks, null, nonzero);               
+            UInt8Samples = Random.Span128<byte>(blocks, null, nonzero);
+            Int16Samples = Random.Span128<short>(blocks, null, nonzero);            
+            UInt16Samples = Random.Span128<ushort>(blocks, null, nonzero);
+            Int32Samples = Random.Span128<int>(blocks, null, nonzero);            
+            UInt32Samples = Random.Span128<uint>(blocks, null, nonzero);
+            Int64Samples = Random.Span128<long>(blocks, null, nonzero);            
+            UInt64Samples = Random.Span128<ulong>(blocks, null, nonzero);
+            Float32Samples = Random.Span128<float>(blocks, null, nonzero);
+            Float64Samples = Random.Span128<double>(blocks, null, nonzero);            
         }
 
         Span128Sampler(IRandomizer random, int blocks, bool nonzero)
             : base(random)
         {
-            CollectSamples(blocks, nonzero);
+            CaptureSamples(blocks, nonzero);
         }
 
         /// <summary>
         /// Returns values for which samples have already been drawn
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public Span128<T> Sampled<T>(T specimen = default(T))
+        public Span128<T> Sampled<T>()
             where T : struct
             => PrimalKinds.kind<T>() switch {
                 PrimalKind.int8 => As.generic<T>(Span128.load(Int8Samples)),

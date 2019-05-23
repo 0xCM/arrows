@@ -54,7 +54,7 @@ namespace Z0
         /// <param name="c">The character to match</param>
         [MethodImpl(Inline)]
         public static bool StartsWith(this string s, char c)
-            => isNotBlank(s) ? s.StartsWith(c.ToString()) : false;
+            => nonempty(s) ? s.StartsWith(c.ToString()) : false;
 
         /// <summary>
         /// Determines whether a string ends with a specific character
@@ -63,7 +63,7 @@ namespace Z0
         /// <param name="c">The character to match</param>
         [MethodImpl(Inline)]
         public static bool EndsWith(this string s, char c)
-            => isNotBlank(s) ? s.EndsWith(c.ToString()) : false;
+            => nonempty(s) ? s.EndsWith(c.ToString()) : false;
 
         /// <summary>
         /// Determines whether a string starts with a digit
@@ -71,7 +71,7 @@ namespace Z0
         /// <param name="s">The string to search</param>
         [MethodImpl(Inline)]
         public static bool StartsWithNumber(this string s)
-            => isNotBlank(s) ? Char.IsDigit(s.First()) : false;
+            => nonempty(s) ? Char.IsDigit(s.First()) : false;
 
         /// <summary>
         /// Determines whether a string ends with a digit
@@ -79,7 +79,7 @@ namespace Z0
         /// <param name="s">The string to search</param>
         /// <returns></returns>
         public static bool EndsWithNumber(this string s)
-            => isNotBlank(s) ? Char.IsDigit(s.Last()) : false;
+            => nonempty(s) ? Char.IsDigit(s.Last()) : false;
 
         /// <summary>
         /// Formats an array of bytes as a string of hex characters
@@ -161,7 +161,7 @@ namespace Z0
         /// <param name="chars">The characters for which to search</param>
         /// <returns></returns>
         public static bool StartsWithAny(this string src, IEnumerable<char> chars)
-            => isBlank(src) ? false : chars.Contains(src[0]);
+            => empty(src) ? false : chars.Contains(src[0]);
 
         /// <summary>
         /// Determines whether a string contains any of the characters in a supplied sequence
