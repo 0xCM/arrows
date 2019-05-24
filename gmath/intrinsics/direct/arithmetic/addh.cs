@@ -16,19 +16,19 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static Vec128<short> addh(Vec128<short> lhs, Vec128<short> rhs)
+        public static Vec128<short> addh(in Vec128<short> lhs, in Vec128<short> rhs)
             => Avx2.HorizontalAdd(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static Vec128<int> addh(Vec128<int> lhs, Vec128<int> rhs)
+        public static Vec128<int> addh(in Vec128<int> lhs, in Vec128<int> rhs)
             => Avx2.HorizontalAdd(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<float> addh(Vec128<float> lhs, Vec128<float> rhs)
+        public static Vec128<float> addh(in Vec128<float> lhs, in Vec128<float> rhs)
             => Avx2.HorizontalAdd(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> addh(Vec128<double> lhs, Vec128<double> rhs)
+        public static Vec128<double> addh(in Vec128<double> lhs, in Vec128<double> rhs)
             => Avx2.HorizontalAdd(lhs, rhs);
     }
 

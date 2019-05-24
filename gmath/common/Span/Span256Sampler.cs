@@ -31,16 +31,16 @@ namespace Z0
 
         void CaptureSamples(int blocks)
         {
-            Int8Samples = Random.Span256<sbyte>(blocks);            
-            UInt8Samples = Random.Span256<byte>(blocks);
-            Int16Samples = Random.Span256<short>(blocks);            
-            UInt16Samples = Random.Span256<ushort>(blocks);
-            Int32Samples = Random.Span256<int>(blocks);            
-            UInt32Samples = Random.Span256<uint>(blocks);
-            Int64Samples = Random.Span256<long>(blocks);            
-            UInt64Samples = Random.Span256<ulong>(blocks);
-            Float32Samples = Random.Span256<float>(blocks);
-            Float64Samples = Random.Span256<double>(blocks); 
+            Int8Samples = Random.Span256<sbyte>(blocks).ToArray();
+            UInt8Samples = Random.Span256<byte>(blocks).ToArray();
+            Int16Samples = Random.Span256<short>(blocks).ToArray();            
+            UInt16Samples = Random.Span256<ushort>(blocks).ToArray();
+            Int32Samples = Random.Span256<int>(blocks).ToArray();            
+            UInt32Samples = Random.Span256<uint>(blocks).ToArray();
+            Int64Samples = Random.Span256<long>(blocks).ToArray();            
+            UInt64Samples = Random.Span256<ulong>(blocks).ToArray();
+            Float32Samples = Random.Span256<float>(blocks).ToArray();
+            Float64Samples = Random.Span256<double>(blocks).ToArray(); 
         }
 
         /// <summary>

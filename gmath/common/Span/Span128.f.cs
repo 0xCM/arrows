@@ -22,7 +22,7 @@ partial class mfunc
     /// <param name="src">The source span</param>
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]
-    public static ref T first<T>(Span128<T> src)
+    public static ref T first<T>(in Span128<T> src)
         where T : struct
             =>  ref MemoryMarshal.GetReference<T>(src);
 
@@ -32,7 +32,7 @@ partial class mfunc
     /// <param name="src">The source span</param>
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]
-    public static ref readonly T first<T>(ReadOnlySpan128<T> src)
+    public static ref T first<T>(in ReadOnlySpan128<T> src)
         where T : struct
             =>  ref MemoryMarshal.GetReference<T>(src);
 
@@ -43,7 +43,7 @@ partial class mfunc
     /// <typeparam name="S">The source element type</typeparam>
     /// <typeparam name="T">The target element type</typeparam>
     [MethodImpl(Inline)]
-    public static Span128<T> cast<S,T>(Span128<S> src)                
+    public static Span128<T> cast<S,T>(in Span128<S> src)                
         where S : struct
         where T : struct
             =>  Span128.load(MemoryMarshal.Cast<S,T>(src));
@@ -55,7 +55,7 @@ partial class mfunc
     /// <typeparam name="S">The source element type</typeparam>
     /// <typeparam name="T">The target element type</typeparam>
     [MethodImpl(Inline)]
-    public static ReadOnlySpan128<T> cast<S,T>(ReadOnlySpan128<S> src)                
+    public static ReadOnlySpan128<T> cast<S,T>(in ReadOnlySpan128<S> src)                
         where S : struct
         where T : struct
             => (ReadOnlySpan128<T>)MemoryMarshal.Cast<S,T>(src);

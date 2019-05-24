@@ -85,10 +85,32 @@ namespace Z0
         /// <param name="block">The block index</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
+        public static Vec128<T> Vector<T>(this in ReadOnlySpan128<T> src, int block = 0)            
+            where T : struct            
+                => Vec128.single(src,block);
+
+        /// <summary>
+        /// Loads a single intrinsic vector from a blocked span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="block">The block index</param>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
         public static Vec256<T> Vector<T>(this in Span256<T> src, int block = 0)            
             where T : struct            
                 => Vec256.single(src,block);
-    
+
+        /// <summary>
+        /// Loads a single intrinsic vector from a blocked span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="block">The block index</param>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vec256<T> Vector<T>(this in ReadOnlySpan256<T> src, int block = 0)            
+            where T : struct            
+                => Vec256.single(src,block);
+
         /// <summary>
         /// Sends the components of the vector to a blocked span that is 
         /// returned to the caller
@@ -111,11 +133,6 @@ namespace Z0
             where T : struct            
                 => Vec256.store(in src, Span256.alloc<T>(1));    
  
-        [MethodImpl(Inline)]
-        public static Vec128<T> ToVec128<T>(this Vector128<T> src)
-            where T : struct            
-                => src;
-
         [MethodImpl(Inline)]
         public static Vector128<T> ToVector128<T>(this Vec128<T> src)
             where T : struct
@@ -147,15 +164,12 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Span<T> ExtractTo<T>(this Vec128<T> src, ref Span<T> dst, int offset = 0)
+        public static Span<T> ExtractTo<T>(this Vec128<T> src, Span<T> dst, int offset = 0)
             where T : struct
         {
             var block = dst.Slice(offset, Vec128<T>.Length).ToSpan128();
             Vec128.store(src, block);
-            return ref dst;
-            // for(var i = 0; i< Vec128<T>.Length; i++)
-            //     dst[i] = src.Component(i);
-            // return ref dst;
+            return  dst;
         }
 
     }

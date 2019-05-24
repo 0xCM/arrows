@@ -77,8 +77,8 @@ namespace Z0
         }
 
         public void WriteMessage(AppMsg msg)
-            => WriteLine(msg,ForeColor(msg.Level));
-        
+            => WriteLine(msg, ForeColor(msg.Level));
+                    
         public void WriteMessages(IEnumerable<AppMsg> messages)
         {
             lock(locker)            

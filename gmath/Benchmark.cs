@@ -36,16 +36,6 @@ namespace Z0
             TestRunner.RunTests(string.Empty, false);
         }
 
-       IReadOnlyList<MetricComparisonRecord> CompareMetrics(int runs = Pow2.T04, int cycles = Pow2.T13, int samples = Pow2.T13)
-       {
-            var config = MetricConfig.Define(runs: runs, cycles: cycles, samples: samples, dops: true);
-            var prim = PrimalKind.float32;
-            var baseline = MetricKind.PrimalDirect;
-            var benchmark = MetricKind.PrimalGeneric;
-            var operators = items(OpKind.Add, OpKind.Mul);
-            var specs =  operators.Select(op => baseline.DefineComparison(benchmark, prim, op));
-            return specs.Run(config).ToReadOnlyList();
-       }
 
         public static IEnumerable<IMetrics> Run(IEnumerable<MetricKind> metrics, IEnumerable<OpKind> ops, 
             IEnumerable<PrimalKind> primitives, MetricConfig config = null, IRandomizer random = null)
@@ -57,18 +47,41 @@ namespace Z0
             return query;
         }
 
+       MetricComparisonRecord MeasurePrimalGeneric(MetricConfig config, OpType op)
+        => config.Compare(op, true);
 
-       void MeasurePrimalGeneric()
-       {
+        void MeasurePrimalGeneric()
+        {
             var config = MetricConfig.Define(runs: Pow2.T04, cycles: Pow2.T14, samples: Pow2.T13, dops: false);
-            
-            var m1 = MetricKind.PrimalDirect.Run(OpKind.Add, PrimalKind.float32, config);
-            print(m1.Describe());
+            var comparison = MeasurePrimalGeneric(config, OpType.Define(OpKind.Mul, PrimalKind.float64));
+            print(comparison.FormatMessage());
 
-            var m2 = MetricKind.PrimalGeneric.Run(OpKind.Add, PrimalKind.float32, config);
-            print(m2.Describe());
+        }
 
-            print(items(m1.Compare(m2).ToRecord()).FormatMessages());
+
+        IReadOnlyList<MetricComparisonRecord> MeasureInX128(IEnumerable<OpType> ops)
+        {
+            var config = InXMetricConfig128.Define(runs: Pow2.T03, cycles: Pow2.T14, blocks: Pow2.T10);
+            var comparisons = new List<MetricComparisonRecord>();            
+            comparisons.AddRange(config.CollectComparisons(ops, true));
+            return comparisons;
+        }
+
+        IReadOnlyList<MetricComparisonRecord> MeasureInX256(IEnumerable<OpType> ops)
+        {
+            var config = InXMetricConfig256.Define(runs: Pow2.T03, cycles: Pow2.T14, blocks: Pow2.T12);
+            var comparisons = new List<MetricComparisonRecord>();            
+            comparisons.AddRange(config.CollectComparisons(ops, true));
+            return comparisons;
+        }
+
+       void MeasureIntrinsics()
+       {            
+            var ops = items(PrimalKind.float32, PrimalKind.float64, PrimalKind.int64).Map(primal => OpKind.Add.WithType(primal));            
+            var comparisons = new List<MetricComparisonRecord>();            
+            //comparisons.AddRange(MeasureInX128(ops));
+            comparisons.AddRange(MeasureInX256(ops));
+            print(comparisons.FormatMessages());
 
        }
 
@@ -87,8 +100,8 @@ namespace Z0
                 gmath.one<byte>();
                 //app.RunTests();
                 //app.MeasurePrimalGeneric();
-                while(true)
-                    app.CompareMetrics();
+                app.MeasureIntrinsics();
+                
                 
             }
             catch(Exception e)

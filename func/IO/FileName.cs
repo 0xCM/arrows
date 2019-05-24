@@ -23,6 +23,9 @@ namespace Z0
         
         public override string ToString()
             => Name;
+        
+        public bool Nonempty
+            => nonempty(Name);
 
     }
 
@@ -92,6 +95,8 @@ namespace Z0
 
     public class FilePath : PathComponent<FilePath>
     {
+        public static readonly FilePath Empty = Define(string.Empty);
+
         public static FilePath Define(string Name)
             => new FilePath(Name);
 
@@ -127,5 +132,7 @@ namespace Z0
         
         public bool Rooted
             => Path.IsPathRooted(Name);
+    
+        
     }
 }

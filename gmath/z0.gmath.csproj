@@ -11,7 +11,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
     <Prefer32Bit>false</Prefer32Bit>
-    <!-- <DefineConstants>DEBUG;TRACE</DefineConstants> -->
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
 

@@ -27,12 +27,45 @@ namespace Z0
         public static Vec128<T> single<T>(params T[] src)
             where T : struct            
                 => single<T>(src.ToSpan128());
-
+        
         [MethodImpl(Inline)]
-        public static Vec128<T> define<T>(Vector128<T> src)
-            where T : struct            
-                => src.ToVec128();
-
+        public static Vec128<T> single<T>(in ReadOnlySpan128<T> src, int blockIndex = 0)
+            where T : struct
+        {            
+            var kind = PrimalKinds.kind<T>();
+            ref var head = ref asRef(in src.Block(blockIndex));
+            if(kind.IsFloat())
+            {
+                if(kind == PrimalKind.float32)
+                    return generic<T>(load(ref float32(ref head)));
+                else if(kind == PrimalKind.float64)
+                    return generic<T>(load(ref float64(ref head)));
+            }       
+            else if(kind.IsSmallInt())
+            {
+                if(kind == PrimalKind.int8)
+                    return generic<T>(load(ref int8(ref head)));
+                else if(kind == PrimalKind.uint8)
+                    return generic<T>(load(ref uint8(ref head)));
+                else if(kind == PrimalKind.int16)
+                    return generic<T>(load(ref int16(ref head)));
+                else if(kind == PrimalKind.uint16)
+                    return generic<T>(load(ref uint16(ref head)));
+            }
+            else
+            {
+                if(kind == PrimalKind.int32)
+                    return generic<T>(load(ref int32(ref head)));
+                else if(kind == PrimalKind.uint32)
+                    return generic<T>(load(ref uint32(ref head)));
+                else if(kind == PrimalKind.int64)
+                    return generic<T>(load(ref int64(ref head)));
+                else if(kind == PrimalKind.uint64)
+                    return generic<T>(load(ref uint64(ref head)));
+            }
+                
+            throw unsupported(kind);
+        }
 
         [MethodImpl(Inline)]
         public static Vec128<T> single<T>(in Span128<T> src, int blockIndex = 0)
@@ -40,30 +73,31 @@ namespace Z0
         {            
 
             var kind = PrimalKinds.kind<T>();
+            ref var head = ref src.Block(blockIndex);
             switch(kind)
             {
                 case PrimalKind.int8:
-                    return load(src.Block(blockIndex).As<sbyte>()).As<T>();                    
+                    return generic<T>(load(ref int8(ref head)));
                 case PrimalKind.uint8:
-                    return load(src.Block(blockIndex).As<byte>()).As<T>();                    
+                    return generic<T>(load(ref uint8(ref head))); 
                 case PrimalKind.int16:
-                    return load(src.Block(blockIndex).As<short>()).As<T>();                    
+                    return generic<T>(load(ref int16(ref head)));
                 case PrimalKind.uint16:
-                    return load(src.Block(blockIndex).As<ushort>()).As<T>();                    
+                    return generic<T>(load(ref uint16(ref head)));
                 case PrimalKind.int32:
-                    return load(src.Block(blockIndex).As<int>()).As<T>();                    
+                    return generic<T>(load(ref int32(ref head)));
                 case PrimalKind.uint32:
-                    return load(src.Block(blockIndex).As<uint>()).As<T>();                    
+                    return generic<T>(load(ref uint32(ref head)));
                 case PrimalKind.int64:
-                    return load(src.Block(blockIndex).As<long>()).As<T>();                    
+                    return generic<T>(load(ref int64(ref head)));
                 case PrimalKind.uint64:
-                    return load(src.Block(blockIndex).As<ulong>()).As<T>();                    
+                    return generic<T>(load(ref uint64(ref head)));
                 case PrimalKind.float32:
-                    return load(src.Block(blockIndex).As<float>()).As<T>();                    
+                    return generic<T>(load(ref float32(ref head)));
                 case PrimalKind.float64:                
-                    return load(src.Block(blockIndex).As<double>()).As<T>();                    
+                    return generic<T>(load(ref float64(ref head)));
                 default:
-                    throw new Exception($"Kind {kind} not supported");
+                    throw unsupported(kind);
             }
         }        
 
@@ -122,84 +156,45 @@ namespace Z0
 
  
         [MethodImpl(Inline)]
-        public static unsafe Vec128<sbyte> load(ref sbyte head)
-            => LoadVector128(pint8(ref head));
+        public static unsafe Vec128<sbyte> load(ref sbyte src)
+            => LoadVector128(pint8(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<byte> load(ref byte head)
-            => LoadVector128(puint8(ref head));
+        public static unsafe Vec128<byte> load(ref byte src)
+            => LoadVector128(puint8(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<short> load(ref short head)
-            => LoadVector128(pint16(ref head));
+        public static unsafe Vec128<short> load(ref short src)
+            => LoadVector128(pint16(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<ushort> load(ref ushort head)
-            => LoadVector128(puint16(ref head));
+        public static unsafe Vec128<ushort> load(ref ushort src)
+            => LoadVector128(puint16(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<int> load(ref int head)
-            => LoadVector128(pint32(ref head));
+        public static unsafe Vec128<int> load(ref int src)
+            => LoadVector128(pint32(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<uint> load(ref uint head)
-            => LoadVector128(puint32(ref head));
+        public static unsafe Vec128<uint> load(ref uint src)
+            => LoadVector128(puint32(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<long> load(ref long head)
-            => LoadVector128(pint64(ref head));
+        public static unsafe Vec128<long> load(ref long src)
+            => LoadVector128(pint64(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<ulong> load(ref ulong head)
-            => LoadVector128(puint64(ref head));
+        public static unsafe Vec128<ulong> load(ref ulong src)
+            => LoadVector128(puint64(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<float> load(ref float head)
-            => LoadVector128(pfloat32(ref head));
+        public static unsafe Vec128<float> load(ref float src)
+            => LoadVector128(pfloat32(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Vec128<double> load(ref double head)
-            => LoadVector128(pfloat64(ref head));
+        public static unsafe Vec128<double> load(ref double src)
+            => LoadVector128(pfloat64(ref src));
  
-        [MethodImpl(Inline)]
-        static unsafe Vec128<sbyte> load(Span128<sbyte> src)
-            => LoadVector128(pint8(ref first(src)));
-
-        [MethodImpl(Inline)]
-        static unsafe Vec128<byte> load(Span128<byte> src)
-            => LoadVector128(puint8(ref first(src)));
-
-        [MethodImpl(Inline)]
-        static unsafe Vec128<short> load(Span128<short> src)
-            => LoadVector128(pint16(ref first(src)));
-
-        [MethodImpl(Inline)]
-        static unsafe Vec128<ushort> load(Span128<ushort> src)
-            => LoadVector128(puint16(ref first(src)));
-
-        [MethodImpl(Inline)]
-        static unsafe Vec128<int> load(Span128<int> src)
-            => LoadVector128(pint32(ref first(src)));
-
-        [MethodImpl(Inline)]
-        static unsafe Vec128<uint> load(Span128<uint> src)
-            => LoadVector128(puint32(ref first(src)));
-
-        [MethodImpl(Inline)]
-        static unsafe Vec128<long> load(Span128<long> src)
-            => LoadVector128(pint64(ref first(src)));
-
-        [MethodImpl(Inline)]
-        static unsafe Vec128<ulong> load(Span128<ulong> src)
-            => LoadVector128(puint64(ref first(src)));
-
-        [MethodImpl(Inline)]
-        static unsafe Vec128<float> load(Span128<float> src)
-            => LoadVector128(pfloat32(ref first(src)));
-
-        [MethodImpl(Inline)]
-        static unsafe Vec128<double> load(Span128<double> src)
-            => LoadVector128(pfloat64(ref first(src))); 
 
     }
 

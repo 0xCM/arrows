@@ -32,7 +32,7 @@ namespace Z0
                     var v2 = Vec128.load(pSrcWalker);
                     pSrcWalker += veclen;
 
-                    var vSum = addh(v1,v2);
+                    var vSum = addh(in v1,in v2);
                     dst = add(dst, vSum);
                 }
             }
@@ -47,7 +47,7 @@ namespace Z0
 
         public static unsafe int sum(ReadOnlySpan<int> src)
         {
-            var veclen = Vec128<short>.Length;
+            var veclen = Vec128<int>.Length;
             var seglen = 2*veclen;
             var srclen = src.Length;
             Claim.eq(0, srclen % seglen);
@@ -64,7 +64,7 @@ namespace Z0
                     var v2 = Vec128.load(pSrcWalker);
                     pSrcWalker += veclen;
 
-                    var vSum = addh(v1,v2);
+                    var vSum = addh(in v1,in v2);
                     dst = add(dst, vSum);
                 }
             }
@@ -80,7 +80,7 @@ namespace Z0
 
         public static unsafe float sum(ReadOnlySpan<float> src)
         {
-            var veclen = Vec128<short>.Length;
+            var veclen = Vec128<float>.Length;
             var seglen = 2*veclen;
             var srclen = src.Length;
             Claim.eq(0, srclen % seglen);
@@ -97,7 +97,7 @@ namespace Z0
                     var v2 = Vec128.load(pSrcWalker);
                     pSrcWalker += veclen;
 
-                    var vSum = addh(v1,v2);
+                    var vSum = addh(in v1, in v2);
                     dst = add(dst, vSum);
                 }
             }
@@ -129,7 +129,7 @@ namespace Z0
                     var v2 = Vec128.load(pSrcWalker);
                     pSrcWalker += veclen;
 
-                    var vSum = addh(v1,v2);
+                    var vSum = addh(in v1,in v2);
                     dst = add(dst, vSum);
                 }
             }

@@ -167,8 +167,15 @@ namespace Z0
                 => cast<OpId<T>>((src as IOpId).FlipGeneric());
 
         public static OpId ResizeOperand(this IOpId src, int OperandSize)
-            => src.OpKind.OpId( src.OperandType, src.NumKind, src.Generic, 
+            => src.OpKind.OpId( src.OperandType, src.NumKind, src.Generic,             
                 src.Intrinsic, src.Fusion, OperandSize, src.Mode, !src.Role);
+
+        public static OpType WithType(this OpKind src, PrimalKind prim)
+            => OpType.Define(src,prim);
+        
+        public static OpType<T> WithType<T>(this OpKind src)
+            where T : struct
+            => OpType.Define<T>(src);        
 
         static NumericKind InferInXNumKind<N>(bool scalar)
             where N : ITypeNat, new()

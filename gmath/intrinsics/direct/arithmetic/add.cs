@@ -11,6 +11,7 @@ namespace Z0
 
     
     using static mfunc;
+    using static As;
 
 
     partial class dinx
@@ -418,137 +419,197 @@ namespace Z0
 
         public static unsafe ref Span256<sbyte> add(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, ref Span256<sbyte> dst)
         {
-            var vLen = Span256<sbyte>.BlockLength;            
-            var dLen = length(lhs,rhs);
-
-            fixed(sbyte* pLhs0 = &first(lhs))
-            fixed(sbyte* pRhs0 = &(first(rhs)))
-            fixed(sbyte* pDst0 = &first(dst))
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
             {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                var pRhs = pRhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    var vRhs = Vec256.load(pRhs);
-                    dinx.store(dinx.add(vLhs,vRhs), pDst);
-                }
+                var x = Vec256.load(ref asRef(in lhs[i]));
+                var y = Vec256.load(ref asRef(in rhs[i]));
+                dinx.store(dinx.add(x,y), ref dst[i]);
             }
             
-            return ref dst;
+            return ref dst;            
+            // var vLen = Span256<sbyte>.BlockLength;            
+            // var dLen = length(lhs,rhs);
+
+            // fixed(sbyte* pLhs0 = &first(lhs))
+            // fixed(sbyte* pRhs0 = &(first(rhs)))
+            // fixed(sbyte* pDst0 = &first(dst))
+            // {
+            //     var pDst = pDst0;                
+            //     var pLhs = pLhs0;
+            //     var pRhs = pRhs0;
+            //     for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+            //     {
+            //         var vLhs = Vec256.load(pLhs);
+            //         var vRhs = Vec256.load(pRhs);
+            //         dinx.store(dinx.add(vLhs,vRhs), pDst);
+            //     }
+            // }
+            
+            // return ref dst;
         }
 
         public static unsafe ref Span256<byte> add(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, ref Span256<byte> dst)
         {
-            var vLen = Span256<byte>.BlockLength;            
-            var dLen = length(lhs,rhs);
-
-            fixed(byte* pLhs0 = &first(lhs))
-            fixed(byte* pRhs0 = &first(rhs))
-            fixed(byte* pDst0 = &first(dst))
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
             {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                var pRhs = pRhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    var vRhs = Vec256.load(pRhs);
-                    dinx.store(dinx.add(vLhs,vRhs), pDst);
-                }
+                var x = Vec256.load(ref asRef(in lhs[i]));
+                var y = Vec256.load(ref asRef(in rhs[i]));
+                dinx.store(dinx.add(x,y), ref dst[i]);
             }
             
-            return ref dst;
+            return ref dst;            
+            // var vLen = Span256<byte>.BlockLength;            
+            // var dLen = length(lhs,rhs);
+
+            // fixed(byte* pLhs0 = &first(lhs))
+            // fixed(byte* pRhs0 = &first(rhs))
+            // fixed(byte* pDst0 = &first(dst))
+            // {
+            //     var pDst = pDst0;                
+            //     var pLhs = pLhs0;
+            //     var pRhs = pRhs0;
+            //     for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+            //     {
+            //         var vLhs = Vec256.load(pLhs);
+            //         var vRhs = Vec256.load(pRhs);
+            //         dinx.store(dinx.add(vLhs,vRhs), pDst);
+            //     }
+            // }
+            
+            // return ref dst;
         }
 
         public static unsafe ref Span256<short> add(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, ref Span256<short> dst)
         {
-            var vLen = Span256<short>.BlockLength;            
-            var dLen = length(lhs,rhs);
-
-            fixed(short* pLhs0 = &first(lhs))
-            fixed(short* pRhs0 = &first(rhs))
-            fixed(short* pDst0 = &first(dst))
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
             {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                var pRhs = pRhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    var vRhs = Vec256.load(pRhs);
-                    dinx.store(dinx.add(vLhs,vRhs), pDst);
-                }
+                var x = Vec256.load(ref asRef(in lhs[i]));
+                var y = Vec256.load(ref asRef(in rhs[i]));
+                dinx.store(dinx.add(x,y), ref dst[i]);
             }
             
-            return ref dst;
+            return ref dst;            
+            // var vLen = Span256<short>.BlockLength;            
+            // var dLen = length(lhs,rhs);
+
+            // fixed(short* pLhs0 = &first(lhs))
+            // fixed(short* pRhs0 = &first(rhs))
+            // fixed(short* pDst0 = &first(dst))
+            // {
+            //     var pDst = pDst0;                
+            //     var pLhs = pLhs0;
+            //     var pRhs = pRhs0;
+            //     for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+            //     {
+            //         var vLhs = Vec256.load(pLhs);
+            //         var vRhs = Vec256.load(pRhs);
+            //         dinx.store(dinx.add(vLhs,vRhs), pDst);
+            //     }
+            // }
+            
+            // return ref dst;
         }
 
         public static unsafe ref Span256<ushort> add(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, ref Span256<ushort> dst)
         {
-            var vLen = Span256<ushort>.BlockLength;            
-            var dLen = length(lhs,rhs);
-
-            fixed(ushort* pLhs0 = &first(lhs))
-            fixed(ushort* pRhs0 = &first(rhs))
-            fixed(ushort* pDst0 = &first(dst))
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
             {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                var pRhs = pRhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    var vRhs = Vec256.load(pRhs);
-                    dinx.store(dinx.add(vLhs,vRhs), pDst);
-                }
+                var x = Vec256.load(ref asRef(in lhs[i]));
+                var y = Vec256.load(ref asRef(in rhs[i]));
+                dinx.store(dinx.add(x,y), ref dst[i]);
             }
             
-            return ref dst;
+            return ref dst;            
+            // var vLen = Span256<ushort>.BlockLength;            
+            // var dLen = length(lhs,rhs);
+
+            // fixed(ushort* pLhs0 = &first(lhs))
+            // fixed(ushort* pRhs0 = &first(rhs))
+            // fixed(ushort* pDst0 = &first(dst))
+            // {
+            //     var pDst = pDst0;                
+            //     var pLhs = pLhs0;
+            //     var pRhs = pRhs0;
+            //     for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+            //     {
+            //         var vLhs = Vec256.load(pLhs);
+            //         var vRhs = Vec256.load(pRhs);
+            //         dinx.store(dinx.add(vLhs,vRhs), pDst);
+            //     }
+            // }
+            
+            // return ref dst;
         }
 
         public static unsafe ref Span256<int> add(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, ref Span256<int> dst)
         {
-            var vLen = Span256<int>.BlockLength;            
-            var dLen = length(lhs,rhs);
-
-            fixed(int* pLhs0 = &first(lhs))
-            fixed(int* pRhs0 = &first(rhs))
-            fixed(int* pDst0 = &first(dst))
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
             {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                var pRhs = pRhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    var vRhs = Vec256.load(pRhs);
-                    dinx.store(dinx.add(vLhs,vRhs), pDst);
-                }
+                var x = Vec256.load(ref asRef(in lhs[i]));
+                var y = Vec256.load(ref asRef(in rhs[i]));
+                dinx.store(dinx.add(x,y), ref dst[i]);
             }
             
-            return ref dst;
+            return ref dst;            
+            // var vLen = Span256<int>.BlockLength;            
+            // var dLen = length(lhs,rhs);
+
+            // fixed(int* pLhs0 = &first(lhs))
+            // fixed(int* pRhs0 = &first(rhs))
+            // fixed(int* pDst0 = &first(dst))
+            // {
+            //     var pDst = pDst0;                
+            //     var pLhs = pLhs0;
+            //     var pRhs = pRhs0;
+            //     for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+            //     {
+            //         var vLhs = Vec256.load(pLhs);
+            //         var vRhs = Vec256.load(pRhs);
+            //         dinx.store(dinx.add(vLhs,vRhs), pDst);
+            //     }
+            // }
+            
+            // return ref dst;
         }
 
         public static unsafe ref Span256<uint> add(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, ref Span256<uint> dst)
         {
-            var vLen = Span256<uint>.BlockLength;            
-            var dLen = length(lhs,rhs);
+            // var vLen = Span256<uint>.BlockLength;            
+            // var dLen = length(lhs,rhs);
 
-            fixed(uint* pLhs0 = &first(lhs))
-            fixed(uint* pRhs0 = &first(rhs))
-            fixed(uint* pDst0 = &first(dst))
+            // fixed(uint* pLhs0 = &first(lhs))
+            // fixed(uint* pRhs0 = &first(rhs))
+            // fixed(uint* pDst0 = &first(dst))
+            // {
+            //     var pDst = pDst0;                
+            //     var pLhs = pLhs0;
+            //     var pRhs = pRhs0;
+            //     for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+            //     {
+            //         var vLhs = Vec256.load(pLhs);
+            //         var vRhs = Vec256.load(pRhs);
+            //         dinx.store(dinx.add(vLhs,vRhs), pDst);
+            //     }
+            // }
+            
+            // return ref dst;
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
             {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                var pRhs = pRhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    var vRhs = Vec256.load(pRhs);
-                    dinx.store(dinx.add(vLhs,vRhs), pDst);
-                }
+                var x = Vec256.load(ref asRef(in lhs[i]));
+                var y = Vec256.load(ref asRef(in rhs[i]));
+                dinx.store(dinx.add(x,y), ref dst[i]);
             }
             
             return ref dst;
@@ -556,95 +617,139 @@ namespace Z0
 
         public static unsafe ref Span256<long> add(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, ref Span256<long> dst)
         {
-            var vLen = Span256<long>.BlockLength;            
-            var dLen = length(lhs,rhs);
-
-            fixed(long* pLhs0 = &first(lhs))
-            fixed(long* pRhs0 = &first(rhs))
-            fixed(long* pDst0 = &first(dst))
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
             {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                var pRhs = pRhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    var vRhs = Vec256.load(pRhs);
-                    dinx.store(dinx.add(vLhs,vRhs), pDst);
-                }
+                var x = Vec256.load(ref asRef(in lhs[i]));
+                var y = Vec256.load(ref asRef(in rhs[i]));
+                dinx.store(dinx.add(x,y), ref dst[i]);
             }
             
-            return ref dst;
+            return ref dst;            
+            // var vLen = Span256<long>.BlockLength;            
+            // var dLen = length(lhs,rhs);
+
+            // fixed(long* pLhs0 = &first(lhs))
+            // fixed(long* pRhs0 = &first(rhs))
+            // fixed(long* pDst0 = &first(dst))
+            // {
+            //     var pDst = pDst0;                
+            //     var pLhs = pLhs0;
+            //     var pRhs = pRhs0;
+            //     for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+            //     {
+            //         var vLhs = Vec256.load(pLhs);
+            //         var vRhs = Vec256.load(pRhs);
+            //         dinx.store(dinx.add(vLhs,vRhs), pDst);
+            //     }
+            // }
+            
+            // return ref dst;
         }
 
         public static unsafe ref Span256<ulong> add(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, ref Span256<ulong> dst)
         {
-            var vLen = Vector256<ulong>.Count;            
-            var dLen = length(lhs,rhs);
-
-            fixed(ulong* pLhs0 = &first(lhs))
-            fixed(ulong* pRhs0 = &first(rhs))
-            fixed(ulong* pDst0 = &first(dst))
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
             {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                var pRhs = pRhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    var vRhs = Vec256.load(pRhs);
-                    dinx.store(dinx.add(vLhs,vRhs), pDst);
-                }
+                var x = Vec256.load(ref asRef(in lhs[i]));
+                var y = Vec256.load(ref asRef(in rhs[i]));
+                dinx.store(dinx.add(x,y), ref dst[i]);
             }
             
-            return ref dst;
+            return ref dst;            
+            // var vLen = Vector256<ulong>.Count;            
+            // var dLen = length(lhs,rhs);
+
+            // fixed(ulong* pLhs0 = &first(lhs))
+            // fixed(ulong* pRhs0 = &first(rhs))
+            // fixed(ulong* pDst0 = &first(dst))
+            // {
+            //     var pDst = pDst0;                
+            //     var pLhs = pLhs0;
+            //     var pRhs = pRhs0;
+            //     for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+            //     {
+            //         var vLhs = Vec256.load(pLhs);
+            //         var vRhs = Vec256.load(pRhs);
+            //         dinx.store(dinx.add(vLhs,vRhs), pDst);
+            //     }
+            // }
+            
+            // return ref dst;
         }
 
         public static unsafe ref Span256<float> add(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
         {
-            var vLen = Vector256<float>.Count;            
-            var dLen = length(lhs,rhs);
-
-            fixed(float* pLhs0 = &first(lhs))
-            fixed(float* pRhs0 = &first(rhs))
-            fixed(float* pDst0 = &first(dst))
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
             {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                var pRhs = pRhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    var vRhs = Vec256.load(pRhs);
-                    dinx.store(dinx.add(vLhs,vRhs), pDst);
-                }
+                var x = Vec256.load(ref asRef(in lhs[i]));
+                var y = Vec256.load(ref asRef(in rhs[i]));
+                dinx.store(dinx.add(x,y), ref dst[i]);
             }
             
-            return ref dst;
+            return ref dst;            
+            // var vLen = Vector256<float>.Count;            
+            // var dLen = length(lhs,rhs);
+
+            // fixed(float* pLhs0 = &first(lhs))
+            // fixed(float* pRhs0 = &first(rhs))
+            // fixed(float* pDst0 = &first(dst))
+            // {
+            //     var pDst = pDst0;                
+            //     var pLhs = pLhs0;
+            //     var pRhs = pRhs0;
+            //     for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+            //     {
+            //         var vLhs = Vec256.load(pLhs);
+            //         var vRhs = Vec256.load(pRhs);
+            //         dinx.store(dinx.add(vLhs,vRhs), pDst);
+            //     }
+            // }
+            
+            // return ref dst;
         }
 
         public static unsafe ref Span256<double> add(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, ref Span256<double> dst)
         {
-            var vLen = Vector256<double>.Count;            
-            var dLen = length(lhs,rhs);
-
-            fixed(double* pLhs0 = &first(lhs))
-            fixed(double* pRhs0 = &first(rhs))
-            fixed(double* pDst0 = &first(dst))
+            var width = dst.BlockWidth;
+            var cells = length(lhs,rhs);
+            for(var i =0; i < cells; i += width)
             {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                var pRhs = pRhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    var vRhs = Vec256.load(pRhs);
-                    dinx.store(dinx.add(vLhs,vRhs), pDst);
-                }
+                var x = Vec256.load(ref asRef(in lhs[i]));
+                var y = Vec256.load(ref asRef(in rhs[i]));
+                dinx.store(dinx.add(x,y), ref dst[i]);
             }
             
             return ref dst;
         }
+
+        // public static unsafe ref Span256<double> add(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, ref Span256<double> dst)
+        // {
+        //     var vLen = Vector256<double>.Count;            
+        //     var dLen = length(lhs,rhs);
+
+        //     fixed(double* pLhs0 = &first(lhs))
+        //     fixed(double* pRhs0 = &first(rhs))
+        //     fixed(double* pDst0 = &first(dst))
+        //     {
+        //         var pDst = pDst0;                
+        //         var pLhs = pLhs0;
+        //         var pRhs = pRhs0;
+        //         for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen, pRhs += vLen)
+        //         {
+        //             var vLhs = Vec256.load(pLhs);
+        //             var vRhs = Vec256.load(pRhs);
+        //             dinx.store(dinx.add(vLhs,vRhs), pDst);
+        //         }
+        //     }
+            
+        //     return ref dst;
+        // }
 
         #endregion
     }

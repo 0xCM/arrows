@@ -43,7 +43,6 @@ namespace Z0
                 int64 => 8,
                 uint64 => 8,
                 float64 => 8,
-                float128 => 16,
                 _ => -1
             };
     }

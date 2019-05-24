@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "gmath"
+		},
+		{
+			"path": "func"
+		},
+		{
+			"path": "nats"
+		}
+	],
+	"settings": {}
+}

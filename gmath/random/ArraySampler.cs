@@ -24,24 +24,24 @@ namespace Z0
             => new ArraySampler(random, samples, nonzero);
 
         void TakeSamples(int samples,bool nonzero)
-        {
-                        
-            bool Filter<T>(T value)                        
-                where T : struct
-            {
-                if(nonzero)                    
-                {
-                    if(value.Equals(default(T)))
-                        return false;
-                }
-                return true;
+        {                        
 
-            }
+            Int8Samples = nonzero 
+                ? Random.NonZeroArray<sbyte>(samples) 
+                : Random.Array<sbyte>(samples);
 
-            Int8Samples = nonzero ? Random.NonZeroArray<sbyte>(samples) : Random.Array<sbyte>(samples);
-            UInt8Samples = nonzero ? Random.NonZeroArray<byte>(samples) : Random.Array<byte>(samples);
-            Int16Samples = nonzero ? Random.NonZeroArray<short>(samples) : Random.Array<short>(samples);
-            UInt16Samples = nonzero ? Random.NonZeroArray<ushort>(samples) : Random.Array<ushort>(samples);
+            UInt8Samples = nonzero 
+                ? Random.NonZeroArray<byte>(samples) 
+                : Random.Array<byte>(samples);
+
+            Int16Samples = nonzero 
+                ? Random.NonZeroArray<short>(samples) 
+                : Random.Array<short>(samples);
+
+            UInt16Samples = nonzero 
+                ? Random.NonZeroArray<ushort>(samples) 
+                : Random.Array<ushort>(samples);
+                
             Int32Samples = nonzero ? Random.NonZeroArray<int>(samples) : Random.Array<int>(samples);
             UInt32Samples = nonzero ? Random.NonZeroArray<uint>(samples) : Random.Array<uint>(samples);
             Int64Samples = nonzero ? Random.NonZeroArray<long>(samples) : Random.Array<long>(samples);            

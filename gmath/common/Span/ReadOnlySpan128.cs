@@ -138,17 +138,9 @@ namespace Z0
             get => ref data[ix];
         }
 
-        //public ref readonly T this[Index ix] 
-        //{
-        //    [MethodImpl(Inline)]
-        //    get => ref data[ix];
-        //}
-
-        //public ReadOnlySpan<T> this[Range range]
-        //{
-        //    [MethodImpl(Inline)]
-        //    get => data[range];
-        //}
+        [MethodImpl(Inline)]
+        public ref readonly T Block(int blockIndex)
+            => ref this[blockIndex*BlockLength];
 
         [MethodImpl(Inline)]
         public ReadOnlySpan<T> Slice(int start)
@@ -159,11 +151,15 @@ namespace Z0
             => data.Slice(start,length);
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan128<T> Block(int blockIndex)
+        public ReadOnlySpan128<T> SliceBlock(int blockIndex)
             => new ReadOnlySpan128<T>(data.Slice(blockIndex * BlockLength, BlockLength));
-        
+
         [MethodImpl(Inline)]
-        public ReadOnlySpan128<T> Blocks(int blockIndex, int blockCount)
+        public Vec128<T> Vector(int blockIndex)
+            => Vec128.single<T>(this, blockIndex);
+
+        [MethodImpl(Inline)]
+        public ReadOnlySpan128<T> SliceBlocks(int blockIndex, int blockCount)
             => (ReadOnlySpan128<T>)Slice(blockIndex * BlockLength, blockCount * BlockLength );
             
         [MethodImpl(Inline)]

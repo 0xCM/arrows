@@ -73,6 +73,22 @@ namespace Z0
             return Z0.Span128.load(dst);
         }
 
+        public static unsafe ReadOnlySpan128<T> ReadOnlySpan128<T>(this IRandomizer random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
+            where T : struct
+                => random.Span128<T>(blocks, domain, filter);
+
+        public static unsafe Span256<T> Span256<T>(this IRandomizer random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
+            where T : struct
+        {
+            var dst = span<T>(Z0.Span256.blocklength<T>(blocks));            
+            random.StreamTo(dst.Length, Domain(domain), filter, pvoid(ref dst[0]));            
+            return Z0.Span256.load(dst);
+        }
+
+        public static unsafe ReadOnlySpan256<T> ReadOnlySpan256<T>(this IRandomizer random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
+            where T : struct
+                => random.Span256<T>(blocks, domain, filter);
+
         public static Span128<T> NonZeroSpan128<T>(this IRandomizer random, int blocks, Interval<T>? domain = null)        
             where T : struct  
                 => random.Span128(blocks, domain, gmath.nonzero);
@@ -82,15 +98,6 @@ namespace Z0
         {
             Func<T,bool> filter = nonzero ? new Func<T,bool>(gmath.nonzero) : null;
             return random.Span128<T>(blocks, domain, filter);
-        }
-
-
-        public static unsafe Span256<T> Span256<T>(this IRandomizer random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
-            where T : struct
-        {
-            var dst = span<T>(Z0.Span256.blocklength<T>(blocks));            
-            random.StreamTo(dst.Length, Domain(domain), filter, pvoid(ref dst[0]));
-            return Z0.Span256.load(dst);
         }
 
         public static Span256<T> NonZeroSpan256<T>(this IRandomizer random, int blocks, Interval<T>? domain = null)        

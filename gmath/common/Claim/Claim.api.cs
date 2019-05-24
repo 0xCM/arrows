@@ -189,7 +189,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool nonzero<T>(T x, [Member] string caller = null, [File] string file = null, [Line] int? line = null)        
             where T : struct 
-                => gmath.nonzero(x) ? true : throw failed(ClaimOpKind.Nonzero, AppMsg.Empty); 
+                => gmath.nonzero(x) ? true 
+                : throw failed(ClaimOpKind.Nonzero, 
+                    AppMsg.Define("A value was claimed to be nonzero and yet it was", SeverityLevel.Error, caller, file, line)); 
 
         [MethodImpl(Inline)]
         public static bool @true(bool src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)

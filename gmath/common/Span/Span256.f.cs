@@ -23,7 +23,7 @@ partial class mfunc
     /// <param name="src">The span</param>
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]
-    public static ref T first<T>(Span256<T> src)
+    public static ref T first<T>(in Span256<T> src)
         where T : struct
             =>  ref MemoryMarshal.GetReference<T>(src);
 
@@ -33,7 +33,7 @@ partial class mfunc
     /// <param name="src">The source span</param>
     /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]
-    public static ref readonly T first<T>(ReadOnlySpan256<T> src)
+    public static ref T first<T>(in ReadOnlySpan256<T> src)
         where T : struct
             =>  ref MemoryMarshal.GetReference<T>(src);
 
@@ -44,7 +44,7 @@ partial class mfunc
     /// <typeparam name="S">The source element type</typeparam>
     /// <typeparam name="T">The target element type</typeparam>
     [MethodImpl(Inline)]
-    public static Span256<T> cast<S,T>(Span256<S> src)                
+    public static Span256<T> cast<S,T>(in Span256<S> src)                
         where S : struct
         where T : struct
             => Span256.load(MemoryMarshal.Cast<S,T>(src));
@@ -61,13 +61,6 @@ partial class mfunc
         where T : struct
             => (ReadOnlySpan256<T>)MemoryMarshal.Cast<S,T>(src);
 
-
-    // [MethodImpl(Inline)]   
-    // public static int length<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, [CallerMemberName] string caller = null, 
-    //         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-    //     where T : struct
-    //         => lhs.Length == rhs.Length ? lhs.Length 
-    //             : throw Errors.LengthMismatch(lhs.Length,rhs.Length, caller, file,line);
  
     [MethodImpl(Inline)]   
     public static int length<S,T>(ReadOnlySpan256<S> lhs, ReadOnlySpan256<T> rhs, [CallerFilePath] string caller = null, 

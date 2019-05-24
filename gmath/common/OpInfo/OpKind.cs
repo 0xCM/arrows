@@ -125,6 +125,7 @@ namespace Z0
         Default = In
     }
     
+
     public enum OpKind : byte
     {        
         None = 0,

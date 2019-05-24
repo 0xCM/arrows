@@ -37,6 +37,15 @@ namespace Z0
             where T : struct        
                 => Span128<T>.Alloc(blocks);
 
+        [MethodImpl(Inline)]
+        public static Span128<T> load<T>(Vec128<T> src, Span128<T> dst, int blockIndex)
+            where T : struct        
+        {
+            var offset = blocklength<T>(blockIndex);
+            src.ExtractTo(dst, offset);
+            return dst;                        
+        }
+
         /// <summary>
         /// Loads a blocked span from an unblocked span
         /// </summary>

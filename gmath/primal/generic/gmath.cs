@@ -253,28 +253,37 @@ namespace Z0
         {
             var kind = PrimalKinds.kind<T>();
 
-            if(kind == PrimalKind.float32)
-                return addF32(lhs, rhs);
-            else if(kind == PrimalKind.float64)
-                return addF64(lhs, rhs);
-            else if(kind == PrimalKind.int32)
-                return addI32(lhs, rhs);
-            else if(kind == PrimalKind.uint32)
-                return addU32(lhs, rhs);
-            else if(kind == PrimalKind.int64)
-                return addI64(lhs, rhs);
-            else if(kind == PrimalKind.uint64)
-                return addU64(lhs, rhs);
-            else if(kind == PrimalKind.int16)
-                return addI16(lhs, rhs);
-            else if(kind == PrimalKind.uint16)
-                return addU16(lhs, rhs);
-            else if(kind == PrimalKind.int8)
-                return addI8(lhs, rhs);
-            else if(kind == PrimalKind.uint8)
-                return addU8(lhs, rhs);            
-            else throw unsupported(kind);
+            if(kind.IsFloat())
+            {
+                if(kind == PrimalKind.float32)
+                    return addF32(lhs, rhs);
+                else if(kind == PrimalKind.float64)
+                    return addF64(lhs, rhs);
+            }
+            else if(kind.IsSmallInt())
+            {
+                if(kind == PrimalKind.int8)
+                    return addI8(lhs, rhs);
+                else if(kind == PrimalKind.uint8)
+                    return addU8(lhs, rhs);            
+                else if(kind == PrimalKind.int16)
+                    return addI16(lhs, rhs);
+                else if(kind == PrimalKind.uint16)
+                    return addU16(lhs, rhs);
+            }
+            else
+            {
+                if(kind == PrimalKind.int32)
+                    return addI32(lhs, rhs);
+                else if(kind == PrimalKind.uint32)
+                    return addU32(lhs, rhs);
+                else if(kind == PrimalKind.int64)
+                    return addI64(lhs, rhs);
+                else if(kind == PrimalKind.uint64)
+                    return addU64(lhs, rhs);
+            }
             
+            throw unsupported(kind);
         }
                         
 
@@ -487,7 +496,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref T mul<T>(ref T lhs, T rhs)
+        public static ref T mul<T>(ref T lhs, in T rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -499,7 +508,6 @@ namespace Z0
                 
                 if(kind == PrimalKind.float64)
                     return ref mulF64(ref lhs, rhs);
-
             }
             else
             {
@@ -546,43 +554,33 @@ namespace Z0
             {
                 if(kind == PrimalKind.float32)
                     return mulF32(lhs,rhs);
-
-                if(kind == PrimalKind.float64)
+                else if(kind == PrimalKind.float64)
                     return mulF64(lhs,rhs);
             }
-            else
+            else if(kind.IsSmallInt())
             {
-                if(kind.IsSmallInt())
-                {
-                    if(kind == PrimalKind.int8)
-                        return mulI8(lhs,rhs);
-
-                    if(kind == PrimalKind.uint8)
-                        return mulU8(lhs,rhs);
-
-                    if(kind == PrimalKind.int16)
-                        return mulI16(lhs,rhs);
-
-                    if(kind == PrimalKind.uint16)
-                        return mulU16(lhs,rhs);
-                }
-                else
-                {                
-                    if(kind == PrimalKind.int32)
-                        return mulI32(lhs,rhs);
-
-                    if(kind == PrimalKind.uint32)
-                        return mulU32(lhs,rhs);
-
-                    if(kind == PrimalKind.int64)
-                        return mulI64(lhs,rhs);
-
-                    if(kind == PrimalKind.uint64)
-                        return mulU64(lhs,rhs);
-                }
+                if(kind == PrimalKind.int8)
+                    return mulI8(lhs,rhs);
+                else if(kind == PrimalKind.uint8)
+                    return mulU8(lhs,rhs);
+                else if(kind == PrimalKind.int16)
+                    return mulI16(lhs,rhs);
+                else if(kind == PrimalKind.uint16)
+                    return mulU16(lhs,rhs);
             }
+            else
+            {                
+                if(kind == PrimalKind.int32)
+                    return mulI32(lhs,rhs);
+                else if(kind == PrimalKind.uint32)
+                    return mulU32(lhs,rhs);
+                else if(kind == PrimalKind.int64)
+                    return mulI64(lhs,rhs);
+                else if(kind == PrimalKind.uint64)
+                    return mulU64(lhs,rhs);
+             }
 
-            throw unsupported(kind);
+             throw unsupported(kind);
         }
 
         [MethodImpl(Inline)]

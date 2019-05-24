@@ -27,7 +27,7 @@ namespace Z0
             { 
                 this.Message = msg;
                 this.Caller = Message.Caller;
-                this.File = Message.FilePath;
+                this.File = Message.CallerFile;
                 this.Line = Message.FileLine;
             }
 
@@ -36,7 +36,7 @@ namespace Z0
             { 
                 this.Message = AppMsg.Define($"{caller} line {line} {file}: {msg}", SeverityLevel.Error, caller, file, line);
                 this.Caller = Message.Caller;
-                this.File = Message.FilePath;
+                this.File = Message.CallerFile;
                 this.Line = Message.FileLine;
             }
      
@@ -45,7 +45,7 @@ namespace Z0
         
         public string Caller {get;}
 
-        public string File {get;}
+        public FilePath File {get;}
 
         public int? Line {get;}
 

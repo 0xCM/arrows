@@ -57,7 +57,6 @@ partial class zfunc
     /// Returns the System.Type of the supplied parametric type
     /// </summary>
     /// <typeparam name="T">The source type</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static Type type<T>() 
         => typeof(T);
@@ -85,11 +84,17 @@ partial class zfunc
     /// </summary>
     /// <typeparam name="T0">The first source type</typeparam>
     /// <typeparam name="T1">The second source type</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static (Type t0,Type t1, Type t2) types<T0,T1,T2>() 
         => (typeof(T0),typeof(T1),typeof(T2));
 
-
+    /// <summary>
+    /// Returns the literals defined by an enumeration
+    /// </summary>
+    /// <typeparam name="T">The enum type</typeparam>
+    [MethodImpl(Inline)]
+    public static T[] kinds<T>()
+        where T : Enum
+        => type<T>().GetEnumValues().AsQueryable().Cast<T>().ToArray();
 
 }

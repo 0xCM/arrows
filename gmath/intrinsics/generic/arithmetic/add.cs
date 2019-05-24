@@ -52,58 +52,6 @@ namespace Z0
 
         }
 
-        [MethodImpl(Inline)]
-        public static unsafe Span128<T> add<T>(in Vec128<T> lhs, in Vec128<T> rhs, Span128<T> dst, int blockIndex)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-
-            var dstBlock = dst.Block(blockIndex);
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                     fixed(sbyte* pDst = &first(As.int8(dstBlock)))
-                        dinx.add(int8(lhs), int8(rhs), pDst);
-                    break;
-                case PrimalKind.uint8:
-                     fixed(byte* pDst = &first(As.uint8(dstBlock)))
-                        dinx.add(uint8(lhs), uint8(rhs), pDst);
-                    break;
-                case PrimalKind.int16:
-                     fixed(short* pDst = &first(As.int16(dstBlock)))
-                        dinx.add(int16(lhs), int16(rhs), pDst);
-                    break;
-                case PrimalKind.uint16:
-                     fixed(ushort* pDst = &first(As.uint16(dstBlock)))
-                        dinx.add(uint16(lhs), uint16(rhs), pDst);
-                    break;
-                case PrimalKind.int32:
-                     fixed(int* pDst = &first(As.int32(dstBlock)))
-                        dinx.add(int32(lhs), int32(rhs), pDst);
-                    break;
-                case PrimalKind.uint32:
-                    fixed(uint* pDst = &first(As.uint32(dstBlock)))
-                        dinx.add(uint32(lhs), uint32(rhs), pDst);
-                    break;
-                case PrimalKind.int64:
-                    fixed(long* pDst = &first(As.int64(dstBlock)))
-                        dinx.add(int64(lhs), int64(rhs), pDst);
-                    break;
-                case PrimalKind.float32:
-                    fixed(float* pDst = &first(As.float32(dstBlock)))
-                        dinx.add(float32(lhs), float32(rhs), pDst);
-                    break;
-                case PrimalKind.float64:
-                    fixed(double* pDst = &first(As.float64(dstBlock)))
-                        dinx.add(float64(lhs), float64(rhs), pDst);
-                break;                
-                default:
-                    throw unsupported(kind);                    
-            }
-            return dst;
-        }
-
-
 
         [MethodImpl(Inline)]
         public static unsafe void add<T>(in Vec128<T> lhs, in Vec128<T> rhs, void* dst)
@@ -179,57 +127,6 @@ namespace Z0
                 default:
                     throw unsupported(kind);
             }            
-        }
-
-        [MethodImpl(Inline)]
-        public static unsafe Span256<T> add<T>(in Vec256<T> lhs, in Vec256<T> rhs, Span256<T> dst, int blockIndex)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-
-            var dstBlock = dst.Block(blockIndex);
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                     fixed(sbyte* pDst = &first(As.int8(dstBlock)))
-                        dinx.add(int8(lhs), int8(rhs), pDst);
-                    break;
-                case PrimalKind.uint8:
-                     fixed(byte* pDst = &first(As.uint8(dstBlock)))
-                        dinx.add(uint8(lhs), uint8(rhs), pDst);
-                    break;
-                case PrimalKind.int16:
-                     fixed(short* pDst = &first(As.int16(dstBlock)))
-                        dinx.add(int16(lhs), int16(rhs), pDst);
-                    break;
-                case PrimalKind.uint16:
-                     fixed(ushort* pDst = &first(As.uint16(dstBlock)))
-                        dinx.add(uint16(lhs), uint16(rhs), pDst);
-                    break;
-                case PrimalKind.int32:
-                     fixed(int* pDst = &first(As.int32(dstBlock)))
-                        dinx.add(int32(lhs), int32(rhs), pDst);
-                    break;
-                case PrimalKind.uint32:
-                    fixed(uint* pDst = &first(As.uint32(dstBlock)))
-                        dinx.add(uint32(lhs), uint32(rhs), pDst);
-                    break;
-                case PrimalKind.int64:
-                    fixed(long* pDst = &first(As.int64(dstBlock)))
-                        dinx.add(int64(lhs), int64(rhs), pDst);
-                    break;
-                case PrimalKind.float32:
-                    fixed(float* pDst = &first(As.float32(dstBlock)))
-                        dinx.add(float32(lhs), float32(rhs), pDst);
-                    break;
-                case PrimalKind.float64:
-                    fixed(double* pDst = &first(As.float64(dstBlock)))
-                        dinx.add(float64(lhs), float64(rhs), pDst);
-                break;                
-                default:
-                    throw unsupported(kind);                    
-            }
-            return dst;
         }
 
         [MethodImpl(Inline)]

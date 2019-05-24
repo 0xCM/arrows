@@ -109,7 +109,7 @@ namespace Z0
         public static IEnumerable<PrimalKind> Primitives
             => typeof(PrimalKind).GetEnumValues().AsQueryable().Cast<PrimalKind>();
 
-        public static readonly OpId Zero = new OpId(OpKind.None, PrimalKind.none, NumericKind.Native, 
+        public static readonly OpId Zero = new OpId(OpKind.None, PrimalKind.int8, NumericKind.Native, 
             false, false, OpFusion.Atomic, 0, OpVariance.In, true);     
 
         public static OpId operator !(OpId src)

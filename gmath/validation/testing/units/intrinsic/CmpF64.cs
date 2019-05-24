@@ -33,10 +33,10 @@ namespace Z0.Test
                 var rVec = RightVector(i);
 
                 var lDst = span<double>(2);
-                lVec.ExtractTo(ref lDst);
+                lVec.ExtractTo(lDst);
 
                 var rDst = span<double>(2);
-                rVec.ExtractTo(ref rDst);
+                rVec.ExtractTo(rDst);
 
                 var expect = math.fcmp(lDst, rDst, mode);
                 var actual = dinx.cmpf(lVec, rVec, mode);

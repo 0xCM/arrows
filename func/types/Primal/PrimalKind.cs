@@ -39,14 +39,8 @@ namespace Z0
                     return PrimalKind.float32;
                 case TypeCode.Double:
                     return PrimalKind.float64;
-                case TypeCode.Decimal:
-                    return PrimalKind.float128;                    
-
                 default:
-                    if (Type == type<System.Numerics.BigInteger>())
-                        return PrimalKind.bigint;
-                    else
-                        throw unsupported(Type);
+                    throw unsupported(Type);
             }
         }
 
@@ -54,9 +48,7 @@ namespace Z0
     }
 
     public enum PrimalKind : byte
-    {
-        none = 0,
-        
+    {        
         int8 = 1,
 
         uint8 = 2,
@@ -75,15 +67,8 @@ namespace Z0
                             
         float32 = 9,
 
-        float64 = 10,  
+        float64 = 10,          
 
-        float128 = 11,
-
-        decimal128 = 12,
-
-        bigint = 13,
-        
-        last = bigint      
     }
 
     public static class PrimalX

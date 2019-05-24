@@ -19,9 +19,7 @@ namespace Z0
     [StructLayout(LayoutKind.Sequential, Size = 16)]
     public readonly struct Vec128<T>
         where T : struct
-    {
-
-        
+    {        
         public static Vec128<T> operator +(Vec128<T> lhs, Vec128<T> rhs)
         {
             return ginx.add(lhs,rhs);

@@ -98,9 +98,9 @@ namespace Z0
                 =>  ref num(ref gmath.sub(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> mul<T>(ref num<T> lhs, num<T> rhs)
+        public static ref num<T> mul<T>(ref num<T> lhs, in num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.mul(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
+                =>  ref num(ref gmath.mul(ref Num.scalar(ref lhs), Num.scalar(ref As.asRef(in rhs))));
 
         [MethodImpl(Inline)]
         public static ref num<T> div<T>(ref num<T> lhs, num<T> rhs)

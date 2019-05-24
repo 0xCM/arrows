@@ -41,9 +41,9 @@ partial class zfunc
     /// </summary>
     /// <param name="msg">The message to emit</param>
     /// <param name="caller">The calling member</param>
-    public static void inform(object msg, [CallerMemberName] string caller = null)
+    public static void inform(object msg, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
         => terminal.WriteMessage(
-                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Info, caller));
+                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Info, caller, file, line));
 
     /// <summary>
     /// Renders the supplied value to the console with no carriage return
@@ -70,27 +70,24 @@ partial class zfunc
     /// </summary>
     /// <param name="msg">The message to emit</param>
     /// <param name="caller">The calling member</param>
-    public static void warn(object msg, [CallerMemberName] string caller = null)
-        => terminal.WriteMessage(
-                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Warning, caller));
+    public static void warn(object msg, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Warning, caller, file, line));
 
     /// <summary>
     /// Emits a highlighted information-level message
     /// </summary>
     /// <param name="msg">The message to emit</param>
     /// <param name="caller">The calling member</param>
-    public static void hilite(object msg, SeverityLevel? level = null,  [CallerMemberName] string caller = null)
-        => terminal.WriteMessage(
-                AppMsg.Define(msg?.ToString() ?? string.Empty, level ?? SeverityLevel.HiliteBL, caller));
+    public static void hilite(object msg, SeverityLevel? level = null,  [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, level ?? SeverityLevel.HiliteBL, caller, file, line));
 
     /// <summary>
     /// Emits a verbose-level message
     /// </summary>
     /// <param name="msg">The message to emit</param>
     /// <param name="caller">The calling member</param>
-    public static void babble(object msg, [CallerMemberName] string caller = null)
-        => terminal.WriteMessage(
-                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Babble, caller));
+    public static void babble(object msg, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Babble, caller, file, line));
 
     /// <summary>
     /// Emits a verbose-level message
@@ -98,18 +95,16 @@ partial class zfunc
     /// <param name="msg">The message to emit</param>
     /// <param name="host">The declaring type of the member</param>
     /// <param name="caller">The calling member</param>
-    public static void babble<T>(object msg, T host, [CallerMemberName] string caller = null)
-        => terminal.WriteMessage(
-                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Babble, $"{name<T>()}/{caller}"));
+    public static void babble<T>(object msg, T host, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Babble, $"{name<T>()}/{caller}", file, line));
 
     /// <summary>
     /// Emits an error-level message
     /// </summary>
     /// <param name="msg">The message to emit</param>
     /// <param name="caller">The calling member</param>
-    public static void error(object msg, [CallerMemberName] string caller = null)
-        => terminal.WriteMessage(
-                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, caller));
+    public static void error(object msg, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, caller, file, line));
 
     /// <summary>
     /// Emits an error-level message
@@ -117,7 +112,6 @@ partial class zfunc
     /// <param name="msg">The message to emit</param>
     /// <param name="host">The declaring type of the member</param>
     /// <param name="caller">The calling member</param>
-    public static void error<T>(object msg, T host, [CallerMemberName] string caller = null)
-        => terminal.WriteMessage(
-                AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, $"{name<T>()}/{caller}"));
+    public static void error<T>(object msg, T host, [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+        => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.Error, $"{name<T>()}/{caller}", file, line));
 }

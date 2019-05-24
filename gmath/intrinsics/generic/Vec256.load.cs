@@ -26,36 +26,77 @@ namespace Z0
             where T : struct            
                 => single(src.ToSpan256());
 
+
+        [MethodImpl(Inline)]
+        public static Vec256<T> single<T>(in ReadOnlySpan256<T> src, int blockIndex = 0)
+            where T : struct
+        {            
+            var kind = PrimalKinds.kind<T>();
+            ref var head = ref asRef(in src.Block(blockIndex));
+            if(kind.IsFloat())
+            {
+                if(kind == PrimalKind.float32)
+                    return generic<T>(load(ref float32(ref head)));
+                else if(kind == PrimalKind.float64)
+                    return generic<T>(load(ref float64(ref head)));
+            }       
+            else if(kind.IsSmallInt())
+            {
+                if(kind == PrimalKind.int8)
+                    return generic<T>(load(ref int8(ref head)));
+                else if(kind == PrimalKind.uint8)
+                    return generic<T>(load(ref uint8(ref head)));
+                else if(kind == PrimalKind.int16)
+                    return generic<T>(load(ref int16(ref head)));
+                else if(kind == PrimalKind.uint16)
+                    return generic<T>(load(ref uint16(ref head)));
+            }
+            else
+            {
+                if(kind == PrimalKind.int32)
+                    return generic<T>(load(ref int32(ref head)));
+                else if(kind == PrimalKind.uint32)
+                    return generic<T>(load(ref uint32(ref head)));
+                else if(kind == PrimalKind.int64)
+                    return generic<T>(load(ref int64(ref head)));
+                else if(kind == PrimalKind.uint64)
+                    return generic<T>(load(ref uint64(ref head)));
+            }
+                
+            throw unsupported(kind);
+        }
+
+
         [MethodImpl(Inline)]
         public static unsafe Vec256<T> single<T>(Span256<T> src, int blockIndex = 0)
             where T : struct
         {            
-
             var kind = PrimalKinds.kind<T>();
+            ref var head = ref src.Block(blockIndex);
             switch(kind)
             {
                 case PrimalKind.int8:
-                    return load(src.Block(blockIndex).As<sbyte>()).As<T>();                    
+                    return generic<T>(load(ref int8(ref head)));
                 case PrimalKind.uint8:
-                    return load(src.Block(blockIndex).As<byte>()).As<T>();                    
+                    return generic<T>(load(ref uint8(ref head))); 
                 case PrimalKind.int16:
-                    return load(src.Block(blockIndex).As<short>()).As<T>();                    
+                    return generic<T>(load(ref int16(ref head)));
                 case PrimalKind.uint16:
-                    return load(src.Block(blockIndex).As<ushort>()).As<T>();                    
+                    return generic<T>(load(ref uint16(ref head)));
                 case PrimalKind.int32:
-                    return load(src.Block(blockIndex).As<int>()).As<T>();                    
+                    return generic<T>(load(ref int32(ref head)));
                 case PrimalKind.uint32:
-                    return load(src.Block(blockIndex).As<uint>()).As<T>();                    
+                    return generic<T>(load(ref uint32(ref head)));
                 case PrimalKind.int64:
-                    return load(src.Block(blockIndex).As<long>()).As<T>();                    
+                    return generic<T>(load(ref int64(ref head)));
                 case PrimalKind.uint64:
-                    return load(src.Block(blockIndex).As<ulong>()).As<T>();                    
+                    return generic<T>(load(ref uint64(ref head)));
                 case PrimalKind.float32:
-                    return load(src.Block(blockIndex).As<float>()).As<T>();                    
+                    return generic<T>(load(ref float32(ref head)));
                 case PrimalKind.float64:                
-                    return load(src.Block(blockIndex).As<double>()).As<T>();                    
+                    return generic<T>(load(ref float64(ref head)));
                 default:
-                    throw new Exception($"Kind {kind} not supported");
+                    throw unsupported(kind);
             }
         }        
 

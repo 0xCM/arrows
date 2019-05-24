@@ -35,7 +35,6 @@ namespace Z0
         /// <remarks>Should always be 16 irrespective of the cell type</remarks>
         public static readonly int BlockSize = Unsafe.SizeOf<T>() * BlockLength; 
 
-
         /// <summary>
         /// The size, in bytes, of a constituent block cell
         /// </summary>
@@ -47,17 +46,12 @@ namespace Z0
             => src.data;
 
         [MethodImpl(Inline)]
-        public static implicit operator T[](Span256<T> src)
-            => src;
-
-        [MethodImpl(Inline)]
         public static implicit operator ReadOnlySpan<T> (Span256<T> src)
             => src.data;
 
         [MethodImpl(Inline)]
         public static implicit operator ReadOnlySpan256<T> (Span256<T> src)
             => Load(src);
-
 
         [MethodImpl(Inline)]
         public static bool operator == (Span256<T> lhs, Span256<T> rhs)
@@ -101,7 +95,6 @@ namespace Z0
             return new Span256<T>(src.Slice(offset));
         }
 
-
         [MethodImpl(Inline)]
         public static unsafe Span256<T> Load(void* src, int length)
         {
@@ -122,8 +115,7 @@ namespace Z0
         {
             data = span(src);
         }
-        
-        
+                
         [MethodImpl(Inline)]
         Span256(ReadOnlySpan<T> src)
         {
@@ -143,17 +135,9 @@ namespace Z0
             get => ref data[ix];
         }
 
-        //public ref T this[Index ix] 
-        //{
-        //    [MethodImpl(Inline)]
-        //    get => ref data[ix];
-        //}
-
-        //public Span<T> this[Range range]
-        //{
-        //    [MethodImpl(Inline)]
-        //    get => data[range];
-        //}
+        [MethodImpl(Inline)]
+        public ref T Block(int blockIndex)
+            => ref this[blockIndex*BlockLength];
 
         [MethodImpl(Inline)]
         public Span<T> Slice(int start)
@@ -164,9 +148,10 @@ namespace Z0
             => data.Slice(start,length);
 
         [MethodImpl(Inline)]
-        public Span256<T> Block(int blockIndex)
+        public Span256<T> SliceBlock(int blockIndex)
             => new Span256<T>(data.Slice(blockIndex * BlockLength, BlockLength));
         
+
         [MethodImpl(Inline)]
         public Span256<T> Blocks(int blockIndex, int blockCount)
             => Span256.load(Slice(blockIndex * BlockLength, blockCount * BlockLength));
@@ -217,6 +202,12 @@ namespace Z0
         {
             [MethodImpl(Inline)]
             get => data.Length / BlockLength; 
+        }
+
+        public int BlockWidth
+        {
+            [MethodImpl(Inline)]
+            get => BlockLength;
         }
 
         public bool IsEmpty

@@ -27,16 +27,16 @@ namespace Z0
         
         void CaptureSamples(int blocks, bool nonzero)
         {            
-            Int8Samples =  Random.Span128<sbyte>(blocks, null, nonzero);               
-            UInt8Samples = Random.Span128<byte>(blocks, null, nonzero);
-            Int16Samples = Random.Span128<short>(blocks, null, nonzero);            
-            UInt16Samples = Random.Span128<ushort>(blocks, null, nonzero);
-            Int32Samples = Random.Span128<int>(blocks, null, nonzero);            
-            UInt32Samples = Random.Span128<uint>(blocks, null, nonzero);
-            Int64Samples = Random.Span128<long>(blocks, null, nonzero);            
-            UInt64Samples = Random.Span128<ulong>(blocks, null, nonzero);
-            Float32Samples = Random.Span128<float>(blocks, null, nonzero);
-            Float64Samples = Random.Span128<double>(blocks, null, nonzero);            
+            Int8Samples =  Random.Span128<sbyte>(blocks, null, nonzero).ToArray();               
+            UInt8Samples = Random.Span128<byte>(blocks, null, nonzero).ToArray();
+            Int16Samples = Random.Span128<short>(blocks, null, nonzero).ToArray();            
+            UInt16Samples = Random.Span128<ushort>(blocks, null, nonzero).ToArray();
+            Int32Samples = Random.Span128<int>(blocks, null, nonzero).ToArray();            
+            UInt32Samples = Random.Span128<uint>(blocks, null, nonzero).ToArray();
+            Int64Samples = Random.Span128<long>(blocks, null, nonzero).ToArray();            
+            UInt64Samples = Random.Span128<ulong>(blocks, null, nonzero).ToArray();
+            Float32Samples = Random.Span128<float>(blocks, null, nonzero).ToArray();
+            Float64Samples = Random.Span128<double>(blocks, null, nonzero).ToArray();            
         }
 
         Span128Sampler(IRandomizer random, int blocks, bool nonzero)

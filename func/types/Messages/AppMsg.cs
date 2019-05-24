@@ -89,13 +89,25 @@ namespace Z0
         public static readonly AppMsg Empty
             = new AppMsg(string.Empty, SeverityLevel.Info, string.Empty, string.Empty, null);
 
-        AppMsg(string Content, SeverityLevel Level, string Caller, string FilePath, int? FileLine)
+        AppMsg(string Content, SeverityLevel Level, string Caller, string Path, int? FileLine)
         {
             this.Content = Content ?? string.Empty;
             this.Level = Level;
             this.Caller = Caller ?? string.Empty;
-            this.FilePath = FilePath ?? string.Empty;
+            this.CallerFile =  nonempty(Path) ? FilePath.Define(Path) : Z0.FilePath.Empty;
             this.FileLine = FileLine;
+        
+
+        }
+
+        AppMsg(string Content, SeverityLevel Level, string Caller, FilePath FilePath, int? FileLine)
+        {
+            this.Content = Content ?? string.Empty;
+            this.Level = Level;
+            this.Caller = Caller ?? string.Empty;
+            this.CallerFile = FilePath;
+            this.FileLine = FileLine;
+        
 
         }
 
@@ -105,38 +117,46 @@ namespace Z0
 
         public string Caller {get;}
 
-        public string FilePath {get;}
+        public FilePath CallerFile {get;}
 
         public int? FileLine {get;}
+
+        public bool SupressFullPath
+            => Level != SeverityLevel.Error;
 
         public bool IsEmpty
             => String.IsNullOrWhiteSpace(Content);
 
         public AppMsg WithLevel(SeverityLevel Level)
-            => new AppMsg(Content, Level, Caller, FilePath, FileLine);
+            => new AppMsg(Content, Level, Caller, CallerFile, FileLine);
 
         public override string ToString()
         {
             var source = string.Empty;
             
             if(nonempty(Caller))
-                source += $"{Caller}";
+                source += $"{Caller}(";
+
+            if(CallerFile.Nonempty)
+                source += SupressFullPath ? $"File: {CallerFile.FileName.Name}" : $"File: {CallerFile.Name}";                        
 
             if(FileLine != null)
-                source += $" Line {FileLine}";
+                source += $", Line: {FileLine}";
 
-            if(nonempty(FilePath))
-                source += $" {FilePath} ";
+            if(nonempty(Caller))
+                source += ")";
 
-            return nonempty(source) ? $"{source.Trim()}: {Content}" : Content;
+            return nonempty(source) 
+                ? $"{source.Trim()} | {Content}" 
+                : Content;
         }
 
         public AppMsg WithPrependedContent(string Content)    
-            => new AppMsg($"{Content}{this.Content}", Level, Caller, FilePath, FileLine);
+            => new AppMsg($"{Content}{this.Content}", Level, Caller, CallerFile, FileLine);
 
 
         public AppMsg WithAppendedContent(string Content)    
-            => new AppMsg($"{this.Content}{Content}", Level, Caller, FilePath, FileLine);
+            => new AppMsg($"{this.Content}{Content}", Level, Caller, CallerFile, FileLine);
 
     }
 

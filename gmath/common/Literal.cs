@@ -38,6 +38,7 @@ namespace Z0
 
         public readonly T Wrapped;        
     }
+    
     public abstract class Literal<T,L>
         where T : Literal<T,L>
     {

@@ -45,9 +45,6 @@ namespace Z0
         public static implicit operator Span<T>(Span128<T> src)
             => src.data;
 
-        [MethodImpl(Inline)]
-        public static implicit operator T[](Span128<T> src)
-            => src;
 
         [MethodImpl(Inline)]
         public static implicit operator ReadOnlySpan<T> (Span128<T> src)
@@ -135,21 +132,24 @@ namespace Z0
             get => ref data[ix];
         }
 
-    
         [MethodImpl(Inline)]
-        public Span<T> Slice(int start)
-            => data.Slice(start);
+        public ref T Block(int blockIndex)
+            => ref this[blockIndex*BlockLength];
 
         [MethodImpl(Inline)]
-        public Span<T> Slice(int start, int length)
-            => data.Slice(start,length);
+        public Span<T> Slice(int offset)
+            => data.Slice(offset);
 
         [MethodImpl(Inline)]
-        public Span128<T> Block(int blockIndex)
+        public Span<T> Slice(int offset, int length)
+            => data.Slice(offset,length);
+
+        [MethodImpl(Inline)]
+        public Span128<T> SliceBlock(int blockIndex)
             => new Span128<T>(data.Slice(blockIndex * BlockLength, BlockLength));
         
         [MethodImpl(Inline)]
-        public Span128<T> Blocks(int blockIndex, int blockCount)
+        public Span128<T> SliceBlocks(int blockIndex, int blockCount)
             => new Span128<T>(Slice(blockIndex * BlockLength, blockCount * BlockLength ));
             
         [MethodImpl(Inline)]
@@ -188,6 +188,11 @@ namespace Z0
         public Span128<S> As<S>()                
             where S : struct
                 => Span128.load(MemoryMarshal.Cast<T,S>(data));                    
+
+        [MethodImpl(Inline)]
+        public Vec128<T> Vector(int blockIndex)
+            => Vec128.single<T>(this, blockIndex);
+
 
         public int Length 
         {
