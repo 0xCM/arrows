@@ -11,7 +11,6 @@ namespace Z0
     using System.Runtime.CompilerServices;    
 
     
-    //using static mfunc;
     using static zfunc;
 
     public static class Converter

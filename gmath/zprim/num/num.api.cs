@@ -16,6 +16,30 @@ namespace Z0
 
     public static class Num
     {
+
+        /// <summary>
+        /// Constructs a contiguous range of integers inclusively between specified bounds
+        /// If the first value is greater than the last, the range will be constructed
+        /// in descending order.
+        /// </summary>
+        /// <param name="first">The first integer to yield</param>
+        /// <param name="last">The last integer to yield</param>
+        /// <typeparam name="T">The underlying integer type</typeparam>
+        public static IEnumerable<num<T>> range<T>(T from, T to)
+            where T : struct
+        {
+            var first = num(from);
+            var last = num(to);
+            var current = first;
+            if(first < last)
+                while(current<= last)
+                    yield return current++;
+            else
+                while(current >= last)
+                    yield return current--;
+        }
+
+
         [MethodImpl(Inline)]
         public static num<T>[] alloc<T>(int len)
             where T : struct
@@ -90,21 +114,21 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref num<T> add<T>(ref num<T> lhs, num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.add(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
+                =>  ref Num.single(ref gmath.add(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
         public static ref num<T> sub<T>(ref num<T> lhs, num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.sub(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
+                =>  ref Num.single(ref gmath.sub(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
         public static ref num<T> mul<T>(ref num<T> lhs, in num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.mul(ref Num.scalar(ref lhs), Num.scalar(ref As.asRef(in rhs))));
+                =>  ref Num.single(ref gmath.mul(ref Num.scalar(ref lhs), Num.scalar(ref As.asRef(in rhs))));
 
         [MethodImpl(Inline)]
         public static ref num<T> div<T>(ref num<T> lhs, num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.div(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
+                =>  ref Num.single(ref gmath.div(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
     }
 }

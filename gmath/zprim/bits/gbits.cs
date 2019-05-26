@@ -14,7 +14,6 @@ namespace Z0
     using Z0;
  
     using static zfunc;
-    using static mfunc;
     using static As;
 
     public static class gbits

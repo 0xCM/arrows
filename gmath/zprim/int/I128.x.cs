@@ -9,8 +9,6 @@ namespace Z0
     using System.Runtime.InteropServices;
 
     using static zfunc;
-    using static mfunc;
-
 
     public static class I128X
     {

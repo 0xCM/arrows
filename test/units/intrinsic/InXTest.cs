@@ -15,7 +15,6 @@ namespace Z0.Test
 
     
     using static zfunc;
-    using static mfunc;
 
     public abstract class InXTest<S,T> : UnitTest<S>
         where S : InXTest<S,T>

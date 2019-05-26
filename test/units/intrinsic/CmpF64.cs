@@ -15,7 +15,6 @@ namespace Z0.Test
     using System.Runtime.Intrinsics.X86;
     
     using static zfunc;
-    using static mfunc;
 
     public class CmpF64 : UnitTest<CmpF64>
     {
@@ -42,20 +41,6 @@ namespace Z0.Test
 
         }
             
-
-        // public void ClearNaN()
-        // {
-        //     var src = Vec128.define(3.4d, double.NaN);
-        //     var result = mfunc.clearNaN(src);
-        //     var expect = Vec128.define(3.4d, -1d);
-        //     Claim.eq(expect,result);
-
-        //     src = Vec128.define(double.NaN,3.4d);
-        //     result = mfunc.clearNaN(src);
-        //     expect = Vec128.define(-1d,3.4d);
-        //     Claim.eq(expect,result);
-        // }
-
         public void CmpEq(bool ordered = true, bool signal = false)
             => Verify(FloatComparisonMode.OrderedEqualNonSignaling);
 

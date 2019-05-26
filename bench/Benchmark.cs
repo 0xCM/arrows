@@ -26,39 +26,23 @@ namespace Z0
         }
 
 
-
-        public static IEnumerable<IMetrics> Run(IEnumerable<MetricKind> metrics, IEnumerable<OpKind> ops, 
-            IEnumerable<PrimalKind> primitives, MetricConfig config = null, IRandomizer random = null)
-        {
-            var query = from m in metrics
-                        from o in ops
-                        from p in primitives
-                        select m.Run(o,p, config, random);
-            return query;
-        }
-
         void MeasurePrimalGeneric()
         {
             var config = MetricConfig.Define(runs: Pow2.T04, cycles: Pow2.T14, samples: Pow2.T13, dops: true);
-            var comparison =  config.Compare(OpType.Define(OpKind.Add, PrimalKind.float64), true);
+            var comparison =  config.RunComparison(OpType.Define(OpKind.Add, PrimalKind.float64), true);
             print(comparison.FormatMessage());
-
         }
 
-        IReadOnlyList<MetricComparisonRecord> MeasureInX128(IEnumerable<OpType> ops)
+        static IReadOnlyList<MetricComparisonRecord> MeasureInX128(IEnumerable<OpType> ops)
         {
             var config = InXMetricConfig128.Define(runs: Pow2.T03, cycles: Pow2.T14, blocks: Pow2.T10);
-            var comparisons = new List<MetricComparisonRecord>();            
-            comparisons.AddRange(config.CollectComparisons(ops, true));
-            return comparisons;
+            return config.RunComparisons(ops, true);
         }
 
-        IReadOnlyList<MetricComparisonRecord> MeasureInX256(IEnumerable<OpType> ops)
+        static IReadOnlyList<MetricComparisonRecord> MeasureInX256(IEnumerable<OpType> ops)
         {
             var config = InXMetricConfig256.Define(runs: Pow2.T03, cycles: Pow2.T14, blocks: Pow2.T12);
-            var comparisons = new List<MetricComparisonRecord>();            
-            comparisons.AddRange(config.CollectComparisons(ops, true));
-            return comparisons;
+            return config.RunComparisons(ops, true);
         }
 
         void MeasureAtomicInX()
@@ -139,10 +123,7 @@ namespace Z0
                 for(var j = 0; j< dst.Length; j++)
                     dst[j] = math.add(lhs[j], rhs[j]);                
                 print($"Direct Atomic".PadRight(16) + $"{snapshot(sw5).Ms} ms");
-
-            }
-
-            
+            }            
         }
 
         static void Main(params string[] args)

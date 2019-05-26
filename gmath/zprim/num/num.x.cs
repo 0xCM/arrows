@@ -24,77 +24,77 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref num<T> Abs<T>(this ref num<T> src)
             where T : struct
-                =>  ref num(ref gmath.abs(ref Num.scalar(ref src)));
+                =>  ref Num.single(ref gmath.abs(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Sqrt<T>(this ref num<T> src)
             where T : struct 
-                =>  ref num(ref gmath.sqrt(ref Num.scalar(ref src)));
+                =>  ref Num.single(ref gmath.sqrt(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Add<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.add(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
+                =>  ref Num.single(ref gmath.add(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Sub<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.sub(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
+                =>  ref Num.single(ref gmath.sub(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Mul<T>(this ref num<T> lhs, in num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.mul(ref Num.scalar(ref lhs), Num.scalar(ref As.asRef(in rhs))));
+                =>  ref Num.single(ref gmath.mul(ref Num.scalar(ref lhs), Num.scalar(ref As.asRef(in rhs))));
 
         [MethodImpl(Inline)]
         public static ref num<T> Div<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.div(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
+                =>  ref Num.single(ref gmath.div(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Mod<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.mod(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
+                =>  ref Num.single(ref gmath.mod(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
         public static ref num<T> And<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.and(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
+                =>  ref Num.single(ref gmath.and(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Or<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.or(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
+                =>  ref Num.single(ref gmath.or(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
         public static ref num<T> XOr<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
-                =>  ref num(ref gmath.xor(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
+                =>  ref Num.single(ref gmath.xor(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Flip<T>(this ref num<T> src)
             where T : struct
-                =>  ref num(ref gmath.flip(ref Num.scalar(ref src)));
+                =>  ref Num.single(ref gmath.flip(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Inc<T>(this ref num<T> src)
             where T : struct
-                =>  ref num(ref gmath.inc(ref Num.scalar(ref src)));
+                =>  ref Num.single(ref gmath.inc(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Dec<T>(this ref num<T> src)
             where T : struct
-                =>  ref num(ref gmath.dec(ref Num.scalar(ref src)));
+                =>  ref Num.single(ref gmath.dec(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Square<T>(this ref num<T> src)
             where T : struct
-                =>  ref num(ref gmath.square(ref Num.scalar(ref src)));
+                =>  ref Num.single(ref gmath.square(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Negate<T>(this ref num<T> src)
             where T : struct
-                =>  ref num(ref gmath.negate(ref Num.scalar(ref src)));
+                =>  ref Num.single(ref gmath.negate(ref Num.scalar(ref src)));
  
         [MethodImpl(Inline)]
         public static PrimalKind PrimalKind<T>(this num<T> src)

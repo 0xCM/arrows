@@ -10,7 +10,6 @@ namespace Z0.Test
     using System.Runtime.CompilerServices;
     using System.IO;
     
-    using static mfunc;
     using static zfunc;
 
 

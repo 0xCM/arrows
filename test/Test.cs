@@ -13,13 +13,10 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
 
     using Z0.Test;
-
     
     using static zfunc;    
-    using static mfunc;    
     using static math;
     using static ansi;
-
 
     partial class TestMain : Context
     {

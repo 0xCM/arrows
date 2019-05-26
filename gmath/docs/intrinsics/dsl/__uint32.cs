@@ -8,9 +8,6 @@ namespace Z0.BitSpecs
     using System.Runtime.CompilerServices;
 
     using static zfunc;
-    using static mfunc;
-
-
 
     public ref struct __uint32
     {

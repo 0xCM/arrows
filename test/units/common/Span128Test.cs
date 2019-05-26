@@ -11,7 +11,6 @@ namespace Z0.Test
     using System.IO;
 
     
-    using static mfunc;
     using static zfunc;
 
 

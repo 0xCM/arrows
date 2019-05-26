@@ -10,7 +10,6 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Runtime.Serialization;
         
-    using static mfunc;
     using static zfunc;
 
     using static ErrorMessages;

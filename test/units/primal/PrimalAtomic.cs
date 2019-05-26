@@ -13,12 +13,19 @@ namespace Z0.Test
     using System.Runtime.CompilerServices;
 
     using static zfunc;
-    using static mfunc;
 
     using D = PrimalDelegates;
 
     public class PrimalAtomicTest : UnitTest<PrimalAtomicTest>
     {
+
+        /// <summary>
+        /// Describes atomal primal operations
+        /// </summary>
+        public static OpId<T> PrimalGeneric<T>(OpKind kind, NumericKind numKind = NumericKind.Native)
+            where T : struct
+                => kind.OpId<T>(numKind, generic: true);
+
         public PrimalAtomicTest()
         {
             this.Verbose = false;
@@ -274,7 +281,7 @@ namespace Z0.Test
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();            
-            var opid = opKind.PrimalGeneric<T>();           
+            var opid = PrimalGeneric<T>(opKind);           
             var src = Sample<T>(nonzero);
             var timing = stopwatch();                        
 
@@ -288,7 +295,7 @@ namespace Z0.Test
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();            
-            var opid = opKind.PrimalGeneric<T>();           
+            var opid = PrimalGeneric<T>(opKind);           
             var lhs = Sample<T>();
             var rhs = Sample<T>(nonzero);
             var len = length(lhs,rhs);
@@ -304,7 +311,7 @@ namespace Z0.Test
             where T : struct
         {
             var kind = PrimalKinds.kind<T>(); 
-            var opid = opKind.PrimalGeneric<T>();                       
+            var opid = PrimalGeneric<T>(opKind);           
             var lhs = Sample<T>();
             var rhs = Sample<T>(nonzero);
             var len = length(lhs,rhs);

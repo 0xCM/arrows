@@ -13,7 +13,6 @@ namespace Z0.Test
 
     
     using static zfunc;
-    using static mfunc;
 
     using static BinaryDigit;
     using static Bit;

@@ -13,7 +13,6 @@ namespace Z0.Test
 
     using static Nats;
     using static nfunc;
-    using static mfunc;
 
     [DisplayName("natural")]
     public class NatProofTest : UnitTest<NatProofTest>

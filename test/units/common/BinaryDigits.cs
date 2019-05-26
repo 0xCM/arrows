@@ -12,7 +12,6 @@ namespace Z0.Test
     using System.Runtime.CompilerServices;
     
     using static zfunc;
-    using static mfunc;
         
     public class BinaryDigitTest : UnitTest<BinaryDigitTest>
     {

@@ -6,11 +6,8 @@ namespace Z0.BitSpecs
 {
     using System;
 
-
     using static zfunc;
-    using static mfunc;
     using static Nats;
-
 
     public static class PCLMULQDQ
     {

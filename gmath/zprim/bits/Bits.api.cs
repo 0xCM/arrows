@@ -14,7 +14,6 @@ namespace Z0
     using Z0;
  
     using static zfunc;
-    using static mfunc;
     
     public static partial class Bits
     {                
