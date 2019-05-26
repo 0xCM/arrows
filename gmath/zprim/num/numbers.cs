@@ -82,7 +82,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> operator + (numbers<T> lhs, in numbers<T> rhs) 
-            => fused.add(
+            => gmath.add(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -90,7 +90,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> operator - (numbers<T> lhs, in numbers<T> rhs) 
-            => fused.sub(
+            => gmath.sub(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -98,7 +98,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> operator * (numbers<T> lhs, in numbers<T> rhs) 
-            => fused.mul(
+            => gmath.mul(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -106,7 +106,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> operator / (numbers<T> lhs, in numbers<T> rhs) 
-            => fused.div(
+            => gmath.div(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -114,7 +114,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> operator % (numbers<T> lhs, in numbers<T> rhs) 
-            => fused.mod(
+            => gmath.mod(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -122,7 +122,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> operator & (numbers<T> lhs, in numbers<T> rhs) 
-            => fused.and(
+            => gmath.and(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -130,7 +130,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> operator | (numbers<T> lhs, in numbers<T> rhs) 
-            => fused.or(
+            => gmath.or(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -138,7 +138,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> operator ^ (numbers<T> lhs, in numbers<T> rhs) 
-            => fused.xor(
+            => gmath.xor(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -146,51 +146,51 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> operator - (numbers<T> src) 
-            => fused.negate(
+            => gmath.negate(
                 src.data.ToReadOnlySpan(), 
                 src.data.ToSpan()
                     ).ToSpan256();
 
         [MethodImpl(Inline)]
         public static numbers<T> operator ++ (numbers<T> src) 
-            => fused.inc(
+            => gmath.inc(
                 src.data.ToReadOnlySpan(), 
                 src.data.ToSpan()
                     ).ToSpan256();
 
         [MethodImpl(Inline)]
         public static numbers<T> operator -- (numbers<T> src) 
-            => fused.dec(
+            => gmath.dec(
                 src.data.ToReadOnlySpan(), 
                 src.data.ToSpan()
                     ).ToSpan256();
 
         [MethodImpl(Inline)]
         public static numbers<T> operator ~ (numbers<T> src) 
-            => fused.flip(
+            => gmath.flip(
                 src.data.ToReadOnlySpan(), 
                 src.data.ToSpan()
                     ).ToSpan256();
 
         [MethodImpl(Inline)]
         public static Span<bool> operator < (in numbers<T> lhs, in numbers<T> rhs) 
-            => fused.lt<T>(lhs.data,rhs.data);            
+            => gmath.lt<T>(lhs.data,rhs.data);            
 
         [MethodImpl(Inline)]
         public static Span<bool> operator <= (in numbers<T> lhs, in numbers<T> rhs) 
-            => fused.lteq<T>(lhs.data,rhs.data);            
+            => gmath.lteq<T>(lhs.data,rhs.data);            
 
         [MethodImpl(Inline)]
         public static Span<bool> operator > (in numbers<T> lhs, in numbers<T> rhs) 
-            => fused.gt<T>(lhs.data,rhs.data);
+            => gmath.gt<T>(lhs.data,rhs.data);
 
         [MethodImpl(Inline)]
         public static Span<bool> operator >= (in numbers<T> lhs, in numbers<T> rhs) 
-            => fused.gteq<T>(lhs.data,rhs.data);
+            => gmath.gteq<T>(lhs.data,rhs.data);
 
         [MethodImpl(Inline)]
         public static numbers<T> add(ref numbers<T> lhs, in numbers<T> rhs)
-            => fused.add(
+            => gmath.add(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -198,7 +198,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> sub(ref numbers<T> lhs, in numbers<T> rhs)
-            => fused.sub(
+            => gmath.sub(
                 lhs.data.ToReadOnlySpan(),
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -206,7 +206,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> mul(ref numbers<T> lhs, in numbers<T> rhs)
-            => fused.mul(
+            => gmath.mul(
                 lhs.data.ToReadOnlySpan(),
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -214,7 +214,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> div(ref numbers<T> lhs, in numbers<T> rhs)
-            => fused.div(
+            => gmath.div(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -222,7 +222,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> mod(ref numbers<T> lhs, in numbers<T> rhs)
-            => fused.mod(
+            => gmath.mod(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -230,7 +230,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static numbers<T> and(ref numbers<T> lhs, in numbers<T> rhs)
-            => fused.and(
+            => gmath.and(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -238,7 +238,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static numbers<T> or(ref numbers<T> lhs, in numbers<T> rhs)
-            => fused.or(
+            => gmath.or(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -246,7 +246,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static numbers<T> xor(ref numbers<T> lhs, in numbers<T> rhs)
-            => fused.xor(
+            => gmath.xor(
                 lhs.data.ToReadOnlySpan(), 
                 rhs.data.ToReadOnlySpan(), 
                 lhs.data.ToSpan()
@@ -254,58 +254,58 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static numbers<T> negate(ref numbers<T> src)
-             => fused.negate(
+             => gmath.negate(
                 src.data.ToReadOnlySpan(), 
                 src.data.ToSpan()
                     ).ToSpan256();
 
         [MethodImpl(Inline)]
         public static numbers<T> inc(numbers<T> src)
-            => fused.inc(
+            => gmath.inc(
                 src.data.ToReadOnlySpan(), 
                 src.data.ToSpan()
                     ).ToSpan256();
 
         [MethodImpl(Inline)]
         public static numbers<T> dec(numbers<T> src)
-            => fused.dec(
+            => gmath.dec(
                 src.data.ToReadOnlySpan(), 
                 src.data.ToSpan()
                     ).ToSpan256();
 
         [MethodImpl(Inline)]
         public static numbers<T> flip(numbers<T> src)
-            => fused.flip(
+            => gmath.flip(
                 src.data.ToReadOnlySpan(), 
                 src.data.ToSpan()
                     ).ToSpan256();
 
         [MethodImpl(Inline)]
         public static numbers<T> abs(numbers<T> src)
-            => fused.abs(
+            => gmath.abs(
                 src.data.ToReadOnlySpan(), 
                 src.data.ToSpan()
                     ).ToSpan256();            
 
         [MethodImpl(Inline)]
         static Span<bool> eq(in numbers<T> lhs, in numbers<T> rhs)
-            => fused.eq<T>(lhs.data, rhs.data);
+            => gmath.eq<T>(lhs.data, rhs.data);
 
         [MethodImpl(Inline)]
         static Span<bool> gt(in numbers<T> lhs, in numbers<T> rhs)
-            => fused.gt<T>(lhs.data,rhs.data);
+            => gmath.gt<T>(lhs.data,rhs.data);
 
         [MethodImpl(Inline)]
         static Span<bool> gteq(in numbers<T> lhs, in numbers<T> rhs)
-            => fused.gteq<T>(lhs.data,rhs.data);
+            => gmath.gteq<T>(lhs.data,rhs.data);
 
         [MethodImpl(Inline)]
         public static Span<bool> lt(in numbers<T> lhs, in numbers<T> rhs)
-            => fused.lt<T>(lhs.data,rhs.data);            
+            => gmath.lt<T>(lhs.data,rhs.data);            
 
         [MethodImpl(Inline)]
         public static Span<bool> lteq(in numbers<T> lhs, in numbers<T> rhs)
-            => fused.lteq<T>(lhs.data,rhs.data);
+            => gmath.lteq<T>(lhs.data,rhs.data);
 
         public override bool Equals(object rhs)
             => throw new NotSupportedException();

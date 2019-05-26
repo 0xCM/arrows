@@ -10,7 +10,6 @@ namespace Z0
     using System.Numerics;
 
     using static zfunc;    
-    using static mfunc;
     using static Bits;
 
     public ref struct BitVectorU128

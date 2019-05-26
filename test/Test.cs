@@ -21,10 +21,10 @@ namespace Z0
     using static ansi;
 
 
-    partial class Benchmark : Context
+    partial class TestMain : Context
     {
 
-        public Benchmark()
+        public TestMain()
             :base(Z0.Randomizer.define(RandSeeds.BenchSeed))
         {
             
@@ -51,9 +51,8 @@ namespace Z0
 
         static void Main(params string[] args)
         {            
-            var app = new Benchmark();
+            var app = new TestMain();
             gmath.one<byte>();
-            var x = gmath.add(3,4);
             try
             {     
                 app.RunTests();

@@ -11,8 +11,7 @@ namespace Z0
     using System.IO;
 
     using static zfunc;
-    using static mfunc;
-
+    
     public class Span256Sampler : Sampler<Span256Sampler>
     {
         /// <summary>

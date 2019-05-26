@@ -13,10 +13,8 @@ namespace Z0
     
     using static zfunc;    
     
-
     partial class math
     {
-        #region in
 
         [MethodImpl(Inline)]
         public static sbyte flip(sbyte src)
@@ -50,9 +48,6 @@ namespace Z0
         public static ulong flip(ulong src)
             => ~ src;
 
-        #endregion
-
-        #region out
 
         [MethodImpl(Inline)]
         public static ref sbyte flip(sbyte src, out sbyte dst)
@@ -110,10 +105,7 @@ namespace Z0
             return ref dst;
         }
 
-        #endregion
-
-        #region io
-
+    
 
         [MethodImpl(Inline)]
         public static ref sbyte flip(ref sbyte src)
@@ -170,10 +162,5 @@ namespace Z0
             src = ~src;
             return ref src;
         }
- 
-        #endregion
-
-
     }
-
 }

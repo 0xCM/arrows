@@ -10,10 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.IO;
 
-    
-
     using static zfunc;
-    using static mfunc;
 
     public class Span128Sampler : Sampler<Span128Sampler> 
     {

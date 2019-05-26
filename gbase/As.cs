@@ -27,7 +27,6 @@ namespace Z0
             where T : struct
                 => MemoryMarshal.Cast<S,T>(src);
 
-
         /// <summary>
         /// Reimagines a span of one element type as a span of another element type
         /// </summary>

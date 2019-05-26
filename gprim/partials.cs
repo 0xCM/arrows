@@ -18,7 +18,7 @@ namespace Z0
     }
 
 
-    public static partial class mathx
+    public static partial class MathX
     {
 
     }

@@ -11,15 +11,10 @@ namespace Z0
     using System.IO;
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
-
-    using Z0.Test;
-
     
     using static zfunc;    
-    using static mfunc;    
     using static math;
     using static ansi;
-
 
     partial class Benchmark : Context
     {
@@ -30,11 +25,6 @@ namespace Z0
             
         }
 
-
-        void RunTests()
-        {
-            TestRunner.RunTests(string.Empty, false);
-        }
 
 
         public static IEnumerable<IMetrics> Run(IEnumerable<MetricKind> metrics, IEnumerable<OpKind> ops, 
@@ -111,17 +101,51 @@ namespace Z0
             return Unsafe.ReadUnaligned<long>(ref value[startIndex]);
         }
 
+        public void RunSimpleBench()
+        {
+            var cycles = Pow2.T13;
+            var lhs = Randomizer.Array<int>(Pow2.T15);
+            var rhs = Randomizer.Array<int>(Pow2.T15);
+            var dst = span<int>(Pow2.T15);
+
+            while(true)
+            {
+                var sw3 = stopwatch();
+                for(var i = 0; i< cycles; i++)
+                    gmath.add(lhs, rhs, dst);
+                
+                print($"Generic Fused {snapshot(sw3)}");
+            
+                var sw1 = stopwatch();
+                for(var i = 0; i< cycles; i++)
+                for(var j = 0; j< dst.Length; j++)
+                    dst[i] = lhs[i] + rhs[i];
+                print($"Direct {snapshot(sw1)}");
+
+                var sw2 = stopwatch();
+                for(var i = 0; i< cycles; i++)
+                for(var j = 0; j< dst.Length; j++)
+                    dst[i] = gmath.add(lhs[i], rhs[j]);                
+                print($"Generic Atomic {snapshot(sw2)}");
+            
+            
+            
+            }
+
+            
+        }
 
         static void Main(params string[] args)
         {            
             var app = new Benchmark();
             try
-            {     
+            {
                 gmath.one<byte>();
                 //app.RunTests();
-                app.MeasurePrimalGeneric();
+                //app.MeasurePrimalGeneric();
                 //app.MeasureIntrinsics();
                 //app.MeasureAtomicInX();
+                app.RunSimpleBench();
                 
                 
             }

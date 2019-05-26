@@ -16,7 +16,7 @@ namespace Z0
     
 
 
-    partial class mathx
+    partial class MathX
     {
 
         /// <summary>

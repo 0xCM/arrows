@@ -14,42 +14,42 @@ namespace Z0
     using static zfunc;    
     using static As;
 
-    partial class bridge
+    partial class gmath
     {
         [MethodImpl(Inline)]
-        public static bool eqI8<T>(T lhs, T rhs)
+        static bool eqI8<T>(T lhs, T rhs)
             => int8(lhs) == int8(rhs);
 
         [MethodImpl(Inline)]
-        public static bool eqU8<T>(T lhs, T rhs)
+        static bool eqU8<T>(T lhs, T rhs)
             => uint8(lhs) == uint8(rhs);
 
         [MethodImpl(Inline)]
-        public static bool eqI16<T>(T lhs, T rhs)
+        static bool eqI16<T>(T lhs, T rhs)
             => int16(lhs) == int16(rhs);
 
         [MethodImpl(Inline)]
-        public static bool eqU16<T>(T lhs, T rhs)
+        static bool eqU16<T>(T lhs, T rhs)
             => uint16(lhs) == uint16(rhs);
 
         [MethodImpl(Inline)]
-        public static bool eqI32<T>(T lhs, T rhs)
+        static bool eqI32<T>(T lhs, T rhs)
             => int32(lhs) == int32(rhs);
         
         [MethodImpl(Inline)]
-        public static bool eqU32<T>(T lhs, T rhs)
+        static bool eqU32<T>(T lhs, T rhs)
             => uint32(lhs) == uint32(rhs);
 
         [MethodImpl(Inline)]
-        public static bool eqI64<T>(T lhs, T rhs)
+        static bool eqI64<T>(T lhs, T rhs)
             => int64(lhs) == int64(rhs);
 
         [MethodImpl(Inline)]
-        public static bool eqU64<T>(T lhs, T rhs)
+        static bool eqU64<T>(T lhs, T rhs)
             => uint64(lhs) == uint64(rhs);
 
         [MethodImpl(Inline)]
-        public static bool eqF32<T>(T lhs, T rhs)
+        static bool eqF32<T>(T lhs, T rhs)
         {
             var x = float32(lhs);
             var y = float32(rhs);
@@ -63,7 +63,7 @@ namespace Z0
         }
             
         [MethodImpl(Inline)]
-        public static bool eqF64<T>(T lhs, T rhs)
+        static bool eqF64<T>(T lhs, T rhs)
         {
             var x = float64(lhs);
             var y = float64(rhs);

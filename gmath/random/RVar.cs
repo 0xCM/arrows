@@ -10,7 +10,6 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static zfunc;    
-    using static mfunc;
 
     public static class RVar
     {

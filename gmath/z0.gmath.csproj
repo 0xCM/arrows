@@ -2,7 +2,7 @@
 
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <Deterministic>true</Deterministic>
@@ -10,8 +10,7 @@
     <NullableContextOptions>disable</NullableContextOptions>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
-    <Prefer32Bit>false</Prefer32Bit>
-    <!-- <DefineConstants>DEBUG;TRACE</DefineConstants> -->
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
 

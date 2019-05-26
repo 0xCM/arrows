@@ -11,7 +11,6 @@ namespace Z0
     using System.IO;
     
     using static zfunc;
-    using static mfunc;
 
     public static class PrimalGBench
     {
@@ -111,7 +110,7 @@ namespace Z0
                     metrics = Sqrt<T>(src, config);   
                     break;
                 default: 
-                    throw unsupported<T>(op, PrimalKinds.kind<T>());
+                    throw unsupported(op, PrimalKinds.kind<T>());
             }
             print(metrics.Describe());
 
@@ -164,7 +163,7 @@ namespace Z0
                     metrics = GtEq<T>(lhs, rhs, config);   
                     break;                
                 default: 
-                    throw unsupported<T>(op, PrimalKinds.kind<T>());
+                    throw unsupported(op, PrimalKinds.kind<T>());
             }            
 
             print(metrics.Describe());

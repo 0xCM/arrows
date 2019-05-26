@@ -11,15 +11,12 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
     using System.Runtime.Intrinsics.X86;
-    
-    
-    using static bridge;
-    
+        
     using static zfunc;
 
     using static As;
 
-    public static partial class gmath
+    partial class gmath
     {
         public static void init()
         {
@@ -286,14 +283,6 @@ namespace Z0
             throw unsupported(kind);
         }
 
-        public static Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct
-        {
-            var len = length(lhs,rhs);
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.add(lhs[sample], rhs[sample]);
-            return  dst;                        
-        }
                         
 
         [MethodImpl(Inline)]
@@ -370,6 +359,37 @@ namespace Z0
 
             throw unsupported(kind);
         }
+
+        [MethodImpl(Inline)]
+        public static Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.add(int8(lhs), int8(rhs), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.add(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.add(int16(lhs), int16(rhs), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.add(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.add(int32(lhs), int32(rhs), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.add(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.add(int64(lhs), int64(rhs), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.add(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(kind == PrimalKind.float32)
+                math.add(float32(lhs), float32(rhs), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.add(float64(lhs), float64(rhs), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
 
         [MethodImpl(Inline)]
         public static ref T sub<T>(in T lhs, in T rhs, out T dst)
@@ -505,6 +525,36 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T :  struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.sub(int8(lhs), int8(rhs), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.sub(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.sub(int16(lhs), int16(rhs), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.sub(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.sub(int32(lhs), int32(rhs), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.sub(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.sub(int64(lhs), int64(rhs), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.sub(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(kind == PrimalKind.float32)
+                math.sub(float32(lhs), float32(rhs), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.sub(float64(lhs), float64(rhs), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
         public static ref T mul<T>(ref T lhs, in T rhs)
             where T : struct
         {
@@ -593,6 +643,37 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.mul(int8(lhs), int8(rhs), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.mul(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.mul(int16(lhs), int16(rhs), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.mul(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.mul(int32(lhs), int32(rhs), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.mul(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.mul(int64(lhs), int64(rhs), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.mul(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(kind == PrimalKind.float32)
+                math.mul(float32(lhs), float32(rhs), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.mul(float64(lhs), float64(rhs), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+
+        [MethodImpl(Inline)]
         public static ref T div<T>(ref T lhs, T rhs)
             where T : struct
         {
@@ -670,6 +751,36 @@ namespace Z0
                 return divF64(lhs,rhs);
 
             throw unsupported(kind);
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<T> div<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.div(int8(lhs), int8(rhs), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.div(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.div(int16(lhs), int16(rhs), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.div(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.div(int32(lhs), int32(rhs), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.div(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.div(int64(lhs), int64(rhs), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.div(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(kind == PrimalKind.float32)
+                math.div(float32(lhs), float32(rhs), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.div(float64(lhs), float64(rhs), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
         }
 
         [MethodImpl(Inline)]
@@ -789,6 +900,35 @@ namespace Z0
             throw unsupported(kind);
         }           
 
+        [MethodImpl(NotInline)]
+        public static Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.mod(int8(lhs), int8(rhs), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.mod(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.mod(int16(lhs), int16(rhs), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.mod(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.mod(int32(lhs), int32(rhs), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.mod(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.mod(int64(lhs), int64(rhs), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.mod(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(kind == PrimalKind.float32)
+                math.mod(float32(lhs), float32(rhs), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.mod(float64(lhs), float64(rhs), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         public static ref T and<T>(ref T lhs, T rhs)
@@ -856,6 +996,33 @@ namespace Z0
 
             throw unsupported(kind);
         }           
+
+        [MethodImpl(Inline)]
+        public static Span<T> and<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.and(int8(lhs), int8(rhs), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.and(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.and(int16(lhs), int16(rhs), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.and(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.and(int32(lhs), int32(rhs), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.and(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.and(int64(lhs), int64(rhs), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.and(uint64(lhs), uint64(rhs), uint64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
 
         [MethodImpl(Inline)]
         public static ref T or<T>(ref T lhs, T rhs)
@@ -927,6 +1094,32 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
+        public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.or(int8(lhs), int8(rhs), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.or(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.or(int16(lhs), int16(rhs), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.or(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.or(int32(lhs), int32(rhs), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.or(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.or(int64(lhs), int64(rhs), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.or(uint64(lhs), uint64(rhs), uint64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+        
+        [MethodImpl(Inline)]
         public static ref T xor<T>(ref T lhs, T rhs)
             where T : struct
         {
@@ -993,6 +1186,31 @@ namespace Z0
             throw unsupported(kind);
         }           
 
+        [MethodImpl(Inline)]
+        public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.xor(int8(lhs), int8(rhs), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.xor(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.xor(int16(lhs), int16(rhs), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.xor(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.xor(int32(lhs), int32(rhs), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.xor(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.xor(int64(lhs), int64(rhs), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.xor(uint64(lhs), uint64(rhs), uint64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         public static ref T lshift<T>(ref T lhs, int rhs)
@@ -1282,9 +1500,31 @@ namespace Z0
             if(kind == PrimalKind.float64)
                 return absF64(src);
 
-
             throw unsupported(kind);
         }           
+
+        [MethodImpl(Inline)]
+        public static Span<T> abs<T>(ReadOnlySpan<T> src, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.abs(int8(src), int8(dst));
+            else if(kind == PrimalKind.int16)
+                math.abs(int16(src), int16(dst));
+            else if(kind == PrimalKind.int32)
+                math.abs(int32(src), int32(dst));
+            else if(kind == PrimalKind.int64)
+                math.abs(int64(src), int64(dst));
+            else if(kind == PrimalKind.float32)
+                math.abs(float32(src), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.abs(float64(src), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
 
         [MethodImpl(Inline)]
         public static bool eq<T>(T lhs, T rhs)
@@ -1331,6 +1571,44 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.eq(int8(lhs), int8(rhs), dst);
+            else if(kind == PrimalKind.uint8)
+                math.eq(uint8(lhs), uint8(rhs), dst);
+            else if(kind == PrimalKind.int16)
+                math.eq(int16(lhs), int16(rhs), dst);
+            else if(kind == PrimalKind.uint16)
+                math.eq(uint16(lhs), uint16(rhs), dst);
+            else if(kind == PrimalKind.int32)
+                math.eq(int32(lhs), int32(rhs), dst);
+            else if(kind == PrimalKind.uint32)
+                math.eq(uint32(lhs), uint32(rhs), dst);
+            else if(kind == PrimalKind.int64)
+                math.eq(int64(lhs), int64(rhs), dst);
+            else if(kind == PrimalKind.uint64)
+                math.eq(uint64(lhs), uint64(rhs), dst);
+            else if(kind == PrimalKind.float32)
+                math.eq(float32(lhs), float32(rhs), dst);
+            else if(kind == PrimalKind.float64)
+                math.eq(float64(lhs), float64(rhs), dst);
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            return gmath.eq(lhs,rhs,dst);
+        }
+
+        [MethodImpl(Inline)]
         public static bool neq<T>(T lhs, T rhs)
             where T : struct
         {
@@ -1368,6 +1646,37 @@ namespace Z0
 
             throw unsupported(kind);
         }
+
+        [MethodImpl(Inline)]
+        public static Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.neq(int8(lhs), int8(rhs), dst);
+            else if(kind == PrimalKind.uint8)
+                math.neq(uint8(lhs), uint8(rhs), dst);
+            else if(kind == PrimalKind.int16)
+                math.neq(int16(lhs), int16(rhs), dst);
+            else if(kind == PrimalKind.uint16)
+                math.neq(uint16(lhs), uint16(rhs), dst);
+            else if(kind == PrimalKind.int32)
+                math.neq(int32(lhs), int32(rhs), dst);
+            else if(kind == PrimalKind.uint32)
+                math.neq(uint32(lhs), uint32(rhs), dst);
+            else if(kind == PrimalKind.int64)
+                math.neq(int64(lhs), int64(rhs), dst);
+            else if(kind == PrimalKind.uint64)
+                math.neq(uint64(lhs), uint64(rhs), dst);
+            else if(kind == PrimalKind.float32)
+                math.neq(float32(lhs), float32(rhs), dst);
+            else if(kind == PrimalKind.float64)
+                math.neq(float64(lhs), float64(rhs), dst);
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
 
         [MethodImpl(Inline)]
         public static bool nonzero<T>(T src)
@@ -1454,6 +1763,44 @@ namespace Z0
         }
 
 
+        [MethodImpl(Inline)]
+        public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.lt(int8(lhs), int8(rhs), dst);
+            else if(kind == PrimalKind.uint8)
+                math.lt(uint8(lhs), uint8(rhs), dst);
+            else if(kind == PrimalKind.int16)
+                math.lt(int16(lhs), int16(rhs), dst);
+            else if(kind == PrimalKind.uint16)
+                math.lt(uint16(lhs), uint16(rhs), dst);
+            else if(kind == PrimalKind.int32)
+                math.lt(int32(lhs), int32(rhs), dst);
+            else if(kind == PrimalKind.uint32)
+                math.lt(uint32(lhs), uint32(rhs), dst);
+            else if(kind == PrimalKind.int64)
+                math.lt(int64(lhs), int64(rhs), dst);
+            else if(kind == PrimalKind.uint64)
+                math.lt(uint64(lhs), uint64(rhs), dst);
+            else if(kind == PrimalKind.float32)
+                math.lt(float32(lhs), float32(rhs), dst);
+            else if(kind == PrimalKind.float64)
+                math.lt(float64(lhs), float64(rhs), dst);
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            return lt(lhs,rhs,dst);
+        }
+ 
 
         [MethodImpl(Inline)]
         public static bool lteq<T>(T lhs, T rhs)
@@ -1500,6 +1847,46 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.lteq(int8(lhs), int8(rhs), dst);
+            else if(kind == PrimalKind.uint8)
+                math.lteq(uint8(lhs), uint8(rhs), dst);
+            else if(kind == PrimalKind.int16)
+                math.lteq(int16(lhs), int16(rhs), dst);
+            else if(kind == PrimalKind.uint16)
+                math.lteq(uint16(lhs), uint16(rhs), dst);
+            else if(kind == PrimalKind.int32)
+                math.lteq(int32(lhs), int32(rhs), dst);
+            else if(kind == PrimalKind.uint32)
+                math.lteq(uint32(lhs), uint32(rhs), dst);
+            else if(kind == PrimalKind.int64)
+                math.lteq(int64(lhs), int64(rhs), dst);
+            else if(kind == PrimalKind.uint64)
+                math.lteq(uint64(lhs), uint64(rhs), dst);
+            else if(kind == PrimalKind.float32)
+                math.lteq(float32(lhs), float32(rhs), dst);
+            else if(kind == PrimalKind.float64)
+                math.lteq(float64(lhs), float64(rhs), dst);
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            return gmath.lteq(lhs,rhs,dst);
+        }
+
+
+
+        [MethodImpl(Inline)]
         public static bool gt<T>(T lhs, T rhs)
             where T : struct
         {
@@ -1544,6 +1931,45 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.gt(int8(lhs), int8(rhs), dst);
+            else if(kind == PrimalKind.uint8)
+                math.gt(uint8(lhs), uint8(rhs), dst);
+            else if(kind == PrimalKind.int16)
+                math.gt(int16(lhs), int16(rhs), dst);
+            else if(kind == PrimalKind.uint16)
+                math.gt(uint16(lhs), uint16(rhs), dst);
+            else if(kind == PrimalKind.int32)
+                math.gt(int32(lhs), int32(rhs), dst);
+            else if(kind == PrimalKind.uint32)
+                math.gt(uint32(lhs), uint32(rhs), dst);
+            else if(kind == PrimalKind.int64)
+                math.gt(int64(lhs), int64(rhs), dst);
+            else if(kind == PrimalKind.uint64)
+                math.gt(uint64(lhs), uint64(rhs), dst);
+            else if(kind == PrimalKind.float32)
+                math.gt(float32(lhs), float32(rhs), dst);
+            else if(kind == PrimalKind.float64)
+                math.gt(float64(lhs), float64(rhs), dst);
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            return gt(lhs,rhs,dst);
+        }
+
+
+        [MethodImpl(Inline)]
         public static bool gteq<T>(T lhs, T rhs)
             where T : struct
         {
@@ -1586,6 +2012,45 @@ namespace Z0
 
             throw unsupported(kind);
         }
+
+        [MethodImpl(Inline)]
+        public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.gteq(int8(lhs), int8(rhs), dst);
+            else if(kind == PrimalKind.uint8)
+                math.gteq(uint8(lhs), uint8(rhs), dst);
+            else if(kind == PrimalKind.int16)
+                math.gteq(int16(lhs), int16(rhs), dst);
+            else if(kind == PrimalKind.uint16)
+                math.gteq(uint16(lhs), uint16(rhs), dst);
+            else if(kind == PrimalKind.int32)
+                math.gteq(int32(lhs), int32(rhs), dst);
+            else if(kind == PrimalKind.uint32)
+                math.gteq(uint32(lhs), uint32(rhs), dst);
+            else if(kind == PrimalKind.int64)
+                math.gteq(int64(lhs), int64(rhs), dst);
+            else if(kind == PrimalKind.uint64)
+                math.gteq(uint64(lhs), uint64(rhs), dst);
+            else if(kind == PrimalKind.float32)
+                math.gteq(float32(lhs), float32(rhs), dst);
+            else if(kind == PrimalKind.float64)
+                math.gteq(float64(lhs), float64(rhs), dst);
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            var dst = span<bool>(length(lhs,rhs));
+            return gteq(lhs,rhs,dst);
+        }
+
 
         [MethodImpl(Inline)]
         public static T pow<T>(T src, uint exp)
@@ -1695,6 +2160,29 @@ namespace Z0
             throw unsupported(kind);
         }           
 
+        [MethodImpl(NotInline)]
+        public static Span<T> negate<T>(ReadOnlySpan<T> src, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.negate(int8(src), int8(dst));
+            else if(kind == PrimalKind.int16)
+                math.negate(int16(src), int16(dst));
+            else if(kind == PrimalKind.int32)
+                math.negate(int32(src), int32(dst));
+            else if(kind == PrimalKind.int64)
+                math.negate(int64(src), int64(dst));
+            else if(kind == PrimalKind.float32)
+                math.negate(float32(src), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.negate(float64(src), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+
         [MethodImpl(Inline)]
         public static ref T inc<T>(ref T src)
             where T : struct
@@ -1772,6 +2260,36 @@ namespace Z0
 
             throw unsupported(kind);
         }           
+
+        [MethodImpl(NotInline)]
+        public static Span<T> inc<T>(ReadOnlySpan<T> src, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.inc(int8(src), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.inc(uint8(src), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.inc(int16(src), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.inc(uint16(src), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.inc(int32(src), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.inc(uint32(src), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.inc(int64(src), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.inc(uint64(src), uint64(dst));
+            else if(kind == PrimalKind.float32)
+                math.inc(float32(src), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.inc(float64(src), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         public static ref T dec<T>(ref T src)
@@ -1851,6 +2369,35 @@ namespace Z0
             throw unsupported(kind);
         }           
 
+        [MethodImpl(Inline)]
+        public static Span<T> dec<T>(ReadOnlySpan<T> src, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.dec(int8(src), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.dec(uint8(src), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.dec(int16(src), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.dec(uint16(src), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.dec(int32(src), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.dec(uint32(src), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.dec(int64(src), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.dec(uint64(src), uint64(dst));
+            else if(kind == PrimalKind.float32)
+                math.dec(float32(src), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.dec(float64(src), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
         
         [MethodImpl(Inline)]
         public static T min<T>(T lhs, T rhs)
@@ -1890,17 +2437,38 @@ namespace Z0
 
             throw unsupported(kind);
         }           
-
-        [MethodImpl(Inline)]
-        public static T min<T>(params T[] src)
-            where T : struct
-                => fused.min<T>(src);
-
+ 
         [MethodImpl(Inline)]
         public static T min<T>(ReadOnlySpan<T> src)
             where T : struct
-                => fused.min<T>(src);
-
+        {
+            var kind = PrimalKinds.kind<T>();
+            switch(kind)
+            {
+                case PrimalKind.int8:
+                    return generic<T>(math.min(int8(src)));
+                case PrimalKind.uint8:
+                    return generic<T>(math.min(uint8(src)));
+                case PrimalKind.int16:
+                    return generic<T>(math.min(int16(src)));
+                case PrimalKind.uint16:
+                    return generic<T>(math.min(uint16(src)));
+                case PrimalKind.int32:
+                    return generic<T>(math.min(int32(src)));
+                case PrimalKind.uint32:
+                    return generic<T>(math.min(uint32(src)));
+                case PrimalKind.int64:
+                    return generic<T>(math.min(int64(src)));
+                case PrimalKind.uint64:
+                    return generic<T>(math.min(uint64(src)));
+                case PrimalKind.float32:
+                    return generic<T>(math.min(float32(src)));
+                case PrimalKind.float64:
+                    return generic<T>(math.min(float64(src)));
+                default:
+                    throw unsupported(kind);                
+            }
+        }
 
         [MethodImpl(Inline)]
         public static T max<T>(T lhs, T rhs)
@@ -1942,14 +2510,37 @@ namespace Z0
         }           
 
         [MethodImpl(Inline)]
-        public static T max<T>(params T[] src)
-            where T : struct
-                => fused.max<T>(src);
-
-        [MethodImpl(Inline)]
         public static T max<T>(ReadOnlySpan<T> src)
             where T : struct
-                => fused.max<T>(src);
+        {
+            var kind = PrimalKinds.kind<T>();
+            switch(kind)
+            {
+                case PrimalKind.int8:
+                    return generic<T>(math.max(int8(src)));
+                case PrimalKind.uint8:
+                    return generic<T>(math.max(uint8(src)));
+                case PrimalKind.int16:
+                    return generic<T>(math.max(int16(src)));
+                case PrimalKind.uint16:
+                    return generic<T>(math.max(uint16(src)));
+                case PrimalKind.int32:
+                    return generic<T>(math.max(int32(src)));
+                case PrimalKind.uint32:
+                    return generic<T>(math.max(uint32(src)));
+                case PrimalKind.int64:
+                    return generic<T>(math.max(int64(src)));
+                case PrimalKind.uint64:
+                    return generic<T>(math.max(uint64(src)));
+                case PrimalKind.float32:
+                    return generic<T>(math.max(float32(src)));
+                case PrimalKind.float64:
+                    return generic<T>(math.max(float64(src)));
+                default:
+                    throw unsupported(kind);                
+            }
+        }
+
 
         [MethodImpl(Inline)]
         public static T parse<T>(string src)
@@ -1958,34 +2549,34 @@ namespace Z0
             var kind = PrimalKinds.kind<T>();
 
             if(kind == PrimalKind.int8)
-                return bridge.parseI8<T>(src);
+                return parseI8<T>(src);
 
             if(kind == PrimalKind.uint8)
-                return bridge.parseU8<T>(src);
+                return parseU8<T>(src);
 
             if(kind == PrimalKind.int16)
-                return bridge.parseI16<T>(src);
+                return parseI16<T>(src);
 
             if(kind == PrimalKind.uint16)
-                return bridge.parseU16<T>(src);
+                return parseU16<T>(src);
             
             if(kind == PrimalKind.int32)
-                return bridge.parseI32<T>(src);
+                return parseI32<T>(src);
 
             if(kind == PrimalKind.uint32)
-                return bridge.parseU32<T>(src);
+                return parseU32<T>(src);
 
             if(kind == PrimalKind.int64)
-                return bridge.parseI64<T>(src);
+                return parseI64<T>(src);
 
             if(kind == PrimalKind.uint64)
-                return bridge.parseU64<T>(src);
+                return parseU64<T>(src);
 
             if(kind == PrimalKind.float32)
-                return bridge.parseF32<T>(src);
+                return parseF32<T>(src);
 
             if(kind == PrimalKind.float64)
-                return bridge.parseF64<T>(src);
+                return parseF64<T>(src);
 
             throw unsupported(kind);
         }

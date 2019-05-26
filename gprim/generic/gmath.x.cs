@@ -15,12 +15,22 @@ namespace Z0
     using static As;
     using static zfunc;
 
-    partial class mathx
+    partial class MathX
     {
         public static T[] ToScalars<T>(this bool[] src)
             where T : struct
                 => map(src, x => x ? gmath.one<T>() : gmath.zero<T>());
 
+
+
+        public static Option<int> WriteTo<T>(this DivisorIndex<T> src, FolderPath dst)
+            where T : struct
+        {
+            var filename = FileName.Define($"divisors{src.Range}.csv");
+            var outpath = dst + filename;
+            var lists = src.Lists.OrderBy(x => x.Dividend);
+            return outpath.Overwrite(map(lists, d => d.ToString()));
+        }
 
     }
 

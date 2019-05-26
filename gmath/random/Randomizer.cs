@@ -11,7 +11,7 @@ namespace Z0
     using System.Numerics;
 
     using static zfunc;
-    using static mfunc;
+    
 
     public interface IRandomizer 
     {

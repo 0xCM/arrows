@@ -14,7 +14,7 @@ namespace Z0
     using static zfunc;    
     
 
-    partial class mathx
+    partial class MathX
     {
         [MethodImpl(Inline)]
         public static ref sbyte Negate(this ref sbyte src)

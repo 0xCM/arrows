@@ -11,7 +11,6 @@ namespace Z0
     using System.IO;
     
     using static zfunc;
-    using static mfunc;
     using static As;
     using static InXMetrics;
 

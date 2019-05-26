@@ -15,7 +15,7 @@ namespace Z0
     using static zfunc;    
     using static As;
 
-    public static partial class fused
+    partial class gmath
     {
         [MethodImpl(NotInline)]
         public static Span<T> scale<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
@@ -47,10 +47,11 @@ namespace Z0
                 default:
                     throw unsupported(kind);                
             }
+            
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> scaleI8<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
+        static Span<T> scaleI8<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
             where T : struct
         {
             math.scale(int8(lhs), int8(factor), int8(dst));
@@ -58,7 +59,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> scaleU8<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
+        static Span<T> scaleU8<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
             where T : struct
         {
             math.scale(uint8(lhs), uint8(factor), uint8(dst));
@@ -66,7 +67,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> scaleI16<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
+        static Span<T> scaleI16<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
             where T : struct
         {
             math.scale(int16(lhs), int16(factor), int16(dst));
@@ -74,7 +75,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> scaleU16<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
+        static Span<T> scaleU16<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
             where T : struct
         {
             math.scale(uint16(lhs), uint16(factor), uint16(dst));
@@ -82,7 +83,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> scaleI32<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
+        static Span<T> scaleI32<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
             where T : struct
         {
             math.scale(int32(lhs), int32(factor), int32(dst));
@@ -90,7 +91,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> scaleU32<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
+        static Span<T> scaleU32<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
             where T : struct
         {
             math.scale(uint32(lhs), uint32(factor), uint32(dst));
@@ -98,7 +99,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> scaleI64<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
+        static Span<T> scaleI64<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
             where T : struct
         {
             math.scale(int64(lhs), int64(factor), int64(dst));
@@ -106,7 +107,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> scaleU64<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
+        static Span<T> scaleU64<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
             where T : struct
         {
             math.scale(uint64(lhs), uint64(factor), uint64(dst));
@@ -114,7 +115,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> scaleF32<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
+        static Span<T> scaleF32<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
             where T : struct
         {
             math.scale(float32(lhs), float32(factor), float32(dst));
@@ -122,7 +123,7 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static Span<T> scaleF64<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
+        static Span<T> scaleF64<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
             where T : struct
         {
             math.scale(float64(lhs), float64(factor), float64(dst));

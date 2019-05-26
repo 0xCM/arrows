@@ -11,9 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
     
-    
-    using static bridge;
-    
+
 
     public readonly struct Constants<T>
         where T : struct

@@ -11,12 +11,9 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
 
-    
     using static zfunc;    
-    
 
-
-    partial class mathx
+    partial class MathX
     {
 
         [MethodImpl(Inline)]

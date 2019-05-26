@@ -11,12 +11,9 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
 
-    
     using static zfunc;    
     
-
-
-    partial class mathx
+    partial class MathX
     {
         [MethodImpl(Inline)]
         public static ref sbyte Abs(this ref sbyte src)
@@ -90,8 +87,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ReadOnlySpan<double> Abs(this ReadOnlySpan<double> src, Span<double> dst )
             => math.abs(src,dst);            
-
-
     }
-
 }

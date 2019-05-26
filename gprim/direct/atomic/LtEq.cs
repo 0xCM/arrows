@@ -13,7 +13,6 @@ namespace Z0
     
     using static zfunc;    
     
-
     partial class math
     {
         [MethodImpl(Inline)]
@@ -54,9 +53,6 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool lteq(double lhs, double rhs)
-            => lhs <= rhs;
-
-        
+            => lhs <= rhs;        
     }
-
 }

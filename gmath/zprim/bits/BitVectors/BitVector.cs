@@ -13,7 +13,6 @@ namespace Z0
 
     using static zfunc;
     using static nfunc;
-    using static mfunc;
     using static Bits;
 
     /// <summary>

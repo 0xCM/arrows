@@ -114,7 +114,6 @@ namespace Z0
             }
         }
 
-
         public static Metrics<T> Run<T>(OpKind op, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
             where T : struct
         {

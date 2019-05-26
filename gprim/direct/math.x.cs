@@ -15,7 +15,7 @@ namespace Z0
     using static As;
     using static zfunc;
 
-    public static partial class mathx
+    public static partial class MathX
     {
     }
     

@@ -11,7 +11,6 @@ namespace Z0
     using System.IO;    
 
     using static zfunc;
-    using static mfunc;
 
     public class ArraySampler : Sampler<ArraySampler>
     {
@@ -68,8 +67,7 @@ namespace Z0
         /// Returns values for which samples have already been drawn
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public T[] Sampled<T>(T specimen = default(T))
+        public T[] Sampled<T>()
             where T : struct
             => PrimalKinds.kind<T>() switch {
                 PrimalKind.int8 => As.generic<T>(Int8Samples),

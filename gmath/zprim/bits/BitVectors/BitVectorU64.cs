@@ -9,7 +9,6 @@ namespace Z0
     using System.Runtime.InteropServices;
     using System.Numerics;
 
-    using static mfunc;
     using static Bits;
     using static Bytes;
 

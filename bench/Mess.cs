@@ -12,65 +12,18 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
 
-    using Z0.Test;
 
     
     using static zfunc;    
-    using static mfunc;    
     using static math;
     using static ansi;
-
+    using static Spans;
 
     partial class Benchmark : Context
     {
 
-        void TestNumbers()
-        {
-            var leftSrc = Randomizer.Span256<long>(Pow2.T11);
-            var rightSrc = Randomizer.Span256<long>(Pow2.T11);
-            var dstA = span<long>(Pow2.T11);
-
-            var leftNumbers = numbers(leftSrc);
-            var rightNumbers = numbers(rightSrc);
-
-            var sum1 = math.add(leftSrc,rightSrc, dstA);
-            var sum2 = leftNumbers + rightNumbers;
-            
-            Claim.eq(sum1.Freeze(), sum2.Extract());
-        }
 
 
-        void TestAdd3()
-        {
-            var lSrc = Randomizer.Span256<long>(Pow2.T14);
-            var rSrc = Randomizer.Span256<long>(Pow2.T14);                      
-            var blocks = global::mfunc.blocks(lSrc, rSrc);
-            var cells = Span256.blocklength<long>(blocks);
-            var cycles = Pow2.T14;
-            inform($"Operating on {blocks} blocks = {cells} cells for {cycles} cycles");
-
-            var dstA = Span256.alloc<long>(blocks);
-            var dstB = Span256.alloc<long>(blocks);
-            var cycle = 0;
-            
-            var sw = stopwatch();
-            while(++cycle <= cycles)
-                math.add(lSrc,rSrc, dstA);
-            var aTime = snapshot(sw);
-            inform($"Primal: {aTime}");
-
-            sw.Restart();
-            cycle = 0;
-            while(++cycle <= cycles)
-                dinx.add(lSrc,rSrc, ref dstB);
-            var bTime = snapshot(sw);
-            inform($"Intrinsic: {bTime}");
-
-            Claim.eq(dstA, dstB);
-
-
-
-        }
 
         void TestParse()
         {
@@ -93,7 +46,7 @@ namespace Z0
             Duration LeftBench()
             {
                 var sw = stopwatch();
-                fused.add<T>(src.Left, src.Right, dst.Left);
+                gmath.add<T>(src.Left, src.Right, dst.Left);
                 return snapshot(sw);
             }
 
@@ -146,7 +99,7 @@ namespace Z0
 
             inform($"Completed vector multiplication: {snapshot(sw)}");
             
-            Claim.@true(Span256.eq(dstA,dstB));
+            Claim.@true(dstA.Eq(dstB));
 
         }
 
@@ -201,7 +154,7 @@ namespace Z0
             
             inform($"Completed vector multiplication: {snapshot(sw)}");
             
-            Claim.@true(Span256.eq(dstA.ToSpan256(), dstB));
+            Claim.@true(dstA.ToSpan256().Eq(dstB));
 
 
         }
@@ -295,12 +248,6 @@ namespace Z0
 
         }
 
-
-        void TestRange()
-        {
-            range(1, 100);
-        }
-
         void Test32()
         {
             var cycles = Pow2.T12;
@@ -318,12 +265,12 @@ namespace Z0
 
                 var sw = stopwatch();
                 for(var i = 0; i<cycles; i++)
-                    fused.add(lhsS, rhsS, dstS);
+                    gmath.add(lhsS, rhsS, dstS);
                 inform($"Spans A: {snapshot(sw)}");
 
                 sw.Restart();
                 for(var i = 0; i<cycles; i++)
-                    fused.add(lhsS, rhsS, dstS);
+                    gmath.add(lhsS, rhsS, dstS);
                 inform($"Spans B: {snapshot(sw)}");
 
             }
@@ -353,48 +300,6 @@ namespace Z0
 
             //Claim.eq(lhs,rhs);
 
-        }
-
-        void AbsSqrtGeneric<T>()
-            where T : struct
-        {
-
-            var samples = Pow2.T21;
-            var src0 = Randomizer.Span<T>(samples).ToReadOnlySpan();
-            var dst0 = src0.Replicate();
-            var srcA = src0.Replicate();
-            var srcC = Num.many(src0.Replicate()); 
-            var dstB = span<T>(samples);
-
-            var srcD = srcC.Replicate().ToReadOnlySpan();           
-            var dstD = span<num<T>>(samples);
-
-            for(var i=0; i<samples; i++)
-                gmath.sqrt(ref gmath.abs(ref dst0[i]));
-
-            var sw = stopwatch();
-            for(var i=0; i < samples; i++)
-               gmath.sqrt(ref  gmath.abs(ref srcA[i]));
-            inform($"Abs+Sqrt Generic | By Ref: {snapshot(sw)}");
-
-            sw.Restart();
-            for(var i = 0; i< samples; i++)
-                dstB[i] = gmath.sqrt(gmath.abs(src0[i]));
-
-            inform($"Abs+Sqrt Generic | By Val: {snapshot(sw)}");
-            Claim.eq(dst0, dstB);
-
-            sw.Restart();
-            for(var i = 0; i< samples; i++)
-                srcC[i].Abs().Sqrt();
-
-            inform($"Abs+Sqrt Generic Num | By Ref: {snapshot(sw)}");
-
-            sw.Restart();
-            for(var i = 0; i< samples; i++)
-                dstD[i] = sqrt(abs(srcD[i]));
-            inform($"Abs+Sqrt Generic Num | By Val: {snapshot(sw)}");
-            Claim.eq(dst0, dstD.Extract());
         }
 
         Duration DistanceByValue<T>(int cycles, int samples)
@@ -624,7 +529,6 @@ namespace Z0
         {
             AbsSqrtAtomic();
             AbsSqrtFused();
-            AbsSqrtGeneric<int>();
         }
 
         static string BinOpSig<T>(string OpSymbol)
@@ -998,44 +902,7 @@ namespace Z0
 
         }
 
-        void BitVectors<T>(int cycles, int samples)
-            where T : struct
-        {
-            var src = Randomizer.Span<T>(samples);
-
-            var sw = stopwatch(false);
-            sw.Start();
-            for(var cycle=1; cycle<= cycles; cycle++)
-            for(var i = 0; i < samples; i++)
-            {
-                var x = gbits.bitspan(src[i]);
-                gbits.bitpack<T>(x, out T y);
-                Claim.numeq(src[i], y);
-                
-                // var bvX = BitVectorU64.Define(src[i]);
-                // var bvY = bvX.BitSpan();
-                // var bvZ = BitVectorU64.Define(bvY);
-                // Claim.@true(bvX.Eq(bvZ), $"{bvX.Format()} != {bvZ.Format()}");
-            }
-                
-
-            sw.Stop();
-            var time1 = snapshot(sw);
-            print($"{time1.Ms} ms");
-
-            // sw.Restart();
-            // for(var cycle=1; cycle<= cycles; cycle++)
-            // for(var i = 0; i < samples; i++)
-            //     Bits.bitstring(src[i]);
-                
-            // sw.Stop();
-            // var time2 = snapshot(sw);
-
-            // print($"{nameof(BitVectors)} | Time1 = {time1.Ms} ms | Time2 = {time2.Ms} ms");
-
-        }
-
-
+ 
         // Converts a double into an array of bytes with length 
         // eight.
         public static byte[] GetBytes(double value)
@@ -1103,8 +970,6 @@ namespace Z0
             while(loop)        
                 PopCounts(cycles,samples);
 
-            while(loop)
-                BitVectors<byte>(cycles,samples);
 
             while(loop)
                 Measure<ulong>("bits", cycles, samples);

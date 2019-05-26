@@ -13,7 +13,6 @@ namespace Z0
     
     using static zfunc;    
     
-
     partial class math
     {
         [MethodImpl(Inline)]

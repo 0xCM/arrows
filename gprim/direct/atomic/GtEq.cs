@@ -54,10 +54,6 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool gteq(double lhs, double rhs)
-            => lhs >= rhs;
-
-        
+            => lhs >= rhs;        
     }
-
-
 }

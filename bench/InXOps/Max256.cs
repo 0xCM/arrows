@@ -42,7 +42,7 @@ namespace Z0
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
             for(var block = 0; block <  dst.BlockCount; block++)
-                Span128.load(dinx.max(lhs.Vector(block), rhs.Vector(block)), dst, block);
+                Vec128.load(dinx.max(lhs.Vector(block), rhs.Vector(block)), dst, block);
 
             var time = snapshot(sw);
             return Capture(opid, config, time, dst);
@@ -57,7 +57,7 @@ namespace Z0
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
             for(var block = 0; block <  dst.BlockCount; block++)
-                Span128.load(dinx.max(lhs.Vector(block), rhs.Vector(block)), dst, block);
+                Vec128.load(dinx.max(lhs.Vector(block), rhs.Vector(block)), dst, block);
 
             var time = snapshot(sw);
             return Capture(opid, config, time, dst);

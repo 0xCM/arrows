@@ -44,7 +44,7 @@ namespace Z0
         }
         public Metrics(in OpId<T> OpId, long OpCount, Duration WorkTime, T[] Result)
         {
-            Claim.nonzero(OpCount);
+            Claim.@true(OpCount != 0);
             this.OpId = OpId;
             this.OpCount = OpCount;
             this.WorkTime = WorkTime;
@@ -53,7 +53,7 @@ namespace Z0
 
         public Metrics(in OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result)
         {
-            Claim.nonzero(OpCount);
+            Claim.@true(OpCount != 0);
             this.OpId = OpId;
             this.OpCount = OpCount;
             this.WorkTime = WorkTime;
@@ -62,7 +62,7 @@ namespace Z0
 
         public Metrics(in OpId<T> OpId, long OpCount, Duration WorkTime, Span<T> Result)
         {
-            Claim.nonzero(OpCount);
+            Claim.@true(OpCount != 0);
             this.OpId = OpId;
             this.OpCount = OpCount;
             this.WorkTime = WorkTime;

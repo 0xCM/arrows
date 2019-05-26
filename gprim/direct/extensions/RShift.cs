@@ -14,7 +14,7 @@ namespace Z0
     using static zfunc;    
     
 
-    partial class mathx
+    partial class MathX
     {
         /// <summary>
         /// Computes a correctly-typed right shift of the source value

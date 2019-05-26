@@ -11,7 +11,6 @@ namespace Z0
     using System.Collections.Generic;
 
     using static zfunc;
-    using static mfunc;
 
     public class Histogram
     {

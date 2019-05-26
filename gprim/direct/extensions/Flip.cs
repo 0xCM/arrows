@@ -16,7 +16,7 @@ namespace Z0
     
 
 
-    partial class mathx
+    partial class MathX
     {
         [MethodImpl(Inline)]
         public static ref sbyte Flip(this ref sbyte src)

@@ -13,7 +13,6 @@ namespace Z0
 
     using static zfunc;
     using static nfunc;
-    using static mfunc;
 
     /// <summary>
     /// Defines primary bitvector api
