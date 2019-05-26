@@ -174,11 +174,6 @@ namespace Z0
             return dst;
         }
 
-        [MethodImpl(NotInline)]
-        public static numbers<T> RangeTo<T>(this num<T> first, num<T> last)
-            where T : struct
-                =>  new numbers<T>(range(first, last));
- 
         // <summary>
         /// Partitions an interval into a specified number of pieces
         /// </summary>

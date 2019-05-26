@@ -153,10 +153,6 @@ namespace Z0
             return dst;
         }
 
-        [MethodImpl(Inline)]
-        public static (T[] Left, T[] Right) PairReplicate<T>(this ReadOnlySpan<T> src)
-            where T : struct
-                => (src.Replicate().ToArray(), src.Replicate().ToArray());
 
 
         [MethodImpl(Inline)]
@@ -166,6 +162,12 @@ namespace Z0
             src.CopyTo(dst);
             return dst;
         }
+
+
+        [MethodImpl(Inline)]
+        public static (T[] Left, T[] Right) PairReplicate<T>(this ReadOnlySpan<T> src)
+            where T : struct
+                => (src.Replicate().ToArray(), src.Replicate().ToArray());
 
     }
 }

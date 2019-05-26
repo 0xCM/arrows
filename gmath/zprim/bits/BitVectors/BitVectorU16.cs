@@ -9,6 +9,7 @@ namespace Z0
     using System.Runtime.InteropServices;
     using System.Numerics;
 
+    using static zfunc;    
     using static mfunc;
     using static Bits;
     using static Bytes;
@@ -133,8 +134,20 @@ namespace Z0
             => pop(data);
 
         [MethodImpl(Inline)]
+        public ulong Nlz()
+            => nlz(data);
+
+        [MethodImpl(Inline)]
+        public ulong Ntz()
+            => ntz(data);
+
+        [MethodImpl(Inline)]
         public bool Eq(in BitVectorU16 rhs)
             => data == rhs.data;
+
+        [MethodImpl(Inline)]
+        public bool NEq(in BitVectorU16 rhs)
+            => data != rhs.data;
 
         [MethodImpl(Inline)]
         public string Format()

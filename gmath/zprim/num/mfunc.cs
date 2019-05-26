@@ -17,13 +17,13 @@ using static zfunc;
 partial class mfunc
 {
 
-    public static numbers<T> numbers<T>(Span<T> src)
+    public static numbers<T> numbers<T>(Span256<T> src)
         where T : struct
             => src;
 
-    public static numbers<T> numbers<T>(ReadOnlySpan<T> src)
+    public static numbers<T> numbers<T>(ReadOnlySpan256<T> src)
         where T : struct
-            => src.ToArray();
+            => src;
 
     [MethodImpl(Inline)]
     public static ref num<T> num<T>(ref T src)

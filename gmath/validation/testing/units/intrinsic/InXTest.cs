@@ -56,10 +56,10 @@ namespace Z0.Test
         protected T[] RightSamples;
 
         protected Vec128<T> LeftVector(int index)
-            => Vec128.define(LeftSamples, index*VecLength);
+            => Vec128.single<T>(LeftSamples, index*VecLength);
 
         protected Vec128<T> RightVector(int index)
-            => Vec128.define(RightSamples, index*VecLength);
+            => Vec128.single<T>(RightSamples, index*VecLength);
 
 
 

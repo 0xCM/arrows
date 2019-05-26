@@ -8,6 +8,18 @@
 		},
 		{
 			"path": "nats"
+		},
+		{
+			"path": "bench"
+		},
+		{
+			"path": "gbase"
+		},
+		{
+			"path": "ginx"
+		},
+		{
+			"path": "gprim"
 		}
 	],
 	"settings": {}

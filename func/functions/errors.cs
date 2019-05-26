@@ -48,6 +48,4 @@ partial class zfunc
     public static ArgumentException badarg(string name, object value, [CallerFilePath] string caller = null, 
         [CallerFilePath] string file = null,  [CallerLineNumber] int? line = null)
             => new ArgumentException($"An invalid argument {name} = {value}  was specified");
-
-
 }

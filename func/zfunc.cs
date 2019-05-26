@@ -9,8 +9,11 @@ using System.Runtime.CompilerServices;
 
 public static partial class zfunc
 {
-    internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;        
-    internal const MethodImplOptions NotInline = MethodImplOptions.NoInlining;
+    public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;        
+    public const MethodImplOptions NotInline = MethodImplOptions.NoInlining;
+
+    public const MethodImplOptions Optimize = MethodImplOptions.AggressiveOptimization;
+
 }   
 
 namespace Z0

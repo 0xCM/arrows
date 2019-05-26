@@ -23,9 +23,11 @@ namespace Z0
     {
         IEnumerable<T> Stream(Interval<T> domain);
         
-        IEnumerable<T> Stream(T min, T max); 
+        //IEnumerable<T> Stream(T min, T max); 
 
         IEnumerable<T> Stream();    
+
+        IEnumerable<Bit> Bits();
 
         unsafe void StreamTo(Interval<T> domain, int count, void* dst, Func<T,bool> filter = null); 
     }
@@ -163,13 +165,13 @@ namespace Z0
                 yield return next();
         }
 
-        public IEnumerable<Bit> bits()
+        public IEnumerable<Bit> Bits()
         {
             while(true)
             {
                 var bits = next();
                 for(var i = 0; i< 64; i++)
-                    yield return Bits.test(bits,i);
+                    yield return Z0.Bits.test(bits, i);
             }
         }
 
@@ -269,7 +271,7 @@ namespace Z0
             while(true)
             {
                 var ratio = nextF32() + 1;
-                var sign = bits().Take(1).Single() ? -1.0f : 1.0f;
+                var sign = Bits().Take(1).Single() ? -1.0f : 1.0f;
                 yield return sign * (domain.Right - (ratio * width)/2.0f);
             }
         }
@@ -283,7 +285,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         int nextSign()
-            => bits().Take(1).Single() ? -1 : 1;
+            => Bits().Take(1).Single() ? -1 : 1;
 
         public IEnumerable<double> Stream(Interval<double> domain)        
         {
@@ -305,12 +307,11 @@ namespace Z0
             while(true)
             {
                 var ratio = (decimal)nextF64() + 1;
-                var sign = bits().Take(1).Single() ? -1.0m : 1.0m;
+                var sign = Bits().Take(1).Single() ? -1.0m : 1.0m;
                 yield return sign * (domain.Right - (ratio * width)/2.0m);
             }
         }
  
-
         public IEnumerable<decimal> Stream(decimal min, decimal max)
             => Stream(leftclosed(min,max));
 

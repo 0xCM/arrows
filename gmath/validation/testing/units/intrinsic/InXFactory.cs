@@ -17,14 +17,6 @@ namespace Z0.Test
     public class InXFactoryTest : UnitTest<InXFactoryTest>
     {        
 
-        public void DefineFloat64Vec()
-        {
-            var src = new double[]{50,25};
-            var v1 = Vec128.single(src);
-            var v2 = Vec128.define(src);
-            Claim.eq(v1,v2);
-        }
-
         public void CreateScalars()
         {
             {

@@ -269,7 +269,7 @@ namespace Z0.Test
                 : Randomizer.Array<T>(config.SampleSize);
         }
 
-        public Metrics<T> Verify<T>(OpKind opKind, UnaryOp<T> op, UnaryOp<T> baseline, bool nonzero = false, [CallerMemberName] string caller = null, 
+        public void Verify<T>(OpKind opKind, UnaryOp<T> op, UnaryOp<T> baseline, bool nonzero = false, [CallerMemberName] string caller = null, 
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct
         {
@@ -281,13 +281,9 @@ namespace Z0.Test
             for(var i = 0; i<src.Length; i++)
                 Claim.eq(baseline(src[i]),op(src[i]), caller, file, line);
             
-            var metrics = Metrics.Capture(opid, src.Length, elapsed(timing), array<T>(0));                        
-            if(Verbose)
-                Trace(metrics.Describe().WithLevel(SeverityLevel.Babble));
-            return metrics;
         }
 
-        public Metrics<T> Verify<T>(OpKind opKind, BinaryPredicate<T> baseline, BinaryPredicate<T> op, bool nonzero = false, 
+        public void Verify<T>(OpKind opKind, BinaryPredicate<T> baseline, BinaryPredicate<T> op, bool nonzero = false, 
             [CallerMemberName] string caller = null, [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct
         {
@@ -301,13 +297,9 @@ namespace Z0.Test
             for(var i = 0; i<len; i++)
                 Claim.eq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);
             
-            var metrics = Metrics.Capture(opid, lhs.Length, elapsed(timing), array<T>(0));                        
-            if(Verbose)
-                Trace(metrics.Describe().WithLevel(SeverityLevel.Babble));
-            return metrics;
         }
 
-        public Metrics<T> Verify<T>(OpKind opKind, BinaryOp<T> baseline, BinaryOp<T> op, bool nonzero = false, [CallerMemberName] string caller = null, 
+        public void Verify<T>(OpKind opKind, BinaryOp<T> baseline, BinaryOp<T> op, bool nonzero = false, [CallerMemberName] string caller = null, 
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             where T : struct
         {
@@ -319,12 +311,8 @@ namespace Z0.Test
             var timing = stopwatch();
             
             for(var i = 0; i<len; i++)
-                Claim.numeq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);
+                Claims.numeq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);
             
-            var metrics = Metrics.Capture(opid, lhs.Length, elapsed(timing), array<T>(0));                        
-            if(Verbose)
-                Trace(metrics.Describe().WithLevel(SeverityLevel.Babble));
-            return metrics;
         }
 
     }

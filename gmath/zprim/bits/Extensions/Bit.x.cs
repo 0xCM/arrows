@@ -16,13 +16,6 @@ namespace Z0
     public static partial class BitX
     {
         
-        /// <summary>
-        /// Converts the source value to an array of bits
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static Span<Bit> ToBits(this in sbyte src)
-            => bitspan(src);
 
         /// <summary>
         /// Converts the source value to an array of bits
@@ -30,14 +23,6 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this in byte src)
-            => bitspan(src);
-
-        /// <summary>
-        /// Converts the source value to an array of bits
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static Span<Bit> ToBits(this in short src)
             => bitspan(src);
 
         /// <summary>
@@ -61,48 +46,8 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static Span<Bit> ToBits(this in uint src)
-            => bitspan(src);
-
-        /// <summary>
-        /// Converts the source value to an array of bits
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static Span<Bit> ToBits(this in long src)
-            => bitspan(src);
-
-        /// <summary>
-        /// Converts the source value to an array of bits
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this in ulong src)
             => bitspan(src);
-
-        /// <summary>
-        /// Converts the source value to an array of bits
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static Span<Bit> ToBits(this in float src)
-            => bitspan(src);
-
-        /// <summary>
-        /// Converts the source value to an array of bits
-        /// </summary>
-        /// <param name="src">The source value</param>
-        [MethodImpl(Inline)]
-        public static Span<Bit> ToBits(this in double src)
-            => bitspan(src);
-
-        /// <summary>
-        /// Converts a bool to a bit
-        /// </summary>
-        /// <param name="src">The source value to convert</param>
-        [MethodImpl(Inline)]   
-        public static Bit ToBit(this bool src)
-            => src;
 
         /// <summary>
         /// Consructs a bit sream from a stream of bools

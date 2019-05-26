@@ -12,9 +12,6 @@ using static zfunc;
 
 public static class nfunc
 {
-    internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
-
-    internal const MethodImplOptions NoInline = MethodImplOptions.NoInlining;
     
     static IEnumerable<ulong> range(ulong first, ulong last)
     {

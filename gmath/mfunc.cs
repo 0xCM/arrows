@@ -14,19 +14,15 @@ using System.Numerics;
 
 using Z0;
 using static zfunc;
+using static Z0.Spans;
 
 public static partial class mfunc
 {
-    internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
-    
-    internal const MethodImplOptions NotInline = MethodImplOptions.NoInlining;
-
-    internal const MethodImplOptions Optimize = MethodImplOptions.AggressiveOptimization;
 
     public static IEnumerable<T> items<T>(ValueTuple<T,T> tuple)
         => zfunc.items(tuple.Item1, tuple.Item2);
 
-    public static TimedPair measure(Action left, Action right, int reps)
+    public static (Duration Left, Duration Right) measure(Action left, Action right, int reps)
     {
         var i = 0;        
         var sw = stopwatch(false);
@@ -114,10 +110,11 @@ public static partial class mfunc
     /// Demands truth that is enforced with an exeption upon false
     /// </summary>
     /// <param name="x">The value to test</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
     public static bool demand(bool x, string message = null)
         => x ? x : throw new Exception(message ?? "demand failed");
+
+
 
 
 }

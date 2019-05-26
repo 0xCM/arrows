@@ -17,46 +17,44 @@ namespace Z0.Test
     using static zfunc;
     using static mfunc;
 
-    public class CmpF64 : InXTest<CmpF64, double> 
+    public class CmpF64 : UnitTest<CmpF64>
     {
         public CmpF64()
-            : base(OpKind.FCmp.OpId<double>())
         {
 
         }
         
         void Verify(FloatComparisonMode mode)
         {
-            for(var i=0; i < VecCount; i++)
-            {
-                var lVec = LeftVector(i);
-                var rVec = RightVector(i);
 
-                var lDst = span<double>(2);
-                lVec.ExtractTo(lDst);
+            var lhs = Randomizer.Vec128<double>();
+            var rhs = Randomizer.Vec128<double>();
 
-                var rDst = span<double>(2);
-                rVec.ExtractTo(rDst);
+            var lDst = span<double>(2);
+            lhs.ExtractTo(lDst);
 
-                var expect = math.fcmp(lDst, rDst, mode);
-                var actual = dinx.cmpf(lVec, rVec, mode);
-                Claim.eq(expect,actual);
-            }
+            var rDst = span<double>(2);
+            rhs.ExtractTo(rDst);
+
+            var expect = math.fcmp(lDst, rDst, mode);
+            var actual = dinx.cmpf(lhs, rhs, mode);
+            Claim.eq(expect,actual);
+
         }
             
 
-        public void ClearNaN()
-        {
-            var src = Vec128.define(3.4d, double.NaN);
-            var result = mfunc.clearNaN(src);
-            var expect = Vec128.define(3.4d, -1d);
-            Claim.eq(expect,result);
+        // public void ClearNaN()
+        // {
+        //     var src = Vec128.define(3.4d, double.NaN);
+        //     var result = mfunc.clearNaN(src);
+        //     var expect = Vec128.define(3.4d, -1d);
+        //     Claim.eq(expect,result);
 
-            src = Vec128.define(double.NaN,3.4d);
-            result = mfunc.clearNaN(src);
-            expect = Vec128.define(-1d,3.4d);
-            Claim.eq(expect,result);
-        }
+        //     src = Vec128.define(double.NaN,3.4d);
+        //     result = mfunc.clearNaN(src);
+        //     expect = Vec128.define(-1d,3.4d);
+        //     Claim.eq(expect,result);
+        // }
 
         public void CmpEq(bool ordered = true, bool signal = false)
             => Verify(FloatComparisonMode.OrderedEqualNonSignaling);

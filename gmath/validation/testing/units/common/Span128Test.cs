@@ -159,18 +159,18 @@ namespace Z0.Test
 
             var block0 = x.SliceBlock(0);
             Claim.eq(4, block0.Length);
-            Claim.eq(block0, span(1,2,3,4));
+            Claims.eq(block0, span(1,2,3,4));
 
             var block2 = x.SliceBlock(1);
             Claim.eq(4, block2.Length);
-            Claim.eq(block2, span(5,6,7,8));
+            Claims.eq(block2, span(5,6,7,8));
 
         }
         public void Load()
         {
             var x = Span128.load(array<int>(1,2,3,4,5,6,7,8));
             Claim.eq(x.BlockCount,2);
-            Claim.eq(x.Unblock(), span(1,2,3,4,5,6,7,8));
+            Claims.eq(x.Unblock(), span(1,2,3,4,5,6,7,8));
             
         }
 

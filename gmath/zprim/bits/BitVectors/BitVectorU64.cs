@@ -13,6 +13,7 @@ namespace Z0
     using static Bits;
     using static Bytes;
 
+    using static zfunc;    
     using source = System.UInt64;
 
     public ref struct BitVectorU64
@@ -141,8 +142,12 @@ namespace Z0
             => (int)pop(data);
         
         [MethodImpl(Inline)]
-        public string Format()
-            => BitString();
+        public ulong Nlz()
+            => nlz(data);
+
+        [MethodImpl(Inline)]
+        public ulong Ntz()
+            => ntz(data);
 
         [MethodImpl(Inline)]
         public bool Eq(in BitVectorU64 rhs)
@@ -152,7 +157,11 @@ namespace Z0
         public bool NEq(in BitVectorU64 rhs)
             => data != rhs.data;
 
-        
+
+        [MethodImpl(Inline)]
+        public string Format()
+            => BitString();
+
         public override bool Equals(object obj)
             => throw new NotSupportedException();
         

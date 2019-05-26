@@ -9,6 +9,7 @@ namespace Z0
     using System.Runtime.InteropServices;
     using System.Numerics;
 
+    using static zfunc;    
     using static mfunc;
 
     public ref struct BitVectorI128

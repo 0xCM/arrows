@@ -22,35 +22,35 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static BitVector<N8> Define(in sbyte src)
-            => BitVector<N8>.Define(src.ToBits());
+            => BitVector<N8>.Define(Bits.bitspan(src));
 
         [MethodImpl(Inline)]
         public static BitVector<N8> Define(in byte src)
-            => BitVector<N8>.Define(src.ToBits());
+            => BitVector<N8>.Define(Bits.bitspan(src));
 
         [MethodImpl(Inline)]
         public static BitVector<N16> Define(in short src)
-            => BitVector<N16>.Define(src.ToBits());
+            => BitVector<N16>.Define(Bits.bitspan(src));
 
         [MethodImpl(Inline)]
         public static BitVector<N16> Define(in ushort src)
-            => BitVector<N16>.Define(src.ToBits());
+            => BitVector<N16>.Define(Bits.bitspan(src));
 
         [MethodImpl(Inline)]
         public static BitVector<N32> Define(in int src)
-            => BitVector<N32>.Define(src.ToBits());
+            => BitVector<N32>.Define(Bits.bitspan(src));
 
         [MethodImpl(Inline)]
         public static BitVector<N32> Define(in uint src)
-            => BitVector<N32>.Define(src.ToBits());
+            => BitVector<N32>.Define(Bits.bitspan(src));
 
         [MethodImpl(Inline)]
         public static BitVector<N64> Define(in long src)
-            => BitVector<N64>.Define(src.ToBits());
+            => BitVector<N64>.Define(Bits.bitspan(src));
 
         [MethodImpl(Inline)]
         public static BitVector<N64> Define(in ulong src)
-            => BitVector<N64>.Define(src.ToBits());
+            => BitVector<N64>.Define(Bits.bitspan(src));
 
         [MethodImpl(Inline)]
         public static BitVector<N128> Define(in i128 src)

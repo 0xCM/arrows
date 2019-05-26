@@ -9,12 +9,59 @@ namespace Z0
     using System.Runtime.InteropServices;
     using System.Numerics;
 
+    using static zfunc;    
     using static mfunc;
     using static Bits;
     using static Bytes;
 
     public ref struct BitVectorU8
     {
+        public static BitVectorU8 Define(
+            byte? x0 = null, byte? x1 = null, byte? x2 = null, byte? x3 = null, 
+            byte? x4 = null, byte? x5 = null, byte? x6 = null, byte? x7 = null)
+        {
+            var x = default(byte);
+            if(x0 == 1)
+                x |= (1 << 0);
+
+            if(x1 == 1)
+                x |= (1 << 1);
+
+            if(x2 == 1)
+                x |= (1 << 2);
+
+            if(x3 == 1)
+                x |= (1 << 3);
+
+            if(x4 == 1)
+                x |= (1 << 4);
+
+            if(x5 == 1)
+                x |= (1 << 5);
+
+            if(x6 == 1)
+                x |= (1 << 6);
+
+            if(x7 == 1)
+                x |= (1 << 7);
+            return x;
+        }
+
+        [MethodImpl(Inline)]
+        public static BitVectorU8 Define(in byte src)
+            => new BitVectorU8(src);
+
+        public static BitVectorU8 Define(in ReadOnlySpan<Bit> src)
+            => Define(in bitpack(src, out byte dst));
+
+        [MethodImpl(Inline)]
+        public static BitVectorU8 Define(
+            in Bit x00, in Bit x01, in Bit x02, in Bit x03, 
+            in Bit x04, in Bit x05, in Bit x06, in Bit x07)
+                => Bits.pack8(
+                    x00, x01, x02, x03, 
+                    x04, x05, x06, x07);
+
         byte data;
 
         [MethodImpl(Inline)]
@@ -31,20 +78,6 @@ namespace Z0
         public static implicit operator byte(in BitVectorU8 src)
             => src.data;
 
-        [MethodImpl(Inline)]
-        public static BitVectorU8 Define(in byte src)
-            => new BitVectorU8(src);
-
-        public static BitVectorU8 Define(in ReadOnlySpan<Bit> src)
-            => Define(in bitpack(src, out byte dst));
-
-        [MethodImpl(Inline)]
-        public static BitVectorU8 Define(
-            in Bit x00, in Bit x01, in Bit x02, in Bit x03, 
-            in Bit x04, in Bit x05, in Bit x06, in Bit x07)
-                => Bits.pack8(
-                    x00, x01, x02, x03, 
-                    x04, x05, x06, x07);
 
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVectorU8 lhs, in BitVectorU8 rhs)
@@ -117,8 +150,20 @@ namespace Z0
             => pop(data);
 
         [MethodImpl(Inline)]
+        public ulong Nlz()
+            => nlz(data);
+
+        [MethodImpl(Inline)]
+        public ulong Ntz()
+            => ntz(data);
+
+        [MethodImpl(Inline)]
         public bool Eq(in BitVectorU8 rhs)
             => data == rhs.data;
+
+        [MethodImpl(Inline)]
+        public bool NEq(in BitVectorU8 rhs)
+            => data != rhs.data;
 
         [MethodImpl(Inline)]
         public string Format()

@@ -6,9 +6,9 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
+
+    using static zfunc;    
     using static nfunc;
-
-
 
     public readonly struct N16 : 
         INatSeq<N16>, 

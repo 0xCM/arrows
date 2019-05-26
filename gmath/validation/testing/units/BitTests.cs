@@ -193,7 +193,7 @@ namespace Z0.Test
 
             var byx = BitConverter.GetBytes(x).ToSpan();
             Bytes.write(x, out Span<byte> byy);
-            Claim.eq(byx,byy);
+            Claims.eq(byx,byy);
 
 
         }

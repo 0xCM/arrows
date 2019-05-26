@@ -125,7 +125,7 @@ namespace Z0
         {
             var left = random.Span256<T>(1, Domain(domain), filter);
             var right = random.Span256<T>(1, Domain(domain), filter);
-            return (Z0.Vec256.single(left),Z0.Vec256.single(right));
+            return (Z0.Vec256.single<T>(left),Z0.Vec256.single<T>(right));
         }
     }
 }

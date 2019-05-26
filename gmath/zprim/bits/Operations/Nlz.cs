@@ -22,7 +22,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
-        public static int nlz(in byte src)
+        public static ulong nlz(in byte src)
             => nlz((ushort)src) - 8;
 
         /// <summary>
@@ -30,23 +30,23 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
-        public static int nlz(in ushort src)
-            => (int)(Lzcnt.LeadingZeroCount(src) - 16);
+        public static uint nlz(in ushort src)
+            => (Lzcnt.LeadingZeroCount(src) - 16);
 
         /// <summary>
         /// Counts the number of 0 bits prior to the first most significant 1 bit
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static int nlz(in uint src)
-            => (int)Lzcnt.LeadingZeroCount(src);
+        public static ulong nlz(in uint src)
+            => Lzcnt.LeadingZeroCount(src);
 
         /// <summary>
         /// Counts the number of 0 bits prior to the first most significant 1 bit
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static int nlz(in ulong src)
-            => (int)Lzcnt.X64.LeadingZeroCount(src);
+        public static ulong nlz(in ulong src)
+            => Lzcnt.X64.LeadingZeroCount(src);
     }
 }
