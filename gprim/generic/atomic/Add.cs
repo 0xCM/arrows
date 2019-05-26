@@ -172,7 +172,6 @@ namespace Z0
             return ref dst;
         }            
 
-
         [MethodImpl(Inline)]
         static ref T addI32<T>(in T lhs, in T rhs, out T dst)
         {

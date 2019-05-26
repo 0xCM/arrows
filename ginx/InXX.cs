@@ -96,5 +96,6 @@ namespace Z0
         public static Vec256<double> LoadVector(this ReadOnlySpan256<double> src, int offset)
             => Vec256.load(ref asRef(in src[offset]));
 
+
     }
 }

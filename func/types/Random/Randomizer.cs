@@ -51,6 +51,11 @@ namespace Z0
         IRandomizer<BigInteger>
 
     {        
+
+        public static Interval<T> Domain<T>(Interval<T>? domain)
+            where T : struct
+                => domain ?? SampleDefaults.get<T>().SampleDomain;
+
         /// <summary>
         /// Constructs a random stream using a specific seed
         /// </summary>
@@ -151,10 +156,12 @@ namespace Z0
             return next;
         }
 
+        [MethodImpl(Inline)]
         static T mod<T>(ulong lhs, ulong rhs)
             where T : struct
                 => convert<ulong,T>(lhs % rhs);
 
+        [MethodImpl(Inline)]
         static ulong width<T>(Interval<T> domain)
             where T : struct
                 => convert<T,ulong>(domain.Right) - convert<T,ulong>(domain.Left);
@@ -165,13 +172,17 @@ namespace Z0
                 yield return next();
         }
 
+        [MethodImpl(Inline)]
+        static bool testbit(in ulong src, in int pos)
+            => (src & (U64One << pos)) != 0ul;
+
         public IEnumerable<Bit> Bits()
         {
             while(true)
             {
                 var bits = next();
                 for(var i = 0; i< 64; i++)
-                    yield return Z0.Bits.test(bits, i);
+                    yield return testbit(bits, i);
             }
         }
 

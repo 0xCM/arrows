@@ -75,6 +75,32 @@ namespace  Z0
         public static bool IsNegInf(this double src)
             => double.IsNegativeInfinity(src);
 
+        public static IEnumerable<ulong> ToLongs(this IEnumerable<Guid> guids)
+        {
+            foreach(var guid in guids)
+            {
+                var bytes = guid.ToByteArray();      
+                yield return BitConverter.ToUInt64(bytes,0);
+                yield return BitConverter.ToUInt64(bytes,4);
+            }            
+        }
+
+        [MethodImpl(Inline)]
+        public static ulong[] ToLongArray(this IEnumerable<Guid> guids)
+            => guids.ToLongs().ToArray();
+
+
+        [MethodImpl(Inline)]
+        public static T ValueOrDefault<T>(this T? x, T @default = default)
+            where T : struct
+                => x != null ? x.Value : @default;
+
+        /// <summary>
+        /// Produces an array of bits from a stream of binary digits
+        /// </summary>
+        /// <param name="src">The source digits</param>
+        public static Bit[] ToBits(this IEnumerable<BinaryDigit> src)
+            => src.Select(d => d == BinaryDigit.Zed ? Bit.Off : Bit.On).ToArray();
 
     }
 

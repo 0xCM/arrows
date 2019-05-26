@@ -20,7 +20,7 @@ namespace Z0
         public MetricDelta(IMetricComparison Comparison)
         {
             this.Comparison = Comparison;
-            this.Description = Comparison.Describe();
+            this.Description = Describe(Comparison);
             Claim.eq(Comparison.LeftMetrics.OpCount, Comparison.RightMetrics.OpCount);
         }
 
@@ -59,5 +59,24 @@ namespace Z0
             => LeftWins ? LeftTitle :
                RightWins ? RightTitle :
                "tie";
+ 
+       static AppMsg Describe(IMetricComparison comparison)
+       {
+            var title = $"{comparison.LeftTitle} / {comparison.RightTitle}";
+            var delta = comparison.LeftMetrics.WorkTime - comparison.RightMetrics.WorkTime;
+            var width = Math.Abs(delta.Ms);
+            var leftDuration = comparison.LeftMetrics.WorkTime;
+            var rightDuration = comparison.RightMetrics.WorkTime;
+            var ratio = Math.Round((double)leftDuration.Ticks / (double)rightDuration.Ticks, 4);
+            var description = append(
+                $"{title}", 
+                $" | Left Time  = {leftDuration.Ms} ms",
+                $" | Right Time = {rightDuration.Ms} ms",
+                $" | Difference = {delta.Ms} ms",
+                $" | Performance Ratio = {ratio}"
+                );
+            return AppMsg.Define(description,  SeverityLevel.Perform);
+        }
+
     } 
 }

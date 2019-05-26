@@ -194,7 +194,7 @@ namespace Z0
         #endregion
 
         # region add:span -> span -> ref span -> ref span
-        public static unsafe ref Span128<sbyte> add(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, ref Span128<sbyte> dst)
+        public static ref Span128<sbyte> add(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, ref Span128<sbyte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -209,7 +209,7 @@ namespace Z0
 
         }
 
-        public static unsafe ref Span128<byte> add(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, ref Span128<byte> dst)
+        public static ref Span128<byte> add(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, ref Span128<byte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -223,7 +223,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span128<short> add(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, ref Span128<short> dst)
+        public static ref Span128<short> add(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, ref Span128<short> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -237,7 +237,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span128<ushort> add(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, ref Span128<ushort> dst)
+        public static ref Span128<ushort> add(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, ref Span128<ushort> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -251,7 +251,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span128<int> add(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, ref Span128<int> dst)
+        public static ref Span128<int> add(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, ref Span128<int> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -265,7 +265,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span128<uint> add(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, ref Span128<uint> dst)
+        public static ref Span128<uint> add(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, ref Span128<uint> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -279,7 +279,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span128<long> add(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, ref Span128<long> dst)
+        public static ref Span128<long> add(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, ref Span128<long> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -293,7 +293,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span128<ulong> add(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, ref Span128<ulong> dst)
+        public static ref Span128<ulong> add(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, ref Span128<ulong> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -307,7 +307,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span128<float> add(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, ref Span128<float> dst)
+        public static ref Span128<float> add(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, ref Span128<float> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -321,7 +321,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span128<double> add(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, ref Span128<double> dst)
+        public static ref Span128<double> add(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, ref Span128<double> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -335,7 +335,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span256<sbyte> add(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, ref Span256<sbyte> dst)
+        public static ref Span256<sbyte> add(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, ref Span256<sbyte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -349,7 +349,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span256<byte> add(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, ref Span256<byte> dst)
+        public static ref Span256<byte> add(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, ref Span256<byte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -364,7 +364,7 @@ namespace Z0
 
         }
 
-        public static unsafe ref Span256<short> add(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, ref Span256<short> dst)
+        public static ref Span256<short> add(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, ref Span256<short> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -378,7 +378,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span256<ushort> add(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, ref Span256<ushort> dst)
+        public static ref Span256<ushort> add(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, ref Span256<ushort> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -392,7 +392,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span256<int> add(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, ref Span256<int> dst)
+        public static ref Span256<int> add(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, ref Span256<int> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -406,7 +406,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span256<uint> add(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, ref Span256<uint> dst)
+        public static ref Span256<uint> add(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, ref Span256<uint> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -420,7 +420,7 @@ namespace Z0
             return ref dst;
         }
 
-        public static unsafe ref Span256<long> add(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, ref Span256<long> dst)
+        public static ref Span256<long> add(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, ref Span256<long> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -434,7 +434,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span256<ulong> add(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, ref Span256<ulong> dst)
+        public static ref Span256<ulong> add(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, ref Span256<ulong> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -448,7 +448,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span256<float> add(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
+        public static ref Span256<float> add(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -462,7 +462,7 @@ namespace Z0
             return ref dst;            
         }
 
-        public static unsafe ref Span256<double> add(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, ref Span256<double> dst)
+        public static ref Span256<double> add(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, ref Span256<double> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);

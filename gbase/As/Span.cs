@@ -22,6 +22,7 @@ namespace Z0
             where T : struct
                 => cast<T,sbyte>(src);
 
+
         [MethodImpl(Inline)]
         public static Span<byte> uint8<T>(Span<T> src)
             where T : struct
@@ -117,8 +118,6 @@ namespace Z0
         public static Span<T> generic<T>(Span<double> src)
             where T : struct
                 => cast<double,T>(src);
-
-
 
     }
 

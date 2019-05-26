@@ -9,6 +9,7 @@ namespace Z0
     using System.Reflection;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    using static zfunc;
     
     public class MetricSummary : IMetricSummary
     {
@@ -29,7 +30,7 @@ namespace Z0
         public MetricSummary(IMetrics Metrics)
         {
             this.Metrics = Metrics;
-            this.Description = BenchmarkMessages.BenchmarkEnd(Metrics);             
+            this.Description = BenchmarkEnd(Metrics);             
         }
 
         public IMetrics Metrics {get;}
@@ -47,5 +48,19 @@ namespace Z0
 
         public override string ToString()
             => Description.ToString();
+ 
+        static string Pipe = $" | ";
+        
+        static string Eq = $" = ";
+
+        internal static AppMsg BenchmarkEnd(OpId opid,  long totalOpCount, Duration totalDuration)
+            => AppMsg.Define(append(
+                    $"{opid} summary".PadRight(28), 
+                     Pipe, "Total Op Count", Eq, $"{totalOpCount}".PadRight(12),
+                     Pipe, "Total Duration", Eq, $"{totalDuration}"), 
+                        SeverityLevel.HiliteCL);
+
+        static AppMsg BenchmarkEnd(IMetrics metrics)
+            => BenchmarkEnd(metrics.OpId, metrics.OpCount, metrics.WorkTime);
     }
 }

@@ -297,5 +297,17 @@ namespace Z0
         public static Atoms Contain(this IEnumerable<Atom> src)
            => Atoms.Contain(src);
 
+        [MethodImpl(Inline)]   
+        public static string Format(this ReadOnlySpan<char> src)
+            => new string(src);
+
+        [MethodImpl(Inline)]   
+        public static string Format(this Span<char> src)
+            => new string(src);
+
+        [MethodImpl(Inline)]   
+        public static ReadOnlySpan<char> Concat(this ReadOnlySpan<char> lhs, ReadOnlySpan<char> rhs)
+            => lhs.Format() + rhs.Format();
+
     }
 }

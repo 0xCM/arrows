@@ -11,6 +11,15 @@
     <BaseIntermediateOutputPath>$(IntermediateBuildDir)</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(IntermediateBuildDir)</IntermediateOutputPath>
     <NoWarn>1591;1572;1573;1701;1702;1712;1711;1570;1571;1574;1710;8321</NoWarn>
+    <Deterministic>true</Deterministic>
+    <NullableReferenceTypes>true</NullableReferenceTypes>
+    <NullableContextOptions>disable</NullableContextOptions>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
 
 </Project>
+
+    <!-- <DefineConstants>DEBUG;TRACE</DefineConstants> -->
+

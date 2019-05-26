@@ -17,18 +17,6 @@ namespace Z0
 
     public static class corex
     {
-        [MethodImpl(Inline)]   
-        public static string Format(this ReadOnlySpan<char> src)
-            => new string(src);
-
-        [MethodImpl(Inline)]   
-        public static string Format(this Span<char> src)
-            => new string(src);
-
-        [MethodImpl(Inline)]   
-        public static ReadOnlySpan<char> Concat(this ReadOnlySpan<char> lhs, ReadOnlySpan<char> rhs)
-            => lhs.Format() + rhs.Format();
-
         /// <summary>
         /// Converts a number to a string of decimal digits
         /// </summary>
@@ -110,34 +98,6 @@ namespace Z0
             if(src.RightClosed)
                 yield return src.Right;
         }
-
-
-        [MethodImpl(Inline)]
-        public static T ValueOrDefault<T>(this T? x, T @default = default)
-            where T : struct
-                => x != null ? x.Value : @default;
-
-        /// <summary>
-        /// Produces an array of bits from a stream of binary digits
-        /// </summary>
-        /// <param name="src">The source digits</param>
-        public static Bit[] ToBits(this IEnumerable<BinaryDigit> src)
-            => src.Select(d => d == BinaryDigit.Zed ? Bit.Off : Bit.On).ToArray();
-
-        public static IEnumerable<ulong> ToLongs(this IEnumerable<Guid> guids)
-        {
-            foreach(var guid in guids)
-            {
-                var bytes = guid.ToByteArray();      
-                yield return BitConverter.ToUInt64(bytes,0);
-                yield return BitConverter.ToUInt64(bytes,4);
-            }            
-        }
-
-        public static ulong[] ToLongArray(this IEnumerable<Guid> guids)
-            => guids.ToLongs().ToArray();
-
-
 
         //Prime numbers to use when generating a hash code. Taken from John Skeet's answer on SO:
         //http://stackoverflow.com/questions/263400/what-is-the-best-algorithm-for-an-overridden-system-object-gethashcode

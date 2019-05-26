@@ -109,83 +109,83 @@ namespace Z0
         }
 
         [MethodImpl(NotInline)]
-        public static ref Span<sbyte> inc(ref Span<sbyte> io)
+        public static Span<sbyte> inc(Span<sbyte> io)
         {
             for(var i = 0; i< io.Length; i++)
                 inc(ref io[i]);
-            return ref io;
+            return io;
         }
 
         [MethodImpl(NotInline)]
-        public static ref Span<byte> inc(ref Span<byte> io)
+        public static Span<byte> inc(Span<byte> io)
         {
             for(var i = 0; i< io.Length; i++)
                 inc(ref io[i]);
-            return ref io;
+            return io;
         }
 
         [MethodImpl(NotInline)]
-        public static ref Span<short> inc(ref Span<short> io)
+        public static Span<short> inc(Span<short> io)
         {
             for(var i = 0; i< io.Length; i++)
                 inc(ref io[i]);
-            return ref io;
+            return io;
         }
 
         [MethodImpl(NotInline)]
-        public static ref Span<ushort> inc(ref Span<ushort> io)
+        public static Span<ushort> inc(Span<ushort> io)
         {
             for(var i = 0; i< io.Length; i++)
                 inc(ref io[i]);
-            return ref io;
+            return io;
         }
 
         [MethodImpl(NotInline)]
-        public static ref Span<int> inc(ref Span<int> io)
+        public static Span<int> inc(Span<int> io)
         {
             for(var i = 0; i< io.Length; i++)
                 inc(ref io[i]);
-            return ref io;
+            return io;
         }
 
         [MethodImpl(NotInline)]
-        public static ref Span<uint> inc(ref Span<uint> io)
+        public static Span<uint> inc(Span<uint> io)
         {
             for(var i = 0; i< io.Length; i++)
                 inc(ref io[i]);
-            return ref io;
+            return io;
         }
 
         [MethodImpl(NotInline)]
-        public static ref Span<long> inc(ref Span<long> io)
+        public static Span<long> inc(Span<long> io)
         {
             for(var i = 0; i< io.Length; i++)
                 inc(ref io[i]);
-            return ref io;
+            return io;
         }
 
         [MethodImpl(NotInline)]
-        public static ref Span<ulong> inc(ref Span<ulong> io)
+        public static Span<ulong> inc(Span<ulong> io)
         {
             for(var i = 0; i< io.Length; i++)
                 inc(ref io[i]);
-            return ref io;
+            return io;
         }
 
        [MethodImpl(NotInline)]
-        public static ref Span<float> inc(ref Span<float> io)
+        public static Span<float> inc(Span<float> io)
         {
             for(var i = 0; i< io.Length; i++)
                 inc(ref io[i]);
-            return ref io;
+            return io;
         }
 
         [MethodImpl(NotInline)]
-        public static ref Span<double> inc(ref Span<double> io)
+        public static Span<double> inc(Span<double> io)
         {
             for(var i = 0; i< io.Length; i++)
                 inc(ref io[i]);
-            return ref io;
+            return io;
         }
 
     }

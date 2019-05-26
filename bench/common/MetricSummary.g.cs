@@ -20,7 +20,7 @@ namespace Z0
             this.OpId = Metrics.OpId;
             this.OpCount = Metrics.OpCount;
             this.WorkTime = Metrics.WorkTime;
-            this.Description = BenchmarkMessages.BenchmarkEnd(this.OpId, OpCount, WorkTime);
+            this.Description = MetricSummary.BenchmarkEnd(this.OpId, OpCount, WorkTime);
         }
 
         public IMetrics Metrics {get;}

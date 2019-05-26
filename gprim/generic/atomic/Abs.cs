@@ -17,19 +17,19 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         static T absI8<T>(T src)
-            => generic<T>(Math.Abs(int8(src)));
+            => generic<T>(math.abs(int8(src)));
 
         [MethodImpl(Inline)]
         static T absI16<T>(T src)
-            => generic<T>(Math.Abs(int16(src)));
+            => generic<T>(math.abs(int16(src)));
 
         [MethodImpl(Inline)]
         static T absI32<T>(T src)
-            => generic<T>(Math.Abs(int32(src)));
+            => generic<T>(math.abs(int32(src)));
         
         [MethodImpl(Inline)]
         static T absI64<T>(T src)
-            => generic<T>(Math.Abs(int64(src)));
+            => generic<T>(math.abs(int64(src)));
 
         [MethodImpl(Inline)]
         static T absF32<T>(T src)
@@ -37,7 +37,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static T absF64<T>(T src)
-            => generic<T>(Math.Abs(float64(src)));
+            => generic<T>(math.abs(float64(src)));
  
         [MethodImpl(Inline)]
         static ref T absI8<T>(ref T src)

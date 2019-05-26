@@ -103,33 +103,43 @@ namespace Z0
 
         public void RunSimpleBench()
         {
-            var cycles = Pow2.T13;
-            var lhs = Randomizer.Array<int>(Pow2.T15);
-            var rhs = Randomizer.Array<int>(Pow2.T15);
-            var dst = span<int>(Pow2.T15);
+            var cycles = Pow2.T15;
+            var samples = Pow2.T14;
+            var lhs = Randomizer.Array<int>(samples);
+            var rhs = Randomizer.Array<int>(samples);
+            var dst = span<int>(samples);
+            gmath.init();
 
             while(true)
             {
-                var sw3 = stopwatch();
-                for(var i = 0; i< cycles; i++)
-                    gmath.add(lhs, rhs, dst);
-                
-                print($"Generic Fused {snapshot(sw3)}");
-            
                 var sw1 = stopwatch();
                 for(var i = 0; i< cycles; i++)
-                for(var j = 0; j< dst.Length; j++)
-                    dst[i] = lhs[i] + rhs[i];
-                print($"Direct {snapshot(sw1)}");
+                    math.add(lhs, rhs, dst);
+                print($"Direct Fused".PadRight(16) +  $"{snapshot(sw1).Ms} ms");
 
                 var sw2 = stopwatch();
                 for(var i = 0; i< cycles; i++)
                 for(var j = 0; j< dst.Length; j++)
-                    dst[i] = gmath.add(lhs[i], rhs[j]);                
-                print($"Generic Atomic {snapshot(sw2)}");
-            
-            
-            
+                    dst[j] = lhs[j] + rhs[j];                
+                print($"Local Direct".PadRight(16) + $"{snapshot(sw2).Ms} ms");
+
+                var sw3 = stopwatch();
+                for(var i = 0; i< cycles; i++)
+                    gmath.add(lhs, rhs, dst);                
+                print($"Generic Fused".PadRight(16) +  $"{snapshot(sw3).Ms} ms");
+                                    
+                var sw4 = stopwatch();
+                for(var i = 0; i< cycles; i++)
+                for(var j = 0; j< dst.Length; j++)
+                    dst[j] = gmath.add(lhs[j],  rhs[j]);                
+                print($"Generic Atomic".PadRight(16) + $"{snapshot(sw4).Ms} ms");
+
+                var sw5 = stopwatch();
+                for(var i = 0; i< cycles; i++)
+                for(var j = 0; j< dst.Length; j++)
+                    dst[j] = math.add(lhs[j], rhs[j]);                
+                print($"Direct Atomic".PadRight(16) + $"{snapshot(sw5).Ms} ms");
+
             }
 
             
