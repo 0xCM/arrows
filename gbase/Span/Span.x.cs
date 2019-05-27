@@ -62,6 +62,8 @@ namespace Z0
             return Z0.Span256.load<T>(dst);
         }
 
+
+
         public static Span256<T> Replicate<T>(this ReadOnlySpan256<T> src)
             where T : struct
         {
@@ -74,7 +76,8 @@ namespace Z0
             where T : struct
         {
             var dst = span<T>(Z0.Span128.blocklength<T>(blocks));
-            random.StreamTo(dst.Length, Randomizer.Domain(domain), filter, pvoid(ref dst[0]));
+            //random.StreamTo(dst.Length, Randomizer.Domain(domain), filter, pvoid(ref dst[0]));
+            random.StreamTo(Randomizer.Domain(domain), dst.Length, ref dst[0], filter);
             return Z0.Span128.load(dst);
         }
 
@@ -86,7 +89,8 @@ namespace Z0
             where T : struct
         {
             var dst = span<T>(Z0.Span256.blocklength<T>(blocks));            
-            random.StreamTo(dst.Length, Randomizer.Domain(domain), filter, pvoid(ref dst[0]));            
+            //random.StreamTo(dst.Length, Randomizer.Domain(domain), filter, pvoid(ref dst[0]));            
+            random.StreamTo(Randomizer.Domain(domain), dst.Length, ref dst[0], filter);
             return Z0.Span256.load(dst);
         }
 
@@ -102,6 +106,13 @@ namespace Z0
         public static Metrics<T> Capture<T>(in OpId<T> OpId, long OpCount, Duration WorkTime, Span256<T> results)
             where T : struct
                 => Metrics.Capture(OpId, OpCount, WorkTime, results.Unblock());
+
+ 
+        [MethodImpl(Inline)]
+        public static Span<N,T> Replicate<N,T>(this Span<N,T> src)
+            where T : struct
+            where N : ITypeNat, new()
+                => Spans.replicate(src);
 
     }
 }

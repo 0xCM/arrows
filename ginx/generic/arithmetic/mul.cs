@@ -105,23 +105,20 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
+            ref var head = ref first(dst);
             switch(kind)
             {
                 case PrimalKind.int32:
-                     fixed(long* pDst = &first(As.int64(dst)))
-                        dinx.mul(int32(lhs), int32(rhs), pDst);
+                    dinx.mul(int32(lhs), int32(rhs), ref int64(ref head));
                     break;
                 case PrimalKind.uint32:
-                    fixed(ulong* pDst = &first(As.uint64(dst)))
-                        dinx.mul(uint32(lhs), uint32(rhs), pDst);
+                    dinx.mul(uint32(lhs), uint32(rhs), ref uint64(ref head));
                     break;
                 case PrimalKind.float32:
-                    fixed(float* pDst = &first(As.float32(dst)))
-                        dinx.mul(float32(lhs), float32(rhs), pDst);
+                    dinx.mul(float32(lhs), float32(rhs), ref float32(ref head));
                     break;
                 case PrimalKind.float64:
-                    fixed(double* pDst = &first(As.float64(dst)))
-                        dinx.mul(float64(lhs), float64(rhs), pDst);
+                    dinx.mul(float64(lhs), float64(rhs), ref float64(ref head));
                 break;                
                 default:
                     throw unsupported(kind);                    
@@ -205,32 +202,6 @@ namespace Z0
             }                
 
         }
-
-
-        [MethodImpl(Inline)]
-        public static unsafe void mul<T>(in Vec128<T> lhs, in Vec128<T> rhs, void* dst)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int32:
-                    dinx.mul(int32(lhs), int32(rhs), int64(dst));
-                    break;
-                case PrimalKind.uint32:
-                    dinx.mul(uint32(lhs), uint32(rhs), uint64(dst));
-                    break;
-                case PrimalKind.float32:
-                    dinx.mul(float32(lhs), float32(rhs), float32(dst));
-                    break;
-                case PrimalKind.float64:
-                    dinx.mul(float64(lhs), float64(rhs), float64(dst));                
-                break;                
-                default:
-                    throw unsupported(kind);
-            }
-        }
-            
 
     }
 }

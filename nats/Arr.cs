@@ -13,56 +13,7 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
-    public static class NatArray
-    {
-        /// <summary>
-        /// Allocates an array of of natural length
-        /// </summary>
-        /// <typeparam name="N">The natural length type</typeparam>
-        /// <typeparam name="T">Then element type</typeparam>
-        public static Array<N,T> define<N,T>()
-            where N : ITypeNat, new()
-                => new Array<N,T>();
 
-        /// <summary>
-        /// Wraps an existing array within an array of natural length
-        /// </summary>
-        /// <param name="src">The source array</param>
-        /// <typeparam name="N">The natural length type</typeparam>
-        /// <typeparam name="T">Then element type</typeparam>
-        public static Array<N,T> define<N,T>(params T[] src)
-            where N : ITypeNat, new()
-                => new Array<N,T>(src);
-
-        public static Array<N,T> define<N,T>(N len, params T[] src)
-            where N : ITypeNat, new()
-                => new Array<N,T>(src);
-
-        /// <summary>
-        /// Creates an array from the first N elements of a sequence
-        /// </summary>
-        /// <typeparam name="N">The natural length type</typeparam>
-        /// <typeparam name="T">Then element type</typeparam>
-        /// <returns></returns>
-        public static Array<N,T> define<N,T>(IEnumerable<T> src)
-            where N : ITypeNat, new()
-                => new Array<N,T>(src);
-
-        /// <summary>
-        /// Creates an array from the first N elements of a sequence
-        /// </summary>
-        /// <typeparam name="N">The natural length type</typeparam>
-        /// <typeparam name="T">Then element type</typeparam>
-        /// <returns></returns>
-        public static Array<N,T> define<N,T>(N len, IEnumerable<T> src)
-            where N : ITypeNat, new()
-                => new Array<N,T>(src);
-
-    }
-
-    /// <summary>
-    /// A one-dimensional array with lenght encoded by typenat parameter
-    /// </summary>
     public struct Array<N,T> : IArray<N,T>
         where N : ITypeNat, new()
     {

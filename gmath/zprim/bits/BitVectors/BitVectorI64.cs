@@ -22,16 +22,24 @@ namespace Z0
             => this.data = data;
 
         [MethodImpl(Inline)]
-        public static BitVectorI64 Define(long src)
-            => new BitVectorI64(src);    
-
-        [MethodImpl(Inline)]
         public static implicit operator BitVectorI64(in long src)
             => new BitVectorI64(src);
 
         [MethodImpl(Inline)]
+        public static implicit operator BitVector<long>(in BitVectorI64 src)
+            => new BitVector<long>(in src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<N64,long>(in BitVectorI64 src)
+            => NatBits.Define(in src.data);
+
+        [MethodImpl(Inline)]
         public static implicit operator long(in BitVectorI64 src)
             => src.data;        
+
+        [MethodImpl(Inline)]
+        public static BitVectorI64 Define(long src)
+            => new BitVectorI64(src);    
 
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVectorI64 lhs, in BitVectorI64 rhs)

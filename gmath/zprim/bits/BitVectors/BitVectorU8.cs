@@ -15,6 +15,28 @@ namespace Z0
 
     public ref struct BitVectorU8
     {
+        byte data;
+
+        [MethodImpl(Inline)]
+        public BitVectorU8(in byte data)
+            => this.data = data;
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<byte>(in BitVectorU8 src)
+            => new BitVector<byte>(in src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<N8,byte>(in BitVectorU8 src)
+            => NatBits.Define(src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVectorU8(in byte src)
+            => new BitVectorU8(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator byte(in BitVectorU8 src)
+            => src.data;
+
         public static BitVectorU8 Define(
             byte? x0 = null, byte? x1 = null, byte? x2 = null, byte? x3 = null, 
             byte? x4 = null, byte? x5 = null, byte? x6 = null, byte? x7 = null)
@@ -60,22 +82,6 @@ namespace Z0
                 => Bits.pack8(
                     x00, x01, x02, x03, 
                     x04, x05, x06, x07);
-
-        byte data;
-
-        [MethodImpl(Inline)]
-        public BitVectorU8(in byte data)
-            => this.data = data;
-        
-        const int BitSize = 8;
-
-        [MethodImpl(Inline)]
-        public static implicit operator BitVectorU8(in byte src)
-            => new BitVectorU8(src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator byte(in BitVectorU8 src)
-            => src.data;
 
 
         [MethodImpl(Inline)]

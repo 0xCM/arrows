@@ -17,17 +17,28 @@ namespace Z0
     {
         uint data;
 
-        const int BitSize = 32;
-
         [MethodImpl(Inline)]
         public BitVectorU32(in uint data)
             => this.data = data;
 
         [MethodImpl(Inline)]
+        public static implicit operator BitVector<uint>(in BitVectorU32 src)
+            => new BitVector<uint>(in src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<N32,uint>(in BitVectorU32 src)
+            => NatBits.Define(in src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVectorU32(uint src)
+            => new BitVectorU32(src);
+
+
+        [MethodImpl(Inline)]
         public BitVectorU32(in Bit[] src)
         {
             this.data = 0;
-            for(var i = 0; i< Math.Min(BitSize, src.Length); i++)
+            for(var i = 0; i< Math.Min(32, src.Length); i++)
                 if(src[i])
                     enable(ref data, i);
         }
@@ -37,12 +48,13 @@ namespace Z0
             => new BitVectorU32(src);    
 
         [MethodImpl(Inline)]
-        public static BitVectorU32 Define(in ReadOnlySpan<Bit> src)
-            => Define(in bitpack(src, out uint dst));
+        public static BitVectorU32 Define(in byte x0, in byte x1, in byte x2, in byte x3)
+            => BitConverter.ToUInt32(array(x0, x1, x2, x3), 0);
 
         [MethodImpl(Inline)]
-        public static implicit operator BitVectorU32(uint src)
-            => new BitVectorU32(src);
+        public static BitVectorU32 Define(in ReadOnlySpan<byte> src, int offset = 0)
+            => Define(src[offset + 0], src[offset + 1], src[offset + 2], src[offset + 3]);
+    
 
         [MethodImpl(Inline)]
         public static implicit operator uint(in BitVectorU32 src)
@@ -86,6 +98,14 @@ namespace Z0
                     disable(ref data, in pos);                    
             }            
         }
+
+        [MethodImpl(Inline)]
+        public ref uint Scalar(out uint dst)
+        {
+            dst = data;
+            return ref dst;
+        }
+            
 
         [MethodImpl(Inline)]
         public void EnableBit(in int pos)

@@ -87,5 +87,5 @@ namespace Z0
                src = BitConverter.Int64BitsToDouble(srcBits);                           
                return ref src;
           }
-}
+     }
 }

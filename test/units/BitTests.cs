@@ -110,7 +110,7 @@ namespace Z0.Test
         {
             
             var bs1 = "10001000111";
-            var value = gbits.parse<ulong>(bs1).ToBitVector();
+            var value = gbits.parse<ulong>(bs1).ToBits();
             Claim.eq(value,0b10001000111);
 
         }
@@ -119,7 +119,7 @@ namespace Z0.Test
         {
             var x1 = 0b10100111001110001110010110101000;
             var y1 = "0b10100111001110001110010110101000";
-            var z1 = gbits.parse<uint>(y1).ToBitVector();
+            var z1 = gbits.parse<uint>(y1).ToBits();
             Claim.eq(x1, z1);
 
         }
@@ -174,8 +174,62 @@ namespace Z0.Test
                     Bit.On, Bit.On, Bit.Off, Bit.On);
             var bv2 = BitVectorU8.Define(bs1);
             Claim.eq(bv1, bv2);
-            
+                    
         }
+
+        public void Pack4BytesIntoU32()
+        {
+            byte x0 = 0b11011001;
+            byte x1 = 0b10010011;
+            byte x2 = 0b11000010;
+            byte x3 = 0b00001010;
+            var y0 = 0b00001010110000101001001111011001u;
+            var src = span(x0,x1, x2, x3);
+            var bvSrc = BitVectorU32.Define(x0,x1,x2,x3);
+            Claim.eq(bvSrc, y0);
+
+            var packed = span<uint>(1);
+            Bits.pack(src, packed);
+            var bvPacked = BitVectorU32.Define(packed[0]);
+            Claim.eq(bvSrc, bvPacked, AppMsg.Error($"{bvSrc.Format()} != {bvPacked.Format()}"));
+        }
+
+        public void PackBytesIntoU32Span()
+        {
+            var x0 = BitVectorU32.Define(0b00001010110000101001001111011001u);
+            var x1 = BitVectorU32.Define(0b00001010110110101001001111000001u);
+            var src = Randomizer.Span<byte>(Pow2.T04).ToReadOnlySpan();
+            var packed = span<uint>(src.Length / 4);
+            gbits.pack(src, packed);
+
+            for(var i = 0; i<packed.Length; i++)
+            {
+                 var x = BitVectorU32.Define(BitConverter.ToUInt32(src.Slice(4*i)));
+                 var y = BitVectorU32.Define(packed[i]);
+                Claim.eq(x, y, AppMsg.Error($"{x.Format()} != {y.Format()}"));
+            }
+        
+        }
+
+
+        public void PackBytesIntoU64Span()
+        {
+            var x0 = BitVectorU32.Define(0b00001010110000101001001111011001u);
+            var x1 = BitVectorU32.Define(0b00001010110110101001001111000001u);
+            var src = Randomizer.Span<byte>(Pow2.T04).ToReadOnlySpan();
+            var packed = span<ulong>(src.Length / 8);
+            gbits.pack(src, packed);
+
+            for(var i = 0; i<packed.Length; i++)
+            {
+                 var x = BitVectorU64.Define(BitConverter.ToUInt64(src.Slice(8*i)));
+                 var y = BitVectorU64.Define(packed[i]);
+                Claim.eq(x, y, AppMsg.Error($"{x.Format()} != {y.Format()}"));
+            }
+        
+        }
+
+
 
         public void BitConversionTest()
         {
@@ -200,7 +254,7 @@ namespace Z0.Test
         public void PopCount1()
         {
             var src = (ushort)3209;
-            var bits = src.ToBits();
+            var bits = src.ToBitSpan();
             var bitsPC = bits.PopCount();
             var bytes = src.ToBytes();
             var bytesPC = bytes.PopCount();
@@ -211,7 +265,7 @@ namespace Z0.Test
         public void PopCount2()
         {
             var src = 32093283484328432ul;
-            var bits = src.ToBits();
+            var bits = src.ToBitsSpan();
             var bitsPC = bits.PopCount();
             var bytes = src.ToBytes();
             var bytesPC = bytes.PopCount();
@@ -222,7 +276,7 @@ namespace Z0.Test
         public void PopCount3()
         {
             var src = 39238923;
-            var bits = src.ToBits();
+            var bits = src.ToBitSpan();
             var bitsPC = bits.PopCount();
             var bytes = src.ToBytes();
             var bytesPC = bytes.PopCount();
@@ -246,7 +300,7 @@ namespace Z0.Test
         public void PopCount5()
         {
             var xBytes = BitConverter.GetBytes(0b111010010110011010111001110000100001101ul).ToSpan();
-            var xBits = xBytes.ToBits();
+            var xBits = xBytes.ToBitSpan();
             var xBitsPC = xBits.PopCount();
             var xBytesPC = xBytes.PopCount();
 
@@ -259,7 +313,7 @@ namespace Z0.Test
             var xBytes = Randomizer.Span<byte>(5);
             var x = Bytes.read<ulong>(xBytes);
             var xPC = Bits.pop(x);
-            var xBits = xBytes.ToBits();
+            var xBits = xBytes.ToBitSpan();
             var xBitsPC = xBits.PopCount();
             var xBytesPC = xBytes.PopCount();
 
@@ -271,7 +325,7 @@ namespace Z0.Test
         {
             var xBytes = Randomizer.Span<byte>(Pow2.T10 - 3);
             var xBytesPC = xBytes.PopCount();
-            var xBitsPC = xBytes.ToBits().PopCount();
+            var xBitsPC = xBytes.ToBitSpan().PopCount();
             Claim.eq(xBitsPC, xBytesPC);
 
         }

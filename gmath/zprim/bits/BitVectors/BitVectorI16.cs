@@ -15,6 +15,12 @@ namespace Z0
 
     public struct BitVectorI16
     {
+        short data;
+        
+        [MethodImpl(Inline)]
+        public BitVectorI16(short data)
+            => this.data = data;
+        
         [MethodImpl(Inline)]
         public static implicit operator BitVectorI16(short src)
             => new BitVectorI16(src);
@@ -24,11 +30,13 @@ namespace Z0
             => src.data;
 
         [MethodImpl(Inline)]
-        public BitVectorI16(short data)
-            => this.data = data;
-        
-        short data;
-        
+        public static implicit operator BitVector<short>(in BitVectorI16 src)
+            => new BitVector<short>(in src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<N16,short>(in BitVectorI16 src)
+            => NatBits.Define(in src.data);
+
         [MethodImpl(Inline)]
         public static BitVectorI16 Define(short src)
             => new BitVectorI16(src);    

@@ -10,6 +10,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
     using System.Diagnostics;
 
     using static zfunc;
@@ -154,7 +155,6 @@ namespace Z0
         }
 
 
-
         [MethodImpl(Inline)]
         public static Span<T> Replicate<T>(this Span<T> src)
         {
@@ -162,6 +162,16 @@ namespace Z0
             src.CopyTo(dst);
             return dst;
         }
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<byte> ToBytes<T>(this ReadOnlySpan<T> src)
+            where T : struct
+            => MemoryMarshal.AsBytes(src);
+        
+        [MethodImpl(Inline)]
+        public static Span<byte> ToBytes<T>(this Span<T> src)
+            where T : struct
+            => MemoryMarshal.AsBytes(src);
 
 
         [MethodImpl(Inline)]

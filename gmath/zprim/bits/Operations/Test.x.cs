@@ -13,7 +13,7 @@ namespace Z0
     using static mfunc;
     using static Bits;
 
-    partial class BitX
+    public static partial class BitX
     {
     
         /// <summary>

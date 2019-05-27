@@ -79,7 +79,6 @@ namespace Z0
             return ref lhs;
         }            
 
-
         [MethodImpl(Inline)]
         static ref T lshiftI32<T>(ref T lhs, int rhs)
         {

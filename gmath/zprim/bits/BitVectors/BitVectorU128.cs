@@ -75,11 +75,6 @@ namespace Z0
             }            
         }
 
-        public Span<Bit> this[int first, int last]
-        {
-            [MethodImpl(Inline)]
-            get => this.Bits().Slice(first, last - first + 1);
-        }
 
         [MethodImpl(Inline)]
         public bool TestBit(int pos)
@@ -93,9 +88,6 @@ namespace Z0
         public Span<byte> Bytes()
             => data.ToBytes();
 
-        [MethodImpl(Inline)]
-        public Span<Bit> Bits()
-            => data.ToBits();
 
         [MethodImpl(Inline)]
         public int PopCount()

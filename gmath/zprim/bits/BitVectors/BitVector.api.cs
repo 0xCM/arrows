@@ -5,79 +5,51 @@
 namespace Z0
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Numerics;
-    using System.Globalization;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
+    using System.Numerics;
 
-    using static zfunc;
-    using static nfunc;
+    using static Bits;
+    using static Bytes;
 
-    /// <summary>
-    /// Defines primary bitvector api
-    /// </summary>
+    using static zfunc;    
+
     public static class BitVector
     {
+        /// <summary>
+        /// Creates a generic bitvector from a source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<N8> Define(in sbyte src)
-            => BitVector<N8>.Define(Bits.bitspan(src));
+        public static BitVector<T> Define<T>(in T src)        
+            where T : struct
+                => new BitVector<T>(in src);
 
+        /// <summary>
+        /// Creates a natural bitvector from a 1-element source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<N8> Define(in byte src)
-            => BitVector<N8>.Define(Bits.bitspan(src));
-
-        [MethodImpl(Inline)]
-        public static BitVector<N16> Define(in short src)
-            => BitVector<N16>.Define(Bits.bitspan(src));
-
-        [MethodImpl(Inline)]
-        public static BitVector<N16> Define(in ushort src)
-            => BitVector<N16>.Define(Bits.bitspan(src));
-
-        [MethodImpl(Inline)]
-        public static BitVector<N32> Define(in int src)
-            => BitVector<N32>.Define(Bits.bitspan(src));
-
-        [MethodImpl(Inline)]
-        public static BitVector<N32> Define(in uint src)
-            => BitVector<N32>.Define(Bits.bitspan(src));
-
-        [MethodImpl(Inline)]
-        public static BitVector<N64> Define(in long src)
-            => BitVector<N64>.Define(Bits.bitspan(src));
-
-        [MethodImpl(Inline)]
-        public static BitVector<N64> Define(in ulong src)
-            => BitVector<N64>.Define(Bits.bitspan(src));
-
-        [MethodImpl(Inline)]
-        public static BitVector<N128> Define(in i128 src)
-            => BitVector<N128>.Define(src.ToBits());
-
-        [MethodImpl(Inline)]
-        public static BitVector<N128> Define(in u128 src)
-            => BitVector<N128>.Define(src.ToBits());
-
-        [MethodImpl(Inline)]
-        public static BitVector<N> Define<N>(in ReadOnlySpan<char> src)
+        public static BitVector<N,T> Define<N,T>(in T src)        
+            where T : struct
             where N : INatPow2, new()
-                => BitVector<N>.Define(src);
+                => BitVector<N,T>.Define(in src);
 
+        /// <summary>
+        /// Creates a natural bitvector from a span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<N> Define<N>(in ReadOnlySpan<Bit> src)
+        public static BitVector<N,T> Define<N,T>(in ReadOnlySpan<T> src, N len = default(N))        
+            where T : struct
             where N : INatPow2, new()
-                => BitVector<N>.Define(src);
+                => BitVector<N,T>.Define(in src);
 
-        [MethodImpl(Inline)]
-        public static BitVector<N> Define<N>(in ReadOnlySpan<byte> src)
-            where N : INatPow2, new()
-                => BitVector<N>.Define(src);
 
-        [MethodImpl(Inline)]
-        public static BitVector<N> Define<N>(ref Span<byte> src)
-            where N : INatPow2, new()
-                => BitVector<N>.Define(ref src);
+    }
 
-    }  
+
 }

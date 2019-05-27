@@ -17,6 +17,14 @@ namespace Z0
 
     public ref struct BitVectorU64
     {
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<ulong>(in BitVectorU64 src)
+            => new BitVector<ulong>(in src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<N64,ulong>(in BitVectorU64 src)
+            => NatBits.Define(in src.data);
+
         ulong data;
 
         const int BitSize = 64;

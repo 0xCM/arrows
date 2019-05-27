@@ -16,18 +16,26 @@ namespace Z0
     public ref struct BitVectorI32
     {
         int data;
-        
-        [MethodImpl(Inline)]
-        public static BitVectorI32 Define(in int src)
-            => new BitVectorI32(src);    
 
         [MethodImpl(Inline)]
-        public static implicit operator BitVector<N32>(in BitVectorI32 src)
-            => BitVector.Define(in src.data);
+        public BitVectorI32(in int data)
+            => this.data = data;        
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<N32,int>(in BitVectorI32 src)
+            => NatBits.Define(in src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<int>(in BitVectorI32 src)
+            => new BitVector<int>(in src.data);
 
         [MethodImpl(Inline)]
         public static implicit operator BitVectorI32(in int src)
             => new BitVectorI32(in src);
+
+        [MethodImpl(Inline)]
+        public static BitVectorI32 Define(in int src)
+            => new BitVectorI32(src);    
 
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVectorI32 lhs, in BitVectorI32 rhs)
@@ -88,12 +96,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator int(in BitVectorI32 src)
             => src.data;
-
-        [MethodImpl(Inline)]
-        public BitVectorI32(in int data)
-            => this.data = data;
-        
-
+    
         public Bit this[in int pos]
         {
             [MethodImpl(Inline)]

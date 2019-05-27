@@ -18,11 +18,8 @@ namespace Z0
     using static Spans;
     using static As;
 
-
     public static partial class dinx
     {
-        #region add:vec -> vec -> vec
-
         [MethodImpl(Inline)]
         public static Vec128<byte> add(in Vec128<byte> lhs, in Vec128<byte> rhs)
             => Avx2.Add(lhs, rhs);
@@ -103,110 +100,98 @@ namespace Z0
         public static Vec256<double> add(in Vec256<double> lhs, in Vec256<double> rhs)
             => Add(lhs, rhs);
 
-
-        #endregion
-
-        #region add:vec -> vec -> *
+        [MethodImpl(Inline)]
+        public static void add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, ref sbyte dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, ref sbyte dst)
-            => Store(pint8(ref dst), Add(lhs, rhs));
+        public static void add(in Vec128<byte> lhs, in Vec128<byte> rhs, ref byte dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<byte> lhs, in Vec128<byte> rhs, ref byte dst)
-            => Store(puint8(ref dst), Add(lhs, rhs));
+        public static void add(in Vec128<short> lhs, in Vec128<short> rhs, ref short dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<short> lhs, in Vec128<short> rhs, ref short dst)
-            => Store(pint16(ref dst), Add(lhs, rhs));
+        public static void add(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ref ushort dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ref ushort dst)
-            => Store(puint16(ref dst), Add(lhs, rhs));
+        public static void add(in Vec128<int> lhs, in Vec128<int> rhs, ref int dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<int> lhs, in Vec128<int> rhs, ref int dst)
-            => Store(pint32(ref dst), Add(lhs, rhs));
+        public static void add(in Vec128<uint> lhs, in Vec128<uint> rhs, ref uint dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<uint> lhs, in Vec128<uint> rhs, ref uint dst)
-            => Store(puint32(ref dst), Add(lhs, rhs));
+        public static void add(in Vec128<long> lhs, in Vec128<long> rhs, ref long dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<long> lhs, in Vec128<long> rhs, ref long dst)
-            => Store(pint64(ref dst), Add(lhs, rhs));
+        public static void add(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ref ulong dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ref ulong dst)
-            => Store(puint64(ref dst), Add(lhs, rhs));
+        public static void add(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
-            => Store(pfloat32(ref dst), Add(lhs, rhs));
+        public static void add(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
-        {
-            var result = Add(lhs,rhs);
-            Store(pfloat64(ref dst), result);
-        }        
+        public static void add(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
-            => Store(pint8(ref dst), Add(lhs, rhs));
+        public static void add(in Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
-            => Store(puint8(ref dst), Add(lhs,rhs));
+        public static void add(in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
-            => Store(pint16(ref dst), Add(lhs, rhs));
+        public static void add(in Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
-            => Store(puint16(ref dst), Add(lhs, rhs));
+        public static void add(in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
-            => Store(pint32(ref dst), Add(lhs, rhs));
+        public static void add(in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
-            => Store(puint32(ref dst), Add(lhs, rhs));
+        public static void add(in Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
-            => Store(pint64(ref dst), Add(lhs, rhs));
+        public static void add(in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
-            => Store(puint64(ref dst), Add(lhs, rhs));
+        public static void add(in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
+            => store(Add(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public static unsafe void add(in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
-            => Store(pfloat32(ref dst), Add(lhs, rhs));
+        public static void add(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
+            => store(Add(lhs, rhs), ref dst);
 
-        [MethodImpl(Inline)]
-        public static unsafe void add(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
-            => Store(pfloat64(ref dst), Add(lhs, rhs));
-
-        #endregion
-
-        # region add:span -> span -> ref span -> ref span
         public static ref Span128<sbyte> add(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, ref Span128<sbyte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x =  lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x =  lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
-
         }
 
         public static ref Span128<byte> add(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, ref Span128<byte> dst)
@@ -215,9 +200,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -229,9 +214,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -243,9 +228,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -257,9 +242,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -271,9 +256,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -285,9 +270,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x =  lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x =  lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -299,9 +284,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -313,9 +298,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x =  lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -327,9 +312,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -341,9 +326,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -355,13 +340,12 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
-
         }
 
         public static ref Span256<short> add(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, ref Span256<short> dst)
@@ -370,9 +354,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -384,9 +368,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -398,9 +382,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -412,9 +396,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;
@@ -426,9 +410,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -440,9 +424,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -454,9 +438,9 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;            
@@ -468,14 +452,12 @@ namespace Z0
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
             {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                dinx.store(dinx.add(x,y), ref dst[i]);
+                var x = lhs.VLoad(i);
+                var y = rhs.VLoad(i);
+                store(Add(x,y), ref dst[i]);
             }
             
             return ref dst;
-        }
-
-        #endregion
+        }        
     }
 }

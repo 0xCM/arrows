@@ -125,7 +125,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static bool ReallyEqual<T>(this Span<T> lhs, Span<T> rhs)  
+        public static bool Eq<T>(this Span<T> lhs, Span<T> rhs)  
             where T : struct       
         {
             if(lhs.Length != rhs.Length)
@@ -144,7 +144,7 @@ namespace Z0
             => Contains(ref asRef(in lhs[0]), match, lhs.Length);
 
         [MethodImpl(Inline)]
-        public static bool ReallyEqual<T>(this ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)  
+        public static bool Eq<T>(this ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)  
             where T : struct       
         {
             if(lhs.Length != rhs.Length)
@@ -241,10 +241,9 @@ namespace Z0
         }
 
         //Adapted from corefx repo
-        unsafe static bool Contains<T>(ref T src, T match, int length)
+        static bool Contains<T>(ref T src, T match, int length)
             where T : struct
         {
-
             IntPtr index = (IntPtr)0;
 
             while (length >= 8)
@@ -286,18 +285,17 @@ namespace Z0
 
                 index += 1;
             }
-
             return false;        
         }
 
         public static bool Eq<T>(this ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)        
                 where T : struct        
-            {
-                for(var i = 0; i< length(lhs,rhs); i++)
-                    if(gmath.neq(lhs[i],rhs[i]))
-                        return false;
-                return true;
-            }
+        {
+            for(var i = 0; i< length(lhs,rhs); i++)
+                if(gmath.neq(lhs[i],rhs[i]))
+                    return false;
+            return true;
+        }
 
         public static bool Eq<T>(this ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)        
             where T : struct        

@@ -18,7 +18,6 @@ namespace Z0
           public static Vec128<byte> avg(in Vec128<byte> lhs, in Vec128<byte> rhs)
                => Avx2.Average(lhs,rhs);
 
-
           [MethodImpl(Inline)]          
           public static Vec128<ushort> avg(in Vec128<ushort> lhs,in Vec128<ushort> rhs)
                => Avx2.Average(lhs,rhs);

@@ -24,7 +24,7 @@ namespace Z0
         /// <summary>
         /// The size of the type in bytes
         /// </summary>
-        public static readonly int Size = GetSize();
+        public static readonly ByteSize Size = GetSize();
 
         /// <summary>
         /// The size of the type in bits

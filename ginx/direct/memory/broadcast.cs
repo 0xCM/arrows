@@ -21,11 +21,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<byte> broadcast(ref byte src, out Vec256<byte> dst)
-            => dst = Avx2.BroadcastScalarToVector256(puint8(ref src));
+            => dst = BroadcastScalarToVector256(puint8(ref src));
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<sbyte> broadcast(ref sbyte src, out Vec256<sbyte> dst)
-            => dst = Avx2.BroadcastScalarToVector256(pint8(ref src));
+            => dst = BroadcastScalarToVector256(pint8(ref src));
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<short> broadcast(ref short src, out Vec256<short> dst)
@@ -58,6 +58,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe Vec256<double> broadcast(ref double src, out Vec256<double> dst)
             => dst = BroadcastScalarToVector256(pfloat64(ref src)); 
-
     }
 }

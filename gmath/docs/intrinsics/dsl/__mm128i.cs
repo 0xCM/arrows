@@ -16,9 +16,6 @@ namespace Z0.BitSpecs
         public __mm128i(u128 src)
             => bits = src;
 
-        public Span<Bit> this[int lastIx, int startIx]
-            => bits[startIx, lastIx];
-
 
         public BitVectorU64 this[N63 lastIx, N0 startIx]
             => Lo;

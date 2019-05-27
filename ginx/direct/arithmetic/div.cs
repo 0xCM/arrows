@@ -11,16 +11,13 @@ namespace Z0
     using static System.Runtime.Intrinsics.X86.Sse2;
     using static System.Runtime.Intrinsics.X86.Avx;
     using static System.Runtime.Intrinsics.X86.Sse;
-    
-    
+        
     using static zfunc;
     using static Spans;
     using static As;
 
-
     partial class dinx
     {
-
 
         [MethodImpl(Inline)]
         public static Vec128<float> div(in Vec128<float> lhs, in Vec128<float> rhs)
@@ -43,7 +40,7 @@ namespace Z0
             where T : struct
             => src;
 
-        public static unsafe ref Span128<float> div(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, ref Span128<float> dst)
+        public static ref Span128<float> div(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, ref Span128<float> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -51,13 +48,13 @@ namespace Z0
             {
                 var x = Vec128.load(ref asRef(in lhs[i]));
                 var y = Vec128.load(ref asRef(in rhs[i]));
-                store(Divide(x,y).ToVec128(), ref dst[i]);
+                store(Divide(x,y), ref dst[i]);
             }
             
             return ref dst;
         }
 
-        public static unsafe ref Span128<double> div(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, ref Span128<double> dst)
+        public static ref Span128<double> div(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, ref Span128<double> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -65,13 +62,13 @@ namespace Z0
             {
                 var x = Vec128.load(ref asRef(in lhs[i]));
                 var y = Vec128.load(ref asRef(in rhs[i]));
-                store(Divide(x,y).ToVec128(), ref dst[i]);
+                store(Divide(x,y), ref dst[i]);
             }
             
             return ref dst;
         }
 
-        public static unsafe ref Span256<float> div(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
+        public static ref Span256<float> div(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -83,10 +80,9 @@ namespace Z0
             }
             
             return ref dst;
-
         }
 
-        public static unsafe ref Span256<double> div(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, ref Span256<double> dst)
+        public static ref Span256<double> div(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, ref Span256<double> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);

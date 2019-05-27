@@ -14,38 +14,140 @@ namespace Z0
 
     public static partial class BitVectorX
     {        
+        public static BitVector<N,T> ToNatBits<N,T>(this N bits, in T value)
+            where N : INatPow2, new()
+            where T : struct
+                => BitVector.Define<N,T>(value);
 
         [MethodImpl(Inline)]
-        public static BitVectorU8 ToBitVector(this byte src)
+        public static BitVectorU8 ToBits(this byte src)
             => src;
 
         [MethodImpl(Inline)]
-        public static BitVectorI8 ToBitVector(this sbyte src)
+        public static BitVectorI8 ToBits(this sbyte src)
             => src;
 
         [MethodImpl(Inline)]
-        public static BitVectorU16 ToBitVector(this ushort src)
+        public static BitVectorU16 ToBits(this ushort src)
             => src;
 
         [MethodImpl(Inline)]
-        public static BitVectorI32 ToBitVector(this int src)
+        public static BitVectorI32 ToBits(this int src)
             => src;
 
         [MethodImpl(Inline)]
-        public static BitVectorU32 ToBitVector(this uint src)
+        public static BitVectorU32 ToBits(this uint src)
             => src;
 
         [MethodImpl(Inline)]
-        public static BitVectorU64 ToBitVector(this ulong src)
+        public static BitVectorU64 ToBits(this ulong src)
             => src;
 
         [MethodImpl(Inline)]
-        public static BitVectorI64 ToBitVector(this long src)
+        public static BitVectorI64 ToBits(this long src)
             => src;
 
         [MethodImpl(Inline)]
-        public static BitVectorU128 ToBitVector(this u128 src)
+        public static BitVectorU128 ToBits(this u128 src)
             => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N8,sbyte> ToNatBits(this sbyte src)
+            => NatBits.Define(src);
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N8,byte> ToNatBits(this byte src)
+            => NatBits.Define(src);
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N16,short> ToNatBits(this short src)
+            => NatBits.Define(src);
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N16,ushort> ToNatBits(this ushort src)
+            => NatBits.Define(src);
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N32,int> ToNatBits(this int src)
+            => NatBits.Define(src);
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N32,uint> ToNatBits(this uint src)
+            => NatBits.Define(src);
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N64,long> ToNatBits(this long src)
+            => NatBits.Define(src);
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N64,ulong> ToNatBits(this ulong src)
+            => NatBits.Define(src);
+
+
+        [MethodImpl(Inline)]        
+        public static BitVector<sbyte> ToGeneric(this BitVectorI8 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<short> ToGeneric(this BitVectorI16 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<int> ToGeneric(this BitVectorI32 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<long> ToGeneric(this BitVectorI64 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<byte> ToGeneric(this BitVectorU8 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<ushort> ToGeneric(this BitVectorU16 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<uint> ToGeneric(this BitVectorU32 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<ulong> ToGeneric(this BitVectorU64 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N8, sbyte> ToNatBits(this BitVectorI8 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N8, byte> ToNatBits(this BitVectorU8 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N16, short> ToNatBits(this BitVectorI16 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N16, ushort> ToNatBits(this BitVectorU16 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N32, int> ToNatBits(this BitVectorI32 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N32, uint> ToNatBits(this BitVectorU32 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N64, long> ToNatBits(this BitVectorI64 src)
+            => src;
+
+        [MethodImpl(Inline)]        
+        public static BitVector<N64, ulong> ToNatBits(this BitVectorU64 src)
+            => src;
+
     }
 
 }

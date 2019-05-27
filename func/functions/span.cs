@@ -196,6 +196,11 @@ partial class zfunc
             => MemoryMarshal.AsBytes(src);
 
     [MethodImpl(Inline)]
+    public static Span<byte> bytes<T>(T src)
+        where T : struct
+            => MemoryMarshal.AsBytes(span(src));
+
+    [MethodImpl(Inline)]
     public static T read<T>(ReadOnlySpan<byte> src)
         where T : struct
             =>  MemoryMarshal.Read<T>(src);

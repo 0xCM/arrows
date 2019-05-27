@@ -8,6 +8,8 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
+    using static System.Runtime.Intrinsics.X86.Sse3;
+    using static System.Runtime.Intrinsics.X86.Ssse3;
         
     using static zfunc;
 
@@ -15,19 +17,36 @@ namespace Z0
     {
         
         [MethodImpl(Inline)]
-        public static Vec128<short> subh(Vec128<short> lhs, Vec128<short> rhs)
-            => Avx2.HorizontalSubtract(lhs, rhs);
+        public static Vec128<short> subh(in Vec128<short> lhs, in Vec128<short> rhs)
+            => HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> subh(Vec128<int> lhs, Vec128<int> rhs)
-            => Avx2.HorizontalSubtract(lhs, rhs);
+        public static Vec128<int> subh(in Vec128<int> lhs, in Vec128<int> rhs)
+            => HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<float> subh(Vec128<float> lhs, Vec128<float> rhs)
-            => Avx2.HorizontalSubtract(lhs, rhs);
+        public static Vec128<float> subh(in Vec128<float> lhs, in Vec128<float> rhs)
+            => HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> subh(Vec128<double> lhs, Vec128<double> rhs)
-            => Avx2.HorizontalSubtract(lhs, rhs);
+        public static Vec128<double> subh(in Vec128<double> lhs, in Vec128<double> rhs)
+            => HorizontalSubtract(lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static void subh(in Vec128<short> lhs, in Vec128<short> rhs, ref short dst)
+            => store(HorizontalSubtract(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void subh(in Vec128<int> lhs, in Vec128<int> rhs, ref int dst)
+            => store(HorizontalSubtract(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void subh(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
+            => store(HorizontalSubtract(lhs, rhs), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void subh(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
+            => store(HorizontalSubtract(lhs, rhs), ref dst);
+
     }
 }

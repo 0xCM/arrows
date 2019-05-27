@@ -86,6 +86,10 @@ namespace Z0
             [CallerFilePath] string FilePath = null, [CallerLineNumber] int? LineNumber = null)
                     => new AppMsg(Content, Level ?? SeverityLevel.Info, Caller, FilePath, LineNumber);
 
+        public static AppMsg Error(string Content, [CallerMemberName] string Caller = null, 
+            [CallerFilePath] string FilePath = null, [CallerLineNumber] int? LineNumber = null)
+                    => new AppMsg(Content, SeverityLevel.Error, Caller, FilePath, LineNumber);
+
         public static readonly AppMsg Empty
             = new AppMsg(string.Empty, SeverityLevel.Info, string.Empty, string.Empty, null);
 

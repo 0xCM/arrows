@@ -19,7 +19,6 @@ namespace Z0
 
     partial class dinx
     {
-        #region xor:vec -> vec -> vec
 
         [MethodImpl(Inline)]
         public static Vec128<byte> xor(in Vec128<byte> lhs, in Vec128<byte> rhs)
@@ -102,10 +101,6 @@ namespace Z0
         public static Vec256<double> xor(in Vec256<double> lhs, in Vec256<double> rhs)
             => Xor(lhs, rhs);
 
-        #endregion
-
-        #region xor:vec -> vec -> *        
-
         [MethodImpl(Inline)]
         public unsafe static void xor(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, sbyte* dst)
             => Avx2.Store(dst, xor(lhs,rhs));
@@ -147,60 +142,51 @@ namespace Z0
             => Avx2.Store(dst, xor(lhs,rhs));
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, sbyte* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec256<byte> lhs, in Vec256<byte> rhs, byte* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec256<short> lhs, in Vec256<short> rhs, short* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec256<ushort> lhs, in Vec256<ushort> rhs, ushort* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec256<int> lhs, in Vec256<int> rhs, int* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec256<uint> lhs, in Vec256<uint> rhs, uint* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec256<long> lhs, in Vec256<long> rhs, long* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec256<ulong> lhs, in Vec256<ulong> rhs, ulong* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec256<float> lhs, in Vec256<float> rhs, float* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec256<double> lhs, in Vec256<double> rhs, double* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
-
-        #endregion
-
-        #region xor:span -> span -> ref span -> ref span
+        public unsafe static void xor(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         public static unsafe ref Span128<sbyte> xor(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, ref Span128<sbyte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -209,12 +195,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -223,12 +204,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -237,12 +213,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -251,12 +222,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -265,12 +231,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -279,12 +240,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -293,12 +249,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -307,12 +258,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -321,12 +267,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -335,12 +276,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -349,12 +285,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -363,12 +294,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -377,12 +303,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -391,12 +312,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -405,12 +321,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -419,12 +330,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -433,12 +339,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -447,12 +348,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -461,15 +357,8 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                store(xor(x,y), ref dst[i]);
-            }
-            
+                store(Xor(lhs.VLoad(i), rhs.VLoad(i)), ref dst[i]);            
             return ref dst;            
-        }
-        
-        #endregion        
+        }        
    }
 }

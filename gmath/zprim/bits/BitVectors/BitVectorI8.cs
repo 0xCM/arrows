@@ -30,6 +30,14 @@ namespace Z0
             => src.data;        
 
         [MethodImpl(Inline)]
+        public static implicit operator BitVector<sbyte>(in BitVectorI8 src)
+            => new BitVector<sbyte>(in src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<N8,sbyte>(in BitVectorI8 src)
+            => NatBits.Define(in src.data);
+
+        [MethodImpl(Inline)]
         public static BitVectorI8 Define(in sbyte src)
             => new BitVectorI8(src);
 
@@ -117,6 +125,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public string Format()
             => BitString();
+
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

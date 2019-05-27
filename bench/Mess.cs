@@ -108,9 +108,9 @@ namespace Z0
         {
             var writer = ansi.writer<string,string>(green, pink, AsciSym.Eq, 10);
             
-            var x0 = 71.ToBitVector();            
+            var x0 = 71.ToBits();            
             writer("x", x0.Format());
-            var y0 = 98.ToBitVector();
+            var y0 = 98.ToBits();
             
             var x1 = - x0;
             var y1 = (~x0 + 1);
@@ -1029,7 +1029,7 @@ namespace Z0
             var sw = stopwatch();
             long cycles = Pow2.T15;
             for(var cycle = 0; cycle <= cycles; cycle ++)
-                Claim.@true(lhs.ReallyEqual(rhs));
+                Claim.@true(lhs.Eq(rhs));
 
             return (cycles * lhs.Length, snapshot(sw));
         }

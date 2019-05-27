@@ -17,38 +17,34 @@ namespace Z0
     
     partial class dinx
     {
-        static bool IsNaN(double test)
-            => double.IsNaN(test);
-
+        
         [MethodImpl(Inline)]
         static bool[] TestNaN(this in Vector128<double> src)
             => array(
-                IsNaN(src.GetElement(0)), 
-                IsNaN(src.GetElement(1))
+                src.GetElement(0).IsNaN(), 
+                src.GetElement(1).IsNaN()
                 );
-
 
         [MethodImpl(Inline)]
         static bool[] TestNaN(this in Vector128<float> src)
             => array(
-                IsNaN(src.GetElement(0)), 
-                IsNaN(src.GetElement(1)),
-                IsNaN(src.GetElement(2)), 
-                IsNaN(src.GetElement(3))
+                src.GetElement(0).IsNaN(), 
+                src.GetElement(1).IsNaN(),
+                src.GetElement(2).IsNaN(), 
+                src.GetElement(3).IsNaN()
                 );
-
 
         [MethodImpl(Inline)]
         static bool[] TestNaN(this in Vector256<float> src)
             => array(
-                IsNaN(src.GetElement(0)), 
-                IsNaN(src.GetElement(1)),
-                IsNaN(src.GetElement(2)), 
-                IsNaN(src.GetElement(3)),
-                IsNaN(src.GetElement(4)), 
-                IsNaN(src.GetElement(5)),
-                IsNaN(src.GetElement(6)), 
-                IsNaN(src.GetElement(7))
+                src.GetElement(0).IsNaN(), 
+                src.GetElement(1).IsNaN(),
+                src.GetElement(2).IsNaN(), 
+                src.GetElement(3).IsNaN(),
+                src.GetElement(4).IsNaN(), 
+                src.GetElement(5).IsNaN(),
+                src.GetElement(6).IsNaN(), 
+                src.GetElement(7).IsNaN()
                 );
 
         [MethodImpl(Inline)]
@@ -82,8 +78,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<double> cmpfr(ref Vec256<double> lhs, ref Vec256<double> rhs, FloatComparisonMode mode)
             => Compare(lhs,rhs,mode).ClearNaN();
-
     }
-
-
 }

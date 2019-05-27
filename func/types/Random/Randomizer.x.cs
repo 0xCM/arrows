@@ -25,19 +25,28 @@ namespace Z0
                 ? random.Random<T>().Stream(Randomizer.Domain(domain)).Where(filter) 
                 : random.Random<T>().Stream(Randomizer.Domain(domain));
 
-        public static unsafe void StreamTo<T>(this IRandomizer random, int length, Interval<T>? domain, Func<T,bool> filter, void* pDst)
+        public static IEnumerable<(T Left, T Right)> Pairs<T>(this IRandomizer random, int count, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
-                => random.Random<T>().StreamTo(Randomizer.Domain(domain), length, pDst, filter);
+        {
+            var lhs = random.Array<T>(count, domain, filter);
+            var rhs = random.Array<T>(count, domain, filter);
+            return zip(lhs,rhs);
+        }
+
+        // public static unsafe void StreamTo<T>(this IRandomizer random, int length, Interval<T>? domain, Func<T,bool> filter, void* pDst)
+        //     where T : struct
+        //         => random.Random<T>().StreamTo(Randomizer.Domain(domain), length, pDst, filter);
 
         public static T Single<T>(this IRandomizer src, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
-                => src.Stream<T>(domain).Single();
+                => src.Stream<T>(domain).First();
 
         public static unsafe Span<T> Span<T>(this IRandomizer random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
         {            
             var dst = span<T>(length);
-            random.StreamTo(length, Randomizer.Domain(domain), filter, Unsafe.AsPointer(ref dst[0]));
+            //random.StreamTo(length, Randomizer.Domain(domain), filter, Unsafe.AsPointer(ref dst[0]));
+            random.StreamTo(Randomizer.Domain(domain), length, ref dst[0], filter);
             return dst;
         }
 

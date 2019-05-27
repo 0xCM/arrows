@@ -8,14 +8,14 @@ namespace Z0
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
-    
+    using System.Runtime.InteropServices;
+
     using static nfunc;
     using static zfunc;
 
-
     /// <summary>
-    /// A selective clone/wrapper of System.Span[T] where the the 
-    /// encasulated data is always of lenth 16 bytes = 128 bits
+    /// Defines a span of bit-relative natural length; i.e. where the length of the
+    /// span is the natural length N divided by 8
     /// </summary>
     public ref struct Span<N,T>
         where N : ITypeNat, new()
@@ -26,9 +26,6 @@ namespace Z0
 
         public static implicit operator ReadOnlySpan<T> (Span<N,T> src)
             => src.data;
-
-        public static implicit operator Span<N,T> (Array<N,T> src)
-            => new Span<N,T>(src);
     
         public static bool operator == (Span<N,T> lhs, Span<N,T> rhs)
             => lhs.data == rhs.data;
@@ -36,68 +33,50 @@ namespace Z0
         public static bool operator != (Span<N,T> lhs, Span<N,T> rhs)
             => lhs.data != rhs.data;
 
-        static readonly int SpanLength = nati<N>();
-
-        static Exception sizerr(int actual)
-            => new ArgumentException($"Length mismatch: {actual}");
-
-        Span<T> data;
-
-
-        [MethodImpl(Inline)]
-        public unsafe Span(void* src)    
-            => data = new Span<T>(src, SpanLength);  
-
-        [MethodImpl(Inline)]
-        public Span(T[] src, int startpos = 0)
-        {
-            if((src.Length - startpos) < SpanLength)
-                throw sizerr(src.Length);
+        public static readonly int SpanLength = nati<N>() / 8;
             
-            this.data = startpos == 0 ? src : new Span<T>(src, startpos, SpanLength);
-        }
-
-        [MethodImpl(Inline)]
-        public Span(Array<N,T> value)
-            => this.data = value.unwrap();
-
+        Span<T> data;
 
         [MethodImpl(Inline)]
         public Span(T value)
-        {
-         
+        {         
             this.data = new Span<T>(new T[SpanLength]);
             this.data.Fill(value);
         }
 
         [MethodImpl(Inline)]
-        public Span(Span<T> src)
+        public Span(ref Span<T> src)
         {
-            if(src.Length != SpanLength)
-                throw sizerr(src.Length);
-         
+            require(src.Length == SpanLength, $"length(src) = {src.Length} != {SpanLength} = SpanLength");
             this.data = src;
         }
 
         [MethodImpl(Inline)]
-        public Span(Array<N128,T> src)
-            => this.data = src.unwrap();
+        public Span(ref Span<N,T> src)
+        {
+            this.data = src;
+        }
+
+        [MethodImpl(Inline)]
+        public Span(ReadOnlySpan<N,T> src)
+        {
+            data = alloc<T>(SpanLength);
+            src.CopyTo(data);
+        }
+
+        [MethodImpl(Inline)]
+        public Span(ReadOnlySpan<T> src)
+        {
+            require(src.Length == SpanLength, $"length(src) = {src.Length} != {SpanLength} = SpanLength");         
+            data = alloc<T>(SpanLength);
+            src.CopyTo(data);
+        }
 
         public ref T this[int ix] 
         {
             [MethodImpl(Inline)]
             get => ref data[ix];
         }
-
-        //public ref T this[Index ix] 
-        //{
-        //    [MethodImpl(Inline)]
-        //    get => ref data[ix];
-        //}
-
-        [MethodImpl(Inline)]
-        public Span<T> Unwrap()
-            => data;
 
         [MethodImpl(Inline)]
         public T[] ToArray()
@@ -112,8 +91,8 @@ namespace Z0
             => data.GetEnumerator();
 
         [MethodImpl(Inline)]
-        public T GetPinnableReference()
-            => data.GetPinnableReference();
+        public ref T GetPinnableReference()
+            => ref data.GetPinnableReference();
 
         [MethodImpl(Inline)]
         public void CopyTo (Span<T> dst)
@@ -123,20 +102,21 @@ namespace Z0
         public bool TryCopyTo (Span<T> dst)
             => data.TryCopyTo(dst);
 
+        [MethodImpl(Inline)]
+        public Span<byte> Bytes()
+            => data.ToBytes();
+
         public int Length 
             => SpanLength;
             
         public bool IsEmpty
             => data.IsEmpty;
 
-        public override string ToString() 
-            => data.ToString();
 
        public override bool Equals(object rhs) 
             => throw new NotSupportedException();
 
        public override int GetHashCode() 
-            => throw new NotSupportedException();
-        
+            => throw new NotSupportedException();        
     }
 }

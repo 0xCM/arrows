@@ -19,39 +19,39 @@ namespace Z0
     partial class dinx
     {
         [MethodImpl(Inline)]
-        public static Vec128<byte> shuffle(Vec128<byte> src, Vec128<byte> mask)
+        public static Vec128<byte> shuffle(in Vec128<byte> src, in Vec128<byte> mask)
             => Shuffle(src, mask);
 
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> shuffle(Vec128<sbyte> src, Vec128<sbyte> mask)
+        public static Vec128<sbyte> shuffle(in Vec128<sbyte> src, in Vec128<sbyte> mask)
             => Shuffle(src, mask);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> shuffle(Vec128<int> src, byte control)
+        public static Vec128<int> shuffle(in Vec128<int> src, byte control)
             => Shuffle(src, control);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> shuffle(Vec128<double> lhs, Vec128<double> rhs,  byte control)
+        public static Vec128<double> shuffle(in Vec128<double> lhs, in Vec128<double> rhs,  byte control)
             => Shuffle(lhs,rhs, control);
 
         [MethodImpl(Inline)]
-        public static Vec128<float> shuffle(Vec128<float> lhs, Vec128<float> rhs,  byte control)
+        public static Vec128<float> shuffle(in Vec128<float> lhs, in Vec128<float> rhs,  byte control)
             => Shuffle(lhs,rhs, control);
 
         [MethodImpl(Inline)]
-        public static Vec128<short> shuffleHi(Vec128<short> src, byte control)
+        public static Vec128<short> shuffleHi(in Vec128<short> src, byte control)
             => ShuffleHigh(src, control);
 
         [MethodImpl(Inline)]
-        public static Vec128<ushort> shuffleHi(Vec128<ushort> src, byte control)
+        public static Vec128<ushort> shuffleHi(in Vec128<ushort> src, byte control)
             => ShuffleHigh(src, control);
 
         [MethodImpl(Inline)]
-        public static Vec128<short> shuffleLow(Vec128<short> src, byte control)
+        public static Vec128<short> shuffleLow(in Vec128<short> src, byte control)
             => ShuffleLow(src, control);
 
         [MethodImpl(Inline)]
-        public static Vec128<ushort> shuffleLow(Vec128<ushort> src, byte control)
+        public static Vec128<ushort> shuffleLow(in Vec128<ushort> src, byte control)
             => ShuffleLow(src, control);
     }
 

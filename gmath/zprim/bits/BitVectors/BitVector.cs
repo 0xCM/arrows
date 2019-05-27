@@ -9,6 +9,7 @@ namespace Z0
     using System.Linq;
     using System.Numerics;
     using System.Globalization;
+    using System.Text;
     using System.Runtime.CompilerServices;
 
     using static zfunc;
@@ -18,117 +19,113 @@ namespace Z0
     /// <summary>
     /// Defines an integrally and naturally typed bitvector
     /// </summary>
-    public ref struct BitVector<N> 
+    public ref struct BitVector<N,T> 
+        where T : struct
         where N : INatPow2, new()
     {
-        Span<byte> bits;
+        Span<N,T> data;
 
         [MethodImpl(Inline)]
-        public static BitVector<N> Define(in ReadOnlySpan<Bit> src)
-            => new BitVector<N>(src);
+        public static BitVector<N,T> Define(in T src)
+            => new BitVector<N,T>(src);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> Define(in ReadOnlySpan<char> src)
-            => new BitVector<N>(src);
+        public static BitVector<N,T> Define(ref Span<N,T> src)
+            => new BitVector<N,T>(ref src);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> Define(in ReadOnlySpan<byte> src)
-            => new BitVector<N>(src);
-
-        [MethodImpl(Inline)]
-        public static BitVector<N> Define(ref Span<byte> src)
-            => new BitVector<N>(ref src);
+        public static BitVector<N,T> Define(in ReadOnlySpan<T> src)
+            => new BitVector<N,T>(src);
 
         public static readonly int BitCount = nati<N>();     
 
         public static readonly int ByteCount = BitCount / 8;
 
+        public static readonly int CellBits = SizeOf<T>.BitSize;
+
+        public static readonly ByteSize CellBytes = SizeOf<T>.Size;
+        
+        public static readonly int Length = ByteCount / CellBytes;
+
         static readonly uint Exponent = (uint)new N().Exponent.value;
 
-        
-        BitVector(in ReadOnlySpan<char> src)
+        [MethodImpl(Inline)]
+        BitVector(in T src)
         {
-            Claim.eq(src.Length, ByteCount);
-            bits = src.BitStringBytes(out bits);                 
-        }
-            
-        BitVector(in ReadOnlySpan<BinaryDigit> src)
-        {
-            Claim.eq(src.Length, ByteCount);
-            bits = src.FromDigits(out bits);
+            Claim.eq(ByteCount, CellBytes);
+            data = Spans.alloc<N,T>(src);
         }
 
-        BitVector(in ReadOnlySpan<Bit> src)
+        [MethodImpl(Inline)]
+        BitVector(in ReadOnlySpan<N,T> src)
         {
-            Claim.eq(src.Length, ByteCount);
-            bits = src.FromBits(out bits);
+            Claim.eq(src.Length, Length);
+            data = Spans.replicate(src);
         }
 
-        BitVector(in ReadOnlySpan<byte> src)
+        [MethodImpl(Inline)]
+        BitVector(in ReadOnlySpan<T> src)
         {
-            Claim.eq(src.Length, ByteCount);
-            bits = src.Replicate();
+            Claim.eq(src.Length, Length);
+            data = Spans.replicate<N,T>(src);
         }
 
-        BitVector(ref Span<byte> src)
+        [MethodImpl(Inline)]
+        BitVector(ref Span<N,T> src)
         {
-            Claim.eq(src.Length, ByteCount);
-            bits = src;
+            Claim.eq(src.Length, Length);
+            data = src;
         }
         
         [MethodImpl(Inline)]
-        public static bool operator == (in BitVector<N> lhs, in BitVector<N> rhs) 
+        public static bool operator == (in BitVector<N,T> lhs, in BitVector<N,T> rhs) 
             => lhs.Eq(rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator != (in BitVector<N> lhs, in BitVector<N> rhs) 
+        public static bool operator != (in BitVector<N,T> lhs, in BitVector<N,T> rhs) 
             => lhs.NEq(rhs);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> operator & (in BitVector<N> lhs, in BitVector<N> rhs) 
+        public static BitVector<N,T> operator & (in BitVector<N,T> lhs, in BitVector<N,T> rhs) 
             => lhs.And(rhs);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> operator | (in BitVector<N> lhs, in BitVector<N> rhs) 
+        public static BitVector<N,T> operator | (in BitVector<N,T> lhs, in BitVector<N,T> rhs) 
             => lhs.Or(rhs);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> operator ^ (in BitVector<N> lhs, in BitVector<N> rhs) 
+        public static BitVector<N,T> operator ^ (in BitVector<N,T> lhs, in BitVector<N,T> rhs) 
             => lhs.XOr(rhs);
 
         [MethodImpl(Inline)]
-        public static BitVector<N> operator ~ (in BitVector<N> src) 
+        public static BitVector<N,T> operator ~ (in BitVector<N,T> src) 
             => src.Flip();
                     
-        [MethodImpl(Optimize)]
-        BitVector<N> And(in BitVector<N> rhs)
+        BitVector<N,T> And(in BitVector<N,T> rhs)
         {
-            for(var i =0; i < ByteCount; i++)
-                bits[i] &= rhs.bits[i];
+            for(var i =0; i < Length; i++)
+                gmath.and(ref data[i], rhs.data[i]);
             return this;
         }
 
-        [MethodImpl(Optimize)]
-        BitVector<N> Or(in BitVector<N> rhs)
+        BitVector<N,T> Or(in BitVector<N,T> rhs)
         {
-            for(var i =0; i < ByteCount; i++)
-                bits[i] |= rhs.bits[i];
+            for(var i =0; i < Length; i++)
+                gmath.or(ref data[i], rhs.data[i]);
             return this;
         }
 
-        [MethodImpl(Optimize)]
-        BitVector<N> XOr(in BitVector<N> rhs)
+        BitVector<N,T> XOr(in BitVector<N,T> rhs)
         {
-            for(var i =0; i < ByteCount; i++)
-                bits[i] ^= rhs.bits[i];
+            for(var i =0; i < Length; i++)
+                gmath.xor(ref data[i], rhs.data[i]);
             return this;
         }
 
-        [MethodImpl(Optimize)]
-        BitVector<N> Flip()
+        BitVector<N,T> Flip()
         {
-            for(var i =0; i < ByteCount; i++)
-                bits[i] = (byte)(~ bits[i]);
+            for(var i =0; i < Length; i++)
+                gmath.flip(ref data[i]);
             return this;
         }
 
@@ -151,22 +148,22 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool TestBit(in int pos)            
         {
-            math.quorem(in pos, 8, out Quorem<int> qr);
-            return test(bits[qr.Quotient], qr.Remainder);                
+            math.quorem(in pos, CellBits, out Quorem<int> qr);
+            return gbits.test(data[qr.Quotient], qr.Remainder);                
         }
         
         [MethodImpl(Inline)]
         public void EnableBit(in int pos)            
         {
-            math.quorem(in pos, 8, out Quorem<int> qr);
-            enable(ref bits[qr.Quotient], in qr.Remainder);
+            math.quorem(in pos, CellBits, out Quorem<int> qr);
+            gbits.enable(ref data[qr.Quotient], in qr.Remainder);
         }
 
         [MethodImpl(Inline)]
         public void DisableBit(in int pos)            
         {
-            math.quorem(in pos, 8, out Quorem<int> qr);
-            disable(ref bits[qr.Quotient], in qr.Remainder);
+            math.quorem(in pos, CellBits, out Quorem<int> qr);
+            gbits.disable(ref data[qr.Quotient], in qr.Remainder);
         }
 
         [MethodImpl(Inline)]
@@ -178,33 +175,39 @@ namespace Z0
                 DisableBit(pos);
         }
 
-        [MethodImpl(Inline)]
-        public ulong PopCount()
-            => bits.PopCount();
-
-        [MethodImpl(Inline)]
         public Span<byte> Bytes()
-            => bits;
+            => data.Bytes();
 
-        [MethodImpl(Inline)]
+        public ulong PopCount()
+        {
+            var count = 0ul;
+            for(var i=0; i< Length; i++)
+                count += gbits.pop(data[i]);
+            return count;
+        }        
+
         public string BitString()
-            => bits.ToBitString();
+        {
+            var bs = new string[BitCount];
+            for(var i = 0; i< Length; i++)
+                bs[Length - i] = gbits.bitstring(data[i]);
+            return bs.Concat(string.Empty);
+        }
+            
+        public bool Eq(in BitVector<N,T> rhs)
+        {
+            for(var i = 0; i< Length; i++)
+                if(gmath.neq(data[i], rhs.data[i]))
+                    return false;
+            return true;
+        }  
 
         [MethodImpl(Inline)]
         public string Format()
             => BitString();
 
         [MethodImpl(Inline)]
-        public bool Eq(in BitVector<N> rhs)
-        {
-            for(var i = 0; i< BitCount; i++)
-                if(bits[i] != rhs.bits[i])
-                    return false;
-            return true;
-        }  
-        
-        [MethodImpl(Inline)]
-        public bool NEq(in BitVector<N> rhs)
+        public bool NEq(in BitVector<N,T> rhs)
             => !Eq(rhs);
  
         public override int GetHashCode()

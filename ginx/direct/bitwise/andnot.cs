@@ -19,75 +19,75 @@ namespace Z0
     partial class dinx
     {
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> andnot(Vec128<sbyte> lhs, Vec128<sbyte> rhs)
+        public static Vec128<sbyte> andnot(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<byte> andnot(Vec128<byte> lhs, Vec128<byte> rhs)
+        public static Vec128<byte> andnot(in Vec128<byte> lhs, in Vec128<byte> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<short> andnot(Vec128<short> lhs, Vec128<short> rhs)
+        public static Vec128<short> andnot(in Vec128<short> lhs, in Vec128<short> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<ushort> andnot(Vec128<ushort> lhs, Vec128<ushort> rhs)
+        public static Vec128<ushort> andnot(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> andnot(Vec128<int> lhs, Vec128<int> rhs)
+        public static Vec128<int> andnot(in Vec128<int> lhs, in Vec128<int> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<uint> andnot(Vec128<uint> lhs, Vec128<uint> rhs)
+        public static Vec128<uint> andnot(in Vec128<uint> lhs, in Vec128<uint> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<long> andnot(Vec128<long> lhs, Vec128<long> rhs)
+        public static Vec128<long> andnot(in Vec128<long> lhs, in Vec128<long> rhs)
             => AndNot(lhs, rhs);
  
         [MethodImpl(Inline)]
-        public static Vec128<float> andnot(Vec128<float> lhs, Vec128<float> rhs)
+        public static Vec128<float> andnot(in Vec128<float> lhs, in Vec128<float> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> andnot(Vec128<double> lhs, Vec128<double> rhs)
+        public static Vec128<double> andnot(in Vec128<double> lhs, in Vec128<double> rhs)
             => AndNot(lhs, rhs);        
     
         [MethodImpl(Inline)]
-        public static Vec256<sbyte> andnot(Vec256<sbyte> lhs, Vec256<sbyte> rhs)
+        public static Vec256<sbyte> andnot(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<byte> andnot(Vec256<byte> lhs, Vec256<byte> rhs)
+        public static Vec256<byte> andnot(in Vec256<byte> lhs, in Vec256<byte> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<short> andnot(Vec256<short> lhs, Vec256<short> rhs)
+        public static Vec256<short> andnot(in Vec256<short> lhs, in Vec256<short> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<ushort> andnot(Vec256<ushort> lhs, Vec256<ushort> rhs)
+        public static Vec256<ushort> andnot(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<int> andnot(Vec256<int> lhs, Vec256<int> rhs)
+        public static Vec256<int> andnot(in Vec256<int> lhs, in Vec256<int> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<uint> andnot(Vec256<uint> lhs, Vec256<uint> rhs)
-            => AndNot(lhs, rhs);
-
-       [MethodImpl(Inline)]
-        public static Vec256<long> andnot(Vec256<long> lhs, Vec256<long> rhs)
+        public static Vec256<uint> andnot(in Vec256<uint> lhs, in Vec256<uint> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<float> andnot(Vec256<float> lhs, Vec256<float> rhs)
+        public static Vec256<long> andnot(in Vec256<long> lhs, in Vec256<long> rhs)
             => AndNot(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<double> andnot(Vec256<double> lhs, Vec256<double> rhs)
+        public static Vec256<float> andnot(in Vec256<float> lhs, in Vec256<float> rhs)
+            => AndNot(lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<double> andnot(in Vec256<double> lhs, in Vec256<double> rhs)
             => AndNot(lhs, rhs);
     }
 }

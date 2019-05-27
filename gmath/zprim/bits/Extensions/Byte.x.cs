@@ -11,7 +11,6 @@ namespace Z0
     using System.Runtime.InteropServices;    
     
     using static zfunc;
-    using static mfunc;
 
     public static class BytesX
     {
@@ -25,23 +24,36 @@ namespace Z0
                 => Bytes.bytes(in src);
 
         [MethodImpl(Inline)]   
-        public static Span<byte> ToBytes<T>(this Span<T> src)
-            where T : struct
-            => MemoryMarshal.AsBytes(src);
-
-        [MethodImpl(Inline)]   
-        public static ReadOnlySpan<byte> ToBytes<T>(this ReadOnlySpan<T> src)
-            where T : struct
-                => MemoryMarshal.AsBytes(src);
-
-        [MethodImpl(Inline)]   
         public static ref T FromBytes<T>(this Span<byte> src, out T dst, int offset = 0)
             where T : struct
         {
             dst = Bytes.read<T>(src, offset);
             return ref dst;
         }
-                
+
+         [MethodImpl(Optimize)]
+        public static ref Span<byte> ToByteSpan(this ReadOnlySpan<Bit> src, out Span<byte> dst)
+        {
+            dst = span<byte>(src.Length/8);
+            for(var i=0; i<src.Length; i++)
+            for(var j=0; j < 8; j++)
+               if(src[i]) Bits.enable(ref dst[i], j);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<byte> ToByteSpan(this Span<Bit> src, out Span<byte> dst)
+            => ref src.ToReadOnlySpan().ToByteSpan(out dst);
+        
+
+        [MethodImpl(Inline)]
+        public static ref Span<byte> ToByteSpan(this Span<BinaryDigit> src, out Span<byte> dst)
+            => ref src.ToBitSpan().ToByteSpan(out dst);
+
+        [MethodImpl(Inline)]
+        public static ref Span<byte> ToByteSpan(this ReadOnlySpan<BinaryDigit> src, out Span<byte> dst)
+            => ref src.ToBitSpan().ToByteSpan(out dst);
+               
         /// <summary>
         /// Converts a bit to a byte
         /// </summary>
@@ -53,7 +65,6 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static ulong PopCount(this Span<byte> src)
             => Bytes.pop(src);
-
     }
 
 }

@@ -79,7 +79,6 @@ namespace Z0
         public string format()
             => cells.format();
 
-
         public bool eq(Covector<N, T> rhs)
             => cells.eq(rhs);
 

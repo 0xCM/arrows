@@ -36,6 +36,32 @@ namespace Z0
             return dst;
         }
 
+        public static Span<uint> pack(ReadOnlySpan<byte> src, Span<uint> dst)            
+        {
+            var srcIx = 0;
+            var dstOffset = 0;
+            var dstIx = 0;
+            var srcSize = SizeOf<byte>.BitSize;
+            var dstSize = SizeOf<uint>.BitSize;
+            while(srcIx < src.Length && dstIx < dst.Length)
+            {
+                for(var i = 0; i< srcSize; i++)
+                    if(gbits.test(src[srcIx], i))
+                        gbits.enable(ref dst[dstIx], dstOffset + i);
+
+                srcIx++;
+                if((dstOffset + srcSize) >= dstSize)
+                {
+                    dstOffset = 0;
+                    dstIx++;
+                }
+                else
+                    dstOffset += srcSize;
+            }
+            return dst;
+
+        }
+
         /// <summary>
         /// Packs 8 bytes into a single byte by considering only whether each input value is nonzero.
         /// </summary>

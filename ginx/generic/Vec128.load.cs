@@ -28,12 +28,49 @@ namespace Z0
             where T : struct            
                 => single<T>(src.ToSpan128());
         
-        [MethodImpl(Inline)]
         public static Vec128<T> single<T>(in ReadOnlySpan128<T> src, int block = 0)
             where T : struct
         {            
             var kind = PrimalKinds.kind<T>();
             ref var head = ref asRef(in src.Block(block));
+            if(kind.IsFloat())
+            {
+                if(kind == PrimalKind.float32)
+                    return generic<T>(load(ref float32(ref head)));
+                else if(kind == PrimalKind.float64)
+                    return generic<T>(load(ref float64(ref head)));
+            }       
+            else if(kind.IsSmallInt())
+            {
+                if(kind == PrimalKind.int8)
+                    return generic<T>(load(ref int8(ref head)));
+                else if(kind == PrimalKind.uint8)
+                    return generic<T>(load(ref uint8(ref head)));
+                else if(kind == PrimalKind.int16)
+                    return generic<T>(load(ref int16(ref head)));
+                else if(kind == PrimalKind.uint16)
+                    return generic<T>(load(ref uint16(ref head)));
+            }
+            else
+            {
+                if(kind == PrimalKind.int32)
+                    return generic<T>(load(ref int32(ref head)));
+                else if(kind == PrimalKind.uint32)
+                    return generic<T>(load(ref uint32(ref head)));
+                else if(kind == PrimalKind.int64)
+                    return generic<T>(load(ref int64(ref head)));
+                else if(kind == PrimalKind.uint64)
+                    return generic<T>(load(ref uint64(ref head)));
+            }
+                
+            throw unsupported(kind);
+        }
+
+        public static Vec128<T> single<T>(in ReadOnlySpan<T> src, int offset = 0)
+            where T : struct
+        {            
+            var kind = PrimalKinds.kind<T>();
+            ref var head = ref asRef(in src[offset]);
             if(kind.IsFloat())
             {
                 if(kind == PrimalKind.float32)

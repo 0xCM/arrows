@@ -16,43 +16,43 @@ namespace Z0
     partial class dinx
     {
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> extract(Vec256<sbyte> src, byte index)
+        public static Vec128<sbyte> extract(in Vec256<sbyte> src, byte index)
             => ExtractVector128(src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<byte> extract(Vec256<byte> src, byte index)
+        public static Vec128<byte> extract(in Vec256<byte> src, byte index)
             => ExtractVector128(src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<short> extract(Vec256<short> src, byte index)
+        public static Vec128<short> extract(in Vec256<short> src, byte index)
             => ExtractVector128(src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<ushort> extract(Vec256<ushort> src, byte index)
+        public static Vec128<ushort> extract(in Vec256<ushort> src, byte index)
             => ExtractVector128(src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> extract(Vec256<int> src, byte index)
+        public static Vec128<int> extract(in Vec256<int> src, byte index)
             => ExtractVector128(src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<uint> extract(Vec256<uint> src, byte index)
+        public static Vec128<uint> extract(in Vec256<uint> src, byte index)
             => ExtractVector128(src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<long> extract(Vec256<long> src, byte index)
+        public static Vec128<long> extract(in Vec256<long> src, byte index)
             => ExtractVector128(src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<ulong> extract(Vec256<ulong> src, byte index)
+        public static Vec128<ulong> extract(in Vec256<ulong> src, byte index)
             => ExtractVector128(src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<float> extract(Vec256<float> src, byte index)
+        public static Vec128<float> extract(in Vec256<float> src, byte index)
             => ExtractVector128(src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> extract(Vec256<double> src, byte index)
+        public static Vec128<double> extract(in Vec256<double> src, byte index)
             => ExtractVector128(src,index);
 
     }

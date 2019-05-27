@@ -75,7 +75,6 @@ namespace Z0
         ref T this[int ix] {get;}
     }
 
-
     /// <summary>
     /// Characterizes the reification of a natural number k such that 
     /// a:K1 & b:K2 & k = a + b
@@ -90,7 +89,7 @@ namespace Z0
 
     }
 
-    public interface IDemand 
+    public interface INatDemand 
     {
 
     }
@@ -99,7 +98,7 @@ namespace Z0
     /// Characterizes a constraint on a nat
     /// </summary>
     /// <typeparam name="K1">The Nat type</typeparam>
-    public interface INatDemand<K1> : IDemand
+    public interface INatDemand<K1> : INatDemand
         where K1 : ITypeNat, new()
     {
         /// <summary>
@@ -117,7 +116,7 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K1">The first nat type</typeparam>
     /// <typeparam name="K2">The second nat type</typeparam>
-    public interface INatDemand<K1,K2> : IDemand
+    public interface INatDemand<K1,K2> : INatDemand
         where K1 : ITypeNat, new()
         where K2 : ITypeNat
     {
@@ -130,7 +129,7 @@ namespace Z0
     /// <typeparam name="K1">The first nat type</typeparam>
     /// <typeparam name="K2">The second nat type</typeparam>
     /// <typeparam name="K3">The third nat type</typeparam>
-    public interface IDemand<K1,K2,K3> : IDemand
+    public interface IDemand<K1,K2,K3> : INatDemand
         where K1 : ITypeNat, new()
         where K2 : ITypeNat, new()
         where K3 : ITypeNat, new()

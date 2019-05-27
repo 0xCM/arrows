@@ -111,7 +111,9 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec128<short> src, ref short dst)
-            => Store(As.pint16(ref dst),src);            
+        {
+            Store(As.pint16(ref dst), src);            
+        }
 
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec128<ushort> src, ref ushort dst)

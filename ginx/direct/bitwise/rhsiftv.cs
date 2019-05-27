@@ -102,146 +102,105 @@ namespace Z0
   
         [MethodImpl(Inline)]
         public static unsafe void rshift(in Vec128<int> lhs, in Vec128<uint> rhs, ref int dst)
-            => Store(pint32(ref dst), ShiftRightLogicalVariable(lhs, rhs));
+            => store(ShiftRightLogicalVariable(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void rshift(in Vec128<uint> lhs, in Vec128<uint> rhs, ref uint dst)
-            => Store(puint32(ref dst), ShiftRightLogicalVariable(lhs, rhs));
+            => store(ShiftRightLogicalVariable(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void rshift(in Vec128<long> lhs, in Vec128<ulong> rhs, ref long dst)
-            => Store(pint64(ref dst), ShiftRightLogicalVariable(lhs, rhs));
+            => store(ShiftRightLogicalVariable(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void rshift(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ref ulong dst)
-            => Store(puint64(ref dst), ShiftRightLogicalVariable(lhs, rhs));
+            => store(ShiftRightLogicalVariable(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void rshift(in Vec256<int> lhs, in Vec256<uint> rhs, ref int dst)
-            => Store(pint32(ref dst), ShiftRightLogicalVariable(lhs, rhs));
+            => store(ShiftRightLogicalVariable(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void rshift(in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
-            => Store(puint32(ref dst), ShiftRightLogicalVariable(lhs, rhs));
+            => store(ShiftRightLogicalVariable(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void rshift(in Vec256<long> lhs, in Vec256<ulong> rhs, ref long dst)
-            => Store(pint64(ref dst), ShiftRightLogicalVariable(lhs, rhs));
+            => store(ShiftRightLogicalVariable(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void rshift(in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
-            => Store(puint64(ref dst), ShiftRightLogicalVariable(lhs, rhs));
+            => store(ShiftRightLogicalVariable(lhs, rhs), ref dst);
 
-
-        public static unsafe ref Span128<int> rshift(in ReadOnlySpan128<int> lhs, in ReadOnlySpan128<uint> shifts, ref Span128<int> dst)
+        public static unsafe ref Span128<int> rshift(in ReadOnlySpan128<int> lhs, in ReadOnlySpan128<uint> rhs, ref Span128<int> dst)
         {
             var width = dst.BlockWidth;
-            var cells = length(lhs,shifts);
+            var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x =  lhs.LoadVector(i);
-                var y = shifts.LoadVector(i);
-                rshift(x,y, ref dst[i]);
-            }
-            
+                rshift(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
-        public static unsafe ref Span128<uint> rshift(in ReadOnlySpan128<uint> lhs, in ReadOnlySpan128<uint> shifts, ref Span128<uint> dst)
+        public static unsafe ref Span128<uint> rshift(in ReadOnlySpan128<uint> lhs, in ReadOnlySpan128<uint> rhs, ref Span128<uint> dst)
         {
             var width = dst.BlockWidth;
-            var cells = length(lhs,shifts);
+            var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x =  lhs.LoadVector(i);
-                var y = shifts.LoadVector(i);
-                rshift(x,y, ref dst[i]);
-            }
-            
+                rshift(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
-        public static unsafe ref Span128<long> rshift(in ReadOnlySpan128<long> lhs, in ReadOnlySpan128<ulong> shifts, ref Span128<long> dst)
+        public static unsafe ref Span128<long> rshift(in ReadOnlySpan128<long> lhs, in ReadOnlySpan128<ulong> rhs, ref Span128<long> dst)
         {
             var width = dst.BlockWidth;
-            var cells = length(lhs,shifts);
+            var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x =  lhs.LoadVector(i);
-                var y = shifts.LoadVector(i);
-                rshift(x,y, ref dst[i]);
-            }
-            
+                rshift(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
-        public static unsafe ref Span128<ulong> rshift(in ReadOnlySpan128<ulong> lhs, in ReadOnlySpan128<ulong> shifts, ref Span128<ulong> dst)
+        public static unsafe ref Span128<ulong> rshift(in ReadOnlySpan128<ulong> lhs, in ReadOnlySpan128<ulong> rhs, ref Span128<ulong> dst)
         {
             var width = dst.BlockWidth;
-            var cells = length(lhs,shifts);
+            var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x =  lhs.LoadVector(i);
-                var y = shifts.LoadVector(i);
-                rshift(x,y, ref dst[i]);
-            }
-            
+                rshift(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
-        public static unsafe ref Span256<int> rshift(in ReadOnlySpan256<int> lhs, in ReadOnlySpan256<uint> shifts, ref Span256<int> dst)
+        public static unsafe ref Span256<int> rshift(in ReadOnlySpan256<int> lhs, in ReadOnlySpan256<uint> rhs, ref Span256<int> dst)
         {
             var width = dst.BlockWidth;
-            var cells = length(lhs,shifts);
+            var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x =  lhs.LoadVector(i);
-                var y = shifts.LoadVector(i);
-                rshift(x,y, ref dst[i]);
-            }
-            
+                rshift(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
-        public static unsafe ref Span256<uint> rshift(in ReadOnlySpan256<uint> lhs, in ReadOnlySpan256<uint> shifts, ref Span256<uint> dst)
+        public static unsafe ref Span256<uint> rshift(in ReadOnlySpan256<uint> lhs, in ReadOnlySpan256<uint> rhs, ref Span256<uint> dst)
         {
             var width = dst.BlockWidth;
-            var cells = length(lhs,shifts);
+            var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x =  lhs.LoadVector(i);
-                var y = shifts.LoadVector(i);
-                rshift(x,y, ref dst[i]);
-            }
-            
+                rshift(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
-        public static unsafe ref Span256<long> rshift(in ReadOnlySpan256<long> lhs, in ReadOnlySpan256<ulong> shifts, ref Span256<long> dst)
+        public static unsafe ref Span256<long> rshift(in ReadOnlySpan256<long> lhs, in ReadOnlySpan256<ulong> rhs, ref Span256<long> dst)
         {
             var width = dst.BlockWidth;
-            var cells = length(lhs,shifts);
+            var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x =  lhs.LoadVector(i);
-                var y = shifts.LoadVector(i);
-                rshift(x,y, ref dst[i]);
-            }
-            
+                rshift(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
-        public static unsafe ref Span256<ulong> rshift(in ReadOnlySpan256<ulong> lhs, in ReadOnlySpan256<ulong> shifts, ref Span256<ulong> dst)
+        public static unsafe ref Span256<ulong> rshift(in ReadOnlySpan256<ulong> lhs, in ReadOnlySpan256<ulong> rhs, ref Span256<ulong> dst)
         {
             var width = dst.BlockWidth;
-            var cells = length(lhs,shifts);
+            var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x =  lhs.LoadVector(i);
-                var y = shifts.LoadVector(i);
-                rshift(x,y, ref dst[i]);
-            }
-            
+                rshift(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
        }
     }

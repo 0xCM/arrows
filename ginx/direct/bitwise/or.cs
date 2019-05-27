@@ -103,95 +103,90 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, ref sbyte dst)
-            => Store(pint8(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec128<byte> lhs, in Vec128<byte> rhs, ref byte dst)
-            => Store(puint8(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec128<short> lhs, in Vec128<short> rhs, ref short dst)
-            => Store(pint16(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ref ushort dst)
-            => Store(puint16(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec128<int> lhs, in Vec128<int> rhs, ref int dst)
-            => Store(pint32(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec128<uint> lhs, in Vec128<uint> rhs, ref uint dst)
-            => Store(puint32(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec128<long> lhs, in Vec128<long> rhs, ref long dst)
-            => Store(pint64(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ref ulong dst)
-            => Store(puint64(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
-            => Store(pfloat32(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
-            => Store(pfloat64(ref dst), Or(lhs,rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
-            => Store(pint8(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
-            => Store(puint8(ref dst), Or(lhs,rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
-            => Store(pint16(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
-            => Store(puint16(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
-            => Store(pint32(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
-            => Store(puint32(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
-            => Store(pint64(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
-            => Store(puint64(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec256<float> lhs, in Vec256<float> rhs, ref float dst)
-            => Store(pfloat32(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
 
         [MethodImpl(Inline)]
         public static unsafe void or(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
-            => Store(pfloat64(ref dst), Or(lhs, rhs));
+            => store(Or(lhs, rhs), ref dst);
  
         public static unsafe ref Span128<sbyte> or(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, ref Span128<sbyte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -200,12 +195,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -214,12 +204,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -228,12 +213,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -242,12 +222,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -256,12 +231,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -270,12 +240,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -284,12 +249,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -298,12 +258,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -312,12 +267,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -326,12 +276,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -340,12 +285,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -354,12 +294,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -368,12 +303,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -382,12 +312,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -396,12 +321,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -410,12 +330,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -424,12 +339,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -438,12 +348,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
 
@@ -452,12 +357,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.LoadVector(i);
-                var y = rhs.LoadVector(i);
-                or(x, y, ref dst[i]);
-            }
-            
+                or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
             return ref dst;            
         }
    }

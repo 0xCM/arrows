@@ -19,7 +19,7 @@ namespace Z0
     public static class gbits
     {
         [MethodImpl(Inline)]
-        public static bool test<T>(in T src, int pos)
+        public static bool test<T>(in T src, in int pos)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -183,6 +183,35 @@ namespace Z0
                 return Bits.bitspan(in float64(ref src));
 
             throw unsupported(kind);                
+        }
+
+        public static Span<T> pack<S,T>(ReadOnlySpan<S> src, Span<T> dst)            
+            where S : struct
+            where T : struct
+        {
+            var srcIx = 0;
+            var dstOffset = 0;
+            var dstIx = 0;
+            var srcSize = SizeOf<S>.BitSize;
+            var dstSize = SizeOf<T>.BitSize;
+            
+            while(srcIx < src.Length && dstIx < dst.Length)
+            {
+                for(var i = 0; i< srcSize; i++)
+                    if(test(src[srcIx], i))
+                       enable(ref dst[dstIx], dstOffset + i);
+
+                srcIx++;
+                if((dstOffset + srcSize) >= dstSize)
+                {
+                    dstOffset = 0;
+                    dstIx++;
+                }
+                else
+                    dstOffset += srcSize;
+            }
+            return dst;
+
         }
 
         [MethodImpl(Inline)]
@@ -434,6 +463,27 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static ulong nlz<T>(in T src)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.uint8)
+                 return Bits.nlz(AsIn.uint8(in asRef(in src)));
+
+            if(kind == PrimalKind.uint16)
+                 return Bits.nlz(AsIn.uint16(in asRef(in src)));
+
+            if(kind == PrimalKind.uint32)
+                 return Bits.nlz(AsIn.uint32(in asRef(in src)));
+
+            if(kind == PrimalKind.uint64)
+                 return Bits.nlz(AsIn.uint64(in asRef(in src)));
+
+            throw unsupported(kind);
+        }
+
+        [MethodImpl(Inline)]
         public static ref T loOff<T>(ref T src)
             where T : struct
         {
@@ -461,7 +511,6 @@ namespace Z0
             return ref src;
         }
         
-
         
     }
 

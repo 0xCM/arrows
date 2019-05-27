@@ -9,336 +9,153 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
     
-    
     using static zfunc;    
     using static Spans;
 
     partial class dinx
     {
-
+        [MethodImpl(Inline)]
+        public static void rshift(in Vec128<short> lhs, byte count, ref short dst)
+           => store(rshift(lhs,count), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static ref readonly Vec128<short> rshift(in Vec128<short> lhs, byte count, short* dst)
-        {
-            store(rshift(lhs,count), dst);
-            return ref lhs;
-        }
+        public static void rshift(in Vec128<ushort> lhs, byte count, ref ushort dst)
+           => store(rshift(lhs,count), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static ref readonly Vec128<ushort> rshift(in Vec128<ushort> lhs, byte count, ushort* dst)
-        {
-            store(rshift(lhs,count), dst);
-            return ref lhs;
-        }
+        public static void rshift(in Vec128<int> lhs, byte count, ref int dst)
+            => store(rshift(lhs,count), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static ref readonly Vec128<int> rshift(in Vec128<int> lhs, byte count, int* dst)
-        {
-            store(rshift(lhs,count), dst);
-            return ref lhs;
-        }
+        public static void rshift(in Vec128<uint> lhs, byte count, ref uint dst)
+            => store(rshift(lhs,count), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static ref readonly Vec128<uint> rshift(in Vec128<uint> lhs, byte count, uint* dst)
-        {
-            store(rshift(lhs,count), dst);
-            return ref lhs;
-        }
+        public static void rshift(in Vec128<long> lhs, byte count, ref long dst)
+            => store(rshift(lhs,count), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static ref readonly Vec128<long> rshift(in Vec128<long> lhs, byte count, long* dst)
-        {
-            store(rshift(lhs,count), dst);
-            return ref lhs;
-        }
+        public static void rshift(in Vec128<ulong> lhs, byte count, ref ulong dst)
+            => store(rshift(lhs,count), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static ref readonly Vec128<ulong> rshift(in Vec128<ulong> lhs, byte count, ulong* dst)
-        {
-            store(rshift(lhs,count), dst);
-            return ref lhs;
-        }
+        public static void rshift(in Vec256<short> lhs, byte count, ref short dst)
+            => store(rshift(lhs,count), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static ref readonly Vec256<short> rshift(in Vec256<short> lhs, byte count, short* dst)
-        {
-            store(rshift(lhs,count), dst);
-            return ref lhs;
-        }
+        public static void rshift(in Vec256<ushort> lhs, byte count, ref ushort dst)
+            => store(rshift(lhs,count), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static ref readonly Vec256<ushort> rshift(in Vec256<ushort> lhs, byte count, ushort* dst)
-        {
-            store(rshift(lhs,count), dst);
-            return ref lhs;
-        }
+        public static void rshift(in Vec256<int> lhs, byte count, ref int dst)
+            => store(rshift(lhs,count), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static ref readonly Vec256<int> rshift(in Vec256<int> lhs, byte count, int* dst)
-        {
-            store(rshift(lhs,count), dst);
-            return ref lhs;
-        }
+        public static void rshift(in Vec256<uint> lhs, byte count, ref uint dst)
+           => store(rshift(lhs,count), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static ref readonly Vec256<uint> rshift(in Vec256<uint> lhs, byte count, uint* dst)
-        {
-            store(rshift(lhs,count), dst);
-            return ref lhs;
-        }
+        public static void rshift(in Vec256<long> lhs, byte count, ref long dst)
+           => store(rshift(lhs,count), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static ref readonly Vec256<long> rshift(in Vec256<long> lhs, byte count, long* dst)
+        public static void rshift(in Vec256<ulong> lhs, byte count, ref ulong dst)
+           => store(rshift(lhs,count), ref dst);
+
+        public static ref Span128<short> rshift(ReadOnlySpan128<short> lhs, byte count, ref Span128<short> dst)
         {
-            store(rshift(lhs,count), dst);
-            return ref lhs;
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                store(rshift(lhs.VLoad(i), count), ref dst[i]);
+            return ref dst;            
         }
 
-        [MethodImpl(Inline)]
-        public unsafe static ref readonly Vec256<ulong> rshift(in Vec256<ulong> lhs, byte count, ulong* dst)
+        public static ref Span128<ushort> rshift(ReadOnlySpan128<ushort> lhs, byte count, ref Span128<ushort> dst)
         {
-            store(rshift(lhs,count), dst);
-            return ref lhs;
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                store(rshift(lhs.VLoad(i), count), ref dst[i]);
+            return ref dst;            
         }
 
-        public static unsafe ref Span128<short> rshift(ReadOnlySpan128<short> lhs, byte count, ref Span128<short> dst)
+        public static ref Span128<int> rshift(ReadOnlySpan128<int> lhs, byte count, ref Span128<int> dst)
         {
-            var vLen = Span128<short>.BlockLength;            
-            var dLen = lhs.Length;
-
-            fixed(short* pLhs0 = &head(lhs))
-            fixed(short* pDst0 = &head(dst))
-            {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen)
-                {
-                    var vLhs = Vec128.load(pLhs);
-                    store(rshift(vLhs,count), pDst);
-                }
-            }
-            
-            return ref dst;
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                store(rshift(lhs.VLoad(i), count), ref dst[i]);
+            return ref dst;            
         }
 
-        public static unsafe ref Span128<ushort> rshift(ReadOnlySpan128<ushort> lhs, byte count, ref Span128<ushort> dst)
+        public static ref Span128<uint> rshift(ReadOnlySpan128<uint> lhs, byte count, ref Span128<uint> dst)
         {
-            var vLen = Span128<ushort>.BlockLength;            
-            var dLen = lhs.Length;
-
-            fixed(ushort* pLhs0 = &head(lhs))
-            fixed(ushort* pDst0 = &head(dst))
-            {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen)
-                {
-                    var vLhs = Vec128.load(pLhs);
-                    store(rshift(vLhs,count), pDst);
-                }
-            }
-            
-            return ref dst;
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                store(rshift(lhs.VLoad(i), count), ref dst[i]);
+            return ref dst;            
         }
 
-        public static unsafe ref Span128<int> rshift(ReadOnlySpan128<int> lhs, byte count, ref Span128<int> dst)
+        public static ref Span128<long> rshift(ReadOnlySpan128<long> lhs, byte count, ref Span128<long> dst)
         {
-            var vLen = Span128<int>.BlockLength;            
-            var dLen = lhs.Length;
-
-            fixed(int* pLhs0 = &head(lhs))
-            fixed(int* pDst0 = &head(dst))
-            {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen)
-                {
-                    var vLhs = Vec128.load(pLhs);
-                    store(rshift(vLhs,count), pDst);
-                }
-            }
-            
-            return ref dst;
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                store(rshift(lhs.VLoad(i), count), ref dst[i]);
+            return ref dst;            
         }
 
-        public static unsafe ref Span128<uint> rshift(ReadOnlySpan128<uint> lhs, byte count, ref Span128<uint> dst)
+        public static ref Span128<ulong> rshift(ReadOnlySpan128<ulong> lhs, byte count, ref Span128<ulong> dst)
         {
-            var vLen = Span128<uint>.BlockLength;            
-            var dLen = lhs.Length;
-
-            fixed(uint* pLhs0 = &head(lhs))
-            fixed(uint* pDst0 = &head(dst))
-            {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen)
-                {
-                    var vLhs = Vec128.load(pLhs);
-                    store(rshift(vLhs,count), pDst);
-                }
-            }
-            
-            return ref dst;
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                store(rshift(lhs.VLoad(i), count), ref dst[i]);
+            return ref dst;            
         }
 
-        public static unsafe ref Span128<long> rshift(ReadOnlySpan128<long> lhs, byte count, ref Span128<long> dst)
+        public static ref Span256<short> rshift(ReadOnlySpan256<short> lhs, byte count, ref Span256<short> dst)
         {
-            var vLen = Span128<long>.BlockLength;            
-            var dLen = lhs.Length;
-
-            fixed(long* pLhs0 = &head(lhs))
-            fixed(long* pDst0 = &head(dst))
-            {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen)
-                {
-                    var vLhs = Vec128.load(pLhs);
-                    store(rshift(vLhs,count), pDst);
-                }
-            }
-            
-            return ref dst;
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                store(rshift(lhs.VLoad(i), count), ref dst[i]);
+            return ref dst;            
         }
 
-        public static unsafe ref Span128<ulong> rshift(ReadOnlySpan128<ulong> lhs, byte count, ref Span128<ulong> dst)
+        public static ref Span256<ushort> rshift(ReadOnlySpan256<ushort> lhs, byte count, ref Span256<ushort> dst)
         {
-            var vLen = Span128<ulong>.BlockLength;            
-            var dLen = lhs.Length;
-
-            fixed(ulong* pLhs0 = &head(lhs))
-            fixed(ulong* pDst0 = &head(dst))
-            {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen)
-                {
-                    var vLhs = Vec128.load(pLhs);
-                    store(rshift(vLhs,count), pDst);
-                }
-            }
-            
-            return ref dst;
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                store(rshift(lhs.VLoad(i), count), ref dst[i]);
+            return ref dst;            
         }
 
-        public static unsafe ref Span256<short> rshift(ReadOnlySpan256<short> lhs, byte count, ref Span256<short> dst)
+        public static ref Span256<int> rshift(ReadOnlySpan256<int> lhs, byte count, ref Span256<int> dst)
         {
-            var vLen = Span256<short>.BlockLength;            
-            var dLen = lhs.Length;
-
-            fixed(short* pLhs0 = &head(lhs))
-            fixed(short* pDst0 = &head(dst))
-            {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    store(rshift(vLhs,count), pDst);
-                }
-            }
-            
-            return ref dst;
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                store(rshift(lhs.VLoad(i), count), ref dst[i]);
+            return ref dst;            
         }
 
-        public static unsafe ref Span256<ushort> rshift(ReadOnlySpan256<ushort> lhs, byte count, ref Span256<ushort> dst)
+        public static ref Span256<uint> rshift(ReadOnlySpan256<uint> lhs, byte count, ref Span256<uint> dst)
         {
-            var vLen = Span256<ushort>.BlockLength;            
-            var dLen = lhs.Length;
-
-            fixed(ushort* pLhs0 = &head(lhs))
-            fixed(ushort* pDst0 = &head(dst))
-            {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    store(rshift(vLhs,count), pDst);
-                }
-            }
-            
-            return ref dst;
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                store(rshift(lhs.VLoad(i), count), ref dst[i]);
+            return ref dst;            
         }
 
-        public static unsafe ref Span256<int> rshift(ReadOnlySpan256<int> lhs, byte count, ref Span256<int> dst)
+        public static ref Span256<long> rshift(ReadOnlySpan256<long> lhs, byte count, ref Span256<long> dst)
         {
-            var vLen = Span256<int>.BlockLength;            
-            var dLen = lhs.Length;
-
-            fixed(int* pLhs0 = &head(lhs))
-            fixed(int* pDst0 = &head(dst))
-            {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    store(rshift(vLhs,count), pDst);
-                }
-            }
-            
-            return ref dst;
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                store(rshift(lhs.VLoad(i), count), ref dst[i]);
+            return ref dst;            
         }
 
-        public static unsafe ref Span256<uint> rshift(ReadOnlySpan256<uint> lhs, byte count, ref Span256<uint> dst)
+        public static ref Span256<ulong> rshift(ReadOnlySpan256<ulong> lhs, byte count, ref Span256<ulong> dst)
         {
-            var vLen = Span256<uint>.BlockLength;            
-            var dLen = lhs.Length;
-
-            fixed(uint* pLhs0 = &head(lhs))
-            fixed(uint* pDst0 = &head(dst))
-            {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    store(rshift(vLhs,count), pDst);
-                }
-            }
-            
-            return ref dst;
-        }
-
-        public static unsafe ref Span256<long> rshift(ReadOnlySpan256<long> lhs, byte count, ref Span256<long> dst)
-        {
-            var vLen = Span256<long>.BlockLength;            
-            var dLen = lhs.Length;
-
-            fixed(long* pLhs0 = &head(lhs))
-            fixed(long* pDst0 = &head(dst))
-            {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    store(rshift(vLhs,count), pDst);
-                }
-            }
-            
-            return ref dst;
-        }
-
-        public static unsafe ref Span256<ulong> rshift(ReadOnlySpan256<ulong> lhs, byte count, ref Span256<ulong> dst)
-        {
-            var vLen = Span256<ulong>.BlockLength;            
-            var dLen = lhs.Length;
-
-            fixed(ulong* pLhs0 = &head(lhs))
-            fixed(ulong* pDst0 = &head(dst))
-            {
-                var pDst = pDst0;                
-                var pLhs = pLhs0;
-                for(var i =0; i < dLen; i+= vLen, pDst += vLen, pLhs += vLen)
-                {
-                    var vLhs = Vec256.load(pLhs);
-                    store(rshift(vLhs,count), pDst);
-                }
-            }
-            
-            return ref dst;
+            var width = dst.BlockWidth;
+            for(var i =0; i < lhs.Length; i += width)
+                store(rshift(lhs.VLoad(i), count), ref dst[i]);
+            return ref dst;            
         }
 
     }

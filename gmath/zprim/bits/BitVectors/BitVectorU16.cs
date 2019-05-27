@@ -23,6 +23,14 @@ namespace Z0
             => this.data = data;
 
         [MethodImpl(Inline)]
+        public static implicit operator BitVector<ushort>(in BitVectorU16 src)
+            => new BitVector<ushort>(in src.data);
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitVector<N16,ushort>(in BitVectorU16 src)
+            => NatBits.Define(in src.data);
+
+        [MethodImpl(Inline)]
         public static BitVectorU16 Define(
             in Bit x00, in Bit x01, in Bit x02, in Bit x03, 
             in Bit x04, in Bit x05, in Bit x06, in Bit x07,
