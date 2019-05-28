@@ -1,0 +1,176 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
+namespace Z0
+{
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
+    using System.IO;
+    
+    using static zfunc;
+    
+    public static class NumGBench
+    {
+
+        static OpId<T> Id<T>(OpKind op)
+            where T : struct
+                => op.OpId<T>(NumericKind.Number, generic: true);
+
+        static MetricConfig Configure(MetricConfig config)
+            => config ?? MetricConfig.Default;
+
+        static int Cycles(MetricConfig config)
+            => Configure(config).Cycles;
+
+        static IRandomizer Random(IRandomizer random)
+            => random ?? Randomizer.define(RandSeeds.BenchSeed);
+
+        static num<T>[] alloc<T>(int len)
+            where T : struct
+                => zfunc.alloc<num<T>>(len);
+                
+        static ReadOnlySpan<num<T>> Numbers<T>(ReadOnlySpan<T> src)
+            where T : struct
+                => Num.many(src);
+        static ReadOnlySpanPair<num<T>> Numbers<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+                => Num.many(lhs).PairWith(Num.many(rhs));
+
+        public static Metrics<T> Run<T>(OpKind op, MetricConfig config = null, IRandomizer random = null)        
+            where T : struct
+        {
+            config = Configure(config);    
+            random = Random(random);        
+            var lhs = random.Span<T>(config.Samples);
+            var rhs = op.NonZeroRight() ? random.NonZeroSpan<T>(config.Samples) : random.Span<T>(config.Samples);            
+            var metrics = Metrics.Zero<T>();
+            GC.Collect();            
+            for(var i=0; i<config.Runs; i++)
+                metrics += Run<T>(op, lhs, rhs, config);
+            return metrics;            
+        }
+
+        public static MetricComparisonRecord RunNumGComparison(this MetricConfig config, OpType op, bool silent = false)
+        {            
+            var m1 = MetricKind.PrimalDirect.Run(op.Op, op.Primitive, config);
+            var m2 = MetricKind.Number.Run(op.Op, op.Primitive, config);            
+            var compared = m1.Compare(m2).ToRecord();
+            if(!silent)
+                print(items(compared).FormatMessages());
+            return compared;
+        }
+
+        public static IMetrics Run(OpKind op, PrimalKind prim, MetricConfig config = null, IRandomizer random = null)
+        {
+            config = Configure(config);    
+            random = Random(random);        
+
+            switch(prim)
+            {
+                case PrimalKind.int8:
+                    return Run<sbyte>(op, config, random);
+                case PrimalKind.uint8:
+                    return Run<byte>(op, config, random);
+                case PrimalKind.int16:
+                    return Run<short>(op, config, random);
+                case PrimalKind.uint16:
+                    return Run<ushort>(op, config, random);
+                case PrimalKind.int32:
+                    return Run<int>(op, config, random);
+                case PrimalKind.uint32:
+                    return Run<uint>(op, config, random);
+                case PrimalKind.int64:
+                    return Run<long>(op, config, random);
+                case PrimalKind.uint64:
+                    return Run<ulong>(op, config, random);
+                case PrimalKind.float32:
+                    return Run<float>(op, config, random);
+                case PrimalKind.float64:                    
+                    return Run<double>(op, config, random);
+                default:
+                    throw unsupported(prim);
+            }
+        }
+
+        public static Metrics<T> Run<T>(OpKind op, ReadOnlySpan<T> src, MetricConfig config = null)
+            where T : struct
+        {
+            var metrics = Metrics<T>.Zero;
+            switch(op)
+            {
+                case OpKind.Abs:
+                    metrics = AbsNumMetrics.Abs<T>(src, config);   
+                    break;
+                case OpKind.Negate:
+                    metrics = NegateNumMetrics.Negate<T>(src, config);   
+                    break;
+                case OpKind.Flip:
+                    metrics = FlipNumMetrics.Flip<T>(src, config);   
+                    break;
+                default: 
+                    throw unsupported(op);
+            }
+            print(metrics.Describe());
+
+            return metrics;
+        }
+
+
+        public static Metrics<T> Run<T>(OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+            where T : struct
+        {
+            var metrics = Metrics<T>.Zero;
+            switch(op)
+            {
+                case OpKind.Add:
+                    metrics = AddNumMetrics.Add<T>(lhs, rhs, config);   
+                    break;
+                case OpKind.Sub:
+                    metrics = SubNumMetrics.Sub<T>(lhs, rhs, config);   
+                    break;                
+                case OpKind.Mul:
+                    metrics = MulNumMetrics.Mul<T>(lhs, rhs, config);   
+                    break;                
+                case OpKind.Div:
+                    metrics = DivNumMetrics.Div<T>(lhs, rhs, config);   
+                    break;                
+                case OpKind.Mod:
+                    metrics = ModNumMetrics.Mod<T>(lhs, rhs, config);   
+                    break;                
+                case OpKind.And:
+                    metrics = AndNumMetrics.And<T>(lhs, rhs, config);   
+                    break;                
+                case OpKind.Or:
+                    metrics = OrNumMetrics.Or<T>(lhs, rhs, config);   
+                    break;                
+                case OpKind.XOr:
+                    metrics = XOrNumMetrics.XOr<T>(lhs, rhs, config);   
+                    break;                
+                case OpKind.Eq:
+                    metrics = EqNumMetrics.Eq<T>(lhs, rhs, config);   
+                    break;                
+                case OpKind.Lt:
+                    metrics = LtNumMetrics.Lt<T>(lhs, rhs, config);   
+                    break;                
+                case OpKind.LtEq:
+                    metrics = LtEqNumMetrics.LtEq<T>(lhs, rhs, config);   
+                    break;                
+                case OpKind.Gt:
+                    metrics = GtNumMetrics.Gt<T>(lhs, rhs, config);   
+                    break;                
+                case OpKind.GtEq:
+                    metrics = GtEqNumMetrics.GtEq<T>(lhs, rhs, config);   
+                    break;                
+                default: 
+                    throw unsupported(op);
+            }            
+
+            print(metrics.Describe());
+
+            return metrics;
+        }
+    }
+}

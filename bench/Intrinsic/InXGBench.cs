@@ -308,8 +308,7 @@ namespace Z0
             {
                 var x = Vec256.single<T>(lhs, block);
                 var y = Vec256.single<T>(rhs, block);
-                ginx.add(x,y, out Vec256<T> z);
-                Vec256.store(z, ref dst.Block(block));
+                Vec256.store(ginx.add(x,y), ref dst.Block(block));
             }
             var time = snapshot(sw);
 

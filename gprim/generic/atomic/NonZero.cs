@@ -16,6 +16,35 @@ namespace Z0
     partial class gmath
     {
         [MethodImpl(Inline)]
+        public static bool nonzero<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return nonzeroI8(src);
+            else if(typeof(T) == typeof(byte))
+                return nonzeroU8(src);
+            else if(typeof(T) == typeof(short))
+                return nonzeroI16(src);
+            else if(typeof(T) == typeof(ushort))
+                return nonzeroU16(src);
+            else if(typeof(T) == typeof(int))
+                return nonzeroI32(src);
+            else if(typeof(T) == typeof(uint))
+                return nonzeroU32(src);
+            else if(typeof(T) == typeof(long))
+                return nonzeroI64(src);
+            else if(typeof(T) == typeof(ulong))
+                return nonzeroU64(src);
+            else if(typeof(T) == typeof(float))
+                return nonzeroF32(src);
+            else if(typeof(T) == typeof(double))
+                return nonzeroF64(src);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }
+
+
+        [MethodImpl(Inline)]
         static bool nonzeroI8<T>(T src)
             => math.nonzero(int8(ref src));
 

@@ -12,6 +12,28 @@ namespace Z0
     
     using static zfunc;
     
+    public interface IBinaryOpMetric
+    {
+        Metrics<T> Measure<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+            where T : struct;
+
+    }
+
+    public interface IBinaryHetOpMetric
+    {
+        Metrics<S> Measure<S,T>(ReadOnlySpan<S> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+            where S : struct
+            where T : struct;
+
+    }
+
+    public interface IUnaryOpMetric
+    {
+        Metrics<T> Measure<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+            where T : struct;
+
+    }
+
     public struct Metrics<T> : IMetrics
         where T : struct
     {

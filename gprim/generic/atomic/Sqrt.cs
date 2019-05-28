@@ -15,6 +15,74 @@ namespace Z0
 
     partial class gmath
     {
+        [MethodImpl(Inline)]
+        public static T sqrt<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return sqrtI8(src);
+            else if(typeof(T) == typeof(byte))
+                return sqrtU8(src);
+            else if(typeof(T) == typeof(short))
+                return sqrtI16(src);
+            else if(typeof(T) == typeof(ushort))
+                return sqrtU16(src);
+            else if(typeof(T) == typeof(int))
+                return sqrtI32(src);
+            else if(typeof(T) == typeof(uint))
+                return sqrtU32(src);
+            else if(typeof(T) == typeof(long))
+                return sqrtI64(src);
+            else if(typeof(T) == typeof(ulong))
+                return sqrtU64(src);
+            else if(typeof(T) == typeof(float))
+                return sqrtF32(src);
+            else if(typeof(T) == typeof(double))
+                return sqrtF64(src);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }           
+
+        [MethodImpl(Inline)]
+        public static ref T sqrt<T>(ref T src)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int32)
+                return ref sqrtI32(ref src);
+
+            if(kind == PrimalKind.uint32)
+                return ref src;
+
+            if(kind == PrimalKind.int64)
+                return ref sqrtI64(ref src);
+
+            if(kind == PrimalKind.uint64)
+                return ref src;
+
+            if(kind == PrimalKind.int16)
+                return ref sqrtI16(ref src);
+
+            if(kind == PrimalKind.uint16)
+                return ref src;
+
+            if(kind == PrimalKind.int8)
+                return ref sqrtI8(ref src);
+
+            if(kind == PrimalKind.uint8)
+                return ref src;
+
+            if(kind == PrimalKind.float32)
+                return ref sqrtF32(ref src);
+
+            if(kind == PrimalKind.float64)
+                return ref sqrtF64(ref src);
+
+            throw unsupported(kind);
+        }           
+
+
 
         [MethodImpl(Inline)]
         static T sqrtI8<T>(T src)

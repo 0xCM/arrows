@@ -9,9 +9,7 @@ namespace Z0
     using System.Reflection;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using System.Diagnostics;
-
-    
+    using System.Diagnostics;    
     
     using static zfunc;
 
@@ -137,8 +135,5 @@ namespace Z0
         [MethodImpl(NotInline)]
         public static Span<bool> eq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
             => eq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-
-
     }
 }

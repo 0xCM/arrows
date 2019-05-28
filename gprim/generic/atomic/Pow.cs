@@ -16,6 +16,49 @@ namespace Z0
     partial class gmath
     {
         [MethodImpl(Inline)]
+        public static T pow<T>(T src, uint exp)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return powI8(src, exp);
+            else if(typeof(T) == typeof(byte))
+                return powU8(src, exp);
+            else if(typeof(T) == typeof(short))
+                return powI16(src, exp);
+            else if(typeof(T) == typeof(ushort))
+                return powU16(src, exp);
+            else if(typeof(T) == typeof(int))
+                return powI32(src, exp);
+            else if(typeof(T) == typeof(uint))
+                return powU32(src, exp);
+            else if(typeof(T) == typeof(long))
+                return powI64(src, exp);
+            else if(typeof(T) == typeof(ulong))
+                return powU64(src, exp);
+            else if(typeof(T) == typeof(float))
+                return powF32(src, exp);
+            else if(typeof(T) == typeof(double))
+                return powF64(src, exp);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }           
+
+        [MethodImpl(Inline)]
+        public static T pow<T>(T src, T exp)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.float32)
+                return powF32(src,exp);
+
+            if(kind == PrimalKind.float64)
+                return powF64(src,exp);
+
+            throw unsupported(kind);
+        }
+
+        [MethodImpl(Inline)]
         static T powU8<T>(T src, uint exp)
             => generic<T>(math.pow(int8(src), exp));
 

@@ -86,6 +86,9 @@ namespace Z0
         public static bool IsSmallInt(this PrimalKind kind)
             => (byte)(kind) < (byte)PrimalKind.int32;
 
+        [MethodImpl(Inline)]
+        public static bool IsLargeInt(this PrimalKind kind)
+            => (byte)(kind) > 4 && (byte)(kind) <9;
 
     }
 }

@@ -15,6 +15,66 @@ namespace Z0
 
     partial class gmath
     {
+
+        [MethodImpl(Inline)]
+        public static T rshift<T>(T lhs, int rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return rshiftI8(lhs,rhs);
+            else if(typeof(T) == typeof(byte))
+                return rshiftU8(lhs, rhs);
+            else if(typeof(T) == typeof(short))
+                return rshiftI16(lhs, rhs);
+            else if(typeof(T) == typeof(ushort))
+                return rshiftU16(lhs,rhs);
+            else if(typeof(T) == typeof(int))
+                return rshiftI32(lhs, rhs);
+            else if(typeof(T) == typeof(uint))
+                return rshiftU32(lhs, rhs);
+            else if(typeof(T) == typeof(long))
+                return rshiftI64(lhs,rhs);
+            else if(typeof(T) == typeof(ulong))
+                return rshiftU64(lhs,rhs);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }           
+
+        [MethodImpl(Inline)]
+        public static ref T rshift<T>(ref T lhs, int rhs)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int32)
+                return ref rshiftI32(ref lhs, rhs);
+
+            if(kind == PrimalKind.uint32)
+                return ref rshiftU32(ref lhs, rhs);
+
+            if(kind == PrimalKind.int64)
+                return ref rshiftI64(ref lhs, rhs);
+
+            if(kind == PrimalKind.uint64)
+                return ref rshiftU64(ref lhs, rhs);
+
+            if(kind == PrimalKind.int16)
+                return ref rshiftI16(ref lhs, rhs);
+
+            if(kind == PrimalKind.uint16)
+                return ref rshiftU16(ref lhs, rhs);
+
+            if(kind == PrimalKind.int8)
+                return ref rshiftI8(ref lhs, rhs);
+
+            if(kind == PrimalKind.uint8)
+                return ref rshiftU8(ref lhs, rhs);
+
+            throw unsupported(kind);
+        }           
+
+
+
         [MethodImpl(Inline)]
         static ref T rshiftI8<T>(ref T lhs, int rhs)
         {

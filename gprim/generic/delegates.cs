@@ -11,7 +11,6 @@ namespace Z0
 
     using static zfunc;    
     
-
     public static class PrimalDelegates
     {        
         [MethodImpl(Inline)]
@@ -103,6 +102,7 @@ namespace Z0
         public static T add<T>(T lhs, T rhs)
             where T : struct
                 => gmath.add(lhs,rhs);
+        
         readonly struct Add<T>
             where T : struct
         {

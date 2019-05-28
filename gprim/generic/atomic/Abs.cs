@@ -16,6 +16,68 @@ namespace Z0
     partial class gmath
     {
         [MethodImpl(Inline)]
+        public static T abs<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return absI8(src);
+            else if(typeof(T) == typeof(short))
+                return absI16(src);
+            else if(typeof(T) == typeof(int))
+                return absI32(src);
+            else if(typeof(T) == typeof(long))
+                return absI64(src);
+            else if(typeof(T) == typeof(float))
+                return absF32(src);
+            else if(typeof(T) == typeof(double))
+                return absF64(src);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }           
+
+
+        [MethodImpl(Inline)]
+        public static ref T abs<T>(ref T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return ref absI8(ref src);
+            else if(typeof(T) == typeof(short))
+                return ref absI16(ref src);
+            else if(typeof(T) == typeof(int))
+                return ref absI32(ref src);
+            else if(typeof(T) == typeof(long))
+                return ref absI64(ref src);
+            else if(typeof(T) == typeof(float))
+                return ref absF32(ref src);
+            else if(typeof(T) == typeof(double))
+                return ref absF64(ref src);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }           
+
+        public static Span<T> abs<T>(ReadOnlySpan<T> src, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.abs(int8(src), int8(dst));
+            else if(kind == PrimalKind.int16)
+                math.abs(int16(src), int16(dst));
+            else if(kind == PrimalKind.int32)
+                math.abs(int32(src), int32(dst));
+            else if(kind == PrimalKind.int64)
+                math.abs(int64(src), int64(dst));
+            else if(kind == PrimalKind.float32)
+                math.abs(float32(src), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.abs(float64(src), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
         static T absI8<T>(T src)
             => generic<T>(math.abs(int8(src)));
 

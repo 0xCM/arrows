@@ -17,6 +17,69 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static T negate<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return negateI8(src);
+            else if(typeof(T) == typeof(short))
+                return negateI16(src);
+            else if(typeof(T) == typeof(int))
+                return negateI32(src);
+            else if(typeof(T) == typeof(long))
+                return negateI64(src);
+            else if(typeof(T) == typeof(float))
+                return negateF32(src);
+            else if(typeof(T) == typeof(double))
+                return negateF64(src);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }           
+
+        [MethodImpl(Inline)]
+        public static ref T negate<T>(ref T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return ref negateI8(ref src);
+            else if(typeof(T) == typeof(short))
+                return ref negateI16(ref src);
+            else if(typeof(T) == typeof(int))
+                return ref negateI32(ref src);
+            else if(typeof(T) == typeof(long))
+                return ref negateI64(ref src);
+            else if(typeof(T) == typeof(float))
+                return ref negateF32(ref src);
+            else if(typeof(T) == typeof(double))
+                return ref negateF64(ref src);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }           
+
+        [MethodImpl(NotInline)]
+        public static Span<T> negate<T>(ReadOnlySpan<T> src, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.negate(int8(src), int8(dst));
+            else if(kind == PrimalKind.int16)
+                math.negate(int16(src), int16(dst));
+            else if(kind == PrimalKind.int32)
+                math.negate(int32(src), int32(dst));
+            else if(kind == PrimalKind.int64)
+                math.negate(int64(src), int64(dst));
+            else if(kind == PrimalKind.float32)
+                math.negate(float32(src), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.negate(float64(src), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+
+        [MethodImpl(Inline)]
         static T negateI8<T>(T src)        
             => generic<T>(math.negate(ref int8(ref src)));            
         

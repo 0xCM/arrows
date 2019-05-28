@@ -15,19 +15,8 @@ namespace Z0
 
     using static zfunc;
 
-
     public static class VecXX
     {
-
-        /// <summary>
-        /// Returns true if one of the supplied values is the NaN representative
-        /// </summary>
-        /// <param name="x0">The first source value</param>
-        /// <param name="x1">The second source value</param>
-        [MethodImpl(Inline)]
-        public static bool anyNan(double x0, double x1)
-            => x0.IsNaN() || x1.IsNaN();
-
         /// <summary>
         /// Returns the vector component for a specified index
         /// </summary>
@@ -49,7 +38,6 @@ namespace Z0
         public static T component<T>(in Vector256<T> src, int index)
             where T : struct
                 => src.GetElement(index);
-
 
 
         /// <summary>

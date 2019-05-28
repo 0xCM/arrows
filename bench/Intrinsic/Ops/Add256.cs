@@ -205,9 +205,8 @@ namespace Z0
             for(var block = 0; block < dst.BlockCount; block++)
             {
                 var x = Vec256.single<T>(lhs, block);
-                var y = Vec256.single<T>(rhs, block);
-                ginx.add(in x, in y, out Vec256<T> z);
-                Vec256.store(in z, ref dst.Block(block));
+                var y = Vec256.single<T>(rhs, block);                
+                Vec256.store(ginx.add(in x, in y), ref dst.Block(block));
             }
             var time = snapshot(sw);
 

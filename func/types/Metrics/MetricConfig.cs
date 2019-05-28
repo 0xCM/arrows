@@ -12,6 +12,50 @@ namespace Z0
     
     using static zfunc;
 
+    public static class PrimalDMetrics
+    {
+        public static OpId<T> Id<T>(OpKind op)
+            where T : struct
+                => op.OpId<T>(NumericKind.Native, system: NumericSystem.Primal);
+
+        public static MetricConfig Configure(MetricConfig config)
+            => config ?? MetricConfig.Default;
+
+        public static int Cycles(MetricConfig config)
+            => Configure(config).Cycles;
+
+        public static bool DirectOps(MetricConfig config)
+            => Configure(config).DirectOps;
+    }
+
+    public static class PrimalGMetrics
+    {
+        public static OpId<T> Id<T>(OpKind op)
+            where T : struct
+                => op.OpId<T>(NumericKind.Native, generic:true);
+
+        public static MetricConfig Configure(MetricConfig config)
+            => config ?? MetricConfig.Default;
+
+        public static int Cycles(MetricConfig config)
+            => Configure(config).Cycles;
+
+
+    }
+
+    public static class NumGMetrics
+    {
+        public static OpId<T> Id<T>(OpKind op)
+            where T : struct
+                => op.OpId<T>(NumericKind.Number, generic: true);
+
+        public static MetricConfig Configure(MetricConfig config)
+            => config ?? MetricConfig.Default;
+
+        public static int Cycles(MetricConfig config)
+            => Configure(config).Cycles;
+    }
+
     public class MetricConfig
     {
         public static readonly MetricConfig Default 

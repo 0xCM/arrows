@@ -113,6 +113,16 @@ partial class zfunc
     public static T[] array<T>(params T[] src)
         => src;
 
+    [MethodImpl(Inline)]   
+    public static T[] alloc<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+        where T : struct
+            => alloc<T>(length(lhs,rhs));
+
+    [MethodImpl(Inline)]   
+    public static T[] alloc<T>(ReadOnlySpan<T> src)
+        where T : struct
+            => alloc<T>(src.Length);
+
     /// <summary>
     /// Constructs an array filled with a replicated value
     /// </summary>

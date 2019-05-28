@@ -54,7 +54,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static double add(double lhs, double rhs)
             => lhs + rhs;
- 
+
+
         [MethodImpl(Inline)]
         public static ref sbyte add(ref sbyte lhs, sbyte rhs)
         {

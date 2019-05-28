@@ -55,14 +55,12 @@ namespace Z0
         public static double dec(double src)
             => --src;
 
-
         [MethodImpl(Inline)]
         public static ref sbyte dec(ref sbyte src)
         {
             src--;
             return ref src;
         }
-
 
         [MethodImpl(Inline)]
         public static ref byte dec(ref byte src)

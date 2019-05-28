@@ -8,6 +8,8 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
+    using static System.Runtime.Intrinsics.X86.Sse;
+    using static System.Runtime.Intrinsics.X86.Avx;
         
     using static zfunc;    
 
@@ -17,12 +19,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<float> recip(Vec128<float> src)
-            => Avx2.Reciprocal(src);
+            => Reciprocal(src);
 
 
         [MethodImpl(Inline)]
         public static Vec256<float> recip(Vec256<float> src)
-            => Avx2.Reciprocal(src);
+            => Reciprocal(src);
 
 
     }

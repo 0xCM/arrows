@@ -17,6 +17,21 @@ namespace Z0
         public static IReadOnlyList<string> GetHeaders()
             => type<MetricComparisonRecord>().DeclaredProperties().Select(p => p.Name).ToReadOnlyList();
 
+        public static string GetHeaderText(char delimiter = ',')
+        {
+            var i = 0;
+            var headers = GetHeaders();
+            var delimited = string.Join(string.Empty, 
+                $"{headers[i++]}{delimiter}".PadRight(OpNameLen), 
+                $"{headers[i++]}{delimiter}".PadRight(OpNameLen), 
+                $"{headers[i++]}{delimiter}".PadRight(MetricLen), 
+                $"{headers[i++]}{delimiter}".PadRight(MetricLen), 
+                $"{headers[i++]}{delimiter}".PadRight(MetricLen), 
+                    headers[i]);
+            return delimited;
+            
+        }
+
         public MetricComparisonRecord(string LeftOpUri, string RightOpUri, long OpCount, 
             Duration LeftWorkTime, Duration RightWorkTime, double PerformanceRatio)
         {
@@ -59,20 +74,6 @@ namespace Z0
                 $"{RightTime.Ms} ms{delimiter}".PadRight(MetricLen), 
                     Ratio);
 
-        public string HeaderText(char delimiter = ',')
-        {
-            var i = 0;
-            var headers = Headers();
-            var delimited = string.Join(string.Empty, 
-                $"{headers[i++]}{delimiter}".PadRight(OpNameLen), 
-                $"{headers[i++]}{delimiter}".PadRight(OpNameLen), 
-                $"{headers[i++]}{delimiter}".PadRight(MetricLen), 
-                $"{headers[i++]}{delimiter}".PadRight(MetricLen), 
-                $"{headers[i++]}{delimiter}".PadRight(MetricLen), 
-                    headers[i]);
-            return delimited;
-            
-        }
         public override string ToString()
             => Delimited();
 
@@ -83,7 +84,7 @@ namespace Z0
             => (DescribeHeader(), DescribeContent());
             
         public AppMsg DescribeHeader()
-            => AppMsg.Define(HeaderText(), SeverityLevel.HiliteCL);
+            => AppMsg.Define(GetHeaderText(), SeverityLevel.HiliteCL);
         
         public AppMsg DescribeContent()
             => AppMsg.Define(Delimited(), SeverityLevel.Perform);

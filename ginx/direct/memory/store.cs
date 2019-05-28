@@ -19,89 +19,6 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<sbyte> src, sbyte* dst)
-            => Store(dst,src);            
-
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<byte> src, byte* dst)
-            => Store(dst,src);            
-
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<short> src, short* dst)
-            => Store(dst,src);            
-
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<ushort> src, ushort* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<int> src, int* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<uint> src, uint* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<long> src, long* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<ulong> src, ulong* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<float> src, float* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec128<double> src, double* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec256<sbyte> src, sbyte* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec256<byte> src, byte* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec256<short> src, short* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec256<ushort> src, ushort* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec256<int> src, int* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec256<uint> src, uint* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec256<long> src, long* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec256<ulong> src, ulong* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec256<float> src, float* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
-        public static unsafe void store(in Vec256<double> src, double* dst)
-            => Store(dst,src);            
-
-        [MethodImpl(Inline)]
         public static unsafe void store(in Vec128<sbyte> src, ref sbyte dst)
             => Store(As.pint8(ref dst),src);            
 
@@ -111,9 +28,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec128<short> src, ref short dst)
-        {
-            Store(As.pint16(ref dst), src);            
-        }
+            => Store(As.pint16(ref dst), src);            
 
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec128<ushort> src, ref ushort dst)

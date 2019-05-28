@@ -22,7 +22,6 @@ namespace Z0
                 => map(src, x => x ? gmath.one<T>() : gmath.zero<T>());
 
 
-
         public static Option<int> WriteTo<T>(this DivisorIndex<T> src, FolderPath dst)
             where T : struct
         {

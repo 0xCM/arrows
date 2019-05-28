@@ -8,6 +8,8 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
+    using static System.Runtime.Intrinsics.X86.Sse41;
+    using static System.Runtime.Intrinsics.X86.Avx;
         
     using static zfunc;    
 
@@ -16,21 +18,35 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<float> floor(Vec128<float> src)
-            => Avx2.Floor(src);
+            => Floor(src);
 
         [MethodImpl(Inline)]
         public static Vec128<double> floor(Vec128<double> src)
-            => Avx2.Floor(src);
+            => Floor(src);
         
         [MethodImpl(Inline)]
         public static Vec256<float> floor(Vec256<float> src)
-            => Avx2.Floor(src);
-
+            => Floor(src);
 
         [MethodImpl(Inline)]
         public static Vec256<double> floor(Vec256<double> src)
-            => Avx2.Floor(src);
+            => Floor(src);
 
+        [MethodImpl(Inline)]
+        public static void floor(Vec128<float> src, ref float dst)
+            => store(Floor(src), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void floor(Vec128<double> src, ref double dst)
+            => store(Floor(src), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void floor(Vec256<float> src, ref float dst)
+            => store(Floor(src), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void floor(Vec256<double> src, ref double dst)
+            => store(Ceiling(src), ref dst);
 
     }
 

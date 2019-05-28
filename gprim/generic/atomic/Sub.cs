@@ -15,6 +15,94 @@ namespace Z0
 
     partial class gmath
     {
+
+        [MethodImpl(Inline)]
+        public static T sub<T>(T lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return subI8(lhs,rhs);
+            else if(typeof(T) == typeof(byte))
+                return subU8(lhs, rhs);
+            else if(typeof(T) == typeof(short))
+                return subI16(lhs, rhs);
+            else if(typeof(T) == typeof(ushort))
+                return subU16(lhs,rhs);
+            else if(typeof(T) == typeof(int))
+                return subI32(lhs, rhs);
+            else if(typeof(T) == typeof(uint))
+                return subU32(lhs, rhs);
+            else if(typeof(T) == typeof(long))
+                return subI64(lhs,rhs);
+            else if(typeof(T) == typeof(ulong))
+                return subU64(lhs,rhs);
+            else if(typeof(T) == typeof(float))
+                return subF32(lhs, rhs);
+            else if(typeof(T) == typeof(double))
+                return subF64(lhs,rhs);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T sub<T>(ref T lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return ref subI8(ref lhs,rhs);
+            else if(typeof(T) == typeof(byte))
+                return ref subU8(ref lhs, rhs);
+            else if(typeof(T) == typeof(short))
+                return ref subI16(ref lhs, rhs);
+            else if(typeof(T) == typeof(ushort))
+                return ref subU16(ref lhs,rhs);
+            else if(typeof(T) == typeof(int))
+                return ref subI32(ref lhs, rhs);
+            else if(typeof(T) == typeof(uint))
+                return ref subU32(ref lhs, rhs);
+            else if(typeof(T) == typeof(long))
+                return ref subI64(ref lhs,rhs);
+            else if(typeof(T) == typeof(ulong))
+                return ref subU64(ref lhs,rhs);
+            else if(typeof(T) == typeof(float))
+                return ref subF32(ref lhs, rhs);
+            else if(typeof(T) == typeof(double))
+                return ref subF64(ref lhs,rhs);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T :  struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.sub(int8(lhs), int8(rhs), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.sub(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.sub(int16(lhs), int16(rhs), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.sub(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.sub(int32(lhs), int32(rhs), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.sub(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.sub(int64(lhs), int64(rhs), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.sub(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(kind == PrimalKind.float32)
+                math.sub(float32(lhs), float32(rhs), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.sub(float64(lhs), float64(rhs), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+
         [MethodImpl(Inline)]
         static T subI8<T>(T lhs, T rhs)
             => generic<T>((sbyte)(int8(lhs) - int8(rhs)));
@@ -135,97 +223,5 @@ namespace Z0
             lhs = ref generic<T>(ref result);
             return ref lhs;
         }
-
-        [MethodImpl(Inline)]
-        static ref T subI8<T>(in T lhs, in T rhs, out T dst)
-        {
-            int8(lhs, out sbyte x);
-            int8(rhs, out sbyte y);                        
-            dst = generic((sbyte)(x - y), out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T subU8<T>(in T lhs, in T rhs, out T dst)
-        {
-            uint8(lhs, out byte x);
-            uint8(rhs, out byte y);                        
-            dst = generic((byte)(x - y), out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T subI16<T>(in T lhs, in T rhs, out T dst)
-        {
-            int16(lhs, out short x);
-            int16(rhs, out short y);                        
-            dst = generic((short)(x - y), out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T subU16<T>(in T lhs, in T rhs, out T dst)
-        {
-            uint16(lhs, out ushort x);
-            uint16(rhs, out ushort y);                        
-            dst = generic((ushort)(x - y), out dst);            
-            return ref dst;
-        }            
-
-
-        [MethodImpl(Inline)]
-        static ref T subI32<T>(in T lhs, in T rhs, out T dst)
-        {
-            int32(lhs, out int x);
-            int32(rhs, out int y);                        
-            dst = generic(x - y, out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T subU32<T>(in T lhs, in T rhs, out T dst)
-        {
-            uint32(lhs, out uint x);
-            uint32(rhs, out uint y);                        
-            dst = generic(x - y, out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T subI64<T>(in T lhs, in T rhs, out T dst)
-        {
-            int64(lhs, out long x);
-            int64(rhs, out long y);                        
-            dst = generic(x - y, out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T subU64<T>(in T lhs, in T rhs, out T dst)
-        {
-            uint64(lhs, out ulong x);
-            uint64(rhs, out ulong y);                        
-            dst = generic(x - y, out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T subF32<T>(in T lhs, in T rhs, out T dst)
-        {
-            float32(lhs, out float x);
-            float32(rhs, out float y);                        
-            dst = generic(x - y, out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T subF64<T>(in T lhs, in T rhs, out T dst)
-        {
-            float64(lhs, out double x);
-            float64(rhs, out double y);                        
-            dst = generic(x - y, out dst);            
-            return ref dst;
-        }
-
     }
 }

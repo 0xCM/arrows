@@ -37,7 +37,6 @@ namespace Z0
         public static readonly PermuteControl C = new PermuteControl(0b10);
 
         public static readonly PermuteControl D = new PermuteControl(0b11);
-
     }
 
 

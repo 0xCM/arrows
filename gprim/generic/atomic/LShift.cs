@@ -16,6 +16,75 @@ namespace Z0
     partial class gmath
     {
         [MethodImpl(Inline)]
+        public static T lshift<T>(T lhs, int rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return lshiftI8(lhs,rhs);
+            else if(typeof(T) == typeof(byte))
+                return lshiftU8(lhs, rhs);
+            else if(typeof(T) == typeof(short))
+                return lshiftI16(lhs, rhs);
+            else if(typeof(T) == typeof(ushort))
+                return lshiftU16(lhs,rhs);
+            else if(typeof(T) == typeof(int))
+                return lshiftI32(lhs, rhs);
+            else if(typeof(T) == typeof(uint))
+                return lshiftU32(lhs, rhs);
+            else if(typeof(T) == typeof(long))
+                return lshiftI64(lhs,rhs);
+            else if(typeof(T) == typeof(ulong))
+                return lshiftU64(lhs,rhs);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }           
+
+        [MethodImpl(Inline)]
+        public static ref T lshift<T>(ref T lhs, int rhs)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int32)
+                return ref lshiftI32(ref lhs, rhs);
+
+            if(kind == PrimalKind.uint32)
+                return ref lshiftU32(ref lhs, rhs);
+
+            if(kind == PrimalKind.int64)
+                return ref lshiftI64(ref lhs, rhs);
+
+            if(kind == PrimalKind.uint64)
+                return ref lshiftU64(ref lhs, rhs);
+
+            if(kind == PrimalKind.int16)
+                return ref lshiftI16(ref lhs, rhs);
+
+            if(kind == PrimalKind.uint16)
+                return ref lshiftU16(ref lhs, rhs);
+
+            if(kind == PrimalKind.int8)
+                return ref lshiftI8(ref lhs, rhs);
+
+            if(kind == PrimalKind.uint8)
+                return ref lshiftU8(ref lhs, rhs);
+
+            throw unsupported(kind);
+        }           
+
+
+
+        [MethodImpl(Inline)]
+        public static T lshift<T>(in T lhs, in uint rhs)
+            where T : struct
+                => lshift(lhs, (int)rhs);
+        
+        [MethodImpl(Inline)]
+        public static T lshift<T>(in T lhs, in ulong rhs)
+            where T : struct
+                => lshift(lhs, (int)rhs);
+
+        [MethodImpl(Inline)]
         static T lshiftI8<T>(in T lhs, in int rhs)
             => AsIn.generic<T>((sbyte)(AsIn.int8(in lhs)) << rhs);            
 

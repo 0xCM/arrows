@@ -15,6 +15,33 @@ namespace Z0
 
     partial class gmath
     {
+        [MethodImpl(Inline)]
+        public static T parse<T>(string src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return parseI8<T>(src);
+            else if(typeof(T) == typeof(byte))
+                return parseU8<T>(src);
+            else if(typeof(T) == typeof(short))
+                return parseI16<T>(src);
+            else if(typeof(T) == typeof(ushort))
+                return parseU16<T>(src);
+            else if(typeof(T) == typeof(int))
+                return parseI32<T>(src);
+            else if(typeof(T) == typeof(uint))
+                return parseU32<T>(src);
+            else if(typeof(T) == typeof(long))
+                return parseI64<T>(src);
+            else if(typeof(T) == typeof(ulong))
+                return parseU64<T>(src);
+            else if(typeof(T) == typeof(float))
+                return parseF32<T>(src);
+            else if(typeof(T) == typeof(double))
+                return parseF64<T>(src);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }
 
         [MethodImpl(Inline)]
         static T parseI8<T>(string src)

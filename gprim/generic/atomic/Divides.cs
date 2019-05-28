@@ -15,6 +15,34 @@ namespace Z0
 
     partial class gmath
     {
+        [MethodImpl(Inline)]
+        public static bool divides<T>(T lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return dividesI8(lhs,rhs);
+            else if(typeof(T) == typeof(byte))
+                return dividesU8(lhs, rhs);
+            else if(typeof(T) == typeof(short))
+                return dividesI16(lhs, rhs);
+            else if(typeof(T) == typeof(ushort))
+                return dividesU16(lhs,rhs);
+            else if(typeof(T) == typeof(int))
+                return dividesI32(lhs, rhs);
+            else if(typeof(T) == typeof(uint))
+                return dividesU32(lhs, rhs);
+            else if(typeof(T) == typeof(long))
+                return dividesI64(lhs,rhs);
+            else if(typeof(T) == typeof(ulong))
+                return dividesU64(lhs,rhs);
+            else if(typeof(T) == typeof(float))
+                return dividesF32(lhs, rhs);
+            else if(typeof(T) == typeof(double))
+                return dividesF64(lhs,rhs);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }
+
 
         [MethodImpl(Inline)]
         static bool dividesI8<T>(T lhs, T rhs)

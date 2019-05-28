@@ -105,7 +105,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref T inAdd<T>(in T src, IntPtr offset)
             => ref Unsafe.Add(ref asRef(in src), offset);
-
  
         [MethodImpl(Inline)]
         public static ref ReadOnlyMemory<sbyte> uint8<T>(ref ReadOnlyMemory<T> src)

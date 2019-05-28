@@ -23,7 +23,6 @@ namespace Z0
         public static ref short Abs(this ref short src)
             => ref math.abs(ref src);
 
-
         [MethodImpl(Inline)]
         public static ref int Abs(this ref int src)
             => ref math.abs(ref src);

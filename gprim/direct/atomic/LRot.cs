@@ -31,8 +31,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong lrot(in ulong src, in int offset)
             => (src << offset) | (src >> (64 - offset));
-
-
     }
-
 }

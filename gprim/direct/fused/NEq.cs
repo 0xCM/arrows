@@ -10,8 +10,6 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
-
-    
     
     using static zfunc;
 
@@ -97,7 +95,6 @@ namespace Z0
             return dst;
         }
 
-
         [MethodImpl(NotInline)]
         public static Span<bool> neq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
             => neq(lhs,rhs, span<bool>(length(lhs,rhs)));
@@ -137,8 +134,5 @@ namespace Z0
         [MethodImpl(NotInline)]
         public static Span<bool> neq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
             => neq(lhs,rhs, span<bool>(length(lhs,rhs)));
-
-
-
     }
 }

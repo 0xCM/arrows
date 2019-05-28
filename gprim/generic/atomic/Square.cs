@@ -16,6 +16,74 @@ namespace Z0
     partial class gmath
     {
         [MethodImpl(Inline)]
+        public static ref T square<T>(ref T src)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+
+            if(kind == PrimalKind.int32)
+                return ref squareI32(ref src);
+
+            if(kind == PrimalKind.uint32)
+                return ref src;
+
+            if(kind == PrimalKind.int64)
+                return ref squareI64(ref src);
+
+            if(kind == PrimalKind.uint64)
+                return ref src;
+
+            if(kind == PrimalKind.int16)
+                return ref squareI16(ref src);
+
+            if(kind == PrimalKind.uint16)
+                return ref src;
+
+            if(kind == PrimalKind.int8)
+                return ref squareI8(ref src);
+
+            if(kind == PrimalKind.uint8)
+                return ref src;
+
+            if(kind == PrimalKind.float32)
+                return ref squareF32(ref src);
+
+            if(kind == PrimalKind.float64)
+                return ref squareF64(ref src);
+
+            throw unsupported(kind);
+        }           
+
+
+        [MethodImpl(Inline)]
+        public static T square<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return squareI8(src);
+            else if(typeof(T) == typeof(byte))
+                return squareU8(src);
+            else if(typeof(T) == typeof(short))
+                return squareI16(src);
+            else if(typeof(T) == typeof(ushort))
+                return squareU16(src);
+            else if(typeof(T) == typeof(int))
+                return squareI32(src);
+            else if(typeof(T) == typeof(uint))
+                return squareU32(src);
+            else if(typeof(T) == typeof(long))
+                return squareI64(src);
+            else if(typeof(T) == typeof(ulong))
+                return squareU64(src);
+            else if(typeof(T) == typeof(float))
+                return squareF32(src);
+            else if(typeof(T) == typeof(double))
+                return squareF64(src);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }           
+
+        [MethodImpl(Inline)]
         static T squareI8<T>(T src)
             => squareI8(ref src);
 

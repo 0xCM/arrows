@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/app/z0.app.csproj"
+                "${workspaceFolder}/bench/z0.bench.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -17,7 +17,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/app/z0.app.csproj"
+                "${workspaceFolder}/bench/z0.bench.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -28,7 +28,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/app/z0.app.csproj"
+                "${workspaceFolder}/bench/z0.bench.csproj"
             ],
             "problemMatcher": "$tsc"
         }

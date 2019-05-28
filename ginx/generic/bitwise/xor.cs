@@ -19,77 +19,114 @@ namespace Z0
         public static Vec128<T> xor<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    return generic<T>(dinx.xor(int8(lhs), int8(rhs)));
-                case PrimalKind.uint8:
-                    return generic<T>(dinx.xor(uint8(lhs), uint8(rhs)));
-                case PrimalKind.int16:
-                    return generic<T>(dinx.xor(int16(lhs), int16(rhs)));
-                case PrimalKind.uint16:
-                    return generic<T>(dinx.xor(uint16(lhs), uint16(rhs)));
-                case PrimalKind.int32:
-                    return generic<T>(dinx.xor(int32(lhs), int32(rhs)));
-                case PrimalKind.uint32:
-                    return generic<T>(dinx.xor(uint32(lhs), uint32(rhs)));
-                case PrimalKind.int64:
-                    return generic<T>(dinx.xor(int64(lhs), int64(rhs)));
-                case PrimalKind.uint64:
-                    return generic<T>(dinx.xor(uint64(lhs), uint64(rhs)));
-                case PrimalKind.float32:
-                    return generic<T>(dinx.xor(float32(lhs), float32(rhs)));
-                case PrimalKind.float64:
-                    return generic<T>(dinx.xor(float64(lhs), float64(rhs)));
-                default:
-                    throw unsupported(kind);
-            }            
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(dinx.xor(in int8(in lhs), in int8(in rhs)));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(dinx.xor(in uint8(in lhs), in uint8(in rhs)));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(dinx.xor(in int16(in lhs), in int16(in rhs)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(dinx.xor(in uint16(in lhs), in uint16(in rhs)));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(dinx.xor(in int32(in lhs), in int32(in rhs)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(dinx.xor(in uint32(in lhs), in uint32(in rhs)));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(dinx.xor(in int64(in lhs), in int64(in rhs)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(dinx.xor(in uint64(in lhs), in uint64(in rhs)));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(dinx.xor(in float32(in lhs), in float32(in rhs)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dinx.xor(in float64(in lhs), in float64(in rhs)));
+            else 
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
         [MethodImpl(Inline)]
-        public static unsafe void xor<T>(in Vec128<T> lhs, in Vec128<T> rhs, void* dst)
+        public static Vec256<T> xor<T>(in Vec256<T> lhs, in Vec256<T> rhs)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    dinx.xor(int8(lhs), int8(rhs), (sbyte*) dst);
-                    break;
-                case PrimalKind.uint8:
-                    dinx.xor(uint8(lhs), uint8(rhs), (byte*) dst);
-                    break;
-                case PrimalKind.int16:
-                    dinx.xor(int16(lhs), int16(rhs), (short*) dst);
-                    break;
-                case PrimalKind.uint16:
-                    dinx.xor(uint16(lhs), uint16(rhs), (ushort*) dst);
-                    break;
-                case PrimalKind.int32:
-                    dinx.xor(int32(lhs), int32(rhs), (int*) dst);
-                    break;
-                case PrimalKind.uint32:
-                    dinx.xor(uint32(lhs), uint32(rhs), (uint*) dst);
-                    break;
-                case PrimalKind.int64:
-                    dinx.xor(int64(lhs), int64(rhs), (long*) dst);
-                    break;
-                case PrimalKind.uint64:
-                    dinx.xor(uint64(lhs), uint64(rhs), (ulong*) dst);
-                    break;
-                case PrimalKind.float32:
-                    dinx.xor(float32(lhs), float32(rhs), (float*) dst);
-                    break;
-                case PrimalKind.float64:
-                    dinx.xor(float64(lhs), float64(rhs), (double*) dst);                
-                break;                
-                default:
-                    throw unsupported(kind);
-            }
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(dinx.xor(in int8(in lhs), in int8(in rhs)));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(dinx.xor(in uint8(in lhs), in uint8(in rhs)));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(dinx.xor(in int16(in lhs), in int16(in rhs)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(dinx.xor(in uint16(in lhs), in uint16(in rhs)));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(dinx.xor(in int32(in lhs), in int32(in rhs)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(dinx.xor(in uint32(in lhs), in uint32(in rhs)));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(dinx.xor(in int64(in lhs), in int64(in rhs)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(dinx.xor(in uint64(in lhs), in uint64(in rhs)));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(dinx.xor(in float32(in lhs), in float32(in rhs)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dinx.xor(in float64(in lhs), in float64(in rhs)));
+            else 
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
         [MethodImpl(Inline)]
+        public static void xor<T>(in Vec128<T> lhs, in Vec128<T> rhs, ref T dst)
+            where T : struct
+        {
+            if (typeof(T) == typeof(sbyte))
+                dinx.xor(int8(lhs), int8(rhs), ref int8(ref dst));
+            else if (typeof(T) == typeof(byte))
+                dinx.xor(uint8(lhs), uint8(rhs), ref uint8(ref dst));                    
+            else if (typeof(T) == typeof(short))
+                dinx.xor(int16(lhs), int16(rhs), ref int16(ref dst));
+            else if (typeof(T) == typeof(ushort))
+                dinx.xor(uint16(lhs), uint16(rhs), ref uint16(ref dst));
+            else if(typeof(T) == typeof(int))
+                dinx.xor(int32(lhs), int32(rhs), ref int32(ref dst));
+            else if(typeof(T) == typeof(uint))
+                dinx.xor(uint32(lhs), uint32(rhs), ref uint32(ref dst));
+            else if(typeof(T) == typeof(long))
+                dinx.xor(int64(lhs), int64(rhs), ref int64(ref dst));
+            else if(typeof(T) == typeof(ulong))
+                dinx.xor(uint64(lhs), uint64(rhs), ref uint64(ref dst));
+            else if(typeof(T) == typeof(float))
+                dinx.xor(float32(lhs), float32(rhs), ref float32(ref dst));
+            else if(typeof(T) == typeof(double))
+                dinx.xor(float64(lhs), float64(rhs), ref float64(ref dst));                
+            else    
+                throw unsupported(PrimalKinds.kind<T>());            
+        }
+        
+        [MethodImpl(Inline)]
+        public static void xor<T>(in Vec256<T> lhs, in Vec256<T> rhs, ref T dst)
+            where T : struct
+        {
+            if (typeof(T) == typeof(sbyte))
+                dinx.xor(int8(lhs), int8(rhs), ref int8(ref dst));
+            else if (typeof(T) == typeof(byte))
+                dinx.xor(uint8(lhs), uint8(rhs), ref uint8(ref dst));                    
+            else if (typeof(T) == typeof(short))
+                dinx.xor(int16(lhs), int16(rhs), ref int16(ref dst));
+            else if (typeof(T) == typeof(ushort))
+                dinx.xor(uint16(lhs), uint16(rhs), ref uint16(ref dst));
+            else if(typeof(T) == typeof(int))
+                dinx.xor(int32(lhs), int32(rhs), ref int32(ref dst));
+            else if(typeof(T) == typeof(uint))
+                dinx.xor(uint32(lhs), uint32(rhs), ref uint32(ref dst));
+            else if(typeof(T) == typeof(long))
+                dinx.xor(int64(lhs), int64(rhs), ref int64(ref dst));
+            else if(typeof(T) == typeof(ulong))
+                dinx.xor(uint64(lhs), uint64(rhs), ref uint64(ref dst));
+            else if(typeof(T) == typeof(float))
+                dinx.xor(float32(lhs), float32(rhs), ref float32(ref dst));
+            else if(typeof(T) == typeof(double))
+                dinx.xor(float64(lhs), float64(rhs), ref float64(ref dst));                
+            else    
+                throw unsupported(PrimalKinds.kind<T>());            
+        }
+
         public static Span128<T> xor<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct
         {
@@ -162,8 +199,6 @@ namespace Z0
             }                
         }
 
-
-        [MethodImpl(Inline)]
         public static Span256<T> xor<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
             where T : struct
         {

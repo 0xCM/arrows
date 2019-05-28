@@ -54,10 +54,6 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool gt(double lhs, double rhs)
-            => lhs > rhs;
-
-        
+            => lhs > rhs;        
     }
-
-
 }

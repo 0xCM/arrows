@@ -16,6 +16,93 @@ namespace Z0
     partial class gmath
     {        
         [MethodImpl(Inline)]
+        public static T mul<T>(T lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return mulI8(lhs,rhs);
+            else if(typeof(T) == typeof(byte))
+                return mulU8(lhs, rhs);
+            else if(typeof(T) == typeof(short))
+                return mulI16(lhs, rhs);
+            else if(typeof(T) == typeof(ushort))
+                return mulU16(lhs,rhs);
+            else if(typeof(T) == typeof(int))
+                return mulI32(lhs, rhs);
+            else if(typeof(T) == typeof(uint))
+                return mulU32(lhs, rhs);
+            else if(typeof(T) == typeof(long))
+                return mulI64(lhs,rhs);
+            else if(typeof(T) == typeof(ulong))
+                return mulU64(lhs,rhs);
+            else if(typeof(T) == typeof(float))
+                return mulF32(lhs, rhs);
+            else if(typeof(T) == typeof(double))
+                return mulF64(lhs,rhs);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T mul<T>(ref T lhs, in T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return ref mulI8(ref lhs,rhs);
+            else if(typeof(T) == typeof(byte))
+                return ref mulU8(ref lhs, rhs);
+            else if(typeof(T) == typeof(short))
+                return ref mulI16(ref lhs, rhs);
+            else if(typeof(T) == typeof(ushort))
+                return ref mulU16(ref lhs,rhs);
+            else if(typeof(T) == typeof(int))
+                return ref mulI32(ref lhs, rhs);
+            else if(typeof(T) == typeof(uint))
+                return ref mulU32(ref lhs, rhs);
+            else if(typeof(T) == typeof(long))
+                return ref mulI64(ref lhs,rhs);
+            else if(typeof(T) == typeof(ulong))
+                return ref mulU64(ref lhs,rhs);
+            else if(typeof(T) == typeof(float))
+                return ref mulF32(ref lhs, rhs);
+            else if(typeof(T) == typeof(double))
+                return ref mulF64(ref lhs,rhs);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }
+
+
+        [MethodImpl(Inline)]
+        public static Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.mul(int8(lhs), int8(rhs), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.mul(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.mul(int16(lhs), int16(rhs), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.mul(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.mul(int32(lhs), int32(rhs), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.mul(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.mul(int64(lhs), int64(rhs), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.mul(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(kind == PrimalKind.float32)
+                math.mul(float32(lhs), float32(rhs), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.mul(float64(lhs), float64(rhs), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
         static T mulI8<T>(T lhs, T rhs)
             => generic<T>((sbyte)(int8(lhs) * int8(rhs)));
 

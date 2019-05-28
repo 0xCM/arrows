@@ -16,20 +16,107 @@ namespace Z0
     partial class gmath
     {
         [MethodImpl(Inline)]
-        static T addI8<T>(T lhs, T rhs)        
-            => generic<T>(int8(lhs) + int8(rhs));
+        public static T add<T>(T lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return addI8(lhs,rhs);
+            else if(typeof(T) == typeof(byte))
+                return addU8(lhs, rhs);
+            else if(typeof(T) == typeof(short))
+                return addI16(lhs, rhs);
+            else if(typeof(T) == typeof(ushort))
+                return addU16(lhs,rhs);
+            else if(typeof(T) == typeof(int))
+                return addI32(lhs, rhs);
+            else if(typeof(T) == typeof(uint))
+                return addU32(lhs, rhs);
+            else if(typeof(T) == typeof(long))
+                return addI64(lhs,rhs);
+            else if(typeof(T) == typeof(ulong))
+                return addU64(lhs,rhs);
+            else if(typeof(T) == typeof(float))
+                return addF32(lhs, rhs);
+            else if(typeof(T) == typeof(double))
+                return addF64(lhs,rhs);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }
+                    
+        [MethodImpl(Inline)]
+        public static ref T add<T>(ref T lhs, T rhs)
+            where T : struct
+        {                        
+            if(typeof(T) == typeof(sbyte))
+                return ref addI8(ref lhs,rhs);
+            else if(typeof(T) == typeof(byte))
+                return ref addU8(ref lhs, rhs);
+            else if(typeof(T) == typeof(short))
+                return ref addI16(ref lhs, rhs);
+            else if(typeof(T) == typeof(ushort))
+                return ref addU16(ref lhs,rhs);
+            else if(typeof(T) == typeof(int))
+                return ref addI32(ref lhs, rhs);
+            else if(typeof(T) == typeof(uint))
+                return ref addU32(ref lhs, rhs);
+            else if(typeof(T) == typeof(long))
+                return ref addI64(ref lhs,rhs);
+            else if(typeof(T) == typeof(ulong))
+                return ref addU64(ref lhs,rhs);
+            else if(typeof(T) == typeof(float))
+                return ref addF32(ref lhs, rhs);
+            else if(typeof(T) == typeof(double))
+                return ref addF64(ref lhs,rhs);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.add(int8(lhs), int8(rhs), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.add(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.add(int16(lhs), int16(rhs), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.add(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.add(int32(lhs), int32(rhs), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.add(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.add(int64(lhs), int64(rhs), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.add(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(kind == PrimalKind.float32)
+                math.add(float32(lhs), float32(rhs), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.add(float64(lhs), float64(rhs), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+
+        [MethodImpl(Inline)]
+        static T addI8<T>(T lhs, T rhs) 
+            => generic<T>((sbyte)(int8(lhs) + int8(rhs)));            
 
         [MethodImpl(Inline)]
         static T addU8<T>(T lhs, T rhs)
-            => generic<T>(uint8(lhs) + uint8(rhs));
-
+            => generic<T>((byte)(uint8(lhs) + uint8(rhs)));
+                   
         [MethodImpl(Inline)]
         static T addI16<T>(T lhs, T rhs)
-            => generic<T>(int16(lhs) + int16(rhs));
+            => generic<T>((short)(int16(lhs) + int16(rhs)));
 
         [MethodImpl(Inline)]
         static T addU16<T>(T lhs, T rhs)
-            => generic<T>(uint16(lhs) + uint16(rhs));
+            => generic<T>((ushort)(uint16(lhs) + uint16(rhs)));
 
         [MethodImpl(Inline)]
         static T addI32<T>(T lhs, T rhs)
@@ -49,11 +136,17 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static T addF32<T>(T lhs, T rhs)
-            => generic<T>(float32(lhs) + float32(rhs));
+        {
+            var result = math.add(float32(ref asRef(in lhs)), float32(ref asRef(in rhs)));
+            return generic<T>(ref result);
+        }
             
         [MethodImpl(Inline)]
         static T addF64<T>(T lhs, T rhs)
-            => generic<T>(float64(lhs) + float64(rhs));
+        {
+            var result = math.add(float64(ref asRef(in lhs)), float64(ref asRef(in rhs)));
+            return generic<T>(ref result);
+        }
 
         [MethodImpl(Inline)]
         static ref T addI8<T>(ref T lhs, T rhs)
@@ -134,96 +227,5 @@ namespace Z0
             lhs = ref generic<T>(ref result);
             return ref lhs;
         }            
-
-
-        [MethodImpl(Inline)]
-        static ref T addI8<T>(in T lhs, in T rhs, out T dst)
-        {
-            int8(lhs, out sbyte x);
-            int8(rhs, out sbyte y);                        
-            dst = generic((sbyte)(x + y), out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T addU8<T>(in T lhs, in T rhs, out T dst)
-        {
-            uint8(lhs, out byte x);
-            uint8(rhs, out byte y);                        
-            dst = generic((byte)(x + y), out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T addI16<T>(in T lhs, in T rhs, out T dst)
-        {
-            int16(lhs, out short x);
-            int16(rhs, out short y);                        
-            dst = generic((short)(x + y), out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T addU16<T>(in T lhs, in T rhs, out T dst)
-        {
-            uint16(lhs, out ushort x);
-            uint16(rhs, out ushort y);                        
-            dst = generic((ushort)(x + y), out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T addI32<T>(in T lhs, in T rhs, out T dst)
-        {
-            int32(lhs, out int x);
-            int32(rhs, out int y);                        
-            dst = generic(x + y, out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T addU32<T>(in T lhs, in T rhs, out T dst)
-        {
-            uint32(lhs, out uint x);
-            uint32(rhs, out uint y);                        
-            dst = generic(x + y, out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T addI64<T>(in T lhs, in T rhs, out T dst)
-        {
-            int64(lhs, out long x);
-            int64(rhs, out long y);                        
-            dst = generic(x + y, out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T addU64<T>(in T lhs, in T rhs, out T dst)
-        {
-            uint64(lhs, out ulong x);
-            uint64(rhs, out ulong y);                        
-            dst = generic(x + y, out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T addF32<T>(in T lhs, in T rhs, out T dst)
-        {
-            float32(lhs, out float x);
-            float32(rhs, out float y);                        
-            dst = generic(x + y, out dst);            
-            return ref dst;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T addF64<T>(in T lhs, in T rhs, out T dst)
-        {
-            float64(lhs, out double x);
-            float64(rhs, out double y);                        
-            dst = generic(x + y, out dst);            
-            return ref dst;
-        }
     }
 }

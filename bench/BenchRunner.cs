@@ -56,7 +56,7 @@ namespace Z0
         {            
             var m1 = MetricKind.PrimalDirect.Run(op.Op, op.Primitive, config);
             var m2 = MetricKind.PrimalGeneric.Run(op.Op, op.Primitive, config);            
-            var compared =m1.Compare(m2).ToRecord();
+            var compared = m1.Compare(m2).ToRecord();
             if(!silent)
                 print(items(compared).FormatMessages());
             return compared;

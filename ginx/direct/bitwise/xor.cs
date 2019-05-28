@@ -102,44 +102,44 @@ namespace Z0
             => Xor(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, sbyte* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs, ref sbyte dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec128<byte> lhs, in Vec128<byte> rhs, byte* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec128<byte> lhs, in Vec128<byte> rhs, ref byte dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec128<short> lhs, in Vec128<short> rhs, short* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec128<short> lhs, in Vec128<short> rhs, ref short dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ushort* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec128<ushort> lhs, in Vec128<ushort> rhs, ref ushort dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec128<int> lhs, in Vec128<int> rhs, int* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec128<int> lhs, in Vec128<int> rhs, ref int dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec128<uint> lhs, in Vec128<uint> rhs, uint* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec128<uint> lhs, in Vec128<uint> rhs, ref uint dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec128<long> lhs, in Vec128<long> rhs, long* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec128<long> lhs, in Vec128<long> rhs, ref long dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ulong* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec128<ulong> lhs, in Vec128<ulong> rhs, ref ulong dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec128<float> lhs, in Vec128<float> rhs, float* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec128<float> lhs, in Vec128<float> rhs, ref float dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
-        public unsafe static void xor(in Vec128<double> lhs, in Vec128<double> rhs, double* dst)
-            => Avx2.Store(dst, xor(lhs,rhs));
+        public unsafe static void xor(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
+            => store(Xor(lhs,rhs), ref dst);
 
         [MethodImpl(Inline)]
         public unsafe static void xor(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)

@@ -15,6 +15,33 @@ namespace Z0
 
     partial class gmath
     {
+        [MethodImpl(Inline)]
+        public static T gcd<T>(T lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return gcdI8(lhs,rhs);
+            else if(typeof(T) == typeof(byte))
+                return gcdU8(lhs, rhs);
+            else if(typeof(T) == typeof(short))
+                return gcdI16(lhs, rhs);
+            else if(typeof(T) == typeof(ushort))
+                return gcdU16(lhs,rhs);
+            else if(typeof(T) == typeof(int))
+                return gcdI32(lhs, rhs);
+            else if(typeof(T) == typeof(uint))
+                return gcdU32(lhs, rhs);
+            else if(typeof(T) == typeof(long))
+                return gcdI64(lhs,rhs);
+            else if(typeof(T) == typeof(ulong))
+                return gcdU64(lhs,rhs);
+            else if(typeof(T) == typeof(float))
+                return gcdF32(lhs, rhs);
+            else if(typeof(T) == typeof(double))
+                return gcdF64(lhs,rhs);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }           
 
         [MethodImpl(Inline)]
         static T gcdI8<T>(T lhs, T rhs)

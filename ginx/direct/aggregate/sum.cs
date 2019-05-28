@@ -66,7 +66,6 @@ namespace Z0
             for(var i=0; i< veclen; i++)
                  total += final[i];            
             return total;
-
         }
 
         public static float sum(ReadOnlySpan<float> src)

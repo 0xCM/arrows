@@ -67,7 +67,7 @@ namespace Z0
                 return new AppMsg[]{};
 
             var messages = new List<AppMsg>(records.Count + 1);
-            messages.Add(AppMsg.Define(records[0].HeaderText(delimiter), SeverityLevel.HiliteCL));
+            messages.Add(AppMsg.Define(MetricComparisonRecord.GetHeaderText(delimiter), SeverityLevel.HiliteCL));
             foreach(var record in src)
                 messages.Add(record.FormatMessage(delimiter, digitcommas));
             return messages;

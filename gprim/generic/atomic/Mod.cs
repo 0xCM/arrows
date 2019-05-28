@@ -16,6 +16,93 @@ namespace Z0
     partial class gmath
     {
         [MethodImpl(Inline)]
+        public static T mod<T>(T lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return modI8(lhs,rhs);
+            else if(typeof(T) == typeof(byte))
+                return modU8(lhs, rhs);
+            else if(typeof(T) == typeof(short))
+                return modI16(lhs, rhs);
+            else if(typeof(T) == typeof(ushort))
+                return modU16(lhs,rhs);
+            else if(typeof(T) == typeof(int))
+                return modI32(lhs, rhs);
+            else if(typeof(T) == typeof(uint))
+                return modU32(lhs, rhs);
+            else if(typeof(T) == typeof(long))
+                return modI64(lhs,rhs);
+            else if(typeof(T) == typeof(ulong))
+                return modU64(lhs,rhs);
+            else if(typeof(T) == typeof(float))
+                return modF32(lhs, rhs);
+            else if(typeof(T) == typeof(double))
+                return modF64(lhs,rhs);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }           
+
+        [MethodImpl(Inline)]
+        public static ref T mod<T>(ref T lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return ref modI8(ref lhs,rhs);
+            else if(typeof(T) == typeof(byte))
+                return ref modU8(ref lhs, rhs);
+            else if(typeof(T) == typeof(short))
+                return ref modI16(ref lhs, rhs);
+            else if(typeof(T) == typeof(ushort))
+                return ref modU16(ref lhs,rhs);
+            else if(typeof(T) == typeof(int))
+                return ref modI32(ref lhs, rhs);
+            else if(typeof(T) == typeof(uint))
+                return ref modU32(ref lhs, rhs);
+            else if(typeof(T) == typeof(long))
+                return ref modI64(ref lhs,rhs);
+            else if(typeof(T) == typeof(ulong))
+                return ref modU64(ref lhs,rhs);
+            else if(typeof(T) == typeof(float))
+                return ref modF32(ref lhs, rhs);
+            else if(typeof(T) == typeof(double))
+                return ref modF64(ref lhs,rhs);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+        }
+
+
+        [MethodImpl(NotInline)]
+        public static Span<T> mod<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T : struct
+        {
+            var kind = PrimalKinds.kind<T>();
+            if(kind == PrimalKind.int8)
+                math.mod(int8(lhs), int8(rhs), int8(dst));
+            else if(kind == PrimalKind.uint8)
+                math.mod(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(kind == PrimalKind.int16)
+                math.mod(int16(lhs), int16(rhs), int16(dst));
+            else if(kind == PrimalKind.uint16)
+                math.mod(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(kind == PrimalKind.int32)
+                math.mod(int32(lhs), int32(rhs), int32(dst));
+            else if(kind == PrimalKind.uint32)
+                math.mod(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(kind == PrimalKind.int64)
+                math.mod(int64(lhs), int64(rhs), int64(dst));
+            else if(kind == PrimalKind.uint64)
+                math.mod(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(kind == PrimalKind.float32)
+                math.mod(float32(lhs), float32(rhs), float32(dst));
+            else if(kind == PrimalKind.float64)
+                math.mod(float64(lhs), float64(rhs), float64(dst));
+            else
+                throw unsupported(kind);                
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
         static T modI8<T>(T lhs, T rhs)
             => generic<T>((sbyte)(int8(lhs) % int8(rhs)));
 
