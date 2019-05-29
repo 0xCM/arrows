@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Measure
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -16,11 +16,7 @@ namespace Z0.Measure
     {     
         static IRandomizer Random(IRandomizer random)
             => random ?? Randomizer.define(RandSeeds.BenchSeed);
-
-
-
-
-
+            
         public static IMetrics Run(MetricKind metric, bool generic, OpKind op, PrimalKind prim,  MetricConfig config, IRandomizer random)
         {
 

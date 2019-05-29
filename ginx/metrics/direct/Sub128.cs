@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Measure
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -12,16 +12,15 @@ namespace Z0.Measure
     
     using static zfunc;
     using static As;
-    using static InXMetrics;
-    using static InX256DMetrics;
+    using static InX128DMetrics;
 
-    public static class SubInX256D
+    public static class SubInX128D
     {
-       public static Metrics<T> Sub<T>(this InXMetricConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
-            where T : struct        
-                => Sub(lhs,rhs,config);
+        public static Metrics<T> Sub<T>(this InXMetricConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
+            where T : struct
+                =>  Sub(lhs,rhs,config);
 
-       public static Metrics<T> Sub<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
+        public static Metrics<T> Sub<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -53,7 +52,7 @@ namespace Z0.Measure
             }
         }
 
-        public static Metrics<sbyte> Sub(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, InXMetricConfig256 config = null)
+        public static Metrics<sbyte> Sub(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<sbyte>(OpKind.Sub);            
@@ -64,10 +63,10 @@ namespace Z0.Measure
                 dinx.sub(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<byte> Sub(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, InXMetricConfig256 config = null)
+        public static Metrics<byte> Sub(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<byte>(OpKind.Sub);            
@@ -78,10 +77,10 @@ namespace Z0.Measure
                 dinx.sub(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<short> Sub(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, InXMetricConfig256 config = null)
+        public static Metrics<short> Sub(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<short>(OpKind.Sub);            
@@ -92,10 +91,10 @@ namespace Z0.Measure
                 dinx.sub(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<ushort> Sub(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, InXMetricConfig256 config = null)
+        public static Metrics<ushort> Sub(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<ushort>(OpKind.Sub);            
@@ -106,10 +105,10 @@ namespace Z0.Measure
                 dinx.sub(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<int> Sub(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, InXMetricConfig256 config = null)
+        public static Metrics<int> Sub(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<int>(OpKind.Sub);            
@@ -120,10 +119,10 @@ namespace Z0.Measure
                 dinx.sub(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<uint> Sub(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXMetricConfig256 config = null)
+        public static Metrics<uint> Sub(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<uint>(OpKind.Sub);            
@@ -134,13 +133,13 @@ namespace Z0.Measure
                 dinx.sub(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<long> Sub(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, InXMetricConfig256 config = null)
+        public static Metrics<long> Sub(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
-            var opid = Id<long>(OpKind.Sub);
+            var opid = Id<long>(OpKind.Sub);            
             var dst = alloc(lhs,rhs);
 
             var sw = stopwatch();
@@ -148,10 +147,10 @@ namespace Z0.Measure
                 dinx.sub(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<ulong> Sub(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXMetricConfig256 config = null)
+        public static Metrics<ulong> Sub(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<ulong>(OpKind.Sub);            
@@ -162,10 +161,10 @@ namespace Z0.Measure
                 dinx.sub(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<float> Sub(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXMetricConfig256 config = null)
+        public static Metrics<float> Sub(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<float>(OpKind.Sub);            
@@ -176,10 +175,10 @@ namespace Z0.Measure
                 dinx.sub(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<double> Sub(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXMetricConfig256 config = null)
+        public static Metrics<double> Sub(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
             var opid = Id<double>(OpKind.Sub);            
@@ -190,7 +189,11 @@ namespace Z0.Measure
                 dinx.sub(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
+ 
+
+
     }
+
 }

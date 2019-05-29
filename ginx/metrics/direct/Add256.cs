@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Measure
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -12,21 +12,19 @@ namespace Z0.Measure
     
     using static zfunc;
     using static As;
-    using static InXMetrics;
-    using static InX128DMetrics;
+    using static InX256DMetrics;
 
-
-    public static class AddInX128D
+    public static class AddInX256D
     {
-        public static Metrics<T> Add<T>(this InXMetricConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
+        public static Metrics<T> Add<T>(this InXMetricConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct
                 =>  Add(lhs,rhs,config);
-
-        public static Metrics<T> Add<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+        public static Metrics<T> Add<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             config = Configure(config);
+
             switch(kind)
             {
                 case PrimalKind.int8:
@@ -54,135 +52,130 @@ namespace Z0.Measure
             }
         }
 
-        static Metrics<sbyte> Add(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, InXMetricConfig128 config)
+
+        public static Metrics<T> AddAtomic<T>(in ReadOnlySpan256<T> lhs, in ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
+            where T : struct
+        {
+            config = Configure(config);
+            var opid = Id<T>(OpKind.Add);            
+            var dst = alloc(lhs,rhs);
+            var veclen = Vec256<T>.Length;
+
+            var sw = stopwatch();
+            for(var cycle = 0; cycle < config.Cycles; cycle++)
+            for(var block = 0; block < dst.BlockCount; block++)
+            {
+                var x = Vec256.single<T>(lhs, block);
+                var y = Vec256.single<T>(rhs, block);                
+                Vec256.store(ginx.add(in x, in y), ref dst.Block(block));
+            }
+            var time = snapshot(sw);
+
+            return opid.CaptureMetrics(config, time, dst);
+        }
+
+        static Metrics<sbyte> Add(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, InXMetricConfig256 config)
         {
             var opid = Id<sbyte>(OpKind.Add);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return Capture(opid, config, time, dst);
+                dinx.add(lhs, rhs, ref dst);            
+            return opid.CaptureMetrics(config, snapshot(sw), dst);                        
         }
 
-        static Metrics<byte> Add(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, InXMetricConfig128 config)
+        static Metrics<byte> Add(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, InXMetricConfig256 config)
         {
             var opid = Id<byte>(OpKind.Add);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return Capture(opid, config, time, dst);
+                dinx.add(lhs, rhs, ref dst);            
+            return opid.CaptureMetrics(config, snapshot(sw), dst);                        
         }
 
-        static Metrics<short> Add(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, InXMetricConfig128 config)
+        static Metrics<short> Add(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, InXMetricConfig256 config)
         {
             var opid = Id<short>(OpKind.Add);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return Capture(opid, config, time, dst);
+                dinx.add(lhs, rhs, ref dst);            
+            return opid.CaptureMetrics(config, snapshot(sw), dst);                        
         }
 
-        static Metrics<ushort> Add(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, InXMetricConfig128 config)
+        static Metrics<ushort> Add(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, InXMetricConfig256 config)
         {
             var opid = Id<ushort>(OpKind.Add);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return Capture(opid, config, time, dst);
+                dinx.add(lhs, rhs, ref dst);            
+            return opid.CaptureMetrics(config, snapshot(sw), dst);                        
         }
 
-        static Metrics<int> Add(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, InXMetricConfig128 config)
+        static Metrics<int> Add(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, InXMetricConfig256 config)
         {
             var opid = Id<int>(OpKind.Add);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return Capture(opid, config, time, dst);
+                dinx.add(lhs, rhs, ref dst);            
+            return opid.CaptureMetrics(config, snapshot(sw), dst);                        
         }
 
-        static Metrics<uint> Add(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, InXMetricConfig128 config)
+        static Metrics<uint> Add(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXMetricConfig256 config)
         {
             var opid = Id<uint>(OpKind.Add);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return Capture(opid, config, time, dst);
+                dinx.add(lhs, rhs, ref dst);            
+            return opid.CaptureMetrics(config, snapshot(sw), dst);                        
         }
 
-        static Metrics<long> Add(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, InXMetricConfig128 config)
+        static Metrics<long> Add(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, InXMetricConfig256 config)
         {
             var opid = Id<long>(OpKind.Add);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return Capture(opid, config, time, dst);
+                dinx.add(lhs, rhs, ref dst);            
+            return opid.CaptureMetrics(config, snapshot(sw), dst);                        
         }
 
-        static Metrics<ulong> Add(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, InXMetricConfig128 config)
+        static Metrics<ulong> Add(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXMetricConfig256 config)
         {
             var opid = Id<ulong>(OpKind.Add);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
-            
-            var time = snapshot(sw);
-            return Capture(opid, config, time, dst);
+                dinx.add(lhs, rhs, ref dst);            
+            return opid.CaptureMetrics(config, snapshot(sw), dst);                        
         }
 
-        static Metrics<float> Add(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXMetricConfig128 config)
+        static Metrics<float> Add(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXMetricConfig256 config)
         {
             var opid = Id<float>(OpKind.Add);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
-            
-            var time = snapshot(sw);
-            return Capture(opid, config, time, dst);
+                dinx.add(lhs, rhs, ref dst);            
+            return opid.CaptureMetrics(config, snapshot(sw), dst);                        
         }
 
-        static Metrics<double> Add(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXMetricConfig128 config)
+        static Metrics<double> Add(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXMetricConfig256 config)
         {
             var opid = Id<double>(OpKind.Add);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
-            
-            var time = snapshot(sw);
-            return Capture(opid, config, time, dst);
-        } 
+                dinx.add(lhs, rhs, ref dst);            
+            return opid.CaptureMetrics(config, snapshot(sw), dst);                        
+        }
+ 
+
+
     }
 
 }

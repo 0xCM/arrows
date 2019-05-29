@@ -85,7 +85,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<double> max(in Vec256<double> lhs, in Vec256<double> rhs)
             => Max(lhs, rhs);
-
-
     }
 }

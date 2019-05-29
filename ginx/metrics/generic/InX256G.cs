@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Measure
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -13,19 +13,18 @@ namespace Z0.Measure
     using static zfunc;
     using static As;
     using static InXMetrics;
-    using static InX128GMetrics;
+    using static InX256GMetrics;
 
-
-    public static class InX128GOps
+    public static class InX256GOps
     {
 
-        public static Metrics<T> Run<T>(OpKind op, InXMetricConfig128 config = null, IRandomizer random = null)        
+        public static Metrics<T> Run<T>(OpKind op, InXMetricConfig256 config = null, IRandomizer random = null)        
             where T : struct
         {
             random = Random(random);
             config = Configure(config);            
-            var lhs = random.Span128<T>(config.Blocks);
-            var rhs = op.NonZeroRight() ? random.NonZeroSpan128<T>(config.Blocks) : random.Span128<T>(config.Blocks);
+            var lhs = random.Span256<T>(config.Blocks);
+            var rhs = op.NonZeroRight() ? random.NonZeroSpan256<T>(config.Blocks) : random.Span256<T>(config.Blocks);
             
             var metrics = Metrics<T>.Zero;
 
@@ -35,7 +34,8 @@ namespace Z0.Measure
             return metrics;            
         }
 
-        public static IMetrics Run(OpKind op, PrimalKind prim, InXMetricConfig128 config, IRandomizer random = null)
+
+        public static IMetrics Run(OpKind op, PrimalKind prim, InXMetricConfig256 config, IRandomizer random = null)
         {
             random = Random(random);
             switch(prim)
@@ -65,8 +65,10 @@ namespace Z0.Measure
             }
         }
 
- 
-        public static Metrics<T> Run<T>(OpKind op, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+
+
+
+        public static Metrics<T> Run<T>(OpKind op, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             var metrics = Metrics<T>.Zero;
@@ -100,12 +102,11 @@ namespace Z0.Measure
             }
 
             print(metrics.Describe());
-
             return metrics;
+
         }
 
-
-        public static Metrics<T> Add<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+        public static Metrics<T> Add<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             config = Configure(config);
@@ -114,13 +115,18 @@ namespace Z0.Measure
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                ginx.add(lhs, rhs, ref dst);
+            for(var block = 0; block < dst.BlockCount; block++)
+            {
+                var x = Vec256.single<T>(lhs, block);
+                var y = Vec256.single<T>(rhs, block);
+                Vec256.store(ginx.add(x,y), ref dst.Block(block));
+            }
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<T> Sub<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+        public static Metrics<T> Sub<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             config = Configure(config);
@@ -132,10 +138,10 @@ namespace Z0.Measure
                 ginx.sub(lhs, rhs, dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<T> Mul<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+        public static Metrics<T> Mul<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             config = Configure(config);
@@ -147,10 +153,10 @@ namespace Z0.Measure
                 ginx.mul(lhs, rhs, dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<T> Div<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+        public static Metrics<T> Div<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             config = Configure(config);
@@ -162,10 +168,10 @@ namespace Z0.Measure
                 ginx.div(lhs, rhs, dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-       public static Metrics<T> And<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+        public static Metrics<T> And<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             config = Configure(config);
@@ -177,10 +183,10 @@ namespace Z0.Measure
                 ginx.and(lhs, rhs, dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-       public static Metrics<T> Or<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+       public static Metrics<T> Or<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             config = Configure(config);
@@ -192,10 +198,10 @@ namespace Z0.Measure
                 ginx.or(lhs, rhs, dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-      public static Metrics<T> XOr<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+      public static Metrics<T> XOr<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             config = Configure(config);
@@ -207,8 +213,11 @@ namespace Z0.Measure
                 ginx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
+
     }
+
+
 }

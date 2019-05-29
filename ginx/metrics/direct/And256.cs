@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Measure
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -12,7 +12,6 @@ namespace Z0.Measure
     
     using static zfunc;
     using static As;
-    using static InXMetrics;
     using static InX256DMetrics;
 
     public static class AndInX256D
@@ -20,7 +19,7 @@ namespace Z0.Measure
         public static Metrics<T> And<T>(this InXMetricConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct        
                 => And(lhs,rhs,config);
-                
+
         public static Metrics<T> And<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
@@ -64,7 +63,7 @@ namespace Z0.Measure
                 dinx.and(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
         static Metrics<byte> And(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, InXMetricConfig256 config = null)
@@ -78,7 +77,7 @@ namespace Z0.Measure
                 dinx.and(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
         static Metrics<short> And(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, InXMetricConfig256 config = null)
@@ -92,7 +91,7 @@ namespace Z0.Measure
                 dinx.and(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
         static Metrics<ushort> And(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, InXMetricConfig256 config = null)
@@ -106,7 +105,7 @@ namespace Z0.Measure
                 dinx.and(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
         static Metrics<int> And(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, InXMetricConfig256 config = null)
@@ -120,7 +119,7 @@ namespace Z0.Measure
                 dinx.and(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
         static Metrics<uint> And(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXMetricConfig256 config = null)
@@ -134,7 +133,7 @@ namespace Z0.Measure
                 dinx.and(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
         static Metrics<long> And(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, InXMetricConfig256 config = null)
@@ -148,7 +147,7 @@ namespace Z0.Measure
                 dinx.and(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
         static Metrics<ulong> And(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXMetricConfig256 config = null)
@@ -162,7 +161,7 @@ namespace Z0.Measure
                 dinx.and(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
         static Metrics<float> And(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXMetricConfig256 config = null)
@@ -176,7 +175,7 @@ namespace Z0.Measure
                 dinx.and(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
         static Metrics<double> And(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXMetricConfig256 config = null)
@@ -190,7 +189,7 @@ namespace Z0.Measure
                 dinx.and(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
  
 

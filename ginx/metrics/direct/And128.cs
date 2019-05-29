@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Measure
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -12,7 +12,6 @@ namespace Z0.Measure
     
     using static zfunc;
     using static As;
-    using static InXMetrics;
     using static InX128DMetrics;
 
     public static class AndInX128D
@@ -61,7 +60,7 @@ namespace Z0.Measure
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
                 dinx.and(lhs,rhs, ref dst);
-            return Capture(opid, config, snapshot(sw), dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
         static Metrics<byte> And(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, InXMetricConfig128 config)
@@ -71,7 +70,7 @@ namespace Z0.Measure
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
                 dinx.and(lhs,rhs, ref dst);
-            return Capture(opid, config, snapshot(sw), dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
         static Metrics<short> And(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, InXMetricConfig128 config)
@@ -81,7 +80,7 @@ namespace Z0.Measure
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
                 dinx.and(lhs,rhs, ref dst);
-            return Capture(opid, config, snapshot(sw), dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
         static Metrics<ushort> And(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, InXMetricConfig128 config)
@@ -91,7 +90,7 @@ namespace Z0.Measure
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
                 dinx.and(lhs,rhs, ref dst);
-            return Capture(opid, config, snapshot(sw), dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
         static Metrics<int> And(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, InXMetricConfig128 config)
@@ -101,7 +100,7 @@ namespace Z0.Measure
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
                 dinx.and(lhs,rhs, ref dst);
-            return Capture(opid, config, snapshot(sw), dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
         static Metrics<uint> And(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, InXMetricConfig128 config)
@@ -111,7 +110,7 @@ namespace Z0.Measure
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
                 dinx.and(lhs,rhs, ref dst);
-            return Capture(opid, config, snapshot(sw), dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
         static Metrics<long> And(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, InXMetricConfig128 config)
@@ -121,7 +120,7 @@ namespace Z0.Measure
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
                 dinx.and(lhs,rhs, ref dst);
-            return Capture(opid, config, snapshot(sw), dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
         static Metrics<ulong> And(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, InXMetricConfig128 config)
@@ -131,7 +130,7 @@ namespace Z0.Measure
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
                 dinx.and(lhs,rhs, ref dst);
-            return Capture(opid, config, snapshot(sw), dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
         static Metrics<float> And(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXMetricConfig128 config)
@@ -141,7 +140,7 @@ namespace Z0.Measure
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
                 dinx.and(lhs,rhs, ref dst);
-            return Capture(opid, config, snapshot(sw), dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
         static Metrics<double> And(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXMetricConfig128 config)
@@ -151,11 +150,7 @@ namespace Z0.Measure
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
                 dinx.and(lhs,rhs, ref dst);
-            return Capture(opid, config, snapshot(sw), dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
- 
-
-
     }
-
 }

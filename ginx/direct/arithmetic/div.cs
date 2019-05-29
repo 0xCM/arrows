@@ -40,7 +40,7 @@ namespace Z0
             where T : struct
             => src;
 
-        public static ref Span128<float> div(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, ref Span128<float> dst)
+        public static Span128<float> div(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -51,10 +51,10 @@ namespace Z0
                 store(Divide(x,y), ref dst[i]);
             }
             
-            return ref dst;
+            return dst;
         }
 
-        public static ref Span128<double> div(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, ref Span128<double> dst)
+        public static Span128<double> div(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, Span128<double> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -65,10 +65,10 @@ namespace Z0
                 store(Divide(x,y), ref dst[i]);
             }
             
-            return ref dst;
+            return dst;
         }
 
-        public static ref Span256<float> div(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
+        public static Span256<float> div(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, Span256<float> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -79,10 +79,10 @@ namespace Z0
                 store(Divide(x,y), ref dst[i]);
             }
             
-            return ref dst;
+            return dst;
         }
 
-        public static ref Span256<double> div(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, ref Span256<double> dst)
+        public static Span256<double> div(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, Span256<double> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
@@ -93,7 +93,7 @@ namespace Z0
                 store(Divide(x,y), ref dst[i]);
             }
             
-            return ref dst;
+            return dst;
         }    
     }
 }

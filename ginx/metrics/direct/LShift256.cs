@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Measure
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -12,20 +12,20 @@ namespace Z0.Measure
     
     using static zfunc;
     using static As;
-    using static InXMetrics;
-    using static InX128DMetrics;
+    using static InX256DMetrics;
 
-    public static class LShiftInX128D
+    public static class LShiftInX256D
     {
+        public static Metrics<T> LShift<T>(this InXMetricConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
+            where T : struct        
+                => LShift(lhs,rhs,config);
 
-        public static Metrics<T> LShift<T>(this InXMetricConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
-            where T : struct
-                =>  LShift(lhs,rhs,config);
 
-        public static Metrics<T> LShift<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+        public static Metrics<T> LShift<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
+            config = Configure(config);
 
             switch(kind)
             {
@@ -42,7 +42,7 @@ namespace Z0.Measure
             }
         }
 
-        public static Metrics<int> LShift(ReadOnlySpan128<int> lhs, ReadOnlySpan128<uint> rhs, InXMetricConfig128 config = null)
+        public static Metrics<int> LShift(ReadOnlySpan256<int> lhs, ReadOnlySpan256<uint> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<int>(OpKind.LShift);            
@@ -53,10 +53,10 @@ namespace Z0.Measure
                 dinx.lshift(lhs, rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<uint> LShift(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, InXMetricConfig128 config = null)
+        public static Metrics<uint> LShift(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<uint>(OpKind.LShift);            
@@ -67,10 +67,10 @@ namespace Z0.Measure
                 dinx.lshift(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<long> LShift(ReadOnlySpan128<long> lhs, ReadOnlySpan128<ulong> rhs, InXMetricConfig128 config = null)
+        public static Metrics<long> LShift(ReadOnlySpan256<long> lhs, ReadOnlySpan256<ulong> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<long>(OpKind.LShift);            
@@ -81,10 +81,10 @@ namespace Z0.Measure
                 dinx.lshift(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<ulong> LShift(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, InXMetricConfig128 config = null)
+        public static Metrics<ulong> LShift(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXMetricConfig256 config = null)
         {
             config = Configure(config);
             var opid = Id<ulong>(OpKind.LShift);            
@@ -95,7 +95,7 @@ namespace Z0.Measure
                 dinx.lshift(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
     }

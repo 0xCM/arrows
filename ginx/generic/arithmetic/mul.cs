@@ -89,20 +89,19 @@ namespace Z0
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            ref var head = ref first(dst);
             switch(kind)
             {
                 case PrimalKind.int32:
-                    dinx.mul(int32(lhs), int32(rhs), ref int64(ref head));
+                    dinx.mul(int32(lhs), int32(rhs), ref int64(ref first(dst)));
                     break;
                 case PrimalKind.uint32:
-                    dinx.mul(uint32(lhs), uint32(rhs), ref uint64(ref head));
+                    dinx.mul(uint32(lhs), uint32(rhs), ref uint64(ref first(dst)));
                     break;
                 case PrimalKind.float32:
-                    dinx.mul(float32(lhs), float32(rhs), ref float32(ref head));
+                    dinx.mul(float32(lhs), float32(rhs), ref float32(ref first(dst)));
                     break;
                 case PrimalKind.float64:
-                    dinx.mul(float64(lhs), float64(rhs), ref float64(ref head));
+                    dinx.mul(float64(lhs), float64(rhs), ref float64(ref first(dst)));
                 break;                
                 default:
                     throw unsupported(kind);                    

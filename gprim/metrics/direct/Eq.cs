@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -61,7 +61,7 @@ namespace Z0
         }
 
 
-        public static Metrics<sbyte> Eq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, MetricConfig config = null)
+        static Metrics<sbyte> Eq(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, MetricConfig config = null)
         {
             var opid = Id<sbyte>(OpKind.Eq);            
             var cycles = Metric.Cycles(config);
@@ -82,7 +82,7 @@ namespace Z0
             return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));                
         }
 
-        public static Metrics<byte> Eq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, MetricConfig config = null)
+        static Metrics<byte> Eq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, MetricConfig config = null)
         {
             var opid = Id<byte>(OpKind.Eq);            
             var cycles = Metric.Cycles(config);
@@ -103,7 +103,7 @@ namespace Z0
             return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static Metrics<short> Eq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, MetricConfig config = null)
+        static Metrics<short> Eq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, MetricConfig config = null)
         {
             var opid = Id<short>(OpKind.Eq);            
             var cycles = Metric.Cycles(config);
@@ -124,7 +124,7 @@ namespace Z0
             return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static Metrics<ushort> Eq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, MetricConfig config = null)
+        static Metrics<ushort> Eq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, MetricConfig config = null)
         {
             var opid = Id<ushort>(OpKind.Eq);            
             var cycles = Metric.Cycles(config);
@@ -145,7 +145,7 @@ namespace Z0
             return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static Metrics<int> Eq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
+        static Metrics<int> Eq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<int>(OpKind.Eq);            
             var cycles = Metric.Cycles(config);
@@ -166,7 +166,7 @@ namespace Z0
             return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static Metrics<uint> Eq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, MetricConfig config = null)
+        static Metrics<uint> Eq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, MetricConfig config = null)
         {
             var opid = Id<uint>(OpKind.Eq);            
             var cycles = Metric.Cycles(config);
@@ -187,7 +187,7 @@ namespace Z0
             return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static Metrics<long> Eq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, MetricConfig config = null)
+        static Metrics<long> Eq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, MetricConfig config = null)
         {
             var opid = Id<long>(OpKind.Eq);            
             var cycles = Metric.Cycles(config);
@@ -208,7 +208,7 @@ namespace Z0
             return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static Metrics<ulong> Eq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, MetricConfig config = null)
+        static Metrics<ulong> Eq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, MetricConfig config = null)
         {
             var opid = Id<ulong>(OpKind.Eq);            
             var cycles = Metric.Cycles(config);
@@ -229,7 +229,7 @@ namespace Z0
             return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static Metrics<float> Eq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, MetricConfig config = null)
+        static Metrics<float> Eq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, MetricConfig config = null)
         {
             var opid = Id<float>(OpKind.Eq);            
             var cycles = Metric.Cycles(config);
@@ -250,7 +250,7 @@ namespace Z0
             return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
-        public static Metrics<double> Eq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, MetricConfig config = null)
+        static Metrics<double> Eq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, MetricConfig config = null)
         {
             var opid = Id<double>(OpKind.Eq);            
             var cycles = Metric.Cycles(config);

@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Measure
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -12,21 +12,19 @@ namespace Z0.Measure
     
     using static zfunc;
     using static As;
-    using static InXMetrics;
-    using static InX256DMetrics;
+    using static InX128DMetrics;
 
-    public static class XOrInX256D
+    public static class XOrInX128D
     {
+        public static Metrics<T> XOr<T>(this InXMetricConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
+            where T : struct
+                =>  XOr(lhs,rhs,config);
 
-        public static Metrics<T> XOr<T>(this InXMetricConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
-            where T : struct        
-                => XOr(lhs,rhs,config);
-
-        public static Metrics<T> XOr<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
+        public static Metrics<T> XOr<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-
+            config = Configure(config);
             switch(kind)
             {
                 case PrimalKind.int8:
@@ -54,7 +52,7 @@ namespace Z0.Measure
             }
         }
 
-        static Metrics<sbyte> XOr(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, InXMetricConfig256 config = null)
+        static Metrics<sbyte> XOr(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, InXMetricConfig128 config)
         {
             config = Configure(config);
             var opid = Id<sbyte>(OpKind.XOr);            
@@ -65,10 +63,10 @@ namespace Z0.Measure
                 dinx.xor(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        static Metrics<byte> XOr(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, InXMetricConfig256 config = null)
+        static Metrics<byte> XOr(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, InXMetricConfig128 config)
         {
             config = Configure(config);
             var opid = Id<byte>(OpKind.XOr);            
@@ -79,10 +77,10 @@ namespace Z0.Measure
                 dinx.xor(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        static Metrics<short> XOr(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, InXMetricConfig256 config = null)
+        static Metrics<short> XOr(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, InXMetricConfig128 config)
         {
             config = Configure(config);
             var opid = Id<short>(OpKind.XOr);            
@@ -93,10 +91,10 @@ namespace Z0.Measure
                 dinx.xor(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        static Metrics<ushort> XOr(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, InXMetricConfig256 config = null)
+        static Metrics<ushort> XOr(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, InXMetricConfig128 config)
         {
             config = Configure(config);
             var opid = Id<ushort>(OpKind.XOr);            
@@ -107,10 +105,10 @@ namespace Z0.Measure
                 dinx.xor(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        static Metrics<int> XOr(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, InXMetricConfig256 config = null)
+        static Metrics<int> XOr(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, InXMetricConfig128 config)
         {
             config = Configure(config);
             var opid = Id<int>(OpKind.XOr);            
@@ -121,10 +119,10 @@ namespace Z0.Measure
                 dinx.xor(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        static Metrics<uint> XOr(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXMetricConfig256 config = null)
+        static Metrics<uint> XOr(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, InXMetricConfig128 config)
         {
             config = Configure(config);
             var opid = Id<uint>(OpKind.XOr);            
@@ -135,10 +133,10 @@ namespace Z0.Measure
                 dinx.xor(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        static Metrics<long> XOr(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, InXMetricConfig256 config = null)
+        static Metrics<long> XOr(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, InXMetricConfig128 config)
         {
             config = Configure(config);
             var opid = Id<long>(OpKind.XOr);            
@@ -149,10 +147,10 @@ namespace Z0.Measure
                 dinx.xor(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        static Metrics<ulong> XOr(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXMetricConfig256 config = null)
+        static Metrics<ulong> XOr(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, InXMetricConfig128 config)
         {
             config = Configure(config);
             var opid = Id<ulong>(OpKind.XOr);            
@@ -163,10 +161,10 @@ namespace Z0.Measure
                 dinx.xor(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        static Metrics<float> XOr(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXMetricConfig256 config = null)
+        static Metrics<float> XOr(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXMetricConfig128 config)
         {
             config = Configure(config);
             var opid = Id<float>(OpKind.XOr);            
@@ -177,10 +175,10 @@ namespace Z0.Measure
                 dinx.xor(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        static Metrics<double> XOr(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXMetricConfig256 config = null)
+        static Metrics<double> XOr(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXMetricConfig128 config)
         {
             config = Configure(config);
             var opid = Id<double>(OpKind.XOr);            
@@ -191,7 +189,7 @@ namespace Z0.Measure
                 dinx.xor(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
  
 

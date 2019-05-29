@@ -13,7 +13,7 @@ namespace Z0
     using static zfunc;
     using static As;
 
-    public static class InXX
+    public static class VLoadX
     {
 
         [MethodImpl(Inline)]

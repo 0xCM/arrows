@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Measure
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -12,11 +12,11 @@ namespace Z0.Measure
     
     using static zfunc;
     using static As;
-    using static InXMetrics;
+    using static InX128NumGMetrics;
 
     partial class InXNumBench
     {
-        public static Metrics<T> Mul<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+        public static Metrics<T> Sub<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -24,19 +24,19 @@ namespace Z0.Measure
             switch(kind)
             {
                 case PrimalKind.float32:
-                    return Mul(float32(lhs), float32(rhs), config).As<T>();
+                    return Sub(float32(lhs), float32(rhs), config).As<T>();
                 case PrimalKind.float64:                    
-                    return Mul(float64(lhs), float64(rhs), config).As<T>();
+                    return Sub(float64(lhs), float64(rhs), config).As<T>();
                 default:
                     throw unsupported(kind);
             }
         }
 
 
-        public static Metrics<float> Mul(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXMetricConfig128 config = null)
+        public static Metrics<float> Sub(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
-            var opid = Id<float>(OpKind.Mul, config);            
+            var opid = Id<float>(OpKind.Sub);            
             var dst = alloc(lhs,rhs);
 
             var sw = stopwatch();
@@ -46,19 +46,18 @@ namespace Z0.Measure
                 {
                     dinxs.load(lhs[i], out Num128<float> x);
                     dinxs.load(rhs[i], out Num128<float> y);
-                    dst[i] = dinxs.mul(ref x, y);
-                }
-                
+                    dst[i] = dinxs.sub(ref x, y);
+                }                
             }
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<double> Mul(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXMetricConfig128 config = null)
+        public static Metrics<double> Sub(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXMetricConfig128 config = null)
         {
             config = Configure(config);
-            var opid = Id<double>(OpKind.Mul, config);            
+            var opid = Id<double>(OpKind.Sub);            
             var dst = alloc(lhs,rhs);
 
             var sw = stopwatch();
@@ -68,13 +67,12 @@ namespace Z0.Measure
                 {
                     dinxs.load(lhs[i], out Num128<double> x);
                     dinxs.load(rhs[i], out Num128<double> y);
-                    dst[i] = dinxs.mul(ref x, y);
-                }
-                
+                    dst[i] = dinxs.sub(ref x, y);
+                }                
             }
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         } 
     }
 

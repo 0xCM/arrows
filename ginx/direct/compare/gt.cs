@@ -50,9 +50,6 @@ namespace Z0
             return dst;
         }
 
-
-
-        [MethodImpl(Inline)]
         public static Span<Bit> gt(in Vec128<float> lhs, in Vec128<float> rhs)
         {
             var len = Vec128<float>.Length;
@@ -64,7 +61,6 @@ namespace Z0
             return dst;
         }
         
-        [MethodImpl(Inline)]
         public static Span<Bit> gt(in Vec128<double> lhs, in Vec128<double> rhs)
         {
             var len = Vec128<double>.Length;
@@ -76,16 +72,37 @@ namespace Z0
             return dst;
         }
  
-         [MethodImpl(Inline)]
-        public static Vec256<sbyte> gt(Vec256<sbyte> lhs, Vec256<sbyte> rhs)
-            => CompareGreaterThan(lhs, rhs);
+        public static Span<Bit> gt(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+         {
+            var len = Vec256<sbyte>.Length;
+            Span<sbyte> src = stackalloc sbyte[len];
+            store(CompareGreaterThan(lhs, rhs), ref src[0]);
+            var dst = span<Bit>(len);
+            for(var i = 0; i< len; i++)
+                dst[i] = src[i];
+            return dst;
+        }
 
-        [MethodImpl(Inline)]
-        public static Vec256<short> gt(Vec256<short> lhs, Vec256<short> rhs)
-            => CompareGreaterThan(lhs, rhs);
+        public static Span<Bit> gt(in Vec256<short> lhs, in Vec256<short> rhs)
+         {
+            var len = Vec256<short>.Length;
+            Span<short> src = stackalloc short[len];
+            store(CompareGreaterThan(lhs, rhs), ref src[0]);
+            var dst = span<Bit>(len);
+            for(var i = 0; i< len; i++)
+                dst[i] = src[i];
+            return dst;
+        }
 
-        [MethodImpl(Inline)]
-        public static Vec256<int> gt(Vec256<int> lhs, Vec256<int> rhs)
-            => CompareGreaterThan(lhs, rhs);
+        public static Span<Bit> gt(in Vec256<int> lhs, in Vec256<int> rhs)
+        {
+            var len = Vec256<int>.Length;
+            Span<int> src = stackalloc int[len];
+            store(CompareGreaterThan(lhs, rhs), ref src[0]);
+            var dst = span<Bit>(len);
+            for(var i = 0; i< len; i++)
+                dst[i] = src[i];
+            return dst;
+        }
     }
 }

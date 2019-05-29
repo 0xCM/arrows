@@ -9,7 +9,7 @@ namespace Z0.Bench
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
-    using Z0.Measure;
+    using Z0.Metrics;
 
     using static zfunc;
 

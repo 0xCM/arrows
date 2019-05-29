@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -12,8 +12,6 @@ namespace Z0
     
     using static zfunc;
     using static PrimalGMetrics;
-
-
 
     public class LtEqGMetrics : IBinaryOpMetric
     {

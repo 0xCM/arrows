@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Measure
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -12,20 +12,19 @@ namespace Z0.Measure
     
     using static zfunc;
     using static As;
-    using static InXMetrics;
-    using static InX256DMetrics;
+    using static InX128DMetrics;
 
-    public static class MulInX256D
+    public static class MulInX128D
     {
-        public static Metrics<T> Mul<T>(this InXMetricConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
-            where T : struct        
-                => Mul(lhs,rhs,config);
+        public static Metrics<T> Mul<T>(this InXMetricConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
+            where T : struct
+                =>  Mul(lhs,rhs,config);
 
-        public static Metrics<T> Mul<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
+        public static Metrics<T> Mul<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-
+            config = Configure(config);
             switch(kind)
             {
 
@@ -39,7 +38,7 @@ namespace Z0.Measure
 
         }
 
-        static Metrics<float> Mul(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXMetricConfig256 config = null)
+        static Metrics<float> Mul(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXMetricConfig128 config)
         {
             config = Configure(config);
             var opid = Id<float>(OpKind.Mul);            
@@ -50,10 +49,10 @@ namespace Z0.Measure
                 dinx.mul(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
 
-        static Metrics<double> Mul(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXMetricConfig256 config = null)
+        static Metrics<double> Mul(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXMetricConfig128 config)
         {
             config = Configure(config);
             var opid = Id<double>(OpKind.Mul);            
@@ -64,9 +63,10 @@ namespace Z0.Measure
                 dinx.mul(lhs,rhs, ref dst);
             var time = snapshot(sw);
 
-            return Capture(opid, config, time, dst);
+            return opid.CaptureMetrics(config, time, dst);
         }
  
+
     }
 
 }
