@@ -33,7 +33,7 @@ namespace Z0.Bench
             config = Configure(config);            
             var lhs = random.Span128<T>(config.Blocks);
             var rhs = op.NonZeroRight() ? random.NonZeroSpan128<T>(config.Blocks) : random.Span128<T>(config.Blocks);            
-            var metrics = Metrics.Zero<T>();
+            var metrics = Metrics<T>.Zero;
 
             GC.Collect();            
             for(var i=0; i<config.Runs; i++)

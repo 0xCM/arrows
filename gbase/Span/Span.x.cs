@@ -101,11 +101,11 @@ namespace Z0
 
         public static Metrics<T> Capture<T>(in OpId<T> OpId, long OpCount, Duration WorkTime, Span128<T> results)
             where T : struct
-                => Metrics.Capture(OpId, OpCount, WorkTime, results.Unblock());
+                => new Metrics<T>(OpId, OpCount, WorkTime, results.Unblock());
 
         public static Metrics<T> Capture<T>(in OpId<T> OpId, long OpCount, Duration WorkTime, Span256<T> results)
             where T : struct
-                => Metrics.Capture(OpId, OpCount, WorkTime, results.Unblock());
+                => new Metrics<T>(OpId, OpCount, WorkTime, results.Unblock());
 
  
         [MethodImpl(Inline)]

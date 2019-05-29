@@ -70,7 +70,7 @@ namespace Z0
                         dst[it] = (sbyte)(lhs[it] - rhs[it]);
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<byte> Sub(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, MetricConfig config = null)
@@ -91,7 +91,7 @@ namespace Z0
                         dst[it] = (byte)(lhs[it] - rhs[it]);
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<short> Sub(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, MetricConfig config = null)
@@ -112,7 +112,7 @@ namespace Z0
                         dst[it] = (short)(lhs[it] - rhs[it]);
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<ushort> Sub(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, MetricConfig config = null)
@@ -133,7 +133,7 @@ namespace Z0
                         dst[it] = (ushort)(lhs[it] - rhs[it]);
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<int> Sub(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
@@ -154,7 +154,7 @@ namespace Z0
                         dst[it] = lhs[it] - rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<uint> Sub(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, MetricConfig config = null)
@@ -175,7 +175,7 @@ namespace Z0
                         dst[it] = lhs[it] - rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<long> Sub(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, MetricConfig config = null)
@@ -196,7 +196,7 @@ namespace Z0
                         dst[it] = lhs[it] - rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<ulong> Sub(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, MetricConfig config = null)
@@ -217,7 +217,7 @@ namespace Z0
                         dst[it] = lhs[it] - rhs[it];            
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<float> Sub(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, MetricConfig config = null)
@@ -238,7 +238,7 @@ namespace Z0
                         dst[it] = lhs[it] - rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<double> Sub(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, MetricConfig config = null)
@@ -259,7 +259,7 @@ namespace Z0
                     dst[it] = lhs[it] - rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
     }

@@ -184,7 +184,7 @@ namespace Z0.Bench
                 dst[sample] = gmath.negate(src[sample]);
             var time = snapshot(sw);
             
-            return opid.DefineMetrics(cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public static Metrics<T> Inc<T>(ReadOnlySpan<T> src, MetricConfig config = null)
@@ -200,7 +200,7 @@ namespace Z0.Bench
                 dst[sample] = gmath.inc(src[sample]);
             var time = snapshot(sw);
             
-            return opid.DefineMetrics(cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public static Metrics<T> Dec<T>(ReadOnlySpan<T> src, MetricConfig config = null)
@@ -216,7 +216,7 @@ namespace Z0.Bench
                 dst[sample] = gmath.dec(src[sample]);
             var time = snapshot(sw);
             
-            return opid.DefineMetrics(cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
  
@@ -234,7 +234,7 @@ namespace Z0.Bench
                 dst[sample] = gmath.square(src[sample]);
             var time = snapshot(sw);
             
-            return opid.DefineMetrics(cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public static Metrics<T> Max<T>(ReadOnlySpan<T> src, MetricConfig config = null)
@@ -250,7 +250,7 @@ namespace Z0.Bench
                 dst[0] = gmath.max(src);
             var time = snapshot(sw);
             
-            return opid.DefineMetrics(cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public static Metrics<T> Min<T>(ReadOnlySpan<T> src, MetricConfig config = null)
@@ -266,7 +266,7 @@ namespace Z0.Bench
                 dst[0] = gmath.min(src);
             var time = snapshot(sw);
             
-            return opid.DefineMetrics(cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public static Metrics<T> Parse<T>(ReadOnlySpan<T> src, MetricConfig config = null)
@@ -282,7 +282,7 @@ namespace Z0.Bench
                 dst[sample] = gmath.parse<T>(src[sample].ToString());
             var time = snapshot(sw);
             
-            return opid.DefineMetrics(cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
     }
 }

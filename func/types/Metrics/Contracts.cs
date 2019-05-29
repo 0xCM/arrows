@@ -14,7 +14,6 @@ namespace Z0
 
     public delegate IMetrics OpMeasurer(int cycles, int reps);
 
-
     /// <summary>
     /// Defines the signature of a function that measures execution time for
     /// a specified number of cycles
@@ -74,4 +73,66 @@ namespace Z0
 
         MetricComparisonRecord ToRecord();
     }
+
+    public interface IOpMetric
+    {
+        Metrics<T> Measure<T>(MetricConfig config, IRandomizer random)    
+            where T : struct;
+    }
+
+
+    public interface IBinaryOpMetric
+    {
+        Metrics<T> Measure<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+            where T : struct;
+
+    }
+
+    public interface IBinaryHetOpMetric
+    {
+        Metrics<S> Measure<S,T>(ReadOnlySpan<S> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
+            where S : struct
+            where T : struct;
+
+    }
+
+    public interface IUnaryOpMetric
+    {
+        Metrics<T> Measure<T>(ReadOnlySpan<T> src, MetricConfig config = null)
+            where T : struct;
+
+    }
+
+
+    public interface IUnaryHetOpMetric 
+    {
+        Metrics<T> Measure<S,T>(ReadOnlySpan<S> src, MetricConfig config = null)
+            where S : struct
+            where T : struct;
+
+    }
+
+    public interface IUnaryHetOpMetric<T> : IUnaryHetOpMetric
+        where T : struct
+    {
+        Metrics<T> Measure<S>(ReadOnlySpan<S> src, MetricConfig config = null)
+            where S : struct;
+
+    }
+
+    public class OpMetricAttribute : Attribute
+    {        
+        public OpMetricAttribute(MetricKind Metric, OpKind Op)
+        {
+            this.Metric = Metric;
+            this.Op = Op;
+        }
+        public OpKind Op {get;}
+
+        public MetricKind Metric {get;}        
+
+
+    }
+
+
 }

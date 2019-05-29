@@ -40,8 +40,8 @@ namespace Z0.Test
 
             try
             {
-                var msg = AppMsg.Define($"Creating unint {host.Name}", SeverityLevel.Babble);
-                print(msg);
+                //var msg = AppMsg.Define($"Creating unint {host.Name}", SeverityLevel.Babble);
+                //print(msg);
                 var instance = host.CreateInstance<IUnitTest>();
                 iter(Tests(host), t =>  Run(instance, hostpath, t));
             }

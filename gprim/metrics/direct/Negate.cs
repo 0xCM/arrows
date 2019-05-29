@@ -62,7 +62,7 @@ namespace Z0
                     dst[it] = (sbyte) (-src[it]);
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
 
@@ -84,7 +84,7 @@ namespace Z0
                     dst[it] = (short) (-src[it]);
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
 
@@ -106,7 +106,7 @@ namespace Z0
                     dst[it] = -src[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<long> Negate(ReadOnlySpan<long> src, MetricConfig config = null)
@@ -127,7 +127,7 @@ namespace Z0
                     dst[it] = -src[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<float> Negate(ReadOnlySpan<float> src, MetricConfig config = null)
@@ -148,7 +148,7 @@ namespace Z0
                     dst[it] = -src[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<double> Negate(ReadOnlySpan<double> src, MetricConfig config = null)
@@ -169,7 +169,7 @@ namespace Z0
                 dst[it] = -src[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
     }
 }

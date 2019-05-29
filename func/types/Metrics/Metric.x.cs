@@ -14,7 +14,6 @@ namespace Z0
 
     public static class MetricX
     {
-
         public static MetricId Identify(this MetricKind metric, PrimalKind primitive, OpKind op)
             => MetricId.Define(metric, primitive, op);
 
@@ -35,11 +34,7 @@ namespace Z0
         public static MetricComparison<T> Compare<T>(this Metrics<T> lhs, Metrics<T> rhs)
             where T : struct
                 => MetricComparison.Define(lhs.Summarize(), rhs.Summarize());
-
-        public static Metrics<T> DefineMetrics<T>(this OpId<T> OpId, long OpCount, Duration WorkTime, T[] Results)
-            where T : struct
-                => Metrics.Capture(OpId, OpCount, WorkTime, Results);
-
+        
         public static void Deconstruct(this MetricId metric, out MetricKind Classifier, out PrimalKind Primitive, out OpKind Operator)
         {
             Classifier = metric.Classifier;
@@ -73,6 +68,14 @@ namespace Z0
             return messages;
 
         }
+
+        public static Metrics<T> CaptureMetrics<T>(this OpId<T> OpId, long OpCount, Duration WorkTime, T[] results)
+            where T : struct
+                => (OpId, OpCount, WorkTime, results);
+
+        public static Metrics<T> CaptureMetrics<T>(this OpId OpId, long OpCount, Duration WorkTime, Span<T> results)
+            where T : struct
+                => new Metrics<T>(OpId, OpCount, WorkTime, results);
 
     }
 }

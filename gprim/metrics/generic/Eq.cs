@@ -33,7 +33,7 @@ namespace Z0
                 dst[sample] = gmath.eq(lhs[sample], rhs[sample]);
             var time = snapshot(sw);
             
-            return opid.DefineMetrics(cycles*dst.Length, time, 
+            return opid.CaptureMetrics(cycles*dst.Length, time, 
                 map(dst, x => x ? gmath.one<T>() : gmath.zero<T>()));
         }
 

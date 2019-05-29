@@ -314,10 +314,6 @@ namespace Z0
             where T : struct
                 => Num.many(lhs).PairWith(Num.many(rhs));
 
-        [MethodImpl(Inline)]
-        public static Metrics<T> DefineMetrics<T>(this OpId OpId, long OpCount, Duration WorkTime, Span<T> results)
-            where T : struct
-                => new Metrics<T>(OpId, OpCount, WorkTime, results);
 
         [MethodImpl(Inline)]
         public static Metrics<T> DefineMetrics<T>(this OpId<T> OpId, long OpCount, Duration WorkTime, num<T>[] results)

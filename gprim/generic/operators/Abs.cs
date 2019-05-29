@@ -21,12 +21,20 @@ namespace Z0
         {
             if(typeof(T) == typeof(sbyte))
                 return absI8(src);
+            else if(typeof(T) == typeof(byte))
+                return src;
             else if(typeof(T) == typeof(short))
                 return absI16(src);
+            else if(typeof(T) == typeof(ushort))
+                return src;
             else if(typeof(T) == typeof(int))
                 return absI32(src);
+            else if(typeof(T) == typeof(uint))
+                return src;
             else if(typeof(T) == typeof(long))
                 return absI64(src);
+            else if(typeof(T) == typeof(ulong))
+                return src;
             else if(typeof(T) == typeof(float))
                 return absF32(src);
             else if(typeof(T) == typeof(double))
@@ -42,12 +50,20 @@ namespace Z0
         {
             if(typeof(T) == typeof(sbyte))
                 return ref absI8(ref src);
+            else if(typeof(T) == typeof(byte))
+                return ref src;
             else if(typeof(T) == typeof(short))
                 return ref absI16(ref src);
+            else if(typeof(T) == typeof(ushort))
+                return ref src;
             else if(typeof(T) == typeof(int))
                 return ref absI32(ref src);
+            else if(typeof(T) == typeof(uint))
+                return ref src;
             else if(typeof(T) == typeof(long))
                 return ref absI64(ref src);
+            else if(typeof(T) == typeof(ulong))
+                return ref src;
             else if(typeof(T) == typeof(float))
                 return ref absF32(ref src);
             else if(typeof(T) == typeof(double))

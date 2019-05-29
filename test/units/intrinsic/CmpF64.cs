@@ -41,54 +41,35 @@ namespace Z0.Test
 
         }
             
-        public void CmpEq(bool ordered = true, bool signal = false)
+        public void CmpEq()
             => Verify(FloatComparisonMode.OrderedEqualNonSignaling);
 
-        public void CmpNEq(bool ordered = true, bool signal = false)
+        public void CmpNEq()
             => Verify(FloatComparisonMode.OrderedNotEqualNonSignaling);
 
-        public void CmpLt(bool signal = false)
+        public void CmpLt()
             => Verify(FloatComparisonMode.OrderedLessThanNonSignaling);
 
-        public void CmpLtEq(bool signal = false)
+        public void CmpLtEq()
             => Verify(FloatComparisonMode.OrderedLessThanOrEqualNonSignaling);
 
         public void CmpNlt()
             => Verify(FloatComparisonMode.OrderedLessThanOrEqualNonSignaling);
 
-        public void CmpNltEq(bool signal = false)
+        public void CmpNltEq()
             => Verify(FloatComparisonMode.UnorderedNotLessThanOrEqualNonSignaling);
 
-        public void CmpGt(bool signal = false)
+        public void CmpGt()
             => Verify(FloatComparisonMode.OrderedGreaterThanNonSignaling);
 
-        public void CmpGtEq(bool signal = false)
+        public void CmpGtEq()
             => Verify(FloatComparisonMode.OrderedGreaterThanOrEqualNonSignaling);
 
-        public void CmpNgt(bool signal = false)
+        public void CmpNgt()
             => Verify(FloatComparisonMode.UnorderedNotGreaterThanNonSignaling);
 
-        public void CmpNgtEq(bool signal = false)
+        public void CmpNgtEq()
             => Verify(FloatComparisonMode.UnorderedNotGreaterThanOrEqualNonSignaling);
 
-        public void Misc()
-        {
-            var x0 = Vec128.define(-1.5, 8.9);
-            var x1 = Vec128.define(-4.7, 3.2);
-            var result = dinx.cmpf(x0,x1,FloatComparisonMode.OrderedLessThanNonSignaling);
-            Trace($"{x0} < {x1} = {result}");                
-
-
-            x0 = Vec128.define(-1.0, -1.0);
-            x1 = Vec128.define(1.0, 1.0);
-            result = dinx.cmpf(x0,x1,FloatComparisonMode.OrderedLessThanNonSignaling);
-            Trace($"{x0} < {x1} = {result}");
-
-
-            x0 = Vec128.define(1.0, -1.0);
-            x1 = Vec128.define(1.0, 1.0);
-            result = dinx.cmpf(x0,x1,FloatComparisonMode.OrderedLessThanNonSignaling);
-            Trace($"{x0} < {x1} = {result}");
-        }
     }
 }

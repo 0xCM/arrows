@@ -151,21 +151,6 @@ namespace Z0
             return dst;
         }
 
-        // {
-        //     var result = CompareEqual(lhs, rhs);
-        //     var x0 = extract(result, 0);
-        //     var x1 = extract(result, 1);
-        //     var dst = new Bit[32];
-            
-        //     for(byte i = 0; i< 16; i++)
-        //         dst[i] = extract(x0, i);
-
-        //     for(byte j = 0; j< 16; j++)
-        //         dst[16 + j] = extract(x0, j);
-            
-        //     return dst;
-        // }
-
         public static Span<Bit> eq(in Vec256<short> lhs, in Vec256<short> rhs)
         {
             var len = Vec256<short>.Length;
@@ -191,24 +176,27 @@ namespace Z0
 
         public static Span<Bit> eq(in Vec256<int> lhs, in Vec256<int> rhs)
         {
-            var result = CompareEqual(lhs, rhs);
-            var x0 = extract(result, 0);
-            var x1 = extract (result, 1);
-            return new Bit[]{
-                extract(x0, 0), extract(x0, 1), extract(x0, 2), extract(x0, 3),
-                extract(x1, 0), extract(x1, 1), extract(x1, 2), extract(x1, 3)};
+            var len = Vec256<int>.Length;
+            Span<int> src = stackalloc int[len];
+            store(CompareEqual(lhs, rhs), ref src[0]);
+            var dst = span<Bit>(len);
+            for(var i = 0; i< len; i++)
+                dst[i] = src[i];
+            return dst;
         }
 
 
         public static Span<Bit> eq(in Vec256<uint> lhs, in Vec256<uint> rhs)
         {
-            var result = CompareEqual(lhs, rhs);
-            var x0 = extract(result, 0);
-            var x1 = extract (result, 1);
-            return new Bit[]{            
-                extract(x0, 0), extract(x0, 1), extract(x0, 2), extract(x0, 3),
-                extract(x1, 0), extract(x1, 1), extract(x1, 2), extract(x1, 3)};                                              
+            var len = Vec256<uint>.Length;
+            Span<uint> src = stackalloc uint[len];
+            store(CompareEqual(lhs, rhs), ref src[0]);
+            var dst = span<Bit>(len);
+            for(var i = 0; i< len; i++)
+                dst[i] = src[i];
+            return dst;
         }
+
 
         public static Span<Bit> eq(in Vec256<long> lhs, in Vec256<long> rhs)
         {

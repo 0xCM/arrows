@@ -177,77 +177,6 @@ namespace Z0.Bench
             return Unsafe.ReadUnaligned<long>(ref value[startIndex]);
         }
 
-        Duration TestEq<T>(N128 bits, int blocks)
-            where T : struct
-        {
-            var src = Randomizer.Span128<T>(blocks); 
-            var sw = stopwatch();
-            for(var block = 0; block< src.BlockCount; block++)
-            {
-                var v1 = src.Vector(block);
-                var v2 = src.Vector(block);                                
-                var eq = ginx.eq(v1,v2);
-                for(var i =0; i< eq.Length; i++)
-                    Claim.@true(eq[i]);
-            }           
-            return snapshot(sw);
-        }
-        Duration TestEq<T>(N256 bits, int blocks)
-            where T : struct
-        {
-            var src = Randomizer.Span256<T>(blocks); 
-            var sw = stopwatch();
-            for(var block = 0; block< src.BlockCount; block++)
-            {
-                var v1 = src.Vector(block);
-                var v2 = src.Vector(block);                                
-                var eq = ginx.eq(v1,v2);
-                for(var i =0; i< eq.Length; i++)
-                    Claim.@true(eq[i]);
-            }           
-            return snapshot(sw);
-
-        }
-
-        void TestEq()
-        {
-            var blocks = Pow2.T08;
-            var n128 = N128.Rep;
-            var n256 = N256.Rep;
-            var time = Duration.Zero;
-            time += TestEq<byte>(n128, blocks);
-            time += TestEq<sbyte>(n128, blocks);
-            time += TestEq<short>(n128, blocks);
-            time += TestEq<ushort>(n128, blocks);
-            time += TestEq<int>(n128, blocks);
-            time += TestEq<uint>(n128, blocks);
-            time += TestEq<long>(n128, blocks);
-            time += TestEq<ulong>(n128, blocks);
-            time += TestEq<float>(n128, blocks);
-            time += TestEq<double>(n128, blocks);
-            time += TestEq<byte>(n256, blocks);
-            time += TestEq<sbyte>(n256, blocks);
-            time += TestEq<short>(n256, blocks);
-            time += TestEq<ushort>(n256, blocks);
-            time += TestEq<int>(n256, blocks);
-            time += TestEq<uint>(n256, blocks);
-            time += TestEq<long>(n256, blocks);
-            time += TestEq<ulong>(n256, blocks);
-            inform($"Tests succeded after {time.Ms} ms");
-
-            // var ix = (byte)2;
-            // var ixVal = (byte)119;
-            // var v1 = Randomizer.Vec128<byte>();            
-            // var v2 = ginx.insert(ixVal,v1,ix);
-            // var cmp = dinx.eq(v1,v2);
-            // for(var i=0; i<cmp.Length; i++)
-            // {
-            //     if(i != ix)
-            //         Claim.@true(cmp[i]);
-            //     else
-            //         Claim.@false(cmp[i]);
-            // }                        
-        }
 
         static void Main(params string[] args)
         {            
@@ -258,7 +187,7 @@ namespace Z0.Bench
                 //app.RunTests();
                 //app.Measure(MetricKind.PrimalG);
                 //app.MeasureAtomicInX();
-                app.TestEq();
+                
                 
                 
             }

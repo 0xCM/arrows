@@ -16,9 +16,6 @@ namespace Z0.Measure
     [OpMetric(MetricKind.BitG, OpKind.Pop)]
     public class PopGMetrics : IOpMetric
     {
-
-    
-
         public static Metrics<ulong> Pop<T>(ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
@@ -32,7 +29,7 @@ namespace Z0.Measure
                 dst[sample] = gbits.pop(src[sample]);
             
             var time = snapshot(sw);            
-            return opid.DefineMetrics(cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
  
         public static void Validate<T>(ReadOnlySpan<T> src, MetricConfig config = null)

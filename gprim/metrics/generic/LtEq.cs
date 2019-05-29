@@ -34,7 +34,7 @@ namespace Z0
                     dst[sample] = gmath.lteq(lhs[sample], rhs[sample]);
             var time = snapshot(sw);
             
-            return opid.DefineMetrics(cycles*dst.Length, time, dst.ToScalars<T>());
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars<T>());
         }
 
 

@@ -143,10 +143,10 @@ namespace Z0
 
         public static Metrics<T> Capture<T>(in OpId<T> OpId, InXMetricConfig config, Duration WorkTime, Span128<T> results)
             where T : struct
-                => Metrics.Capture(OpId, ((long)config.Cycles) * ((long)results.Length), WorkTime, results.Unblock());
+                => new Metrics<T>(OpId, ((long)config.Cycles) * ((long)results.Length), WorkTime, results.Unblock());
 
         public static Metrics<T> Capture<T>(in OpId<T> OpId, InXMetricConfig config, Duration WorkTime, Span256<T> results)
             where T : struct
-                => Metrics.Capture(OpId, ((long)config.Cycles) * ((long)results.Length), WorkTime, results.Unblock());
+                => new Metrics<T>(OpId, ((long)config.Cycles) * ((long)results.Length), WorkTime, results.Unblock());
     }
 }

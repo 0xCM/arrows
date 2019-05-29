@@ -69,7 +69,7 @@ namespace Z0
                         dst[it] = (sbyte)~ src[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<byte> Flip(ReadOnlySpan<byte> src, MetricConfig config = null)
@@ -90,7 +90,7 @@ namespace Z0
                     dst[it] = (byte)~ src[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<short> Flip(ReadOnlySpan<short> src, MetricConfig config = null)
@@ -112,7 +112,7 @@ namespace Z0
                     dst[it] = (short)~ src[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<ushort> Flip(ReadOnlySpan<ushort> src, MetricConfig config = null)
@@ -133,7 +133,7 @@ namespace Z0
                     dst[it] = (ushort)~ src[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
 
@@ -155,7 +155,7 @@ namespace Z0
                     dst[it] = ~ src[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public static Metrics<uint> Flip(ReadOnlySpan<uint> src, MetricConfig config = null)
@@ -176,7 +176,7 @@ namespace Z0
                     dst[it] = ~ src[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<long> Flip(ReadOnlySpan<long> src, MetricConfig config = null)
@@ -197,7 +197,7 @@ namespace Z0
                     dst[it] = ~ src[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public  static Metrics<ulong> Flip(ReadOnlySpan<ulong> src, MetricConfig config = null)
@@ -218,7 +218,7 @@ namespace Z0
                     dst[it] = ~ src[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
     }

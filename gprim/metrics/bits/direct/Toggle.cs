@@ -66,7 +66,7 @@ namespace Z0.Measure
                 Bits.toggle(ref dst[sample], pos[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         static Metrics<byte> Toggle(ReadOnlySpan<byte> src, ReadOnlySpan<int> pos, MetricConfig config = null)
@@ -81,7 +81,7 @@ namespace Z0.Measure
                 Bits.toggle(ref dst[sample], pos[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         static Metrics<short> Toggle(ReadOnlySpan<short> src, ReadOnlySpan<int> pos, MetricConfig config = null)
@@ -96,7 +96,7 @@ namespace Z0.Measure
                 Bits.toggle(ref dst[sample], pos[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         static Metrics<ushort> Toggle(ReadOnlySpan<ushort> src, ReadOnlySpan<int> pos, MetricConfig config = null)
@@ -111,7 +111,7 @@ namespace Z0.Measure
                 Bits.toggle(ref dst[sample], pos[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         static Metrics<int> Toggle(ReadOnlySpan<int> src, ReadOnlySpan<int> pos, MetricConfig config = null)
@@ -126,7 +126,7 @@ namespace Z0.Measure
                 Bits.toggle(ref dst[sample], pos[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         static Metrics<uint> Toggle(ReadOnlySpan<uint> src, ReadOnlySpan<int> pos, MetricConfig config = null)
@@ -141,7 +141,7 @@ namespace Z0.Measure
                 Bits.toggle(ref dst[sample], pos[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         static Metrics<long> Toggle(ReadOnlySpan<long> src, ReadOnlySpan<int> pos, MetricConfig config = null)
@@ -156,7 +156,7 @@ namespace Z0.Measure
                 Bits.toggle(ref dst[sample], pos[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         static Metrics<ulong> Toggle(ReadOnlySpan<ulong> src, ReadOnlySpan<int> pos, MetricConfig config = null)
@@ -171,7 +171,7 @@ namespace Z0.Measure
                 Bits.toggle(ref dst[sample], pos[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
     }
 

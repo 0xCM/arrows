@@ -65,7 +65,7 @@ namespace Z0.Measure
                 dst[sample] = Bits.pop(src[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         static Metrics<ulong> Pop(ReadOnlySpan<byte> src, MetricConfig config = null)
@@ -80,7 +80,7 @@ namespace Z0.Measure
                 dst[sample] = Bits.pop(src[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         static Metrics<ulong> Pop(ReadOnlySpan<short> src, MetricConfig config = null)
@@ -95,7 +95,7 @@ namespace Z0.Measure
                 dst[sample] = Bits.pop(src[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         static Metrics<ulong> Pop(ReadOnlySpan<ushort> src, MetricConfig config = null)
@@ -110,7 +110,7 @@ namespace Z0.Measure
                 dst[sample] = Bits.pop(src[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         static Metrics<ulong> Pop(ReadOnlySpan<int> src, MetricConfig config = null)
@@ -125,7 +125,7 @@ namespace Z0.Measure
                 dst[sample] = Bits.pop(src[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
 
         }
 
@@ -141,7 +141,7 @@ namespace Z0.Measure
                 dst[sample] = Bits.pop(src[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
 
@@ -157,7 +157,7 @@ namespace Z0.Measure
                 dst[sample] = Bits.pop(src[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         static Metrics<ulong> Pop(ReadOnlySpan<ulong> src, MetricConfig config = null)
@@ -172,7 +172,7 @@ namespace Z0.Measure
                 dst[sample] = Bits.pop(src[sample]);
             
             var time = snapshot(sw);
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
     }

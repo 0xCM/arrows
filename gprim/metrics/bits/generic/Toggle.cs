@@ -29,7 +29,7 @@ namespace Z0.Measure
                  dst[sample] = gbits.toggle(dst[sample], positions[sample]);            
             
             var time = snapshot(sw);            
-            return opid.DefineMetrics(cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public static Metrics<T> ToggleInPlace<T>(ReadOnlySpan<T> src, ReadOnlySpan<int> positions,  MetricConfig config = null)
@@ -45,7 +45,7 @@ namespace Z0.Measure
                  gbits.toggle(ref dst[sample], positions[sample]);            
             
             var time = snapshot(sw);            
-            return opid.DefineMetrics(cycles*dst.Length, time, dst);
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
         }
 
         public static void Validate<T>(ReadOnlySpan<T> src, ReadOnlySpan<int> pos, MetricConfig config = null)

@@ -70,7 +70,7 @@ namespace Z0
                     dst[it] = lhs[it] >= rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst.ToScalars(opid));                
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));                
         }
 
         public static Metrics<byte> GtEq(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, MetricConfig config = null)
@@ -91,7 +91,7 @@ namespace Z0
                     dst[it] = lhs[it] >= rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst.ToScalars(opid));
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
         public static Metrics<short> GtEq(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, MetricConfig config = null)
@@ -112,7 +112,7 @@ namespace Z0
                     dst[it] = lhs[it] >= rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst.ToScalars(opid));
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
         public static Metrics<ushort> GtEq(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, MetricConfig config = null)
@@ -133,7 +133,7 @@ namespace Z0
                     dst[it] = lhs[it] >= rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst.ToScalars(opid));
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
         public static Metrics<int> GtEq(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
@@ -154,7 +154,7 @@ namespace Z0
                     dst[it] = lhs[it] >= rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst.ToScalars(opid));
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
         public static Metrics<uint> GtEq(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, MetricConfig config = null)
@@ -175,7 +175,7 @@ namespace Z0
                     dst[it] = lhs[it] >= rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst.ToScalars(opid));
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
         public static Metrics<long> GtEq(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, MetricConfig config = null)
@@ -196,7 +196,7 @@ namespace Z0
                     dst[it] = lhs[it] >= rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst.ToScalars(opid));
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
         public static Metrics<ulong> GtEq(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, MetricConfig config = null)
@@ -217,7 +217,7 @@ namespace Z0
                     dst[it] = lhs[it] >= rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst.ToScalars(opid));
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
         public static Metrics<float> GtEq(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, MetricConfig config = null)
@@ -238,7 +238,7 @@ namespace Z0
                     dst[it] = lhs[it] >= rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst.ToScalars(opid));
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
 
         public static Metrics<double> GtEq(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, MetricConfig config = null)
@@ -259,7 +259,7 @@ namespace Z0
                     dst[it] = lhs[it] >= rhs[it];
             var time = snapshot(sw);
 
-            return Metrics.Capture(opid, cycles*dst.Length, time, dst.ToScalars(opid));
+            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars(opid));
         }
     }
 }

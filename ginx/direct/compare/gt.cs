@@ -17,25 +17,64 @@ namespace Z0
 
     partial class dinx
     {
-        [MethodImpl(Inline)]
-        public static Vec128<sbyte> gt(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
-            => CompareGreaterThan(lhs, rhs);
+        public static Span<Bit> gt(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+        {
+            var len = Vec128<sbyte>.Length;
+            Span<sbyte> src = stackalloc sbyte[len];
+            store(CompareGreaterThan(lhs, rhs), ref src[0]);
+            var dst = span<Bit>(len);
+            for(var i = 0; i< len; i++)
+                dst[i] = src[i];
+            return dst;
+        }
+
+        public static Span<Bit> gt(in Vec128<short> lhs, in Vec128<short> rhs)
+        {
+            var len = Vec128<short>.Length;
+            Span<short> src = stackalloc short[len];
+            store(CompareGreaterThan(lhs, rhs), ref src[0]);
+            var dst = span<Bit>(len);
+            for(var i = 0; i< len; i++)
+                dst[i] = src[i];
+            return dst;
+        }
+
+        public static Span<Bit> gt(in Vec128<int> lhs, in Vec128<int> rhs)
+        {
+            var len = Vec128<int>.Length;
+            Span<int> src = stackalloc int[len];
+            store(CompareGreaterThan(lhs, rhs), ref src[0]);
+            var dst = span<Bit>(len);
+            for(var i = 0; i< len; i++)
+                dst[i] = src[i];
+            return dst;
+        }
+
+
 
         [MethodImpl(Inline)]
-        public static Vec128<short> gt(in Vec128<short> lhs, in Vec128<short> rhs)
-            => CompareGreaterThan(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static Vec128<int> gt(in Vec128<int> lhs, in Vec128<int> rhs)
-            => CompareGreaterThan(lhs, rhs);
-
-        [MethodImpl(Inline)]
-        public static Vec128<float> gt(in Vec128<float> lhs, in Vec128<float> rhs)
-            => CompareGreaterThan(lhs, rhs);
+        public static Span<Bit> gt(in Vec128<float> lhs, in Vec128<float> rhs)
+        {
+            var len = Vec128<float>.Length;
+            Span<float> src = stackalloc float[len];
+            store(CompareGreaterThan(lhs, rhs), ref src[0]);
+            var dst = span<Bit>(len);
+            for(var i = 0; i< len; i++)
+                dst[i] = src[i] == 1;
+            return dst;
+        }
         
         [MethodImpl(Inline)]
-        public static Vec128<double> gt(in Vec128<double> lhs, in Vec128<double> rhs)
-            => CompareGreaterThan(lhs, rhs);
+        public static Span<Bit> gt(in Vec128<double> lhs, in Vec128<double> rhs)
+        {
+            var len = Vec128<double>.Length;
+            Span<double> src = stackalloc double[len];
+            store(CompareGreaterThan(lhs, rhs), ref src[0]);
+            var dst = span<Bit>(len);
+            for(var i = 0; i< len; i++)
+                dst[i] = src[i] == 1;
+            return dst;
+        }
  
          [MethodImpl(Inline)]
         public static Vec256<sbyte> gt(Vec256<sbyte> lhs, Vec256<sbyte> rhs)
