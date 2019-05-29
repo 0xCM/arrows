@@ -95,13 +95,6 @@ namespace Z0
             => gbits.test(in data, in pos);
 
         [MethodImpl(Inline)]
-        public ref Bit TestBit(in int pos, out Bit dst)
-        {
-            gbits.test(in data, in pos, out dst);
-            return ref dst;
-        }
-
-        [MethodImpl(Inline)]
         public string BitString()
             => gbits.bitstring(in data);
 
@@ -111,7 +104,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public ulong PopCount()
-            => gbits.pop(in data);
+            => gbits.pop(data);
         
         [MethodImpl(Inline)]
         public ulong Nlz()

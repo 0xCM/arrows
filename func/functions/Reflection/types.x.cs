@@ -982,10 +982,10 @@ namespace Z0
         /// </summary>
         /// <typeparam name="A">The attribute type</typeparam>
         /// <param name="t">The type to examine</param>
-        public static IDictionary<FieldInfo, A> GetFieldAttributions<A>(this Type t)
+        public static IDictionary<FieldInfo, A> DeclaredFieldAttributions<A>(this Type t)
             where A : Attribute
         {
-            var q = from p in t.GetFields(BF_Instance)
+            var q = from p in t.DeclaredFields()
                     where Attribute.IsDefined(p, typeof(A))
                     let attrib = p.GetCustomAttribute<A>()
                     select new

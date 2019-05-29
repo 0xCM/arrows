@@ -54,7 +54,7 @@ namespace Z0
         public  static Metrics<sbyte> Flip(ReadOnlySpan<sbyte> src, MetricConfig config = null)
         {
             var opid = Id<sbyte>(OpKind.Flip);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dOps = Configure(config).DirectOps;
             var dst = alloc(src);
             
@@ -75,7 +75,7 @@ namespace Z0
         public  static Metrics<byte> Flip(ReadOnlySpan<byte> src, MetricConfig config = null)
         {
             var opid = Id<byte>(OpKind.Flip);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dOps = Configure(config).DirectOps;
             var dst = alloc(src);
             
@@ -96,7 +96,7 @@ namespace Z0
         public  static Metrics<short> Flip(ReadOnlySpan<short> src, MetricConfig config = null)
         {
             var opid = Id<short>(OpKind.Flip);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dOps = DirectOps(config);
             var dst = alloc(src);
 
@@ -118,7 +118,7 @@ namespace Z0
         public  static Metrics<ushort> Flip(ReadOnlySpan<ushort> src, MetricConfig config = null)
         {
             var opid = Id<ushort>(OpKind.Flip);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dOps = DirectOps(config);
             var dst = alloc(src);
             
@@ -140,7 +140,7 @@ namespace Z0
         public static Metrics<int> Flip(ReadOnlySpan<int> src, MetricConfig config = null)
         {
             var opid = Id<int>(OpKind.Flip);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dOps = DirectOps(config);
             var dst = alloc(src);
             
@@ -161,7 +161,7 @@ namespace Z0
         public static Metrics<uint> Flip(ReadOnlySpan<uint> src, MetricConfig config = null)
         {
             var opid = Id<uint>(OpKind.Flip);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dOps = DirectOps(config);
             var dst = alloc(src);
             
@@ -182,7 +182,7 @@ namespace Z0
         public  static Metrics<long> Flip(ReadOnlySpan<long> src, MetricConfig config = null)
         {
             var opid = Id<long>(OpKind.Flip);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dOps = DirectOps(config);
             var dst = alloc(src);
             
@@ -203,7 +203,7 @@ namespace Z0
         public  static Metrics<ulong> Flip(ReadOnlySpan<ulong> src, MetricConfig config = null)
         {
             var opid = Id<ulong>(OpKind.Flip);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dOps = DirectOps(config);
             var dst = alloc(src);
             

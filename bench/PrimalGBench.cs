@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Bench
 {
     using System;
     using System.Linq;
@@ -18,11 +18,11 @@ namespace Z0
             where T : struct
                 => op.OpId<T>(NumericKind.Native, generic:true);
 
-        static MetricConfig Configure(MetricConfig config)
-            => config ?? MetricConfig.Default;
+
+        const MetricKind Metric = MetricKind.PrimalG;
 
         static int Cycles(MetricConfig config)
-            => Configure(config).Cycles;
+            => Metric.Configure(config).Cycles;
 
         static IRandomizer Random(IRandomizer random)
             => random ?? Randomizer.define(RandSeeds.BenchSeed);
@@ -31,12 +31,12 @@ namespace Z0
         public static Metrics<T> Run<T>(OpKind op, MetricConfig config = null, IRandomizer random = null)        
             where T : struct
         {
-            config = Configure(config);    
+            config = Metric.Configure(config);    
             random = Random(random);
             var lhs = random.Span<T>(config.Samples);
             var rhs = op.NonZeroRight() ? random.NonZeroSpan<T>(config.Samples) : random.Span<T>(config.Samples);
             
-            var metrics = Metrics.Zero<T>();
+            var metrics = Metrics<T>.Zero;
 
             GC.Collect();            
             for(var i=0; i<config.Runs; i++)
@@ -47,7 +47,7 @@ namespace Z0
 
         public static IMetrics Run(OpKind op, PrimalKind prim, MetricConfig config = null, IRandomizer random = null)
         {
-            config = Configure(config);    
+            config = Metric.Configure(config);    
             random = Random(random);
             switch(prim)
             {

@@ -31,7 +31,7 @@ namespace Z0
 
         public AppMsg Description {get;}
 
-        public OpId<T> OpId {get;}
+        public OpId OpId {get;}
 
     }
 

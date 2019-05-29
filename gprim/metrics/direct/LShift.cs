@@ -56,7 +56,7 @@ namespace Z0
         public  static Metrics<sbyte> LShift(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<sbyte>(OpKind.LShift);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs);
             var dOps = DirectOps(config);
             
@@ -77,7 +77,7 @@ namespace Z0
         public  static Metrics<byte> LShift(ReadOnlySpan<byte> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<byte>(OpKind.LShift);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs);
             var dOps = DirectOps(config);
             
@@ -98,7 +98,7 @@ namespace Z0
         public  static Metrics<short> LShift(ReadOnlySpan<short> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<short>(OpKind.LShift);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs);
             var dOps = DirectOps(config);
             
@@ -119,7 +119,7 @@ namespace Z0
         public  static Metrics<ushort> LShift(ReadOnlySpan<ushort> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<ushort>(OpKind.LShift);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs);
             var dOps = DirectOps(config);
             
@@ -140,7 +140,7 @@ namespace Z0
         public  static Metrics<int> LShift(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<int>(OpKind.LShift);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs);
             var dOps = DirectOps(config);
             
@@ -161,7 +161,7 @@ namespace Z0
         public  static Metrics<uint> LShift(ReadOnlySpan<uint> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<uint>(OpKind.LShift);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs);
             var dOps = DirectOps(config);
             
@@ -182,7 +182,7 @@ namespace Z0
         public  static Metrics<long> LShift(ReadOnlySpan<long> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<long>(OpKind.LShift);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs);
             var dOps = DirectOps(config);
             
@@ -203,7 +203,7 @@ namespace Z0
         public  static Metrics<ulong> LShift(ReadOnlySpan<ulong> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<ulong>(OpKind.LShift);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs);
             var dOps = DirectOps(config);
             

@@ -13,7 +13,22 @@ namespace Z0
     public static class PrimalKinds
     {
         public static readonly PrimalKind[] All = kinds<PrimalKind>();
-        
+
+        public static readonly PrimalKind[] Integral 
+            = array(PrimalKind.int8, PrimalKind.uint8, PrimalKind.int16, PrimalKind.uint16,
+                    PrimalKind.int32, PrimalKind.uint32, PrimalKind.int64, PrimalKind.uint64);
+        public static readonly PrimalKind[] Float
+            = array(PrimalKind.float32, PrimalKind.float64);
+
+        public static readonly PrimalKind[] Signed
+            = array(PrimalKind.int8, PrimalKind.int16, PrimalKind.int32, PrimalKind.int64, PrimalKind.float32, PrimalKind.float64);
+
+        public static readonly PrimalKind[] UnsignedIntegral 
+            = array(PrimalKind.uint8, PrimalKind.uint16, PrimalKind.uint32, PrimalKind.uint64);
+
+        public static readonly PrimalKind[] SignedIntegral 
+            = array(PrimalKind.int8, PrimalKind.int16, PrimalKind.int32, PrimalKind.int64);
+
         static readonly Type[] Kinds = 
             new Type[]{
                 typeof(sbyte),      

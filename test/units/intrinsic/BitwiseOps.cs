@@ -34,7 +34,7 @@ namespace Z0.Test
                 expect[i] = gmath.lshift(src[i], shifts[i]);
             
             var v1 = expect.Vector();
-            var v2 = ginx.lshiftv(src, shifts);            
+            var v2 = ginx.lshift(src, shifts);            
 
             Claim.eq(v1,v2);            
         }
@@ -49,7 +49,7 @@ namespace Z0.Test
                 expect[i] = gmath.lshift(src[i], shifts[i]);
             
             var v1 = expect.Vector();
-            var v2 = ginx.lshiftv(src, shifts);            
+            var v2 = ginx.lshift(src, shifts);            
 
             Claim.eq(v1,v2);            
         }
@@ -64,7 +64,7 @@ namespace Z0.Test
                 expect[i] = gmath.lshift(src[i], shifts[i]);
             
             var v1 = expect.Vector();
-            var v2 = ginx.lshiftv(src, shifts);            
+            var v2 = ginx.lshift(src, shifts);            
 
             Claim.eq(v1,v2);            
         }
@@ -79,7 +79,7 @@ namespace Z0.Test
                 expect[i] = gmath.lshift(src[i], shifts[i]);
             
             var v1 = expect.Vector();
-            var v2 = ginx.lshiftv(src, shifts);            
+            var v2 = ginx.lshift(src, shifts);            
 
             Claim.eq(v1,v2);            
         }

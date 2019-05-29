@@ -12,6 +12,13 @@ namespace Z0
     
     using static zfunc;
     
+    public interface IOpMetric
+    {
+        Metrics<T> Measure<T>(MetricConfig config, IRandomizer random)    
+            where T : struct;
+    }
+
+
     public interface IBinaryOpMetric
     {
         Metrics<T> Measure<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, MetricConfig config = null)
@@ -34,7 +41,39 @@ namespace Z0
 
     }
 
-    public struct Metrics<T> : IMetrics
+
+    public interface IUnaryHetOpMetric 
+    {
+        Metrics<T> Measure<S,T>(ReadOnlySpan<S> src, MetricConfig config = null)
+            where S : struct
+            where T : struct;
+
+    }
+
+    public interface IUnaryHetOpMetric<T> : IUnaryHetOpMetric
+        where T : struct
+    {
+        Metrics<T> Measure<S>(ReadOnlySpan<S> src, MetricConfig config = null)
+            where S : struct;
+
+    }
+
+    public class OpMetricAttribute : Attribute
+    {        
+        public OpMetricAttribute(MetricKind Metric, OpKind Op)
+        {
+            this.Metric = Metric;
+            this.Op = Op;
+        }
+        public OpKind Op {get;}
+
+        public MetricKind Metric {get;}        
+
+
+    }
+
+
+    public struct Metrics<T> : IMetrics<T>
         where T : struct
     {
         public static readonly Metrics<T> Zero = new Metrics<T>(OpId<T>.Zero, -1, Duration.Zero, new T[]{});
@@ -45,7 +84,7 @@ namespace Z0
         public static implicit operator Metrics<T>(in (OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result) src)
             => new Metrics<T>(src.OpId, src.OpCount, src.WorkTime, src.Result);
 
-        public static implicit operator (OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result)(in Metrics<T> src)
+        public static implicit operator (OpId OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result)(in Metrics<T> src)
             => (src.OpId, src.OpCount, src.WorkTime, src.Result);
 
         public static Metrics<T> operator +(Metrics<T> lhs, Metrics<T> rhs)
@@ -60,12 +99,12 @@ namespace Z0
             {
                 if(lhs.Result.Length != rhs.Result.Length)
                     throw new Exception($"Metrics Result Length mismatch: {lhs.Result.Length} != {rhs.Result.Length}");
-                if(lhs.OpId != rhs.OpId)
+                if(lhs.OpId.OpKind != rhs.OpId.OpKind)
                     throw new Exception($"Metrics OpId mismatch: {lhs.OpId} != {rhs.OpId}");
                 return new Metrics<T>(lhs.OpId, lhs.OpCount + rhs.OpCount, lhs.WorkTime + rhs.WorkTime, rhs.Result);
             }            
         }
-        public Metrics(in OpId<T> OpId, long OpCount, Duration WorkTime, T[] Result)
+        public Metrics(in OpId OpId, long OpCount, Duration WorkTime, T[] Result)
         {
             require(OpCount != 0, $"Operation count must be nonzero");
             this.OpId = OpId;
@@ -74,7 +113,7 @@ namespace Z0
             this.Result = Result;
         }
 
-        public Metrics(in OpId<T> OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result)
+        public Metrics(in OpId OpId, long OpCount, Duration WorkTime, ReadOnlyMemory<T> Result)
         {
             require(OpCount != 0, $"Operation count must be nonzero");
             this.OpId = OpId;
@@ -83,7 +122,7 @@ namespace Z0
             this.Result = Result;
         }
 
-        public Metrics(in OpId<T> OpId, long OpCount, Duration WorkTime, Span<T> Result)
+        public Metrics(in OpId OpId, long OpCount, Duration WorkTime, Span<T> Result)
         {
             require(OpCount != 0, $"Operation count must be nonzero");
             this.OpId = OpId;
@@ -92,7 +131,7 @@ namespace Z0
             this.Result = Result.ToArray();
         }
 
-        public readonly OpId<T> OpId;
+        public readonly OpId OpId;
         
         public long OpCount {get;}
 
@@ -128,5 +167,8 @@ namespace Z0
 
         ReadOnlyMemory<R> IMetrics.Results<R>() 
             => As<R>().Result;
+
+        public ReadOnlyMemory<T> Results()
+            => Result;
     }    
 }

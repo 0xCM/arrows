@@ -19,44 +19,37 @@ namespace Z0
     partial class dinx
     {
         [MethodImpl(Inline)]
-        public static Vec128<byte> insert<T>(byte src, in Vec128<byte> dst, byte offset)        
-            where T : struct
-                => Insert(dst,src,offset);
+        public static Vec128<byte> insert(byte src, in Vec128<byte> dst, byte index)        
+            => Insert(dst,src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> insert<T>(sbyte src, in Vec128<sbyte> dst, byte offset)        
-            where T : struct
-                => Insert(dst,src,offset);
+        public static Vec128<sbyte> insert(sbyte src, in Vec128<sbyte> dst, byte index)        
+            => Insert(dst,src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<short> insert<T>(short src, in Vec128<short> dst, byte offset)        
-            where T : struct
-                => Insert(dst,src,offset);
+        public static Vec128<short> insert(short src, in Vec128<short> dst, byte index)        
+            => Insert(dst,src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<ushort> insert<T>(ushort src, in Vec128<ushort> dst, byte offset)        
-            where T : struct
-                => Insert(dst,src,offset);
+        public static Vec128<ushort> insert(ushort src, in Vec128<ushort> dst, byte index)        
+            => Insert(dst,src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> insert<T>(int src, in Vec128<int> dst, byte offset)        
-            where T : struct
-                => Insert(dst,src,offset);
+        public static Vec128<int> insert(int src, in Vec128<int> dst, byte index)        
+            => Insert(dst,src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<uint> insert<T>(uint src, in Vec128<uint> dst, byte offset)        
-            where T : struct
-                => Insert(dst,src,offset);
+        public static Vec128<uint> insert(uint src, in Vec128<uint> dst, byte index)        
+            => Insert(dst,src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<long> insert<T>(long src, in Vec128<long> dst, byte offset)        
-            where T : struct
-                => Avx2.X64.Insert(dst,src,offset);
+        public static Vec128<long> insert(long src, in Vec128<long> dst, byte index)        
+            => Avx2.X64.Insert(dst,src,index);
 
         [MethodImpl(Inline)]
-        public static Vec128<ulong> insert<T>(ulong src, in Vec128<ulong> dst, byte offset)        
-            where T : struct
-                => Avx2.X64.Insert(dst,src,offset);
+        public static Vec128<ulong> insert(ulong src, in Vec128<ulong> dst, byte index)        
+            => Avx2.X64.Insert(dst,src,index);
+
     }
 
 }

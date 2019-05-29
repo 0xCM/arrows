@@ -25,7 +25,7 @@ namespace Z0
         {
             var opid =  Id<T>(OpKind.Sqrt);
             var dst = alloc<T>(src.Length);
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
 
             var sw = stopwatch();
             for(var cycle = 1; cycle <= cycles; cycle++)

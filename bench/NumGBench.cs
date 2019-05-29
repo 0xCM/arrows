@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Bench
 {
     using System;
     using System.Linq;
@@ -14,39 +14,19 @@ namespace Z0
     
     public static class NumGBench
     {
-
-        static OpId<T> Id<T>(OpKind op)
-            where T : struct
-                => op.OpId<T>(NumericKind.Number, generic: true);
-
-        static MetricConfig Configure(MetricConfig config)
-            => config ?? MetricConfig.Default;
-
-        static int Cycles(MetricConfig config)
-            => Configure(config).Cycles;
-
+     
         static IRandomizer Random(IRandomizer random)
             => random ?? Randomizer.define(RandSeeds.BenchSeed);
 
-        static num<T>[] alloc<T>(int len)
-            where T : struct
-                => zfunc.alloc<num<T>>(len);
-                
-        static ReadOnlySpan<num<T>> Numbers<T>(ReadOnlySpan<T> src)
-            where T : struct
-                => Num.many(src);
-        static ReadOnlySpanPair<num<T>> Numbers<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-                => Num.many(lhs).PairWith(Num.many(rhs));
-
+        const MetricKind Metric = MetricKind.NumG;
         public static Metrics<T> Run<T>(OpKind op, MetricConfig config = null, IRandomizer random = null)        
             where T : struct
         {
-            config = Configure(config);    
+            config = Metric.Configure(config);    
             random = Random(random);        
             var lhs = random.Span<T>(config.Samples);
             var rhs = op.NonZeroRight() ? random.NonZeroSpan<T>(config.Samples) : random.Span<T>(config.Samples);            
-            var metrics = Metrics.Zero<T>();
+            var metrics = Metrics<T>.Zero;
             GC.Collect();            
             for(var i=0; i<config.Runs; i++)
                 metrics += Run<T>(op, lhs, rhs, config);
@@ -55,8 +35,18 @@ namespace Z0
 
         public static MetricComparisonRecord RunNumGComparison(this MetricConfig config, OpType op, bool silent = false)
         {            
-            var m1 = MetricKind.PrimalDirect.Run(op.Op, op.Primitive, config);
-            var m2 = MetricKind.Number.Run(op.Op, op.Primitive, config);            
+            var m1 = MetricKind.PrimalD.Run(op.Op, op.Primitive, config);
+            var m2 = MetricKind.NumG.Run(op.Op, op.Primitive, config);            
+            var compared = m1.Compare(m2).ToRecord();
+            if(!silent)
+                print(items(compared).FormatMessages());
+            return compared;
+        }
+
+        public static MetricComparisonRecord RunBitGComparison(this MetricConfig config, OpType op, bool silent = false)
+        {            
+            var m1 = MetricKind.BitD.Run(op.Op, op.Primitive, config);
+            var m2 = MetricKind.BitG.Run(op.Op, op.Primitive, config);            
             var compared = m1.Compare(m2).ToRecord();
             if(!silent)
                 print(items(compared).FormatMessages());
@@ -65,7 +55,7 @@ namespace Z0
 
         public static IMetrics Run(OpKind op, PrimalKind prim, MetricConfig config = null, IRandomizer random = null)
         {
-            config = Configure(config);    
+            config = MetricKind.NumG.Configure(config);    
             random = Random(random);        
 
             switch(prim)

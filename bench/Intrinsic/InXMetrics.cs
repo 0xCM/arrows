@@ -13,8 +13,61 @@ namespace Z0
     using static zfunc;
     using static As;
     using static Spans;
-    using static InXMetrics;
     
+    public static class InX128DMetrics
+    {
+        public static OpId<T> Id<T>(OpKind op, bool fused = true)
+            where T : struct
+                => op.OpId<T>(
+                        numKind: NumericKind.Vec128, 
+                        numSystem: NumericSystem.Primal, 
+                        generic: false, 
+                        fusion: fused ? OpFusion.Fused : OpFusion.Atomic
+                        );
+
+
+    }
+
+    public static class InX128GMetrics
+    {
+        public static OpId<T> Id<T>(OpKind op, bool fused = true)
+            where T : struct
+                => op.OpId<T>(
+                        numKind: NumericKind.Vec128, 
+                        numSystem: NumericSystem.Primal, 
+                        generic: true, 
+                        fusion: fused ? OpFusion.Fused : OpFusion.Atomic
+                        );
+
+
+    }
+
+    public static class InX256DMetrics
+    {
+        public static OpId<T> Id<T>(OpKind op, bool fused = true)
+            where T : struct
+                => op.OpId<T>(
+                        numKind: NumericKind.Vec256, 
+                        numSystem: NumericSystem.Primal, 
+                        generic: false, 
+                        fusion: fused ? OpFusion.Fused : OpFusion.Atomic
+                        );
+
+    }
+
+    public static class InX256GMetrics
+    {
+        public static OpId<T> Id<T>(OpKind op, bool fused = true)
+            where T : struct
+                => op.OpId<T>(
+                        numKind: NumericKind.Vec256, 
+                        numSystem: NumericSystem.Primal, 
+                        generic: true, 
+                        fusion: fused ? OpFusion.Fused : OpFusion.Atomic
+                        );
+
+    }
+
     public static class InXMetrics
     {
         static NumericKind InferInXNumKind<N>(bool scalar)
@@ -42,12 +95,12 @@ namespace Z0
         static OpId<T> IntrinsicDirect<N,T>(OpKind kind,  bool scalar = false)
             where N : ITypeNat, new()
             where T : struct
-                => kind.OpId<T>(NumKind : InferInXNumKind<N>(scalar), generic: false, system: NumericSystem.Intrinsic, operandSize : new N().value/8);
+                => kind.OpId<T>(numKind : InferInXNumKind<N>(scalar), generic: false, numSystem: NumericSystem.Intrinsic, operandSize : new N().value/8);
 
         static OpId<T> IntrinsicGeneric<N,T>(OpKind kind,  bool scalar = false)
             where N : ITypeNat, new()
             where T : struct
-                => kind.OpId<T>(NumKind : InferInXNumKind<N>(scalar), generic : true, system: NumericSystem.Intrinsic, operandSize : new N().value/8);
+                => kind.OpId<T>(numKind : InferInXNumKind<N>(scalar), generic : true, numSystem: NumericSystem.Intrinsic, operandSize : new N().value/8);
 
         public static OpId<T> InXId<T>(this OpKind op, InXMetricConfig config = null, bool generic = false)
             where T : struct

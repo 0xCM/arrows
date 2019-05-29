@@ -2,27 +2,29 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Bench
 {
     using System;
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
+    using Z0.Measure;
     
     using static zfunc;
     using static As;
-    using static InXMetrics;
     
-    public static partial class InXVecBench
+    
+    public static class InXBench
     {
-        static OpId<T> Id<T>(OpKind op, InXMetricConfig128 config)
-            where T : struct
-                => op.InXId<T>(config, false);
+        static IRandomizer Random(IRandomizer random)
+            => random ?? Randomizer.define(RandSeeds.BenchSeed);
 
-        static OpId<T> Id<T>(OpKind op, InXMetricConfig256 config)
-            where T : struct
-                => op.InXId<T>(config, false);
+        static InXMetricConfig128 Configure(InXMetricConfig128 config)
+            => config ?? InXMetricConfig128.Default;
+
+        static InXMetricConfig256 Configure(InXMetricConfig256 config)
+            => config ?? InXMetricConfig256.Default;
 
         public static Metrics<T> Run<T>(OpKind op, InXMetricConfig128 config = null, IRandomizer random = null)        
             where T : struct
@@ -35,7 +37,7 @@ namespace Z0
 
             GC.Collect();            
             for(var i=0; i<config.Runs; i++)
-                metrics += Branch<T>(op, lhs, rhs, config);
+                metrics += Apply<T>(op, lhs, rhs, config);
             return metrics;            
         }
 
@@ -46,11 +48,11 @@ namespace Z0
             config = Configure(config);            
             var lhs = random.Span256<T>(config.Blocks);
             var rhs = op.NonZeroRight() ? random.NonZeroSpan256<T>(config.Blocks) : random.Span256<T>(config.Blocks);            
-            var metrics = Metrics.Zero<T>();
+            var metrics = Metrics<T>.Zero;
 
             GC.Collect();            
             for(var i=0; i < config.Runs; i++)
-                metrics += Branch<T>(op, lhs, rhs, config);
+                metrics += Apply<T>(op, lhs, rhs, config);
             return metrics;            
         }
 
@@ -113,5 +115,86 @@ namespace Z0
                     throw unsupported(op, prim);
             }
         }
+
+      public static Metrics<T> Apply<T>(OpKind op, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXMetricConfig128 config = null)
+            where T : struct
+        {
+            var metrics = Metrics<T>.Zero;
+            config = Configure(config);
+
+            switch(op)
+            {
+                case OpKind.Add:
+                    metrics = config.Add<T>(lhs, rhs);   
+                break;
+                case OpKind.Sub:
+                    metrics = config.Sub<T>(lhs, rhs);   
+                break;
+                case OpKind.Mul:
+                    metrics = config.Mul<T>(lhs, rhs);   
+                break;
+                case OpKind.Div:
+                    metrics = config.Div(lhs, rhs);   
+                break;
+                case OpKind.And:
+                    metrics = config.And(lhs, rhs);   
+                break;
+                case OpKind.Or:
+                    metrics = config.Or<T>(lhs, rhs);   
+                break;
+                case OpKind.XOr:
+                    metrics = config.XOr<T>(lhs, rhs);   
+                break;
+                case OpKind.Max:
+                    metrics = config.Max<T>(lhs, rhs);   
+                break;
+                default: 
+                    throw unsupported(op);
+            }
+
+            print(metrics.Describe());
+
+            return metrics;
+        }
+
+        public static Metrics<T> Apply<T>(OpKind op, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXMetricConfig256 config = null)
+            where T : struct
+        {
+            var metrics = Metrics<T>.Zero;
+            config = Configure(config);
+
+            switch(op)
+            {
+                case OpKind.Add:
+                    metrics = config.Add<T>(lhs, rhs);   
+                break;
+                case OpKind.Sub:
+                    metrics = config.Sub<T>(lhs, rhs);   
+                break;
+                case OpKind.Mul:
+                    metrics = config.Mul<T>(lhs, rhs);   
+                break;
+                case OpKind.Div:
+                    metrics = config.Div(lhs, rhs);   
+                break;
+                case OpKind.And:
+                    metrics = config.And<T>(lhs, rhs);   
+                break;
+                case OpKind.Or:
+                    metrics = config.Or<T>(lhs, rhs);   
+                break;
+                case OpKind.XOr:
+                    metrics = config.XOr<T>(lhs, rhs);   
+                break;
+                default: 
+                    throw unsupported(op);
+            }
+
+            print(metrics.Describe());
+
+            return metrics;
+        
+        }
+
    }
 }

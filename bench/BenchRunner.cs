@@ -2,23 +2,24 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Bench
 {
     using System;
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
-    
+    using Z0.Measure;
+
     using static zfunc;
 
     public static class BenchRunner
     {
         public static IMetrics Run(this InXMetricConfig128 config, OpKind op, PrimalKind prim, bool generic, IRandomizer random = null)        
-            =>  generic  ? InXGBench.Run(op, prim, config, random) : InXVecBench.Run(op, prim, config, random);
+            =>  generic  ? InX128GOps.Run(op, prim, config, random) : InXBench.Run(op, prim, config, random);
                   
         public static IMetrics Run(this InXMetricConfig256 config, OpKind op, PrimalKind prim, bool generic, IRandomizer random = null)        
-            =>  generic  ? InXGBench.Run(op, prim, config, random) : InXVecBench.Run(op, prim, config, random);
+            =>  generic  ? InX256GOps.Run(op, prim, config, random) : InXBench.Run(op, prim, config, random);
                   
         public static IEnumerable<IMetrics> Run(this MetricConfig config, IEnumerable<MetricKind> metrics, IEnumerable<OpKind> ops, 
             IEnumerable<PrimalKind> primitives,  IRandomizer random = null)
@@ -54,8 +55,8 @@ namespace Z0
 
         public static MetricComparisonRecord RunComparison(this MetricConfig config, OpType op, bool silent = false)
         {            
-            var m1 = MetricKind.PrimalDirect.Run(op.Op, op.Primitive, config);
-            var m2 = MetricKind.PrimalGeneric.Run(op.Op, op.Primitive, config);            
+            var m1 = MetricKind.PrimalD.Run(op.Op, op.Primitive, config);
+            var m2 = MetricKind.PrimalG.Run(op.Op, op.Primitive, config);            
             var compared = m1.Compare(m2).ToRecord();
             if(!silent)
                 print(items(compared).FormatMessages());
@@ -103,23 +104,29 @@ namespace Z0
         static IRandomizer Random(IRandomizer random = null)
             => random ?? Z0.Randomizer.define(RandSeeds.BenchSeed);
         
-        public static bool NonZeroRight(this OpKind op)
-            => op == OpKind.Div || op == OpKind.Mod;
-
-        public static IMetrics Run(this MetricKind metric, OpKind op, PrimalKind primal, 
-            MetricConfig config = null, IRandomizer random = null)
+        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim,  MetricConfig config = null, IRandomizer random = null)
         {
             switch(metric)
             {
-                case MetricKind.Number:
-                    return NumGBench.Run(op, primal, config, random);
-                case MetricKind.PrimalDirect:
-                    return PrimalDBench.Run(op, primal, config, random);
-                case MetricKind.PrimalGeneric:
-                    return PrimalGBench.Run(op, primal, config, random);
+                case MetricKind.NumG:
+                    return NumGBench.Run(op, prim, metric.Configure(config), Random(random));
+                case MetricKind.PrimalD:
+                    return PrimalDBench.Run(op, prim, metric.Configure(config), Random(random));
+                case MetricKind.PrimalG:
+                    return PrimalGBench.Run(op, prim, metric.Configure(config), Random(random));
+                case MetricKind.BitD:
+                    return BitBench.Run(metric, false, op, prim, metric.Configure(config), Random(random));
+                case MetricKind.BitG:
+                    return BitBench.Run(metric, true, op, prim, metric.Configure(config), Random(random));
+                default:
+                    throw unsupported(metric);
+
             }
-            throw unsupported(metric);
         }
+
+        public static IMetrics Run(this MetricKind metric, OpKind op, PrimalKind primal, 
+            MetricConfig config = null, IRandomizer random = null)
+                => metric.Measure(op, primal, config, random);
 
         public static IMetrics Run(this MetricId metric, MetricConfig config = null, IRandomizer random = null)
         {
@@ -129,11 +136,11 @@ namespace Z0
 
             switch(@class)
             {
-                case MetricKind.PrimalDirect:
+                case MetricKind.PrimalD:
                     return PrimalDBench.Run(op, prim, config, random);
-                case MetricKind.Number:
+                case MetricKind.NumG:
                     return NumGBench.Run(op, prim, config, random);
-                case MetricKind.PrimalGeneric:
+                case MetricKind.PrimalG:
                     return PrimalGBench.Run(op, prim, config, random);
                 default:
                     throw unsupported(metric.Classifier);

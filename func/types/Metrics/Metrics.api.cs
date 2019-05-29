@@ -26,9 +26,9 @@ namespace Z0
             where T : struct
                 => (OpId, OpCount, WorkTime, results);
 
-        public static Metrics<T> Capture<T>(in OpId<T> OpId, long OpCount, Duration WorkTime, Span<T> results)
+        public static Metrics<T> Capture<T>(in OpId OpId, long OpCount, Duration WorkTime, Span<T> results)
             where T : struct
-            => new Metrics<T>(OpId, OpCount, WorkTime, results);
+                => new Metrics<T>(OpId, OpCount, WorkTime, results);
 
 
     }

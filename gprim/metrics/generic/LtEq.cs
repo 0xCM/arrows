@@ -26,7 +26,7 @@ namespace Z0
         {
             var opid =  Id<T>(OpKind.LtEq);
             var dst = new bool[(length(lhs,rhs))];
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
 
             var sw = stopwatch();
             for(var cycle = 1; cycle <= cycles; cycle++)

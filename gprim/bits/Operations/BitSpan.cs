@@ -13,7 +13,6 @@ namespace Z0
     
     partial class Bits
     {                
-        [MethodImpl(Optimize)]
         public static Span<Bit> bitspan(in sbyte src)
         {
             var dst = new Bit[Pow2.T03];
@@ -23,7 +22,6 @@ namespace Z0
             return dst; 
         }
 
-        [MethodImpl(Optimize)]
         public static Span<Bit> bitspan(in byte src)
         {
             var dst = new Bit[Pow2.T03];
@@ -33,7 +31,6 @@ namespace Z0
             return dst; 
         }
 
-        [MethodImpl(Optimize)]
         public static Span<Bit> bitspan(in ushort src)
         {
             var dst = new Bit[Pow2.T04];
@@ -43,7 +40,6 @@ namespace Z0
             return dst; 
         }
 
-        [MethodImpl(Optimize)]
         public static Span<Bit> bitspan(in short src)
         {
             var dst = new Bit[Pow2.T04];
@@ -53,7 +49,6 @@ namespace Z0
             return dst; 
         }
 
-        [MethodImpl(Optimize)]
         public static Span<Bit> bitspan(in int src)
         {
             var dst = new Bit[Pow2.T05];
@@ -63,7 +58,6 @@ namespace Z0
             return dst; 
         }
 
-        [MethodImpl(NotInline)]
         public static Span<Bit> bitspan(in uint src)
         {
             var dst = new Bit[Pow2.T05];
@@ -73,7 +67,6 @@ namespace Z0
             return dst; 
         }
 
-        [MethodImpl(Optimize)]
         public static Span<Bit> bitspan(in long src)
         {
             var dst = new Bit[Pow2.T06];
@@ -83,7 +76,6 @@ namespace Z0
             return dst; 
         }        
 
-        [MethodImpl(Optimize)]
         public static Span<Bit> bitspan(in ulong src)
         {
             var dst = new Bit[Pow2.T06];

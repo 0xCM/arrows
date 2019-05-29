@@ -214,6 +214,7 @@ namespace Z0
         public T ValueOrDefault(T @default = default(T))
             => Exists ? value : @default;
 
+
         /// <summary>
         /// Returns the encapsulated value if it exists; otherwise, invokes the fallback function <paramref name="fallback"/>
         /// to obtain value

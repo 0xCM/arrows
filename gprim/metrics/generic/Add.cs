@@ -24,14 +24,14 @@ namespace Z0
         {
             var opid =  Id<T>(OpKind.Add);
             var dst = alloc<T>(length(lhs,rhs));
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
 
             var sw = stopwatch();
             for(var cycle = 1; cycle <= cycles; cycle++)
             for(var sample = 0; sample < dst.Length; sample++)
                 dst[sample] = gmath.add(lhs[sample], rhs[sample]);
-            var time = snapshot(sw);
             
+            var time = snapshot(sw);            
             return opid.DefineMetrics(cycles*dst.Length, time, dst);
         }
 

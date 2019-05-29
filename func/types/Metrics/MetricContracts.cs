@@ -40,6 +40,13 @@ namespace Z0
         bool PrimalDirect {get;}
     }
 
+    public interface IMetrics<T> : IMetrics
+        where T : struct
+    {
+        ReadOnlyMemory<T> Results();
+
+    }
+
     public interface IMetricSummary
     {
 

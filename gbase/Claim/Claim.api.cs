@@ -132,5 +132,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool @false(bool x, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => !x ? true : throw ClaimException.Define(NotFalse(msg, caller, file,line));
+
+        [MethodImpl(Inline)]
+        public static bool notnull<T>(T src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => !(src is null) ? true : throw new ArgumentNullException(AppMsg.Define($"Argument was null", SeverityLevel.Error, caller,file,line).ToString());
+
     }
 }

@@ -20,36 +20,24 @@ namespace Z0
         public static Vec128<T> mul<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.float32:
-                    return generic<T>(dinx.mul(float32(lhs), float32(rhs)));                    
-                case PrimalKind.float64:
-                    return generic<T>(dinx.mul(float64(lhs), float64(rhs)));
-                default:
-                    throw unsupported(kind);
-            }            
+            if(typeof(T) == typeof(float))
+                return generic<T>(dinx.mul(in float32(in lhs), in float32(in rhs)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dinx.mul(in float64(in lhs), in float64(in rhs)));
+            else 
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
         [MethodImpl(Inline)]
         public static Vec256<T> mul<T>(in Vec256<T> lhs, in Vec256<T> rhs)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int32:
-                    return generic<T>(dinx.mul(int32(lhs), int32(rhs)));
-                case PrimalKind.uint32:
-                    return generic<T>(dinx.mul(uint32(lhs), uint32(rhs)));
-                case PrimalKind.float32:
-                    return generic<T>(dinx.mul(float32(lhs), float32(rhs)));
-                case PrimalKind.float64:
-                    return generic<T>(dinx.mul(float64(lhs), float64(rhs)));
-                default:
-                    throw unsupported(kind);
-            }            
+            if(typeof(T) == typeof(float))
+                return generic<T>(dinx.mul(in float32(in lhs), in float32(in rhs)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dinx.mul(in float64(in lhs), in float64(in rhs)));
+            else 
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
         [MethodImpl(Inline)]
@@ -57,21 +45,17 @@ namespace Z0
             where S : struct
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int32:
-                    return generic<S>(dinx.mul(int32(lhs), int32(rhs)));
-                case PrimalKind.uint32:
-                    return generic<S>(dinx.mul(uint32(lhs), uint32(rhs)));
-                case PrimalKind.float32:
-                    return generic<S>(dinx.mul(float32(lhs), float32(rhs)));
-                    
-                case PrimalKind.float64:
-                    return generic<S>(dinx.mul(float64(lhs), float64(rhs)));
-                default:
-                    throw unsupported(kind);
-            }            
+            if(typeof(T) == typeof(int))
+                return generic<S>(dinx.mul(in int32(in lhs), in int32(in rhs)));
+            else if(typeof(T) == typeof(uint))
+                return generic<S>(dinx.mul(in uint32(in lhs), in uint32(in rhs)));
+            else if(typeof(T) == typeof(float))
+                return generic<S>(dinx.mul(in float32(in lhs), in float32(in rhs)));
+            else if(typeof(T) == typeof(double))
+                return generic<S>(dinx.mul(in float64(in lhs), in float64(in rhs)));
+            else 
+                throw unsupported(PrimalKinds.kind<T>());
+
         }
 
         [MethodImpl(Inline)]
@@ -83,16 +67,16 @@ namespace Z0
             switch(kind)
             {
                 case PrimalKind.int32:
-                    dst = generic<S>(dinx.mul(int32(lhs), int32(rhs)));
+                    dst = generic<S>(dinx.mul(in int32(in lhs), in int32(in rhs)));
                     return ref dst;
                 case PrimalKind.uint32:
-                    dst = generic<S>(dinx.mul(uint32(lhs), uint32(rhs)));
+                    dst = generic<S>(dinx.mul(in uint32(in lhs), in uint32(in rhs)));
                     return ref dst;
                 case PrimalKind.float32:
-                    dst = generic<S>(dinx.mul(float32(lhs), float32(rhs)));
+                    dst = generic<S>(dinx.mul(in float32(in lhs), in float32(in rhs)));
                     return ref dst;                    
                 case PrimalKind.float64:
-                    dst = generic<S>(dinx.mul(float64(lhs), float64(rhs)));
+                    dst = generic<S>(dinx.mul(in float64(in lhs), in float64(in rhs)));
                     return ref dst;
                 default:
                     throw unsupported(kind);
@@ -127,7 +111,6 @@ namespace Z0
         }
  
 
-        [MethodImpl(Inline)]
         public static Span128<T> mul<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct
         {

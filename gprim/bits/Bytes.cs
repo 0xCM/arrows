@@ -50,7 +50,6 @@ namespace Z0
             dst = span<byte>(Unsafe.SizeOf<T>());
             As.generic<T>(ref dst[0]) = src;
             return ref dst;
-
         }
 
         [MethodImpl(Inline)]   

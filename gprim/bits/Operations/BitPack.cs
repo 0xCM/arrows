@@ -13,9 +13,6 @@ namespace Z0
     
     partial class Bits
     {                
-
-
-        [MethodImpl(Optimize)]
         public static ref sbyte bitpack(in ReadOnlySpan<Bit> src, out sbyte dst)
         {
             dst = 0;
@@ -26,7 +23,6 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Optimize)]
         public static ref byte bitpack(in ReadOnlySpan<Bit> src, out byte dst)
         {
             dst = 0;
@@ -37,7 +33,6 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Optimize)]
         public static ref ushort bitpack(in ReadOnlySpan<Bit> src, out ushort dst)
         {
             dst = 0;
@@ -48,7 +43,6 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Optimize)]
         public static ref short bitpack(in ReadOnlySpan<Bit> src, out short dst)
         {
             dst = 0;
@@ -59,7 +53,6 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Optimize)]
         public static ref int bitpack(in ReadOnlySpan<Bit> src, out int dst)
         {
             dst = 0;
@@ -70,7 +63,6 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Optimize)]
         public static ref uint bitpack(in ReadOnlySpan<Bit> src, out uint dst)
         {
             dst = 0;
@@ -81,7 +73,6 @@ namespace Z0
             return ref dst;
         }
         
-        [MethodImpl(Optimize)]        
         public static ref long bitpack(in ReadOnlySpan<Bit> src, out long dst)
         {
             dst = 0;
@@ -92,7 +83,6 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Optimize)]
         public static ref ulong bitpack(in ReadOnlySpan<Bit> src, out ulong dst)
         {
             dst = 0;

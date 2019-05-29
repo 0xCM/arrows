@@ -56,7 +56,7 @@ namespace Z0
         public static Metrics<sbyte> Lt(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, MetricConfig config = null)
         {
             var opid = Id<sbyte>(OpKind.Lt);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = new bool[length(lhs,rhs)];
             var dOps = DirectOps(config);
             
@@ -77,7 +77,7 @@ namespace Z0
         public static Metrics<byte> Lt(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, MetricConfig config = null)
         {
             var opid = Id<byte>(OpKind.Lt);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = new bool[length(lhs,rhs)];
             var dOps = DirectOps(config);
             
@@ -98,7 +98,7 @@ namespace Z0
         public static Metrics<short> Lt(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, MetricConfig config = null)
         {
             var opid = Id<short>(OpKind.Lt);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = new bool[length(lhs,rhs)];
             var dOps = DirectOps(config);
             
@@ -119,7 +119,7 @@ namespace Z0
         public static Metrics<ushort> Lt(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, MetricConfig config = null)
         {
             var opid = Id<ushort>(OpKind.Lt);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = new bool[length(lhs,rhs)];
             var dOps = DirectOps(config);
             
@@ -140,7 +140,7 @@ namespace Z0
         public static Metrics<int> Lt(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<int>(OpKind.Lt);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = new bool[length(lhs,rhs)];
             var dOps = DirectOps(config);
             
@@ -161,7 +161,7 @@ namespace Z0
         public static Metrics<uint> Lt(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, MetricConfig config = null)
         {
             var opid = Id<uint>(OpKind.Lt);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = new bool[length(lhs,rhs)];
             var dOps = DirectOps(config);
             
@@ -182,7 +182,7 @@ namespace Z0
         public static Metrics<long> Lt(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, MetricConfig config = null)
         {
             var opid = Id<long>(OpKind.Lt);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = new bool[length(lhs,rhs)];
             var dOps = DirectOps(config);
             
@@ -203,7 +203,7 @@ namespace Z0
         public static Metrics<ulong> Lt(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, MetricConfig config = null)
         {
             var opid = Id<ulong>(OpKind.Lt);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = new bool[length(lhs,rhs)];
             var dOps = DirectOps(config);
             
@@ -224,7 +224,7 @@ namespace Z0
         public static Metrics<float> Lt(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, MetricConfig config = null)
         {
             var opid = Id<float>(OpKind.Lt);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = new bool[length(lhs,rhs)];
             var dOps = DirectOps(config);
             
@@ -245,7 +245,7 @@ namespace Z0
         public static Metrics<double> Lt(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, MetricConfig config = null)
         {
             var opid = Id<double>(OpKind.Lt);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = new bool[length(lhs,rhs)];
             var dOps = DirectOps(config);
             

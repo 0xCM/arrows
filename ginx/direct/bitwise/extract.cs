@@ -20,6 +20,7 @@ namespace Z0
         public static byte extract(Vec128<byte> src, byte pos)
             => Extract(src,pos);
 
+
         [MethodImpl(Inline)]
         public static int extract(Vec128<int> src, byte pos)
             => Extract(src,pos);

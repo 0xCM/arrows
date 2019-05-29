@@ -62,6 +62,9 @@ namespace Z0
 
         public OpVariance Mode {get;}
 
+         public bool NonZero
+            => OpKind != OpKind.None;
+
         public string OpUri {get;}
 
         public override string ToString() 

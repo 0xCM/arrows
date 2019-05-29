@@ -17,35 +17,56 @@ namespace Z0
     partial class ginx
     {
         [MethodImpl(Inline)]
-        public static bool eq<T>(in Vec128<T> lhs, in Vec128<T> rhs)
+        public static Span<Bit> eq<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    return dinx.eq(int8(lhs), int8(rhs));
-                case PrimalKind.uint8:
-                    return dinx.eq(uint8(lhs), uint8(rhs));
-                case PrimalKind.int16:
-                    return dinx.eq(int16(lhs), int16(rhs));
-                case PrimalKind.uint16:
-                    return dinx.eq(uint16(lhs), uint16(rhs));
-                case PrimalKind.int32:
-                    return dinx.eq(int32(lhs), int32(rhs));
-                case PrimalKind.uint32:
-                    return dinx.eq(uint32(lhs), uint32(rhs));
-                case PrimalKind.int64:
-                    return dinx.eq(int64(lhs), int64(rhs));
-                case PrimalKind.uint64:
-                    return dinx.eq(uint64(lhs), uint64(rhs));
-                case PrimalKind.float32:
-                    return dinx.eq(float32(lhs), float32(rhs));
-                case PrimalKind.float64:
-                    return dinx.eq(float64(lhs), float64(rhs));
-                default:
-                    throw unsupported(kind);
-            }            
+            if(typeof(T) == typeof(sbyte))
+                return dinx.eq(in int8(in lhs), in int8(in rhs));
+            else if(typeof(T) == typeof(byte))
+                return dinx.eq(in uint8(in lhs), in uint8(in rhs));
+            else if(typeof(T) == typeof(short))
+                return dinx.eq(in int16(in lhs), in int16(in rhs));
+            else if(typeof(T) == typeof(ushort))
+                return dinx.eq(in uint16(in lhs), in uint16(in rhs));
+            else if(typeof(T) == typeof(int))
+                return dinx.eq(in int32(in lhs), in int32(in rhs));
+            else if(typeof(T) == typeof(uint))
+                return dinx.eq(in uint32(in lhs), in uint32(in rhs));
+            else if(typeof(T) == typeof(long))
+                return dinx.eq(in int64(in lhs), in int64(in rhs));
+            else if(typeof(T) == typeof(ulong))
+                return dinx.eq(in uint64(in lhs), in uint64(in rhs));
+            else if(typeof(T) == typeof(float))
+                return dinx.eq(in float32(in lhs), in float32(in rhs));
+            else if(typeof(T) == typeof(double))
+                return dinx.eq(in float64(in lhs), in float64(in rhs));
+            else 
+                throw unsupported(PrimalKinds.kind<T>());
         }
+
+        [MethodImpl(Inline)]
+        public static Span<Bit> eq<T>(in Vec256<T> lhs, in Vec256<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return dinx.eq(in int8(in lhs), in int8(in rhs));
+            else if(typeof(T) == typeof(byte))
+                return dinx.eq(in uint8(in lhs), in uint8(in rhs));
+            else if(typeof(T) == typeof(short))
+                return dinx.eq(in int16(in lhs), in int16(in rhs));
+            else if(typeof(T) == typeof(ushort))
+                return dinx.eq(in uint16(in lhs), in uint16(in rhs));
+            else if(typeof(T) == typeof(int))
+                return dinx.eq(in int32(in lhs), in int32(in rhs));
+            else if(typeof(T) == typeof(uint))
+                return dinx.eq(in uint32(in lhs), in uint32(in rhs));
+            else if(typeof(T) == typeof(long))
+                return dinx.eq(in int64(in lhs), in int64(in rhs));
+            else if(typeof(T) == typeof(ulong))
+                return dinx.eq(in uint64(in lhs), in uint64(in rhs));
+            else 
+                throw unsupported(PrimalKinds.kind<T>());
+        }
+
     }
 }

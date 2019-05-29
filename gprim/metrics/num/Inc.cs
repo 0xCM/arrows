@@ -22,7 +22,7 @@ namespace Z0
             var opid =  Id<T>(OpKind.Inc);
             var numSrc = src.Numbers();
             var dst = Num.alloc<T>(src.Length);
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
 
             var sw = stopwatch();
             for(var cycle = 1; cycle <= cycles; cycle++)

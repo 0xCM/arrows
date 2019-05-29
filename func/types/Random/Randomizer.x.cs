@@ -33,10 +33,6 @@ namespace Z0
             return zip(lhs,rhs);
         }
 
-        // public static unsafe void StreamTo<T>(this IRandomizer random, int length, Interval<T>? domain, Func<T,bool> filter, void* pDst)
-        //     where T : struct
-        //         => random.Random<T>().StreamTo(Randomizer.Domain(domain), length, pDst, filter);
-
         public static T Single<T>(this IRandomizer src, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
                 => src.Stream<T>(domain).First();
@@ -45,10 +41,13 @@ namespace Z0
             where T : struct
         {            
             var dst = span<T>(length);
-            //random.StreamTo(length, Randomizer.Domain(domain), filter, Unsafe.AsPointer(ref dst[0]));
             random.StreamTo(Randomizer.Domain(domain), length, ref dst[0], filter);
             return dst;
         }
+
+        public static unsafe ReadOnlySpan<T> ReadOnlySpan<T>(this IRandomizer random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
+            where T : struct
+                => random.Span<T>(length, domain, filter);
 
         public static T[] Array<T>(this IRandomizer random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct

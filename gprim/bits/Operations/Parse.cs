@@ -27,29 +27,25 @@ namespace Z0
         static ReadOnlySpan<char> IgnoreBitSpecifier(in ReadOnlySpan<char> bs)
             =>  HasBitSpecifier(bs) ? bs.Slice(2) : bs;
 
-
-        [MethodImpl(Inline)]
-        public static ref sbyte parse(in ReadOnlySpan<char> bs, in int offset, out sbyte dst)
-        {
-            parse(bs, offset, out byte x);
-            dst = (sbyte)x;
-            return ref dst;                                                
-        }
-
         [MethodImpl(Optimize)]
-        public static ref byte parse(in ReadOnlySpan<char> bs, in int offset, out byte dst)
+        public static byte parse(in ReadOnlySpan<char> bs, in int offset, out byte dst)
         {
             var src = IgnoreBitSpecifier(bs);
             var last = Math.Min(U8BitCount, src.Length) - 1;                        
             var pos = last - 1;            
             
-            dst = 0;
+            dst = (byte)0;
             for(var i=offset; i<= last; i++)
                 if(src[i] == Bit.One)
                     enable(ref dst, last - i);
                         
-            return ref dst;
+            return dst;
         }
+
+        [MethodImpl(Inline)]
+        public static sbyte parse(in ReadOnlySpan<char> bs, in int offset, out sbyte dst)
+            => dst = (sbyte)parse(bs, offset, out byte x);
+
 
         [MethodImpl(Inline)]
         public static ref short parse(in ReadOnlySpan<char> bs, in int offset, out short dst)

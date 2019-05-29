@@ -85,13 +85,6 @@ namespace Z0
             => test(in data, in pos);
 
         [MethodImpl(Inline)]
-        public ref Bit TestBit(in int pos, out Bit dst)
-        {
-            test(in data, in pos, out dst);
-            return ref dst;
-        }
-
-        [MethodImpl(Inline)]
         public void EnableBit(in int pos)
             => enable(ref data, in pos);
 

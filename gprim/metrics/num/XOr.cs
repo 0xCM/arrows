@@ -26,7 +26,7 @@ namespace Z0
             var opid =  Id<T>(OpKind.XOr);
             var src = lhs.Numbers(rhs);
             var dst = Num.alloc<T>(length(lhs,rhs));
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
 
             var sw = stopwatch();
             for(var cycle = 1; cycle <= cycles; cycle++)

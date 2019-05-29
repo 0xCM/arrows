@@ -57,7 +57,7 @@ namespace Z0
         public  static Metrics<sbyte> Add(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, MetricConfig config = null)
         {
             var opid = Id<sbyte>(OpKind.Add);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs,rhs);
             var dOps = DirectOps(config);
             
@@ -78,7 +78,7 @@ namespace Z0
         public  static Metrics<byte> Add(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, MetricConfig config = null)
         {
             var opid = Id<byte>(OpKind.Add);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs,rhs);
             var dOps = DirectOps(config);
             
@@ -99,7 +99,7 @@ namespace Z0
         public  static Metrics<short> Add(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, MetricConfig config = null)
         {
             var opid = Id<short>(OpKind.Add);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs,rhs);
             var dOps = DirectOps(config);
             
@@ -120,7 +120,7 @@ namespace Z0
         public  static Metrics<ushort> Add(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, MetricConfig config = null)
         {
             var opid = Id<ushort>(OpKind.Add);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs,rhs);
             var dOps = DirectOps(config);
             
@@ -141,7 +141,7 @@ namespace Z0
         public  static Metrics<int> Add(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, MetricConfig config = null)
         {
             var opid = Id<int>(OpKind.Add);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs,rhs);
             var dOps = DirectOps(config);
             
@@ -162,7 +162,7 @@ namespace Z0
         public  static Metrics<uint> Add(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, MetricConfig config = null)
         {
             var opid = Id<uint>(OpKind.Add);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs,rhs);
             var dOps = DirectOps(config);
             
@@ -183,7 +183,7 @@ namespace Z0
         public  static Metrics<long> Add(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, MetricConfig config = null)
         {
             var opid = Id<long>(OpKind.Add);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs,rhs);
             var dOps = DirectOps(config);
             
@@ -204,7 +204,7 @@ namespace Z0
         public  static Metrics<ulong> Add(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, MetricConfig config = null)
         {
             var opid = Id<ulong>(OpKind.Add);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs,rhs);
             var dOps = DirectOps(config);
             
@@ -225,7 +225,7 @@ namespace Z0
         public  static Metrics<float> Add(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, MetricConfig config = null)
         {
             var opid = Id<float>(OpKind.Add);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs,rhs);
             var dOps = DirectOps(config);
             
@@ -246,7 +246,7 @@ namespace Z0
         public  static Metrics<double> Add(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, MetricConfig config = null)
         {
             var opid = Id<double>(OpKind.Add);            
-            var cycles = Cycles(config);
+            var cycles = Metric.Cycles(config);
             var dst = alloc(lhs,rhs);
             var dOps = DirectOps(config);
             

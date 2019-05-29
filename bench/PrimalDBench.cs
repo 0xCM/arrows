@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Bench
 {
     using System;
     using System.Linq;
@@ -18,17 +18,16 @@ namespace Z0
         static IRandomizer Random(IRandomizer random)
             => random ?? Randomizer.define(RandSeeds.BenchSeed);
 
-        static MetricConfig Configure(MetricConfig config)
-            => config ?? MetricConfig.Default;
+        const MetricKind Metric = MetricKind.PrimalD;
 
         public static Metrics<T> Run<T>(OpKind op, MetricConfig config = null, IRandomizer random = null)        
             where T : struct
         {
-            config = Configure(config);
+            config = Metric.Configure(config);
             random = Random(random);
             var lhs = random.Span<T>(config.Samples);
             var rhs = op.NonZeroRight() ? random.NonZeroSpan<T>(config.Samples) : random.Span<T>(config.Samples);
-            var metrics = Metrics.Zero<T>();
+            var metrics = Metrics<T>.Zero;
 
             GC.Collect();            
             for(var i=0; i<config.Runs; i++)
@@ -38,7 +37,7 @@ namespace Z0
 
         public static IMetrics Run(OpKind op, PrimalKind prim,  MetricConfig config = null, IRandomizer random = null)
         {
-            config = Configure(config);
+            config = Metric.Configure(config);
             random = Random(random);
 
             switch(prim)
@@ -72,7 +71,7 @@ namespace Z0
             where T : struct
         {
             var metrics = Metrics<T>.Zero;
-            config = Configure(config);
+            config = Metric.Configure(config);
             switch(op)
             {
                 case OpKind.Add:
@@ -127,7 +126,7 @@ namespace Z0
         public static Metrics<T> Run<T>(OpKind op, ReadOnlySpan<T> src, MetricConfig config = null)
             where T : struct
         {
-            config = Configure(config);
+            config = Metric.Configure(config);
             var metrics = Metrics<T>.Zero;
             switch(op)
             {

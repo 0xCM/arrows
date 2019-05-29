@@ -17,45 +17,38 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static Vec128<S> lshiftv<S,T>(in Vec128<S> lhs, in Vec128<T> shifts)
+        public static Vec128<S> lshift<S,T>(in Vec128<S> lhs, in Vec128<T> shifts)
             where S : struct
             where T : struct
         {
-            var kind = PrimalKinds.kind<S>();
-            switch(kind)
-            {
-                case PrimalKind.int32:
-                    return generic<S>(dinx.lshift(int32(lhs), uint32(shifts)));
-                case PrimalKind.uint32:
-                    return generic<S>(dinx.lshift(uint32(lhs), uint32(shifts)));
-                case PrimalKind.int64:
-                    return generic<S>(dinx.lshift(int64(lhs), uint64(shifts)));
-                case PrimalKind.uint64:
-                    return generic<S>(dinx.lshift(uint64(lhs), uint64(shifts)));
-                default:
-                    throw unsupported(kind);
-            }            
+            if(typeof(S) == typeof(int))
+                return generic<S>(dinx.lshift(in int32(in lhs), in uint32(in shifts)));
+            else if(typeof(S) == typeof(uint)) 
+                return generic<S>(dinx.lshift(in uint32(in lhs), uint32(in shifts)));
+            else if(typeof(S) == typeof(long))
+                return generic<S>(dinx.lshift(in int64(lhs), uint64(in shifts)));
+            else if(typeof(S) == typeof(ulong))
+                return generic<S>(dinx.lshift(in uint64(lhs), in uint64(in shifts)));
+            else
+                throw unsupported(PrimalKinds.kind<S>());
+
         }
 
         [MethodImpl(Inline)]
-        public static Vec256<S> lshiftv<S,T>(in Vec256<S> lhs, in Vec256<T> shifts)
+        public static Vec256<S> lshift<S,T>(in Vec256<S> lhs, in Vec256<T> shifts)
             where S : struct
             where T : struct
         {
-            var kind = PrimalKinds.kind<S>();
-            switch(kind)
-            {
-                case PrimalKind.int32:
-                    return generic<S>(dinx.lshift(int32(lhs), uint32(shifts)));
-                case PrimalKind.uint32:
-                    return generic<S>(dinx.lshift(uint32(lhs), uint32(shifts)));
-                case PrimalKind.int64:
-                    return generic<S>(dinx.lshift(int64(lhs), uint64(shifts)));
-                case PrimalKind.uint64:
-                    return generic<S>(dinx.lshift(uint64(lhs), uint64(shifts)));
-                default:
-                    throw unsupported(kind);
-            }            
+            if(typeof(S) == typeof(int))
+                return generic<S>(dinx.lshift(in int32(in lhs), in uint32(in shifts)));
+            else if(typeof(S) == typeof(uint)) 
+                return generic<S>(dinx.lshift(in uint32(in lhs), uint32(in shifts)));
+            else if(typeof(S) == typeof(long))
+                return generic<S>(dinx.lshift(in int64(lhs), uint64(in shifts)));
+            else if(typeof(S) == typeof(ulong))
+                return generic<S>(dinx.lshift(in uint64(lhs), in uint64(in shifts)));
+            else
+                throw unsupported(PrimalKinds.kind<S>());
         }
 
         public static Span128<S> lshiftv<S,T>(in ReadOnlySpan128<S> lhs, in ReadOnlySpan128<T> shifts, Span128<S> dst)

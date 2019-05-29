@@ -72,6 +72,7 @@ namespace Z0
         public static BitVectorU8 Define(in byte src)
             => new BitVectorU8(src);
 
+        [MethodImpl(Inline)]
         public static BitVectorU8 Define(in ReadOnlySpan<Bit> src)
             => Define(in bitpack(src, out byte dst));
 
@@ -82,7 +83,6 @@ namespace Z0
                 => Bits.pack8(
                     x00, x01, x02, x03, 
                     x04, x05, x06, x07);
-
 
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVectorU8 lhs, in BitVectorU8 rhs)
@@ -134,13 +134,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool TestBit(in int pos)
             => test(in data, in pos);
-
-        [MethodImpl(Inline)]
-        public ref Bit TestBit(in int pos, out Bit dst)
-        {
-            test(in data, in pos, out dst);
-            return ref dst;
-        }
 
         [MethodImpl(Inline)]
         public string BitString()

@@ -14,26 +14,27 @@ namespace Z0
 
     public static class OpKinds
     {
+        
         public static OpId OpId(this OpKind op, 
             PrimalKind Primitive, 
-            NumericKind NumKind = NumericKind.Native, 
+            NumericKind numKind = NumericKind.Native, 
             bool generic = false, 
             bool intrinsic = false, 
             OpFusion fusion = OpFusion.Atomic, 
             ByteSize? operandSize = null, 
             OpVariance? mode = null,
             bool baseline = true)
-                => new OpId(op, Primitive, NumKind, generic, intrinsic, fusion,operandSize, mode,  baseline);
+                => new OpId(op, Primitive, numKind, generic, intrinsic, fusion,operandSize, mode,  baseline);
 
         public static OpId<T> OpId<T>(this OpKind op, 
-            NumericKind NumKind = NumericKind.Native, 
+            NumericKind numKind = NumericKind.Native, 
             bool generic = false, 
-            NumericSystem system = NumericSystem.Primal,             
+            NumericSystem numSystem = NumericSystem.Primal,             
             OpFusion fusion = OpFusion.Atomic, 
             ByteSize? operandSize = null, 
             OpVariance? mode = null)
                 where T : struct
-                    => new OpId<T>(op, NumKind, generic, system, fusion, operandSize ?? Unsafe.SizeOf<T>(), mode);        
+                    => new OpId<T>(op, numKind, generic, numSystem, fusion, operandSize ?? Unsafe.SizeOf<T>(), mode);        
 
         public static OpType WithType(this OpKind src, PrimalKind prim)
             => OpType.Define(src,prim);    

@@ -30,6 +30,10 @@ namespace Z0
         public static ReadOnlySpan<T> ToReadOnlySpan<T>(this Span<T> src)
             => src;
 
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this ReadOnlyMemory<T> src)
+            => new ReadOnlySpan<T>(src.ToArray());
+
         /// <summary>
         /// Constructs a span from an array selection
         /// </summary>
@@ -104,10 +108,26 @@ namespace Z0
             return false;
         }
 
+        [MethodImpl(NotInline)]
+        public static bool All<T>(this ReadOnlySpan<T> src, Func<T,bool> f)
+             where T : struct
+        {
+            var it = src.GetEnumerator();
+            while(it.MoveNext())
+                if(!f(it.Current))
+                    return false;
+            return true;
+        }
+
         [MethodImpl(Inline)]
         public static bool Any<T>(this Span<T> src, Func<T,bool> f)
              where T : struct
                 => src.ToReadOnlySpan().Any(f);
+
+        [MethodImpl(Inline)]
+        public static bool All<T>(this Span<T> src, Func<T,bool> f)
+             where T : struct
+                => src.ToReadOnlySpan().All(f);
 
         /// <summary>
         /// Constructs a span from the entireity of a sequence
@@ -173,6 +193,17 @@ namespace Z0
             where T : struct
             => MemoryMarshal.AsBytes(src);
 
+        public static (int Index, T Value)[] ToIndexedValues<T>(this ReadOnlySpan<T> src)
+        {
+            var dst = alloc<(int,T)>(src.Length);
+            for(var i = 0; i< dst.Length; i++)
+                dst[i] = (i,src[i]);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static (int Index, T Value)[] ToIndexedValues<T>(this Span<T> src)        
+            => src.ToReadOnlySpan().ToIndexedValues();
 
         [MethodImpl(Inline)]
         public static (T[] Left, T[] Right) PairReplicate<T>(this ReadOnlySpan<T> src)
