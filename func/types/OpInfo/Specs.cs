@@ -12,23 +12,22 @@ namespace Z0
 
     public interface IOpId
     {
+        NumericSystem NumSystem {get;}
+        
         OpKind OpKind {get;}
 
         NumericKind NumKind {get;}
 
         PrimalKind OperandType {get;}
 
-        ByteSize OperandSize {get;}
-
-        bool Generic {get;}
-
+        Genericity Generic {get;}
+        
         bool Intrinsic {get;}
 
         OpFusion Fusion {get;}
 
-        OpVariance Mode {get;}
+        string OpTitle {get;}
 
-        bool Role {get;}
 
     }
 

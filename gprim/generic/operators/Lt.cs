@@ -75,11 +75,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<bool> lt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
-        {
-            var dst = span<bool>(length(lhs,rhs));
-            return lt(lhs,rhs,dst);
-        }
-
+                => lt(lhs,rhs,span<bool>(length(lhs,rhs)));
+                
         [MethodImpl(Inline)]
         static bool ltI8<T>(T lhs, T rhs)
             => int8(lhs) < int8(rhs);

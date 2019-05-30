@@ -8,6 +8,9 @@ namespace Z0
             public const string RightSquiggle = "⇝";
             
             public const string LeftSquiggle = "⇜";
+
+            public const string LongRightArrow = "⟶";
+
         }
 
     }

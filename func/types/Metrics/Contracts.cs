@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -72,12 +72,6 @@ namespace Z0
         double Ratio {get;}
 
         MetricComparisonRecord ToRecord();
-    }
-
-    public interface IOpMetric
-    {
-        Metrics<T> Measure<T>(MetricConfig config, IRandomizer random)    
-            where T : struct;
     }
 
 

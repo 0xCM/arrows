@@ -73,7 +73,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<bool> lteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
-                => gmath.lteq(lhs,rhs,span<bool>(length(lhs,rhs)));
+                => lteq(lhs,rhs,span<bool>(length(lhs,rhs)));
 
         [MethodImpl(Inline)]
         static bool lteqI8<T>(T lhs, T rhs)

@@ -315,10 +315,5 @@ namespace Z0
                 => Num.many(lhs).PairWith(Num.many(rhs));
 
 
-        [MethodImpl(Inline)]
-        public static Metrics<T> DefineMetrics<T>(this OpId<T> OpId, long OpCount, Duration WorkTime, num<T>[] results)
-            where T : struct
-                => new Metrics<T>(OpId, OpCount, WorkTime, results.Extract());
- 
     }
 }

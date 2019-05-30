@@ -24,7 +24,7 @@ namespace Z0.Test
         /// </summary>
         public static OpId<T> PrimalGeneric<T>(OpKind kind, NumericKind numKind = NumericKind.Native)
             where T : struct
-                => kind.OpId<T>(numKind, generic: true);
+                => kind.OpId<T>(NumericSystem.Primal, generic: Genericity.Generic);
 
         public PrimalAtomicTest()
         {

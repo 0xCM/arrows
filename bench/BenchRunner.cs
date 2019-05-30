@@ -15,67 +15,26 @@ namespace Z0.Bench
 
     public static class BenchRunner
     {
-        public static IMetrics Run(this InXMetricConfig128 config, OpKind op, PrimalKind prim, bool generic, IRandomizer random = null)        
-            =>  generic  ? InX128GOps.Run(op, prim, config, random) : InXBench.Run(op, prim, config, random);
+        static IRandomizer Random(IRandomizer random = null)
+            => random ?? Z0.Randomizer.define(RandSeeds.BenchSeed);
+
+        public static IMetrics Run(this InXConfig128 config, OpKind op, PrimalKind prim, bool generic, IRandomizer random = null)        
+            =>  generic  
+                ? config.RunG(op, prim, random) 
+                : config.RunD(op, prim, random);
                   
-        public static IMetrics Run(this InXMetricConfig256 config, OpKind op, PrimalKind prim, bool generic, IRandomizer random = null)        
-            =>  generic  ? InX256GOps.Run(op, prim, config, random) : InXBench.Run(op, prim, config, random);
-                  
-        public static IEnumerable<IMetrics> Run(this MetricConfig config, IEnumerable<MetricKind> metrics, IEnumerable<OpKind> ops, 
-            IEnumerable<PrimalKind> primitives,  IRandomizer random = null)
-        {
-            var query = from m in metrics
-                        from o in ops
-                        from p in primitives
-                        select m.Run(o,p, config, random);
-            return query;
-        }
+        public static IMetrics Run(this InXConfig256 config, OpKind op, PrimalKind prim, bool generic, IRandomizer random = null)        
+            =>  generic  
+                ? config.RunG(op, prim, random) 
+                : config.RunD(op, prim, random);                
 
-        public static MetricComparisonRecord RunComparison(this InXMetricConfig256 config, OpType op)
-        {
-            var m1 = config.Run(op.Op, op.Primitive, false);
-            print(m1.Describe());
-
-            var m2 = config.Run(op.Op, op.Primitive, true);
-            print(m2.Describe());
-
-            return m1.Compare(m2).ToRecord();
-        }
-
-        public static MetricComparisonRecord RunComparison(this InXMetricConfig128 config, OpType op)
-        {
-            var m1 = config.Run(op.Op, op.Primitive, false);
-            print(m1.Describe());
-
-            var m2 = config.Run(op.Op, op.Primitive, true);
-            print(m2.Describe());
-        
-            return m1.Compare(m2).ToRecord();
-        }
-
-        public static MetricComparisonRecord RunComparison(this MetricConfig config, OpType op, bool silent = false)
-        {            
-            var m1 = MetricKind.PrimalD.Run(op.Op, op.Primitive, config);
-            var m2 = MetricKind.PrimalG.Run(op.Op, op.Primitive, config);            
-            var compared = m1.Compare(m2).ToRecord();
-            if(!silent)
-                print(items(compared).FormatMessages());
-            return compared;
-        }
-
-        public static MetricComparisonRecord RunComparison(this InXMetricConfig128 config, OpKind op, PrimalKind prim)
-            => config.RunComparison(OpType.Define(op, prim));
-
-        public static MetricComparisonRecord RunComparison(this InXMetricConfig256 config, OpKind op, PrimalKind prim)
-            => config.RunComparison(OpType.Define(op, prim));
-
-        public static IEnumerable<MetricComparisonRecord> RunComparison(this InXMetricConfig128 config, IEnumerable<OpType> ops)
+        public static IEnumerable<MetricComparisonRecord> RunComparison(this InXConfig128 config, IEnumerable<OpType> ops)
             => ops.Select(op => config.RunComparison(op));
 
-        public static IEnumerable<MetricComparisonRecord> RunComparison(this InXMetricConfig256 config, IEnumerable<OpType> ops)
+        public static IEnumerable<MetricComparisonRecord> RunComparison(this InXConfig256 config, IEnumerable<OpType> ops)
             => ops.Select(op => config.RunComparison(op));
 
-       public static IReadOnlyList<MetricComparisonRecord> RunComparisons(this InXMetricConfig128 config, IEnumerable<OpType> ops, bool silent = false)
+       public static IReadOnlyList<MetricComparisonRecord> RunComparisons(this InXConfig128 config, IEnumerable<OpType> ops, bool silent = false)
        {            
             var results = new List<MetricComparisonRecord>();
             foreach(var comparison in config.RunComparison(ops))
@@ -88,7 +47,7 @@ namespace Z0.Bench
             return results;
        }
 
-       public static IReadOnlyList<MetricComparisonRecord> RunComparisons(this InXMetricConfig256 config, IEnumerable<OpType> ops, bool silent = false)
+       public static IReadOnlyList<MetricComparisonRecord> RunComparisons(this InXConfig256 config, IEnumerable<OpType> ops, bool silent = false)
        {            
             var results = new List<MetricComparisonRecord>();
             foreach(var comparison in config.RunComparison(ops))
@@ -101,77 +60,72 @@ namespace Z0.Bench
             return results;
        } 
 
-        static IRandomizer Random(IRandomizer random = null)
-            => random ?? Z0.Randomizer.define(RandSeeds.BenchSeed);
+        public static MetricComparisonRecord RunComparison(this InXConfig256 config, OpType op, IRandomizer random = null)
+        {
+            var m1 = config.Run(op.Op, op.Primitive, false, random);
+            print(m1.Describe());
+
+            var m2 = config.Run(op.Op, op.Primitive, true, random);
+            print(m2.Describe());
+
+            return m1.Compare(m2).ToRecord();
+        }
+
+        public static MetricComparisonRecord RunComparison(this InXConfig128 config, OpType op, IRandomizer random = null)
+        {
+            var m1 = config.Run(op.Op, op.Primitive, false, random);
+            print(m1.Describe());
+
+            var m2 = config.Run(op.Op, op.Primitive, true, random);
+            print(m2.Describe());
         
-        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim,  MetricConfig config = null, IRandomizer random = null)
-        {
-            switch(metric)
-            {
-                case MetricKind.NumG:
-                    return NumGBench.Run(op, prim, metric.Configure(config), Random(random));
-                case MetricKind.PrimalD:
-                    return PrimalDBench.Run(op, prim, metric.Configure(config), Random(random));
-                case MetricKind.PrimalG:
-                    return PrimalGBench.Run(op, prim, metric.Configure(config), Random(random));
-                case MetricKind.BitD:
-                    return BitBench.Run(metric, false, op, prim, metric.Configure(config), Random(random));
-                case MetricKind.BitG:
-                    return BitBench.Run(metric, true, op, prim, metric.Configure(config), Random(random));
-                default:
-                    throw unsupported(metric);
-
-            }
+            return m1.Compare(m2).ToRecord();
         }
 
-        public static IMetrics Run(this MetricKind metric, OpKind op, PrimalKind primal, 
-            MetricConfig config = null, IRandomizer random = null)
-                => metric.Measure(op, primal, config, random);
-
-        public static IMetrics Run(this MetricId metric, MetricConfig config = null, IRandomizer random = null)
-        {
-            (var @class, var prim, var op) = metric;
-            
-            random = Random(random);
-
-            switch(@class)
-            {
-                case MetricKind.PrimalD:
-                    return PrimalDBench.Run(op, prim, config, random);
-                case MetricKind.NumG:
-                    return NumGBench.Run(op, prim, config, random);
-                case MetricKind.PrimalG:
-                    return PrimalGBench.Run(op, prim, config, random);
-                default:
-                    throw unsupported(metric.Classifier);
-            }
-        }
-
-        public static MetricComparisonRecord RunComparison(this MetricComparisonSpec spec, MetricConfig config = null)
+        public static MetricComparisonRecord RunComparison(this PrimalGConfig config, OpType op, bool silent = false)
         {            
-            var lhs = spec.BaselineId.Run(config);
-            var rhs = spec.BenchId.Run(config);        
-            //spec.Validate(lhs,rhs);
-
-            static IEnumerable<T> items<T>(ValueTuple<T,T> tuple)
-                => zfunc.items(tuple.Item1, tuple.Item2);
-
-            var compare = lhs.Compare(rhs);
-            var record = compare.ToRecord();
-            var info = record.Describe();
-
-            print(lhs.Describe(true));
-            print(rhs.Describe(true));
-            print(items(info));
-            
-            return record;                    
+            var m1 = MetricKind.PrimalD.Measure(op.Op, op.Primitive, config.ToDirect());
+            var m2 = MetricKind.PrimalG.Measure(op.Op, op.Primitive, config);            
+            var compared = m1.Compare(m2).ToRecord();
+            if(!silent)
+                print(items(compared).FormatMessages());
+            return compared;
+        }
+        
+        public static MetricComparisonRecord RunComparison(this NumGConfig config, OpType op, bool silent = false)
+        {            
+            var m1 = MetricKind.PrimalD.Measure(op.Op, op.Primitive, config.ToPrimalD());
+            var m2 = MetricKind.NumG.Measure(op.Op, op.Primitive, config);
+            var compared = m1.Compare(m2).ToRecord();
+            if(!silent)
+                print(items(compared).FormatMessages());
+            return compared;
         }
 
-         public static IEnumerable<MetricComparisonRecord> RunComparisons(this IEnumerable<MetricComparisonSpec> specs, MetricConfig config = null)
-         {
-             foreach(var spec in specs)
-                yield return spec.RunComparison(config);
-         }   
+        public static MetricComparisonRecord RunComparison(this BitGConfig config, OpType op, bool silent = false)
+        {
+            var m1 = MetricKind.BitD.Measure(op.Op, op.Primitive, config.ToDirect());
+            var m2 = MetricKind.BitG.Measure(op.Op, op.Primitive, config);
+            var compared = m1.Compare(m2).ToRecord();
+            if(!silent)
+                print(items(compared).FormatMessages());
+            return compared;
+        }
+
+        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, NumGConfig config, IRandomizer random = null)
+            => metric.Configure(config).Run(op, prim, Random(random));
+
+        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, PrimalDConfig config, IRandomizer random = null)
+            => metric.Configure(config).Run(op, prim, Random(random));
+
+        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, PrimalGConfig config, IRandomizer random = null)
+            => metric.Configure(config).Run(op, prim, Random(random));
+
+        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, BitDConfig config, IRandomizer random = null)
+            => metric.Configure(config).Run(metric, false, op, prim, Random(random));
+
+        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, BitGConfig config, IRandomizer random = null)
+            => metric.Configure(config).Run(metric, true, op, prim, Random(random));
 
     }
 }

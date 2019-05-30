@@ -74,10 +74,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
-        {
-            var dst = span<bool>(length(lhs,rhs));
-            return gmath.eq(lhs,rhs,dst);
-        }
+                => eq(lhs,rhs,span<bool>(length(lhs,rhs)));
 
         [MethodImpl(Inline)]
         static bool eqI8<T>(T lhs, T rhs)
@@ -113,30 +110,10 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static bool eqF32<T>(T lhs, T rhs)
-        {
-            var x = float32(lhs);
-            var y = float32(rhs);
-            if(x.IsNaN() && y.IsNaN())
-                return true;
-            else if(x.IsPosInf() && y.IsPosInf())
-                return true;
-            else if(x.IsNegInf() && y.IsNegInf())
-                return true;
-            else return x == y;
-        }
+            => float32(lhs) == float32(rhs);
             
         [MethodImpl(Inline)]
         static bool eqF64<T>(T lhs, T rhs)
-        {
-            var x = float64(lhs);
-            var y = float64(rhs);
-            if(x.IsNaN() && y.IsNaN())
-                return true;
-            else if(x.IsPosInf() && y.IsPosInf())
-                return true;
-            else if(x.IsNegInf() && y.IsNegInf())
-                return true;
-            else return x == y;
-        }
+            => float64(lhs) == float64(rhs);
     }
 }

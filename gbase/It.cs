@@ -100,4 +100,10 @@ namespace Z0
             return Valid;
         }
     }
+
+    public static class ClaimX
+    {
+ 
+
+    }    
 }

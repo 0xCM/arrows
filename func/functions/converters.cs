@@ -21,43 +21,28 @@ namespace Z0
             where S : struct
             where T : struct
         {
-            var srcKind = PrimalKinds.kind<S>();
-            switch(srcKind)
-            {
-                
-                case PrimalKind.int8:
+            if(typeof(T) == typeof(sbyte))
                     convert(int8(src), out dst);
-                break;
-                case PrimalKind.uint8:
+            else if(typeof(T) == typeof(byte))
                     convert(uint8(src), out dst);
-                    break;
-                case PrimalKind.int16:
+            else if(typeof(T) == typeof(short))
                     convert(int16(src), out dst);
-                    break;
-                case PrimalKind.uint16:
+            else if(typeof(T) == typeof(ushort))
                     convert(uint16(src), out dst);
-                    break;
-                case PrimalKind.int32:
+            else if(typeof(T) == typeof(int))
                     convert(int32(src), out dst);
-                    break;
-                case PrimalKind.uint32:
+            else if(typeof(T) == typeof(uint))
                     convert(uint32(src), out dst);
-                    break;
-                case PrimalKind.int64:
+            else if(typeof(T) == typeof(long))
                     convert(int64(src), out dst);
-                    break;
-                case PrimalKind.uint64:
+            else if(typeof(T) == typeof(ulong))
                     convert(uint64(src), out dst);
-                    break;
-                case PrimalKind.float32:
+            else if(typeof(T) == typeof(float))
                     convert(float32(src), out dst);
-                    break;
-                case PrimalKind.float64:                
+            else if(typeof(T) == typeof(double))
                     convert(float64(src), out dst);
-                break;
-                default:
-                    throw unsupported(srcKind);
-            }
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
                             
            return dst;            
         }
@@ -66,44 +51,29 @@ namespace Z0
         public static T convert<T>(sbyte src, out T dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
+            if(typeof(T) == typeof(sbyte))
+                  dst = generic<T>(convert(src, out sbyte x));
+            else if(typeof(T) == typeof(byte))
+                  dst = generic<T>(convert(src, out byte x));
+            else if(typeof(T) == typeof(short))
+                  dst = generic<T>(convert(src, out short x));
+            else if(typeof(T) == typeof(ushort))
+                  dst = generic<T>(convert(src, out ushort x));
+            else if(typeof(T) == typeof(int))
+                  dst = generic<T>(convert(src, out int x));
+            else if(typeof(T) == typeof(uint))
+                  dst = generic<T>(convert(src, out uint x));
+            else if(typeof(T) == typeof(long))
+                  dst = generic<T>(convert(src, out long x));
+            else if(typeof(T) == typeof(ulong))
+                  dst = generic<T>(convert(src, out ulong x));
+            else if(typeof(T) == typeof(float))
+                  dst = generic<T>(convert(src, out float x));
+            else if(typeof(T) == typeof(double))
+                  dst = generic<T>(convert(src, out double x));
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
 
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                  dst = generic<T>(convert(src, out sbyte i8));
-                break;
-                case PrimalKind.uint8:
-                  dst = generic<T>(convert(src, out byte u8));
-                    break;
-                case PrimalKind.int16:
-                  dst = generic<T>(convert(src, out short i16));
-                    break;
-                case PrimalKind.uint16:
-                  dst = generic<T>(convert(src, out ushort u16));
-                    break;
-                case PrimalKind.int32:
-                  dst = generic<T>(convert(src, out int i32));
-                    break;
-                case PrimalKind.uint32:
-                  dst = generic<T>(convert(src, out uint u32));
-                    break;
-                case PrimalKind.int64:
-                  dst = generic<T>(convert(src, out long i64));
-                    break;
-                case PrimalKind.uint64:
-                  dst = generic<T>(convert(src, out ulong u64));
-                    break;
-                case PrimalKind.float32:
-                  dst = generic<T>(convert(src, out float f32));
-                    break;
-                case PrimalKind.float64:                
-                  dst = generic<T>(convert(src, out double f64));
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
            return dst;            
         }
 
@@ -111,90 +81,59 @@ namespace Z0
         public static T convert<T>(byte src, out T dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
+            if(typeof(T) == typeof(sbyte))
+                  dst = generic<T>(convert(src, out sbyte x));
+            else if(typeof(T) == typeof(byte))
+                  dst = generic<T>(convert(src, out byte x));
+            else if(typeof(T) == typeof(short))
+                  dst = generic<T>(convert(src, out short x));
+            else if(typeof(T) == typeof(ushort))
+                  dst = generic<T>(convert(src, out ushort x));
+            else if(typeof(T) == typeof(int))
+                  dst = generic<T>(convert(src, out int x));
+            else if(typeof(T) == typeof(uint))
+                  dst = generic<T>(convert(src, out uint x));
+            else if(typeof(T) == typeof(long))
+                  dst = generic<T>(convert(src, out long x));
+            else if(typeof(T) == typeof(ulong))
+                  dst = generic<T>(convert(src, out ulong x));
+            else if(typeof(T) == typeof(float))
+                  dst = generic<T>(convert(src, out float x));
+            else if(typeof(T) == typeof(double))
+                  dst = generic<T>(convert(src, out double x));
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
 
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                  dst = generic<T>(convert(src, out sbyte i8));
-                break;
-                case PrimalKind.uint8:
-                  dst = generic<T>(convert(src, out byte u8));
-                    break;
-                case PrimalKind.int16:
-                  dst = generic<T>(convert(src, out short i16));
-                    break;
-                case PrimalKind.uint16:
-                  dst = generic<T>(convert(src, out ushort u16));
-                    break;
-                case PrimalKind.int32:
-                  dst = generic<T>(convert(src, out int i32));
-                    break;
-                case PrimalKind.uint32:
-                  dst = generic<T>(convert(src, out uint u32));
-                    break;
-                case PrimalKind.int64:
-                  dst = generic<T>(convert(src, out long i64));
-                    break;
-                case PrimalKind.uint64:
-                  dst = generic<T>(convert(src, out ulong u64));
-                    break;
-                case PrimalKind.float32:
-                  dst = generic<T>(convert(src, out float f32));
-                    break;
-                case PrimalKind.float64:                
-                  dst = generic<T>(convert(src, out double f64));
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
            return dst;            
         }
-
 
         [MethodImpl(Inline)]
         public static T convert<T>(short src, out T dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
+            if(typeof(T) == typeof(sbyte))
+                  dst = generic<T>(convert(src, out sbyte x));
+            else if(typeof(T) == typeof(byte))
+                  dst = generic<T>(convert(src, out byte x));
+            else if(typeof(T) == typeof(short))
+                  dst = generic<T>(convert(src, out short x));
+            else if(typeof(T) == typeof(ushort))
+                  dst = generic<T>(convert(src, out ushort x));
+            else if(typeof(T) == typeof(int))
+                  dst = generic<T>(convert(src, out int x));
+            else if(typeof(T) == typeof(uint))
+                  dst = generic<T>(convert(src, out uint x));
+            else if(typeof(T) == typeof(long))
+                  dst = generic<T>(convert(src, out long x));
+            else if(typeof(T) == typeof(ulong))
+                  dst = generic<T>(convert(src, out ulong x));
+            else if(typeof(T) == typeof(float))
+                  dst = generic<T>(convert(src, out float x));
+            else if(typeof(T) == typeof(double))
+                  dst = generic<T>(convert(src, out double x));
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
 
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                  dst = generic<T>(convert(src, out sbyte i8));
-                break;
-                case PrimalKind.uint8:
-                  dst = generic<T>(convert(src, out byte u8));
-                    break;
-                case PrimalKind.int16:
-                  dst = generic<T>(convert(src, out short i16));
-                    break;
-                case PrimalKind.uint16:
-                  dst = generic<T>(convert(src, out ushort u16));
-                    break;
-                case PrimalKind.int32:
-                  dst = generic<T>(convert(src, out int i32));
-                    break;
-                case PrimalKind.uint32:
-                  dst = generic<T>(convert(src, out uint u32));
-                    break;
-                case PrimalKind.int64:
-                  dst = generic<T>(convert(src, out long i64));
-                    break;
-                case PrimalKind.uint64:
-                  dst = generic<T>(convert(src, out ulong u64));
-                    break;
-                case PrimalKind.float32:
-                  dst = generic<T>(convert(src, out float f32));
-                    break;
-                case PrimalKind.float64:                
-                  dst = generic<T>(convert(src, out double f64));
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
            return dst;            
         }
 
@@ -202,44 +141,29 @@ namespace Z0
         public static T convert<T>(ushort src, out T dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
+            if(typeof(T) == typeof(sbyte))
+                  dst = generic<T>(convert(src, out sbyte x));
+            else if(typeof(T) == typeof(byte))
+                  dst = generic<T>(convert(src, out byte x));
+            else if(typeof(T) == typeof(short))
+                  dst = generic<T>(convert(src, out short x));
+            else if(typeof(T) == typeof(ushort))
+                  dst = generic<T>(convert(src, out ushort x));
+            else if(typeof(T) == typeof(int))
+                  dst = generic<T>(convert(src, out int x));
+            else if(typeof(T) == typeof(uint))
+                  dst = generic<T>(convert(src, out uint x));
+            else if(typeof(T) == typeof(long))
+                  dst = generic<T>(convert(src, out long x));
+            else if(typeof(T) == typeof(ulong))
+                  dst = generic<T>(convert(src, out ulong x));
+            else if(typeof(T) == typeof(float))
+                  dst = generic<T>(convert(src, out float x));
+            else if(typeof(T) == typeof(double))
+                  dst = generic<T>(convert(src, out double x));
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
 
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                  dst = generic<T>(convert(src, out sbyte i8));
-                break;
-                case PrimalKind.uint8:
-                  dst = generic<T>(convert(src, out byte u8));
-                    break;
-                case PrimalKind.int16:
-                  dst = generic<T>(convert(src, out short i16));
-                    break;
-                case PrimalKind.uint16:
-                  dst = generic<T>(convert(src, out ushort u16));
-                    break;
-                case PrimalKind.int32:
-                  dst = generic<T>(convert(src, out int i32));
-                    break;
-                case PrimalKind.uint32:
-                  dst = generic<T>(convert(src, out uint u32));
-                    break;
-                case PrimalKind.int64:
-                  dst = generic<T>(convert(src, out long i64));
-                    break;
-                case PrimalKind.uint64:
-                  dst = generic<T>(convert(src, out ulong u64));
-                    break;
-                case PrimalKind.float32:
-                  dst = generic<T>(convert(src, out float f32));
-                    break;
-                case PrimalKind.float64:                
-                  dst = generic<T>(convert(src, out double f64));
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
            return dst;            
         }
 
@@ -247,44 +171,29 @@ namespace Z0
         public static T convert<T>(int src, out T dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
+            if(typeof(T) == typeof(sbyte))
+                  dst = generic<T>(convert(src, out sbyte x));
+            else if(typeof(T) == typeof(byte))
+                  dst = generic<T>(convert(src, out byte x));
+            else if(typeof(T) == typeof(short))
+                  dst = generic<T>(convert(src, out short x));
+            else if(typeof(T) == typeof(ushort))
+                  dst = generic<T>(convert(src, out ushort x));
+            else if(typeof(T) == typeof(int))
+                  dst = generic<T>(convert(src, out int x));
+            else if(typeof(T) == typeof(uint))
+                  dst = generic<T>(convert(src, out uint x));
+            else if(typeof(T) == typeof(long))
+                  dst = generic<T>(convert(src, out long x));
+            else if(typeof(T) == typeof(ulong))
+                  dst = generic<T>(convert(src, out ulong x));
+            else if(typeof(T) == typeof(float))
+                  dst = generic<T>(convert(src, out float x));
+            else if(typeof(T) == typeof(double))
+                  dst = generic<T>(convert(src, out double x));
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
 
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                  dst = generic<T>(convert(src, out sbyte i8));
-                break;
-                case PrimalKind.uint8:
-                  dst = generic<T>(convert(src, out byte u8));
-                    break;
-                case PrimalKind.int16:
-                  dst = generic<T>(convert(src, out short i16));
-                    break;
-                case PrimalKind.uint16:
-                  dst = generic<T>(convert(src, out ushort u16));
-                    break;
-                case PrimalKind.int32:
-                  dst = generic<T>(convert(src, out int i32));
-                    break;
-                case PrimalKind.uint32:
-                  dst = generic<T>(convert(src, out uint u32));
-                    break;
-                case PrimalKind.int64:
-                  dst = generic<T>(convert(src, out long i64));
-                    break;
-                case PrimalKind.uint64:
-                  dst = generic<T>(convert(src, out ulong u64));
-                    break;
-                case PrimalKind.float32:
-                  dst = generic<T>(convert(src, out float f32));
-                    break;
-                case PrimalKind.float64:                
-                  dst = generic<T>(convert(src, out double f64));
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
            return dst;            
         }
 
@@ -292,44 +201,29 @@ namespace Z0
         public static T convert<T>(uint src, out T dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
+            if(typeof(T) == typeof(sbyte))
+                  dst = generic<T>(convert(src, out sbyte x));
+            else if(typeof(T) == typeof(byte))
+                  dst = generic<T>(convert(src, out byte x));
+            else if(typeof(T) == typeof(short))
+                  dst = generic<T>(convert(src, out short x));
+            else if(typeof(T) == typeof(ushort))
+                  dst = generic<T>(convert(src, out ushort x));
+            else if(typeof(T) == typeof(int))
+                  dst = generic<T>(convert(src, out int x));
+            else if(typeof(T) == typeof(uint))
+                  dst = generic<T>(convert(src, out uint x));
+            else if(typeof(T) == typeof(long))
+                  dst = generic<T>(convert(src, out long x));
+            else if(typeof(T) == typeof(ulong))
+                  dst = generic<T>(convert(src, out ulong x));
+            else if(typeof(T) == typeof(float))
+                  dst = generic<T>(convert(src, out float x));
+            else if(typeof(T) == typeof(double))
+                  dst = generic<T>(convert(src, out double x));
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
 
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                  dst = generic<T>(convert(src, out sbyte i8));
-                break;
-                case PrimalKind.uint8:
-                  dst = generic<T>(convert(src, out byte u8));
-                    break;
-                case PrimalKind.int16:
-                  dst = generic<T>(convert(src, out short i16));
-                    break;
-                case PrimalKind.uint16:
-                  dst = generic<T>(convert(src, out ushort u16));
-                    break;
-                case PrimalKind.int32:
-                  dst = generic<T>(convert(src, out int i32));
-                    break;
-                case PrimalKind.uint32:
-                  dst = generic<T>(convert(src, out uint u32));
-                    break;
-                case PrimalKind.int64:
-                  dst = generic<T>(convert(src, out long i64));
-                    break;
-                case PrimalKind.uint64:
-                  dst = generic<T>(convert(src, out ulong u64));
-                    break;
-                case PrimalKind.float32:
-                  dst = generic<T>(convert(src, out float f32));
-                    break;
-                case PrimalKind.float64:                
-                  dst = generic<T>(convert(src, out double f64));
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
            return dst;            
         }
 
@@ -338,44 +232,29 @@ namespace Z0
         public static T convert<T>(long src, out T dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
+            if(typeof(T) == typeof(sbyte))
+                  dst = generic<T>(convert(src, out sbyte x));
+            else if(typeof(T) == typeof(byte))
+                  dst = generic<T>(convert(src, out byte x));
+            else if(typeof(T) == typeof(short))
+                  dst = generic<T>(convert(src, out short x));
+            else if(typeof(T) == typeof(ushort))
+                  dst = generic<T>(convert(src, out ushort x));
+            else if(typeof(T) == typeof(int))
+                  dst = generic<T>(convert(src, out int x));
+            else if(typeof(T) == typeof(uint))
+                  dst = generic<T>(convert(src, out uint x));
+            else if(typeof(T) == typeof(long))
+                  dst = generic<T>(convert(src, out long x));
+            else if(typeof(T) == typeof(ulong))
+                  dst = generic<T>(convert(src, out ulong x));
+            else if(typeof(T) == typeof(float))
+                  dst = generic<T>(convert(src, out float x));
+            else if(typeof(T) == typeof(double))
+                  dst = generic<T>(convert(src, out double x));
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
 
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                  dst = generic<T>(convert(src, out sbyte i8));
-                break;
-                case PrimalKind.uint8:
-                  dst = generic<T>(convert(src, out byte u8));
-                    break;
-                case PrimalKind.int16:
-                  dst = generic<T>(convert(src, out short i16));
-                    break;
-                case PrimalKind.uint16:
-                  dst = generic<T>(convert(src, out ushort u16));
-                    break;
-                case PrimalKind.int32:
-                  dst = generic<T>(convert(src, out int i32));
-                    break;
-                case PrimalKind.uint32:
-                  dst = generic<T>(convert(src, out uint u32));
-                    break;
-                case PrimalKind.int64:
-                  dst = generic<T>(convert(src, out long i64));
-                    break;
-                case PrimalKind.uint64:
-                  dst = generic<T>(convert(src, out ulong u64));
-                    break;
-                case PrimalKind.float32:
-                  dst = generic<T>(convert(src, out float f32));
-                    break;
-                case PrimalKind.float64:                
-                  dst = generic<T>(convert(src, out double f64));
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
            return dst;            
         }
 
@@ -384,44 +263,29 @@ namespace Z0
         public static T convert<T>(ulong src, out T dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
+            if(typeof(T) == typeof(sbyte))
+                  dst = generic<T>(convert(src, out sbyte x));
+            else if(typeof(T) == typeof(byte))
+                  dst = generic<T>(convert(src, out byte x));
+            else if(typeof(T) == typeof(short))
+                  dst = generic<T>(convert(src, out short x));
+            else if(typeof(T) == typeof(ushort))
+                  dst = generic<T>(convert(src, out ushort x));
+            else if(typeof(T) == typeof(int))
+                  dst = generic<T>(convert(src, out int x));
+            else if(typeof(T) == typeof(uint))
+                  dst = generic<T>(convert(src, out uint x));
+            else if(typeof(T) == typeof(long))
+                  dst = generic<T>(convert(src, out long x));
+            else if(typeof(T) == typeof(ulong))
+                  dst = generic<T>(convert(src, out ulong x));
+            else if(typeof(T) == typeof(float))
+                  dst = generic<T>(convert(src, out float x));
+            else if(typeof(T) == typeof(double))
+                  dst = generic<T>(convert(src, out double x));
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
 
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                  dst = generic<T>(convert(src, out sbyte i8));
-                break;
-                case PrimalKind.uint8:
-                  dst = generic<T>(convert(src, out byte u8));
-                    break;
-                case PrimalKind.int16:
-                  dst = generic<T>(convert(src, out short i16));
-                    break;
-                case PrimalKind.uint16:
-                  dst = generic<T>(convert(src, out ushort u16));
-                    break;
-                case PrimalKind.int32:
-                  dst = generic<T>(convert(src, out int i32));
-                    break;
-                case PrimalKind.uint32:
-                  dst = generic<T>(convert(src, out uint u32));
-                    break;
-                case PrimalKind.int64:
-                  dst = generic<T>(convert(src, out long i64));
-                    break;
-                case PrimalKind.uint64:
-                  dst = generic<T>(convert(src, out ulong u64));
-                    break;
-                case PrimalKind.float32:
-                  dst = generic<T>(convert(src, out float f32));
-                    break;
-                case PrimalKind.float64:                
-                  dst = generic<T>(convert(src, out double f64));
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
            return dst;            
         }
 
@@ -429,44 +293,29 @@ namespace Z0
         public static T convert<T>(float src, out T dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
+            if(typeof(T) == typeof(sbyte))
+                  dst = generic<T>(convert(src, out sbyte x));
+            else if(typeof(T) == typeof(byte))
+                  dst = generic<T>(convert(src, out byte x));
+            else if(typeof(T) == typeof(short))
+                  dst = generic<T>(convert(src, out short x));
+            else if(typeof(T) == typeof(ushort))
+                  dst = generic<T>(convert(src, out ushort x));
+            else if(typeof(T) == typeof(int))
+                  dst = generic<T>(convert(src, out int x));
+            else if(typeof(T) == typeof(uint))
+                  dst = generic<T>(convert(src, out uint x));
+            else if(typeof(T) == typeof(long))
+                  dst = generic<T>(convert(src, out long x));
+            else if(typeof(T) == typeof(ulong))
+                  dst = generic<T>(convert(src, out ulong x));
+            else if(typeof(T) == typeof(float))
+                  dst = generic<T>(convert(src, out float x));
+            else if(typeof(T) == typeof(double))
+                  dst = generic<T>(convert(src, out double x));
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
 
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                  dst = generic<T>(convert(src, out sbyte i8));
-                break;
-                case PrimalKind.uint8:
-                  dst = generic<T>(convert(src, out byte u8));
-                    break;
-                case PrimalKind.int16:
-                  dst = generic<T>(convert(src, out short i16));
-                    break;
-                case PrimalKind.uint16:
-                  dst = generic<T>(convert(src, out ushort u16));
-                    break;
-                case PrimalKind.int32:
-                  dst = generic<T>(convert(src, out int i32));
-                    break;
-                case PrimalKind.uint32:
-                  dst = generic<T>(convert(src, out uint u32));
-                    break;
-                case PrimalKind.int64:
-                  dst = generic<T>(convert(src, out long i64));
-                    break;
-                case PrimalKind.uint64:
-                  dst = generic<T>(convert(src, out ulong u64));
-                    break;
-                case PrimalKind.float32:
-                  dst = generic<T>(convert(src, out float f32));
-                    break;
-                case PrimalKind.float64:                
-                  dst = generic<T>(convert(src, out double f64));
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
            return dst;            
         }
 
@@ -474,43 +323,29 @@ namespace Z0
         public static T convert<T>(double src, out T dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                  dst = generic<T>(convert(src, out sbyte i8));
-                break;
-                case PrimalKind.uint8:
-                  dst = generic<T>(convert(src, out byte u8));
-                    break;
-                case PrimalKind.int16:
-                  dst = generic<T>(convert(src, out short i16));
-                    break;
-                case PrimalKind.uint16:
-                  dst = generic<T>(convert(src, out ushort u16));
-                    break;
-                case PrimalKind.int32:
-                  dst = generic<T>(convert(src, out int i32));
-                    break;
-                case PrimalKind.uint32:
-                  dst = generic<T>(convert(src, out uint u32));
-                    break;
-                case PrimalKind.int64:
-                  dst = generic<T>(convert(src, out long i64));
-                    break;
-                case PrimalKind.uint64:
-                  dst = generic<T>(convert(src, out ulong u64));
-                    break;
-                case PrimalKind.float32:
-                  dst = generic<T>(convert(src, out float f32));
-                    break;
-                case PrimalKind.float64:                
-                  dst = generic<T>(convert(src, out double f64));
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
+            if(typeof(T) == typeof(sbyte))
+                  dst = generic<T>(convert(src, out sbyte x));
+            else if(typeof(T) == typeof(byte))
+                  dst = generic<T>(convert(src, out byte x));
+            else if(typeof(T) == typeof(short))
+                  dst = generic<T>(convert(src, out short x));
+            else if(typeof(T) == typeof(ushort))
+                  dst = generic<T>(convert(src, out ushort x));
+            else if(typeof(T) == typeof(int))
+                  dst = generic<T>(convert(src, out int x));
+            else if(typeof(T) == typeof(uint))
+                  dst = generic<T>(convert(src, out uint x));
+            else if(typeof(T) == typeof(long))
+                  dst = generic<T>(convert(src, out long x));
+            else if(typeof(T) == typeof(ulong))
+                  dst = generic<T>(convert(src, out ulong x));
+            else if(typeof(T) == typeof(float))
+                  dst = generic<T>(convert(src, out float x));
+            else if(typeof(T) == typeof(double))
+                  dst = generic<T>(convert(src, out double x));
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
+
            return dst;            
         }
 
@@ -1049,7 +884,6 @@ namespace Z0
         static T generic<T>(byte src)
             => Unsafe.As<byte,T>(ref src);
 
-
         [MethodImpl(Inline)]
         static ref T generic<T>(ref byte src)
             => ref Unsafe.As<byte,T>(ref src);
@@ -1129,42 +963,28 @@ namespace Z0
             where S : struct
             where T : struct            
         {
-            var dstKind = PrimalKinds.kind<T>();
-            switch(dstKind)
-            {
-                case PrimalKind.int8:
-                    convert(src, ref int8(ref dst));
-                break;
-                case PrimalKind.uint8:
-                    convert(src, ref uint8(ref dst));
-                    break;
-                case PrimalKind.int16:
-                    convert(src, ref int16(ref dst));
-                    break;
-                case PrimalKind.uint16:
-                    convert(src, ref uint16(ref dst));
-                    break;
-                case PrimalKind.int32:
-                    convert(src, ref int32(ref dst));
-                    break;
-                case PrimalKind.uint32:
-                    convert(src, ref uint32(ref dst));
-                    break;
-                case PrimalKind.int64:
-                    convert(src, ref int64(ref dst));
-                    break;
-                case PrimalKind.uint64:
-                    convert(src, ref uint64(ref dst));
-                    break;
-                case PrimalKind.float32:
-                    convert(src, ref float32(ref dst));
-                    break;
-                case PrimalKind.float64:                
-                    convert(src, ref float64(ref dst));
-                break;
-                default:
-                    throw unsupported(dstKind);
-            }
+            if(typeof(T) == typeof(sbyte))
+                convert(src, ref int8(ref dst));
+            else if(typeof(T) == typeof(byte))
+                convert(src, ref uint8(ref dst));
+            else if(typeof(T) == typeof(short))
+                convert(src, ref int16(ref dst));
+            else if(typeof(T) == typeof(ushort))
+                convert(src, ref uint16(ref dst));
+            else if(typeof(T) == typeof(int))
+                convert(src, ref int32(ref dst));
+            else if(typeof(T) == typeof(uint))
+                convert(src, ref uint32(ref dst));
+            else if(typeof(T) == typeof(long))
+                convert(src, ref int64(ref dst));
+            else if(typeof(T) == typeof(ulong))
+                convert(src, ref uint64(ref dst));
+            else if(typeof(T) == typeof(float))
+                convert(src, ref float32(ref dst));
+            else if(typeof(T) == typeof(double))
+                convert(src, ref float64(ref dst));
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
 
             return ref dst;
         }
@@ -1173,88 +993,56 @@ namespace Z0
         public static sbyte convert<T>(T src, ref sbyte dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    convert(int8(src), out dst);
-                break;
-                case PrimalKind.uint8:
-                    convert(uint8(src), out dst);
-                    break;
-                case PrimalKind.int16:
-                    convert(int16(src), out dst);
-                    break;
-                case PrimalKind.uint16:
-                    convert(uint16(src), out dst);
-                    break;
-                case PrimalKind.int32:
-                    convert(int32(src), out dst);
-                    break;
-                case PrimalKind.uint32:
-                    convert(uint32(src), out dst);
-                    break;
-                case PrimalKind.int64:
-                    convert(int64(src), out dst);
-                    break;
-                case PrimalKind.uint64:
-                    convert(uint64(src), out dst);
-                    break;
-                case PrimalKind.float32:
-                    convert(float32(src), out dst);
-                    break;
-                case PrimalKind.float64:                
-                    convert(float64(src), out dst);
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
-           return dst;            
+            if(typeof(T) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(T) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(T) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(T) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(T) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(T) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(T) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(T) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(T) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(T) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
         [MethodImpl(Inline)]
         public static byte convert<T>(T src, ref byte dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    convert(int8(src), out dst);
-                break;
-                case PrimalKind.uint8:
-                    convert(uint8(src), out dst);
-                    break;
-                case PrimalKind.int16:
-                    convert(int16(src), out dst);
-                    break;
-                case PrimalKind.uint16:
-                    convert(uint16(src), out dst);
-                    break;
-                case PrimalKind.int32:
-                    convert(int32(src), out dst);
-                    break;
-                case PrimalKind.uint32:
-                    convert(uint32(src), out dst);
-                    break;
-                case PrimalKind.int64:
-                    convert(int64(src), out dst);
-                    break;
-                case PrimalKind.uint64:
-                    convert(uint64(src), out dst);
-                    break;
-                case PrimalKind.float32:
-                    convert(float32(src), out dst);
-                    break;
-                case PrimalKind.float64:                
-                    convert(float64(src), out dst);
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
-           return dst;            
+            if(typeof(T) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(T) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(T) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(T) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(T) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(T) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(T) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(T) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(T) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(T) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
 
@@ -1262,308 +1050,196 @@ namespace Z0
         public static short convert<T>(T src, ref short dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    convert(int8(src), out dst);
-                break;
-                case PrimalKind.uint8:
-                    convert(uint8(src), out dst);
-                    break;
-                case PrimalKind.int16:
-                    convert(int16(src), out dst);
-                    break;
-                case PrimalKind.uint16:
-                    convert(uint16(src), out dst);
-                    break;
-                case PrimalKind.int32:
-                    convert(int32(src), out dst);
-                    break;
-                case PrimalKind.uint32:
-                    convert(uint32(src), out dst);
-                    break;
-                case PrimalKind.int64:
-                    convert(int64(src), out dst);
-                    break;
-                case PrimalKind.uint64:
-                    convert(uint64(src), out dst);
-                    break;
-                case PrimalKind.float32:
-                    convert(float32(src), out dst);
-                    break;
-                case PrimalKind.float64:                
-                    convert(float64(src), out dst);
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
-           return dst;            
+            if(typeof(T) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(T) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(T) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(T) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(T) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(T) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(T) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(T) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(T) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(T) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
         [MethodImpl(Inline)]
         public static ushort convert<T>(T src, ref ushort dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    convert(int8(src), out dst);
-                break;
-                case PrimalKind.uint8:
-                    convert(uint8(src), out dst);
-                    break;
-                case PrimalKind.int16:
-                    convert(int16(src), out dst);
-                    break;
-                case PrimalKind.uint16:
-                    convert(uint16(src), out dst);
-                    break;
-                case PrimalKind.int32:
-                    convert(int32(src), out dst);
-                    break;
-                case PrimalKind.uint32:
-                    convert(uint32(src), out dst);
-                    break;
-                case PrimalKind.int64:
-                    convert(int64(src), out dst);
-                    break;
-                case PrimalKind.uint64:
-                    convert(uint64(src), out dst);
-                    break;
-                case PrimalKind.float32:
-                    convert(float32(src), out dst);
-                    break;
-                case PrimalKind.float64:                
-                    convert(float64(src), out dst);
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
-           return dst;            
+            if(typeof(T) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(T) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(T) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(T) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(T) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(T) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(T) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(T) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(T) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(T) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
         [MethodImpl(Inline)]
         public static int convert<T>(T src, ref int dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    convert(int8(src), out dst);
-                break;
-                case PrimalKind.uint8:
-                    convert(uint8(src), out dst);
-                    break;
-                case PrimalKind.int16:
-                    convert(int16(src), out dst);
-                    break;
-                case PrimalKind.uint16:
-                    convert(uint16(src), out dst);
-                    break;
-                case PrimalKind.int32:
-                    convert(int32(src), out dst);
-                    break;
-                case PrimalKind.uint32:
-                    convert(uint32(src), out dst);
-                    break;
-                case PrimalKind.int64:
-                    convert(int64(src), out dst);
-                    break;
-                case PrimalKind.uint64:
-                    convert(uint64(src), out dst);
-                    break;
-                case PrimalKind.float32:
-                    convert(float32(src), out dst);
-                    break;
-                case PrimalKind.float64:                
-                    convert(float64(src), out dst);
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
-           return dst;            
+            if(typeof(T) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(T) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(T) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(T) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(T) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(T) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(T) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(T) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(T) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(T) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
         [MethodImpl(Inline)]
         public static uint convert<T>(T src, ref uint dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    convert(int8(src), out dst);
-                break;
-                case PrimalKind.uint8:
-                    convert(uint8(src), out dst);
-                    break;
-                case PrimalKind.int16:
-                    convert(int16(src), out dst);
-                    break;
-                case PrimalKind.uint16:
-                    convert(uint16(src), out dst);
-                    break;
-                case PrimalKind.int32:
-                    convert(int32(src), out dst);
-                    break;
-                case PrimalKind.uint32:
-                    convert(uint32(src), out dst);
-                    break;
-                case PrimalKind.int64:
-                    convert(int64(src), out dst);
-                    break;
-                case PrimalKind.uint64:
-                    convert(uint64(src), out dst);
-                    break;
-                case PrimalKind.float32:
-                    convert(float32(src), out dst);
-                    break;
-                case PrimalKind.float64:                
-                    convert(float64(src), out dst);
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
-           return dst;            
+            if(typeof(T) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(T) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(T) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(T) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(T) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(T) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(T) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(T) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(T) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(T) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
         [MethodImpl(Inline)]
         public static long convert<T>(T src, ref long dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    convert(int8(src), out dst);
-                break;
-                case PrimalKind.uint8:
-                    convert(uint8(src), out dst);
-                    break;
-                case PrimalKind.int16:
-                    convert(int16(src), out dst);
-                    break;
-                case PrimalKind.uint16:
-                    convert(uint16(src), out dst);
-                    break;
-                case PrimalKind.int32:
-                    convert(int32(src), out dst);
-                    break;
-                case PrimalKind.uint32:
-                    convert(uint32(src), out dst);
-                    break;
-                case PrimalKind.int64:
-                    convert(int64(src), out dst);
-                    break;
-                case PrimalKind.uint64:
-                    convert(uint64(src), out dst);
-                    break;
-                case PrimalKind.float32:
-                    convert(float32(src), out dst);
-                    break;
-                case PrimalKind.float64:                
-                    convert(float64(src), out dst);
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
-           return dst;            
+            if(typeof(T) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(T) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(T) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(T) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(T) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(T) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(T) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(T) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(T) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(T) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
         [MethodImpl(Inline)]
         public static ulong convert<T>(T src, ref ulong dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    convert(int8(src), out dst);
-                break;
-                case PrimalKind.uint8:
-                    convert(uint8(src), out dst);
-                    break;
-                case PrimalKind.int16:
-                    convert(int16(src), out dst);
-                    break;
-                case PrimalKind.uint16:
-                    convert(uint16(src), out dst);
-                    break;
-                case PrimalKind.int32:
-                    convert(int32(src), out dst);
-                    break;
-                case PrimalKind.uint32:
-                    convert(uint32(src), out dst);
-                    break;
-                case PrimalKind.int64:
-                    convert(int64(src), out dst);
-                    break;
-                case PrimalKind.uint64:
-                    convert(uint64(src), out dst);
-                    break;
-                case PrimalKind.float32:
-                    convert(float32(src), out dst);
-                    break;
-                case PrimalKind.float64:                
-                    convert(float64(src), out dst);
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
-           return dst;            
+            if(typeof(T) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(T) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(T) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(T) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(T) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(T) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(T) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(T) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(T) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(T) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
         [MethodImpl(Inline)]
         public static float convert<T>(T src, ref float dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    convert(int8(src), out dst);
-                break;
-                case PrimalKind.uint8:
-                    convert(uint8(src), out dst);
-                    break;
-                case PrimalKind.int16:
-                    convert(int16(src), out dst);
-                    break;
-                case PrimalKind.uint16:
-                    convert(uint16(src), out dst);
-                    break;
-                case PrimalKind.int32:
-                    convert(int32(src), out dst);
-                    break;
-                case PrimalKind.uint32:
-                    convert(uint32(src), out dst);
-                    break;
-                case PrimalKind.int64:
-                    convert(int64(src), out dst);
-                    break;
-                case PrimalKind.uint64:
-                    convert(uint64(src), out dst);
-                    break;
-                case PrimalKind.float32:
-                    convert(float32(src), out dst);
-                    break;
-                case PrimalKind.float64:                
-                    convert(float64(src), out dst);
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
-           return dst;            
+            if(typeof(T) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(T) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(T) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(T) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(T) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(T) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(T) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(T) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(T) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(T) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
 
@@ -1571,44 +1247,28 @@ namespace Z0
         public static double convert<T>(T src, ref double dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    convert(int8(src), out dst);
-                break;
-                case PrimalKind.uint8:
-                    convert(uint8(src), out dst);
-                    break;
-                case PrimalKind.int16:
-                    convert(int16(src), out dst);
-                    break;
-                case PrimalKind.uint16:
-                    convert(uint16(src), out dst);
-                    break;
-                case PrimalKind.int32:
-                    convert(int32(src), out dst);
-                    break;
-                case PrimalKind.uint32:
-                    convert(uint32(src), out dst);
-                    break;
-                case PrimalKind.int64:
-                    convert(int64(src), out dst);
-                    break;
-                case PrimalKind.uint64:
-                    convert(uint64(src), out dst);
-                    break;
-                case PrimalKind.float32:
-                    convert(float32(src), out dst);
-                    break;
-                case PrimalKind.float64:                
-                    convert(float64(src), out dst);
-                break;
-                default:
-                    throw unsupported(kind);
-            }
-                            
-           return dst;            
+            if(typeof(T) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(T) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(T) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(T) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(T) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(T) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(T) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(T) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(T) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(T) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
       #endregion

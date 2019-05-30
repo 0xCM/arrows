@@ -75,6 +75,24 @@ namespace  Z0
         public static bool IsNegInf(this double src)
             => double.IsNegativeInfinity(src);
 
+        [MethodImpl(Inline)]
+        public static bool Infinite(this float src)
+            => float.IsPositiveInfinity(src) || float.IsNegativeInfinity(src);
+
+        [MethodImpl(Inline)]
+        public static bool Infinite(this double src)
+            => double.IsPositiveInfinity(src) || double.IsNegativeInfinity(src);
+
+
+        [MethodImpl(Inline)]
+        public static bool Finite(this float src)
+            => !float.IsPositiveInfinity(src) && !float.IsNegativeInfinity(src) && !float.IsNaN(src);
+
+        [MethodImpl(Inline)]
+        public static bool Finite(this double src)
+            => !double.IsPositiveInfinity(src) && !double.IsNegativeInfinity(src) && !double.IsNaN(src);
+
+
         public static IEnumerable<ulong> ToLongs(this IEnumerable<Guid> guids)
         {
             foreach(var guid in guids)

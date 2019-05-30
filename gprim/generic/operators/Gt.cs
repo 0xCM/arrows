@@ -75,11 +75,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
-        {
-            var dst = span<bool>(length(lhs,rhs));
-            return gt(lhs,rhs,dst);
-        }
-
+                => gt(lhs,rhs,span<bool>(length(lhs,rhs)));
 
         [MethodImpl(Inline)]
         static bool gtI8<T>(T lhs, T rhs)

@@ -10,6 +10,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.IO;
 
+    using static zfunc;
 
     public class OpId : IOpId
     {   
@@ -19,112 +20,113 @@ namespace Z0
         public static IEnumerable<PrimalKind> Primitives
             => typeof(PrimalKind).GetEnumValues().AsQueryable().Cast<PrimalKind>();
 
-        public static readonly OpId Zero = new OpId(OpKind.None, PrimalKind.int8, NumericKind.Native, 
-            false, false, OpFusion.Atomic, 0, OpVariance.In, true);     
-
-
-        public static OpId operator !(OpId src)
-            => src.FlipBaseline();
+        public static readonly OpId Zero 
+            = new OpId(NumericSystem.Primal, OpKind.None, PrimalKind.int8, NumericKind.Native, Genericity.Direct, OpFusion.Atomic, string.Empty);     
 
         public static OpId operator ~(OpId src)
             => src.FlipGeneric();
         
-        public OpId(OpKind OpKind, PrimalKind OperandKind, NumericKind NumericKind, bool Generic, bool Intrinsic, 
-            OpFusion Fusion, ByteSize? OperandSize, OpVariance? Mode, bool Baseline)
+        public OpId(NumericSystem NumSystem, OpKind OpKind, PrimalKind OperandKind, NumericKind NumKind, Genericity Generic, OpFusion Fusion, string OpTitle)
         {
+            this.NumSystem = NumSystem;
             this.OpKind = OpKind;
             this.OperandType = OperandKind;
-            this.NumKind = NumericKind;
+            this.NumKind = NumKind;
             this.Generic = Generic;
-            this.Intrinsic = Intrinsic;
             this.Fusion = Fusion;
-            this.OperandSize = OperandSize ?? 0;
-            this.Mode = Mode ?? OpVariance.In;
-            this.Role = Baseline;
+            this.OpTitle =  ifEmpty(OpTitle, OpId.DefineOpTitle(this));
             this.OpUri = BuildOpUri(this);
        }
         
+        public NumericSystem NumSystem {get;}
+
         public OpKind OpKind {get;}
 
         public NumericKind NumKind {get;}
 
         public PrimalKind OperandType {get;}
 
-        public ByteSize OperandSize {get;}
-
-        public bool Generic {get;}
-
-        public bool Intrinsic {get;}
+        public Genericity Generic {get;}
 
         public OpFusion Fusion {get;}
 
-        public bool Role {get;}
-
-        public OpVariance Mode {get;}
-
-         public bool NonZero
-            => OpKind != OpKind.None;
+        public string OpTitle {get;}
 
         public string OpUri {get;}
+
+        public bool Intrinsic 
+            => NumSystem == NumericSystem.Intrinsic;
+        
+        public bool NonZero
+            => OpKind != OpKind.None;
 
         public override string ToString() 
             => OpUri;
 
-        public OpId FlipBaseline()
-            => new OpId(OpKind, OperandType, NumKind, Generic, Intrinsic, Fusion, OperandSize, Mode, !Role);
-
+        public OpId WithTitle(string OpTitle)
+            => new OpId(NumSystem, OpKind, OperandType, NumKind, Generic.Flip(), Fusion, OpTitle);
+        
         public OpId FlipGeneric()
-            => new OpId(OpKind, OperandType, NumKind, !Generic, Intrinsic, Fusion, OperandSize, Mode, Role);
+            => new OpId(NumSystem, OpKind, OperandType, NumKind, Generic.Flip(), Fusion, OpTitle);
     
         public OpId ResizeOperand(int OperandSize)
-            => new OpId(OpKind, OperandType, NumKind, Generic, Intrinsic, Fusion, OperandSize, Mode, Role);
+            => new OpId(NumSystem, OpKind, OperandType, NumKind, Generic, Fusion,  OpTitle);
 
-        public OpId WithMode(OpVariance Mode)
-            => new OpId(OpKind, OperandType, NumKind, Generic, Intrinsic, Fusion, OperandSize, Mode, Role);
+        public static string DefineOpTitle(IOpId src)
+            => $"{src.OpKind.ToString().ToLower()}";
 
- 
         public static string BuildOpUri(IOpId src)
         {
             var uri = string.Empty;            
             if(src.Intrinsic)
             {
-                uri += "intrinsics/";                    
-
-                if(src.Generic)
-                    uri += "generic/";
-                else 
-                    uri += "direct/";
-                
-                if(src.NumKind == NumericKind.Vec128 || src.NumKind == NumericKind.Vec256)
-                    uri += "Vec";
+                if(src.Generic.IsGeneric())
+                    uri += "ginx/";
                 else
-                    uri += "Num";
-                
-                uri += $"{src.OperandSize*8}[{src.OperandType}]/";
-            }
-            else
-            {
-                if(src.NumKind == NumericKind.Number)
-                    uri += $"number";
-                else
-                    uri += $"primal";
-
-                uri += $"[{src.OperandType}]/";
-
-                if(src.Generic)
-                    uri += "generic/";
-                else
-                    uri += "direct/";
+                    uri += "dinx/";
 
                 if(src.Fusion == OpFusion.Fused)
                     uri += "fused/";
                 else
                     uri += "atomic/";
 
+                uri += $"{src.OpTitle}/";
+
+                if(src.NumKind == NumericKind.Vec128)
+                    uri += "Vec128";
+                else if(src.NumKind == NumericKind.Vec256)
+                    uri += "Vec256";
+                else if(src.NumKind == NumericKind.Num128)
+                    uri += "Num128";
+                else 
+                    uri += "Vec???";
+                
+                uri += $"[{src.OperandType}]";
+            }
+            else
+            {
+                if(src.NumKind == NumericKind.NumG)
+                    uri += "numg/";
+                else
+                {
+                    if(src.Generic.IsGeneric())
+                        uri += "gprim/";
+                    else
+                        uri = "dprim/";
+                }
+
+                if(src.Fusion == OpFusion.Fused)
+                    uri += "fused/";
+                else
+                    uri += "atomic/";
+
+                uri += $"{src.OpTitle}/";
+
+                uri += $"{src.OperandType}";
 
             }
 
-            uri += $"{src.OpKind.ToString().ToLower()}";
+
 
             return uri;
         }

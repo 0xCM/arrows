@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace Z0.Metrics
 {
     using System;
     using System.Linq;
@@ -99,7 +99,7 @@ namespace Z0
         public bool PrimalDirect
             => OpId.NumKind == NumericKind.Native 
             && OpId.Intrinsic == false 
-            && OpId.Generic == false;
+            && OpId.Generic == Genericity.Direct;
 
         public Metrics<S> As<S>()
             where S : struct

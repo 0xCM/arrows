@@ -65,7 +65,11 @@ namespace Z0
 
         InX256G,
         
-        InX256GFused        
+        InX256GFused,
+
+        ConvertD,
+
+        ConvertG        
     }
 
     public static class MetricKindX
@@ -80,29 +84,39 @@ namespace Z0
             = set(NumGFused, PrimalGFused, PrimalDFused);
 
         static readonly HashSet<MetricKind> Generic 
-            = set(BitD, InX128GFused, InX256GFused, NumG, NumGFused, PrimalG, PrimalGFused);
+            = set(BitD, InX128GFused, InX256GFused, NumG, NumGFused, PrimalG, PrimalGFused, ConvertG);
 
         static readonly HashSet<MetricKind> Direct 
-            = set(BitD, InX128DFused, InX256DFused, PrimalD, PrimalDFused);
+            = set(BitD, InX128DFused, InX256DFused, PrimalD, PrimalDFused, ConvertD);
 
         static readonly HashSet<MetricKind> Intrinsic
             = set(InX128DFused, InX128GFused, InX256DFused, InX256GFused);
 
+        [MethodImpl(Inline)]
          public static bool IsAtomic(this MetricKind metric)
             => Atomic.Contains(metric);
       
+        [MethodImpl(Inline)]
         public static bool IsGeneric(this MetricKind metric)
             => Generic.Contains(metric);
 
+        [MethodImpl(Inline)]
+        public static Genericity Genericity(this MetricKind metric)
+            => metric.IsGeneric() ? Z0.Genericity.Generic : Z0.Genericity.Direct;
+
+        [MethodImpl(Inline)]
         public static bool IsBit(this MetricKind metric)
             => BitOp.Contains(metric);
 
+        [MethodImpl(Inline)]
         public static bool IsDirect(this MetricKind metric)
             => Direct.Contains(metric);
 
+        [MethodImpl(Inline)]
         public static bool IsIntrinsic(this MetricKind metric)
             => Intrinsic.Contains(metric);
 
+        [MethodImpl(Inline)]
         public static bool IsFused(this MetricKind metric)
             => Fused.Contains(metric);
 

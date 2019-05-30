@@ -9,7 +9,8 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
-    
+    using static zfunc;
+
     using static MathSym;
     using AsciCompound = AsciSym.Compound;
 
@@ -24,7 +25,7 @@ namespace Z0
         /// <summary>
         /// Identifies the custom generic number type, num[T]
         /// </summary>
-        Number = 1,
+        NumG = 1,
 
         /// <summary>
         /// Identifies a 128-bit intrinsic scalar
@@ -46,7 +47,6 @@ namespace Z0
         /// </summary>
         Vec256 = 5,
 
-        Default = Native
     }
 
     public enum NumericSystem : byte
@@ -62,10 +62,7 @@ namespace Z0
         Direct = 1,
 
 
-        Generic = 2,
-
-        Default = Direct,
-
+        Generic = 2        
     }
 
     public enum OpArity : byte
@@ -327,6 +324,8 @@ namespace Z0
 
         [Arity(OpArity.Unary)]
         Nlz,
+
+        Convert
     }
 
     public enum Multiplicity : byte
@@ -342,24 +341,4 @@ namespace Z0
         OneOrMore,
     }
 
-    public static class OpKindX
-    {        
-                
-        public static OpArity Arity(this OpKind op)
-        {
-            var attributions = (from a in typeof(OpKind).DeclaredFieldAttributions<ArityAttribute>() 
-                                 select (a.Key.Name, a.Value.Arity)).ToDictionary();
-
-            if(attributions.ContainsKey(op.ToString()))
-                return attributions[op.ToString()];
-            else
-            return OpArity.None;
-        }
-                
-
-        public static bool NonZeroRight(this OpKind op)
-            => op == OpKind.Div || op == OpKind.Mod;
-
-
-    }
 }

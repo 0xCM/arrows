@@ -30,9 +30,7 @@ namespace Z0
         public const string Partial = "∂";
         
         public const string EmptySet = "∅";
-        
-        public const string LongRightArrow = "⟶";
-        
+                
         public const string Times = "×";
 
         public const string NEQ = "≠";
