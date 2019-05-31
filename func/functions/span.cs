@@ -107,6 +107,12 @@ partial class zfunc
             => dst = MemoryMarshal.Cast<S,T>(src);
 
     [MethodImpl(Inline)]   
+    public static int length<T>(Span<T> lhs, ReadOnlySpan<T> rhs, [CallerFilePath] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => lhs.Length == rhs.Length ? lhs.Length 
+                : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
+    [MethodImpl(Inline)]   
     public static int length<T>(Span<T> lhs, IReadOnlyList<T> rhs, [CallerFilePath] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Length == rhs.Count ? lhs.Length 

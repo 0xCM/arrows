@@ -8,6 +8,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices; 
+    using System.Text;
 
     /// <summary>
     /// Implments a thread-safe/thread-aware terminal absraction
@@ -22,7 +23,11 @@ namespace Z0
         readonly object locker;
      
         private Terminal()
-            => locker = new object();
+        {
+             locker = new object();
+             Console.OutputEncoding = new UnicodeEncoding();
+             
+        }
 
         public void WriteLine(object src)
         {

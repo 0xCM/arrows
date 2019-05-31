@@ -24,9 +24,9 @@ namespace Z0
             if(typeof(S) == typeof(int))
                 return generic<S>(dinx.lshift(in int32(in lhs), in uint32(in shifts)));
             else if(typeof(S) == typeof(uint)) 
-                return generic<S>(dinx.lshift(in uint32(in lhs), uint32(in shifts)));
+                return generic<S>(dinx.lshift(in uint32(in lhs), in uint32(in shifts)));
             else if(typeof(S) == typeof(long))
-                return generic<S>(dinx.lshift(in int64(lhs), uint64(in shifts)));
+                return generic<S>(dinx.lshift(in int64(lhs), in uint64(in shifts)));
             else if(typeof(S) == typeof(ulong))
                 return generic<S>(dinx.lshift(in uint64(lhs), in uint64(in shifts)));
             else
@@ -42,16 +42,16 @@ namespace Z0
             if(typeof(S) == typeof(int))
                 return generic<S>(dinx.lshift(in int32(in lhs), in uint32(in shifts)));
             else if(typeof(S) == typeof(uint)) 
-                return generic<S>(dinx.lshift(in uint32(in lhs), uint32(in shifts)));
+                return generic<S>(dinx.lshift(in uint32(in lhs), in uint32(in shifts)));
             else if(typeof(S) == typeof(long))
-                return generic<S>(dinx.lshift(in int64(lhs), uint64(in shifts)));
+                return generic<S>(dinx.lshift(in int64(lhs), in uint64(in shifts)));
             else if(typeof(S) == typeof(ulong))
                 return generic<S>(dinx.lshift(in uint64(lhs), in uint64(in shifts)));
             else
                 throw unsupported(PrimalKinds.kind<S>());
         }
 
-        public static Span128<S> lshiftv<S,T>(in ReadOnlySpan128<S> lhs, in ReadOnlySpan128<T> shifts, Span128<S> dst)
+        public static Span128<S> lshift<S,T>(in ReadOnlySpan128<S> lhs, in ReadOnlySpan128<T> shifts, Span128<S> dst)
             where S : struct
             where T : struct
         {
@@ -89,7 +89,7 @@ namespace Z0
         }
 
 
-        public static Span256<T> lshiftv<S,T>(in ReadOnlySpan256<T> lhs, in ReadOnlySpan256<S> shifts, Span256<T> dst)
+        public static Span256<T> lshift<S,T>(in ReadOnlySpan256<T> lhs, in ReadOnlySpan256<S> shifts, Span256<T> dst)
             where T : struct
             where S : struct
         {

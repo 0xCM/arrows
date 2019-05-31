@@ -177,8 +177,6 @@ namespace Z0
                 result |= more[i];
             return result;
         }
-
-
    }
 
 }

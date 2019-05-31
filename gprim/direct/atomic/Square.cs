@@ -61,28 +61,28 @@ namespace Z0
         [MethodImpl(Inline)] 
         public static ref sbyte square(ref sbyte src)
         {
-            mul(ref src, src);
+            src *= src;
             return ref src;
         }
 
         [MethodImpl(Inline)]
         public static ref byte square(ref byte src)
         {
-            mul(ref src, src);
+            src *= src;
             return ref src;
         }
 
         [MethodImpl(Inline)]
         public static ref short square(ref short src)
         {
-            mul(ref src, src);
+            src *= src;
             return ref src;
         }
 
         [MethodImpl(Inline)]
         public static ref ushort square(ref ushort src)
         {
-            mul(ref src, src);
+            src *= src;
             return ref src;
         }
 
@@ -90,7 +90,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref int square(ref int src)
         {
-            mul(ref src, src);
+            src *= src;
             return ref src;
         }
 
@@ -98,35 +98,35 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref uint square(ref uint src)
         {
-            mul(ref src, src);
+            src *= src;
             return ref src;
         }
 
         [MethodImpl(Inline)]
         public static ref long square(ref long src)
         {
-            mul(ref src, src);
+            src *= src;
             return ref src;
         }
 
         [MethodImpl(Inline)]
         public static ref ulong square(ref ulong src)
         {
-            mul(ref src, src);
+            src *= src;
             return ref src;
         }
 
         [MethodImpl(Inline)]
         public static ref float square(ref float src)
         {
-            mul(ref src, src);
+            src *= src;
             return ref src;
         }
 
         [MethodImpl(Inline)]
         public static ref double square(ref double src)
         {
-            mul(ref src, src);
+            src *= src;
             return ref src;
         }
 

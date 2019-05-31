@@ -21,6 +21,7 @@ namespace Z0
         where N : ITypeNat, new()
         where T : struct
     {
+        ReadOnlySpan<T> data;
 
         public static implicit operator ReadOnlySpan<T> (ReadOnlySpan<N,T> src)
             => src.data;
@@ -33,8 +34,10 @@ namespace Z0
 
         public static readonly int SpanLength = nati<N>() / 8;
             
-        ReadOnlySpan<T> data;
 
+        [MethodImpl(Inline)]
+        public ReadOnlySpan(ref T src)
+            => data = MemoryMarshal.CreateReadOnlySpan(ref src, SpanLength);
 
         [MethodImpl(Inline)]
         public ReadOnlySpan(ref ReadOnlySpan<T> src)

@@ -69,7 +69,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ReadOnlySpan128<T> Load(T[] src)
         {
-            Claim.@true(aligned(src.Length));
+            require(aligned(src.Length));
             return new ReadOnlySpan128<T>(src);
         }
 
@@ -80,21 +80,21 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ReadOnlySpan128<T> load(Span<T> src, int offset, int length)
         {
-            Claim.@true(aligned(length));
+            require(aligned(length));
             return new ReadOnlySpan128<T>(src.Slice(offset, length));
         }
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan128<T> load(ReadOnlySpan<T> src, int offset, int length)
         {
-            Claim.@true(aligned(length));
+            require(aligned(length));
             return new ReadOnlySpan128<T>(src.Slice(offset, length));
         }
 
         [MethodImpl(Inline)]
         public static unsafe ReadOnlySpan128<T> load(void* src, int length)
         {
-            Claim.@true(aligned(length));
+            require(aligned(length));
             return new ReadOnlySpan128<T>(src,length);
         }
 
@@ -153,10 +153,6 @@ namespace Z0
         public ReadOnlySpan128<T> SliceBlock(int blockIndex)
             => new ReadOnlySpan128<T>(data.Slice(blockIndex * BlockLength, BlockLength));
 
-        // [MethodImpl(Inline)]
-        // public Vec128<T> Vector(int blockIndex)
-        //     => Vec128.single<T>(this, blockIndex);
-
         [MethodImpl(Inline)]
         public ReadOnlySpan128<T> SliceBlocks(int blockIndex, int blockCount)
             => (ReadOnlySpan128<T>)Slice(blockIndex * BlockLength, blockCount * BlockLength );
@@ -170,7 +166,7 @@ namespace Z0
             => replicate(data);
 
         [MethodImpl(Inline)]
-        public ReadOnlySpan<T> ToReadOnlySpan()
+        public ReadOnlySpan<T> Unblock()
             => data;
 
         [MethodImpl(Inline)]

@@ -54,7 +54,7 @@ namespace Z0.Metrics
         static string Eq = $" = ";
 
         internal static AppMsg BenchmarkEnd(OpId opid,  long totalOpCount, Duration totalDuration)
-            => AppMsg.Define(append(
+            => AppMsg.Define(concat(
                     $"{opid} summary".PadRight(28), 
                      Pipe, "Total Op Count", Eq, $"{totalOpCount}".PadRight(12),
                      Pipe, "Total Duration", Eq, $"{totalDuration}"), 

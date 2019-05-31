@@ -28,13 +28,98 @@ namespace Z0
         Span256<T> data;
 
         [MethodImpl(Inline)]
-        public numbers(Span256<T> src)
+        public numbers(in Span256<T> src)
             => this.data = src;
 
         [MethodImpl(Inline)]
-        public numbers(ReadOnlySpan256<T> src)
+        public numbers(in ReadOnlySpan256<T> src)
             => this.data = src.Replicate();
 
+
+        [MethodImpl(Inline)]
+        public static implicit operator numbers<T>(in Span256<T> src)
+            =>  new numbers<T>(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator numbers<T>(in ReadOnlySpan256<T> src)
+            =>  new numbers<T>(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator Span256<T>(in numbers<T> src)
+            =>  src.data;
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator + (in numbers<T> lhs, in numbers<T> rhs) 
+            => gmath.add(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator - (in numbers<T> lhs, in numbers<T> rhs) 
+            => gmath.sub(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator * (in numbers<T> lhs, in numbers<T> rhs) 
+            => gmath.mul(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator / (in numbers<T> lhs, in numbers<T> rhs) 
+            => gmath.div(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator % (in numbers<T> lhs, in numbers<T> rhs) 
+            => gmath.mod(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator & (in numbers<T> lhs, in numbers<T> rhs) 
+            => gmath.and(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator | (in numbers<T> lhs, in numbers<T> rhs) 
+            => gmath.or(lhs.data, rhs.data, span<T>(count(lhs,rhs))).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator ^ (in numbers<T> lhs, in numbers<T> rhs) 
+            => gmath.xor(lhs.data, rhs.data, lhs.data.ToSpan()).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator << (in numbers<T> lhs, int rhs) 
+            => gmath.shiftl(lhs.data.Unblock().ToReadOnlySpan(), rhs).ToSpan256();
+
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator >> (in numbers<T> lhs, int rhs) 
+            => gmath.shiftr(lhs.data.Unblock().ToReadOnlySpan(), rhs).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator - (in numbers<T> src) 
+            => gmath.negate(src.data, alloc(src)).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator ++ (in numbers<T> src) 
+            => gmath.inc(src.data, alloc(src)).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator -- (in numbers<T> src) 
+            => gmath.dec(src.data, alloc(src)).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static numbers<T> operator ~ (in numbers<T> src) 
+            => gmath.flip(src.data, alloc(src)).ToSpan256();
+
+        [MethodImpl(Inline)]
+        public static Span<bool> operator < (in numbers<T> lhs, in numbers<T> rhs) 
+            => gmath.lt<T>(lhs.data,rhs.data);            
+
+        [MethodImpl(Inline)]
+        public static Span<bool> operator <= (in numbers<T> lhs, in numbers<T> rhs) 
+            => gmath.lteq<T>(lhs.data,rhs.data);            
+
+        [MethodImpl(Inline)]
+        public static Span<bool> operator > (in numbers<T> lhs, in numbers<T> rhs) 
+            => gmath.gt<T>(lhs.data,rhs.data);
+
+        [MethodImpl(Inline)]
+        public static Span<bool> operator >= (in numbers<T> lhs, in numbers<T> rhs) 
+            => gmath.gteq<T>(lhs.data,rhs.data);
 
         [MethodImpl(Inline)]
         public Span<T> Extract(bool copy = false)
@@ -61,256 +146,197 @@ namespace Z0
             get => data.Length;            
         }
 
-        [MethodImpl(Inline)]
-        public bool Equals(numbers<T> rhs)
-            =>  throw new NotImplementedException(); 
-
 
         [MethodImpl(Inline)]
-        public static implicit operator numbers<T>(Span256<T> src)
-            =>  new numbers<T>(src);
+        public numbers<T> Add(in numbers<T> rhs)
+        {
+            var x = data.Unblock();
+            var y = rhs.data.Unblock();
+            data = gmath.add(ref x, y).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static implicit operator numbers<T>(ReadOnlySpan256<T> src)
-            =>  new numbers<T>(src);
+        public numbers<T> Sub(in numbers<T> rhs)
+        {
+            var x = data.Unblock();
+            var y = rhs.data.Unblock();
+            data = gmath.sub(ref x, y).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static implicit operator Span256<T>(numbers<T> src)
-            =>  src.data;
+        public numbers<T> Mul(in numbers<T> rhs)
+        {
+            var x = data.Unblock();
+            var y = rhs.data.Unblock();
+            data = gmath.mul(ref x, y).ToSpan256();
+            return this;
+        }
+
+        [MethodImpl(Inline)]
+        public numbers<T> Div(in numbers<T> rhs)
+        {
+            var x = data.Unblock();
+            var y = rhs.data.Unblock();
+            data = gmath.div(ref x, y).ToSpan256();
+            return this;
+        }
+
+        [MethodImpl(Inline)]
+        public numbers<T> Mod(in numbers<T> rhs)
+        {
+            var x = data.Unblock();
+            var y = rhs.data.Unblock();
+            data = gmath.mod(ref x, y).ToSpan256();
+            return this;
+        }
 
 
         [MethodImpl(Inline)]
-        public static numbers<T> operator + (numbers<T> lhs, in numbers<T> rhs) 
-            => gmath.add(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
+        public numbers<T> Negate()
+        {
+            var x = data.Unblock();
+            data = gmath.negate(ref x).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static numbers<T> operator - (numbers<T> lhs, in numbers<T> rhs) 
-            => gmath.sub(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
+        public numbers<T> Inc()
+        {
+            var x = data.Unblock();
+            data = gmath.inc(ref x).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static numbers<T> operator * (numbers<T> lhs, in numbers<T> rhs) 
-            => gmath.mul(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
+        public numbers<T> Dec()
+        {
+            var x = data.Unblock();
+            data = gmath.dec(ref x).ToSpan256();
+            return this;
+        }
+
 
         [MethodImpl(Inline)]
-        public static numbers<T> operator / (numbers<T> lhs, in numbers<T> rhs) 
-            => gmath.div(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
+        public numbers<T> Abs()
+        {
+            var x = data.Unblock();
+            data = gmath.abs(ref x).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static numbers<T> operator % (numbers<T> lhs, in numbers<T> rhs) 
-            => gmath.mod(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
+        public numbers<T> And(in numbers<T> rhs)
+        {
+            var x = data.Unblock();
+            var y = rhs.data.Unblock();
+            data = gmath.and(ref x, y).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static numbers<T> operator & (numbers<T> lhs, in numbers<T> rhs) 
-            => gmath.and(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
+        public numbers<T> Or(in numbers<T> rhs)
+        {
+            var x = data.Unblock();
+            var y = rhs.data.Unblock();
+            data = gmath.or(ref x, y).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static numbers<T> operator | (numbers<T> lhs, in numbers<T> rhs) 
-            => gmath.or(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
+        public numbers<T> XOr(in numbers<T> rhs)
+        {
+            var x = data.Unblock();
+            var y = rhs.data.Unblock();
+            data = gmath.xor(ref x, y).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static numbers<T> operator ^ (numbers<T> lhs, in numbers<T> rhs) 
-            => gmath.xor(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
+        public numbers<T> ShiftL(in numbers<int> shifts)
+        {
+            var x = data.Unblock();
+            var y = shifts.data.Unblock();
+            data = gmath.shiftl(ref x, y).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static numbers<T> operator - (numbers<T> src) 
-            => gmath.negate(
-                src.data.ToReadOnlySpan(), 
-                src.data.ToSpan()
-                    ).ToSpan256();
+        public numbers<T> ShiftR(in numbers<int> shifts)
+        {
+            var x = data.Unblock();
+            var y = shifts.data.Unblock();
+            data = gmath.shiftr(ref x, y).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static numbers<T> operator ++ (numbers<T> src) 
-            => gmath.inc(
-                src.data.ToReadOnlySpan(), 
-                src.data.ToSpan()
-                    ).ToSpan256();
+        public numbers<T> RotL(in numbers<int> shifts)
+        {
+            var x = data.Unblock();
+            var y = shifts.data.Unblock();
+            data = gmath.rotl(ref x, y).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static numbers<T> operator -- (numbers<T> src) 
-            => gmath.dec(
-                src.data.ToReadOnlySpan(), 
-                src.data.ToSpan()
-                    ).ToSpan256();
+        public numbers<T> RotR(in numbers<int> shifts)
+        {
+            var x = data.Unblock();
+            var y = shifts.data.Unblock();
+            data = gmath.rotr(ref x, y).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static numbers<T> operator ~ (numbers<T> src) 
-            => gmath.flip(
-                src.data.ToReadOnlySpan(), 
-                src.data.ToSpan()
-                    ).ToSpan256();
+        public numbers<T> Flip()
+        {
+            var x = data.Unblock();
+            data = gmath.flip(ref x).ToSpan256();
+            return this;
+        }
 
         [MethodImpl(Inline)]
-        public static Span<bool> operator < (in numbers<T> lhs, in numbers<T> rhs) 
-            => gmath.lt<T>(lhs.data,rhs.data);            
+        public Span<bool> Eq(in numbers<T> rhs)
+            => gmath.eq<T>(data, rhs.data);
 
         [MethodImpl(Inline)]
-        public static Span<bool> operator <= (in numbers<T> lhs, in numbers<T> rhs) 
-            => gmath.lteq<T>(lhs.data,rhs.data);            
+        public Span<bool> Gt(in numbers<T> rhs)
+            => gmath.gt<T>(data,rhs.data);
 
         [MethodImpl(Inline)]
-        public static Span<bool> operator > (in numbers<T> lhs, in numbers<T> rhs) 
-            => gmath.gt<T>(lhs.data,rhs.data);
+        public Span<bool> GtEq(in numbers<T> rhs)
+            => gmath.gteq<T>(data,rhs.data);
 
         [MethodImpl(Inline)]
-        public static Span<bool> operator >= (in numbers<T> lhs, in numbers<T> rhs) 
-            => gmath.gteq<T>(lhs.data,rhs.data);
+        public Span<bool> Lt(in numbers<T> rhs)
+            => gmath.lt<T>(data,rhs.data);            
 
         [MethodImpl(Inline)]
-        public static numbers<T> add(ref numbers<T> lhs, in numbers<T> rhs)
-            => gmath.add(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
+        public Span<bool> LtEq(in numbers<T> rhs)
+            => gmath.lteq<T>(data,rhs.data);
 
-        [MethodImpl(Inline)]
-        public static numbers<T> sub(ref numbers<T> lhs, in numbers<T> rhs)
-            => gmath.sub(
-                lhs.data.ToReadOnlySpan(),
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();            
-
-        [MethodImpl(Inline)]
-        public static numbers<T> mul(ref numbers<T> lhs, in numbers<T> rhs)
-            => gmath.mul(
-                lhs.data.ToReadOnlySpan(),
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();            
-
-        [MethodImpl(Inline)]
-        public static numbers<T> div(ref numbers<T> lhs, in numbers<T> rhs)
-            => gmath.div(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
-
-        [MethodImpl(Inline)]
-        public static numbers<T> mod(ref numbers<T> lhs, in numbers<T> rhs)
-            => gmath.mod(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
-
-        [MethodImpl(Inline)]
-        static numbers<T> and(ref numbers<T> lhs, in numbers<T> rhs)
-            => gmath.and(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
-
-        [MethodImpl(Inline)]
-        static numbers<T> or(ref numbers<T> lhs, in numbers<T> rhs)
-            => gmath.or(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
-
-        [MethodImpl(Inline)]
-        static numbers<T> xor(ref numbers<T> lhs, in numbers<T> rhs)
-            => gmath.xor(
-                lhs.data.ToReadOnlySpan(), 
-                rhs.data.ToReadOnlySpan(), 
-                lhs.data.ToSpan()
-                    ).ToSpan256();
-
-        [MethodImpl(Inline)]
-        public static numbers<T> negate(ref numbers<T> src)
-             => gmath.negate(
-                src.data.ToReadOnlySpan(), 
-                src.data.ToSpan()
-                    ).ToSpan256();
-
-        [MethodImpl(Inline)]
-        public static numbers<T> inc(numbers<T> src)
-            => gmath.inc(
-                src.data.ToReadOnlySpan(), 
-                src.data.ToSpan()
-                    ).ToSpan256();
-
-        [MethodImpl(Inline)]
-        public static numbers<T> dec(numbers<T> src)
-            => gmath.dec(
-                src.data.ToReadOnlySpan(), 
-                src.data.ToSpan()
-                    ).ToSpan256();
-
-        [MethodImpl(Inline)]
-        public static numbers<T> flip(numbers<T> src)
-            => gmath.flip(
-                src.data.ToReadOnlySpan(), 
-                src.data.ToSpan()
-                    ).ToSpan256();
-
-        [MethodImpl(Inline)]
-        public static numbers<T> abs(numbers<T> src)
-            => gmath.abs(
-                src.data.ToReadOnlySpan(), 
-                src.data.ToSpan()
-                    ).ToSpan256();            
-
-        [MethodImpl(Inline)]
-        static Span<bool> eq(in numbers<T> lhs, in numbers<T> rhs)
-            => gmath.eq<T>(lhs.data, rhs.data);
-
-        [MethodImpl(Inline)]
-        static Span<bool> gt(in numbers<T> lhs, in numbers<T> rhs)
-            => gmath.gt<T>(lhs.data,rhs.data);
-
-        [MethodImpl(Inline)]
-        static Span<bool> gteq(in numbers<T> lhs, in numbers<T> rhs)
-            => gmath.gteq<T>(lhs.data,rhs.data);
-
-        [MethodImpl(Inline)]
-        public static Span<bool> lt(in numbers<T> lhs, in numbers<T> rhs)
-            => gmath.lt<T>(lhs.data,rhs.data);            
-
-        [MethodImpl(Inline)]
-        public static Span<bool> lteq(in numbers<T> lhs, in numbers<T> rhs)
-            => gmath.lteq<T>(lhs.data,rhs.data);
+        public string Format(char delimiter = ',')
+            => data.Unblock().Format(delimiter);
 
         public override bool Equals(object rhs)
             => throw new NotSupportedException();
 
-        [MethodImpl(Inline)]
         public override int GetHashCode()
             => throw new NotSupportedException(); 
+ 
+        [MethodImpl(Inline)]
+        static Span<T> alloc(numbers<T> src)
+            => span<T>(src.Count);
+
+        [MethodImpl(Inline)]
+        static int count(in numbers<T> lhs, in numbers<T> rhs)        
+            => length(lhs.data.Unblock(),rhs.data.Unblock());
+        
+        [MethodImpl(Inline)]
+        static Span<T> alloc(in numbers<T> lhs, in numbers<T> rhs)
+            => span<T>(count(lhs,rhs));
+
     }
 }

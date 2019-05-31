@@ -26,8 +26,8 @@ namespace Z0
         Span<N,T> data;
 
         [MethodImpl(Inline)]
-        public static BitVector<N,T> Define(in T src)
-            => new BitVector<N,T>(src);
+        public static BitVector<N,T> Load(ref T src)
+            => new BitVector<N,T>(ref src);
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> Define(ref Span<N,T> src)
@@ -50,10 +50,9 @@ namespace Z0
         static readonly uint Exponent = (uint)new N().Exponent.value;
 
         [MethodImpl(Inline)]
-        BitVector(in T src)
+        BitVector(ref T src)
         {
-            Claim.eq(ByteCount, CellBytes);
-            data = Spans.alloc<N,T>(src);
+            data =  Spans.load<N,T>(ref src);   //Spans.alloc<N,T>(src);
         }
 
         [MethodImpl(Inline)]

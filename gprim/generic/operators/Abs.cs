@@ -92,6 +92,26 @@ namespace Z0
             return dst;
         }
 
+        public static ref Span<T> abs<T>(ref Span<T> io)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.abs(int8(io));
+            else if(typeof(T) == typeof(short))
+                math.abs(int16(io));
+            else if(typeof(T) == typeof(int))
+                math.abs(int32(io));
+            else if(typeof(T) == typeof(long))
+                math.abs(int64(io));
+            else if(typeof(T) == typeof(float))
+                math.abs(float32(io));
+            else if(typeof(T) == typeof(double))
+                math.abs(float64(io));
+            else
+                throw unsupported(PrimalKinds.kind<T>());                
+            return ref io;
+        }
+
         [MethodImpl(Inline)]
         static T absI8<T>(T src)
             => generic<T>(math.abs(int8(src)));

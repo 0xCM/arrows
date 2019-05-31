@@ -87,44 +87,44 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Span<byte> Add(this ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
-            => math.add(lhs, rhs, span<byte>(length(lhs,rhs)));
+        public static Span<byte> Add(this ref Span<byte> lhs, ReadOnlySpan<byte> rhs)
+            => math.add(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Span<sbyte> Add(this ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
-            => math.add(lhs, rhs, span<sbyte>(length(lhs,rhs)));
+        public static Span<sbyte> Add(this ref Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+            => math.add(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Span<short> Add(this ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
-            => math.add(lhs, rhs, span<short>(length(lhs,rhs)));
+        public static Span<short> Add(this ref Span<short> lhs, ReadOnlySpan<short> rhs)
+            => math.add(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Span<ushort> Add(this ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
-            => math.add(lhs, rhs, span<ushort>(length(lhs,rhs)));
+        public static Span<ushort> Add(this ref Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+            => math.add(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Span<int> Add(this ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
-            => math.add(lhs, rhs, span<int>(length(lhs,rhs)));
+        public static Span<int> Add(this ref Span<int> lhs, ReadOnlySpan<int> rhs)
+            => math.add(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Span<uint> Add(this ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
-            => math.add(lhs, rhs, span<uint>(length(lhs,rhs)));
+        public static Span<uint> Add(this ref Span<uint> lhs, ReadOnlySpan<uint> rhs)
+            => math.add(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Span<long> Add(this ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
-            => math.add(lhs, rhs, span<long>(length(lhs,rhs)));
+        public static Span<long> Add(this ref Span<long> lhs, ReadOnlySpan<long> rhs)
+            => math.add(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Span<ulong> Add(this ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
-            => math.add(lhs, rhs, span<ulong>(length(lhs,rhs)));
+        public static Span<ulong> Add(this ref Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+            => math.add(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Span<float> Add(this ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs)
-            => math.add(lhs, rhs, span<float>(length(lhs,rhs)));
+        public static Span<float> Add(this ref Span<float> lhs, ReadOnlySpan<float> rhs)
+            => math.add(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Span<double> Add(this ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
-            => math.add(lhs, rhs, span<double>(length(lhs,rhs)));
+        public static Span<double> Add(this ref Span<double> lhs, ReadOnlySpan<double> rhs)
+            => math.add(lhs, rhs);
 
     }
 }

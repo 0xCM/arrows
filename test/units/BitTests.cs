@@ -177,6 +177,16 @@ namespace Z0.Test
                     
         }
 
+        public void PackUnpackU32()
+        {
+            var x = 2503198329u;
+            var bv = BitVectorU32.Define(x);
+            var bytes = bv.Bytes();
+            var y = Bytes.read<uint>(bytes);
+            Claim.eq(x,y);
+
+        }
+
         public void Pack4BytesIntoU32()
         {
             byte x0 = 0b11011001;

@@ -83,44 +83,44 @@ namespace Z0
             => math.sqrt(src,dst);            
  
         [MethodImpl(Inline)]
-        public static ref Span<sbyte> Sqrt(this ref Span<sbyte> src )
-            => ref math.sqrt(ref src);
+        public static ref Span<sbyte> Sqrt(this ref Span<sbyte> io)
+            => ref math.sqrt(ref io);
 
         [MethodImpl(Inline)]
-        public static ref Span<byte> Sqrt(this ref Span<byte> src )
-            => ref math.sqrt(ref src);
+        public static ref Span<byte> Sqrt(this ref Span<byte> io)
+            => ref math.sqrt(ref io);
 
         [MethodImpl(Inline)]
-        public static ref Span<short> Sqrt(this ref Span<short> src )
-            => ref math.sqrt(ref src);
+        public static ref Span<short> Sqrt(this ref Span<short> io)
+            => ref math.sqrt(ref io);
 
         [MethodImpl(Inline)]
-        public static ref Span<ushort> Sqrt(this ref Span<ushort> src )
-            => ref math.sqrt(ref src);
+        public static ref Span<ushort> Sqrt(this ref Span<ushort> io)
+            => ref math.sqrt(ref io);
 
         [MethodImpl(Inline)]
-        public static ref Span<int> Sqrt(this ref Span<int> src )
-            => ref math.sqrt(ref src);
+        public static ref Span<int> Sqrt(this ref Span<int> io)
+            => ref math.sqrt(ref io);
 
         [MethodImpl(Inline)]
-        public static ref Span<uint> Sqrt(this ref Span<uint> src )
-            => ref math.sqrt(ref src);
+        public static ref Span<uint> Sqrt(this ref Span<uint> io)
+            => ref math.sqrt(ref io);
 
         [MethodImpl(Inline)]
-        public static ref Span<long> Sqrt(this ref Span<long> src )
-            => ref math.sqrt(ref src);
+        public static ref Span<long> Sqrt(this ref Span<long> io)
+            => ref math.sqrt(ref io);
 
         [MethodImpl(Inline)]
-        public static ref Span<ulong> Sqrt(this ref Span<ulong> src )
-            => ref math.sqrt(ref src);
+        public static ref Span<ulong> Sqrt(this ref Span<ulong> io)
+            => ref math.sqrt(ref io);
 
         [MethodImpl(Inline)]
-        public static ref Span<float> Sqrt(this ref Span<float> src )
-            => ref math.sqrt(ref src);
+        public static ref Span<float> Sqrt(this ref Span<float> io)
+            => ref math.sqrt(ref io);
 
         [MethodImpl(Inline)]
-        public static ref Span<double> Sqrt(this ref Span<double> src )
-            => ref math.sqrt(ref src);
+        public static ref Span<double> Sqrt(this ref Span<double> io)
+            => ref math.sqrt(ref io);
 
     }
 

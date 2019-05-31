@@ -66,9 +66,12 @@ namespace Z0
         public Interval<T> AsCanonical()
             => this;
 
-    
+        public Interval<U> Convert<U>()
+            where U : struct
+                => new Interval<U>(convert(Left, out U x), LeftClosed, convert(Right, out U y), RightClosed);
+
         public string format()
-            => append(
+            => concat(
                 LeftClosed ? "[": "(", 
                 Left.ToString(), ",", Right.ToString(), 
                 RightClosed ? "]" : ")"

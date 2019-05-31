@@ -68,19 +68,19 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span256<T> Alloc(int blocks)
             => new Span256<T>(new T[blocks * BlockLength]);
-
+    
 
         [MethodImpl(Inline)]
         public static Span256<T> Load(T[] src)
         {
-            Claim.@true(Aligned(src.Length));
+            require(Aligned(src.Length));
             return new Span256<T>(src);
         }
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan256<T> Load(ReadOnlySpan<T> src, int offset = 0)
         {
-            Claim.@true(Aligned(src.Length - offset));
+            require(Aligned(src.Length - offset));
             return ReadOnlySpan256<T>.Load(src, offset);
         }
 
@@ -91,15 +91,23 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span256<T> Load(Span<T> src, int offset = 0)
         {
-            Claim.@true(Aligned(src.Length - offset));
-            return new Span256<T>(src.Slice(offset));
+            require(Aligned(src.Length - offset));
+            var slice = src.Slice(offset);
+            return new Span256<T>(ref slice);
         }
 
         [MethodImpl(Inline)]
         public static unsafe Span256<T> Load(void* src, int length)
         {
-            Claim.@true(Aligned(length));
+            require(Aligned(length));
             return new Span256<T>(src,length);
+        }
+
+        [MethodImpl(Inline)]
+        public static Span256<T> Load(ref T head, int length)
+        {
+            require(Aligned(length));
+            return new Span256<T>(ref head, length);
         }
 
         Span<T> data;
@@ -119,14 +127,19 @@ namespace Z0
         [MethodImpl(Inline)]
         Span256(ReadOnlySpan<T> src)
         {
-            data = span<T>(src.Length);
-            src.CopyTo(data);
+            data = src.Replicate();
         }
 
         [MethodImpl(Inline)]
-        Span256(Span<T> src)
+        Span256(ref Span<T> src)
         {
             this.data = src;
+        }
+
+        [MethodImpl(Inline)]
+        Span256(ref T head, int len)
+        {
+            this.data =  MemoryMarshal.CreateSpan(ref head, len);
         }
 
         public ref T this[int ix] 
@@ -149,9 +162,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Span256<T> SliceBlock(int blockIndex)
-            => new Span256<T>(data.Slice(blockIndex * BlockLength, BlockLength));
-        
-
+        {
+            var slice = data.Slice(blockIndex * BlockLength, BlockLength); 
+            return new Span256<T>(ref slice);
+        }
+            
         [MethodImpl(Inline)]
         public Span256<T> Blocks(int blockIndex, int blockCount)
             => Span256.load(Slice(blockIndex * BlockLength, blockCount * BlockLength));
@@ -219,6 +234,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span<T> ToSpan()
             => data;
+
 
         public override string ToString() 
             => data.ToString();

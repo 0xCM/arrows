@@ -34,8 +34,6 @@ namespace Z0
         }
 
 
-
-
         
 
          // Converts an array of bytes into a long.  
@@ -53,8 +51,7 @@ namespace Z0
             try
             {     
                 app.RunTests();
-                
-        
+                        
             }
             catch(Exception e)
             {

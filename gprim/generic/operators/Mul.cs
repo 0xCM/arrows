@@ -100,6 +100,34 @@ namespace Z0
             return dst;
         }
 
+        public static ref Span<T> mul<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.mul(int8(lhs), int8(rhs));
+            else if(typeof(T) == typeof(byte))
+                math.mul(uint8(lhs), uint8(rhs));
+            else if(typeof(T) == typeof(short))
+                math.mul(int16(lhs), int16(rhs));
+            else if(typeof(T) == typeof(ushort))
+                math.mul(uint16(lhs), uint16(rhs));
+            else if(typeof(T) == typeof(int))
+                math.mul(int32(lhs), int32(rhs));
+            else if(typeof(T) == typeof(uint))
+                math.mul(uint32(lhs), uint32(rhs));
+            else if(typeof(T) == typeof(long))
+                math.mul(int64(lhs), int64(rhs));
+            else if(typeof(T) == typeof(ulong))
+                math.mul(uint64(lhs), uint64(rhs));
+            else if(typeof(T) == typeof(float))
+                math.mul(float32(lhs), float32(rhs));
+            else if(typeof(T) == typeof(double))
+                math.mul(float64(lhs), float64(rhs));
+            else
+                throw unsupported(PrimalKinds.kind<T>());                
+            return ref lhs;
+        }
+
         [MethodImpl(Inline)]
         static T mulI8<T>(T lhs, T rhs)
             => generic<T>((sbyte)(int8(lhs) * int8(rhs)));

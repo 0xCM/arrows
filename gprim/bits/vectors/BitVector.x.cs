@@ -14,10 +14,10 @@ namespace Z0
 
     public static partial class BitVectorX
     {        
-        public static BitVector<N,T> ToNatBits<N,T>(this N bits, in T value)
+        public static BitVector<N,T> ToNatBits<N,T>(this N bits, ref T head)
             where N : INatPow2, new()
             where T : struct
-                => BitVector.Define<N,T>(value);
+                => BitVector.Load<N,T>(ref head);
 
         [MethodImpl(Inline)]
         public static BitVectorU8 ToBits(this byte src)
@@ -52,36 +52,36 @@ namespace Z0
             => src;
 
         [MethodImpl(Inline)]        
-        public static BitVector<N8,sbyte> ToNatBits(this sbyte src)
-            => NatBits.Define(src);
+        public static BitVector<N8,sbyte> ToNatBits(this ref sbyte src)
+            => NatBits.Load(ref src);
 
         [MethodImpl(Inline)]        
-        public static BitVector<N8,byte> ToNatBits(this byte src)
-            => NatBits.Define(src);
+        public static BitVector<N8,byte> ToNatBits(this ref byte src)
+            => NatBits.Load(ref src);
 
         [MethodImpl(Inline)]        
-        public static BitVector<N16,short> ToNatBits(this short src)
-            => NatBits.Define(src);
+        public static BitVector<N16,short> ToNatBits(this ref short src)
+            => NatBits.Load(ref src);
 
         [MethodImpl(Inline)]        
-        public static BitVector<N16,ushort> ToNatBits(this ushort src)
-            => NatBits.Define(src);
+        public static BitVector<N16,ushort> ToNatBits(this ref ushort src)
+            => NatBits.Load(ref src);
 
         [MethodImpl(Inline)]        
-        public static BitVector<N32,int> ToNatBits(this int src)
-            => NatBits.Define(src);
+        public static BitVector<N32,int> ToNatBits(this ref int src)
+            => NatBits.Load(ref src);
 
         [MethodImpl(Inline)]        
-        public static BitVector<N32,uint> ToNatBits(this uint src)
-            => NatBits.Define(src);
+        public static BitVector<N32,uint> ToNatBits(this ref uint src)
+            => NatBits.Load(ref src);
 
         [MethodImpl(Inline)]        
-        public static BitVector<N64,long> ToNatBits(this long src)
-            => NatBits.Define(src);
+        public static BitVector<N64,long> ToNatBits(this ref long src)
+            => NatBits.Load(ref src);
 
         [MethodImpl(Inline)]        
-        public static BitVector<N64,ulong> ToNatBits(this ulong src)
-            => NatBits.Define(src);
+        public static BitVector<N64,ulong> ToNatBits(this ref ulong src)
+            => NatBits.Load(ref src);
 
 
         [MethodImpl(Inline)]        

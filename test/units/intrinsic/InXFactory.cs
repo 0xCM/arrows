@@ -20,29 +20,29 @@ namespace Z0.Test
         public void CreateScalars()
         {
             {
-                var vec1 = Vec128.single(2,0,3,0);
-                var vec2 = Vec128.single(5,0,7,0);
-                var expect = Vec128.single(10L,21L);
+                var vec1 = Vec128.define(2,0,3,0);
+                var vec2 = Vec128.define(5,0,7,0);
+                var expect = Vec128.define(10L,21L);
                 var result = Vec128<long>.Zero;
                 ginx.mul(vec1, vec2,ref result);
                 Claim.eq(expect,result);
             }
 
             {
-                var vec1 = Vec128.single(2,0,3,0);
-                var vec2 = Vec128.single(5,0,7,0);                            
+                var vec1 = Vec128.define(2,0,3,0);
+                var vec2 = Vec128.define(5,0,7,0);                            
                 var result = Vec128<long>.Zero;
                 ginx.mul(vec1, vec2,ref result);
-                var expect =  Vec128.single<long>(vec1.Scalar(0) * vec2.Scalar(0), vec1.Scalar(2) * vec2.Scalar(2));
+                var expect =  Vec128.define(vec1.Scalar(0) * vec2.Scalar(0), vec1.Scalar(2) * vec2.Scalar(2));
                 Claim.eq(expect, result);                        
             
             }
 
             {
-                var vec1 = Vec128.single(2.0, 3.0, 4.0, 5.0);
-                var vec2 = Vec128.single(5.0, 2.0, 8.0, 4.0);
-                var expect = Vec128.single(10.0, 6.0, 32.0, 20.0);
-                var result = Vec128<double>.Zero;
+                var vec1 = Vec128.define(2.0f, 3.0f, 4.0f, 5.0f);
+                var vec2 = Vec128.define(5.0f, 2.0f, 8.0f, 4.0f);
+                var expect = Vec128.define(10.0f, 6.0f, 32.0f, 20.0f);
+                var result = Vec128<float>.Zero;
                 ginx.mul(vec1, vec2,ref result);
                 Claim.eq(expect,result);
             }

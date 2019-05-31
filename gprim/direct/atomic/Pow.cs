@@ -16,14 +16,140 @@ namespace Z0
 
     partial class math
     {
-        [MethodImpl(Inline)]
-        public static float pow(float src, uint exp)
-            => MathF.Pow(src,exp);
+        // See https://stackoverflow.com/questions/101439/the-most-efficient-way-to-implement-an-integer-based-power-function-powint-int
+        public static sbyte pow(sbyte b, sbyte exp)
+        {
+            if(exp < 0)
+                return 0;
 
-        [MethodImpl(Inline)]
-        public static double pow(double src, uint exp)
-            => Math.Pow(src,exp);
+            var result = I8One;
+            while(true)
+            {
+                if((exp & 1) != 0)
+                    result *= b;
+                exp >>= 1;                
+                if(exp == 0)
+                    break;
+                b *= b;
+            }
+            return result;
 
+        }
+
+        public static byte pow(byte b, byte exp)
+        {
+            var result = U8One;
+            while(true)
+            {
+                if((exp & 1) != 0)
+                    result *= b;
+                exp >>= 1;
+                if(exp == 0)
+                    break;
+                b *= b;
+            }
+            return result;
+        }
+
+        public static short pow(short b, short exp)
+        {
+            if(exp < 0)
+                return 0;
+
+            var result = I16One;
+            while(true)
+            {
+                if((exp & 1) != 0)
+                    result *= b;
+                exp >>= 1;                
+                if(exp == 0)
+                    break;
+                b *= b;
+            }
+            return result;
+        }
+
+        public static ushort pow(ushort b, ushort exp)
+        {
+            var result = U16One;
+            while(true)
+            {
+                if((exp & 1) != 0)
+                    result *= b;
+                exp >>= 1;                
+                if(exp == 0)
+                    break;
+                b *= b;
+            }
+            return result;
+        }
+
+        public static int pow(int b, int exp)
+        {
+            if(exp < 0)
+                return 0;
+
+            var result = 1;
+            while(true)
+            {
+                if((exp & 1) != 0)
+                    result *= b;
+                exp >>= 1;                
+                if(exp == 0)
+                    break;
+                b *= b;
+            }
+            return result;
+        }
+
+        public static uint pow(uint b, uint exp)
+        {
+            var result = 1u;
+            while(true)
+            {
+                if((exp & 1) != 0)
+                    result *= b;
+                exp >>= 1;
+                if(exp == 0)
+                    break;
+                b *= b;
+            }
+            return result;
+        }
+
+        public static long pow(long b, long exp)
+        {
+            if(exp < 0)
+                return 0;
+            
+            var result = 1L;
+            while(true)
+            {
+                if((exp & 1) != 0)
+                    result *= b;
+                exp >>= 1;
+                if(exp == 0)
+                    break;
+                b *= b;
+            }
+            return result;
+        }
+
+        public static ulong pow(ulong b, ulong exp)
+        {
+            var result = 1ul;
+            while(true)
+            {
+                if((exp & 1) != 0)
+                    result *= b;
+                exp >>= 1;
+                if(exp == 0)
+                    break;
+                b *= b;
+            }
+            return result;
+        }
+ 
         [MethodImpl(Inline)]
         public static float pow(float src, float exp)
             => MathF.Pow(src,exp);
@@ -31,78 +157,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static double pow(double src, double exp)
             => Math.Pow(src,exp);
-
-        [MethodImpl(Inline)]
-        public static sbyte pow(sbyte src, uint exp)
-        {
-            var result = 1;
-            for(var i = 1; i< exp; i++)
-                result = result*i;
-            return (sbyte)result;
-
-        }
-
-        [MethodImpl(Inline)]
-        public static byte pow(byte src, uint exp)
-        {
-            var result = 1;
-            for(var i = 1; i< exp; i++)
-                result = result*i;
-            return (byte)result;
-        }
-
-        [MethodImpl(Inline)]
-        public static short pow(short src, uint exp)
-        {
-            var result = 1;
-            for(var i = 1; i< exp; i++)
-                result = result*i;
-            return (short)result;
-        }
-
-        [MethodImpl(Inline)]
-        public static ushort pow(ushort src, uint exp)
-        {
-            var result = 1;
-            for(var i = 1; i< exp; i++)
-                result = result*i;
-            return (ushort)result;
-        }
-
-        [MethodImpl(Inline)]
-        public static int pow(int src, uint exp)
-        {
-            var result = 1;
-            for(var i = 1; i< exp; i++)
-                result = result*i;
-            return result;
-        }
-
-        [MethodImpl(Inline)]
-        public static uint pow(uint src, uint exp)
-        {
-            var result = 1u;
-            for(var i = 1u; i< exp; i++)
-                result = result*i;
-            return result;
-        }
-
-        [MethodImpl(Inline)]
-        public static long pow(long src, uint exp)
-        {
-            var result = 1L;
-            for(var i = 1u; i< exp; i++)
-                result = result*i;
-            return result;
-        }
-
-        [MethodImpl(Inline)]
-        public static ulong pow(ulong src, uint exp)
-        {
-            var result = 1ul;
-            for(var i = 1u; i< exp; i++)
-                result = result*i;            
-            return result;
-        }
     }
 }

@@ -11,6 +11,12 @@ namespace Z0
 
             public const string LongRightArrow = "⟶";
 
+            public const string RightArrow = "→";
+
+            public const string LeftArrow = "←";
+
+            public const string MapsTo = "↦";
+
         }
 
     }

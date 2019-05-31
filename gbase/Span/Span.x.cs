@@ -9,7 +9,7 @@ namespace Z0
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-
+    using System.Text;
     
     using static zfunc;
     using static As;
@@ -165,6 +165,43 @@ namespace Z0
         public static Span256<T> NonZeroSpan256<T>(this IRandomizer random, int blocks, Interval<T>? domain = null)        
             where T : struct  
                 => random.Span256(blocks, domain, nonzero);
+
+    
+        public static string Format<T>(this ReadOnlySpan<T> src, char delimiter = ',', int offset = 0)
+        {
+            var sb = new StringBuilder();            
+            for(var i = offset; i< src.Length; i++)
+            {
+                if(i != offset)
+                    sb.Append(delimiter);
+                sb.Append($"{src[i]}");
+            }
+            return sb.ToString();
+        }
+
+        [MethodImpl(Inline)]        
+        public static string Format<T>(this Span<T> src, char delimiter = ',', int offset = 0)
+            => src.ToReadOnlySpan().Format(delimiter, offset);
+
+        [MethodImpl(Inline)]        
+        public static string Format<T>(this ReadOnlySpan128<T> src, char delimiter = ',', int offset = 0)
+            where T : struct
+            => src.Unblock().Format(delimiter, offset);
+
+        [MethodImpl(Inline)]        
+        public static string Format<T>(this Span128<T> src, char delimiter = ',', int offset = 0)
+            where T : struct
+            => src.Unblock().Format(delimiter, offset);
+
+        [MethodImpl(Inline)]        
+        public static string Format<T>(this ReadOnlySpan256<T> src, char delimiter = ',', int offset = 0)
+            where T : struct
+            => src.UnBlock().Format(delimiter, offset);
+
+        [MethodImpl(Inline)]        
+        public static string Format<T>(this Span256<T> src, char delimiter = ',', int offset = 0)
+            where T : struct
+            => src.Unblock().Format(delimiter, offset);
 
     }
 }

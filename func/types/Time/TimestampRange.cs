@@ -72,6 +72,6 @@ namespace Z0
             => Max;
 
         public override string ToString()
-                => append("[", Min.ToLexicalString(), ",", space(), Max.ToLexicalString(), "]");
+                => concat("[", Min.ToLexicalString(), ",", space(), Max.ToLexicalString(), "]");
     }
 }

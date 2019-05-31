@@ -18,8 +18,6 @@ using static Z0.ReflectionFlags;
 
 partial class zfunc
 {
-
-
     static ConcurrentDictionary<Type, PropertyInfo[]> _propsCache
         = new ConcurrentDictionary<Type, PropertyInfo[]>();
 

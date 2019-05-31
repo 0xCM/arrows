@@ -36,16 +36,16 @@ namespace Z0.Test
         public void Sum3()
         {
             var src = Randomizer.Span<float>(Pow2.T09, closed<float>(-250,250));
-            var x = src.Sum();
-            var y = dinx.sum(src);
+            var x = src.Sum().Round(2);
+            var y = dinx.sum(src).Round(2);
             Claim.eq(x,y);            
         }
 
         public void Sum4()
         {
             var src = Randomizer.Span<double>(Pow2.T09, closed<double>(-250,250));
-            var x = src.Sum();
-            var y = dinx.sum(src);
+            var x = src.Sum().Round(2);
+            var y = dinx.sum(src).Round(2);
             Claim.eq(x,y);            
         }
 

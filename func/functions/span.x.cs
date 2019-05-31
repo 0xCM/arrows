@@ -174,13 +174,19 @@ namespace Z0
             return dst;
         }
 
-
         [MethodImpl(Inline)]
         public static Span<T> Replicate<T>(this Span<T> src)
         {
             var dst = span<T>(src.Length);
             src.CopyTo(dst);
             return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<T> FillWith<T>(this Span<T> io, T value)
+        {
+            io.Fill(value);
+            return io;
         }
 
         [MethodImpl(Inline)]

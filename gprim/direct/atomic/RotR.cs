@@ -17,19 +17,19 @@ namespace Z0
     partial class math
     {
         [MethodImpl(Inline)]
-        public static byte rrot(in byte value, in int offset)
+        public static byte rotr(in byte value, in int offset)
             => (byte)((value >> offset) | (value << (16 - offset)));
 
         [MethodImpl(Inline)]
-        public static ushort rrot(in ushort value, in int offset)
+        public static ushort rotr(in ushort value, in int offset)
             => (ushort)((value >> offset) | (value << (16 - offset)));
 
         [MethodImpl(Inline)]
-        public static uint rrot(in uint value, in int offset)
+        public static uint rotr(in uint value, in int offset)
             => (value >> offset) | (value << (32 - offset));
 
         [MethodImpl(Inline)]
-        public static ulong rrot(in ulong  value, in int offset)
+        public static ulong rotr(in ulong  value, in int offset)
             => (value >> offset) | (value << (64 - offset));
 
     }

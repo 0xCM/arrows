@@ -56,7 +56,7 @@ namespace Z0
                 throw unsupported(PrimalKinds.kind<T>());
         }           
 
-        [MethodImpl(NotInline)]
+        [MethodImpl(Inline)]
         public static Span<T> negate<T>(ReadOnlySpan<T> src, Span<T> dst)
             where T : struct
         {
@@ -76,6 +76,29 @@ namespace Z0
                 throw unsupported(PrimalKinds.kind<T>());                
             return dst;
         }
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> negate<T>(ref Span<T> io)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.negate(int8(io));
+            else if(typeof(T) == typeof(short))
+                math.negate(int16(io));
+            else if(typeof(T) == typeof(int))
+                math.negate(int32(io));
+            else if(typeof(T) == typeof(long))
+                math.negate(int64(io));
+            else if(typeof(T) == typeof(float))
+                math.negate(float32(io));
+            else if(typeof(T) == typeof(double))
+                math.negate(float64(io));
+            else
+                throw unsupported(PrimalKinds.kind<T>());                
+            return ref io;
+
+        }
+        
 
 
         [MethodImpl(Inline)]

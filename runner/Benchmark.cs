@@ -165,9 +165,10 @@ namespace Z0.Bench
                 //app.RunTests();
                 //app.Measure(MetricKind.PrimalG);
                 //app.Measure(MetricKind.InX128GFused);
-                app.Measure(MetricKind.InX256GFused);
+                //app.Measure(MetricKind.InX256GFused);
                 //app.Measure(MetricKind.NumG);
-                app.Measure(MetricKind.BitG);
+                //app.Measure(MetricKind.BitG);
+                
                 
                 
                 

@@ -18,90 +18,90 @@ namespace Z0
     partial class math
     {
         [MethodImpl(Inline)]
-        public static sbyte rshift(sbyte lhs, int rhs)
+        public static sbyte shiftr(sbyte lhs, int rhs)
             => (sbyte)(lhs >> rhs);
 
         [MethodImpl(Inline)]
-        public static byte rshift(byte lhs, int rhs)
+        public static byte shiftr(byte lhs, int rhs)
             => (byte)(lhs >> rhs);
 
         [MethodImpl(Inline)]
-        public static short rshift(short lhs, int rhs)
+        public static short shiftr(short lhs, int rhs)
             => (short)(lhs >> rhs);
 
         [MethodImpl(Inline)]
-        public static ushort rshift(ushort lhs, int rhs)
+        public static ushort shiftr(ushort lhs, int rhs)
             => (ushort)(lhs >> rhs);
 
         [MethodImpl(Inline)]
-        public static int rshift(int lhs, int rhs)
+        public static int shiftr(int lhs, int rhs)
             => lhs >> rhs;
 
         [MethodImpl(Inline)]
-        public static uint rshift(uint lhs, int rhs)
+        public static uint shiftr(uint lhs, int rhs)
             => lhs >> rhs;
 
         [MethodImpl(Inline)]
-        public static long rshift(long lhs, int rhs)
+        public static long shiftr(long lhs, int rhs)
             => lhs >> rhs;
 
         [MethodImpl(Inline)]
-        public static ulong rshift(ulong lhs, int rhs)
+        public static ulong shiftr(ulong lhs, int rhs)
             => lhs >> rhs;
 
         [MethodImpl(Inline)]
-        public static ref sbyte rshift(ref sbyte lhs, int rhs)
+        public static ref sbyte shiftr(ref sbyte lhs, int rhs)
         {
-            lhs = (sbyte)(lhs >> rhs);
+            lhs >>= rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref byte rshift(ref byte lhs, int rhs)
+        public static ref byte shiftr(ref byte lhs, int rhs)
         {
-            lhs = (byte)(lhs >> rhs);
+            lhs >>= rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref short rshift(ref short lhs, int rhs)
+        public static ref short shiftr(ref short lhs, int rhs)
         {
-            lhs = (short)(lhs >> rhs);
+            lhs >>= rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref ushort rshift(ref ushort lhs, int rhs)
+        public static ref ushort shiftr(ref ushort lhs, int rhs)
         {
-            lhs = (ushort)(lhs >> rhs);
+            lhs >>= rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref int rshift(ref int lhs, int rhs)
+        public static ref int shiftr(ref int lhs, int rhs)
         {
-            lhs = lhs >> rhs;
+            lhs >>= rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref uint rshift(ref uint lhs, int rhs)
+        public static ref uint shiftr(ref uint lhs, int rhs)
         {
-            lhs = lhs >> rhs;
+            lhs >>= rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref long rshift(ref long lhs, int rhs)
+        public static ref long shiftr(ref long lhs, int rhs)
         {
-            lhs = lhs >> rhs;
+            lhs >>= rhs;
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref ulong rshift(ref ulong lhs, int rhs)
+        public static ref ulong shiftr(ref ulong lhs, int rhs)
         {
-            lhs = lhs >> rhs;
+            lhs >>= rhs;
             return ref lhs;
         }
     }

@@ -10,6 +10,7 @@ namespace Z0
     using System.ComponentModel;
     using System.Linq;
     using System.Runtime.CompilerServices;
+    using System.Buffers;
     
     using static Spans;
     using static zfunc;
@@ -128,6 +129,7 @@ namespace Z0
         public static bool Eq<T>(this Span<T> lhs, Span<T> rhs)  
             where T : struct       
         {
+            
             if(lhs.Length != rhs.Length)
                 return false;
             return SequenceEqual(ref lhs[0], ref rhs[0], lhs.Length);

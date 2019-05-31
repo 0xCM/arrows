@@ -17,19 +17,27 @@ namespace Z0
     partial class math
     {
         [MethodImpl(Inline)]
-        public static byte lrot(in byte src, in int offset)
-            => (byte)((src << offset) | (src >> (8 - offset)));
+        public static float round(float src, int scale)
+            => MathF.Round(src,scale);
 
         [MethodImpl(Inline)]
-        public static ushort lrot(in ushort src, in int offset)
-            => (ushort)((src << offset) | (src >> (16 - offset)));
+        public static double round(double src, int scale)
+            => Math.Round(src,scale);
 
         [MethodImpl(Inline)]
-        public static uint lrot(in uint src, in int offset)
-            => (src << offset) | (src >> (32 - offset));
+        public static ref float round(ref float src, int scale)
+        {
+            src = MathF.Round(src, scale);
+            return ref src;
+        }
 
         [MethodImpl(Inline)]
-        public static ulong lrot(in ulong src, in int offset)
-            => (src << offset) | (src >> (64 - offset));
+        public static ref double round(ref double src, int scale)
+        {
+            src = Math.Round(src, scale);
+            return ref src;
+        }
+
     }
+
 }

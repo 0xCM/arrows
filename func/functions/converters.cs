@@ -21,25 +21,25 @@ namespace Z0
             where S : struct
             where T : struct
         {
-            if(typeof(T) == typeof(sbyte))
+            if(typeof(S) == typeof(sbyte))
                     convert(int8(src), out dst);
-            else if(typeof(T) == typeof(byte))
+            else if(typeof(S) == typeof(byte))
                     convert(uint8(src), out dst);
-            else if(typeof(T) == typeof(short))
+            else if(typeof(S) == typeof(short))
                     convert(int16(src), out dst);
-            else if(typeof(T) == typeof(ushort))
+            else if(typeof(S) == typeof(ushort))
                     convert(uint16(src), out dst);
-            else if(typeof(T) == typeof(int))
+            else if(typeof(S) == typeof(int))
                     convert(int32(src), out dst);
-            else if(typeof(T) == typeof(uint))
+            else if(typeof(S) == typeof(uint))
                     convert(uint32(src), out dst);
-            else if(typeof(T) == typeof(long))
+            else if(typeof(S) == typeof(long))
                     convert(int64(src), out dst);
-            else if(typeof(T) == typeof(ulong))
+            else if(typeof(S) == typeof(ulong))
                     convert(uint64(src), out dst);
-            else if(typeof(T) == typeof(float))
+            else if(typeof(S) == typeof(float))
                     convert(float32(src), out dst);
-            else if(typeof(T) == typeof(double))
+            else if(typeof(S) == typeof(double))
                     convert(float64(src), out dst);
             else            
                 throw unsupported(PrimalKinds.kind<T>());
@@ -990,285 +990,285 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static sbyte convert<T>(T src, ref sbyte dst)
-            where T : struct
+        public static sbyte convert<S>(S src, ref sbyte dst)
+            where S : struct
         {
-            if(typeof(T) == typeof(sbyte))
+            if(typeof(S) == typeof(sbyte))
                 return convert(int8(src), out dst);
-            else if(typeof(T) == typeof(byte))
+            else if(typeof(S) == typeof(byte))
                 return convert(uint8(src), out dst);
-            else if(typeof(T) == typeof(short))
+            else if(typeof(S) == typeof(short))
                 return convert(int16(src), out dst);
-            else if(typeof(T) == typeof(ushort))
+            else if(typeof(S) == typeof(ushort))
                 return convert(uint16(src), out dst);
-            else if(typeof(T) == typeof(int))
+            else if(typeof(S) == typeof(int))
                 return convert(int32(src), out dst);
-            else if(typeof(T) == typeof(uint))
+            else if(typeof(S) == typeof(uint))
                 return convert(uint32(src), out dst);
-            else if(typeof(T) == typeof(long))
+            else if(typeof(S) == typeof(long))
                 return convert(int64(src), out dst);
-            else if(typeof(T) == typeof(ulong))
+            else if(typeof(S) == typeof(ulong))
                 return convert(uint64(src), out dst);
-            else if(typeof(T) == typeof(float))
+            else if(typeof(S) == typeof(float))
                 return convert(float32(src), out dst);
-            else if(typeof(T) == typeof(double))
+            else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported(PrimalKinds.kind<S>());
         }
 
         [MethodImpl(Inline)]
-        public static byte convert<T>(T src, ref byte dst)
-            where T : struct
+        public static byte convert<S>(S src, ref byte dst)
+            where S : struct
         {
-            if(typeof(T) == typeof(sbyte))
+            if(typeof(S) == typeof(sbyte))
                 return convert(int8(src), out dst);
-            else if(typeof(T) == typeof(byte))
+            else if(typeof(S) == typeof(byte))
                 return convert(uint8(src), out dst);
-            else if(typeof(T) == typeof(short))
+            else if(typeof(S) == typeof(short))
                 return convert(int16(src), out dst);
-            else if(typeof(T) == typeof(ushort))
+            else if(typeof(S) == typeof(ushort))
                 return convert(uint16(src), out dst);
-            else if(typeof(T) == typeof(int))
+            else if(typeof(S) == typeof(int))
                 return convert(int32(src), out dst);
-            else if(typeof(T) == typeof(uint))
+            else if(typeof(S) == typeof(uint))
                 return convert(uint32(src), out dst);
-            else if(typeof(T) == typeof(long))
+            else if(typeof(S) == typeof(long))
                 return convert(int64(src), out dst);
-            else if(typeof(T) == typeof(ulong))
+            else if(typeof(S) == typeof(ulong))
                 return convert(uint64(src), out dst);
-            else if(typeof(T) == typeof(float))
+            else if(typeof(S) == typeof(float))
                 return convert(float32(src), out dst);
-            else if(typeof(T) == typeof(double))
+            else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
-        }
-
-
-        [MethodImpl(Inline)]
-        public static short convert<T>(T src, ref short dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return convert(int8(src), out dst);
-            else if(typeof(T) == typeof(byte))
-                return convert(uint8(src), out dst);
-            else if(typeof(T) == typeof(short))
-                return convert(int16(src), out dst);
-            else if(typeof(T) == typeof(ushort))
-                return convert(uint16(src), out dst);
-            else if(typeof(T) == typeof(int))
-                return convert(int32(src), out dst);
-            else if(typeof(T) == typeof(uint))
-                return convert(uint32(src), out dst);
-            else if(typeof(T) == typeof(long))
-                return convert(int64(src), out dst);
-            else if(typeof(T) == typeof(ulong))
-                return convert(uint64(src), out dst);
-            else if(typeof(T) == typeof(float))
-                return convert(float32(src), out dst);
-            else if(typeof(T) == typeof(double))
-                return convert(float64(src), out dst);
-            else            
-                throw unsupported(PrimalKinds.kind<T>());
-        }
-
-        [MethodImpl(Inline)]
-        public static ushort convert<T>(T src, ref ushort dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return convert(int8(src), out dst);
-            else if(typeof(T) == typeof(byte))
-                return convert(uint8(src), out dst);
-            else if(typeof(T) == typeof(short))
-                return convert(int16(src), out dst);
-            else if(typeof(T) == typeof(ushort))
-                return convert(uint16(src), out dst);
-            else if(typeof(T) == typeof(int))
-                return convert(int32(src), out dst);
-            else if(typeof(T) == typeof(uint))
-                return convert(uint32(src), out dst);
-            else if(typeof(T) == typeof(long))
-                return convert(int64(src), out dst);
-            else if(typeof(T) == typeof(ulong))
-                return convert(uint64(src), out dst);
-            else if(typeof(T) == typeof(float))
-                return convert(float32(src), out dst);
-            else if(typeof(T) == typeof(double))
-                return convert(float64(src), out dst);
-            else            
-                throw unsupported(PrimalKinds.kind<T>());
-        }
-
-        [MethodImpl(Inline)]
-        public static int convert<T>(T src, ref int dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return convert(int8(src), out dst);
-            else if(typeof(T) == typeof(byte))
-                return convert(uint8(src), out dst);
-            else if(typeof(T) == typeof(short))
-                return convert(int16(src), out dst);
-            else if(typeof(T) == typeof(ushort))
-                return convert(uint16(src), out dst);
-            else if(typeof(T) == typeof(int))
-                return convert(int32(src), out dst);
-            else if(typeof(T) == typeof(uint))
-                return convert(uint32(src), out dst);
-            else if(typeof(T) == typeof(long))
-                return convert(int64(src), out dst);
-            else if(typeof(T) == typeof(ulong))
-                return convert(uint64(src), out dst);
-            else if(typeof(T) == typeof(float))
-                return convert(float32(src), out dst);
-            else if(typeof(T) == typeof(double))
-                return convert(float64(src), out dst);
-            else            
-                throw unsupported(PrimalKinds.kind<T>());
-        }
-
-        [MethodImpl(Inline)]
-        public static uint convert<T>(T src, ref uint dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return convert(int8(src), out dst);
-            else if(typeof(T) == typeof(byte))
-                return convert(uint8(src), out dst);
-            else if(typeof(T) == typeof(short))
-                return convert(int16(src), out dst);
-            else if(typeof(T) == typeof(ushort))
-                return convert(uint16(src), out dst);
-            else if(typeof(T) == typeof(int))
-                return convert(int32(src), out dst);
-            else if(typeof(T) == typeof(uint))
-                return convert(uint32(src), out dst);
-            else if(typeof(T) == typeof(long))
-                return convert(int64(src), out dst);
-            else if(typeof(T) == typeof(ulong))
-                return convert(uint64(src), out dst);
-            else if(typeof(T) == typeof(float))
-                return convert(float32(src), out dst);
-            else if(typeof(T) == typeof(double))
-                return convert(float64(src), out dst);
-            else            
-                throw unsupported(PrimalKinds.kind<T>());
-        }
-
-        [MethodImpl(Inline)]
-        public static long convert<T>(T src, ref long dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return convert(int8(src), out dst);
-            else if(typeof(T) == typeof(byte))
-                return convert(uint8(src), out dst);
-            else if(typeof(T) == typeof(short))
-                return convert(int16(src), out dst);
-            else if(typeof(T) == typeof(ushort))
-                return convert(uint16(src), out dst);
-            else if(typeof(T) == typeof(int))
-                return convert(int32(src), out dst);
-            else if(typeof(T) == typeof(uint))
-                return convert(uint32(src), out dst);
-            else if(typeof(T) == typeof(long))
-                return convert(int64(src), out dst);
-            else if(typeof(T) == typeof(ulong))
-                return convert(uint64(src), out dst);
-            else if(typeof(T) == typeof(float))
-                return convert(float32(src), out dst);
-            else if(typeof(T) == typeof(double))
-                return convert(float64(src), out dst);
-            else            
-                throw unsupported(PrimalKinds.kind<T>());
-        }
-
-        [MethodImpl(Inline)]
-        public static ulong convert<T>(T src, ref ulong dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return convert(int8(src), out dst);
-            else if(typeof(T) == typeof(byte))
-                return convert(uint8(src), out dst);
-            else if(typeof(T) == typeof(short))
-                return convert(int16(src), out dst);
-            else if(typeof(T) == typeof(ushort))
-                return convert(uint16(src), out dst);
-            else if(typeof(T) == typeof(int))
-                return convert(int32(src), out dst);
-            else if(typeof(T) == typeof(uint))
-                return convert(uint32(src), out dst);
-            else if(typeof(T) == typeof(long))
-                return convert(int64(src), out dst);
-            else if(typeof(T) == typeof(ulong))
-                return convert(uint64(src), out dst);
-            else if(typeof(T) == typeof(float))
-                return convert(float32(src), out dst);
-            else if(typeof(T) == typeof(double))
-                return convert(float64(src), out dst);
-            else            
-                throw unsupported(PrimalKinds.kind<T>());
-        }
-
-        [MethodImpl(Inline)]
-        public static float convert<T>(T src, ref float dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return convert(int8(src), out dst);
-            else if(typeof(T) == typeof(byte))
-                return convert(uint8(src), out dst);
-            else if(typeof(T) == typeof(short))
-                return convert(int16(src), out dst);
-            else if(typeof(T) == typeof(ushort))
-                return convert(uint16(src), out dst);
-            else if(typeof(T) == typeof(int))
-                return convert(int32(src), out dst);
-            else if(typeof(T) == typeof(uint))
-                return convert(uint32(src), out dst);
-            else if(typeof(T) == typeof(long))
-                return convert(int64(src), out dst);
-            else if(typeof(T) == typeof(ulong))
-                return convert(uint64(src), out dst);
-            else if(typeof(T) == typeof(float))
-                return convert(float32(src), out dst);
-            else if(typeof(T) == typeof(double))
-                return convert(float64(src), out dst);
-            else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported(PrimalKinds.kind<S>());
         }
 
 
         [MethodImpl(Inline)]
-        public static double convert<T>(T src, ref double dst)
-            where T : struct
+        public static short convert<S>(S src, ref short dst)
+            where S : struct
         {
-            if(typeof(T) == typeof(sbyte))
+            if(typeof(S) == typeof(sbyte))
                 return convert(int8(src), out dst);
-            else if(typeof(T) == typeof(byte))
+            else if(typeof(S) == typeof(byte))
                 return convert(uint8(src), out dst);
-            else if(typeof(T) == typeof(short))
+            else if(typeof(S) == typeof(short))
                 return convert(int16(src), out dst);
-            else if(typeof(T) == typeof(ushort))
+            else if(typeof(S) == typeof(ushort))
                 return convert(uint16(src), out dst);
-            else if(typeof(T) == typeof(int))
+            else if(typeof(S) == typeof(int))
                 return convert(int32(src), out dst);
-            else if(typeof(T) == typeof(uint))
+            else if(typeof(S) == typeof(uint))
                 return convert(uint32(src), out dst);
-            else if(typeof(T) == typeof(long))
+            else if(typeof(S) == typeof(long))
                 return convert(int64(src), out dst);
-            else if(typeof(T) == typeof(ulong))
+            else if(typeof(S) == typeof(ulong))
                 return convert(uint64(src), out dst);
-            else if(typeof(T) == typeof(float))
+            else if(typeof(S) == typeof(float))
                 return convert(float32(src), out dst);
-            else if(typeof(T) == typeof(double))
+            else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported(PrimalKinds.kind<S>());
+        }
+
+        [MethodImpl(Inline)]
+        public static ushort convert<S>(S src, ref ushort dst)
+            where S : struct
+        {
+            if(typeof(S) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(S) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(S) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(S) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(S) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(S) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(S) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(S) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(S) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(S) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<S>());
+        }
+
+        [MethodImpl(Inline)]
+        public static int convert<S>(S src, ref int dst)
+            where S : struct
+        {
+            if(typeof(S) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(S) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(S) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(S) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(S) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(S) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(S) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(S) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(S) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(S) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<S>());
+        }
+
+        [MethodImpl(Inline)]
+        public static uint convert<S>(S src, ref uint dst)
+            where S : struct
+        {
+            if(typeof(S) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(S) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(S) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(S) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(S) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(S) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(S) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(S) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(S) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(S) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<S>());
+        }
+
+        [MethodImpl(Inline)]
+        public static long convert<S>(S src, ref long dst)
+            where S : struct
+        {
+            if(typeof(S) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(S) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(S) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(S) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(S) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(S) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(S) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(S) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(S) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(S) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<S>());
+        }
+
+        [MethodImpl(Inline)]
+        public static ulong convert<S>(S src, ref ulong dst)
+            where S : struct
+        {
+            if(typeof(S) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(S) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(S) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(S) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(S) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(S) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(S) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(S) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(S) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(S) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<S>());
+        }
+
+        [MethodImpl(Inline)]
+        public static float convert<S>(S src, ref float dst)
+            where S : struct
+        {
+            if(typeof(S) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(S) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(S) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(S) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(S) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(S) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(S) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(S) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(S) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(S) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<S>());
+        }
+
+
+        [MethodImpl(Inline)]
+        public static double convert<S>(S src, ref double dst)
+            where S : struct
+        {
+            if(typeof(S) == typeof(sbyte))
+                return convert(int8(src), out dst);
+            else if(typeof(S) == typeof(byte))
+                return convert(uint8(src), out dst);
+            else if(typeof(S) == typeof(short))
+                return convert(int16(src), out dst);
+            else if(typeof(S) == typeof(ushort))
+                return convert(uint16(src), out dst);
+            else if(typeof(S) == typeof(int))
+                return convert(int32(src), out dst);
+            else if(typeof(S) == typeof(uint))
+                return convert(uint32(src), out dst);
+            else if(typeof(S) == typeof(long))
+                return convert(int64(src), out dst);
+            else if(typeof(S) == typeof(ulong))
+                return convert(uint64(src), out dst);
+            else if(typeof(S) == typeof(float))
+                return convert(float32(src), out dst);
+            else if(typeof(S) == typeof(double))
+                return convert(float64(src), out dst);
+            else            
+                throw unsupported(PrimalKinds.kind<S>());
         }
 
       #endregion

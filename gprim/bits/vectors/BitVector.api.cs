@@ -32,10 +32,10 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<N,T> Define<N,T>(in T src)        
+        public static BitVector<N,T> Load<N,T>(ref T src)        
             where T : struct
             where N : INatPow2, new()
-                => BitVector<N,T>.Define(in src);
+                => BitVector<N,T>.Load(ref src);
 
         /// <summary>
         /// Creates a natural bitvector from a span

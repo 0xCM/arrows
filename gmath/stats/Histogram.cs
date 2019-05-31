@@ -19,7 +19,7 @@ namespace Z0
         {
             var width = gmath.sub(domain.Right, domain.Left);
             var histo = new Histogram<T>(domain, 
-                grain ?? gmath.div(width,convert<T>(100)));
+                grain ?? gmath.div(width, convert<T>(100)));
             return histo;
         }
     }
@@ -80,7 +80,7 @@ namespace Z0
             for(int i = 1; i< Partitions.Length; i++)                    
                 if(PartitionDomain(i).Contains(value))
                     return i;
-            return -1;
+            throw new Exception($"No bucket found for the value {value} since the histogram domain is {Domain}");
         }
 
         /// <summary>
@@ -108,5 +108,7 @@ namespace Z0
                 buckets[i-1] = SampleCount.define(PartitionDomain(i), BucketSize(i));
             return buckets;
         }    
+
+            
     }
 }

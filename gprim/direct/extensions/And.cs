@@ -11,14 +11,10 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
 
-    
     using static zfunc;    
-    
-
 
     partial class MathX
     {
-
         /// <summary>
         /// Computes a correctly-typed bitwise and of the operands
         /// </summary>

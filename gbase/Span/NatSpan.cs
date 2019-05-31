@@ -58,6 +58,12 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public Span(ref T src)
+        {
+            data = MemoryMarshal.CreateSpan(ref src, SpanLength);
+        }
+
+        [MethodImpl(Inline)]
         public Span(ReadOnlySpan<N,T> src)
         {
             data = alloc<T>(SpanLength);

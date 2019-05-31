@@ -691,11 +691,11 @@ namespace Z0
         }
         else if (valueType.IsNullableType())
         {
-            result = Convert.ChangeType(groupValue, Nullable.GetUnderlyingType(valueType));
+            result = System.Convert.ChangeType(groupValue, Nullable.GetUnderlyingType(valueType));
         }
         else
         {
-            result = Convert.ChangeType(groupValue, valueType);
+            result = System.Convert.ChangeType(groupValue, valueType);
         }
         return (T)result;
     }

@@ -163,7 +163,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static string ToIeeeBitString(this double x)
             => zpad(apply(split(x), 
-                ieee => append(ieee.sign == Sign.Negative ? "1" : "0",
+                ieee => concat(ieee.sign == Sign.Negative ? "1" : "0",
                             bitstring(ieee.exponent),
                             gbits.bitstring(ieee.mantissa)
                     )), sizeof(double)); 

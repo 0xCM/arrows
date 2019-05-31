@@ -40,7 +40,6 @@ namespace Z0.Metrics
 
     public static class ConversionBench
     {
-
         public static IEnumerable<MetricComparisonRecord> Run(bool silent = false)
         {
             var random = Random(null);

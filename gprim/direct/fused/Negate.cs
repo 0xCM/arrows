@@ -15,8 +15,6 @@ namespace Z0
 
     partial class math
     {
-
-        [MethodImpl(NotInline)]
         public static void negate(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
         {
             var len = length(src,dst);
@@ -24,7 +22,6 @@ namespace Z0
                 dst[i] = negate(src[i]);
         }
 
-        [MethodImpl(NotInline)]
         public static void negate(ReadOnlySpan<short> src, Span<short> dst)
         {
             var len = length(src, dst);
@@ -32,7 +29,6 @@ namespace Z0
                 dst[i] = negate(src[i]);
         }
 
-        [MethodImpl(NotInline)]
         public static void negate(ReadOnlySpan<int> src, Span<int> dst)
         {
             var len = length(src, dst);
@@ -40,7 +36,6 @@ namespace Z0
                 dst[i] = negate(src[i]);
         }
 
-        [MethodImpl(NotInline)]
         public static void negate(ReadOnlySpan<long> src, Span<long> dst)
         {
             var len = length(src, dst);
@@ -48,7 +43,6 @@ namespace Z0
                 dst[i] = negate(src[i]);
         }
 
-        [MethodImpl(NotInline)]
         public static void negate(ReadOnlySpan<float> src, Span<float> dst)
         {
             var len = length(src, dst);
@@ -56,7 +50,6 @@ namespace Z0
                 dst[i] = negate(src[i]);
         }
 
-        [MethodImpl(NotInline)]
         public static void negate(ReadOnlySpan<double> src, Span<double> dst)
         {
             var len = length(src, dst);
@@ -64,52 +57,46 @@ namespace Z0
                 dst[i] = negate(src[i]);
         }
 
-        [MethodImpl(NotInline)]
-        public static ref Span<sbyte> negate(ref Span<sbyte> io)
+        public static Span<sbyte> negate(Span<sbyte> io)
         {
             for(var i = 0; i< io.Length; i++)
                 negate(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        [MethodImpl(NotInline)]
-        public static ref Span<short> negate(ref Span<short> io)
+        public static Span<short> negate(Span<short> io)
         {
             for(var i = 0; i< io.Length; i++)
                 negate(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        [MethodImpl(NotInline)]
-        public static ref Span<int> negate(ref Span<int> io)
+        public static Span<int> negate(Span<int> io)
         {
             for(var i = 0; i< io.Length; i++)
                 negate(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        [MethodImpl(NotInline)]
-        public static ref Span<long> negate(ref Span<long> io)
+        public static Span<long> negate(Span<long> io)
         {
             for(var i = 0; i< io.Length; i++)
                 negate(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        [MethodImpl(NotInline)]
-        public static ref Span<float> negate(ref Span<float> io)
+        public static Span<float> negate(Span<float> io)
         {
             for(var i = 0; i< io.Length; i++)
                 negate(ref io[i]);
-            return ref io; 
+            return io; 
         }
 
-        [MethodImpl(NotInline)]
-        public static ref Span<double> negate(ref Span<double> io)
+        public static Span<double> negate(Span<double> io)
         {
             for(var i = 0; i< io.Length; i++)
                 negate(ref io[i]);
-            return ref io;
+            return io;
         }        
    }
 }

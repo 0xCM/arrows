@@ -70,7 +70,7 @@ namespace Z0
             => ticksToMs(Ticks);
 
         public override string ToString()
-            => append($"{Ticks}".PadRight(10), " ticks ", " ~ ", $"{Ms} ms");
+            => concat($"{Ticks}".PadRight(10), " ticks ", " ~ ", $"{Ms} ms");
 
         public bool Equals(Duration rhs)
             => this.Ticks == rhs.Ticks;

@@ -14,7 +14,7 @@ namespace Z0.Test
     using static zfunc;
 
 
-    public class Span128Test : UnitTest<Span128Test>
+    public class BlockedSpanTest : UnitTest<BlockedSpanTest>
     {
         public  void CellSize()
         {

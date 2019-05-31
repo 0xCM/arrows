@@ -27,11 +27,11 @@ namespace Z0.Test
         public void LeftShiftV256U32()
         {
             var src = Randomizer.Vec256<uint>();
-            var shifts = Randomizer.Vec256<uint>(closed(1u,7u));            
-            
+            var shifts = Randomizer.Vec256<uint>(closed(1u,7u));  
+
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
-                expect[i] = gmath.lshift(src[i], shifts[i]);
+                expect[i] = gmath.shiftl(src[i], shifts[i]);
             
             var v1 = expect.Vector();
             var v2 = ginx.lshift(src, shifts);            
@@ -46,7 +46,7 @@ namespace Z0.Test
 
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
-                expect[i] = gmath.lshift(src[i], shifts[i]);
+                expect[i] = gmath.shiftl(src[i], shifts[i]);
             
             var v1 = expect.Vector();
             var v2 = ginx.lshift(src, shifts);            
@@ -61,7 +61,7 @@ namespace Z0.Test
 
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
-                expect[i] = gmath.lshift(src[i], shifts[i]);
+                expect[i] = gmath.shiftl(src[i], shifts[i]);
             
             var v1 = expect.Vector();
             var v2 = ginx.lshift(src, shifts);            
@@ -76,7 +76,7 @@ namespace Z0.Test
             
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
-                expect[i] = gmath.lshift(src[i], shifts[i]);
+                expect[i] = gmath.shiftl(src[i], shifts[i]);
             
             var v1 = expect.Vector();
             var v2 = ginx.lshift(src, shifts);            

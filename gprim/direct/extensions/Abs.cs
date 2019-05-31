@@ -40,32 +40,52 @@ namespace Z0
             => ref math.abs(ref src);
 
         [MethodImpl(Inline)]
-        public static ref Span<sbyte> Abs(this ref Span<sbyte> src )
-            => ref math.abs(ref src);
+        public static Span<sbyte> Abs(this Span<sbyte> io)
+            => math.abs(io);
 
         [MethodImpl(Inline)]
-        public static ref Span<short> Abs(this ref Span<short> src )
-            => ref math.abs(ref src);
+        public static Span<short> Abs(this Span<short> io)
+            => math.abs(io);
 
         [MethodImpl(Inline)]
-        public static ref Span<int> Abs(this ref Span<int> src )
-            => ref math.abs(ref src);
+        public static Span<int> Abs(this Span<int> io)
+            => math.abs(io);
 
         [MethodImpl(Inline)]
-        public static ref Span<long> Abs(this ref Span<long> src )
-            => ref math.abs(ref src);
+        public static Span<long> Abs(this Span<long> io)
+            => math.abs(io);
 
         [MethodImpl(Inline)]
-        public static ref Span<float> Abs(this ref Span<float> src )
-            => ref math.abs(ref src);
+        public static Span<float> Abs(this Span<float> io)
+            => math.abs(io);
 
         [MethodImpl(Inline)]
-        public static ref Span<double> Abs(this ref Span<double> src )
-            => ref math.abs(ref src);
+        public static Span<double> Abs(this Span<double> io)
+            => math.abs(io);
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<sbyte> Abs(this ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-            => math.abs(src,dst);            
+        public static Span<sbyte> Abs(this ReadOnlySpan<sbyte> src)
+            => math.abs(src);            
+
+        [MethodImpl(Inline)]
+        public static Span<short> Abs(this ReadOnlySpan<short> src)
+            => math.abs(src);            
+
+        [MethodImpl(Inline)]
+        public static Span<int> Abs(this ReadOnlySpan<int> src)
+            => math.abs(src);            
+
+        [MethodImpl(Inline)]
+        public static Span<long> Abs(this ReadOnlySpan<long> src)
+            => math.abs(src);            
+
+        [MethodImpl(Inline)]
+        public static Span<float> Abs(this ReadOnlySpan<float> src)
+            => math.abs(src);            
+
+        [MethodImpl(Inline)]
+        public static Span<double> Abs(this ReadOnlySpan<double> src)
+            => math.abs(src);            
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan<short> Abs(this ReadOnlySpan<short> src, Span<short> dst)

@@ -27,7 +27,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N8,byte>(in BitVectorU8 src)
-            => NatBits.Define(src.data);
+            => NatBits.Load(ref As.asRef(in src.data));
 
         [MethodImpl(Inline)]
         public static implicit operator BitVectorU8(in byte src)

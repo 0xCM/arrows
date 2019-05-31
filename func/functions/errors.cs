@@ -48,7 +48,8 @@ partial class zfunc
         [CallerFilePath] string file = null,  [CallerLineNumber] int? line = null)
             => new ArgumentException($"An invalid argument {name} = {value}  was specified");    
     
-    public static AppException require(bool value, string info, [CallerFilePath] string caller = null, 
+    [MethodImpl(Inline)]
+    public static bool require(bool value, string info = null, [CallerFilePath] string caller = null, 
         [CallerFilePath] string file = null,  [CallerLineNumber] int? line = null)
-            => new AppException(AppMsg.Define($"Invariant failure: {info}", SeverityLevel.Error, caller, file, line));
+            =>  value ? true : throw new AppException(AppMsg.Define($"Invariant failure: {info}", SeverityLevel.Error, caller, file, line));
 }

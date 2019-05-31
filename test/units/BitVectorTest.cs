@@ -40,8 +40,8 @@ namespace Z0.Test
             var x0 = BitVector.Define(lhs);
             var x1 = BitVector.Define(rhs) ;
             var x = x0 | x1;
-            var y0 = BitVector.Define<N,T>(lhs);
-            var y1 = BitVector.Define<N,T>(rhs);
+            var y0 = BitVector.Load<N,T>(ref lhs);
+            var y1 = BitVector.Load<N,T>(ref rhs);
             var y =  y0 | y1;
             Claim.eq(x.BitString(),y.BitString());
         }
@@ -62,8 +62,8 @@ namespace Z0.Test
             var x0 = BitVector.Define(lhs);
             var x1 = BitVector.Define(rhs) ;
             var x = x0 & x1;
-            var y0 = BitVector.Define<N,T>(lhs);
-            var y1 = BitVector.Define<N,T>(rhs);
+            var y0 = BitVector.Load<N,T>(ref lhs);
+            var y1 = BitVector.Load<N,T>(ref rhs);
             var y =  y0 & y1;
             Claim.eq(x.BitString(),y.BitString());
         }
@@ -83,7 +83,7 @@ namespace Z0.Test
         {
             var x0 = BitVector.Define(src);
             var x = x0.PopCount();
-            var y0 = BitVector.Define<N,T>(src);
+            var y0 = BitVector.Load<N,T>(ref src);
             var y =  y0.PopCount();
             Claim.eq(x,y);
         }

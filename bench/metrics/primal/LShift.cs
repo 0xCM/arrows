@@ -55,7 +55,7 @@ namespace Z0.Metrics
             if(config.DirectOps)
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.lshift(lhs[it],rhs[it]);
+                    dst[it] = math.shiftl(lhs[it],rhs[it]);
             else
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
@@ -76,7 +76,7 @@ namespace Z0.Metrics
             if(config.DirectOps)
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.lshift(lhs[it],rhs[it]);
+                    dst[it] = math.shiftl(lhs[it],rhs[it]);
             else
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
@@ -97,7 +97,7 @@ namespace Z0.Metrics
             if(config.DirectOps)
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.lshift(lhs[it],rhs[it]);
+                    dst[it] = math.shiftl(lhs[it],rhs[it]);
             else
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
@@ -118,7 +118,7 @@ namespace Z0.Metrics
             if(config.DirectOps)
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.lshift(lhs[it],rhs[it]);
+                    dst[it] = math.shiftl(lhs[it],rhs[it]);
             else
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
@@ -139,7 +139,7 @@ namespace Z0.Metrics
             if(dOps)
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.lshift(lhs[it],rhs[it]);
+                    dst[it] = math.shiftl(lhs[it],rhs[it]);
             else
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
@@ -160,7 +160,7 @@ namespace Z0.Metrics
             if(config.DirectOps)
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.lshift(lhs[it],rhs[it]);
+                    dst[it] = math.shiftl(lhs[it],rhs[it]);
             else
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
@@ -181,7 +181,7 @@ namespace Z0.Metrics
             if(config.DirectOps)
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.lshift(lhs[it],rhs[it]);
+                    dst[it] = math.shiftl(lhs[it],rhs[it]);
             else
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
@@ -202,7 +202,7 @@ namespace Z0.Metrics
             if(config.DirectOps)
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.lshift(lhs[it],rhs[it]);
+                    dst[it] = math.shiftl(lhs[it],rhs[it]);
             else
                 for(var cycle = 0; cycle < cycles; cycle++)
                 for(var it=0; it< dst.Length; it++)

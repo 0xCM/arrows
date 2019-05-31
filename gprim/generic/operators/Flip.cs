@@ -248,8 +248,7 @@ namespace Z0
             var x = int16(io);
             math.flip(ref x);
             return ref io;
-        }
-        
+        }        
 
         [MethodImpl(Inline)]
         static ref Span<T> flipU16<T>(ref Span<T> io)

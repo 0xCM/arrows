@@ -69,7 +69,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ReadOnlySpan256<T> Load(T[] src)
         {
-            Claim.@true(Aligned(src.Length));
+            require(Aligned(src.Length));
             return new ReadOnlySpan256<T>(src);
         }
 
@@ -81,21 +81,21 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ReadOnlySpan256<T> Load(Span<T> src, int offset = 0)
         {
-            Claim.@true(Aligned(src.Length - offset));
+            require(Aligned(src.Length - offset));
             return new ReadOnlySpan256<T>(src.Slice(offset));
         }
 
         [MethodImpl(Inline)]
         public static ReadOnlySpan256<T> Load(ReadOnlySpan<T> src, int offset = 0)
         {
-            Claim.@true(Aligned(src.Length - offset));
+            require(Aligned(src.Length - offset));
             return new ReadOnlySpan256<T>(src.Slice(offset));
         }
 
         [MethodImpl(Inline)]
         public static unsafe ReadOnlySpan256<T> Load(void* src, int length)
         {
-            Claim.@true(Aligned(length));
+            require(Aligned(length));
             return new ReadOnlySpan256<T>(src,length);
         }
 
@@ -149,6 +149,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span256<T> ToBlockedSpan()
             => Span256.load(data.ToSpan());
+
+        [MethodImpl(Inline)]
+        public ReadOnlySpan<T> UnBlock()
+            => data;
 
         [MethodImpl(Inline)]
         public T[] ToArray()

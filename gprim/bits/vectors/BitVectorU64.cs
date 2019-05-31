@@ -23,7 +23,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector<N64,ulong>(in BitVectorU64 src)
-            => NatBits.Define(in src.data);
+            => NatBits.Load(ref As.asRef(in src.data));
 
         ulong data;
 

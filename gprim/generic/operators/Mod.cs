@@ -101,6 +101,35 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static ref Span<T> mod<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.mod(int8(lhs), int8(rhs));
+            else if(typeof(T) == typeof(byte))
+                math.mod(uint8(lhs), uint8(rhs));
+            else if(typeof(T) == typeof(short))
+                math.mod(int16(lhs), int16(rhs));
+            else if(typeof(T) == typeof(ushort))
+                math.mod(uint16(lhs), uint16(rhs));
+            else if(typeof(T) == typeof(int))
+                math.mod(int32(lhs), int32(rhs));
+            else if(typeof(T) == typeof(uint))
+                math.mod(uint32(lhs), uint32(rhs));
+            else if(typeof(T) == typeof(long))
+                math.mod(int64(lhs), int64(rhs));
+            else if(typeof(T) == typeof(ulong))
+                math.mod(uint64(lhs), uint64(rhs));
+            else if(typeof(T) == typeof(float))
+                math.mod(float32(lhs), float32(rhs));
+            else if(typeof(T) == typeof(float))
+                math.mod(float64(lhs), float64(rhs));
+            else
+                throw unsupported(PrimalKinds.kind<T>());                
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
         static T modI8<T>(T lhs, T rhs)
             => generic<T>((sbyte)(int8(lhs) % int8(rhs)));
 

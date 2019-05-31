@@ -47,41 +47,37 @@ namespace Z0
         public static ref T square<T>(ref T src)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-
-            if(kind == PrimalKind.int32)
-                return ref squareI32(ref src);
-
-            if(kind == PrimalKind.uint32)
-                return ref src;
-
-            if(kind == PrimalKind.int64)
-                return ref squareI64(ref src);
-
-            if(kind == PrimalKind.uint64)
-                return ref src;
-
-            if(kind == PrimalKind.int16)
-                return ref squareI16(ref src);
-
-            if(kind == PrimalKind.uint16)
-                return ref src;
-
-            if(kind == PrimalKind.int8)
+            if(typeof(T) == typeof(sbyte))
                 return ref squareI8(ref src);
-
-            if(kind == PrimalKind.uint8)
-                return ref src;
-
-            if(kind == PrimalKind.float32)
+            else if(typeof(T) == typeof(byte))
+                return ref squareU8(ref src);
+            else if(typeof(T) == typeof(short))
+                return ref squareI16(ref src);
+            else if(typeof(T) == typeof(ushort))
+                return ref squareU16(ref src);
+            else if(typeof(T) == typeof(int))
+                return ref squareI32(ref src);
+            else if(typeof(T) == typeof(uint))
+                return ref squareU32(ref src);
+            else if(typeof(T) == typeof(long))
+                return ref squareI64(ref src);
+            else if(typeof(T) == typeof(ulong))
+                return ref squareU64(ref src);
+            else if(typeof(T) == typeof(float))
                 return ref squareF32(ref src);
-
-            if(kind == PrimalKind.float64)
+            else if(typeof(T) == typeof(double))
                 return ref squareF64(ref src);
-
-            throw unsupported(kind);
+            else            
+                throw unsupported(PrimalKinds.kind<T>());
         }           
 
+        public static ref Span<T> square<T>(ref Span<T> io)
+            where T : struct
+        {
+            for(var i=0; i< io.Length; i++)
+                square(ref io[i]);
+            return ref io;                
+        }
 
 
         [MethodImpl(Inline)]

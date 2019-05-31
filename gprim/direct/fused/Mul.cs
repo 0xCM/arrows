@@ -17,16 +17,7 @@ namespace Z0
     partial class math
     {
 
-        [MethodImpl(NotInline)]
-        public static ref Span<sbyte> mul(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, ref Span<sbyte> dst)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = mul(lhs[i], rhs[i]);
-            return ref dst;
-        }
 
-        [MethodImpl(NotInline)]
         public static Span<sbyte> mul(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, Span<sbyte> dst)
         {
             var len = length(lhs,rhs);
@@ -35,17 +26,6 @@ namespace Z0
             return dst;
         }
 
-
-        [MethodImpl(NotInline)]
-        public static ref Span<byte> mul(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, ref Span<byte> dst)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = mul(lhs[i], rhs[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(NotInline)]
         public static Span<byte> mul(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, Span<byte> dst)
         {
             var len = length(lhs,rhs);
@@ -54,17 +34,6 @@ namespace Z0
             return dst;
         }
 
-
-        [MethodImpl(NotInline)]
-        public static ref Span<short> mul(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, ref Span<short> dst)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = mul(lhs[i], rhs[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(NotInline)]
         public static Span<short> mul(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, Span<short> dst)
         {
             var len = length(lhs,rhs);
@@ -73,16 +42,6 @@ namespace Z0
             return dst;
         }
 
-        [MethodImpl(NotInline)]
-        public static ref Span<ushort> mul(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, ref Span<ushort> dst)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = mul(lhs[i], rhs[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(NotInline)]
         public static Span<ushort> mul(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, Span<ushort> dst)
         {
             var len = length(lhs,rhs);
@@ -90,17 +49,6 @@ namespace Z0
                 dst[i] = mul(lhs[i], rhs[i]);
             return dst;
         }
-
-        [MethodImpl(NotInline)]
-        public static ref Span<int> mul(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, ref Span<int> dst)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = mul(lhs[i], rhs[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(NotInline)]
         public static Span<int> mul(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, Span<int> dst)
         {
             var len = length(lhs,rhs);
@@ -109,16 +57,7 @@ namespace Z0
             return dst;
         }
 
-        [MethodImpl(NotInline)]
-        public static ref Span<uint> mul(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, ref Span<uint> dst)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = mul(lhs[i], rhs[i]);
-            return ref dst;
-        }
 
-        [MethodImpl(NotInline)]
         public static Span<uint> mul(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, Span<uint> dst)
         {
             var len = length(lhs,rhs);
@@ -127,16 +66,6 @@ namespace Z0
             return dst;
         }
 
-        [MethodImpl(NotInline)]
-        public static ref Span<long> mul(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, ref Span<long> dst)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = mul(lhs[i], rhs[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(NotInline)]
         public static Span<long> mul(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, Span<long> dst)
         {
             var len = length(lhs,rhs);
@@ -145,17 +74,6 @@ namespace Z0
             return  dst;
         }
 
-
-        [MethodImpl(NotInline)]
-        public static ref Span<ulong> mul(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, ref Span<ulong> dst)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = mul(lhs[i], rhs[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(NotInline)]
         public static Span<ulong> mul(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, Span<ulong> dst)
         {
             var len = length(lhs,rhs);
@@ -164,16 +82,6 @@ namespace Z0
             return dst;
         }
 
-        [MethodImpl(NotInline)]
-        public static ref Span<float> mul(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, ref Span<float> dst)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = mul(lhs[i], rhs[i]);
-            return ref dst;
-        }
-
-        [MethodImpl(NotInline)]
         public static Span<float> mul(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
         {
             var len = length(lhs,rhs);
@@ -182,16 +90,6 @@ namespace Z0
             return dst;
         }
 
-        [MethodImpl(NotInline)]
-        public static ref Span<double> mul(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, ref Span<double> dst)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = mul(lhs[i], rhs[i]);            
-            return ref dst;
-        }
-
-        [MethodImpl(NotInline)]
         public static Span<double> mul(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
         {
             var len = length(lhs,rhs);
@@ -199,6 +97,87 @@ namespace Z0
                 dst[i] = mul(lhs[i], rhs[i]);            
             return dst;
         }
+
+        public static Span<sbyte> mul(Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] *= rhs[i];
+            return lhs;
+        }
+
+        public static Span<byte> mul(Span<byte> lhs, ReadOnlySpan<byte> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] *= rhs[i];
+            return lhs;
+        }
+
+        public static Span<short> mul(Span<short> lhs, ReadOnlySpan<short> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] *= rhs[i];
+            return lhs;
+        }
+
+        public static Span<ushort> mul(Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] *= rhs[i];
+            return lhs;
+        }
+
+        public static Span<int> mul(Span<int> lhs, ReadOnlySpan<int> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] *= rhs[i];
+            return lhs;
+        }
+
+        public static Span<uint> mul(Span<uint> lhs, ReadOnlySpan<uint> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] *= rhs[i];
+            return lhs;
+        }
+
+        public static Span<long> mul(Span<long> lhs, ReadOnlySpan<long> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] *= rhs[i];
+            return lhs;
+        }
+
+        public static Span<ulong> mul(Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] *= rhs[i];
+            return lhs;
+        }
+
+        public static Span<float> mul(Span<float> lhs, ReadOnlySpan<float> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] *= rhs[i];
+            return lhs;
+        }
+
+        public static Span<double> mul(Span<double> lhs, ReadOnlySpan<double> rhs)
+        {
+            var len = length(lhs,rhs);
+            for(var i = 0; i< len; i++)
+                lhs[i] *= rhs[i];
+            return lhs;
+        }
+
     }
 
 }

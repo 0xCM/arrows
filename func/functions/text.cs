@@ -377,7 +377,7 @@ partial class zfunc
     /// <param name="content"></param>
     [MethodImpl(Inline)]
     public static string paren(params object[] content)
-        => enclose(append(content), lparen(), rparen());
+        => enclose(concat(content), lparen(), rparen());
 
     /// <summary>
     /// Renders a content array as a comma-separated list of values
@@ -761,18 +761,18 @@ partial class zfunc
     /// <summary>
     /// Concatenates a sequence of strings
     /// </summary>
-    /// <param name="items">The characters to concatenate</param>
+    /// <param name="src">The characters to concatenate</param>
     [MethodImpl(Inline)]
-    public static string concat(IEnumerable<string> items)
-        => join(space(), items);
+    public static string concat(IEnumerable<string> src)
+        => string.Concat(src);
 
     /// <summary>
     /// Concatenates a sequence of characters
     /// </summary>
-    /// <param name="items">The characters to concatenate</param>
+    /// <param name="src">The characters to concatenate</param>
     [MethodImpl(Inline)]
-    public static string concat(IEnumerable<char> items)
-        => new string(items.ToArray());
+    public static string concat(IEnumerable<char> src)
+        => new string(src.ToArray());
 
     /// <summary>
     /// Concatenates a character array
@@ -788,7 +788,7 @@ partial class zfunc
     /// <param name="items">The strings to concatenate</param>
     [MethodImpl(Inline)]
     public static string concat(params string[] items)
-        => string.Join(space(), items);
+        => string.Concat(items);
 
     /// <summary>
     /// Concatenates an arbitrary number of string representations
@@ -798,21 +798,5 @@ partial class zfunc
     public static string concat(IEnumerable<object> src)    
         => string.Concat(src);
 
-     /// <summary>
-    /// Concatenates an arbitrary number of strings
-    /// </summary>
-    /// <param name="src">The strings to be concatenated</param>
-    [MethodImpl(Inline)]   
-    public static string append(params string[] src) 
-        => concat(src);
-    
-
-    /// <summary>
-    /// Concatenates an arbitrary number of string representations
-    /// </summary>
-    /// <param name="src">The strings to be concatenated</param>
-    [MethodImpl(Inline)]   
-    public static string append<T>(IEnumerable<T> src) 
-        => concat(src.Select(x => (object)x));
 
 }

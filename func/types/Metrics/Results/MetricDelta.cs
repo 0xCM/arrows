@@ -69,7 +69,7 @@ namespace Z0.Metrics
             var leftDuration = comparison.LeftMetrics.WorkTime;
             var rightDuration = comparison.RightMetrics.WorkTime;
             var ratio = Math.Round((double)leftDuration.Ticks / (double)rightDuration.Ticks, 4);
-            var description = append(
+            var description = concat(
                 $"{title}", 
                 $" | Left Time  = {leftDuration.Ms} ms",
                 $" | Right Time = {rightDuration.Ms} ms",
