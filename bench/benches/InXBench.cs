@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Metrics
+namespace Z0.Bench
 {
     using System;
     using System.Linq;
@@ -13,12 +13,99 @@ namespace Z0.Metrics
     
     using static zfunc;
     using static As;
-    
+    using static BenchTools;
     
     public static class InXBench
     {
-        static IRandomizer Random(IRandomizer random)
-            => random ?? Randomizer.define(RandSeeds.BenchSeed);
+        public static IMetrics Run(this InXConfig128 config, OpKind op, PrimalKind prim, bool generic, IRandomizer random = null)        
+            =>  generic  
+                ? config.RunG(op, prim, random) 
+                : config.RunD(op, prim, random);
+                  
+        public static IMetrics Run(this InXConfig256 config, OpKind op, PrimalKind prim, bool generic, IRandomizer random = null)        
+            =>  generic  
+                ? config.RunG(op, prim, random) 
+                : config.RunD(op, prim, random);                
+
+
+        public static IEnumerable<MetricComparisonRecord> RunComparison(this InXConfig128 config, IEnumerable<OpType> ops)
+            => ops.Select(op => config.RunComparison(op));
+
+        public static IEnumerable<MetricComparisonRecord> RunComparison(this InXConfig256 config, IEnumerable<OpType> ops)
+            => ops.Select(op => config.RunComparison(op));
+
+       public static IReadOnlyList<MetricComparisonRecord> RunComparisons(this InXConfig128 config, IEnumerable<OpType> ops, bool silent = false)
+       {            
+            var results = new List<MetricComparisonRecord>();
+            foreach(var comparison in config.RunComparison(ops))
+            {
+                results.Add(comparison);
+                if(!silent)
+                    print(items(comparison).FormatMessages());
+            }
+            
+            return results;
+       }
+
+       public static IReadOnlyList<MetricComparisonRecord> RunComparisons(this InXConfig256 config, IEnumerable<OpType> ops, bool silent = false)
+       {            
+            var results = new List<MetricComparisonRecord>();
+            foreach(var comparison in config.RunComparison(ops))
+            {
+                results.Add(comparison);
+                if(!silent)
+                    print(items(comparison).FormatMessages());
+            }
+            
+            return results;
+       } 
+
+        public static MetricComparisonRecord RunComparison(this InXConfig256 config, OpType op, IRandomizer random = null)
+        {
+            var m1 = config.Run(op.Op, op.Primitive, false, random);
+            print(m1.Describe());
+
+            var m2 = config.Run(op.Op, op.Primitive, true, random);
+            print(m2.Describe());
+
+            return m1.Compare(m2).ToRecord();
+        }
+
+        public static MetricComparisonRecord RunComparison(this InXConfig128 config, OpType op, IRandomizer random = null)
+        {
+            var m1 = config.Run(op.Op, op.Primitive, false, random);
+            print(m1.Describe());
+
+            var m2 = config.Run(op.Op, op.Primitive, true, random);
+            print(m2.Describe());
+        
+            return m1.Compare(m2).ToRecord();
+        }
+
+
+
+        public static IReadOnlyList<MetricComparisonRecord> Run256Fused()
+        {            
+            var primitives = items(PrimalKind.int8, PrimalKind.int32, PrimalKind.int64, PrimalKind.float32, PrimalKind.float64);
+            var ops = items(OpKind.And, OpKind.Add, OpKind.Sub, OpKind.XOr);
+            var specs = from p in primitives
+                        from o in ops
+                        select o.WithType(p);
+            var config = InXConfig256.Define(MetricKind.InX256GFused, runs: Pow2.T03, cycles: Pow2.T13, blocks: Pow2.T11);
+            return config.RunComparisons(specs);
+
+       }
+
+        public static IReadOnlyList<MetricComparisonRecord> Run128Fused()
+        {            
+            var primitives = items(PrimalKind.int8, PrimalKind.int64, PrimalKind.float32);
+            var ops = items(OpKind.Add, OpKind.Sub);
+            var specs = from p in primitives
+                        from o in ops
+                        select o.WithType(p);
+            var config = InXConfig128.Define(MetricKind.InX128GFused, runs: Pow2.T03, cycles: Pow2.T12, blocks: Pow2.T11);
+            return config.RunComparisons(specs);
+       }
 
         const MetricKind Fused128D = MetricKind.InX128DFused;
         

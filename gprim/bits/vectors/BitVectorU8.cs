@@ -74,7 +74,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVectorU8 Define(in ReadOnlySpan<Bit> src)
-            => Define(in bitpack(src, out byte dst));
+            => Define(in pack(src, out byte dst));
 
         [MethodImpl(Inline)]
         public static BitVectorU8 Define(

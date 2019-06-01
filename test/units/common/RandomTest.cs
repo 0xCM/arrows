@@ -9,14 +9,15 @@ namespace Z0.Test
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
-
+    using Xunit;
     
     using static zfunc;
 
-
+    
     public class RandomTest : UnitTest<RandomTest>
     {
 
+        [Fact]
         public void I8DomainSatisifed()
         {
             var samples = Pow2.T11;
@@ -26,6 +27,7 @@ namespace Z0.Test
             h.Deposit(data,false);
         }
 
+        [Fact]
         public void U32DomainSatisifed()
         {
             var samples = Pow2.T11;
@@ -36,6 +38,7 @@ namespace Z0.Test
         }
 
 
+        [Fact]
         public void U64DomainSatisfied()
         {
             var samples = Pow2.T11;
@@ -45,6 +48,7 @@ namespace Z0.Test
             h.Deposit(data,false);
         }
 
+        [Fact]
         public void I64DomainSatisfied()
         {
             var samples = Pow2.T11;
@@ -52,7 +56,7 @@ namespace Z0.Test
             var data = Randomizer.Stream<long>(domain).Take(samples);
             var h = Histogram.define(domain);
             h.Deposit(data,false);
-         
+        
         }
 
     }

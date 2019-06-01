@@ -18,12 +18,11 @@ namespace Z0.Metrics
     {
         public static Metrics<T> AddD<T>(this InXConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct
-                =>  Add(lhs,rhs,config);
-        static Metrics<T> Add<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXConfig256 config = null)
+                =>  config.Add(lhs,rhs);
+        static Metrics<T> Add<T>(this InXConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            config = Configure(config);
 
             switch(kind)
             {

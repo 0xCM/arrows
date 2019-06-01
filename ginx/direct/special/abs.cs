@@ -19,53 +19,113 @@ namespace Z0
     {
         
         [MethodImpl(Inline)]
-        public static Vec128<byte> abs(Vec128<sbyte> src)
+        public static Vec128<byte> abs(in Vec128<sbyte> src)
             => Abs(src);
 
         [MethodImpl(Inline)]
-        public static Vec128<ushort> abs(Vec128<short> src)
+        public static Vec128<ushort> abs(in Vec128<short> src)
             => Abs(src);
 
         [MethodImpl(Inline)]
-        public static Vec128<uint> abs(Vec128<int> src)
+        public static Vec128<uint> abs(in Vec128<int> src)
             => Abs(src);
 
         [MethodImpl(Inline)]
-        public static Vec256<byte> abs(Vec256<sbyte> src)
+        public static Vec256<byte> abs(in Vec256<sbyte> src)
             => Abs(src);
 
         [MethodImpl(Inline)]
-        public static Vec256<ushort> abs(Vec256<short> src)
+        public static Vec256<ushort> abs(in Vec256<short> src)
             => Abs(src);
 
         [MethodImpl(Inline)]
-        public static Vec256<uint> abs(Vec256<int> src)
+        public static Vec256<uint> abs(in Vec256<int> src)
             => Abs(src);
  
         [MethodImpl(Inline)]
-        public static void abs(Vec128<sbyte> src, ref sbyte dst)
+        public static void abs(in Vec128<sbyte> src, ref sbyte dst)
             => Abs(src);
 
         [MethodImpl(Inline)]
-        public static void abs(Vec128<short> src, ref short dst)
+        public static void abs(in Vec128<short> src, ref short dst)
             => Abs(src);
 
         [MethodImpl(Inline)]
-        public static void abs(Vec128<int> src, ref uint dst)
+        public static void abs(in Vec128<int> src, ref uint dst)
             => store(Abs(src), ref dst);
 
         [MethodImpl(Inline)]
-        public static void abs(Vec256<sbyte> src, ref byte dst)
+        public static void abs(in Vec256<sbyte> src, ref byte dst)
             => store(Abs(src), ref dst);
 
         [MethodImpl(Inline)]
-        public static void abs(Vec256<short> src, ref ushort dst)
+        public static void abs(in Vec256<short> src, ref ushort dst)
             => store(Abs(src), ref dst);
 
         [MethodImpl(Inline)]
-        public static void abs(Vec256<int> src, ref uint dst)
+        public static void abs(in Vec256<int> src, ref uint dst)
             => store(Abs(src), ref dst);
  
+        public static Span128<byte> abs(in Span128<sbyte> src, Span128<byte> dst)
+        {
+            for(var block = 0; block <src.BlockCount; block ++)                
+            {
+                var x =  Vec128.load(ref src.Block(block));
+                store(Abs(x), ref dst[block]);                
+            }
+            return dst;
+        }
+
+        public static Span128<ushort> abs(in Span128<short> src, Span128<ushort> dst)
+        {
+            for(var block = 0; block <src.BlockCount; block ++)                
+            {
+                var x =  Vec128.load(ref src.Block(block));
+                store(Abs(x), ref dst[block]);                
+            }
+            return dst;
+        }
+
+        public static Span128<uint> abs(in Span128<int> src, Span128<uint> dst)
+        {
+            for(var block = 0; block <src.BlockCount; block ++)                
+            {
+                var x =  Vec128.load(ref src.Block(block));
+                store(Abs(x), ref dst[block]);                
+            }
+            return dst;
+        }
+
+        public static Span256<byte> abs(in Span256<sbyte> src, Span256<byte> dst)
+        {
+            for(var block = 0; block <src.BlockCount; block ++)                
+            {
+                var x =  Vec256.load(ref src.Block(block));
+                store(Abs(x), ref dst[block]);                
+            }
+            return dst;
+        }
+
+        public static Span256<ushort> abs(in Span256<short> src, Span256<ushort> dst)
+        {
+            for(var block = 0; block <src.BlockCount; block ++)                
+            {
+                var x =  Vec256.load(ref src.Block(block));
+                store(Abs(x), ref dst[block]);                
+            }
+            return dst;
+        }
+
+        public static Span256<uint> abs(in Span256<int> src, Span256<uint> dst)
+        {
+            for(var block = 0; block <src.BlockCount; block ++)                
+            {
+                var x =  Vec256.load(ref src.Block(block));
+                store(Abs(x), ref dst[block]);                
+            }
+            return dst;
+        }
+
     }
 
 }

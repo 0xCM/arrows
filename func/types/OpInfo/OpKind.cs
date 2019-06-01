@@ -9,6 +9,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
+    using System.ComponentModel;
     using static zfunc;
 
     using static MathSym;
@@ -21,11 +22,6 @@ namespace Z0
         /// types which listed in the PrimalKind enumeration
         /// </summary>
         Native = 0,
-
-        /// <summary>
-        /// Identifies the custom generic number type, num[T]
-        /// </summary>
-        NumG = 1,
 
         /// <summary>
         /// Identifies a 128-bit intrinsic scalar
@@ -46,6 +42,16 @@ namespace Z0
         /// Identifies a 256-bit intrinsic vector
         /// </summary>
         Vec256 = 5,
+
+        /// <summary>
+        /// Identifies the custom generic number type, num[T]
+        /// </summary>
+        NumG = 6,
+
+        /// <summary>
+        /// Identifies a generic vector of variable size
+        /// </summary>
+        VecG = 7
 
     }
 
@@ -74,7 +80,6 @@ namespace Z0
         /// </summary>
         Unary = 1,
 
-
         /// <summary>
         /// Indicates an operator that accepts two inputs, normally described by "left" and "right"
         /// </summary>
@@ -100,6 +105,7 @@ namespace Z0
 
         public OpArity Arity {get;} 
     }
+
     public enum OpFusion : byte
     {
         Atomic,
@@ -108,12 +114,11 @@ namespace Z0
         
     }
 
-    public enum OpRole : byte
+    public enum OpClass
     {
-        Baseline,
+        Arithmetic,
 
-        Benchmark,
-
+        Bitwise
     }
 
     public enum OpVariance : byte
@@ -176,58 +181,84 @@ namespace Z0
         /// <summary>
         /// Indicates a binary operator that computes the bitwise and of the source operands
         /// </summary>
-        [Symbol(AsciSym.Amp), Arity(OpArity.Binary)]
+        [Symbol(AsciSym.Amp), Arity(OpArity.Binary), OpClass(OpClass.Bitwise)]
         And,
 
         /// <summary>
         /// Indicates a binary operator that computes the bitwise or of the source operands
         /// </summary>
-        [Symbol(AsciSym.Pipe), Arity(OpArity.Binary)]
+        [Symbol(AsciSym.Pipe), Arity(OpArity.Binary), OpClass(OpClass.Bitwise)]
         Or,
 
         /// <summary>
         /// Indicates a binary operator that computes the bitwise xor of the source operands
         /// </summary>
-        [Symbol(AsciSym.Caret), Arity(OpArity.Binary)]
+        [Symbol(AsciSym.Caret), Arity(OpArity.Binary), OpClass(OpClass.Bitwise)]
         XOr,
 
         /// <summary>
         /// Indicates a left-shift bitwise operator
         /// </summary>
-        [Symbol(AsciCompound.LShift), Symbol(MathSym.LT2,false), Arity(OpArity.Binary)]
-        LShift,
+        [Symbol(AsciCompound.ShiftL,MathSym.LT2), Arity(OpArity.Binary), OpClass(OpClass.Bitwise)]
+        ShiftL,
 
         /// <summary>
         /// Indicates a right-shift bitwise operator
         /// </summary>
-        [Symbol(AsciCompound.RShift), Symbol(MathSym.GT2, false)]
-        RShift,
+        [Symbol(AsciCompound.ShiftR, MathSym.GT2)]
+        ShiftR,
 
-        [Symbol(AsciSym.Tilde), Arity(OpArity.Unary)]
+        [Description("Indicates a bitwise operator that rotates the bits of an operand leftwards")]
+        RotL,
+
+        [Description("Indicates a bitwise operator that rotates the bits of an operand rightwards")]
+        RotR,
+
+
+        [Symbol(AsciSym.Tilde), Arity(OpArity.Unary),
+            Description("Indicates a two's complement bitwise operator that reverses that state over every bit in the operand")]
         Flip,
 
-        [Arity(OpArity.Binary)]
-        TestBit,
+        /// <summary>
+        /// Indicates a bit test operator
+        /// </summary>
+        [Arity(OpArity.Binary), Description("Indicates a bitwise binary operator that tests the state of a bit")]
+        Test,
 
-        [Arity(OpArity.Binary)]
-        ToggleBit,
+        /// <summary>
+        /// Indicates a bit toggle operator
+        /// </summary>
+        [Arity(OpArity.Binary), Description("Indicates a bitwise binary operator that reverses the state of a bit")]
+        Toggle,
+
+        [Arity(OpArity.Unary), Description("Indicates a bitwise unary operator that computes the count of an operand's on bits")]
+        Pop,
+
+        [Arity(OpArity.Unary), Description("Indicates a bitwise unary operator that computes the count of an operand's trailing zero bits")]
+        Ntz,
+
+        [Arity(OpArity.Unary), Description("Indicates a bitwise unary operator that computes the count of an operand's leading zero bits")]
+        Nlz,
 
         /// <summary>
         /// Indicates a unary operator that flips the sign of a signed number
         /// </summary>
-        [Symbol(AsciSym.Minus), Arity(OpArity.Unary)]
+        [Symbol(AsciSym.Minus), Arity(OpArity.Unary), 
+            Description("Indicates a unary operator that reverses the sign of a signed number")]
         Negate,
 
         /// <summary>
-        /// Indicates a unary operator that increments a value by a unit
+        /// Indicates a unary increment operator
         /// </summary>
-        [Symbol(AsciCompound.Increment), Arity(OpArity.Unary)]
+        [Symbol(AsciCompound.Increment), Arity(OpArity.Unary),
+            Description("Indicates a unary increment operator")]
         Inc,
 
         /// <summary>
         /// Indicates a unary operator that decrements a value by a unit
         /// </summary>
-        [Symbol(AsciCompound.Decrement), Arity(OpArity.Unary)]
+        [Symbol(AsciCompound.Decrement), Arity(OpArity.Unary), 
+            Description("Indicates a unary decrement operator")]
         Dec,
 
         New,
@@ -235,21 +266,21 @@ namespace Z0
         /// <summary>
         /// Indicates a unary operator that computes the absolute value of a signed number
         /// </summary>
-        [Symbol(MathSym.Abs), Arity(OpArity.Unary)]
+        [Symbol(MathSym.Abs), Arity(OpArity.Unary),
+            Description("Indicates an absolute value operator")]
         Abs,
 
         /// <summary>
-        /// Indicates an aggregate unary operator that calculates the
-        /// sum of the operand constituents
+        /// Indicates a sum aggregation operator
         /// </summary>
-        [Symbol(MathSym.Sum)]
+        [Symbol(MathSym.Sum), Description("Indicates an aggregation operator that computes the sum of an arbitrary number of values")]
         Sum,
 
         /// <summary>
         /// Indicates an aggregate unary operator that calculates the
         /// average of the operand constituents
         /// </summary>
-        [Arity(OpArity.UnaryCollection)]
+        [Arity(OpArity.UnaryCollection),Description("Indicates an aggregation operator that computes the average of an arbitrary number of values")]
         Avg,
         
         /// <summary>
@@ -291,7 +322,7 @@ namespace Z0
         /// Indicates a binary predicate that determines whether the left
         /// operand is not smaller than the right operand
         /// </summary>
-        [Symbol(AsciCompound.GtEq), Symbol(MathSym.GTEQ), Arity(OpArity.Binary)]
+        [Symbol(AsciCompound.GtEq,MathSym.GTEQ), Arity(OpArity.Binary)]
         GtEq,
         
         /// <summary>
@@ -305,7 +336,7 @@ namespace Z0
         /// Indicates a binary predicate that determines whether the left
         /// operand is not larger than the right operand
         /// </summary>
-        [Symbol(AsciCompound.LtEq), Symbol(MathSym.LTEQ, false), Arity(OpArity.Binary)]
+        [Symbol(AsciCompound.LtEq, MathSym.LTEQ), Arity(OpArity.Binary)]
         LtEq,
 
         [Arity(OpArity.Unary)]
@@ -316,15 +347,8 @@ namespace Z0
 
         Parse,
 
-        [Arity(OpArity.Unary)]
-        Pop,
 
-        [Arity(OpArity.Unary)]
-        Ntz,
-
-        [Arity(OpArity.Unary)]
-        Nlz,
-
+        [Description("Indicates an operator that coverts a value of one type to a value of another type")]
         Convert
     }
 
@@ -339,6 +363,48 @@ namespace Z0
         ZeroOrMore,
         
         OneOrMore,
+    }
+
+    public class OpClassAttribute : Attribute
+    {
+        public OpClassAttribute(OpClass Class)
+        {
+            this.Class = Class;
+        }
+
+        public OpClass Class {get;}
+    }
+
+    public class MultiplicityAttribute : Attribute
+    {
+        public MultiplicityAttribute(Multiplicity Multiplicity)
+            => this.Multiplicity = Multiplicity;
+        
+        public Multiplicity Multiplicity {get;}
+    }
+
+    public class ResultMultiplicityAttribute : Attribute
+    {
+        public ResultMultiplicityAttribute(Multiplicity Multiplicity)
+            => this.Multiplicity = Multiplicity;
+        
+        public Multiplicity Multiplicity {get;}
+    }
+
+    public class LeftMultiplicityAttribute : Attribute
+    {
+        public LeftMultiplicityAttribute(Multiplicity Multiplicity)
+            => this.Multiplicity = Multiplicity;
+        
+        public Multiplicity Multiplicity {get;}
+    }
+
+    public class RightMultiplicityAttribute : Attribute
+    {
+        public RightMultiplicityAttribute(Multiplicity Multiplicity)
+            => this.Multiplicity = Multiplicity;
+        
+        public Multiplicity Multiplicity {get;}
     }
 
 }

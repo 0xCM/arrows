@@ -249,7 +249,6 @@ namespace Z0
         public static num<double> ToNumber(this double src)
             => src;
 
-        [MethodImpl(NotInline)]
         static Span<num<T>> ToNumbers<T>(this ReadOnlySpan<T> src)        
             where T : struct
         {
@@ -300,14 +299,15 @@ namespace Z0
             => src.ToNumbers<double>();
 
         [MethodImpl(Inline)]
+        public static ReadOnlySpan<num<T>> Numbers<T>(this ReadOnlySpan<T> src)
+            where T : struct
+                => Num.many(src);
+
+        [MethodImpl(Inline)]
         public static string ToBitString<T>(this num<T> src, bool tlz = false, bool pfs = false)
             where T : struct
                 => gbits.bitstring<T>(src.Scalar(), tlz, pfs);
 
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<num<T>> Numbers<T>(this ReadOnlySpan<T> src)
-            where T : struct
-                => Num.many(src);
         
         [MethodImpl(Inline)]
         public static ReadOnlySpanPair<num<T>> Numbers<T>(this ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)

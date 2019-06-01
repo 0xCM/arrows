@@ -46,17 +46,17 @@ namespace Z0
 
         static void Main(params string[] args)
         {            
-            var app = new TestMain();
-            gmath.one<byte>();
-            try
-            {     
-                app.RunTests();
+           var app = new TestMain();
+           gmath.one<byte>();
+           try
+           {     
+               app.RunTests();
                         
-            }
-            catch(Exception e)
-            {
-                app.NotifyError(e);
-            }
+           }
+           catch(Exception e)
+           {
+               app.NotifyError(e);
+           }
         }
 
     }

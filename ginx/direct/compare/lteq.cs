@@ -18,11 +18,11 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static Vec128<float> lteq(Num128<float> lhs, Vec128<float> rhs)
+        public static Vec128<float> lteq(in Vec128<float> lhs, in Vec128<float> rhs)
             => CompareLessThanOrEqual(lhs, rhs);
         
         [MethodImpl(Inline)]
-        public static Vec128<double> lteq(Vec128<double> lhs, Vec128<double> rhs)
+        public static Vec128<double> lteq(in Vec128<double> lhs, in Vec128<double> rhs)
             => CompareLessThanOrEqual(lhs, rhs);
     }
 

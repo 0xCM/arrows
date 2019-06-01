@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Metrics
+namespace Z0.Bench
 {
     using System;
     using System.Linq;
@@ -12,13 +12,45 @@ namespace Z0.Metrics
 
     using Z0.Metrics;
 
-    using static PrimalGMetrics;
 
-    using static Bench;
+    using static BenchTools;
     using static zfunc;
 
     public static class PrimalGBench
     {
+
+        public static MetricComparisonRecord RunComparison(this PrimalGConfig config, OpType op, bool silent = false)
+        {            
+            var m1 = MetricKind.PrimalD.Measure(op.Op, op.Primitive, config.ToDirect());
+            var m2 = MetricKind.PrimalG.Measure(op.Op, op.Primitive, config);            
+            var compared = m1.Compare(m2).ToRecord();
+            if(!silent)
+                print(items(compared).FormatMessages());
+            return compared;
+        }
+
+        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, PrimalGConfig config, IRandomizer random = null)
+            => metric.Configure(config).Run(op, prim, Random(random));
+
+
+        public static IReadOnlyList<MetricComparisonRecord> Run()
+        {
+            var ops = items(OpKind.Sub, OpKind.Mul, OpKind.Add, OpKind.GtEq, OpKind.LtEq, OpKind.Eq);
+            var prims = items(PrimalKinds.All);
+            var optypes = from o in ops from p in prims select OpType.Define(o,p);            
+            var config = PrimalGConfig.Define(MetricKind.PrimalG, runs: Pow2.T03, cycles: Pow2.T12, samples: Pow2.T11, dops: false);
+            var comparisons = new List<MetricComparisonRecord>();
+            foreach(var ot in optypes)
+            {
+                var comparison =  config.RunComparison(ot, true);
+                comparisons.Add(comparison);
+                print(comparison.FormatMessage());
+            }
+
+            return comparisons;
+
+        }
+
         public static IMetrics Run(this PrimalGConfig config, OpKind op, PrimalKind prim, IRandomizer random = null)
         {
             random = Random(random);
@@ -49,10 +81,6 @@ namespace Z0.Metrics
             }
         }
 
-
-        static OpId<T> Id<T>(OpKind op)
-            where T : struct
-                => op.OpId<T>(NumericSystem.Primal, generic: Genericity.Generic);
 
         const MetricKind Metric = MetricKind.PrimalG;
 
@@ -164,308 +192,5 @@ namespace Z0.Metrics
             return metrics;
         }
 
-        public static Metrics<T> Negate<T>(this PrimalGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Negate);
-            var dst = alloc(src);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.negate(src[sample]);
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Inc<T>(this PrimalGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Inc);
-            var dst = alloc(src);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.inc(src[sample]);
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Dec<T>(this PrimalGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Dec);
-            var dst = alloc(src);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.dec(src[sample]);
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Square<T>(this PrimalGConfig config, ReadOnlySpan<T> src )
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Square);
-            var dst = alloc(src);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.square(src[sample]);
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Max<T>(this PrimalGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Max);
-            var dst = alloc<T>(1);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[0] = gmath.max(src);            
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Min<T>(this PrimalGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Min);
-            var dst = alloc<T>(1);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[0] = gmath.min(src);            
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Parse<T>(this PrimalGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Parse);
-            var dst = alloc(src);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.parse<T>(src[sample].ToString());
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Add<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Add);
-            var dst = alloc(lhs,rhs);
-            var cycles = config.Cycles;            
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.add(lhs[sample], rhs[sample]);            
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Mul<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Mul);
-            var dst = alloc(lhs,rhs);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.mul(lhs[sample], rhs[sample]);
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Mod<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Mod);
-            var dst = alloc(lhs,rhs);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.mod(lhs[sample], rhs[sample]);
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-       public static Metrics<T> Sqrt<T>(this PrimalGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Sqrt);
-            var dst = alloc(src);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.sqrt(src[sample]);
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-       public static Metrics<T> Flip<T>(this PrimalGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Flip);
-            var dst = alloc(src);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.flip(src[sample]);
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Abs<T>(this PrimalGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Negate);
-            var dst = alloc(src);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.abs(src[sample]);
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> XOr<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.XOr);
-            var dst = alloc(lhs,rhs);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.xor(lhs[sample], rhs[sample]);            
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Sub<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Sub);
-            var dst = alloc(lhs,rhs);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.sub(lhs[sample], rhs[sample]);            
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Eq<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Eq);
-            var dst = new bool[(length(lhs,rhs))];
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.gt(lhs[sample], rhs[sample]);            
-            var time = snapshot(sw);       
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars<T>());                
-        }
-
-        public static Metrics<T> Lt<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Lt);
-            var dst = new bool[(length(lhs,rhs))];
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.lt(lhs[sample], rhs[sample]);     
-            var time = snapshot(sw);       
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars<T>());                
-        }
-
-        public static Metrics<T> LtEq<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.LtEq);
-            var dst = new bool[(length(lhs,rhs))];
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.lteq(lhs[sample], rhs[sample]);     
-            var time = snapshot(sw);       
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars<T>());                
-        }
-
-         public static Metrics<T> Gt<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Gt);
-            var dst = new bool[(length(lhs,rhs))];
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.gt(lhs[sample], rhs[sample]);     
-            var time = snapshot(sw);       
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars<T>());                
-        }
-
-        public static Metrics<T> GtEq<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.GtEq);
-            var dst = new bool[(length(lhs,rhs))];
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.gteq(lhs[sample], rhs[sample]);     
-            var time = snapshot(sw);       
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars<T>());                
-        }
-
-        public static Metrics<T> And<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.And);
-            var dst = alloc(lhs,rhs);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.and(lhs[sample], rhs[sample]);            
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Or<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Or);
-            var dst = alloc(lhs,rhs);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.or(lhs[sample], rhs[sample]);
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Div<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Div);
-            var dst = alloc(lhs,rhs);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.div(lhs[sample], rhs[sample]);
-            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }         
-    }
+   }
 }

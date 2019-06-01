@@ -13,13 +13,13 @@ namespace Z0.Metrics
     using static zfunc;
     using static BitGMetrics;
 
-    [OpMetric(MetricKind.BitG, OpKind.ToggleBit)]
+    [OpMetric(MetricKind.BitG, OpKind.Toggle)]
     public class ToggleGMetrics 
     {
         public static Metrics<T> Toggle<T>(ReadOnlySpan<T> src, ReadOnlySpan<int> positions,  BitGConfig config = null)
             where T : struct
         {
-            OpId opid =  Id<T>(OpKind.ToggleBit);
+            OpId opid =  Id<T>(OpKind.Toggle);
             var dst = span<T>(Samples(config));
             var cycles = Cycles(config);
 
@@ -35,7 +35,7 @@ namespace Z0.Metrics
         public static Metrics<T> ToggleInPlace<T>(ReadOnlySpan<T> src, ReadOnlySpan<int> positions,  BitGConfig config = null)
             where T : struct
         {
-            OpId opid =  Id<T>(OpKind.ToggleBit);
+            OpId opid =  Id<T>(OpKind.Toggle);
             var dst = src.Replicate();        
             var cycles = Cycles(config);
 

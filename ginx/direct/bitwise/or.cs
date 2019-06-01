@@ -181,184 +181,184 @@ namespace Z0
         public static unsafe void or(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
             => store(Or(lhs, rhs), ref dst);
  
-        public static unsafe ref Span128<sbyte> or(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, ref Span128<sbyte> dst)
+        public static Span128<sbyte> or(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, Span128<sbyte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span128<byte> or(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, ref Span128<byte> dst)
+        public static Span128<byte> or(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, Span128<byte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span128<short> or(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, ref Span128<short> dst)
+        public static Span128<short> or(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, Span128<short> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span128<ushort> or(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, ref Span128<ushort> dst)
+        public static Span128<ushort> or(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, Span128<ushort> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span128<int> or(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, ref Span128<int> dst)
+        public static Span128<int> or(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, Span128<int> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span128<uint> or(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, ref Span128<uint> dst)
+        public static Span128<uint> or(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, Span128<uint> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span128<long> or(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, ref Span128<long> dst)
+        public static Span128<long> or(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, Span128<long> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span128<ulong> or(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, ref Span128<ulong> dst)
+        public static Span128<ulong> or(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, Span128<ulong> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span128<float> or(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, ref Span128<float> dst)
+        public static Span128<float> or(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span128<double> or(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, ref Span128<double> dst)
+        public static Span128<double> or(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, Span128<double> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span256<sbyte> or(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, ref Span256<sbyte> dst)
+        public static Span256<sbyte> or(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, Span256<sbyte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span256<byte> or(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, ref Span256<byte> dst)
+        public static Span256<byte> or(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, Span256<byte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span256<short> or(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, ref Span256<short> dst)
+        public static Span256<short> or(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, Span256<short> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span256<ushort> or(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, ref Span256<ushort> dst)
+        public static Span256<ushort> or(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, Span256<ushort> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span256<int> or(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, ref Span256<int> dst)
+        public static Span256<int> or(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, Span256<int> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span256<uint> or(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, ref Span256<uint> dst)
+        public static Span256<uint> or(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, Span256<uint> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span256<long> or(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, ref Span256<long> dst)
+        public static Span256<long> or(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, Span256<long> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span256<ulong> or(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, ref Span256<ulong> dst)
+        public static Span256<ulong> or(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, Span256<ulong> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span256<float> or(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
+        public static Span256<float> or(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, Span256<float> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
 
-        public static unsafe ref Span256<double> or(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, ref Span256<double> dst)
+        public static Span256<double> or(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, Span256<double> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
                 or(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
-            return ref dst;            
+            return dst;            
         }
    }
 }

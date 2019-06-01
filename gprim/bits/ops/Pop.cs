@@ -78,5 +78,19 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong pop(ulong src)
             => Popcnt.X64.PopCount(src);
+ 
+        public static ulong pop(in Span<byte> src)
+        {
+            var count = U64Zero;
+            var blocksize = Pow2.T03;
+            math.quorem(src.Length, blocksize, out Quorem<int> qr);
+            for(var i = 0; i < src.Length; i+=blocksize)
+            {
+                Bytes.read(src, i, out ulong data);
+                count += Popcnt.X64.PopCount(data);
+            }
+            return count;
+        }
+
     }
 }

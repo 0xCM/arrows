@@ -18,9 +18,9 @@ namespace Z0.Metrics
     {
         public static Metrics<T> OrD<T>(this InXConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct        
-                => Or(lhs,rhs,config);
+                => config.Or(lhs,rhs);
 
-        static Metrics<T> Or<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXConfig256 config = null)
+        static Metrics<T> Or<T>(this InXConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -52,148 +52,104 @@ namespace Z0.Metrics
             }
         }
 
-        public static Metrics<sbyte> Or(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, InXConfig256 config = null)
+        static Metrics<sbyte> Or(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, InXConfig256 config)
         {
-            config = Configure(config);
             var opid = Id<sbyte>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.or(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(config, time, dst);
+                dinx.or(lhs, rhs, dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        public static Metrics<byte> Or(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, InXConfig256 config = null)
+        static Metrics<byte> Or(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, InXConfig256 config)
         {
-            config = Configure(config);
             var opid = Id<byte>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.or(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(config, time, dst);
+                dinx.or(lhs, rhs, dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        public static Metrics<short> Or(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, InXConfig256 config = null)
+        static Metrics<short> Or(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, InXConfig256 config)
         {
-            config = Configure(config);
             var opid = Id<short>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.or(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(config, time, dst);
+                dinx.or(lhs, rhs, dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        public static Metrics<ushort> Or(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, InXConfig256 config = null)
+        static Metrics<ushort> Or(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, InXConfig256 config)
         {
-            config = Configure(config);
             var opid = Id<ushort>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.or(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(config, time, dst);
+                dinx.or(lhs, rhs, dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        public static Metrics<int> Or(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, InXConfig256 config = null)
+        static Metrics<int> Or(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, InXConfig256 config)
         {
-            config = Configure(config);
             var opid = Id<int>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.or(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(config, time, dst);
+                dinx.or(lhs, rhs, dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        public static Metrics<uint> Or(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXConfig256 config = null)
+        static Metrics<uint> Or(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXConfig256 config)
         {
-            config = Configure(config);
             var opid = Id<uint>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.or(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(config, time, dst);
+                dinx.or(lhs, rhs, dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        public static Metrics<long> Or(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, InXConfig256 config = null)
+        static Metrics<long> Or(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, InXConfig256 config)
         {
-            config = Configure(config);
             var opid = Id<long>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.or(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(config, time, dst);
+                dinx.or(lhs, rhs, dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        public static Metrics<ulong> Or(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXConfig256 config = null)
+        static Metrics<ulong> Or(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXConfig256 config)
         {
-            config = Configure(config);
             var opid = Id<ulong>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.or(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(config, time, dst);
+                dinx.or(lhs, rhs, dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        public static Metrics<float> Or(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXConfig256 config = null)
+        static Metrics<float> Or(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXConfig256 config)
         {
-            config = Configure(config);
             var opid = Id<float>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.or(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(config, time, dst);
+                dinx.or(lhs, rhs, dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        public static Metrics<double> Or(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXConfig256 config = null)
+        static Metrics<double> Or(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXConfig256 config)
         {
-            config = Configure(config);
             var opid = Id<double>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
-
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.or(lhs,rhs, ref dst);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(config, time, dst);
+                dinx.or(lhs, rhs, dst);
+            return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
- 
-
-
     }
-
 }

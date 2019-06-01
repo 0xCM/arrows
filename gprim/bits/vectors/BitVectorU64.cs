@@ -44,7 +44,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVectorU64 Define(in ReadOnlySpan<Bit> src)
-            => Define(in bitpack(src, out source data));
+            => Define(in pack(src, out source data));
 
         [MethodImpl(Inline)]
         public static BitVectorU64 Define(in source src)

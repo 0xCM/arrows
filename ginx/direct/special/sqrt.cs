@@ -24,7 +24,7 @@ namespace Z0
         public static Vec128<double> sqrt(in Vec128<double> src)
             => Sqrt(src);
  
-         [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static Vec256<float> sqrt(in Vec256<float> src)
             => Sqrt(src);
 
@@ -36,8 +36,7 @@ namespace Z0
         {
             for(var block = 0; block <src.BlockCount; block ++)                
             {
-                ref var data = ref src.Block(block);
-                var x =  Vec256.load(ref data);
+                var x =  Vec256.load(ref src.Block(block));
                 store(Sqrt(x), ref dst[block]);                
             }
             return dst;
@@ -47,10 +46,8 @@ namespace Z0
         {
             for(var block = 0; block <src.BlockCount; block ++)                
             {
-                ref var data = ref src.Block(block);
-                var x =  Vec256.load(ref data);
-                store(Sqrt(x), ref dst[block]);
-                
+                var x =  Vec256.load(ref src.Block(block));
+                store(Sqrt(x), ref dst[block]);                
             }
             return dst;
         }

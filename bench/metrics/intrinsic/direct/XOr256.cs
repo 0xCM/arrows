@@ -61,7 +61,7 @@ namespace Z0.Metrics
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.xor(lhs,rhs, ref dst);
+                dinx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return opid.CaptureMetrics(config, time, dst);
@@ -75,7 +75,7 @@ namespace Z0.Metrics
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.xor(lhs,rhs, ref dst);
+                dinx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return opid.CaptureMetrics(config, time, dst);
@@ -89,7 +89,7 @@ namespace Z0.Metrics
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.xor(lhs,rhs, ref dst);
+                dinx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return opid.CaptureMetrics(config, time, dst);
@@ -103,7 +103,7 @@ namespace Z0.Metrics
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.xor(lhs,rhs, ref dst);
+                dinx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return opid.CaptureMetrics(config, time, dst);
@@ -117,7 +117,7 @@ namespace Z0.Metrics
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.xor(lhs,rhs, ref dst);
+                dinx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return opid.CaptureMetrics(config, time, dst);
@@ -131,7 +131,7 @@ namespace Z0.Metrics
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.xor(lhs,rhs, ref dst);
+                dinx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return opid.CaptureMetrics(config, time, dst);
@@ -145,7 +145,7 @@ namespace Z0.Metrics
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.xor(lhs,rhs, ref dst);
+                dinx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return opid.CaptureMetrics(config, time, dst);
@@ -159,7 +159,7 @@ namespace Z0.Metrics
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.xor(lhs,rhs, ref dst);
+                dinx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return opid.CaptureMetrics(config, time, dst);
@@ -173,7 +173,7 @@ namespace Z0.Metrics
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.xor(lhs,rhs, ref dst);
+                dinx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return opid.CaptureMetrics(config, time, dst);
@@ -187,7 +187,7 @@ namespace Z0.Metrics
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.xor(lhs,rhs, ref dst);
+                dinx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return opid.CaptureMetrics(config, time, dst);

@@ -122,28 +122,28 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref T bitpack<T>(in ReadOnlySpan<Bit> src, out T dst)
+        public static ref T pack<T>(in ReadOnlySpan<Bit> src, out T dst)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
             dst = default(T);
             
             if(typeof(T) == typeof(sbyte))
-                Bits.bitpack(in src, out int8(ref dst));
+                Bits.pack(in src, out int8(ref dst));
             else if(typeof(T) == typeof(byte))
-                Bits.bitpack(in src, out uint8(ref dst));
+                Bits.pack(in src, out uint8(ref dst));
             else if(typeof(T) == typeof(short))
-                Bits.bitpack(in src, out int16(ref dst));
+                Bits.pack(in src, out int16(ref dst));
             else if(typeof(T) == typeof(ushort))
-                Bits.bitpack(in src, out uint16(ref dst));
+                Bits.pack(in src, out uint16(ref dst));
             else if(typeof(T) == typeof(int))
-                Bits.bitpack(in src, out int32(ref dst));
+                Bits.pack(in src, out int32(ref dst));
             else if(typeof(T) == typeof(uint))
-                Bits.bitpack(in src, out uint32(ref dst));
+                Bits.pack(in src, out uint32(ref dst));
             else if(typeof(T) == typeof(long))
-                Bits.bitpack(in src, out int64(ref dst));
+                Bits.pack(in src, out int64(ref dst));
             else if(typeof(T) == typeof(ulong))
-                Bits.bitpack(in src, out uint64(ref dst));        
+                Bits.pack(in src, out uint64(ref dst));        
             else
                 throw unsupported(PrimalKinds.kind<T>());                
             

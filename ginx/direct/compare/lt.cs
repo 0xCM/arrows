@@ -18,23 +18,23 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> lt(Vec128<sbyte> lhs, Vec128<sbyte> rhs)
+        public static Vec128<sbyte> lt(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
             => CompareLessThan(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<short> lt(Vec128<short> lhs, Vec128<short> rhs)
+        public static Vec128<short> lt(in Vec128<short> lhs, in Vec128<short> rhs)
             => CompareLessThan(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> lt(Vec128<int> lhs, Vec128<int> rhs)
+        public static Vec128<int> lt(in Vec128<int> lhs, in Vec128<int> rhs)
             => CompareLessThan(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<float> lt(Vec128<float> lhs, Vec128<float> rhs)
+        public static Vec128<float> lt(in Vec128<float> lhs, in Vec128<float> rhs)
             => CompareLessThan(lhs, rhs);
         
         [MethodImpl(Inline)]
-        public static Vec128<double> lt(Vec128<double> lhs, Vec128<double> rhs)
+        public static Vec128<double> lt(in Vec128<double> lhs, in Vec128<double> rhs)
             => CompareLessThan(lhs, rhs);
     }
 

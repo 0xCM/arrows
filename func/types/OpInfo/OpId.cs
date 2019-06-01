@@ -107,12 +107,14 @@ namespace Z0
             {
                 if(src.NumKind == NumericKind.NumG)
                     uri += "numg/";
+                else if (src.NumKind == NumericKind.VecG)
+                    uri += "vecg/";
                 else
                 {
                     if(src.Generic.IsGeneric())
-                        uri += "gprim/";
+                        uri += "primg/";
                     else
-                        uri = "dprim/";
+                        uri = "primd/";
                 }
 
                 if(src.Fusion == OpFusion.Fused)

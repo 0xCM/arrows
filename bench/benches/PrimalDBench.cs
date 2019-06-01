@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Metrics
+namespace Z0.Bench
 {
     using System;
     using System.Linq;
@@ -13,10 +13,13 @@ namespace Z0.Metrics
 
     using static zfunc;
     using static As;
-    using static Bench;
+    using static BenchTools;
     
     public static class PrimalDBench
     {        
+        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, PrimalDConfig config, IRandomizer random = null)
+            => metric.Configure(config).Run(op, prim, Random(random));
+
         const MetricKind Metric = MetricKind.PrimalD;
 
         public static IMetrics Run(this PrimalDConfig config, OpKind op, PrimalKind prim, IRandomizer random = null)
@@ -52,13 +55,22 @@ namespace Z0.Metrics
         static Metrics<T> Run<T>(this PrimalDConfig config, OpKind op, IRandomizer random)        
             where T : struct
         {
-            var lhs = random.Span<T>(config.Samples);
-            var rhs = op.NonZeroRight() ? random.NonZeroSpan<T>(config.Samples) : random.Span<T>(config.Samples);
+            var lhs = random.ReadOnlySpan<T>(config.Samples);
+            var rhs = op.NonZeroRight() 
+                ? random.NonZeroSpan<T>(config.Samples) 
+                : random.ReadOnlySpan<T>(config.Samples);
             var metrics = Metrics<T>.Zero;
 
             GC.Collect();            
             for(var i=0; i<config.Runs; i++)
-                metrics += config.Run<T>(op, lhs, rhs);
+            {
+                if(op.Arity() == OpArity.Binary)
+                    metrics += config.Run<T>(op, lhs, rhs);
+                else if(op.Arity() == OpArity.Unary)
+                    metrics += config.Run(op, lhs);
+                else 
+                    error($"No arity defined for {op} operator!");
+            }
             return metrics;            
         }
 
@@ -116,7 +128,7 @@ namespace Z0.Metrics
             return metrics;
         }
 
-        static Metrics<T> Run<T>(PrimalDConfig config, OpKind op, ReadOnlySpan<T> src)
+        static Metrics<T> Run<T>(this PrimalDConfig config, OpKind op, ReadOnlySpan<T> src)
             where T : struct
         {
             config = Metric.Configure(config);

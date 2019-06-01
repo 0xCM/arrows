@@ -97,6 +97,14 @@ namespace Z0
             => lhs.XOr(rhs);
 
         [MethodImpl(Inline)]
+        public static BitVector<N,T> operator << (in BitVector<N,T> lhs, int shift) 
+            => lhs.ShiftL(shift);
+
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> operator >> (in BitVector<N,T> lhs, int shift) 
+            => lhs.ShiftR(shift);
+
+        [MethodImpl(Inline)]
         public static BitVector<N,T> operator ~ (in BitVector<N,T> src) 
             => src.Flip();
                     
@@ -118,6 +126,20 @@ namespace Z0
         {
             for(var i =0; i < Length; i++)
                 gmath.xor(ref data[i], rhs.data[i]);
+            return this;
+        }
+
+        BitVector<N,T> ShiftL(int shift)
+        {
+            for(var i =0; i < Length; i++)
+                gmath.shiftl(ref data[i], shift);
+            return this;
+        }
+
+        BitVector<N,T> ShiftR(int shift)
+        {
+            for(var i =0; i < Length; i++)
+                gmath.shiftr(ref data[i], shift);
             return this;
         }
 

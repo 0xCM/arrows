@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.gbase", "gbase\z0.gbase.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.ginx", "ginx\z0.ginx.csproj", "{DD751985-AC26-4CC6-AAE7-5AC9BB5CC039}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.gmath", "gmath\z0.gmath.csproj", "{08CBC321-D079-4C8C-BECE-3C040C8624AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.gspace", "gspace\z0.gspace.csproj", "{08CBC321-D079-4C8C-BECE-3C040C8624AE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.gprim", "gprim\z0.gprim.csproj", "{70074642-ABE7-4A98-81EE-B58E2F266A01}"
 EndProject

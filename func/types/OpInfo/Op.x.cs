@@ -15,7 +15,7 @@ namespace Z0
     public static class OpX
     {
         
-       public static OpArity Arity(this OpKind op)
+        public static OpArity Arity(this OpKind op)
         {
             var attributions = (from a in typeof(OpKind).DeclaredFieldAttributions<ArityAttribute>() 
                                  select (a.Key.Name, a.Value.Arity)).ToDictionary();

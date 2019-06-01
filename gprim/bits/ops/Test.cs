@@ -47,65 +47,65 @@ namespace Z0
             => (src & (U64One << pos)) != 0ul;
 
         [MethodImpl(Inline)]
-        public static bool test(in double src, in int pos)
+        public static bool tbit(in double src, in int pos)
             => test(BitConverter.DoubleToInt64Bits(src),pos);
 
         [MethodImpl(Inline)]
-        public static bool test(in float src, in int pos)
+        public static bool tbit(in float src, in int pos)
             => test(BitConverter.SingleToInt32Bits(src),pos); 
 
 
         [MethodImpl(Inline)]
-        public static ref Bit test(in sbyte src, in int pos, out Bit dst)
+        public static ref Bit tbit(in sbyte src, in int pos, out Bit dst)
         {
             dst = (src & (I32One << pos)) != 0;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Bit test(in byte src, in int pos, out Bit dst)
+        public static ref Bit tbit(in byte src, in int pos, out Bit dst)
         {
             dst = (src & (I32One << pos)) != 0;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Bit test(in short src, in int pos, out Bit dst)
+        public static ref Bit tbit(in short src, in int pos, out Bit dst)
         {
             dst = (src & (I32One << pos)) != 0;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Bit test(in ushort src, in int pos, out Bit dst)
+        public static ref Bit tbit(in ushort src, in int pos, out Bit dst)
         {
             dst = (src & (I32One << pos)) != 0;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Bit test(in int src, in int pos, out Bit dst)
+        public static ref Bit tbit(in int src, in int pos, out Bit dst)
         {
             dst = (src & (I32One << pos)) != I32Zero;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Bit test(in uint src, in int pos, out Bit dst)
+        public static ref Bit tbit(in uint src, in int pos, out Bit dst)
         {
             dst = (src & (U32One << pos)) != U32Zero;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Bit test(in long src, in int pos, out Bit dst)
+        public static ref Bit tbit(in long src, in int pos, out Bit dst)
         {
             dst = (src & (I64One << pos)) != I64Zero;
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref Bit test(in ulong src, in int pos, out Bit dst)
+        public static ref Bit tbit(in ulong src, in int pos, out Bit dst)
         {
             dst = (src & (U64One << pos)) != U64Zero;
             return ref dst;

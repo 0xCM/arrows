@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Metrics
+namespace Z0.Bench
 {
     using System;
     using System.Linq;
@@ -13,34 +13,20 @@ namespace Z0.Metrics
     using Z0.Metrics;
         
     using static zfunc;
-    using static Bench;
+    using static BenchTools;
 
-    public class ConversionConfig : MetricConfig
-    {
-        public ConversionConfig(MetricKind Metric, int Runs, int Cycles, int Samples, PrimalKind SrcType, PrimalKind DstType)
-            : base(Metric, Runs, Cycles, Samples)
-        {
-            this.SrcType = SrcType;
-            this.DstType = DstType;
-        }
-
-        public PrimalKind SrcType {get;}
-
-        public PrimalKind DstType {get;}
-
-        public OpId<T> Id<S,T>()
-            where S : struct
-            where T : struct
-                => OpKind.Convert.OpId<T>(
-                    NumericSystem.Primal, 
-                    generic: Metric.Genericity()
-                        );
-
-    }
 
     public static class ConversionBench
     {
-        public static IEnumerable<MetricComparisonRecord> Run(bool silent = false)
+        public static IReadOnlyList<MetricComparisonRecord> Run()
+        {
+            var comparisons = new List<MetricComparisonRecord>();
+            foreach(var comparison in ConversionBench.Iter())
+                comparisons.Add(comparison);
+            return comparisons;
+        }
+
+        static IEnumerable<MetricComparisonRecord> Iter(bool silent = false)
         {
             var random = Random(null);
             var sources = PrimalKinds.All;

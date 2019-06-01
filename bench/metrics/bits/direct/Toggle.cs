@@ -14,7 +14,7 @@ namespace Z0.Metrics
     using static BitDMetrics;
     using static As;
 
-    [OpMetric(MetricKind.BitD, OpKind.ToggleBit)]
+    [OpMetric(MetricKind.BitD, OpKind.Toggle)]
     public class ToggleDMetrics 
     {
         public static Metrics<T> Toggle<T>(ReadOnlySpan<T> src, ReadOnlySpan<int> positions, BitDConfig config = null)
@@ -56,7 +56,7 @@ namespace Z0.Metrics
 
         static Metrics<sbyte> Toggle(ReadOnlySpan<sbyte> src, ReadOnlySpan<int> pos, BitDConfig config = null)
         {
-            OpId opid = Id<sbyte>(OpKind.ToggleBit);            
+            OpId opid = Id<sbyte>(OpKind.Toggle);            
             var dst = src.Replicate();
             var cycles =Cycles(config);
             
@@ -71,7 +71,7 @@ namespace Z0.Metrics
 
         static Metrics<byte> Toggle(ReadOnlySpan<byte> src, ReadOnlySpan<int> pos, BitDConfig config = null)
         {
-            OpId opid = Id<byte>(OpKind.ToggleBit);            
+            OpId opid = Id<byte>(OpKind.Toggle);            
             var dst = src.Replicate();
             var cycles =Cycles(config);
             
@@ -86,7 +86,7 @@ namespace Z0.Metrics
 
         static Metrics<short> Toggle(ReadOnlySpan<short> src, ReadOnlySpan<int> pos, BitDConfig config = null)
         {
-            OpId opid = Id<short>(OpKind.ToggleBit);            
+            OpId opid = Id<short>(OpKind.Toggle);            
             var dst = src.Replicate();
             var cycles =Cycles(config);
             
@@ -101,7 +101,7 @@ namespace Z0.Metrics
 
         static Metrics<ushort> Toggle(ReadOnlySpan<ushort> src, ReadOnlySpan<int> pos, BitDConfig config = null)
         {
-            OpId opid = Id<ushort>(OpKind.ToggleBit);            
+            OpId opid = Id<ushort>(OpKind.Toggle);            
             var dst = src.Replicate();
             var cycles =Cycles(config);
             
@@ -116,7 +116,7 @@ namespace Z0.Metrics
 
         static Metrics<int> Toggle(ReadOnlySpan<int> src, ReadOnlySpan<int> pos, BitDConfig config = null)
         {
-            OpId opid = Id<int>(OpKind.ToggleBit);            
+            OpId opid = Id<int>(OpKind.Toggle);            
             var dst = src.Replicate();
             var cycles =Cycles(config);
             
@@ -131,7 +131,7 @@ namespace Z0.Metrics
 
         static Metrics<uint> Toggle(ReadOnlySpan<uint> src, ReadOnlySpan<int> pos, BitDConfig config = null)
         {
-            OpId opid = Id<uint>(OpKind.ToggleBit);            
+            OpId opid = Id<uint>(OpKind.Toggle);            
             var dst = src.Replicate();
             var cycles =Cycles(config);
             
@@ -146,7 +146,7 @@ namespace Z0.Metrics
 
         static Metrics<long> Toggle(ReadOnlySpan<long> src, ReadOnlySpan<int> pos, BitDConfig config = null)
         {
-            OpId opid = Id<long>(OpKind.ToggleBit);            
+            OpId opid = Id<long>(OpKind.Toggle);            
             var dst = src.Replicate();
             var cycles =Cycles(config);
             
@@ -161,7 +161,7 @@ namespace Z0.Metrics
 
         static Metrics<ulong> Toggle(ReadOnlySpan<ulong> src, ReadOnlySpan<int> pos, BitDConfig config = null)
         {
-            OpId opid = Id<ulong>(OpKind.ToggleBit);            
+            OpId opid = Id<ulong>(OpKind.Toggle);            
             var dst = src.Replicate();
             var cycles =Cycles(config);
             

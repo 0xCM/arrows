@@ -17,18 +17,17 @@ namespace Z0
     {
     }
 
-    [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
     public class SymbolAttribute : Attribute
     {
-        public SymbolAttribute(string Symbol, bool Primary = true)
+        public SymbolAttribute(params string[] Symbols)
         {
-            this.Symbol = Z0.Symbol.Define(Symbol);
-            this.Primary = Primary;
+            this.Symbols = Symbols.Select(s => Z0.Symbol.Define(s)).ToArray();
+            
         }
 
-        public Symbol Symbol {get;}
-
-        public bool Primary {get;}
+        public Symbol[] Symbols {get;}
+        
     }
 
     /// <summary>

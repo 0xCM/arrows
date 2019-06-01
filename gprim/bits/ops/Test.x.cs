@@ -14,14 +14,14 @@ namespace Z0
 
     public static partial class BitX
     {
-    
+
         /// <summary>
         /// Determines whether a bit in a specified position is on
         /// </summary>
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in sbyte src, in int pos)
+        public static bool Test(this in sbyte src, in int pos)
             => test(src,pos);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in byte src, in int pos)
+        public static bool Test(this in byte src, in int pos)
             => test(src,pos);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in ushort src, in int pos)
+        public static bool Test(this in ushort src, in int pos)
             => test(src,pos);
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in short src, in int pos)
+        public static bool Test(this in short src, in int pos)
             => test(src,pos);
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in int src, in int pos)
+        public static bool Test(this in int src, in int pos)
             => test(src,pos);
 
        /// <summary>
@@ -66,7 +66,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in uint src, in int pos)
+        public static bool Test(this in uint src, in int pos)
             => test(src,pos);
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in long src, in int pos)
+        public static bool Test(this in long src, in int pos)
             => test(src,pos);
  
         /// <summary>
@@ -84,40 +84,40 @@ namespace Z0
         /// <param name="src">The value to examine</param>
         /// <param name="pos">The position to check</param>
         [MethodImpl(Inline)]
-        public static bool TestBit(this in ulong src, in int pos)
+        public static bool Test(this in ulong src, in int pos)
             => test(src,pos);
 
         [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in sbyte src, in int pos, out Bit dst)
-             => ref test(src, pos, out dst);            
+        public static ref Bit Test(this in sbyte src, in int pos, out Bit dst)
+             => ref tbit(src, pos, out dst);            
 
         [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in byte src, in int pos, out Bit dst)
-             => ref test(src, pos, out dst);            
+        public static ref Bit Test(this in byte src, in int pos, out Bit dst)
+             => ref tbit(src, pos, out dst);            
 
         [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in short src, in int pos, out Bit dst)
-             => ref test(src, pos, out dst);            
+        public static ref Bit Test(this in short src, in int pos, out Bit dst)
+             => ref tbit(src, pos, out dst);            
 
         [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in ushort src, in int pos, out Bit dst)
-             => ref test(src, pos, out dst);            
+        public static ref Bit Test(this in ushort src, in int pos, out Bit dst)
+             => ref tbit(src, pos, out dst);            
 
         [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in int src, in int pos, out Bit dst)
-             => ref test(src, pos, out dst);            
+        public static ref Bit Test(this in int src, in int pos, out Bit dst)
+             => ref tbit(src, pos, out dst);            
 
         [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in uint src, in int pos, out Bit dst)
-             => ref test(src, pos, out dst);            
+        public static ref Bit Test(this in uint src, in int pos, out Bit dst)
+             => ref tbit(src, pos, out dst);            
 
         [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in long src, in int pos, out Bit dst)
-             => ref test(src, pos, out dst);            
+        public static ref Bit Test(this in long src, in int pos, out Bit dst)
+             => ref tbit(src, pos, out dst);            
         
         [MethodImpl(Inline)]
-        public static ref Bit TestBit(this in ulong src, in int pos, out Bit dst)
-             => ref test(src, pos, out dst);    
+        public static ref Bit Test(this in ulong src, in int pos, out Bit dst)
+             => ref tbit(src, pos, out dst);    
     }
 
 }

@@ -86,9 +86,9 @@ namespace Z0
 
             public const string Decrement = "--";
 
-            public const string LShift = "<<";
+            public const string ShiftL = "<<";
 
-            public const string RShift = ">>";
+            public const string ShiftR = ">>";
 
         }
     }

@@ -130,144 +130,57 @@ namespace Z0
         public static Span128<T> xor<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();        
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                {
-                    var xDst = int8(dst);
-                    dinx.xor(int8(lhs), int8(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.uint8:
-                {
-                    var xDst = uint8(dst);
-                    dinx.xor(uint8(lhs), uint8(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.int16:
-                {
-                    var xDst = int16(dst);
-                    dinx.xor(int16(lhs), int16(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.uint16:
-                {
-                    var xDst = uint16(dst);
-                    dinx.xor(uint16(lhs), uint16(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.int32:
-                {
-                    var xDst = int32(dst);
-                    dinx.xor(int32(lhs), int32(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.uint32:
-                {
-                    var xDst = uint32(dst);
-                    dinx.xor(uint32(lhs), uint32(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.int64:
-                {
-                    var xDst = int64(dst);
-                    dinx.xor(int64(lhs), int64(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.uint64:
-                {
-                    var xDst = uint64(dst);
-                    dinx.xor(uint64(lhs), uint64(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.float32:
-                {
-                    var xDst = float32(dst);
-                    dinx.xor(float32(lhs), float32(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.float64:
-                {
-                    var xDst = float64(dst);
-                    dinx.xor(float64(lhs), float64(rhs), ref  xDst);
-                    return dst;
-                }
-                
-                default:
-                    throw unsupported(kind);
-            }                
+            if (typeof(T) == typeof(sbyte))
+                dinx.xor(int8(lhs), int8(rhs), int8(dst));
+            else if (typeof(T) == typeof(byte))
+                dinx.xor(uint8(lhs), uint8(rhs), uint8(dst));                    
+            else if (typeof(T) == typeof(short))
+                dinx.xor(int16(lhs), int16(rhs), int16(dst));
+            else if (typeof(T) == typeof(ushort))
+                dinx.xor(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(typeof(T) == typeof(int))
+                dinx.xor(int32(lhs), int32(rhs), int32(dst));
+            else if(typeof(T) == typeof(uint))
+                dinx.xor(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(typeof(T) == typeof(long))
+                dinx.xor(int64(lhs), int64(rhs), int64(dst));
+            else if(typeof(T) == typeof(ulong))
+                dinx.xor(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(typeof(T) == typeof(float))
+                dinx.xor(float32(lhs), float32(rhs), float32(dst));
+            else if(typeof(T) == typeof(double))
+                dinx.xor(float64(lhs), float64(rhs), float64(dst));                
+            else    
+                throw unsupported(PrimalKinds.kind<T>());         
+            return dst;   
         }
 
         public static Span256<T> xor<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();        
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                {
-                    var xDst = int8(dst);
-                    dinx.xor(int8(lhs), int8(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.uint8:
-                {
-                    var xDst = uint8(dst);
-                    dinx.xor(uint8(lhs), uint8(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.int16:
-                {
-                    var xDst = int16(dst);
-                    dinx.xor(int16(lhs), int16(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.uint16:
-                {
-                    var xDst = uint16(dst);
-                    dinx.xor(uint16(lhs), uint16(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.int32:
-                {
-                    var xDst = int32(dst);
-                    dinx.xor(int32(lhs), int32(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.uint32:
-                {
-                    var xDst = uint32(dst);
-                    dinx.xor(uint32(lhs), uint32(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.int64:
-                {
-                    var xDst = int64(dst);
-                    dinx.xor(int64(lhs), int64(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.uint64:
-                {
-                    var xDst = uint64(dst);
-                    dinx.xor(uint64(lhs), uint64(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.float32:
-                {
-                    var xDst = float32(dst);
-                    dinx.xor(float32(lhs), float32(rhs), ref xDst);
-                    return dst;
-                }
-                case PrimalKind.float64:
-                {
-                    var xDst = float64(dst);
-                    dinx.xor(float64(lhs), float64(rhs), ref  xDst);
-                    return dst;
-                }
-                default:
-                    throw unsupported(kind);
-            }
+            if (typeof(T) == typeof(sbyte))
+                dinx.xor(int8(lhs), int8(rhs), int8(dst));
+            else if (typeof(T) == typeof(byte))
+                dinx.xor(uint8(lhs), uint8(rhs), uint8(dst));                    
+            else if (typeof(T) == typeof(short))
+                dinx.xor(int16(lhs), int16(rhs), int16(dst));
+            else if (typeof(T) == typeof(ushort))
+                dinx.xor(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(typeof(T) == typeof(int))
+                dinx.xor(int32(lhs), int32(rhs), int32(dst));
+            else if(typeof(T) == typeof(uint))
+                dinx.xor(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(typeof(T) == typeof(long))
+                dinx.xor(int64(lhs), int64(rhs), int64(dst));
+            else if(typeof(T) == typeof(ulong))
+                dinx.xor(uint64(lhs), uint64(rhs), uint64(dst));
+            else if(typeof(T) == typeof(float))
+                dinx.xor(float32(lhs), float32(rhs), float32(dst));
+            else if(typeof(T) == typeof(double))
+                dinx.xor(float64(lhs), float64(rhs), float64(dst));                
+            else    
+                throw unsupported(PrimalKinds.kind<T>());         
+            return dst;   
         }
  
 

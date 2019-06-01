@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Metrics
+namespace Z0.Bench
 {
     using System;
     using System.Linq;
@@ -13,10 +13,44 @@ namespace Z0.Metrics
 
     using static zfunc;
     
-    using static Bench;
+    using static BenchTools;
 
     public static class BitBench    
     {   
+        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, BitDConfig config, IRandomizer random = null)
+            => metric.Configure(config).Run(metric, false, op, prim, Random(random));
+
+        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, BitGConfig config, IRandomizer random = null)
+            => metric.Configure(config).Run(metric, true, op, prim, Random(random));
+
+        public static MetricComparisonRecord RunComparison(this BitGConfig config, OpType op, bool silent = false)
+        {
+            var m1 = MetricKind.BitD.Measure(op.Op, op.Primitive, config.ToDirect());
+            var m2 = MetricKind.BitG.Measure(op.Op, op.Primitive, config);
+            var compared = m1.Compare(m2).ToRecord();
+            if(!silent)
+                print(items(compared).FormatMessages());
+            return compared;
+        }
+
+
+        public static IReadOnlyList<MetricComparisonRecord> Run()
+        {
+            var ops = items(OpKind.Toggle, OpKind.Pop);
+            var prims = PrimalKinds.Integral;
+            var optypes =from o in ops from p in prims select OpType.Define(o,p);
+            var config = BitGConfig.Define(MetricKind.BitG, runs: Pow2.T03, cycles: Pow2.T12, samples: Pow2.T11, dops: true);
+            var comparisons = new List<MetricComparisonRecord>();
+            foreach(var ot in optypes)
+            {
+                var comparison =  config.RunComparison(ot, true);
+                comparisons.Add(comparison);
+                print(comparison.FormatMessage());
+            }
+
+            return comparisons;
+        }
+
         public static IMetrics Run(this BitDConfig config, MetricKind metric, bool generic, OpKind op, PrimalKind prim, IRandomizer random)              
         {
             switch(prim)
@@ -77,7 +111,7 @@ namespace Z0.Metrics
         {
             switch(op)
             {
-                case OpKind.ToggleBit:
+                case OpKind.Toggle:
                     return new ToggleDMetrics().Measure<T>(config, random);
                 case OpKind.Pop:
                     return new PopDMetrics().Measure<T>(config, random);
@@ -93,7 +127,7 @@ namespace Z0.Metrics
         {
             switch(op)
             {
-                case OpKind.ToggleBit:
+                case OpKind.Toggle:
                     return new ToggleGMetrics().Measure<T>(config, random);                            
                 case OpKind.Pop:
                     return new PopGMetrics().Measure<T>(config, random);                            ;

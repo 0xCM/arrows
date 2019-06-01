@@ -17,11 +17,11 @@ namespace Z0
     partial class dinx
     {
         [MethodImpl(Inline)]
-        public static Vec128<float> neq(Vec128<float> lhs, Vec128<float> rhs)
+        public static Vec128<float> neq(in Vec128<float> lhs, in Vec128<float> rhs)
             => CompareNotEqual(lhs, rhs);
         
         [MethodImpl(Inline)]
-        public static Vec128<double> neq(Vec128<double> lhs, Vec128<double> rhs)
+        public static Vec128<double> neq(in Vec128<double> lhs, in Vec128<double> rhs)
             => CompareNotEqual(lhs, rhs);
 
     }

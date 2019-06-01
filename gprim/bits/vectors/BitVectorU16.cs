@@ -48,7 +48,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVectorU16 Define(in ReadOnlySpan<Bit> src)
-            => Define(in bitpack(src, out ushort dst));
+            => Define(in pack(src, out ushort dst));
 
         [MethodImpl(Inline)]
         public static implicit operator BitVectorU16(in ushort src)

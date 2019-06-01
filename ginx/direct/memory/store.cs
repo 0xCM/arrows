@@ -56,11 +56,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec128<double> src, ref double dst)
-            => Store(As.pfloat64(ref dst),src);            
+            => Store(As.pfloat64(ref dst), src);            
 
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec256<sbyte> src, ref sbyte dst)
-            => Store(As.pint8(ref dst),src);            
+            => Store(As.pint8(ref dst), src);            
 
         [MethodImpl(Inline)]
         public static unsafe void store(in Vec256<byte> src, ref byte dst)

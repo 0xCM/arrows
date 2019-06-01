@@ -18,7 +18,6 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source values</param>
         /// <remarks>Adapted from https://stackoverflow.com/questions/713057/convert-bool-to-byte</remarks>
-        [MethodImpl(NotInline)]
         public static byte[] pack(params bool[] src)
         {
             int srcLen = src.Length;
@@ -35,33 +34,87 @@ namespace Z0
             return dst;
         }
 
-        public static Span<uint> pack(ReadOnlySpan<byte> src, Span<uint> dst)            
+        public static ref sbyte pack(in ReadOnlySpan<Bit> src, out sbyte dst)
         {
-            var srcIx = 0;
-            var dstOffset = 0;
-            var dstIx = 0;
-            var srcSize = SizeOf<byte>.BitSize;
-            var dstSize = SizeOf<uint>.BitSize;
-            while(srcIx < src.Length && dstIx < dst.Length)
-            {
-                for(var i = 0; i< srcSize; i++)
-                    if(gbits.test(src[srcIx], i))
-                        gbits.enable(ref dst[dstIx], dstOffset + i);
-
-                srcIx++;
-                if((dstOffset + srcSize) >= dstSize)
-                {
-                    dstOffset = 0;
-                    dstIx++;
-                }
-                else
-                    dstOffset += srcSize;
-            }
-            return dst;
-
+            dst = 0;
+            var last = math.min(Pow2.T03, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (sbyte)(I32One << i);
+            return ref dst;
         }
 
-        /// <summary>
+        public static ref byte pack(in ReadOnlySpan<Bit> src, out byte dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T03, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (byte)(I32One << i);
+            return ref dst;
+        }
+
+        public static ref ushort pack(in ReadOnlySpan<Bit> src, out ushort dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T04, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (ushort)(I32One << i);
+            return ref dst;
+        }
+
+        public static ref short pack(in ReadOnlySpan<Bit> src, out short dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T04, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (short)(I32One << i);
+            return ref dst;
+        }
+
+        public static ref int pack(in ReadOnlySpan<Bit> src, out int dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T05, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (1 << i);
+            return ref dst;
+        }
+
+        public static ref uint pack(in ReadOnlySpan<Bit> src, out uint dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T05, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (1u << i);
+            return ref dst;
+        }
+        
+        public static ref long pack(in ReadOnlySpan<Bit> src, out long dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T06, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (1L << i);
+            return ref dst;
+        }
+
+        public static ref ulong pack(in ReadOnlySpan<Bit> src, out ulong dst)
+        {
+            dst = 0;
+            var last = math.min(Pow2.T06, src.Length) - 1;
+            for(var i = 0; i <= last; i++)
+                if(src[last - i])
+                    dst |= (1ul << i);
+            return ref dst;
+        }
+ 
+         /// <summary>
         /// Packs 8 bytes into a single byte by considering only whether each input value is nonzero.
         /// </summary>
         /// <param name="x00">The value to be packed into the least significant bit</param>
@@ -329,11 +382,8 @@ namespace Z0
         /// <param name="x3">Bit indices [24 .. 31]</param>
         [MethodImpl(Inline)]
         public static uint pack32(byte x0, byte x1, byte x2, byte x3)
-        {
-            return BitConverter.ToUInt32(new byte[] {x0, x1,x2,x3});
-        }
+            => BitConverter.ToUInt32(new byte[] {x0, x1,x2,x3});
             
-
         [MethodImpl(Inline)]
         public static uint pack32(in ushort x0, in ushort x1)
             => (uint)x1 << 16 | (uint)x0;
@@ -376,10 +426,11 @@ namespace Z0
         public static u128 pack128(in Span<Bit> src)
         {
             var x1 = 0ul;
-            bitpack(src, out ulong x0);
+            pack(src, out ulong x0);
             if(src.Length >= 64) 
-                bitpack(src.Slice(64), out x1);                
+                pack(src.Slice(64), out x1);                
             return u128.Define(x0,x1);
         } 
+ 
     }
 }

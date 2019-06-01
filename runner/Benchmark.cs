@@ -26,92 +26,7 @@ namespace Z0.Bench
             
         }
 
-        IReadOnlyList<MetricComparisonRecord> Emit(IReadOnlyList<MetricComparisonRecord> comparisons, MetricKind kind, bool silent = false)
-        {
-            var target = LogTarget.Define(LogArea.Bench, kind);
-            log(comparisons, target, ext: FileExtension.Define("csv"));
-            if(!silent)
-            {
-                print(AppMsg.Define(MetricComparisonRecord.GetHeaderText(), SeverityLevel.Perform));
-                foreach(var record in comparisons)
-                    print(record.FormatMessage());
-            }
-            return comparisons;
-        }
         
-        IReadOnlyList<MetricComparisonRecord> MeasureNumG()
-        {
-            var ops = items(OpKind.Add, OpKind.Mul, OpKind.Sub);
-            var prims = items(PrimalKind.float32, PrimalKind.float64, PrimalKind.int64);
-            var optypes = from o in ops from p in prims select OpType.Define(o,p);            
-            var config = NumGConfig.Define(MetricKind.NumG,runs: Pow2.T03, cycles: Pow2.T13, samples: Pow2.T11, dops: false);
-            var comparisons = new List<MetricComparisonRecord>();
-            foreach(var ot in optypes)
-            {
-                var comparison =  config.RunComparison(ot, true);
-                comparisons.Add(comparison);
-                print(comparison.FormatMessage());
-            }
-
-            return comparisons;            
-        }
-
-        IReadOnlyList<MetricComparisonRecord> MeasureBitsG()
-        {
-            var ops = items(OpKind.ToggleBit, OpKind.Pop);
-            var prims = PrimalKinds.Integral;
-            var optypes =from o in ops from p in prims select OpType.Define(o,p);
-            var config = BitGConfig.Define(MetricKind.BitG, runs: Pow2.T03, cycles: Pow2.T12, samples: Pow2.T11, dops: true);
-            var comparisons = new List<MetricComparisonRecord>();
-            foreach(var ot in optypes)
-            {
-                var comparison =  config.RunComparison(ot, true);
-                comparisons.Add(comparison);
-                print(comparison.FormatMessage());
-            }
-
-            return comparisons;
-        }
-        IReadOnlyList<MetricComparisonRecord> MeasurePrimalG()
-        {
-            var ops = items(OpKind.Sub, OpKind.Mul, OpKind.Add, OpKind.GtEq, OpKind.LtEq, OpKind.Eq);
-            var prims = items(PrimalKinds.All);
-            var optypes = from o in ops from p in prims select OpType.Define(o,p);            
-            var config = PrimalGConfig.Define(MetricKind.PrimalG, runs: Pow2.T03, cycles: Pow2.T12, samples: Pow2.T11, dops: false);
-            var comparisons = new List<MetricComparisonRecord>();
-            foreach(var ot in optypes)
-            {
-                var comparison =  config.RunComparison(ot, true);
-                comparisons.Add(comparison);
-                print(comparison.FormatMessage());
-            }
-
-            return comparisons;
-
-        }
-
-        IReadOnlyList<MetricComparisonRecord> MeasureInX256Fused()
-        {            
-            var primitives = items(PrimalKind.int8, PrimalKind.int32, PrimalKind.int64, PrimalKind.float32, PrimalKind.float64);
-            var ops = items(OpKind.And, OpKind.Add, OpKind.Sub, OpKind.XOr);
-            var specs = from p in primitives
-                        from o in ops
-                        select o.WithType(p);
-            var config = InXConfig256.Define(MetricKind.InX256GFused, runs: Pow2.T03, cycles: Pow2.T13, blocks: Pow2.T11);
-            return config.RunComparisons(specs);
-
-       }
-        
-        IReadOnlyList<MetricComparisonRecord> MeasureInX128Fused()
-        {            
-            var primitives = items(PrimalKind.int8, PrimalKind.int64, PrimalKind.float32);
-            var ops = items(OpKind.Add, OpKind.Sub);
-            var specs = from p in primitives
-                        from o in ops
-                        select o.WithType(p);
-            var config = InXConfig128.Define(MetricKind.InX128GFused, runs: Pow2.T03, cycles: Pow2.T12, blocks: Pow2.T11);
-            return config.RunComparisons(specs);
-       }
 
          // Converts an array of bytes into a long.  
         public static long ToInt64(byte[] value, int startIndex)
@@ -120,39 +35,63 @@ namespace Z0.Bench
             return Unsafe.ReadUnaligned<long>(ref value[startIndex]);
         }
 
-        IReadOnlyList<MetricComparisonRecord> MeasureConversions()
+        // IReadOnlyList<MetricComparisonRecord> Measure(MetricKind metric)
+        // {
+        //     switch(metric)
+        //     {
+        //         case MetricKind.NumG:
+        //             return NumGBench.Run().Emit(metric);
+        //         case MetricKind.BitD:
+        //         case MetricKind.BitG:
+        //             return BitBench.Run().Emit(metric);
+        //         case MetricKind.PrimalD:
+        //         case MetricKind.PrimalG:
+        //             return PrimalGBench.Run().Emit(metric);
+        //         case MetricKind.InX128DFused:
+        //         case MetricKind.InX128GFused:
+        //             return InXBench.Run128Fused().Emit( metric);
+        //         case MetricKind.InX256DFused:
+        //         case MetricKind.InX256GFused:
+        //             return InXBench.Run256Fused().Emit(metric);
+        //         case MetricKind.ConvertD:
+        //         case MetricKind.ConvertG:
+        //             return ConversionBench.Run().Emit(metric);
+
+        //         default:
+        //             throw unsupported(metric);
+        //     }
+        // }
+
+        public void Measure(MetricKind metric)
         {
-            var comparisons = new List<MetricComparisonRecord>();
-            foreach(var comparison in ConversionBench.Run())
-                comparisons.Add(comparison);
-            return comparisons;
+            metric.Run();
         }
-
-        IReadOnlyList<MetricComparisonRecord> Measure(MetricKind metric)
+        public void BenchBitVector()
         {
-            switch(metric)
+            var n = N8192.Rep;
+            var lhsData = Randomizer.Span<int>((int)n.value);            
+            var rhsData = Randomizer.Span<int>((int)n.value);
+            var lhs = BitVector.Load(ref lhsData[0], n);
+            var rhs = BitVector.Load(ref rhsData[0], n);
+            var opcount = 0L;
+            var time = Duration.Zero;
+            var opsPerCycle = (long)n.value * 5L;
+            while(true)
             {
-                case MetricKind.NumG:
-                    return Emit(MeasureNumG(),metric);
-                case MetricKind.BitD:
-                case MetricKind.BitG:
-                    return Emit(MeasureBitsG(),metric);
-                case MetricKind.PrimalD:
-                case MetricKind.PrimalG:
-                    return Emit(MeasurePrimalG(),metric);
-                case MetricKind.InX128DFused:
-                case MetricKind.InX128GFused:
-                    return Emit(MeasureInX128Fused(), metric);
-                case MetricKind.InX256DFused:
-                case MetricKind.InX256GFused:
-                    return Emit(MeasureInX256Fused(), metric);
-                case MetricKind.ConvertD:
-                case MetricKind.ConvertG:
-                    return Emit(MeasureConversions(),metric);
-
-                default:
-                    throw unsupported(metric);
+                var sw = stopwatch();            
+                for(var cycle = 1; cycle <= Pow2.T16; cycle++)
+                {
+                    lhs &= rhs;
+                    lhs ^= rhs;
+                    lhs |= rhs;
+                    lhs >>= 4;
+                    lhs <<= 4;
+                    opcount += opsPerCycle;
+                }
+                time += snapshot(sw);
+                print(AppMsg.Define($"Total Ops = {opcount} |".PadRight(30) + $"Total Time = {time.Ms} ms", SeverityLevel.Perform));
             }
+
         }
 
         static void Main(params string[] args)
@@ -162,14 +101,14 @@ namespace Z0.Bench
             {
                 gmath.init();
 
-                //app.RunTests();
-                //app.Measure(MetricKind.PrimalG);
+                //app.RunTests();                
+                app.Measure(MetricKind.VecG);
                 //app.Measure(MetricKind.InX128GFused);
                 //app.Measure(MetricKind.InX256GFused);
                 //app.Measure(MetricKind.NumG);
                 //app.Measure(MetricKind.BitG);
                 
-                
+                //app.BenchBitVector();                
                 
                 
             }

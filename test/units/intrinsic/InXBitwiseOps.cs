@@ -24,6 +24,17 @@ namespace Z0.Test
             Claim.@false(dinx.allOn(v2));                
         }     
 
+        public void Nonzero()
+        {
+            Claim.@true(ginx.nonzero(Vec256.define(1ul, 2ul, 3ul, 4ul)));
+            Claim.@true(ginx.nonzero(Vec256.define(1ul, 0ul, 0ul, 0ul)));
+            Claim.@false(ginx.nonzero(Vec256.define(0ul, 0ul, 0ul, 0ul)));
+
+            Claim.@true(ginx.nonzero(Vec128.define(1u, 2u, 3u, 4u)));
+            Claim.@true(ginx.nonzero(Vec128.define(1u, 0u, 0u, 0u)));
+            Claim.@false(ginx.nonzero(Vec128.define(0u, 0u, 0u, 0u)));
+        }
+
         public void LeftShiftV256U32()
         {
             var src = Randomizer.Vec256<uint>();
@@ -34,7 +45,7 @@ namespace Z0.Test
                 expect[i] = gmath.shiftl(src[i], shifts[i]);
             
             var v1 = expect.Vector();
-            var v2 = ginx.lshift(src, shifts);            
+            var v2 = ginx.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
         }
@@ -49,7 +60,7 @@ namespace Z0.Test
                 expect[i] = gmath.shiftl(src[i], shifts[i]);
             
             var v1 = expect.Vector();
-            var v2 = ginx.lshift(src, shifts);            
+            var v2 = ginx.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
         }
@@ -64,7 +75,7 @@ namespace Z0.Test
                 expect[i] = gmath.shiftl(src[i], shifts[i]);
             
             var v1 = expect.Vector();
-            var v2 = ginx.lshift(src, shifts);            
+            var v2 = ginx.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
         }
@@ -79,7 +90,7 @@ namespace Z0.Test
                 expect[i] = gmath.shiftl(src[i], shifts[i]);
             
             var v1 = expect.Vector();
-            var v2 = ginx.lshift(src, shifts);            
+            var v2 = ginx.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
         }

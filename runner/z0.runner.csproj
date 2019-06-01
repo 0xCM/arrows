@@ -11,7 +11,7 @@
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\nats\z0.nats.csproj" />
     <ProjectReference Include="..\gbase\z0.gbase.csproj" />
-    <ProjectReference Include="..\gmath\z0.gmath.csproj" />
+    <ProjectReference Include="..\gspace\z0.gspace.csproj" />
     <ProjectReference Include="..\ginx\z0.ginx.csproj" />
     <ProjectReference Include="..\gprim\z0.gprim.csproj" />
     <ProjectReference Include="..\bench\z0.bench.csproj" />

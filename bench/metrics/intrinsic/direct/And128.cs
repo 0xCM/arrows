@@ -57,7 +57,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.and(lhs,rhs, ref dst);
+                dinx.and(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -67,7 +67,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.and(lhs,rhs, ref dst);
+                dinx.and(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -77,7 +77,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.and(lhs,rhs, ref dst);
+                dinx.and(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -87,7 +87,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.and(lhs,rhs, ref dst);
+                dinx.and(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -97,7 +97,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.and(lhs,rhs, ref dst);
+                dinx.and(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -107,7 +107,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.and(lhs,rhs, ref dst);
+                dinx.and(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -117,7 +117,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.and(lhs,rhs, ref dst);
+                dinx.and(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -127,7 +127,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.and(lhs,rhs, ref dst);
+                dinx.and(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -137,7 +137,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.and(lhs,rhs, ref dst);
+                dinx.and(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -147,7 +147,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.and(lhs,rhs, ref dst);
+                dinx.and(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
     }

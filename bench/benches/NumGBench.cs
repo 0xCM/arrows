@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Metrics
+namespace Z0.Bench
 {
     using System;
     using System.Linq;
@@ -13,11 +13,41 @@ namespace Z0.Metrics
     using Z0.Metrics;
         
     using static zfunc;
-    using static Bench;
-    using static NumGMetrics;
+    using static BenchTools;
 
     public static class NumGBench
     {            
+        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, NumGConfig config, IRandomizer random = null)
+            => metric.Configure(config).Run(op, prim, Random(random));
+
+        public static MetricComparisonRecord RunComparison(this NumGConfig config, OpType op, bool silent = false)
+        {            
+            var m1 = MetricKind.PrimalD.Measure(op.Op, op.Primitive, config.ToPrimalD());
+            var m2 = MetricKind.NumG.Measure(op.Op, op.Primitive, config);
+            var compared = m1.Compare(m2).ToRecord();
+            if(!silent)
+                print(items(compared).FormatMessages());
+            return compared;
+        }
+
+
+        public static IReadOnlyList<MetricComparisonRecord> Run()
+        {
+            var ops = items(OpKind.Add, OpKind.Mul, OpKind.Sub);
+            var prims = items(PrimalKind.float32, PrimalKind.float64, PrimalKind.int64);
+            var optypes = from o in ops from p in prims select OpType.Define(o,p);            
+            var config = NumGConfig.Define(MetricKind.NumG,runs: Pow2.T03, cycles: Pow2.T13, samples: Pow2.T11, dops: false);
+            var comparisons = new List<MetricComparisonRecord>();
+            foreach(var ot in optypes)
+            {
+                var comparison =  config.RunComparison(ot, true);
+                comparisons.Add(comparison);
+                print(comparison.FormatMessage());
+            }
+
+            return comparisons;            
+        }
+
         const MetricKind Metric = MetricKind.NumG;
 
         public static IMetrics Run(this NumGConfig config, OpKind op, PrimalKind prim, IRandomizer random = null)
@@ -52,7 +82,7 @@ namespace Z0.Metrics
             }
         }
 
-       static Metrics<T> Run<T>(this NumGConfig config, OpKind op, IRandomizer random)        
+       public static Metrics<T> Run<T>(this NumGConfig config, OpKind op, IRandomizer random)        
             where T : struct
         {
             var lhs = random.Span<T>(config.Samples);
@@ -64,7 +94,7 @@ namespace Z0.Metrics
             return metrics;            
         }
 
-        static Metrics<T> Run<T>(this NumGConfig config, OpKind op, ReadOnlySpan<T> src)
+        public static Metrics<T> Run<T>(this NumGConfig config, OpKind op, ReadOnlySpan<T> src)
             where T : struct
         {
             var metrics = Metrics<T>.Zero;
@@ -87,7 +117,7 @@ namespace Z0.Metrics
             return metrics;
         }
 
-        static Metrics<T> Run<T>(this NumGConfig config, OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+        public static Metrics<T> Run<T>(this NumGConfig config, OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             var metrics = Metrics<T>.Zero;
@@ -141,273 +171,5 @@ namespace Z0.Metrics
             return metrics;
         }
  
-        public static Metrics<T> Abs<T>(this NumGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Negate);
-            var numSrc = src.Numbers();
-            var dst = Num.alloc<T>(src.Length);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = Num.abs(numSrc[sample]);
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
- 
-
-         public static Metrics<T> And<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.And);
-            var src = lhs.Numbers(rhs);
-            var dst = Num.alloc<T>(length(lhs,rhs));
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] & src.Right[sample];                   
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Add<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Add);
-            var src = lhs.Numbers(rhs);
-            var dst = Num.alloc<T>(length(lhs,rhs));
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] + src.Right[sample];                               
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-       public static Metrics<T> Flip<T>(this NumGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Flip);
-            var numSrc = src.Numbers();
-            var dst = Num.alloc<T>(src.Length);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                 dst[sample] = ~ numSrc[sample];
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> GtEq<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.GtEq);
-            var src = lhs.Numbers(rhs);
-            var dst = new bool[(length(lhs,rhs))];
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] >= src.Right[sample];                   
-            var time = snapshot(sw);            
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars<T>());
-        }
-
-        public static Metrics<T> Div<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Div);
-            var src = lhs.Numbers(rhs);
-            var dst = Num.alloc<T>(length(lhs,rhs));
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] / src.Right[sample];                   
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Mod<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Mod);
-            var src = lhs.Numbers(rhs);
-            var dst = Num.alloc<T>(length(lhs,rhs));
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] % src.Right[sample];                   
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Negate<T>(this NumGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Negate);
-            var numSrc = src.Numbers();
-            var dst = Num.alloc<T>(src.Length);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = -numSrc[sample];
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-       public static Metrics<T> Dec<T>(this NumGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Dec);
-            var numSrc = src.Numbers();
-            var dst = Num.alloc<T>(src.Length);
-            var cycles = config.Cycles;
-
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-            {
-                var x = numSrc[sample];
-                dst[sample] = --x;
-            }
-
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Gt<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Gt);
-            var src = lhs.Numbers(rhs);
-            var dst = new bool[(length(lhs,rhs))];
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] > src.Right[sample];                   
-            var time = snapshot(sw);            
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars<T>());                
-        }
-
-        public static Metrics<T> Eq<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Eq);
-            var src = lhs.Numbers(rhs);
-            var dst = new bool[(length(lhs,rhs))];
-            var cycles = config.Cycles;
-
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] == src.Right[sample];                   
-            var time = snapshot(sw);            
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars<T>());
-        }
-
-       public static Metrics<T> Inc<T>(this NumGConfig config, ReadOnlySpan<T> src)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Inc);
-            var numSrc = src.Numbers();
-            var dst = Num.alloc<T>(src.Length);
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-            {
-                var x = numSrc[sample];
-                dst[sample] = ++x;
-            }
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> XOr<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.XOr);
-            var src = lhs.Numbers(rhs);
-            var dst = Num.alloc<T>(length(lhs,rhs));
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] ^ src.Right[sample];                   
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Lt<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Lt);
-            var src = lhs.Numbers(rhs);
-            var dst = new bool[(length(lhs,rhs))];
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] < src.Right[sample];                   
-            var time = snapshot(sw);            
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars<T>());
-        }
-
-        public static Metrics<T> Sub<T>(this NumGConfig config,ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Sub);
-            var src = lhs.Numbers(rhs);
-            var dst = Num.alloc<T>(length(lhs,rhs));
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] - src.Right[sample];                               
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
- 
-         public static Metrics<T> LtEq<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.LtEq);
-            var src = lhs.Numbers(rhs);
-            var dst = new bool[(length(lhs,rhs))];
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] <= src.Right[sample];                   
-            var time = snapshot(sw);            
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst.ToScalars<T>());
-        }
- 
-         public static Metrics<T> Or<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Or);
-            var src = lhs.Numbers(rhs);
-            var dst = Num.alloc<T>(length(lhs,rhs));
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] | src.Right[sample];                                   
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-        public static Metrics<T> Mul<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.Mul);
-            var src = lhs.Numbers(rhs);
-            var dst = Num.alloc<T>(length(lhs,rhs));
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] * src.Right[sample];                   
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
-
-    }
+   }
 }

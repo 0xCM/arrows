@@ -10,7 +10,7 @@ namespace Z0.Test
     using System.ComponentModel;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    
+
     using static zfunc;
         
     public class BinaryDigitTest : UnitTest<BinaryDigitTest>

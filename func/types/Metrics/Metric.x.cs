@@ -66,7 +66,6 @@ namespace Z0.Metrics
             foreach(var record in src)
                 messages.Add(record.FormatMessage(delimiter, digitcommas));
             return messages;
-
         }
 
         public static Metrics<T> CaptureMetrics<T>(this OpId<T> OpId, long OpCount, Duration WorkTime, T[] results)
@@ -76,7 +75,6 @@ namespace Z0.Metrics
         public static Metrics<T> CaptureMetrics<T>(this OpId OpId, long OpCount, Duration WorkTime, Span<T> results)
             where T : struct
                 => new Metrics<T>(OpId, OpCount, WorkTime, results);
-
 
     }
 }

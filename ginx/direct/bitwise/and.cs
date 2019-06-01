@@ -181,284 +181,184 @@ namespace Z0
         public static void and(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
             => store(And(lhs, rhs), ref dst);
  
-        public static ref Span128<sbyte> and(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, ref Span128<sbyte> dst)
+        public static Span128<sbyte> and(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, in Span128<sbyte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span128<byte> and(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, ref Span128<byte> dst)
+        public static Span128<byte> and(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, in Span128<byte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span128<short> and(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, ref Span128<short> dst)
+        public static Span128<short> and(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, in Span128<short> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span128<ushort> and(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, ref Span128<ushort> dst)
+        public static Span128<ushort> and(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, in Span128<ushort> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span128<int> and(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, ref Span128<int> dst)
+        public static Span128<int> and(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, in Span128<int> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span128<uint> and(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, ref Span128<uint> dst)
+        public static Span128<uint> and(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, in Span128<uint> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span128<long> and(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, ref Span128<long> dst)
+        public static Span128<long> and(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, in Span128<long> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span128<ulong> and(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, ref Span128<ulong> dst)
+        public static Span128<ulong> and(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, in Span128<ulong> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span128<float> and(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, ref Span128<float> dst)
+        public static Span128<float> and(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, in Span128<float> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span128<double> and(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, ref Span128<double> dst)
+        public static Span128<double> and(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, in Span128<double> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span256<sbyte> and(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, ref Span256<sbyte> dst)
+        public static Span256<sbyte> and(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, in Span256<sbyte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span256<byte> and(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, ref Span256<byte> dst)
+        public static Span256<byte> and(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, in Span256<byte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span256<short> and(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, ref Span256<short> dst)
+        public static Span256<short> and(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, in Span256<short> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span256<ushort> and(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, ref Span256<ushort> dst)
+        public static Span256<ushort> and(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, in Span256<ushort> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span256<int> and(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, ref Span256<int> dst)
+        public static Span256<int> and(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, in Span256<int> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span256<uint> and(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, ref Span256<uint> dst)
+        public static Span256<uint> and(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, in Span256<uint> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span256<long> and(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, ref Span256<long> dst)
+        public static Span256<long> and(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, in Span256<long> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span256<ulong> and(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, ref Span256<ulong> dst)
+        public static Span256<ulong> and(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, in Span256<ulong> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span256<float> and(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, ref Span256<float> dst)
+        public static Span256<float> and(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, in Span256<float> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
 
-        public static ref Span256<double> and(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, ref Span256<double> dst)
+        public static Span256<double> and(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, in Span256<double> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-            {
-                var x = lhs.VLoad(i);
-                var y = rhs.VLoad(i);
-                and(x, y, ref dst[i]);
-            }
-            
-            return ref dst;            
+                and(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+            return dst;            
         }
    }
 }
