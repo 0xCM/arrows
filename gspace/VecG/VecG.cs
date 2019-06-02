@@ -81,7 +81,6 @@ namespace Z0
         public static VecG<T> operator << (in VecG<T> lhs, int rhs) 
             => gmath.shiftl(lhs.data.Unblock().ToReadOnlySpan(), rhs).ToSpan256();
 
-
         [MethodImpl(Inline)]
         public static VecG<T> operator >> (in VecG<T> lhs, int rhs) 
             => gmath.shiftr(lhs.data.Unblock().ToReadOnlySpan(), rhs).ToSpan256();
@@ -147,9 +146,9 @@ namespace Z0
         [MethodImpl(Inline)]
         public VecG<T> Add(in VecG<T> rhs)
         {
-            var x = data.Unblock();
+            var x = unblock(data);
             var y = rhs.data.Unblock();
-            data = gmath.add(ref x, y).ToSpan256();
+            gmath.add(ref x, y);
             return this;
         }
 
@@ -158,34 +157,34 @@ namespace Z0
         {
             var x = data.Unblock();
             var y = rhs.data.Unblock();
-            data = gmath.sub(ref x, y).ToSpan256();
+            gmath.sub(ref x, y);
             return this;
         }
 
         [MethodImpl(Inline)]
         public VecG<T> Mul(in VecG<T> rhs)
         {
-            var x = data.Unblock();
+            var x = unblock(data);
             var y = rhs.data.Unblock();
-            data = gmath.mul(ref x, y).ToSpan256();
+            gmath.mul(ref x, y);
             return this;
         }
 
         [MethodImpl(Inline)]
         public VecG<T> Div(in VecG<T> rhs)
         {
-            var x = data.Unblock();
+            var x = unblock(data);
             var y = rhs.data.Unblock();
-            data = gmath.div(ref x, y).ToSpan256();
+            gmath.div(ref x, y);
             return this;
         }
 
         [MethodImpl(Inline)]
         public VecG<T> Mod(in VecG<T> rhs)
         {
-            var x = data.Unblock();
+            var x = unblock(data);
             var y = rhs.data.Unblock();
-            data = gmath.mod(ref x, y).ToSpan256();
+            gmath.mod(ref x, y);
             return this;
         }
 
@@ -193,24 +192,24 @@ namespace Z0
         [MethodImpl(Inline)]
         public VecG<T> Negate()
         {
-            var x = data.Unblock();
-            data = gmath.negate(ref x).ToSpan256();
+            var x = unblock(data);
+            gmath.negate(ref x);
             return this;
         }
 
         [MethodImpl(Inline)]
         public VecG<T> Inc()
         {
-            var x = data.Unblock();
-            data = gmath.inc(ref x).ToSpan256();
+            var x = unblock(data);
+            gmath.inc(ref x);
             return this;
         }
 
         [MethodImpl(Inline)]
         public VecG<T> Dec()
         {
-            var x = data.Unblock();
-            data = gmath.dec(ref x).ToSpan256();
+            var x = unblock(data);
+            gmath.dec(ref x);
             return this;
         }
 
@@ -218,81 +217,79 @@ namespace Z0
         [MethodImpl(Inline)]
         public VecG<T> Abs()
         {
-            var x = data.Unblock();
-            data = gmath.abs(ref x).ToSpan256();
+            var x = unblock(data);
+            gmath.abs(ref x);
             return this;
         }
 
         [MethodImpl(Inline)]
         public VecG<T> And(in VecG<T> rhs)
         {
-            var x = data.Unblock();
-            var y = rhs.data.Unblock();
-            data = gmath.and(ref x, y).ToSpan256();
+            var x = unblock(data);
+            var y = unblock(rhs.data);
+            gmath.and(ref x, y);
             return this;
         }
-
-
 
         [MethodImpl(Inline)]
         public VecG<T> Or(in VecG<T> rhs)
         {
-            var x = data.Unblock();
-            var y = rhs.data.Unblock();
-            data = gmath.or(ref x, y).ToSpan256();
+            var x = unblock(data);
+            var y = unblock(rhs.data);
+            gmath.or(ref x, y);
             return this;
         }
 
         [MethodImpl(Inline)]
         public VecG<T> XOr(in VecG<T> rhs)
         {
-            var x = data.Unblock();
-            var y = rhs.data.Unblock();
-            data = gmath.xor(ref x, y).ToSpan256();
+            var x = unblock(data);
+            var y = unblock(rhs.data);
+            gmath.xor(ref x, y);
             return this;
         }
 
         [MethodImpl(Inline)]
         public VecG<T> ShiftL(in VecG<int> shifts)
         {
-            var x = data.Unblock();
+            var x = unblock(data);
             var y = shifts.data.Unblock();
-            data = gmath.shiftl(ref x, y).ToSpan256();
+            gmath.shiftl(ref x, y);
             return this;
         }
 
         [MethodImpl(Inline)]
         public VecG<T> ShiftR(in VecG<int> shifts)
         {
-            var x = data.Unblock();
+            var x = unblock(data);
             var y = shifts.data.Unblock();
-            data = gmath.shiftr(ref x, y).ToSpan256();
+            gmath.shiftr(ref x, y);
             return this;
         }
 
         [MethodImpl(Inline)]
         public VecG<T> RotL(in VecG<int> shifts)
         {
-            var x = data.Unblock();
+            var x = unblock(data);
             var y = shifts.data.Unblock();
-            data = gmath.rotl(ref x, y).ToSpan256();
+            gmath.rotl(ref x, y);
             return this;
         }
 
         [MethodImpl(Inline)]
         public VecG<T> RotR(in VecG<int> shifts)
         {
-            var x = data.Unblock();
+            var x = unblock(data);
             var y = shifts.data.Unblock();
-            data = gmath.rotr(ref x, y).ToSpan256();
+            gmath.rotr(ref x, y);
             return this;
         }
 
         [MethodImpl(Inline)]
         public VecG<T> Flip()
         {
-            var x = data.Unblock();
-            data = gmath.flip(ref x).ToSpan256();
+            var x = unblock(data);
+            gmath.flip(ref x);
             return this;
         }
 
@@ -326,15 +323,6 @@ namespace Z0
             get => data.Length;
         }
 
-        public string Format(char delimiter = ',')
-            => data.Unblock().Format(delimiter);
-
-        public override bool Equals(object rhs)
-            => throw new NotSupportedException();
-
-        public override int GetHashCode()
-            => throw new NotSupportedException(); 
- 
         [MethodImpl(Inline)]
         static Span<T> alloc(VecG<T> src)
             => span<T>(src.Count);
@@ -347,6 +335,17 @@ namespace Z0
         static Span<T> alloc(in VecG<T> lhs, in VecG<T> rhs)
             => span<T>(count(lhs,rhs)); 
 
+        [MethodImpl(Inline)]
+        static Span<T> unblock(in Span256<T> src)
+            => src;
 
+        public string Format(char delimiter = ',')
+            => data.Unblock().Format(delimiter);
+
+        public override bool Equals(object rhs)
+            => throw new NotSupportedException();
+
+        public override int GetHashCode()
+            => throw new NotSupportedException(); 
     }
 }

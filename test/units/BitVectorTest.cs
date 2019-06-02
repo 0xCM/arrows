@@ -20,6 +20,7 @@ namespace Z0.Test
         {
             var bv = default(BitVectorU64);
             var it = It.Define(Pow2.MinExponent, Pow2.MaxExponent + 1);
+            
             while(++it)
                 bv[it] = 1;
 

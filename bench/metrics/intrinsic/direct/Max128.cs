@@ -12,19 +12,14 @@ namespace Z0.Metrics
     
     using static zfunc;
     using static As;
-    using static InX128DMetrics;
+    using static InXDMetrics128;
 
     public static class MaxInX128D
     {
-        public static Metrics<T> MaxD<T>(this InXConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
-            where T : struct
-                => Max(lhs,rhs,config);
-        static Metrics<T> Max<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXConfig128 config)
+        public static Metrics<T> Max<T>(this InXDConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            config = Configure(config);
-
             switch(kind)
             {
                 case PrimalKind.int16:
@@ -36,7 +31,7 @@ namespace Z0.Metrics
             throw unsupported(kind);
         }
 
-        static Metrics<int> Max(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, InXConfig128 config)
+        static Metrics<int> Max(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, InXDConfig128 config)
         {
             var opid = Id<int>(OpKind.Max);            
             var dst = alloc(lhs,rhs);
@@ -47,7 +42,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<short> Max(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, InXConfig128 config)
+        static Metrics<short> Max(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, InXDConfig128 config)
         {
             var opid = Id<short>(OpKind.Max);            
             var dst = alloc(lhs,rhs);

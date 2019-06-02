@@ -12,15 +12,11 @@ namespace Z0.Metrics
     
     using static zfunc;
     using static As;
-    using static InX256DMetrics;
+    using static InXDMetrics256;
 
     public static class DivInX256D
     {
-        public static Metrics<T> DivD<T>(this InXConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
-            where T : struct
-                =>  Div(lhs,rhs,config);
-
-        static Metrics<T> Div<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, InXConfig256 config)
+        public static Metrics<T> Div<T>(this InXDConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -31,7 +27,7 @@ namespace Z0.Metrics
                 throw unsupported(PrimalKinds.kind<T>());
         }
 
-        static Metrics<float> Div(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXConfig256 config)
+        static Metrics<float> Div(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXDConfig256 config)
         {
             var opid = Id<float>(OpKind.Div);            
             var dst = alloc(lhs,rhs);
@@ -41,7 +37,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<double> Div(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXConfig256 config)
+        static Metrics<double> Div(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXDConfig256 config)
         {
             var opid = Id<double>(OpKind.Div);            
             var dst = alloc(lhs,rhs);

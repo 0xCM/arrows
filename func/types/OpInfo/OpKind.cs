@@ -18,8 +18,8 @@ namespace Z0
     public enum NumericKind : byte
     {
         /// <summary>
-        /// Classifier for system-defined numeric types, more specifically, those 
-        /// types which listed in the PrimalKind enumeration
+        /// Classifier for system-defined numeric types, which is determined by 
+        /// the literals of the PrimalKind enum
         /// </summary>
         Native = 0,
 
@@ -44,14 +44,22 @@ namespace Z0
         Vec256 = 5,
 
         /// <summary>
-        /// Identifies the custom generic number type, num[T]
+        /// Identifies an atomic generic number for which the type parameter values
+        /// can range, at minimum, over the primal types
         /// </summary>
         NumG = 6,
 
         /// <summary>
-        /// Identifies a generic vector of variable size
+        /// Identifies a generic vector for which the type parameter values
+        /// can range, at minimum, over the primal types
         /// </summary>
-        VecG = 7
+        VecG = 7,
+
+        /// <summary>
+        /// Identifies a non-generic value type that is closely aligned with
+        /// a primal type
+        /// </summary>
+        Analog
 
     }
 
@@ -121,6 +129,9 @@ namespace Z0
         Bitwise
     }
 
+    /// <summary>
+    /// Classifies an operator's variance characteristics
+    /// </summary>
     public enum OpVariance : byte
     {        
         /// <summary>
@@ -138,7 +149,19 @@ namespace Z0
         /// </summary>
         Out,        
     }
-    
+
+    public enum ParamVariance
+    {
+        Value,
+
+        In,
+
+        Out,
+
+        Ref, 
+
+    }
+
 
     public enum OpKind : byte
     {        
@@ -351,6 +374,8 @@ namespace Z0
         [Description("Indicates an operator that coverts a value of one type to a value of another type")]
         Convert
     }
+
+
 
     public enum Multiplicity : byte
     {

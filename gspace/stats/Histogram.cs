@@ -33,18 +33,18 @@ namespace Z0
             this.Domain =Domain;
             this.Grain = Grain;
             this.Partitions = Domain.AsCanonical().Discretize(Grain);
-            this.Counts = alloc<int>(Partitions.Count);
+            this.Counts = alloc<ulong>(Partitions.Length);
         }
 
         public Interval<T> Domain {get;}
         
         public T Grain {get;}
 
-        public Index<T> Partitions {get;}
+        public T[] Partitions {get;}
 
-        int[] Counts {get;}
+        ulong[] Counts {get;}
 
-        int BucketSize(int ix)
+        ulong BucketSize(int ix)
             => Counts[ix-1];
         
         Interval<T> PartitionDomain(int ix)
@@ -94,14 +94,14 @@ namespace Z0
                 : src.Select(FindBucketIndex).GroupBy(x => x).Freeze(); 
 
             foreach(var i in indices)
-                Counts[i.Key - 1] = Counts[i.Key - 1] + i.Count();
+                Counts[i.Key - 1] = Counts[i.Key - 1] + (ulong)i.Count();
         }
         
         /// <summary>
         /// Describes the current state of the histogram
         /// </summary>
         /// 
-        public Index<SampleCount<T>> Buckets()            
+        public Span<SampleCount<T>> Buckets()            
         {
             var buckets = alloc<SampleCount<T>>(Partitions.Length - 1);
             for(var i = 1; i< Partitions.Length; i++)

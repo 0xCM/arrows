@@ -23,19 +23,19 @@ namespace Z0.Metrics
     public class NumGConfig : MetricConfig
     {
         public static NumGConfig Default(MetricKind metric) 
-            => NumGConfig.Define(metric, runs: Pow2.T03, cycles: Pow2.T14, samples: Pow2.T12, dops: true);        
+            => NumGConfig.Define(metric, runs: Pow2.T03, cycles: Pow2.T14, samples: Pow2.T12);        
 
-        public static NumGConfig Define(MetricKind metric, int runs, int cycles, int samples, bool dops)
-            => new NumGConfig(metric, runs, cycles, samples, dops);
+        public static NumGConfig Define(MetricKind metric, int runs, int cycles, int samples)
+            => new NumGConfig(metric, runs, cycles, samples);
 
-        public NumGConfig(MetricKind Metric, int Runs, int Cycles, int Samples, bool DirectOps = true)
-            : base(Metric, Runs, Cycles, Samples, DirectOps)
+        public NumGConfig(MetricKind Metric, int Runs, int Cycles, int Samples)
+            : base(Metric, Runs, Cycles, Samples)
         {
         
         }
 
         public PrimalDConfig ToPrimalD()
-            => new PrimalDConfig(Metric, Runs, Cycles, Samples, DirectOps);
+            => new PrimalDConfig(Metric, Runs, Cycles, Samples);
                 
     }
 

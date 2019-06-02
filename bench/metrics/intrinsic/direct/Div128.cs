@@ -12,15 +12,12 @@ namespace Z0.Metrics
     
     using static zfunc;
     using static As;
-    using static InX128DMetrics;
+    using static InXDMetrics128;
 
     public static class DivInX128D
     {
-        public static Metrics<T> DivD<T>(this InXConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
-            where T : struct
-                =>  Div(lhs,rhs,config);
 
-        static Metrics<T> Div<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXConfig128 config)
+        public static Metrics<T> Div<T>(this InXDConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -37,9 +34,8 @@ namespace Z0.Metrics
 
         }
 
-        public static Metrics<float> Div(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXConfig128 config = null)
+        public static Metrics<float> Div(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXDConfig128 config = null)
         {
-            config = Configure(config);
             var opid = Id<float>(OpKind.Div);            
             var dst = alloc(lhs,rhs);
 
@@ -51,9 +47,8 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, time, dst);
         }
 
-        public static Metrics<double> Div(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXConfig128 config = null)
+        public static Metrics<double> Div(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXDConfig128 config = null)
         {
-            config = Configure(config);
             var opid = Id<double>(OpKind.Div);            
             var dst = alloc(lhs,rhs);
 

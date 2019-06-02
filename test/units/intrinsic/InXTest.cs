@@ -48,7 +48,7 @@ namespace Z0.Test
 
         public OpId<T> OpId {get;}
         
-        protected Index<T> UnarySrc {get;}
+        protected T[] UnarySrc {get;}
 
         protected T[] LeftSamples;
 

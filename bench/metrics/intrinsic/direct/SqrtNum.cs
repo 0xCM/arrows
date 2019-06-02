@@ -12,7 +12,7 @@ namespace Z0.Metrics
     
     using static zfunc;
     using static As;
-    using static InX128NumGMetrics;
+    using static InXNumGMetrics128;
 
     public static class SqrtInXNumD
     {
@@ -54,7 +54,6 @@ namespace Z0.Metrics
 
         public static Metrics<double> Sqrt(ReadOnlySpan128<double> src, InXConfig128 config = null)
         {
-            config = Configure(config);
             var opid = Id<double>(OpKind.Sqrt);            
             var dst = alloc(src);
 

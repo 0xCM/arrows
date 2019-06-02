@@ -12,9 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\nats\z0.nats.csproj" />
-    <ProjectReference Include="..\gbase\z0.gbase.csproj" />
-    <ProjectReference Include="..\ginx\z0.ginx.csproj" />
-    <ProjectReference Include="..\gprim\z0.gprim.csproj" />
+    <ProjectReference Include="..\primal\z0.primal.csproj" />
   </ItemGroup>
 
 </Project>

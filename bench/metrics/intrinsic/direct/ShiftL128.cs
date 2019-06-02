@@ -12,22 +12,21 @@ namespace Z0.Metrics
     
     using static zfunc;
     using static As;
-    using static InX128DMetrics;
+    using static InXDMetrics128;
 
     public static class ShiftLInX128D
     {
-        public static Metrics<T> ShiftLD<T>(this InXConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
+        public static Metrics<T> ShiftLD<T>(this InXDConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct        
                 => ShiftL(lhs,rhs,config);
 
-
-        static Metrics<T> ShiftL<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXConfig128 config = null)
+        static Metrics<T> ShiftL<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXDConfig128 config = null)
             where T : struct
         {
             if(typeof(T) == typeof(int))
                 return config.ShiftL(int32(lhs), uint32(rhs)).As<T>();
             else if(typeof(T) == typeof(uint))
-                return config.ShiftL(int32(lhs), uint32(rhs)).As<T>();
+                return config.ShiftL(uint32(lhs), uint32(rhs)).As<T>();
             else if(typeof(T) == typeof(long))
                 return config.ShiftL(int64(lhs), uint64(rhs)).As<T>();
             else if(typeof(T) == typeof(ulong))
@@ -36,7 +35,7 @@ namespace Z0.Metrics
                 throw unsupported(PrimalKinds.kind<T>());            
         }
 
-        static Metrics<int> ShiftL(this InXConfig128 config, ReadOnlySpan128<int> lhs, ReadOnlySpan128<uint> rhs)
+        static Metrics<int> ShiftL(this InXDConfig128 config, ReadOnlySpan128<int> lhs, ReadOnlySpan128<uint> rhs)
         {
             var opid = Id<int>(OpKind.ShiftL);            
             var dst = alloc(lhs);
@@ -46,7 +45,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<uint> ShiftL(this InXConfig128 config, ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs)
+        static Metrics<uint> ShiftL(this InXDConfig128 config, ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs)
         {
             var opid = Id<uint>(OpKind.ShiftL);            
             var dst = alloc(lhs);
@@ -56,7 +55,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<long> ShiftL(this InXConfig128 config, ReadOnlySpan128<long> lhs, ReadOnlySpan128<ulong> rhs)
+        static Metrics<long> ShiftL(this InXDConfig128 config, ReadOnlySpan128<long> lhs, ReadOnlySpan128<ulong> rhs)
         {
             var opid = Id<long>(OpKind.ShiftL);            
             var dst = alloc(lhs);
@@ -66,7 +65,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<ulong> ShiftL(this InXConfig128 config, ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs)
+        static Metrics<ulong> ShiftL(this InXDConfig128 config, ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs)
         {
             var opid = Id<ulong>(OpKind.ShiftL);            
             var dst = alloc(lhs);

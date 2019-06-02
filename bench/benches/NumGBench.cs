@@ -36,7 +36,7 @@ namespace Z0.Bench
             var ops = items(OpKind.Add, OpKind.Mul, OpKind.Sub);
             var prims = items(PrimalKind.float32, PrimalKind.float64, PrimalKind.int64);
             var optypes = from o in ops from p in prims select OpType.Define(o,p);            
-            var config = NumGConfig.Define(MetricKind.NumG,runs: Pow2.T03, cycles: Pow2.T13, samples: Pow2.T11, dops: false);
+            var config = NumGConfig.Define(MetricKind.NumG,runs: Pow2.T03, cycles: Pow2.T13, samples: Pow2.T11);
             var comparisons = new List<MetricComparisonRecord>();
             foreach(var ot in optypes)
             {

@@ -14,7 +14,6 @@ namespace Z0
     /// <summary>
     /// Represents a numeric or logical bit
     /// </summary>
-    /// <remarks>See https://en.wikipedia.org/wiki/Boolean_algebra</remarks>
     public readonly struct Bit
     {
         [MethodImpl(Inline)]

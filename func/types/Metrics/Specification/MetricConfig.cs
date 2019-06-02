@@ -21,13 +21,13 @@ namespace Z0.Metrics
             
         }
         
-        public MetricConfig(MetricKind Metric, int Runs, int Cycles, int Samples, bool DirectOps =true)
+        public MetricConfig(MetricKind Metric, int Runs, int Cycles, int Samples)
         {
             this.Metric = Metric;
             this.Runs = Runs;
             this.Cycles = Cycles;
             this.Samples = Samples;
-            this.DirectOps = DirectOps;
+            this.DirectOps = true;
         }
         
         public MetricKind Metric {get; set;}

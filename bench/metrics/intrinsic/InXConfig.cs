@@ -14,56 +14,25 @@ namespace Z0.Metrics
 
     public abstract class InXConfig : MetricConfig
     {
-
         protected InXConfig(MetricKind metric, int Runs, int Cycles, int Blocks, ByteSize BlockSize)
-            : base(metric,Runs, Cycles, Blocks * BlockSize, true)
+            : base(metric,Runs, Cycles, Blocks * BlockSize)
         {
             this.Blocks = Blocks;
         }
 
         public int Blocks {get;}
 
+        public InXDConfig128 ToDirect128()
+            => new InXDConfig128(Metric, Runs, Cycles, Samples);
+
+        public InXGConfig128 ToGeneric128()
+            => new InXGConfig128(Metric, Runs, Cycles, Samples);
+
+        public InXDConfig256 ToDirect256()
+            => new InXDConfig256(Metric, Runs, Cycles, Samples);
+
+        public InXGConfig256 ToGeneric256()
+            => new InXGConfig256(Metric, Runs, Cycles, Samples);
+
     }
-
-    public static class InXConfigX
-    {
-        public static InXConfig128 Configure(this MetricKind metric, InXConfig128 config = null)
-            => config ?? InXConfig128.Default(metric);
-
-        public static InXConfig256 Configure(this MetricKind metric, InXConfig256 config = null)
-            => config ?? InXConfig256.Default(metric);
-
-    }
-    public class InXConfig128 : InXConfig
-    {
-        public static InXConfig128 Default(MetricKind metric) 
-            => new InXConfig128(metric, runs: Pow2.T03, cycles: Pow2.T14, blocks: Pow2.T12);
-
-        public static InXConfig128 Define(MetricKind metric, int runs, int cycles, int blocks)
-            => new InXConfig128(metric, runs, cycles, blocks);
-
-        public InXConfig128(MetricKind metric, int runs, int cycles, int blocks)
-            : base(metric, runs, cycles, blocks,16)
-        {
-        
-        }
-    }
-
-    public class InXConfig256 : InXConfig
-    {
-        public static InXConfig256 Default(MetricKind metric)
-            => new InXConfig256(metric, runs: Pow2.T03, cycles: Pow2.T14, blocks: Pow2.T12);
-
-        public static InXConfig256 Define(MetricKind metric, int runs, int cycles, int blocks)
-            => new InXConfig256(metric, runs, cycles, blocks);
-
-        public InXConfig256(MetricKind metric, int runs, int cycles, int blocks)
-            : base(metric, runs, cycles, blocks,32)
-        {
-        
-        }
-    }
-
-
-
 }

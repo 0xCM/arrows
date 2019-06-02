@@ -9,8 +9,8 @@ namespace Z0.Test
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
-
     
+    using Z0.Diagnostics;    
     using static zfunc;
 
 
@@ -157,19 +157,19 @@ namespace Z0.Test
             var x = Span128.load(array<int>(1,2,3,4,5,6,7,8));
 
             var block0 = x.SliceBlock(0);
-            Claim.eq(4, block0.Length);
-            Claims.eq(block0, span(1,2,3,4));
+            Claim.eq(4, block0.Length);            
+            block0.RequireEq(Span128.load(span(1,2,3,4)));
 
             var block2 = x.SliceBlock(1);
             Claim.eq(4, block2.Length);
-            Claims.eq(block2, span(5,6,7,8));
+            Require.RequireEq(block2, span(5,6,7,8));
 
         }
         public void Load()
         {
             var x = Span128.load(array<int>(1,2,3,4,5,6,7,8));
             Claim.eq(x.BlockCount,2);
-            Claims.eq(x.Unblock(), span(1,2,3,4,5,6,7,8));
+            Require.RequireEq(x.Unblock(), span(1,2,3,4,5,6,7,8));
             
         }
 

@@ -18,13 +18,12 @@ namespace Z0.Bench
     public static class PrimalDBench
     {        
         public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, PrimalDConfig config, IRandomizer random = null)
-            => metric.Configure(config).Run(op, prim, Random(random));
+            => config.Run(op, prim, Random(random));
 
         const MetricKind Metric = MetricKind.PrimalD;
 
-        public static IMetrics Run(this PrimalDConfig config, OpKind op, PrimalKind prim, IRandomizer random = null)
+        static IMetrics Run(this PrimalDConfig config, OpKind op, PrimalKind prim, IRandomizer random)
         {
-            random = Random(random);
             switch(prim)
             {
                 case PrimalKind.int8:
@@ -55,16 +54,21 @@ namespace Z0.Bench
         static Metrics<T> Run<T>(this PrimalDConfig config, OpKind op, IRandomizer random)        
             where T : struct
         {
+            var metrics = Metrics<T>.Zero;
             var lhs = random.ReadOnlySpan<T>(config.Samples);
             var rhs = op.NonZeroRight() 
                 ? random.NonZeroSpan<T>(config.Samples) 
                 : random.ReadOnlySpan<T>(config.Samples);
-            var metrics = Metrics<T>.Zero;
+            var moves = op.IsBitMovement() 
+                ? random.ReadOnlySpan<int>(config.Samples, closed(0, SizeOf<T>.BitSize)) 
+                : ReadOnlySpan<int>.Empty;
 
             GC.Collect();            
             for(var i=0; i<config.Runs; i++)
-            {
-                if(op.Arity() == OpArity.Binary)
+            {                
+                if(op.IsBitMovement())
+                    config.Run(op, lhs, moves);
+                else if(op.Arity() == OpArity.Binary)
                     metrics += config.Run<T>(op, lhs, rhs);
                 else if(op.Arity() == OpArity.Unary)
                     metrics += config.Run(op, lhs);
@@ -72,6 +76,24 @@ namespace Z0.Bench
                     error($"No arity defined for {op} operator!");
             }
             return metrics;            
+        }
+
+        static Metrics<T> Run<T>(this PrimalDConfig config, OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs)
+            where T : struct
+        {
+            var metrics = Metrics<T>.Zero;
+            switch(op)
+            {
+                case OpKind.ShiftL:
+                    metrics = config.ShiftL(lhs,rhs);   
+                break;
+                case OpKind.ShiftR:
+                    metrics = config.ShiftR(lhs,rhs);   
+                break;
+                default: 
+                    throw unsupported(op);
+            }
+            return metrics;
         }
 
         static Metrics<T> Run<T>(this PrimalDConfig config, OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)

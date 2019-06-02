@@ -12,19 +12,15 @@ namespace Z0.Metrics
     
     using static zfunc;
     using static As;
-    using static InX128DMetrics;
+    using static InXDMetrics128;
 
     public static class MulInX128D
     {
-        public static Metrics<T> MulD<T>(this InXConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
-            where T : struct
-                =>  Mul(lhs,rhs,config);
 
-        static Metrics<T> Mul<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXConfig128 config = null)
+        public static Metrics<T> Mul<T>(this InXDConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
-            config = Configure(config);
             switch(kind)
             {
 
@@ -37,9 +33,8 @@ namespace Z0.Metrics
             }
         }
 
-        static Metrics<float> Mul(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXConfig128 config)
+        static Metrics<float> Mul(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXDConfig128 config)
         {
-            config = Configure(config);
             var opid = Id<float>(OpKind.Mul);            
             var dst = alloc(lhs,rhs);
 
@@ -51,9 +46,8 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, time, dst);
         }
 
-        static Metrics<double> Mul(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXConfig128 config)
+        static Metrics<double> Mul(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXDConfig128 config)
         {
-            config = Configure(config);
             var opid = Id<double>(OpKind.Mul);            
             var dst = alloc(lhs,rhs);
 

@@ -18,7 +18,6 @@ namespace Z0.Bench
         internal static IRandomizer Random(IRandomizer random)
             => random ?? Randomizer.define(RandSeeds.BenchSeed);
 
-
         public static IReadOnlyList<MetricComparisonRecord> Emit(this IReadOnlyList<MetricComparisonRecord> comparisons, MetricKind kind, bool silent = false)
         {
             var target = LogTarget.Define(LogArea.Bench, kind);
@@ -33,7 +32,7 @@ namespace Z0.Bench
         }
 
 
-        public static IReadOnlyList<MetricComparisonRecord> Run(this MetricKind metric)
+        public static IReadOnlyList<MetricComparisonRecord> Measure(this MetricKind metric)
         {
             switch(metric)
             {

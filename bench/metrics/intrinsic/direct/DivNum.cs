@@ -12,11 +12,12 @@ namespace Z0.Metrics
     
     using static zfunc;
     using static As;
-    using static InX128NumGMetrics;
+    using static InXNumGMetrics128;
+    using static Span128;
 
     public static class DivInXNumD
     {
-        public static Metrics<T> DivND<T>(this InXConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
+        public static Metrics<T> DivND<T>(this InXDConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -27,7 +28,7 @@ namespace Z0.Metrics
                 throw unsupported(PrimalKinds.kind<T>());            
         }
 
-        static Metrics<float> Div(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXConfig128 config)
+        static Metrics<float> Div(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXDConfig128 config)
         {
             var opid = Id<float>(OpKind.Div);            
             var dst = alloc(lhs,rhs);
@@ -48,9 +49,8 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, time, dst);
         }
 
-        static Metrics<double> Div(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXConfig128 config = null)
+        static Metrics<double> Div(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXDConfig128 config = null)
         {
-            config = Configure(config);
             var opid = Id<double>(OpKind.Div);            
             var dst = alloc(lhs,rhs);
 

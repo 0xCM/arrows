@@ -23,7 +23,7 @@ namespace Z0
             if(attributions.ContainsKey(op.ToString()))
                 return attributions[op.ToString()];
             else
-            return OpArity.None;
+                return OpArity.None;
         }
                 
         [MethodImpl(Inline)]
@@ -33,6 +33,18 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool NonZeroRight(this OpKind op)
             => op == OpKind.Div || op == OpKind.Mod;
+
+        [MethodImpl(Inline)]
+        public static bool IsBitShift(this OpKind op)
+            => op == OpKind.ShiftL || op == OpKind.ShiftR;
+
+        [MethodImpl(Inline)]
+        public static bool IsBitRot(this OpKind op)
+            => op == OpKind.RotL || op == OpKind.RotR;
+
+        [MethodImpl(Inline)]
+        public static bool IsBitMovement(this OpKind op)
+            => op.IsBitRot() || op.IsBitRot();
 
         [MethodImpl(Inline)]
         public static Genericity Flip(this Genericity src)

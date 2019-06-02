@@ -12,7 +12,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Buffers;
     
-    using static Spans;
+    using static NatSpan;
     using static zfunc;
     using static As;
 
@@ -293,7 +293,7 @@ namespace Z0
         public static bool Eq<T>(this ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)        
                 where T : struct        
         {
-            for(var i = 0; i< length(lhs,rhs); i++)
+            for(var i = 0; i< Span128.length(lhs,rhs); i++)
                 if(gmath.neq(lhs[i],rhs[i]))
                     return false;
             return true;
@@ -302,7 +302,7 @@ namespace Z0
         public static bool Eq<T>(this ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)        
             where T : struct        
         {
-            for(var i = 0; i< length(lhs,rhs); i++)
+            for(var i = 0; i< Span256.length(lhs,rhs); i++)
                 if(gmath.neq(lhs[i],rhs[i]))
                     return false;
             return true;

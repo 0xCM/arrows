@@ -11,6 +11,7 @@ namespace Z0.Test
     using System.Numerics;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    using Z0.Diagnostics;
 
     using static zfunc;
 
@@ -318,7 +319,7 @@ namespace Z0.Test
             var timing = stopwatch();
             
             for(var i = 0; i<len; i++)
-                Claims.numeq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);
+                Require.numeq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);
             
         }
 

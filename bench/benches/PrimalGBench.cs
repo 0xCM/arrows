@@ -18,6 +18,8 @@ namespace Z0.Bench
 
     public static class PrimalGBench
     {
+        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, PrimalGConfig config, IRandomizer random = null)
+            => metric.Configure(config).Run(op, prim, Random(random));
 
         public static MetricComparisonRecord RunComparison(this PrimalGConfig config, OpType op, bool silent = false)
         {            
@@ -29,16 +31,12 @@ namespace Z0.Bench
             return compared;
         }
 
-        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, PrimalGConfig config, IRandomizer random = null)
-            => metric.Configure(config).Run(op, prim, Random(random));
-
-
         public static IReadOnlyList<MetricComparisonRecord> Run()
         {
             var ops = items(OpKind.Sub, OpKind.Mul, OpKind.Add, OpKind.GtEq, OpKind.LtEq, OpKind.Eq);
             var prims = items(PrimalKinds.All);
             var optypes = from o in ops from p in prims select OpType.Define(o,p);            
-            var config = PrimalGConfig.Define(MetricKind.PrimalG, runs: Pow2.T03, cycles: Pow2.T12, samples: Pow2.T11, dops: false);
+            var config = PrimalGConfig.Define(MetricKind.PrimalG, runs: Pow2.T03, cycles: Pow2.T12, samples: Pow2.T11);
             var comparisons = new List<MetricComparisonRecord>();
             foreach(var ot in optypes)
             {
@@ -51,9 +49,8 @@ namespace Z0.Bench
 
         }
 
-        public static IMetrics Run(this PrimalGConfig config, OpKind op, PrimalKind prim, IRandomizer random = null)
+        static IMetrics Run(this PrimalGConfig config, OpKind op, PrimalKind prim, IRandomizer random)
         {
-            random = Random(random);
             switch(prim)
             {
                 case PrimalKind.int8:
@@ -81,21 +78,34 @@ namespace Z0.Bench
             }
         }
 
-
-        const MetricKind Metric = MetricKind.PrimalG;
-
         static Metrics<T> Run<T>(this PrimalGConfig config, OpKind op, IRandomizer random)        
             where T : struct
         {
-            var lhs = random.Span<T>(config.Samples);
-            var rhs = op.NonZeroRight() ? random.NonZeroSpan<T>(config.Samples) : random.Span<T>(config.Samples);            
             var metrics = Metrics<T>.Zero;
+
+            var lhs = random.ReadOnlySpan<T>(config.Samples);
+            var rhs = op.NonZeroRight() 
+                ? random.NonZeroSpan<T>(config.Samples) 
+                : random.ReadOnlySpan<T>(config.Samples);
+            var moves = op.IsBitMovement() 
+                ? random.ReadOnlySpan<int>(config.Samples, closed(0, SizeOf<T>.BitSize)) 
+                : ReadOnlySpan<int>.Empty;
 
             GC.Collect();            
             for(var i=0; i<config.Runs; i++)
-                metrics += config.Run<T>(op, lhs, rhs);
+            {                
+                if(op.IsBitMovement())
+                    config.Run(op, lhs, moves);
+                else if(op.Arity() == OpArity.Binary)
+                    metrics += config.Run<T>(op, lhs, rhs);
+                else if(op.Arity() == OpArity.Unary)
+                    metrics += config.Run(op, lhs);
+                else 
+                    error($"No arity defined for {op} operator!");
+            }
             return metrics;            
         }
+
 
         static Metrics<T> Run<T>(this PrimalGConfig config, OpKind op, ReadOnlySpan<T> src)
             where T : struct
@@ -189,6 +199,30 @@ namespace Z0.Bench
 
             print(metrics.Describe());
 
+            return metrics;
+        }
+
+        static Metrics<T> Run<T>(this PrimalGConfig config, OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs)
+            where T : struct
+        {
+            var metrics = Metrics<T>.Zero;
+            switch(op)
+            {
+                case OpKind.ShiftL:
+                    metrics = config.ShiftL(lhs,rhs);   
+                break;
+                case OpKind.ShiftR:
+                    metrics = config.ShiftR(lhs,rhs);   
+                break;
+                case OpKind.RotL:
+                    metrics = config.RotL(lhs,rhs);   
+                break;
+                case OpKind.RotR:
+                    metrics = config.RotR(lhs,rhs);   
+                break;
+                default: 
+                    throw unsupported(op);
+            }
             return metrics;
         }
 

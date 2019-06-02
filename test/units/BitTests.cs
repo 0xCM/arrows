@@ -10,7 +10,7 @@ namespace Z0.Test
     using System.ComponentModel;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-
+    using Z0.Diagnostics;
     
     using static zfunc;
 
@@ -109,6 +109,7 @@ namespace Z0.Test
         public void BitParse1()
         {
             
+            
             var bs1 = "10001000111";
             var value = gbits.parse<ulong>(bs1).ToBits();
             Claim.eq(value,0b10001000111);
@@ -121,7 +122,6 @@ namespace Z0.Test
             var y1 = "0b10100111001110001110010110101000";
             var z1 = gbits.parse<uint>(y1).ToBits();
             Claim.eq(x1, z1);
-
         }
 
         public void Pack1()
@@ -256,7 +256,7 @@ namespace Z0.Test
 
             var byx = BitConverter.GetBytes(x).ToSpan();
             Bytes.write(x, out Span<byte> byy);
-            Claims.eq(byx,byy);
+            Require.RequireEq(byx,byy);
 
 
         }

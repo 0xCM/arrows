@@ -20,6 +20,9 @@ namespace Z0
         public static AppException NotEqual(object lhs, object rhs, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
             => AppException.Define(ErrorMessages.NotEqual(lhs,rhs,caller,file,line));
 
+        public static AppException Equal(object lhs, object rhs, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
+            => AppException.Define(ErrorMessages.Equal(lhs,rhs,caller,file,line));
+
         public static AppException NotLessThan(object lhs, object rhs, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
             => AppException.Define(ErrorMessages.NotLessThan(lhs,rhs,caller,file,line));
 

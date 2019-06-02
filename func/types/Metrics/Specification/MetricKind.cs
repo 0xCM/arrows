@@ -63,6 +63,7 @@ namespace Z0
         InX128GFused,
 
         InX256D,
+        
         InX256DFused,
 
         InX256G,

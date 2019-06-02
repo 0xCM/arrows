@@ -12,15 +12,11 @@ namespace Z0.Metrics
     
     using static zfunc;
     using static As;
-    using static InX128DMetrics;
+    using static InXDMetrics128;
 
     public static class AndInX128D
     {
-        public static Metrics<T> AndD<T>(this InXConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
-            where T : struct
-                => config.And(lhs,rhs);
-
-        static Metrics<T> And<T>(this InXConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
+        public static Metrics<T> And<T>(this InXDConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -51,7 +47,7 @@ namespace Z0.Metrics
             }
         }
 
-        static Metrics<sbyte> And(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, InXConfig128 config)
+        static Metrics<sbyte> And(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, InXDConfig128 config)
         {
             var opid = Id<sbyte>(OpKind.And);            
             var dst = alloc(lhs,rhs);
@@ -61,7 +57,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<byte> And(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, InXConfig128 config)
+        static Metrics<byte> And(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, InXDConfig128 config)
         {
             var opid = Id<byte>(OpKind.And);            
             var dst = alloc(lhs,rhs);
@@ -71,7 +67,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<short> And(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, InXConfig128 config)
+        static Metrics<short> And(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, InXDConfig128 config)
         {
             var opid = Id<short>(OpKind.And);            
             var dst = alloc(lhs,rhs);
@@ -81,7 +77,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<ushort> And(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, InXConfig128 config)
+        static Metrics<ushort> And(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, InXDConfig128 config)
         {
             var opid = Id<ushort>(OpKind.And);            
             var dst = alloc(lhs,rhs);
@@ -91,7 +87,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<int> And(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, InXConfig128 config)
+        static Metrics<int> And(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, InXDConfig128 config)
         {
             var opid = Id<int>(OpKind.And);            
             var dst = alloc(lhs,rhs);
@@ -101,7 +97,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<uint> And(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, InXConfig128 config)
+        static Metrics<uint> And(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, InXDConfig128 config)
         {
             var opid = Id<uint>(OpKind.And);            
             var dst = alloc(lhs,rhs);
@@ -111,7 +107,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<long> And(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, InXConfig128 config)
+        static Metrics<long> And(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, InXDConfig128 config)
         {
             var opid = Id<long>(OpKind.And);            
             var dst = alloc(lhs,rhs);
@@ -121,7 +117,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<ulong> And(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, InXConfig128 config)
+        static Metrics<ulong> And(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, InXDConfig128 config)
         {
             var opid = Id<ulong>(OpKind.And);            
             var dst = alloc(lhs,rhs);
@@ -131,7 +127,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<float> And(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXConfig128 config)
+        static Metrics<float> And(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXDConfig128 config)
         {
             var opid = Id<float>(OpKind.And);            
             var dst = alloc(lhs,rhs);
@@ -141,7 +137,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<double> And(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXConfig128 config)
+        static Metrics<double> And(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, InXDConfig128 config)
         {
             var opid = Id<double>(OpKind.And);            
             var dst = alloc(lhs,rhs);

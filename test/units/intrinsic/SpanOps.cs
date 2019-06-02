@@ -10,6 +10,8 @@ namespace Z0.Test
     using System.Runtime.CompilerServices;
     using System.IO;
 
+    using Z0.Diagnostics;
+
 
     public class InXSpanOps : UnitTest<InXSpanOps>
     {
@@ -22,7 +24,7 @@ namespace Z0.Test
             var rhs = Randomizer.Span128<float>(Blocks);
             var dDst = Span128.alloc<float>(Blocks);
             var gDst = Span128.alloc<float>(Blocks);
-            Claims.eq(dinx.sub(lhs,rhs, ref dDst), ginx.sub(lhs,rhs, gDst));
+            Require.RequireEq(dinx.sub(lhs,rhs, ref dDst), ginx.sub(lhs,rhs, gDst));
         }
 
         public void V128F64()
@@ -32,7 +34,7 @@ namespace Z0.Test
             var dDst = Span128.alloc<double>(Blocks);
             var gDst = Span128.alloc<double>(Blocks);
                 
-            Claims.eq(dinx.sub(lhs,rhs, ref dDst), ginx.sub(lhs,rhs, gDst));
+            Require.RequireEq(dinx.sub(lhs,rhs, ref dDst), ginx.sub(lhs,rhs, gDst));
         }
 
     }

@@ -39,7 +39,7 @@ namespace Z0.Bench
             var ops = items(OpKind.Toggle, OpKind.Pop);
             var prims = PrimalKinds.Integral;
             var optypes =from o in ops from p in prims select OpType.Define(o,p);
-            var config = BitGConfig.Define(MetricKind.BitG, runs: Pow2.T03, cycles: Pow2.T12, samples: Pow2.T11, dops: true);
+            var config = BitGConfig.Define(MetricKind.BitG, runs: Pow2.T03, cycles: Pow2.T12, samples: Pow2.T11);
             var comparisons = new List<MetricComparisonRecord>();
             foreach(var ot in optypes)
             {

@@ -12,15 +12,12 @@ namespace Z0.Metrics
     
     using static zfunc;
     using static As;
-    using static InX256DMetrics;
+    using static InXDMetrics256;
 
     public static class OrInX256D
     {
-        public static Metrics<T> OrD<T>(this InXConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
-            where T : struct        
-                => config.Or(lhs,rhs);
 
-        static Metrics<T> Or<T>(this InXConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
+        public static Metrics<T> Or<T>(this InXDConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct
         {
             var kind = PrimalKinds.kind<T>();
@@ -52,7 +49,7 @@ namespace Z0.Metrics
             }
         }
 
-        static Metrics<sbyte> Or(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, InXConfig256 config)
+        static Metrics<sbyte> Or(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, InXDConfig256 config)
         {
             var opid = Id<sbyte>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
@@ -62,7 +59,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<byte> Or(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, InXConfig256 config)
+        static Metrics<byte> Or(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, InXDConfig256 config)
         {
             var opid = Id<byte>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
@@ -72,7 +69,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<short> Or(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, InXConfig256 config)
+        static Metrics<short> Or(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, InXDConfig256 config)
         {
             var opid = Id<short>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
@@ -82,7 +79,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<ushort> Or(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, InXConfig256 config)
+        static Metrics<ushort> Or(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, InXDConfig256 config)
         {
             var opid = Id<ushort>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
@@ -92,7 +89,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<int> Or(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, InXConfig256 config)
+        static Metrics<int> Or(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, InXDConfig256 config)
         {
             var opid = Id<int>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
@@ -102,7 +99,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<uint> Or(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXConfig256 config)
+        static Metrics<uint> Or(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, InXDConfig256 config)
         {
             var opid = Id<uint>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
@@ -112,7 +109,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<long> Or(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, InXConfig256 config)
+        static Metrics<long> Or(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, InXDConfig256 config)
         {
             var opid = Id<long>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
@@ -122,7 +119,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<ulong> Or(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXConfig256 config)
+        static Metrics<ulong> Or(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, InXDConfig256 config)
         {
             var opid = Id<ulong>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
@@ -132,7 +129,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<float> Or(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXConfig256 config)
+        static Metrics<float> Or(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXDConfig256 config)
         {
             var opid = Id<float>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
@@ -142,7 +139,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<double> Or(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXConfig256 config)
+        static Metrics<double> Or(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, InXDConfig256 config)
         {
             var opid = Id<double>(OpKind.Or);            
             var dst = alloc(lhs,rhs);
