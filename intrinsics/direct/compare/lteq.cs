@@ -24,6 +24,16 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<double> lteq(in Vec128<double> lhs, in Vec128<double> rhs)
             => CompareLessThanOrEqual(lhs, rhs);
+    
+        [MethodImpl(Inline)]
+        public static bool lteq(in Num128<float> lhs, in Num128<float> rhs)
+            => CompareScalarUnorderedLessThanOrEqual(lhs,rhs);
+        
+        [MethodImpl(Inline)]
+        public static bool lteq(in Num128<double> lhs, in Num128<double> rhs)
+            => CompareScalarUnorderedLessThanOrEqual(lhs, rhs);
+
+    
     }
 
 

@@ -9,89 +9,96 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
+    using static System.Runtime.Intrinsics.X86.Sse;
+    using static System.Runtime.Intrinsics.X86.Sse2;
+    using static System.Runtime.Intrinsics.X86.Sse41;
 
  
     using static zfunc;
+    using static As;
+    using static AsInX;
     
     public static class Num128
     {
         [MethodImpl(Inline)]
-        public static void mul(float[] lhs, float[] rhs)
+        public static unsafe ref Num128<float> load(float src, out Num128<float> dst)
         {
-            var len = length(lhs,rhs);
-            
-            for(var i = 0; i < len; i++)
-            {
-                var x = Num128.define(lhs[i]);
-                var y = Num128.define(rhs[i]);
-                lhs[i] = dinxs.mul(ref x,y);                
-            }
+             dst = LoadScalarVector128(pfloat32(ref src));
+             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static void mul(double[] lhs, double[] rhs)
+        public static unsafe ref Num128<double> load(double src, out Num128<double> dst)
         {
-            var len = length(lhs,rhs);
-            
-            for(var i = 0; i < len; i++)
-            {
-                var x = Num128.define(lhs[i]);
-                var y = Num128.define(rhs[i]);
-                lhs[i] = dinxs.mul(ref x,y);                
-            }
+             dst = LoadScalarVector128(pfloat64(ref src));
+             return ref dst;
         }
-
-        [MethodImpl(Inline)]
-        public static void mul<T>(T[] lhs, T[] rhs)
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-            var len = length(lhs,rhs);
-
-            for(var i= 0; i < len; i++)
-            {
-                var x = Num128.define(lhs[i]);
-                var y = Num128.define(rhs[i]);
-                lhs[i] = ginxs.mul(ref x, in y);                
-            }
-
-        }
-
         
         [MethodImpl(Inline)]
-        public static unsafe Num128<int> load(int* src)
-            => Avx2.LoadScalarVector128(src);
+        public static unsafe Num128<int> load(ref int src)
+            => Avx2.LoadScalarVector128(pint32(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Num128<uint> load(uint* src)
-            => Avx2.LoadScalarVector128(src);
+        public static unsafe Num128<uint> load(ref uint src)
+            => Avx2.LoadScalarVector128(puint32(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Num128<long> load(long* src)
-            => Avx2.LoadScalarVector128(src);
+        public static unsafe Num128<long> load(ref long src)
+            => Avx2.LoadScalarVector128(pint64(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Num128<ulong> load(ulong* src)
-            => Avx2.LoadScalarVector128(src);
+        public static unsafe Num128<ulong> load(ref ulong src)
+            => Avx2.LoadScalarVector128(puint64(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Num128<float> load(float* src)
-            => Avx2.LoadScalarVector128(src);
+        public static unsafe Num128<float> load(ref float src)
+            => Avx2.LoadScalarVector128(pfloat32(ref src));
 
         [MethodImpl(Inline)]
-        public static unsafe Num128<double> load(double* src)
-            => Avx2.LoadScalarVector128(src);
-     
+        public static unsafe Num128<double> load(ref double src)
+            => Avx2.LoadScalarVector128(pfloat64(ref src));
+                 
+
         [MethodImpl(Inline)]
-        public static ref Vec128<byte> broadcast(in Num128<byte> src, out Vec128<byte> dst)
+        public static Num128<T> define<T>(T value)
+            where T : struct        
         {
-            dst = Avx2.BroadcastScalarToVector128(src);
-            return ref dst;
-        }
-            
+            if(typeof(T) == typeof(sbyte))
+                return  scalar<T>(int8(value));
+            else if(typeof(T) == typeof(byte))
+                return  scalar<T>(uint8(value));
+            else if(typeof(T) == typeof(short))
+                return  scalar<T>(int16(value));
+            else if(typeof(T) == typeof(ushort))
+                return  scalar<T>(uint16(value));
+            else if(typeof(T) == typeof(int))
+                return  scalar<T>(int32(value));
+            else if(typeof(T) == typeof(uint))
+                return  scalar<T>(uint32(value));
+            else if(typeof(T) == typeof(long))
+                return  scalar<T>(int64(value));
+            else if(typeof(T) == typeof(ulong))
+                return  scalar<T>(uint64(value));
+            else if(typeof(T) == typeof(float))
+                return  scalar<T>(float32(value));
+            else if(typeof(T) == typeof(double))
+                return  scalar<T>(float64(value));
+            else
+                throw unsupported(PrimalKinds.kind<T>());
 
+        }
 
         [MethodImpl(Inline)]
+        public static Num128<T> load<T>(in ReadOnlySpan128<T> src, int block = 0)
+            where T : struct  
+                => define<T>(src[block* Span128<T>.BlockLength]);
+
+        [MethodImpl(Inline)]
+        public static Num128<T> load<T>(in Span128<T> src, int block = 0)
+            where T : struct  
+                => define<T>(src[block* Span128<T>.BlockLength]);
+ 
+         [MethodImpl(Inline)]
         static unsafe Num128<T> scalar<T>(byte src)
             where T : struct
         {
@@ -178,46 +185,9 @@ namespace Z0
         {
             var dst = stackalloc double[2];            
             dst[0] = src;
-            return Unsafe.AsRef<Num128<T>>(dst);
+            return Unsafe.AsRef<Num128<T>>(dst);            
         }
 
 
-        public static Num128<T> define<T>(T value)
-            where T : struct        
-        {
-            var kind = PrimalKinds.kind<T>();
-            
-            if (kind == PrimalKind.int8)
-                return  scalar<T>(As.int8(value));
-
-            if(kind == PrimalKind.uint8)
-                return  scalar<T>(As.uint8(value));
-
-            if(kind == PrimalKind.int16)
-                return  scalar<T>(As.int16(value));
-
-            if(kind == PrimalKind.uint16)
-                return  scalar<T>(As.uint16(value));
-
-            if(kind == PrimalKind.int32)
-                return  scalar<T>(As.int32(value));
-
-            if(kind == PrimalKind.uint32)
-                return  scalar<T>(As.uint32(value));
-
-            if(kind == PrimalKind.int64)
-                return  scalar<T>(As.int64(value));
-
-            if(kind == PrimalKind.uint64)
-                return  scalar<T>(As.uint64(value));
-
-            if(kind == PrimalKind.float32)
-                return  scalar<T>(As.float32(value));
-
-            if(kind == PrimalKind.float64)
-                return  scalar<T>(As.float64(value));
-
-            throw new NotSupportedException($"Kind {kind} not supported");
-        }
    }
 }

@@ -36,8 +36,8 @@ namespace Z0.Test
         public void Sum3()
         {
             var src = Randomizer.Span<float>(Pow2.T09, closed<float>(-250,250));
-            var x = src.Sum().Round(2);
-            var y = dinx.sum(src).Round(2);
+            var x = (int)src.Sum();
+            var y = (int)dinx.sum(src);
             Claim.eq(x,y);            
         }
 

@@ -81,6 +81,17 @@ namespace Z0
         /// <param name="block">The block index</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
+        public static Num128<T> Scalar<T>(this in ReadOnlySpan128<T> src, int block = 0)            
+            where T : struct            
+                => Num128.load(src,block);
+
+        /// <summary>
+        /// Loads a single intrinsic vector from a blocked span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="block">The block index</param>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
         public static Vec256<T> Vector<T>(this in Span256<T> src, int block = 0)            
             where T : struct            
                 => Vec256.single(src, block);
@@ -92,9 +103,10 @@ namespace Z0
         /// <param name="block">The block index</param>
         /// <typeparam name="T">The primitive type</typeparam>
         [MethodImpl(Inline)]
-        public static ref Vec256<T> Vector<T>(this in ReadOnlySpan256<T> src, int block, out Vec256<T> dst)            
+        public static Vec256<T> Vector<T>(this in ReadOnlySpan256<T> src, int block = 0)            
             where T : struct            
-                => ref Vec256.single(src,block, out dst);
+                => Vec256.single(src,block);
+
 
         /// <summary>
         /// Sends the components of the vector to a blocked span that is 

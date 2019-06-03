@@ -85,40 +85,69 @@ namespace Z0
         /// Formats an array of bytes as a string of hex characters
         /// </summary>
         /// <param name="bytes">The data to format to format</param>
-        public static string ToHexString(this byte[] bytes)
+        public static string ToHexString(this byte[] bytes, bool tlz = true, bool pfs = true)
             => "0x" + BitConverter.ToString(bytes).Replace("-", String.Empty);
 
         [MethodImpl(Inline)]
-        public static string ToHexString(this sbyte src)
-            => "0x" + src.ToString("x").PadLeft(2, '0');
+        public static string ToHexString(this sbyte src, bool zpad = true, bool specifier = true)
+            => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(2, '0'));
 
         [MethodImpl(Inline)]
-        public static string ToHexString(this byte src)
-            => "0x" + src.ToString("x").PadLeft(2, '0');
+        public static string ToHexString(this byte src, bool zpad = true, bool specifier = true)
+            => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(2, '0'));
 
         [MethodImpl(Inline)]
-        public static string ToHexString(this short src)
-            => "0x" + src.ToString("x").PadLeft(4, '0');
+        public static string ToHexString(this short src, bool zpad = true, bool specifier = true)
+            => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(4, '0'));
 
         [MethodImpl(Inline)]
-        public static string ToHexString(this ushort src)
-            => "0x" + src.ToString("x").PadLeft(4, '0');
+        public static string ToHexString(this ushort src, bool zpad = true, bool specifier = true)
+            => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(4, '0'));
 
         [MethodImpl(Inline)]
-        public static string ToHexString(this int src)
-            => "0x" + src.ToString("x").PadLeft(8, '0');
+        public static string ToHexString(this int src, bool zpad = true, bool specifier = true)
+            => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(8, '0'));
 
+        /// <summary>
+        /// Represents an integer as a hex-formatted string
+        /// </summary>
+        /// <param name="src">The value for which a hextring will be produced</param>
+        /// <param name="zpad">Specifies whether to trim leading zeros from the representation</param>
+        /// <param name="specifier">Specifies whether to prepend the '0x' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static string ToHexString(this uint src)
-            => "0x" + src.ToString("x").PadLeft(8, '0');
+        public static string ToHexString(this uint src, bool zpad = true, bool specifier = true)
+            => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(8, '0'));
 
+        /// <summary>
+        /// Represents an integer as a hex-formatted string
+        /// </summary>
+        /// <param name="src">The value for which a hextring will be produced</param>
+        /// <param name="zpad">Specifies whether to trim leading zeros from the representation</param>
+        /// <param name="specifier">Specifies whether to prepend the '0x' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static string ToHexString(this long src)
-            => "0x" + src.ToString("x").PadLeft(16, '0');
-        
+        public static string ToHexString(this long src, bool zpad = true, bool specifier = true)
+            => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(16, '0'));
+
+        /// <summary>
+        /// Represents an integer as a hex-formatted string
+        /// </summary>
+        /// <param name="src">The value for which a hextring will be produced</param>
+        /// <param name="zpad">Specifies whether to trim leading zeros from the representation</param>
+        /// <param name="specifier">Specifies whether to prepend the '0x' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static string ToHexString(this ulong src)
-            => "0x" + src.ToString("x").PadLeft(16, '0');
+        public static string ToHexString(this ulong src, bool zpad = true, bool specifier = true)
+            => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x").PadLeft(16, '0') : src.ToString("x"))  ;
+
+
+        /// <summary>
+        /// Represents an integer as a hex-formatted string
+        /// </summary>
+        /// <param name="src">The value for which a hextring will be produced</param>
+        /// <param name="zpad">Specifies whether to trim leading zeros from the representation</param>
+        /// <param name="specifier">Specifies whether to prepend the '0x' format specifier to the representation</param>
+        [MethodImpl(Inline)]
+        public static string ToHexString(this UInt128 src, bool zpad = true, bool specifier = true)
+            => src.x1.ToHexString(false, true) + src.x0.ToHexString(true,false);
 
         [MethodImpl(Inline)]
         public static string ToHexString(this float src)

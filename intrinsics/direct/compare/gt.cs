@@ -104,5 +104,15 @@ namespace Z0
                 dst[i] = src[i];
             return dst;
         }
+ 
+         [MethodImpl(Inline)]
+        public static bool gt(in Num128<float> lhs, in Num128<float> rhs)
+            => CompareScalarOrderedGreaterThan(lhs, rhs);
+        
+        [MethodImpl(Inline)]
+        public static bool gt(in Num128<double> lhs, in Num128<double> rhs)
+            => CompareScalarOrderedGreaterThan(lhs, rhs);
+
+
     }
 }

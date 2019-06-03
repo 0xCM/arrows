@@ -39,7 +39,7 @@ namespace Z0
         /// <summary>
         /// Extracts a component via its 0-based index
         /// </summary>
-        public  T this[int idx]
+        public T this[int idx]
         {
             [MethodImpl(Inline)]
             get => this.Component(idx);

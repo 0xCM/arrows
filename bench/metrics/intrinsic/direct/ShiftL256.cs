@@ -16,7 +16,6 @@ namespace Z0.Metrics
 
     public static class ShiftLInX256D
     {
-
         public static Metrics<T> ShiftL<T>(this InXDConfig256 config, ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct
         {

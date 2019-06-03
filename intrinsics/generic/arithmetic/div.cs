@@ -43,39 +43,23 @@ namespace Z0
         public static Span128<T> div<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();        
             if(typeof(T) == typeof(float))
-            {
-                var xDst = float32(dst);
-                return generic<T>(dinx.div(float32(lhs), float32(rhs), xDst));
-            }
+                return generic<T>(dinx.div(float32(lhs), float32(rhs), float32(dst)));
             else if(typeof(T) == typeof(double))
-            {
-                var xDst = float64(dst);
-                return generic<T>(dinx.div(float64(lhs), float64(rhs), xDst));
-            }
+                return generic<T>(dinx.div(float64(lhs), float64(rhs), float64(dst)));
             else                
-                throw unsupported(kind);
+                throw unsupported(PrimalKinds.kind<T>());
         }
         
         public static Span256<T> div<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();        
-            switch(kind)
-            {
-                case PrimalKind.float32:
-                {
-                    return generic<T>(dinx.div(float32(lhs), float32(rhs), float32(dst)));                 
-                }
-                case PrimalKind.float64:
-                {
-                    return generic<T>(dinx.div(float64(lhs), float64(rhs), float64(dst)));
-                }
-                
-                default:
-                    throw unsupported(kind);
-            }
+            if(typeof(T) == typeof(float))
+                return generic<T>(dinx.div(float32(lhs), float32(rhs), float32(dst)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dinx.div(float64(lhs), float64(rhs), float64(dst)));
+            else                
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
     }

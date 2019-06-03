@@ -77,13 +77,20 @@ namespace Z0
         public static Vec256<uint> max(in Vec256<uint> lhs, in Vec256<uint> rhs)
             => Max(lhs, rhs);
 
-
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static Vec256<float> max(in Vec256<float> lhs, in Vec256<float> rhs)
             => Max(lhs, rhs);
 
         [MethodImpl(Inline)]
         public static Vec256<double> max(in Vec256<double> lhs, in Vec256<double> rhs)
             => Max(lhs, rhs);
+ 
+        [MethodImpl(Inline)]
+        public static Num128<float> max(in Num128<float> lhs, in Num128<float> rhs)
+            => MaxScalar(lhs, rhs);            
+        
+        [MethodImpl(Inline)]
+        public static Num128<double> max(in Num128<double> lhs, in Num128<double> rhs)
+            => MaxScalar(lhs, rhs);
     }
 }

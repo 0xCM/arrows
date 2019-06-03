@@ -17,11 +17,6 @@ namespace Z0.Metrics
 
     class InXDMetrics128 : InXMetrics
     {
-        const MetricKind Metric = MetricKind.InX128DFused;
-        
-        public static InXDConfig128 Configure(InXDConfig128 config)
-            => config ?? InXDConfig128.Default(Metric);
-
         public static OpId<T> Id<T>(OpKind op, bool fused = true)
             where T : struct
                 => op.OpId<T>(
@@ -37,12 +32,6 @@ namespace Z0.Metrics
         public static new Span128<T> alloc<T>(ReadOnlySpan128<T> src)
             where T : struct
                 => InXMetrics.alloc(src);
-        public static new IRandomizer Random(IRandomizer random)
-            => InXMetrics.Random(random);
-
-        public static Vec128<T> single<T>(ReadOnlySpan128<T> src, int block)
-            where T : struct
-                => Vec128.single(src, block);
 
     }
 

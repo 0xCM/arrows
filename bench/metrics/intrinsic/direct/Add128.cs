@@ -21,17 +21,17 @@ namespace Z0.Metrics
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                    return config.Add(int8(lhs), int8(rhs)).As<T>();
+                return config.Add(int8(lhs), int8(rhs)).As<T>();
             else if(typeof(T) == typeof(byte))
-                    return config.Add(uint8(lhs), uint8(rhs)).As<T>();
+                return config.Add(uint8(lhs), uint8(rhs)).As<T>();
             else if(typeof(T) == typeof(short))
-                    return config.Add(int16(lhs), int16(rhs)).As<T>();
+                return config.Add(int16(lhs), int16(rhs)).As<T>();
             else if(typeof(T) == typeof(ushort))
-                    return config.Add(uint16(lhs), uint16(rhs)).As<T>();
+                return config.Add(uint16(lhs), uint16(rhs)).As<T>();
             else if(typeof(T) == typeof(int))                
-                    return config.Add(int32(lhs), int32(rhs)).As<T>();
+                return config.Add(int32(lhs), int32(rhs)).As<T>();
             else if(typeof(T) == typeof(uint))
-                    return config.Add(uint32(lhs), uint32(rhs)).As<T>();
+                return config.Add(uint32(lhs), uint32(rhs)).As<T>();
             else if(typeof(T) == typeof(long))
                 return config.Add(int64(lhs), int64(rhs)).As<T>();
             else if(typeof(T) == typeof(ulong))
@@ -50,7 +50,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
+                dinx.add(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -60,7 +60,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
+                dinx.add(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -70,7 +70,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
+                dinx.add(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -80,7 +80,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
+                dinx.add(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -90,7 +90,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
+                dinx.add(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -100,7 +100,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
+                dinx.add(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -110,7 +110,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
+                dinx.add(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -120,7 +120,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
+                dinx.add(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -130,7 +130,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
+                dinx.add(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -140,7 +140,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                dinx.add(lhs,rhs, ref dst);
+                dinx.add(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         } 
     }

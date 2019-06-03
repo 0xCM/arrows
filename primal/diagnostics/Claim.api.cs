@@ -118,11 +118,9 @@ namespace Z0
         public static bool lt(int lhs, int rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));
 
-
         [MethodImpl(Inline)]
         public static bool lt(ulong lhs, ulong rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));
-        
+            => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));        
 
         [MethodImpl(Inline)]
         public static bool @true(bool src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
@@ -137,5 +135,24 @@ namespace Z0
         public static bool notnull<T>(T src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => !(src is null) ? true : throw new ArgumentNullException(AppMsg.Define($"Argument was null", SeverityLevel.Error, caller,file,line).ToString());
 
+        public static void eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct 
+        {
+            for(var i = 0; i< length(lhs,rhs); i++)
+                if(!gmath.eq(lhs[i],rhs[i]))
+                    throw Errors.ItemsNotEqual(i, lhs[i], rhs[i], caller, file, line);
+        }
+
+        public static void eq<T>(Span<T> lhs, Span<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct 
+                => eq(lhs.ToReadOnlySpan(), rhs.ToReadOnlySpan(), caller, file, line);
+ 
+        public static void eq<T>(Span128<T> lhs, Span128<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct 
+                => eq(lhs.Unblock(), rhs.Unblock(), caller, file, line);
+
+        public static void eq<T>(Span256<T> lhs, Span256<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            where T : struct 
+                => eq(lhs.Unblock(), rhs.Unblock(), caller, file, line);
     }
 }

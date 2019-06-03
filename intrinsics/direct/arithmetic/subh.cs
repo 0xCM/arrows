@@ -10,6 +10,8 @@ namespace Z0
     using System.Runtime.Intrinsics.X86;
     using static System.Runtime.Intrinsics.X86.Sse3;
     using static System.Runtime.Intrinsics.X86.Ssse3;
+    using static System.Runtime.Intrinsics.X86.Avx;
+    using static System.Runtime.Intrinsics.X86.Avx2;
         
     using static zfunc;
 
@@ -30,6 +32,22 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<double> subh(in Vec128<double> lhs, in Vec128<double> rhs)
+            => HorizontalSubtract(lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<short> subh(in Vec256<short> lhs, in Vec256<short> rhs)
+            => HorizontalSubtract(lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<int> subh(in Vec256<int> lhs, in Vec256<int> rhs)
+            => HorizontalSubtract(lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<float> subh(in Vec256<float> lhs, in Vec256<float> rhs)
+            => HorizontalSubtract(lhs, rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<double> subh(in Vec256<double> lhs, in Vec256<double> rhs)
             => HorizontalSubtract(lhs, rhs);
 
         [MethodImpl(Inline)]

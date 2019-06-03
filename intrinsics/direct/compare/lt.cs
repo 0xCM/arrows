@@ -36,6 +36,15 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<double> lt(in Vec128<double> lhs, in Vec128<double> rhs)
             => CompareLessThan(lhs, rhs);
+    
+        [MethodImpl(Inline)]
+        public static bool lt(in Num128<float> lhs, in Num128<float> rhs)
+            => CompareScalarOrderedLessThan(lhs, rhs);                
+
+        [MethodImpl(Inline)]
+        public static bool lt(in Num128<double> lhs, in Num128<double> rhs)
+            => CompareScalarOrderedLessThan(lhs, rhs);
+    
     }
 
 }

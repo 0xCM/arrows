@@ -110,78 +110,40 @@ namespace Z0
         }
  
 
-        public static Span128<T> mul<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
+        public static Span128<T> mul<S,T>(ReadOnlySpan128<S> lhs, ReadOnlySpan128<S> rhs, Span128<T> dst)
+            where S : struct
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();        
-            switch(kind)
-            {
-                case PrimalKind.int32:
-                {
-                    var xDst = int64(dst);
-                    dinx.mul(int32(lhs), int32(rhs), ref xDst);
-                    return generic<T>(xDst);
-                }
-                case PrimalKind.uint32:
-                {
-                    var xDst = uint64(dst);
-                    dinx.mul(uint32(lhs), uint32(rhs), ref xDst);
-                    return generic<T>(xDst);
-                }
-                case PrimalKind.float32:
-                {
-                    var xDst = float32(dst);
-                    dinx.mul(float32(lhs), float32(rhs), ref xDst);
-                    return generic<T>(xDst);
-                }
-                case PrimalKind.float64:
-                {
-                    var xDst = float64(dst);
-                    dinx.mul(float64(rhs), float64(rhs), ref  xDst);
-                    return generic<T>(xDst);
-                }
-                
-                default:
-                    throw unsupported(kind);
-            }                
+            if(typeof(S) == typeof(int))
+                dinx.mul(int32(lhs), int32(rhs), int64(dst));
+            else if(typeof(S) == typeof(uint))
+                dinx.mul(uint32(lhs), uint32(rhs), uint64(dst));
+            else if(typeof(S) == typeof(float))
+                dinx.mul(float32(lhs), float32(rhs), float32(dst));
+            else if(typeof(S) == typeof(double))
+                dinx.mul(float64(rhs), float64(rhs), float64(dst));
+            else
+                throw unsupported(PrimalKinds.kind<T>());
+            return dst;
         }
 
         [MethodImpl(Inline)]
-        public static Span256<T> mul<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
+        public static Span256<T> mul<S,T>(ReadOnlySpan256<S> lhs, ReadOnlySpan256<S> rhs, Span256<T> dst)
+            where S : struct
             where T : struct
         {
 
-            var kind = PrimalKinds.kind<T>();        
-            switch(kind)
-            {
-                case PrimalKind.int32:
-                {
-                    var xDst = int64(dst);
-                    dinx.mul(int32(lhs), int32(rhs), ref xDst);
-                    return generic<T>(xDst);
-                }
-                case PrimalKind.uint32:
-                {
-                    var xDst = uint64(dst);
-                    dinx.mul(uint32(lhs), uint32(rhs), ref xDst);
-                    return generic<T>(xDst);
-                }
-                case PrimalKind.float32:
-                {
-                    var xDst = float32(dst);
-                    dinx.mul(float32(lhs), float32(rhs), ref xDst);
-                    return generic<T>(xDst);
-                }
-                case PrimalKind.float64:
-                {
-                    var xDst = float64(dst);
-                    dinx.mul(float64(rhs), float64(rhs), ref xDst);
-                    return generic<T>(xDst);
-                }
-                
-                default:
-                    throw unsupported(kind);
-            }                
+            if(typeof(S) == typeof(int))
+                dinx.mul(int32(lhs), int32(rhs), int64(dst));
+            else if(typeof(S) == typeof(uint))
+                dinx.mul(uint32(lhs), uint32(rhs), uint64(dst));
+            else if(typeof(S) == typeof(float))
+                dinx.mul(float32(lhs), float32(rhs), float32(dst));
+            else if(typeof(S) == typeof(double))
+                dinx.mul(float64(rhs), float64(rhs), float64(dst));
+            else
+                throw unsupported(PrimalKinds.kind<T>());
+            return dst;
 
         }
 

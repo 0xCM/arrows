@@ -139,7 +139,7 @@ namespace Z0
         [MethodImpl(Inline)]
         Span256(ref T head, int len)
         {
-            this.data =  MemoryMarshal.CreateSpan(ref head, len);
+            this.data = MemoryMarshal.CreateSpan(ref head, len);
         }
 
         public ref T this[int ix] 

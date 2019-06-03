@@ -15,21 +15,35 @@ namespace Z0.Test
 
     public class InXAddTest : UnitTest<InXAddTest>
     {
-        public void Max1()
+        public void AddI32()
         {
-            // var v1Src = Randomizer.ReadOnlySpan256<int>(1);
-            // var v2Src = Randomizer.ReadOnlySpan256<int>(1);
-            // var v4Src = Span256.alloc<int>(1);
+            var blocks = Pow2.T08;   
+            var blocklen = Span128<int>.BlockLength;                     
+            var lhs = Randomizer.ReadOnlySpan128<int>(blocks);
+            var rhs = Randomizer.ReadOnlySpan128<int>(blocks);
+            var expect = Span128.alloc<int>(blocks);
+            var actual = Span128.alloc<int>(blocks);
             
-            // var v1 = Vec256.single(v1Src);
-            // var v2 = Vec256.single(v2Src);
-            // var v3 = ginx.add(v1, v2);
+            for(var block = 0; block<blocks; block++)
+            {
+                var offset = block*blocklen;
 
-            // for(var i = 0; i< v1.Length(); i++)
-            //     v4Src[i] = v1Src[i]  + v2Src[i];
-            // var v4 = v4Src.Vector();
-            
-            // Claim.eq(v4,v3);
+                Span<int> tmp = stackalloc int[blocklen];
+                for(var i =0; i<blocklen; i++)
+                    tmp[i] = gmath.add(lhs[offset + i], rhs[offset + i]);
+                var vExpect = Vec128.load(ref tmp[0]);
+             
+                var vX = lhs.Vector(block);
+                var vY = rhs.Vector(block);
+                var vActual = ginx.add(vX,vY);
+
+                Claim.eq(vExpect, vActual);
+
+                dinx.store(vExpect, ref expect.Block(block));
+                dinx.store(vActual, ref actual.Block(block));
+
+            }
+            Claim.eq(expect, actual);
 
         }
 

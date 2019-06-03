@@ -10,9 +10,9 @@ namespace Z0
     using System.Numerics;
 
     [StructLayout(LayoutKind.Explicit, Size = 2)]
-    public ref struct i16 
+    public ref struct I16 
     {
-        public i16(short src)
+        public I16(short src)
         {
             this.x000 = 0;
             this.x001  =0;                

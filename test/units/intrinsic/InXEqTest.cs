@@ -30,6 +30,7 @@ namespace Z0.Test
             }           
             return snapshot(sw);
         }
+        
         Duration TestEq<T>(N256 bits, int blocks)
             where T : struct
         {

@@ -24,6 +24,15 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<double> ngt(in Vec128<double> lhs, in Vec128<double> rhs)
             => CompareNotGreaterThan(lhs, rhs);
+ 
+        [MethodImpl(Inline)]
+        public static bool ngt(in Num128<float> lhs, in Num128<float> rhs)
+            => CompareScalarNotGreaterThan(lhs, rhs).IsNaN(0);
+
+        [MethodImpl(Inline)]
+        public static bool ngt(in Num128<double> lhs, in Num128<double> rhs)
+            => CompareScalarNotGreaterThan(lhs, rhs).IsNaN(0);
+
     }
 
 }

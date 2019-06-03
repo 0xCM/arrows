@@ -27,6 +27,13 @@ namespace Z0
             => Reciprocal(src);
 
 
+        [MethodImpl(Inline)]
+        public static ref Num128<float> recip(ref Num128<float> src)
+        {
+            src = ReciprocalScalar(src);
+            return ref src;
+        }
+
     }
 
 }

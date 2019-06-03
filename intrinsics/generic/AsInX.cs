@@ -140,16 +140,15 @@ namespace Z0
 
                         
         [MethodImpl(Inline)]
-        public static ref Num128<float> float32<T>(ref Num128<T> src)
+        internal static ref Num128<float> float32<T>(in Num128<T> src)
             where T : struct        
-                => ref Unsafe.As<Num128<T>,Num128<float>>(ref src);
+                => ref Unsafe.As<Num128<T>,Num128<float>>(ref asRef(in src));
 
 
         [MethodImpl(Inline)]
-        public static ref Num128<double> float64<T>(ref Num128<T> src)
+        internal static ref Num128<double> float64<T>(in Num128<T> src)
             where T : struct        
-                => ref Unsafe.As<Num128<T>,Num128<double>>(ref src);
-
+                => ref Unsafe.As<Num128<T>,Num128<double>>(ref asRef(in src));
 
         [MethodImpl(Inline)]
         public static ref Num128<T> generic<T>(ref Num128<sbyte> src)
@@ -465,6 +464,8 @@ namespace Z0
             where T : struct        
                 => ref Unsafe.As<Vec128<T>,Vec128<double>>(ref asRef(in src));
 
+
+
         [MethodImpl(Inline)]
         internal static ref Vec128<T> generic<T>(in Vec128<sbyte> src)
             where T : struct        
@@ -614,6 +615,8 @@ namespace Z0
         internal static ref Vec256<T> generic<T>(in Vec256<double> src)
             where T : struct        
                 => ref Unsafe.As<Vec256<double>,Vec256<T>>(ref asRef(in src));
+ 
+
  
     }
 

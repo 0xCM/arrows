@@ -29,4 +29,20 @@ namespace Z0.Metrics
     }
 
 
+    public class InXNumDConfig128 : InXConfig128
+    {
+        public static InXNumDConfig128 Default(MetricKind metric) 
+            => InXNumDConfig128.Define(metric, runs: Pow2.T03, cycles: Pow2.T14, blocks: Pow2.T12);        
+
+        public static InXNumDConfig128 Define(MetricKind metric, int runs, int cycles, int blocks)
+            => new InXNumDConfig128(metric, runs, cycles, blocks);
+
+        public InXNumDConfig128(MetricKind Metric, int Runs, int Cycles, int Blocks)
+            : base(Metric, Runs, Cycles, Blocks)
+        {
+        
+        }
+    }
+
+
 }

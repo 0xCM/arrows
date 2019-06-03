@@ -25,7 +25,7 @@ namespace Z0.Metrics
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
             for(var block = 0; block < dst.BlockCount; block++)
-                Vec256.store(ginx.add(single(lhs, block),single(rhs, block)), ref dst.Block(block));            
+                Vec256.store(ginx.add(Vec256.single(lhs, block), Vec256.single(rhs, block)), ref dst.Block(block));
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
@@ -36,7 +36,7 @@ namespace Z0.Metrics
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < config.Cycles; cycle++)
-                ginx.add(lhs, rhs, ref dst);
+                ginx.add(lhs, rhs, dst);
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 

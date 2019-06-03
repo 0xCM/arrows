@@ -22,24 +22,43 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec128<float> div(in Vec128<float> lhs, in Vec128<float> rhs)
-            => Avx2.Divide(lhs, rhs);
+            => Divide(lhs, rhs);
 
         [MethodImpl(Inline)]
         public static Vec128<double> div(in Vec128<double> lhs, in Vec128<double> rhs)
-            => Avx2.Divide(lhs, rhs);
+            => Divide(lhs, rhs);
 
         [MethodImpl(Inline)]
         public static Vec256<float> div(in Vec256<float> lhs, in Vec256<float> rhs)
-            => Avx2.Divide(lhs, rhs);
+            => Divide(lhs, rhs);
 
         [MethodImpl(Inline)]
         public static Vec256<double> div(in Vec256<double> lhs, in Vec256<double> rhs)
-            => Avx2.Divide(lhs, rhs);
+            => Divide(lhs, rhs);
 
+        [MethodImpl(Inline)]
+        public static Num128<float> div(in Num128<float> lhs, in Num128<float> rhs)
+            => DivideScalar(lhs, rhs);
+            
+        [MethodImpl(Inline)]
+        public static Num128<double> div(in Num128<double> lhs, in Num128<double> rhs)
+            => DivideScalar(lhs, rhs);
 
-        static Vec128<T> ToVec128<T>(this Vector128<T> src)
-            where T : struct
-            => src;
+        [MethodImpl(Inline)]
+        public static unsafe ref float div(in Num128<float> lhs, in Num128<float> rhs, ref float dst)
+        {
+            var result = DivideScalar(lhs,rhs);
+            StoreScalar(pfloat32(ref dst), result);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe ref double div(in Num128<double> lhs, in Num128<double> rhs, ref double dst)
+        {
+            var result = DivideScalar(lhs,rhs);
+            StoreScalar(pfloat64(ref dst), result);
+            return ref dst;
+        }
 
         public static Span128<float> div(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
         {

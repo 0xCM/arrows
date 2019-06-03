@@ -24,5 +24,13 @@ namespace Z0
         public static Vec128<double> neq(in Vec128<double> lhs, in Vec128<double> rhs)
             => CompareNotEqual(lhs, rhs);
 
+        [MethodImpl(Inline)]
+        public static bool neq(in Num128<float> lhs, in Num128<float> rhs)
+            => CompareScalarOrderedNotEqual(lhs, rhs);
+        
+        [MethodImpl(Inline)]
+        public static bool neq(in Num128<double> lhs, in Num128<double> rhs)
+            => CompareScalarOrderedNotEqual(lhs, rhs);
+
     }
 }

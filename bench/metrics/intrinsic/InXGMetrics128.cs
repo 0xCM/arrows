@@ -17,11 +17,7 @@ namespace Z0.Metrics
 
     class InXGMetrics128 : InXMetrics
     {
-        const MetricKind Metric = MetricKind.InX128GFused;                  
-        
-        public static InXGConfig128 Configure(InXGConfig128 config)
-            => config ?? InXGConfig128.Default(Metric);
-
+    
         public static OpId<T> Id<T>(OpKind op, bool fused = true)
             where T : struct
                 => op.OpId<T>(
@@ -30,26 +26,10 @@ namespace Z0.Metrics
                         generic: Genericity.Generic, 
                         fusion: fused ? OpFusion.Fused : OpFusion.Atomic
                         );
-        public static new Span128<T> alloc<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
-            where T : struct
-                => InXMetrics.alloc(lhs,rhs);
-        public static new Span128<T> alloc<T>(ReadOnlySpan128<T> src)
-            where T : struct
-                => InXMetrics.alloc(src);
-        public static new IRandomizer Random(IRandomizer random)
-            => InXMetrics.Random(random);
-
-        public static Vec128<T> single<T>(ReadOnlySpan128<T> src, int block)
-            where T : struct
-                => Vec128.single(src, block);
     }
 
     class InXNumGMetrics128 : InXMetrics
     {
-        const MetricKind Metric = MetricKind.InX128G;
-        
-        public static InXGConfig128 Configure(InXGConfig128 config)
-            => config ?? InXGConfig128.Default(Metric);
 
         public static OpId<T> Id<T>(OpKind op, bool fused = true)
             where T : struct
@@ -63,9 +43,6 @@ namespace Z0.Metrics
         public static new Span128<T> alloc<T>(ReadOnlySpan128<T> src)
             where T : struct
                 => InXMetrics.alloc(src);
-
-        public static new IRandomizer Random(IRandomizer random)
-            => InXMetrics.Random(random);
 
     }
 

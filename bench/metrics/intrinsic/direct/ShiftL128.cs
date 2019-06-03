@@ -16,11 +16,7 @@ namespace Z0.Metrics
 
     public static class ShiftLInX128D
     {
-        public static Metrics<T> ShiftLD<T>(this InXDConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
-            where T : struct        
-                => ShiftL(lhs,rhs,config);
-
-        static Metrics<T> ShiftL<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, InXDConfig128 config = null)
+        public static Metrics<T> ShiftL<T>(this InXDConfig128 config, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(int))

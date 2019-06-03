@@ -16,7 +16,7 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public static BitVectorI128 Define(long x0, long x1)
-            => new BitVectorI128(i128.Define(x0,x1));    
+            => new BitVectorI128(Int128.Define(x0,x1));    
 
         [MethodImpl(Inline)]
         public static bool operator ==(BitVectorI128 lhs, BitVectorI128 rhs)
@@ -43,18 +43,18 @@ namespace Z0
             => ~src;
 
         [MethodImpl(Inline)]
-        public static implicit operator BitVectorI128(i128 src)
+        public static implicit operator BitVectorI128(Int128 src)
             => new BitVectorI128(src);
 
         [MethodImpl(Inline)]
-        public static implicit operator i128(BitVectorI128 src)
+        public static implicit operator Int128(BitVectorI128 src)
             => src.data;
 
         [MethodImpl(Inline)]
-        public BitVectorI128(i128 src)
+        public BitVectorI128(Int128 src)
             => this.data = src;
         
-        i128 data;
+        Int128 data;
 
         public Bit this[int pos]
         {

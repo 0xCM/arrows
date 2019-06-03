@@ -12,47 +12,47 @@ namespace Z0
 
 
     [StructLayout(LayoutKind.Explicit, Size = 16)]
-    public ref struct u128
+    public ref struct UInt128
     {
         [MethodImpl(Inline)]
-        public static u128 Define(ulong x0, ulong x1)
+        public static UInt128 Define(ulong x0, ulong x1)
         {
-            return new u128(x0, x1);
+            return new UInt128(x0, x1);
         }
 
         [MethodImpl(Inline)]
-        public static ref u128 Define(ulong x0, ulong x1, out u128 dst)
+        public static ref UInt128 Define(ulong x0, ulong x1, out UInt128 dst)
         {
-            dst = new u128(x0, x1);
+            dst = new UInt128(x0, x1);
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static bool operator ==(u128 lhs, u128 rhs)
+        public static bool operator ==(UInt128 lhs, UInt128 rhs)
             => lhs.x0 == rhs.x0 && lhs.x1 == rhs.x1;
 
         [MethodImpl(Inline)]
-        public static bool operator !=(u128 lhs, u128 rhs)
+        public static bool operator !=(UInt128 lhs, UInt128 rhs)
             => lhs.x0 != rhs.x0 || lhs.x1 != rhs.x1;
 
         [MethodImpl(Inline)]
-        public static u128 operator |(u128 lhs, u128 rhs)
+        public static UInt128 operator |(UInt128 lhs, UInt128 rhs)
             => Define(lhs.x0 | rhs.x0, lhs.x1 | rhs.x1);
 
         [MethodImpl(Inline)]
-        public static u128 operator &(u128 lhs, u128 rhs)
+        public static UInt128 operator &(UInt128 lhs, UInt128 rhs)
             => Define(lhs.x0 & rhs.x0, lhs.x1 & rhs.x1);
 
         [MethodImpl(Inline)]
-        public static u128 operator ^(u128 lhs, u128 rhs)
+        public static UInt128 operator ^(UInt128 lhs, UInt128 rhs)
             => Define(lhs.x0 ^ rhs.x0, lhs.x1 ^ rhs.x1);
 
         [MethodImpl(Inline)]
-        public static u128 operator ~(u128 src)
+        public static UInt128 operator ~(UInt128 src)
             => Define(~ src.x0, ~ src.x1);
 
         [MethodImpl(Inline)]
-        public u128(ulong x0, ulong x1)
+        public UInt128(ulong x0, ulong x1)
         {
             this.x0 = 0;
             this.x1 = 0;

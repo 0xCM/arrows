@@ -40,18 +40,18 @@ namespace Z0
             => ~src;
 
         [MethodImpl(Inline)]
-        public static implicit operator BitVectorU128(u128 src)
+        public static implicit operator BitVectorU128(UInt128 src)
             => new BitVectorU128(src);
 
         [MethodImpl(Inline)]
-        public static implicit operator u128(BitVectorU128 src)
+        public static implicit operator UInt128(BitVectorU128 src)
             => src.data;
 
         [MethodImpl(Inline)]
-        public BitVectorU128(u128 src)
+        public BitVectorU128(UInt128 src)
             => this.data = src;
         
-        u128 data;
+        UInt128 data;
 
         public Bit this[int pos]
         {

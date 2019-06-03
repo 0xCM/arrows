@@ -78,5 +78,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<double> cmpfr(ref Vec256<double> lhs, ref Vec256<double> rhs, FloatComparisonMode mode)
             => Compare(lhs,rhs,mode).ClearNaN();
+    
+        [MethodImpl(Inline)]
+        public static bool cmpf(in Num128<float> lhs, in Num128<float> rhs, FloatComparisonMode mode)
+            => CompareScalar(lhs,rhs,mode).IsNaN(0);
+
+        [MethodImpl(Inline)]
+        public static bool cmpf(in Num128<double> lhs, in Num128<double> rhs, FloatComparisonMode mode)
+            => CompareScalar(lhs,rhs, mode).IsNaN(0);
+    
     }
 }

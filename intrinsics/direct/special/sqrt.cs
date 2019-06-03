@@ -32,6 +32,14 @@ namespace Z0
         public static Vec256<double> sqrt(in Vec256<double> src)
             => Sqrt(src);
 
+        [MethodImpl(Inline)]
+        public static Num128<float> sqrt(in Num128<float> src)
+            => SqrtScalar(src);
+
+        [MethodImpl(Inline)]
+        public static Num128<double> sqrt(in Num128<double> src)
+            => SqrtScalar(src);
+
         public static Span256<double> sqrt(in Span256<double> src, Span256<double> dst)
         {
             for(var block = 0; block <src.BlockCount; block ++)                

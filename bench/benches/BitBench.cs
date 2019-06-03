@@ -17,16 +17,10 @@ namespace Z0.Bench
 
     public static class BitBench    
     {   
-        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, BitDConfig config, IRandomizer random = null)
-            => metric.Configure(config).Run(metric, false, op, prim, Random(random));
-
-        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, BitGConfig config, IRandomizer random = null)
-            => metric.Configure(config).Run(metric, true, op, prim, Random(random));
-
-        public static MetricComparisonRecord RunComparison(this BitGConfig config, OpType op, bool silent = false)
+        public static MetricComparisonRecord RunComparison(this BitGConfig config, OpType op, IRandomizer random, bool silent = false)
         {
-            var m1 = MetricKind.BitD.Measure(op.Op, op.Primitive, config.ToDirect());
-            var m2 = MetricKind.BitG.Measure(op.Op, op.Primitive, config);
+            var m1 = config.ToDirect().Run(MetricKind.BitD, false, op.Op, op.Primitive, random);
+            var m2 = config.Run(MetricKind.BitG, true, op.Op, op.Primitive, random);
             var compared = m1.Compare(m2).ToRecord();
             if(!silent)
                 print(items(compared).FormatMessages());
@@ -41,9 +35,10 @@ namespace Z0.Bench
             var optypes =from o in ops from p in prims select OpType.Define(o,p);
             var config = BitGConfig.Define(MetricKind.BitG, runs: Pow2.T03, cycles: Pow2.T12, samples: Pow2.T11);
             var comparisons = new List<MetricComparisonRecord>();
+            var random = Random(null);
             foreach(var ot in optypes)
             {
-                var comparison =  config.RunComparison(ot, true);
+                var comparison =  config.RunComparison(ot, random, true);
                 comparisons.Add(comparison);
                 print(comparison.FormatMessage());
             }
@@ -56,21 +51,21 @@ namespace Z0.Bench
             switch(prim)
             {
                 case PrimalKind.int8:
-                    return Run<sbyte>(metric, generic, op, config, random);
+                    return config.Run<sbyte>(metric, generic, op, random);
                 case PrimalKind.uint8:
-                    return Run<byte>(metric, generic, op, config, random);
+                    return config.Run<byte>(metric, generic, op, random);
                 case PrimalKind.int16:
-                    return Run<short>(metric, generic, op, config, random);
+                    return config.Run<short>(metric, generic, op, random);
                 case PrimalKind.uint16:
-                    return Run<ushort>(metric, generic, op, config, random);
+                    return config.Run<ushort>(metric, generic, op, random);
                 case PrimalKind.int32:
-                    return Run<int>(metric, generic, op, config, random);
+                    return config.Run<int>(metric, generic, op, random);
                 case PrimalKind.uint32:
-                    return Run<uint>(metric, generic, op, config, random);
+                    return config.Run<uint>(metric, generic, op, random);
                 case PrimalKind.int64:
-                    return Run<long>(metric, generic, op, config, random);
+                    return config.Run<long>(metric, generic, op, random);
                 case PrimalKind.uint64:
-                    return Run<ulong>(metric, generic, op, config, random);
+                    return config.Run<ulong>(metric, generic, op, random);
                 default:
                     throw unsupported(op,prim);
             }
@@ -106,7 +101,7 @@ namespace Z0.Bench
             throw unsupported(op,prim);
         }
 
-        static Metrics<T> Run<T>(MetricKind metric, bool generic, OpKind op, BitDConfig config, IRandomizer random)
+        static Metrics<T> Run<T>(this BitDConfig config, MetricKind metric, bool generic, OpKind op, IRandomizer random)
             where T : struct
         {
             switch(op)

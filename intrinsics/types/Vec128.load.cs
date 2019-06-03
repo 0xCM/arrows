@@ -135,9 +135,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<double> load(ref double src)
-            => LoadVector128(pfloat64(ref src));
- 
-
+            => LoadVector128(pfloat64(ref src)); 
     }
 
 }

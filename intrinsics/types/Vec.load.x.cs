@@ -16,6 +16,7 @@ namespace Z0
     public static class VLoadX
     {
 
+
         [MethodImpl(Inline)]
         public static Vec128<sbyte> VLoad(this ReadOnlySpan128<sbyte> src, int offset)
             => Vec128.load(ref asRef(in src[offset]));
@@ -95,6 +96,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<double> VLoad(this ReadOnlySpan256<double> src, int offset)
             => Vec256.load(ref asRef(in src[offset]));
+
+        
 
 
     }

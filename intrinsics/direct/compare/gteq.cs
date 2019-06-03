@@ -26,6 +26,14 @@ namespace Z0
         public static Vec128<double> gteq(Vec128<double> lhs, Vec128<double> rhs)
             => CompareGreaterThanOrEqual(lhs, rhs);
 
+        [MethodImpl(Inline)]
+        public static bool gteq(in Num128<float> lhs, in Num128<float> rhs)
+            => CompareScalarOrderedGreaterThanOrEqual(lhs, rhs);
+        
+        [MethodImpl(Inline)]
+        public static bool gteq(in Num128<double> lhs, in Num128<double> rhs)
+            => CompareScalarOrderedGreaterThanOrEqual(lhs, rhs);
+
 
 
     }

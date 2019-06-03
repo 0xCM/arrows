@@ -19,6 +19,14 @@ namespace Z0
     
     partial class dinx
     {   
+        [MethodImpl(Inline)]
+        public static bool eq(in Num128<float> lhs,in Num128<float> rhs)
+            => CompareScalarOrderedEqual(lhs, rhs);
+        
+        [MethodImpl(Inline)]
+        public static bool eq(in Num128<double> lhs,in Num128<double> rhs)
+            => CompareScalarOrderedEqual(lhs, rhs);
+
         public static Span<Bit> eq(in Vec128<byte> lhs, in Vec128<byte> rhs)
         {
             var len = Vec128<byte>.Length;

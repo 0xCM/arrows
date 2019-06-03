@@ -23,15 +23,15 @@ namespace Z0.Metrics
             switch(kind)
             {
                 case PrimalKind.int16:
-                    return  Max(int16(lhs), int16(rhs), config).As<T>();
+                    return  config.Max(int16(lhs), int16(rhs)).As<T>();
                 case PrimalKind.int32:
-                    return  Max(int32(lhs), int32(rhs), config).As<T>();
+                    return  config.Max(int32(lhs), int32(rhs)).As<T>();
             }
 
             throw unsupported(kind);
         }
 
-        static Metrics<int> Max(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, InXDConfig128 config)
+        static Metrics<int> Max(this InXDConfig128 config, ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs )
         {
             var opid = Id<int>(OpKind.Max);            
             var dst = alloc(lhs,rhs);
@@ -42,7 +42,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(config, snapshot(sw), dst);
         }
 
-        static Metrics<short> Max(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, InXDConfig128 config)
+        static Metrics<short> Max(this InXDConfig128 config, ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs)
         {
             var opid = Id<short>(OpKind.Max);            
             var dst = alloc(lhs,rhs);

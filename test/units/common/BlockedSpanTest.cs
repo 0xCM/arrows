@@ -165,12 +165,46 @@ namespace Z0.Test
             Require.RequireEq(block2, span(5,6,7,8));
 
         }
-        public void Load()
+        public void Load1()
         {
             var x = Span128.load(array<int>(1,2,3,4,5,6,7,8));
             Claim.eq(x.BlockCount,2);
             Require.RequireEq(x.Unblock(), span(1,2,3,4,5,6,7,8));
             
+        }
+
+        public void Fill1()
+        {
+
+            var blocks = Pow2.T08;   
+            var blocklen = Span128<int>.BlockLength;                     
+            var src = Randomizer.ReadOnlySpan128<int>(blocks);
+            var dst = Span128.alloc<int>(blocks);
+
+            Claim.eq(src.Length, dst.Length);
+
+            for(int block = 0, idx = 0; block<blocks; block++, idx ++)
+            {
+                for(var i =0; i<blocklen; i++)
+                    dst[block*blocklen + i] = src[block*blocklen + i];                
+            }
+
+            Claim.eq(src.Unblock(),dst.Unblock());
+
+        }
+
+
+        public void Fill2()
+        {
+            var blockX = Span128.alloc<int>(1);
+            blockX[0] = 1;
+            blockX[1] = 2;
+            blockX[2] = 3;
+            blockX[3] = 4;
+
+            var blockY = Span128.load(blockX.Unblock());
+            Claim.eq(blockX, blockY);
+
         }
 
     }

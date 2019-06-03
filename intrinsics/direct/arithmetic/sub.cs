@@ -144,7 +144,6 @@ namespace Z0
         public static void sub(in Vec128<double> lhs, in Vec128<double> rhs, ref double dst)
             => store(sub(lhs, rhs), ref dst);
 
-
         [MethodImpl(Inline)]
         public static void sub(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
             => store(Subtract(lhs, rhs), ref dst);
@@ -185,12 +184,20 @@ namespace Z0
         public static void sub(in Vec256<double> lhs, in Vec256<double> rhs, ref double dst)
             => store(Subtract(lhs, rhs), ref dst);
 
+        [MethodImpl(Inline)]
+        public static Num128<float> sub(in Num128<float> lhs, in Num128<float> rhs)
+            => SubtractScalar(lhs, rhs);
+            
+        [MethodImpl(Inline)]
+        public static Num128<double> sub(in Num128<double> lhs, in Num128<double> rhs)
+            => SubtractScalar(lhs, rhs);
+
         public static ref Span128<sbyte> sub(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, ref Span128<sbyte> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -199,7 +206,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -208,7 +215,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -217,7 +224,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -226,7 +233,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -235,7 +242,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -244,7 +251,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -253,7 +260,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -262,7 +269,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -271,7 +278,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -280,7 +287,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -289,7 +296,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -298,7 +305,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -307,7 +314,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -316,7 +323,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -325,7 +332,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -334,7 +341,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -343,7 +350,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -352,7 +359,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
 
@@ -361,7 +368,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                store(Subtract(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+                store(Subtract(lhs.Vector(i),rhs.Vector(i)), ref dst[i]);            
             return ref dst;            
         }
     }

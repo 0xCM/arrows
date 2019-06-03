@@ -68,5 +68,18 @@ namespace Z0
                 throw unsupported(PrimalKinds.kind<T>());
         }
 
+
+        [MethodImpl(Inline)]
+        public static bool eq<T>(in Num128<T> lhs, in Num128<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return dinx.eq(in float32(in lhs), in float32(in rhs));
+            else if(typeof(T) == typeof(double))
+                return dinx.eq(in float64(in lhs), in float64(in rhs));
+            throw unsupported(PrimalKinds.kind<T>());
+        }
+
+
     }
 }

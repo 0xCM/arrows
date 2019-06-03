@@ -11,9 +11,9 @@ namespace Z0
     using static zfunc;
 
     [StructLayout(LayoutKind.Explicit, Size = 1)]
-    public ref struct i8
+    public ref struct I8
     {
-        public i8(sbyte src)
+        public I8(sbyte src)
         {
             this.x000 = 0;
             this.src =0;                
@@ -28,7 +28,5 @@ namespace Z0
         public byte x000;
         
     }
-
-
 
 }

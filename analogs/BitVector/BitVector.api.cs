@@ -9,8 +9,6 @@ namespace Z0
     using System.Runtime.InteropServices;
     using System.Numerics;
 
-    using static Bits;
-    using static Bytes;
 
     using static zfunc;    
 

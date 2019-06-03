@@ -10,9 +10,8 @@ namespace Z0
 
     using static zfunc;
 
-
     [StructLayout(LayoutKind.Explicit, Size = 16)]
-    public ref struct i128
+    public ref struct Int128
     {
         [FieldOffset(0)]
         public long x0;
@@ -21,44 +20,44 @@ namespace Z0
         public long x1;
 
        [MethodImpl(Inline)]
-        public static i128 Define(long x0, long x1)
+        public static Int128 Define(long x0, long x1)
         {
-            return new i128(x0, x1);
+            return new Int128(x0, x1);
         }
 
         [MethodImpl(Inline)]
-        public static ref i128 Define(long x0, long x1, out i128 dst)
+        public static ref Int128 Define(long x0, long x1, out Int128 dst)
         {
-            dst = new i128(x0, x1);
+            dst = new Int128(x0, x1);
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static bool operator ==(i128 lhs, i128 rhs)
+        public static bool operator ==(Int128 lhs, Int128 rhs)
             => lhs.x0 == rhs.x0 && lhs.x1 == rhs.x1;
 
         [MethodImpl(Inline)]
-        public static bool operator !=(i128 lhs, i128 rhs)
+        public static bool operator !=(Int128 lhs, Int128 rhs)
             => lhs.x0 != rhs.x0 || lhs.x1 != rhs.x1;
 
         [MethodImpl(Inline)]
-        public static i128 operator |(i128 lhs, i128 rhs)
+        public static Int128 operator |(Int128 lhs, Int128 rhs)
             => Define(lhs.x0 | rhs.x0, lhs.x1 | rhs.x1);
 
         [MethodImpl(Inline)]
-        public static i128 operator &(i128 lhs, i128 rhs)
+        public static Int128 operator &(Int128 lhs, Int128 rhs)
             => Define(lhs.x0 & rhs.x0, lhs.x1 & rhs.x1);
 
         [MethodImpl(Inline)]
-        public static i128 operator ^(i128 lhs, i128 rhs)
+        public static Int128 operator ^(Int128 lhs, Int128 rhs)
             => Define(lhs.x0 ^ rhs.x0, lhs.x1 ^ rhs.x1);
 
         [MethodImpl(Inline)]
-        public static i128 operator ~(i128 src)
+        public static Int128 operator ~(Int128 src)
             => Define(~ src.x0, ~ src.x1);
 
         [MethodImpl(Inline)]
-        public i128(long x0, long x1)
+        public Int128(long x0, long x1)
         {
             this.x0 = 0;
             this.x1 = 0;

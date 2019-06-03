@@ -47,14 +47,6 @@ namespace Z0.Diagnostics
                     throw Errors.ItemsNotEqual(i, lhs[i], rhs[i], caller, file, line);
         }
 
-        public static void eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            where T : struct 
-        {
-            for(var i = 0; i< length(lhs,rhs); i++)
-                if(!gmath.eq(lhs[i],rhs[i]))
-                    throw Errors.ItemsNotEqual(i, lhs[i], rhs[i], caller, file, line);
-        }
-
         [MethodImpl(Inline)]
         public static bool eq<T>(num<T> lhs, num<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 

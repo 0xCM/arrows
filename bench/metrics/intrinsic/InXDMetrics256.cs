@@ -26,11 +26,6 @@ namespace Z0.Metrics
                         fusion: fused ? OpFusion.Fused : OpFusion.Atomic
                         );
 
-        const MetricKind Metric = MetricKind.InX256DFused;                  
-        
-        public static InXDConfig256 Configure(InXDConfig256 config)
-            => config ?? InXDConfig256.Default(Metric);
-
         public static new Span256<T> alloc<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct
                 => InXMetrics.alloc<T>(lhs,rhs);
@@ -39,12 +34,6 @@ namespace Z0.Metrics
             where T : struct
                 => InXMetrics.alloc<T>(src);
 
-        public static new IRandomizer Random(IRandomizer random)
-            => InXMetrics.Random(random);
-
-        public static Vec256<T> single<T>(ReadOnlySpan256<T> src, int block)
-            where T : struct
-                => Vec256.single(src, block);
 
     }
 

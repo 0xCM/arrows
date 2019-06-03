@@ -26,19 +26,7 @@ namespace Z0.Metrics
                         numKind: NumericKind.Vec256, 
                         generic: Genericity.Generic, 
                         fusion: fused ? OpFusion.Fused : OpFusion.Atomic
-                        );
-
-        const MetricKind Metric = MetricKind.InX256GFused;                  
-        
-        public static InXGConfig256 Configure(InXGConfig256 config)
-            => config ?? InXGConfig256.Default(Metric);
-
-        public static new IRandomizer Random(IRandomizer random)
-            => InXMetrics.Random(random);
-
-        public static Vec256<T> single<T>(ReadOnlySpan256<T> src, int block)
-            where T : struct
-                => Vec256.single(src, block);
+                        );        
 
     }
 

@@ -37,15 +37,6 @@ namespace Z0
             return dst;                        
         }
 
-        [MethodImpl(Inline)]
-        public static bool requireEq<T>(Vec128<T> lhs, Vec128<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            where T : struct 
-                => lhs.Eq(rhs) ? true : throw Errors.NotEqual(lhs,rhs);
-
-        [MethodImpl(Inline)]
-        public static bool requireEq<T>(Vec256<T> lhs, Vec256<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
-            where T : struct 
-                => lhs.Eq(rhs) ? true : throw Errors.NotEqual(lhs,rhs, caller, file, line);
 
     }
 }

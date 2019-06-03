@@ -12,11 +12,11 @@ namespace Z0
 
 
     [StructLayout(LayoutKind.Explicit, Size = 8)]
-    public ref struct u64 
+    public ref struct U64 
     {
         public const int BitSize = 64;
 
-        public u64(ulong value)
+        public U64(ulong value)
         {
             this.x000 = 0;
             this.x001 = 0;
