@@ -13,43 +13,12 @@ namespace Z0.Bench
     using Z0.Metrics;
 
 
-    using static BenchTools;
+    using static BenchRunner;
     using static zfunc;
 
     public static class PrimalGBench
     {
-        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, PrimalGConfig config, IRandomizer random = null)
-            => metric.Configure(config).Run(op, prim, Random(random));
-
-        public static MetricComparisonRecord RunComparison(this PrimalGConfig config, OpType op, bool silent = false)
-        {            
-            var m1 = MetricKind.PrimalD.Measure(op.Op, op.Primitive, config.ToDirect());
-            var m2 = MetricKind.PrimalG.Measure(op.Op, op.Primitive, config);            
-            var compared = m1.Compare(m2).ToRecord();
-            if(!silent)
-                print(items(compared).FormatMessages());
-            return compared;
-        }
-
-        public static IReadOnlyList<MetricComparisonRecord> Run()
-        {
-            var ops = items(OpKind.Sub, OpKind.Mul, OpKind.Add, OpKind.GtEq, OpKind.LtEq, OpKind.Eq);
-            var prims = items(PrimalKinds.All);
-            var optypes = from o in ops from p in prims select OpType.Define(o,p);            
-            var config = PrimalGConfig.Define(MetricKind.PrimalG, runs: Pow2.T03, cycles: Pow2.T12, samples: Pow2.T11);
-            var comparisons = new List<MetricComparisonRecord>();
-            foreach(var ot in optypes)
-            {
-                var comparison =  config.RunComparison(ot, true);
-                comparisons.Add(comparison);
-                print(comparison.FormatMessage());
-            }
-
-            return comparisons;
-
-        }
-
-        static IMetrics Run(this PrimalGConfig config, OpKind op, PrimalKind prim, IRandomizer random)
+        public static IMetrics Run(this PrimalGConfig config, OpKind op, PrimalKind prim, IRandomizer random)
         {
             switch(prim)
             {
@@ -82,9 +51,8 @@ namespace Z0.Bench
             where T : struct
         {
             var metrics = Metrics<T>.Zero;
-
             var lhs = random.ReadOnlySpan<T>(config.Samples);
-            var rhs = op.NonZeroRight() 
+            var rhs = op.IsDivision() 
                 ? random.NonZeroSpan<T>(config.Samples) 
                 : random.ReadOnlySpan<T>(config.Samples);
             var moves = op.IsBitMovement() 

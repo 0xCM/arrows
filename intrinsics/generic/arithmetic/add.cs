@@ -141,7 +141,7 @@ namespace Z0
             throw unsupported(PrimalKinds.kind<T>());
         }
 
-        public static Span128<T> add<T>(in ReadOnlySpan128<T> lhs, in ReadOnlySpan128<T> rhs, Span128<T> dst)
+        public static Span128<T> add<T>(in ReadOnlySpan128<T> lhs, in ReadOnlySpan128<T> rhs, in Span128<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -169,7 +169,7 @@ namespace Z0
             return dst;
         }
 
-        public static Span256<T> add<T>(in ReadOnlySpan256<T> lhs, in ReadOnlySpan256<T> rhs, Span256<T> dst)
+        public static Span256<T> add<T>(in ReadOnlySpan256<T> lhs, in ReadOnlySpan256<T> rhs, in Span256<T> dst)
             where T : struct
         {            
             if(typeof(T) == typeof(sbyte))

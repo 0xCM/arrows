@@ -51,211 +51,121 @@ namespace Z0.Metrics
         static Metrics<sbyte> Mul(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, PrimalDConfig config = null)
         {
             var opid = Id<sbyte>(OpKind.Mul);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(lhs,rhs);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.mul(lhs[it],rhs[it]);
-            else                
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = (sbyte)(lhs[it] * rhs[it]);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.mul(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
         static Metrics<byte> Mul(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, PrimalDConfig config = null)
         {
             var opid = Id<byte>(OpKind.Mul);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(lhs,rhs);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.mul(lhs[it],rhs[it]);
-            else                
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = (byte)(lhs[it] * rhs[it]);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.mul(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
         static Metrics<short> Mul(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, PrimalDConfig config = null)
         {
             var opid = Id<short>(OpKind.Mul);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(lhs,rhs);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.mul(lhs[it],rhs[it]);
-            else                
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = (short)(lhs[it] * rhs[it]);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.mul(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
         static Metrics<ushort> Mul(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, PrimalDConfig config = null)
         {
             var opid = Id<ushort>(OpKind.Mul);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(lhs,rhs);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.mul(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = (ushort)(lhs[it] * rhs[it]);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.mul(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
         static Metrics<int> Mul(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, PrimalDConfig config = null)
         {
             var opid = Id<int>(OpKind.Mul);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(lhs,rhs);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.mul(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = lhs[it] * rhs[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.mul(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
         static Metrics<uint> Mul(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, PrimalDConfig config = null)
         {
             var opid = Id<uint>(OpKind.Mul);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(lhs,rhs);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.mul(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = lhs[it] * rhs[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.mul(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
         static Metrics<long> Mul(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, PrimalDConfig config = null)
         {
             var opid = Id<long>(OpKind.Mul);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(lhs,rhs);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-                if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.mul(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = lhs[it] * rhs[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.mul(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
         static Metrics<ulong> Mul(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, PrimalDConfig config = null)
         {
             var opid = Id<ulong>(OpKind.Mul);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(lhs,rhs);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.mul(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = lhs[it] * rhs[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.mul(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
         static Metrics<float> Mul(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, PrimalDConfig config = null)
         {
             var opid = Id<float>(OpKind.Mul);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(lhs,rhs);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.mul(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = lhs[it] * rhs[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.mul(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
         static Metrics<double> Mul(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, PrimalDConfig config = null)
         {
             var opid = Id<double>(OpKind.Mul);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(lhs,rhs);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.mul(lhs[it],rhs[it]);
-            else                
-               for(var cycle = 0; cycle < cycles; cycle++)
-               for(var it=0; it< dst.Length; it++)
-                    dst[it] = lhs[it] * rhs[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.mul(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
     }
 }

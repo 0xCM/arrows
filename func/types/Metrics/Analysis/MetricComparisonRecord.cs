@@ -12,11 +12,8 @@ namespace Z0
 
     using static zfunc;
 
-    public class MetricComparisonRecord : IRecord<MetricComparisonRecord>
+    public class MetricComparisonRecord : Record<MetricComparisonRecord>
     {
-        public static IReadOnlyList<string> GetHeaders()
-            => type<MetricComparisonRecord>().DeclaredProperties().Select(p => p.Name).ToReadOnlyList();
-
         public static string GetHeaderText(char delimiter = ',')
         {
             var i = 0;
@@ -29,6 +26,11 @@ namespace Z0
                 $"{headers[i++]}{delimiter}".PadRight(MetricLen), 
                     headers[i]);
             return delimited;
+            
+        }
+
+        public MetricComparisonRecord()
+        {
             
         }
 
@@ -46,26 +48,31 @@ namespace Z0
         }
 
         public string LeftOp {get;}
+            = string.Empty;
 
         public string RightOp {get;}
+            = string.Empty;
 
         public long OpCount {get;}
+            = 0;
         
         public Duration LeftTime {get;}
+            = Duration.Zero;
 
         public Duration RightTime {get;}
+            = Duration.Zero;
 
         public double Ratio {get;}
+            = 0;
 
         const int OpNameLen = 50;
         
         const int MetricLen = 14;
 
-
         string FormatOpCount(char delimiter = ',', bool digitcommas = false)
             => $"{OpCount.ToString(digitcommas ? "#,#" : string.Empty)}{delimiter}".PadRight(MetricLen);
         
-        public string Delimited(char delimiter = ',', bool digitcommas = false)
+        public override string Delimited(char delimiter = ',', bool digitcommas = false)
             => string.Join(string.Empty, 
                 $"{LeftOp.Trim()}{delimiter}".PadRight(OpNameLen), 
                 $"{RightOp.Trim()}{delimiter}".PadRight(OpNameLen), 
@@ -76,9 +83,6 @@ namespace Z0
 
         public override string ToString()
             => Delimited();
-
-        public IReadOnlyList<string> Headers()
-            => GetHeaders();
  
         public (AppMsg Header, AppMsg Content) Describe()
             => (DescribeHeader(), DescribeContent());
@@ -88,6 +92,5 @@ namespace Z0
         
         public AppMsg DescribeContent()
             => AppMsg.Define(Delimited(), SeverityLevel.Perform);
-
     }
 }

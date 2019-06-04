@@ -18,33 +18,8 @@ namespace Z0.Metrics
             where T : struct
                 => op.OpId<T>(NumericSystem.Primal);
 
-        public const MetricKind Metric = MetricKind.PrimalD;
-
-        public static PrimalDConfig Configure(PrimalDConfig config)
-            => PrimalDConfig.Default(Metric);
-
-        public static bool DirectOps(PrimalDConfig config)
-            => Configure(config).DirectOps;
-
-        public static int Runs(PrimalDConfig config)
-            => Configure(config).Runs;
-
-        public static int Cycles(PrimalDConfig config)
-            => Configure(config).Cycles;
-
-        public static int Samples(PrimalDConfig config)
-            => Configure(config).Samples;
     }
 
-    public static class PrimalConfigX
-    {
-        public static PrimalDConfig Configure(this MetricKind metric, PrimalDConfig config = null)
-            => config ?? PrimalDConfig.Default(metric);
-
-        public static PrimalGConfig Configure(this MetricKind metric, PrimalGConfig config = null)
-            => config ?? PrimalGConfig.Default(metric);
-
-    }
 
 
 }

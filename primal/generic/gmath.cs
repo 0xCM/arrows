@@ -30,90 +30,10 @@ namespace Z0
             one<ulong>();
             one<float>();
             one<double>();
+            
         }
 
-        abstract class Add<T>
-            where T : struct
-        {
-            public static readonly Add<T> TheOnly = Instantiate();
-
-            static Add<T> Instantiate()
-            {
-                var kind = PrimalKinds.kind<T>(); 
-                if(kind == PrimalKind.float32)
-                {
-                    var instance = new AddF32();
-                    return Unsafe.As<AddF32, Add<T>>(ref instance);
-                }
-                else if(kind == PrimalKind.float64)
-                {
-                    var instance = new AddF64();
-                    return Unsafe.As<AddF64, Add<T>>(ref instance);
-                }
-                else if(kind == PrimalKind.uint64)
-                {
-                    var instance = new AddU64();
-                    return Unsafe.As<AddU64, Add<T>>(ref instance);
-                }
-                else if(kind == PrimalKind.int64)
-                {
-                    var instance = new AddI64();
-                    return Unsafe.As<AddI64, Add<T>>(ref instance);
-                }
-                else if(kind == PrimalKind.uint32)
-                {
-                    var instance = new AddU32();
-                    return Unsafe.As<AddU32, Add<T>>(ref instance);
-                }
-                else if(kind == PrimalKind.int32)
-                {
-                    var instance = new AddI32();
-                    return Unsafe.As<AddI32, Add<T>>(ref instance);
-                }
-                else 
-                    throw unsupported(kind);
-            }
-
-            sealed class AddI32 : Add<int>
-            {
-                public override int apply(int lhs, int rhs)
-                    => lhs + rhs;
-            }
-
-            sealed class AddU32 : Add<uint>
-            {
-                public override uint apply(uint lhs, uint rhs)
-                    => lhs + rhs;
-            }
-
-            sealed class AddI64 : Add<long>
-            {
-                public override long apply(long lhs, long rhs)
-                    => lhs + rhs;
-            }
-
-            sealed class AddU64 : Add<ulong>
-            {
-                public override ulong apply(ulong lhs, ulong rhs)
-                    => lhs + rhs;
-            }
-
-            sealed class AddF32 : Add<float>
-            {
-                public override float apply(float lhs, float rhs)
-                    => lhs + rhs;
-            }
-
-            sealed class AddF64 : Add<double>
-            {
-                public override double apply(double lhs, double rhs)
-                    => lhs + rhs;
-            }
-
-            public abstract T apply(T lhs, T rhs);
-
-        }
-        
+    
         public static Span<T> scale<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
             where T : struct
         {

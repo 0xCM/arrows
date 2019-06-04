@@ -40,9 +40,9 @@ namespace Z0.Metrics
                         fusion: fused ? OpFusion.Fused : OpFusion.Atomic
                         );
 
-        public static new Span128<T> alloc<T>(ReadOnlySpan128<T> src)
+        public static Span128<T> alloc<T>(ReadOnlySpan128<T> src)
             where T : struct
-                => InXMetrics.alloc(src);
+                => Span128.alloc<T>(src.BlockCount);
 
     }
 

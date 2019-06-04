@@ -33,6 +33,10 @@ namespace Z0.Metrics
 
         public OpId OpId {get;}
 
+
+        public MetricSummaryRecord ToRecord()
+            => new MetricSummaryRecord(OpId, OpCount, WorkTime);
+
     }
 
 

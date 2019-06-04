@@ -13,7 +13,7 @@ namespace Z0.Metrics
     using static zfunc;
 
 
-    public class BitDConfig : MetricConfig
+    public class BitDConfig : BitConfig
     {
         public static BitDConfig Default(MetricKind metric) 
             => BitDConfig.Define(metric, runs: Pow2.T03, cycles: Pow2.T14, samples: Pow2.T12);        
@@ -27,6 +27,7 @@ namespace Z0.Metrics
         
         }
                 
+    
     }
 
 

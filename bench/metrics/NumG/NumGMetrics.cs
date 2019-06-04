@@ -19,11 +19,5 @@ namespace Z0.Metrics
             where T : struct
                 => op.OpId<T>(NumericSystem.Primal, numKind : NumericKind.NumG, generic: Genericity.Generic);
 
-        public const MetricKind Metric = MetricKind.NumG;
-
-        public static int Cycles(NumGConfig config)
-            => Metric.Configure(config).Cycles;
     }
-
-
 }

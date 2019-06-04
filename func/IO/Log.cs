@@ -75,7 +75,7 @@ namespace Z0
             void LogRecords(IReadOnlyList<IRecord> records, char delimiter, bool writeHeader, FilePath dstFile)
             {
                 if(writeHeader)
-                    dstFile.Append(string.Join(delimiter, records[0].Headers()));
+                    dstFile.Append(string.Join(delimiter, records[0].GetHeaders()));
                 
                 iter(records, r => dstFile.Append(r.Delimited(delimiter)));
             }

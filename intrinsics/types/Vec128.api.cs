@@ -29,6 +29,11 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static Vec128<T> zero<T>() 
+            where T : struct
+                => Vec128<T>.Zero;
+
+        [MethodImpl(Inline)]
         public static Span128<T> load<T>(Vec128<T> src, Span128<T> dst, int blockIndex)
             where T : struct        
         {

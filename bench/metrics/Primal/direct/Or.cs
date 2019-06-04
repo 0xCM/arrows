@@ -13,203 +13,128 @@ namespace Z0.Metrics
     using static zfunc;
     using static As;
     using static PrimalDMetrics;
-
+    
     public static class OrDMetrics
     {
         public static Metrics<T> Or<T>(this PrimalDConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    return Or(int8(lhs), int8(rhs), config).As<T>();
-                case PrimalKind.uint8:
-                    return Or(uint8(lhs), uint8(rhs), config).As<T>();
-                case PrimalKind.int16:
-                    return Or(int16(lhs), int16(rhs), config).As<T>();
-                case PrimalKind.uint16:
-                    return Or(uint16(lhs), uint16(rhs), config).As<T>();
-                case PrimalKind.int32:
-                    return Or(int32(lhs), int32(rhs), config).As<T>();
-                case PrimalKind.uint32:
-                    return Or(uint32(lhs), uint32(rhs), config).As<T>();
-                case PrimalKind.int64:
-                    return Or(int64(lhs), int64(rhs), config).As<T>();
-                case PrimalKind.uint64:
-                    return Or(uint64(lhs), uint64(rhs), config).As<T>();
-                default:
-                    throw unsupported(kind);
-            }
+            
+            if(typeof(T) == typeof(sbyte))
+                    return config.Or(int8(lhs), int8(rhs)).As<T>();
+            else if(typeof(T) == typeof(byte))
+                    return config.Or(uint8(lhs), uint8(rhs)).As<T>();
+            else if(typeof(T) == typeof(short))
+                    return config.Or(int16(lhs), int16(rhs)).As<T>();
+            else if(typeof(T) == typeof(ushort))
+                    return config.Or(uint16(lhs), uint16(rhs)).As<T>();
+            else if(typeof(T) == typeof(int))
+                    return config.Or(int32(lhs), int32(rhs)).As<T>();
+            else if(typeof(T) == typeof(uint))
+                    return config.Or(uint32(lhs), uint32(rhs)).As<T>();
+            else if(typeof(T) == typeof(long))
+                    return config.Or(int64(lhs), int64(rhs)).As<T>();
+            else if(typeof(T) == typeof(ulong))
+                    return config.Or(uint64(lhs), uint64(rhs)).As<T>();
+            else
+                throw unsupported(PrimalKinds.kind<T>());            
+            
         }
 
-        static Metrics<sbyte> Or(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, PrimalDConfig config = null)
+        static Metrics<sbyte> Or(this PrimalDConfig config, ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
         {
             var opid = Id<sbyte>(OpKind.Or);            
-            var cycles = Cycles(config);
-            var dst = alloc(lhs,rhs);
-            var dOps = DirectOps(config);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.or(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = (sbyte)(lhs[it] | rhs[it]);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.or(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<byte> Or(ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs, PrimalDConfig config = null)
+        static Metrics<byte> Or(this PrimalDConfig config, ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
         {
             var opid = Id<byte>(OpKind.Or);            
-            var cycles = Cycles(config);
-            var dst = alloc(lhs,rhs);
-            var dOps = DirectOps(config);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.or(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = (byte)(lhs[it] | rhs[it]);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.or(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<short> Or(ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs, PrimalDConfig config = null)
+        static Metrics<short> Or(this PrimalDConfig config, ReadOnlySpan<short> lhs, ReadOnlySpan<short> rhs)
         {
             var opid = Id<short>(OpKind.Or);            
-            var cycles = Cycles(config);
-            var dst = alloc(lhs,rhs);
-            var dOps = DirectOps(config);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.or(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = (short)(lhs[it] | rhs[it]);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.or(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<ushort> Or(ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs, PrimalDConfig config = null)
+        static Metrics<ushort> Or(this PrimalDConfig config, ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
         {
             var opid = Id<ushort>(OpKind.Or);            
-            var cycles = Cycles(config);
-            var dst = alloc(lhs,rhs);
-            var dOps = DirectOps(config);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.or(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = (ushort)(lhs[it] | rhs[it]);
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.or(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<int> Or(ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs, PrimalDConfig config = null)
+        static Metrics<int> Or(this PrimalDConfig config, ReadOnlySpan<int> lhs, ReadOnlySpan<int> rhs)
         {
             var opid = Id<int>(OpKind.Or);            
-            var cycles = Cycles(config);
-            var dst = alloc(lhs,rhs);
-            var dOps = DirectOps(config);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.or(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = lhs[it] | rhs[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.or(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<uint> Or(ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs, PrimalDConfig config = null)
+        static Metrics<uint> Or(this PrimalDConfig config, ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
         {
             var opid = Id<uint>(OpKind.Or);            
-            var cycles = Cycles(config);
-            var dst = alloc(lhs,rhs);
-            var dOps = DirectOps(config);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.or(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = lhs[it] | rhs[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.or(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<long> Or(ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs, PrimalDConfig config = null)
+        static Metrics<long> Or(this PrimalDConfig config, ReadOnlySpan<long> lhs, ReadOnlySpan<long> rhs)
         {
             var opid = Id<long>(OpKind.Or);            
-            var cycles = Cycles(config);
-            var dst = alloc(lhs,rhs);
-            var dOps = DirectOps(config);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.or(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = lhs[it] | rhs[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.or(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<ulong> Or(ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs, PrimalDConfig config = null)
+        static Metrics<ulong> Or(this PrimalDConfig config, ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
         {
             var opid = Id<ulong>(OpKind.Or);            
-            var cycles = Cycles(config);
-            var dst = alloc(lhs,rhs);
-            var dOps = DirectOps(config);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(lhs,rhs);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.or(lhs[it],rhs[it]);
-            else
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = lhs[it] | rhs[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.or(lhs[it],rhs[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
     }
 }

@@ -9,15 +9,23 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
+    using System.Runtime.InteropServices;
 
     using static zfunc;    
     
+    [StructLayout(LayoutKind.Sequential, Size = 32)]
     public readonly struct Vec256<T>
         where T : struct
     {
 
         public static readonly int Length = Vector256<T>.Count;
-                
+
+        public static readonly ByteSize CellSize = SizeOf<T>.Size;
+
+        public static readonly int BitCount = SizeOf<T>.BitSize * CellSize;
+
+        public static readonly Vec256<T> Zero = Vector256<T>.Zero;
+
         readonly Vector256<T> data;        
     
 

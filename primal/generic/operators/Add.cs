@@ -182,11 +182,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static ref T addI8<T>(ref T lhs, T rhs)
-        {
-            ref var result = ref math.add(ref int8(ref lhs), int8(ref rhs));
-            lhs = ref generic<T>(ref result);
-            return ref lhs;
-        }            
+            => ref generic<T>(ref math.add(ref int8(ref lhs), int8(ref rhs)));
 
         [MethodImpl(Inline)]
         static ref T addU8<T>(ref T lhs, T rhs)

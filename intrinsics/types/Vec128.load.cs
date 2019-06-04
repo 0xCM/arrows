@@ -92,6 +92,42 @@ namespace Z0
             where T : struct  
                 => single(in src, block, out Vec128<T> dst);
 
+
+        [MethodImpl(Inline)]
+        public static ref Vec128<T> single<T>(in ReadOnlySpan<T> src, int offset, out Vec128<T> dst)
+            where T : struct  
+        {
+            ref var head = ref asRef(in src[offset]);            
+            if(typeof(T) == typeof(sbyte))
+                dst = generic<T>(load(ref int8(ref head)));
+            else if(typeof(T) == typeof(byte))
+                dst = generic<T>(load(ref uint8(ref head)));
+            else if(typeof(T) == typeof(short))
+                dst = generic<T>(load(ref int16(ref head)));
+            else if(typeof(T) == typeof(ushort))
+                dst = generic<T>(load(ref uint16(ref head)));
+            else if(typeof(T) == typeof(int))
+                dst = generic<T>(load(ref int32(ref head)));
+            else if(typeof(T) == typeof(uint))
+                dst = generic<T>(load(ref uint32(ref head)));
+            else if(typeof(T) == typeof(long))
+                dst = generic<T>(load(ref int64(ref head)));
+            else if(typeof(T) == typeof(ulong))
+                dst = generic<T>(load(ref uint64(ref head)));
+            else if(typeof(T) == typeof(float))
+                dst = generic<T>(load(ref float32(ref head)));
+            else if(typeof(T) == typeof(double))
+                dst = generic<T>(load(ref float64(ref head)));
+            else throw unsupported(PrimalKinds.kind<T>());
+            return ref dst;
+
+        }
+
+        [MethodImpl(Inline)]
+        public static Vec128<T> single<T>(in ReadOnlySpan<T> src, int offset = 0)
+            where T : struct  
+            =>  single<T>(src, offset, out Vec128<T> dst);    
+
         [MethodImpl(Inline)]
         public static Vec128<T> single<T>(in Span128<T> src, int block = 0)
             where T : struct  

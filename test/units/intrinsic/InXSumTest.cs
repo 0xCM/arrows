@@ -15,6 +15,16 @@ namespace Z0.Test
 
     public class InXSumTest : UnitTest<InXSumTest>
     {
+        void Sum<T>(int samples)
+            where T : struct
+        {
+            // var zero = gmath.zero<T>();
+            // var lMin = gmath.sub(zero, literal<T>(250));
+            // var rMax = gmath.add(zero, literal<T>(250));
+            // var src = Randomizer.Span<T>(Pow2.T05, closed(lMin,rMax));
+            // Claim.eq(x,y);            
+
+        }
 
         public void Sum1()
         {

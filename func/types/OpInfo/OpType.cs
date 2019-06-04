@@ -38,6 +38,13 @@ namespace Z0
             where T : struct
             => new OpType<T>(op);
 
+        public static IEnumerable<OpType> Define(IEnumerable<OpKind> ops, IEnumerable<PrimalKind> prims)
+            => from o in ops
+            from p in prims
+            select Define(o,p);
+
+
+
         public OpType(OpKind op, PrimalKind prim)
         {
             this.Op = op;

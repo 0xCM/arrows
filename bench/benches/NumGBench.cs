@@ -13,23 +13,21 @@ namespace Z0.Bench
     using Z0.Metrics;
         
     using static zfunc;
-    using static BenchTools;
+    using static BenchRunner;
 
     public static class NumGBench
     {            
-        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, NumGConfig config, IRandomizer random = null)
-            => metric.Configure(config).Run(op, prim, Random(random));
-
         public static MetricComparisonRecord RunComparison(this NumGConfig config, OpType op, bool silent = false)
         {            
-            var m1 = MetricKind.PrimalD.Measure(op.Op, op.Primitive, config.ToPrimalD());
-            var m2 = MetricKind.NumG.Measure(op.Op, op.Primitive, config);
+            //var m1 = MetricKind.PrimalD.Measure(op.Op, op.Primitive, config.ToPrimalD());
+            var random = Random(null);
+            var m1 = config.ToPrimalD().Run(op.Op, op.Primitive, random);
+            var m2 = config.Run(op.Op, op.Primitive, random);
             var compared = m1.Compare(m2).ToRecord();
             if(!silent)
                 print(items(compared).FormatMessages());
             return compared;
         }
-
 
         public static IReadOnlyList<MetricComparisonRecord> Run()
         {
@@ -82,11 +80,11 @@ namespace Z0.Bench
             }
         }
 
-       public static Metrics<T> Run<T>(this NumGConfig config, OpKind op, IRandomizer random)        
+       static Metrics<T> Run<T>(this NumGConfig config, OpKind op, IRandomizer random)        
             where T : struct
         {
             var lhs = random.Span<T>(config.Samples);
-            var rhs = op.NonZeroRight() ? random.NonZeroSpan<T>(config.Samples) : random.Span<T>(config.Samples);            
+            var rhs = op.IsDivision() ? random.NonZeroSpan<T>(config.Samples) : random.Span<T>(config.Samples);            
             var metrics = Metrics<T>.Zero;
             GC.Collect();            
             for(var i=0; i<config.Runs; i++)
@@ -94,7 +92,7 @@ namespace Z0.Bench
             return metrics;            
         }
 
-        public static Metrics<T> Run<T>(this NumGConfig config, OpKind op, ReadOnlySpan<T> src)
+        static Metrics<T> Run<T>(this NumGConfig config, OpKind op, ReadOnlySpan<T> src)
             where T : struct
         {
             var metrics = Metrics<T>.Zero;
@@ -117,7 +115,7 @@ namespace Z0.Bench
             return metrics;
         }
 
-        public static Metrics<T> Run<T>(this NumGConfig config, OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+        static Metrics<T> Run<T>(this NumGConfig config, OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             var metrics = Metrics<T>.Zero;
@@ -169,7 +167,6 @@ namespace Z0.Bench
             print(metrics.Describe());
 
             return metrics;
-        }
- 
+        } 
    }
 }

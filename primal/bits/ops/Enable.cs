@@ -87,5 +87,38 @@ namespace Z0
                src = BitConverter.Int64BitsToDouble(srcBits);                           
                return ref src;
           }
+
+          [MethodImpl(Inline)]
+          public static sbyte enable(sbyte src, int pos)
+            =>  src |= (sbyte)(1 << pos);
+               
+          [MethodImpl(Inline)]
+          public static byte enable(byte src, int pos)
+            =>  src |= (byte)(1 << pos);
+
+          [MethodImpl(Inline)]
+          public static short enable(short src, int pos)
+            =>  src |= (short)(1 << pos);
+               
+          [MethodImpl(Inline)]
+          public static ushort enable(ushort src, int pos)
+            =>  src |= (ushort)(1 << pos);
+
+          [MethodImpl(Inline)]
+          public static int enable(int src, int pos)
+            =>  src |= (1 << pos);
+
+          [MethodImpl(Inline)]
+          public static uint enable(uint src, int pos)
+            =>  src |= (1u << pos);
+
+          [MethodImpl(Inline)]
+          public static long enable(long src, int pos)
+            =>  src |= (1L << pos);
+
+          [MethodImpl(Inline)]
+          public static ulong enable(ulong src, int pos)
+            =>  src |= (1ul << pos);
+
      }
 }

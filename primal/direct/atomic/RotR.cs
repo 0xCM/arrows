@@ -13,12 +13,11 @@ namespace Z0
 
     using static zfunc;    
     
-
     partial class math
     {
         [MethodImpl(Inline)]
         public static byte rotr(in byte value, in int offset)
-            => (byte)((value >> offset) | (value << (16 - offset)));
+            => (byte)((value >> offset) | (value << (8 - offset)));
 
         [MethodImpl(Inline)]
         public static ushort rotr(in ushort value, in int offset)

@@ -154,7 +154,7 @@ namespace Z0.Test
 
         public void BlockSlice()
         {
-            var x = Span128.load(array<int>(1,2,3,4,5,6,7,8));
+            var x = Span128.load(span<int>(1,2,3,4,5,6,7,8));
 
             var block0 = x.SliceBlock(0);
             Claim.eq(4, block0.Length);            
@@ -167,7 +167,7 @@ namespace Z0.Test
         }
         public void Load1()
         {
-            var x = Span128.load(array<int>(1,2,3,4,5,6,7,8));
+            var x = Span128.load(span<int>(1,2,3,4,5,6,7,8));
             Claim.eq(x.BlockCount,2);
             Require.RequireEq(x.Unblock(), span(1,2,3,4,5,6,7,8));
             

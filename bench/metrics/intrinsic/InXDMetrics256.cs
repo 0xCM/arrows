@@ -26,13 +26,13 @@ namespace Z0.Metrics
                         fusion: fused ? OpFusion.Fused : OpFusion.Atomic
                         );
 
-        public static new Span256<T> alloc<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
+        public static Span256<T> alloc<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct
-                => InXMetrics.alloc<T>(lhs,rhs);
+                =>  Span256.alloc<T>(lhs, rhs);
 
-        public static new Span256<T> alloc<T>(ReadOnlySpan256<T> src)
+        public static Span256<T> alloc<T>(ReadOnlySpan256<T> src)
             where T : struct
-                => InXMetrics.alloc<T>(src);
+                => Span256.alloc<T>(src.BlockCount);
 
 
     }

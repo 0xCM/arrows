@@ -379,7 +379,6 @@ namespace Z0
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ReplaceAny(this string s, IReadOnlyDictionary<string, string> replacements)
     {
         var result = s;
@@ -388,7 +387,6 @@ namespace Z0
         return result;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ReplaceExact(this string s, IReadOnlyDictionary<string, string> replacements)
     {
         foreach (var r in replacements)
@@ -401,7 +399,6 @@ namespace Z0
     /// Creates a new string from the first n - 1 characters of a string of length n
     /// </summary>
     /// <param name="s"></param>
-    /// <returns></returns>
     public static string RemoveLast(this string s)
         => IsBlank(s)
         ? string.Empty
@@ -669,8 +666,40 @@ namespace Z0
     /// Formats the supplied decimal value as currency to two decimal places
     /// </summary>
     /// <param name="d">The decimal value</param>
-    public static string ToMoneyString(this decimal d)
-        => String.Format("{0:C2}", d);
+    public static string FormatAsCurrency(this decimal src, int scale = 2)
+        => String.Format(embrace($"0:C{scale}"), src);
+
+    [MethodImpl(Inline)]
+    public static string FormatWithCommas(this short src)
+            => src.ToString("#,#");
+
+    [MethodImpl(Inline)]
+    public static string FormatWithCommas(this ushort src)
+            => src.ToString("#,#");
+
+    [MethodImpl(Inline)]
+    public static string FormatWithCommas(this int src)
+            => src.ToString("#,#");
+
+    [MethodImpl(Inline)]
+    public static string FormatWithCommas(this uint src)
+        => src.ToString("#,#");
+
+    [MethodImpl(Inline)]
+    public static string FormatWithCommas(this long src)
+        => src.ToString("#,#");
+
+    [MethodImpl(Inline)]
+    public static string FormatWithCommas(this ulong src)
+        => src.ToString("#,#");
+
+    [MethodImpl(Inline)]
+    public static string FormatWithCommas(this float src)
+        => src.ToString("#,#");
+
+    [MethodImpl(Inline)]
+    public static string FormatWithCommas(this double src)
+        => src.ToString("#,#");
 
     /// <summary>
     /// Determines whether a <see cref="Match"/> obtained via a regular expression contains a specified group

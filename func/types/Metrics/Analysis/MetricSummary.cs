@@ -48,7 +48,11 @@ namespace Z0.Metrics
 
         public override string ToString()
             => Description.ToString();
- 
+
+        public MetricSummaryRecord ToRecord()
+            => new MetricSummaryRecord(OpId, OpCount, WorkTime);
+        
+
         static string Pipe = $" | ";
         
         static string Eq = $" = ";

@@ -12,16 +12,18 @@ namespace Z0.Metrics
     
     using static zfunc;
 
-    public abstract class InXConfig128 : InXConfig
+
+    public sealed class PrimalDConfig : PrimalConfig
     {
 
-        public InXConfig128(MetricKind metric, int runs, int cycles, int blocks)
-            : base(metric, runs, cycles, blocks,16)
+        public static PrimalDConfig Define(MetricKind metric, int runs, int cycles, int samples)
+            => new PrimalDConfig(metric, runs, cycles, samples);
+
+        public PrimalDConfig(MetricKind Metric, int Runs, int Cycles, int Samples)
+            : base(Metric, Runs, Cycles, Samples)
         {
         
-        }
+        }                
     }
-
-
 
 }

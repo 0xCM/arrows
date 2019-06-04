@@ -12,9 +12,24 @@ namespace Z0.Metrics
     
     using static zfunc;
 
+    public abstract class BitConfig : MetricConfig
+    {
+        public BitConfig(MetricKind Metric, int Runs, int Cycles, int Samples)
+            : base(Metric, Runs, Cycles, Samples)
+        {
+        
+        }
+
+        public BitDConfig ToDirect()
+            => new BitDConfig(Metric, Runs, Cycles, Samples);
+
+        public BitGConfig ToGeneric()
+            => new BitGConfig(Metric, Runs, Cycles, Samples);
+
+    }
 
 
-    public class BitGConfig : MetricConfig
+    public class BitGConfig : BitConfig
     {
         public static BitGConfig Default(MetricKind metric) 
             => BitGConfig.Define(metric, runs: Pow2.T03, cycles: Pow2.T14, samples: Pow2.T12);        
@@ -27,9 +42,6 @@ namespace Z0.Metrics
         {
         
         }
-
-        public BitDConfig ToDirect()
-            => new BitDConfig(Metric, Runs, Cycles, Samples);
                 
     }
 

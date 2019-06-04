@@ -120,73 +120,65 @@ namespace Z0
 
         public static Span128<long> mul(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, Span128<long> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                store(Multiply(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                store(Multiply(lhs.Vector(block),rhs.Vector(block)), ref dst[block]);            
             return dst;            
         }
 
         public static Span128<ulong> mul(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, Span128<ulong> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                store(Multiply(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                store(Multiply(lhs.Vector(block),rhs.Vector(block)), ref dst[block]);            
             return dst;            
         }
 
         public static Span128<float> mul(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                store(Multiply(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                store(Multiply(lhs.Vector(block),rhs.Vector(block)), ref dst[block]);            
             return dst;            
         }
 
         public static Span128<double> mul(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, Span128<double> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                store(Multiply(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                store(Multiply(lhs.Vector(block),rhs.Vector(block)), ref dst[block]);            
             return dst;            
         }
 
         public static Span256<long> mul(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, Span256<long> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                store(Multiply(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                store(Multiply(lhs.Vector(block),rhs.Vector(block)), ref dst[block]);            
             return dst;            
         }
 
         public static Span256<ulong> mul(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, Span256<ulong> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                store(Multiply(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                store(Multiply(lhs.Vector(block),rhs.Vector(block)), ref dst[block]);            
             return dst;            
         }
 
         public static Span256<float> mul(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, Span256<float> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                store(Multiply(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                store(Multiply(lhs.Vector(block),rhs.Vector(block)), ref dst[block]);            
             return dst;            
         }
 
         public static Span256<double> mul(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, Span256<double> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                store(Multiply(lhs.VLoad(i),rhs.VLoad(i)), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                store(Multiply(lhs.Vector(block),rhs.Vector(block)), ref dst[block]);            
             return dst;            
         }
     }

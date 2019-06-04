@@ -13,7 +13,7 @@ namespace Z0.Bench
     using Z0.Metrics;
         
     using static zfunc;
-    using static BenchTools;
+    using static BenchRunner;
 
 
     public static class ConversionBench

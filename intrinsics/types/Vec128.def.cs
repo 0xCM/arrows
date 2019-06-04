@@ -21,39 +21,6 @@ namespace Z0
     
     public static partial class Vec128
     {
-        [MethodImpl(Inline)]
-        public static unsafe Vec128<T> define<T>(T[] src, int offset = 0)
-            where T : struct
-        {            
-
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    return vInt8(ref src,offset);
-                case PrimalKind.uint8:
-                    return vUInt8(ref src,offset);
-                case PrimalKind.int16:
-                    return vInt16(ref src,offset);
-                case PrimalKind.uint16:
-                    return vUInt16(ref src,offset);
-                case PrimalKind.int32:
-                    return vInt32(ref src,offset);
-                case PrimalKind.uint32:
-                    return vUInt32(ref src,offset);
-                case PrimalKind.int64:
-                    return vInt64(ref src,offset);
-                case PrimalKind.uint64:
-                    return vUInt64(ref src,offset);
-                case PrimalKind.float32:
-                    return vFloat32(ref src,offset);
-                case PrimalKind.float64:                
-                    return vFloat64(ref src,offset);
-                default:
-                    throw new Exception($"Kind {kind} not supported");
-            }
-        }                
-
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<byte> define(byte x0)
@@ -270,8 +237,6 @@ namespace Z0
             var dst = define(src[i++],src[i++]);
             return generic<T>(dst);
         }
-
-
 
     }
 

@@ -15,7 +15,6 @@ namespace Z0.Metrics
 
     public abstract class MetricConfig : IMetricConfig
     {
-
         public MetricConfig()
         {
             

@@ -13,205 +13,126 @@ namespace Z0.Metrics
     using static zfunc;
     using static As;
     using static PrimalDMetrics;
-
-    public static class FlipDMetrics
+    
+    public static class FlipDMetrics 
     {
-
-       public static Metrics<T> Flip<T>(this PrimalDConfig config, ReadOnlySpan<T> src)
+        public static Metrics<T> Flip<T>(this PrimalDConfig config, ReadOnlySpan<T> src)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    return Flip(int8(src), config).As<T>();
-                case PrimalKind.uint8:
-                    return Flip(uint8(src), config).As<T>();
-                case PrimalKind.int16:
-                    return Flip(int16(src), config).As<T>();
-                case PrimalKind.uint16:
-                    return Flip(uint16(src), config).As<T>();
-                case PrimalKind.int32:
-                    return Flip(int32(src), config).As<T>();
-                case PrimalKind.uint32:
-                    return Flip(uint32(src), config).As<T>();
-                case PrimalKind.int64:
-                    return Flip(int64(src), config).As<T>();
-                case PrimalKind.uint64:
-                    return Flip(uint64(src), config).As<T>();
-                default:
-                    throw unsupported(kind);
-            }
+            if(typeof(T) == typeof(sbyte))
+                return config.Flip(int8(src)).As<T>();
+            else if(typeof(T) == typeof(byte))
+                return config.Flip(uint8(src)).As<T>();
+            else if(typeof(T) == typeof(short))
+                return config.Flip(int16(src)).As<T>();
+            else if(typeof(T) == typeof(ushort))
+                return config.Flip(uint16(src)).As<T>();
+            else if(typeof(T) == typeof(int))
+                return config.Flip(int32(src)).As<T>();
+            else if(typeof(T) == typeof(uint))
+                return config.Flip(uint32(src)).As<T>();
+            else if(typeof(T) == typeof(long))
+                return config.Flip(int64(src)).As<T>();
+            else if(typeof(T) == typeof(ulong))
+                return config.Flip(uint64(src)).As<T>();
+            else
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
-        public  static Metrics<sbyte> Flip(ReadOnlySpan<sbyte> src, PrimalDConfig config = null)
+        static Metrics<sbyte> Flip(this PrimalDConfig config, ReadOnlySpan<sbyte> src)
         {
             var opid = Id<sbyte>(OpKind.Flip);            
-            var cycles = Cycles(config);
-            var dOps = Configure(config).DirectOps;
-            var dst = alloc(src);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(src);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.flip(src[it]);
-            else                
-                for(var cycle = 0; cycle < cycles; cycle++)
-                    for(var it=0; it< dst.Length; it++)
-                        dst[it] = (sbyte)~ src[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.flip(src[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        public  static Metrics<byte> Flip(ReadOnlySpan<byte> src, PrimalDConfig config = null)
+        static Metrics<byte> Flip(this PrimalDConfig config, ReadOnlySpan<byte> src)
         {
             var opid = Id<byte>(OpKind.Flip);            
-            var cycles = Cycles(config);
-            var dOps = Configure(config).DirectOps;
-            var dst = alloc(src);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(src);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.flip(src[it]);
-            else                
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = (byte)~ src[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.flip(src[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        public  static Metrics<short> Flip(ReadOnlySpan<short> src, PrimalDConfig config = null)
+        static Metrics<short> Flip(this PrimalDConfig config, ReadOnlySpan<short> src)
         {
             var opid = Id<short>(OpKind.Flip);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(src);
-
-            
+            var cycles = config.Cycles;
+            var dst = alloc(src);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.flip(src[it]);
-            else                
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = (short)~ src[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.flip(src[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        public  static Metrics<ushort> Flip(ReadOnlySpan<ushort> src, PrimalDConfig config = null)
+        static Metrics<ushort> Flip(this PrimalDConfig config, ReadOnlySpan<ushort> src)
         {
             var opid = Id<ushort>(OpKind.Flip);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(src);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(src);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.flip(src[it]);
-            else                
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = (ushort)~ src[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.flip(src[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-
-        public static Metrics<int> Flip(ReadOnlySpan<int> src, PrimalDConfig config = null)
+        static Metrics<int> Flip(this PrimalDConfig config, ReadOnlySpan<int> src)
         {
             var opid = Id<int>(OpKind.Flip);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(src);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(src);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.flip(src[it]);
-            else                
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = ~ src[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.flip(src[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        public static Metrics<uint> Flip(ReadOnlySpan<uint> src, PrimalDConfig config = null)
+        static Metrics<uint> Flip(this PrimalDConfig config, ReadOnlySpan<uint> src)
         {
             var opid = Id<uint>(OpKind.Flip);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(src);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(src);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.flip(src[it]);
-            else                
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = ~ src[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.flip(src[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        public  static Metrics<long> Flip(ReadOnlySpan<long> src, PrimalDConfig config = null)
+        static Metrics<long> Flip(this PrimalDConfig config, ReadOnlySpan<long> src)
         {
             var opid = Id<long>(OpKind.Flip);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(src);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(src);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = math.flip(src[it]);
-            else                
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = ~ src[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.flip(src[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        public  static Metrics<ulong> Flip(ReadOnlySpan<ulong> src, PrimalDConfig config = null)
+        static Metrics<ulong> Flip(this PrimalDConfig config, ReadOnlySpan<ulong> src)
         {
             var opid = Id<ulong>(OpKind.Flip);            
-            var cycles = Cycles(config);
-            var dOps = DirectOps(config);
-            var dst = alloc(src);
-            
+            var cycles = config.Cycles;
+            var dst = alloc(src);            
             var sw = stopwatch();
-            if(dOps)
-                for(var cycle = 0; cycle < cycles; cycle++)
-                    for(var it=0; it< dst.Length; it++)
-                        dst[it] = math.flip(src[it]);
-            else                
-                for(var cycle = 0; cycle < cycles; cycle++)
-                for(var it=0; it< dst.Length; it++)
-                    dst[it] = ~ src[it];
-            var time = snapshot(sw);
-
-            return opid.CaptureMetrics(cycles*dst.Length, time, dst);
+            for(var cycle = 0; cycle < cycles; cycle++)
+            for(var it=0; it< dst.Length; it++)
+                dst[it] = math.flip(src[it]);
+            return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
     }

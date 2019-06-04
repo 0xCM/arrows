@@ -20,21 +20,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return flipI8(src);
+                return generic<T>(math.flip(ref int8(ref src)));  
             else if(typeof(T) == typeof(byte))
-                return flipU8(src);
+                return generic<T>(math.flip(ref uint8(ref src)));            
             else if(typeof(T) == typeof(short))
-                return flipI16(src);
+                return generic<T>(math.flip(ref int16(ref src)));
             else if(typeof(T) == typeof(ushort))
-                return flipU16(src);
+                return generic<T>(math.flip(ref uint16(ref src)));            
             else if(typeof(T) == typeof(int))
-                return flipI32(src);
+                return generic<T>(math.flip(ref int32(ref src))); 
             else if(typeof(T) == typeof(uint))
-                return flipU32(src);
+                return generic<T>(math.flip(ref uint32(ref src)));
             else if(typeof(T) == typeof(long))
-                return flipI64(src);
+                return generic<T>(math.flip(ref int64(ref src)));
             else if(typeof(T) == typeof(ulong))
-                return flipU64(src);
+                return generic<T>(math.flip(ref uint64(ref src)));
             else            
                 throw unsupported(PrimalKinds.kind<T>());
         }           
@@ -44,21 +44,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return ref flipI8(ref src);
+                return ref generic<T>(ref math.flip(ref int8(ref src)));
             else if(typeof(T) == typeof(byte))
-                return ref flipU8(ref src);
+                return ref generic<T>(ref math.flip(ref uint8(ref src)));
             else if(typeof(T) == typeof(short))
-                return ref flipI16(ref src);
+                return ref generic<T>(ref math.flip(ref int16(ref src)));
             else if(typeof(T) == typeof(ushort))
-                return ref flipU16(ref src);
+                return ref generic<T>(ref math.flip(ref uint16(ref src)));
             else if(typeof(T) == typeof(int))
-                return ref flipI32(ref src);
+                return ref generic<T>(ref math.flip(ref int32(ref src)));
             else if(typeof(T) == typeof(uint))
-                return ref flipU32(ref src);
+                return ref generic<T>(ref math.flip(ref uint32(ref src)));
             else if(typeof(T) == typeof(long))
-                return ref flipI64(ref src);
+                return ref generic<T>(ref math.flip(ref int64(ref src)));
             else if(typeof(T) == typeof(ulong))
-                return ref flipU64(ref src);
+                return ref generic<T>(ref math.flip(ref uint64(ref src)));
             else            
                 throw unsupported(PrimalKinds.kind<T>());
         }           
@@ -110,192 +110,5 @@ namespace Z0
                 throw unsupported(PrimalKinds.kind<T>());                
             return ref io;
         }
-
-        [MethodImpl(Inline)]
-        static T flipI8<T>(T src)
-            => generic<T>(math.flip(ref int8(ref src)));            
-            
-        [MethodImpl(Inline)]
-        static T flipU8<T>(T src)
-        {
-            math.flip(ref uint8(ref src));            
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        static T flipI16<T>(T src)
-        {
-            math.flip(ref int16(ref src));            
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        static T flipU16<T>(T src)
-        {
-            math.flip(ref uint16(ref src));            
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        static T flipI32<T>(T src)
-        {
-            math.flip(ref int32(ref src));            
-            return src;
-        }
-        
-        [MethodImpl(Inline)]
-        static T flipU32<T>(T src)
-        {
-            math.flip(ref uint32(ref src));            
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        static T flipI64<T>(T src)
-        {
-            math.flip(ref int64(ref src));            
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        static T flipU64<T>(T src)
-        {
-            math.flip(ref uint64(ref src));            
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T flipI8<T>(ref T src)
-        {
-            math.flip(ref int8(ref src));            
-            return ref src;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T flipU8<T>(ref T src)
-        {
-            math.flip(ref uint8(ref src));            
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T flipI16<T>(ref T src)
-        {
-            math.flip(ref int16(ref src));            
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T flipU16<T>(ref T src)
-        {
-            math.flip(ref uint16(ref src));            
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T flipI32<T>(ref T src)
-        {
-            math.flip(ref int32(ref src));            
-            return ref src;
-        }
-        
-        [MethodImpl(Inline)]
-        static ref T flipU32<T>(ref T src)
-        {
-            math.flip(ref uint32(ref src));            
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T flipI64<T>(ref T src)
-        {
-            math.flip(ref int64(ref src));            
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T flipU64<T>(ref T src)
-        {
-            math.flip(ref uint64(ref src));            
-            return ref src;
-        }
-
-
-
- 
-        [MethodImpl(Inline)]
-        static ref Span<T> flipI8<T>(ref Span<T> io)
-            where T : struct
-        {
-            var x = int8(io);
-            math.flip(ref x);
-            return ref io;
-        }
-
-        [MethodImpl(Inline)]
-        static ref Span<T> flipU8<T>(ref Span<T> io)
-            where T : struct
-        {
-            var x = uint8(io);
-            math.flip(ref x);
-            return ref io;
-        }
-
-        [MethodImpl(Inline)]
-        static ref Span<T> flipI16<T>(ref Span<T> io)
-            where T : struct
-        {
-            var x = int16(io);
-            math.flip(ref x);
-            return ref io;
-        }        
-
-        [MethodImpl(Inline)]
-        static ref Span<T> flipU16<T>(ref Span<T> io)
-            where T : struct
-        {
-            var x = uint16(io);
-            math.flip(ref x);
-            return ref io;
-        }        
-
-        [MethodImpl(Inline)]
-        static ref Span<T> flipI32<T>(ref Span<T> io)
-            where T : struct
-        {
-            var x = int32(io);
-            math.flip(ref x);
-            return ref io;
-        }
-
-        [MethodImpl(Inline)]
-        static ref Span<T> flipU32<T>(ref Span<T> io)
-            where T : struct
-        {
-            var x = uint32(io);
-            math.flip(ref x);
-            return ref io;
-        }
-        
-        [MethodImpl(Inline)]
-        static ref Span<T> flipI64<T>(ref Span<T> io)
-            where T : struct
-        {
-            var x = int64(io);
-            math.flip(ref x);
-            return ref io;
-        }
-
-        [MethodImpl(Inline)]
-        static ref Span<T> flipU64<T>(ref Span<T> io)
-            where T : struct
-        {
-            var x = uint64(io);
-            math.flip(ref x);
-            return ref io;
-        }
-
-
     }
-
 }

@@ -13,7 +13,7 @@ namespace Z0.Metrics
     using static zfunc;
 
 
-    public class PrimalGConfig : MetricConfig
+    public sealed class PrimalGConfig : PrimalConfig
     {
         public static PrimalGConfig Default(MetricKind metric) 
             => PrimalGConfig.Define(metric, runs: Pow2.T03, cycles: Pow2.T14, samples: Pow2.T12);        
@@ -26,10 +26,6 @@ namespace Z0.Metrics
         {
         
         }
-
-        public PrimalDConfig ToDirect()
-            => new PrimalDConfig(Metric, Runs, Cycles, Samples);
-
     }
 
 }

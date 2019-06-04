@@ -13,6 +13,7 @@ using Z0;
 
 partial class zfunc
 {
+
     /// <summary>
     /// Aplies an action to the sequence of integers min,min+1,...,max - 1
     /// </summary>

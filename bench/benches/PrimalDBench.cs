@@ -13,16 +13,15 @@ namespace Z0.Bench
 
     using static zfunc;
     using static As;
-    using static BenchTools;
+    using static BenchRunner;
     
     public static class PrimalDBench
     {        
+
         public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, PrimalDConfig config, IRandomizer random = null)
             => config.Run(op, prim, Random(random));
 
-        const MetricKind Metric = MetricKind.PrimalD;
-
-        static IMetrics Run(this PrimalDConfig config, OpKind op, PrimalKind prim, IRandomizer random)
+        public static IMetrics Run(this PrimalDConfig config, OpKind op, PrimalKind prim, IRandomizer random)
         {
             switch(prim)
             {
@@ -56,7 +55,7 @@ namespace Z0.Bench
         {
             var metrics = Metrics<T>.Zero;
             var lhs = random.ReadOnlySpan<T>(config.Samples);
-            var rhs = op.NonZeroRight() 
+            var rhs = op.IsDivision() 
                 ? random.NonZeroSpan<T>(config.Samples) 
                 : random.ReadOnlySpan<T>(config.Samples);
             var moves = op.IsBitMovement() 
@@ -89,6 +88,12 @@ namespace Z0.Bench
                 break;
                 case OpKind.ShiftR:
                     metrics = config.ShiftR(lhs,rhs);   
+                break;
+                case OpKind.RotR:
+                    metrics = config.RotR(lhs,rhs);   
+                break;
+                case OpKind.RotL:
+                    metrics = config.RotL(lhs,rhs);   
                 break;
                 default: 
                     throw unsupported(op);
@@ -153,7 +158,6 @@ namespace Z0.Bench
         static Metrics<T> Run<T>(this PrimalDConfig config, OpKind op, ReadOnlySpan<T> src)
             where T : struct
         {
-            config = Metric.Configure(config);
             var metrics = Metrics<T>.Zero;
             switch(op)
             {
@@ -165,6 +169,12 @@ namespace Z0.Bench
                 break;
                 case OpKind.Flip:
                     metrics = config.Flip<T>(src);   
+                break;
+                case OpKind.Inc:
+                    metrics = config.Inc<T>(src);   
+                break;
+                case OpKind.Dec:
+                    metrics = config.Dec<T>(src);   
                 break;
 
                 default: 

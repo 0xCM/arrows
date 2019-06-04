@@ -40,7 +40,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                  return Bits.pop(uint64(src));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
 
@@ -65,7 +65,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                  return Bits.test(in AsIn.uint64(asRef(in src)), pos);
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -89,7 +89,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(Bits.parse(bitstring, offset, out ulong dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         public static Span<T> pack<S,T>(ReadOnlySpan<S> src, Span<T> dst)            
@@ -145,7 +145,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 Bits.pack(in src, out uint64(ref dst));        
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             
             return ref dst;
         }
@@ -190,9 +190,33 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 Bits.enable(ref uint64(ref src), in pos);
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
             return ref src;                            
+        }
+
+        [MethodImpl(Inline)]
+        public static T enable<T>(T src, int pos)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(Bits.enable(int8(src), pos));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(Bits.enable(uint8(src), pos));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(Bits.enable(int16(src), pos));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Bits.enable(uint16(src), pos));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(Bits.enable(int32(src), pos));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(Bits.enable(uint32(src), pos));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(Bits.enable(int64(src), pos));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Bits.enable(uint64(src), pos));
+            else
+                throw unsupported<T>();            
         }
 
         [MethodImpl(Inline)]
@@ -216,7 +240,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 Bits.disable(ref uint64(ref src), in pos);
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
                 
             return ref src;                            
         }
@@ -242,7 +266,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 Bits.toggle(ref uint64(ref src), pos);
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
             return ref src;                            
         }
@@ -268,7 +292,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(Bits.toggle(uint64(src), pos));
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -292,7 +316,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                  return Bits.ntz(AsIn.uint64(in asRef(in src)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -308,7 +332,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                  return Bits.nlz(AsIn.uint64(in asRef(in src)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -332,7 +356,7 @@ namespace Z0
             if(typeof(T) == typeof(ulong))
                  Bits.loOff(ref uint64(ref src));
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
             return ref src;
         }       

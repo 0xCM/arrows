@@ -13,17 +13,14 @@ namespace Z0.Bench
 
     using static zfunc;
     
-    using static BenchTools;
+    using static BenchRunner;
 
     public static class VecGBench    
     {           
-        public static IMetrics Measure(this MetricKind metric, OpKind op, PrimalKind prim, VecGConfig config, IRandomizer random = null)
-            => metric.Configure(config).Run(op, prim, random);
-
         public static MetricComparisonRecord RunComparison(this VecGConfig config, OpType op, bool silent = false)
         {
-            var m1 = MetricKind.PrimalD.Measure(op.Op, op.Primitive, config.ToPrimalD());
-            var m2 = MetricKind.VecG.Measure(op.Op, op.Primitive, config);
+            var m1 = config.ToPrimalD().Run(op.Op, op.Primitive, Random(null));
+            var m2 = config.Run(op.Op, op.Primitive, Random(null));
             var compared = m1.Compare(m2).ToRecord();
             if(!silent)
                 print(items(compared).FormatMessages());
@@ -46,8 +43,6 @@ namespace Z0.Bench
                 var comparison =  config.RunComparison(ot, true);
                 comparisons.Add(comparison);
                 print(comparison.FormatMessage());
-
-
             }
 
             return comparisons;
@@ -87,7 +82,7 @@ namespace Z0.Bench
             where T : struct
         {
             var lhs = random.ReadOnlySpan<T>(config.Samples);
-            var rhs = op.NonZeroRight() 
+            var rhs = op.IsDivision() 
                 ? random.NonZeroSpan<T>(config.Samples) 
                 : random.ReadOnlySpan<T>(config.Samples);
             var metrics = Metrics<T>.Zero;

@@ -19,28 +19,23 @@ namespace Z0.Metrics
         public static Metrics<T> Abs<T>(this PrimalDConfig config, ReadOnlySpan<T> src)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    return Abs(int8(src), config).As<T>();
-                case PrimalKind.int16:
-                    return Abs(int16(src), config).As<T>();
-                case PrimalKind.int32:
-                    return Abs(int32(src), config).As<T>();
-                case PrimalKind.int64:
-                    return Abs(int64(src), config).As<T>();
-                case PrimalKind.float32:
-                    return Abs(float32(src), config).As<T>();
-                case PrimalKind.float64:                    
-                    return Abs(float64(src), config).As<T>();
-                default:
-                    throw unsupported(kind);
-            }
+            if(typeof(T) == typeof(sbyte))
+                return config.Abs(int8(src)).As<T>();
+            else if(typeof(T) == typeof(short))
+                return config.Abs(int16(src)).As<T>();
+            else if(typeof(T) == typeof(int))
+                return config.Abs(int32(src)).As<T>();
+            else if(typeof(T) == typeof(long))
+                return config.Abs(int64(src)).As<T>();
+            else if(typeof(T) == typeof(float))
+                return config.Abs(float32(src)).As<T>();
+            else if(typeof(T) == typeof(double))
+                return config.Abs(float64(src)).As<T>();
+            else
+                throw unsupported(PrimalKinds.kind<T>());
         }
 
-        static Metrics<sbyte> Abs(ReadOnlySpan<sbyte> src, PrimalDConfig config)
+        static Metrics<sbyte> Abs(this PrimalDConfig config, ReadOnlySpan<sbyte> src)
         {
             var opid = Id<sbyte>(OpKind.Abs);            
             var cycles = config.Cycles;
@@ -52,7 +47,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<short> Abs(ReadOnlySpan<short> src, PrimalDConfig config)
+        static Metrics<short> Abs(this PrimalDConfig config, ReadOnlySpan<short> src)
         {
             var opid = Id<short>(OpKind.Abs);            
             var cycles = config.Cycles;
@@ -64,7 +59,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<int> Abs(ReadOnlySpan<int> src, PrimalDConfig config)
+        static Metrics<int> Abs(this PrimalDConfig config, ReadOnlySpan<int> src)
         {
             var opid = Id<int>(OpKind.Abs);            
             var cycles = config.Cycles;
@@ -76,7 +71,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<long> Abs(ReadOnlySpan<long> src, PrimalDConfig config)
+        static Metrics<long> Abs(this PrimalDConfig config, ReadOnlySpan<long> src)
         {
             var opid = Id<long>(OpKind.Abs);            
             var cycles = config.Cycles;
@@ -88,7 +83,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<float> Abs(ReadOnlySpan<float> src, PrimalDConfig config)
+        static Metrics<float> Abs(this PrimalDConfig config, ReadOnlySpan<float> src)
         {
             var opid = Id<float>(OpKind.Abs);            
             var cycles = config.Cycles;
@@ -100,7 +95,7 @@ namespace Z0.Metrics
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<double> Abs(ReadOnlySpan<double> src, PrimalDConfig config)
+        static Metrics<double> Abs(this PrimalDConfig config, ReadOnlySpan<double> src)
         {
             var opid = Id<double>(OpKind.Abs);            
             var cycles = config.Cycles;

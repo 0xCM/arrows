@@ -31,7 +31,7 @@ namespace Z0
             => (byte)kind >= (byte)NumericKind.Num128;
 
         [MethodImpl(Inline)]
-        public static bool NonZeroRight(this OpKind op)
+        public static bool IsDivision(this OpKind op)
             => op == OpKind.Div || op == OpKind.Mod;
 
         [MethodImpl(Inline)]
@@ -39,16 +39,47 @@ namespace Z0
             => op == OpKind.ShiftL || op == OpKind.ShiftR;
 
         [MethodImpl(Inline)]
-        public static bool IsBitRot(this OpKind op)
+        public static bool IsBitRotation(this OpKind op)
             => op == OpKind.RotL || op == OpKind.RotR;
 
         [MethodImpl(Inline)]
         public static bool IsBitMovement(this OpKind op)
-            => op.IsBitRot() || op.IsBitRot();
+            => op.IsBitRotation() || op.IsBitShift();
+
+        [MethodImpl(Inline)]
+        public static bool IsUnaryArithmetic(this OpKind op)
+            => op == OpKind.Inc 
+            || op == OpKind.Dec 
+            || op == OpKind.Negate;
+            
+        [MethodImpl(Inline)]
+        public static bool IsBinaryArithmetic(this OpKind op)
+            => op == OpKind.Add 
+            || op == OpKind.Sub 
+            || op == OpKind.Mul 
+            || op == OpKind.Div 
+            || op == OpKind.Mod;
 
         [MethodImpl(Inline)]
         public static Genericity Flip(this Genericity src)
-            => src == Genericity.Generic ? Genericity.Direct : Genericity.Generic;
+            => src == Genericity.Generic 
+            ? Genericity.Direct 
+            : Genericity.Generic;
+
+        [MethodImpl(Inline)]
+        public static bool IsBitwiseLogical(this OpKind op)
+            => op == OpKind.And 
+            || op == OpKind.Or 
+            || op == OpKind.XOr 
+            || op == OpKind.Flip;
+
+        [MethodImpl(Inline)]
+        public static bool IsBitwise(this OpKind op)
+            => op.IsBitMovement() 
+            || op == OpKind.And 
+            || op == OpKind.Or 
+            || op == OpKind.XOr 
+            || op == OpKind.Flip;
 
         [MethodImpl(Inline)]
         public static bool IsGeneric(this Genericity src)

@@ -47,7 +47,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span256<T> alloc<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs)
             where T : struct
-                => alloc<T>(length(lhs,rhs));
+                => Span256<T>.Alloc(blocks(lhs,rhs));
 
         /// <summary>
         /// Loads a blocked span from an unblocked span
@@ -71,13 +71,6 @@ namespace Z0
             where T : struct
                 => Span256<T>.Load(src, offset);
 
-        [MethodImpl(Inline)]
-        public static ref Span256<T> load<T>(T[] src, int offset, out Span256<T> dst)
-            where T : struct
-        {
-            dst = Span256<T>.Load(src, offset);
-            return ref dst;
-        }
                 
         /// <summary>
         /// Loads a blocked readonly span from an unblocked readonly span

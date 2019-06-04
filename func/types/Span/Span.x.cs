@@ -54,15 +54,6 @@ namespace Z0
             where T : struct
             => Z0.Span256.load<T>(src);
 
-        /// <summary>
-        /// Constructs a span from a sequence selection
-        /// </summary>
-        /// <param name="src">The source sequence</param>
-        /// <typeparam name="T">The element type</typeparam>
-        [MethodImpl(Inline)]
-        public static Span128<T> ToSpan128<T>(this T[] src)
-            where T : struct
-            => Z0.Span128.load(src);
 
         [MethodImpl(Inline)]
         public static Span128<T> ToSpan128<T>(this Span<T> src)
@@ -95,7 +86,6 @@ namespace Z0
             src.CopyTo(dst);
             return Z0.Span256.load<T>(dst);
         }
-
 
         public static Span128<T> Span128<T>(this IRandomizer random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct

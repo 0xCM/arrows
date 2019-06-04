@@ -14,7 +14,7 @@ namespace Z0.Metrics
 
     public abstract class InXConfig : MetricConfig
     {
-        protected InXConfig(MetricKind metric, int Runs, int Cycles, int Blocks, ByteSize BlockSize)
+        protected InXConfig(MetricKind metric, int Runs, int Cycles, int Blocks, Byte BlockSize)
             : base(metric,Runs, Cycles, Blocks * BlockSize)
         {
             this.Blocks = Blocks;
@@ -23,16 +23,16 @@ namespace Z0.Metrics
         public int Blocks {get;}
 
         public InXDConfig128 ToDirect128()
-            => new InXDConfig128(Metric, Runs, Cycles, Samples);
+            => new InXDConfig128(Metric, Runs, Cycles, Blocks);
 
         public InXGConfig128 ToGeneric128()
-            => new InXGConfig128(Metric, Runs, Cycles, Samples);
+            => new InXGConfig128(Metric, Runs, Cycles, Blocks);
 
         public InXDConfig256 ToDirect256()
-            => new InXDConfig256(Metric, Runs, Cycles, Samples);
+            => new InXDConfig256(Metric, Runs, Cycles, Blocks);
 
         public InXGConfig256 ToGeneric256()
-            => new InXGConfig256(Metric, Runs, Cycles, Samples);
+            => new InXGConfig256(Metric, Runs, Cycles, Blocks);
 
     }
 }

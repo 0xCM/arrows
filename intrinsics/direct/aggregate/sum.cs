@@ -23,15 +23,15 @@ namespace Z0
             var offset = 0;
             for(var i=0; i< srclen; i+= seglen)
             {
-                var v1 = Vec128.load(ref As.asRef(in src[offset]));
+                var v1 = Vec128.single(src, offset);
                 offset += veclen;
-                var v2 = Vec128.load(ref As.asRef(in src[offset]));
+                var v2 = Vec128.single(src, offset);
                 offset += veclen;
                 var vSum = addh(in v1, in v2);
                 dst = add(dst,vSum);                
             }
             
-            var final = new short[veclen];
+            Span<short> final = stackalloc short[veclen];
             store(dst, ref final[0]);
 
             var total = (short)0;
@@ -51,15 +51,15 @@ namespace Z0
             var offset = 0;
             for(var i=0; i< srclen; i+= seglen)
             {
-                var v1 = Vec128.load(ref As.asRef(in src[offset]));
+                var v1 = Vec128.single(src, offset);
                 offset += veclen;
-                var v2 = Vec128.load(ref As.asRef(in src[offset]));
+                var v2 = Vec128.single(src, offset);
                 offset += veclen;
                 var vSum = addh(in v1, in v2);
                 dst = add(dst,vSum);                
             }
             
-            var final = new int[veclen];
+            Span<int> final = stackalloc int[veclen];
             store(dst, ref final[0]);
 
             var total = (int)0;
@@ -79,22 +79,21 @@ namespace Z0
             var offset = 0;
             for(var i=0; i< srclen; i+= seglen)
             {
-                var v1 = Vec128.load(ref As.asRef(in src[offset]));
+                var v1 = Vec128.single(src, offset);
                 offset += veclen;
-                var v2 = Vec128.load(ref As.asRef(in src[offset]));
+                var v2 = Vec128.single(src, offset);
                 offset += veclen;
                 var vSum = addh(in v1, in v2);
                 dst = add(dst,vSum);                
             }
             
-            var final = new float[veclen];
+            Span<float> final = stackalloc float[veclen];
             store(dst, ref final[0]);
 
             var total = (float)0;
             for(var i=0; i< veclen; i++)
                  total += final[i];            
             return total;
-
         }
 
         public static double sum(ReadOnlySpan<double> src)
@@ -108,15 +107,15 @@ namespace Z0
             var offset = 0;
             for(var i=0; i< srclen; i+= seglen)
             {
-                var v1 = Vec128.load(ref As.asRef(in src[offset]));
+                var v1 = Vec128.single(src, offset);
                 offset += veclen;
-                var v2 = Vec128.load(ref As.asRef(in src[offset]));
+                var v2 = Vec128.single(src, offset);
                 offset += veclen;
                 var vSum = addh(in v1, in v2);
                 dst = add(dst,vSum);                
             }
             
-            var final = new double[veclen];
+            Span<double> final = stackalloc double[veclen];
             store(dst, ref final[0]);
 
             var total = (double)0;

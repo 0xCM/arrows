@@ -65,17 +65,7 @@ namespace Z0
             => TestRunner.Run();
 
         void RunBench()
-        {
-            //MetricKind.VecG.Measure();
-            //MetricKind.PrimalG.Measure();
-            
-            //app.Measure(MetricKind.InX128GFused);
-            //app.Measure(MetricKind.InX256GFused);
-            //app.Measure(MetricKind.NumG);
-            //app.Measure(MetricKind.BitG);
-            //app.BenchBitVector();                
-
-        }
+            => BenchRunner.Run();
 
         public static void Run(RunKind kind = RunKind.All)
         {

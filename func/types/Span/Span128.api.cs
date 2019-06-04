@@ -46,7 +46,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span128<T> alloc<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
-                => alloc<T>(length(lhs,rhs));
+                => Span128<T>.Alloc(blocks(lhs,rhs));
 
         /// <summary>
         /// Loads a blocked span from an unblocked span
@@ -69,12 +69,6 @@ namespace Z0
         public static Span128<T> load<T>(ReadOnlySpan<T> src, int offset = 0)
             where T : struct
                 => Span128<T>.Load(src, offset);
-
-        [MethodImpl(Inline)]
-        public static Span128<T> load<T>(T[] src, int offset = 0)
-            where T : struct
-                => Span128<T>.Load(src, offset);
-
 
         /// <summary>
         /// Calculates the number of bytes required to represent a block constituent
@@ -210,9 +204,25 @@ namespace Z0
         /// <param name="rhs">The right source</param>
         /// <typeparam name="T">The span element type</typeparam>
         [MethodImpl(Inline)]   
-        public static int blocks<T>(Span128<T> lhs, Span128<T> rhs, [CallerFilePath] string caller = null,
+        public static int blocks<S,T>(Span128<S> lhs, Span128<T> rhs, [CallerFilePath] string caller = null,
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
                 where T : struct
+                where S : struct
+                    => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
+                        : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, caller, file,line);
+
+        /// <summary>
+        /// Returns the common number of 128-bit blocks in the supplied spans, if possible. Otherwise,
+        /// raises an exception
+        /// </summary>
+        /// <param name="lhs">The left source</param>
+        /// <param name="rhs">The right source</param>
+        /// <typeparam name="T">The span element type</typeparam>
+        [MethodImpl(Inline)]   
+        public static int blocks<S,T>(ReadOnlySpan128<S> lhs, ReadOnlySpan128<T> rhs, [CallerFilePath] string caller = null,
+            [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+                where T : struct
+                where S : struct
                     => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
                         : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, caller, file,line);
 

@@ -24,7 +24,7 @@ namespace Z0.Test
             var rhs = Randomizer.Span128<float>(Blocks);
             var dDst = Span128.alloc<float>(Blocks);
             var gDst = Span128.alloc<float>(Blocks);
-            Require.RequireEq(dinx.sub(lhs,rhs, ref dDst), ginx.sub(lhs,rhs, gDst));
+            Require.RequireEq(dinx.sub(lhs,rhs, dDst), ginx.sub(lhs,rhs, gDst));
         }
 
         public void V128F64()
@@ -32,9 +32,8 @@ namespace Z0.Test
             var lhs = Randomizer.Span128<double>(Blocks);
             var rhs = Randomizer.Span128<double>(Blocks);
             var dDst = Span128.alloc<double>(Blocks);
-            var gDst = Span128.alloc<double>(Blocks);
-                
-            Require.RequireEq(dinx.sub(lhs,rhs, ref dDst), ginx.sub(lhs,rhs, gDst));
+            var gDst = Span128.alloc<double>(Blocks);                
+            Require.RequireEq(dinx.sub(lhs, rhs, dDst), ginx.sub(lhs,rhs, gDst));
         }
 
     }

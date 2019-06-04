@@ -12,13 +12,10 @@ namespace Z0.Metrics
 
         
     using static zfunc;
-
+    using static PrimalGMetrics;
 
     public static class PrimalGOps
     {
-        static OpId<T> Id<T>(OpKind op)
-            where T : struct
-                => op.OpId<T>(NumericSystem.Primal, generic: Genericity.Generic);
 
         public static Metrics<T> Negate<T>(this PrimalGConfig config, ReadOnlySpan<T> src)
             where T : struct
@@ -353,7 +350,7 @@ namespace Z0.Metrics
        public static Metrics<T> RotR<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs)
             where T : struct
         {
-            var opid =  Id<T>(OpKind.RotL);
+            var opid =  Id<T>(OpKind.RotR);
             var dst = alloc<T>(length(lhs,rhs));
             var cycles = config.Cycles;
             var sw = stopwatch();
@@ -374,8 +371,6 @@ namespace Z0.Metrics
             for(var sample = 0; sample < dst.Length; sample++)
                 dst[sample] = gmath.div(lhs[sample], rhs[sample]);
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }         
- 
+        }          
     }
-
 }
