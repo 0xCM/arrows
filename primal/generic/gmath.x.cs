@@ -21,6 +21,17 @@ namespace Z0
             where T : struct
                 => map(src, x => x ? gmath.one<T>() : gmath.zero<T>());
 
+        public static Span<T> ToScalars<T>(this Span<bool> src)
+            where T : struct
+        {
+            var dst = span<T>(src.Length);
+            var one = gmath.one<T>();
+            var zed = gmath.zero<T>();
+            for(var i = 0; i<src.Length; i++)
+                dst[i] = src[i] ? one : zed;
+            return dst;
+        }
+
 
         public static Option<int> WriteTo<T>(this DivisorIndex<T> src, FolderPath dst)
             where T : struct

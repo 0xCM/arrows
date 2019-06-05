@@ -70,7 +70,6 @@ namespace Z0
             return ref dst;
         }
 
-
         [MethodImpl(Optimize)]
         public static ref int parse(in ReadOnlySpan<char> bs, in int offset, out int dst)
         {

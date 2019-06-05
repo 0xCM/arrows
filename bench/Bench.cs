@@ -9,7 +9,6 @@ namespace Z0.Bench
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
-    using Z0.Metrics;
 
     using static zfunc;
 
@@ -29,31 +28,31 @@ namespace Z0.Bench
             switch(metric)
             {
                 case MetricKind.NumG:
-                    return NumGBench.Run().Emit(metric);
+                    return NumGBench.Run().Log(metric);
                 case MetricKind.BitD:
                 case MetricKind.BitG:
-                    return BitBench.Run().Emit(metric);
+                    return BitBench.Run().Log(metric);
                 case MetricKind.PrimalD:
                 case MetricKind.PrimalG:
-                    return PrimalBench.Run().Emit(metric);
+                    return PrimalBench.Run().Log(metric);
                 case MetricKind.InX128DFused:
                 case MetricKind.InX128GFused:
-                    return InXBench.Run128Fused().Emit(metric);
+                    return InXBench.Run128Fused().Log(metric);
                 case MetricKind.InX256DFused:
                 case MetricKind.InX256GFused:
-                    return InXBench.Run256Fused().Emit(metric);
+                    return InXBench.Run256Fused().Log(metric);
                 case MetricKind.ConvertD:
                 case MetricKind.ConvertG:
-                    return ConversionBench.Run().Emit(metric);
+                    return ConversionBench.Run().Log(metric);
                 case MetricKind.VecG:
-                    return VecGBench.Run().Emit(metric);                
+                    return VecGBench.Run().Log(metric);                
 
                 default:
                     throw unsupported(metric);
             }
         }
 
-        static IReadOnlyList<MetricComparisonRecord> Emit(this IReadOnlyList<MetricComparisonRecord> comparisons, MetricKind kind, bool silent = false)
+        static IReadOnlyList<MetricComparisonRecord> Log(this IReadOnlyList<MetricComparisonRecord> comparisons, MetricKind kind, bool silent = false)
         {
             var target = LogTarget.Define(LogArea.Bench, kind);
             log(comparisons, target, ext: FileExtension.Define("csv"));

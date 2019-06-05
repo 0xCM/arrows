@@ -69,6 +69,10 @@ namespace Z0
         /// </summary>
         public readonly int Bytes;
 
+        [MethodImpl(Inline)]
+        public BitSize ToBits()
+            => Bytes * 8;
+
         public override string ToString()
             => Bytes.ToString();
 

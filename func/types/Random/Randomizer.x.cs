@@ -25,6 +25,10 @@ namespace Z0
                 ? random.Random<T>().Stream(Randomizer.Domain(domain)).Where(filter) 
                 : random.Random<T>().Stream(Randomizer.Domain(domain));
 
+        public static IEnumerable<T> Stream<T>(this IRandomizer random)
+            where T : struct
+                => random.Random<T>().Stream();
+                
         public static IEnumerable<(T Left, T Right)> Pairs<T>(this IRandomizer random, int count, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
         {

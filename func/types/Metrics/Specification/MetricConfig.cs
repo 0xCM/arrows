@@ -2,7 +2,7 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Metrics
+namespace Z0
 {
     using System;
     using System.Linq;
@@ -13,8 +13,11 @@ namespace Z0.Metrics
     using static zfunc;
 
 
-    public abstract class MetricConfig : IMetricConfig
+    public class MetricConfig : IMetricConfig
     {
+        public static MetricConfig Define(MetricKind metric, int runs, int cycles, int samples)
+            => new MetricConfig(metric, runs, cycles, samples);
+
         public MetricConfig()
         {
             

@@ -227,15 +227,17 @@ namespace Z0
         
         public static ulong[] BenchSeed = guidseed(guids[4],guids[5]);
         
-        public static ulong[] Seed006 = guidseed(guids[6],guids[7]);
+        public static ulong[] Bernoulli01 = guidseed(guids[6],guids[7]);
         
-        public static ulong[] Seed008 = guidseed(guids[8],guids[9]);
+        public static ulong[] Bernoulli02 = guidseed(guids[8],guids[9]);
         
-        public static ulong[] Seed010 = guidseed(guids[10],guids[11]);
+        public static ulong[] Bernoull03 = guidseed(guids[10],guids[11]);
         
-        public static ulong[] Seed012 = guidseed(guids[12],guids[13]);
+        public static ulong[] Gaussian01 = guidseed(guids[12],guids[13]);
         
-        public static ulong[] Seed014 = guidseed(guids[14],guids[15]);
+        public static ulong[] Gaussian02 = guidseed(guids[14],guids[15]);
+
+        public static ulong[] Gaussian03 = guidseed(guids[16],guids[17]);
 
 
         static string enquote(object content)

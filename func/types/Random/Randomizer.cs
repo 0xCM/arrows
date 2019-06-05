@@ -17,6 +17,8 @@ namespace Z0
     {
         void StreamTo<T>(Interval<T> domain, int count, ref T dst, Func<T,bool> filter = null)
             where T : struct;        
+
+        IEnumerable<Bit> Bits();
     }
 
     public interface IRandomizer<T> : IRandomizer
@@ -26,7 +28,6 @@ namespace Z0
         
         IEnumerable<T> Stream();    
 
-        IEnumerable<Bit> Bits();
         
     }
 

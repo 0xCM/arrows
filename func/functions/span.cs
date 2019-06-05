@@ -229,4 +229,18 @@ partial class zfunc
     public static ref readonly T first<T>(ReadOnlySpan<T> src)
         where T : struct
             =>  ref MemoryMarshal.GetReference<T>(src);
+
+    /// <summary>
+    /// Allocates a blocked span of lenth N iff supplied left and right spans are
+    /// of common length N
+    /// </summary>
+    /// <param name="lhs">The left span</param>
+    /// <param name="rhs">The right span</param>
+    /// <typeparam name="T">The element type</typeparam>
+    [MethodImpl(Inline)]
+    public static Span128<T> alloc<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
+        where T : struct
+            => Span128.alloc(lhs,rhs);
+
+
 }
