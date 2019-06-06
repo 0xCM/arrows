@@ -11,7 +11,8 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
     
-    using static zfunc;
+    using static nconst;
+
 
 
     /// <summary>

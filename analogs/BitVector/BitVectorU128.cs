@@ -89,13 +89,13 @@ namespace Z0
         public BitVectorU64 Hi
         {
             [MethodImpl(Inline)]
-            get => data.x1;        
+            get => data.hi;        
         }
         
         public BitVectorU64 Lo
         {
             [MethodImpl(Inline)]
-            get => data.x0;
+            get => data.lo;
         
         }
 

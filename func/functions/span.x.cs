@@ -138,6 +138,10 @@ namespace Z0
         public static Span<T> ToSpan<T>(this IEnumerable<T> src)
             => span(src);
 
+        [MethodImpl(Inline)]
+        public static Span<T> TakeSpan<T>(this IEnumerable<T> src, int length)
+            => span(src.Take(length));
+
         /// <summary>
         /// Constructs a span from a sequence selection
         /// </summary>
@@ -161,7 +165,7 @@ namespace Z0
         public static Span<T> MapRange<S, T>(this Span<S> src, int offset, int length, Func<S, T> f)
         {
             var dst = span<T>(length);
-            for (int i = offset; i <= length; i++)
+            for (int i = offset; i < length; i++)
                 dst[i] = f(src[i]);
             return dst;
         }

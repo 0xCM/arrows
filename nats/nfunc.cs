@@ -12,7 +12,9 @@ using static zfunc;
 
 public static class nfunc
 {
-    
+    //internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;    
+
+
     static IEnumerable<ulong> range(ulong first, ulong last)
     {
         var current = first;

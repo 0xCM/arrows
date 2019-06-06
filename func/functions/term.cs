@@ -29,12 +29,22 @@ partial class zfunc
     public static void print(string msg)
         => terminal.WriteLine(msg);
 
+    public static void print()
+        => terminal.WriteLine();
+
     /// <summary>
     /// Prints a sequence of messages in an unbroken block
     /// </summary>
     /// <param name="messages">The messages to print</param>    
     public static void print(IEnumerable<AppMsg> messages)
         => terminal.WriteMessages(messages);    
+
+    /// <summary>
+    /// Emits a contiguous sequence of concatentated characters
+    /// </summary>
+    /// <param name="chars">The characters to be printed in a continguous sequence</param>
+    public static void print(IEnumerable<char> chars)
+        => terminal.WriteLine(new string(chars.ToSpan()));
 
     /// <summary>
     /// Emits an information-level message

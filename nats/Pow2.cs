@@ -130,6 +130,7 @@ namespace Z0
         /// Computes 2^i * rhs
         /// </summary>
         /// <param name="exp">The exponent</param>
+        [MethodImpl(Inline)]
         public static uint mul(int exp, uint factor)
             => (uint)Pow2.pow(exp)*factor;
 
@@ -137,6 +138,7 @@ namespace Z0
         /// Computes 2^i * rhs
         /// </summary>
         /// <param name="exp">The exponent</param>
+        [MethodImpl(Inline)]
         public static int mul(int exp, int factor)
             => (int)Pow2.pow(exp)*factor;
 
@@ -144,12 +146,11 @@ namespace Z0
         /// Computes 2^i * rhs
         /// </summary>
         /// <param name="exp">The exponent</param>
+        [MethodImpl(Inline)]
         public static ulong mul(int exp, ulong factor)
             => Pow2.pow(exp)*factor;
 
     }
-
-
 
     public interface IPow2G<N,T>
         where N : ITypeNat, new()

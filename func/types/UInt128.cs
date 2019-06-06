@@ -29,33 +29,31 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator ==(UInt128 lhs, UInt128 rhs)
-            => lhs.x0 == rhs.x0 && lhs.x1 == rhs.x1;
+            => lhs.lo == rhs.lo && lhs.hi == rhs.hi;
 
         [MethodImpl(Inline)]
         public static bool operator !=(UInt128 lhs, UInt128 rhs)
-            => lhs.x0 != rhs.x0 || lhs.x1 != rhs.x1;
+            => lhs.lo != rhs.lo || lhs.hi != rhs.hi;
 
         [MethodImpl(Inline)]
         public static UInt128 operator |(UInt128 lhs, UInt128 rhs)
-            => Define(lhs.x0 | rhs.x0, lhs.x1 | rhs.x1);
+            => Define(lhs.lo | rhs.lo, lhs.hi | rhs.hi);
 
         [MethodImpl(Inline)]
         public static UInt128 operator &(UInt128 lhs, UInt128 rhs)
-            => Define(lhs.x0 & rhs.x0, lhs.x1 & rhs.x1);
+            => Define(lhs.lo & rhs.lo, lhs.hi & rhs.hi);
 
         [MethodImpl(Inline)]
         public static UInt128 operator ^(UInt128 lhs, UInt128 rhs)
-            => Define(lhs.x0 ^ rhs.x0, lhs.x1 ^ rhs.x1);
+            => Define(lhs.lo ^ rhs.lo, lhs.hi ^ rhs.hi);
 
         [MethodImpl(Inline)]
         public static UInt128 operator ~(UInt128 src)
-            => Define(~ src.x0, ~ src.x1);
+            => Define(~ src.lo, ~ src.hi);
 
         [MethodImpl(Inline)]
-        public UInt128(ulong x0, ulong x1)
+        public UInt128(ulong lo, ulong hi)
         {
-            this.x0 = 0;
-            this.x1 = 0;
 
             this.x00 = 0;
             this.x01 = 0;
@@ -91,14 +89,17 @@ namespace Z0
             this.x1001 = 0;
             this.x1010 = 0;
             this.x1011 = 0;
-                                         
+
+            this.lo = lo;
+            this.hi = hi;
+                                        
         }
             
         [FieldOffset(0)]
-        public ulong x0;
+        public ulong lo;
 
         [FieldOffset(8)]
-        public ulong x1;
+        public ulong hi;
 
         [FieldOffset(0)]
         public uint x00;

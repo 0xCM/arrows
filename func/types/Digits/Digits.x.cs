@@ -105,5 +105,25 @@ namespace Z0
         public static string Format(this Span<HexDigit> src)
             => src.ToReadOnlySpan().Format();
 
+        public static IEnumerable<char> ToCharacterDigits(this IEnumerable<int> src)
+        {
+            foreach(var item in src)
+            {
+                if(item < 0 || item > 9)
+                    yield return '∅';
+                else
+                    yield return item.ToString()[0];
+            }
+        }
+
+        public static IEnumerable<char> ToCharacterDigits(this IEnumerable<uint> src)
+            => src.Convert<int>().ToCharacterDigits();
+
+        public static IEnumerable<char> ToCharacterDigits(this IEnumerable<long> src)
+            => src.Convert<int>().ToCharacterDigits();
+
+        public static IEnumerable<char> ToCharacterDigits(this IEnumerable<ulong> src)
+            => src.Convert<int>().ToCharacterDigits();
+
     }
 }

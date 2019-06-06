@@ -49,8 +49,6 @@ namespace Z0
         /// Specifies the representing type
         /// </summary>
         ITypeNat rep {get;}
-
-
     }
 
     /// <summary>
@@ -63,7 +61,7 @@ namespace Z0
         /// <summary>
         /// The value of the natural parameter
         /// </summary>
-        uint length {get;}
+        uint Length {get;}
     }
 
     public interface IArray<N,T> : IEnumerable<N,T>

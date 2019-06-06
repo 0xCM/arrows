@@ -33,8 +33,8 @@ namespace Z0
         public static unsafe UInt128 mul(ulong lhs, ulong rhs, out UInt128 dst)
         {
             dst = default;
-            fixed(ulong* pLo = &dst.x0)
-                dst.x1 = Bmi2.X64.MultiplyNoFlags(lhs, rhs, pLo);
+            fixed(ulong* pLo = &dst.lo)
+                dst.hi = Bmi2.X64.MultiplyNoFlags(lhs, rhs, pLo);
             return dst;
         }
 

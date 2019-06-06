@@ -13,6 +13,7 @@ namespace Z0
 
 
     using static nfunc;
+    using static nconst;    
 
     partial class NatProve
     {

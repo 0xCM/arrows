@@ -41,13 +41,6 @@ partial class zfunc
     public static byte[] digits(uint src)
         => src.ToString().Select(c => byte.Parse(c.ToString())).ToArray();
 
-    /// <summary>
-    /// Converts an integer to a sequence of digits
-    /// </summary>
-    /// <param name="src">The source value</param>
-    [MethodImpl(Inline)]
-    public static byte[] digits(ulong src)
-        => src.ToString().Select(c => byte.Parse(c.ToString())).ToArray();
 
     [MethodImpl(Inline)]
     public static BinaryDigit[] digits(params BinaryDigit[] src)

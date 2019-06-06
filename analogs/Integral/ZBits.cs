@@ -26,9 +26,9 @@ namespace Z0
           public static ref UInt128 enable(ref UInt128 src, int pos)
           {
                if(pos < 64)
-                    Bits.enable(ref src.x0, pos);
+                    Bits.enable(ref src.lo, pos);
                else
-                    Bits.enable(ref src.x1, pos);
+                    Bits.enable(ref src.hi, pos);
                return ref src;
           }
 
@@ -46,9 +46,9 @@ namespace Z0
           public static ref UInt128 disable(this ref UInt128 src, int pos)
           {
                if(pos < 64)
-                    Bits.disable(ref src.x0, pos);
+                    Bits.disable(ref src.lo, pos);
                else
-                    Bits.disable(ref src.x1, pos);
+                    Bits.disable(ref src.hi, pos);
                return ref src;               
           }
 
@@ -64,7 +64,7 @@ namespace Z0
 
           [MethodImpl(Inline)]
           public static bool test(in UInt128 src, int pos)
-               => pos < 64 ? Bits.test(src.x0, pos) : Bits.test(src.x1, pos) ;
+               => pos < 64 ? Bits.test(src.lo, pos) : Bits.test(src.hi, pos) ;
 
           [MethodImpl(Inline)]
           public static bool test(in Int128 src, int pos)
@@ -116,7 +116,7 @@ namespace Z0
 
           [MethodImpl(Inline)]
           public static int pop(in UInt128 src)
-               => (int)(Popcnt.X64.PopCount(src.x0) + Popcnt.X64.PopCount(src.x1));
+               => (int)(Popcnt.X64.PopCount(src.lo) + Popcnt.X64.PopCount(src.hi));
 
           [MethodImpl(Inline)]
           public static int pop(in Int128 src)

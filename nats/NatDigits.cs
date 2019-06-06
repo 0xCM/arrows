@@ -38,8 +38,6 @@ namespace Z0
                 => new Digit<N,T>(src);
     }
 
-
-
     public interface IDigit<N,S,T>
         where N : ITypeNat, new()
         where S : IDigit<N,S,T>

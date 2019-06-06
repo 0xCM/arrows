@@ -33,6 +33,31 @@ namespace Z0
             
         }
 
+        public  static string hexstring<T>(T src, bool zpad = true, bool specifier = true)
+            where T : struct
+        {
+            var digits = string.Empty;
+
+            if(typeof(T) == typeof(sbyte))
+                digits = As.int8(src).ToString("x");
+            if(typeof(T) == typeof(byte))
+                digits = As.uint8(src).ToString("x");
+            if(typeof(T) == typeof(short))
+                digits = As.int16(src).ToString("x");
+            if(typeof(T) == typeof(ushort))
+                digits = As.uint16(src).ToString("x");
+            else if(typeof(T) == typeof(uint))
+                digits = As.int32(src).ToString("x");
+            else if(typeof(T) == typeof(uint))
+                digits = As.uint32(src).ToString("x");
+            else if(typeof(T) == typeof(long))
+                digits = As.int64(src).ToString("x");
+            else if(typeof(T) == typeof(ulong))
+                digits = As.uint64(src).ToString("x");
+                
+            var spec = specifier ? "0x" : string.Empty;
+            return zpad ? (spec + digits) : (spec + digits.PadLeft(SizeOf<T>.Size * 2, '0'));
+        }
     
         public static Span<T> scale<T>(ReadOnlySpan<T> lhs, T factor, Span<T> dst)
             where T : struct

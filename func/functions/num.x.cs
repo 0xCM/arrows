@@ -93,7 +93,7 @@ namespace  Z0
             => !double.IsPositiveInfinity(src) && !double.IsNegativeInfinity(src) && !double.IsNaN(src);
 
 
-        public static IEnumerable<ulong> ToLongs(this IEnumerable<Guid> guids)
+        public static IEnumerable<ulong> ToU64Stream(this IEnumerable<Guid> guids)
         {
             foreach(var guid in guids)
             {
@@ -104,8 +104,8 @@ namespace  Z0
         }
 
         [MethodImpl(Inline)]
-        public static ulong[] ToLongArray(this IEnumerable<Guid> guids)
-            => guids.ToLongs().ToArray();
+        public static ulong[] ToU64Array(this IEnumerable<Guid> guids)
+            => guids.ToU64Stream().ToArray();
 
 
         [MethodImpl(Inline)]

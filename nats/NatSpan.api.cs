@@ -70,7 +70,6 @@ namespace Z0
             where T : struct
                 => new Span<N,T>(src);
 
-
         /// <summary>
         /// Creates a copy of the source span
         /// </summary>

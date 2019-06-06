@@ -11,7 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static nfunc;
-    using static zfunc;
+    using static nconst;
 
     public readonly struct Vector<N, T> : ILengthwise
         where N : ITypeNat, new()
@@ -91,7 +91,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public string format()
-            => paren(string.Join(",", data));
+            => zfunc.paren(string.Join(",", data));
 
         /// <summary>
         /// Retrurns true if a predicate holds for any components

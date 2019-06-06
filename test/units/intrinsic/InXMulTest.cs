@@ -36,7 +36,7 @@ namespace Z0.Test
         static ulong fastrange(ulong w, ulong p)
         {
             dinx.mul(w,p, out UInt128 dst);
-            return dst.x1;
+            return dst.hi;
         }
 
         static uint fastrange(uint w, uint p)

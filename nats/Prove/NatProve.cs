@@ -12,7 +12,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static nfunc;
-    using static zfunc;
+    //using static zfunc;
+    using static nconst;    
 
     public static partial class NatProve
     {
@@ -32,11 +33,11 @@ namespace Z0
             catch (Exception e)
             {
                 error?.Invoke(e);
-                return none<T>();
+                return zfunc.none<T>();
             }
         }
 
-        const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;        
+        //const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;        
 
         /// <summary>
         /// Registers natural constraint failure

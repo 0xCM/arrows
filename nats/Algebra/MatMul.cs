@@ -9,7 +9,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
     
-    using static zfunc;
+    using static nconst;
     using static nfunc;
 
     public readonly struct MatMul<M,N,P,T> 

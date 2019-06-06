@@ -10,20 +10,8 @@ namespace Z0
     using System.Runtime.InteropServices;
     using static zfunc;
     
-    public interface ISampleDefaults
-    {
-        int SampleSize {get;}
 
-    }
-    
-    public interface ISampleDefaults<T> : ISampleDefaults
-        where T : struct
-    {
-        Interval<T> SampleDomain {get;}
-    }
-
-
-    public readonly struct SampleDefaults : 
+    public readonly struct RngDefaults : 
         ISampleDefaults<sbyte>,
         ISampleDefaults<byte>,
         ISampleDefaults<short>,
@@ -37,7 +25,7 @@ namespace Z0
         ISampleDefaults<decimal>,
         ISampleDefaults<BigInteger>
     {
-        static readonly SampleDefaults TheOnly = default;
+        static readonly RngDefaults TheOnly = default;
 
         public static ISampleDefaults<T> get<T>()
             where T : struct

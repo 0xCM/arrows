@@ -12,7 +12,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static nfunc;
-    using static zfunc;
+    using static nconst;
+
 
 
     /// <summary>
@@ -32,7 +33,7 @@ namespace Z0
         /// <param name="@base">The base value</param>
         /// <param name="exp">The exponent value</param>
         static ulong pow(ulong @base, ulong exp)
-            => fold(repeat(@base, exp), (x,y) => x*y);
+            => zfunc.fold(zfunc.repeat(@base, exp), (x,y) => x*y);
 
         public static readonly ulong Value
             = pow(Nat.nat<B>().value, Nat.nat<E>().value);

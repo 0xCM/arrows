@@ -66,7 +66,7 @@ namespace Z0
         public BernoulliDistribution(BernoulliSpec spec, IRandomizer random = null)
         {
             this.Spec = spec;
-            this.Random = random ?? Randomizer.define(RandSeeds.Bernoulli01);
+            this.Random = random ?? RNG.XOrShift256(Seed256.Bernoulli01);
         }
 
         public BernoulliSpec Spec {get;}

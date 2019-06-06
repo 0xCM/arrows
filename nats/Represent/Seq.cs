@@ -10,7 +10,7 @@ namespace Z0
     using System.Collections.Concurrent;
     using System.Reflection;
 
-    using static zfunc;
+    using static nconst;
     using static nfunc;
 
     /// <summary>

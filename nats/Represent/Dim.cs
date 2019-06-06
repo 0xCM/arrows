@@ -5,7 +5,7 @@
 namespace Z0
 {
     using static nfunc;
-    using static zfunc;
+    using static nconst;
 
 
 
@@ -72,7 +72,7 @@ namespace Z0
             => i*j;
 
         public string format()
-            => xsv("×", i, j);
+            => zfunc.xsv("×", i, j);
  
         public override string  ToString()
             => format();
@@ -117,7 +117,7 @@ namespace Z0
             => i*j*k;
 
         public string format()
-            => xsv("×", i, j, k);
+            => zfunc.xsv("×", i, j, k);
 
         public override string  ToString()
             => format();

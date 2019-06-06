@@ -11,7 +11,7 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
-    using static zfunc;
+    using static nconst;
 
     /// <summary>
     /// Encodes a natural number k such that k:K & j:Prior[K] => k = j + 1

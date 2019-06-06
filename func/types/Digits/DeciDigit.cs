@@ -64,25 +64,7 @@ namespace Z0
         /// </summary>
         D9 = 9,
 
-        /// <summary>
-        /// Identifies the zero digit
-        /// </summary>
-        Zero = D0,
-
-        /// <summary>
-        /// Identifies the one digit
-        /// </summary>
-        One = D1,
         
-        /// <summary>
-        /// Identifies the last digit
-        /// </summary>
-        Last = D9,
-        
-        /// <summary>
-        /// Specifies the base to which the digits are relative (10)
-        /// </summary>
-        Base = Last + D1
     }
 
 

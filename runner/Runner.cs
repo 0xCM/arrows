@@ -21,7 +21,7 @@ namespace Z0
     {
 
         public Runner()
-            :base(Z0.Randomizer.define(RandSeeds.BenchSeed))
+            :base(Z0.Randomizer.define(Seed256.BenchSeed))
         {
             
         }

@@ -16,7 +16,7 @@ namespace Z0
     /// <summary>
     /// Encapsulates a linear data segment with naturally-typed length
     /// </summary>
-    public readonly struct Slice<N,T> //: ISlice<Slice<N,T>,T>
+    public readonly struct Slice<N,T>
         where N : ITypeNat, new()
         where T : struct
     {                    

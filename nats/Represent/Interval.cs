@@ -7,6 +7,7 @@ namespace Z0
     using System;
     using System.Linq;
     using System.Collections.Generic;
+    
     using static nfunc;
 
     /// <summary>

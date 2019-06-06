@@ -9,7 +9,7 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     
-    using static zfunc;
+    using static nconst;
     using static nfunc;
 
     /// <summary>
@@ -67,7 +67,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public bool neq(Vector<N, T> lhs, Vector<N, T> rhs)
-            => not(eq(lhs,rhs));
+            => !eq(lhs,rhs);
 
         [MethodImpl(Inline)]   
         public Covector<N, T> tranpose(Vector<N, T> src)

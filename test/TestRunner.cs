@@ -22,7 +22,7 @@ namespace Z0
     {
 
         public TestRunner()
-            :base(Z0.Randomizer.define(RandSeeds.BenchSeed))
+            :base(Z0.Randomizer.define(Seed256.BenchSeed))
         {
             
         }
@@ -57,11 +57,82 @@ namespace Z0
 
         }
 
+
+
+        void TestBits()
+        {
+            var bits = RNG.XOrShift1024().Bits().Take(Pow2.T16);
+            var on = 0;
+            var off = 0;
+
+            foreach(var bit in bits)
+            {
+                if(bit)
+                    ++on;
+                else
+                    ++off;
+            }
+            var onPct = ((double)on)/((double)on + (double)off);
+            var offPct = ((double)off)/((double)on + (double)off); 
+            print($"on = {onPct}, off={offPct}");
+
+
+        }
+
+        [MethodImpl(Inline)]
+        static bool between(byte test, byte min, byte max)
+            => test >= min && test < max;
+
+        void TestBytes()
+        {
+            var bytes = RNG.XOrShift1024().SignedBytes().Take(Pow2.T16);
+            var histo = new Dictionary<sbyte,int>();
+
+            for(var i = 0; i<= Byte.MaxValue; i++)
+                histo[(sbyte)i] = 0;
+
+            foreach(var b in bytes)
+                histo[b] = histo[b] + 1;
+
+            
+            foreach(var k in histo.Keys.OrderBy(x => x))
+            {
+                var count = histo[k];
+                var pct = ((((double)count)/((double)Pow2.T16))*100.0).Round(4);
+                print($"# {k} = {count} {pct} %");
+            }
+
+
+        }
+
+        void TestUniformity()
+        {
+            TestBytes();
+        }
+
         void AdHocTest()
         {
-            PCG.Demo1();
-            PCG.Demo2();
-            PCG.Demo3();
+            var rng = RNG.XOrShift1024();
+            var sampleSize = Pow2.T21;
+            var maxVal = 100ul;
+            var sw = stopwatch();
+            var samples = rng.Integers(maxVal).Take(sampleSize).ToArray();
+            print($"Sample Time: {snapshot(sw)}");
+
+            var histo = new Dictionary<ulong,int>();
+            for(ulong i = 0; i< maxVal; i++)
+                histo[i] = 0;
+            
+            foreach(var b in  samples)
+                histo[b] = histo[b] + 1;
+
+            foreach(var k in histo.Keys.OrderBy(x => x))
+            {
+                var count = histo[k];
+                var pct = ((((double)count)/((double)sampleSize))*100.0).Round(4);
+                print($"# {k} = {count} {pct} %");
+            }
+            
 
         }
 

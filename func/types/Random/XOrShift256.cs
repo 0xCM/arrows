@@ -13,24 +13,6 @@ namespace Z0
     using static zfunc;
     
 
-    public interface IRandomizer 
-    {
-        void StreamTo<T>(Interval<T> domain, int count, ref T dst, Func<T,bool> filter = null)
-            where T : struct;        
-
-        IEnumerable<Bit> Bits();
-    }
-
-    public interface IRandomizer<T> : IRandomizer
-        where T : struct
-    {
-        IEnumerable<T> Stream(Interval<T> domain);
-        
-        IEnumerable<T> Stream();    
-
-        
-    }
-
     /// <summary>
     /// Defines pseudorandom number generator
     /// </summary>
@@ -50,10 +32,9 @@ namespace Z0
         IRandomizer<BigInteger>
 
     {        
-
         public static Interval<T> Domain<T>(Interval<T>? domain)
             where T : struct
-                => domain ?? SampleDefaults.get<T>().SampleDomain;
+                => domain ?? RngDefaults.get<T>().SampleDomain;
 
         /// <summary>
         /// Constructs a random stream using a specific seed
@@ -89,9 +70,12 @@ namespace Z0
             => (x << k) | (x >> (64 - k));
 
         static ulong[] guiseed()
-            => items(Guid.NewGuid(), Guid.NewGuid()).ToLongArray();
+            => items(Guid.NewGuid(), Guid.NewGuid()).ToU64Array();
 
         readonly ulong[] seed;
+
+        Queue<byte> ByteQ {get;}
+            = new Queue<byte>(8);
 
         public Randomizer()
         {
@@ -101,7 +85,7 @@ namespace Z0
 
         public Randomizer(Guid g1, Guid g2)
         {
-            this.seed = items(g1,g2).ToLongArray();
+            this.seed = items(g1,g2).ToU64Array();
             jump(J128);
         }
 
@@ -128,7 +112,7 @@ namespace Z0
                         s2 ^= seed[2];
                         s3 ^= seed[3];
                     }
-                    next();	
+                    NextInteger();	
                 }
                 
             seed[0] = s0;
@@ -138,7 +122,7 @@ namespace Z0
         }          
 
         [MethodImpl(Inline)]
-        ulong next()
+        public ulong NextInteger()
         {
             var next = rotl(seed[1] * 5, 7) * 9;
             var t = seed[1] << 17;
@@ -168,75 +152,119 @@ namespace Z0
         IEnumerable<ulong> stream()
         {
             while(true)
-                yield return next();
+                yield return NextInteger();
         }
 
         public IEnumerable<ulong> Stream(Interval<ulong> domain)        
         {
             var w = width(domain);
             while(true)
-                yield return next() % w + domain.Left;
+                yield return NextInteger() % w + domain.Left;
         }
 
-        [MethodImpl(Inline)]
-        static bool testbit(in ulong src, in int pos)
-            => (src & (U64One << pos)) != 0ul;
+        public IEnumerable<double> Doubles()
+        {
+            while(true)
+                yield return NextDouble();
+        }
+
+        public IEnumerable<ulong> Integers()
+        {
+            while(true)
+                yield return NextInteger();
+        }
 
         public IEnumerable<Bit> Bits()
         {
             while(true)
             {
-                var bits = next();
+                var bits = NextInteger();
                 for(var i = 0; i< 64; i++)
                     yield return testbit(bits, i);
             }
         }
 
+        public IEnumerable<byte> Bytes()
+        {
+            while(true)
+            {
+                if(ByteQ.TryDequeue(out byte b))
+                {
+                    yield return b;
+                }
+                else
+                {
+                    var bytes = BitConverter.GetBytes(NextInteger());
+                    for(var i = 0; i< bytes.Length; i++)
+                    {
+                        if(i == 0)
+                            yield return bytes[i];
+                        else
+                            ByteQ.Enqueue(bytes[i]);
+                    }                    
+                }                
+            }
+        }
+
+        public IEnumerable<sbyte> SignedBytes()
+            => from b in Bytes() select (sbyte)b;
+
+        public sbyte NextSignedByte()
+            => SignedBytes().First();
+
         [MethodImpl(Inline)]
         float nextF32()        
-            => (float)((double)next()/(double)ulong.MaxValue);                                    
+            => (float)((double)NextInteger()/(double)ulong.MaxValue);                                    
 
         [MethodImpl(Inline)]
-        double nextF64()
-            => ((double)next()/(double)ulong.MaxValue);
+        public double NextDouble()
+            => ((double)NextInteger()/(double)ulong.MaxValue);
 
         [MethodImpl(Inline)]
-        int nextSign()
-            => Bits().Take(1).Single() ? -1 : 1;
+        public Bit NextBit()
+            => Bits().First();
+
+        [MethodImpl(Inline)]
+        public Sign NextSign()
+            => NextBit() ? Sign.Positive : Sign.Negative;
+
+        [MethodImpl(Inline)]
+        public byte NextByte()
+            => Bytes().First();
 
         public IEnumerable<sbyte> Stream(Interval<sbyte> domain)        
         {
             var w = width(domain);
             while(true)
-                yield return (sbyte)(mod<int>(next(), w) + domain.Left);
+                yield return (sbyte)(mod<int>(NextInteger(), w) + domain.Left);
         }
 
         public IEnumerable<byte> Stream(Interval<byte> domain)        
         {
             var w = width(domain);
             while(true)
-                yield return (byte)(mod<int>(next(), w) + domain.Left);                
+                yield return (byte)(mod<int>(NextInteger(), w) + domain.Left);                
         }
 
         public IEnumerable<short> Stream(Interval<short> domain)        
         {
             var w = width(domain);
             while(true)
-                yield return (short)(mod<int>(next(),w) + domain.Left);                
+                yield return (short)(mod<int>(NextInteger(),w) + domain.Left);                
         }
 
         public IEnumerable<ushort> Stream(Interval<ushort> domain)        
         {
             var w = width(domain);
             while(true)
-                yield return (ushort) (mod<int>(next(), w) + domain.Left);                
+                yield return (ushort) (mod<int>(NextInteger(), w) + domain.Left);                
         }
 
         public IEnumerable<int> Stream(Interval<int> domain)
         {
             var w = width(domain);
             while(true)
-                yield return (int)(mod<long>(next(),w) + domain.Left);                
+                yield return (int)(mod<long>(NextInteger(),w) + domain.Left);                
         }
 
         public IEnumerable<uint> Stream(Interval<uint> domain)
@@ -246,7 +274,7 @@ namespace Z0
         {
             var w = width(domain);
             while(true)
-                yield return mod<long>(next(), w) + domain.Left;                
+                yield return mod<long>(NextInteger(), w) + domain.Left;                
         }
         
         IEnumerable<float> IRandomizer<float>.Stream()
@@ -271,8 +299,8 @@ namespace Z0
             var width = domain.Right - domain.Left;            
             while(true)
             {
-                var ratio = nextF64() + 1;
-                var sign =  nextSign();
+                var ratio = NextDouble() + 1;
+                var sign =  (sbyte)NextSign();
                 yield return sign * (domain.Right - (ratio * width)/2.0);
             }
         }
@@ -282,7 +310,7 @@ namespace Z0
             var width = domain.Right - domain.Left;            
             while(true)
             {
-                var ratio = (decimal)nextF64() + 1;
+                var ratio = (decimal)NextDouble() + 1;
                 var sign = Bits().Take(1).Single() ? -1.0m : 1.0m;
                 yield return sign * (domain.Right - (ratio * width)/2.0m);
             }
@@ -315,12 +343,12 @@ namespace Z0
         IEnumerable<double> IRandomizer<double>.Stream()
         {
             while(true)
-                yield return nextF64();
+                yield return NextDouble();
         }
 
         IEnumerable<decimal> IRandomizer<decimal>.Stream()
             => from x in Stream(closed(0m, 1m))
-                select x * nextSign();
+                select x * (sbyte) NextSign();
 
         public IEnumerable<BigInteger> Stream(Interval<BigInteger> domain)
             => Stream(closed((long)domain.Left, (long)domain.Right)).Select(x => new BigInteger(x));

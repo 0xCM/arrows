@@ -10,6 +10,7 @@ namespace Z0
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Text.RegularExpressions;
+    using System.Text;
 
     using static zfunc;
 
@@ -147,7 +148,7 @@ namespace Z0
         /// <param name="specifier">Specifies whether to prepend the '0x' format specifier to the representation</param>
         [MethodImpl(Inline)]
         public static string ToHexString(this UInt128 src, bool zpad = true, bool specifier = true)
-            => src.x1.ToHexString(false, true) + src.x0.ToHexString(true,false);
+            => src.hi.ToHexString(false, true) + src.lo.ToHexString(true,false);
 
         [MethodImpl(Inline)]
         public static string ToHexString(this float src)
@@ -168,6 +169,14 @@ namespace Z0
                 if (src.StartsWith(v))
                     return true;
             return false;
+        }
+
+        public static string Concat(this IEnumerable<char> chars, char? sep = null)
+        {
+            if(sep == null)
+                return new string(chars.ToSpan());
+            else
+                return new string(chars.Intersperse(sep.Value).ToSpan());                        
         }
 
         /// <summary>
@@ -338,6 +347,22 @@ namespace Z0
         public static ReadOnlySpan<char> Concat(this ReadOnlySpan<char> lhs, ReadOnlySpan<char> rhs)
             => lhs.Format() + rhs.Format();
 
+        public static string Concat(this ReadOnlySpan<string> src, string sep = null)
+        {
+            var delimiter = sep ?? " | ";
+            var sb = new StringBuilder();
+            for(var i=0; i<src.Length; i++)
+            {
+                if(i != 0)
+                    sb.Append(delimiter);                
+                sb.Append(src[i]);            
+            }
+            return sb.ToString();
+        }
+
+        [MethodImpl(Inline)]   
+        public static string Concat(this Span<string> src, string sep = null)        
+            => src.ToReadOnlySpan().Concat(sep);
 
     /// <summary>
     /// Defines an unsigned alterantive to the intrinsic Count property

@@ -95,6 +95,19 @@ partial class zfunc
     public static Option<T> first<T>(IEnumerable<T> src, Func<T,bool> predicate)
         => src.FirstOrDefault(predicate);
 
- 
+    /// <summary>
+    /// Produces a new guid
+    /// </summary>
+    [MethodImpl(Inline)] 
+    public static Guid guid()
+        => Guid.NewGuid();
 
+    /// <summary>
+    /// Produces a stream of new guids
+    /// </summary>
+    public static IEnumerable<Guid> guids()
+    {
+        while(true)
+            yield return guid();
+    }
 }

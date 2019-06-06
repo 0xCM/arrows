@@ -15,7 +15,7 @@ namespace Z0
     {
         public static RVar<T> define<T>(Interval<T> domain)
             where T : struct
-                => define(domain, Randomizer.define<T>(RandSeeds.AppSeed));
+                => define(domain, Randomizer.define<T>(Seed256.AppSeed));
 
         public static RVar<T> define<T>(Interval<T> domain, ulong[] seed)
             where T : struct

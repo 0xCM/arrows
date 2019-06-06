@@ -11,6 +11,8 @@ namespace Z0
     using System.Linq;
     using System.Runtime.CompilerServices;
 
+
+    using static nconst;    
     using static nfunc;
 
     partial class NatProve

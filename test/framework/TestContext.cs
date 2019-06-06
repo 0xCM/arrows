@@ -24,7 +24,7 @@ namespace Z0.Test
         where T : TestContext<T>
     {
         public TestContext(ITestConfig Config = null)
-            : base(Z0.Randomizer.define(RandSeeds.TestSeed))
+            : base(Z0.Randomizer.define(Seed256.TestSeed))
         {
             this.Config = Config ?? TestConfigDefaults.Default();
         }

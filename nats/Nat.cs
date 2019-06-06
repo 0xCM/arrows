@@ -13,8 +13,8 @@ namespace Z0
     using System.Collections.Concurrent;
     using System.Runtime.CompilerServices;
 
-    using static zfunc;
     using static nfunc;
+    using static zfunc;
 
     /// <summary>
     /// Constructs natural number prepresentatives and calculates related values
@@ -277,7 +277,6 @@ namespace Z0
             where K1 : ITypeNat, new()        
             where K2 : ITypeNat, new()
                 => Dim<K1,K2>.Rep;
-
 
         /// <summary>
         /// Constructs the natural dimension (k1,k2,k3) where k1:K1 & k2:K2 & k3:K3

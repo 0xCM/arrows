@@ -6,7 +6,6 @@ namespace Z0
 {
     using System;
     using static nfunc;
-    using static zfunc;
 
     /// <summary>
     /// Captures evidence that k1: K1 & k2:K2 => k1 + 1 = k2

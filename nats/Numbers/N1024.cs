@@ -7,9 +7,8 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     
-    using static zfunc;    
+    using static nconst;    
     using static nfunc;
-
 
     public readonly struct N1024 : INatSeq<N1024>, 
         INatPow<N1024, N2,N10>,

@@ -9,7 +9,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
 
-    using static zfunc;
+    using static nconst;
     using static nfunc;
 
     public static class MatrixOps<M,N>
@@ -21,7 +21,7 @@ namespace Z0
         [MethodImpl(Inline)]
         static IEnumerable<T> zeros<T>()
             where T : struct    
-                => repeat(default(T), dim<M,N>().i * dim<M,N>().j);
+                => zfunc.repeat(default(T), dim<M,N>().i * dim<M,N>().j);
 
         [MethodImpl(Inline)]
         public static Matrix<M,N,T> zero<T>()
@@ -150,7 +150,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Matrix<N, M, T> tranpose<T>(Matrix<M,N,T> src)
             where T : struct    
-                => new Matrix<N,M,T>(map(src.vectors().data, v => v.tranpose()));
+                => new Matrix<N,M,T>(zfunc.map(src.vectors().data, v => v.tranpose()));
 
         public static Matrix<I,J,T> submatrix<I,J,T>(Matrix<M,N,T> src, Dim<I,J> dstdim, (uint r, uint c) origin)
             where I : ITypeNat, new()
@@ -226,7 +226,7 @@ namespace Z0
             where T : struct, ISemiringOps<T>
             {
                 var sr = new T();
-                return Matrix.define<M,N,T>(fuse(lhs.data, rhs.data, sr.add));
+                return Matrix.define<M,N,T>(zfunc.fuse(lhs.data, rhs.data, sr.add));
             }
 
     }

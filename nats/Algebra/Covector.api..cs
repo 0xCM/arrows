@@ -22,7 +22,6 @@ namespace Z0
         /// <param name="v">The vector at which evaluation occurs</param>
         /// <typeparam name="N">The natural length type</typeparam>
         /// <typeparam name="T">The type of the underlying semiring</typeparam>
-        /// <returns></returns>
         [MethodImpl(Inline)]   
         public static T apply<N,T>(Covector<N,T> cv, Vector<N,T> v)
             where T : struct, ISemiringOps<T>

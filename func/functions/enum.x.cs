@@ -339,5 +339,17 @@ namespace  Z0
         [MethodImpl(Inline)]   
         public static IEnumerable<T> Collapse<T>(this IEnumerable<IEnumerable<T>> src)
             => src.SelectMany(x => x);
+ 
+ 
+        public static IEnumerable<T> Intersperse<T>(this IEnumerable<T> src, T x)
+        {
+            foreach(var item in src)
+            {
+                yield return item;
+                yield return x;
+            }
+
+        }
+
     }
 }
