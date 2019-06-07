@@ -15,6 +15,7 @@
     <ProjectReference Include="..\intrinsics\z0.intrinsics.csproj" />
     <ProjectReference Include="..\analogs\z0.analogs.csproj" />
     <ProjectReference Include="..\primal\z0.primal.csproj" />
+    <ProjectReference Include="..\random\z0.random.csproj" />
 
   </ItemGroup>
 

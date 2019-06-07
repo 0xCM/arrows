@@ -24,7 +24,6 @@ namespace Z0
         }
     }
 
-
     public class Histogram<T>
         where T : struct
     {
@@ -32,7 +31,7 @@ namespace Z0
         {
             this.Domain =Domain;
             this.Grain = Grain;
-            this.Partitions = Domain.AsCanonical().Discretize(Grain);
+            this.Partitions = Domain.Discretize(Grain).ToArray();
             this.Counts = alloc<ulong>(Partitions.Length);
         }
 
@@ -49,26 +48,25 @@ namespace Z0
         
         Interval<T> PartitionDomain(int ix)
             => ix == Partitions.Length - 1 
-             ? closed(Partitions[ix-1], Partitions[ix]).AsCanonical() 
-             : leftclosed(Partitions[ix-1], Partitions[ix]).AsCanonical();
-                    
+             ? closed(Partitions[ix-1], Partitions[ix]) 
+             : leftclosed(Partitions[ix-1], Partitions[ix]);
+
         /// <summary>
         /// Distribute a single value to the histogram
         /// </summary>
         /// <param name="value">The source value</param>
         public void Deposit(T value)
         {
-
             var deposited = false;
             for(int i = 1; i< Partitions.Length; i++)                    
             {
+                
                 if(PartitionDomain(i).Contains(value))
                 {
                     Counts[i-1] = gmath.inc(Counts[i-1]);
                     deposited = true;
                     break;
-                }
-                
+                }                
             }
             
             if(!deposited)

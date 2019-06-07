@@ -211,7 +211,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static num<T>[] Discretize<T>(this Interval<num<T>> src, num<T> parts)   
             where T : struct
-                => src.Partition(parts).ToArray(); 
+                => src.PartitionPoints(parts).ToArray(); 
  
         [MethodImpl(Inline)]
         public static num<byte> ToNumber(this byte src)

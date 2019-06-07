@@ -16,8 +16,6 @@ namespace Z0
 
     partial class math
     {
-        #region in
-
         [MethodImpl(Inline)]
         public static sbyte inc(sbyte src)
             => ++src;
@@ -57,10 +55,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static double inc(double src)
             => ++src;
-
-        #endregion
-
-        #region out
 
         [MethodImpl(Inline)]
         public static ref sbyte inc(sbyte src, out sbyte dst)
@@ -132,10 +126,6 @@ namespace Z0
             return ref dst;
         }
 
-        #endregion
-
-        #region io
-
         [MethodImpl(Inline)]
         public static ref sbyte inc(ref sbyte src)
         {
@@ -205,8 +195,6 @@ namespace Z0
             src++;
             return ref src;
         }
-
-        #endregion
 
     }
 }

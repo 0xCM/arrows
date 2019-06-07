@@ -59,46 +59,8 @@ namespace Z0
             where T : struct 
                 => src.Contains(point);
 
-        [MethodImpl(Inline)]
-        public static bool Contains<T>(this IInterval<T> interval, T point)
-            where T : struct
-                => interval.Kind switch {
-                        IntervalKind.Closed 
-                            => gmath.gteq(point,interval.Left) && gmath.lteq(point, interval.Right),
-                        IntervalKind.Open 
-                            => gmath.gt(point, interval.Left) && gmath.lt(point, interval.Right),
-                        IntervalKind.LeftClosed 
-                            => gmath.gteq(point, interval.Left) && gmath.lt(point, interval.Right),
-                        IntervalKind.RightClosed 
-                            => gmath.gt(point, interval.Left) && gmath.lteq(point, interval.Right),
-                        _ => throw new ArgumentException()
-                };
 
 
-        [MethodImpl(Inline)]
-        public static T[] Discretize<T>(this Interval<T> src, T? step = null)
-            where T : struct 
-                => DiscretizationStream(src, step).ToArray();
-
-        static IEnumerable<T> DiscretizationStream<T>(this Interval<T> src, T? step = null)
-            where T : struct
-        {            
-
-            var width = step ?? gmath.one<T>();            
-
-            if(src.LeftClosed)
-                yield return src.Left;
-            
-            var next = gmath.add(src.Left, width);
-            while(gmath.lt(next,src.Right))
-            {
-                yield return next;
-                next = gmath.add(next, width);
-            }
-
-            if(src.RightClosed)
-                yield return src.Right;
-        }
 
         //Prime numbers to use when generating a hash code. Taken from John Skeet's answer on SO:
         //http://stackoverflow.com/questions/263400/what-is-the-best-algorithm-for-an-overridden-system-object-gethashcode

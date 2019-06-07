@@ -113,8 +113,16 @@ namespace Z0
             => Math.Abs(src);
 
         [MethodImpl(Inline)]
+        public static uint abs(uint src)
+            => src;
+
+        [MethodImpl(Inline)]
         public static long abs(long src)
             => Math.Abs(src);
+
+        [MethodImpl(Inline)]
+        public static ulong abs(ulong src)
+            => src;
 
         [MethodImpl(Inline)]
         public static float abs(float src)

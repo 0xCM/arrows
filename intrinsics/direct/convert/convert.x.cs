@@ -26,32 +26,6 @@ namespace Z0
 
 
 
-        // file:///J:/lang/areas/numerics/Lemire%20-%20Fast%20Random%20Integer%20Generation%20in%20an%20Interval.pdf        
-        public static ulong NextInteger(this IRandomSource rng, ulong max) 
-        {
-            var x = rng.NextInteger();
-            dinx.mul(x, max, out UInt128 m);
-            ulong l = m.lo;
-            if (l < max) 
-            {
-                ulong t = ~max % max;
-                while (l < t) 
-                {
-                    x = rng.NextInteger();
-                    m = dinx.mul(x, max, out UInt128 z);
-                    l = m.lo;                    
-                }
-            }
-        
-            var vec = dinx.shiftrw(m.ToVec128(), 8);
-            return vec.ToUInt128().lo;
-        }
-
-        public static IEnumerable<ulong> Integers(this IRandomSource rng, ulong max)
-        {
-            while(true)
-                yield return rng.NextInteger(max);
-        }
     }
 
 

@@ -13,6 +13,7 @@
     <ProjectReference Include="..\gspace\z0.gspace.csproj" />
     <ProjectReference Include="..\intrinsics\z0.intrinsics.csproj" />
     <ProjectReference Include="..\primal\z0.primal.csproj" />
+    <ProjectReference Include="..\random\z0.random.csproj" />
 
   </ItemGroup>
 </Project>

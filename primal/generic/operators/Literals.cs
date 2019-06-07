@@ -40,7 +40,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(ref asRef(F64Zero));
             else
-                throw unsupported(PrimalKinds.kind<T>());        
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -67,7 +67,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(ref asRef(F64One));
             else
-                throw unsupported(PrimalKinds.kind<T>());        
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -95,7 +95,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(ref asRef(F64Min));
             else
-                throw unsupported(PrimalKinds.kind<T>());        
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -123,9 +123,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(ref asRef(F64Max));
             else
-                throw unsupported(PrimalKinds.kind<T>());        
+                throw unsupported<T>();
         }
-
-
     }
 }

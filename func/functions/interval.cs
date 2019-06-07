@@ -21,7 +21,7 @@ partial class zfunc
     /// <param name="right">The right endpoint</param>
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]
-    public static ClosedInterval<T> closed<T>(T left, T right)
+    public static Interval<T> closed<T>(T left, T right)
         where T : struct
             => Interval.closed(left,right);
 
@@ -32,7 +32,7 @@ partial class zfunc
     /// <param name="right">The right endpoint</param>
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]
-    public static LeftOpenInterval<T> leftopen<T>(T left, T right)
+    public static Interval<T> leftopen<T>(T left, T right)
         where T : struct
             => Interval.leftopen(left,right);
 
@@ -43,7 +43,7 @@ partial class zfunc
     /// <param name="right">The right endpoint</param>
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]
-    public static LeftClosedInterval<T> leftclosed<T>(T left, T right)
+    public static Interval<T> leftclosed<T>(T left, T right)
         where T : struct
             => Interval.leftclosed(left,right);
 
@@ -54,7 +54,7 @@ partial class zfunc
     /// <param name="right">The right endpoint</param>
     /// <typeparam name="T">The underlying type</typeparam>
     [MethodImpl(Inline)]
-    public static OpenInterval<T> open<T>(T left, T right)
+    public static Interval<T> open<T>(T left, T right)
         where T : struct
             => Interval.open(left,right);
 }

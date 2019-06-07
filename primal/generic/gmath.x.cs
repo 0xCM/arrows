@@ -11,7 +11,6 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     
-    
     using static As;
     using static zfunc;
 
@@ -32,7 +31,6 @@ namespace Z0
             return dst;
         }
 
-
         public static Option<int> WriteTo<T>(this DivisorIndex<T> src, FolderPath dst)
             where T : struct
         {
@@ -42,8 +40,6 @@ namespace Z0
             return outpath.Overwrite(map(lists, d => d.ToString()));
         }
 
-        
     }
-
 
 }

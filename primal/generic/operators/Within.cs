@@ -13,37 +13,37 @@ namespace Z0
     using static zfunc;    
     using static As;
 
+
     partial class gmath
     {
         [MethodImpl(Inline)]
-        public static bool nonzero<T>(T src)
+        public static bool within<T>(T lhs, T rhs, T epsilon)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return math.nonzero(int8(ref src));
+                return math.within(int8(lhs), int8(rhs), int8(epsilon));
             else if(typeof(T) == typeof(byte))
-                return math.nonzero(uint8(ref src));
+                return math.within(uint8(lhs), uint8(rhs), uint8(epsilon));
             else if(typeof(T) == typeof(short))
-                return math.nonzero(int16(ref src));
+                return math.within(int16(lhs), int16(rhs), int16(epsilon));
             else if(typeof(T) == typeof(ushort))
-                return math.nonzero(uint16(ref src));
+                return math.within(uint16(lhs), uint16(rhs), uint16(epsilon));
             else if(typeof(T) == typeof(int))
-                return math.nonzero(int32(ref src));
+                return math.within(int32(lhs), int32(rhs), int32(epsilon));
             else if(typeof(T) == typeof(uint))
-                return math.nonzero(uint32(ref src));
+                return math.within(uint32(lhs), uint32(rhs), uint32(epsilon));
             else if(typeof(T) == typeof(long))
-                return math.nonzero(int64(ref src));
+                return math.within(int64(lhs), int64(rhs), int64(epsilon));
             else if(typeof(T) == typeof(ulong))
-                return math.nonzero(uint64(ref src));
+                return math.within(uint64(lhs), uint64(rhs), uint64(epsilon));
             else if(typeof(T) == typeof(float))
-                return math.nonzero(float32(ref src));
+                return math.within(float32(lhs), float32(rhs), float32(epsilon));
             else if(typeof(T) == typeof(double))
-                return math.nonzero(float64(ref src));
+                return math.within(float64(lhs), float64(rhs), float64(epsilon));
             else            
-                throw unsupported<T>();
+                throw unsupported(PrimalKinds.kind<T>());
+
         }
 
-
     }
-
 }

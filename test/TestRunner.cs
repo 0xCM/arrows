@@ -136,20 +136,45 @@ namespace Z0
 
         }
 
+        static void TestPartitions()
+        {
+            var src2 = closed(5,20);
+            var dst2 = src2.Partitions(1);
+            var fmt2 = dst2.Map(x => x.ToString()).Concat(" + ");
+
+            var src4 = leftopen(5,20);
+            var dst4 = src4.Partitions(1);
+            var fmt4 = dst4.Map(x => x.ToString()).Concat(" + ");
+
+            var src1 = leftclosed(5,20);
+            var dst1 = src1.Partitions(1);
+            var fmt1 = dst1.Map(x => x.ToString()).Concat(" + ");
+
+            var src3 = open(5,20);
+            var dst3 = src3.Partitions(1);
+            var fmt3 = dst3.Map(x => x.ToString()).Concat(" + ");
+
+        
+            print($"{dst2.Length} {src2} = {fmt2}");
+            print($"{dst4.Length} {src4} = {fmt4}");
+            print($"{dst1.Length} {src1} = {fmt1}");
+            print($"{dst3.Length} {src3} = {fmt3}");        
+        
+        }
         public static void Run()
         {
             
             var app = new TestRunner();
-            app.AdHocTest();
-            // try
-            // {
-            //     TestTools.RunTests(string.Empty, false);
+            try
+            {
+                //TestPartitions();
+                TestTools.RunTests(string.Empty, false);
 
-            // }
-            // catch (Exception e)
-            // {
-            //     app.NotifyError(e);
-            // }
+            }
+            catch (Exception e)
+            {
+                app.NotifyError(e);
+            }
 
         }
 

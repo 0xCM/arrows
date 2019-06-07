@@ -72,7 +72,7 @@ namespace Z0
             => new Interval<ulong>(left,leftclosed,right,rightclosed);
 
         public string format()
-            => canonical().format();
+            => canonical().Format();
         
         public override string ToString()
             => format();

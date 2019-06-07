@@ -161,8 +161,16 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<T> ToSpan<T>(this T[] src)
             => src;
-        
-        public static Span<T> MapRange<S, T>(this Span<S> src, int offset, int length, Func<S, T> f)
+
+        public static Span<T> Map<S,T>(this Span<S> src, Func<S, T> f)
+        {
+            var dst = span<T>(src.Length);
+            for(var i= 0; i<src.Length; i++)
+                dst[i] = f(src[i]);
+            return dst;
+        }
+
+        public static Span<T> MapRange<S,T>(this Span<S> src, int offset, int length, Func<S, T> f)
         {
             var dst = span<T>(length);
             for (int i = offset; i < length; i++)
