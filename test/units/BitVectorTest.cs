@@ -15,6 +15,16 @@ namespace Z0.Test
 
     sealed class BitVectorTest : UnitTest<BitVectorTest>
     {
+        /// <summary>
+        /// Creates a natural bitvector from a 1-element source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> Load<N,T>(ref T src, N rep = default)        
+            where T : struct
+            where N : INatPow2, new()
+                => BitVector<N,T>.Load(ref src);
 
         public void SetBits()
         {
@@ -34,68 +44,66 @@ namespace Z0.Test
             Claim.eq(UInt32.MaxValue, bv.Hi);
         }
 
-        void OrOp<N,T>(T lhs, T rhs)
-            where T : struct
-            where N : INatPow2, new()
-        {
-            var x0 = BitVector.Define(lhs);
-            var x1 = BitVector.Define(rhs) ;
-            var x = x0 | x1;
-            var y0 = BitVector.Load<N,T>(ref lhs);
-            var y1 = BitVector.Load<N,T>(ref rhs);
-            var y =  y0 | y1;
-            Claim.eq(x.BitString(),y.BitString());
-        }
 
         void OrOps<N,T>()
             where T : struct
             where N : INatPow2, new()
         {
-            var src = Randomizer.Pairs<T>(Pow2.T04).ToReadOnlyList();
-            for(var i = 0; i<src.Count; i++)
-                OrOp<N,T>(src[i].Left, src[i].Right);
+            var len = (int)new N().value;
+            var lhs = Randomizer.Span<T>(len);
+            var rhs = Randomizer.Span<T>(len);
+
+            var vX = Load<N,T>(ref lhs[0]);
+            var vY = Load<N,T>(ref rhs[0]);
+            var vZ = vX | vY;
+            for(var i = 0; i<len; i++)
+            {
+                var x1 = BitVector.Define(lhs[i]);
+                var x2 = BitVector.Define(rhs[i]);
+                var x = x1 | x2;
+                Claim.eq(x.BitString(),  gbits.bitstring(vZ.Component(i)));
+            }
         }
 
-        void AndOp<N,T>(T lhs, T rhs)
-            where T : struct
-            where N : INatPow2, new()
-        {
-            var x0 = BitVector.Define(lhs);
-            var x1 = BitVector.Define(rhs) ;
-            var x = x0 & x1;
-            var y0 = BitVector.Load<N,T>(ref lhs);
-            var y1 = BitVector.Load<N,T>(ref rhs);
-            var y =  y0 & y1;
-            Claim.eq(x.BitString(),y.BitString());
-        }
 
         void AndOps<N,T>()
             where T : struct
             where N : INatPow2, new()
         {
-            var src = Randomizer.Pairs<T>(Pow2.T04).ToReadOnlyList();
-            for(var i = 0; i<src.Count; i++)
-                AndOp<N,T>(src[i].Left, src[i].Right);
-        }
+            var len = (int)new N().value;
+            var lhs = Randomizer.Span<T>(len);
+            var rhs = Randomizer.Span<T>(len);
 
-        void PopCount<N,T>(T src)
-            where T : struct
-            where N : INatPow2, new()
-        {
-            var x0 = BitVector.Define(src);
-            var x = x0.PopCount();
-            var y0 = BitVector.Load<N,T>(ref src);
-            var y =  y0.PopCount();
-            Claim.eq(x,y);
+            var vX = Load<N,T>(ref lhs[0]);
+            var vY = Load<N,T>(ref rhs[0]);
+            var vZ = vX & vY;
+            for(var i = 0; i<len; i++)
+            {
+                var x1 = BitVector.Define(lhs[i]);
+                var x2 = BitVector.Define(rhs[i]);
+                var x = x1 & x2;
+                Claim.eq(x.BitString(),  gbits.bitstring(vZ.Component(i)));
+            }
+                
         }
 
         void PopCounts<N,T>()
             where T : struct
             where N : INatPow2, new()
         {
-            var src = Randomizer.Span<T>(Pow2.T04);
+            var count1 = 0ul;
+            var count2 = 0ul;
+            var src = Randomizer.Span<T>((int)new N().value);
             for(var i = 0; i<src.Length; i++)
-                PopCount<N,T>(src[i]);
+            {
+                var x = BitVector.Define(src[i]);
+                count1 += x.Pop();
+            }
+
+            var y = Load<N,T>(ref src[0]);
+            count2 = y.PopCount();
+
+            Claim.eq(count1, count2);        
 
         }
 
@@ -201,15 +209,25 @@ namespace Z0.Test
             PopCounts<N64, ulong>();
         }
 
-        public void NatBits()
+        /// <summary>
+        /// Creates a natural b1itvector from a span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> Define<N,T>(in ReadOnlySpan<T> src, N len = default(N))        
+            where T : struct
+            where N : INatPow2, new()
+                => BitVector<N,T>.Define(in src);
+
+        public void NatBitsTest()
         {
-            var bits = N1024;
-            var bytes = (int)(N1024.value / 8);
-        
-            var lhs = Randomizer.Span<byte>(bytes).ToReadOnlySpan();
-            var rhs = Randomizer.Span<byte>(bytes).ToReadOnlySpan();
-            var x = BitVector.Define(lhs,bits);
-            var y = BitVector.Define(rhs,bits);            
+            var rep = N1024;        
+            var len = (int)rep.value;
+            var lhs = Randomizer.Span<byte>(len).ToReadOnlySpan();
+            var rhs = Randomizer.Span<byte>(len).ToReadOnlySpan();
+            var x = Define(lhs,rep);
+            var y = Define(rhs,rep);            
             var z0 = lhs.And(rhs).ToBytes();
             var z1 = (x & y).Bytes();
             Claim.eq(z0.Length, z1.Length);

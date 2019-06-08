@@ -69,12 +69,10 @@ namespace Z0
         public Covector<N, T> covector(uint i)
             => MatrixOps<M,N>.covector(this,i);
 
-
         [MethodImpl(Inline)]
         public T cell(uint i, uint j)
             => MatrixOps<M,N>.cell(this,i,j);
         
-
         public T this[uint i, uint j]
         {
             
@@ -86,15 +84,6 @@ namespace Z0
         }
 
         
-        [MethodImpl(Inline)]
-        public Slice<N,T> row(uint i)
-            => MatrixOps<M,N>.row(this,i);
-
-        [MethodImpl(Inline)]
-        public Slice<M,T> col(uint j)
-            => MatrixOps<M,N>.col(this,j);
-
-
         [MethodImpl(Inline)]
         public string format()
             => MatrixOps<M,N>.format(this);

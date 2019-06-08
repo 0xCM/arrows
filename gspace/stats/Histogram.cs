@@ -27,17 +27,17 @@ namespace Z0
     public class Histogram<T>
         where T : struct
     {
-        public Histogram(Interval<T> Domain, T Grain)
+        public Histogram(Interval<T> Domain, T BinWidth)
         {
-            this.Domain =Domain;
-            this.Grain = Grain;
-            this.Partitions = Domain.Discretize(Grain).ToArray();
+            this.Domain = Domain;
+            this.BinWidth = BinWidth;
+            this.Partitions = Domain.Discretize(BinWidth).ToArray();
             this.Counts = alloc<ulong>(Partitions.Length);
         }
 
         public Interval<T> Domain {get;}
         
-        public T Grain {get;}
+        public T BinWidth {get;}
 
         public T[] Partitions {get;}
 

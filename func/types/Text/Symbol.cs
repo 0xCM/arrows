@@ -11,25 +11,6 @@ namespace Z0
 
     using static zfunc;
 
-    public interface ISymbol<S,T> :  IFreeMonoid<S>
-        where S : ISymbol<S,T>, new()
-        where T : INullary<T>, new()
-    {
-    }
-
-    [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
-    public class SymbolAttribute : Attribute
-    {
-        public SymbolAttribute(params string[] Symbols)
-        {
-            this.Symbols = Symbols.Select(s => Z0.Symbol.Define(s)).ToArray();
-            
-        }
-
-        public Symbol[] Symbols {get;}
-        
-    }
-
     /// <summary>
     /// Represents a symbol comprising a finite ordered sequence of atoms
     /// </summary>

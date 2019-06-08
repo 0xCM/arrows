@@ -12,7 +12,6 @@ namespace Z0.Bench
     
     using static zfunc;
 
-
     public static class VecGMetrics
     {
         public static OpId<T> Id<T>(OpKind op)
@@ -21,8 +20,5 @@ namespace Z0.Bench
                         numKind : NumericKind.VecG, 
                         generic: Genericity.Generic, 
                         fusion : OpFusion.Fused);
-
-
     }
-
 }

@@ -33,33 +33,6 @@ namespace Z0
             return Unsafe.ReadUnaligned<long>(ref value[startIndex]);
         }
 
-        public void BenchBitVector()
-        {
-            var n = N8192.Rep;
-            var lhsData = Randomizer.Span<int>((int)n.value);            
-            var rhsData = Randomizer.Span<int>((int)n.value);
-            var lhs = BitVector.Load(ref lhsData[0], n);
-            var rhs = BitVector.Load(ref rhsData[0], n);
-            var opcount = 0L;
-            var time = Duration.Zero;
-            var opsPerCycle = (long)n.value * 5L;
-            while(true)
-            {
-                var sw = stopwatch();            
-                for(var cycle = 1; cycle <= Pow2.T16; cycle++)
-                {
-                    lhs &= rhs;
-                    lhs ^= rhs;
-                    lhs |= rhs;
-                    lhs >>= 4;
-                    lhs <<= 4;
-                    opcount += opsPerCycle;
-                }
-                time += snapshot(sw);
-                print(AppMsg.Define($"Total Ops = {opcount} |".PadRight(30) + $"Total Time = {time.Ms} ms", SeverityLevel.Perform));
-            }
-
-        }
 
         void RunTests()
             => TestRunner.Run();

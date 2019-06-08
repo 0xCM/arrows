@@ -77,6 +77,5 @@ namespace Z0
             As.generic<T>(ref dst[0]) = src;
             return dst;
         }
-
     }
 }

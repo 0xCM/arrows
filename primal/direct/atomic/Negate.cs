@@ -21,16 +21,32 @@ namespace Z0
             => (sbyte)(- src);
 
         [MethodImpl(Inline)]
+        public static byte negate(byte src)
+            => (byte)(~ (byte)(src - 1));
+     
+        [MethodImpl(Inline)]
         public static short negate(short src)
             => (short)(- src);
+
+        [MethodImpl(Inline)]
+        public static ushort negate(ushort src)
+            => (ushort)(~ (ushort)(src - 1));     
 
         [MethodImpl(Inline)]
         public static int negate(int src)
             => -src;
 
         [MethodImpl(Inline)]
+        public static uint negate(uint src)
+            => ~ (src - 1);     
+
+        [MethodImpl(Inline)]
         public static long negate(long src)
             => -src;
+
+        [MethodImpl(Inline)]
+        public static ulong negate(ulong src)
+            => ~ (src - 1);     
 
         [MethodImpl(Inline)]
         public static float negate(float src)
@@ -41,45 +57,74 @@ namespace Z0
             => -src;
  
         [MethodImpl(Inline)]
-        public static ref sbyte negate(ref sbyte lhs)
+        public static ref sbyte negate(ref sbyte src)
         {
-            lhs = (sbyte) - lhs;
-            return ref lhs;
+            src = (sbyte) - src;
+            return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref short negate(ref short lhs)
+        public static ref byte negate(ref byte src)
         {
-            lhs = (short) - lhs;
-            return ref lhs;
+            src = negate(src);
+            return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref int negate(ref int lhs)
+        public static ref short negate(ref short src)
         {
-            lhs = - lhs;
-            return ref lhs;
+            src = (short) - src;
+            return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref long negate(ref long lhs)
+        public static ref ushort negate(ref ushort src)
         {
-            lhs = - lhs;
-            return ref lhs;
+            src = negate(src);
+            return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref float negate(ref float lhs)
+        public static ref int negate(ref int src)
         {
-            lhs = - lhs;
-            return ref lhs;
+            src = - src;
+            return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref double negate(ref double lhs)
+        public static ref uint negate(ref uint src)
         {
-            lhs = - lhs;
-            return ref lhs;
+            src = negate(src);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref long negate(ref long src)
+        {
+            src = - src;
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong negate(ref ulong src)
+        {
+            src = negate(src);
+            return ref src;
+        }
+
+
+        [MethodImpl(Inline)]
+        public static ref float negate(ref float src)
+        {
+            src = - src;
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref double negate(ref double src)
+        {
+            src = - src;
+            return ref src;
         }
    }
 

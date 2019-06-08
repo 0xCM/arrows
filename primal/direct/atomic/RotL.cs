@@ -17,19 +17,51 @@ namespace Z0
     partial class math
     {
         [MethodImpl(Inline)]
-        public static byte rotl(in byte src, in int offset)
+        public static byte rotl(in byte src, int offset)
             => (byte)((src << offset) | (src >> (8 - offset)));
 
         [MethodImpl(Inline)]
-        public static ushort rotl(in ushort src, in int offset)
+        public static ushort rotl(in ushort src, int offset)
             => (ushort)((src << offset) | (src >> (16 - offset)));
 
         [MethodImpl(Inline)]
-        public static uint rotl(in uint src, in int offset)
+        public static uint rotl(in uint src, int offset)
             => (src << offset) | (src >> (32 - offset));
 
         [MethodImpl(Inline)]
-        public static ulong rotl(in ulong src, in int offset)
+        public static ulong rotl(in ulong src, int offset)
             => (src << offset) | (src >> (64 - offset));
+    
+    
+        [MethodImpl(Inline)]
+        public static ref byte rotl(ref byte lhs, in int rhs)
+        {
+            lhs = rotl(lhs,rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ushort rotl(ref ushort lhs, in int rhs)
+        {
+            lhs = rotl(lhs,rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint rotl(ref uint lhs, in int rhs)
+        {
+            lhs = rotl(lhs,rhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong rotl(ref ulong lhs, in int rhs)
+        {
+            lhs = rotl(lhs,rhs);
+            return ref lhs;
+        }
+
+
+    
     }
 }

@@ -15,25 +15,32 @@ namespace Z0
 
     partial class gmath
     {
-
         [MethodImpl(Inline)]
         public static T negate<T>(T src)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return negateI8(src);
+                return generic<T>(math.negate(int8(src)));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(math.negate(uint8(src)));
             else if(typeof(T) == typeof(short))
-                return negateI16(src);
+                return generic<T>(math.negate(int16(src)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(math.negate(uint16(src)));
             else if(typeof(T) == typeof(int))
-                return negateI32(src);
+                return generic<T>(math.negate(int32(src)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(math.negate(uint32(src)));
             else if(typeof(T) == typeof(long))
-                return negateI64(src);
+                return generic<T>(math.negate(int64(src)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(math.negate(uint64(src)));
             else if(typeof(T) == typeof(float))
-                return negateF32(src);
+                return generic<T>(math.negate(float32(src)));
             else if(typeof(T) == typeof(double))
-                return negateF64(src);
+                return generic<T>(math.negate(float64(src)));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }           
 
         [MethodImpl(Inline)]
@@ -41,19 +48,28 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return ref negateI8(ref src);
+                math.negate(ref int8(ref src));
+            else if(typeof(T) == typeof(byte))
+                math.negate(ref uint8(ref src));
             else if(typeof(T) == typeof(short))
-                return ref negateI16(ref src);
+                math.negate(ref int16(ref src));
+            else if(typeof(T) == typeof(ushort))
+                math.negate(ref uint16(ref src));
             else if(typeof(T) == typeof(int))
-                return ref negateI32(ref src);
+                math.negate(ref int32(ref src));
+            else if(typeof(T) == typeof(uint))
+                math.negate(ref uint32(ref src));
             else if(typeof(T) == typeof(long))
-                return ref negateI64(ref src);
+                math.negate(ref int64(ref src));
+            else if(typeof(T) == typeof(ulong))
+                math.negate(ref uint64(ref src));
             else if(typeof(T) == typeof(float))
-                return ref negateF32(ref src);
+                math.negate(ref float32(ref src));
             else if(typeof(T) == typeof(double))
-                return ref negateF64(ref src);
+                math.negate(ref float64(ref src));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
+            return ref src;
         }           
 
         [MethodImpl(Inline)]
@@ -62,18 +78,26 @@ namespace Z0
         {
             if(typeof(T) == typeof(sbyte))
                 math.negate(int8(src), int8(dst));
+            else if(typeof(T) == typeof(byte))
+                math.negate(uint8(src), uint8(dst));
             else if(typeof(T) == typeof(short))
                 math.negate(int16(src), int16(dst));
+            else if(typeof(T) == typeof(ushort))
+                math.negate(uint16(src), uint16(dst));
             else if(typeof(T) == typeof(int))
                 math.negate(int32(src), int32(dst));
+            else if(typeof(T) == typeof(uint))
+                math.negate(uint32(src), uint32(dst));
             else if(typeof(T) == typeof(long))
                 math.negate(int64(src), int64(dst));
+            else if(typeof(T) == typeof(ulong))
+                math.negate(uint64(src), uint64(dst));
             else if(typeof(T) == typeof(float))
                 math.negate(float32(src), float32(dst));
             else if(typeof(T) == typeof(double))
                 math.negate(float64(src), float64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return dst;
         }
 
@@ -83,89 +107,29 @@ namespace Z0
         {
             if(typeof(T) == typeof(sbyte))
                 math.negate(int8(io));
+            else if(typeof(T) == typeof(byte))
+                math.negate(uint8(io));
             else if(typeof(T) == typeof(short))
                 math.negate(int16(io));
+            else if(typeof(T) == typeof(ushort))
+                math.negate(uint16(io));
             else if(typeof(T) == typeof(int))
                 math.negate(int32(io));
+            else if(typeof(T) == typeof(uint))
+                math.negate(uint32(io));
             else if(typeof(T) == typeof(long))
                 math.negate(int64(io));
+            else if(typeof(T) == typeof(ulong))
+                math.negate(uint64(io));
             else if(typeof(T) == typeof(float))
                 math.negate(float32(io));
             else if(typeof(T) == typeof(double))
                 math.negate(float64(io));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return ref io;
 
         }
-        
-
-
-        [MethodImpl(Inline)]
-        static T negateI8<T>(T src)        
-            => generic<T>(math.negate(ref int8(ref src)));            
-        
-        [MethodImpl(Inline)]
-        static T negateI16<T>(T src)        
-            => generic<T>(math.negate(ref int16(ref src)));            
-
-        [MethodImpl(Inline)]
-        static T negateI32<T>(T src)        
-            => generic<T>(math.negate(ref int32(ref src)));            
-        
-        [MethodImpl(Inline)]
-        static T negateI64<T>(T src)        
-            => generic<T>(math.negate(ref int64(ref src)));            
-
-        [MethodImpl(Inline)]
-        static T negateF32<T>(T src)        
-            => generic<T>(math.negate(ref float32(ref src)));            
-        
-        [MethodImpl(Inline)]
-        static T negateF64<T>(T src)        
-            => generic<T>(math.negate(ref float64(ref src)));            
-
-
-        [MethodImpl(Inline)]
-        static ref T negateI8<T>(ref T io)
-        {
-            math.negate(ref int8(ref io));
-            return ref io;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T negateI16<T>(ref T io)
-        {
-            math.negate(ref int16(ref io));
-            return ref io;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T negateI32<T>(ref T io)
-        {
-            math.negate(ref int32(ref io));
-            return ref io;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T negateI64<T>(ref T io)
-        {
-            math.negate(ref int64(ref io));
-            return ref io;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T negateF32<T>(ref T io)
-        {
-            math.negate(ref float32(ref io));
-            return ref io;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T negateF64<T>(ref T io)
-        {
-            math.negate(ref float64(ref io));
-            return ref io;
-        }
+    
     }
 }

@@ -22,7 +22,21 @@ namespace Z0
                 dst[i] = negate(src[i]);
         }
 
+        public static void negate(ReadOnlySpan<byte> src, Span<byte> dst)
+        {
+            var len = length(src,dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
         public static void negate(ReadOnlySpan<short> src, Span<short> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
+        public static void negate(ReadOnlySpan<ushort> src, Span<ushort> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
@@ -36,7 +50,21 @@ namespace Z0
                 dst[i] = negate(src[i]);
         }
 
+        public static void negate(ReadOnlySpan<uint> src, Span<uint> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
         public static void negate(ReadOnlySpan<long> src, Span<long> dst)
+        {
+            var len = length(src, dst);
+            for(var i = 0; i< len; i++)
+                dst[i] = negate(src[i]);
+        }
+
+        public static void negate(ReadOnlySpan<ulong> src, Span<ulong> dst)
         {
             var len = length(src, dst);
             for(var i = 0; i< len; i++)
@@ -64,7 +92,21 @@ namespace Z0
             return io;
         }
 
+        public static Span<byte> negate(Span<byte> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }
+
         public static Span<short> negate(Span<short> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }
+
+        public static Span<ushort> negate(Span<ushort> io)
         {
             for(var i = 0; i< io.Length; i++)
                 negate(ref io[i]);
@@ -78,7 +120,21 @@ namespace Z0
             return io;
         }
 
+        public static Span<uint> negate(Span<uint> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }
+
         public static Span<long> negate(Span<long> io)
+        {
+            for(var i = 0; i< io.Length; i++)
+                negate(ref io[i]);
+            return io;
+        }
+
+        public static Span<ulong> negate(Span<ulong> io)
         {
             for(var i = 0; i< io.Length; i++)
                 negate(ref io[i]);

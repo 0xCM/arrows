@@ -20,18 +20,6 @@ namespace Z0
     /// </summary>
     public static partial class Reflections
     {
-        /// <summary>
-        /// Determines the version of the .Net framework targeted by the assembly
-        /// </summary>
-        /// <param name="a">The assembly to examine</param>
-        /// <returns></returns>
-        public static Version GetNetFrameworkVersion(this Assembly a)
-            =>
-            (
-                from attrib in a.GetCustomAttributes<TargetFrameworkAttribute>()
-                let vName = attrib.FrameworkName.Substring(attrib.FrameworkName.IndexOf("=v") + 2)
-                select Version.Parse(vName)
-            ).Single();
 
         /// <summary>
         /// Convenience accessor for the assembly's version
@@ -46,7 +34,6 @@ namespace Z0
         /// </summary>
         /// <typeparam name="T">The attribute type</typeparam>
         /// <param name="a">The assembly to examine</param>
-        /// <returns></returns>
         public static bool HasAttribute<T>(this Assembly a) where T : Attribute
             => System.Attribute.IsDefined(a, typeof(T));
 
@@ -72,8 +59,7 @@ namespace Z0
         /// <summary>
         /// Gets the value of <see cref="AssemblyProductAttribute"/> if it exists
         /// </summary>
-        /// <param name="a"></param>
-        /// <returns></returns>
+        /// <param name="a">The assembly to examine</param>
         public static Option<string> Product(this Assembly a)
             => from x in a.TryGetAttribute<AssemblyProductAttribute>()
             select x.Product;
@@ -148,7 +134,6 @@ namespace Z0
             return attributions;
         }
 
-
         /// <summary>
         /// Gets the simple name of an assembly
         /// </summary>
@@ -160,16 +145,30 @@ namespace Z0
             => a.GetTypes();
 
         public static IEnumerable<Type> Interfaces(this Assembly a)
-            => a.GetTypes().Where(t => t.IsInterface);
+            => a.GetTypes().Interfaces();
 
         public static IEnumerable<Type> Classes(this Assembly a)
-            => a.GetTypes().Where(t => t.IsClass);
+            => a.GetTypes().Classes();
         
         public static IEnumerable<Type> Enums(this Assembly a)
-            => a.GetTypes().Where(t => t.IsEnum);
+            => a.GetTypes().Enums();
 
         public static IEnumerable<Type> Structs(this Assembly a)
-            => a.GetTypes().Where(t => t.IsStruct());
+            => a.GetTypes().Structs();
 
+        public static IEnumerable<Type> Delegates(this Assembly a)
+            => a.GetTypes().Delegates();
+
+        public static IEnumerable<Type> NestedTypes(this Assembly a)
+            => a.GetTypes().Nested();
+
+        public static IEnumerable<Type> StaticTypes(this Assembly a)
+            => a.GetTypes().Static();
+
+        public static IEnumerable<Type> PublicTypes(this Assembly a)
+            => a.GetTypes().Public();
+
+        public static IEnumerable<Type> NonPublicTypes(this Assembly a)
+            => a.GetTypes().NonPublic();
     }
 }

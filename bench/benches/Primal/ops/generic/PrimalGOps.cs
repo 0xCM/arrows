@@ -343,7 +343,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 1; cycle <= cycles; cycle++)
             for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.rotl(lhs[sample], rhs[sample]);
+                dst[sample] = gbits.rotl(lhs[sample], rhs[sample]);
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
@@ -356,7 +356,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 1; cycle <= cycles; cycle++)
             for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = gmath.rotr(lhs[sample], rhs[sample]);
+                dst[sample] = gbits.rotr(lhs[sample], rhs[sample]);
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 

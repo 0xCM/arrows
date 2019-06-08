@@ -12,7 +12,6 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Buffers;
     
-    using static NatSpan;
     using static zfunc;
     using static As;
 
@@ -26,7 +25,7 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static Span<DeciDigit> ToDecimalDigits<T>(this num<T> src)
             where T : struct    
-                =>  DeciDigits.Parse(src.Abs().ToString());
+                => DeciDigits.Parse(src.Abs().ToString());
 
         /// <summary>
         /// Converts a number to a string of decimal digits

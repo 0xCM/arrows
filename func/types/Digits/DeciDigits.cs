@@ -29,8 +29,7 @@ namespace Z0
             => Index.TryFind(c).OnNone( () => throw new Exception($"There is no decimal digit corresponding the the character '{c}'")).Value();
 
         /// <summary>
-        /// Parses valid decimail digits from the source string, ignoring characters
-        /// that aren't digits
+        /// Parses valid decimail digits from the source string
         /// </summary>
         /// <param name="src">The source string</param>
         public static Span<DeciDigit> Parse(string src)

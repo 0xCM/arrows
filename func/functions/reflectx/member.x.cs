@@ -16,8 +16,7 @@ namespace Z0
     using static ReflectionFlags;
 
     partial class Reflections
-    {
-        
+    {        
         /// <summary>
         /// Determines whether a property is an indexer
         /// </summary>
@@ -143,34 +142,6 @@ namespace Z0
             => f.HasAttribute<CompilerGeneratedAttribute>();
 
         /// <summary>
-        /// Creates a report that specifies disagreement between property values, when both properties are defined
-        /// on supplied objects
-        /// </summary>
-        /// <param name="x">An object</param>
-        /// <param name="y">An object</param>
-        public static IDictionary<string, Tuple<object, object>> ComputePropertyValueDelta(object x, object y)
-        {
-            var delta = new Dictionary<string, Tuple<object, object>>();
-            var xprops = x.GetType().GetProperties();
-            var yprops = y.GetType().GetProperties();
-            foreach (var xprop in xprops)
-            {
-                var yprop = yprops.FirstOrDefault(z => z.Name == xprop.Name);
-                if (yprop != null)
-                {
-                    var xval = xprop.GetValue(x);
-                    var yval = yprop.GetValue(y);
-                    if (!Object.Equals(xval, yval))
-                    {
-                        delta[xprop.Name] = Tuple.Create(xval, yval);
-                    }
-                }
-            }
-
-            return delta;
-        }
-
-        /// <summary>
         /// Returns a method's parameter types
         /// </summary>
         /// <param name="src">The soruce method</param>
@@ -254,9 +225,8 @@ namespace Z0
             }
         }
 
-
         public static IEnumerable<Type> Realize<T>(this IEnumerable<Type> src)
-            => src.Where(t => t.GetInterfaces().Contains(typeof(T)));
+            => src.Where(t => t.Interfaces().Contains(typeof(T)));
 
         public static IEnumerable<Type> Concrete(this IEnumerable<Type> src)
             => src.Where(t => !t.IsAbstract);
@@ -267,10 +237,8 @@ namespace Z0
         public static IEnumerable<MethodInfo> Abstract(this IEnumerable<MethodInfo> src)
             => src.Where(t => t.IsAbstract);
 
-
         public static IEnumerable<Type> Abstract(this IEnumerable<Type> src)
             => src.Where(t => t.IsAbstract);
-
 
         public static IEnumerable<Type> Nested(this IEnumerable<Type> src)
             => src.Where(t => t.IsNested);
@@ -289,16 +257,6 @@ namespace Z0
         public static IEnumerable<MethodInfo> Static(this IEnumerable<MethodInfo> src)
                     => src.Where(x => x.IsStatic);
         
-
-        // [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        // static bool IsStatic(this PropertyInfo p)
-        //     => p.GetGetMethod()?.IsStatic == true 
-        //     || p.GetSetMethod().IsStatic == true;
-
-        // [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        // static bool IsStatic(this Type t)
-        //     => t.IsAbstract && t.IsSealed;
-
         /// <summary>
         /// Selects the static properties from a stream
         /// </summary>
@@ -334,6 +292,12 @@ namespace Z0
         public static IEnumerable<FieldInfo> Literal(this IEnumerable<FieldInfo> src)
             => src.Where(x => x.IsLiteral);
 
+        /// <summary>
+        /// Selects the literals provided by a type
+        /// </summary>
+        /// <param name="src">The source type</param>
+        /// <param name="declared">Whether a literal is rquired to be declared by the type</param>
+        /// <returns></returns>
         public static IEnumerable<FieldInfo> Literals(this Type src, bool declared = true)
             => src.Fields(declared).Literal();
 
@@ -452,8 +416,5 @@ namespace Z0
         /// <param name="instance">The object instance, if applicable</param>
         public static Option<object> TryGetValue(this FieldInfo field, object instance = null)
             => Try(() => field.GetValue(instance));
-
-
-
     }
 }

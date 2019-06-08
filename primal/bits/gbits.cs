@@ -92,34 +92,6 @@ namespace Z0
                 throw unsupported<T>();
         }
 
-        public static Span<T> pack<S,T>(ReadOnlySpan<S> src, Span<T> dst)            
-            where S : struct
-            where T : struct
-        {
-            var srcIx = 0;
-            var dstOffset = 0;
-            var dstIx = 0;
-            var srcSize = SizeOf<S>.BitSize;
-            var dstSize = SizeOf<T>.BitSize;
-            
-            while(srcIx < src.Length && dstIx < dst.Length)
-            {
-                for(var i = 0; i< srcSize; i++)
-                    if(test(src[srcIx], i))
-                       enable(ref dst[dstIx], dstOffset + i);
-
-                srcIx++;
-                if((dstOffset + srcSize) >= dstSize)
-                {
-                    dstOffset = 0;
-                    dstIx++;
-                }
-                else
-                    dstOffset += srcSize;
-            }
-            return dst;
-
-        }
 
         [MethodImpl(Inline)]
         public static ref T pack<T>(in ReadOnlySpan<Bit> src, out T dst)
@@ -246,7 +218,7 @@ namespace Z0
         }
             
         [MethodImpl(Inline)]
-        public static ref T toggle<T>(ref T src, int pos)
+        public static ref T toggle<T>(ref T src, in int pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -335,6 +307,7 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+
         [MethodImpl(Inline)]
         public static ref T loOff<T>(ref T src)
             where T : struct
@@ -360,5 +333,120 @@ namespace Z0
 
             return ref src;
         }       
+ 
+        [MethodImpl(Inline)]
+        public static T rotr<T>(T lhs, int rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                return generic<T>(math.rotr(uint8(lhs), rhs));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(math.rotr(uint16(lhs), rhs));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(math.rotr(uint32(lhs), rhs));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(math.rotr(uint64(lhs), rhs));
+            else            
+                throw unsupported<T>();
+        }           
+
+        [MethodImpl(Inline)]
+        public static ref T rotr<T>(ref T lhs, in int rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                math.rotr(ref uint8(ref lhs), in rhs);
+            else if(typeof(T) == typeof(ushort))
+                math.rotr(ref uint16(ref lhs), in rhs);
+            else if(typeof(T) == typeof(uint))
+                math.rotr(ref uint32(ref lhs), in rhs);
+            else if(typeof(T) == typeof(ulong))
+                math.rotr(ref uint64(ref lhs), in rhs);
+            else            
+                throw unsupported<T>();
+            return ref lhs;
+        }           
+
+ 
+        [MethodImpl(Inline)]
+        public static T rotl<T>(T lhs, int rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                return generic<T>(math.rotl(uint8(lhs), rhs));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(math.rotl(uint16(lhs), rhs));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(math.rotl(uint32(lhs), rhs));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(math.rotl(uint64(lhs), rhs));
+            else            
+                throw unsupported<T>();
+        }           
+
+        [MethodImpl(Inline)]
+        public static ref T rotl<T>(ref T lhs, in int rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                math.rotl(ref uint8(ref lhs), in rhs);
+            else if(typeof(T) == typeof(ushort))
+                math.rotl(ref uint16(ref lhs), in rhs);
+            else if(typeof(T) == typeof(uint))
+                math.rotl(ref uint32(ref lhs), in rhs);
+            else if(typeof(T) == typeof(ulong))
+                math.rotl(ref uint64(ref lhs), in rhs);
+            else            
+                throw unsupported<T>();
+            return ref lhs;
+        }           
+
+        public static ref Span<T> rotr<T>(ref Span<T> io, ReadOnlySpan<int> rhs)
+            where T : struct
+        {
+            var len = io.Length;
+            for(var i=0; i<len; i++)
+                io[i] = rotr(io[i],rhs[i]);
+            return ref io;
+        }
+
+        public static ref Span<T> rotl<T>(ref Span<T> io, ReadOnlySpan<int> rhs)
+            where T : struct
+        {
+            var len = io.Length;
+            for(var i=0; i<len; i++)
+                io[i] = rotl(io[i],rhs[i]);
+            return ref io;
+        }
+
+        public static Span<T> pack<S,T>(ReadOnlySpan<S> src, Span<T> dst)            
+            where S : struct
+            where T : struct
+        {
+            var srcIx = 0;
+            var dstOffset = 0;
+            var dstIx = 0;
+            var srcSize = SizeOf<S>.BitSize;
+            var dstSize = SizeOf<T>.BitSize;
+            
+            while(srcIx < src.Length && dstIx < dst.Length)
+            {
+                for(var i = 0; i< srcSize; i++)
+                    if(test(src[srcIx], i))
+                       enable(ref dst[dstIx], dstOffset + i);
+
+                srcIx++;
+                if((dstOffset + srcSize) >= dstSize)
+                {
+                    dstOffset = 0;
+                    dstIx++;
+                }
+                else
+                    dstOffset += srcSize;
+            }
+            return dst;
+
+        }
+
     }
 }

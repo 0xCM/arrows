@@ -265,7 +265,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string semicolon()
-        => AsciSym.Semicolon;
+        => AsciSym.Semicolon.ToString();
 
     /// <summary>
     /// Produces a "." character
@@ -273,7 +273,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string dot()
-        => AsciSym.Dot;
+        => AsciSym.Dot.ToString();
 
     /// <summary>
     /// Produces a colon character
@@ -281,7 +281,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string colon()
-        => AsciSym.Colon;
+        => AsciSym.Colon.ToString();
 
     /// <summary>
     /// Encloses the supplied text in quotation marks
@@ -360,7 +360,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string squote(string text)
-        => enclose(text, AsciSym.SQuote);
+        => enclose(text, AsciSym.SQuote.ToString());
 
     /// <summary>
     /// Encloses a character between single quote (') characters
@@ -369,7 +369,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string squote(char c)
-        => enclose(c, AsciSym.SQuote);
+        => enclose(c, AsciSym.SQuote.ToString());
 
     /// <summary>
     /// Encloses text between '(' and ')' characters
@@ -469,7 +469,7 @@ partial class zfunc
     public static string tabs(int count)
         => count == 0
         ? estring()
-        : new string(AsciEscape.TabChar, count);
+        : new string(AsciEscape.Tab, count);
 
     /// <summary>
     /// Produces a string containing a specified number of '.' characters
@@ -758,45 +758,6 @@ partial class zfunc
     public static string join(string delimiter, IEnumerable<object> values)
         => string.Join(delimiter, values);
 
-    /// <summary>
-    /// Concatenates a sequence of strings
-    /// </summary>
-    /// <param name="src">The characters to concatenate</param>
-    [MethodImpl(Inline)]
-    public static string concat(IEnumerable<string> src)
-        => string.Concat(src);
-
-    /// <summary>
-    /// Concatenates a sequence of characters
-    /// </summary>
-    /// <param name="src">The characters to concatenate</param>
-    [MethodImpl(Inline)]
-    public static string concat(IEnumerable<char> src)
-        => new string(src.ToArray());
-
-    /// <summary>
-    /// Concatenates a character array
-    /// </summary>
-    /// <param name="items">The characters to concatenate</param>
-    [MethodImpl(Inline)]
-    public static string concat(params char[] items)
-        => new string(items);
-
-    /// <summary>
-    /// Concatenates an array of strings
-    /// </summary>
-    /// <param name="items">The strings to concatenate</param>
-    [MethodImpl(Inline)]
-    public static string concat(params string[] items)
-        => string.Concat(items);
-
-    /// <summary>
-    /// Concatenates an arbitrary number of string representations
-    /// </summary>
-    /// <param name="src">The strings to be concatenated</param>
-    [MethodImpl(Inline)]   
-    public static string concat(IEnumerable<object> src)    
-        => string.Concat(src);
 
 
 }

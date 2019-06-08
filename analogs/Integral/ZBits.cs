@@ -14,13 +14,6 @@ namespace Z0
 
      public static class ZBits
      {
-          [MethodImpl(Inline)]
-          public static BitVectorU128 bitvector(ulong x0, ulong x1)
-               => new BitVectorU128(UInt128.Define(x0, x1));
-
-          [MethodImpl(Inline)]
-          public static BitVectorU128 bitvector(Span<Bit> src)
-               => pack(src, out UInt128 dst);
 
           [MethodImpl(Inline)]
           public static ref UInt128 enable(ref UInt128 src, int pos)

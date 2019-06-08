@@ -20,28 +20,33 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return neqI8(lhs,rhs);
+                return math.neq(int8(lhs),int8(rhs));
             else if(typeof(T) == typeof(byte))
-                return neqU8(lhs, rhs);
+                return math.neq(uint8(lhs),uint8(rhs));
             else if(typeof(T) == typeof(short))
-                return neqI16(lhs, rhs);
+                return math.neq(int16(lhs),int16(rhs));
             else if(typeof(T) == typeof(ushort))
-                return neqU16(lhs,rhs);
+                return math.neq(uint16(lhs),uint16(rhs));
             else if(typeof(T) == typeof(int))
-                return neqI32(lhs, rhs);
+                return math.neq(int32(lhs),int32(rhs));
             else if(typeof(T) == typeof(uint))
-                return neqU32(lhs, rhs);
+                return math.neq(uint32(lhs),uint32(rhs));
             else if(typeof(T) == typeof(long))
-                return neqI64(lhs,rhs);
+                return math.neq(int64(lhs),int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                return neqU64(lhs,rhs);
+                return math.neq(uint64(lhs),uint64(rhs));
             else if(typeof(T) == typeof(float))
-                return neqF32(lhs, rhs);
+                return math.neq(float32(lhs),float32(rhs));
             else if(typeof(T) == typeof(double))
-                return neqF64(lhs,rhs);
+                return math.neq(float64(lhs),float64(rhs));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
+
+        [MethodImpl(Inline)]
+        public static Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
+            where T : struct
+                => neq(lhs,rhs,span<bool>(length(lhs,rhs)));
 
         public static Span<bool> neq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
             where T : struct
@@ -69,48 +74,6 @@ namespace Z0
             else
                 throw unsupported(PrimalKinds.kind<T>());                
         }
-
-        [MethodImpl(Inline)]
-        static bool neqI8<T>(T lhs, T rhs)
-            => int8(lhs) != int8(rhs);
-
-        [MethodImpl(Inline)]
-        static bool neqU8<T>(T lhs, T rhs)
-            => uint8(lhs) != uint8(rhs);
-
-        [MethodImpl(Inline)]
-        static bool neqI16<T>(T lhs, T rhs)
-            => int16(lhs) != int16(rhs);
-
-        [MethodImpl(Inline)]
-        static bool neqU16<T>(T lhs, T rhs)
-            => uint16(lhs) != uint16(rhs);
-
-        [MethodImpl(Inline)]
-        static bool neqI32<T>(T lhs, T rhs)
-            => int32(lhs) != int32(rhs);
-        
-        [MethodImpl(Inline)]
-        static bool neqU32<T>(T lhs, T rhs)
-            => uint32(lhs) != uint32(rhs);
-
-        [MethodImpl(Inline)]
-        static bool neqI64<T>(T lhs, T rhs)
-            => int64(lhs) != int64(rhs);
-
-        [MethodImpl(Inline)]
-        static bool neqU64<T>(T lhs, T rhs)
-            => uint64(lhs) != uint64(rhs);
-
-        [MethodImpl(Inline)]
-        static bool neqF32<T>(T lhs, T rhs)
-            => float32(lhs) != float32(rhs);
-
-        [MethodImpl(Inline)]
-        static bool neqF64<T>(T lhs, T rhs)
-            => float64(lhs) != float64(rhs);
-
-
 
     }
 

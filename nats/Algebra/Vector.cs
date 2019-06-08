@@ -13,7 +13,7 @@ namespace Z0
     using static nfunc;
     using static nconst;
 
-    public readonly struct Vector<N, T> : ILengthwise
+    public readonly struct Vector<N,T>
         where N : ITypeNat, new()
         where T : struct    
     {
@@ -43,11 +43,6 @@ namespace Z0
         [MethodImpl(Inline)]   
         public static implicit operator Vector<N,T>(Slice<N,T> src)
             => new Vector<N,T>(src.data);
-
-        /// <summary>
-        /// The underlying data
-        /// </summary>
-        //Slice<N,T> data {get;}
 
         T[] data {get;}
 

@@ -28,7 +28,7 @@ namespace Z0.Test
             var total = (int)buckets.TotalCount();
 
             babble($"Histogram domain: {histo.Domain}");
-            babble($"Histogram grain: {histo.Grain}");
+            babble($"Histogram grain: {histo.BinWidth}");
             babble($"Histogram bucket count: {buckets.Length}");            
             babble($"Total number of samples: {data.Length}");
             babble($"Sum of bucket counts: {total}");

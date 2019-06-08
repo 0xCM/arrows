@@ -52,7 +52,7 @@ namespace Z0
             = Duration.Zero;
 
         protected static string FormatScalar(long value, bool withCommas = false)
-            => withCommas ? value.FormatWithCommas() : value.ToString();
+            => withCommas ? value.CommaSeparated() : value.ToString();
 
         protected string DelimitScalar(long value, char delimiter = ',', bool digitcommas = false)
             => $"{FormatScalar(value, digitcommas)}{delimiter}".PadRight(MetricLen);

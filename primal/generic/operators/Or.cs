@@ -36,7 +36,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return orU64(lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }           
 
 
@@ -61,7 +61,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return ref orU64(ref lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)

@@ -26,11 +26,14 @@ namespace Z0
         public static bool operator != (Atom lhs, Atom rhs)
             => not(lhs == rhs);
 
-        public static implicit operator string(Atom s)                
-            => s.data;
+        public static implicit operator string(Atom a)                
+            => a.data;
 
-        public static implicit operator Atom(string s)                
-            => new Atom(s);
+        public static implicit operator Atom(string src)                
+            => new Atom(src);
+
+        public static implicit operator Atom(char src)                
+            => new Atom(src);
 
         public string data {get;}
 
@@ -40,6 +43,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public Atom(string data)
             => this.data = data;
+
+        [MethodImpl(Inline)]
+        public Atom(char data)
+            => this.data = data.ToString();
 
         [MethodImpl(Inline)]
         public bool eq(Atom rhs)
@@ -56,7 +63,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool neq(Atom lhs, Atom rhs)
             => not(eq(lhs,rhs));
-
 
         [MethodImpl(Inline)]
         public string format()
@@ -84,29 +90,5 @@ namespace Z0
             => rhs is Atom ? Equals((Atom)rhs) : false;
     }
 
-    /// <summary>
-    /// Defines an atom sequence container
-    /// </summary>
-    public readonly struct Atoms : ISeq<Atoms, Atom>
-    {
-        public static Atoms FromType<T>()
-            => Contain(type<AsciSym>().Literals().Values<string>().Select(Atom.Define));
-        
-        public static Atoms Contain(IEnumerable<Atom> src)
-            => new Atoms(src);
 
-        public static Atoms Many(params Atom[] src)
-            => new Atoms(src);
-
-        public static Atoms operator + (Atoms lhs, Atoms rhs)
-            => lhs.Concat(rhs);
-                
-        public Atoms(IEnumerable<Atom> src)
-            => Content = src;
-        
-        public IEnumerable<Atom> Content {get;}
-
-        public Atoms Concat(Atoms rhs)
-            => Contain(Content.Concat(rhs.Content));
-    }
 }

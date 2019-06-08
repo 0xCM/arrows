@@ -13,7 +13,6 @@ namespace Z0
     using static zfunc;
 
     using static MathSym;
-    using AsciCompound = AsciSym.Compound;
     using System.Collections;
 
     public enum NumericKind : byte
@@ -317,7 +316,7 @@ namespace Z0
         /// <summary>
         /// Indicates a unary operator that computes the absolute value of a signed number
         /// </summary>
-        [Symbol(MathSym.Abs), Arity(OpArity.Unary),
+        [Arity(OpArity.Unary),
             Description("Indicates an absolute value operator")]
         Abs,
 
@@ -349,7 +348,7 @@ namespace Z0
         Min,
 
 
-        [Symbol(Arrows.RightSquiggle)]
+        [Symbol(ArrowSym.RightSquiggle)]
         Stream,
 
         /// <summary>

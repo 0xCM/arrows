@@ -187,9 +187,6 @@ namespace Z0
         public Span128<S> As<S>()                
             where S : struct
                 => Span128.load(MemoryMarshal.Cast<T,S>(data));                    
-
- 
-
         public int Length 
         {
             [MethodImpl(Inline)]
@@ -214,8 +211,7 @@ namespace Z0
             get => data.IsEmpty;
         }
 
-
-        public override string ToString() 
+        public string Format() 
             => data.ToString();
 
        public override bool Equals(object rhs) 

@@ -60,13 +60,63 @@ namespace Z0
             => mit == MemberInstanceType.Static;
 
         /// <summary>
+        /// Returns all interfaces realized by the type, including those inherited from
+        /// supertypes
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static IEnumerable<Type> Interfaces(this Type t)
+            => t.GetInterfaces() ?? new Type[]{};
+
+        /// <summary>
+        /// Returns all source types which ar interfaces
+        /// </summary>
+        /// <param name="src">The source types</param>
+        [MethodImpl(Inline)]
+        public static IEnumerable<Type> Interfaces(this IEnumerable<Type> src)
+            => src.Where(t => t.IsInterface);
+
+        /// <summary>
+        /// Returns all source types which are classes
+        /// </summary>
+        /// <param name="src">The source types</param>
+        [MethodImpl(Inline)]
+        public static IEnumerable<Type> Classes(this IEnumerable<Type> src)
+            => src.Where(t => t.IsClass);
+
+        /// <summary>
+        /// Returns all source types which are structs
+        /// </summary>
+        /// <param name="src">The source types</param>
+        [MethodImpl(Inline)]
+        public static IEnumerable<Type> Structs(this IEnumerable<Type> src)
+            => src.Where(t => t.IsStruct());
+
+        /// <summary>
+        /// Returns all source types which are delegates
+        /// </summary>
+        /// <param name="src">The source types</param>
+        [MethodImpl(Inline)]
+        public static IEnumerable<Type> Delegates(this IEnumerable<Type> src)
+            => src.Where(t => t.IsDelegate());
+
+
+        /// <summary>
+        /// Returns all source types which are enums
+        /// </summary>
+        /// <param name="src">The source types</param>
+        [MethodImpl(Inline)]
+        public static IEnumerable<Type> Enums(this IEnumerable<Type> src)
+            => src.Where(t => t.IsEnum);
+
+        /// <summary>
         /// Determines whether a type implements a specified interface
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <param name="interfaceType">The interface type</param>
         [MethodImpl(Inline)]
         public static bool Realizes(this Type t, Type interfaceType)
-            => interfaceType.IsInterface && t.GetInterfaces().Contains(interfaceType);
+            => interfaceType.IsInterface && t.Interfaces().Contains(interfaceType);
 
         /// <summary>
         /// Determines whether a type implements a specific interface
@@ -75,7 +125,7 @@ namespace Z0
         /// <param name="t">The type to examine</param>
         [MethodImpl(Inline)]
         public static bool Realizes<T>(this Type t)
-            => typeof(T).IsInterface && t.GetInterfaces().Contains(typeof(T));
+            => typeof(T).IsInterface && t.Interfaces().Contains(typeof(T));
 
         /// <summary>
         /// Determines whether a type is nullable
@@ -507,7 +557,6 @@ namespace Z0
         public static IEnumerable<T> Values<T>(this IEnumerable<FieldInfo> src, object o = null)
             => src.Select(x => x.GetValue(o)).Where(x => x is T).Cast<T>();
 
-
         /// <summary>
         /// Retrieves a type's default constructor, if present; otherwise, none
         /// </summary>
@@ -808,7 +857,6 @@ namespace Z0
         public static IEnumerable<MethodInfo> GetDeclaredInstanceMethods(this Type t)
             => t.GetMethods(BF_DeclaredInstance);
 
-
         /// <summary>
         /// Retrieves all public properties exposed by a type and appropriately handles interface inheritance
         /// </summary>
@@ -830,7 +878,7 @@ namespace Z0
                 while (queue.Count > 0)
                 {
                     var subType = queue.Dequeue();
-                    foreach (var subInterface in subType.GetInterfaces())
+                    foreach (var subInterface in subType.Interfaces())
                     {
                         if (considered.Contains(subInterface)) continue;
 
@@ -1053,8 +1101,8 @@ namespace Z0
                 }
             }
 
-            var interfaces = stype.GetInterfaces();
-            if (interfaces != null && interfaces.Length > 0)
+            var interfaces = stype.Interfaces().ToList();
+            if (interfaces.Count > 0)
             {
                 foreach (var i in interfaces)
                 {
@@ -1069,7 +1117,6 @@ namespace Z0
             return null;
         }
 
-
         /// <summary>
         /// Creates an instance of a type and casts the instance value as specified by a type parameter
         /// </summary>
@@ -1079,8 +1126,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T CreateInstance<T>(this Type t, params object[] args)
             => (T)Activator.CreateInstance(t, args);
-
-
-
     }    
 }
