@@ -17,26 +17,6 @@ namespace Z0
 
     public static partial class NatProve
     {
-        /// <summary>
-        /// Evaluates a function within a try block and returns the value of the computation if 
-        /// successful; otherwise, returns None together with the reported exceptions
-        /// </summary>
-        /// <typeparam name="T">The result type</typeparam>
-        /// <param name="f">The function to evaluate</param>
-        /// <returns></returns>
-        public static Option<T> Try<T>(Func<T> f, Action<Exception> error = null)
-        {
-            try
-            {
-                return f();
-            }
-            catch (Exception e)
-            {
-                error?.Invoke(e);
-                return zfunc.none<T>();
-            }
-        }
-
         //const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;        
 
         /// <summary>

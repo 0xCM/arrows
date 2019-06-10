@@ -115,5 +115,8 @@ namespace Z0
         public static string Format(this Span<HexDigit> src)
             => src.ToReadOnlySpan().Format();
 
+
+
+
     }
 }

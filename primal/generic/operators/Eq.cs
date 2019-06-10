@@ -41,7 +41,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return eqF64(lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         public static Span<bool> eq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
@@ -68,7 +68,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return math.eq(float64(lhs), float64(rhs), dst);
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]

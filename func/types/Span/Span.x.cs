@@ -95,5 +95,12 @@ namespace Z0
             return sb.ToString();
         }
 
+        [MethodImpl(Inline)]        
+        public static Span<N,T> ToNatSpan<N,T>(this Span<T> src, N size = default)
+            where T : struct
+            where N : ITypeNat, new()
+                => new Span<N, T>(src);
+
+
     }
 }

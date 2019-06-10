@@ -15,12 +15,8 @@ namespace Z0
     /// </summary>
     public readonly struct NatInterval<K1,K2>
         where K1: ITypeNat, INatLt<K1,K2>, new()
-        where K2 : ITypeNat, new()
-        
-    {
-        public static Option<NatBetween<T,K1,K2>> contains<T>()
-            where T : ITypeNat, new() => NatProve.tryBetween<T,K1,K2>();
-                 
+        where K2 : ITypeNat, new()        
+    {                 
         public static IEnumerable<ulong> values()
         {
             for(var n = natu<K1>(); n <= natu<K2>(); n++)
@@ -35,8 +31,6 @@ namespace Z0
             rightclosed = true;
             valid = nfunc.demand(left < right);
         }
-        public Seq<ulong> members()
-            => Seq.define(values());
 
         public bool member(uint candidate)
             => candidate >= left && candidate <= right;
@@ -64,18 +58,6 @@ namespace Z0
 
         public bool discrete 
             => true;
-
-        public IntervalKind kind 
-            => IntervalKind.Closed;
-
-        public Interval<ulong> canonical()
-            => new Interval<ulong>(left,leftclosed,right,rightclosed);
-
-        public string format()
-            => canonical().Format();
-        
-        public override string ToString()
-            => format();
 
     }
 }

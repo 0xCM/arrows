@@ -14,7 +14,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static nfunc;
-    using static zfunc;
+    using static nconst;
 
     /// <summary>
     /// Constructs natural number prepresentatives and calculates related values
@@ -38,6 +38,11 @@ namespace Z0
                     _ => N0.Rep
                     }).GetType();
 
+
+        [MethodImpl(Inline)]   
+        static Type typedef(Type t)
+            => t.GetGenericTypeDefinition();
+
         [MethodImpl(Inline)]   
         static Type seqtype(uint args)
             => typedef(args switch {
@@ -55,7 +60,7 @@ namespace Z0
 
         [MethodImpl(Inline)]       
         static Type[] types(byte[] digits)
-            => map(digits,primtype).ToArray();
+            => digits.Select(primtype).ToArray();
 
         /// <summary>
         /// Constructs the natural type corresponding to an integral value
@@ -91,7 +96,7 @@ namespace Z0
         {
             var dtypes = types(digits);
             var nattype = seqtype((uint)dtypes.Length).MakeGenericType(dtypes);
-            return instance<NatSeq>(nattype);            
+            return  (NatSeq)Activator.CreateInstance(nattype);
         }
         
         /// <summary>

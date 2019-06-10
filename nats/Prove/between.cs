@@ -48,36 +48,6 @@ namespace Z0
             where K2: ITypeNat, new()
                 => new NatBetween<K,K1,K2>(k, k1, k2);
 
-        /// <summary>
-        /// Attempts to prove that that n:K & n1:K1 & n2:K2 => n1 <= n <= n2
-        /// Signals success by returning evidence
-        /// Signals failure by returning none
-        /// </summary>
-        /// <typeparam name="K">The subject</typeparam>
-        /// <typeparam name="K1">The lower inclusive bound</typeparam>
-        /// <typeparam name="K2">The upper inclusive bound</typeparam>
-        [MethodImpl(Inline)]
-        public static Option<NatBetween<K,K1,K2>> tryBetween<K,K1,K2>()
-            where K: ITypeNat, new()
-            where K1: ITypeNat, new()
-            where K2: ITypeNat, new()
-                => Try(() => between<K,K1,K2>());
-
-        /// <summary>
-        /// Attempts to prove that that n:K & n1:K1 & n2:K2 => n1 <= n <= n2
-        /// Signals success by returning evidence
-        /// Signals failure by returning none
-        /// </summary>
-        /// <typeparam name="K">The subject</typeparam>
-        /// <typeparam name="K1">The lower inclusive bound</typeparam>
-        /// <typeparam name="K2">The upper inclusive bound</typeparam>
-        [MethodImpl(Inline)]
-        public static Option<NatBetween<K,K1,K2>> tryBetween<K,K1,K2>(K k, K1 k1, K2 k2)
-            where K: ITypeNat, new()
-            where K1: ITypeNat, new()
-            where K2: ITypeNat, new()
-                => Try(() => between<K,K1,K2>(k, k1, k2));
- 
     }
 
 }

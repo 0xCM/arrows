@@ -24,7 +24,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return ceilF64(src);
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
         
         public static Span<T> ceil<T>(ReadOnlySpan<T> src, Span<T> dst)

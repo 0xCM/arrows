@@ -20,11 +20,11 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return addI8(lhs,rhs);
+                return generic<T>(math.add(int8(lhs),int8(rhs)));
             else if(typeof(T) == typeof(byte))
-                return addU8(lhs, rhs);
+                return generic<T>(math.add(uint8(lhs),uint8(rhs)));
             else if(typeof(T) == typeof(short))
-                return addI16(lhs, rhs);
+                return generic<T>(math.add(uint16(lhs),int16(rhs)));
             else if(typeof(T) == typeof(ushort))
                 return addU16(lhs,rhs);
             else if(typeof(T) == typeof(int))
@@ -40,7 +40,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return addF64(lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
                     
         [MethodImpl(Inline)]
@@ -68,7 +68,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return ref addF64(ref lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         public static Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
@@ -95,7 +95,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 math.add(float64(lhs), float64(rhs), float64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return dst;
         }
 
@@ -126,13 +126,41 @@ namespace Z0
                 math.add(uint64(lhs), uint64(rhs));
             else if(typeof(T) == typeof(float))
                 math.add(float32(lhs), float32(rhs));
-            else if(typeof(T) == typeof(float))
+            else if(typeof(T) == typeof(double))
                 math.add(float64(lhs), float64(rhs));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return ref lhs;
         }
 
+        [MethodImpl(Inline)]
+        public static ref Span<T> add<T>(ref Span<T> lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.add(int8(lhs), int8(rhs));
+            else if(typeof(T) == typeof(byte))
+                math.add(uint8(lhs), uint8(rhs));
+            else if(typeof(T) == typeof(short))
+                math.add(int16(lhs), int16(rhs));
+            else if(typeof(T) == typeof(ushort))
+                math.add(uint16(lhs), uint16(rhs));
+            else if(typeof(T) == typeof(int))
+                math.add(int32(lhs), int32(rhs));
+            else if(typeof(T) == typeof(uint))
+                math.add(uint32(lhs), uint32(rhs));
+            else if(typeof(T) == typeof(long))
+                math.add(int64(lhs), int64(rhs));
+            else if(typeof(T) == typeof(ulong))
+                math.add(uint64(lhs), uint64(rhs));
+            else if(typeof(T) == typeof(float))
+                math.add(float32(lhs), float32(rhs));
+            else if(typeof(T) == typeof(double))
+                math.add(float64(lhs), float64(rhs));
+            else
+                throw unsupported<T>();
+            return ref lhs;
+        }
 
         [MethodImpl(Inline)]
         static T addI8<T>(T lhs, T rhs) 

@@ -13,7 +13,6 @@ namespace Z0
     using System.Collections.Concurrent;
     using System.Runtime.CompilerServices;
 
-    using static zfunc;
     using static nfunc;
 
     /// <summary>
@@ -300,21 +299,7 @@ namespace Z0
 
     }
 
-    /// <summary>
-    /// Characterizes operational aspects of a N-dimensional vector space over 
-    /// a field K inhabited by vectors from and abelian group A
-    /// </summary>
-    /// <typeparam name="N">The dimension type</typeparam>
-    /// <typeparam name="K">The field type</typeparam>
-    /// <typeparam name="G">The indidual type</typeparam>
-    public interface IVectorSpaceOps<N,K,G> : ILeftModuleOps<K,G>
-        where N : ITypeNat, new()
-        where G : IGroupAOps<G>, new()
-        where K : IFieldOps<K>, new()
-    {
-
-    }
-
+ 
     /// <summary>
     /// Requires k1:K1 & k2:K2 => k1 + 1 = k2
     /// </summary>

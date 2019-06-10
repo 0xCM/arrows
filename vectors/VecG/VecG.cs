@@ -12,109 +12,109 @@ namespace Z0
         
     using static zfunc;
 
-    public ref struct VecG<T>
+    public ref struct Vector<T>
         where T : struct
     {
         Span256<T> data;
 
         [MethodImpl(Inline)]
-        public VecG(in Span256<T> src)
+        public Vector(in Span256<T> src)
             => this.data = src;
 
         [MethodImpl(Inline)]
-        public VecG(in ReadOnlySpan256<T> src)
+        public Vector(in ReadOnlySpan256<T> src)
             => this.data = src.Replicate();
 
         [MethodImpl(Inline)]
-        public static implicit operator VecG<T>(in Span256<T> src)
-            =>  new VecG<T>(src);
+        public static implicit operator Vector<T>(in Span256<T> src)
+            =>  new Vector<T>(src);
 
         [MethodImpl(Inline)]
-        public static implicit operator VecG<T>(in ReadOnlySpan256<T> src)
-            =>  new VecG<T>(src);
+        public static implicit operator Vector<T>(in ReadOnlySpan256<T> src)
+            =>  new Vector<T>(src);
 
         [MethodImpl(Inline)]
-        public static implicit operator Span256<T>(in VecG<T> src)
+        public static implicit operator Span256<T>(in Vector<T> src)
             =>  src.data;
 
         [MethodImpl(Inline)]
-        public static implicit operator Span<T>(in VecG<T> src)
+        public static implicit operator Span<T>(in Vector<T> src)
             =>  src.data;
 
         [MethodImpl(Inline)]
-        public static implicit operator ReadOnlySpan<T>(in VecG<T> src)
+        public static implicit operator ReadOnlySpan<T>(in Vector<T> src)
             =>  src.data;
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator + (in VecG<T> lhs, in VecG<T> rhs) 
+        public static Vector<T> operator + (in Vector<T> lhs, in Vector<T> rhs) 
             => gmath.add(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator - (in VecG<T> lhs, in VecG<T> rhs) 
+        public static Vector<T> operator - (in Vector<T> lhs, in Vector<T> rhs) 
             => gmath.sub(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator * (in VecG<T> lhs, in VecG<T> rhs) 
+        public static Vector<T> operator * (in Vector<T> lhs, in Vector<T> rhs) 
             => gmath.mul(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator / (in VecG<T> lhs, in VecG<T> rhs) 
+        public static Vector<T> operator / (in Vector<T> lhs, in Vector<T> rhs) 
             => gmath.div(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator % (in VecG<T> lhs, in VecG<T> rhs) 
+        public static Vector<T> operator % (in Vector<T> lhs, in Vector<T> rhs) 
             => gmath.mod(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator & (in VecG<T> lhs, in VecG<T> rhs) 
+        public static Vector<T> operator & (in Vector<T> lhs, in Vector<T> rhs) 
             => gmath.and(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator | (in VecG<T> lhs, in VecG<T> rhs) 
+        public static Vector<T> operator | (in Vector<T> lhs, in Vector<T> rhs) 
             => gmath.or(lhs.data, rhs.data, span<T>(count(lhs,rhs))).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator ^ (in VecG<T> lhs, in VecG<T> rhs) 
+        public static Vector<T> operator ^ (in Vector<T> lhs, in Vector<T> rhs) 
             => gmath.xor(lhs.data, rhs.data, lhs.data.ToSpan()).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator << (in VecG<T> lhs, int rhs) 
+        public static Vector<T> operator << (in Vector<T> lhs, int rhs) 
             => gmath.shiftl(lhs.data.Unblock().ToReadOnlySpan(), rhs).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator >> (in VecG<T> lhs, int rhs) 
+        public static Vector<T> operator >> (in Vector<T> lhs, int rhs) 
             => gmath.shiftr(lhs.data.Unblock().ToReadOnlySpan(), rhs).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator - (in VecG<T> src) 
+        public static Vector<T> operator - (in Vector<T> src) 
             => gmath.negate(src.data, alloc(src)).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator ++ (in VecG<T> src) 
+        public static Vector<T> operator ++ (in Vector<T> src) 
             => gmath.inc(src.data, alloc(src)).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator -- (in VecG<T> src) 
+        public static Vector<T> operator -- (in Vector<T> src) 
             => gmath.dec(src.data, alloc(src)).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static VecG<T> operator ~ (in VecG<T> src) 
+        public static Vector<T> operator ~ (in Vector<T> src) 
             => gmath.flip(src.data, alloc(src)).ToSpan256();
 
         [MethodImpl(Inline)]
-        public static Span<bool> operator < (in VecG<T> lhs, in VecG<T> rhs) 
+        public static Span<bool> operator < (in Vector<T> lhs, in Vector<T> rhs) 
             => gmath.lt<T>(lhs.data,rhs.data);            
 
         [MethodImpl(Inline)]
-        public static Span<bool> operator <= (in VecG<T> lhs, in VecG<T> rhs) 
+        public static Span<bool> operator <= (in Vector<T> lhs, in Vector<T> rhs) 
             => gmath.lteq<T>(lhs.data,rhs.data);            
 
         [MethodImpl(Inline)]
-        public static Span<bool> operator > (in VecG<T> lhs, in VecG<T> rhs) 
+        public static Span<bool> operator > (in Vector<T> lhs, in Vector<T> rhs) 
             => gmath.gt<T>(lhs.data,rhs.data);
 
         [MethodImpl(Inline)]
-        public static Span<bool> operator >= (in VecG<T> lhs, in VecG<T> rhs) 
+        public static Span<bool> operator >= (in Vector<T> lhs, in Vector<T> rhs) 
             => gmath.gteq<T>(lhs.data,rhs.data);
 
         [MethodImpl(Inline)]
@@ -144,7 +144,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public VecG<T> Add(in VecG<T> rhs)
+        public Vector<T> Add(in Vector<T> rhs)
         {
             var x = unblock(data);
             var y = rhs.data.Unblock();
@@ -153,7 +153,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> Sub(in VecG<T> rhs)
+        public Vector<T> Sub(in Vector<T> rhs)
         {
             var x = data.Unblock();
             var y = rhs.data.Unblock();
@@ -162,7 +162,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> Mul(in VecG<T> rhs)
+        public Vector<T> Mul(in Vector<T> rhs)
         {
             var x = unblock(data);
             var y = rhs.data.Unblock();
@@ -171,7 +171,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> Div(in VecG<T> rhs)
+        public Vector<T> Div(in Vector<T> rhs)
         {
             var x = unblock(data);
             var y = rhs.data.Unblock();
@@ -180,7 +180,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> Mod(in VecG<T> rhs)
+        public Vector<T> Mod(in Vector<T> rhs)
         {
             var x = unblock(data);
             var y = rhs.data.Unblock();
@@ -190,7 +190,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public VecG<T> Negate()
+        public Vector<T> Negate()
         {
             var x = unblock(data);
             gmath.negate(ref x);
@@ -198,7 +198,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> Inc()
+        public Vector<T> Inc()
         {
             var x = unblock(data);
             gmath.inc(ref x);
@@ -206,7 +206,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> Dec()
+        public Vector<T> Dec()
         {
             var x = unblock(data);
             gmath.dec(ref x);
@@ -214,7 +214,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> Abs()
+        public Vector<T> Abs()
         {
             var x = unblock(data);
             gmath.abs(ref x);
@@ -222,7 +222,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> And(in VecG<T> rhs)
+        public Vector<T> And(in Vector<T> rhs)
         {
             var x = unblock(data);
             var y = unblock(rhs.data);
@@ -231,7 +231,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> Or(in VecG<T> rhs)
+        public Vector<T> Or(in Vector<T> rhs)
         {
             var x = unblock(data);
             var y = unblock(rhs.data);
@@ -240,7 +240,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> XOr(in VecG<T> rhs)
+        public Vector<T> XOr(in Vector<T> rhs)
         {
             var x = unblock(data);
             var y = unblock(rhs.data);
@@ -249,7 +249,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> ShiftL(in VecG<int> shifts)
+        public Vector<T> ShiftL(in Vector<int> shifts)
         {
             var x = unblock(data);
             var y = shifts.data.Unblock();
@@ -258,7 +258,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> ShiftR(in VecG<int> shifts)
+        public Vector<T> ShiftR(in Vector<int> shifts)
         {
             var x = unblock(data);
             var y = shifts.data.Unblock();
@@ -267,7 +267,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> RotL(in VecG<int> shifts)
+        public Vector<T> RotL(in Vector<int> shifts)
         {
             var x = unblock(data);
             var y = shifts.data.Unblock();
@@ -276,7 +276,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> RotR(in VecG<int> shifts)
+        public Vector<T> RotR(in Vector<int> shifts)
         {
             var x = unblock(data);
             var y = shifts.data.Unblock();
@@ -285,7 +285,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public VecG<T> Flip()
+        public Vector<T> Flip()
         {
             var x = unblock(data);
             gmath.flip(ref x);
@@ -293,27 +293,27 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public T Dot(in VecG<T> rhs)
+        public T Dot(in Vector<T> rhs)
             => gmath.dot<T>(data,rhs.data);
 
         [MethodImpl(Inline)]
-        public Span<bool> Eq(in VecG<T> rhs)
+        public Span<bool> Eq(in Vector<T> rhs)
             => gmath.eq<T>(data, rhs.data);
 
         [MethodImpl(Inline)]
-        public Span<bool> Gt(in VecG<T> rhs)
+        public Span<bool> Gt(in Vector<T> rhs)
             => gmath.gt<T>(data,rhs.data);
 
         [MethodImpl(Inline)]
-        public Span<bool> GtEq(in VecG<T> rhs)
+        public Span<bool> GtEq(in Vector<T> rhs)
             => gmath.gteq<T>(data,rhs.data);
 
         [MethodImpl(Inline)]
-        public Span<bool> Lt(in VecG<T> rhs)
+        public Span<bool> Lt(in Vector<T> rhs)
             => gmath.lt<T>(data,rhs.data);            
 
         [MethodImpl(Inline)]
-        public Span<bool> LtEq(in VecG<T> rhs)
+        public Span<bool> LtEq(in Vector<T> rhs)
             => gmath.lteq<T>(data,rhs.data);
 
         public int Length
@@ -323,15 +323,15 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        static Span<T> alloc(VecG<T> src)
+        static Span<T> alloc(Vector<T> src)
             => span<T>(src.Count);
 
         [MethodImpl(Inline)]
-        static int count(in VecG<T> lhs, in VecG<T> rhs)        
+        static int count(in Vector<T> lhs, in Vector<T> rhs)        
             => length(lhs.data.Unblock(),rhs.data.Unblock());
         
         [MethodImpl(Inline)]
-        static Span<T> alloc(in VecG<T> lhs, in VecG<T> rhs)
+        static Span<T> alloc(in Vector<T> lhs, in Vector<T> rhs)
             => span<T>(count(lhs,rhs)); 
 
         [MethodImpl(Inline)]

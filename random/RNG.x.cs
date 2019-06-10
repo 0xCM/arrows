@@ -14,36 +14,8 @@ namespace Z0
     using static zfunc;
     using static As;
 
-    public static class RNGx
+    public static partial class RNGx
     {
-        [MethodImpl(Inline)]
-        static bool nonzero<T>(T src)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return int8(src) != 0;
-            else if(typeof(T) == typeof(byte))
-                return uint8(src) != 0;
-            else if(typeof(T) == typeof(short))
-                return int16(src) != 0;
-            else if(typeof(T) == typeof(ushort))
-                return uint16(src) != 0;
-            else if(typeof(T) == typeof(int))
-                return int32(src) != 0;
-            else if(typeof(T) == typeof(uint))
-                return uint32(src) != 0;
-            else if(typeof(T) == typeof(long))
-                return int64(src) != 0;
-            else if(typeof(T) == typeof(ulong))
-                return uint64(src) != 0;
-            else if(typeof(T) == typeof(float))
-                return float32(src) != 0;
-            else if(typeof(T) == typeof(double))
-                return float64(src) != 0;
-            else            
-                throw unsupported(PrimalKinds.kind<T>());
-        }
-
 
         public static IRandomizer<T> Random<T>(this IRandomizer random)
             where T : struct
@@ -71,7 +43,7 @@ namespace Z0
             where T : struct
                 => src.Stream<T>(domain).First();
 
-        public static unsafe Span<T> Span<T>(this IRandomizer random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
+        public static Span<T> Span<T>(this IRandomizer random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
         {            
             var dst = span<T>(length);
@@ -116,7 +88,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static IEnumerable<T> NonZeroStream<T>(this IRandomizer random, Interval<T>? domain = null)
                 where T : struct
-                    => random.Stream(domain, nonzero);
+                    => random.Stream(domain, gmath.nonzero);
 
         [MethodImpl(Inline)]
         public static T NonZeroSingle<T>(this IRandomizer src, Interval<T>? domain = null)
@@ -126,33 +98,46 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T[] NonZeroArray<T>(this IRandomizer random, int length, Interval<T>? domain = null)
             where T : struct
-                => random.Stream(domain, nonzero).TakeArray(length);        
+                => random.Stream(domain, gmath.nonzero).TakeArray(length);        
 
         [MethodImpl(Inline)]
         public static Span<T> NonZeroSpan<T>(this IRandomizer random, int samples, Interval<T>? domain = null)
                 where T : struct
-                    => random.Span<T>(samples, domain, nonzero);        
+                    => random.Span<T>(samples, domain, gmath.nonzero);        
 
         [MethodImpl(Inline)]
         public static Span128<T> NonZeroSpan128<T>(this IRandomizer random, int blocks, Interval<T>? domain = null)        
             where T : struct  
-                => random.Span128(blocks, domain, nonzero);
+                => random.Span128(blocks, domain, gmath.nonzero);
 
         [MethodImpl(Inline)]
         public static Span128<T> Span128<T>(this IRandomizer random, int blocks, Interval<T>? domain,  bool notZero = false)
             where T : struct
         {
-            Func<T,bool> filter = notZero ? new Func<T,bool>(nonzero) : null; 
+            Func<T,bool> filter = notZero ? new Func<T,bool>(gmath.nonzero) : null; 
             return random.Span128<T>(blocks, domain, filter);
         }
 
         [MethodImpl(Inline)]
         public static Span256<T> NonZeroSpan256<T>(this IRandomizer random, int blocks, Interval<T>? domain = null)        
             where T : struct  
-                => random.Span256(blocks, domain, nonzero);
+                => random.Span256(blocks, domain, gmath.nonzero);
 
+        public static Span<N,T> NatSpan<N,T>(this IRandomizer random, N length = default)
+            where T : struct  
+            where N : ITypeNat, new()
+            {
+                var src = random.Span<T>((int)length.value);
+                return Z0.NatSpan.Adapt<N,T>(src);                                    
+            }        
 
-     // file:///J:/lang/areas/numerics/Lemire%20-%20Fast%20Random%20Integer%20Generation%20in%20an%20Interval.pdf        
+        /// <summary>
+        /// Implements Leimire's algorithm for sampling a uniformly distribute random number
+        /// in an interval [0,..,max)
+        /// </summary>
+        /// <param name="rng">A random source</param>
+        /// <param name="max">The upper bound for the sample</param>
+        /// <remarks>Reference: Fast Random Integer Generation in an Interval, Daniel Lemire 2018</remarks>
         public static ulong NextInteger(this IRandomSource rng, ulong max) 
         {
             var x = rng.NextInteger();
@@ -202,7 +187,56 @@ namespace Z0
                 yield return mean + stdDev * u * x;
            }
         }
+
+        
+        public static System.Random SystemRandom(this IRandomSource rng)
+            => new SystemRandom(rng);
     }   
     
+    class SystemRandom : System.Random
+    {
+        public SystemRandom(IRandomSource Source)
+        {
+            this.Source = Source;
+        }
 
+        IRandomSource Source {get;}
+
+        public override int Next()
+            => (int)Source.NextInteger((ulong)Int32.MaxValue);
+
+        public override int Next(int maxValue)
+            => (int)Source.NextInteger((ulong)maxValue);
+
+        public override int Next(int minValue, int maxValue)
+        {
+            var delta = maxValue - minValue;
+            if(delta > 0)
+                return minValue + Next(delta);
+            else
+                return minValue + Next(-delta);
+        }
+
+        public override void NextBytes(byte[] buffer)
+        {
+            var src = Source.Bytes().Take(buffer.Length);
+            var i = 0;
+            var it = src.GetEnumerator();
+            while(it.MoveNext())
+                buffer[i++] = it.Current;
+        }
+
+        public override void NextBytes(Span<byte> buffer)
+        {
+            var src = Source.Bytes().Take(buffer.Length);
+            var i = 0;
+            var it = src.GetEnumerator();
+            while(it.MoveNext())
+                buffer[i++] = it.Current;
+
+        }
+        public override double NextDouble()
+            => Source.NextDouble();
+
+    }
 }

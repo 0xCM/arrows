@@ -40,8 +40,8 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(math.inc(ref float64(ref src)));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
-        }           
+                 throw unsupported<T>();                
+       }           
 
         [MethodImpl(Inline)]
         public static ref T inc<T>(ref T src)
@@ -68,7 +68,8 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 math.inc(ref float64(ref src));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                 throw unsupported<T>();                
+
             return ref src;
         }           
 
@@ -96,36 +97,35 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 math.inc(float64(src), float64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                 throw unsupported<T>();                
             return dst;
         }
 
         public static ref Span<T> inc<T>(ref Span<T> io)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            if(kind == PrimalKind.int8)
+            if(typeof(T) == typeof(sbyte))
                 math.inc(int8(io));
-            else if(kind == PrimalKind.uint8)
+            else if(typeof(T) == typeof(byte))
                 math.inc(uint8(io));
-            else if(kind == PrimalKind.int16)
+            else if(typeof(T) == typeof(short))
                 math.inc(int16(io));
-            else if(kind == PrimalKind.uint16)
+            else if(typeof(T) == typeof(ushort))
                 math.inc(uint16(io));
-            else if(kind == PrimalKind.int32)
+            else if(typeof(T) == typeof(int))
                 math.inc(int32(io));
-            else if(kind == PrimalKind.uint32)
+            else if(typeof(T) == typeof(uint))
                 math.inc(uint32(io));
-            else if(kind == PrimalKind.int64)
+            else if(typeof(T) == typeof(long))
                 math.inc(int64(io));
-            else if(kind == PrimalKind.uint64)
+            else if(typeof(T) == typeof(ulong))
                 math.inc(uint64(io));
-            else if(kind == PrimalKind.float32)
+            else if(typeof(T) == typeof(float))
                 math.inc(float32(io));
-            else if(kind == PrimalKind.float64)
+            else if(typeof(T) == typeof(double))
                 math.inc(float64(io));
             else
-                throw unsupported(kind);                
+                 throw unsupported<T>();                
            
             return ref io;
         }

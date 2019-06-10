@@ -40,7 +40,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return mulF64(lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -68,9 +68,8 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return ref mulF64(ref lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
-
 
         public static Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct
@@ -96,7 +95,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 math.mul(float64(lhs), float64(rhs), float64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return dst;
         }
 
@@ -124,7 +123,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 math.mul(float64(lhs), float64(rhs));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return ref lhs;
         }
 

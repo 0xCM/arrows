@@ -16,133 +16,133 @@ namespace Z0
     public static class VecGX
     {
         [MethodImpl(Inline)]
-        public static VecG<sbyte> ToVecG(this ReadOnlySpan<sbyte> src)
-            => VecG.load(src);
+        public static Vector<sbyte> ToVecG(this ReadOnlySpan<sbyte> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<byte> ToVecG(this ReadOnlySpan<byte> src)
-            => VecG.load(src);
+        public static Vector<byte> ToVecG(this ReadOnlySpan<byte> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<short> ToVecG(this ReadOnlySpan<short> src)
-            => VecG.load(src);
+        public static Vector<short> ToVecG(this ReadOnlySpan<short> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<ushort> ToVecG(this ReadOnlySpan<ushort> src)
-            => VecG.load(src);
+        public static Vector<ushort> ToVecG(this ReadOnlySpan<ushort> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<int> ToVecG(this ReadOnlySpan<int> src)
-            => VecG.load(src);
+        public static Vector<int> ToVecG(this ReadOnlySpan<int> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<uint> ToVecG(this ReadOnlySpan<uint> src)
-            => VecG.load(src);
+        public static Vector<uint> ToVecG(this ReadOnlySpan<uint> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<long> ToVecG(this ReadOnlySpan<long> src)
-            => VecG.load(src);
+        public static Vector<long> ToVecG(this ReadOnlySpan<long> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<ulong> ToVecG(this ReadOnlySpan<ulong> src)
-            => VecG.load(src);
+        public static Vector<ulong> ToVecG(this ReadOnlySpan<ulong> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<float> ToVecG(this ReadOnlySpan<float> src)
-            => VecG.load(src);
+        public static Vector<float> ToVecG(this ReadOnlySpan<float> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<double> ToVecG(this ReadOnlySpan<double> src)
-            => VecG.load(src);
+        public static Vector<double> ToVecG(this ReadOnlySpan<double> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<sbyte> ToVecG(this Span<sbyte> src)
-            => VecG.load(src);
+        public static Vector<sbyte> ToVecG(this Span<sbyte> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<byte> ToVecG(this Span<byte> src)
-            => VecG.load(src);
+        public static Vector<byte> ToVecG(this Span<byte> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<short> ToVecG(this Span<short> src)
-            => VecG.load(src);
+        public static Vector<short> ToVecG(this Span<short> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<ushort> ToVecG(this Span<ushort> src)
-            => VecG.load(src);
+        public static Vector<ushort> ToVecG(this Span<ushort> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<int> ToVecG(this Span<int> src)
-            => VecG.load(src);
+        public static Vector<int> ToVecG(this Span<int> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<uint> ToVecG(this Span<uint> src)
-            => VecG.load(src);
+        public static Vector<uint> ToVecG(this Span<uint> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<long> ToVecG(this Span<long> src)
-            => VecG.load(src);
+        public static Vector<long> ToVecG(this Span<long> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<ulong> ToVecG(this Span<ulong> src)
-            => VecG.load(src);
+        public static Vector<ulong> ToVecG(this Span<ulong> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<float> ToVecG(this Span<float> src)
-            => VecG.load(src);
+        public static Vector<float> ToVecG(this Span<float> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<double> ToVecG(this Span<double> src)
-            => VecG.load(src);
+        public static Vector<double> ToVecG(this Span<double> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<sbyte> ToVecG(this Span256<sbyte> src)
-            => VecG.load(src);
+        public static Vector<sbyte> ToVecG(this Span256<sbyte> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<byte> ToVecG(this Span256<byte> src)
-            => VecG.load(src);
+        public static Vector<byte> ToVecG(this Span256<byte> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<short> ToVecG(this Span256<short> src)
-            => VecG.load(src);
+        public static Vector<short> ToVecG(this Span256<short> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<ushort> ToVecG(this Span256<ushort> src)
-            => VecG.load(src);
+        public static Vector<ushort> ToVecG(this Span256<ushort> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<int> ToVecG(this Span256<int> src)
-            => VecG.load(src);
+        public static Vector<int> ToVecG(this Span256<int> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<uint> ToVecG(this Span256<uint> src)
-            => VecG.load(src);
+        public static Vector<uint> ToVecG(this Span256<uint> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<long> ToVecG(this Span256<long> src)
-            => VecG.load(src);
+        public static Vector<long> ToVecG(this Span256<long> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<ulong> ToVecG(this Span256<ulong> src)
-            => VecG.load(src);
+        public static Vector<ulong> ToVecG(this Span256<ulong> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<float> ToVecG(this Span256<float> src)
-            => VecG.load(src);
+        public static Vector<float> ToVecG(this Span256<float> src)
+            => Vector.Load(src);
 
         [MethodImpl(Inline)]
-        public static VecG<double> ToVecG(this Span256<double> src)
-            => VecG.load(src);
+        public static Vector<double> ToVecG(this Span256<double> src)
+            => Vector.Load(src);
 
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this VecG<T> src)
+        public static ReadOnlySpan<T> ToReadOnlySpan<T>(this Vector<T> src)
             where T : struct
                 => src;
 
         [MethodImpl(Inline)]
-        public static Span<T> ToSpan<T>(this VecG<T> src)
+        public static Span<T> ToSpan<T>(this Vector<T> src)
             where T : struct
             => src;
 

@@ -40,7 +40,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return sqrtF64(src);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }           
 
         [MethodImpl(Inline)]
@@ -48,28 +48,58 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return ref sqrtI8(ref src);
+                math.sqrt(ref int8(ref src));
             else if(typeof(T) == typeof(byte))
-                return ref sqrtU8(ref src);
+                math.sqrt(ref uint8(ref src));
             else if(typeof(T) == typeof(short))
-                return ref sqrtI16(ref src);
+                math.sqrt(ref int16(ref src));
             else if(typeof(T) == typeof(ushort))
-                return ref sqrtU16(ref src);
+                math.sqrt(ref uint16(ref src));
             else if(typeof(T) == typeof(int))
-                return ref sqrtI32(ref src);
+                math.sqrt(ref int32(ref src));
             else if(typeof(T) == typeof(uint))
-                return ref sqrtU32(ref src);
+                math.sqrt(ref uint32(ref src));
             else if(typeof(T) == typeof(long))
-                return ref sqrtI64(ref src);
+                math.sqrt(ref int64(ref src));
             else if(typeof(T) == typeof(ulong))
-                return ref sqrtU64(ref src);
+                math.sqrt(ref uint64(ref src));
             else if(typeof(T) == typeof(float))
-                return ref sqrtF32(ref src);
+                math.sqrt(ref float32(ref src));
             else if(typeof(T) == typeof(double))
-                return ref sqrtF64(ref src);
+                math.sqrt(ref float64(ref src));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
+            return ref src;
         }           
+
+        public static ref Span<T> sqrt<T>(ref Span<T> io)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.sqrt(int8(io));
+            else if(typeof(T) == typeof(byte))
+                math.sqrt(uint8(io));
+            else if(typeof(T) == typeof(short))
+                math.sqrt(int16(io));
+            else if(typeof(T) == typeof(ushort))
+                math.sqrt(uint16(io));
+            else if(typeof(T) == typeof(int))
+                math.sqrt(int32(io));
+            else if(typeof(T) == typeof(uint))
+                math.sqrt(uint32(io));
+            else if(typeof(T) == typeof(long))
+                math.sqrt(int64(io));
+            else if(typeof(T) == typeof(ulong))
+                math.sqrt(uint64(io));
+            else if(typeof(T) == typeof(float))
+                math.sqrt(float32(io));
+            else if(typeof(T) == typeof(double))
+                math.sqrt(float64(io));
+            else
+                 throw unsupported<T>();                
+           
+            return ref io;
+        }
 
         [MethodImpl(Inline)]
         static T sqrtI8<T>(T src)

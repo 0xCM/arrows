@@ -37,7 +37,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return andU64(lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }           
 
         [MethodImpl(Inline)]
@@ -61,7 +61,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return ref andU64(ref lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
 
@@ -85,7 +85,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.and(uint64(lhs), uint64(rhs), uint64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return dst;
         }
 
@@ -115,9 +115,35 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.and(uint64(lhs), uint64(rhs));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return ref lhs;
         }
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> and<T>(ref Span<T> lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.and(int8(lhs), int8(rhs));
+            else if(typeof(T) == typeof(byte))
+                math.and(uint8(lhs), uint8(rhs));
+            else if(typeof(T) == typeof(short))
+                math.and(int16(lhs), int16(rhs));
+            else if(typeof(T) == typeof(ushort))
+                math.and(uint16(lhs), uint16(rhs));
+            else if(typeof(T) == typeof(int))
+                math.and(int32(lhs), int32(rhs));
+            else if(typeof(T) == typeof(uint))
+                math.and(uint32(lhs), uint32(rhs));
+            else if(typeof(T) == typeof(long))
+                math.and(int64(lhs), int64(rhs));
+            else if(typeof(T) == typeof(ulong))
+                math.and(uint64(lhs), uint64(rhs));
+            else
+                throw unsupported<T>();
+            return ref lhs;
+        }
+
 
         [MethodImpl(Inline)]
         static T andI8<T>(T lhs, T rhs)

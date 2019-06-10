@@ -36,7 +36,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(math.flip(ref uint64(ref src)));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }           
 
         [MethodImpl(Inline)]

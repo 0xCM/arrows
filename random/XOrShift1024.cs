@@ -131,10 +131,11 @@ namespace Z0
             }
         }
 
-        public sbyte NextSignedByte()
-            => SignedBytes().First();
+        [MethodImpl(Inline)]
+        public sbyte NextSByte()
+            => SBytes().First();
 
-        public IEnumerable<sbyte> SignedBytes()
+        public IEnumerable<sbyte> SBytes()
             => from b in Bytes() select (sbyte)b;
 
         [MethodImpl(Inline)]

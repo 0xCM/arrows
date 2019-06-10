@@ -21,7 +21,7 @@ namespace Z0.Test
         void TestClosed<T>(T min, T max, T? width = null)
             where T : struct
         {
-            var partition = closed(min, max).PartitionPoints(width);
+            var partition = closed(min, max).StepwisePartitionPoints(width);
             
             var firstExpect = min;
             var firstActual = partition[0];
@@ -37,7 +37,7 @@ namespace Z0.Test
         void TestOpen<T>(T min, T max, T width)
             where T : struct
         {
-            var partition = open(min, max).PartitionPoints(width);            
+            var partition = open(min, max).StepwisePartitionPoints(width);            
             var first = partition[0];
             var last = partition[partition.Length - 1];
             var countActual = partition.Length;
@@ -75,6 +75,66 @@ namespace Z0.Test
             TestClosed(100, 234, 5);
             TestClosed(100, 235, 5);
             TestClosed(-100, 75, 3);
+        }
+
+
+        public void Part1()
+        {
+            var src = leftclosed(5,20);
+            var dst = src.StepwisePartition(1);
+            var fmt = dst.Map(x => x.ToString()).Concat(" + ");
+            Claim.eq(15, dst.Length);
+
+        }
+
+        public void Part2()
+        {
+            var src = closed(5,20);
+            var dst = src.StepwisePartition(1);
+            var fmt = dst.Map(x => x.ToString()).Concat(" + ");
+            Claim.eq(15, dst.Length);
+
+        }
+
+        public void Part3()
+        {
+            var src = open(5,20);
+            var dst = src.StepwisePartition(1);
+            var fmt = dst.Map(x => x.ToString()).Concat(" + ");
+            Claim.eq(15, dst.Length);
+            Claim.@true(dst.Last().Open);
+
+        }
+
+        public void Part4()
+        {
+            var src = rightclosed(5,20);
+            var dst = src.StepwisePartition(1);
+            var fmt = dst.Map(x => x.ToString()).Concat(" + ");                    
+            Claim.eq(15, dst.Length);
+            Claim.@true(dst.Last().RightClosed);
+
+        }
+
+        public void Part5()
+        {
+            var src = leftopen(1,100);
+            var dst = src.Partition(10);            
+            var fmt = dst.Map(x => x.ToString()).Concat(" + ");                    
+            print($"{dst.Length} {src} = {fmt}");
+            Claim.eq(10, dst.Length);
+
+        }
+
+        public void Part6()
+        {
+            var src = closed(1,103);
+            var dst = src.Partition(13);            
+            var fmt = dst.Map(x => x.ToString()).Concat(" + ");                    
+            print($"{dst.Length} {src} = {fmt}");
+            Claim.eq(13, dst.Length);
+            Claim.@true(dst.Last().Closed);
+
         }
 
     }

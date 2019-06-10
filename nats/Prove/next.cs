@@ -37,27 +37,5 @@ namespace Z0
             where K2: ITypeNat, new()
                 => new NatNext<K1,K2>(k1,k2);                             
 
-        /// <summary>
-        /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 + 1 = k2; otherwise
-        /// returns none
-        /// </summary>
-        /// <typeparam name="K1">The source type</typeparam>
-        /// <typeparam name="K2">The successor type</typeparam>
-        public static Option<NatNext<K1,K2>> tryNext<K1,K2>()
-            where K1: ITypeNat, new()
-            where K2: ITypeNat, new()
-                => Try(() => new NatNext<K1,K2>(natrep<K1>(),natrep<K2>()));                             
-
-        /// <summary>
-        /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 + 1 = k2; otherwise
-        /// returns none
-        /// </summary>
-        /// <typeparam name="K1">The source type</typeparam>
-        /// <typeparam name="K2">The successor type</typeparam>
-        public static Option<NatNext<K1,K2>> tryNext<K1,K2>(K1 k1, K2 k2)
-            where K1: ITypeNat, new()
-            where K2: ITypeNat, new()
-                => Try(() => new NatNext<K1,K2>(k1,k2));                             
-
     }
 }

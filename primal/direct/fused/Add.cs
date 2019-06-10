@@ -219,5 +219,77 @@ namespace Z0
                 lhs[i] += rhs[i];
             return lhs;
         }
+
+        public static Span<sbyte> add(Span<sbyte> lhs, sbyte rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] += rhs;
+            return lhs;
+        }
+
+        public static Span<byte> add(Span<byte> lhs, byte rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] += rhs;
+            return lhs;
+        }
+
+        public static Span<short> add(Span<short> lhs, short rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] += rhs;
+            return lhs;
+        }
+
+        public static Span<ushort> add(Span<ushort> lhs, ushort rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] += rhs;
+            return lhs;
+        }
+
+        public static Span<int> add(Span<int> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] += rhs;
+            return lhs;
+        }
+
+        public static Span<uint> add(Span<uint> lhs, uint rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] += rhs;
+            return lhs;
+        }
+
+        public static Span<long> add(Span<long> lhs, long rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] += rhs;
+            return lhs;
+        }
+
+        public static Span<ulong> add(Span<ulong> lhs, ulong rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] += rhs;
+            return lhs;
+        }
+
+        public static Span<float> add(Span<float> lhs, float rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] += rhs;
+            return lhs;
+        }
+
+        public static Span<double> add(Span<double> lhs, double rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] += rhs;
+            return lhs;
+        }
+
+
     }
 }

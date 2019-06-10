@@ -72,7 +72,7 @@ namespace Z0
             => i*j;
 
         public string format()
-            => zfunc.xsv("×", i, j);
+            => $"{i}×{j}";
  
         public override string  ToString()
             => format();
@@ -117,7 +117,7 @@ namespace Z0
             => i*j*k;
 
         public string format()
-            => zfunc.xsv("×", i, j, k);
+            => $"{i}×{j}×{k}";
 
         public override string  ToString()
             => format();

@@ -15,13 +15,10 @@ namespace Z0
 
     public static partial class As
     {
-
-
         [MethodImpl(Inline)]
         public static Span<sbyte> int8<T>(Span<T> src)
             where T : struct
                 => cast<T,sbyte>(src);
-
 
         [MethodImpl(Inline)]
         public static Span<byte> uint8<T>(Span<T> src)

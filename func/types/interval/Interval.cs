@@ -33,11 +33,11 @@ namespace Z0
             this.RightClosed = rightclosed;
         }
         
-        public T Left {get;}
+        public readonly T Left;
 
         public bool LeftClosed {get;}
 
-        public T Right {get;}
+        public readonly T Right;
 
         public bool RightClosed {get;}
 
@@ -71,6 +71,11 @@ namespace Z0
             :  LeftClosed && !RightClosed ? IntervalKind.LeftClosed
             :  IntervalKind.RightClosed;
 
+        T IInterval<T>.Left 
+            => Left;
+
+        T IInterval<T>.Right 
+            => Right;
 
         public Interval<T> ToOpen()
             => Interval.open(Left, Right);
@@ -84,10 +89,30 @@ namespace Z0
         public Interval<T> ToClosed()
             => Interval.closed(Left, Right);
 
+        /// <summary>
+        /// Converts the left and right underlying values
+        /// </summary>
+        /// <typeparam name="U"></typeparam>
+        /// <returns></returns>
         [MethodImpl(Inline)]
         public Interval<U> Convert<U>()
             where U : struct
-                => new Interval<U>(convert(Left, out U x), LeftClosed, convert(Right, out U y), RightClosed);
+                => new Interval<U>(
+                    convert(Left, out U x), 
+                    LeftClosed, 
+                    convert(Right, out U y), 
+                    RightClosed
+                    );
+
+        [MethodImpl(Inline)]
+        public Interval<U> As<U>()
+            where U : struct
+                => new Interval<U>(
+                    AsIn.generic<T,U>(in Left),
+                    LeftClosed, 
+                    AsIn.generic<T,U>(in Right),
+                    RightClosed
+                    );
 
         public string Format()
             => concat(

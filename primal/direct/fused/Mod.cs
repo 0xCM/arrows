@@ -168,5 +168,75 @@ namespace Z0
             return lhs;
         }
 
+        public static Span<sbyte> mod(Span<sbyte> lhs, sbyte rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] %= rhs;
+            return lhs;
+        }
+
+        public static Span<byte> mod(Span<byte> lhs, byte rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] %= rhs;
+            return lhs;
+        }
+
+        public static Span<short> mod(Span<short> lhs, short rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] %= rhs;
+            return lhs;
+        }
+
+        public static Span<ushort> mod(Span<ushort> lhs, ushort rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] %= rhs;
+            return lhs;
+        }
+
+        public static Span<int> mod(Span<int> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] %= rhs;
+            return lhs;
+        }
+
+        public static Span<uint> mod(Span<uint> lhs, uint rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] %= rhs;
+            return lhs;
+        }
+
+        public static Span<long> mod(Span<long> lhs, long rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] %= rhs;
+            return lhs;
+        }
+
+        public static Span<ulong> mod(Span<ulong> lhs, ulong rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] %= rhs;
+            return lhs;
+        }
+
+        public static Span<float> mod(Span<float> lhs, float rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] %= rhs;
+            return lhs;
+        }
+
+        public static Span<double> mod(Span<double> lhs, double rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] %= rhs;
+            return lhs;
+        }
+
     }
 }

@@ -73,6 +73,36 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static ref Span<T> pow<T>(ref Span<T> lhs, T rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.pow(int8(lhs), int8(rhs));
+            else if(typeof(T) == typeof(byte))
+                math.pow(uint8(lhs), uint8(rhs));
+            else if(typeof(T) == typeof(short))
+                math.pow(int16(lhs), int16(rhs));
+            else if(typeof(T) == typeof(ushort))
+                math.pow(uint16(lhs), uint16(rhs));
+            else if(typeof(T) == typeof(int))
+                math.pow(int32(lhs), int32(rhs));
+            else if(typeof(T) == typeof(uint))
+                math.pow(uint32(lhs), uint32(rhs));
+            if(typeof(T) == typeof(long))
+                math.pow(int64(lhs), int64(rhs));
+            else if(typeof(T) == typeof(ulong))
+                math.pow(uint64(lhs), uint64(rhs));
+            if(typeof(T) == typeof(float))
+                math.pow(float32(lhs), float32(rhs));
+            else if(typeof(T) == typeof(ulong))
+                math.pow(float64(lhs), float64(rhs));
+            else
+                throw unsupported(PrimalKinds.kind<T>());                
+            return ref lhs;
+        }
+
+
+        [MethodImpl(Inline)]
         static T powU8<T>(T src, T exp)
             => generic<T>(math.pow(int8(src), int8(exp)));
 

@@ -144,5 +144,62 @@ namespace Z0
             return lhs;
         }
 
+        public static Span<sbyte> and(Span<sbyte> lhs, sbyte rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] &= rhs;
+            return lhs;
+        }
+
+        public static Span<byte> and(Span<byte> lhs, byte rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] &= rhs;
+            return lhs;
+        }
+
+        public static Span<short> and(Span<short> lhs, short rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] &= rhs;
+            return lhs;
+        }
+
+        public static Span<ushort> and(Span<ushort> lhs, ushort rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] &= rhs;
+            return lhs;
+        }
+
+        public static Span<int> and(Span<int> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] &= rhs;
+            return lhs;
+        }
+
+        public static Span<uint> and(Span<uint> lhs, uint rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] &= rhs;
+            return lhs;
+        }
+
+        public static Span<long> and(Span<long> lhs, long rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] &= rhs;
+            return lhs;
+        }
+
+        public static Span<ulong> and(Span<ulong> lhs, ulong rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] &= rhs;
+            return lhs;
+        }
+
+
     }
 }

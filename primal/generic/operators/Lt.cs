@@ -41,7 +41,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return ltF64(lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
 
@@ -69,7 +69,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return math.lt(float64(lhs), float64(rhs), dst);
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]

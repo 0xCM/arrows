@@ -9,7 +9,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static nfunc;
-    using static zfunc;
+    using static nconst;
     
     public static class NatDigits
     {
@@ -71,7 +71,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator !=(Digit<N,T> lhs, Digit<N,T> rhs)
-            => not(lhs.Equals(rhs));
+            => !lhs.Equals(rhs);
 
         [MethodImpl(Inline)]
         public static implicit operator uint(Digit<N,T> src)

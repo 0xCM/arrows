@@ -40,7 +40,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return absF64(src);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }           
 
 
@@ -69,7 +69,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return ref absF64(ref src);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }           
 
         public static Span<T> abs<T>(ReadOnlySpan<T> src, Span<T> dst)
@@ -88,7 +88,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 math.abs(float64(src), float64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return dst;
         }
 
@@ -108,7 +108,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 math.abs(float64(io));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return ref io;
         }
 

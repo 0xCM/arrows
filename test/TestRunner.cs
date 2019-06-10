@@ -39,7 +39,7 @@ namespace Z0
         {
             var sw = stopwatch(false);
             sw.Start();
-            var samples = Distributions.Bernoulli<long>(alpha, Randomizer).Sample().Take(count);
+            var samples = Distributions.Bernoulli<long>(alpha).Sample(Randomizer).Take(count);
             var avg = samples.Average();
             sw.Stop();
             print($"Samples = {count} | Alpha = {alpha.Round(4)} | Average = {avg.Round(4)} | Time = {snapshot(sw).Ms} ms");
@@ -85,7 +85,7 @@ namespace Z0
 
         void TestBytes()
         {
-            var bytes = RNG.XOrShift1024().SignedBytes().Take(Pow2.T16);
+            var bytes = RNG.XOrShift1024().SBytes().Take(Pow2.T16);
             var histo = new Dictionary<sbyte,int>();
 
             for(var i = 0; i<= Byte.MaxValue; i++)
@@ -136,30 +136,102 @@ namespace Z0
 
         }
 
-        static void TestPartitions()
+
+
+        public IEnumerable<Bin<T>> DefineBins<T>(Interval<T> domain, int count)        
+            where T : struct
         {
-            var src2 = closed(5,20);
-            var dst2 = src2.Partitions(1);
-            var fmt2 = dst2.Map(x => x.ToString()).Concat(" + ");
+            var partition = domain.Partition(count);
+            var bins = array<Bin<T>>(count);
+            for(var i=0; i<count; i++)
+                bins[i] = new Bin<T>(partition[i]);
+            return bins;        
+        }
 
-            var src4 = leftopen(5,20);
-            var dst4 = src4.Partitions(1);
-            var fmt4 = dst4.Map(x => x.ToString()).Concat(" + ");
+        public static void Count<T>(IEnumerable<Bin<T>> bins, T point)
+            where T : struct
+        {
+            foreach(var bin in bins)
+                if(bin.Domain.Contains(point))
+                {
+                    bin.Increment();
+                    break;
+                }
+        }
 
-            var src1 = leftclosed(5,20);
-            var dst1 = src1.Partitions(1);
-            var fmt1 = dst1.Map(x => x.ToString()).Concat(" + ");
+        public static void Distribute<T>(IEnumerable<T> values, IEnumerable<Bin<T>> dst, bool pll = true)        
+            where T : struct
+        {
+            if(pll)
+                values.AsParallel().ForAll(v => Count(dst, v));                
+            else
+                values.ForEach(v => Count(dst, v));
 
-            var src3 = open(5,20);
-            var dst3 = src3.Partitions(1);
-            var fmt3 = dst3.Map(x => x.ToString()).Concat(" + ");
+        }
 
+        public void TestUniformRange<T>(Interval<T> domain, int count)
+            where T : struct
+        {            
+            var sw = stopwatch();
+            var samples = Randomizer.UniformStream(domain).TakeArray(count);
+            var time = snapshot(sw);
+            
+            var avg = gmath.avg<T>(samples);
+            var min = gmath.min<T>(samples);
+            var max = gmath.max<T>(samples);
+
+            inform($"{typeof(T).Name} {domain}: min = {min} | max = {max} | avg = {avg}, time = {time.Ms} ms");
+
+            Claim.@true(gmath.gteq(min, domain.Left));
+
+            Claim.@true(gmath.lt(min, domain.Right));
+        }
+
+        public void TestUniformUnbounded<T>(int count)
+            where T : struct
+        {
+            var sw = stopwatch();
+            var samples = Randomizer.UniformStream<T>().TakeArray(count);
+            var time = snapshot(sw);
+
+            var min = gmath.min<T>(samples);
+            var max = gmath.max<T>(samples);
+            var avg = gmath.avg<T>(samples);
+            inform($"{typeof(T).Name}: min = {min} | max = {max} | avg = {avg}, time = {time.Ms} ms");
+        }
+
+        public void TestUniformRange()
+        {
+            var count = Pow2.T16;
+            TestUniformRange(leftclosed<sbyte>(-50, 50), count);
+            TestUniformRange(leftclosed<byte>(50, 200), count);
+            TestUniformRange(leftclosed<double>(-250, 750), count);
+            TestUniformRange(leftclosed<double>(-500, 500), count);
+
+
+            var domain = leftclosed<double>(-1000, 2000);
+            var samples = Randomizer.UniformStream(domain).Take(Pow2.T17).ToArray();
+            var bins = DefineBins(domain, 25);
+            var sw = stopwatch();
+            Distribute(samples, bins);
+            print($"{samples.Length} samples categorized in {snapshot(sw).Ms} ms");
+            bins.ForEach(bin => print($"{bin}"));
         
-            print($"{dst2.Length} {src2} = {fmt2}");
-            print($"{dst4.Length} {src4} = {fmt4}");
-            print($"{dst1.Length} {src1} = {fmt1}");
-            print($"{dst3.Length} {src3} = {fmt3}");        
-        
+        }
+
+        public void TestUniform()
+        {
+            var count = Pow2.T22;
+            TestUniformUnbounded<byte>(count);
+            TestUniformUnbounded<sbyte>(count);
+            TestUniformUnbounded<ushort>(count);
+            TestUniformUnbounded<short>(count);
+            TestUniformUnbounded<int>(count);
+            TestUniformUnbounded<uint>(count);
+            // var domain = leftclosed(-(Int32.MaxValue >> 1),Int32.MaxValue >> 1);
+            // TestUniformRange<int>(domain,count);
+            // TestUniformRange<int>(domain,count);
+            // TestUniformRange<int>(domain,count);
         }
         public static void Run()
         {
@@ -167,8 +239,8 @@ namespace Z0
             var app = new TestRunner();
             try
             {
-                //TestPartitions();
-                TestTools.RunTests(string.Empty, false);
+                app.TestUniform();
+                //TestTools.RunTests(string.Empty, false);
 
             }
             catch (Exception e)

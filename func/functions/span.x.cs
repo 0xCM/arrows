@@ -30,6 +30,8 @@ namespace Z0
         public static ReadOnlySpan<T> ToReadOnlySpan<T>(this Span<T> src)
             => src;
 
+        
+
         [MethodImpl(Inline)]
         public static ReadOnlySpan<T> ToReadOnlySpan<T>(this ReadOnlyMemory<T> src)
             => new ReadOnlySpan<T>(src.ToArray());
@@ -97,9 +99,7 @@ namespace Z0
             where T : struct
                 => src.Freeze().Contains(match);
 
-        [MethodImpl(NotInline)]
         public static bool Any<T>(this ReadOnlySpan<T> src, Func<T,bool> f)
-             where T : struct
         {
             var it = src.GetEnumerator();
             while(it.MoveNext())
@@ -108,7 +108,6 @@ namespace Z0
             return false;
         }
 
-        [MethodImpl(NotInline)]
         public static bool All<T>(this ReadOnlySpan<T> src, Func<T,bool> f)
              where T : struct
         {
@@ -118,6 +117,60 @@ namespace Z0
                     return false;
             return true;
         }
+
+        /// <summary>
+        /// Returns a reference to the first element of a nonempty span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref T First<T>(this Span<T> src)
+        {
+            if(src.IsEmpty)
+                throw new Exception("Sorce span must be nonempty");
+            return ref src[0];
+        }
+
+        /// <summary>
+        /// Returns a reference to the last element of a nonempty span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref T Last<T>(this Span<T> src)
+        {
+            if(src.IsEmpty)
+                throw new Exception("Sorce span must be nonempty");
+            return ref src[src.Length - 1];
+        }
+
+        /// <summary>
+        /// Returns a readonly reference to the first element of a nonempty span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref readonly T First<T>(this ReadOnlySpan<T> src)
+        {
+            if(src.IsEmpty)
+                throw new Exception("Sorce span must be nonempty");
+            return ref src[0];
+        }
+
+
+        /// <summary>
+        /// Returns a readonly reference to the last element of a nonempty span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static ref readonly T Last<T>(this ReadOnlySpan<T> src)
+        {
+            if(src.IsEmpty)
+                throw new Exception("Sorce span must be nonempty");
+            return ref src[src.Length - 1];
+        }
+
 
         [MethodImpl(Inline)]
         public static bool Any<T>(this Span<T> src, Func<T,bool> f)

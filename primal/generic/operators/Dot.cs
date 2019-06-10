@@ -15,7 +15,6 @@ namespace Z0
 
     partial class gmath
     {
-
         [MethodImpl(Inline)]
         public static T dot<T>(in ReadOnlySpan<T> lhs, in ReadOnlySpan<T> rhs)
             where T : struct
@@ -41,11 +40,8 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(math.dot(float64(lhs), float64(rhs)));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
         }
-
-
-
     }
 
 }

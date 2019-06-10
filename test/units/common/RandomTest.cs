@@ -23,7 +23,7 @@ namespace Z0.Test
             var samples = Pow2.T11;
             var domain = closed((sbyte)(-100),(sbyte)(100));
             var data = Randomizer.Stream<sbyte>(domain).Take(samples);
-            var h = Histogram.define(domain,10);
+            var h = Histogram.Define(domain,10);
             h.Deposit(data,false);
         }
 
@@ -33,7 +33,7 @@ namespace Z0.Test
             var samples = Pow2.T11;
             var domain = closed(1u,1000u);
             var data = Randomizer.Stream<uint>(domain).Take(samples);
-            var h = Histogram.define(domain);
+            var h = Histogram.Define(domain);
             h.Deposit(data,false);
         }
 
@@ -44,7 +44,7 @@ namespace Z0.Test
             var samples = Pow2.T11;
             var domain = closed(1ul,1000ul);
             var data = Randomizer.Stream<ulong>(domain).Take(samples);
-            var h = Histogram.define(domain);
+            var h = Histogram.Define(domain);
             h.Deposit(data,false);
         }
 
@@ -54,11 +54,27 @@ namespace Z0.Test
             var samples = Pow2.T11;
             var domain = closed(-250L,250L);
             var data = Randomizer.Stream<long>(domain).Take(samples);
-            var h = Histogram.define(domain);
+            var h = Histogram.Define(domain);
             h.Deposit(data,false);
         
         }
 
+        [Fact]
+        public void SystemRandomTest()
+        {
+            var samples = Pow2.T11;
+            var domain = closed(10,20);
+            var random = Randomizer.SystemRandom();
+            var dst = span<int>(samples);
+            for(var i=0; i<samples; i++)            
+            {
+                var next = random.Next(domain.Left, domain.Right);
+                Claim.@true(next >= domain.Left && next < domain.Right);
+                dst[i] = random.Next(domain.Left, domain.Right);
+            }
+            var h = Histogram.Define(domain);
+            h.Deposit(dst);        
+        }
     }
 
 

@@ -36,7 +36,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return shiftlU64(lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }           
 
         [MethodImpl(Inline)]
@@ -60,7 +60,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return ref shiftlU64(ref lhs, rhs);
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }           
 
 
@@ -85,7 +85,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.shiftl(uint64(lhs), rhs, uint64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return dst;
 
         }
@@ -111,7 +111,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.shiftl(uint64(lhs), rhs, uint64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return dst;
 
         }

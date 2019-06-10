@@ -42,6 +42,25 @@ namespace Z0
         bool RightClosed {get;}
 
         IntervalKind Kind {get;}
+
+        bool Closed
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return Kind == IntervalKind.Closed;
+            }
+        }
+
+        bool Open
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return Kind == IntervalKind.Open;
+            }
+        }
+
     }
 
     /// <summary>

@@ -40,7 +40,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return squareF64(src);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }           
 
         [MethodImpl(Inline)]
@@ -68,7 +68,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return ref squareF64(ref src);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }           
 
         public static ref Span<T> square<T>(ref Span<T> io)

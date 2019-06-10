@@ -20,6 +20,10 @@ namespace Z0
         
         public const char Gamma = 'Γ';
         
+        public const char Mu = 'Μ';
+
+        public const char mu = 'μ';
+
         public const char rho = 'ρ';
         
         public const char Rho = 'Ρ';
@@ -27,6 +31,10 @@ namespace Z0
         public const char Sigma = 'Σ';
 
         public const char sigma = 'σ';
+
+        public const char Tau = 'Τ';
+        
+        public const char tau = 'τ';
 
     }
 

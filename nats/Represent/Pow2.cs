@@ -6,6 +6,7 @@ namespace Z0
 {
     using System;
     using System.Numerics;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Collections.Concurrent;
     using System.Reflection;
@@ -29,7 +30,7 @@ namespace Z0
         /// <param name="@base">The base value</param>
         /// <param name="exp">The exponent value</param>
         static ulong pow(ulong @base, ulong exp)
-            => zfunc.fold(zfunc.repeat(@base, exp), (x,y) => x*y);
+            => repeat(@base, exp).Aggregate((x,y) => x * y); 
 
         public static readonly ulong Value
             = pow(Nat.nat<E>().value, Nat.nat<E>().value);

@@ -68,30 +68,5 @@ namespace Z0
             where K2: ITypeNat, new()
                 => new NatLt<K1,K2>(k1,k2);
 
-        /// <summary>
-        /// Attempts to prove k1:K1 & k2:K2 => k1 < k2
-        /// Signals success by returning evidence
-        /// Signals failure by returning none
-        /// </summary>
-        /// <typeparam name="K1">The smaller type</typeparam>
-        /// <typeparam name="K2">The larger type</typeparam>
-        [MethodImpl(Inline)]   
-        public static Option<NatLt<K1,K2>> tryLt<K1,K2>()
-            where K1: ITypeNat, new()
-            where K2: ITypeNat, new()
-                => Try(() => new NatLt<K1,K2>(natrep<K1>(),natrep<K2>())); 
-
-        /// <summary>
-        /// Attempts to prove k1:K1 & k2:K2 => k1 < k2
-        /// Signals success by returning evidence
-        /// Signals failure by returning none
-        /// </summary>
-        /// <typeparam name="K1">The smaller type</typeparam>
-        /// <typeparam name="K2">The larger type</typeparam>
-        [MethodImpl(Inline)]   
-        public static Option<NatLt<K1,K2>> tryLt<K1,K2>(K1 k1, K2 k2)
-            where K1: ITypeNat, new()
-            where K2: ITypeNat, new()
-                => Try(() => new NatLt<K1,K2>(k1,k2));
     }
 }

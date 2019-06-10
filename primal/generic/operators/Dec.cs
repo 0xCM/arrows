@@ -21,27 +21,27 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return decI8(src);
+                return generic<T>(math.inc(ref int8(ref src)));
             else if(typeof(T) == typeof(byte))
-                return decU8(src);
+                return generic<T>(math.inc(ref uint8(ref src)));
             else if(typeof(T) == typeof(short))
-                return decI16(src);
+                return generic<T>(math.inc(ref int16(ref src)));
             else if(typeof(T) == typeof(ushort))
-                return decU16(src);
+                return generic<T>(math.inc(ref uint16(ref src)));
             else if(typeof(T) == typeof(int))
-                return decI32(src);
+                return generic<T>(math.inc(ref int32(ref src)));
             else if(typeof(T) == typeof(uint))
-                return decU32(src);
+                return generic<T>(math.inc(ref uint32(ref src)));
             else if(typeof(T) == typeof(long))
-                return decI64(src);
+                return generic<T>(math.inc(ref int64(ref src)));
             else if(typeof(T) == typeof(ulong))
-                return decU64(src);
+                return generic<T>(math.inc(ref uint64(ref src)));
             else if(typeof(T) == typeof(float))
-                return decF32(src);
+                return generic<T>(math.inc(ref float32(ref src)));
             else if(typeof(T) == typeof(double))
-                return decF64(src);
+                return generic<T>(math.inc(ref float64(ref src)));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                 throw unsupported<T>();                
         }           
 
         [MethodImpl(Inline)]
@@ -69,7 +69,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return ref decF64(ref src);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }           
 
 
@@ -97,7 +97,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 math.dec(float64(src), float64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return dst;
         }
         
@@ -105,72 +105,31 @@ namespace Z0
         public static ref Span<T> dec<T>(ref Span<T> io)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            if(kind == PrimalKind.int8)
+            if(typeof(T) == typeof(sbyte))
                 math.dec(int8(io));
-            else if(kind == PrimalKind.uint8)
+            else if(typeof(T) == typeof(byte))
                 math.dec(uint8(io));
-            else if(kind == PrimalKind.int16)
+            else if(typeof(T) == typeof(short))
                 math.dec(int16(io));
-            else if(kind == PrimalKind.uint16)
+            else if(typeof(T) == typeof(ushort))
                 math.dec(uint16(io));
-            else if(kind == PrimalKind.int32)
+            else if(typeof(T) == typeof(int))
                 math.dec(int32(io));
-            else if(kind == PrimalKind.uint32)
+            else if(typeof(T) == typeof(uint))
                 math.dec(uint32(io));
-            else if(kind == PrimalKind.int64)
+            else if(typeof(T) == typeof(long))
                 math.dec(int64(io));
-            else if(kind == PrimalKind.uint64)
+            else if(typeof(T) == typeof(ulong))
                 math.dec(uint64(io));
-            else if(kind == PrimalKind.float32)
+            else if(typeof(T) == typeof(float))
                 math.dec(float32(io));
-            else if(kind == PrimalKind.float64)
+            else if(typeof(T) == typeof(double))
                 math.dec(float64(io));
             else
-                throw unsupported(kind);                
+                 throw unsupported<T>();                
            
             return ref io;
         }
-
-        [MethodImpl(Inline)]
-        static T decI8<T>(T src)
-            => decI8(ref src);
-
-        [MethodImpl(Inline)]
-        static T decU8<T>(T src)
-            => decU8(ref src);
-
-        [MethodImpl(Inline)]
-        static T decI16<T>(T src)
-            => decI16(ref src);
-
-        [MethodImpl(Inline)]
-        static T decU16<T>(T src)
-            => decU16(ref src);
-
-        [MethodImpl(Inline)]
-        static T decI32<T>(T src)
-            => decI32(ref src);
-        
-        [MethodImpl(Inline)]
-        static T decU32<T>(T src)
-            => decU32(ref src);
-
-        [MethodImpl(Inline)]
-        static T decI64<T>(T src)
-            => decI64(ref src);
-
-        [MethodImpl(Inline)]
-        static T decU64<T>(T src)
-            => decU64(ref src);
-
-        [MethodImpl(Inline)]
-        static T decF32<T>(T src)
-            => decF32(ref src);
-
-        [MethodImpl(Inline)]
-        static T decF64<T>(T src)
-            => decF64(ref src);
 
         [MethodImpl(Inline)]
         static ref T decI8<T>(ref T io)

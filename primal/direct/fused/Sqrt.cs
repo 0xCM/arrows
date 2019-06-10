@@ -96,74 +96,74 @@ namespace Z0
             return dst;                
         }
 
-        public static ref Span<sbyte> sqrt(ref Span<sbyte> io)
+        public static Span<sbyte> sqrt(Span<sbyte> io)
         {
             for(var i = 0; i< io.Length; i++)
                 sqrt(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        public static ref Span<byte> sqrt(ref Span<byte> io)
+        public static Span<byte> sqrt(Span<byte> io)
         {
             for(var i = 0; i< io.Length; i++)
                 sqrt(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        public static ref Span<short> sqrt(ref Span<short> io)
+        public static Span<short> sqrt(Span<short> io)
         {
             for(var i = 0; i< io.Length; i++)
                 sqrt(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        public static ref Span<ushort> sqrt(ref Span<ushort> io)
+        public static Span<ushort> sqrt(Span<ushort> io)
         {
             for(var i = 0; i< io.Length; i++)
                 sqrt(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        public static ref Span<int> sqrt(ref Span<int> io)
+        public static Span<int> sqrt(Span<int> io)
         {
             for(var i = 0; i< io.Length; i++)
                 sqrt(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        public static ref Span<uint> sqrt(ref Span<uint> io)
+        public static Span<uint> sqrt(Span<uint> io)
         {
             for(var i = 0; i< io.Length; i++)
                 sqrt(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        public static ref Span<long> sqrt(ref Span<long> io)
+        public static Span<long> sqrt(Span<long> io)
         {
             for(var i = 0; i< io.Length; i++)
                 sqrt(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        public static ref Span<ulong> sqrt(ref Span<ulong> io)
+        public static Span<ulong> sqrt(Span<ulong> io)
         {
             for(var i = 0; i< io.Length; i++)
                 sqrt(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        public static ref Span<float> sqrt(ref Span<float> io)
+        public static Span<float> sqrt(Span<float> io)
         {
             for(var i = 0; i< io.Length; i++)
                 sqrt(ref io[i]);
-            return ref io;
+            return io;
         }
 
-        public static ref Span<double> sqrt(ref Span<double> io)
+        public static Span<double> sqrt(Span<double> io)
         {
             for(var i = 0; i< io.Length; i++)
                 sqrt(ref io[i]);
-            return ref io;
+            return io;
         }
 
     }

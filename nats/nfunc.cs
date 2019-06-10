@@ -8,12 +8,20 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 using Z0;
-using static zfunc;
+using static nconst;
 
 public static class nfunc
 {
     //internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;    
 
+    [MethodImpl(Inline)]   
+    internal static T[] repeat<T>(T value, ulong count)
+    {
+        var dst = new T[count];
+        for(var idx = 0U; idx < count; idx ++)
+            dst[idx] = value;
+        return dst;            
+    }
 
     static IEnumerable<ulong> range(ulong first, ulong last)
     {
@@ -173,226 +181,6 @@ public static class nfunc
     public static bool demand(bool x, string message = null)
         => x ? x : throw new Exception(message ?? "demand failed");
 
-    /// <summary>
-    /// Converts a 3-vector to a 3-tuple
-    /// </summary>
-    /// <param name="x1">The first coorinate</param>
-    /// <param name="x2">The second coordinate</param>
-    /// <param name="x4">The fourth coordinate</param>
-    /// <param name="x3">The third coordinate</param>
-    /// <typeparam name="T">The coordinate type</typeparam>
-    [MethodImpl(Inline)]
-    public static (T x1, T x2, T x3, T x4) tuple<T>(Vector<N4,T> v)
-        where T : struct
-            => (v[0], v[1], v[2], v[3]);
-
-    /// <summary>
-    /// Converts an homogenous 4-tuple to a 4-vector
-    /// </summary>
-    /// <param name="x1">The first coorinate</param>
-    /// <param name="x2">The second coordinate</param>
-    /// <param name="x3">The third coordinate</param>
-    /// <param name="x4">The fourth coordinate</param>
-    /// <typeparam name="T">The coordinate type</typeparam>
-    [MethodImpl(Inline)]
-    public static Vector<N4,T> vector<T>((T x1, T x2, T x3, T x4) x)
-        where T : struct
-            => vector<N4,T>(x.x1, x.x2,x.x3,x.x4);
-
-    /// <summary>
-    /// Converts an homogenous 2-tuple to a 2-vector
-    /// </summary>
-    /// <param name="x1">The first coorinate</param>
-    /// <param name="x2">The second coordinate</param>
-    /// <typeparam name="T">The coordinate type</typeparam>
-    [MethodImpl(Inline)]
-    public static Vector<N2,T> vector<T>((T x1, T x2) x)
-        where T : struct
-            => vector<N2,T>(x.x1, x.x2);
-
-    /// <summary>
-    /// Replicates a given value a specified number of times
-    /// </summary>
-    /// <param name="value">The value to replicate</param>
-    /// <typeparam name="N">The natural count type</typeparam>
-    /// <typeparam name="T">The replicant type</typeparam>
-    [MethodImpl(Inline)]   
-    public static T[] repeat<N,T>(T value)
-        where N : ITypeNat, new()
-        => zfunc.repeat(value, natu<N>());
-
-    /// <summary>
-    /// Constructs a vector characterized by length and component type
-    /// </summary>
-    /// <param name="components"></param>
-    /// <typeparam name="N">The vector length</typeparam>
-    /// <typeparam name="T">The component type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Vector<N,T> vector<N,T>(params T[] components)
-        where N : ITypeNat, new()
-        where T : struct
-            => new Z0.Vector<N,T>(components);
-
-    /// <summary>
-    /// Constructs a vector where each component has the same value
-    /// </summary>
-    /// <param name="component">The value assigned to each component</param>
-    /// <typeparam name="N">The vector length</typeparam>
-    /// <typeparam name="T">The component type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Vector<N,T> vector<N,T>(T component)
-        where N : ITypeNat, new()
-        where T : struct
-            => new Vector<N,T>(repeat<N,T>(component));
-
-    /// <summary>
-    /// Constructs a vector characterized by length and component type
-    /// </summary>
-    /// <param name="components">The components with which to construct the vector</param>
-    /// <typeparam name="N">The vector length</typeparam>
-    /// <typeparam name="T">The component type</typeparam>
-    /// <returns></returns>
-    [MethodImpl(Inline)]   
-    public static Vector<N,T> vector<N,T>(IEnumerable<T> src)
-        where N : ITypeNat, new()
-        where T : struct
-                => new Vector<N,T>(src);
-
-    /// <summary>
-    /// Constructs a vector characterized by length and component type
-    /// </summary>
-    /// <param name="components"></param>
-    /// <typeparam name="N">The length</typeparam>
-    /// <typeparam name="T">The component type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Vector<N,T> vector<N,T>(N len, IEnumerable<T> components)
-        where N : ITypeNat, new()
-        where T : struct
-            => vector(len,components);
-
-    /// <summary>
-    /// Constructs a vector characterized by length and component type
-    /// </summary>
-    /// <param name="components"></param>
-    /// <typeparam name="N">The length</typeparam>
-    /// <typeparam name="T">The component type</typeparam>
-    /// <remarks>No allocation occurs during construction</remarks>
-    public static Vector<N,T> vector<N,T>(N len, IReadOnlyList<T> components)
-        where N : ITypeNat, new()
-        where T : struct
-            => vector(len,components);
-
-    /// <summary>
-    /// Constructs a covector from sequence of components
-    /// </summary>
-    /// <param name="components"></param>
-    /// <typeparam name="N">The covector length</typeparam>
-    /// <typeparam name="T">The component type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Covector<N,T> covector<N,T>(Dim<N> dim, params T[] components)
-        where N : ITypeNat, new()
-        where T : struct
-            => Covector.define<N,T>(dim, components);
-
-    /// <summary>
-    /// Constructs a covector from a sequence of components
-    /// </summary>
-    /// <param name="components"></param>
-    /// <typeparam name="N">The covector length</typeparam>
-    /// <typeparam name="T">The component type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Covector<N,T> covector<N,T>(IEnumerable<T> components)
-        where N : ITypeNat, new()
-        where T : struct
-            => Covector.define<N,T>(components);
-
-    /// <summary>
-    /// Constructs a covector from a component parameter array
-    /// </summary>
-    /// <param name="components"></param>
-    /// <typeparam name="N">The covector length</typeparam>
-    /// <typeparam name="T">The component type</typeparam>
-    [MethodImpl(Inline)]   
-    public static Covector<N,T> covector<N,T>(params T[] components)
-        where N : ITypeNat, new()
-        where T : struct  
-            => Covector.define<N,T>(components);
-
-    /// <summary>
-    /// Constructs a slice of natural length from a parameter array
-    /// </summary>
-    /// <param name="src">The source data</param>
-    /// <typeparam name="T">The individual type</typeparam>
-    /// <typeparam name="N">The natural length type</typeparam>
-    [MethodImpl(Inline)]
-    public static Slice<N,T> slice<N,T>(params T[] src)
-        where N : ITypeNat, new() 
-        where T : struct
-            => new Slice<N,T>(src);
-
-
-    /// <summary>
-    /// Constructs a slice of natural length from a stream
-    /// </summary>
-    /// <param name="src">The source data</param>
-    /// <typeparam name="T">The individual type</typeparam>
-    /// <typeparam name="N">The natural length type</typeparam>
-    [MethodImpl(Inline)]
-    public static Slice<N,T> slice<N,T>(IEnumerable<T> src)
-        where N : ITypeNat, new() 
-        where T : struct
-            => new Slice<N,T>(src);
-
-    /// <summary>
-    /// Constructs a vector from the componentwise-sum of two others
-    /// </summary>
-    /// <param name="lhs">The first vector</param>
-    /// <param name="lhs">The second vector</param>
-    /// <typeparam name="N">The common vector length</typeparam>
-    /// <typeparam name="T">The common component type</typeparam>
-    [MethodImpl(Inline)]
-    public static Vector<N,T> add<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
-        where N : ITypeNat, new() 
-        where T : struct, ISemiring<T>
-            =>  lhs.fuse(rhs, (x,y) => x.add(y));
-
-    /// <summary>
-    /// Constructs a vector from the componentwise-product of two others
-    /// </summary>
-    /// <param name="lhs">The first vector</param>
-    /// <param name="lhs">The second vector</param>
-    /// <typeparam name="N">The common vector length</typeparam>
-    /// <typeparam name="T">The common component type</typeparam>
-    [MethodImpl(Inline)]
-    public static Vector<N,T> mul<N,T>(Vector<N,T> lhs, Vector<N,T> rhs) 
-        where N : ITypeNat, new() 
-        where T : struct, ISemiring<T>
-            =>  lhs.fuse(rhs, (x,y) => x.mul(y));
-
-    [MethodImpl(Inline)]
-    public static Vector<N,bool> equality<N,T>(Vector<N,T> lhs, Vector<N,T> rhs)
-        where N : ITypeNat, new() 
-        where T : struct
-            => vector<N,bool>(lhs == rhs);
-
-    [MethodImpl(Inline)]
-    public static Vector<N,bool>[] equality<N,T>(Vector<N,T>[] lhs, Vector<N,T>[] rhs)
-        where N : ITypeNat, new() 
-        where T : struct
-            => fuse(lhs, rhs, (v1,v2) =>  vector<N,bool>(v1 == v2));
-
-
-    [MethodImpl(Inline)]
-    public static T reduce<N,T>(Slice<N,T> s, Func<T,T,T> reducer)
-            where N : Z0.ITypeNat, new()
-            where T : struct, ISemiring<T>
-                => fold(s.data,reducer);
-
-    [MethodImpl(Inline)]
-    public static T sum<N,T>(Slice<N,T> x)
-        where N : Z0.ITypeNat, new() 
-        where T : struct, ISemiring<T>
-            => reduce(x, (a,b) => a.add(b));
 
     [MethodImpl(Inline)]
     public static void require<N>(int value)

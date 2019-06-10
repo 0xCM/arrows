@@ -34,23 +34,6 @@ namespace Z0
             where K: ITypeNat, new()
                 => new NatPrime<K>(k);
 
-        /// <summary>
-        /// If possible, constructs evidence that n:K => n prime; otherwise,
-        /// yields none
-        /// </summary>
-        /// <typeparam name="K">The subject</typeparam>
-        public static Option<NatPrime<K>> tryPrime<K>()
-            where K: ITypeNat, new()
-                => Try(() => prime<K>());
-
-        /// <summary>
-        /// If possible, constructs evidence that n:K => n prime; otherwise,
-        /// yields none
-        /// </summary>
-        /// <typeparam name="K">The subject</typeparam>
-        public static Option<NatPrime<K>> tryPrime<K>(K k)
-            where K: ITypeNat, new()
-                => Try(() => prime<K>(k));
 
     }
 

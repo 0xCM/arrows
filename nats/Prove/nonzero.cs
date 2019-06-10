@@ -39,26 +39,5 @@ namespace Z0
             where K: ITypeNat, new()
                 => new Nonzero<K>(k);                             
 
-        /// <summary>
-        /// Attempts to prove that k:K => k != 0
-        /// Signals success by returning evidence
-        /// Signals failure by returning none
-        /// </summary>
-        /// <typeparam name="K">A nonzero natural type</typeparam>
-        [MethodImpl(Inline)]
-        public static Option<Nonzero<K>> tryNonzero<K>()
-            where K: ITypeNat, new()
-                => Try(() => new Nonzero<K>(natrep<K>())); 
-
-        /// <summary>
-        /// Attempts to prove that k:K => k != 0
-        /// Signals success by returning evidence
-        /// Signals failure by returning none
-        /// </summary>
-        /// <typeparam name="K">A nonzero natural type</typeparam>
-        [MethodImpl(Inline)]
-        public static Option<Nonzero<K>> tryNonzero<K>(K k)
-            where K: ITypeNat, new()
-                => Try( () => new Nonzero<K>(k)); 
     }
 }

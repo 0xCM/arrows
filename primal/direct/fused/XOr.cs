@@ -144,5 +144,61 @@ namespace Z0
             return lhs;
         }
 
+        public static Span<sbyte> xor(Span<sbyte> lhs, sbyte rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<byte> xor(Span<byte> lhs, byte rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<short> xor(Span<short> lhs, short rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<ushort> xor(Span<ushort> lhs, ushort rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<int> xor(Span<int> lhs, int rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<uint> xor(Span<uint> lhs, uint rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<long> xor(Span<long> lhs, long rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
+        public static Span<ulong> xor(Span<ulong> lhs, ulong rhs)
+        {
+            for(var i = 0; i< lhs.Length; i++)
+                lhs[i] ^= rhs;
+            return lhs;
+        }
+
     }
 }

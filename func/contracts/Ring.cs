@@ -24,6 +24,7 @@ namespace Z0
 
 
     public interface IDivisionRingOps<T> : IRingOps<T>, IDivisiveOps<T>, IReciprocativeOps<T>
+        where T : struct
     {
 
 

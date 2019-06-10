@@ -48,6 +48,17 @@ partial class zfunc
             => Interval.leftclosed(left,right);
 
     /// <summary>
+    /// Constructs the left-closed (or right-open interval) interval [left,right)
+    /// </summary>
+    /// <param name="left">The left end point</param>
+    /// <param name="right">The right endpoint</param>
+    /// <typeparam name="T">The underlying type</typeparam>
+    [MethodImpl(Inline)]
+    public static Interval<T> rightclosed<T>(T left, T right)
+        where T : struct
+            => Interval.rightclosed(left,right);
+
+    /// <summary>
     /// Constructs the open interval (left,right)
     /// </summary>
     /// <param name="left">The left end point</param>

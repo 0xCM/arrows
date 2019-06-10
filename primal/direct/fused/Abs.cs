@@ -114,7 +114,6 @@ namespace Z0
         public static Span<short> abs(ReadOnlySpan<short> src)
             => abs(src, span<short>(src.Length));
 
-
         [MethodImpl(Inline)]
         public static Span<int> abs(ReadOnlySpan<int> src)
             => abs(src, span<int>(src.Length));

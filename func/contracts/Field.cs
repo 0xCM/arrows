@@ -6,6 +6,7 @@ namespace Z0
 {
 
     public interface IFieldOps<T> : ICommutativeRingOps<T>, IDivisionRingOps<T>
+        where T : struct
     {
 
     }

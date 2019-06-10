@@ -15,18 +15,22 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static Quorem<T> define<T>(in T q, in T r)
-            => new Quorem<T>(q,r);
+            where T : struct
+                => new Quorem<T>(q,r);
 
         [MethodImpl(Inline)]
         public static Quorem<T> define<T>((T Quotient, T Remainder) src)
+            where T : struct
             => Quorem.define(src.Quotient, src.Remainder);
 
         [MethodImpl(Inline)]
         public static (T Quotient, T Remainder) Deconstruct<T>(this Quorem<T> src)
+            where T : struct
             => (src.Quotient, src.Remainder);
     }
 
     public ref struct Quorem<T>
+        where T : struct
     {
         [MethodImpl(Inline)]
         public static implicit operator Quorem<T>((T Quotient, T Remainder) src)
@@ -49,6 +53,10 @@ namespace Z0
 
         public override string ToString()
             => $"{Quotient} \\ {Remainder}";
+
+        public Quorem<S> As<S>()
+            where S : struct
+                => new Quorem<S>(Unsafe.As<T,S>(ref Quotient), Unsafe.As<T,S>(ref Remainder));
 
     }
 

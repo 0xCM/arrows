@@ -8,7 +8,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 using Z0;
-using static zfunc;
 
 static class nconst
 {

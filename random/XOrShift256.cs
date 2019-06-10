@@ -206,11 +206,11 @@ namespace Z0
             }
         }
 
-        public IEnumerable<sbyte> SignedBytes()
+        public IEnumerable<sbyte> SBytes()
             => from b in Bytes() select (sbyte)b;
 
-        public sbyte NextSignedByte()
-            => SignedBytes().First();
+        public sbyte NextSByte()
+            => SBytes().First();
 
         [MethodImpl(Inline)]
         float nextF32()        

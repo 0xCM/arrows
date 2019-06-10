@@ -77,7 +77,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Quorem<float> quorem(in float lhs, in float rhs)
         {
-            var quo = div(lhs, rhs);
+            var quo = floor(div(lhs, rhs));
             var rem = lhs - quo*rhs;
             return Quorem.define(quo, rem);                   
         }
@@ -85,7 +85,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Quorem<double> quorem(in double lhs, in double rhs)
         {
-            var quo = div(lhs, rhs);
+            var quo = floor(div(lhs, rhs));
             var rem = lhs - quo*rhs;
             return Quorem.define(quo, rem);                   
         }

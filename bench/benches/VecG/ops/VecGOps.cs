@@ -20,8 +20,8 @@ namespace Z0.Bench
             where T : struct
         {
             var opid =  Id<T>(OpKind.Add);
-            var v1 = VecG.load(lhs);
-            var v2 = VecG.load(rhs);
+            var v1 = Vector.Load(lhs);
+            var v2 = Vector.Load(rhs);
             Span<T> dst = default;
             var sw = stopwatch();
             for(var cycle = 1; cycle <= context.Cycles; cycle++)
@@ -33,8 +33,8 @@ namespace Z0.Bench
             where T : struct
         {
             var opid =  Id<T>(OpKind.Sub);
-            var v1 = VecG.load(lhs);
-            var v2 = VecG.load(rhs);
+            var v1 = Vector.Load(lhs);
+            var v2 = Vector.Load(rhs);
             Span<T> dst = default;
             var sw = stopwatch();
             for(var cycle = 1; cycle <= context.Cycles; cycle++)
@@ -46,8 +46,8 @@ namespace Z0.Bench
             where T : struct
         {
             var opid =  Id<T>(OpKind.Mul);
-            var v1 = VecG.load(lhs);
-            var v2 = VecG.load(rhs);
+            var v1 = Vector.Load(lhs);
+            var v2 = Vector.Load(rhs);
             Span<T> dst = default;
             var sw = stopwatch();
             for(var cycle = 1; cycle <= context.Cycles; cycle++)
@@ -59,8 +59,8 @@ namespace Z0.Bench
             where T : struct
         {
             var opid =  Id<T>(OpKind.Div);
-            var v1 = VecG.load(lhs);
-            var v2 = VecG.load(rhs);
+            var v1 = Vector.Load(lhs);
+            var v2 = Vector.Load(rhs);
             Span<T> dst = default;
             var sw = stopwatch();
             for(var cycle = 1; cycle <= context.Cycles; cycle++)
@@ -72,8 +72,8 @@ namespace Z0.Bench
             where T : struct
         {
             var opid =  Id<T>(OpKind.Mod);
-            var v1 = VecG.load(lhs);
-            var v2 = VecG.load(rhs);
+            var v1 = Vector.Load(lhs);
+            var v2 = Vector.Load(rhs);
             Span<T> dst = default;
             var sw = stopwatch();
             for(var cycle = 1; cycle <= context.Cycles; cycle++)
@@ -85,8 +85,8 @@ namespace Z0.Bench
             where T : struct
         {
             var opid =  Id<T>(OpKind.And);
-            var v1 = VecG.load(lhs);
-            var v2 = VecG.load(rhs);
+            var v1 = Vector.Load(lhs);
+            var v2 = Vector.Load(rhs);
             Span<T> dst = default;
             var sw = stopwatch();
             for(var cycle = 1; cycle <= context.Cycles; cycle++)
@@ -98,8 +98,8 @@ namespace Z0.Bench
             where T : struct
         {
             var opid =  Id<T>(OpKind.Or);
-            var v1 = VecG.load(lhs);
-            var v2 = VecG.load(rhs);
+            var v1 = Vector.Load(lhs);
+            var v2 = Vector.Load(rhs);
             Span<T> dst = default;
             var sw = stopwatch();
             for(var cycle = 1; cycle <= context.Cycles; cycle++)
@@ -111,8 +111,8 @@ namespace Z0.Bench
             where T : struct
         {
             var opid =  Id<T>(OpKind.XOr);
-            var v1 = VecG.load(lhs);
-            var v2 = VecG.load(rhs);
+            var v1 = Vector.Load(lhs);
+            var v2 = Vector.Load(rhs);
             Span<T> dst = default;
             var sw = stopwatch();
             for(var cycle = 1; cycle <= context.Cycles; cycle++)
@@ -124,7 +124,7 @@ namespace Z0.Bench
             where T : struct
         {
             var opid =  Id<T>(OpKind.Flip);
-            var v = VecG.load(src);
+            var v = Vector.Load(src);
             Span<T> dst = default;
             var sw = stopwatch();
             for(var cycle = 1; cycle <= context.Cycles; cycle++)
@@ -136,7 +136,7 @@ namespace Z0.Bench
             where T : struct
         {
             var opid =  Id<T>(OpKind.Negate);
-            var v = VecG.load(src);
+            var v = Vector.Load(src);
             Span<T> dst = default;
             var sw = stopwatch();
             for(var cycle = 1; cycle <= context.Cycles; cycle++)
@@ -148,7 +148,7 @@ namespace Z0.Bench
             where T : struct
         {
             var opid =  Id<T>(OpKind.Abs);
-            var v = VecG.load(src);
+            var v = Vector.Load(src);
             Span<T> dst = default;
             var sw = stopwatch();
             for(var cycle = 1; cycle <= context.Cycles; cycle++)

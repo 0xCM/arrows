@@ -108,6 +108,10 @@ namespace Z0
             => ref Unsafe.As<decimal,T>(ref asRef(in src));
 
         [MethodImpl(Inline)]
+        public static ref T generic<S,T>(in S src)
+            => ref Unsafe.As<S,T>(ref asRef(in src));
+
+        [MethodImpl(Inline)]
         public static unsafe void* pvoid<T>(in T src)
             => Unsafe.AsPointer(ref asRef(in src));
 

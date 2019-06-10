@@ -41,7 +41,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return subF64(lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -69,7 +69,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return ref subF64(ref lhs,rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         public static Span<T> sub<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
@@ -122,10 +122,10 @@ namespace Z0
                 math.sub(uint64(lhs), uint64(rhs));
             else if(typeof(T) == typeof(float))
                 math.sub(float32(lhs), float32(rhs));
-            else if(typeof(T) == typeof(float))
+            else if(typeof(T) == typeof(double))
                 math.sub(float64(lhs), float64(rhs));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return ref lhs;
         }
 

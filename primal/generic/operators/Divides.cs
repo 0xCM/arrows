@@ -20,69 +20,28 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return dividesI8(lhs,rhs);
+                return math.divides(int8(lhs), int8(rhs));
             else if(typeof(T) == typeof(byte))
-                return dividesU8(lhs, rhs);
+                return math.divides(uint8(lhs), uint8(rhs));
             else if(typeof(T) == typeof(short))
-                return dividesI16(lhs, rhs);
+                return math.divides(int16(lhs), int16(rhs));
             else if(typeof(T) == typeof(ushort))
-                return dividesU16(lhs,rhs);
+                return math.divides(uint16(lhs), uint16(rhs));
             else if(typeof(T) == typeof(int))
-                return dividesI32(lhs, rhs);
+                return math.divides(int32(lhs), int32(rhs));
             else if(typeof(T) == typeof(uint))
-                return dividesU32(lhs, rhs);
+                return math.divides(uint32(lhs), uint32(rhs));
             else if(typeof(T) == typeof(long))
-                return dividesI64(lhs,rhs);
+                return math.divides(int64(lhs), int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                return dividesU64(lhs,rhs);
+                return math.divides(uint64(lhs), uint64(rhs));
             else if(typeof(T) == typeof(float))
-                return dividesF32(lhs, rhs);
+                return math.divides(float32(lhs), float32(rhs));
             else if(typeof(T) == typeof(double))
-                return dividesF64(lhs,rhs);
+                return math.divides(float64(lhs), float64(rhs));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
-
-
-        [MethodImpl(Inline)]
-        static bool dividesI8<T>(T lhs, T rhs)
-            => int8(rhs) % int8(lhs) == 0;
-
-        [MethodImpl(Inline)]
-        static bool dividesU8<T>(T lhs, T rhs)
-            => uint8(rhs) % uint8(lhs) == 0;
-
-        [MethodImpl(Inline)]
-        static bool dividesI16<T>(T lhs, T rhs)
-            => int16(rhs) % int16(lhs) == 0;
-
-        [MethodImpl(Inline)]
-        static bool dividesU16<T>(T lhs, T rhs)
-            => uint16(rhs) % uint16(lhs) == 0;
-
-        [MethodImpl(Inline)]
-        static bool dividesI32<T>(T lhs, T rhs)
-            => int32(rhs) % int32(lhs) == 0;
-        
-        [MethodImpl(Inline)]
-        static bool dividesU32<T>(T lhs, T rhs)
-            => uint32(rhs) % uint32(lhs) == 0;
-
-        [MethodImpl(Inline)]
-        static bool dividesI64<T>(T lhs, T rhs)
-            => int64(rhs) % int64(lhs) == 0;
-
-        [MethodImpl(Inline)]
-        static bool dividesU64<T>(T lhs, T rhs)
-            => uint64(rhs) % uint64(lhs) == 0;
-
-        [MethodImpl(Inline)]
-        static bool dividesF32<T>(T lhs, T rhs)
-            => float32(rhs) % float32(lhs) == 0;
-
-        [MethodImpl(Inline)]
-        static bool dividesF64<T>(T lhs, T rhs)
-            => float64(rhs) % float64(lhs) == 0;
     }
 }
 

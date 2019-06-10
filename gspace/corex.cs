@@ -18,36 +18,6 @@ namespace Z0
     public static class corex
     {
         /// <summary>
-        /// Converts a number to a string of decimal digits
-        /// </summary>
-        /// <param name="src">The source integer</param>
-        /// <typeparam name="T">The underlying primitive type</typeparam>
-        [MethodImpl(Inline)]   
-        public static Span<DeciDigit> ToDecimalDigits<T>(this num<T> src)
-            where T : struct    
-                => DeciDigits.Parse(src.Abs().ToString());
-
-        /// <summary>
-        /// Converts a number to a string of decimal digits
-        /// </summary>
-        /// <param name="src">The source integer</param>
-        /// <typeparam name="T">The underlying primitive type</typeparam>
-         [MethodImpl(Inline)]   
-        public static Span<HexDigit> ToHexDigits<T>(this num<T> src)
-            where T : struct    
-                =>  HexDigits.Parse(src.ToString());
-
-        /// <summary>
-        /// Converts a number to a string of decimal digits
-        /// </summary>
-        /// <param name="src">The source integer</param>
-        /// <typeparam name="T">The underlying primitive type</typeparam>
-        [MethodImpl(Inline)]   
-        public static Span<BinaryDigit> ToBinaryDigits<T>(this num<T> src)
-            where T : struct    
-                =>  BinaryDigits.Parse(src.ToBitString());
-
-        /// <summary>
         /// Determines whether the point lies within the interval
         /// </summary>
         /// <param name="src">The interval</param>

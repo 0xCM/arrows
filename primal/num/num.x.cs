@@ -173,46 +173,6 @@ namespace Z0
             return dst;
         }
 
-        // <summary>
-        /// Partitions an interval into a specified number of pieces
-        /// </summary>
-        /// <param name="src">The source interval</param>
-        /// <param name="parts">The number of partition points</param>
-        /// <typeparam name="T">The underlying interval type</typeparam>
-        public static IEnumerable<num<T>> Partition<T>(this IInterval<num<T>> src, num<T> parts)
-            where T : struct
-        {
-            
-            if(parts != Num.zero<T>())
-            {            
-                var width = (src.Right - src.Left)/parts;
-                var current = src.Left;
-                
-                yield return src.Left;
-
-                var start = Num.zero<T>();
-                var finish = parts - Num.one<T>();
-
-                for(var i = start; i < finish; i++)
-                {
-                    current += width;
-                    yield return current;
-                }
-                yield return src.Right;
-            }
-        }
-
-        /// <summary>
-        /// Partitions an interval into a specified number of pieces
-        /// </summary>
-        /// <param name="src">The source interval</param>
-        /// <param name="parts">The number of partition points</param>
-        /// <typeparam name="T">The underlying interval type</typeparam>
-        [MethodImpl(Inline)]
-        public static num<T>[] Discretize<T>(this Interval<num<T>> src, num<T> parts)   
-            where T : struct
-                => src.PartitionPoints(parts).ToArray(); 
- 
         [MethodImpl(Inline)]
         public static num<byte> ToNumber(this byte src)
             => src;
@@ -314,6 +274,35 @@ namespace Z0
             where T : struct
                 => Num.many(lhs).PairWith(Num.many(rhs));
 
+        /// <summary>
+        /// Converts a number to a string of decimal digits
+        /// </summary>
+        /// <param name="src">The source integer</param>
+        /// <typeparam name="T">The underlying primitive type</typeparam>
+        [MethodImpl(Inline)]   
+        public static Span<DeciDigit> ToDecimalDigits<T>(this num<T> src)
+            where T : struct    
+                => DeciDigits.Parse(src.Abs().ToString());
+
+        /// <summary>
+        /// Converts a number to a string of decimal digits
+        /// </summary>
+        /// <param name="src">The source integer</param>
+        /// <typeparam name="T">The underlying primitive type</typeparam>
+         [MethodImpl(Inline)]   
+        public static Span<HexDigit> ToHexDigits<T>(this num<T> src)
+            where T : struct    
+                =>  HexDigits.Parse(src.ToString());
+
+        /// <summary>
+        /// Converts a number to a string of decimal digits
+        /// </summary>
+        /// <param name="src">The source integer</param>
+        /// <typeparam name="T">The underlying primitive type</typeparam>
+        [MethodImpl(Inline)]   
+        public static Span<BinaryDigit> ToBinaryDigits<T>(this num<T> src)
+            where T : struct    
+                =>  BinaryDigits.Parse(src.ToBitString());
 
     }
 }

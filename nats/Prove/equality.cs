@@ -110,30 +110,6 @@ namespace Z0
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
         /// <returns></returns>
-        public static Option<NatEq<K1,K2>> tryEqual<K1,K2>()
-            where K1: ITypeNat, new()
-            where K2: ITypeNat, new()
-                => Try(() => new NatEq<K1,K2>(natrep<K1>(),natrep<K2>()));
-
-        /// <summary>
-        /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 = k2; otherwise
-        /// raises an error
-        /// </summary>
-        /// <typeparam name="K1">The first type</typeparam>
-        /// <typeparam name="K2">The second type</typeparam>
-        /// <returns></returns>
-        public static Option<NatEq<K1,K2>> tryEqual<K1,K2>(K1 k1, K2 k2)
-            where K1: ITypeNat, new()
-            where K2: ITypeNat, new()
-                => Try(() => new NatEq<K1,K2>(k1,k2));                             
-
-        /// <summary>
-        /// If possible, constructs evidence that k1:K1 & k2:K2 => k1 = k2; otherwise
-        /// raises an error
-        /// </summary>
-        /// <typeparam name="K1">The first type</typeparam>
-        /// <typeparam name="K2">The second type</typeparam>
-        /// <returns></returns>
         public static NatNEq<K1,K2> neq<K1,K2>()
             where K1: ITypeNat, new()
             where K2: ITypeNat, new()

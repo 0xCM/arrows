@@ -20,11 +20,11 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(float))
-                return floorF32(src);
+                return generic<T>(math.floor(float32(src)));
             else if(typeof(T) == typeof(double))
-                return floorF64(src);
+                return generic<T>(math.floor(float64(src)));
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
         
         public static Span<T> floor<T>(ReadOnlySpan<T> src, Span<T> dst)
@@ -47,15 +47,6 @@ namespace Z0
             for(var i =0; i<io.Length; i++)
                 io[i] = floor(io[i]);
             return ref io;
-        }
-
-        [MethodImpl(Inline)]
-        static T floorF32<T>(T src)
-            => generic<T>(MathF.Floor(float32(src)));
-
-        [MethodImpl(Inline)]
-        static T floorF64<T>(T src)
-            => generic<T>(Math.Floor(float64(src)));
- 
+        } 
     }
 }

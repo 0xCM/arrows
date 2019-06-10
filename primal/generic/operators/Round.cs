@@ -24,7 +24,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(math.round(float64(src), scale));
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -36,7 +36,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 math.round(float64(src), scale, float64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
             return dst;
         }
 
@@ -54,7 +54,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 math.round(float64(io), scale);
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
             return ref io;        
         }
 

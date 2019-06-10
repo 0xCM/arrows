@@ -14,12 +14,12 @@ namespace Z0
 
     public class Histogram
     {
-        public static Histogram<T> define<T>(Interval<T> domain, T? grain = null)            
+        public static Histogram<T> Define<T>(Interval<T> domain, T? grain = null)            
             where T : struct
         {
             var width = gmath.sub(domain.Right, domain.Left);
             var histo = new Histogram<T>(domain, 
-                grain ?? gmath.div(width, convert<T>(100)));
+                grain ?? gmath.div(width, gmath.min(width, convert<T>(100))));
             return histo;
         }
     }
@@ -31,8 +31,8 @@ namespace Z0
         {
             this.Domain = Domain;
             this.BinWidth = BinWidth;
-            this.Partitions = Domain.Discretize(BinWidth).ToArray();
-            this.Counts = alloc<ulong>(Partitions.Length);
+            this.Partitions = Domain.PartitionPointStream(BinWidth).ToArray();
+            this.Counts = alloc<int>(Partitions.Length);
         }
 
         public Interval<T> Domain {get;}
@@ -41,9 +41,9 @@ namespace Z0
 
         public T[] Partitions {get;}
 
-        ulong[] Counts {get;}
+        int[] Counts {get;}
 
-        ulong BucketSize(int ix)
+        int BucketSize(int ix)
             => Counts[ix-1];
         
         Interval<T> PartitionDomain(int ix)
@@ -81,6 +81,15 @@ namespace Z0
             throw new Exception($"No bucket found for the value {value} since the histogram domain is {Domain}");
         }
 
+        public void Deposit(ReadOnlySpan<T> src)
+        {
+            for(var i=0; i< src.Length; i++)
+            {
+                var ix = FindBucketIndex(src[i]) - 1;
+                ++Counts[ix];
+            }
+        }
+
         /// <summary>
         /// Distribute an index of values to the histogram
         /// </summary>
@@ -92,21 +101,19 @@ namespace Z0
                 : src.Select(FindBucketIndex).GroupBy(x => x).Freeze(); 
 
             foreach(var i in indices)
-                Counts[i.Key - 1] = Counts[i.Key - 1] + (ulong)i.Count();
+                Counts[i.Key - 1] = Counts[i.Key - 1] + i.Count();
         }
         
         /// <summary>
         /// Describes the current state of the histogram
         /// </summary>
         /// 
-        public Span<SampleCount<T>> Buckets()            
+        public Span<Bin<T>> Buckets()            
         {
-            var buckets = alloc<SampleCount<T>>(Partitions.Length - 1);
+            var buckets = alloc<Bin<T>>(Partitions.Length - 1);
             for(var i = 1; i< Partitions.Length; i++)
-                buckets[i-1] = SampleCount.define(PartitionDomain(i), BucketSize(i));
+                buckets[i-1] = Bin.Define(PartitionDomain(i), BucketSize(i));
             return buckets;
-        }    
-
-            
+        }                
     }
 }
