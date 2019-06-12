@@ -46,6 +46,13 @@ namespace Z0
         public BernoulliSpec Spec {get;}
 
         public override IEnumerable<T> Sample(IRandomizer random)
-            => random.Stream<double>().Select(x => x < Spec.p ? One : Zero);                        
+        {
+            while(true)
+            {
+                var success = random.NextDouble() < Spec.p ? One : Zero;
+                yield return success;
+            }            
+        }
+            
     }
 }

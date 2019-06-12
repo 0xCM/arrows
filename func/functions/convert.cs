@@ -27,7 +27,18 @@ partial class zfunc
         where T : struct
         where S : struct
            => Converter.convert(src, out T dst);  
-    
+
+    [MethodImpl(Inline)]   
+    public static Span<T> convert<S,T>(ReadOnlySpan<S> src)
+        where T : struct
+        where S : struct
+    {
+        var dst = span<T>(src.Length);
+        for(var i=0; i<src.Length; i++)
+            dst[i] = convert<S,T>(src[i]);
+        return dst;
+    }
+
     [MethodImpl(Inline)]   
     public static T convert<T>(sbyte src)
         where T : struct
@@ -54,9 +65,19 @@ partial class zfunc
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
+    public static Span<T> convert<T>(ReadOnlySpan<int> src)
+        where T : struct
+            => convert<int,T>(src);
+
+    [MethodImpl(Inline)]   
     public static T convert<T>(uint src)
         where T : struct
             => Converter.convert(src, out T dst);
+
+    [MethodImpl(Inline)]   
+    public static Span<T> convert<T>(ReadOnlySpan<uint> src)
+        where T : struct
+            => convert<uint,T>(src);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(long src)
@@ -64,9 +85,19 @@ partial class zfunc
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
+    public static Span<T> convert<T>(ReadOnlySpan<long> src)
+        where T : struct
+            => convert<long,T>(src);
+
+    [MethodImpl(Inline)]   
     public static T convert<T>(ulong src)
         where T : struct
             => Converter.convert(src, out T dst);
+
+    [MethodImpl(Inline)]   
+    public static Span<T> convert<T>(ReadOnlySpan<ulong> src)
+        where T : struct
+            => convert<ulong,T>(src);
 
     [MethodImpl(Inline)]   
     public static T convert<T>(float src)
@@ -74,7 +105,18 @@ partial class zfunc
             => Converter.convert(src, out T dst);
 
     [MethodImpl(Inline)]   
+    public static Span<T> convert<T>(ReadOnlySpan<float> src)
+        where T : struct
+            => convert<float,T>(src);
+
+    [MethodImpl(Inline)]   
     public static T convert<T>(double src)
         where T : struct
             => Converter.convert(src, out T dst);
+
+    [MethodImpl(Inline)]   
+    public static Span<T> convert<T>(ReadOnlySpan<double> src)
+        where T : struct
+            => convert<double,T>(src);
+
 }

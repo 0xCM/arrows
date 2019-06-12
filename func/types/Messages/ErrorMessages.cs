@@ -55,6 +55,9 @@ namespace Z0
         public static AppMsg CountMismatch(int lhs, int rhs, string caller, string file, int? line)
             => AppMsg.Define($"Count mismatch, {lhs} != {rhs}", SeverityLevel.Error, caller, file, line);
 
+        public static AppMsg EmptySourceSpan(string caller, string file, int? line)
+            => AppMsg.Define($"The source span was empty", SeverityLevel.Error, caller, file, line);
+
         public static AppMsg LengthMismatch(int lhs, int rhs, string caller, string file, int? line)
             => AppMsg.Define($"Length mismatch, {lhs} != {rhs}", SeverityLevel.Error, caller, file, line);
 

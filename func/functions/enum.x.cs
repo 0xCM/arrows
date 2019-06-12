@@ -18,15 +18,15 @@ namespace  Z0
 
 
         /// <summary>
-        /// Partitions the sequence into subsequences of a maximum length
+        /// Partitions the source into sub-arrays of a maximum length
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="items"></param>
+        /// <param name="src"></param>
         /// <param name="max"></param>
-        public static IEnumerable<T[]> Partition<T>(this IEnumerable<T> items, int max)
+        /// <typeparam name="T"></typeparam>
+        public static IEnumerable<T[]> Partition<T>(this IEnumerable<T> src, int max)
         {
             var list = new List<T>();
-            foreach (var item in items)
+            foreach (var item in src)
             {
                 list.Add(item);
                 if (list.Count == max)
@@ -69,22 +69,17 @@ namespace  Z0
         {
             var buffer = default(T[]);
             var count = 0;
-            var sw = default(Stopwatch);
 
             foreach (var item in source)
             {
                 if (buffer == null)
-                {
-                    sw = Stopwatch.StartNew();
                     buffer = new T[max];
-                }
 
                 buffer[count++] = item;
 
                 if (count != max)
                     continue;
-                var elapsed = sw.ElapsedMilliseconds;
-                yield return buffer.ToList();
+                yield return buffer;
 
                 buffer = null;
                 count = 0;
@@ -159,7 +154,6 @@ namespace  Z0
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> ToReadOnlyList<T>(this IEnumerable<T> src)
             => src.ToList();
-
 
         /// <summary>
         /// Returns the first element if it exists; otherwise returns the supplied default
@@ -290,12 +284,12 @@ namespace  Z0
             => singletons(src);
 
         /// <summary>
-        /// Determines whether two sequence,adjudicated by positional elemental equality, are equal
+        /// Determines whether two streams are identical
         /// </summary>
         /// <typeparam name="T">The element type</typeparam>
         /// <param name="lhs">The first sequence</param>
         /// <param name="rhs">The second sequence</param>
-        public static bool ReallyEqual<T>(this IEnumerable<T> lhs, IEnumerable<T> rhs)
+        public static bool Eq<T>(this IEnumerable<T> lhs, IEnumerable<T> rhs)
         {            
             var lenum = lhs.GetEnumerator();
             var renum = rhs.GetEnumerator();
@@ -347,14 +341,12 @@ namespace  Z0
                 yield return item;
                 yield return x;
             }
-
         }
 
         public static void ForEach<T>(this IEnumerable<T> src, Action<T> effect)
         {
             foreach(var item in src)
                 effect(item);
-
         }
 
     }

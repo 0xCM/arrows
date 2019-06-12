@@ -19,4 +19,14 @@ partial class zfunc
         => (src & (U64One << pos)) != 0ul;
 
 
+    [MethodImpl(Inline)]
+    public static Span<float> floats<T>(params T[] src)
+        where T : struct
+            =>  convert<T,float>(src.ToReadOnlySpan());
+
+    [MethodImpl(Inline)]
+    public static Span<double> doubles<T>(params T[] src)
+        where T : struct
+            =>  convert<T,double>(src.ToReadOnlySpan());
+
 }

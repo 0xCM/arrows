@@ -198,14 +198,16 @@ namespace Z0
         }
  
         [MethodImpl(Inline)]
-        public static int align<T>(int length)
+        public static void alignment<T>(int srcLen, out int blocklen, out int fullBlocks, out int remainder)
             where T : struct        
         {
-            var remainder = length % blocklength<T>();
-            if(remainder == 0)
-                return length;
-            else
-                return (length - remainder) + blocklength<T>();
+            blocklen = blocklength<T>();
+            fullBlocks = srcLen / blocklen;
+            remainder = srcLen % blocklength<T>();
+            // if(remainder == 0)
+            //     return srcLen;
+            // else
+            //     return (srcLen - remainder) + blocklength<T>();
         } 
 
         /// <summary>

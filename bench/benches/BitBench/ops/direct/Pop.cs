@@ -19,7 +19,7 @@ namespace Z0.Bench
         public static Metrics<T> Pop<T>(this BitDContext context) 
             where T : struct
         {
-            var src = context.Random.Span<T>(context.Samples).ToReadOnlySpan();
+            var src = context.Random.Span<T>(context.Samples).ReadOnly();
             var metrics = Metrics<ulong>.Zero;
             for(var i=0; i<context.Runs; i++)
             {

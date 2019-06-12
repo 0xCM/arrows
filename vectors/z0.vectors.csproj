@@ -15,5 +15,6 @@
     <ProjectReference Include="..\primal\z0.primal.csproj" />
     <ProjectReference Include="..\intrinsics\z0.intrinsics.csproj" />
     <ProjectReference Include="..\analogs\z0.analogs.csproj" />
+    <ProjectReference Include="..\mkl\z0.mkl.csproj" />
   </ItemGroup>
 </Project>

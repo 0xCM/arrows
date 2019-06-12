@@ -19,34 +19,6 @@ namespace Z0
 
         public static readonly NatSeq<N1,N6> Seq = default;
 
-        
-        public override bool Equals(object obj)
-            => obj is N16;
-
-        [MethodImpl(Inline)]
-        public static bool operator ==(N16 lhs, int rhs)
-            => lhs.value == (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(N16 lhs, int rhs)
-            => lhs.value != (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(N16 lhs, int rhs)
-            => lhs.value <= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(N16 lhs, int rhs)
-            => lhs.value >= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(int lhs, N16 rhs)
-            => (ulong)lhs <= rhs.value;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(int lhs, N16 rhs)
-            => (ulong)lhs >= rhs.value;
-
         public ITypeNat rep 
             => Rep;
 
@@ -59,14 +31,8 @@ namespace Z0
         ITypeNat INatPow2.Exponent 
             => N4.Rep;
 
-        byte[] ITypeNat.Digits() 
-            => (Seq as ITypeNat).Digits();
-
         public override string ToString() 
             => Seq.format();
-
-        public override int GetHashCode()
-            => value.GetHashCode();
     }
 
 }

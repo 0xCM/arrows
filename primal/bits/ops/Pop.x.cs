@@ -24,7 +24,7 @@ namespace Z0
 
         [MethodImpl(Inline)]        
         public static ulong PopCount(this Span<Bit> src)
-            => src.ToReadOnlySpan().PopCount();
+            => src.ReadOnly().PopCount();
 
                
         /// <summary>

@@ -46,7 +46,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T avg<T>(Span<T> src)
             where T : struct
-            => avg(src.ToReadOnlySpan());
+            => avg(src.ReadOnly());
         
 
     }

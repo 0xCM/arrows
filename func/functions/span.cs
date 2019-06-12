@@ -149,6 +149,13 @@ partial class zfunc
                 : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
     [MethodImpl(Inline)]   
+    public static int length<S,T>(ReadOnlySpan256<S> lhs, ReadOnlySpan256<T> rhs,[CallerMemberName] string caller = null, 
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            where T : struct
+            where S :struct
+        =>  lhs.Length == rhs.Length ? lhs.Length : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
+
+    [MethodImpl(Inline)]   
     public static int length<S,T>(ReadOnlySpan<S> lhs, ReadOnlySpan<T> rhs, [CallerMemberName] string caller = null, 
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => lhs.Length == rhs.Length ? lhs.Length 

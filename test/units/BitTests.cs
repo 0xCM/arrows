@@ -208,7 +208,7 @@ namespace Z0.Test
         {
             var x0 = BitVectorU32.Define(0b00001010110000101001001111011001u);
             var x1 = BitVectorU32.Define(0b00001010110110101001001111000001u);
-            var src = Randomizer.Span<byte>(Pow2.T04).ToReadOnlySpan();
+            var src = Randomizer.Span<byte>(Pow2.T04).ReadOnly();
             var packed = span<uint>(src.Length / 4);
             gbits.pack(src, packed);
 
@@ -226,7 +226,7 @@ namespace Z0.Test
         {
             var x0 = BitVectorU32.Define(0b00001010110000101001001111011001u);
             var x1 = BitVectorU32.Define(0b00001010110110101001001111000001u);
-            var src = Randomizer.Span<byte>(Pow2.T04).ToReadOnlySpan();
+            var src = Randomizer.Span<byte>(Pow2.T04).ReadOnly();
             var packed = span<ulong>(src.Length / 8);
             gbits.pack(src, packed);
 

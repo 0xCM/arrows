@@ -114,7 +114,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe void* pvoid<T>(in T src)
             => Unsafe.AsPointer(ref asRef(in src));
-
     }
 
     partial class As

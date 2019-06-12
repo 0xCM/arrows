@@ -180,9 +180,9 @@ namespace Z0
                 else if(i == partlen - 1)
                 {
                     if(src.Open || src.RightOpen)
-                        partition[partix] = open(left, right);
+                        partition[partix] = leftclosed(left, right);
                     else
-                        partition[partix] = rightclosed(left, right);    
+                        partition[partix] = closed(left, right);    
 
                 }
                 else

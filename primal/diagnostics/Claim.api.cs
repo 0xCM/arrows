@@ -149,7 +149,7 @@ namespace Z0
 
         public static void eq<T>(Span<T> lhs, Span<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 
-                => eq(lhs.ToReadOnlySpan(), rhs.ToReadOnlySpan(), caller, file, line);
+                => eq(lhs.ReadOnly(), rhs.ReadOnly(), caller, file, line);
  
         public static void eq<T>(Span128<T> lhs, Span128<T> rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : struct 

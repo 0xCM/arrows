@@ -81,5 +81,34 @@ namespace Z0
         }
 
 
+        // public static Span<Bit> eq<T>(in ReadOnlySpan256<T> lhs, in ReadOnlySpan256<T> rhs)
+        //     where T : struct
+        // {            
+        //     if(typeof(T) == typeof(sbyte))
+        //         return dinx.eq(int8(lhs), int8(rhs));
+        //     else if(typeof(T) == typeof(byte))
+        //         dinx.add(uint8(lhs), uint8(rhs), uint8(dst));
+        //     else if(typeof(T) == typeof(short))
+        //         dinx.add(int16(lhs), int16(rhs), int16(dst));
+        //     else if(typeof(T) == typeof(ushort))
+        //         dinx.add(uint16(lhs), uint16(rhs), uint16(dst));
+        //     else if(typeof(T) == typeof(int))
+        //         dinx.add(int32(lhs), int32(rhs), int32(dst));
+        //     else if(typeof(T) == typeof(uint))
+        //         dinx.add(uint32(lhs), uint32(rhs), uint32(dst));
+        //     else if(typeof(T) == typeof(long))
+        //         dinx.add(int64(lhs), int64(rhs), int64(dst));
+        //     else if(typeof(T) == typeof(ulong))
+        //         dinx.add(uint64(lhs), uint64(rhs), uint64(dst));
+        //     else if(typeof(T) == typeof(float))
+        //         dinx.add(float32(lhs), float32(rhs), float32(dst));
+        //     else if(typeof(T) == typeof(double))
+        //         dinx.add(float64(lhs), float64(rhs), float64(dst));
+        //     else 
+        //         throw unsupported(PrimalKinds.kind<T>());
+        //     return dst;
+        // }
+
+
     }
 }

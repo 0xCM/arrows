@@ -14,27 +14,10 @@ namespace Z0
     /// </summary>
     public interface IRandomSource
     {
-        IEnumerable<Bit> Bits();
         
-        IEnumerable<byte> Bytes();
-
-        IEnumerable<sbyte> SBytes();        
-        
-        IEnumerable<ulong> Integers();
-
-        IEnumerable<double> Doubles();
-
-        Bit NextBit();
-        
-        byte NextByte();
-
-        sbyte NextSByte();        
-
         ulong NextInteger();
 
         double NextDouble();
-
-        Sign NextSign();
 
     }
 
@@ -49,11 +32,7 @@ namespace Z0
     public interface IRandomizer<T> : IRandomizer
         where T : struct
     {
-        IEnumerable<T> Stream(Interval<T> domain);
-        
-        IEnumerable<T> Stream();    
-
-        
+                
     }
 
     public interface ISampleDefaults

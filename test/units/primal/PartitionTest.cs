@@ -102,7 +102,7 @@ namespace Z0.Test
             var dst = src.StepwisePartition(1);
             var fmt = dst.Map(x => x.ToString()).Concat(" + ");
             Claim.eq(15, dst.Length);
-            Claim.@true(dst.Last().Open);
+            Claim.@true(dst.Last().RightOpen);
 
         }
 
@@ -121,9 +121,7 @@ namespace Z0.Test
             var src = leftopen(1,100);
             var dst = src.Partition(10);            
             var fmt = dst.Map(x => x.ToString()).Concat(" + ");                    
-            print($"{dst.Length} {src} = {fmt}");
             Claim.eq(10, dst.Length);
-
         }
 
         public void Part6()
@@ -131,12 +129,9 @@ namespace Z0.Test
             var src = closed(1,103);
             var dst = src.Partition(13);            
             var fmt = dst.Map(x => x.ToString()).Concat(" + ");                    
-            print($"{dst.Length} {src} = {fmt}");
             Claim.eq(13, dst.Length);
             Claim.@true(dst.Last().Closed);
 
         }
-
     }
-
 }

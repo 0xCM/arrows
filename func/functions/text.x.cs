@@ -244,7 +244,7 @@ namespace Z0
             => (ifTrue(trim, LeftOf(s, marker),x => x.Trim()), 
                 ifTrue(trim, RightOf(s, marker),x => x.Trim()));
  
-         /// <summary>
+        /// <summary>
         /// Formats a stream 
         /// </summary>
         /// <param name="src">The source stream</param>
@@ -253,6 +253,16 @@ namespace Z0
         [MethodImpl(Inline)]
         public static string FormatMany<T>(this IEnumerable<T> src, string sep = ", ")
                 => embrace(string.Join(sep, src.Select(x => x.ToString())).TrimEnd());
+ 
+        /// <summary>
+        /// Formats a stream as a vector
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="sep">The item separator</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static string FormatAsVector<T>(this IEnumerable<T> src, string sep = ", ")
+            => AsciSym.Lt + string.Join(sep, src.Select(x => x.ToString())).TrimEnd() + AsciSym.Gt;
  
         [MethodImpl(Inline)]
         public static Atoms Contain(this IEnumerable<Atom> src)
@@ -285,7 +295,7 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static string Concat(this Span<string> src, string sep = null)        
-            => src.ToReadOnlySpan().Concat(sep);
+            => src.ReadOnly().Concat(sep);
 
         /// <summary>
         /// Defines an unsigned alterantive to the intrinsic Count property

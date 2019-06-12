@@ -26,11 +26,6 @@ namespace Z0
         ulong value {get;}
 
         /// <summary>
-        /// Specifies the associated base-10 digits 
-        /// </summary>
-        byte[] Digits();
-
-        /// <summary>
         /// Specifies the canonical sequence representative
         /// </summary>
         NatSeq seq {get;}
@@ -78,8 +73,8 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K2">The base type</typeparam>
     /// <typeparam name="E">The exponent type</typeparam>
-    public interface INatAdd<S,K1,K2> : ITypeNat
-        where S : INatAdd<S,K1,K2>, new()
+    public interface INatSum<S,K1,K2> : ITypeNat
+        where S : INatSum<S,K1,K2>, new()
         where K1 : ITypeNat, new()
         where K2 : ITypeNat, new()
     {
@@ -235,8 +230,8 @@ namespace Z0
     /// </summary>
     /// <typeparam name="K2">The base type</typeparam>
     /// <typeparam name="E">The exponent type</typeparam>
-    public interface INatMul<S,K1,K2> : ITypeNat
-        where S : INatMul<S,K1,K2>, new()
+    public interface INatProduct<S,K1,K2> : ITypeNat
+        where S : INatProduct<S,K1,K2>, new()
         where K1 : ITypeNat, new()
         where K2 : ITypeNat, new()
     {

@@ -348,7 +348,7 @@ namespace Z0
         Min,
 
 
-        [Symbol(ArrowSym.RightSquiggle)]
+        [Symbol(Arrows.RightSquiggle)]
         Stream,
 
         /// <summary>

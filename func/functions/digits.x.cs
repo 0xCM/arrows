@@ -15,13 +15,21 @@ namespace Z0
 
     public static class DigitsX
     {
+
+        /// <summary>
+        /// Returns the character corresponding to a digit
+        /// </summary>
+        /// <param name="src">The source digit</param>
         [MethodImpl(Inline)]   
         public static char ToCharDigit(this BinaryDigit src)
-            => src switch{
-                BinaryDigit.Zed => '0',
-                BinaryDigit.One => '1',
-                _ => throw unsupported(src)
-            };
+        {
+            if(src == BinaryDigit.Zed)
+                return AsciDigits.A0;
+            else if(src == BinaryDigit.One)
+                return AsciDigits.A1;
+            else
+                return MathSym.EmptySet;
+        }
 
 
         [MethodImpl(Inline)]   
@@ -53,28 +61,62 @@ namespace Z0
 
         [MethodImpl(Inline)]   
         public static char ToCharDigit(this HexDigit src)
-            => src switch{
-                HexDigit.X0 => '0',
-                HexDigit.X1 => '1',
-                HexDigit.X2 => '2',
-                HexDigit.X3 => '3',
-                HexDigit.X4 => '4',
-                HexDigit.X5 => '5',
-                HexDigit.X6 => '6',
-                HexDigit.X7 => '7',
-                HexDigit.X8 => '8',
-                HexDigit.X9 => '9',
-                HexDigit.XA => 'A',
-                HexDigit.XB => 'B',
-                HexDigit.XC => 'C',
-                HexDigit.XD => 'D',
-                HexDigit.XE => 'E',
-                HexDigit.XF => 'F',
-                                
-                _ => throw unsupported(src)
-            };
+        {
+            if(src == HexDigit.X0)
+                return AsciDigits.A0;
+            else if(src == HexDigit.X1)
+                return AsciDigits.A1;
+            else if(src == HexDigit.X2)
+                return AsciDigits.A2;
+            else if(src == HexDigit.X3)
+                return AsciDigits.A3;
+            else if(src == HexDigit.X4)
+                return AsciDigits.A4;
+            else if(src == HexDigit.X5)
+                return AsciDigits.A5;
+            else if(src == HexDigit.X6)
+                return AsciDigits.A6;
+            else if(src == HexDigit.X7)
+                return AsciDigits.A7;
+            else if(src == HexDigit.X8)
+                return AsciDigits.A8;
+            else if(src == HexDigit.X9)
+                return AsciDigits.A9;
+            else if(src == HexDigit.XA)
+                return AsciLower.a;
+            else if(src == HexDigit.XB)
+                return AsciLower.b;
+            else if(src == HexDigit.XC)
+                return AsciLower.c;
+            else if(src == HexDigit.XD)
+                return AsciLower.d;
+            else if(src == HexDigit.XE)
+                return AsciLower.e;
+            else if(src == HexDigit.XF)
+                return AsciLower.f;
+            else 
+                return MathSym.EmptySet;
+        }
 
-        [MethodImpl(NotInline)]   
+        public static Span<DeciDigit> ToDeciDigits(this long src)
+            => DeciDigits.Parse(src.ToString());
+
+        [MethodImpl(Inline)]   
+        public static string Format(this BinaryDigit src)
+            => src.ToCharDigit().ToString();
+
+        [MethodImpl(Inline)]   
+        public static string Format(this DeciDigit src)
+            => src.ToCharDigit().ToString();
+
+        [MethodImpl(Inline)]   
+        public static string Format(this HexDigit src)
+            => src.ToCharDigit().ToString();
+
+        /// <summary>
+        /// Formats a span of binary digits as a contiguous block
+        /// </summary>
+        /// <param name="src">The source digits</param>
         public static string Format(this ReadOnlySpan<BinaryDigit> src)
         {
             var dst = new char[src.Length + 2]; 
@@ -85,10 +127,18 @@ namespace Z0
             return new string(dst);
         }
 
+        /// <summary>
+        /// Formats a span of binary digits as a contiguous block
+        /// </summary>
+        /// <param name="src">The source digits</param>
         [MethodImpl(Inline)]   
         public static string Format(this Span<BinaryDigit> src)
-            => src.ToReadOnlySpan().Format();
+            => src.ReadOnly().Format();
 
+        /// <summary>
+        /// Formats a span of decimal digits as a contiguous block
+        /// </summary>
+        /// <param name="src">The source digits</param>
         public static string Format(this ReadOnlySpan<DeciDigit> src)
         {
             var dst = new char[src.Length]; 
@@ -97,13 +147,22 @@ namespace Z0
             return new string(dst);
         }
 
+        /// <summary>
+        /// Formats a span of decimal digits as a contiguous block
+        /// </summary>
+        /// <param name="src">The source digits</param>
         [MethodImpl(Inline)]   
         public static string Format(this Span<DeciDigit> src)
-            => src.ToReadOnlySpan().Format();
+            => src.ReadOnly().Format();
 
-        public static string Format(this ReadOnlySpan<HexDigit> src)
+        /// <summary>
+        /// Formats a span of hex digits as a contiguous block
+        /// </summary>
+        /// <param name="src">The source digits</param>
+        public static string Format(this ReadOnlySpan<HexDigit> src, bool specifier = true)
         {
             var dst = new char[src.Length + 2]; 
+            var dstStart = specifier ? 2 : 0;
             dst[0] = '0';
             dst[1] = 'x';
             for(var i = 0; i < src.Length; i++)
@@ -111,12 +170,13 @@ namespace Z0
             return new string(dst);
         }
 
+        /// <summary>
+        /// Formats a span of hex digits as a contiguous block
+        /// </summary>
+        /// <param name="src">The source digits</param>
         [MethodImpl(Inline)]   
-        public static string Format(this Span<HexDigit> src)
-            => src.ToReadOnlySpan().Format();
-
-
-
+        public static string Format(this Span<HexDigit> src, bool specifier = true)
+            => src.ReadOnly().Format(specifier);
 
     }
 }

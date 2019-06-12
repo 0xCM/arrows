@@ -98,44 +98,44 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static byte Sum(this Span<byte> src)
-            => src.ToReadOnlySpan().Sum();
+            => src.ReadOnly().Sum();
 
         [MethodImpl(Inline)]
         public static sbyte Sum(this Span<sbyte> src)
-            => src.ToReadOnlySpan().Sum();
+            => src.ReadOnly().Sum();
     
 
         [MethodImpl(Inline)]
         public static short Sum(this Span<short> src)
-            => src.ToReadOnlySpan().Sum();
+            => src.ReadOnly().Sum();
 
         [MethodImpl(Inline)]
         public static ushort Sum(this Span<ushort> src)
-            => src.ToReadOnlySpan().Sum();
+            => src.ReadOnly().Sum();
 
         [MethodImpl(Inline)]
         public static int Sum(this Span<int> src)
-            => src.ToReadOnlySpan().Sum();
+            => src.ReadOnly().Sum();
 
         [MethodImpl(Inline)]
         public static uint Sum(this Span<uint> src)
-            => src.ToReadOnlySpan().Sum();
+            => src.ReadOnly().Sum();
 
         [MethodImpl(Inline)]
         public static long Sum(this Span<long> src)
-            => src.ToReadOnlySpan().Sum();
+            => src.ReadOnly().Sum();
 
         [MethodImpl(Inline)]
         public static ulong Sum(this Span<ulong> src)
-            => src.ToReadOnlySpan().Sum();
+            => src.ReadOnly().Sum();
 
         [MethodImpl(Inline)]
         public static float Sum(this Span<float> src)
-            => src.ToReadOnlySpan().Sum();
+            => src.ReadOnly().Sum();
 
         [MethodImpl(Inline)]
         public static double Sum(this Span<double> src)
-            => src.ToReadOnlySpan().Sum();
+            => src.ReadOnly().Sum();
 
     }
 

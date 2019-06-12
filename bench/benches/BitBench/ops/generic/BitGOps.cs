@@ -19,7 +19,7 @@ namespace Z0.Bench
             where T : struct
         {
             var bitsize = SizeOf<T>.BitSize;
-            var src = context.Random.Span<T>(context.Samples).ToReadOnlySpan();
+            var src = context.Random.Span<T>(context.Samples).ReadOnly();
             var positions = context.Random.Array<int>(context.Samples, closed(0,bitsize - 1));            
             var metrics = Metrics<T>.Zero;
                     
@@ -36,7 +36,7 @@ namespace Z0.Bench
             where T : struct
         {
             var bitsize = SizeOf<T>.BitSize;
-            var src = context.Random.Span<T>(context.Samples).ToReadOnlySpan();
+            var src = context.Random.Span<T>(context.Samples).ReadOnly();
             var positions = context.Random.Array<int>(context.Samples, closed(0,bitsize - 1));            
             var metrics = Metrics<T>.Zero;
                     
@@ -53,7 +53,7 @@ namespace Z0.Bench
             where T : struct
         {
             var bitsize = SizeOf<T>.BitSize;
-            var src = context.Random.Span<T>(context.Samples).ToReadOnlySpan();
+            var src = context.Random.Span<T>(context.Samples).ReadOnly();
             var positions = context.Random.Array<int>(context.Samples, closed(0,bitsize - 1));            
             var metrics = Metrics<T>.Zero;
                     
@@ -84,7 +84,7 @@ namespace Z0.Bench
             where T : struct
         {
             var bitsize = SizeOf<T>.BitSize;
-            var src = context.Random.Span<T>(context.Samples).ToReadOnlySpan();
+            var src = context.Random.Span<T>(context.Samples).ReadOnly();
             var positions = context.Random.Array<int>(context.Samples, closed(0,bitsize - 1));            
             var metrics = Metrics<T>.Zero;
                     

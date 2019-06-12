@@ -17,24 +17,20 @@ namespace Z0
 
         public static readonly NatSeq<N1,N3> Seq = default;
 
-        public override bool Equals(object obj)
-            => obj is N13;
+        [MethodImpl(Inline)]
+        public static implicit operator int(N13 src)
+            => (int)src.value;
 
-        public ITypeNat rep => Rep;
+        public ITypeNat rep 
+            => Rep;
 
-        public NatSeq seq => Seq;
+        public NatSeq seq 
+            => Seq;
 
-        public ulong value => Seq.value;
-
-        byte[] ITypeNat.Digits() 
-            => (Seq as ITypeNat).Digits();
+        public ulong value 
+            => Seq.value;
 
         public override string ToString() 
             => Seq.format();
-
-        public override int GetHashCode()
-            => value.GetHashCode();
     }
-
-
 }

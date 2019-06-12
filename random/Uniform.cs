@@ -14,8 +14,6 @@ namespace Z0
     using static zfunc;
     using static As;
 
-
-
     partial class RNGx
     {
         [MethodImpl(Inline)]
@@ -161,6 +159,112 @@ namespace Z0
             else throw unsupported<T>();
         }
 
+        /// <summary>
+        /// Implements Leimire's algorithm for sampling a uniformly distribute random number
+        /// in an interval [0,..,max)
+        /// </summary>
+        /// <param name="rng">A random source</param>
+        /// <param name="max">The upper bound for the sample</param>
+        /// <remarks>Reference: Fast Random Integer Generation in an Interval, Daniel Lemire 2018</remarks>
+        public static ulong NextInteger(this IRandomSource rng, ulong max) 
+        {
+            var x = rng.NextInteger();
+            dinx.mul(x, max, out UInt128 m);
+            ulong l = m.lo;
+            if (l < max) 
+            {
+                ulong t = ~max % max;
+                while (l < t) 
+                {
+                    x = rng.NextInteger();
+                    m = dinx.mul(x, max, out UInt128 z);
+                    l = m.lo;                    
+                }
+            }
+        
+            var vec = dinx.shiftrw(m.ToVec128(), 8);
+            return vec.ToUInt128().lo;
+        }
+
+        public static IEnumerable<ulong> Integers(this IRandomSource rng)
+        {
+            while(true)
+                yield return rng.NextInteger();
+        }
+
+        public static IEnumerable<ulong> Integers(this IRandomSource rng, ulong max)
+        {
+            while(true)
+                yield return rng.NextInteger(max);
+        }
+   
+        public static IEnumerable<double> Doubles(this IRandomSource rng)
+        {
+            while(true)
+                yield return rng.NextDouble();
+        }
+
+        public static IEnumerable<Bit> Bits(this IRandomSource rng)
+        {
+            var q = (rng as Rng).BitQ;
+            while(true)
+            {
+                if(q.TryDequeue(out Bit bit))
+                {
+                    yield return bit;
+                }
+                else
+                {
+                    var u64 = rng.NextInteger();
+                    for(var i = 0; i< 64; i++)
+                    {
+                        if(i == 0)
+                            yield return testbit(u64, i);
+                        else
+                            q.Enqueue(testbit(u64, i));
+                    }                    
+                }                
+            }
+        }
+
+        [MethodImpl(Inline)]
+        public static Bit NextBit(this IRandomSource rng)
+            => rng.Bits().First();
+
+        [MethodImpl(Inline)]
+        public static Sign NextSign(this IRandomSource rng)
+            => rng.NextBit() ? Sign.Positive : Sign.Negative;
+
+        public static IEnumerable<byte> Bytes(this IRandomSource rng)
+        {
+            var q = (rng as Rng).ByteQ;
+            while(true)
+            {
+                if(q.TryDequeue(out byte b))
+                {
+                    yield return b;
+                }
+                else
+                {
+                    var bytes = BitConverter.GetBytes(rng.NextInteger());
+                    for(var i = 0; i< bytes.Length; i++)
+                    {
+                        if(i == 0)
+                            yield return bytes[i];
+                        else
+                            q.Enqueue(bytes[i]);
+                    }                    
+                }                
+            }
+        }
+
+        public static IEnumerable<sbyte> SBytes(this IRandomSource rng)
+            => from b in rng.Bytes() select (sbyte)b;
+
+
+        [MethodImpl(Inline)]
+        public static sbyte NextSByte(this IRandomSource rng)
+            => rng.SBytes().First();
 
         [MethodImpl(Inline)]
         static ulong Next(this IRandomSource src, ulong max)

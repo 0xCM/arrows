@@ -43,10 +43,7 @@ namespace Z0
         
         public static readonly ulong Value 
             = Nat.nat<K1>().value;
-        
-        public static readonly byte[] Digits 
-            = digits(Value);
-        
+                
         public ulong value 
             => Value;
 
@@ -55,9 +52,6 @@ namespace Z0
 
         public NatSeq seq
             => Rep; 
-
-        byte[] ITypeNat.Digits()
-            => Digits;
 
         public string format()
             => Value.ToString();
@@ -81,9 +75,6 @@ namespace Z0
             = Nat.nat<K1>().value * 10
             + Nat.nat<K2>().value;
 
-        public static readonly byte[] Digits 
-            = digits(Value);
-
         public ulong value 
             => Value;
 
@@ -92,10 +83,7 @@ namespace Z0
 
         public NatSeq seq
             => Rep; 
-
-        byte[] ITypeNat.Digits()
-            => Digits;
-
+    
         public string format()
             => Value.ToString();
 
@@ -121,14 +109,8 @@ namespace Z0
             + Nat.nat<K2>().value * 10
             + Nat.nat<K3>().value;
 
-        public static readonly byte[] Digits 
-            = digits(Value);
-
         public ulong value 
             => Value;
-
-        byte[] ITypeNat.Digits()
-            => Digits;
 
         public ITypeNat rep
             => Rep; 
@@ -164,9 +146,6 @@ namespace Z0
             + Nat.nat<K3>().value * 10
             + Nat.nat<K4>().value;
 
-        public static readonly byte[] Digits 
-            = digits(Value);
-
         public ulong value 
             => Value;
 
@@ -175,9 +154,6 @@ namespace Z0
 
         public NatSeq seq
             => Rep; 
-
-        byte[] ITypeNat.Digits()
-            => Digits;
 
         public string format()
             => Value.ToString();
@@ -210,9 +186,6 @@ namespace Z0
             + Nat.nat<K4>().value * 10
             + Nat.nat<K5>().value;
 
-        public static readonly byte[] Digits 
-            = digits(Value);
-
         public ulong value 
             => Value;
 
@@ -221,9 +194,6 @@ namespace Z0
 
         public NatSeq seq
             => Rep; 
-
-        byte[] ITypeNat.Digits()
-            => Digits;
 
         public string format()
             => Value.ToString();
@@ -252,9 +222,6 @@ namespace Z0
             + Nat.nat<K4>().value * 100
             + Nat.nat<K5>().value * 10
             + Nat.nat<K6>().value;
-
-        public static readonly byte[] Digits 
-            = digits(Value);
     
         public ulong value 
             => Value;
@@ -264,9 +231,6 @@ namespace Z0
 
         public NatSeq seq
             => Rep; 
-
-        byte[] ITypeNat.Digits()
-            => Digits;
 
         public string format()
             => Value.ToString();
@@ -316,9 +280,6 @@ namespace Z0
 
         public NatSeq seq
             => Rep; 
-
-        byte[] ITypeNat.Digits()
-            => Digits;
 
         public string format()
             => Value.ToString();
@@ -371,9 +332,6 @@ namespace Z0
 
         public NatSeq seq
             => Rep; 
-
-        byte[] ITypeNat.Digits()
-            => Digits;
 
         public string format()
             => Value.ToString();
@@ -429,9 +387,6 @@ namespace Z0
 
         public NatSeq seq
             => Rep; 
-
-        byte[] ITypeNat.Digits()
-            => Digits;
 
         public string format()
             => Value.ToString();

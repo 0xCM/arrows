@@ -68,7 +68,7 @@ namespace Z0
 
         [MethodImpl(Inline)]        
         public static Span<Bit> Unpack(this Span<byte> src, out Span<Bit> dst)
-            => src.ToReadOnlySpan().Unpack(out dst);
+            => src.ReadOnly().Unpack(out dst);
 
 
     }

@@ -69,6 +69,11 @@ namespace Z0
         public long Ms
             => ticksToMs(Ticks);
 
+        static readonly double TicksPerMs = (double)Stopwatch.Frequency/1000.0;
+
+        public double FractionalMs
+            => ((double)Ticks)/TicksPerMs;
+
         public override string ToString()
             => concat($"{Ticks}".PadRight(10), " ticks ", " ~ ", $"{Ms} ms");
 

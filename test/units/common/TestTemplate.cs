@@ -10,8 +10,6 @@ namespace Z0.Test
     using System.Runtime.CompilerServices;
     using System.IO;
 
-
-
     using static zfunc;
         
     public class TestTemplate : UnitTest<TestTemplate>

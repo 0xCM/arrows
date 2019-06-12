@@ -45,8 +45,6 @@ namespace Z0
             => Value;
 
 
-        byte[] ITypeNat. Digits()
-            => Digits;
 
         public NatSeq natseq()
             => Seq;

@@ -20,11 +20,11 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
-        public static Mul<K1,K2> mul<K1,K2>(uint expected)
+        public static Product<K1,K2> mul<K1,K2>(uint expected)
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
         {
-            eq<Mul<K1,K2>>(expected);
+            eq<Product<K1,K2>>(expected);
             return Nat.mul<K1,K2>();
         } 
 
@@ -37,11 +37,11 @@ namespace Z0
         /// <param name="k2">The second operand value</param>
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
-        public static Mul<K1,K2> mul<K1,K2>(K1 k1, K2 k2, uint expected)
+        public static Product<K1,K2> mul<K1,K2>(K1 k1, K2 k2, uint expected)
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
         {
-            eq<Mul<K1,K2>>(expected);
+            eq<Product<K1,K2>>(expected);
             return Nat.mul<K1,K2>();
         } 
 

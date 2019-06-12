@@ -16,6 +16,7 @@ namespace Z0
     using static System.Runtime.Intrinsics.X86.Avx2;
     
     using static zfunc;    
+    using static As;
     
     partial class dinx
     {   
@@ -228,5 +229,23 @@ namespace Z0
             return dst;
         }
 
+        public static Span<Bit> eq(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs)
+        {
+            var blocklen = Vec256<sbyte>.Length;
+            var dst = span<Bit>(length(lhs,rhs));
+            var blocks = lhs.BlockCount;
+            var offset = 0;
+            for(var block = 0; block < blocks; block++, offset += blocklen)
+            {
+                var x = Vec256.load(ref asRef(in lhs.Block(block)));
+                var y = Vec256.load(ref asRef(in rhs.Block(block)));
+                Span<sbyte> src = stackalloc sbyte[blocklen];
+                store(CompareEqual(x, y), ref src[0]);
+                for(var i=0; i< blocklen; i++)
+                    dst[offset + i] = src[i];    
+            }
+                
+            return dst;            
+        }
     }
 }

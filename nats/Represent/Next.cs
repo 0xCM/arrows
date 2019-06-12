@@ -46,9 +46,6 @@ namespace Z0
         public ulong value 
             => Value;
 
-        byte[] ITypeNat. Digits()
-            => Digits;
-
         public NatSeq natseq()
             => Seq;
 

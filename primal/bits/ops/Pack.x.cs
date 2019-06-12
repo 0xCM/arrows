@@ -29,7 +29,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref Span<byte> Pack(this Span<Bit> src, out Span<byte> dst)
-            => ref src.ToReadOnlySpan().Pack(out dst);
+            => ref src.ReadOnly().Pack(out dst);
 
 
         [MethodImpl(Inline)]   

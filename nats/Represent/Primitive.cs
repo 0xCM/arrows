@@ -28,51 +28,24 @@ namespace Z0
     /// </summary>
     public readonly struct N0 : ITypeNat<N0>, INatSeq<N0>, INatPrimitive<N0>, INatEven<N0>, INatNext<N0,N1>
     {
-       public override bool Equals(object obj)
-            => obj is N0;
-
         public static readonly N0 Rep = default;        
 
-        public static readonly byte[] Digits = {0};        
 
+        [MethodImpl(Inline)]
+        public static implicit operator int(N0 src)
+            => (int)src.value;
+        
         public bool valid 
             => true;
 
         public ulong value 
             => 0;
 
-        [MethodImpl(Inline)]
-        public static bool operator ==(N0 lhs, int rhs)
-            => lhs.value == (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(N0 lhs, int rhs)
-            => lhs.value != (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(N0 lhs, int rhs)
-            => lhs.value <= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(N0 lhs, int rhs)
-            => lhs.value >= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(int lhs, N0 rhs)
-            => (ulong)lhs <= rhs.value;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(int lhs, N0 rhs)
-            => (ulong)lhs >= rhs.value;
-
         public ITypeNat rep 
             => this;
 
         public NatSeq seq
             => this;
-
-        byte[] ITypeNat. Digits()
-            => Digits;
 
 
         public string format()
@@ -81,8 +54,6 @@ namespace Z0
         public override string ToString() 
             => format();
 
-        public override int GetHashCode()
-            => value.GetHashCode();
     }
 
     /// <summary>
@@ -101,35 +72,11 @@ namespace Z0
     {
         public static readonly N1 Rep = default;
 
-        public override bool Equals(object obj)
-            => obj is N1;
-
-        public static readonly byte[] Digits = {1};        
 
 
         [MethodImpl(Inline)]
-        public static bool operator ==(N1 lhs, int rhs)
-            => lhs.value == (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(N1 lhs, int rhs)
-            => lhs.value != (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(N1 lhs, int rhs)
-            => lhs.value <= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(N1 lhs, int rhs)
-            => lhs.value >= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(int lhs, N1 rhs)
-            => (ulong)lhs <= rhs.value;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(int lhs, N1 rhs)
-            => (ulong)lhs >= rhs.value;
+        public static implicit operator int(N1 src)
+            => (int)src.value;
 
         public ITypeNat rep 
             => this;
@@ -143,10 +90,6 @@ namespace Z0
         ITypeNat INatPow2.Exponent 
             => N0.Rep;
 
-
-        byte[] ITypeNat.Digits()
-            => Digits;
-
         public ulong value 
             => 1;
 
@@ -155,10 +98,6 @@ namespace Z0
 
         public override string ToString() 
             => format();
-
-        public override int GetHashCode()
-            => value.GetHashCode();
-
 
     }
 
@@ -179,38 +118,14 @@ namespace Z0
     {
         public static readonly N2 Rep = default;        
 
-        public static readonly byte[] Digits = {2};
-        
+
+        [MethodImpl(Inline)]
+        public static implicit operator int(N2 src)
+            => (int)src.value;
+
         public ulong value 
             => 2;
         
-        public override bool Equals(object obj)
-            => obj is N2;
-
-        [MethodImpl(Inline)]
-        public static bool operator ==(N2 lhs, int rhs)
-            => lhs.value == (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(N2 lhs, int rhs)
-            => lhs.value != (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(N2 lhs, int rhs)
-            => lhs.value <= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(N2 lhs, int rhs)
-            => lhs.value >= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(int lhs, N2 rhs)
-            => (ulong)lhs <= rhs.value;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(int lhs, N2 rhs)
-            => (ulong)lhs >= rhs.value;
-
         public ITypeNat rep 
             => this;
 
@@ -220,9 +135,6 @@ namespace Z0
         public bool valid 
             => true;
         
-        byte[] ITypeNat. Digits()
-            => Digits;
-
         ITypeNat INatPow2.Exponent 
             => N1.Rep;
 
@@ -232,8 +144,6 @@ namespace Z0
         public override string ToString() 
             => format();
 
-        public override int GetHashCode()
-            => value.GetHashCode();
     }
 
     /// <summary>
@@ -245,37 +155,12 @@ namespace Z0
     {
         public static readonly N3 Rep = default;        
 
-        public static readonly byte[] Digits = {3};
-
         public ulong value 
             => 3;
 
-        public override bool Equals(object obj)
-            => obj is N3;
-
         [MethodImpl(Inline)]
-        public static bool operator ==(N3 lhs, int rhs)
-            => lhs.value == (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(N3 lhs, int rhs)
-            => lhs.value != (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(N3 lhs, int rhs)
-            => lhs.value <= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(N3 lhs, int rhs)
-            => lhs.value >= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(int lhs, N3 rhs)
-            => (ulong)lhs <= rhs.value;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(int lhs, N3 rhs)
-            => (ulong)lhs >= rhs.value;
+        public static implicit operator int(N3 src)
+            => (int)src.value;
 
         public ITypeNat rep 
             => this;
@@ -286,17 +171,12 @@ namespace Z0
         public bool valid 
             => true;
         
-        byte[] ITypeNat. Digits()
-            => Digits;
-
         public string format()
             => value.ToString();
 
         public override string ToString() 
             => format();
 
-        public override int GetHashCode()
-            => value.GetHashCode();
     }
 
     /// <summary>
@@ -316,37 +196,12 @@ namespace Z0
     {
         public static readonly N4 Rep = default;
 
-        public static readonly byte[] Digits = {4};        
-
         public ulong value 
             => 4;
 
-        public override bool Equals(object obj)
-            => obj is N4;
-
         [MethodImpl(Inline)]
-        public static bool operator ==(N4 lhs, int rhs)
-            => lhs.value == (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(N4 lhs, int rhs)
-            => lhs.value != (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(N4 lhs, int rhs)
-            => lhs.value <= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(N4 lhs, int rhs)
-            => lhs.value >= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(int lhs, N4 rhs)
-            => (ulong)lhs <= rhs.value;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(int lhs, N4 rhs)
-            => (ulong)lhs >= rhs.value;
+        public static implicit operator int(N4 src)
+            => (int)src.value;
 
         public ITypeNat rep 
             => this;
@@ -357,9 +212,6 @@ namespace Z0
         public bool valid 
             => true;
 
-        byte[] ITypeNat. Digits()
-            => Digits;
-
         ITypeNat INatPow2.Exponent 
             => N2.Rep;
 
@@ -369,8 +221,6 @@ namespace Z0
         public override string ToString() 
             => format();
 
-        public override int GetHashCode()
-            => value.GetHashCode();
     }
 
     /// <summary>
@@ -382,37 +232,12 @@ namespace Z0
     {
         public static readonly N5 Rep = default;
 
-        public static readonly byte[] Digits = {5};
-
         public ulong value 
             => 5;
 
-        public override bool Equals(object obj)
-            => obj is N5;
-
         [MethodImpl(Inline)]
-        public static bool operator ==(N5 lhs, int rhs)
-            => lhs.value == (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(N5 lhs, int rhs)
-            => lhs.value != (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(N5 lhs, int rhs)
-            => lhs.value <= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(N5 lhs, int rhs)
-            => lhs.value >= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(int lhs, N5 rhs)
-            => (ulong)lhs <= rhs.value;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(int lhs, N5 rhs)
-            => (ulong)lhs >= rhs.value;
+        public static implicit operator int(N5 src)
+            => (int)src.value;
 
         public ITypeNat rep 
             => this;
@@ -423,17 +248,12 @@ namespace Z0
         public bool valid 
             => true;
                 
-        byte[] ITypeNat. Digits()
-            => Digits;
 
         public string format()
             => value.ToString();
 
         public override string ToString() 
             => format();
-
-        public override int GetHashCode()
-            => value.GetHashCode();
     }
 
     /// <summary>
@@ -450,37 +270,13 @@ namespace Z0
     {
         public static readonly N6 Rep = default;
 
-        public static readonly byte[] Digits = {6};
 
         public ulong value 
             => 6;
 
-        public override bool Equals(object obj)
-            => obj is N6;
-
         [MethodImpl(Inline)]
-        public static bool operator ==(N6 lhs, int rhs)
-            => lhs.value == (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(N6 lhs, int rhs)
-            => lhs.value != (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(N6 lhs, int rhs)
-            => lhs.value <= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(N6 lhs, int rhs)
-            => lhs.value >= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(int lhs, N6 rhs)
-            => (ulong)lhs <= rhs.value;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(int lhs, N6 rhs)
-            => (ulong)lhs >= rhs.value;
+        public static implicit operator int(N6 src)
+            => (int)src.value;
 
         public ITypeNat rep 
             => this;
@@ -491,17 +287,12 @@ namespace Z0
         public bool valid 
             => true;
 
-        byte[] ITypeNat. Digits()
-            => Digits;
-
         public string format()
             => value.ToString();
 
         public override string ToString() 
             => format();
  
-        public override int GetHashCode()
-            => value.GetHashCode();
      }
 
     /// <summary>
@@ -522,35 +313,10 @@ namespace Z0
         public ulong value 
             => 7;
 
-        public static readonly byte[] Digits = {7};
-
-
-        public override bool Equals(object obj)
-            => obj is N7;
 
         [MethodImpl(Inline)]
-        public static bool operator ==(N7 lhs, int rhs)
-            => lhs.value == (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(N7 lhs, int rhs)
-            => lhs.value != (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(N7 lhs, int rhs)
-            => lhs.value <= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(N7 lhs, int rhs)
-            => lhs.value >= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(int lhs, N7 rhs)
-            => (ulong)lhs <= rhs.value;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(int lhs, N7 rhs)
-            => (ulong)lhs >= rhs.value;
+        public static implicit operator int(N7 src)
+            => (int)src.value;
 
         public ITypeNat rep 
             => this;
@@ -561,18 +327,12 @@ namespace Z0
         public bool valid 
             => true;
             
-        byte[] ITypeNat. Digits()
-            => Digits;
-
         public string format()
             => value.ToString();
 
         public override string ToString() 
             => format();
  
- 
-        public override int GetHashCode()
-            => value.GetHashCode();
     }
 
     /// <summary>
@@ -594,35 +354,10 @@ namespace Z0
 
         public ulong value  
             => 8;
-
-        public static readonly byte[] Digits = {8};        
      
-        public override bool Equals(object obj)
-            => obj is N8;
-
         [MethodImpl(Inline)]
-        public static bool operator ==(N8 lhs, int rhs)
-            => lhs.value == (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(N8 lhs, int rhs)
-            => lhs.value != (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(N8 lhs, int rhs)
-            => lhs.value <= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(N8 lhs, int rhs)
-            => lhs.value >= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(int lhs, N8 rhs)
-            => (ulong)lhs <= rhs.value;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(int lhs, N8 rhs)
-            => (ulong)lhs >= rhs.value;
+        public static implicit operator int(N8 src)
+            => (int)src.value;
 
         public ITypeNat rep 
             => this;
@@ -636,17 +371,12 @@ namespace Z0
         ITypeNat INatPow2.Exponent 
             => N3.Rep;
 
-        byte[] ITypeNat. Digits()
-            => Digits;
-
         public string format()
             => value.ToString();
 
         public override string ToString() 
             => format();
          
-        public override int GetHashCode()
-            => value.GetHashCode();
     }
 
     /// <summary>
@@ -662,37 +392,12 @@ namespace Z0
     {
         public static readonly N9 Rep = default;  
         
-        public static readonly byte[] Digits = {9};
-
         public ulong value 
             => 9;
  
-        public override bool Equals(object obj)
-            => obj is N9;
-
         [MethodImpl(Inline)]
-        public static bool operator ==(N9 lhs, int rhs)
-            => lhs.value == (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(N9 lhs, int rhs)
-            => lhs.value != (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(N9 lhs, int rhs)
-            => lhs.value <= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(N9 lhs, int rhs)
-            => lhs.value >= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(int lhs, N9 rhs)
-            => (ulong)lhs <= rhs.value;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(int lhs, N9 rhs)
-            => (ulong)lhs >= rhs.value;
+        public static implicit operator int(N9 src)
+            => (int)src.value;
   
         public ITypeNat rep 
             => this;
@@ -703,18 +408,9 @@ namespace Z0
         public bool valid 
             => true;
 
-
-        byte[] ITypeNat. Digits()
-            => Digits;
-
-        public string format()
-            => value.ToString();
-
         public override string ToString() 
-            => format();
+            => value.ToString();
                
-        public override int GetHashCode()
-            => value.GetHashCode();
  
     }
 }

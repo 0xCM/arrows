@@ -139,7 +139,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static num<T> Sum<T>(this Span<num<T>> src)        
             where T : struct
-            => src.ToReadOnlySpan().Sum();
+            => src.ReadOnly().Sum();
 
         [MethodImpl(NotInline)]
         public static ref Span<num<T>> ScaleBy<T>(this ref Span<num<T>> io, num<T> factor)        
@@ -303,6 +303,5 @@ namespace Z0
         public static Span<BinaryDigit> ToBinaryDigits<T>(this num<T> src)
             where T : struct    
                 =>  BinaryDigits.Parse(src.ToBitString());
-
     }
 }

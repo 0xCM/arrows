@@ -24,7 +24,7 @@ namespace Z0.Test
             var histo = new Histogram<T>(domain, grain ?? (gmath.div(width,convert<T>(100))));
             histo.Deposit(data);  
 
-            var buckets = histo.Buckets().Freeze();
+            var buckets = histo.Buckets().ReadOnly();
             var total = (int)buckets.TotalCount();
 
             babble($"Histogram domain: {histo.Domain}");

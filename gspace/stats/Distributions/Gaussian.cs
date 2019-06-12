@@ -29,21 +29,21 @@ namespace Z0
         /// The mean of the distribtion that serves as the location parameter
         /// </summary>
 
-        [Symbol(GreekSym.mu)]
+        [Symbol(Greek.mu)]
         public double Mean {get;}
 
         /// <summary>
         /// The standard deviation
         /// </summary>
 
-        [Symbol(GreekSym.sigma)]
+        [Symbol(Greek.sigma)]
         public double StdDev {get;}
 
         public double Variance 
             => StdDev * StdDev;
 
 
-        [Symbol(GreekSym.tau)]
+        [Symbol(Greek.tau)]
         public double Precision 
              => 1.0/Variance;
             

@@ -181,6 +181,29 @@ public static class nfunc
     public static bool demand(bool x, string message = null)
         => x ? x : throw new Exception(message ?? "demand failed");
 
+    [MethodImpl(Inline)]   
+    public static Product<K1, K2> mul<K1,K2>(K1 k1 = default, K2 k2 = default)
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
+            => Product<K1,K2>.Rep;
+
+    [MethodImpl(Inline)]   
+    public static int muli<K1,K2>(K1 k1 = default, K2 k2 = default)
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
+            => (int)mul(k1,k2).value;
+
+    [MethodImpl(Inline)]   
+    public static Sum<K1, K2> sum<K1,K2>(K1 k1 = default, K2 k2 = default)
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
+            => Sum<K1,K2>.Rep;
+
+    [MethodImpl(Inline)]   
+    public static int sumi<K1,K2>(K1 k1 = default, K2 k2 = default)
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
+            => (int)sum(k1,k2).value;
 
     [MethodImpl(Inline)]
     public static void require<N>(int value)

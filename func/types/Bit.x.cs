@@ -23,7 +23,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this Span<char> src, out Span<Bit> dst)
-            => src.ToReadOnlySpan().ToBits(out dst);
+            => src.ReadOnly().ToBits(out dst);
 
 
         [MethodImpl(Inline)]
@@ -40,7 +40,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<Bit> ToBits(this Span<BinaryDigit> src, out Span<Bit> dst)
-            => src.ToReadOnlySpan().ToBits(out dst);
+            => src.ReadOnly().ToBits(out dst);
 
         /// <summary>
         /// Consructs a bit sream from a stream of bools

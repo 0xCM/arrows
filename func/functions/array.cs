@@ -90,15 +90,6 @@ partial class zfunc
         => Array.Copy(src,dst,length(src,dst));
 
     /// <summary>
-    /// Partitions an array into a sequence of segments
-    /// </summary>
-    /// <typeparam name="T">The array element type</typeparam>
-    /// <param name="items">The source array</param>
-    /// <param name="width">The width of each subarray</param>
-    public static IEnumerable<ArraySegment<T>> partition<T>(T[] items, int width)
-        => items.Partition(width);
-
-    /// <summary>
     /// Constructs an array from a stream and a transformation function
     /// </summary>
     /// <param name="src">The source stream</param>

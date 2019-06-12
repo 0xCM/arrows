@@ -18,48 +18,20 @@ namespace Z0
 
         public static readonly NatSeq<N6,N3> Seq = default;
         
-        public override bool Equals(object obj)
-            => obj is N63;
-
         [MethodImpl(Inline)]
-        public static bool operator ==(N63 lhs, int rhs)
-            => lhs.value == (ulong)rhs;
+        public static implicit operator int(N63 src)
+            => (int)src.value;
 
-        [MethodImpl(Inline)]
-        public static bool operator !=(N63 lhs, int rhs)
-            => lhs.value != (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(N63 lhs, int rhs)
-            => lhs.value <= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(N63 lhs, int rhs)
-            => lhs.value >= (ulong)rhs;
-
-        [MethodImpl(Inline)]
-        public static bool operator <=(int lhs, N63 rhs)
-            => (ulong)lhs <= rhs.value;
-
-        [MethodImpl(Inline)]
-        public static bool operator >=(int lhs, N63 rhs)
-            => (ulong)lhs >= rhs.value;
-
-        public ITypeNat rep => Rep;
+        public ITypeNat rep 
+            => Rep;
         
-        public NatSeq seq => Seq;
+        public NatSeq seq 
+            => Seq;
         
-        public ulong value => Seq.value;
+        public ulong value 
+            => Seq.value;                
         
-        byte[] ITypeNat.Digits() => (Seq as ITypeNat).Digits();
-        
-        public string format() => Seq.format();
-        
-        public override string ToString() => format();
-        
-        public override int GetHashCode()
-            => value.GetHashCode();
+        public override string ToString() 
+            => Seq.format();        
     }
-
-
 }

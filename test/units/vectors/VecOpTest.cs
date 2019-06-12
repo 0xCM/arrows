@@ -30,8 +30,8 @@ namespace Z0.Test
         {
             public DataSet(IRandomizer random)
             {
-                LeftSrc = random.NatSpan<N,T>();
-                RightSrc = random.NatSpan<N,T>();
+                LeftSrc = random.Span<N,T>();
+                RightSrc = random.Span<N,T>();
                 LeftVec = Vector.Load(LeftSrc.Replicate());
                 RightVec = Vector.Load(RightSrc);
             }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using System.Text;
 
 using Z0;
 
@@ -142,4 +143,23 @@ partial class zfunc
     [MethodImpl(Inline)]   
     public static string concat(IEnumerable<object> src)    
         => string.Concat(src);
+
+    public static string concat(ReadOnlySpan<string> src, string sep = ", ")
+    {
+        var sb = new StringBuilder();
+        var lastix = src.Length - 1;
+        for(var i=0; i<src.Length; i++)        
+        {
+            sb.Append(src[i]);
+            if(i != lastix)
+                sb.Append(sep);
+        }
+        return sb.ToString();
+    }
+
+    [MethodImpl(Inline)]   
+    public static string concat(Span<string> src, string sep = ", ")
+        => concat(src.ReadOnly(), sep);
+    
+
 }

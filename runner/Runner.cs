@@ -21,7 +21,7 @@ namespace Z0
     {
 
         public Runner()
-            :base(Z0.Randomizer.define(Seed256.BenchSeed))
+            :base(Z0.XOrStarStar256.define(Seed256.BenchSeed))
         {
             
         }
@@ -70,10 +70,8 @@ namespace Z0
             else
                 foreach (var arg in args)
                     Run(parseEnum<RunKind>(arg));
-
         }
 
-        
         static void Main(params string[] args)
         {
             Dispatch(args);

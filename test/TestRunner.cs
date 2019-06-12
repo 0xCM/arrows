@@ -22,7 +22,7 @@ namespace Z0
     {
 
         public TestRunner()
-            :base(Z0.Randomizer.define(Seed256.BenchSeed))
+            :base(Z0.XOrStarStar256.define(Seed256.BenchSeed))
         {
             
         }
@@ -239,8 +239,8 @@ namespace Z0
             var app = new TestRunner();
             try
             {
-                app.TestUniform();
-                //TestTools.RunTests(string.Empty, false);
+                //app.TestUniform();
+                TestTools.RunTests(string.Empty, false);
 
             }
             catch (Exception e)

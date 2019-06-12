@@ -43,21 +43,6 @@ namespace Z0
             T48, T49, T50, T51, T52, T53, T54, T55, 
             T56, T57, T58, T59, T60, T61, T62, T63};
 
-        [MethodImpl(Inline)]
-        public static byte PowU8(in int exp)
-            => _PowU8[exp];
-
-        [MethodImpl(Inline)]
-        public static ushort PowU16(in int exp)
-            => _PowU16[exp];
-
-        [MethodImpl(Inline)]
-        public static uint PowU32(in int exp)
-            => _PowU32[exp];
-
-        [MethodImpl(Inline)]
-        public static ulong PowU64(in int exp)
-            => _PowU64[exp];
 
         /// <summary>
         /// Computes 2^i 

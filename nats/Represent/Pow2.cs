@@ -50,26 +50,17 @@ namespace Z0
         public ulong value 
             => Value;
 
-        byte[] ITypeNat. Digits()
-            => Digits;
-
         public NatSeq natseq()
             => Seq;
 
          ITypeNat INatPow2.Exponent 
             => new E();
 
-         public string format()
-            => Value.ToString();
-
         public override string ToString() 
-            => format();
+            => Value.ToString();
 
         public override int GetHashCode()
             => Value.GetHashCode();
-
-        public override bool Equals(object rhs)
-            => Value.Equals(rhs);
 
         public bool Equals(NatPow2<E> rhs)
             => Value == rhs.value;

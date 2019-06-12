@@ -27,9 +27,6 @@ namespace Z0
         public ulong value 
             => Seq.value;
 
-        byte[] ITypeNat.Digits() 
-            => (Seq as ITypeNat).Digits();
-
         public string format()
             => Value.ToString();
 

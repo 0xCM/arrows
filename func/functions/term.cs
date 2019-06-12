@@ -92,6 +92,39 @@ partial class zfunc
         => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, level ?? SeverityLevel.HiliteBL, caller, file, line));
 
     /// <summary>
+    /// Emits an information-level message with a magenta foreground
+    /// </summary>
+    /// <param name="msg">The message to emit</param>
+    /// <param name="caller">The calling member</param>
+    public static void magenta(string title, object msg)
+        => terminal.WriteMessage(AppMsg.Define( $"{title}: " + msg?.ToString() ?? string.Empty, SeverityLevel.HiliteML));
+
+    /// <summary>
+    /// Emits an information-level message with a magenta foreground
+    /// </summary>
+    /// <param name="msg">The message to emit</param>
+    /// <param name="caller">The calling member</param>
+    public static void magenta(object msg)
+        => terminal.WriteMessage(AppMsg.Define( msg?.ToString() ?? string.Empty, SeverityLevel.HiliteML));
+
+
+    /// <summary>
+    /// Emits an information-level message with a cyan foreground
+    /// </summary>
+    /// <param name="msg">The message to emit</param>
+    /// <param name="caller">The calling member</param>
+    public static void cyan(string title, object msg)
+        => terminal.WriteMessage(AppMsg.Define(  $"{title}: " + msg?.ToString() ?? string.Empty, SeverityLevel.HiliteCL));
+
+    /// <summary>
+    /// Emits an information-level message with a cyan foreground
+    /// </summary>
+    /// <param name="msg">The message to emit</param>
+    /// <param name="caller">The calling member</param>
+    public static void cyan(object msg)
+        => terminal.WriteMessage(AppMsg.Define(msg?.ToString() ?? string.Empty, SeverityLevel.HiliteCL));
+
+    /// <summary>
     /// Emits a verbose-level message
     /// </summary>
     /// <param name="msg">The message to emit</param>

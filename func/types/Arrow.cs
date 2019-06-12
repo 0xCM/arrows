@@ -14,7 +14,7 @@ namespace Z0
     
     public readonly struct Arrow<S,T> 
     {
-        public const char DefaultSymbol = ArrowSym.LongRightArrow;
+        public const char DefaultSymbol = Arrows.LongRightArrow;
         
         [MethodImpl(Inline)]
         public Arrow(S Source, T Target)

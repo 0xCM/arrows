@@ -15,11 +15,11 @@ namespace Z0
     {
         public static RVar<T> define<T>(Interval<T> domain)
             where T : struct
-                => define(domain, Randomizer.define<T>(Seed256.AppSeed));
+                => define(domain, XOrStarStar256.define<T>(Seed256.AppSeed));
 
         public static RVar<T> define<T>(Interval<T> domain, ulong[] seed)
             where T : struct
-                => define(domain, Randomizer.define<T>(seed));
+                => define(domain, XOrStarStar256.define<T>(seed));
 
         public static RVar<T> define<T>(Interval<T> domain, IRandomizer<T> random)
             where T : struct
@@ -36,7 +36,7 @@ namespace Z0
         public RVar(Interval<T> domain, IRandomizer<T> random)
         {
             this.domain = domain;
-            this.stream = random.Stream(domain);
+            this.stream = random.UniformStream(domain);
         }
 
         /// <summary>

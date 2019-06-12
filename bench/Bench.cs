@@ -21,7 +21,7 @@ namespace Z0.Bench
         }
         
         internal static IRandomizer Random(IRandomizer random)
-            => random ?? RNG.XOrShift256(Seed256.BenchSeed);
+            => random ?? RNG.XOrStarStar256(Seed256.BenchSeed);
 
         static IReadOnlyList<MetricComparisonRecord> Compare(this MetricKind metric)
         {

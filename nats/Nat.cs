@@ -210,10 +210,10 @@ namespace Z0
         /// <typeparam name="K1">The first operand type</typeparam>
         /// <typeparam name="K2">The second operand type</typeparam>
         [MethodImpl(Inline)]   
-        public static Add<K1,K2> add<K1,K2>()
+        public static Sum<K1,K2> add<K1,K2>()
             where K1 : ITypeNat, new()        
             where K2 : ITypeNat, new()
-                => Add<K1,K2>.Rep;
+                => Sum<K1,K2>.Rep;
 
         /// <summary>
         /// Constructs a natural representative that encodes the sum of two naturals
@@ -221,10 +221,10 @@ namespace Z0
         /// <typeparam name="K1">The first operand type</typeparam>
         /// <typeparam name="K2">The second operand type</typeparam>
         [MethodImpl(Inline)]   
-        public static Add<K1,K2> add<K1,K2>(K1 k1, K2 k2)
+        public static Sum<K1,K2> add<K1,K2>(K1 k1, K2 k2)
             where K1 : ITypeNat, new()        
             where K2 : ITypeNat, new()
-                => Add<K1,K2>.Rep;
+                => Sum<K1,K2>.Rep;
 
         /// <summary>
         /// Constructs a natural representative that encodes the product of two naturals
@@ -232,10 +232,10 @@ namespace Z0
         /// <typeparam name="K1">The first operand type</typeparam>
         /// <typeparam name="K2">The second operand type</typeparam>
         [MethodImpl(Inline)]   
-        public static Mul<K1,K2> mul<K1,K2>()
+        public static Product<K1,K2> mul<K1,K2>()
             where K1 : ITypeNat, new()        
             where K2 : ITypeNat, new()
-                => Mul<K1,K2>.Rep;
+                => Product<K1,K2>.Rep;
 
         /// <summary>
         /// Constructs a natural representative that encodes a natural base raised to a
