@@ -25,13 +25,13 @@ namespace Z0.Bench
     {
         new T Config {get;}
 
-        IRandomizer Random {get;}
+        IRandomSource Random {get;}
     }
 
     public abstract class InXContext<T> : BenchContext<T>, IInXContext<T>         
         where T : InXConfig
     {
-        public InXContext(T config, IRandomizer random = null)
+        public InXContext(T config, IRandomSource random = null)
             : base(config, random)
         {
 

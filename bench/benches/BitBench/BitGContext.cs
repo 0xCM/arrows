@@ -14,10 +14,10 @@ namespace Z0.Bench
 
    public sealed class BitGContext : BitContext
     {
-        public static BitGContext Define(MetricConfig config, IRandomizer random = null)
+        public static BitGContext Define(MetricConfig config, IRandomSource random = null)
             => new BitGContext(config, random);
 
-        public BitGContext(MetricConfig config, IRandomizer random = null)
+        public BitGContext(MetricConfig config, IRandomSource random = null)
             : base(config, random)
         {
 

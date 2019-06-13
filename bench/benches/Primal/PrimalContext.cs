@@ -17,7 +17,7 @@ namespace Z0.Bench
     public abstract class PrimalContext<T> : BenchContext<T>         
         where T : PrimalConfig
     {
-        public PrimalContext(T config, IRandomizer random = null)
+        public PrimalContext(T config, IRandomSource random = null)
             : base(config, random)
         {
 
@@ -33,7 +33,7 @@ namespace Z0.Bench
 
     public sealed class PrimalDContext : PrimalContext<PrimalDConfig>         
     {
-        public PrimalDContext(PrimalDConfig config, IRandomizer random = null)
+        public PrimalDContext(PrimalDConfig config, IRandomSource random = null)
             : base(config, random)
         {
 
@@ -42,7 +42,7 @@ namespace Z0.Bench
 
     public sealed class PrimalGContext : PrimalContext<PrimalGConfig>         
     {
-        public PrimalGContext(PrimalGConfig config, IRandomizer random = null)
+        public PrimalGContext(PrimalGConfig config, IRandomSource random = null)
             : base(config, random)
         {
 

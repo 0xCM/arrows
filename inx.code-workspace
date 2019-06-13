@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "inx"
+		},
+		{
+			"path": "inx.test"
+		},
+		{
+			"path": "func"
+		},
+		{
+			"path": "nats"
+		},
+		{
+			"path": "random"
+		},
+		{
+			"path": "testing"
+		}
+	],
+	"settings": {}
+}

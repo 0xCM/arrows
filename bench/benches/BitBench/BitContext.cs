@@ -31,7 +31,7 @@ namespace Z0.Bench
 
     public abstract class BitContext : BenchContext<MetricConfig>         
     {
-        public BitContext(MetricConfig config, IRandomizer random = null)
+        public BitContext(MetricConfig config, IRandomSource random = null)
             : base(config, random)
         {
 

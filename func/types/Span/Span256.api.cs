@@ -240,18 +240,6 @@ namespace Z0
                     => lhs.BlockCount == rhs.BlockCount ? lhs.BlockCount 
                         : throw Errors.CountMismatch(lhs.BlockCount, rhs.BlockCount, caller, file, line);
 
-        /// <summary>
-        /// Returns the length of spans of equal length; otherwise raises an error
-        /// </summary>
-        /// <param name="lhs">The left span</param>
-        /// <param name="rhs">The right span</param>
-        [MethodImpl(Inline)]   
-        public static int length<S,T>(ReadOnlySpan256<S> lhs, ReadOnlySpan256<T> rhs, [CallerFilePath] string caller = null, 
-            [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)        
-            where T : struct
-            where S : struct
-                => lhs.Length == rhs.Length ? lhs.Length 
-                    : throw Errors.LengthMismatch(lhs.Length, rhs.Length, caller, file, line);
 
         /// <summary>
         /// Returns the length of spans of equal length; otherwise raises an error

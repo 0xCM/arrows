@@ -12,7 +12,6 @@
     <ProjectReference Include="..\bench\z0.bench.csproj" />
     <ProjectReference Include="..\test\z0.test.csproj" />
     <ProjectReference Include="..\random\z0.random.csproj" />
-    <ProjectReference Include="..\vectors\z0.vectors.csproj" />
 
   </ItemGroup>
 </Project>

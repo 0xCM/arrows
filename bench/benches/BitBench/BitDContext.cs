@@ -14,7 +14,7 @@ namespace Z0.Bench
 
     public sealed class BitDContext : BitContext
     {
-        public BitDContext(MetricConfig config, IRandomizer random = null)
+        public BitDContext(MetricConfig config, IRandomSource random = null)
             : base(config, random)
         {
 

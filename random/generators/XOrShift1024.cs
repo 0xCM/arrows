@@ -32,28 +32,26 @@ namespace Z0
         /// </summary>
         const ulong Multiplier = 1181783497276652981;
 
-        readonly ulong[] seed;
+        readonly ulong[] state;
         
         int p;
 
-
-
         public XOrShift1024()
         {   
-            seed = guids().Take(8).ToU64Array();
+            state = guids().Take(8).ToU64Array();
         }
         public XOrShift1024(ulong[] seed)
         {
             if(seed.Length < 16)
                 throw new Exception($"Not enough seed! 1024 bits = 128 bytes = 16 longs are required");
-            this.seed = As.uint64(seed).ToArray();
+            this.state = As.uint64(seed).ToArray();
         }
 
         public XOrShift1024(Span<byte> seed)
         {
             if(seed.Length < 128)
                 throw new Exception($"Not enough seed! 1024 bits = 128 bytes are required");
-            this.seed = As.uint64(seed).ToArray();
+            this.state = As.uint64(seed).ToArray();
         }
 
         public void Jump() 
@@ -65,22 +63,22 @@ namespace Z0
             {
                 if ( (JT[i] & 1ul << b) != 0)
                     for(int j = 0; j < 16; j++)
-                        t[j] ^= seed[(j + p) & 15];
+                        t[j] ^= state[(j + p) & 15];
                 NextInteger();
             }
 
             for(int j = 0; j < 16; j++)
-                seed[(j + p) & 15] = t[j];
+                state[(j + p) & 15] = t[j];
         }
 
         [MethodImpl(Inline)]
         public ulong NextInteger() 
         {
-            ulong s0 = seed[p];
-            ulong s1 = seed[p = (p + 1) & 15];
+            ulong s0 = state[p];
+            ulong s1 = state[p = (p + 1) & 15];
             s1 ^= s1 << 31; // a
-            seed[p] = s1 ^ s0 ^ (s1 >> 11) ^ (s0 >> 30); // b,c
-            return seed[p] * Multiplier;
+            state[p] = s1 ^ s0 ^ (s1 >> 11) ^ (s0 >> 30); // b,c
+            return state[p] * Multiplier;
         }
         
 

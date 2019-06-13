@@ -19,7 +19,7 @@ namespace Z0.Bench
 
         public static IMetrics Run(this PrimalDContext context, OpKind op, PrimalKind prim)
             => context.Config.Run(op, prim, context.Random);
-        public static IMetrics Run(this PrimalDConfig config, OpKind op, PrimalKind prim, IRandomizer random)
+        public static IMetrics Run(this PrimalDConfig config, OpKind op, PrimalKind prim, IRandomSource random)
         {
             switch(prim)
             {
@@ -48,7 +48,7 @@ namespace Z0.Bench
             }
         }
 
-        static Metrics<T> Run<T>(this PrimalDConfig config, OpKind op, IRandomizer random)        
+        static Metrics<T> Run<T>(this PrimalDConfig config, OpKind op, IRandomSource random)        
             where T : struct
         {
             var metrics = Metrics<T>.Zero;

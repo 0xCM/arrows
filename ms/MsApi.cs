@@ -16,14 +16,14 @@ namespace Z0
     public static class MsApi
     {   
 
-        public static IEnumerable<double> SampleGaussian(this IRandomizer random, double μ, double σ)
+        public static IEnumerable<double> SampleGaussian(this IRandomSource random, double μ, double σ)
         {
             var dist = Gaussian.FromMeanAndVariance(μ, σ*σ);
             while(true)
                 yield return dist.Sample();
         }
 
-        public static IEnumerable<bool> SampleBernoulli(this IRandomizer random, double p)
+        public static IEnumerable<bool> SampleBernoulli(this IRandomSource random, double p)
         {
             var dist = new Bernoulli(p);
             while(true)

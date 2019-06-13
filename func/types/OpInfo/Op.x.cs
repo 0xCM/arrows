@@ -110,6 +110,14 @@ namespace Z0
                 where T : struct
                     => new OpId<T>(system, op, numKind, generic, fusion, title);        
 
+
+        /// <summary>
+        /// Returns the identified primal generic operator
+        /// </summary>
+        public static OpId<T> PrimalGOpId<T>(this OpKind kind, NumericKind numKind = NumericKind.Native)
+            where T : struct
+                => kind.OpId<T>(NumericSystem.Primal, generic: Genericity.Generic);
+
     }
 
 }

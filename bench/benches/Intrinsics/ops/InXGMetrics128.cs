@@ -55,7 +55,7 @@ namespace Z0.Bench
                         fusion: fused ? OpFusion.Fused : OpFusion.Atomic
                         );
 
-        public InXGContext128(InXGConfig128 config, IRandomizer random = null)
+        public InXGContext128(InXGConfig128 config, IRandomSource random = null)
             : base(config, random)
         {
 
@@ -110,7 +110,7 @@ namespace Z0.Bench
                         fusion: fused ? OpFusion.Fused : OpFusion.Atomic
                         );
 
-        public InXNumGContext128(BlockedConfig128 config, IRandomizer random = null)
+        public InXNumGContext128(BlockedConfig128 config, IRandomSource random = null)
             : base(config, random)
         {
 

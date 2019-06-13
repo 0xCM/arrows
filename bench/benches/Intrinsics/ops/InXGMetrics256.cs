@@ -37,7 +37,7 @@ namespace Z0.Bench
                         );
 
 
-        public InXGContext256(InXGConfig256 config, IRandomizer random = null)
+        public InXGContext256(InXGConfig256 config, IRandomSource random = null)
             : base(config, random)
         {
 

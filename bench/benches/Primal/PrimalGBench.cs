@@ -15,7 +15,7 @@ namespace Z0.Bench
 
     public static class PrimalGBench
     {
-        public static IMetrics Run(this PrimalGConfig config, OpKind op, PrimalKind prim, IRandomizer random)
+        public static IMetrics Run(this PrimalGConfig config, OpKind op, PrimalKind prim, IRandomSource random)
         {
             switch(prim)
             {
@@ -44,7 +44,7 @@ namespace Z0.Bench
             }
         }
 
-        static Metrics<T> Run<T>(this PrimalGConfig config, OpKind op, IRandomizer random)        
+        static Metrics<T> Run<T>(this PrimalGConfig config, OpKind op, IRandomSource random)        
             where T : struct
         {
             var metrics = Metrics<T>.Zero;

@@ -16,16 +16,16 @@ namespace Z0.Bench
     
     public static class InXBench
     {
-        public static InXGContext256 Context(this InXGConfig256 config, IRandomizer random = null)        
+        public static InXGContext256 Context(this InXGConfig256 config, IRandomSource random = null)        
             => new InXGContext256(config,random);
 
-        public static InXDContext128 Context(this InXDConfig128 config, IRandomizer random = null)        
+        public static InXDContext128 Context(this InXDConfig128 config, IRandomSource random = null)        
             => new InXDContext128(config,random);
 
-        public static InXDContext256 Context(this InXDConfig256 config, IRandomizer random = null)        
+        public static InXDContext256 Context(this InXDConfig256 config, IRandomSource random = null)        
             => new InXDContext256(config,random);
         
-        public static InXGContext128 Context(this InXGConfig128 config, IRandomizer random = null)        
+        public static InXGContext128 Context(this InXGConfig128 config, IRandomSource random = null)        
             => new InXGContext128(config,random);
 
 
@@ -51,7 +51,7 @@ namespace Z0.Bench
             return context.RunComparisons(specs);
        }
 
-        static MetricComparisonRecord RunComparison(this InXGContext256 context, OpType op, IRandomizer random = null)
+        static MetricComparisonRecord RunComparison(this InXGContext256 context, OpType op, IRandomSource random = null)
         {
             var m1 = context.ToDirect128().Run(op.Op, op.Primitive);
             print(m1.Describe());
@@ -60,7 +60,7 @@ namespace Z0.Bench
             return m1.Compare(m2).ToRecord();
         }
 
-        static MetricComparisonRecord RunComparison(this InXGContext128 context, OpType op, IRandomizer random = null)
+        static MetricComparisonRecord RunComparison(this InXGContext128 context, OpType op, IRandomSource random = null)
         {
             var m1 = context.ToDirect128().Run(op.Op, op.Primitive);
             print(m1.Describe());

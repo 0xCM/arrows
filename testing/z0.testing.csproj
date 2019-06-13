@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\func\z0.zfunc.csproj" />
+    <ProjectReference Include="..\nats\z0.nats.csproj" />
+    <ProjectReference Include="..\random\z0.random.csproj" />
+    <ProjectReference Include="..\primal\z0.primal.csproj" />
+
+  </ItemGroup>
+
+</Project>

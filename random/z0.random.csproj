@@ -10,7 +10,7 @@
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\nats\z0.nats.csproj" />
     <ProjectReference Include="..\primal\z0.primal.csproj" />
-    <ProjectReference Include="..\intrinsics\z0.intrinsics.csproj" />
+    <ProjectReference Include="..\inx\z0.inx.csproj" />
   </ItemGroup>
 
 

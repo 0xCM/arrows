@@ -23,7 +23,7 @@ namespace Z0.Bench
 
     public sealed class InXDContext128 : InXContext<InXDConfig128>
     {
-        public InXDContext128(InXDConfig128 config, IRandomizer random = null)
+        public InXDContext128(InXDConfig128 config, IRandomSource random = null)
             : base(config, random)
         {
 
@@ -82,7 +82,7 @@ namespace Z0.Bench
 
     public sealed class InXNumDContext128 : BenchContext<BlockedConfig128>
     {
-        public InXNumDContext128(BlockedConfig128 config, IRandomizer random = null)
+        public InXNumDContext128(BlockedConfig128 config, IRandomSource random = null)
             : base(config, random)
         {
 

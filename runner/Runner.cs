@@ -35,7 +35,7 @@ namespace Z0
 
 
         void RunTests()
-            => TestRunner.Run();
+            => App.Run();
 
         void RunBench()
             => BenchRunner.Run();

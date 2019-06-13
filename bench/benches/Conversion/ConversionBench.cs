@@ -159,7 +159,7 @@ namespace Z0.Bench
         }
 
 
-        public static IMetrics Run(this ConversionConfig config, IRandomizer random)        
+        public static IMetrics Run(this ConversionConfig config, IRandomSource random)        
         {            
             switch(config.SrcType)
             {

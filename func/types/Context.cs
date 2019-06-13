@@ -22,7 +22,7 @@ namespace Z0
     
     public abstract class Context : IContext
     {
-        protected IRandomizer Randomizer {get;}
+        protected IRandomSource Randomizer {get;}
 
         List<AppMsg> Messages {get;} = new List<AppMsg>();
 
@@ -40,7 +40,7 @@ namespace Z0
             zfunc.print(messages);
         }
 
-        protected Context(IRandomizer Randomizer)
+        protected Context(IRandomSource Randomizer)
         {
             this.Randomizer = Randomizer;
         }
@@ -56,6 +56,8 @@ namespace Z0
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
                 => Messages.Add(AppMsg.Define(msg, SeverityLevel.HiliteCL, caller, file, line));
 
+        protected void TypeStepOk<T>([CallerMemberName] string caller = null)
+            => Messages.Add(AppMsg.Define($"{caller}<{typeof(T).Name}> succeeded", SeverityLevel.HiliteCL));
 
         protected void Trace(string msg, [CallerMemberName] string caller = null, 
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
@@ -75,7 +77,7 @@ namespace Z0
     public abstract class Context<T> : Context
     {                
 
-        protected Context(IRandomizer randomizer)
+        protected Context(IRandomSource randomizer)
             : base(randomizer)            
         {
 

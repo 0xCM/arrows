@@ -1,0 +1,106 @@
+-- cmpeq_*
+-------------------------------------------------------------------------------
+
+docs: __m128 _mm_cmpeq_ss (__m128 a, __m128 b) CMPSS xmm, xmm/m32, imm8(0)
+clr-sig: Vector128<float> CompareEqualScalar(Vector128<float> left, Vector128<float> right);
+
+docs: __m128d _mm_cmpeq_sd (__m128d a, __m128d b) CMPSD xmm, xmm/m64, imm8(0)
+clr-sig: Vector128<double> CompareEqualScalar(Vector128<double> left, Vector128<double> right);
+
+docs: __m128i _mm_cmpeq_epi8 (__m128i a, __m128i b) PCMPEQB xmm, xmm/m128
+clr-sig: Vector128<sbyte> CompareEqual(Vector128<sbyte> left, Vector128<sbyte> right);
+
+docs: __m128i _mm_cmpeq_epi8 (__m128i a, __m128i b) PCMPEQB xmm, xmm/m128
+clr-sig: Vector128<byte> CompareEqual(Vector128<byte> left, Vector128<byte> right);
+
+docs: __m128i _mm_cmpeq_epi16 (__m128i a, __m128i b) PCMPEQW xmm, xmm/m128
+clr-sig: Vector128<short> CompareEqual(Vector128<short> left, Vector128<short> right);
+
+docs: __m128i _mm_cmpeq_epi16 (__m128i a, __m128i b) PCMPEQW xmm, xmm/m128
+clr-sig: Vector128<ushort> CompareEqual(Vector128<ushort> left, Vector128<ushort> right);
+
+docs: __m128i _mm_cmpeq_epi32 (__m128i a, __m128i b) PCMPEQD xmm, xmm/m128
+clr-sig: Vector128<int> CompareEqual(Vector128<int> left, Vector128<int> right);
+
+docs: __m128i _mm_cmpeq_epi32 (__m128i a, __m128i b) PCMPEQD xmm, xmm/m128
+clr-sig: Vector128<uint> CompareEqual(Vector128<uint> left, Vector128<uint> right);
+
+docs: __m128i _mm_cmpeq_epi64 (__m128i a, __m128i b) PCMPEQQ xmm, xmm/m128
+clr-sig: Vector128<long> CompareEqual(Vector128<long> left, Vector128<long> right);
+
+docs: __m128i _mm_cmpeq_epi64 (__m128i a, __m128i b) PCMPEQQ xmm, xmm/m128
+clr-sig: Vector128<ulong> CompareEqual(Vector128<ulong> left, Vector128<ulong> right);
+
+docs: __m128 _mm_cmpeq_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(0)
+clr-sig: Vector128<float> CompareEqual(Vector128<float> left, Vector128<float> right);
+
+docs: __m128d _mm_cmpeq_pd (__m128d a, __m128d b) CMPPD xmm, xmm/m128, imm8(0)
+clr-sig: Vector128<double> CompareEqual(Vector128<double> left, Vector128<double> right);
+
+docs: __m256i _mm256_cmpeq_epi32 (__m256i a, __m256i b) VPCMPEQD ymm, ymm, ymm/m256
+clr-sig: Vector256<uint> CompareEqual(Vector256<uint> left, Vector256<uint> right);
+
+    
+docs: __m256i _mm256_cmpeq_epi16 (__m256i a, __m256i b) VPCMPEQW ymm, ymm, ymm/m256
+clr-sig: Vector256<ushort> CompareEqual(Vector256<ushort> left, Vector256<ushort> right);
+
+    
+docs: __m256i _mm256_cmpeq_epi8 (__m256i a, __m256i b) VPCMPEQB ymm, ymm, ymm/m256
+clr-sig: Vector256<sbyte> CompareEqual(Vector256<sbyte> left, Vector256<sbyte> right);
+
+    
+docs: __m256i _mm256_cmpeq_epi64 (__m256i a, __m256i b) VPCMPEQQ ymm, ymm, ymm/m256
+clr-sig: Vector256<ulong> CompareEqual(Vector256<ulong> left, Vector256<ulong> right);
+
+    
+docs: __m256i _mm256_cmpeq_epi32 (__m256i a, __m256i b) VPCMPEQD ymm, ymm, ymm/m256
+clr-sig: Vector256<int> CompareEqual(Vector256<int> left, Vector256<int> right);
+
+    
+docs: __m256i _mm256_cmpeq_epi16 (__m256i a, __m256i b) VPCMPEQW ymm, ymm, ymm/m256
+clr-sig: Vector256<short> CompareEqual(Vector256<short> left, Vector256<short> right);
+
+    
+docs: __m256i _mm256_cmpeq_epi8 (__m256i a, __m256i b) VPCMPEQB ymm, ymm, ymm/m256
+clr-sig: Vector256<byte> CompareEqual(Vector256<byte> left, Vector256<byte> right);
+
+    
+docs: __m256i _mm256_cmpeq_epi64 (__m256i a, __m256i b) VPCMPEQQ ymm, ymm, ymm/m256
+clr-sig: Vector256<long> CompareEqual(Vector256<long> left, Vector256<long> right);
+
+-- loaddup
+-------------------------------------------------------------------------------
+docs: __m128d _mm_loaddup_pd (double const* mem_addr) MOVDDUP xmm, m64
+clr-sig: Vector128<double> LoadAndDuplicateToVector128(double* address);
+clr-sig: Vector128<ulong> LoadDquVector128(ulong* address);
+clr-sig: Vector128<uint> LoadDquVector128(uint* address);
+clr-sig: Vector128<ushort> LoadDquVector128(ushort* address);
+clr-sig: Vector128<long> LoadDquVector128(long* address);
+clr-sig: Vector128<short> LoadDquVector128(short* address);
+clr-sig: Vector128<byte> LoadDquVector128(byte* address);
+
+
+### testz ---------------------------------------------------------------------
+
+docs: int _mm_testz_ps (__m128 a, __m128 b) VTESTPS xmm, xmm/m128
+clr-sig: bool TestZ(Vector128<float> left, Vector128<float> right);
+
+docs: int _mm_testz_pd (__m128d a, __m128d b) VTESTPD xmm, xmm/m128
+clr-sig: bool TestZ(Vector128<double> left, Vector128<double> right);
+
+docs: int _mm256_testz_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256
+clr-sig: bool TestZ(Vector256<sbyte> left, Vector256<sbyte> right);
+clr-sig: bool TestZ(Vector256<byte> left, Vector256<byte> right);
+clr-sig: bool TestZ(Vector256<short> left, Vector256<short> right);
+clr-sig: bool TestZ(Vector256<ushort> left, Vector256<ushort> right);
+clr-sig: bool TestZ(Vector256<ulong> left, Vector256<ulong> right);
+clr-sig: bool TestZ(Vector256<int> left, Vector256<int> right);
+clr-sig: bool TestZ(Vector256<uint> left, Vector256<uint> right);
+clr-sig: bool TestZ(Vector256<long> left, Vector256<long> right);
+
+docs: int _mm256_testz_ps (__m256 a, __m256 b) VTESTPS ymm, ymm/m256
+clr-sig: bool TestZ(Vector256<float> left, Vector256<float> right);
+
+docs: int _mm256_testz_pd (__m256d a, __m256d b) VTESTPD ymm, ymm/m256
+clr-sig: bool TestZ(Vector256<double> left, Vector256<double> right);
+--------------------------------------------------------------------- ### testz

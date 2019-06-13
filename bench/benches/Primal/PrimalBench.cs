@@ -16,10 +16,10 @@ namespace Z0.Bench
     
     public static class PrimalBench
     {        
-        public static PrimalDContext Context(this PrimalDConfig config, IRandomizer random = null)
+        public static PrimalDContext Context(this PrimalDConfig config, IRandomSource random = null)
             => new PrimalDContext(config,random);
 
-        public static PrimalGContext Context(this PrimalGConfig config, IRandomizer random = null)
+        public static PrimalGContext Context(this PrimalGConfig config, IRandomSource random = null)
             => new PrimalGContext(config,random);
 
         public static IReadOnlyList<MetricComparisonRecord> Run()

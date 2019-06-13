@@ -38,7 +38,7 @@ namespace Z0.Bench
                         fusion: fused ? OpFusion.Fused : OpFusion.Atomic
                         );
 
-        public InXDContext256(InXDConfig256 config, IRandomizer random = null)
+        public InXDContext256(InXDConfig256 config, IRandomSource random = null)
             : base(config, random)
         {
 

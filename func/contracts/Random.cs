@@ -22,14 +22,7 @@ namespace Z0
     }
 
 
-    public interface IRandomizer : IRandomSource
-    {
-        void StreamTo<T>(Interval<T> domain, int count, ref T dst, Func<T,bool> filter = null)
-            where T : struct;        
-
-    }
-
-    public interface IRandomizer<T> : IRandomizer
+    public interface IRandomSource<T> : IRandomSource
         where T : struct
     {
                 

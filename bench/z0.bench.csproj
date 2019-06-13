@@ -10,10 +10,9 @@
   <ItemGroup>
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\nats\z0.nats.csproj" />
-    <ProjectReference Include="..\gspace\z0.gspace.csproj" />
-    <ProjectReference Include="..\intrinsics\z0.intrinsics.csproj" />
+    <ProjectReference Include="..\inx\z0.inx.csproj" />
     <ProjectReference Include="..\primal\z0.primal.csproj" />
     <ProjectReference Include="..\random\z0.random.csproj" />
-    <ProjectReference Include="..\vectors\z0.vectors.csproj" />
+    <ProjectReference Include="..\linear\z0.linear.csproj" />
   </ItemGroup>
 </Project>

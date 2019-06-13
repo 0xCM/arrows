@@ -16,10 +16,10 @@ namespace Z0.Bench
     
     public static class InXGBench
     {
-        public static InXDContext128 Context(this InXDConfig128 config, IRandomizer random = null)
+        public static InXDContext128 Context(this InXDConfig128 config, IRandomSource random = null)
             => new InXDContext128(config,random);
 
-        public static InXDContext256 Context(this InXDConfig256 config, IRandomizer random = null)
+        public static InXDContext256 Context(this InXDConfig256 config, IRandomSource random = null)
             => new InXDContext256(config,random);
 
         static Metrics<T> Run<T>(this InXGContext128 context, OpKind op)        

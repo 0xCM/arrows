@@ -46,7 +46,7 @@ namespace Z0.Bench
 
         const MetricKind Metric = MetricKind.NumG;
 
-        public static IMetrics Run(this NumGConfig config, OpKind op, PrimalKind prim, IRandomizer random = null)
+        public static IMetrics Run(this NumGConfig config, OpKind op, PrimalKind prim, IRandomSource random = null)
         {
             config = Metric.Configure(config);    
             random = Random(random);        
@@ -78,7 +78,7 @@ namespace Z0.Bench
             }
         }
 
-       static Metrics<T> Run<T>(this NumGConfig config, OpKind op, IRandomizer random)        
+       static Metrics<T> Run<T>(this NumGConfig config, OpKind op, IRandomSource random)        
             where T : struct
         {
             var lhs = random.Span<T>(config.Samples);

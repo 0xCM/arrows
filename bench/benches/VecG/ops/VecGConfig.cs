@@ -15,13 +15,13 @@ namespace Z0.Bench
     public static class VecGX
     {
 
-        public static VecGContext VecGContext(this MetricConfig config, IRandomizer random = null)  
+        public static VecGContext VecGContext(this MetricConfig config, IRandomSource random = null)  
             => new VecGContext(config,random);
     }
     
     public sealed class VecGContext : BenchContext<MetricConfig>
     {
-        public VecGContext(MetricConfig config, IRandomizer random = null)
+        public VecGContext(MetricConfig config, IRandomSource random = null)
             : base(config, random)
         {
 
