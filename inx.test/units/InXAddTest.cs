@@ -15,35 +15,85 @@ namespace Z0.Test
 
     public class InXAddTest : UnitTest<InXAddTest>
     {
-        public void AddI32()
+
+        void VerifyBinOp<T>(int blocks, Vec128BinOp<T> inXOp, Func<T,T,T> primalOp)
+            where T : struct
         {
-            var blocks = Pow2.T08;   
-            var blocklen = Span128<int>.BlockLength;                     
-            var lhs = Randomizer.ReadOnlySpan128<int>(blocks);
-            var rhs = Randomizer.ReadOnlySpan128<int>(blocks);
-            var expect = Span128.alloc<int>(blocks);
-            var actual = Span128.alloc<int>(blocks);
+            var blocklen = Span128<T>.BlockLength;                     
+            var lhs = Randomizer.ReadOnlySpan128<T>(blocks);
+            var rhs = Randomizer.ReadOnlySpan128<T>(blocks);
+            var expect = Span128.alloc<T>(blocks);
+            var actual = Span128.alloc<T>(blocks);
+            var tmp = new T[blocklen];
             
             for(var block = 0; block<blocks; block++)
             {
                 var offset = block*blocklen;
 
-                Span<int> tmp = stackalloc int[blocklen];
                 for(var i =0; i<blocklen; i++)
-                    tmp[i] = gmath.add(lhs[offset + i], rhs[offset + i]);
-                var vExpect = Vec128.load(ref tmp[0]);
+                    tmp[i] = primalOp(lhs[offset + i], rhs[offset + i]);
+
+                var vExpect = Vec128.load<T>(ref tmp[0]);
              
                 var vX = lhs.Vector(block);
                 var vY = rhs.Vector(block);
-                var vActual = ginx.add(vX,vY);
+                var vActual = inXOp(vX,vY);
 
                 Claim.eq(vExpect, vActual);
-
-                dinx.store(vExpect, ref expect.Block(block));
-                dinx.store(vActual, ref actual.Block(block));
+            
+                ginx.store(vExpect, ref expect.Block(block));
+                ginx.store(vActual, ref actual.Block(block));
 
             }
             Claim.eq(expect, actual);
+
+        }
+
+        void Add128<T>(int blocks)
+            where T : struct
+        {
+            VerifyBinOp(blocks, new Vec128BinOp<T>(ginx.add), gmath.add<T>);
+            TypeStepOk<T>();
+        }
+
+        void Sub128<T>(int blocks)
+            where T : struct
+        {
+            VerifyBinOp(blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
+            TypeStepOk<T>();
+        }
+
+        public void Add128()
+        {
+
+            var blocks = Pow2.T08;
+            Add128<sbyte>(blocks);
+            Add128<byte>(blocks);
+            Add128<short>(blocks);
+            Add128<ushort>(blocks);
+            Add128<int>(blocks);
+            Add128<uint>(blocks);
+            Add128<long>(blocks);
+            Add128<ulong>(blocks);
+            Add128<float>(blocks);
+            Add128<double>(blocks);
+
+        }
+
+        public void Sub128()
+        {
+
+            var blocks = Pow2.T08;
+            Sub128<sbyte>(blocks);
+            Sub128<byte>(blocks);
+            Sub128<short>(blocks);
+            Sub128<ushort>(blocks);
+            Sub128<int>(blocks);
+            Sub128<uint>(blocks);
+            Sub128<long>(blocks);
+            Sub128<ulong>(blocks);
+            Sub128<float>(blocks);
+            Sub128<double>(blocks);
 
         }
 

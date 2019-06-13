@@ -15,7 +15,7 @@ namespace Z0.Test
 
     public class InXEqTest : UnitTest<InXEqTest>
     {
-        Duration TestEq<T>(N128 bits, int blocks)
+        Duration Eq128<T>(N128 bits, int blocks)
             where T : struct
         {
             var src = Randomizer.Span128<T>(blocks); 
@@ -24,14 +24,14 @@ namespace Z0.Test
             {
                 var v1 = src.Vector(block);
                 var v2 = src.Vector(block);                                
-                var eq = ginx.eq(v1,v2);
-                for(var i =0; i< eq.Length; i++)
-                    Claim.@true(eq[i]);
-            }           
+                var eq = ginx.cmpeq(v1,v2);
+                Claim.@true(eq);
+            }         
+            TypeStepOk<T>();
             return snapshot(sw);
         }
         
-        Duration TestEq<T>(N256 bits, int blocks)
+        Duration Eq256<T>(N256 bits, int blocks)
             where T : struct
         {
             var src = Randomizer.Span256<T>(blocks); 
@@ -40,10 +40,10 @@ namespace Z0.Test
             {
                 var v1 = src.Vector(block);
                 var v2 = src.Vector(block);                                
-                var eq = ginx.eq(v1,v2);
-                for(var i =0; i< eq.Length; i++)
-                    Claim.@true(eq[i]);
+                var eq = ginx.cmpeq(v1,v2);
+                Claim.@true(eq);
             }           
+            TypeStepOk<T>();
             return snapshot(sw);
 
         }
@@ -53,24 +53,24 @@ namespace Z0.Test
             var blocks = Pow2.T08;
             var n128 = N128.Rep;
             var n256 = N256.Rep;
-            TestEq<byte>(n128, blocks);
-            TestEq<sbyte>(n128, blocks);
-            TestEq<short>(n128, blocks);
-            TestEq<ushort>(n128, blocks);
-            TestEq<int>(n128, blocks);
-            TestEq<uint>(n128, blocks);
-            TestEq<long>(n128, blocks);
-            TestEq<ulong>(n128, blocks);
-            TestEq<float>(n128, blocks);
-            TestEq<double>(n128, blocks);
-            TestEq<byte>(n256, blocks);
-            TestEq<sbyte>(n256, blocks);
-            TestEq<short>(n256, blocks);
-            TestEq<ushort>(n256, blocks);
-            TestEq<int>(n256, blocks);
-            TestEq<uint>(n256, blocks);
-            TestEq<long>(n256, blocks);
-            TestEq<ulong>(n256, blocks);
+            Eq128<byte>(n128, blocks);
+            Eq128<sbyte>(n128, blocks);
+            Eq128<short>(n128, blocks);
+            Eq128<ushort>(n128, blocks);
+            Eq128<int>(n128, blocks);
+            Eq128<uint>(n128, blocks);
+            Eq128<long>(n128, blocks);
+            Eq128<ulong>(n128, blocks);
+            Eq128<float>(n128, blocks);
+            Eq128<double>(n128, blocks);
+            Eq256<byte>(n256, blocks);
+            Eq256<sbyte>(n256, blocks);
+            Eq256<short>(n256, blocks);
+            Eq256<ushort>(n256, blocks);
+            Eq256<int>(n256, blocks);
+            Eq256<uint>(n256, blocks);
+            Eq256<long>(n256, blocks);
+            Eq256<ulong>(n256, blocks);
         }
     }
 

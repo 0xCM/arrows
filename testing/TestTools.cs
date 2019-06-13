@@ -30,7 +30,7 @@ namespace Z0.Test
             => iter(Hosts<T>(), h =>  Run(h,filter), concurrent);
 
         IEnumerable<MethodInfo> Tests(Type host)
-            =>  host.DeclaredMethods().Public().WithParameterCount(0);
+            =>  host.DeclaredMethods().Public().NonGeneric().WithParameterCount(0);
 
         void Run(Type host, string filter)
         {        

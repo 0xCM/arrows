@@ -333,6 +333,27 @@ namespace Z0
             => src.Where(t => t.IsPublic);
 
         /// <summary>
+        /// Selects the open generic methods from a stream
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        public static IEnumerable<MethodInfo> OpenGeneric(this IEnumerable<MethodInfo> src)
+            => src.Where(t => t.ContainsGenericParameters);
+
+        /// <summary>
+        /// Selects the closed generic methods from a stream
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        public static IEnumerable<MethodInfo> ClosedGeneric(this IEnumerable<MethodInfo> src)
+            => src.Where(t => t.IsConstructedGenericMethod);
+
+        /// <summary>
+        /// Selects the non-generic methods from a stream
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        public static IEnumerable<MethodInfo> NonGeneric(this IEnumerable<MethodInfo> src)
+            => src.Where(t => !t.ContainsGenericParameters && !t.IsConstructedGenericMethod);
+
+        /// <summary>
         /// Selects the non-public types from a stream
         /// </summary>
         /// <param name="src">The source stream</param>

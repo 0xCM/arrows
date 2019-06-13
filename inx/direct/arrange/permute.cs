@@ -64,71 +64,71 @@ namespace Z0
             => Permute(value, control);
 
         [MethodImpl(Inline)]
-        public static Vec256<long> permute(Vec256<long> value, byte control)
+        public static Vec128<float> permute(in Vec128<float> lhs, in Vec128<int> control)
+            => PermuteVar(lhs, control);
+
+        [MethodImpl(Inline)]
+        public static Vec128<double> permute(in Vec128<double> lhs, in Vec128<long> control)
+            => PermuteVar(lhs, control);
+
+        [MethodImpl(Inline)]
+        public static Vec256<long> permute(in Vec256<long> value, byte control)
             => Permute4x64(value,control);
 
         [MethodImpl(Inline)]
-        public static Vec256<ulong> permute(Vec256<ulong> value, byte control)
+        public static Vec256<ulong> permute(in Vec256<ulong> value, byte control)
             => Permute4x64(value,control);
 
         [MethodImpl(Inline)]
-        public static Vec256<double> permute(Vec256<double> value, byte control)
+        public static Vec256<double> permute(in Vec256<double> value, byte control)
             => Permute4x64(value,control);
 
         [MethodImpl(Inline)]
-        public static Vec256<sbyte> permute(in Vec256<sbyte> lhs, Vec256<sbyte> rhs, byte control)
+        public static Vec256<sbyte> permute(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, byte control)
             => Permute2x128(lhs,rhs,control);
 
         [MethodImpl(Inline)]
-        public static Vec256<byte> permute(in Vec256<byte> lhs, Vec256<byte> rhs, byte control)
+        public static Vec256<byte> permute(in Vec256<byte> lhs, in Vec256<byte> rhs, byte control)
             => Permute2x128(lhs,rhs,control);
 
         [MethodImpl(Inline)]
-        public static Vec256<short> permute(in Vec256<short> lhs, Vec256<short> rhs, byte control)
+        public static Vec256<short> permute(in Vec256<short> lhs, in Vec256<short> rhs, byte control)
             => Permute2x128(lhs,rhs,control);
 
         [MethodImpl(Inline)]
-        public static Vec256<ushort> permute(in Vec256<ushort> lhs, Vec256<ushort> rhs, byte control)
+        public static Vec256<ushort> permute(in Vec256<ushort> lhs, in Vec256<ushort> rhs, byte control)
             => Permute2x128(lhs,rhs,control);
 
         [MethodImpl(Inline)]
-        public static Vec256<int> permute(in Vec256<int> lhs, Vec256<int> rhs, byte control)
+        public static Vec256<int> permute(in Vec256<int> lhs, in Vec256<int> rhs, byte control)
             => Permute2x128(lhs,rhs,control);
 
         [MethodImpl(Inline)]
-        public static Vec256<uint> permute(in Vec256<uint> lhs, Vec256<uint> rhs, byte control)
+        public static Vec256<uint> permute(in Vec256<uint> lhs, in Vec256<uint> rhs, byte control)
             => Permute2x128(lhs,rhs,control);
 
         [MethodImpl(Inline)]
-        public static Vec256<long> permute(in Vec256<long> lhs, Vec256<long> rhs, byte control)
+        public static Vec256<long> permute(in Vec256<long> lhs, in Vec256<long> rhs, byte control)
             => Permute2x128(lhs,rhs,control);
 
         [MethodImpl(Inline)]
-        public static Vec256<ulong> permute(in Vec256<ulong> lhs, Vec256<ulong> rhs, byte control)
+        public static Vec256<ulong> permute(in Vec256<ulong> lhs, in Vec256<ulong> rhs, byte control)
             => Permute2x128(lhs,rhs,control);
 
         [MethodImpl(Inline)]
-        public static Vec256<float> permute(in Vec256<float> lhs, Vec256<float> rhs, byte control)
+        public static Vec256<float> permute(in Vec256<float> lhs, in Vec256<float> rhs, byte control)
             => Permute2x128(lhs,rhs,control);
 
         [MethodImpl(Inline)]
-        public static Vec256<double> permute(in Vec256<double> lhs, Vec256<double> rhs, byte control)
+        public static Vec256<double> permute(in Vec256<double> lhs, in Vec256<double> rhs, byte control)
             => Permute2x128(lhs,rhs,control); 
 
         [MethodImpl(Inline)]
-        public static Vec128<float> permute(Vec128<float> lhs, Vec128<int> control)
+        public static Vec256<float> permute(Vec256<float> lhs, in Vec256<int> control)
             => PermuteVar(lhs, control);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> permute(Vec128<double> lhs, Vec128<long> control)
-            => PermuteVar(lhs, control);
-
-        [MethodImpl(Inline)]
-        public static Vec256<float> permute(Vec256<float> lhs, Vec256<int> control)
-            => PermuteVar(lhs, control);
-
-        [MethodImpl(Inline)]
-        public static Vec256<double> permute(Vec256<double> lhs, Vec256<long> control)
+        public static Vec256<double> permute(Vec256<double> lhs, in Vec256<long> control)
             => PermuteVar(lhs, control);
 
 

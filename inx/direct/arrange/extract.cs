@@ -18,31 +18,31 @@ namespace Z0
     partial class dinx
     {
         [MethodImpl(Inline)]
-        public static byte extract(Vec128<byte> src, byte pos)
+        public static byte extract(in Vec128<byte> src, byte pos)
             => Extract(src,pos);
 
         [MethodImpl(Inline)]
-        public static int extract(Vec128<int> src, byte pos)
+        public static uint extract(in Vec128<ushort> src, byte pos)
             => Extract(src,pos);
 
         [MethodImpl(Inline)]
-        public static uint extract(Vec128<ushort> src, byte pos)
+        public static int extract(in Vec128<int> src, byte pos)
             => Extract(src,pos);
 
         [MethodImpl(Inline)]
-        public static uint extract(Vec128<uint> src, byte pos)
+        public static uint extract(in Vec128<uint> src, byte pos)
             => Extract(src,pos);
 
         [MethodImpl(Inline)]
-        public static long extract(Vec128<long> src, byte pos)
+        public static long extract(in Vec128<long> src, byte pos)
             => Sse42.X64.Extract(src,pos);
 
         [MethodImpl(Inline)]
-        public static ulong extract(Vec128<ulong> src, byte pos)
+        public static ulong extract(in Vec128<ulong> src, byte pos)
             => Sse42.X64.Extract(src,pos);
 
         [MethodImpl(Inline)]
-        public static float extract(Vec128<float> src, byte pos)
+        public static float extract(in Vec128<float> src, byte pos)
             => Extract(src,pos);
 
         [MethodImpl(Inline)]
