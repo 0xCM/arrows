@@ -42,7 +42,7 @@ namespace Z0.Test
 
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
-                expect[i] = gmath.shiftl(src[i], shifts[i]);
+                expect[i] = gbits.shiftl(src[i], shifts[i]);
             
             var v1 = expect.Vector();
             var v2 = ginx.shiftl(src, shifts);            
@@ -57,7 +57,7 @@ namespace Z0.Test
 
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
-                expect[i] = gmath.shiftl(src[i], shifts[i]);
+                expect[i] = gbits.shiftl(src[i], shifts[i]);
             
             var v1 = expect.Vector();
             var v2 = ginx.shiftl(src, shifts);            
@@ -72,7 +72,7 @@ namespace Z0.Test
 
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
-                expect[i] = gmath.shiftl(src[i], shifts[i]);
+                expect[i] = gbits.shiftl(src[i], shifts[i]);
             
             var v1 = expect.Vector();
             var v2 = ginx.shiftl(src, shifts);            
@@ -87,7 +87,7 @@ namespace Z0.Test
             
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
-                expect[i] = gmath.shiftl(src[i], shifts[i]);
+                expect[i] = gbits.shiftl(src[i], shifts[i]);
             
             var v1 = expect.Vector();
             var v2 = ginx.shiftl(src, shifts);            

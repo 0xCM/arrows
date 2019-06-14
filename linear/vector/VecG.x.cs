@@ -135,7 +135,6 @@ namespace Z0
         public static Vector<double> ToVecG(this Span256<double> src)
             => Vector.Load(src);
 
-
         [MethodImpl(Inline)]
         public static ReadOnlySpan<T> ToReadOnlySpan<T>(this Vector<T> src)
             where T : struct

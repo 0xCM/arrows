@@ -46,15 +46,6 @@ namespace Z0
         public static sbyte parse(in ReadOnlySpan<char> bs, in int offset, out sbyte dst)
             => dst = (sbyte)parse(bs, offset, out byte x);
 
-
-        [MethodImpl(Inline)]
-        public static ref short parse(in ReadOnlySpan<char> bs, in int offset, out short dst)
-        {
-            parse(bs, offset, out short x);
-            dst = (short)x;
-            return ref dst;                                                            
-        }
-
         [MethodImpl(Optimize)]
         public static ref ushort parse(in ReadOnlySpan<char> bs, in int offset, out ushort dst)
         {
@@ -70,13 +61,9 @@ namespace Z0
             return ref dst;
         }
 
-        [MethodImpl(Optimize)]
-        public static ref int parse(in ReadOnlySpan<char> bs, in int offset, out int dst)
-        {
-            parse(bs, offset, out int x);
-            dst = (int)x;
-            return ref dst;                                                
-        }
+        [MethodImpl(Inline)]
+        public static short parse(in ReadOnlySpan<char> bs, in int offset, out short dst)
+            => dst = (short)parse(bs, offset, out ushort x);
 
         [MethodImpl(Optimize)]
         public static ref uint parse(in ReadOnlySpan<char> bs, in int offset, out uint dst)
@@ -94,12 +81,8 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref long parse(in ReadOnlySpan<char> bs, in int offset, out long dst)
-        {
-            parse(bs, offset, out long x);
-            dst = (long)x;
-            return ref dst;                                                
-        }
+        public static int parse(in ReadOnlySpan<char> bs, in int offset, out int dst)
+            => dst = (int)parse(bs, offset, out uint x);
 
         [MethodImpl(Optimize)]
         public static ref ulong parse(in ReadOnlySpan<char> bs, in int offset, out ulong dst)
@@ -115,5 +98,9 @@ namespace Z0
                         
             return ref dst;
         }
+
+        [MethodImpl(Inline)]
+        public static long parse(in ReadOnlySpan<char> bs, in int offset, out long dst)
+            => dst = (long)parse(bs, offset, out ulong x);
     }
 }

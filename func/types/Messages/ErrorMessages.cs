@@ -37,12 +37,15 @@ namespace Z0
         public static AppMsg NotLessThan(object lhs, object rhs, string caller, string file, int? line)
             => AppMsg.Define($"{caller} line {line} {file}: !({lhs} < {rhs})") ;
 
+        public static AppMsg NotGreaterThan(object lhs, object rhs, string caller, string file, int? line)
+            => AppMsg.Define($"{caller} line {line} {file}: !({lhs} > {rhs})") ;
+
         public static AppMsg ItemsNotEqual(int index, object lhs, object rhs, string caller, string file, int? line)
             => AppMsg.Define($"lhs[{index}] = {lhs} != rhs[{index}] = {rhs}", 
                     SeverityLevel.Error, caller, file, line);
         public static AppMsg NotNonzero(string caller, string file, int? line)
             => AppMsg.Define($"The input value is required to be nonzero, and yet, it is", 
-                    SeverityLevel.Error, caller, file, line);
+                    SeverityLevel.Error, caller, file, line);        
         
         public static AppMsg NotTrue(string msg, string caller, string file, int? line)
             => AppMsg.Define($"{msg ?? "The source value is required to be true and yet it is false"}", 

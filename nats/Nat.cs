@@ -14,7 +14,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static nfunc;
-    using static nconst;
+    using static constant;
 
     /// <summary>
     /// Constructs natural number prepresentatives and calculates related values
@@ -396,18 +396,4 @@ namespace Z0
         }
 
     }
-
-    public static class NatX
-    {
-        /// <summary>
-        /// Partitions the source sequence into segments of natural length
-        /// </summary>
-        /// <param name="src">The source sequence</param>
-        /// <typeparam name="T">The element type</typeparam>
-        /// <typeparam name="N">The segment length</typeparam>
-        public static IEnumerable<IReadOnlyList<T>> Partition<N,T>(this IEnumerable<T> src)
-            where N : ITypeNat, new()
-                => Nat.partition<N,T>(src);    
-
-    }    
 }

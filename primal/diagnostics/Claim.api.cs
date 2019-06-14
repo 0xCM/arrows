@@ -127,6 +127,14 @@ namespace Z0
             => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));        
 
         [MethodImpl(Inline)]
+        public static bool gt(long lhs, long rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs > rhs ? true : throw failed(ClaimOpKind.Eq, NotGreaterThan(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool gt(ulong lhs, ulong rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs > rhs ? true : throw failed(ClaimOpKind.Eq, NotGreaterThan(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
         public static bool @true(bool src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => src ? true 
                 : throw ClaimException.Define(NotTrue(msg, caller, file,line));

@@ -14,7 +14,18 @@ namespace Z0
 
     public static class Vector
     {
-        
+        [MethodImpl(Inline)]
+        public static Vector<Sum<M,N>,T> Concat<M,N,T>(Vector<M,T> v1, Vector<N,T> v2)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct
+        {
+            var dst = span<T>(new Sum<M,N>());
+            v1.Unsize().CopyTo(dst);
+            v2.Unsize().CopyTo(dst.Slice(new M()));
+            return Vector<Sum<M,N>,T>.Define(dst);
+        }
+                
         /// <summary>
         /// Creates a generic bitvector from a source value
         /// </summary>
@@ -24,7 +35,6 @@ namespace Z0
         public static BitVector<T> Bits<T>(in T src)        
             where T : struct
                 => new BitVector<T>(in src);
-
 
         /// <summary>
         /// Loads a natural span from an existing span that is required to have
@@ -115,9 +125,7 @@ namespace Z0
             var blocks = qr.Quotient + (qr.Remainder == 0 ? 0 : 1);
             var dst = Span256.alloc<T>(blocks);
             return new Vector<T>(dst);
-        }
- 
+        } 
     }
-
 
 }

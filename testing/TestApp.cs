@@ -24,7 +24,7 @@ namespace Z0.Test
             
         }
 
-        protected virtual void RunTests(params string[] args)
+        protected virtual void RunTests()
         {
             try
             {
@@ -39,6 +39,6 @@ namespace Z0.Test
         }
 
         protected static void Run(params string[] args)
-            => new A().RunTests(args);
+            => new A().RunTests();
     }
 }

@@ -7,8 +7,7 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     
-    using static nconst;    
-    using static nfunc;
+    using static constant;    
 
 
     public readonly struct N20 : INatSeq<N20>
@@ -27,7 +26,8 @@ namespace Z0
         public NatSeq seq 
             => Seq;
 
-        public ulong value => Seq.value;
+        public ulong value 
+            => Seq.value;
 
         public override string ToString() 
             => Seq.format();

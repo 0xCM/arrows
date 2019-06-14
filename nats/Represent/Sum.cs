@@ -11,7 +11,7 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
-    using static nconst;
+    using static constant;
 
     /// <summary>
     /// Encodes a natural number k such that k1:K1 & k2:K2 => k = k1 + k2
@@ -26,6 +26,10 @@ namespace Z0
 
         public static readonly Sum<K1,K2> Rep = default;
 
+        [MethodImpl(Inline)]
+        public static implicit operator int(Sum<K1,K2> src)
+            => (int)src.value;
+        
         public static readonly ulong Value
             = k1.value + k2.value;
 
@@ -55,11 +59,8 @@ namespace Z0
         public bool Equals(NatSeq other)
             => Value == other.value;
 
-        public string format()
-            => description;
-
         public override string ToString() 
-            => format();
+            => description;
 
         public override int GetHashCode()
             => Value.GetHashCode();

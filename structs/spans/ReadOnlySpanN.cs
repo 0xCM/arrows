@@ -49,7 +49,7 @@ namespace Z0
         public ReadOnlySpan(ReadOnlySpan<T> src)
         {
             require(src.Length == SpanLength, $"length(src) = {src.Length} != {SpanLength} = SpanLength");         
-            this.data = src.Replicate();
+            this.data = src;
         }
 
         public ref readonly T this[int ix] 

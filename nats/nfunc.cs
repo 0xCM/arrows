@@ -8,11 +8,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 using Z0;
-using static nconst;
+using static constant;
 
 public static class nfunc
 {
-    //internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;    
 
     [MethodImpl(Inline)]   
     internal static T[] repeat<T>(T value, ulong count)

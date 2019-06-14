@@ -8,6 +8,8 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
+    using System.Security.Cryptography;
 
     using static zfunc;
 
@@ -17,7 +19,7 @@ namespace Z0
     {
 
 
-        static Guid[] guids = new Guid[]        
+        static Guid[] FixedGuids = new Guid[]        
         {   
             Guid.Parse("a719bf6a-b70f-473c-9a25-00f4f7169af7"),
             Guid.Parse("002ec328-4f86-4b48-8c4c-5c9002b8871b"),
@@ -55,18 +57,34 @@ namespace Z0
            };
 
  
-         public static ulong[] TestSeed 
-            = items(guids[0],guids[1],guids[2],guids[3],guids[4],guids[5],guids[6],guids[7]).ToU64Array();
+        public static ulong[] TestSeed 
+            = items(
+                FixedGuids[0],FixedGuids[1],FixedGuids[2],FixedGuids[3],
+                FixedGuids[4],FixedGuids[5],FixedGuids[6],FixedGuids[7]).ToU64Array();
         
         public static ulong[] BenchSeed 
-            = items(guids[8],guids[9],guids[10],guids[11],guids[12],guids[13],guids[14],guids[15]).ToU64Array();
+            = items(FixedGuids[8],FixedGuids[9],FixedGuids[10],FixedGuids[11],
+                FixedGuids[12],FixedGuids[13],FixedGuids[14],FixedGuids[15]).ToU64Array();
         
-
         public static ulong[] AppSeed 
-            = items(guids[16],guids[17],guids[18],guids[19],guids[20],guids[21],guids[22],guids[23]).ToU64Array();
+            = items(FixedGuids[16],FixedGuids[17],FixedGuids[18],FixedGuids[19],
+                FixedGuids[20],FixedGuids[21],FixedGuids[22],FixedGuids[23]).ToU64Array();
 
         public static ulong[] Default
-            = items(guids[24],guids[25],guids[26],guids[27],guids[28],guids[29],guids[30],guids[31]).ToU64Array();
+            = items(FixedGuids[24],FixedGuids[25],FixedGuids[26],FixedGuids[27],
+                FixedGuids[28],FixedGuids[29],FixedGuids[30],FixedGuids[31]).ToU64Array();
+
+        static ulong[] Entropy()
+        {
+        
+            var csp = new RNGCryptoServiceProvider();
+            var dst = new byte[1024];
+            csp.GetBytes(dst);
+            return Unsafe.As<byte[],ulong[]>(ref dst);
+        }
+
+        public static ulong[] Entropic
+            => Entropy(); //guids().Take(8).ToU64Array();
 
     }
 

@@ -79,11 +79,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vector<T> operator << (in Vector<T> lhs, int rhs) 
-            => gmath.shiftl(lhs.data.Unblock().ReadOnly(), rhs).ToSpan256();
+            => gbits.shiftl(lhs.data.Unblock().ReadOnly(), rhs).ToSpan256();
 
         [MethodImpl(Inline)]
         public static Vector<T> operator >> (in Vector<T> lhs, int rhs) 
-            => gmath.shiftr(lhs.data.Unblock().ReadOnly(), rhs).ToSpan256();
+            => gbits.shiftr(lhs.data.Unblock().ReadOnly(), rhs).ToSpan256();
 
         [MethodImpl(Inline)]
         public static Vector<T> operator - (in Vector<T> src) 
@@ -253,7 +253,7 @@ namespace Z0
         {
             var x = unblock(data);
             var y = shifts.data.Unblock();
-            gmath.shiftl(ref x, y);
+            gbits.shiftl(ref x, y);
             return this;
         }
 
@@ -262,7 +262,7 @@ namespace Z0
         {
             var x = unblock(data);
             var y = shifts.data.Unblock();
-            gmath.shiftr(ref x, y);
+            gbits.shiftr(ref x, y);
             return this;
         }
 

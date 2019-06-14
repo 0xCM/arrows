@@ -456,9 +456,17 @@ namespace Z0
 
         [MethodImpl(Inline)]        
         public static Span<N,T> ToNatSpan<N,T>(this Span<T> src, N size = default)
-            where T : struct
             where N : ITypeNat, new()
                 => new Span<N, T>(src);
        
+        public static string Format<N,T>(this Span<N,T> src, char delimiter = ',', int offset = 0)
+            where N : ITypeNat, new()
+                => src.Unsize().Format(delimiter,offset);
+
+        [MethodImpl(Inline)]        
+        public static Span<T> Slice<N,T>(this Span<T> src, N start = default)
+            where N : ITypeNat, new()
+                => src.Slice((int)start.value);
+ 
     }
 }

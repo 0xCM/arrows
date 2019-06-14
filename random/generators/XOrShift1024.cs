@@ -36,10 +36,6 @@ namespace Z0
         
         int p;
 
-        public XOrShift1024()
-        {   
-            state = guids().Take(8).ToU64Array();
-        }
         public XOrShift1024(ulong[] seed)
         {
             if(seed.Length < 16)

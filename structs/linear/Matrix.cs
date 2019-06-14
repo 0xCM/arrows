@@ -29,14 +29,6 @@ namespace Z0
         public static implicit operator Span<M,N,T>(Matrix<M,N,T> src)
             => src.data;
 
-        [MethodImpl(Inline)]
-        public static bool operator == (in Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
-            => lhs.Eq(rhs);
-
-        [MethodImpl(Inline)]
-        public static bool operator != (in Matrix<M,N,T> lhs, in Matrix<M,N,T> rhs) 
-            => lhs.NEq(rhs);
-
 
         [MethodImpl(Inline)]
         public Matrix(Span<M,N,T> src)
@@ -53,7 +45,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Matrix(IEnumerable<T> src)
         {
-            data = src.ToSpan();
+            data = src.ToArray();
         }
 
         [MethodImpl(Inline)]        
@@ -74,11 +66,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Covector<N,T> Row(int i)
-            => Covector.Load(data.Row(i));
+            => data.Row(i);
 
         [MethodImpl(Inline)]
         public Vector<M,T> Col(int j)
-            => Vector.Load(data.Col(j));
+            => data.Col(j);
 
         public Span<M,N,T> Data
         {
@@ -92,14 +84,11 @@ namespace Z0
             where J : ITypeNat, new()
                 => data.SubSpan(origin, dstdim);
 
-        public string Format(char cellsep = AsciSym.Comma, char rowsep = AsciEscape.NewLine, int? zpad = null)
-            => data.Format(cellsep, rowsep, zpad);
 
         public override bool Equals(object other)
             => throw new NotSupportedException();
  
         public override int GetHashCode()
             => throw new NotSupportedException();
-
     }
 }

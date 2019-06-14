@@ -7,8 +7,7 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
 
-    using static nconst;    
-    using static nfunc;
+    using static constant;    
 
     public readonly struct N64 : INatSeq<N64>, 
         INatPow<N64, N2,N6>,
@@ -33,12 +32,9 @@ namespace Z0
             => N6.Rep;
        
         public ulong value 
-            => Seq.value;
-                
+            => Seq.value;                
         
         public override string ToString() 
             => Seq.format();
     }
-
-
 }

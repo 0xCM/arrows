@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\nats\z0.nats.csproj" />
+    <ProjectReference Include="..\structs\z0.structs.csproj" />
+
   </ItemGroup>
 
 </Project>

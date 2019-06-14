@@ -12,7 +12,7 @@ namespace Z0
     using System.Linq;
 
     using static nfunc;
-    using static nconst;
+    using static constant;
 
     public class Primes
     {
@@ -32,14 +32,23 @@ namespace Z0
             => Cached.Contains(n) ? true : throw new Exception();
 
         public static readonly N2 P2 = default; 
+        
         public static readonly N3 P3 = default; 
+        
         public static readonly N7 P7 = default;
+        
         public static readonly NatSeq<N1,N1> P11 = default;
+        
         public static readonly NatSeq<N1,N7> P17 = default;
+        
         public static readonly NatSeq<N1,N9> P19 = default;
+        
         public static readonly NatSeq<N2,N3> P23 = default;
+        
         public static readonly NatSeq<N2,N9> P29 = default;
+        
         public static readonly NatSeq<N3,N1> P31 = default;
+        
         public static readonly NatSeq<N3,N7> P37 = default;
         
         public static readonly NatSeq<N4,N1> P41 = default;
@@ -66,8 +75,17 @@ namespace Z0
         
         public static readonly NatSeq<N8,N9> P89 = default;
 
+        public static readonly NatSeq<N9,N7> P97 = default;
+
+        public static readonly NatSeq<N1,N0,N1> P101 = default;
+
+        public static readonly NatSeq<N1,N0,N3> P103 = default;
+
+        public static readonly NatSeq<N1,N0,N7> P107 = default;
+
+        public static readonly NatSeq<N1,N0,N9> P109 = default;
         /*
-            97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199        
+            113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199        
          */
     }
 

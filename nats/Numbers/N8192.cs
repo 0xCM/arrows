@@ -7,15 +7,13 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
 
-    using static nconst;    
-    using static nfunc;
+    using static constant;    
 
     public readonly struct N8192: INatSeq<N8192>, 
         INatPow<N8192, N2, N13>,
         INatPow2<N13>
     {
         public static readonly N8192 Rep = default;
-
 
         public static readonly NatSeq<N8,N1,N9,N2> Seq = default; 
 

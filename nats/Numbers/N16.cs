@@ -7,7 +7,7 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
 
-    using static nconst;    
+    using static constant;    
     using static nfunc;
 
     public readonly struct N16 : 
@@ -18,6 +18,10 @@ namespace Z0
         public static readonly N16 Rep = default;
 
         public static readonly NatSeq<N1,N6> Seq = default;
+
+        [MethodImpl(Inline)]
+        public static implicit operator int(N16 src)
+            => (int)src.value;
 
         public ITypeNat rep 
             => Rep;

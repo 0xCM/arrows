@@ -337,7 +337,70 @@ namespace Z0.Test
             var xBytesPC = xBytes.PopCount();
             var xBitsPC = xBytes.Unpack(out Span<Bit> bits).PopCount();
             Claim.eq(xBitsPC, xBytesPC);
+        }
 
+        public void BitSize()
+        {
+            Claim.eq(8, gmath.bitsize<byte>());
+            Claim.eq(8, gmath.bitsize<sbyte>());
+            Claim.eq(16, gmath.bitsize<short>());
+            Claim.eq(16, gmath.bitsize<ushort>());
+            Claim.eq(32, gmath.bitsize<int>());
+            Claim.eq(32, gmath.bitsize<uint>());
+            Claim.eq(64, gmath.bitsize<long>());
+            Claim.eq(64, gmath.bitsize<ulong>());
+            Claim.eq(32, gmath.bitsize<float>());
+            Claim.eq(64, gmath.bitsize<double>());
+        }
+
+        void BitShiftR<T>()
+            where T : struct
+        {
+            var signed = gmath.signed<T>();
+            var bitsize = gmath.bitsize<T>();
+            var bs10 = "1" + repeat('0', bitsize - 1).Concat();
+            var x10 = gbits.parse<T>(bs10);
+            var bs11 = "11" + repeat('0', bitsize - 2).Concat();
+            var x11 = gbits.parse<T>(bs11);
+            var bs01 = "01" + repeat('0', bitsize - 2).Concat();
+            var x01 = gbits.parse<T>(bs01);
+            var y = gbits.shiftr(x10, 1);
+            if(signed)
+                Claim.eq(x11, y);
+            else
+                Claim.eq(x01, y);
+
+            TypeStepOk<T>();
+        }
+
+        public void BitShift1()
+        {
+            BitShiftR<sbyte>();
+            BitShiftR<byte>();
+            BitShiftR<short>();
+            BitShiftR<ushort>();
+            BitShiftR<int>();
+            BitShiftR<uint>();
+            BitShiftR<long>();
+            BitShiftR<ulong>();
+        }
+
+        public void EnableBits()
+        {
+            var x1 = (sbyte)0;
+            var y1 = Bits.enable(ref x1, 7);
+            Claim.eq(SByte.MinValue, y1);
+            Claim.eq("10000000", y1.ToBitString());
+
+
+            var x2 = (byte)0;
+            var y2 = Bits.enable(ref x2, 7);
+            Claim.eq(SByte.MinValue, (sbyte)y1);
+            Claim.eq("10000000", y1.ToBitString());
+
+            var x3 = -1;
+            Claim.eq(x3 >> 10, -1);
+            
         }
 
     }

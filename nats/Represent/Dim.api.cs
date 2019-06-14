@@ -5,7 +5,7 @@
 namespace Z0
 {
     using static nfunc;
-    using static nconst;
+    using static constant;
 
 
     public static class Dim

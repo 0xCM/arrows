@@ -11,7 +11,7 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
-    using static nconst;
+    using static constant;
 
     /// <summary>
     /// Encodes a natural number k such that k1:K1 & k2:K2 => k = k1 - k2

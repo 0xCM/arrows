@@ -13,7 +13,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     
     using static nfunc;
-    using static nconst;
+    using static constant;
 
 
     /// <summary>

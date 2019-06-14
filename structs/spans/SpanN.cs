@@ -41,6 +41,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span(T value)
         {         
+            
             this.data = new Span<T>(new T[SpanLength]);
             this.data.Fill(value);
         }
@@ -67,16 +68,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span(ReadOnlySpan<N,T> src)
         {
-            data = span<T>(SpanLength);
-            src.CopyTo(data);
+            data = src.ToArray();
         }
 
         [MethodImpl(Inline)]
         public Span(ReadOnlySpan<T> src)
         {
             require(src.Length == SpanLength, $"length(src) = {src.Length} != {SpanLength} = SpanLength");         
-            data = span<T>(SpanLength);
-            src.CopyTo(data);
+            data = src.ToArray();            
         }
 
         public ref T this[int ix] 
@@ -109,14 +108,13 @@ namespace Z0
         public bool TryCopyTo (Span<T> dst)
             => data.TryCopyTo(dst);
 
-
         [MethodImpl(Inline)]
         public Span<T> Unsize()
             => data;
 
         [MethodImpl(Inline)]
         public Span<N,T> Replicate()        
-            => new Span<N,T>(data.Replicate());
+            => new Span<N,T>(data.ToArray());
         
         public int Length 
             => SpanLength;
@@ -124,8 +122,6 @@ namespace Z0
         public bool IsEmpty
             => data.IsEmpty;
 
-        public string Format(char delimiter = ',', int offset = 0)
-            => data.Format(delimiter,offset);
 
        public override bool Equals(object rhs) 
             => throw new NotSupportedException();

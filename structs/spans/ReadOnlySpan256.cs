@@ -109,7 +109,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         ReadOnlySpan256(T[] src)
-            => data = span(src);
+            => data = src;
         
         
         [MethodImpl(Inline)]
@@ -148,7 +148,7 @@ namespace Z0
             
         [MethodImpl(Inline)]
         public Span256<T> ToBlockedSpan()
-            => Span256.load(data.ToSpan());
+            => Span256<T>.Load(data.ToArray());
 
         [MethodImpl(Inline)]
         public ReadOnlySpan<T> UnBlock()

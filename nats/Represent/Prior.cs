@@ -11,7 +11,7 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
 
-    using static nconst;
+    using static constant;
 
     /// <summary>
     /// Encodes a natural number k such that k:K & j:Prior[K] => k = j + 1
@@ -43,8 +43,6 @@ namespace Z0
 
         public ulong value 
             => Value;
-
-
 
         public NatSeq natseq()
             => Seq;

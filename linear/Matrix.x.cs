@@ -5,25 +5,17 @@
 namespace Z0
 {
     using System;
+    using System.Numerics;
     using System.Linq;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
+    using System.Runtime.CompilerServices;    
+        
+    using static zfunc;
+    using static nfunc;
     using Z0.Mkl;
 
-    using static nfunc;
-    using static zfunc;
-
-
-    public static class Matrix
+    public static class MatrixX
     {
-        public static Matrix<M,N,T> load<M,N,T>(Span<M,N,T> src)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : struct
-                => new Matrix<M, N, T>(src);
-
-
         static bool betterEq<M,N,T>(Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
@@ -43,7 +35,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static bool eq<M,N,T>(Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
+        static bool eq<M,N,T>(Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    
@@ -53,11 +45,9 @@ namespace Z0
             var dataLen = nati<M>() * nati<N>();
             var eq = gmath.eq<T>(lhsSrc, rhsSrc);
             return eq.All(x => x == true);
-
         }
 
-        [MethodImpl(Inline)]
-        public static bool neq<M,N,T>(Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
+        public static bool NEq<M,N,T>(this Matrix<M,N,T> lhs, Matrix<M,N,T> rhs)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct    
@@ -67,17 +57,25 @@ namespace Z0
             var dataLen = nati<M>() * nati<N>();
             var eq = gmath.eq<T>(lhsSrc, rhsSrc);
             return eq.Any(x => x == false);
-
         }
 
+        public static Matrix<M,N,T> Random<M,N,T>(this IRandomSource random)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct    
+                =>  random.Span<M,N,T>();
 
-       [MethodImpl(Inline)]
-       public static Matrix<M,P,double> mul<M,N,P>(Matrix<M,N,double> lhs, Matrix<N,P,double> rhs)
+        [MethodImpl(Inline)]
+        public static Matrix<M,P,double> Mul<M,N,P>(this Matrix<M,N,double> lhs, Matrix<N,P,double> rhs)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where P : ITypeNat, new()
                 => mkl.gemm(lhs.Data,rhs.Data);
 
+        public static string Format<M,N,T>(this Matrix<M,N,T> src, char cellsep = AsciSym.Comma, char rowsep = AsciEscape.NewLine, int? zpad = null)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct    
+            => src.Format(cellsep, rowsep, zpad);
     }
-
 }

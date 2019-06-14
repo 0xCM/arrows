@@ -14,10 +14,10 @@ namespace Z0
     using static zfunc;
 
 
-    public static class VectorX
+    public static class CovectorX
     {
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Add<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static ref Covector<N,T> Add<N,T>(this ref Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -29,7 +29,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Add<N,T>(this ref Vector<N,T> lhs, in T rhs)
+        public static ref Covector<N,T> Add<N,T>(this ref Covector<N,T> lhs, in T rhs)
             where N : ITypeNat, new()
             where T : struct    
         {
@@ -40,7 +40,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Sub<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static ref Covector<N,T> Sub<N,T>(this ref Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
         {
@@ -51,7 +51,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Mul<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static ref Covector<N,T> Mul<N,T>(this ref Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -63,7 +63,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Div<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static ref Covector<N,T> Div<N,T>(this ref Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -75,7 +75,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Mod<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static ref Covector<N,T> Mod<N,T>(this ref Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -87,7 +87,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> And<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static ref Covector<N,T> And<N,T>(this ref Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -99,7 +99,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> And<N,T>(this ref Vector<N,T> lhs, in T rhs)
+        public static ref Covector<N,T> And<N,T>(this ref Covector<N,T> lhs, in T rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -111,7 +111,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Or<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static ref Covector<N,T> Or<N,T>(this ref Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -123,7 +123,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Or<N,T>(this ref Vector<N,T> lhs, in T rhs)
+        public static ref Covector<N,T> Or<N,T>(this ref Covector<N,T> lhs, in T rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -134,7 +134,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> XOr<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static ref Covector<N,T> XOr<N,T>(this ref Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -146,7 +146,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> XOr<N,T>(this ref Vector<N,T> lhs, in T rhs)
+        public static ref Covector<N,T> XOr<N,T>(this ref Covector<N,T> lhs, in T rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -156,8 +156,28 @@ namespace Z0
             return ref lhs;
         }
 
+        [MethodImpl(Inline)]
+        public static Covector<N,T> ShiftL<N,T>(this ref Covector<N,T> lhs, in int rhs)
+            where N : ITypeNat, new()
+            where T : struct    
+        {
+            var x = lhs.Unsize();
+            gbits.shiftl(ref x, rhs);
+            return lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static Covector<N,T> ShiftR<N,T>(this ref Covector<N,T> lhs, in int rhs)
+            where N : ITypeNat, new()
+            where T : struct    
+        {
+            var x = lhs.Unsize();
+            gbits.shiftr(ref x, rhs);
+            return lhs;
+        }
+
        [MethodImpl(Inline)]
-        public static ref Vector<N,T> Pow<N,T>(this ref Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static ref Covector<N,T> Pow<N,T>(this ref Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -169,7 +189,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Pow<N,T>(this ref Vector<N,T> lhs, in T rhs)
+        public static ref Covector<N,T> Pow<N,T>(this ref Covector<N,T> lhs, in T rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -180,7 +200,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Flip<N,T>(this ref Vector<N,T> src)
+        public static ref Covector<N,T> Flip<N,T>(this ref Covector<N,T> src)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -190,8 +210,9 @@ namespace Z0
             return ref src;
         }
 
+
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Negate<N,T>(this ref Vector<N,T> src)
+        public static ref Covector<N,T> Negate<N,T>(this ref Covector<N,T> src)
             where N : ITypeNat, new()
             where T : struct    
         {
@@ -201,7 +222,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Inc<N,T>(this ref Vector<N,T> src)
+        public static ref Covector<N,T> Inc<N,T>(this ref Covector<N,T> src)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -212,7 +233,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Dec<N,T>(this ref Vector<N,T> src)
+        public static ref Covector<N,T> Dec<N,T>(this ref Covector<N,T> src)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -223,7 +244,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref Vector<N,T> Sqrt<N,T>(this ref Vector<N,T> src)
+        public static ref Covector<N,T> Sqrt<N,T>(this ref Covector<N,T> src)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -234,7 +255,7 @@ namespace Z0
         }
 
        [MethodImpl(Inline)]
-        public static ref Vector<N,T> Abs<N,T>(this ref Vector<N,T> src)
+        public static ref Covector<N,T> Abs<N,T>(this ref Covector<N,T> src)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -246,7 +267,7 @@ namespace Z0
 
 
        [MethodImpl(Inline)]
-        public static Vector<N,bool> Eq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Covector<N,bool> Eq<N,T>(this in Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -257,7 +278,7 @@ namespace Z0
         }
 
        [MethodImpl(Inline)]
-        public static Vector<N,bool> NEq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Covector<N,bool> NEq<N,T>(this in Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -268,7 +289,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Vector<N,bool> Gt<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Covector<N,bool> Gt<N,T>(this in Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -279,7 +300,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Vector<N,bool> GtEq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Covector<N,bool> GtEq<N,T>(this in Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -290,7 +311,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Vector<N,bool> Lt<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Covector<N,bool> Lt<N,T>(this in Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -301,7 +322,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Vector<N,bool> LtEq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Covector<N,bool> LtEq<N,T>(this in Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -311,12 +332,27 @@ namespace Z0
             return gmath.lteq<T>(x, y).ToNatSpan<N,bool>();            
         }
 
-
         [MethodImpl(Inline)]
-        public static T Dot<N,T>(in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static T Dot<N,T>(in Covector<N,T> lhs, in Covector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
                 => gmath.dot<T>(lhs.Unsize(),rhs.Unsize());
+
+        [MethodImpl(Inline)]
+        public static string Format<N,T>(in Covector<N,T> src)
+            where T : struct    
+            where N: ITypeNat, new()
+                => src.Unsize().Format();
+    
+        public static bool All<N,T>(this Covector<N,T> src, T match)
+            where N : ITypeNat, new()
+            where T : struct    
+        {
+            for(var i=0; i< Covector<N,T>.Length; i++)            
+                if(gmath.neq(src[i],match))
+                    return false;
+            return true;
+        }
 
     }
 

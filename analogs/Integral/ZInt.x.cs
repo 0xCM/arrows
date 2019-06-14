@@ -68,5 +68,16 @@ namespace Z0
             => ZBits.pop(in src);
 
 
+        /// <summary>
+        /// Renders a number as a hexadecimal string
+        /// </summary>
+        /// <param name="src">The source number</param>
+        /// <param name="zpad">Specifies whether the numeric content should be left-padded 
+        /// with zeros commensurate with size of the source number's data type</param>
+        /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
+        [MethodImpl(Inline)]
+        public static string ToHexString(this UInt128 src, bool zpad = true, bool specifier = true)
+            => src.hi.ToHexString(false, true) + src.lo.ToHexString(true,false);
+
     }
 }

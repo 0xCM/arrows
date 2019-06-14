@@ -13,7 +13,7 @@ namespace Z0
 
     using static nfunc;
     //using static zfunc;
-    using static nconst;    
+    using static constant;    
 
     public static partial class NatProve
     {

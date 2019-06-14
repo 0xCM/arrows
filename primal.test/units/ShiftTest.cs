@@ -23,22 +23,21 @@ namespace Z0.Test
             where T : struct
         {            
             var x = lhs.Replicate();
-            var y = rhs;
 
             if(dir == Orientation.Left)
             {
                 for(var i=0; i< Samples; i++)
                 {
-                    gmath.shiftl(ref x[i], rhs[i]);
-                    Claim.eq(x[i], gmath.shiftl(lhs[i],rhs[i]));
+                    gbits.shiftl(ref x[i], rhs[i]);
+                    Claim.eq(x[i], gbits.shiftl(lhs[i],rhs[i]));
                 }
             }
             else
             {
                 for(var i=0; i< Samples; i++)
                 {
-                    gmath.shiftr(ref x[i], rhs[i]);
-                    Claim.eq(x[i], gmath.shiftr(lhs[i],rhs[i]));
+                    gbits.shiftr(ref x[i], rhs[i]);
+                    Claim.eq(x[i], gbits.shiftr(lhs[i],rhs[i]));
                 }
             }
         }

@@ -80,19 +80,6 @@ namespace Z0
         [FieldOffset(7)]
         public byte x111;
 
-        // public void Absorb(int startPos, Span<Bit> bits)
-        // {
-        //     var lastPos = bits.Length - 1;
-        //     if(lastPos > BitSize - 1)
-        //         throw badarg(nameof(startPos), startPos);
-            
-        //     var mask = BitMask.MaskU64(startPos);
-        //     for(var i = startPos; i<=lastPos; i++)
-        //     {
-                
-        //     }
-
-        // }
     }
 
 

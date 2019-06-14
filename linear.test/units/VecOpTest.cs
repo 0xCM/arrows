@@ -55,7 +55,7 @@ namespace Z0.Test
             for(var i = 0; i< len; i++)
                 Claim.eq(vExpect[i], vResult[i]);
 
-            var eq = vExpect == vResult;
+            var eq = vExpect.Eq(vResult);
             for(var i=0; i<len; i++)
                 Claim.@true(eq[i]);            
         }        
@@ -68,7 +68,7 @@ namespace Z0.Test
             var rep = new N();
             var len = (int)rep.value;
             var data = Randomizer.DataSet<N,T>();            
-            var vResult = data.LeftVec + data.RightVec;
+            var vResult = data.LeftVec.Add(data.RightVec);
             
             var calcs = span<T>(len);
             for(var i = 0; i< calcs.Length; i++)
@@ -86,7 +86,7 @@ namespace Z0.Test
             var rep = new N();
             var len = (int)rep.value;
             var data = Randomizer.DataSet<N,T>();            
-            var vResult = data.LeftVec - data.RightVec;
+            var vResult = data.LeftVec.Sub(data.RightVec);
             
             var calcs = span<T>(len);
             for(var i = 0; i< calcs.Length; i++)
@@ -103,7 +103,7 @@ namespace Z0.Test
             var rep = new N();
             var len = (int)rep.value;
             var data = Randomizer.DataSet<N,T>();            
-            var vResult = data.LeftVec & data.RightVec;
+            var vResult = data.LeftVec.And(data.RightVec);
             
             var calcs = span<T>(len);
             for(var i = 0; i< calcs.Length; i++)

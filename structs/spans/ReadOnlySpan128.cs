@@ -13,6 +13,7 @@ namespace Z0
         
     using static zfunc;
 
+
     /// <summary>
     /// A System.Span[T] clone where the  encasulated data is always a multiple 
     /// of 16 bytes = 128 bits
@@ -109,7 +110,7 @@ namespace Z0
         [MethodImpl(Inline)]
         ReadOnlySpan128(T[] src)
         {
-            data = span(src);
+            data = src;
         }
         
         
@@ -163,7 +164,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Span<T> ToSpan()
-            => replicate(data);
+            => new Span<T>(data.ToArray());
 
         [MethodImpl(Inline)]
         public ReadOnlySpan<T> Unblock()

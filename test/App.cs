@@ -29,7 +29,11 @@ namespace Z0
        
          // Converts an array of bytes into a long.  
 
+        void TestBits()
+        {
 
+
+        }
  
         public static void Run()
         {
@@ -37,7 +41,6 @@ namespace Z0
             var app = new App();
             try
             {
-                //app.TestUniform();
                 TestTools.RunTests<App>(string.Empty, false);
 
             }

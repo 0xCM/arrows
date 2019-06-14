@@ -108,7 +108,7 @@ namespace Z0
         public Span(ReadOnlySpan<T> src)
         {
             require(src.Length == CellCount, $"length(src) = {src.Length} != {CellCount} = SpanLength");         
-            data = span<T>(CellCount);
+            data = src.ToArray();
             src.CopyTo(data);
         }
 
@@ -167,14 +167,13 @@ namespace Z0
         public bool TryCopyTo (Span<T> dst)
             => data.TryCopyTo(dst);
 
-
         [MethodImpl(Inline)]
         public Span<T> Unsize()
             => data;
 
         [MethodImpl(Inline)]
         public Span<M,N,T> Replicate()        
-            => new Span<M,N,T>(data.Replicate());
+            => new Span<M, N, T>(data.ToArray());
 
 
         [MethodImpl(Inline)]
@@ -202,7 +201,7 @@ namespace Z0
         public Span<M,T> Col(int col)
         {
             if(col < 0 || col >= ColCount)
-                throw Errors.OutOfRange(col, 0, ColCount - 1);
+                throw OutOfRange(col, 0, ColCount - 1);
             
             var v = NatSpan.alloc<M,T>();
             for(var r = 0; r < ColLength; r++)
@@ -214,7 +213,7 @@ namespace Z0
         public Span<N,T> Row(int row)
         {
             if(row < 0 || row >= RowCount)
-                throw Errors.OutOfRange(row, 0, RowCount - 1);
+                throw OutOfRange(row, 0, RowCount - 1);
             
             return data.Slice(row * RowLenth, RowLenth);
         }
@@ -238,7 +237,7 @@ namespace Z0
             return dst;            
         }
 
-        public string Format(char cellsep = AsciSym.Comma, char rowsep = AsciEscape.NewLine, int? zpad = null)
+        public string Format(char cellsep = ',', char rowsep = '\n', int? zpad = null)
         {
             var sb = new StringBuilder("\r\n");
             var lastIx = CellCount - 1;

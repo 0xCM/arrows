@@ -20,6 +20,331 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
+        public static T shiftr<T>(T lhs, int rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>((sbyte)(int8(lhs) >> rhs));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>((byte)(uint8(lhs) >> rhs));
+            else if(typeof(T) == typeof(short))
+                return generic<T>((short)(int16(lhs) >> rhs));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>((ushort)(uint16(lhs) >> rhs));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(int32(lhs)  >> rhs);
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(uint32(lhs)  >> rhs);
+            else if(typeof(T) == typeof(long))
+                return generic<T>(int64(lhs)  >> rhs);
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(uint64(lhs)  >> rhs);
+            else            
+                throw unsupported<T>();
+        }           
+
+        [MethodImpl(Inline)]
+        public static ref T shiftr<T>(ref T lhs, int rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.shiftr(ref int8(ref lhs), rhs);
+            else if(typeof(T) == typeof(byte))
+                math.shiftr(ref uint8(ref lhs), rhs);
+            else if(typeof(T) == typeof(short))
+                math.shiftr(ref int16(ref lhs), rhs);
+            else if(typeof(T) == typeof(ushort))
+                math.shiftr(ref uint16(ref lhs), rhs);
+            else if(typeof(T) == typeof(int))
+                math.shiftr(ref int32(ref lhs), rhs);
+            else if(typeof(T) == typeof(uint))
+                math.shiftr(ref uint32(ref lhs), rhs);
+            else if(typeof(T) == typeof(long))
+                math.shiftr(ref int64(ref lhs), rhs);
+            else if(typeof(T) == typeof(ulong))
+                math.shiftr(ref uint64(ref lhs), rhs);
+            else
+                throw unsupported<T>();
+            return ref lhs;
+        }           
+
+        [MethodImpl(Inline)]
+        public static Span<T> shiftr<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs, Span<T> dst)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.shiftr(int8(lhs), rhs, int8(dst));
+            else if(typeof(T) == typeof(byte))
+                math.shiftr(uint8(lhs), rhs, uint8(dst));
+            else if(typeof(T) == typeof(short))
+                math.shiftr(int16(lhs), rhs, int16(dst));
+            else if(typeof(T) == typeof(ushort))
+                math.shiftr(uint16(lhs), rhs, uint16(dst));
+            else if(typeof(T) == typeof(int))
+                math.shiftr(int32(lhs), rhs, int32(dst));
+            else if(typeof(T) == typeof(uint))
+                math.shiftr(uint32(lhs), rhs, uint32(dst));
+            else if(typeof(T) == typeof(long))
+                math.shiftr(int64(lhs), rhs, int64(dst));
+            else if(typeof(T) == typeof(ulong))
+                math.shiftr(uint64(lhs), rhs, uint64(dst));
+            else
+                throw unsupported<T>();
+            return dst;
+
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<T> shiftr<T>(ReadOnlySpan<T> lhs, int rhs, Span<T> dst)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.shiftr(int8(lhs), rhs, int8(dst));
+            else if(typeof(T) == typeof(byte))
+                math.shiftr(uint8(lhs), rhs, uint8(dst));
+            else if(typeof(T) == typeof(short))
+                math.shiftr(int16(lhs), rhs, int16(dst));
+            else if(typeof(T) == typeof(ushort))
+                math.shiftr(uint16(lhs), rhs, uint16(dst));
+            else if(typeof(T) == typeof(int))
+                math.shiftr(int32(lhs), rhs, int32(dst));
+            else if(typeof(T) == typeof(uint))
+                math.shiftr(uint32(lhs), rhs, uint32(dst));
+            else if(typeof(T) == typeof(long))
+                math.shiftr(int64(lhs), rhs, int64(dst));
+            else if(typeof(T) == typeof(ulong))
+                math.shiftr(uint64(lhs), rhs, uint64(dst));
+            else
+                throw unsupported<T>();
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<T> shiftr<T>(ReadOnlySpan<T> lhs, int rhs)
+            where T : struct
+            => shiftr(lhs, rhs, span<T>(lhs.Length));
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> shiftr<T>(ref Span<T> lhs, int rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.shiftr(int8(lhs), rhs);
+            else if(typeof(T) == typeof(byte))
+                math.shiftr(uint8(lhs), rhs);
+            else if(typeof(T) == typeof(short))
+                math.shiftr(int16(lhs), rhs);
+            else if(typeof(T) == typeof(ushort))
+                math.shiftr(uint16(lhs), rhs);
+            else if(typeof(T) == typeof(int))
+                math.shiftr(int32(lhs), rhs);
+            else if(typeof(T) == typeof(uint))
+                math.shiftr(uint32(lhs), rhs);
+            else if(typeof(T) == typeof(long))
+                math.shiftr(int64(lhs), rhs);
+            else if(typeof(T) == typeof(ulong))
+                math.shiftr(uint64(lhs), rhs);
+            else
+                throw unsupported<T>();
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> shiftr<T>(ref Span<T> lhs, Span<int> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.shiftr(int8(lhs), rhs);
+            else if(typeof(T) == typeof(byte))
+                math.shiftr(uint8(lhs), rhs);
+            else if(typeof(T) == typeof(short))
+                math.shiftr(int16(lhs), rhs);
+            else if(typeof(T) == typeof(ushort))
+                math.shiftr(uint16(lhs), rhs);
+            else if(typeof(T) == typeof(int))
+                math.shiftr(int32(lhs), rhs);
+            else if(typeof(T) == typeof(uint))
+                math.shiftr(uint32(lhs), rhs);
+            else if(typeof(T) == typeof(long))
+                math.shiftr(int64(lhs), rhs);
+            else if(typeof(T) == typeof(ulong))
+                math.shiftr(uint64(lhs), rhs);
+            else
+                throw unsupported<T>();
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static T shiftl<T>(T lhs, int rhs)
+            where T : struct
+        {
+            if (typeof(T) == typeof(sbyte))
+                return generic<T>(math.shiftl(int8(lhs), rhs));
+            else if (typeof(T) == typeof(byte))
+                return generic<T>(math.shiftl(uint8(lhs), rhs));
+            else if (typeof(T) == typeof(short))
+                return generic<T>(math.shiftl(int16(lhs), rhs));
+            else if (typeof(T) == typeof(ushort))
+                return generic<T>(math.shiftl(uint16(lhs), rhs));
+            else if (typeof(T) == typeof(int))
+                return generic<T>(math.shiftl(int32(lhs), rhs));
+            else if (typeof(T) == typeof(uint))
+                return generic<T>(math.shiftl(uint32(lhs), rhs));
+            else if (typeof(T) == typeof(long))
+                return generic<T>(math.shiftl(int64(lhs), rhs));
+            else if (typeof(T) == typeof(ulong))
+                return generic<T>(math.shiftl(uint64(lhs), rhs));
+            else
+                throw unsupported<T>();
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T shiftl<T>(ref T lhs, int rhs)
+            where T : struct
+        {
+            if (typeof(T) == typeof(sbyte))
+                math.shiftr(ref int8(ref lhs), rhs);
+            else if (typeof(T) == typeof(byte))
+                math.shiftr(ref uint8(ref lhs), rhs);
+            else if (typeof(T) == typeof(short))
+                math.shiftr(ref int16(ref lhs), rhs);
+            else if (typeof(T) == typeof(ushort))
+                math.shiftr(ref uint16(ref lhs), rhs);
+            else if (typeof(T) == typeof(int))
+                math.shiftr(ref int32(ref lhs), rhs);
+            else if (typeof(T) == typeof(uint))
+                math.shiftr(ref uint32(ref lhs), rhs);
+            else if (typeof(T) == typeof(long))
+                math.shiftr(ref int64(ref lhs), rhs);
+            else if (typeof(T) == typeof(ulong))
+                math.shiftr(ref uint64(ref lhs), rhs);
+            else
+                throw unsupported<T>();
+            return ref lhs;
+        }
+
+
+        [MethodImpl(Inline)]
+        public static Span<T> shiftl<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs, Span<T> dst)
+            where T : struct
+        {
+            if (typeof(T) == typeof(sbyte))
+                math.shiftl(int8(lhs), rhs, int8(dst));
+            else if (typeof(T) == typeof(byte))
+                math.shiftl(uint8(lhs), rhs, uint8(dst));
+            else if (typeof(T) == typeof(short))
+                math.shiftl(int16(lhs), rhs, int16(dst));
+            else if (typeof(T) == typeof(ushort))
+                math.shiftl(uint16(lhs), rhs, uint16(dst));
+            else if (typeof(T) == typeof(int))
+                math.shiftl(int32(lhs), rhs, int32(dst));
+            else if (typeof(T) == typeof(uint))
+                math.shiftl(uint32(lhs), rhs, uint32(dst));
+            else if (typeof(T) == typeof(long))
+                math.shiftl(int64(lhs), rhs, int64(dst));
+            else if (typeof(T) == typeof(ulong))
+                math.shiftl(uint64(lhs), rhs, uint64(dst));
+            else
+                throw unsupported<T>();
+            return dst;
+
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<T> shiftl<T>(ReadOnlySpan<T> lhs, int rhs, Span<T> dst)
+            where T : struct
+        {
+            if (typeof(T) == typeof(sbyte))
+                math.shiftl(int8(lhs), rhs, int8(dst));
+            else if (typeof(T) == typeof(byte))
+                math.shiftl(uint8(lhs), rhs, uint8(dst));
+            else if (typeof(T) == typeof(short))
+                math.shiftl(int16(lhs), rhs, int16(dst));
+            else if (typeof(T) == typeof(ushort))
+                math.shiftl(uint16(lhs), rhs, uint16(dst));
+            else if (typeof(T) == typeof(int))
+                math.shiftl(int32(lhs), rhs, int32(dst));
+            else if (typeof(T) == typeof(uint))
+                math.shiftl(uint32(lhs), rhs, uint32(dst));
+            else if (typeof(T) == typeof(long))
+                math.shiftl(int64(lhs), rhs, int64(dst));
+            else if (typeof(T) == typeof(ulong))
+                math.shiftl(uint64(lhs), rhs, uint64(dst));
+            else
+                throw unsupported<T>();
+            return dst;
+
+        }
+
+        [MethodImpl(Inline)]
+        public static Span<T> shiftl<T>(ReadOnlySpan<T> lhs, int rhs)
+            where T : struct
+            => shiftl(lhs, rhs, span<T>(lhs.Length));
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> shiftl<T>(ref Span<T> lhs, int rhs)
+            where T : struct
+        {
+            if (typeof(T) == typeof(sbyte))
+                math.shiftl(int8(lhs), rhs);
+            else if (typeof(T) == typeof(byte))
+                math.shiftl(uint8(lhs), rhs);
+            else if (typeof(T) == typeof(short))
+                math.shiftl(int16(lhs), rhs);
+            else if (typeof(T) == typeof(ushort))
+                math.shiftl(uint16(lhs), rhs);
+            else if (typeof(T) == typeof(int))
+                math.shiftl(int32(lhs), rhs);
+            else if (typeof(T) == typeof(uint))
+                math.shiftl(uint32(lhs), rhs);
+            else if (typeof(T) == typeof(long))
+                math.shiftl(int64(lhs), rhs);
+            else if (typeof(T) == typeof(ulong))
+                math.shiftl(uint64(lhs), rhs);
+            else
+                throw unsupported(PrimalKinds.kind<T>());
+            return ref lhs;
+
+        }
+
+        [MethodImpl(Inline)]
+        public static ref Span<T> shiftl<T>(ref Span<T> lhs, Span<int> rhs)
+            where T : struct
+        {
+            if (typeof(T) == typeof(sbyte))
+                math.shiftl(int8(lhs), rhs);
+            else if (typeof(T) == typeof(byte))
+                math.shiftl(uint8(lhs), rhs);
+            else if (typeof(T) == typeof(short))
+                math.shiftl(int16(lhs), rhs);
+            else if (typeof(T) == typeof(ushort))
+                math.shiftl(uint16(lhs), rhs);
+            else if (typeof(T) == typeof(int))
+                math.shiftl(int32(lhs), rhs);
+            else if (typeof(T) == typeof(uint))
+                math.shiftl(uint32(lhs), rhs);
+            else if (typeof(T) == typeof(long))
+                math.shiftl(int64(lhs), rhs);
+            else if (typeof(T) == typeof(ulong))
+                math.shiftl(uint64(lhs), rhs);
+            else
+                throw unsupported(PrimalKinds.kind<T>());
+            return ref lhs;
+
+        }
+
+
+        [MethodImpl(Inline)]
+        public static T shiftl<T>(in T lhs, in uint rhs)
+            where T : struct
+                => shiftl(lhs, (int)rhs);
+
+        [MethodImpl(Inline)]
+        public static T shiftl<T>(in T lhs, in ulong rhs)
+            where T : struct
+                => shiftl(lhs, (int)rhs);
+
+        [MethodImpl(Inline)]
         public static ulong pop<T>(T src)
             where T : struct
         {        
@@ -73,21 +398,21 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(Bits.parse(bitstring, offset, out sbyte dst));
+                return generic<T>(Bits.parse(bitstring, offset, out sbyte _));
             else if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.parse(bitstring, offset, out byte dst));
+                return generic<T>(Bits.parse(bitstring, offset, out byte _));
             else if(typeof(T) == typeof(short))
-                return generic<T>(Bits.parse(bitstring, offset, out short dst));
+                return generic<T>(Bits.parse(bitstring, offset, out short _));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.parse(bitstring, offset, out ushort dst));
+                return generic<T>(Bits.parse(bitstring, offset, out ushort _));
             else if(typeof(T) == typeof(int))
-                return generic<T>(Bits.parse(bitstring, offset, out int dst));
+                return generic<T>(Bits.parse(bitstring, offset, out int _));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.parse(bitstring, offset, out uint dst));
+                return generic<T>(Bits.parse(bitstring, offset, out uint _));
             else if(typeof(T) == typeof(long))
-                return generic<T>(Bits.parse(bitstring, offset, out long dst));
+                return generic<T>(Bits.parse(bitstring, offset, out long _));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.parse(bitstring, offset, out ulong dst));
+                return generic<T>(Bits.parse(bitstring, offset, out ulong _));
             else
                 throw unsupported<T>();
         }
@@ -97,8 +422,7 @@ namespace Z0
         public static ref T pack<T>(in ReadOnlySpan<Bit> src, out T dst)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            dst = default(T);
+            dst = default;
             
             if(typeof(T) == typeof(sbyte))
                 Bits.pack(in src, out int8(ref dst));
