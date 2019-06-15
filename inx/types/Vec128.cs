@@ -39,19 +39,29 @@ namespace Z0
         public static implicit operator Vector128<T>(Vec128<T> src)
             => Unsafe.As<Vec128<T>, Vector128<T>>(ref src);
 
+        [MethodImpl(Inline)]
+        static T Component(Vec128<T> src, int index)
+        {
+            ref T e0 = ref Unsafe.As<Vec128<T>, T>(ref src);
+            return Unsafe.Add(ref e0, index);
+        }
+
         /// <summary>
         /// Extracts a component via its 0-based index
         /// </summary>
         public T this[int idx]
         {
             [MethodImpl(Inline)]
-            get => this.Component(idx);
-
+            get => Component(this, idx);
         }
 
         [MethodImpl(Inline)]
+        public static Vector128<T> Vector128(Vec128<T> src)
+                => src;
+
+        [MethodImpl(Inline)]
         public Num128<T> ToNum128()
-            => this.ToVector128();
+            => Vector128(this);
 
         [MethodImpl(Inline)]
         public Vec128<U> As<U>() 
@@ -60,9 +70,9 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public bool Eq(Vec128<T> rhs)
-            => this.ToVector128().Equals(rhs);
+            => Vector128(this).Equals(rhs);
 
         public override string ToString()
-            => this.ToVector128().ToString();
+            => Vector128(this).ToString();
     }     
 }

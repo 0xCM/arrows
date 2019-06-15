@@ -11,108 +11,63 @@ namespace Z0
     
     using static System.Runtime.Intrinsics.X86.Sse;
     using static System.Runtime.Intrinsics.X86.Sse2;
+    using static System.Runtime.Intrinsics.X86.Avx;
     using static System.Runtime.Intrinsics.X86.Avx2;
     
     using static zfunc;    
 
     partial class dinx
     {
-        public static Span<Bit> gt(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
-        {
-            var len = Vec128<sbyte>.Length;
-            Span<sbyte> src = stackalloc sbyte[len];
-            store(CompareGreaterThan(lhs, rhs), ref src[0]);
-            var dst = span<Bit>(len);
-            for(var i = 0; i< len; i++)
-                dst[i] = src[i];
-            return dst;
-        }
+        [MethodImpl(Inline)]
+        public static Vec128Cmp<sbyte> gt(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+            => Vec128Cmp.Define<sbyte>(CompareGreaterThan(lhs,rhs));
 
-        public static Span<Bit> gt(in Vec128<short> lhs, in Vec128<short> rhs)
-        {
-            var len = Vec128<short>.Length;
-            Span<short> src = stackalloc short[len];
-            store(CompareGreaterThan(lhs, rhs), ref src[0]);
-            var dst = span<Bit>(len);
-            for(var i = 0; i< len; i++)
-                dst[i] = src[i];
-            return dst;
-        }
+        [MethodImpl(Inline)]
+        public static Vec128Cmp<short> gt(in Vec128<short> lhs, in Vec128<short> rhs)
+            => Vec128Cmp.Define<short>(CompareGreaterThan(lhs,rhs));
 
-        public static Span<Bit> gt(in Vec128<int> lhs, in Vec128<int> rhs)
-        {
-            var len = Vec128<int>.Length;
-            Span<int> src = stackalloc int[len];
-            store(CompareGreaterThan(lhs, rhs), ref src[0]);
-            var dst = span<Bit>(len);
-            for(var i = 0; i< len; i++)
-                dst[i] = src[i];
-            return dst;
-        }
+        [MethodImpl(Inline)]
+        public static Vec128Cmp<int> gt(in Vec128<int> lhs, in Vec128<int> rhs)
+            => Vec128Cmp.Define<int>(CompareGreaterThan(lhs,rhs));
 
-        public static Span<Bit> gt(in Vec128<float> lhs, in Vec128<float> rhs)
-        {
-            var len = Vec128<float>.Length;
-            Span<float> src = stackalloc float[len];
-            store(CompareGreaterThan(lhs, rhs), ref src[0]);
-            var dst = span<Bit>(len);
-            for(var i = 0; i< len; i++)
-                dst[i] = src[i] == 1;
-            return dst;
-        }
+        [MethodImpl(Inline)]
+        public static Vec128Cmp<float> gt(in Vec128<float> lhs, in Vec128<float> rhs)
+            => Vec128Cmp.Define<float>(CompareGreaterThan(lhs,rhs));
         
-        public static Span<Bit> gt(in Vec128<double> lhs, in Vec128<double> rhs)
-        {
-            var len = Vec128<double>.Length;
-            Span<double> src = stackalloc double[len];
-            store(CompareGreaterThan(lhs, rhs), ref src[0]);
-            var dst = span<Bit>(len);
-            for(var i = 0; i< len; i++)
-                dst[i] = src[i] == 1;
-            return dst;
-        }
+        [MethodImpl(Inline)]
+        public static Vec128Cmp<double> gt(in Vec128<double> lhs, in Vec128<double> rhs)
+            => Vec128Cmp.Define<double>(CompareGreaterThan(lhs,rhs));
  
-        public static Span<Bit> gt(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
-         {
-            var len = Vec256<sbyte>.Length;
-            Span<sbyte> src = stackalloc sbyte[len];
-            store(CompareGreaterThan(lhs, rhs), ref src[0]);
-            var dst = span<Bit>(len);
-            for(var i = 0; i< len; i++)
-                dst[i] = src[i];
-            return dst;
-        }
+        [MethodImpl(Inline)]
+        public static Vec256Cmp<sbyte> gt(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+            => Vec256Cmp.Define<sbyte>(CompareGreaterThan(lhs,rhs));
 
-        public static Span<Bit> gt(in Vec256<short> lhs, in Vec256<short> rhs)
-         {
-            var len = Vec256<short>.Length;
-            Span<short> src = stackalloc short[len];
-            store(CompareGreaterThan(lhs, rhs), ref src[0]);
-            var dst = span<Bit>(len);
-            for(var i = 0; i< len; i++)
-                dst[i] = src[i];
-            return dst;
-        }
+        [MethodImpl(Inline)]
+        public static Vec256Cmp<short> gt(in Vec256<short> lhs, in Vec256<short> rhs)
+            => Vec256Cmp.Define<short>(CompareGreaterThan(lhs,rhs));
 
-        public static Span<Bit> gt(in Vec256<int> lhs, in Vec256<int> rhs)
-        {
-            var len = Vec256<int>.Length;
-            Span<int> src = stackalloc int[len];
-            store(CompareGreaterThan(lhs, rhs), ref src[0]);
-            var dst = span<Bit>(len);
-            for(var i = 0; i< len; i++)
-                dst[i] = src[i];
-            return dst;
-        }
- 
-         [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
+        public static Vec256Cmp<int> gt(in Vec256<int> lhs, in Vec256<int> rhs)
+            => Vec256Cmp.Define<int>(CompareGreaterThan(lhs,rhs));
+
+        [MethodImpl(Inline)]
+        public static Vec256Cmp<long> gt(in Vec256<long> lhs, in Vec256<long> rhs)
+            => Vec256Cmp.Define<long>(CompareGreaterThan(lhs,rhs));
+
+        [MethodImpl(Inline)]
+        public static Vec256Cmp<float> gt(in Vec256<float> lhs, in Vec256<float> rhs)
+            => Vec256Cmp.Define<float>(Compare(lhs,rhs,FloatComparisonMode.OrderedGreaterThanNonSignaling));
+
+        [MethodImpl(Inline)]
+        public static Vec256Cmp<double> gt(in Vec256<double> lhs, in Vec256<double> rhs)
+            => Vec256Cmp.Define<double>(Compare(lhs,rhs,FloatComparisonMode.OrderedGreaterThanNonSignaling));
+
+        [MethodImpl(Inline)]
         public static bool gt(in Num128<float> lhs, in Num128<float> rhs)
             => CompareScalarOrderedGreaterThan(lhs, rhs);
         
         [MethodImpl(Inline)]
         public static bool gt(in Num128<double> lhs, in Num128<double> rhs)
             => CompareScalarOrderedGreaterThan(lhs, rhs);
-
-
     }
 }

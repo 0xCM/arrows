@@ -35,8 +35,8 @@ namespace Z0.Test
 
                 var vExpect = Vec128.load<T>(ref tmp[0]);
              
-                var vX = lhs.Vector(block);
-                var vY = rhs.Vector(block);
+                var vX = lhs.ToVec128(block);
+                var vY = rhs.ToVec128(block);
                 var vActual = inXOp(vX,vY);
 
                 Claim.eq(vExpect, vActual);

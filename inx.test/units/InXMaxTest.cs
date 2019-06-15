@@ -42,8 +42,8 @@ namespace Z0.Test
                     tmp[i] = gmath.max(lhs[offset + i], rhs[offset + i]);
                 var vExpect = Vec128.load(ref tmp[0]);
              
-                var vX = lhs.Vector(block);
-                var vY = rhs.Vector(block);
+                var vX = lhs.ToVec128(block);
+                var vY = rhs.ToVec128(block);
                 var vActual = ginx.max(vX,vY);
 
                 Claim.eq(vExpect, vActual);
@@ -75,8 +75,8 @@ namespace Z0.Test
                     tmp[i] = gmath.max(lhs[offset + i], rhs[offset + i]);
                 var vExpect = Vec256.load(ref tmp[0]);
              
-                var vX = lhs.Vector(block);
-                var vY = rhs.Vector(block);
+                var vX = lhs.ToVec256(block);
+                var vY = rhs.ToVec256(block);
                 var vActual = ginx.max(vX,vY);
 
                 Claim.eq(vExpect, vActual);

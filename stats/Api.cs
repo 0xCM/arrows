@@ -25,9 +25,13 @@ namespace Z0
             where T : struct 
                 => Histogram.Define(domain,binWidth);
     
-        public static IDistribtion<T> bernoulli<T>(double alpha)
+        public static IDistribution<T> bernoulli<T>(IRandomSource random, double alpha)
             where T : struct 
-                => Distributions.Bernoulli<T>(alpha);
+                => BernoulliSpec.Define(alpha).Distribution<T>(random);
+
+        public static IDistribution<T> gaussian<T>(IRandomSource random, double mean, double stddev)
+            where T : struct 
+                => new GaussianSpec(mean, stddev).Distribution<T>(random);
 
     }
 

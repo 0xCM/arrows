@@ -389,6 +389,10 @@ namespace Z0
                  return Bits.test(in AsIn.int64(asRef(in src)), pos);
             else if(typeof(T) == typeof(ulong))
                  return Bits.test(in AsIn.uint64(asRef(in src)), pos);
+            else if(typeof(T) == typeof(float))
+                 return Bits.test(in AsIn.float32(asRef(in src)), pos);
+            else if(typeof(T) == typeof(double))
+                 return Bits.test(in AsIn.float64(asRef(in src)), pos);
             else
                 throw unsupported<T>();
         }

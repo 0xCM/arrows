@@ -36,7 +36,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return dinx.nonzero(in uint64(in src));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -60,7 +60,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return dinx.nonzero(in uint64(in src));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
     }

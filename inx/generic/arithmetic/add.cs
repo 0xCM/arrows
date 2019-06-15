@@ -41,7 +41,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.add(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
         }
 

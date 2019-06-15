@@ -17,35 +17,6 @@ namespace Z0
     
     partial class dinx
     {
-        
-        [MethodImpl(Inline)]
-        static bool[] TestNaN(this in Vector128<double> src)
-            => array(
-                src.GetElement(0).IsNaN(), 
-                src.GetElement(1).IsNaN()
-                );
-
-        [MethodImpl(Inline)]
-        static bool[] TestNaN(this in Vector128<float> src)
-            => array(
-                src.GetElement(0).IsNaN(), 
-                src.GetElement(1).IsNaN(),
-                src.GetElement(2).IsNaN(), 
-                src.GetElement(3).IsNaN()
-                );
-
-        [MethodImpl(Inline)]
-        static bool[] TestNaN(this in Vector256<float> src)
-            => array(
-                src.GetElement(0).IsNaN(), 
-                src.GetElement(1).IsNaN(),
-                src.GetElement(2).IsNaN(), 
-                src.GetElement(3).IsNaN(),
-                src.GetElement(4).IsNaN(), 
-                src.GetElement(5).IsNaN(),
-                src.GetElement(6).IsNaN(), 
-                src.GetElement(7).IsNaN()
-                );
 
         [MethodImpl(Inline)]
         public static bool[] cmpf(in Vec128<float> lhs,in Vec128<float> rhs, FloatComparisonMode mode)
@@ -56,36 +27,53 @@ namespace Z0
             => Compare(lhs,rhs,mode).TestNaN();
 
         [MethodImpl(Inline)]
-        public static Vec256<float> cmpf(in Vec256<float> lhs,in Vec256<float> rhs, FloatComparisonMode mode)
-            => Compare(lhs,rhs,mode).ClearNaN();
-
-        [MethodImpl(Inline)]
-        public static Vec256<double> cmpf(in Vec256<double> lhs, in Vec256<double> rhs, FloatComparisonMode mode)
-            => Compare(lhs,rhs,mode).ClearNaN();
-
-        [MethodImpl(Inline)]
-        public static bool[] cmpfr(ref Vec128<float> lhs, ref Vec128<float> rhs, FloatComparisonMode mode)
-            => TestNaN(Compare(lhs,rhs,mode));
-
-        [MethodImpl(Inline)]
-        public static bool[] cmpfr(ref Vec128<double> lhs, ref Vec128<double> rhs, FloatComparisonMode mode)
-            => TestNaN(Compare(lhs,rhs,mode));
-
-        [MethodImpl(Inline)]
-        public static Vec256<float> cmpfr(ref Vec256<float> lhs, ref Vec256<float> rhs, FloatComparisonMode mode)
-            => Compare(lhs,rhs,mode).ClearNaN();
-
-        [MethodImpl(Inline)]
-        public static Vec256<double> cmpfr(ref Vec256<double> lhs, ref Vec256<double> rhs, FloatComparisonMode mode)
-            => Compare(lhs,rhs,mode).ClearNaN();
-    
-        [MethodImpl(Inline)]
         public static bool cmpf(in Num128<float> lhs, in Num128<float> rhs, FloatComparisonMode mode)
             => CompareScalar(lhs,rhs,mode).IsNaN(0);
 
         [MethodImpl(Inline)]
         public static bool cmpf(in Num128<double> lhs, in Num128<double> rhs, FloatComparisonMode mode)
             => CompareScalar(lhs,rhs, mode).IsNaN(0);
-    
+         
+        /// <summary>
+        /// Determines whether the componenents are assigned the NaN value and
+        /// returns the result as an array of bools
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        static bool[] TestNaN(this Vector128<float> src)
+            => array(
+                src.GetElement(0).IsNaN(), 
+                src.GetElement(1).IsNaN(),
+                src.GetElement(2).IsNaN(), 
+                src.GetElement(3).IsNaN()
+                );
+
+        /// <summary>
+        /// Determines whether the componenents are assigned the NaN value and
+        /// returns the result as an array of bools
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        static bool[] TestNaN(this Vector128<double> src)
+            => array(
+                src.GetElement(0).IsNaN(), 
+                src.GetElement(1).IsNaN()
+                );
+
+        /// <summary>
+        /// Determines whether the first component is NaN
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        static bool IsNaN(this Vector128<float> src, int index)
+                => src.GetElement(index).IsNaN();
+
+        /// <summary>
+        /// Determines whether the first component is NaN
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        static bool IsNaN(this Vector128<double> src, int index)
+                => src.GetElement(index).IsNaN();   
     }
 }

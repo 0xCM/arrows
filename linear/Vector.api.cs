@@ -14,18 +14,31 @@ namespace Z0
 
     public static class Vector
     {
+        // [MethodImpl(Inline)]
+        // public static Vector<Sum<M,N>,T> Concat<M,N,T>(Vector<M,T> v1, Vector<N,T> v2)
+        //     where M : ITypeNat, new()
+        //     where N : ITypeNat, new()
+        //     where T : struct
+        // {
+        //     var dst = span<T>(new Sum<M,N>());
+        //     v1.Unsize().CopyTo(dst);
+        //     v2.Unsize().CopyTo(dst.Slice(new M()));
+        //     return Vector<Sum<M,N>,T>.Define(dst);
+        // }
+
         [MethodImpl(Inline)]
-        public static Vector<Sum<M,N>,T> Concat<M,N,T>(Vector<M,T> v1, Vector<N,T> v2)
+        public static Vector<P,T> Concat<M,N,P,T>(Vector<M,T> v1, Vector<N,T> v2, P sum = default)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
+            where P : INatSum<M,N>, new()
             where T : struct
         {
-            var dst = span<T>(new Sum<M,N>());
+            var dst = span<T>(new NatSum<M,N>());
             v1.Unsize().CopyTo(dst);
             v2.Unsize().CopyTo(dst.Slice(new M()));
-            return Vector<Sum<M,N>,T>.Define(dst);
+            return Vector<P,T>.Define(dst);
         }
-                
+
         /// <summary>
         /// Creates a generic bitvector from a source value
         /// </summary>
@@ -55,6 +68,12 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct
                 => Vector<N,T>.Define(src);
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> Define<N,T>(N len, params T[] src)
+            where N : ITypeNat, new()
+            where T : struct
+                => Load(span(src), len);
 
         /// <summary>
         /// Loads a natural span from a readonly span that is required to have

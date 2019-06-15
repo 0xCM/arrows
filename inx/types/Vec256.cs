@@ -42,10 +42,10 @@ namespace Z0
             => this.data = src;
 
         [MethodImpl(Inline)]
-        static T component(Vector256<T> src, int idx)
+        static T component(Vec256<T> src, int index)
         {
-            ref T e0 = ref Unsafe.As<Vector256<T>, T>(ref src);                    
-            return Unsafe.Add(ref e0, idx);           
+            ref T e0 = ref Unsafe.As<Vec256<T>, T>(ref src);
+            return Unsafe.Add(ref e0, index);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Z0
         public T this[int idx]
         {
             [MethodImpl(Inline)]
-            get => component(data,idx);
+            get => component(this,idx);
         }
 
         /// <summary>

@@ -138,7 +138,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                shiftr(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+                shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
             return dst;            
         }
 
@@ -147,7 +147,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                shiftr(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+                shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
             return dst;            
         }
 
@@ -156,7 +156,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                shiftr(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+                shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
             return dst;            
         }
 
@@ -165,7 +165,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                shiftr(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+                shiftr(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
             return dst;            
         }
 
@@ -174,7 +174,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                shiftr(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+                shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
             return dst;            
         }
 
@@ -183,7 +183,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                shiftr(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+                shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
             return dst;            
         }
 
@@ -192,7 +192,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                shiftr(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+                shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
             return dst;            
         }
 
@@ -201,7 +201,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,rhs);
             for(var i =0; i < cells; i += width)
-                shiftr(lhs.VLoad(i), rhs.VLoad(i), ref dst[i]);            
+                shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
             return dst;            
        }
  
@@ -257,7 +257,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                store(shiftr(lhs.VLoad(i), count), ref dst[i]);
+                store(shiftr(lhs.LoadVec128(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -265,7 +265,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                store(shiftr(lhs.VLoad(i), count), ref dst[i]);
+                store(shiftr(lhs.LoadVec128(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -273,7 +273,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                store(shiftr(lhs.VLoad(i), count), ref dst[i]);
+                store(shiftr(lhs.LoadVec128(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -281,7 +281,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                store(shiftr(lhs.VLoad(i), count), ref dst[i]);
+                store(shiftr(lhs.LoadVec128(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -289,7 +289,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                store(shiftr(lhs.VLoad(i), count), ref dst[i]);
+                store(shiftr(lhs.LoadVec128(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -297,7 +297,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                store(shiftr(lhs.VLoad(i), count), ref dst[i]);
+                store(shiftr(lhs.LoadVec128(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -305,7 +305,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                store(shiftr(lhs.VLoad(i), count), ref dst[i]);
+                store(shiftr(lhs.LoadVec256(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -313,7 +313,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                store(shiftr(lhs.VLoad(i), count), ref dst[i]);
+                store(shiftr(lhs.LoadVec256(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -321,7 +321,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                store(shiftr(lhs.VLoad(i), count), ref dst[i]);
+                store(shiftr(lhs.LoadVec256(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -329,7 +329,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                store(shiftr(lhs.VLoad(i), count), ref dst[i]);
+                store(shiftr(lhs.LoadVec256(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -337,7 +337,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                store(shiftr(lhs.VLoad(i), count), ref dst[i]);
+                store(shiftr(lhs.LoadVec256(i), count), ref dst[i]);
             return dst;            
         }
 
@@ -345,7 +345,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                store(shiftr(lhs.VLoad(i), count), ref dst[i]);
+                store(shiftr(lhs.LoadVec256(i), count), ref dst[i]);
             return dst;            
        }
     }

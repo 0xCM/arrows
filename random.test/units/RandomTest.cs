@@ -178,7 +178,7 @@ namespace Z0.Test
         {
             var sw = stopwatch(false);
             sw.Start();
-            var samples = Distributions.Bernoulli<long>(alpha).Sample(Randomizer).Take(count);
+            var samples = BernoulliSpec.Define(alpha).Distribution<long>().Sample(Randomizer).Take(count);
             var avg = samples.Average();
             sw.Stop();
             print($"Samples = {count} | Alpha = {alpha.Round(4)} | Average = {avg.Round(4)} | Time = {snapshot(sw).Ms} ms");

@@ -16,6 +16,8 @@ namespace Z0.Test
     public interface ITestContext : IContext
     {
         ITestConfig Config {get;}
+
+        void Configure(ITestConfig config);
         
     }
 
@@ -23,15 +25,18 @@ namespace Z0.Test
     public abstract class TestContext<T> : Context<T>, ITestContext
         where T : TestContext<T>
     {
-        public TestContext(ITestConfig Config = null)
-            : base(Z0.XOrStarStar256.define(Seed256.TestSeed))
+        public TestContext(ITestConfig config = null, IRandomSource random = null)
+            : base(RNG.XOrShift1024(Seed1024.TestSeed))
         {
             this.Config = Config ?? TestConfigDefaults.Default();
         }
 
-        public ITestConfig Config {get;}
-    
+        public ITestConfig Config {get; private set;}
+
+        protected override bool TraceEnabled
+            => Config.TraceEnabled;
+
+        public void Configure(ITestConfig config)
+            => Config = config;    
     }
-
-
 }

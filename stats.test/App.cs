@@ -48,9 +48,8 @@ namespace Z0.Test
 
         }
 
-        protected override void RunTests()
+        void TestSeries()
         {
-            
             var terms = Pow2.T19;
             var sw = stopwatch();
             var series = 5;
@@ -62,6 +61,7 @@ namespace Z0.Test
             print($"Computed {series} time series, each with {terms} terms, in {snapshot(sw).FractionalMs} ms");
 
         }
+
         
         public static void Main(params string[] args)
             => Run(args);

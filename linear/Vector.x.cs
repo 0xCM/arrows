@@ -266,7 +266,7 @@ namespace Z0
 
 
        [MethodImpl(Inline)]
-        public static Vector<N,bool> Eq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Span<N,bool> Eq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -277,7 +277,7 @@ namespace Z0
         }
 
        [MethodImpl(Inline)]
-        public static Vector<N,bool> NEq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Span<N,bool> NEq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -288,7 +288,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Vector<N,bool> Gt<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Span<N,bool> Gt<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -299,7 +299,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Vector<N,bool> GtEq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Span<N,bool> GtEq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -310,7 +310,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Vector<N,bool> Lt<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Span<N,bool> Lt<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -321,7 +321,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Vector<N,bool> LtEq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
+        public static Span<N,bool> LtEq<N,T>(this in Vector<N,T> lhs, in Vector<N,T> rhs)
             where N : ITypeNat, new()
             where T : struct    
 
@@ -353,6 +353,21 @@ namespace Z0
                     return false;
             return true;
         }
+
+        [MethodImpl(Inline)]
+        public static Vector<N,T> ReDim<M,N,T>(this Vector<M,T> src, N newdim = default)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct
+                => Vector<N, T>.Define(src.Unsize());
+
+        [MethodImpl(Inline)]
+        public static Vector<P,T> Concat<M,N,P,T>(this Vector<M,T> head, Vector<N,T> tail, P sum = default)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where P : INatSum<M,N>, new()
+            where T : struct
+                => Vector.Concat(head, tail, sum);
 
     }
 

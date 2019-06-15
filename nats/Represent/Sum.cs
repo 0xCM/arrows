@@ -14,9 +14,53 @@ namespace Z0
     using static constant;
 
     /// <summary>
+    /// Characterizes the reification of a natural number k such that 
+    /// a:K1 & b:K2 & k = a + b
+    /// </summary>
+    /// <typeparam name="K2">The base type</typeparam>
+    /// <typeparam name="E">The exponent type</typeparam>
+    public interface INatSum<K1,K2> : ITypeNat
+        where K1 : ITypeNat, new()
+        where K2 : ITypeNat, new()
+    {
+
+    }
+
+    public interface INatSum<K> : ITypeNat
+        where K : ITypeNat, new()
+    {
+        ITypeNat Lhs {get;}        
+
+        ITypeNat Rhs {get;}
+    }
+
+    public readonly struct NatSum<K> : INatSum<K>
+        where K : ITypeNat, new()
+    {
+        public static readonly K Rep = default;
+
+        internal NatSum(ITypeNat lhs, ITypeNat rhs)
+        {
+            this.Lhs = lhs;
+            this.Rhs = rhs;
+        }
+        
+        public ITypeNat Lhs {get;}
+
+        public ITypeNat Rhs {get;}
+
+        NatSeq ITypeNat.seq
+            => Rep.seq;
+
+        ulong ITypeNat.value
+            => Rep.value;
+
+
+    }
+    /// <summary>
     /// Encodes a natural number k such that k1:K1 & k2:K2 => k = k1 + k2
     /// </summary>
-    public readonly struct Sum<K1, K2> : INatSum<Sum<K1,K2>, K1,K2>
+    public readonly struct NatSum<K1, K2> : INatSum<K1,K2>
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
     {
@@ -24,10 +68,10 @@ namespace Z0
 
         static readonly K2 k2 = default;
 
-        public static readonly Sum<K1,K2> Rep = default;
+        public static readonly NatSum<K1,K2> Rep = default;
 
         [MethodImpl(Inline)]
-        public static implicit operator int(Sum<K1,K2> src)
+        public static implicit operator int(NatSum<K1,K2> src)
             => (int)src.value;
         
         public static readonly ulong Value
@@ -67,6 +111,15 @@ namespace Z0
 
         public override bool Equals(object rhs)
             => Value.Equals(rhs);
+ 
+        [MethodImpl(Inline)]
+        public NatSum<K> Reduce<K>(K target = default)
+            where K : ITypeNat, new()
+        {
+            if(Value == target.value)
+                return new NatSum<K>(k1,k2);
+            else 
+                throw new Exception($"{k1} + {k2} != {target}");
+        } 
     }
-
 }

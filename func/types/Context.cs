@@ -12,7 +12,7 @@ namespace Z0
     
     using static zfunc;
 
-
+    
     public interface IContext
     {
         IReadOnlyList<AppMsg> Emit(params AppMsg[] addenda);
@@ -45,6 +45,8 @@ namespace Z0
             this.Randomizer = Randomizer;
         }
 
+        protected virtual bool TraceEnabled {get;}
+            = true;
 
         protected void NotifyError(Exception e)
         {
@@ -56,15 +58,23 @@ namespace Z0
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
                 => Messages.Add(AppMsg.Define(msg, SeverityLevel.HiliteCL, caller, file, line));
 
+        protected void TypeStepStart<T>([CallerMemberName] string caller = null)
+            => Messages.Add(AppMsg.Define($"{caller}<{typeof(T).Name}> executing", SeverityLevel.HiliteCL));
+
         protected void TypeStepOk<T>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{caller}<{typeof(T).Name}> succeeded", SeverityLevel.HiliteCL));
 
-        protected void Trace(string msg, [CallerMemberName] string caller = null, 
-            [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
-                => Messages.Add(AppMsg.Define(msg, SeverityLevel.Babble, caller, file, line));
+        protected void Trace(string msg)
+        {
+            if(TraceEnabled)
+                Messages.Add(AppMsg.Define($"{msg}", SeverityLevel.Babble));
+        }
 
         protected void Trace(AppMsg msg)
-            => Messages.Add(msg.WithLevel(SeverityLevel.Babble));
+        {
+            if(TraceEnabled)
+                Messages.Add(msg.WithLevel(SeverityLevel.Babble));
+        }
 
         IReadOnlyList<AppMsg> IContext.Emit(params AppMsg[] addenda)
         {

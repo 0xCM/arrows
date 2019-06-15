@@ -67,19 +67,6 @@ namespace Z0
         ref T this[int ix] {get;}
     }
 
-    /// <summary>
-    /// Characterizes the reification of a natural number k such that 
-    /// a:K1 & b:K2 & k = a + b
-    /// </summary>
-    /// <typeparam name="K2">The base type</typeparam>
-    /// <typeparam name="E">The exponent type</typeparam>
-    public interface INatSum<S,K1,K2> : ITypeNat
-        where S : INatSum<S,K1,K2>, new()
-        where K1 : ITypeNat, new()
-        where K2 : ITypeNat, new()
-    {
-
-    }
 
     public interface INatDemand 
     {

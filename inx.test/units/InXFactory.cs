@@ -33,7 +33,7 @@ namespace Z0.Test
                 var vec2 = Vec128.define(5,0,7,0);                            
                 var result = Vec128<long>.Zero;
                 ginx.mul(vec1, vec2,ref result);
-                var expect =  Vec128.define(vec1.Scalar(0) * vec2.Scalar(0), vec1.Scalar(2) * vec2.Scalar(2));
+                var expect =  Vec128.define(vec1.ToNum128(0) * vec2.ToNum128(0), vec1.ToNum128(2) * vec2.ToNum128(2));
                 Claim.eq(expect, result);                        
             
             }

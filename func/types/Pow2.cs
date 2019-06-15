@@ -12,13 +12,53 @@ namespace Z0
     
     using static zfunc;
 
-    public static class Pow2
+    public static class Pow2U8
     {
-        static readonly byte[] _PowU8 = new byte[]
-        {
-            T00, T01, T02, T03, T04, T05, T06, T07            
-        };
+        /// <summary>
+        /// 2^0 = 1
+        /// </summary>
+        public const byte T00 = 1;
 
+        /// <summary>
+        /// 2^1 = 2
+        /// </summary>
+        public const byte T01 = 2*T00;
+
+        /// <summary>
+        /// 2^2 = 4
+        /// </summary>
+        public const byte T02 = 2*T01;
+
+        /// <summary>
+        /// 2^3 = 8
+        /// </summary>
+        public const byte T03 = 2*T02;
+
+        /// <summary>
+        /// 2^4 = 16
+        /// </summary>
+        public const byte T04 = 2*T03;
+
+        /// <summary>
+        /// 2^5 = 32
+        /// </summary>
+        public const byte T05 = 2*T04;
+
+        /// <summary>
+        /// 2^6 = 64
+        /// </summary>
+        public const byte T06 = 2*T05;
+
+        /// <summary>
+        /// 2^7 = 128
+        /// </summary>
+        public const byte T07 = 2*T06;
+            
+
+    }
+
+    public static class Pow2
+    {        
         static readonly ushort[] _PowU16 = new ushort[]
         {
             T00, T01, T02, T03, T04, T05, T06, T07, 
@@ -288,14 +328,10 @@ namespace Z0
 
         public const long T62 = 2*T61;        
         
-
         /// <summary>
         /// 9223372036854775808
         /// </summary>
         public const ulong T63 = 2* (ulong)T62;
 
-        public const int MinExponent = 0;
-
-        public const int MaxExponent = 63;        
     }
 }

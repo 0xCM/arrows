@@ -13,7 +13,7 @@ namespace Z0.Test
     using VecLen = NatSeq<N1,N2,N3>;
     
     using static zfunc;
-    
+    using static Nats;    
     public static class VecRandX
     {
 
@@ -155,6 +155,18 @@ namespace Z0.Test
             And<VecLen,long>();
             And<VecLen,ulong>();
             
+        }
+
+        public void VectorConcat()
+        {
+            var n = NatSum<N4,N3>.Rep.Reduce<N7>();
+            var v1 = Vector.Define(N4, 1,2,3,4);
+            var v2 = Vector.Define(N3, 5,6,7);
+            var v3 = v1.Concat(v2, NatSum<N4,N3>.Rep).ReDim(N7);
+            var v4 = Vector.Define(N7, 1, 2, 3, 4, 5, 6, 7);
+            var v5 = v3.Eq(v4);
+            Claim.@true(v5.Unsize().All(x => true));
+
         }
 
     }

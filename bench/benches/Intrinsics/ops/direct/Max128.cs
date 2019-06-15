@@ -37,7 +37,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block <  dst.BlockCount; block++)
-                Vec128.load(dinx.max(lhs.Vector(block), rhs.Vector(block)), dst, block);            
+                Vec128.store(dinx.max(lhs.ToVec128(block), rhs.ToVec128(block)), dst, block);            
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -48,7 +48,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block <  dst.BlockCount; block++)
-                Vec128.load(dinx.max(lhs.Vector(block), rhs.Vector(block)), dst, block);
+                Vec128.store(dinx.max(lhs.ToVec128(block), rhs.ToVec128(block)), dst, block);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
     }

@@ -99,12 +99,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> Vec128<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
             where T : struct
-                => random.Span128<T>(1, domain, filter).Vector();
+                => random.Span128<T>(1, domain, filter).ToVec128();
 
         [MethodImpl(Inline)]
         public static Vec256<T> Vec256<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
             where T : struct
-                => random.Span256<T>(1, domain, filter).Vector();
+                => random.Span256<T>(1, domain, filter).ToVec256();
 
         /// <summary>
         /// Implements Leimire's algorithm for sampling a uniformly distribute random number

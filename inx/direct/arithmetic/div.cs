@@ -56,7 +56,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Divide(lhs.Vector(block),rhs.Vector(block)), ref dst[block]);            
+                store(Divide(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -64,7 +64,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Divide(lhs.Vector(block),rhs.Vector(block)), ref dst[block]);            
+                store(Divide(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -72,7 +72,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Divide(lhs.Vector(block),rhs.Vector(block)), ref dst[block]);            
+                store(Divide(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -80,7 +80,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Divide(lhs.Vector(block),rhs.Vector(block)), ref dst[block]);            
+                store(Divide(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
             return dst;            
         }    
     }

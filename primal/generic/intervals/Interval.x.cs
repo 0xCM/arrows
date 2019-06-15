@@ -34,6 +34,7 @@ namespace Z0
                 return gmath.gt(point, src.Left) && gmath.lteq(point, src.Right);
         }
 
+
         [MethodImpl(Inline)]
         public static IEnumerable<T> PartitionPointStream<T>(this Interval<T> src, T? stepWidth = null)
             where T : struct

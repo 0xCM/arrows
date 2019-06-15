@@ -38,7 +38,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(dinx.insert(uint64(src), in uint64(in dst), index));
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
         }
     }

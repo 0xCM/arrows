@@ -39,7 +39,8 @@ namespace Z0
                 return generic<T>(dinx.andnot(in float32(in lhs), in float32(in rhs)));
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.andnot(in float64(in lhs), in float64(in rhs)));
-            else throw unsupported(PrimalKinds.kind<T>());
+            else 
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -66,7 +67,8 @@ namespace Z0
                 return generic<T>(dinx.andnot(in float32(in lhs), in float32(in rhs)));
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.andnot(in float64(in lhs), in float64(in rhs)));
-            else throw unsupported(PrimalKinds.kind<T>());
+            else 
+                throw unsupported<T>();
         }
 
 
@@ -94,8 +96,8 @@ namespace Z0
                 dinx.andnot(float32(lhs), float32(rhs), ref float32(ref dst));
             else if(typeof(T) == typeof(double))
                 dinx.andnot(float64(lhs), float64(rhs), ref float64(ref dst));                
-            else    
-                throw unsupported(PrimalKinds.kind<T>());            
+            else 
+                throw unsupported<T>();
         }
         
         [MethodImpl(Inline)]
@@ -125,8 +127,5 @@ namespace Z0
             else    
                 throw unsupported(PrimalKinds.kind<T>());            
         }
-
-
     }
-
 }

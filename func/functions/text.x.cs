@@ -668,5 +668,30 @@ namespace Z0
             return (T)result;
         }
 
+
+        public static IEnumerable<string> Partition(this string src, int max)
+        {
+            for(var i = 0; i< src.Length; i += max)
+                yield return src.Substring(i, max);
+        }
+
+        public static string Concat(this IEnumerable<string> src, string sep = null)
+        {
+            var sb = new StringBuilder();
+            var x = src.ToArray();
+            for(var i=0; i<x.Length; i++)
+            {
+                sb.Append(x[i]);
+                if(sep != null && i < x.Length - 1)
+                    sb.Append(sep);
+            }
+            return sb.ToString();
+        }
+
+        [MethodImpl(Inline)]
+        public static string SeparateBlocks(this string src, int blocklen, string sep)
+            => src.Partition(blocklen).Concat(sep);
+
+
     }
 }

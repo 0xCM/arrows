@@ -21,6 +21,35 @@ namespace Z0
     public static class Num128
     {
         [MethodImpl(Inline)]
+        public static Num128<T> define<T>(T value)
+            where T : struct        
+        {
+            if(typeof(T) == typeof(sbyte))
+                return  scalar<T>(int8(value));
+            else if(typeof(T) == typeof(byte))
+                return  scalar<T>(uint8(value));
+            else if(typeof(T) == typeof(short))
+                return  scalar<T>(int16(value));
+            else if(typeof(T) == typeof(ushort))
+                return  scalar<T>(uint16(value));
+            else if(typeof(T) == typeof(int))
+                return  scalar<T>(int32(value));
+            else if(typeof(T) == typeof(uint))
+                return  scalar<T>(uint32(value));
+            else if(typeof(T) == typeof(long))
+                return  scalar<T>(int64(value));
+            else if(typeof(T) == typeof(ulong))
+                return  scalar<T>(uint64(value));
+            else if(typeof(T) == typeof(float))
+                return  scalar<T>(float32(value));
+            else if(typeof(T) == typeof(double))
+                return  scalar<T>(float64(value));
+            else
+                throw unsupported(PrimalKinds.kind<T>());
+
+        }
+
+        [MethodImpl(Inline)]
         public static unsafe ref Num128<float> load(float src, out Num128<float> dst)
         {
              dst = LoadScalarVector128(pfloat32(ref src));
@@ -59,34 +88,6 @@ namespace Z0
             => Avx2.LoadScalarVector128(pfloat64(ref src));
                  
 
-        [MethodImpl(Inline)]
-        public static Num128<T> define<T>(T value)
-            where T : struct        
-        {
-            if(typeof(T) == typeof(sbyte))
-                return  scalar<T>(int8(value));
-            else if(typeof(T) == typeof(byte))
-                return  scalar<T>(uint8(value));
-            else if(typeof(T) == typeof(short))
-                return  scalar<T>(int16(value));
-            else if(typeof(T) == typeof(ushort))
-                return  scalar<T>(uint16(value));
-            else if(typeof(T) == typeof(int))
-                return  scalar<T>(int32(value));
-            else if(typeof(T) == typeof(uint))
-                return  scalar<T>(uint32(value));
-            else if(typeof(T) == typeof(long))
-                return  scalar<T>(int64(value));
-            else if(typeof(T) == typeof(ulong))
-                return  scalar<T>(uint64(value));
-            else if(typeof(T) == typeof(float))
-                return  scalar<T>(float32(value));
-            else if(typeof(T) == typeof(double))
-                return  scalar<T>(float64(value));
-            else
-                throw unsupported(PrimalKinds.kind<T>());
-
-        }
 
         [MethodImpl(Inline)]
         public static Num128<T> load<T>(in ReadOnlySpan128<T> src, int block = 0)
@@ -187,7 +188,5 @@ namespace Z0
             dst[0] = src;
             return Unsafe.AsRef<Num128<T>>(dst);            
         }
-
-
    }
 }

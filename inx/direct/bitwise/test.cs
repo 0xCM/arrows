@@ -17,35 +17,35 @@ namespace Z0
     partial class dinx
     {
         [MethodImpl(Inline)]
-        public static bool allOn(in Vec128<byte> src)
+        public static bool on(in Vec128<byte> src)
             => TestAllOnes(src);
 
         [MethodImpl(Inline)]
-        public static bool allOn(in Vec128<sbyte> src)
+        public static bool on(in Vec128<sbyte> src)
             => TestAllOnes(src);
 
         [MethodImpl(Inline)]
-        public static bool allOn(in Vec128<short> src)
+        public static bool on(in Vec128<short> src)
             => TestAllOnes(src);        
 
         [MethodImpl(Inline)]
-        public static bool allOn(in Vec128<ushort> src)
+        public static bool on(in Vec128<ushort> src)
             => TestAllOnes(src);
 
         [MethodImpl(Inline)]
-        public static bool allOn(in Vec128<int> src)
+        public static bool on(in Vec128<int> src)
             => TestAllOnes(src);
 
         [MethodImpl(Inline)]
-        public static bool allOn(in Vec128<uint> src)
+        public static bool on(in Vec128<uint> src)
             => TestAllOnes(src);
                         
         [MethodImpl(Inline)]
-        public static bool allOn(in Vec128<long> src)
+        public static bool on(in Vec128<long> src)
             => TestAllOnes(src);
 
         [MethodImpl(Inline)]
-        public static bool allOn(in Vec128<ulong> src)
+        public static bool on(in Vec128<ulong> src)
             => TestAllOnes(src);
 
         [MethodImpl(Inline)]
@@ -81,67 +81,67 @@ namespace Z0
             => TestAllZeros(src, mask);
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+        public static bool testc(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
             => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec128<byte> lhs, in Vec128<byte> rhs)
+        public static bool testc(in Vec128<byte> lhs, in Vec128<byte> rhs)
             => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec128<short> lhs, in Vec128<short> rhs)
+        public static bool testc(in Vec128<short> lhs, in Vec128<short> rhs)
             => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+        public static bool testc(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
             => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec128<int> lhs, in Vec128<int> rhs)
+        public static bool testc(in Vec128<int> lhs, in Vec128<int> rhs)
             => TestC(lhs, rhs);        
         
         [MethodImpl(Inline)]
-        public static bool testC(in Vec128<uint> lhs, in Vec128<uint> rhs)
+        public static bool testc(in Vec128<uint> lhs, in Vec128<uint> rhs)
             => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec128<long> lhs, in Vec128<long> rhs)
+        public static bool testc(in Vec128<long> lhs, in Vec128<long> rhs)
             => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
+        public static bool testc(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
             => TestC(lhs, rhs);                     
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+        public static bool testc(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
             => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec256<byte> lhs, in Vec256<byte> rhs)
+        public static bool testc(in Vec256<byte> lhs, in Vec256<byte> rhs)
             => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec256<short> lhs, in Vec256<short> rhs)
+        public static bool testc(in Vec256<short> lhs, in Vec256<short> rhs)
             => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+        public static bool testc(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
             => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec256<int> lhs, in Vec256<int> rhs)
+        public static bool testc(in Vec256<int> lhs, in Vec256<int> rhs)
             => TestC(lhs, rhs);        
         
         [MethodImpl(Inline)]
-        public static bool testC(in Vec256<uint> lhs, in Vec256<uint> rhs)
+        public static bool testc(in Vec256<uint> lhs, in Vec256<uint> rhs)
             => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec256<long> lhs, in Vec256<long> rhs)
+        public static bool testc(in Vec256<long> lhs, in Vec256<long> rhs)
             => TestC(lhs, rhs);        
 
         [MethodImpl(Inline)]
-        public static bool testC(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
+        public static bool testc(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
             => TestC(lhs, rhs);                             
  
 

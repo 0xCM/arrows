@@ -15,6 +15,14 @@ namespace Z0
         ITestConfig<T> Get<T>()
             where T : struct;
         ITestConfig WithSampleSize(int SampleSize);
+
+        ITestConfig WithTrace();
+
+        ITestConfig WithoutTrace();
+
+        ITestConfig Replicate();
+
+        bool TraceEnabled {get;}
     }
     
     public interface ITestConfig<T> : ITestConfig, ISampleDefaults<T>
@@ -25,29 +33,62 @@ namespace Z0
     
     public class TestConfig : ITestConfig
     {
-        public TestConfig(ITestConfig Defaults, int? SampleSize = null)
+        public TestConfig(ITestConfig Defaults)
         {
             this.Defaults = Defaults;
-            this.SampleSize = SampleSize ?? Defaults.SampleSize;
+            this.SampleSize = Defaults.SampleSize;
         }
 
         public int SampleSize {get; private set;}
 
+        public bool TraceEnabled {get; private set;}
+
         ITestConfig Defaults {get;}
+
+        public virtual ITestConfig Replicate()
+            => new TestConfig(Defaults)
+            {
+                SampleSize = SampleSize,
+                TraceEnabled = TraceEnabled
+            };
 
         public ITestConfig<T> Get<T>() 
             where T : struct
-                => new TestConfig<T>(Defaults.Get<T>(), SampleSize);
-    
+                => new TestConfig<T>(Defaults.Get<T>());
+
+        public ITestConfig WithTrace()
+        {
+            var dst = (TestConfig)Replicate();
+            dst.TraceEnabled = true;
+            return dst;
+        }
+
+        public ITestConfig WithoutTrace()
+        {
+            var dst = (TestConfig)Replicate();
+            dst.TraceEnabled = false;
+            return dst;
+        }
+
         public virtual ITestConfig WithSampleSize(int SampleSize)
-            => new TestConfig(Defaults, SampleSize);
+        {
+            var dst = (TestConfig)Replicate();
+            dst.SampleSize = SampleSize;
+            return dst;
+        }
+
+        public override string ToString()
+        {
+            return $"{nameof(SampleSize)}={SampleSize} | {nameof(TraceEnabled)} = {TraceEnabled}";
+        }
+            
     }
 
     public class TestConfig<T> : TestConfig, ITestConfig<T>
         where T: struct
     {
-        public TestConfig(ITestConfig<T> Defaults, int? SampleSize = null)
-            : base(Defaults, SampleSize)
+        public TestConfig(ITestConfig<T> Defaults)
+            : base(Defaults)
         {
             this.Defaults = Defaults;
             this.SampleDomain = SampleDomain;
@@ -57,8 +98,8 @@ namespace Z0
 
         public Interval<T> SampleDomain  {get; private set;}
 
-        public override ITestConfig WithSampleSize(int SampleSize)
-            => new TestConfig<T>(Defaults, SampleSize);
+        public override ITestConfig Replicate()
+            => new TestConfig<T>(Defaults){SampleDomain = SampleDomain};
 
     }
 
@@ -91,11 +132,22 @@ namespace Z0
             where T : struct
                 => cast<ITestConfig<T>>(this);
 
+        public ITestConfig Replicate()
+            => new TestConfig(TheOnly);
         public ITestConfig WithSampleSize(int SampleSize)
-            => new TestConfig(TheOnly, SampleSize);
+            => Replicate().WithSampleSize(SampleSize);
+
+        public ITestConfig WithTrace()
+            => Replicate().WithTrace();
+
+        public ITestConfig WithoutTrace()
+            => Replicate().WithoutTrace();
 
         int ISampleDefaults.SampleSize 
             => SampleSize;
+
+        bool ITestConfig.TraceEnabled 
+            => false;
 
         // ! Int8
         const sbyte Int8Min = sbyte.MinValue;

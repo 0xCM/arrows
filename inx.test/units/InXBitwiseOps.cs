@@ -18,10 +18,10 @@ namespace Z0.Test
         public void TestAllOn()
         {
             var v1 = Vec128.define(uint.MaxValue, uint.MaxValue, uint.MaxValue, uint.MaxValue);
-            Claim.@true(dinx.allOn(v1));
+            Claim.@true(dinx.on(v1));
 
             var v2 = Vec128.define(uint.MaxValue, uint.MaxValue - 1, uint.MaxValue, uint.MaxValue);
-            Claim.@false(dinx.allOn(v2));                
+            Claim.@false(dinx.on(v2));                
         }     
 
         public void Nonzero()
@@ -44,7 +44,7 @@ namespace Z0.Test
             for(var i = 0; i < src.Length(); i ++)
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
-            var v1 = expect.Vector();
+            var v1 = expect.ToVec256();
             var v2 = ginx.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
@@ -59,7 +59,7 @@ namespace Z0.Test
             for(var i = 0; i < src.Length(); i ++)
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
-            var v1 = expect.Vector();
+            var v1 = expect.ToVec128();
             var v2 = ginx.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
@@ -74,7 +74,7 @@ namespace Z0.Test
             for(var i = 0; i < src.Length(); i ++)
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
-            var v1 = expect.Vector();
+            var v1 = expect.ToVec128();
             var v2 = ginx.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
@@ -89,7 +89,7 @@ namespace Z0.Test
             for(var i = 0; i < src.Length(); i ++)
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
-            var v1 = expect.Vector();
+            var v1 = expect.ToVec256();
             var v2 = ginx.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            

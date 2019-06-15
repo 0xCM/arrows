@@ -193,10 +193,10 @@ public static class nfunc
             => (int)mul(k1,k2).value;
 
     [MethodImpl(Inline)]   
-    public static Sum<K1, K2> sum<K1,K2>(K1 k1 = default, K2 k2 = default)
+    public static NatSum<K1, K2> sum<K1,K2>(K1 k1 = default, K2 k2 = default)
         where K1 : ITypeNat, new()
         where K2 : ITypeNat, new()
-            => Sum<K1,K2>.Rep;
+            => NatSum<K1,K2>.Rep;
 
     [MethodImpl(Inline)]   
     public static int sumi<K1,K2>(K1 k1 = default, K2 k2 = default)

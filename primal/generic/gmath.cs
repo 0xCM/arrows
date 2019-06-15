@@ -54,7 +54,13 @@ namespace Z0
                 digits = As.int64(src).ToString("x");
             else if(typeof(T) == typeof(ulong))
                 digits = As.uint64(src).ToString("x");
-                
+            else if(typeof(T) == typeof(float))
+                digits = As.float32(src).ToBits().ToString("x");
+            else if(typeof(T) == typeof(double))
+                digits = As.float64(src).ToBits().ToString("x");
+            else
+                throw unsupported<T>();
+
             var spec = specifier ? "0x" : string.Empty;
             return zpad ? (spec + digits) : (spec + digits.PadLeft(SizeOf<T>.Size * 2, '0'));
         }

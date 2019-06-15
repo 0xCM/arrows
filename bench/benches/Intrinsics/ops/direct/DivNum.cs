@@ -34,7 +34,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block < blocks; block++)
-                dinx.div(lhs.Scalar(block), rhs.Scalar(block), ref dst[block]);
+                dinx.div(lhs.ToNum128(block), rhs.ToNum128(block), ref dst[block]);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -46,7 +46,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block < blocks; block++)
-                dinx.div(lhs.Scalar(block), rhs.Scalar(block), ref dst[block]);
+                dinx.div(lhs.ToNum128(block), rhs.ToNum128(block), ref dst[block]);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         } 
     }

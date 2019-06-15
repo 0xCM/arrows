@@ -19,10 +19,10 @@ namespace Z0
     /// <remarks>See https://en.wikipedia.org/wiki/Normal_distribution</remarks>
     public class GaussianSpec : IDistributionSpec
     {
-        public GaussianSpec(double Mean, double StdDev)
+        public GaussianSpec(double mean, double stddev)
         {
-            this.Mean = Mean;
-            this.StdDev = StdDev;
+            this.Mean = mean;
+            this.StdDev = stddev;
         }
 
         /// <summary>
@@ -42,11 +42,9 @@ namespace Z0
         public double Variance 
             => StdDev * StdDev;
 
-
         [Symbol(Greek.tau)]
         public double Precision 
-             => 1.0/Variance;
-            
+             => 1.0/Variance;            
     }
 
 
@@ -57,18 +55,22 @@ namespace Z0
     public class GaussianDist<T> : Distribution<GaussianSpec,T>
         where T : struct
     {    
-        public GaussianDist(GaussianSpec spec)
+        public GaussianDist(IRandomSource random, GaussianSpec spec)
+            : base(random)
         {
             this.Spec = spec;
         }
 
         public GaussianSpec Spec {get;}
 
-        public override IEnumerable<T> Sample(IRandomSource random)
+        public override IEnumerable<T> Sample()
         {
-            return new T[]{};
-        }
-            
+            while(true)
+            {
+                foreach(var next in Random.Gaussian(Spec.Mean, Spec.StdDev))
+                    yield return convert<double,T>(next, out T x);
+            }                
+        }            
     }
 
 }

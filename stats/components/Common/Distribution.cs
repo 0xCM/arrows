@@ -17,20 +17,20 @@ namespace Z0
         
     }
 
-    public interface IDistribtion<T>
+    public interface IDistribution<T>
         where T : struct
     {
-        IEnumerable<T> Sample(IRandomSource random);
+        IEnumerable<T> Sample();
     }
 
-    public interface IDistribtion<S,T> : IDistribtion<T>
+    public interface IDistribution<S,T> : IDistribution<T>
         where S : IDistributionSpec
         where T : struct
     {
         
     }
 
-    public abstract class Distribution<S,T> : IDistribtion<S,T>
+    public abstract class Distribution<S,T> : IDistribution<S,T>
         where S : IDistributionSpec
         where T : struct
     {
@@ -38,7 +38,12 @@ namespace Z0
 
         protected static readonly T One = gmath.one<T>();
 
-        public abstract IEnumerable<T> Sample(IRandomSource random);
+        protected IRandomSource Random {get;}
+
+        protected Distribution(IRandomSource random)
+            => Random = random;
+        
+        public abstract IEnumerable<T> Sample();
     }
 
 

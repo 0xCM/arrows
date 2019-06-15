@@ -37,7 +37,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
-        public static Option<Sum<K1,K2>> tryAdd<K1,K2>(uint expected)
+        public static Option<NatSum<K1,K2>> tryAdd<K1,K2>(uint expected)
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
                 => Try(() => add<K1,K2>(expected));
@@ -51,7 +51,7 @@ namespace Z0
         /// <param name="k2">The second operand value</param>
         /// <typeparam name="K1">The first type</typeparam>
         /// <typeparam name="K2">The second type</typeparam>
-        public static Option<Sum<K1,K2>> tryAdd<K1,K2>(K1 k1, K2 k2, uint expected)
+        public static Option<NatSum<K1,K2>> tryAdd<K1,K2>(K1 k1, K2 k2, uint expected)
             where K1 : ITypeNat, new()
             where K2 : ITypeNat, new()
                 => Try(() => sum(k1,k2,expected));

@@ -118,7 +118,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                shiftl(lhs.VLoad(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -126,7 +126,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                shiftl(lhs.VLoad(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -134,7 +134,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                shiftl(lhs.VLoad(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -142,7 +142,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                shiftl(lhs.VLoad(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -150,7 +150,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                shiftl(lhs.VLoad(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -158,7 +158,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                shiftl(lhs.VLoad(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec128(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -166,7 +166,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                shiftl(lhs.VLoad(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -174,7 +174,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                shiftl(lhs.VLoad(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -182,7 +182,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                shiftl(lhs.VLoad(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -190,7 +190,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                shiftl(lhs.VLoad(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -198,7 +198,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                shiftl(lhs.VLoad(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -206,7 +206,7 @@ namespace Z0
         {
             var width = dst.BlockWidth;
             for(var i =0; i < lhs.Length; i += width)
-                shiftl(lhs.VLoad(i), count, ref dst[i]);            
+                shiftl(lhs.LoadVec256(i), count, ref dst[i]);            
             return dst;
         }
 
@@ -247,7 +247,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                dinx.store(dinx.shiftl(lhs.VLoad(i),shifts.VLoad(i)), ref dst[i]);            
+                dinx.store(dinx.shiftl(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
             return dst;
         }
 
@@ -256,7 +256,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                dinx.store(dinx.shiftl(lhs.VLoad(i),shifts.VLoad(i)), ref dst[i]);            
+                dinx.store(dinx.shiftl(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
             return dst;
         }
 
@@ -265,7 +265,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                dinx.store(dinx.shiftl(lhs.VLoad(i),shifts.VLoad(i)), ref dst[i]);            
+                dinx.store(dinx.shiftl(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
             return dst;
         }
 
@@ -274,7 +274,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                dinx.store(dinx.shiftl(lhs.VLoad(i),shifts.VLoad(i)), ref dst[i]);            
+                dinx.store(dinx.shiftl(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
             return dst;
         }
 
@@ -283,7 +283,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                dinx.store(dinx.shiftl(lhs.VLoad(i),shifts.VLoad(i)), ref dst[i]);            
+                dinx.store(dinx.shiftl(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
             return dst;            
         }
 
@@ -292,7 +292,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                dinx.store(dinx.shiftl(lhs.VLoad(i),shifts.VLoad(i)), ref dst[i]);            
+                dinx.store(dinx.shiftl(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
             return dst;            
         }
 
@@ -301,7 +301,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                dinx.store(dinx.shiftl(lhs.VLoad(i),shifts.VLoad(i)), ref dst[i]);            
+                dinx.store(dinx.shiftl(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
             return dst;            
         }
 
@@ -310,7 +310,7 @@ namespace Z0
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                dinx.store(dinx.shiftl(lhs.VLoad(i),shifts.VLoad(i)), ref dst[i]);            
+                dinx.store(dinx.shiftl(lhs.LoadVec256(i),shifts.LoadVec256(i)), ref dst[i]);            
             return dst;            
        }
  

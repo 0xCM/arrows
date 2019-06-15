@@ -49,7 +49,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<ulong> insert(ulong src, in Vec128<ulong> dst, byte index)        
             => Avx2.X64.Insert(dst,src,index);
-
     }
-
 }

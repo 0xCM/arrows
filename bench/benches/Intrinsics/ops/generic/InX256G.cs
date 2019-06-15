@@ -25,7 +25,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block < dst.BlockCount; block++)
-                Vec256.store(ginx.add(Vec256.single(lhs, block), Vec256.single(rhs, block)), ref dst.Block(block));
+                Vec256.store(ginx.add(Vec256.load(lhs, block), Vec256.load(rhs, block)), ref dst.Block(block));
             return context.CaptureMetrics(opid,snapshot(sw), dst);
         }
 

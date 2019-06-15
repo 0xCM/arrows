@@ -18,9 +18,12 @@ namespace Z0
     /// <remarks>See https://en.wikipedia.org/wiki/Bernoulli_distribution</remarks>
     public class BernoulliSpec : IDistributionSpec
     {
-        public BernoulliSpec(double Alpha)
+        public static BernoulliSpec Define(double p)
+            => new BernoulliSpec(p);
+        
+        public BernoulliSpec(double p)
         {
-            this.p = Alpha;
+            this.p = p;
         }
         
         /// <summary>
@@ -38,18 +41,19 @@ namespace Z0
     public class BernoulliDist<T> : Distribution<BernoulliSpec,T>
         where T : struct
     {    
-        public BernoulliDist(BernoulliSpec spec)
+        public BernoulliDist(IRandomSource random, BernoulliSpec spec)
+            : base(random)
         {
             this.Spec = spec;
         }
 
         public BernoulliSpec Spec {get;}
 
-        public override IEnumerable<T> Sample(IRandomSource random)
+        public override IEnumerable<T> Sample()
         {
             while(true)
             {
-                var success = random.NextDouble() < Spec.p ? One : Zero;
+                var success = Random.NextDouble() < Spec.p ? One : Zero;
                 yield return success;
             }            
         }

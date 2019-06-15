@@ -31,7 +31,7 @@ namespace Z0
             => Shuffle(src, control);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> shuffle(in Vec128<double> lhs, in Vec128<double> rhs,  byte control)
+        public static Vec128<double> shuffle(in Vec128<double> lhs, in Vec128<double> rhs, byte control)
             => Shuffle(lhs,rhs, control);
 
         [MethodImpl(Inline)]

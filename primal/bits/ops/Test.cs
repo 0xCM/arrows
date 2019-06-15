@@ -47,13 +47,12 @@ namespace Z0
             => (src & (U64One << pos)) != 0ul;
 
         [MethodImpl(Inline)]
-        public static bool tbit(in double src, in int pos)
-            => test(BitConverter.DoubleToInt64Bits(src),pos);
-
-        [MethodImpl(Inline)]
-        public static bool tbit(in float src, in int pos)
+        public static bool test(in float src, in int pos)
             => test(BitConverter.SingleToInt32Bits(src),pos); 
 
+        [MethodImpl(Inline)]
+        public static bool test(in double src, in int pos)
+            => test(BitConverter.DoubleToInt64Bits(src),pos);
 
         [MethodImpl(Inline)]
         public static ref Bit tbit(in sbyte src, in int pos, out Bit dst)

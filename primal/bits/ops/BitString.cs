@@ -36,7 +36,6 @@ namespace Z0
 
         public static string bitstring(in uint src, bool tlz = false, bool pfs = false)
         {
-            //return Refine(Convert.ToString(src,2));
             var dst = new char[Pow2.T05];
             var last = Pow2.T05 - 1;
 
