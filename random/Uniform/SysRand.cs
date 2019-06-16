@@ -8,8 +8,6 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices;
-    using System.Numerics;
-    using System.Text;
 
     using static zfunc;
     using static As;
@@ -27,10 +25,10 @@ namespace Z0
         IRandomSource Source {get;}
 
         public override int Next()
-            => (int)Source.NextInteger((ulong)Int32.MaxValue);
+            => (int)Source.NextInt((ulong)Int32.MaxValue);
 
         public override int Next(int maxValue)
-            => (int)Source.NextInteger((ulong)maxValue);
+            => (int)Source.NextInt((ulong)maxValue);
 
         public override int Next(int minValue, int maxValue)
         {
@@ -59,9 +57,8 @@ namespace Z0
                 buffer[i++] = it.Current;
 
         }
+     
         public override double NextDouble()
             => Source.NextDouble();
-
     }
-
 }

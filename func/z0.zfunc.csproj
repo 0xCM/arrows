@@ -6,10 +6,11 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
+  <Import Project="..\package.targets" />
+
   <ItemGroup>
     <ProjectReference Include="..\nats\z0.nats.csproj" />
     <ProjectReference Include="..\structs\z0.structs.csproj" />
-
   </ItemGroup>
 
 </Project>

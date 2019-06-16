@@ -53,14 +53,14 @@ namespace Z0.Test
             where T : struct
         {
             VerifyBinOp(blocks, new Vec128BinOp<T>(ginx.add), gmath.add<T>);
-            TypeStepOk<T>();
+            TypeCaseEnd<T>();
         }
 
         void Sub128<T>(int blocks)
             where T : struct
         {
             VerifyBinOp(blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
-            TypeStepOk<T>();
+            TypeCaseEnd<T>();
         }
 
         public void Add128()

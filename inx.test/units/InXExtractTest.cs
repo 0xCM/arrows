@@ -19,7 +19,7 @@ namespace Z0.Test
         void Extract128<T>()
             where T : struct
         {
-            TypeStepStart<T>();
+            TypeCaseStart<T>();
 
             var len = Vec128<T>.Length;
             var src = Randomizer.Vec128<T>();
@@ -28,7 +28,7 @@ namespace Z0.Test
             for(byte i = 0; i< len; i++)
                 Claim.eq(expect[i], ginx.extract(in src, i));
 
-            TypeStepOk<T>();                
+            TypeCaseEnd<T>();                
 
         }
             
@@ -50,7 +50,7 @@ namespace Z0.Test
         public void Extract256<T>()
             where T : struct
         {
-            TypeStepStart<T>();
+            TypeCaseStart<T>();
 
             var len = Vec256<T>.Length;
             var half = len >> 1;
@@ -67,7 +67,7 @@ namespace Z0.Test
             var z1 = srcData.Slice(half);
             Claim.eq(y1,z1);
 
-            TypeStepOk<T>();                
+            TypeCaseEnd<T>();                
 
         }
         

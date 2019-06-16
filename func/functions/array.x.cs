@@ -123,7 +123,7 @@ namespace Z0
         public static ArraySegment<T> Segment<T>(this T[] src, ulong start, ulong len)
             => new ArraySegment<T>(src, (int)start, (int)len);
  
-         public static void CopyTo<T>(this IReadOnlyList<T> src, T[] dst)
+        public static void CopyTo<T>(this IReadOnlyList<T> src, T[] dst)
         {
             if(src.Count > dst.Length)
                 throw new ArgumentException("The source list is bigger than the target array");
@@ -167,6 +167,14 @@ namespace Z0
             var dst = new T[first.Length + second.Length];
             Buffer.BlockCopy(first, 0, dst, 0, first.Length);
             Buffer.BlockCopy(second, 0, dst, first.Length, second.Length);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static T[] Replicate<T>(this T[] src)
+        {
+            var dst = array<T>(src.Length);
+            Array.Copy(src, dst, src.Length);
             return dst;
         }
     }

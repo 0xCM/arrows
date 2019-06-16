@@ -160,6 +160,7 @@ namespace Z0
             }
         }
 
+    
         public static Span<Interval<T>> Partition<T>(this Interval<T> src, int count)
             where T : struct
         {
@@ -191,9 +192,23 @@ namespace Z0
                     
             }
             return partition.Slice(0,count);
-        }
+        } 
+        
+        public static Interval<T> Add<T>(this ref Interval<T> lhs, Interval<T> rhs)
+            where T : struct
+            => lhs.WithEndpoints(
+                    gmath.add(lhs.Left, rhs.Left), 
+                    gmath.add(lhs.Right, rhs.Right)
+                    );
 
- 
+        public static Interval<T> Sub<T>(this ref Interval<T> lhs, Interval<T> rhs)
+            where T : struct
+            => lhs.WithEndpoints(
+                    gmath.sub(lhs.Left, rhs.Left), 
+                    gmath.sub(lhs.Right, rhs.Right)
+                    );
+
     }
+
 
 }

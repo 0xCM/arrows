@@ -8,15 +8,12 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices;
-    using System.Numerics;
-    using System.Text;
 
     using static zfunc;
     using static As;
 
     public static class RNGx
     {                
-
         /// <summary>
         /// Samples a gaussian distribution
         /// </summary>
@@ -43,5 +40,6 @@ namespace Z0
         
         public static System.Random SystemRandom(this IRandomSource rng)
             => new SysRand(rng);
+
     }   
 }

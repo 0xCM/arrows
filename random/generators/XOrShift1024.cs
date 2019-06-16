@@ -60,7 +60,7 @@ namespace Z0
                 if ( (JT[i] & 1ul << b) != 0)
                     for(int j = 0; j < 16; j++)
                         t[j] ^= state[(j + p) & 15];
-                NextInteger();
+                NextInt();
             }
 
             for(int j = 0; j < 16; j++)
@@ -68,7 +68,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public ulong NextInteger() 
+        public ulong NextInt() 
         {
             ulong s0 = state[p];
             ulong s1 = state[p = (p + 1) & 15];
@@ -80,7 +80,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public double NextDouble()
-            => ((double)NextInteger()/(double)ulong.MaxValue);
+            => ((double)NextInt()/(double)ulong.MaxValue);
 
     }
 

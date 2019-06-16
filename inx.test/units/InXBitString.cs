@@ -18,7 +18,7 @@ namespace Z0.Test
         void TestBitString<T>()
             where T : struct
         {
-            TypeStepStart<T>();
+            TypeCaseStart<T>();
             
             var v1 = Randomizer.Vec128<T>();
             var bs = v1.ToBitString();
@@ -35,7 +35,7 @@ namespace Z0.Test
                 Claim.eq(x,y);
             }
                 
-            TypeStepOk<T>();                
+            TypeCaseEnd<T>();                
 
         }
         public void TestBitString()

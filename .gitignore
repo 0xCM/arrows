@@ -8,3 +8,4 @@ bin/
 .work/
 obj/
 .exe
+mkl.redist/

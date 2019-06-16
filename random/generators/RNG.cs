@@ -16,6 +16,11 @@ namespace Z0
     /// </summary>
     public static class RNG
     {
+        static IRandomSource Entropic = new XOrShift1024(Seed1024.Entropic);
+
+        public static IRandomSource Default
+            => Entropic;
+            
         public static IRandomSource XOrShift1024(ulong[] seed = null)
             => new XOrShift1024(seed ?? Seed1024.Default);
 

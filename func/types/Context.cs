@@ -58,11 +58,14 @@ namespace Z0
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
                 => Messages.Add(AppMsg.Define(msg, SeverityLevel.HiliteCL, caller, file, line));
 
-        protected void TypeStepStart<T>([CallerMemberName] string caller = null)
+        protected void TypeCaseStart<T>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{caller}<{typeof(T).Name}> executing", SeverityLevel.HiliteCL));
 
-        protected void TypeStepOk<T>([CallerMemberName] string caller = null)
+        protected void TypeCaseEnd<T>([CallerMemberName] string caller = null)
             => Messages.Add(AppMsg.Define($"{caller}<{typeof(T).Name}> succeeded", SeverityLevel.HiliteCL));
+
+        protected void TypeCaseEnd<T>(AppMsg msg, [CallerMemberName] string caller = null)
+            => Messages.Add(AppMsg.Define($"{caller}<{typeof(T).Name}> succeeded: {msg}", SeverityLevel.HiliteCL));
 
         protected void Trace(string msg)
         {

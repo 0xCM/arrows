@@ -8,61 +8,93 @@ namespace Z0
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    
+    using System.Text;
+
     using static zfunc;    
 
-    /// <summary>
-    /// See https://en.wikipedia.org/wiki/Inversion_(discrete_mathematics)
-    /// </summary>
-    public readonly struct Inversion<N>
+    public struct Perm
     {
+        [MethodImpl(Inline)]
+        public static bool operator ==(Perm lhs, Perm rhs)
+            => lhs.spec.ReallyEqual(rhs.spec);
 
-    }
-    
-    /// <summary>
-    /// Represents a transposition in the context of a permutation
-    /// </summary>
-    /// <remarks>
-    /// A transposition (l,r) is interpreted as a function composition 
-    /// that carries the l-value (from the domain) to the r-value
-    /// (in the l-relative codomain) and then the r-value to the l-value
-    /// (in the r-relative codomain & l-relative domain). So, if
-    /// a function f sends l to r and a function g sends r to l then
-    /// the transposition t is the function t(l) = g(f(l)) == l. 
-    /// </remarks>
-    public readonly struct Transposition<N>
-    {
-        public Transposition(ulong left, ulong right)
+        [MethodImpl(Inline)]
+        public static bool operator !=(Perm lhs, Perm rhs)
+            => !(lhs == rhs);
+
+        [MethodImpl(Inline)]
+        public static Perm Identity(int len)
+            => new Perm(range(1, len));
+
+        [MethodImpl(Inline)]
+        public static Perm Define(Span<int> src)
+            => new Perm(src.ToArray());
+
+        [MethodImpl(Inline)]
+        public static Perm Define(ReadOnlySpan<int> src)
+            => new Perm(src.ToArray());
+
+        [MethodImpl(Inline)]
+        public static implicit operator Perm(Span<int> src)
+            => Define(src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator Perm(ReadOnlySpan<int> src)
+            => Define(src);
+
+        [MethodImpl(Inline)]
+        public Perm(int[] spec)
+            => this.spec = spec;
+        
+        [MethodImpl(Inline)]
+        public Perm(IEnumerable<int> spec)
+            => this.spec = spec.ToArray();
+                
+        int[] spec;
+
+        public ref int this[int i]
         {
-            this.left = left;
-            this.right = right;
+            [MethodImpl(Inline)]
+            get => ref spec[i - 1];
         }
+
+        /// <summary>
+        /// Effects a transposition
+        /// </summary>
+        /// <remarks>
+        /// A transposition (l,r) is interpreted as a function composition 
+        /// that carries the l-value (from the domain) to the r-value
+        /// (in the l-relative codomain) and then the r-value to the l-value
+        /// (in the r-relative codomain & l-relative domain). So, if
+        /// a function f sends l to r and a function g sends r to l then
+        /// the transposition t is the function t(l) = g(f(l)) == l. 
+        /// </remarks>
+        [MethodImpl(Inline)]
+        public void Transpose(int i, int j)
+        {
+            var tmp = spec[i];
+            spec[i] = spec[j];
+            spec[j] = tmp;
+        }
+
+        public int Length
+            => spec.Length;
+
+        public Perm Replicate()
+            => new Perm(spec.Replicate());
+
+        static string Format(Perm p)
+            =>(from i in range(1, p.spec.Length)
+                select $"({i}, {p.spec[i-1]})").Bracket();
         
-        public ulong left {get;}
+        public string Format()
+            => Format(this);
+
+        public override int GetHashCode()
+            => spec.GetHashCode();
         
-        public ulong right {get;}
-
-        public string format()
-            => paren(space(embrace(left),embrace(right)));
-    }
-
-    /// <summary>
-    /// Defines a permutation as a bijective function 
-    /// from the set of natural numbers {1,2,..., N} onto itself
-    /// </summary>
-    /// <remarks>
-    /// See https://en.wikipedia.org/wiki/Permutation
-    /// </remarks>
-    public readonly struct Permutaton<N>
-        where N : ITypeNat, new()        
-    {
-        readonly (ulong k, ulong v)[] assigments;
-
-        public Permutaton(params (ulong k, ulong v)[] assigments)
-            => this.assigments = assigments;
-
-        public ulong map(ulong index)            
-            =>  first(assigments, a => a.k == index).TryMap(a => a.v).ValueOrDefault(index);
+        public override bool Equals(object o)
+            => (o is Perm p) ? p == this : false;
     }
 
 }

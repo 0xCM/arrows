@@ -245,15 +245,35 @@ namespace Z0
                 ifTrue(trim, RightOf(s, marker),x => x.Trim()));
  
         /// <summary>
-        /// Formats a stream 
+        /// Formats a sequence of values between braces 
         /// </summary>
         /// <param name="src">The source stream</param>
         /// <param name="sep">The item separator</param>
         /// <typeparam name="T">The item type</typeparam>
         [MethodImpl(Inline)]
-        public static string FormatMany<T>(this IEnumerable<T> src, string sep = ", ")
-                => embrace(string.Join(sep, src.Select(x => x.ToString())).TrimEnd());
- 
+        public static string Embrace<T>(this IEnumerable<T> src, string sep = ", ")
+            => embrace(string.Join(sep, src.Select(x => x.ToString())).TrimEnd());
+
+        /// <summary>
+        /// Formats a sequence of values between parentheses 
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="sep">The item separator</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static string Parenthetical<T>(this IEnumerable<T> src, string sep = ", ")
+            => paren(string.Join(sep, src.Select(x => x.ToString())).TrimEnd());
+
+        /// <summary>
+        /// Formats a sequence of values between brackets 
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="sep">The item separator</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static string Bracket<T>(this IEnumerable<T> src, string sep = ", ")
+            => bracket(string.Join(sep, src.Select(x => x.ToString())).TrimEnd());
+
         /// <summary>
         /// Formats a stream as a vector
         /// </summary>

@@ -10,16 +10,16 @@ using System.Runtime.CompilerServices;
 using Z0;
 
 
-public static class constant
+internal static class constant
 {
-    internal const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
+    public const MethodImplOptions Inline = MethodImplOptions.AggressiveInlining;
 
     /// <summary>
     /// Converts an integer to a sequence of digits
     /// </summary>
     /// <param name="src">The source value</param>
     [MethodImpl(Inline)]
-    internal static byte[] digits(ulong src)
+    public static byte[] digits(ulong src)
         => src.ToString().Select(c => byte.Parse(c.ToString())).ToArray();
 
 }

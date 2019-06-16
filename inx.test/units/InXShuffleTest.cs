@@ -11,6 +11,7 @@ namespace Z0.Test
     using System.IO;
     
     using static zfunc;
+    using static Constants;
 
 
     public class InXShuffleTest : UnitTest<InXShuffleTest>

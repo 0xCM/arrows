@@ -114,6 +114,8 @@ namespace Z0
                     RightClosed
                     );
 
+        public Interval<T> WithEndpoints(T Left, T Right)
+            => new Interval<T>(Left, LeftClosed, Right, RightClosed);
         public string Format()
             => concat(
                 LeftClosed ? "[": "(", 

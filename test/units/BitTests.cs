@@ -14,8 +14,8 @@ namespace Z0.Test
     
     using static zfunc;
 
-    using static BinaryDigit;
     using static Bit;
+    using static Constants;
     
     public class BitTests : UnitTest<BitTests>
     {
@@ -370,7 +370,7 @@ namespace Z0.Test
             else
                 Claim.eq(x01, y);
 
-            TypeStepOk<T>();
+            TypeCaseEnd<T>();
         }
 
         public void BitShift1()

@@ -23,7 +23,7 @@ namespace Z0.Test
             ref var vX = ref ginx.broadcast(in x, out Vec128<T> _);
             var vY = Vec128.define(x);
             Claim.eq(vX,vY);
-            TypeStepOk<T>();
+            TypeCaseEnd<T>();
         }
 
         void Broadcast256<T>()
@@ -33,7 +33,7 @@ namespace Z0.Test
             ref var vX = ref ginx.broadcast(in x, out Vec256<T> _);
             var vY = Vec256.define(x);
             Claim.eq(vX,vY);
-            TypeStepOk<T>();
+            TypeCaseEnd<T>();
         }
 
         public void Broadcast128()

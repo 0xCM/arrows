@@ -15,7 +15,7 @@ namespace Z0
     public interface IRandomSource
     {
         
-        ulong NextInteger();
+        ulong NextInt();
 
         double NextDouble();
 

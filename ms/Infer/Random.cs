@@ -124,7 +124,7 @@ namespace MsInfer
         {
             return gen.NextDouble();
         }
-
+        
         /// <summary>
         /// Generates a random permutation.
         /// </summary>

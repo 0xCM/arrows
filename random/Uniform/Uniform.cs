@@ -16,6 +16,7 @@ namespace Z0
 
     public static partial class UniformRandom
     {
+        
         public static IEnumerable<T> UniformStream<T>(this IRandomSource src, Interval<T> domain, Func<T,bool> filter = null)
             where T : struct
         {
@@ -113,9 +114,9 @@ namespace Z0
         /// <param name="rng">A random source</param>
         /// <param name="max">The upper bound for the sample</param>
         /// <remarks>Reference: Fast Random Integer Generation in an Interval, Daniel Lemire 2018</remarks>
-        public static ulong NextInteger(this IRandomSource rng, ulong max) 
+        public static ulong NextInt(this IRandomSource rng, ulong max) 
         {
-            var x = rng.NextInteger();
+            var x = rng.NextInt();
             dinx.mul(x, max, out UInt128 m);
             ulong l = m.lo;
             if (l < max) 
@@ -123,7 +124,7 @@ namespace Z0
                 ulong t = ~max % max;
                 while (l < t) 
                 {
-                    x = rng.NextInteger();
+                    x = rng.NextInt();
                     m = dinx.mul(x, max, out UInt128 z);
                     l = m.lo;                    
                 }
@@ -133,16 +134,76 @@ namespace Z0
             return vec.ToUInt128().lo;
         }
 
+        /// <summary>
+        /// Generates a psedorandom sbyte in the interval [0, max-1]
+        /// </summary>
+        /// <param name="rng">The stateful source on which the generation is predicated</param>
+        /// <param name="max">The exclusive maximum</param>
+        [MethodImpl(Inline)]
+        public static sbyte NextInt(this IRandomSource rng, sbyte max)
+            => (sbyte)(max < 0 ? - (sbyte)rng.NextInt((ulong)-max) : (sbyte)rng.NextInt((ulong)max));
+
+        /// <summary>
+        /// Generates a psedorandom byte in the interval [0, max-1]
+        /// </summary>
+        /// <param name="rng">The stateful source on which the generation is predicated</param>
+        /// <param name="max">The exclusive maximum</param>
+        [MethodImpl(Inline)]
+        public static byte NextInt(this IRandomSource rng, byte max)
+            => (byte) rng.NextInt((ulong)max);
+        
+        /// <summary>
+        /// Generates a psedorandom short in the interval [0, max-1]
+        /// </summary>
+        /// <param name="rng">The stateful source on which the generation is predicated</param>
+        /// <param name="max">The exclusive maximum</param>
+        [MethodImpl(Inline)]
+        public static short NextInt(this IRandomSource rng, short max)
+            => max >= 0 
+            ?  (short)rng.NextInt((ulong)max)  
+            : (short) - (int)rng.NextInt((ulong) (Int16.MaxValue + max));
+
+        /// <summary>
+        /// Generates a psedorandom ushort in the interval [0, max-1]
+        /// </summary>
+        /// <param name="rng">The stateful source on which the generation is predicated</param>
+        /// <param name="max">The exclusive maximum</param>
+        [MethodImpl(Inline)]
+        public static ushort NextInt(this IRandomSource rng, ushort max)
+            => (ushort) rng.NextInt((ulong)max);
+        
+
+        /// <summary>
+        /// Generates a psedorandom uint in the interval [0, max-1]
+        /// </summary>
+        /// <param name="rng">The stateful source on which the generation is predicated</param>
+        /// <param name="max">The exclusive maximum</param>
+        [MethodImpl(Inline)]
+        public static uint NextInt(this IRandomSource rng, uint max)
+            => (uint) rng.NextInt((ulong)max);
+
+
+        /// <summary>
+        /// Generates a psedorandom int in the interval [0, max) if max >= 0
+        /// </summary>
+        /// <param name="rng">The stateful source on which the generation is predicated</param>
+        /// <param name="max">The exclusive maximum</param>
+        [MethodImpl(Inline)]
+        public static int NextInt(this IRandomSource rng, int max)
+            => max >= 0 
+            ? (int)rng.NextInt((ulong)max)  
+            : - (int)rng.NextInt((ulong) (Int32.MaxValue + max));
+
         public static IEnumerable<ulong> Integers(this IRandomSource rng)
         {
             while(true)
-                yield return rng.NextInteger();
+                yield return rng.NextInt();
         }
 
         public static IEnumerable<ulong> Integers(this IRandomSource rng, ulong max)
         {
             while(true)
-                yield return rng.NextInteger(max);
+                yield return rng.NextInt(max);
         }
    
         public static IEnumerable<double> Doubles(this IRandomSource rng)
@@ -162,7 +223,7 @@ namespace Z0
                 }
                 else
                 {
-                    var u64 = rng.NextInteger();
+                    var u64 = rng.NextInt();
                     for(var i = 0; i< 64; i++)
                     {
                         if(i == 0)
@@ -193,7 +254,7 @@ namespace Z0
                 }
                 else
                 {
-                    var bytes = BitConverter.GetBytes(rng.NextInteger());
+                    var bytes = BitConverter.GetBytes(rng.NextInt());
                     for(var i = 0; i< bytes.Length; i++)
                     {
                         if(i == 0)
@@ -215,7 +276,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         static ulong Next(this IRandomSource src, ulong max)
-            => src.NextInteger(max);
+            => src.NextInt(max);
 
         [MethodImpl(Inline)]
         static sbyte Next(this IRandomSource src, Interval<sbyte> domain)
@@ -405,8 +466,5 @@ namespace Z0
             }
             else throw unsupported<T>();
         }
-
-
     }
-
 }

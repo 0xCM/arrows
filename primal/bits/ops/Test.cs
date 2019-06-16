@@ -10,7 +10,8 @@ namespace Z0
     using Z0;
  
     using static zfunc;
-    
+    using static Constants;
+
     partial class Bits
     {                
 

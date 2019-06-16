@@ -8,12 +8,9 @@ namespace Z0
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.CompilerServices;
-    using System.Numerics;
-    using System.Text;
 
     using static zfunc;
     using static As;
-
 
     partial class UniformRandom
     {
@@ -29,7 +26,6 @@ namespace Z0
             where T : struct  
             where N : ITypeNat, new()
                 => NatSpan.adapt<N,T>(random.Span<T>((int)length.value, domain, filter));                                    
-
 
         [MethodImpl(Inline)]
         public static Span<M,N,T> Span<M,N,T>(this IRandomSource random, M rows = default, N cols = default)
@@ -72,7 +68,6 @@ namespace Z0
             where T : struct  
                 => random.Span128(blocks, domain, gmath.nonzero);
 
-
         public static Span256<T> Span256<T>(this IRandomSource random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
         {
@@ -80,7 +75,6 @@ namespace Z0
             var src = random.UniformStream(domain,filter).TakeSpan(count);
             return src.ToSpan256(); 
         }
-
 
         [MethodImpl(Inline)]
         public static unsafe ReadOnlySpan256<T> ReadOnlySpan256<T>(this IRandomSource random, int blocks, Interval<T>? domain = null, Func<T,bool> filter = null)
@@ -90,8 +84,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span256<T> NonZeroSpan256<T>(this IRandomSource random, int blocks, Interval<T>? domain = null)        
             where T : struct  
-                => random.Span256(blocks, domain, gmath.nonzero);
-
- 
+                => random.Span256(blocks, domain, gmath.nonzero); 
     }
 }

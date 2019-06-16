@@ -15,20 +15,22 @@ namespace Z0.Mkl
 
     using static zfunc;
     using static nfunc;
+    using static Examples;
 
-    public static class CBLASX
+
+    static class Examples
     {
         const string Intro = "beginning";
         const string Finale = "finished";
         
-        static string intro([CallerMemberName] string method = null)
+        public static string intro([CallerMemberName] string method = null)
         {
             cyan($"{method} => {Intro}");
             cyan(new string('-',80));
             return method;
         }
 
-        static string varintro(string variation, [CallerMemberName] string method = null)
+        public static string varintro(string variation, [CallerMemberName] string method = null)
         {
             var variant = $"{method}[{variation}]";
             print();
@@ -37,14 +39,52 @@ namespace Z0.Mkl
             return variant;
         }
 
-        static void input(object input)
+
+        [MethodImpl(Inline)]
+        public static double MaxEntry<M,N>(this Span<M,N,double> src)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+                => src.Reduce(Math.Max);
+
+        [MethodImpl(Inline)]
+        public static int EntryPadWidth<M,N>(this Span<M,N,double> src)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+                => ((long)src.Reduce(Math.Max)).ToDeciDigits().Length;
+
+
+        public static void finale(string title, object value, Duration time, [CallerMemberName] string method = null)
+        {
+            magenta($"Output {title}", value);
+            cyan($"{method} => {Finale} | Runtime = {format(time)}");
+        }
+
+        [MethodImpl(Inline)]
+        public static void finale(string title, object value, Stopwatch sw, [CallerMemberName] string method = null)
+            => finale(title, value, snapshot(sw), method);
+
+        public static void output(object output)
+            => magenta(" Actual", output);
+
+        public static void expected(object expect)
+            => magenta(" Expect", expect);
+
+
+        public static void conclude(Duration time, [CallerMemberName] string method = null)    
+        {
+            
+            cyan($"Runtime", format(time));
+            print();
+        }
+
+        public static void input(object input)
             => cyan("  Input", input);
 
-        static void input(string title, object input)
+        public static void input(string title, object input)
             => cyan($"Input {title}", input);
 
         [MethodImpl(Inline)]
-        static Stopwatch input(string firstTitle, object firstValue, string secondTitle, object secondValue)
+        public static Stopwatch input(string firstTitle, object firstValue, string secondTitle, object secondValue)
         {
             input(firstTitle, firstValue);
             print();
@@ -54,54 +94,24 @@ namespace Z0.Mkl
         }
 
     
-         static string format(Duration time)
+         public static string format(Duration time)
          {  
              return $"{time.FractionalMs} ms";
          }
 
-        static void output(string title, object value, Duration? time = null)
+        public static void output(string title, object value, Duration? time = null)
         {
             magenta(title, value);
             if(time != null)            
                 magenta($"Runtime", format(time.Value));
         }
 
+    }
 
-        static void finale(string title, object value, Duration time, [CallerMemberName] string method = null)
-        {
-            magenta($"Output {title}", value);
-            cyan($"{method} => {Finale} | Runtime = {format(time)}");
-        }
-
-        [MethodImpl(Inline)]
-        static void finale(string title, object value, Stopwatch sw, [CallerMemberName] string method = null)
-            => finale(title, value, snapshot(sw), method);
-
-        static void output(object output)
-            => magenta(" Actual", output);
-
-        static void expected(object expect)
-            => magenta(" Expect", expect);
+    public static class CBLASX
+    {
 
 
-        static void conclude(Duration time, [CallerMemberName] string method = null)    
-        {
-            
-            cyan($"Runtime", format(time));
-            print();
-        }
-
-        [MethodImpl(Inline)]
-        static double MaxEntry<M,N>(this Span<M,N,double> src)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-                => src.Reduce(Math.Max);
-
-        [MethodImpl(Inline)]
-        static int EntryPadWidth<M,N>(this Span<M,N,double> src)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-                => ((long)src.Reduce(Math.Max)).ToDeciDigits().Length;
 
 
         [MethodImpl(Inline)]

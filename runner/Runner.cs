@@ -34,8 +34,8 @@ namespace Z0
         }
 
 
-        void RunTests()
-            => App.Run();
+        // void RunTests()
+        //     => App.Run();
 
         void RunBench()
             => BenchRunner.Run();
@@ -46,15 +46,7 @@ namespace Z0
             try
             {
                 gmath.init();
-                if (kind == RunKind.Test)
-                    app.RunTests();
-                else if (kind == RunKind.Bench)
-                    app.RunBench();
-                else
-                {
-                    app.RunTests();
-                    app.RunBench();
-                }
+                app.RunBench();
 
             }
             catch (Exception e)

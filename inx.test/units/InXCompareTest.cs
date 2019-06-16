@@ -17,47 +17,47 @@ namespace Z0.Test
         Duration Eq128<T>(int blocks)
             where T : struct
         {
-            TypeStepStart<T>();
+            TypeCaseStart<T>();
             var src = Randomizer.Span128<T>(blocks); 
             var sw = stopwatch();
             for(var block = 0; block< src.BlockCount; block++)
                 Claim.@true(ginx.eq(src.ToVec128(block) , src.ToVec128(block)));
-            TypeStepOk<T>();
+            TypeCaseEnd<T>();
             return snapshot(sw);
         }
         
         Duration Eq256<T>(int blocks)
             where T : struct
         {
-            TypeStepStart<T>();
+            TypeCaseStart<T>();
             var src = Randomizer.Span256<T>(blocks); 
             var sw = stopwatch();
             for(var block = 0; block< src.BlockCount; block++)
                 Claim.@true(ginx.eq(src.ToVec256(block) , src.ToVec256(block)));
-            TypeStepOk<T>();
+            TypeCaseEnd<T>();
             return snapshot(sw);
         }
 
         public void Gt128<T>()
             where T : struct
         {
-            TypeStepStart<T>();
+            TypeCaseStart<T>();
             var v1 = Randomizer.Vec128<T>();                
             var v2 = v1.Inc();
             var cmp = v2.Gt(v1);
             Claim.@true(cmp);                    
-            TypeStepOk<T>();
+            TypeCaseEnd<T>();
         }
 
         public void Gt256<T>()
             where T : struct
         {
-            TypeStepStart<T>();
+            TypeCaseStart<T>();
             var v1 = Randomizer.Vec256<T>();                
             var v2 = v1.Inc();
             var cmp = v2.Gt(v1);
             Claim.@true(cmp);                    
-            TypeStepOk<T>();
+            TypeCaseEnd<T>();
         }
 
         public void Gt()

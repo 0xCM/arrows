@@ -101,9 +101,10 @@ namespace Z0.Test
 
         }
 
-        void TestUniformRange<T>(Interval<T> domain, int count)
+        void UniformRange<T>(Interval<T> domain, int count)
             where T : struct
         {            
+            TypeCaseStart<T>();
             var sw = stopwatch();
             var samples = Randomizer.UniformStream(domain).TakeArray(count);
             var time = snapshot(sw);
@@ -112,58 +113,43 @@ namespace Z0.Test
             var min = gmath.min<T>(samples);
             var max = gmath.max<T>(samples);
 
-            inform($"{typeof(T).Name} {domain}: min = {min} | max = {max} | avg = {avg}, time = {time.Ms} ms");
+            Claim.@true(gmath.between(max, domain.Left, domain.Right));
+            Claim.@true(gmath.between(min, domain.Left, domain.Right));
 
-            Claim.@true(gmath.gteq(min, domain.Left));
-
-            Claim.@true(gmath.lt(min, domain.Right));
+            TypeCaseEnd<T>(appMsg($"{domain}: min = {min} | max = {max} | avg = {avg}, time = {time.Ms} ms"));
         }
 
-        void TestUniformUnbounded<T>(int count)
+        void UniformBounded<T>(int count)
             where T : struct
         {
+            TypeCaseStart<T>();
             var sw = stopwatch();
             var samples = Randomizer.UniformStream<T>().TakeArray(count);
             var time = snapshot(sw);
-
             var min = gmath.min<T>(samples);
             var max = gmath.max<T>(samples);
             var avg = gmath.avg<T>(samples);
-            inform($"{typeof(T).Name}: min = {min} | max = {max} | avg = {avg}, time = {time.Ms} ms");
+            TypeCaseEnd<T>(appMsg($"min = {min} | max = {max} | avg = {avg}, time = {time.Ms} ms"));
         }
 
         public void TestUniformRange()
         {
             var count = Pow2.T16;
-            TestUniformRange(leftclosed<sbyte>(-50, 50), count);
-            TestUniformRange(leftclosed<byte>(50, 200), count);
-            TestUniformRange(leftclosed<double>(-250, 750), count);
-            TestUniformRange(leftclosed<double>(-500, 500), count);
-
-
-            var domain = leftclosed<double>(-1000, 2000);
-            var samples = Randomizer.UniformStream(domain).Take(Pow2.T17).ToArray();
-            var bins = DefineBins(domain, 25);
-            var sw = stopwatch();
-            Distribute(samples, bins);
-            print($"{samples.Length} samples categorized in {snapshot(sw).Ms} ms");
-            bins.ForEach(bin => print($"{bin}"));
-        
+            UniformRange(leftclosed<sbyte>(-50, 50), count);
+            UniformRange(leftclosed<byte>(50, 200), count);
+            UniformRange(leftclosed<double>(-250, 750), count);
+            UniformRange(leftclosed<double>(-500, 500), count);        
         }
 
         public void TestUniform()
         {
-            var count = Pow2.T22;
-            TestUniformUnbounded<byte>(count);
-            TestUniformUnbounded<sbyte>(count);
-            TestUniformUnbounded<ushort>(count);
-            TestUniformUnbounded<short>(count);
-            TestUniformUnbounded<int>(count);
-            TestUniformUnbounded<uint>(count);
-            // var domain = leftclosed(-(Int32.MaxValue >> 1),Int32.MaxValue >> 1);
-            // TestUniformRange<int>(domain,count);
-            // TestUniformRange<int>(domain,count);
-            // TestUniformRange<int>(domain,count);
+            var count = Pow2.T16;
+            UniformBounded<byte>(count);
+            UniformBounded<sbyte>(count);
+            UniformBounded<ushort>(count);
+            UniformBounded<short>(count);
+            UniformBounded<int>(count);
+            UniformBounded<uint>(count);
         }
     
 
@@ -178,10 +164,10 @@ namespace Z0.Test
         {
             var sw = stopwatch(false);
             sw.Start();
-            var samples = BernoulliSpec.Define(alpha).Distribution<long>().Sample(Randomizer).Take(count);
+            var samples = BernoulliSpec.Define(alpha).Distribution<long>(Randomizer).Sample().Take(count);
             var avg = samples.Average();
             sw.Stop();
-            print($"Samples = {count} | Alpha = {alpha.Round(4)} | Average = {avg.Round(4)} | Time = {snapshot(sw).Ms} ms");
+            //print($"Samples = {count} | Alpha = {alpha.Round(4)} | Average = {avg.Round(4)} | Time = {snapshot(sw).Ms} ms");
 
         }
 
@@ -195,8 +181,6 @@ namespace Z0.Test
             }
 
         }
-
-
 
         void TestBits()
         {
@@ -218,9 +202,6 @@ namespace Z0.Test
 
         }
 
-        [MethodImpl(Inline)]
-        static bool between(byte test, byte min, byte max)
-            => test >= min && test < max;
 
         void TestBytes()
         {

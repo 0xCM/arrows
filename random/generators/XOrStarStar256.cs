@@ -85,7 +85,7 @@ namespace Z0
                         s2 ^= state[2];
                         s3 ^= state[3];
                     }
-                    NextInteger();	
+                    NextInt();	
                 }
                 
             state[0] = s0;
@@ -95,7 +95,7 @@ namespace Z0
         }          
 
         [MethodImpl(Inline)]
-        public ulong NextInteger()
+        public ulong NextInt()
         {
             var next = rotl(state[1] * 5, 7) * 9;
             var t = state[1] << 17;
@@ -114,7 +114,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public double NextDouble()
-            => ((double)NextInteger()/(double)ulong.MaxValue);
+            => ((double)NextInt()/(double)ulong.MaxValue);
  
     }
 }

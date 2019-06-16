@@ -21,27 +21,27 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return gtI8(lhs,rhs);
+                return int8(lhs) > int8(rhs);
             else if(typeof(T) == typeof(byte))
-                return gtU8(lhs, rhs);
+                return uint8(lhs) > uint8(rhs);
             else if(typeof(T) == typeof(short))
-                return gtI16(lhs, rhs);
+                return int16(lhs) > int16(rhs);
             else if(typeof(T) == typeof(ushort))
-                return gtU16(lhs,rhs);
+                return uint16(lhs) > uint16(rhs);
             else if(typeof(T) == typeof(int))
-                return gtI32(lhs, rhs);
+                return int32(lhs) > int32(rhs);
             else if(typeof(T) == typeof(uint))
-                return gtU32(lhs, rhs);
+                return uint32(lhs) > uint32(rhs);
             else if(typeof(T) == typeof(long))
-                return gtI64(lhs,rhs);
+                return int64(lhs) > int64(rhs);
             else if(typeof(T) == typeof(ulong))
-                return gtU64(lhs,rhs);
+                return uint64(lhs) > uint64(rhs);
             else if(typeof(T) == typeof(float))
-                return gtF32(lhs, rhs);
+                return float32(lhs) > float32(rhs);
             else if(typeof(T) == typeof(double))
-                return gtF64(lhs,rhs);
+                return float64(lhs) > float64(rhs);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -76,46 +76,6 @@ namespace Z0
         public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
                 => gt(lhs,rhs,span<bool>(length(lhs,rhs)));
-
-        [MethodImpl(Inline)]
-        static bool gtI8<T>(T lhs, T rhs)
-            => int8(lhs) > int8(rhs);
-
-        [MethodImpl(Inline)]
-        static bool gtU8<T>(T lhs, T rhs)
-            => uint8(lhs) > uint8(rhs);
-
-        [MethodImpl(Inline)]
-        static bool gtI16<T>(T lhs, T rhs)
-            => int16(lhs) > int16(rhs);
-
-        [MethodImpl(Inline)]
-        static bool gtU16<T>(T lhs, T rhs)
-            => uint16(lhs) > uint16(rhs);
-
-        [MethodImpl(Inline)]
-        static bool gtI32<T>(T lhs, T rhs)
-            => int32(lhs) > int32(rhs);
-        
-        [MethodImpl(Inline)]
-        static bool gtU32<T>(T lhs, T rhs)
-            => uint32(lhs) > uint32(rhs);
-
-        [MethodImpl(Inline)]
-        static bool gtI64<T>(T lhs, T rhs)
-            => int64(lhs) > int64(rhs);
-
-        [MethodImpl(Inline)]
-        static bool gtU64<T>(T lhs, T rhs)
-            => uint64(lhs) > uint64(rhs);
-
-        [MethodImpl(Inline)]
-        static bool gtF32<T>(T lhs, T rhs)
-            => float32(lhs) > float32(rhs);
-
-        [MethodImpl(Inline)]
-        static bool gtF64<T>(T lhs, T rhs)
-            => float64(lhs) > float64(rhs);
 
     }
 
