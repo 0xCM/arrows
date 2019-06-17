@@ -18,7 +18,7 @@ namespace Z0
             dst = new Bit[Pow2.T03];
             var last = Pow2.T03 - 1;
             for(var i = 0; i <= last; i++)
-                tbit(in src, in i, out dst[last - i]);            
+                test(in src, in i, out dst[last - i]);            
             return dst; 
         }
 
@@ -27,7 +27,7 @@ namespace Z0
             dst = new Bit[Pow2.T03];
             var last = Pow2.T03 - 1;
             for(var i=0; i <= last; i++)
-                tbit(in src, in i, out dst[last - i]);
+                test(in src, in i, out dst[last - i]);
             return dst; 
         }
 
@@ -36,7 +36,7 @@ namespace Z0
             dst = new Bit[Pow2.T04];
             var last = Pow2.T04 - 1;
             for(var i=0; i <= last; i++)
-                tbit(in src, in i, out dst[last - i]);
+                test(in src, in i, out dst[last - i]);
             return dst; 
         }
 
@@ -45,7 +45,7 @@ namespace Z0
             dst = new Bit[Pow2.T04];
             var last = Pow2.T04 - 1;
             for(var i=0; i <= last; i++)
-                tbit(in src, in i, out dst[last - i]);
+                test(in src, in i, out dst[last - i]);
             return dst; 
         }
 
@@ -54,7 +54,7 @@ namespace Z0
             dst = new Bit[Pow2.T05];
             var last = Pow2.T05 - 1;
             for(var i=0; i <= last; i++)
-                tbit(in src, in i, out dst[last - i]);
+                test(in src, in i, out dst[last - i]);
             return dst; 
         }
 
@@ -63,7 +63,7 @@ namespace Z0
             dst = new Bit[Pow2.T05];
             var last = Pow2.T05 - 1;
             for(var i=0; i <= last; i++)
-                tbit(in src, in i, out dst[last - i]);
+                test(in src, in i, out dst[last - i]);
             return dst; 
         }
 
@@ -72,7 +72,7 @@ namespace Z0
             dst = new Bit[Pow2.T06];
             var last = Pow2.T06 - 1;
             for(var i=0; i <= last; i++)
-                tbit(in src, in i, out dst[last - i]);
+                test(in src, in i, out dst[last - i]);
             return dst; 
         }        
 
@@ -81,7 +81,7 @@ namespace Z0
             dst = new Bit[Pow2.T06];
             var last = Pow2.T06 - 1;
             for(var i=0; i <= last; i++)
-                tbit(src, in i, out dst[last - i]);
+                test(src, in i, out dst[last - i]);
             return dst; 
         }
  

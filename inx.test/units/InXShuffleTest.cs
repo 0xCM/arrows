@@ -44,9 +44,6 @@ namespace Z0.Test
             var bsMask = mask.ToBlockedBitString();
             var bsSrc = src.ToBlockedBitString();
             var bsDst = dst.ToBlockedBitString();
-            Trace($"//mask = {bsMask}");
-            Trace($"//src =  {bsSrc}");
-            Trace($"//dst =  {bsDst}");
 
 
         }

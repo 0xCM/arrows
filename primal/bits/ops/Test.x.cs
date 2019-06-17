@@ -89,35 +89,35 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref Bit Test(this in sbyte src, in int pos, out Bit dst)
-             => ref tbit(src, pos, out dst);            
+             => ref test(src, pos, out dst);            
 
         [MethodImpl(Inline)]
         public static ref Bit Test(this in byte src, in int pos, out Bit dst)
-             => ref tbit(src, pos, out dst);            
+             => ref test(src, pos, out dst);            
 
         [MethodImpl(Inline)]
         public static ref Bit Test(this in short src, in int pos, out Bit dst)
-             => ref tbit(src, pos, out dst);            
+             => ref test(src, pos, out dst);            
 
         [MethodImpl(Inline)]
         public static ref Bit Test(this in ushort src, in int pos, out Bit dst)
-             => ref tbit(src, pos, out dst);            
+             => ref test(src, pos, out dst);            
 
         [MethodImpl(Inline)]
         public static ref Bit Test(this in int src, in int pos, out Bit dst)
-             => ref tbit(src, pos, out dst);            
+             => ref test(src, pos, out dst);            
 
         [MethodImpl(Inline)]
         public static ref Bit Test(this in uint src, in int pos, out Bit dst)
-             => ref tbit(src, pos, out dst);            
+             => ref test(src, pos, out dst);            
 
         [MethodImpl(Inline)]
         public static ref Bit Test(this in long src, in int pos, out Bit dst)
-             => ref tbit(src, pos, out dst);            
+             => ref test(src, pos, out dst);            
         
         [MethodImpl(Inline)]
         public static ref Bit Test(this in ulong src, in int pos, out Bit dst)
-             => ref tbit(src, pos, out dst);    
+             => ref test(src, pos, out dst);    
     }
 
 }

@@ -120,8 +120,8 @@ namespace Z0
             get => lo(data);    
         }
 
-        [MethodImpl(Inline)]
-        public string BitString()
+         [MethodImpl(Inline)]
+        public BitString BitString()
             => data.ToBitString();
 
         [MethodImpl(Inline)]
@@ -142,7 +142,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public string Format()
-            => BitString();
+            => BitString().ToString();
 
         [MethodImpl(Inline)]
         public bool Eq(in BitVectorU32 rhs)

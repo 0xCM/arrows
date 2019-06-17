@@ -18,6 +18,7 @@ namespace Z0
 
     public static class gbits
     {
+        const string BitSpecifier = "0b";
 
         [MethodImpl(Inline)]
         public static T shiftr<T>(T lhs, int rhs)
@@ -330,9 +331,7 @@ namespace Z0
             else
                 throw unsupported(PrimalKinds.kind<T>());
             return ref lhs;
-
         }
-
 
         [MethodImpl(Inline)]
         public static T shiftl<T>(in T lhs, in uint rhs)
@@ -368,7 +367,6 @@ namespace Z0
                 throw unsupported<T>();
         }
 
-
         [MethodImpl(Inline)]
         public static bool test<T>(in T src, in int pos)
             where T : struct
@@ -393,30 +391,6 @@ namespace Z0
                  return Bits.test(in AsIn.float32(asRef(in src)), pos);
             else if(typeof(T) == typeof(double))
                  return Bits.test(in AsIn.float64(asRef(in src)), pos);
-            else
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static T parse<T>(string bitstring, int offset = 0)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return generic<T>(Bits.parse(bitstring, offset, out sbyte _));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.parse(bitstring, offset, out byte _));
-            else if(typeof(T) == typeof(short))
-                return generic<T>(Bits.parse(bitstring, offset, out short _));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.parse(bitstring, offset, out ushort _));
-            else if(typeof(T) == typeof(int))
-                return generic<T>(Bits.parse(bitstring, offset, out int _));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.parse(bitstring, offset, out uint _));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(Bits.parse(bitstring, offset, out long _));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.parse(bitstring, offset, out ulong _));
             else
                 throw unsupported<T>();
         }
@@ -457,17 +431,42 @@ namespace Z0
             var dst = new char[count];
             var last = count - 1;
             for(var i=0; i <= last; i++)
-                dst[last - i] = gbits.test(in src,i) ? '1' : '0';
+                dst[last - i] = gbits.test(in src,i) 
+                              ? AsciDigits.A1 
+                              : AsciDigits.A0;
             
             var bsRaw = new string(dst);
             if(!tlz && ! pfs)
                 return bsRaw;
                 
-            bsRaw = tlz ? bsRaw.TrimStart('0') : bsRaw;
-            bsRaw = pfs ? "0b" + bsRaw : bsRaw;
+            bsRaw = tlz ? bsRaw.TrimStart(AsciDigits.A0) : bsRaw;
+            bsRaw = pfs ? BitSpecifier + bsRaw : bsRaw;
             return bsRaw;            
         }
 
+        [MethodImpl(Inline)]
+        public static T parse<T>(string bitstring, int offset = 0)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(Bits.parse(bitstring, offset, out sbyte _));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(Bits.parse(bitstring, offset, out byte _));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(Bits.parse(bitstring, offset, out short _));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Bits.parse(bitstring, offset, out ushort _));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(Bits.parse(bitstring, offset, out int _));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(Bits.parse(bitstring, offset, out uint _));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(Bits.parse(bitstring, offset, out long _));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Bits.parse(bitstring, offset, out ulong _));
+            else
+                throw unsupported<T>();
+        }
 
         [MethodImpl(Inline)]
         public static ref T enable<T>(ref T src, in int pos)

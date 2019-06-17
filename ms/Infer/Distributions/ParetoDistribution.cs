@@ -179,6 +179,9 @@ namespace MsInfer.Distributions
             return Math.Pow(Rand.Double(), -1 / Shape) * LowerBound;
         }
 
+        public double Sample(IRandomSource random)
+            => Math.Pow(random.NextDouble(), -1.0/Shape)*LowerBound;
+            
         public double Sample(double result)
         {
             return Sample();

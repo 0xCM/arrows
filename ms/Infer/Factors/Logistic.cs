@@ -576,7 +576,7 @@ namespace MsInfer.Factors
 #endif
 
         /// <include file='FactorDocs.xml' path='factor_docs/message_op_class[@name="LogisticOp_SJ99"]/message_doc[@name="XAverageLogarithm(Beta, Gaussian, Gaussian, double)"]/*'/>
-        public static Gaussian XAverageLogarithm([SkipIfUniform] Beta logistic, /*[Proper, SkipIfUniform]*/ Gaussian x, Gaussian to_x, double a)
+        public static Gaussian XAverageLogarithm([SkipIfUniform] Beta logistic, Gaussian x, Gaussian to_x, double a, IRandomSource random = null)
         {
             if (logistic.IsPointMass)
                 return LogisticOp.XAverageLogarithm(logistic.Point);
@@ -608,7 +608,11 @@ namespace MsInfer.Factors
             //double precision = 1/vf;
             //double meanTimesPrecision = mf*precision;
             Gaussian result = Gaussian.FromNatural(scale * meanTimesPrecision + shift, scale * precision);
-            double step = (LogisticOp_SJ99.global_step == 0.0) ? 1.0 : (Rand.Double() * LogisticOp_SJ99.global_step);
+            double step 
+                = (LogisticOp_SJ99.global_step == 0.0) 
+                ? 1.0 
+                : (Rand.Double(random) * LogisticOp_SJ99.global_step);
+                
             // random damping helps convergence, especially with parallel updates
             if (false && !x.IsPointMass)
             {

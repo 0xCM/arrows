@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Collections.Concurrent;
@@ -759,5 +760,8 @@ partial class zfunc
         => string.Join(delimiter, values);
 
 
+    [MethodImpl(Inline)]
+    public static StringBuilder sbuild(string s0 = null)
+        => s0 != null ? new StringBuilder(s0) : new StringBuilder();
 
 }

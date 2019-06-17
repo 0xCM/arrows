@@ -13,7 +13,7 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Specifies a UOM for bits
+    /// Specifies a memory size UOM in bits
     /// </summary>
     public readonly struct BitSize
     {
@@ -97,6 +97,11 @@ namespace Z0
             => new BitSize(src);
 
         [MethodImpl(Inline)]
+        public static implicit operator BitSize(ByteSize src)
+            => src.Bytes * 8;
+
+
+        [MethodImpl(Inline)]
         public BitSize(ulong Bits)
             => this.Bits = Bits;
 
@@ -111,12 +116,12 @@ namespace Z0
         public override string ToString()
             => Bits.ToString();
 
+        public bool Equals(BitSize rhs)
+            => Bits == rhs.Bits;
+
         public override int GetHashCode()
             => Bits.GetHashCode();
 
-        public bool Equals(BitSize rhs)
-            => Bits == rhs.Bits;
-    
         public override bool Equals(object obj)
             => obj is BitSize ? Equals((BitSize)obj) : false;
     }

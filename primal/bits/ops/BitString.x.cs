@@ -21,7 +21,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The value for which a bitstring will be produced</param>
         [MethodImpl(Inline)]
-        public static string ToBitString(this in sbyte src, bool tlz = false, bool pfs = false)
+        public static BitString ToBitString(this in sbyte src, bool tlz = false, bool pfs = false)
             => gbits.bitstring(src,tlz,pfs);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The value for which a bitstring will be produced</param>
         [MethodImpl(Inline)]
-        public static string ToBitString(this in byte src, bool tlz = false, bool pfs = false)
+        public static BitString ToBitString(this in byte src, bool tlz = false, bool pfs = false)
             => gbits.bitstring(src,tlz,pfs);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The value for which a bitstring will be produced</param>
         [MethodImpl(Inline)]
-        public static string ToBitString(this in short src, bool tlz = false, bool pfs = false)
+        public static BitString ToBitString(this in short src, bool tlz = false, bool pfs = false)
             => gbits.bitstring(src,tlz,pfs);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The value for which a bitstring will be produced</param>
         [MethodImpl(Inline)]
-        public static string ToBitString(this in ushort src, bool tlz = false, bool pfs = false)
+        public static BitString ToBitString(this in ushort src, bool tlz = false, bool pfs = false)
             => gbits.bitstring(src,tlz,pfs);
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The value for which a bitstring will be produced</param>
         [MethodImpl(Inline)]
-        public static string ToBitString(this in int src, bool tlz = false, bool pfs = false)
+        public static BitString ToBitString(this in int src, bool tlz = false, bool pfs = false)
             => gbits.bitstring(src,tlz,pfs);
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The value for which a bitstring will be produced</param>
         [MethodImpl(Inline)]
-        public static string ToBitString(this in uint src, bool tlz = false, bool pfs = false)
+        public static BitString ToBitString(this in uint src, bool tlz = false, bool pfs = false)
             => gbits.bitstring(src,tlz,pfs);
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The value for which a bitstring will be produced</param>
         [MethodImpl(Inline)]
-        public static string ToBitString(this in long src, bool tlz = false, bool pfs = false)
+        public static BitString ToBitString(this in long src, bool tlz = false, bool pfs = false)
             => gbits.bitstring(src, tlz, pfs);
 
         /// <summary>
@@ -93,13 +93,13 @@ namespace Z0
         /// <param name="tlz">Specifies whether to trim leading zeros from the representation</param>
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static string ToBitString(this in ulong src, bool tlz = false, bool pfs = false)
+        public static BitString ToBitString(this in ulong src, bool tlz = false, bool pfs = false)
             => gbits.bitstring(src, tlz, pfs);
 
 
 
         [MethodImpl(Inline)]        
-        public static string ToBitString(this Span<byte> src)
+        public static BitString ToBitString(this Span<byte> src)
         {
             var dst = span<char>(src.Length);
             for(var i = 0; i<dst.Length; i++)

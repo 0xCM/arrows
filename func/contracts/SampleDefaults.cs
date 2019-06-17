@@ -5,34 +5,20 @@
 namespace Z0
 {
     using System;
+    using System.Numerics;
     using System.Collections.Generic;
+    using System.Linq;
 
-
-    public interface IKinded<K>
-        where K : Enum
+    public interface ISampleDefaults
     {
-        K Kind {get;}
-    }
+        int SampleSize {get;}
 
-
-    public interface IPrimalInfo : IKinded<PrimalKind>
-    {
-        
-        bool Signed {get;}
-
-        int Size {get;}
-        
     }
     
-    public interface IPrimalInfo<T> : IPrimalInfo
+    public interface ISampleDefaults<T> : ISampleDefaults
         where T : struct
     {
-        T MinVal {get;}
-
-        T MaxVal {get;}
-    }   
-
-
-
+        Interval<T> SampleDomain {get;}
+    }
 
 }

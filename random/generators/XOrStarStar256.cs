@@ -116,5 +116,14 @@ namespace Z0
         public double NextDouble()
             => ((double)NextInt()/(double)ulong.MaxValue);
  
+
+        [MethodImpl(Inline)]
+        public ulong NextInt(ulong max) 
+            => this.NextU64(max);
+
+        [MethodImpl(Inline)]
+        public int NextInt(int max)
+            => this.NextI32(max);
+
     }
 }

@@ -747,6 +747,9 @@ namespace MsInfer.Distributions
             }
         }
 
+        public double Sample(IRandomSource random)
+            => IsPointMass ? Point : Rand.Gamma(Shape, random) / Rate;        
+
         /// <summary>
         /// Samples from this Gamma distribution
         /// </summary>
@@ -765,9 +768,9 @@ namespace MsInfer.Distributions
         /// <param name="scale">scale parameter</param>
         /// <returns>The sample value</returns>
         [Stochastic]
-        public static double Sample(double shape, double scale)
+        public static double Sample(double shape, double scale, IRandomSource random = null)
         {
-            return Rand.Gamma(shape) * scale;
+            return Rand.Gamma(shape, random) * scale;
         }
 
         /// <summary>
@@ -778,9 +781,9 @@ namespace MsInfer.Distributions
         /// <returns>The sample value</returns>
         [Stochastic]
         [ParameterNames("sample", "mean", "variance")]
-        public static double SampleFromMeanAndVariance(double mean, double variance)
+        public static double SampleFromMeanAndVariance(double mean, double variance, IRandomSource random = null)
         {
-            return FromMeanAndVariance(mean, variance).Sample();
+            return FromMeanAndVariance(mean, variance).Sample(random);
         }
 
         /// <summary>

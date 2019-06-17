@@ -14,10 +14,10 @@ namespace Z0
     public ref struct Int128
     {
         [FieldOffset(0)]
-        public long x0;
+        public long lo;
 
         [FieldOffset(8)]
-        public long x1;
+        public long hi;
 
        [MethodImpl(Inline)]
         public static Int128 Define(long x0, long x1)
@@ -34,33 +34,33 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool operator ==(Int128 lhs, Int128 rhs)
-            => lhs.x0 == rhs.x0 && lhs.x1 == rhs.x1;
+            => lhs.lo == rhs.lo && lhs.hi == rhs.hi;
 
         [MethodImpl(Inline)]
         public static bool operator !=(Int128 lhs, Int128 rhs)
-            => lhs.x0 != rhs.x0 || lhs.x1 != rhs.x1;
+            => lhs.lo != rhs.lo || lhs.hi != rhs.hi;
 
         [MethodImpl(Inline)]
         public static Int128 operator |(Int128 lhs, Int128 rhs)
-            => Define(lhs.x0 | rhs.x0, lhs.x1 | rhs.x1);
+            => Define(lhs.lo | rhs.lo, lhs.hi | rhs.hi);
 
         [MethodImpl(Inline)]
         public static Int128 operator &(Int128 lhs, Int128 rhs)
-            => Define(lhs.x0 & rhs.x0, lhs.x1 & rhs.x1);
+            => Define(lhs.lo & rhs.lo, lhs.hi & rhs.hi);
 
         [MethodImpl(Inline)]
         public static Int128 operator ^(Int128 lhs, Int128 rhs)
-            => Define(lhs.x0 ^ rhs.x0, lhs.x1 ^ rhs.x1);
+            => Define(lhs.lo ^ rhs.lo, lhs.hi ^ rhs.hi);
 
         [MethodImpl(Inline)]
         public static Int128 operator ~(Int128 src)
-            => Define(~ src.x0, ~ src.x1);
+            => Define(~ src.lo, ~ src.hi);
 
         [MethodImpl(Inline)]
         public Int128(long x0, long x1)
         {
-            this.x0 = 0;
-            this.x1 = 0;
+            this.lo = 0;
+            this.hi = 0;
 
             this.x00 = 0;
             this.x01 = 0;

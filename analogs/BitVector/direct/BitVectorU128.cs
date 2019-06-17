@@ -77,7 +77,7 @@ namespace Z0
             => data.TestBit(pos);
 
         [MethodImpl(Inline)]
-        public string BitString()
+        public BitString BitString()
             => data.ToBitString();
 
         [MethodImpl(Inline)]
@@ -109,8 +109,6 @@ namespace Z0
         public override bool Equals(object obj)
             => throw new NotSupportedException();
 
-        public string Format()
-            => BitString();
         
         public override int GetHashCode()
             => throw new NotSupportedException();

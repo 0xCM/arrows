@@ -439,19 +439,19 @@ namespace MsInfer.Distributions
         /// </summary>
         /// <returns>The sample value</returns>
         [Stochastic]
-        public static double Sample(double mean, double precision, double lowerBound, double upperBound)
+        public static double Sample(double mean, double precision, double lowerBound, double upperBound, IRandomSource random = null)
         {
             if (precision < 0)
                 throw new ArgumentException("precision < 0 (" + precision + ")");
             if (precision == 0)
-                return Rand.UniformBetween(lowerBound, upperBound);
+                return Rand.UniformBetween(lowerBound, upperBound, random);
             double sqrtPrec = Math.Sqrt(precision);
             double sd = 1.0 / sqrtPrec;
             // x*sd + mean > lowerBound
             // x > (lowerBound - mean)/sd
             double scaledLower = (lowerBound - mean) * sqrtPrec;
             double scaledUpper = (upperBound - mean) * sqrtPrec;
-            return Rand.NormalBetween(scaledLower, scaledUpper) * sd + mean;
+            return Rand.NormalBetween(scaledLower, scaledUpper,random) * sd + mean;
         }
 
         /// <summary>
@@ -470,6 +470,9 @@ namespace MsInfer.Distributions
                 return Sample(Gaussian.GetMean(), Gaussian.Precision, LowerBound, UpperBound);
             }
         }
+
+        public double Sample(IRandomSource random)
+            => IsPointMass ? Point : Sample(Gaussian.GetMean(), Gaussian.Precision, LowerBound, UpperBound, random);
 
         /// <summary>
         /// Sample from the distribution

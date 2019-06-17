@@ -29,9 +29,9 @@ namespace Z0
           public static ref Int128 enable(ref Int128 src, int pos)
           {
                if(pos < 64)
-                    Bits.enable(ref src.x0, pos);
+                    Bits.enable(ref src.lo, pos);
                else
-                    Bits.enable(ref src.x1, pos);
+                    Bits.enable(ref src.hi, pos);
                return ref src;
           }
 
@@ -49,9 +49,9 @@ namespace Z0
           public static ref Int128 disable(this ref Int128 src, int pos)
           {
                if(pos < 64)
-                    Bits.disable(ref src.x0, pos);
+                    Bits.disable(ref src.lo, pos);
                else
-                    Bits.disable(ref src.x1, pos);
+                    Bits.disable(ref src.hi, pos);
                return ref src;               
           }
 
@@ -61,7 +61,7 @@ namespace Z0
 
           [MethodImpl(Inline)]
           public static bool test(in Int128 src, int pos)
-               => pos < 64 ? Bits.test(src.x0, pos) : Bits.test(src.x1, pos) ;
+               => pos < 64 ? Bits.test(src.lo, pos) : Bits.test(src.hi, pos) ;
 
           [MethodImpl(NotInline)]
           public static Span<Bit> bits(in UInt128 src)
@@ -113,7 +113,7 @@ namespace Z0
 
           [MethodImpl(Inline)]
           public static int pop(in Int128 src)
-               => (int)(Bits.pop(src.x0) + Bits.pop(src.x1));
+               => (int)(Bits.pop(src.lo) + Bits.pop(src.hi));
 
           [MethodImpl(Inline)]
           public static UInt128 pack(in Span<Bit> src, out UInt128 dst)

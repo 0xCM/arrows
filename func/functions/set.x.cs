@@ -72,5 +72,15 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool IsNonEmpty<T>(this ISet<T> set)
             => set.Count != 0; 
+        
+        [MethodImpl(Inline)]
+        public static Span<T> ToSpan<T>(this ISet<T> src)
+        {
+            var dst = span<T>(src.Count);
+            var i = 0;
+            foreach(var item in src)
+                dst[i++] = item;
+            return dst;
+        }
     }
 }

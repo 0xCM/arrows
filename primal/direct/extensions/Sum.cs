@@ -17,84 +17,34 @@ namespace Z0
     partial class MathX
     {
         public static byte Sum(this ReadOnlySpan<byte> src)
-        {
-            byte dst = 0;
-            for(var i=0; i<src.Length; i++)
-                dst += src[i];
-            return dst;
-        }
+            => math.sum(src);
 
         public static sbyte Sum(this ReadOnlySpan<sbyte> src)
-        {
-            sbyte dst = 0;
-            for(var i=0; i<src.Length; i++)
-                dst += src[i];
-            return dst;
-        }
+            => math.sum(src);
 
         public static short Sum(this ReadOnlySpan<short> src)
-        {
-            short dst = 0;
-            for(var i=0; i<src.Length; i++)
-                dst += src[i];
-            return dst;
-        }
+            => math.sum(src);
 
         public static ushort Sum(this ReadOnlySpan<ushort> src)
-        {
-            ushort dst = 0;
-            for(var i=0; i<src.Length; i++)
-                dst += src[i];
-            return dst;
-        }
+            => math.sum(src);
 
         public static int Sum(this ReadOnlySpan<int> src)
-        {
-            int dst = 0;
-            for(var i=0; i<src.Length; i++)
-                dst += src[i];
-            return dst;
-        }
+            => math.sum(src);
 
         public static uint Sum(this ReadOnlySpan<uint> src)
-        {
-            uint dst = 0;
-            for(var i=0; i<src.Length; i++)
-                dst += src[i];
-            return dst;
-        }
+            => math.sum(src);
 
         public static long Sum(this ReadOnlySpan<long> src)
-        {
-            long dst = 0;
-            for(var i=0; i<src.Length; i++)
-                dst += src[i];
-            return dst;
-        }
+            => math.sum(src);
 
         public static ulong Sum(this ReadOnlySpan<ulong> src)
-        {
-            ulong dst = 0;
-            for(var i=0; i<src.Length; i++)
-                dst += src[i];
-            return dst;
-        }
+            => math.sum(src);
 
         public static float Sum(this ReadOnlySpan<float> src)
-        {
-            float dst = 0;
-            for(var i=0; i<src.Length; i++)
-                dst += src[i];
-            return dst;
-        }
+            => math.sum(src);
 
         public static double Sum(this ReadOnlySpan<double> src)
-        {
-            double dst = 0;
-            for(var i=0; i<src.Length; i++)
-                dst += src[i];
-            return dst;
-        }
+            => math.sum(src);
 
         [MethodImpl(Inline)]
         public static byte Sum(this Span<byte> src)
@@ -104,7 +54,6 @@ namespace Z0
         public static sbyte Sum(this Span<sbyte> src)
             => src.ReadOnly().Sum();
     
-
         [MethodImpl(Inline)]
         public static short Sum(this Span<short> src)
             => src.ReadOnly().Sum();
@@ -136,7 +85,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static double Sum(this Span<double> src)
             => src.ReadOnly().Sum();
-
     }
 
 }

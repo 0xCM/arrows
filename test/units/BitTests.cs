@@ -216,7 +216,7 @@ namespace Z0.Test
             {
                  var x = BitVectorU32.Define(BitConverter.ToUInt32(src.Slice(4*i)));
                  var y = BitVectorU32.Define(packed[i]);
-                Claim.eq(x, y, AppMsg.Error($"{x.Format()} != {y.Format()}"));
+                Claim.eq(x, y, AppMsg.Error($"{x.BitString()} != {y.BitString()}"));
             }
         
         }
@@ -234,7 +234,7 @@ namespace Z0.Test
             {
                  var x = BitVectorU64.Define(BitConverter.ToUInt64(src.Slice(8*i)));
                  var y = BitVectorU64.Define(packed[i]);
-                Claim.eq(x, y, AppMsg.Error($"{x.Format()} != {y.Format()}"));
+                Claim.eq(x, y, AppMsg.Error($"{x.BitString()} != {y.BitString()}"));
             }
         
         }
@@ -251,7 +251,7 @@ namespace Z0.Test
             var y = gbits.parse<ulong>(xbs);
             Claim.eq(x, y);
 
-            var z = gbits.parse<ulong>(ybs);
+            var z = gbits.parse<ulong>(ybs.ToString());
             Claim.eq(x, z);
 
             var byx = BitConverter.GetBytes(x).ToSpan();

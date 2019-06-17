@@ -53,6 +53,10 @@ namespace Z0
             => src.Bytes;
 
         [MethodImpl(Inline)]
+        public static implicit operator ByteSize(BitSize src)
+            => src.Bits/8;
+
+        [MethodImpl(Inline)]
         public static implicit operator ByteSize(int src)
             => new ByteSize(src);
 

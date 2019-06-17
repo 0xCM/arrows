@@ -237,6 +237,8 @@ namespace MsInfer.Distributions
             return Rand.Binomial(TrialCount, ProbSuccess);
         }
 
+        
+
         public int Sample(int result)
         {
             return Sample();

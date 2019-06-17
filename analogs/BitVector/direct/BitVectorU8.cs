@@ -131,8 +131,8 @@ namespace Z0
         public bool TestBit(in int pos)
             => test(in data, in pos);
 
-        [MethodImpl(Inline)]
-        public string BitString()
+         [MethodImpl(Inline)]
+        public BitString BitString()
             => data.ToBitString();
 
         [MethodImpl(Inline)]
@@ -159,9 +159,6 @@ namespace Z0
         public bool NEq(in BitVectorU8 rhs)
             => data != rhs.data;
 
-        [MethodImpl(Inline)]
-        public string Format()
-            => BitString();
  
         public override bool Equals(object obj)
             => throw new NotSupportedException();

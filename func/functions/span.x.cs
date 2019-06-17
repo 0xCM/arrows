@@ -468,5 +468,17 @@ namespace Z0
             where N : ITypeNat, new()
                 => src.Slice((int)start.value);
  
+        [MethodImpl(Inline)]        
+        public static ReadOnlySpan<T> As<S,T>(this ReadOnlySpan<S> src)
+            where S : struct
+            where T : struct
+                => MemoryMarshal.Cast<S,T>(src);                                    
+
+        [MethodImpl(Inline)]        
+        public static Span<T> As<S,T>(this Span<S> src)
+            where S : struct
+            where T : struct
+                => MemoryMarshal.Cast<S,T>(src);                                    
+
     }
 }

@@ -20,14 +20,13 @@ namespace Z0
     {
         readonly T x;
 
-        public static readonly IPrimalInfo<T> NumInfo = PrimalInfo.Get<T>();
+        public static readonly PrimalInfo<T> NumInfo = PrimalInfo.Get<T>();
 
         public static readonly bool Signed = NumInfo.Signed;
 
-        public static readonly int ByteSize = NumInfo.Size;
+        public static readonly ByteSize ByteSize = NumInfo.ByteSize;
 
-        public static readonly int BitSize = NumInfo.Size*8;
-
+        public static readonly BitSize BitSize = NumInfo.BitSize;
 
         public static readonly num<T> Zero = Num.zero<T>();
 

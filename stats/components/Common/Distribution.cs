@@ -40,8 +40,13 @@ namespace Z0
 
         protected IRandomSource Random {get;}
 
-        protected Distribution(IRandomSource random)
-            => Random = random;
+        public S Spec {get;}
+
+        protected Distribution(IRandomSource random, S Spec)
+        {
+            this.Random = random;
+            this.Spec =Spec;
+        }
         
         public abstract IEnumerable<T> Sample();
     }

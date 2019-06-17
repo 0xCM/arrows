@@ -6,12 +6,15 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
- 
+    using static zfunc;
+
     public readonly struct BlockSize
     {
+        [MethodImpl(Inline)]
         public static implicit operator ByteSize(BlockSize src)
             => src.Size;
 
+        [MethodImpl(Inline)]
         public static implicit operator int(BlockSize src)
             => src.Size;
 
@@ -50,6 +53,7 @@ namespace Z0
         /// </summary>
         public static readonly BlockSize BS64 = new BlockSize(64);
 
+        [MethodImpl(Inline)]
         public BlockSize(ByteSize Size)
             => this.Size = Size;
 

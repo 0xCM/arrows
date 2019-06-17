@@ -12,6 +12,11 @@ namespace Z0
 
     using static zfunc;
 
+    /// <summary>
+    /// Defines a relationship between two numbers a and b that specifies how many
+    /// times a contains b
+    /// </summary>
+    /// <remarks>See https://en.wikipedia.org/wiki/Ratio</remarks>
     public readonly struct Ratio<T>
         where T : struct
     {
@@ -19,14 +24,11 @@ namespace Z0
         {
             this.A = a;
             this.B = b;
-            this.Quotient = gmath.div(a,b);
         }
 
         public readonly T A;
 
         public readonly T B;
-
-        public readonly T Quotient;
 
     }
 

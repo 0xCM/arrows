@@ -231,6 +231,9 @@ namespace Z0
             return SequenceEqual(ref asRef(in lhs[0]), ref asRef(in rhs[0]), lhs.Length);
         }
 
+        public static T Quotient<T>(this Ratio<T> src)        
+            where T : struct       
+                => gmath.div(src.A, src.B);
     }
 
 }

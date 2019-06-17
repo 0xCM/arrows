@@ -26,7 +26,7 @@ namespace Z0
         where T : struct
 
     {                                
-        NumberInfo<T> numinfo {get;}
+        PrimalInfo<T> numinfo {get;}
     }
 
     /// <summary>

@@ -101,7 +101,7 @@ namespace Z0
             =>  bytes(in data);
 
         [MethodImpl(Inline)]
-        public string BitString()
+        public BitString BitString()
             => data.ToBitString();
 
         [MethodImpl(Inline)]
@@ -112,9 +112,6 @@ namespace Z0
         public bool Eq(in BitVectorI8 rhs)
             => data == rhs.data;
 
-        [MethodImpl(Inline)]
-        public string Format()
-            => BitString();
 
 
         public override bool Equals(object obj)

@@ -82,7 +82,7 @@ namespace Z0
             => data.TestBit(pos);
 
         [MethodImpl(Inline)]
-        public string BitString()
+        public BitString BitString()
             => data.ToBitString();
 
         [MethodImpl(Inline)]
@@ -100,22 +100,19 @@ namespace Z0
         public BitVectorI64 Hi
         {
             [MethodImpl(Inline)]
-            get => data.x1;        
+            get => data.hi;        
         }
         
         public BitVectorI64 Lo
         {
             [MethodImpl(Inline)]
-            get => data.x0;       
+            get => data.lo;       
         }
 
         [MethodImpl(Inline)]
         public bool Eq(BitVectorI128 rhs)
             => data == rhs.data;
 
-        [MethodImpl(Inline)]
-        public string Format()
-            => BitString();
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

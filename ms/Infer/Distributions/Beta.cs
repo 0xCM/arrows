@@ -849,6 +849,23 @@ namespace MsInfer.Distributions
                 return Rand.Beta(TrueCount, FalseCount);
             }
         }
+
+        public double Sample(IRandomSource random)
+        {
+            if (IsPointMass)
+            {
+                return Point;
+            }
+            else if (!IsProper())
+            {
+                throw new ImproperDistributionException(this);
+            }
+            else
+            {
+                return Rand.Beta(TrueCount, FalseCount, random);
+            }
+        }
+        
 #pragma warning disable 1591
         [Stochastic]
         public double Sample(double result)
@@ -864,10 +881,12 @@ namespace MsInfer.Distributions
         /// <param name="falseCount">False count</param>
         /// <returns>The sample value</returns>
         [Stochastic]
-        public static double Sample(double trueCount, double falseCount)
+        public static double Sample(double trueCount, double falseCount, IRandomSource random = null)
         {
-            return Rand.Beta(trueCount, falseCount);
+            return Rand.Beta(trueCount, falseCount, random);
         }
+
+        
 
         /// <summary>
         /// Static method to sample from a Beta distribution with the specified mean and variance 

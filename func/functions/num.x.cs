@@ -124,7 +124,7 @@ namespace  Z0
         /// Formats an array of bytes as a string of hex characters
         /// </summary>
         /// <param name="bytes">The data to format to format</param>
-        public static string ToHexString(this byte[] bytes, bool tlz = true, bool pfs = true)
+        public static HexString ToHexString(this byte[] bytes, bool tlz = true, bool pfs = true)
             => "0x" + BitConverter.ToString(bytes).Replace("-", String.Empty);
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace  Z0
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
         [MethodImpl(Inline)]
-        public static string ToHexString(this sbyte src, bool zpad = true, bool specifier = true)
+        public static HexString ToHexString(this sbyte src, bool zpad = true, bool specifier = true)
             => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(2, '0'));
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace  Z0
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
         [MethodImpl(Inline)]
-        public static string ToHexString(this byte src, bool zpad = true, bool specifier = true)
+        public static HexString ToHexString(this byte src, bool zpad = true, bool specifier = true)
             => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(2, '0'));
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace  Z0
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
         [MethodImpl(Inline)]
-        public static string ToHexString(this short src, bool zpad = true, bool specifier = true)
+        public static HexString ToHexString(this short src, bool zpad = true, bool specifier = true)
             => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(4, '0'));
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace  Z0
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
         [MethodImpl(Inline)]
-        public static string ToHexString(this ushort src, bool zpad = true, bool specifier = true)
+        public static HexString ToHexString(this ushort src, bool zpad = true, bool specifier = true)
             => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(4, '0'));
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace  Z0
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
         [MethodImpl(Inline)]
-        public static string ToHexString(this int src, bool zpad = true, bool specifier = true)
+        public static HexString ToHexString(this int src, bool zpad = true, bool specifier = true)
             => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(8, '0'));
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace  Z0
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
         [MethodImpl(Inline)]
-        public static string ToHexString(this uint src, bool zpad = true, bool specifier = true)
+        public static HexString ToHexString(this uint src, bool zpad = true, bool specifier = true)
             => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(8, '0'));
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace  Z0
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
         [MethodImpl(Inline)]
-        public static string ToHexString(this long src, bool zpad = true, bool specifier = true)
+        public static HexString ToHexString(this long src, bool zpad = true, bool specifier = true)
             => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x") : src.ToString("x").PadLeft(16, '0'));
 
         /// <summary>
@@ -212,9 +212,8 @@ namespace  Z0
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
         [MethodImpl(Inline)]
-        public static string ToHexString(this ulong src, bool zpad = true, bool specifier = true)
+        public static HexString ToHexString(this ulong src, bool zpad = true, bool specifier = true)
             => (specifier ? "0x" : string.Empty) + (zpad ? src.ToString("x").PadLeft(16, '0') : src.ToString("x"))  ;
-
 
         /// <summary>
         /// Renders a number as a hexadecimal string
@@ -224,7 +223,7 @@ namespace  Z0
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
         [MethodImpl(Inline)]
-        public static string ToHexString(this float src, bool zpad = true, bool specifier = true)
+        public static HexString ToHexString(this float src, bool zpad = true, bool specifier = true)
             => (specifier ? "0x" : string.Empty) + BitConverter.SingleToInt32Bits(src).ToString("x").PadLeft(8, '0');
 
         /// <summary>
@@ -235,7 +234,7 @@ namespace  Z0
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
        [MethodImpl(Inline)]
-        public static string ToHexString(this double src, bool zpad = true, bool specifier = true)
+        public static HexString ToHexString(this double src, bool zpad = true, bool specifier = true)
             => (specifier ? "0x" : string.Empty) +  BitConverter.DoubleToInt64Bits(src).ToString("x").PadLeft(16, '0');
 
         /// <summary>
@@ -245,7 +244,7 @@ namespace  Z0
         /// <param name="zpad">Specifies whether the numeric content of each number should be left-padded 
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
-        public static IEnumerable<string> ToHexStrings(this IEnumerable<byte> src, bool zpad = true, bool specifier = true)
+        public static IEnumerable<HexString> ToHexStrings(this IEnumerable<byte> src, bool zpad = true, bool specifier = true)
             => src.Select(x => x.ToHexString(zpad, specifier));
 
         /// <summary>
@@ -255,7 +254,7 @@ namespace  Z0
         /// <param name="zpad">Specifies whether the numeric content of each number should be left-padded 
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
-        public static IEnumerable<string> ToHexStrings(this IEnumerable<sbyte> src, bool zpad = true, bool specifier = true)
+        public static IEnumerable<HexString> ToHexStrings(this IEnumerable<sbyte> src, bool zpad = true, bool specifier = true)
             => src.Select(x => x.ToHexString(zpad, specifier));
 
         /// <summary>
@@ -265,7 +264,7 @@ namespace  Z0
         /// <param name="zpad">Specifies whether the numeric content of each number should be left-padded 
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
-        public static IEnumerable<string> ToHexStrings(this IEnumerable<short> src, bool zpad = true, bool specifier = true)
+        public static IEnumerable<HexString> ToHexStrings(this IEnumerable<short> src, bool zpad = true, bool specifier = true)
             => src.Select(x => x.ToHexString(zpad, specifier));
 
         /// <summary>
@@ -275,7 +274,7 @@ namespace  Z0
         /// <param name="zpad">Specifies whether the numeric content of each number should be left-padded 
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
-        public static IEnumerable<string> ToHexStrings(this IEnumerable<ushort> src, bool zpad = true, bool specifier = true)
+        public static IEnumerable<HexString> ToHexStrings(this IEnumerable<ushort> src, bool zpad = true, bool specifier = true)
             => src.Select(x => x.ToHexString(zpad, specifier));
 
         /// <summary>
@@ -285,7 +284,7 @@ namespace  Z0
         /// <param name="zpad">Specifies whether the numeric content of each number should be left-padded 
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
-        public static IEnumerable<string> ToHexStrings(this IEnumerable<int> src, bool zpad = true, bool specifier = true)
+        public static IEnumerable<HexString> ToHexStrings(this IEnumerable<int> src, bool zpad = true, bool specifier = true)
             => src.Select(x => x.ToHexString(zpad, specifier));
 
         /// <summary>
@@ -295,7 +294,7 @@ namespace  Z0
         /// <param name="zpad">Specifies whether the numeric content of each number should be left-padded 
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
-        public static IEnumerable<string> ToHexStrings(this IEnumerable<uint> src, bool zpad = true, bool specifier = true)
+        public static IEnumerable<HexString> ToHexStrings(this IEnumerable<uint> src, bool zpad = true, bool specifier = true)
             => src.Select(x => x.ToHexString(zpad, specifier));
 
         /// <summary>
@@ -305,7 +304,7 @@ namespace  Z0
         /// <param name="zpad">Specifies whether the numeric content of each number should be left-padded 
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
-        public static IEnumerable<string> ToHexStrings(this IEnumerable<long> src, bool zpad = true, bool specifier = true)
+        public static IEnumerable<HexString> ToHexStrings(this IEnumerable<long> src, bool zpad = true, bool specifier = true)
             => src.Select(x => x.ToHexString(zpad, specifier));
 
         /// <summary>
@@ -315,7 +314,7 @@ namespace  Z0
         /// <param name="zpad">Specifies whether the numeric content of each number should be left-padded 
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
-        public static IEnumerable<string> ToHexStrings(this IEnumerable<ulong> src, bool zpad = true, bool specifier = true)
+        public static IEnumerable<HexString> ToHexStrings(this IEnumerable<ulong> src, bool zpad = true, bool specifier = true)
             => src.Select(x => x.ToHexString(zpad, specifier));
 
         /// <summary>
@@ -325,7 +324,7 @@ namespace  Z0
         /// <param name="zpad">Specifies whether the numeric content of each number should be left-padded 
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
-        public static IEnumerable<string> ToHexStrings(this IEnumerable<float> src, bool zpad = true, bool specifier = true)
+        public static IEnumerable<HexString> ToHexStrings(this IEnumerable<float> src, bool zpad = true, bool specifier = true)
             => src.Select(x => x.ToHexString(zpad, specifier));
 
         /// <summary>
@@ -335,7 +334,7 @@ namespace  Z0
         /// <param name="zpad">Specifies whether the numeric content of each number should be left-padded 
         /// with zeros commensurate with size of the source number's data type</param>
         /// <param name="specifier">Specifies whether the hex numeric specifier shold prefix the output</param>
-        public static IEnumerable<string> ToHexStrings(this IEnumerable<double> src, bool zpad = true, bool specifier = true)
+        public static IEnumerable<HexString> ToHexStrings(this IEnumerable<double> src, bool zpad = true, bool specifier = true)
             => src.Select(x => x.ToHexString(zpad, specifier));
  
         /// <summary>

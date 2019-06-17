@@ -5,13 +5,10 @@
 namespace Z0
 {
     using System;
-    using System.Text;
     using System.Linq;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
 
     using static zfunc;
-
 
     /// <summary>
     /// Characterizes a Gaussian (normal) distribution
@@ -45,32 +42,6 @@ namespace Z0
         [Symbol(Greek.tau)]
         public double Precision 
              => 1.0/Variance;            
-    }
-
-
-    /// <summary>
-    /// Realizes a Gaussian distribution
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class GaussianDist<T> : Distribution<GaussianSpec,T>
-        where T : struct
-    {    
-        public GaussianDist(IRandomSource random, GaussianSpec spec)
-            : base(random)
-        {
-            this.Spec = spec;
-        }
-
-        public GaussianSpec Spec {get;}
-
-        public override IEnumerable<T> Sample()
-        {
-            while(true)
-            {
-                foreach(var next in Random.Gaussian(Spec.Mean, Spec.StdDev))
-                    yield return convert<double,T>(next, out T x);
-            }                
-        }            
     }
 
 }

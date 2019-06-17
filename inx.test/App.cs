@@ -14,10 +14,6 @@ namespace Z0.Test
     public class App : TestApp<App>
     {            
 
-        protected override void RunTests()
-        {
-
-        }
 
         public static void Main(params string[] args)
             => Run(args);

@@ -463,10 +463,10 @@ namespace MsInfer.Distributions
         /// </summary>
         /// <returns>The sample value</returns>
         [Stochastic]
-        public static double Sample(double mean, double precision)
+        public static double Sample(double mean, double precision, IRandomSource random = null)
         {
             if (precision <= 0) throw new ArgumentException("precision <= 0 (" + precision + ")");
-            return Rand.Normal() / Math.Sqrt(precision) + mean;
+            return Rand.Normal(random) / Math.Sqrt(precision) + mean;
         }
 
         /// <summary>
@@ -485,6 +485,10 @@ namespace MsInfer.Distributions
                 return Sample(MeanTimesPrecision / Precision, Precision);
             }
         }
+
+        
+        public double Sample(IRandomSource random)
+            => IsPointMass ? Point : Sample(MeanTimesPrecision / Precision, Precision, random);
 
         /// <summary>
         /// Samples from this Gaussian distribution. This override is only

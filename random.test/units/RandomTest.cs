@@ -58,7 +58,7 @@ namespace Z0.Test
         {
             var samples = Pow2.T11;
             var domain = closed(10,20);
-            var random = Randomizer.SystemRandom();
+            var random = SysRand.FromSource(Randomizer);
             var dst = span<int>(samples);
             for(var i=0; i<samples; i++)            
             {
@@ -202,57 +202,31 @@ namespace Z0.Test
 
         }
 
-
-        void TestBytes()
+        void Sample512<T>(Interval<T> domain, int count)
+            where T : struct
         {
-            var bytes = RNG.XOrShift1024().SBytes().Take(Pow2.T16);
-            var histo = new Dictionary<sbyte,int>();
-
-            for(var i = 0; i<= Byte.MaxValue; i++)
-                histo[(sbyte)i] = 0;
-
-            foreach(var b in bytes)
-                histo[b] = histo[b] + 1;
-
-            
-            foreach(var k in histo.Keys.OrderBy(x => x))
+            TypeCaseStart<T>();
+            for(var i=0; i<count; i++)
             {
-                var count = histo[k];
-                var pct = ((((double)count)/((double)Pow2.T16))*100.0).Round(4);
-                print($"# {k} = {count} {pct} %");
+                var xSample = Randomizer.M512(domain);
+                for(var partIx=0; partIx < M512.PartCount<T>(); partIx++)
+                {
+                    var xPart = xSample.part<T>(partIx);
+                    Claim.@true(domain.Contains(xPart));
+                }
+
             }
-
-
+            TypeCaseEnd<T>();
+             
         }
 
-        void TestUniformity()
+        public void SampleM512()
         {
-            TestBytes();
-        }
-
-        void AdHocTest()
-        {
-            var rng = RNG.XOrShift1024();
-            var sampleSize = Pow2.T21;
-            var maxVal = 100ul;
-            var sw = stopwatch();
-            var samples = rng.Integers(maxVal).Take(sampleSize).ToArray();
-            print($"Sample Time: {snapshot(sw)}");
-
-            var histo = new Dictionary<ulong,int>();
-            for(ulong i = 0; i< maxVal; i++)
-                histo[i] = 0;
-            
-            foreach(var b in  samples)
-                histo[b] = histo[b] + 1;
-
-            foreach(var k in histo.Keys.OrderBy(x => x))
-            {
-                var count = histo[k];
-                var pct = ((((double)count)/((double)sampleSize))*100.0).Round(4);
-                print($"# {k} = {count} {pct} %");
-            }
-            
+            var count = Pow2.T10;
+            Sample512(closed((byte)10, (byte)50), count);
+            Sample512(closed((sbyte)-50, (sbyte)50), count);
+            Sample512(closed(-250000, 250000), count);
+            Sample512(closed(-250000d, 250000d), count);
 
         }
 

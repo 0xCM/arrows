@@ -15,14 +15,20 @@ namespace Z0
     /// <summary>
     /// Adapter for client code that expects to interface with the System.Random class
     /// </summary>
-    class SysRand : System.Random
+    public class SysRand : System.Random
     {
+        public static System.Random FromSource(IRandomSource rng)
+            => new SysRand(rng);
+
         public SysRand(IRandomSource Source)
         {
             this.Source = Source;
         }
 
         IRandomSource Source {get;}
+
+        Queue<byte> ByteQ {get;}
+            = new Queue<byte>(8);
 
         public override int Next()
             => (int)Source.NextInt((ulong)Int32.MaxValue);
@@ -41,7 +47,7 @@ namespace Z0
 
         public override void NextBytes(byte[] buffer)
         {
-            var src = Source.Bytes().Take(buffer.Length);
+            var src = Bytes().Take(buffer.Length);
             var i = 0;
             var it = src.GetEnumerator();
             while(it.MoveNext())
@@ -50,15 +56,32 @@ namespace Z0
 
         public override void NextBytes(Span<byte> buffer)
         {
-            var src = Source.Bytes().Take(buffer.Length);
+            var src = Bytes().Take(buffer.Length);
             var i = 0;
             var it = src.GetEnumerator();
             while(it.MoveNext())
                 buffer[i++] = it.Current;
-
         }
      
         public override double NextDouble()
             => Source.NextDouble();
+ 
+        IEnumerable<byte> Bytes()
+        {
+            while(true)
+            {
+                if(ByteQ.TryDequeue(out byte b))
+                    yield return b;
+                else
+                {
+                    var bytes = BitConverter.GetBytes(Source.NextInt());
+                    for(var i = 0; i< bytes.Length; i++)
+                        if(i == 0)
+                            yield return bytes[i];
+                        else
+                            ByteQ.Enqueue(bytes[i]);
+                }                
+            }
+        } 
     }
 }

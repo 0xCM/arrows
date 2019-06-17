@@ -5,15 +5,24 @@
 namespace Z0
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.CompilerServices;
+    using System.Collections.Generic;
 
     using static zfunc;
-    using static As;
 
-    public static class RNGx
-    {                
+    /// <summary>
+    /// Realizes a Gaussian distribution
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class GaussianDist<T> : Distribution<GaussianSpec,T>
+        where T : struct
+    {    
+        public GaussianDist(IRandomSource random, GaussianSpec spec)
+            : base(random, spec)
+        {
+
+        }
+
         /// <summary>
         /// Samples a gaussian distribution
         /// </summary>
@@ -21,7 +30,7 @@ namespace Z0
         /// <param name="mean"></param>
         /// <param name="stdDev"></param>
         /// <remarks>See https://en.wikipedia.org/wiki/Marsaglia_polar_method</remarks>
-        public static IEnumerable<double> Gaussian(this IRandomSource rng, double mean, double stdDev) 
+        static IEnumerable<double> Gaussian(IRandomSource rng, double mean, double stdDev) 
         {            
             while(true)
             {
@@ -37,9 +46,16 @@ namespace Z0
                 yield return mean + stdDev * u * x;
            }
         }
-        
-        public static System.Random SystemRandom(this IRandomSource rng)
-            => new SysRand(rng);
 
-    }   
+        public override IEnumerable<T> Sample()
+        {
+            while(true)
+            {
+                foreach(var next in Gaussian(Random, Spec.Mean, Spec.StdDev))
+                    yield return convert<double,T>(next, out T x);
+            }                
+        }            
+    }
+
+
 }

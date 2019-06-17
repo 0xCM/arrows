@@ -22,6 +22,11 @@ namespace Z0
     public readonly struct Interval<T> : IInterval<T>
         where T : struct
     {
+        /// <summary>
+        /// Specifies the canonical unit interval over the underlying primitive
+        /// </summary>
+        /// <typeparam name="T">The primal type</typeparam>
+        public static readonly Interval<T> Unit = new Interval<T>(PrimalInfo.zero<T>(), true, PrimalInfo.one<T>(), true);
         
         [MethodImpl(Inline)]
         public Interval(T left, bool leftclosed, T right, bool rightclosed)

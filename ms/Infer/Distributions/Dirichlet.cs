@@ -1144,16 +1144,29 @@ namespace MsInfer.Distributions
             }
         }
 
+        public Vector Sample(Vector result, IRandomSource random)
+        {
+            if (IsPointMass)
+            {
+                result.SetTo(Point);
+                return result;
+            }
+            else
+            {
+                return Sample(PseudoCount, result, random);
+            }
+        }
+
         /// <summary>
         /// Sample from a Dirichlet with specified pseudo-counts
         /// </summary>
         /// <param name="pseudoCount">The pseudo-count vector</param>
         /// <returns>A new Vector</returns>
         [Stochastic]
-        public static Vector SampleFromPseudoCounts(Vector pseudoCount)
+        public static Vector SampleFromPseudoCounts(Vector pseudoCount, IRandomSource random = null)
         {
             Vector result = Vector.Copy(pseudoCount);
-            return Sample(pseudoCount, result);
+            return Sample(pseudoCount, result, random);
         }
 
         /// <summary>
@@ -1163,9 +1176,9 @@ namespace MsInfer.Distributions
         /// <param name="result">Where to put the result</param>
         /// <returns>result</returns>
         [Stochastic]
-        public static Vector Sample(Vector pseudoCount, Vector result)
+        public static Vector Sample(Vector pseudoCount, Vector result, IRandomSource random = null)
         {
-            return Rand.Dirichlet(pseudoCount, result);
+            return Rand.Dirichlet(pseudoCount, result, random);
         }
 
         /// <summary>

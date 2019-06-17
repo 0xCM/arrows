@@ -11,6 +11,7 @@
     <ProjectReference Include="..\testing\z0.testing.csproj" />
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\stats\z0.stats.csproj" />
+
   </ItemGroup>
 
 </Project>

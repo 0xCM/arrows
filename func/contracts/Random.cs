@@ -2,13 +2,9 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0
+namespace System
 {
-    using System;
-    using System.Numerics;
-    using System.Collections.Generic;
-    using System.Linq;
-
+ 
     /// <summary>
     /// Defines required operations for all RNG's 
     /// </summary>
@@ -17,28 +13,18 @@ namespace Z0
         
         ulong NextInt();
 
+        ulong NextInt(ulong max);
+
+        int NextInt(int max);
+        
         double NextDouble();
 
     }
-
 
     public interface IRandomSource<T> : IRandomSource
         where T : struct
     {
                 
     }
-
-    public interface ISampleDefaults
-    {
-        int SampleSize {get;}
-
-    }
-    
-    public interface ISampleDefaults<T> : ISampleDefaults
-        where T : struct
-    {
-        Interval<T> SampleDomain {get;}
-    }
-
 
 }

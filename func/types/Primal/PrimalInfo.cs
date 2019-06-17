@@ -1,307 +1,363 @@
 //-----------------------------------------------------------------------------
-// CPrimalyright   :  (c) Chris Moore, 2019
+// Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
 namespace Z0
 {
     using System;
+    using System.Numerics;
     using System.Runtime.CompilerServices;
 
     using static zfunc;
 
-    public abstract class PrimalInfo<S> : IPrimalInfo
-        where S : PrimalInfo<S>, new()
+    public interface IPrimalInfoProvider<T>
     {
-        /// <summary>
-        /// Singleton descriptor representative 
-        /// </summary>
-        public static readonly S Rep = new S();
-        
-        public PrimalKind Kind {get;}
+        PrimalInfo<T> PrimalInfo {get;}
+    }
 
+    public readonly struct PrimalInfo : 
+        IPrimalInfoProvider<byte>, 
+        IPrimalInfoProvider<sbyte>, 
+        IPrimalInfoProvider<short>,
+        IPrimalInfoProvider<ushort>, 
+        IPrimalInfoProvider<int>,
+        IPrimalInfoProvider<uint>,
+        IPrimalInfoProvider<long>,
+        IPrimalInfoProvider<ulong>,            
+        IPrimalInfoProvider<float>, 
+        IPrimalInfoProvider<double>, 
+        IPrimalInfoProvider<decimal>,
+        IPrimalInfoProvider<BigInteger>                    
+    {
+        static readonly PrimalInfo Inhabitant = default;
+
+        [MethodImpl(Inline)]
+        public static PrimalInfo<T> Get<T>()
+            => Provider<T>().PrimalInfo;            
+
+        [MethodImpl(Inline)]
+        public static T zero<T>()
+            => Get<T>().Zero;
+
+        [MethodImpl(Inline)]
+        public static T one<T>()
+            => Get<T>().One;
+
+        [MethodImpl(Inline)]
+        public static T minval<T>()
+            => Get<T>().MinVal;
+
+        [MethodImpl(Inline)]
+        public static T maxval<T>()
+            => Get<T>().MaxVal;
+
+        [MethodImpl(Inline)]
+        public static bool signed<T>()
+            => Get<T>().Signed;
+
+        [MethodImpl(Inline)]
+        public static bool unsigned<T>()
+            => !Get<T>().Signed;
+
+        [MethodImpl(Inline)]
+        public static BitSize bitsize<T>()
+            => Get<T>().BitSize;
+
+        [MethodImpl(Inline)]
+        public static ByteSize bytesize<T>()
+            => Get<T>().ByteSize;
+
+        [MethodImpl(Inline)]
+        static IPrimalInfoProvider<T> Provider<T>() 
+            => cast<IPrimalInfoProvider<T>>(Inhabitant);
+
+        PrimalInfo<sbyte> IPrimalInfoProvider<sbyte>.PrimalInfo 
+            => Int8Info.Summary;
+
+        PrimalInfo<byte> IPrimalInfoProvider<byte>.PrimalInfo 
+            => UInt8Info.Summary;
+
+        PrimalInfo<short> IPrimalInfoProvider<short>.PrimalInfo 
+            => Int16Info.Summary;
+
+        PrimalInfo<ushort> IPrimalInfoProvider<ushort>.PrimalInfo 
+            => UInt16Info.Summary;
+
+        PrimalInfo<int> IPrimalInfoProvider<int>.PrimalInfo 
+            => Int32Info.Summary;
+
+        PrimalInfo<uint> IPrimalInfoProvider<uint>.PrimalInfo 
+            => UInt32Info.Summary;
+
+        PrimalInfo<long> IPrimalInfoProvider<long>.PrimalInfo 
+            => Int64Info.Summary;
+
+        PrimalInfo<ulong> IPrimalInfoProvider<ulong>.PrimalInfo 
+            => UInt64Info.Summary;
+
+        PrimalInfo<float> IPrimalInfoProvider<float>.PrimalInfo 
+            => Float32Info.Summary;
+
+        PrimalInfo<double> IPrimalInfoProvider<double>.PrimalInfo 
+            => Float64Info.Summary;
+
+        PrimalInfo<decimal> IPrimalInfoProvider<decimal>.PrimalInfo 
+            => DecimalInfo.Summary;
+
+        PrimalInfo<BigInteger> IPrimalInfoProvider<BigInteger>.PrimalInfo 
+            => BigIntegerInfo.Summary;
+
+    }
+
+    readonly struct Int8Info
+    {
+        public const sbyte Zero = 0;
+
+        public const sbyte One = 1;
+
+        public const uint BitSize = 8;
+
+        public const sbyte MinVal = sbyte.MinValue;            
+
+        public const sbyte MaxVal = sbyte.MaxValue;
+
+        public const bool Signed = true;
+        
+        public static readonly PrimalInfo<sbyte> Summary 
+            = new PrimalInfo<sbyte>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+    }            
+
+    readonly struct UInt8Info
+    {
+        public const byte Zero = 0;
+
+        public const byte One = 1;
+
+        public const uint BitSize = 8;
+
+        public const byte MinVal = byte.MinValue;            
+
+        public const byte MaxVal = byte.MaxValue;
+
+        public const bool Signed = false;
+        
+        public static readonly PrimalInfo<byte> Summary 
+            = new PrimalInfo<byte>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+    }            
+
+    readonly struct Int16Info
+    {
+        public const short Zero = 0;
+
+        public const short One = 1;
+
+        public const uint BitSize = 16;
+
+        public const short MinVal = short.MinValue;            
+
+        public const short MaxVal = short.MaxValue;
+
+        public const bool Signed = true;
+        
+        public static readonly PrimalInfo<short> Summary 
+            = new PrimalInfo<short>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+    }            
+
+    readonly struct UInt16Info
+    {
+        public const ushort Zero = 0;
+
+        public const ushort One = 1;
+
+        public const uint BitSize = 16;
+
+        public const ushort MinVal = ushort.MinValue;            
+
+        public const ushort MaxVal = ushort.MaxValue;
+
+        public const bool Signed = false;
+        
+        public static readonly PrimalInfo<ushort> Summary 
+            = new PrimalInfo<ushort>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+    }            
+
+    readonly struct Int32Info
+    {
+        public const int Zero = 0;
+
+        public const int One = 1;
+
+        public const uint BitSize = 32;
+
+        public const int MinVal = int.MinValue;            
+
+        public const int MaxVal = int.MaxValue;
+
+        public const bool Signed = true;
+        
+        public static readonly PrimalInfo<int> Summary 
+            = new PrimalInfo<int>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+    }            
+
+    readonly struct UInt32Info
+    {
+        public const uint Zero = 0;
+
+        public const uint One = 1;
+
+        public const uint BitSize = 32;
+
+        public const uint MinVal = uint.MinValue;            
+
+        public const uint MaxVal = uint.MaxValue;
+
+        public const bool Signed = false;
+        
+        public static readonly PrimalInfo<uint> Summary 
+            = new PrimalInfo<uint>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+    }            
+
+    readonly struct Int64Info
+    {
+        public const long Zero = 0;
+
+        public const long One = 1;
+
+        public const uint BitSize = 64;
+
+        public const long MinVal = long.MinValue;            
+
+        public const long MaxVal = long.MaxValue;
+
+        public const bool Signed = true;
+        
+        public static readonly PrimalInfo<long> Summary 
+            = new PrimalInfo<long>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+    }            
+
+    readonly struct UInt64Info
+    {
+        public const ulong Zero = 0;
+
+        public const ulong One = 1;
+
+        public const uint BitSize = 64;
+
+        public const ulong MinVal = ulong.MinValue;            
+
+        public const ulong MaxVal = ulong.MaxValue;
+
+        public const bool Signed = false;
+        
+        public static readonly PrimalInfo<ulong> Summary 
+            = new PrimalInfo<ulong>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+    }            
+
+    readonly struct Float32Info
+    {
+        public const float Zero = 0;
+
+        public const float One = 1;
+
+        public const uint BitSize = 32;
+
+        public const float MinVal = float.MinValue;            
+
+        public const float MaxVal = float.MaxValue;
+
+        public const float Epsilon = float.Epsilon;
+
+        public const bool Signed = true;
+        
+        public static readonly PrimalInfo<float> Summary 
+            = new PrimalInfo<float>((MinVal,MaxVal), Signed, Zero, One, BitSize, Epsilon);
+    }        
+
+    readonly struct Float64Info
+    {
+        public const double Zero = 0;
+
+        public const double One = 1;
+
+        public const uint BitSize = 64;
+
+        public const double MinVal = double.MinValue;            
+
+        public const double MaxVal = double.MaxValue;
+
+        public const double Epsilon = double.Epsilon;
+
+        public const bool Signed = true;
+        
+        public static readonly PrimalInfo<double> Summary 
+            = new PrimalInfo<double>((MinVal,MaxVal), Signed, Zero, One, BitSize,Epsilon);
+    }            
+
+    readonly struct DecimalInfo
+    {
+        public const decimal Zero = 0;
+
+        public const decimal One = 1;
+
+        public const uint BitSize = sizeof(decimal) * 8;
+
+        public const decimal MinVal = decimal.MinValue;            
+
+        public const decimal MaxVal = decimal.MaxValue;
+
+        public const bool Signed = true;
+        
+        public static readonly PrimalInfo<decimal> Summary 
+            = new PrimalInfo<decimal>((MinVal,MaxVal), Signed, Zero, One, BitSize);
+    }                
+
+    readonly struct BigIntegerInfo
+    {
+        public static readonly BigInteger Zero = BigInteger.Zero;
+
+        public static readonly BigInteger One = BigInteger.One;
+
+        public const uint BitSize = 0;
+
+        public const bool Signed = true;
+        
+        public static readonly PrimalInfo<BigInteger> Summary 
+            = new PrimalInfo<BigInteger>((0,0), Signed, Zero, One, BitSize,0,true);
+    }                   
+
+    public readonly struct PrimalInfo<T>
+    {
+        public PrimalInfo((T min, T max) range, bool signed, T zero, T one, uint bitsize, T epsilon = default, bool infinite = false)
+        {
+            this.MinVal = range.min;
+            this.MaxVal = range.max;
+            this.Signed = signed;
+            this.One = one;
+            this.Zero = zero;
+            this.BitSize = bitsize;
+            this.Infinite = infinite;
+            this.Epsilon = epsilon != default ? some(epsilon) : none<T>();
+            this.ByteSize = BitSize;
+        }
+
+        public T MinVal {get;}
+        
+        public T MaxVal {get;}
+        
         public bool Signed {get;}
 
-        public int Size {get;}
+        public T One {get;}
 
-        protected PrimalInfo(PrimalKind Kind, bool Signed)
-        {
-            this.Kind = Kind;
-            this.Signed = Signed;
-            switch(Kind)
-            {
-                case PrimalKind.uint8:
-                case PrimalKind.int8:
-                    Size = 1;
-                 break;
+        public T Zero {get;}
 
-                case PrimalKind.uint16:
-                case PrimalKind.int16:
-                    Size = 2;
-                 break;
+        public Option<T> Epsilon {get;}
 
-                case PrimalKind.uint32:
-                case PrimalKind.int32:
-                case PrimalKind.float32:
-                    Size = 4;
-                 break;
+        public BitSize BitSize {get;}
 
-                case PrimalKind.uint64:
-                case PrimalKind.int64:
-                case PrimalKind.float64:
-                    Size = 8;
-                 break;
-                default:
-                    Size = -1;
-                    break;
-
-            }
-
-        }
-
-        public override bool Equals(object obj)
-            => (obj as PrimalInfo<S>) != null 
-              ? (obj as PrimalInfo<S>).Kind == this.Kind 
-              : false;
-
-        public override int GetHashCode()
-            => Kind.GetHashCode();
-
+        public ByteSize ByteSize {get;}
+        
+        public bool Infinite {get;}
+        
     }
 
-    public abstract class PrimalInfo<S,T> : PrimalInfo<S>, IPrimalInfo<T>
-        where S : PrimalInfo<S,T>, new()
-        where T : struct
-    {
-        public T MinVal {get;}
-
-        public T MaxVal {get;}
-
-        protected PrimalInfo(bool Signed, T MinVal, T MaxVal)
-            : base(PrimalKinds.kind<T>(), Signed)
-        {
-            this.MinVal = MinVal;
-            this.MaxVal = MaxVal;
-        }
-        
-        public override string ToString()
-            => $"{Kind}".ToLower();
-    }
-
-    public static class PrimalInfo    
-    {
-
-        public static IPrimalInfo<T> Get<T>()
-            where T : struct
-        {
-            var kind = PrimalKinds.kind<T>();
-            if(kind == PrimalKind.int8)
-            {
-                var rep = new I8();
-                return Unsafe.As<I8, IPrimalInfo<T>>(ref rep);
-            }
-
-            if(kind == PrimalKind.uint8)
-            {
-                var rep = new U8();
-                return Unsafe.As<U8, IPrimalInfo<T>>(ref rep);
-            }
-
-            if(kind == PrimalKind.int16)
-            {
-                var rep = new I16();
-                return Unsafe.As<I16, IPrimalInfo<T>>(ref rep);
-            }
-
-            if(kind == PrimalKind.uint16)
-            {
-                var rep = new U16();
-                return Unsafe.As<U16, IPrimalInfo<T>>(ref rep);
-            }
-
-            if(kind == PrimalKind.int32)
-            {
-                var rep = new I32();
-                return Unsafe.As<I32, IPrimalInfo<T>>(ref rep);
-            }
-
-            if(kind == PrimalKind.uint32)
-            {
-                var rep = new U32();
-                return Unsafe.As<U32, IPrimalInfo<T>>(ref rep);
-            }
-
-            if(kind == PrimalKind.int64)
-            {
-                var rep = new I64();
-                return Unsafe.As<I64, IPrimalInfo<T>>(ref rep);
-            }
-
-            if(kind == PrimalKind.uint64)
-            {
-                var rep = new U64();
-                return Unsafe.As<U64, IPrimalInfo<T>>(ref rep);
-            }
-
-            if(kind == PrimalKind.float32)
-            {
-                var rep = new F32();
-                return Unsafe.As<F32, IPrimalInfo<T>>(ref rep);
-            }
-
-            if(kind == PrimalKind.float64)
-            {
-                var rep = new F64();
-                return Unsafe.As<F64, IPrimalInfo<T>>(ref rep);
-            }
-
-            throw new Exception($"Kind {kind} not supported");
-
-        }
-
-        public static S Rep<S>()
-            where S : PrimalInfo<S>, new()
-                => PrimalInfo<S>.Rep;
-        
-        /// <summary>
-        /// The I8 primtive singleton descriptor
-        /// </summary>
-        public static readonly I8 I8Rep = Rep<I8>();
-        
-        /// <summary>
-        /// The U8 primtive singleton descriptor
-        /// </summary>
-        public static readonly U8 U8Rep = Rep<U8>();
-
-        /// <summary>
-        /// The I16 primtive singleton descriptor
-        /// </summary>
-        public static readonly I16 I16Rep = Rep<I16>();
-
-        /// <summary>
-        /// The U16 primtive singleton descriptor
-        /// </summary>
-        public static readonly U16 U16Rep = Rep<U16>();
-
-        /// <summary>
-        /// The I32 primtive singleton descriptor
-        /// </summary>
-        public static readonly I32 I32Rep = Rep<I32>();
-
-        /// <summary>
-        /// The U32 primtive singleton descriptor
-        /// </summary>
-        public static readonly U32 U32Rep = Rep<U32>();
-
-        /// <summary>
-        /// The I64 primtive singleton descriptor
-        /// </summary>
-        public static readonly I64 I64Rep = Rep<I64>();
-
-        /// <summary>
-        /// The U64 primtive singleton descriptor
-        /// </summary>
-        public static readonly U64 U64Rep = Rep<U64>();
-
-        /// <summary>
-        /// The F32 primtive singleton descriptor
-        /// </summary>
-        public static readonly F32 F32Rep = Rep<F32>();
-
-        /// <summary>
-        /// The F64 primtive singleton descriptor
-        /// </summary>
-        public static readonly F64 F64Rep = Rep<F64>();
-
-
-        public sealed class I8 : PrimalInfo<I8,sbyte>
-        {
-            public I8()
-                : base(true,sbyte.MinValue, sbyte.MinValue)
-            {
-
-            }
-        }
-
-        public sealed class U8 : PrimalInfo<U8,byte>
-        {
-            public U8()
-            : base(false, byte.MinValue, byte.MaxValue)
-            {
-
-
-            }
-        }
-
-        public sealed class I16 : PrimalInfo<I16,short>
-        {
-            public I16()
-                : base(true, short.MinValue, short.MaxValue)
-            {
-
-            }
-        }
-
-        public sealed class U16 : PrimalInfo<U16,ushort>
-        {
-            public  U16()
-             : base(false, ushort.MinValue, ushort.MaxValue)
-            {
-
-            }
-        }
-
-        public sealed class I32 : PrimalInfo<I32,int>
-        {
-            public I32()
-             : base(true, int.MinValue, int.MaxValue)
-            {
-
-            }
-        }
-
-        public sealed class U32 : PrimalInfo<U32,uint>
-        {
-            public U32()
-             : base(false, uint.MinValue, uint.MaxValue)
-            {
-
-            }
-        }
-
-        public sealed class I64 : PrimalInfo<I64,long>
-        {
-            public I64()
-             : base(true, long.MinValue, long.MaxValue)
-            {
-
-            }
-        }
-
-        public sealed class U64 : PrimalInfo<U64,ulong>
-        {
-            public U64()
-             : base(false, ulong.MinValue, ulong.MaxValue)
-            {
-
-            }
-        }
-
-        public sealed class F32 : PrimalInfo<F32,float>
-        {
-            public F32()
-             : base(true, float.MinValue, float.MaxValue)
-            {
-
-            }
-        }
-
-        public sealed class F64 : PrimalInfo<F64,double>
-        {
-            public F64()
-             : base(true, double.MinValue, double.MaxValue)
-            {
-
-            }
-        }
-    }
 }

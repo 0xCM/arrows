@@ -5,11 +5,15 @@
 namespace Z0
 {
     using System;
+    using System.Runtime.CompilerServices;
 
-
-    public interface INumInfoProvider<T>
+    /// <summary>
+    /// Represents a number greater than or equal to zero
+    /// </summary>
+    public readonly struct NonNegative<T>
+        where T : struct
     {
-        NumberInfo<T> numinfo {get;}
+
     }
 
 }

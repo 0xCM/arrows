@@ -12,27 +12,6 @@ namespace Z0
 
     using static zfunc;
 
-    /// <summary>
-    /// Characterizes a bernouli distribution
-    /// </summary>
-    /// <remarks>See https://en.wikipedia.org/wiki/Bernoulli_distribution</remarks>
-    public class BernoulliSpec : IDistributionSpec
-    {
-        public static BernoulliSpec Define(double p)
-            => new BernoulliSpec(p);
-        
-        public BernoulliSpec(double p)
-        {
-            this.p = p;
-        }
-        
-        /// <summary>
-        /// Specifies a value within the unit interval [0,1] that represents
-        /// the probability of success
-        /// </summary>
-        [Symbol(AsciLower.p)]
-        public double p {get;}
-    }
 
     /// <summary>
     /// Realizes a Bernoulli distribution
@@ -42,12 +21,9 @@ namespace Z0
         where T : struct
     {    
         public BernoulliDist(IRandomSource random, BernoulliSpec spec)
-            : base(random)
+            : base(random, spec)
         {
-            this.Spec = spec;
         }
-
-        public BernoulliSpec Spec {get;}
 
         public override IEnumerable<T> Sample()
         {
@@ -59,4 +35,5 @@ namespace Z0
         }
             
     }
+
 }

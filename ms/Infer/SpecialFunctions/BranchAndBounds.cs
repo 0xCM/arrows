@@ -101,9 +101,9 @@ namespace MsInfer
             return x;
         }
 
-        public static double Uniform(double lowerBound, double upperBound)
+        public static double Uniform(double lowerBound, double upperBound, IRandomSource random = null)
         {
-            return Rand.Double() * (upperBound - lowerBound) + lowerBound;
+            return Rand.Double(random) * (upperBound - lowerBound) + lowerBound;
         }
 
         public override string ToString()

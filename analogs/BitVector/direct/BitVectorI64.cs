@@ -100,8 +100,8 @@ namespace Z0
             get => lo(in data);        
         }
 
-        [MethodImpl(Inline)]
-        public string BitString()
+         [MethodImpl(Inline)]
+        public BitString BitString()
             => data.ToBitString();
 
         [MethodImpl(Inline)]
