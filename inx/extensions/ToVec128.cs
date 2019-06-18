@@ -36,7 +36,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> ToVec128<T>(this in ReadOnlySpan128<T> src, int block = 0)            
             where T : struct            
-                => Vec128.single(src,block);
+                => Vec128.load(src,block);
 
        
         [MethodImpl(Inline)]

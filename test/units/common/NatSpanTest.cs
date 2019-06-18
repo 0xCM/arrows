@@ -24,7 +24,7 @@ namespace Z0.Test
             
             var m = Nats.N4;
             var n = Nats.N3;
-            var src = Randomizer.Span(m, n, closed(1,1000));
+            var src = Random.Span(m, n, closed(1,1000));
             Claim.eq(src.Dim.i, m.value);
             Claim.eq(src.Dim.j, n.value);            
             Trace($"A = {src.Format()}");

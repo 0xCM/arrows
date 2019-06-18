@@ -160,7 +160,5 @@ namespace Z0
             dst = Vec128.define(src,src);
             return ref dst;
         }
- 
- 
     }
 }

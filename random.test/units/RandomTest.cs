@@ -20,7 +20,7 @@ namespace Z0.Test
         {
             var samples = Pow2.T11;
             var domain = closed((sbyte)(-100),(sbyte)(100));
-            var data = Randomizer.Stream<sbyte>(domain).Take(samples);
+            var data = Random.Stream<sbyte>(domain).Take(samples);
             var h = Histogram.Define(domain,10);
             h.Deposit(data,false);
         }
@@ -29,7 +29,7 @@ namespace Z0.Test
         {
             var samples = Pow2.T11;
             var domain = closed(1u,1000u);
-            var data = Randomizer.Stream<uint>(domain).Take(samples);
+            var data = Random.Stream<uint>(domain).Take(samples);
             var h = Histogram.Define(domain);
             h.Deposit(data,false);
         }
@@ -39,7 +39,7 @@ namespace Z0.Test
         {
             var samples = Pow2.T11;
             var domain = closed(1ul,1000ul);
-            var data = Randomizer.Stream<ulong>(domain).Take(samples);
+            var data = Random.Stream<ulong>(domain).Take(samples);
             var h = Histogram.Define(domain);
             h.Deposit(data,false);
         }
@@ -48,7 +48,7 @@ namespace Z0.Test
         {
             var samples = Pow2.T11;
             var domain = closed(-250L,250L);
-            var data = Randomizer.Stream<long>(domain).Take(samples);
+            var data = Random.Stream<long>(domain).Take(samples);
             var h = Histogram.Define(domain);
             h.Deposit(data,false);
         
@@ -58,7 +58,7 @@ namespace Z0.Test
         {
             var samples = Pow2.T11;
             var domain = closed(10,20);
-            var random = SysRand.FromSource(Randomizer);
+            var random = SysRand.FromSource(Random);
             var dst = span<int>(samples);
             for(var i=0; i<samples; i++)            
             {
@@ -106,7 +106,7 @@ namespace Z0.Test
         {            
             TypeCaseStart<T>();
             var sw = stopwatch();
-            var samples = Randomizer.UniformStream(domain).TakeArray(count);
+            var samples = Random.UniformStream(domain).TakeArray(count);
             var time = snapshot(sw);
             
             var avg = gmath.avg<T>(samples);
@@ -124,7 +124,7 @@ namespace Z0.Test
         {
             TypeCaseStart<T>();
             var sw = stopwatch();
-            var samples = Randomizer.UniformStream<T>().TakeArray(count);
+            var samples = Random.UniformStream<T>().TakeArray(count);
             var time = snapshot(sw);
             var min = gmath.min<T>(samples);
             var max = gmath.max<T>(samples);
@@ -164,7 +164,7 @@ namespace Z0.Test
         {
             var sw = stopwatch(false);
             sw.Start();
-            var samples = BernoulliSpec.Define(alpha).Distribution<long>(Randomizer).Sample().Take(count);
+            var samples = BernoulliSpec.Define(alpha).Distribution<long>(Random).Sample().Take(count);
             var avg = samples.Average();
             sw.Stop();
             //print($"Samples = {count} | Alpha = {alpha.Round(4)} | Average = {avg.Round(4)} | Time = {snapshot(sw).Ms} ms");
@@ -208,7 +208,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
             for(var i=0; i<count; i++)
             {
-                var xSample = Randomizer.M512(domain);
+                var xSample = Random.NextM512(domain);
                 for(var partIx=0; partIx < M512.PartCount<T>(); partIx++)
                 {
                     var xPart = xSample.part<T>(partIx);

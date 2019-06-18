@@ -44,8 +44,8 @@ namespace Z0.Test
 
         public void ShiftI8()
         {
-            var lhs = Randomizer.Array<sbyte>(Samples);            
-            var rhs = Randomizer.Array<int>(Samples, closed(0, SizeOf<sbyte>.BitSize));            
+            var lhs = Random.Array<sbyte>(Samples);            
+            var rhs = Random.Array<int>(Samples, closed(0, SizeOf<sbyte>.BitSize));            
 
             Shift<sbyte>(Orientation.Left, lhs, rhs);        
             iter(Samples, i => Claim.eq((sbyte)(lhs[i] << rhs[i]), math.shiftl(lhs[i], rhs[i])));
@@ -58,8 +58,8 @@ namespace Z0.Test
 
         public void ShiftU8()
         {
-            var lhs = Randomizer.Array<byte>(Samples);            
-            var rhs = Randomizer.Array<int>(Samples, closed(0, SizeOf<byte>.BitSize));            
+            var lhs = Random.Array<byte>(Samples);            
+            var rhs = Random.Array<int>(Samples, closed(0, SizeOf<byte>.BitSize));            
 
             Shift<byte>(Orientation.Left, lhs, rhs);        
             iter(Samples, i => Claim.eq((byte)(lhs[i] << rhs[i]), math.shiftl(lhs[i], rhs[i])));
@@ -72,8 +72,8 @@ namespace Z0.Test
 
         public void ShiftI32()
         {
-            var lhs = Randomizer.Array<int>(Samples);            
-            var rhs = Randomizer.Array<int>(Samples, closed(0, SizeOf<int>.BitSize));            
+            var lhs = Random.Array<int>(Samples);            
+            var rhs = Random.Array<int>(Samples, closed(0, SizeOf<int>.BitSize));            
 
             Shift<int>(Orientation.Left, lhs, rhs);        
             iter(Samples, i => Claim.eq(lhs[i] << rhs[i], math.shiftl(lhs[i], rhs[i])));
@@ -86,8 +86,8 @@ namespace Z0.Test
 
         public void ShiftU32()
         {
-            var lhs = Randomizer.Array<uint>(Samples);            
-            var rhs = Randomizer.Array<int>(Samples, closed(0, SizeOf<uint>.BitSize));            
+            var lhs = Random.Array<uint>(Samples);            
+            var rhs = Random.Array<int>(Samples, closed(0, SizeOf<uint>.BitSize));            
 
             Shift<uint>(Orientation.Left, lhs, rhs);        
             iter(Samples, i => Claim.eq(lhs[i] << rhs[i], math.shiftl(lhs[i], rhs[i])));
@@ -98,8 +98,8 @@ namespace Z0.Test
         }
         public void ShiftI64()
         {
-            var lhs = Randomizer.Array<long>(Samples);            
-            var rhs = Randomizer.Array<int>(Samples, closed(0, SizeOf<long>.BitSize));            
+            var lhs = Random.Array<long>(Samples);            
+            var rhs = Random.Array<int>(Samples, closed(0, SizeOf<long>.BitSize));            
 
             Shift<long>(Orientation.Left, lhs, rhs);        
             iter(Samples, i => Claim.eq(lhs[i] << rhs[i], math.shiftl(lhs[i], rhs[i])));
@@ -111,8 +111,8 @@ namespace Z0.Test
 
         public void ShiftU64()
         {
-            var lhs = Randomizer.Array<ulong>(Samples);            
-            var rhs = Randomizer.Array<int>(Samples, closed(0, SizeOf<ulong>.BitSize));            
+            var lhs = Random.Array<ulong>(Samples);            
+            var rhs = Random.Array<int>(Samples, closed(0, SizeOf<ulong>.BitSize));            
 
             Shift<ulong>(Orientation.Left, lhs, rhs);        
             iter(Samples, i => Claim.eq(lhs[i] << rhs[i], math.shiftl(lhs[i], rhs[i])));

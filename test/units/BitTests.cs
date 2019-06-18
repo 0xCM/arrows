@@ -208,7 +208,7 @@ namespace Z0.Test
         {
             var x0 = BitVectorU32.Define(0b00001010110000101001001111011001u);
             var x1 = BitVectorU32.Define(0b00001010110110101001001111000001u);
-            var src = Randomizer.Span<byte>(Pow2.T04).ReadOnly();
+            var src = Random.Span<byte>(Pow2.T04).ReadOnly();
             var packed = span<uint>(src.Length / 4);
             gbits.pack(src, packed);
 
@@ -226,7 +226,7 @@ namespace Z0.Test
         {
             var x0 = BitVectorU32.Define(0b00001010110000101001001111011001u);
             var x1 = BitVectorU32.Define(0b00001010110110101001001111000001u);
-            var src = Randomizer.Span<byte>(Pow2.T04).ReadOnly();
+            var src = Random.Span<byte>(Pow2.T04).ReadOnly();
             var packed = span<ulong>(src.Length / 8);
             gbits.pack(src, packed);
 
@@ -320,7 +320,7 @@ namespace Z0.Test
 
         public void PopCount6()
         {
-            var xBytes = Randomizer.Span<byte>(5);
+            var xBytes = Random.Span<byte>(5);
             var x = Bytes.read<ulong>(xBytes);
             var xPC = Bits.pop(x);
             xBytes.Unpack(out Span<Bit> xBits);
@@ -333,7 +333,7 @@ namespace Z0.Test
 
         public void PopCount7()
         {
-            var xBytes = Randomizer.Span<byte>(Pow2.T10 - 3);
+            var xBytes = Random.Span<byte>(Pow2.T10 - 3);
             var xBytesPC = xBytes.PopCount();
             var xBitsPC = xBytes.Unpack(out Span<Bit> bits).PopCount();
             Claim.eq(xBitsPC, xBytesPC);

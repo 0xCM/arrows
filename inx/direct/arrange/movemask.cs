@@ -20,11 +20,11 @@ namespace Z0
     partial class dinx
     {
         [MethodImpl(Inline)]
-        public static int movemask(in Vec128<sbyte> src)
+        public static int movemask(in Vec128<byte> src)
             => MoveMask(src);
 
         [MethodImpl(Inline)]
-        public static int movemask(in Vec128<byte> src)
+        public static int movemask(in Vec128<sbyte> src)
             => MoveMask(src);
 
         [MethodImpl(Inline)]
@@ -43,7 +43,6 @@ namespace Z0
         public static int movemask(in Vec256<byte> src)
             => MoveMask(src);
  
-
         [MethodImpl(Inline)]
         public static int movemask(in Vec256<float> src)
             => MoveMask(src);
@@ -51,7 +50,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static int movemask(in Vec256<double> src)
             => MoveMask(src);
-
     }
 
 }

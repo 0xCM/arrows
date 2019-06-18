@@ -20,7 +20,7 @@ namespace Z0.Test
             var mean = 0;
             var stddev = .04;
             var spec = new GaussianSpec(mean,stddev);
-            var dist =  spec.Distribution<double>(Randomizer);
+            var dist =  spec.Distribution<double>(Random);
             var samples = Pow2.T16;
 
             var l1 = dist.SamplesWithin(open(mean - 1.0, mean + 0.0),samples);

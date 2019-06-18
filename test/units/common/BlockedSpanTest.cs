@@ -178,7 +178,7 @@ namespace Z0.Test
 
             var blocks = Pow2.T08;   
             var blocklen = Span128<int>.BlockLength;                     
-            var src = Randomizer.ReadOnlySpan128<int>(blocks);
+            var src = Random.ReadOnlySpan128<int>(blocks);
             var dst = Span128.alloc<int>(blocks);
 
             Claim.eq(src.Length, dst.Length);

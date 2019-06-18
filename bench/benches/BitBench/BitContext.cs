@@ -38,10 +38,10 @@ namespace Z0.Bench
         }
 
         public BitDContext ToDirect()
-            => new BitDContext(Config, Randomizer);
+            => new BitDContext(Config, Random);
 
         public BitGContext ToGeneric()
-            => new BitGContext(Config, Randomizer);
+            => new BitGContext(Config, Random);
 
     }
 }

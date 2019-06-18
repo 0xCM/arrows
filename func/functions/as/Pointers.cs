@@ -61,44 +61,84 @@ namespace Z0
             => (double*)pvoid(ref src);
 
         [MethodImpl(Inline)]
-        public static unsafe sbyte* int8(void* src)
-            => (sbyte*)src;
+        public static unsafe sbyte* refptr(ref sbyte src)
+            => (sbyte*)Unsafe.AsPointer(ref src);
 
         [MethodImpl(Inline)]
-        public static unsafe byte* uint8(void* src)
-            => (byte*)src;
+        public static unsafe byte* refptr(ref byte src)
+            => (byte*)Unsafe.AsPointer(ref src);
 
         [MethodImpl(Inline)]
-        public static unsafe short* int16(void* src)
-            => (short*)src;
+        public static unsafe short* refptr(ref short src)
+            => (short*)Unsafe.AsPointer(ref src);
 
         [MethodImpl(Inline)]
-        public static unsafe ushort* uint16(void* src)
-            => (ushort*)src;
+        public static unsafe ushort* refptr(ref ushort src)
+            => (ushort*)Unsafe.AsPointer(ref src);
 
         [MethodImpl(Inline)]
-        public static unsafe int* int32(void* src)
-            => (int*)src;
+        public static unsafe int* refptr(ref int src)
+            => (int*)Unsafe.AsPointer(ref src);
 
         [MethodImpl(Inline)]
-        public static unsafe uint* uint32(void* src)
+        public static unsafe uint* refptr(ref uint src)
             => (uint*)src;
 
         [MethodImpl(Inline)]
-        public static unsafe long* int64(void* src)
-            => (long*)src;
+        public static unsafe long* refptr(ref long src)
+            => (long*)Unsafe.AsPointer(ref src);
 
         [MethodImpl(Inline)]
-        public static unsafe ulong* uint64(void* src)
-            => (ulong*)src;
+        public static unsafe ulong* refptr(ref ulong src)
+            => (ulong*)Unsafe.AsPointer(ref src);
 
         [MethodImpl(Inline)]
-        public static unsafe float* float32(void* src)
-            => (float*)src;
+        public static unsafe float* refptr(ref float src)
+            => (float*)Unsafe.AsPointer(ref src);
 
         [MethodImpl(Inline)]
-        public static unsafe double* float64(void* src)
-            => (double*)src;
+        public static unsafe double* refptr(ref double src)
+            => (double*)Unsafe.AsPointer(ref src);
+
+        [MethodImpl(Inline)]
+        public static unsafe sbyte* constptr(in sbyte src)
+            => refptr(ref asRef(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe byte* constptr(in byte src)
+            => refptr(ref asRef(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe short* constptr(in short src)
+            => refptr(ref asRef(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe ushort* constptr(in ushort src)
+            => refptr(ref asRef(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe int* constptr(in int src)
+            => refptr(ref asRef(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe uint* constptr(in uint src)
+            => refptr(ref asRef(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe long* constptr(in long src)
+            => refptr(ref asRef(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe ulong* constptr(in ulong src)
+            => refptr(ref asRef(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe float* constptr(in float src)
+            => refptr(ref asRef(in src));
+
+        [MethodImpl(Inline)]
+        public static unsafe double* constptr(in double src)
+            => refptr(ref asRef(in src));
 
     }
 

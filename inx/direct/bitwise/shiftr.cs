@@ -133,6 +133,55 @@ namespace Z0
         public static unsafe void shiftr(in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
             => store(ShiftRightLogicalVariable(lhs, rhs), ref dst);
 
+ 
+        [MethodImpl(Inline)]
+        public static void shiftr(in Vec128<short> lhs, byte count, ref short dst)
+           => store(shiftr(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftr(in Vec128<ushort> lhs, byte count, ref ushort dst)
+           => store(shiftr(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftr(in Vec128<int> lhs, byte count, ref int dst)
+            => store(shiftr(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftr(in Vec128<uint> lhs, byte count, ref uint dst)
+            => store(shiftr(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftr(in Vec128<long> lhs, byte count, ref long dst)
+            => store(shiftr(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftr(in Vec128<ulong> lhs, byte count, ref ulong dst)
+            => store(shiftr(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftr(in Vec256<short> lhs, byte count, ref short dst)
+            => store(shiftr(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftr(in Vec256<ushort> lhs, byte count, ref ushort dst)
+            => store(shiftr(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftr(in Vec256<int> lhs, byte count, ref int dst)
+            => store(shiftr(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftr(in Vec256<uint> lhs, byte count, ref uint dst)
+           => store(shiftr(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftr(in Vec256<long> lhs, byte count, ref long dst)
+           => store(shiftr(lhs,count), ref dst);
+
+        [MethodImpl(Inline)]
+        public static void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
+           => store(shiftr(lhs,count), ref dst);
+
         public static Span128<int> shiftr(in ReadOnlySpan128<int> lhs, in ReadOnlySpan128<uint> rhs, in Span128<int> dst)
         {
             var width = dst.BlockWidth;
@@ -204,54 +253,6 @@ namespace Z0
                 shiftr(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
             return dst;            
        }
- 
-        [MethodImpl(Inline)]
-        public static void shiftr(in Vec128<short> lhs, byte count, ref short dst)
-           => store(shiftr(lhs,count), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void shiftr(in Vec128<ushort> lhs, byte count, ref ushort dst)
-           => store(shiftr(lhs,count), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void shiftr(in Vec128<int> lhs, byte count, ref int dst)
-            => store(shiftr(lhs,count), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void shiftr(in Vec128<uint> lhs, byte count, ref uint dst)
-            => store(shiftr(lhs,count), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void shiftr(in Vec128<long> lhs, byte count, ref long dst)
-            => store(shiftr(lhs,count), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void shiftr(in Vec128<ulong> lhs, byte count, ref ulong dst)
-            => store(shiftr(lhs,count), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void shiftr(in Vec256<short> lhs, byte count, ref short dst)
-            => store(shiftr(lhs,count), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void shiftr(in Vec256<ushort> lhs, byte count, ref ushort dst)
-            => store(shiftr(lhs,count), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void shiftr(in Vec256<int> lhs, byte count, ref int dst)
-            => store(shiftr(lhs,count), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void shiftr(in Vec256<uint> lhs, byte count, ref uint dst)
-           => store(shiftr(lhs,count), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void shiftr(in Vec256<long> lhs, byte count, ref long dst)
-           => store(shiftr(lhs,count), ref dst);
-
-        [MethodImpl(Inline)]
-        public static void shiftr(in Vec256<ulong> lhs, byte count, ref ulong dst)
-           => store(shiftr(lhs,count), ref dst);
 
         public static Span128<short> shiftr(ReadOnlySpan128<short> lhs, byte count, Span128<short> dst)
         {

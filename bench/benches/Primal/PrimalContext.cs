@@ -24,10 +24,10 @@ namespace Z0.Bench
         }
 
         public PrimalDContext ToDirect()
-            => new PrimalDContext(Config.ToDirect(), Randomizer);
+            => new PrimalDContext(Config.ToDirect(), Random);
 
         public PrimalGContext ToGeneric()
-            => new PrimalGContext(Config.ToGeneric(), Randomizer);
+            => new PrimalGContext(Config.ToGeneric(), Random);
 
     }
 

@@ -59,6 +59,11 @@ namespace Z0
 
     public static class Pow2
     {        
+        static readonly byte[] _PowU8 = new byte[]
+        {
+            T00, T01, T02, T03, T04, T05, T06, T07 
+        };
+
         static readonly ushort[] _PowU16 = new ushort[]
         {
             T00, T01, T02, T03, T04, T05, T06, T07, 
@@ -101,6 +106,30 @@ namespace Z0
             while(current <= maxExp)
                 dst[i++] = convert<ulong,T>(pow(current++));
             return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static byte floor(byte src)
+        {            
+            if(src != 0)
+            {
+                for(var i = _PowU8.Length - 1; i >= 0; i--)
+                    if(src >= _PowU8[i])
+                        return _PowU8[i];
+            }            
+            return 0;
+        }
+
+        [MethodImpl(Inline)]
+        public static ushort floor(ushort src)
+        {            
+            if(src != 0)
+            {
+                for(var i = _PowU16.Length - 1; i >= 0; i--)
+                    if(src >= _PowU16[i])
+                        return _PowU16[i];
+            }            
+            return 0;
         }
 
         /// <summary>

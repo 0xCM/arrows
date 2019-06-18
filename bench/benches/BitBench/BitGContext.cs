@@ -23,6 +23,9 @@ namespace Z0.Bench
 
         }
 
+        public new IRandomSource Random
+            => base.Random;
+            
         public Metrics<T> Run<T>(MetricKind metric, bool generic, OpKind op)
             where T : struct
         {

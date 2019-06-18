@@ -22,7 +22,7 @@ namespace Z0
     
     public abstract class Context : IContext
     {
-        protected IRandomSource Randomizer {get;}
+        protected IRandomSource Random {get;}
 
         List<AppMsg> Messages {get;} = new List<AppMsg>();
 
@@ -42,7 +42,7 @@ namespace Z0
 
         protected Context(IRandomSource Randomizer)
         {
-            this.Randomizer = Randomizer;
+            this.Random = Randomizer;
         }
 
         protected virtual bool TraceEnabled {get;}

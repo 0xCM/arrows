@@ -19,7 +19,7 @@ namespace Z0.Test
         void Broadcast128<T>()
             where T : struct
         {
-            var x = Randomizer.Next<T>();
+            var x = Random.Next<T>();
             ref var vX = ref ginx.broadcast(in x, out Vec128<T> _);
             var vY = Vec128.define(x);
             Claim.eq(vX,vY);
@@ -29,7 +29,7 @@ namespace Z0.Test
         void Broadcast256<T>()
             where T : struct
         {
-            var x = Randomizer.Next<T>();
+            var x = Random.Next<T>();
             ref var vX = ref ginx.broadcast(in x, out Vec256<T> _);
             var vY = Vec256.define(x);
             Claim.eq(vX,vY);

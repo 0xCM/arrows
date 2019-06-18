@@ -13,12 +13,10 @@ namespace Z0.Test
     using static zfunc;
     public class BinomialTest : UnitTest<BinomialTest>
     {
-
-
         void SampleBinomial(int samples, int trials, double success)
         {
             var spec = BinomialSpec.Define(trials, success);
-            var dist = spec.Distribution<double>(Randomizer);
+            var dist = spec.Distribution<double>(Random);
             var sample = dist.Sample().TakeSpan(samples); 
             var avg = sample.Avg();
             var min = sample.Min();

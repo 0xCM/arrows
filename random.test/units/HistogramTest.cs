@@ -20,7 +20,7 @@ namespace Z0.Test
             where T : struct
         {            
             var width = gmath.sub(domain.Right, domain.Left);
-            var data = Randomizer.Array<T>(Pow2.T14, domain);
+            var data = Random.Array<T>(Pow2.T14, domain);
             var histo = new Histogram<T>(domain, grain ?? (gmath.div(width,convert<T>(100))));
             histo.Deposit(data);  
 

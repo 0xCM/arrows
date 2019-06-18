@@ -25,7 +25,7 @@ namespace Z0.Test
         public void Shuffle1()
         {
             var mask = Mask128.ToVec128();
-            var src = Randomizer.Vec128<byte>();
+            var src = Random.NextVec128<byte>();
             var dst = dinx.shuffle(in src, in mask);
             var zed = U8Zero.ToVec128();
             
@@ -36,7 +36,7 @@ namespace Z0.Test
         public void Shuffle2()
         {
             var mask = ((byte)0b00001111).ToVec128();
-            var src = Randomizer.Vec128<byte>();
+            var src = Random.NextVec128<byte>();
             var dst = dinx.shuffle(in src, in mask);
             //mask = 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111 | 00001111
             //src =  11110110 | 10000110 | 01010010 | 11111000 | 00010100 | 01101011 | 10000001 | 01011000 | 01000111 | 10010100 | 11101100 | 10101100 | 01000011 | 00101000 | 11011010 | 00100110

@@ -43,6 +43,9 @@ namespace Z0.Bench
         InXConfig IInXContext.Config 
             => Config;
 
+        IRandomSource IInXContext<T>.Random 
+            => Random;
+
         public InXDContext128 ToDirect128()
             => new InXDContext128(Config.ToDirect128(), Random);
 

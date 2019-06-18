@@ -20,9 +20,9 @@ namespace Z0.Test
     {
         public void AddI32Fused()
         {
-            var lhsSrc = Randomizer.ReadOnlySpan<int>(Pow2.T10);  
+            var lhsSrc = Random.ReadOnlySpan<int>(Pow2.T10);  
             var lhs = lhsSrc.Replicate();
-            var rhs = Randomizer.ReadOnlySpan<int>(lhsSrc.Length);
+            var rhs = Random.ReadOnlySpan<int>(lhsSrc.Length);
             lhs.Add(rhs);           
 
             var expect = span<int>(lhs.Length);
@@ -35,9 +35,9 @@ namespace Z0.Test
 
         public void AddI64Fused()
         {
-            var lhsSrc = Randomizer.ReadOnlySpan<long>(Pow2.T10);  
+            var lhsSrc = Random.ReadOnlySpan<long>(Pow2.T10);  
             var lhs = lhsSrc.Replicate();
-            var rhs = Randomizer.ReadOnlySpan<long>(lhsSrc.Length);
+            var rhs = Random.ReadOnlySpan<long>(lhsSrc.Length);
             lhs.Add(rhs);           
 
             var expect = span<long>(lhs.Length);

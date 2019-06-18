@@ -395,6 +395,62 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        [MethodImpl(Inline)]
+        public static Bit hibit<T>(in T src, in int pos)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                 return Bits.hibit(in AsIn.int8(asRef(in src)));
+            else if(typeof(T) == typeof(byte))
+                 return Bits.hibit(in AsIn.uint8(asRef(in src)));
+            else if(typeof(T) == typeof(short))
+                 return Bits.hibit(in AsIn.int16(asRef(in src)));
+            else if(typeof(T) == typeof(ushort))
+                 return Bits.hibit(in AsIn.uint16(asRef(in src)));
+            else if(typeof(T) == typeof(int))
+                 return Bits.hibit(in AsIn.int32(asRef(in src)));
+            else if(typeof(T) == typeof(uint))
+                 return Bits.hibit(in AsIn.uint32(asRef(in src)));
+            else if(typeof(T) == typeof(long))
+                 return Bits.hibit(in AsIn.int64(asRef(in src)));
+            else if(typeof(T) == typeof(ulong))
+                 return Bits.hibit(in AsIn.uint64(asRef(in src)));
+            else if(typeof(T) == typeof(float))
+                 return Bits.hibit(in AsIn.float32(asRef(in src)));
+            else if(typeof(T) == typeof(double))
+                 return Bits.hibit(in AsIn.float64(asRef(in src)));
+            else
+                throw unsupported<T>();
+        }
+
+
+        [MethodImpl(Inline)]
+        public static Bit lobit<T>(in T src, in int pos)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                 return Bits.lobit(in AsIn.int8(asRef(in src)));
+            else if(typeof(T) == typeof(byte))
+                 return Bits.lobit(in AsIn.uint8(asRef(in src)));
+            else if(typeof(T) == typeof(short))
+                 return Bits.lobit(in AsIn.int16(asRef(in src)));
+            else if(typeof(T) == typeof(ushort))
+                 return Bits.lobit(in AsIn.uint16(asRef(in src)));
+            else if(typeof(T) == typeof(int))
+                 return Bits.lobit(in AsIn.int32(asRef(in src)));
+            else if(typeof(T) == typeof(uint))
+                 return Bits.lobit(in AsIn.uint32(asRef(in src)));
+            else if(typeof(T) == typeof(long))
+                 return Bits.lobit(in AsIn.int64(asRef(in src)));
+            else if(typeof(T) == typeof(ulong))
+                 return Bits.lobit(in AsIn.uint64(asRef(in src)));
+            else if(typeof(T) == typeof(float))
+                 return Bits.lobit(in AsIn.float32(asRef(in src)));
+            else if(typeof(T) == typeof(double))
+                 return Bits.lobit(in AsIn.float64(asRef(in src)));
+            else
+                throw unsupported<T>();
+        }
 
         [MethodImpl(Inline)]
         public static ref T pack<T>(in ReadOnlySpan<Bit> src, out T dst)
@@ -424,49 +480,6 @@ namespace Z0
             return ref dst;
         }
 
-        public static string bitstring<T>(in T src, bool tlz = false, bool pfs = false)
-            where T : struct
-        {
-            var count = SizeOf<T>.BitSize;
-            var dst = new char[count];
-            var last = count - 1;
-            for(var i=0; i <= last; i++)
-                dst[last - i] = gbits.test(in src,i) 
-                              ? AsciDigits.A1 
-                              : AsciDigits.A0;
-            
-            var bsRaw = new string(dst);
-            if(!tlz && ! pfs)
-                return bsRaw;
-                
-            bsRaw = tlz ? bsRaw.TrimStart(AsciDigits.A0) : bsRaw;
-            bsRaw = pfs ? BitSpecifier + bsRaw : bsRaw;
-            return bsRaw;            
-        }
-
-        [MethodImpl(Inline)]
-        public static T parse<T>(string bitstring, int offset = 0)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return generic<T>(Bits.parse(bitstring, offset, out sbyte _));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.parse(bitstring, offset, out byte _));
-            else if(typeof(T) == typeof(short))
-                return generic<T>(Bits.parse(bitstring, offset, out short _));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.parse(bitstring, offset, out ushort _));
-            else if(typeof(T) == typeof(int))
-                return generic<T>(Bits.parse(bitstring, offset, out int _));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.parse(bitstring, offset, out uint _));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(Bits.parse(bitstring, offset, out long _));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.parse(bitstring, offset, out ulong _));
-            else
-                throw unsupported<T>();
-        }
 
         [MethodImpl(Inline)]
         public static ref T enable<T>(ref T src, in int pos)
@@ -727,6 +740,54 @@ namespace Z0
                 throw unsupported<T>();
             return ref lhs;
         }           
+
+        public static string bitstring<T>(in T src, bool tlz = false, bool pfs = false)
+            where T : struct
+        {
+            var count = SizeOf<T>.BitSize;
+            var dst = new char[count];
+            var last = count - 1;
+            for(var i=0; i <= last; i++)
+                dst[last - i] = gbits.test(in src,i) 
+                              ? AsciDigits.A1 
+                              : AsciDigits.A0;
+            
+            var bsRaw = new string(dst);
+            if(!tlz && ! pfs)
+                return bsRaw;
+
+            bsRaw = tlz ? bsRaw.TrimStart(AsciDigits.A0) : bsRaw;
+            
+            if(tlz &&  bsRaw == string.Empty)
+                bsRaw += AsciDigits.A0;
+            
+            bsRaw = pfs ? BitSpecifier + bsRaw : bsRaw;
+            return bsRaw;            
+        }
+
+        [MethodImpl(Inline)]
+        public static T parse<T>(string bitstring, int offset = 0)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(Bits.parse(bitstring, offset, out sbyte _));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(Bits.parse(bitstring, offset, out byte _));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(Bits.parse(bitstring, offset, out short _));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Bits.parse(bitstring, offset, out ushort _));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(Bits.parse(bitstring, offset, out int _));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(Bits.parse(bitstring, offset, out uint _));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(Bits.parse(bitstring, offset, out long _));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Bits.parse(bitstring, offset, out ulong _));
+            else
+                throw unsupported<T>();
+        }
 
         public static ref Span<T> rotr<T>(ref Span<T> io, ReadOnlySpan<int> rhs)
             where T : struct

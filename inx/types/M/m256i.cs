@@ -7,26 +7,217 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using System.Runtime.Intrinsics;
 
     using static zfunc;
 
-
-    /*
-    typedef union  __declspec(intrin_type) __declspec(align(32)) __m256i {
-        __int8              m256i_i8[32];
-        __int16             m256i_i16[16];
-        __int32             m256i_i32[8];
-        __int64             m256i_i64[4];
-        unsigned __int8     m256i_u8[32];
-        unsigned __int16    m256i_u16[16];
-        unsigned __int32    m256i_u32[8];
-        unsigned __int64    m256i_u64[4];
-    } __m256i;
-    */
-
     [StructLayout(LayoutKind.Explicit, Size = 32)]
-    public ref struct M256
+    public struct m256i
     {
+        public static readonly ByteSize Size = 32;
+
+        public static int PartCount<T>()
+            where T : struct => Size/Unsafe.SizeOf<T>();
+
+        [MethodImpl(Inline)]
+        public Vec256<T> ToVec256<T>()
+            where T : struct
+                => Unsafe.As<m256i,Vec256<T>>(ref this);
+
+        [MethodImpl(Inline)]
+        public Vector256<T> ToVector256<T>()
+            where T : struct
+                => Unsafe.As<m256i,Vector256<T>>(ref this);
+
+        [MethodImpl(Inline)]
+        public static m256i FromVec256<T>(in Vec256<T> src)
+            where T : struct
+                => Unsafe.As<Vec256<T>, m256i>(ref As.asRef(in src));
+
+        [MethodImpl(Inline)]
+        public static m256i FromVector256<T>(in Vector256<T> src)
+            where T : struct
+                => Unsafe.As<Vector256<T>, m256i>(ref As.asRef(in src));
+
+        static Exception TooShort<T>(int given)
+            where T : struct
+            => new Exception($"The source span length = {given} is less than the length required = {Vec256<T>.Length}");
+
+        [MethodImpl(Inline)]
+        static int CheckLength<T>(int given)
+            where T : struct
+                => given >= Vec256<T>.Length ? Vec256<T>.Length : throw TooShort<T>(given) ;
+
+        [MethodImpl(Inline)]
+        unsafe ref T Head<T>()
+            where T : struct
+        {
+            fixed(void* pSrc = &this)
+                return ref Unsafe.AsRef<T>(pSrc);
+        }
+        
+        [MethodImpl(Inline)]
+        public static unsafe m256i FromParts<T>(in ReadOnlySpan<T> src)
+            where T : struct
+        {
+            CheckLength<T>(src.Length);
+            ref var refSrc = ref As.asRef(in src[0]);
+            var pSrc = (m256i*)Unsafe.AsPointer(ref refSrc);
+            return *pSrc;
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe m256i FromParts<T>(Span<T> src)
+            where T : struct
+            =>  src.Length >= Vec256<T>.Length 
+            ?  * (m256i*)Unsafe.AsPointer(ref src[0]) 
+            : throw TooShort<T>(src.Length);
+
+        [MethodImpl(Inline)]
+        public ref T Part<T>(int pos)
+            where T : struct
+                => ref Unsafe.Add(ref Head<T>(), pos);
+
+        public Span<T> Parts<T>()
+            where T : struct
+        {
+            var len = Vec256<T>.Length;
+            var dst = span<T>(len);
+            for(var i=0; i<len; i++)
+                dst[i] = Part<T>(i);
+            return dst;            
+        }
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vec256<sbyte> src)
+            => FromVec256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vec256<byte> src)
+            => FromVec256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vec256<short> src)
+            => FromVec256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vec256<ushort> src)
+            => FromVec256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vec256<int> src)
+            => FromVec256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vec256<uint> src)
+            => FromVec256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vec256<long> src)
+            => FromVec256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vec256<ulong> src)
+            => FromVec256(in src);
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec256<sbyte>(in m256i src)
+            => src.ToVec256<sbyte>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec256<byte>(in m256i src)
+            => src.ToVec256<byte>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec256<short>(in m256i src)
+            => src.ToVec256<short>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec256<ushort>(in m256i src)
+            => src.ToVec256<ushort>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec256<int>(in m256i src)
+            => src.ToVec256<int>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec256<uint>(in m256i src)
+            => src.ToVec256<uint>();
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vec256<long>(in m256i src)
+            => src.ToVec256<long>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vec256<ulong>(in m256i src)
+            => src.ToVec256<ulong>();
+
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vector256<sbyte> src)
+            => FromVector256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vector256<byte> src)
+            => FromVector256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vector256<short> src)
+            => FromVector256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vector256<ushort> src)
+            => FromVector256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vector256<int> src)
+            => FromVector256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vector256<uint> src)
+            => FromVector256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vector256<long> src)
+            => FromVector256(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator m256i(in Vector256<ulong> src)
+            => FromVector256(in src);
+
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vector256<sbyte>(in m256i src)
+            => src.ToVector256<sbyte>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vector256<byte>(in m256i src)
+            => src.ToVector256<byte>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vector256<short>(in m256i src)
+            => src.ToVector256<short>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vector256<ushort>(in m256i src)
+            => src.ToVector256<ushort>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vector256<int>(in m256i src)
+            => src.ToVector256<int>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vector256<uint>(in m256i src)
+            => src.ToVector256<uint>();
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vector256<long>(in m256i src)
+            => src.ToVector256<long>();
+
+        [MethodImpl(Inline)]
+        public static explicit operator Vector256<ulong>(in m256i src)
+            => src.ToVector256<ulong>();
+
 
         #region I8
         
@@ -426,50 +617,8 @@ namespace Z0
 
         #endregion 
 
-        #region F32
 
-        [FieldOffset(0)]
-        public float x00f;
-
-        [FieldOffset(4)]
-        public float x01f;
-
-        [FieldOffset(8)]
-        public float x02f;
-
-        [FieldOffset(12)]
-        public float x03f;
-
-        [FieldOffset(16)]
-        public float x04f;
-
-        [FieldOffset(20)]
-        public float x05f;
-
-        [FieldOffset(24)]
-        public float x06f;
-
-        [FieldOffset(28)]
-        public float x07f;
-        
-        #endregion
-
-        #region F64
-
-        [FieldOffset(0)]
-        public double x0d;
-
-        [FieldOffset(8)]
-        public double x1d;
-
-        [FieldOffset(16)]
-        public double x2d;
-
-        [FieldOffset(24)]
-        public double x3d;
-
-        #endregion 
-
+ 
     }
 
 }

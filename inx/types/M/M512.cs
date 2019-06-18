@@ -875,6 +875,12 @@ namespace Z0
             where T : struct
                 => ref Unsafe.Add(ref head<T>(), pos);
 
+        [MethodImpl(Inline)]
+        public ref T part<T>(BitPos pos)
+            where T : struct
+                => ref part<T>(pos.current / SizeOf<T>.BitSize); 
+                
+
         public Bit this[Index r]
         {
             [MethodImpl(Inline)]

@@ -267,8 +267,8 @@ namespace Z0.Test
         {
             var config = Config.Get<T>();
              return nonzero 
-                ? Randomizer.NonZeroArray<T>(config.SampleSize, config.SampleDomain) 
-                : Randomizer.Array<T>(config.SampleSize, config.SampleDomain);
+                ? Random.NonZeroArray<T>(config.SampleSize, config.SampleDomain) 
+                : Random.Array<T>(config.SampleSize, config.SampleDomain);
         }
 
         public void Verify<T>(OpKind opKind, UnaryOp<T> subject, UnaryOp<T> baseline, bool nonzero = false, [CallerMemberName] string caller = null, 

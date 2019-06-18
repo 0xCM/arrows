@@ -19,8 +19,8 @@ namespace Z0
     {
         public static readonly Duration Zero = new Duration(0);
         
-        public static Duration Define(long ticks)
-            => new Duration(ticks);
+        public static Duration Define(long ticks, double? ms = null)
+            => new Duration(ticks, ms);
 
         public static Duration mark(Stopwatch sw)
             => Define(sw.ElapsedTicks);
@@ -58,16 +58,18 @@ namespace Z0
             => lhs.Ticks <= rhs.Ticks;
 
             
-        public Duration(long Ticks)
-            => this.Ticks = Ticks;
+        public Duration(long Ticks, double? ms = null)
+        {
+            this.Ticks = Ticks;
+            this.Ms = ms ?? ticksToMs(Ticks);
+        }
         
         public readonly long Ticks;
         
         public Duration Half()
             => new Duration(Ticks/2);
 
-        public long Ms
-            => ticksToMs(Ticks);
+        public readonly double Ms;
 
         static readonly double TicksPerMs = (double)Stopwatch.Frequency/1000.0;
 

@@ -30,8 +30,7 @@ namespace Z0
             else if(typeof(S) == typeof(ulong))
                 return generic<S>(dinx.shiftl(in uint64(lhs), in uint64(in shifts)));
             else
-                throw unsupported(PrimalKinds.kind<S>());
-
+                throw unsupported<S>();
         }
 
         [MethodImpl(Inline)]
@@ -48,7 +47,48 @@ namespace Z0
             else if(typeof(S) == typeof(ulong))
                 return generic<S>(dinx.shiftl(in uint64(lhs), in uint64(in shifts)));
             else
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
+        }
+
+        [MethodImpl(Inline)]
+        public static Vec128<T> shiftlw<T>(in Vec128<T> lhs, byte count)
+            where T : struct
+        {
+            if(typeof(T) == typeof(short))
+                return generic<T>(dinx.shiftlw(in int16(in lhs), count));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(dinx.shiftlw(in uint16(in lhs), count));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(dinx.shiftlw(in int32(in lhs), count));
+            else if(typeof(T) == typeof(uint)) 
+                return generic<T>(dinx.shiftlw(in uint32(in lhs), count));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(dinx.shiftlw(in int64(in lhs), count));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(dinx.shiftlw(in uint64(in lhs), count));
+            else
+                throw unsupported<T>();
+
+        }
+
+        [MethodImpl(Inline)]
+        public static Vec256<T> shiftlw<T>(in Vec256<T> lhs, byte count)
+            where T : struct
+        {
+            if(typeof(T) == typeof(short))
+                return generic<T>(dinx.shiftlw(in int16(in lhs), count));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(dinx.shiftlw(in uint16(in lhs), count));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(dinx.shiftlw(in int32(in lhs), count));
+            else if(typeof(T) == typeof(uint)) 
+                return generic<T>(dinx.shiftlw(in uint32(in lhs), count));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(dinx.shiftlw(in int64(in lhs), count));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(dinx.shiftlw(in uint64(in lhs), count));
+            else
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]

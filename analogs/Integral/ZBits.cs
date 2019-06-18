@@ -83,11 +83,17 @@ namespace Z0
 
           [MethodImpl(Inline)]
           public static string bitstring(in UInt128 src)
-               => Bits.bitstring(src.x11) + Bits.bitstring(src.x10) + Bits.bitstring(src.x01) + Bits.bitstring(src.x00);
+               => gbits.bitstring(src.x11) 
+               + gbits.bitstring(src.x10) 
+               + gbits.bitstring(src.x01) 
+               + gbits.bitstring(src.x00);
 
           [MethodImpl(Inline)]
           public static string bitstring(in Int128 src)
-               => Bits.bitstring(src.x11) + Bits.bitstring(src.x10) + Bits.bitstring(src.x01) + Bits.bitstring(src.x00);
+               => gbits.bitstring(src.x11) 
+               + gbits.bitstring(src.x10) 
+               + gbits.bitstring(src.x01) 
+               + gbits.bitstring(src.x00);
 
           [MethodImpl(Inline)]
           public static Span<byte> bytes(this in UInt128 src)

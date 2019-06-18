@@ -20,7 +20,7 @@ namespace Z0.Test
         {
             TypeCaseStart<T>();
             
-            var v1 = Randomizer.Vec128<T>();
+            var v1 = Random.NextVec128<T>();
             var bs = v1.ToBitString();
             Trace($"bitstring({v1}) = {bs}"); 
             

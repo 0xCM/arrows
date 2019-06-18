@@ -40,11 +40,11 @@ namespace Z0
 
             if(typeof(T) == typeof(sbyte))
                 digits = As.int8(src).ToString("x");
-            if(typeof(T) == typeof(byte))
+            else if(typeof(T) == typeof(byte))
                 digits = As.uint8(src).ToString("x");
-            if(typeof(T) == typeof(short))
+            else if(typeof(T) == typeof(short))
                 digits = As.int16(src).ToString("x");
-            if(typeof(T) == typeof(ushort))
+            else if(typeof(T) == typeof(ushort))
                 digits = As.uint16(src).ToString("x");
             else if(typeof(T) == typeof(uint))
                 digits = As.int32(src).ToString("x");

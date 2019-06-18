@@ -20,8 +20,8 @@ namespace Z0.Test
             where T : struct
         {
             var blocklen = Span128<T>.BlockLength;                     
-            var lhs = Randomizer.ReadOnlySpan128<T>(blocks);
-            var rhs = Randomizer.ReadOnlySpan128<T>(blocks);
+            var lhs = Random.ReadOnlySpan128<T>(blocks);
+            var rhs = Random.ReadOnlySpan128<T>(blocks);
             var expect = Span128.alloc<T>(blocks);
             var actual = Span128.alloc<T>(blocks);
             var tmp = new T[blocklen];

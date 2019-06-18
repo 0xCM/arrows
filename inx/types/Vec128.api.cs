@@ -6,8 +6,6 @@ namespace Z0
 {
     using System;
     using System.Numerics;
-    using System.Linq;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
     using System.Runtime.InteropServices;    
     using System.Runtime.Intrinsics;
@@ -28,6 +26,19 @@ namespace Z0
             where T : struct
                 => ref Vec128<T>.Zero;
 
+        /// <summary>
+        /// Produces a vector a vector that has all bits set to 1
+        /// </summary>
+        /// <typeparam name="T">The component primitive type</typeparam>
+        [MethodImpl(Inline)]
+         public static ref readonly Vec128<T> ones<T>()
+            where T : struct
+                => ref Vec128Const<T>.Ones;
+
+        /// <summary>
+        /// Produces a vector with each component assigned unit value
+        /// </summary>
+        /// <typeparam name="T">The component primitive type</typeparam>
         [MethodImpl(Inline)]
          public static ref readonly Vec128<T> one<T>()
             where T : struct
@@ -55,7 +66,6 @@ namespace Z0
             else
                 throw unsupported<T>();
         }
-
 
         [MethodImpl(Inline)]
         public unsafe static void store<T>(in Vec128<T> src, ref T dst)
@@ -185,18 +195,17 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static Vec128<T> single<T>(T[] src, int block = 0)
-            where T : struct  
-                => load(src, block, out Vec128<T> dst);
-
-        [MethodImpl(Inline)]
-        public static Vec128<T> single<T>(in ReadOnlySpan128<T> src, int block = 0)
+        public static Vec128<T> load<T>(Span128<T> src, int block = 0)
             where T : struct  
                 => load(in src, block, out Vec128<T> dst);
 
+        [MethodImpl(Inline)]
+        public static Vec128<T> load<T>(ReadOnlySpan128<T> src, int block = 0)
+            where T : struct  
+                => load(in src, block, out Vec128<T> dst);
 
         [MethodImpl(Inline)]
-        public static ref Vec128<T> load<T>(in ReadOnlySpan<T> src, int offset, out Vec128<T> dst)
+        public static ref Vec128<T> load<T>(ReadOnlySpan<T> src, int offset, out Vec128<T> dst)
             where T : struct  
         {
             ref var head = ref asRef(in src[offset]);            
@@ -259,10 +268,6 @@ namespace Z0
             where T : struct  
             =>  load<T>(src, offset, out Vec128<T> dst);    
 
-        [MethodImpl(Inline)]
-        public static Vec128<T> load<T>(in Span128<T> src, int block = 0)
-            where T : struct  
-                => load(src, block, out Vec128<T> dst);
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<sbyte> load(ref sbyte src)

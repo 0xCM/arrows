@@ -20,7 +20,7 @@ namespace Z0.Test
     {
         public void PowI32Test()
         {
-            var lhs = Randomizer.ReadOnlySpan<int>(Pow2.T08);
+            var lhs = Random.ReadOnlySpan<int>(Pow2.T08);
             var rhs = span<int>(lhs.Length).FillWith(2);
             for(var i = 0; i< length(lhs,rhs); i++)
             {
@@ -33,7 +33,7 @@ namespace Z0.Test
 
         public void PowU8Test()
         {
-            var lhs = Randomizer.ReadOnlySpan<byte>(Pow2.T08);
+            var lhs = Random.ReadOnlySpan<byte>(Pow2.T08);
             var rhs = span<byte>(lhs.Length).FillWith((byte)2);
             for(var i = 0; i< length(lhs,rhs); i++)
             {
@@ -46,7 +46,7 @@ namespace Z0.Test
 
         public void PowU64Test()
         {
-            var lhs = Randomizer.ReadOnlySpan<ulong>(Pow2.T08);
+            var lhs = Random.ReadOnlySpan<ulong>(Pow2.T08);
             var rhs = span<ulong>(lhs.Length).FillWith(3ul);
             for(var i = 0; i< length(lhs,rhs); i++)
             {

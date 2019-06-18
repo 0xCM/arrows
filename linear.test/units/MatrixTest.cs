@@ -15,7 +15,7 @@ namespace Z0.Test
 
         public void MatMul1()
         {
-            var m1 = Randomizer.Span<N3,N3,double>();
+            var m1 = Random.Span<N3,N3,double>();
 
         }
     }

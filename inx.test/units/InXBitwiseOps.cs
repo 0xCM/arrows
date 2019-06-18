@@ -18,10 +18,14 @@ namespace Z0.Test
         public void TestAllOn()
         {
             var v1 = Vec128.define(uint.MaxValue, uint.MaxValue, uint.MaxValue, uint.MaxValue);
-            Claim.@true(dinx.on(v1));
+            var v2 = Vec128.ones<uint>();
+            Claim.eq(v1,v2);
 
-            var v2 = Vec128.define(uint.MaxValue, uint.MaxValue - 1, uint.MaxValue, uint.MaxValue);
-            Claim.@false(dinx.on(v2));                
+            // Claim.@true(dinx.on(in v1));
+
+            // var v = Random.NextVec128<uint>();
+            // Claim.@false(dinx.on(v));
+
         }     
 
         public void Nonzero()
@@ -37,8 +41,8 @@ namespace Z0.Test
 
         public void LeftShiftV256U32()
         {
-            var src = Randomizer.Vec256<uint>();
-            var shifts = Randomizer.Vec256<uint>(closed(1u,7u));  
+            var src = Random.NextVec256<uint>();
+            var shifts = Random.NextVec256<uint>(closed(1u,7u));  
 
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
@@ -52,8 +56,8 @@ namespace Z0.Test
         
         public void LeftShiftV128U32()
         {
-            var src = Randomizer.Vec128<uint>();
-            var shifts = Randomizer.Vec128<uint>(closed(1u,7u));            
+            var src = Random.NextVec128<uint>();
+            var shifts = Random.NextVec128<uint>(closed(1u,7u));            
 
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
@@ -67,8 +71,8 @@ namespace Z0.Test
 
         public void LeftShiftV128U64()
         {
-            var src = Randomizer.Vec128<ulong>();
-            var shifts = Randomizer.Vec128<ulong>(closed(1ul,7ul));            
+            var src = Random.NextVec128<ulong>();
+            var shifts = Random.NextVec128<ulong>(closed(1ul,7ul));            
 
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
@@ -82,8 +86,8 @@ namespace Z0.Test
 
         public void LeftShiftV256U64()
         {
-            var src = Randomizer.Vec256<ulong>();
-            var shifts = Randomizer.Vec256<ulong>(closed(1ul,7ul));            
+            var src = Random.NextVec256<ulong>();
+            var shifts = Random.NextVec256<ulong>(closed(1ul,7ul));            
             
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)

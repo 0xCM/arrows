@@ -22,7 +22,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
 
             var len = Vec128<T>.Length;
-            var src = Randomizer.Vec128<T>();
+            var src = Random.NextVec128<T>();
             var expect = span<T>(len);
             src.StoreTo(expect);
             for(byte i = 0; i< len; i++)
@@ -54,7 +54,7 @@ namespace Z0.Test
 
             var len = Vec256<T>.Length;
             var half = len >> 1;
-            var src = Randomizer.Vec256<T>();
+            var src = Random.NextVec256<T>();
             var srcData = src.StoreTo(span<T>(len));
             
             var x0 = ginx.extract(in src, 0);

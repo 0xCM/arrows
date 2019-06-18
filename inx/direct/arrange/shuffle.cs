@@ -26,6 +26,7 @@ namespace Z0
         public static Vec128<sbyte> shuffle(in Vec128<sbyte> src, in Vec128<sbyte> mask)
             => Shuffle(src, mask);
 
+
         [MethodImpl(Inline)]
         public static Vec128<int> shuffle(in Vec128<int> src, byte control)
             => Shuffle(src, control);

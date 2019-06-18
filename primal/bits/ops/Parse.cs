@@ -29,7 +29,6 @@ namespace Z0
         static ReadOnlySpan<char> IgnoreBitSpecifier(in ReadOnlySpan<char> bs)
             =>  HasBitSpecifier(bs) ? bs.Slice(2) : bs;
 
-        [MethodImpl(Optimize)]
         public static byte parse(in ReadOnlySpan<char> bs, in int offset, out byte dst)
         {
             var src = IgnoreBitSpecifier(bs);
@@ -48,7 +47,6 @@ namespace Z0
         public static sbyte parse(in ReadOnlySpan<char> bs, in int offset, out sbyte dst)
             => dst = (sbyte)parse(bs, offset, out byte x);
 
-        [MethodImpl(Optimize)]
         public static ref ushort parse(in ReadOnlySpan<char> bs, in int offset, out ushort dst)
         {
             var src = IgnoreBitSpecifier(bs);
@@ -86,13 +84,11 @@ namespace Z0
         public static int parse(in ReadOnlySpan<char> bs, in int offset, out int dst)
             => dst = (int)parse(bs, offset, out uint x);
 
-        [MethodImpl(Optimize)]
         public static ref ulong parse(in ReadOnlySpan<char> bs, in int offset, out ulong dst)
         {            
             var src = IgnoreBitSpecifier(bs);
             var last = Math.Min(U64BitCount, src.Length) - 1;                        
-            var pos = last - 1;            
-            
+            var pos = last - 1;                        
             dst = 0;
             for(var i=offset; i<= last; i++)
                 if(src[i] == Bit.One)

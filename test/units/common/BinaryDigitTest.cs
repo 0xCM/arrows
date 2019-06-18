@@ -25,10 +25,10 @@ namespace Z0.Test
 
         public void ByteToBinaryDigits()
         {
-            Claim.eq("0b100", Bits.bitstring(0b00000100, true, true));
-            Claim.eq("0b101", Bits.bitstring(0b00000101,true,true));
-            Claim.eq("0b1000101", Bits.bitstring(0b01000101,true,true));
-            Claim.eq("0b11010101", Bits.bitstring(0b11010101,true,true));
+            Claim.eq("0b100", gbits.bitstring(0b00000100, true, true));
+            Claim.eq("0b101", gbits.bitstring(0b00000101,true,true));
+            Claim.eq("0b1000101", gbits.bitstring(0b01000101,true,true));
+            Claim.eq("0b11010101", gbits.bitstring(0b11010101,true,true));
         }
 
         public void SByteToBinaryDigits()

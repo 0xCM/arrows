@@ -19,7 +19,7 @@ namespace Z0.Test
         public void Perm1()
         {
             var mask = (byte)0b11101010;
-            var src = Randomizer.Vec128<float>();
+            var src = Random.NextVec128<float>();
             var dst = dinx.permute(src,mask);
             
             var bsMask = mask.ToBitString();

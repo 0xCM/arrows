@@ -18,10 +18,9 @@ namespace Z0.Bench
         public BenchContext(IRandomSource random)
             : base(random ?? Z0.XOrStarStar256.define(Seed256.BenchSeed))
         {
-            Random = Randomizer;
+            
         }
 
-        public IRandomSource Random {get;}
     }
 
     public abstract class BenchContext<T> : BenchContext
@@ -47,6 +46,10 @@ namespace Z0.Bench
 
         public int Samples
             => Config.Samples;
+
+        public new IRandomSource Random
+            => base.Random;
+
     }
 
 }

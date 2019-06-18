@@ -144,6 +144,10 @@ namespace Z0
             => !x ? true : throw ClaimException.Define(NotFalse(msg, caller, file,line));
 
         [MethodImpl(Inline)]
+        public static unsafe bool notnull(void* p, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => (p != null) ? true : throw new ArgumentNullException(AppMsg.Define($"Pointer was null", SeverityLevel.Error, caller,file,line).ToString());
+
+        [MethodImpl(Inline)]
         public static bool notnull<T>(T src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => !(src is null) ? true : throw new ArgumentNullException(AppMsg.Define($"Argument was null", SeverityLevel.Error, caller,file,line).ToString());
 

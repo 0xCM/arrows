@@ -67,7 +67,7 @@ namespace Z0.Test
         {
             var rep = new N();
             var len = (int)rep.value;
-            var data = Randomizer.DataSet<N,T>();            
+            var data = Random.DataSet<N,T>();            
             var vResult = data.LeftVec.Add(data.RightVec);
             
             var calcs = span<T>(len);
@@ -85,7 +85,7 @@ namespace Z0.Test
         {
             var rep = new N();
             var len = (int)rep.value;
-            var data = Randomizer.DataSet<N,T>();            
+            var data = Random.DataSet<N,T>();            
             var vResult = data.LeftVec.Sub(data.RightVec);
             
             var calcs = span<T>(len);
@@ -102,7 +102,7 @@ namespace Z0.Test
         {
             var rep = new N();
             var len = (int)rep.value;
-            var data = Randomizer.DataSet<N,T>();            
+            var data = Random.DataSet<N,T>();            
             var vResult = data.LeftVec.And(data.RightVec);
             
             var calcs = span<T>(len);

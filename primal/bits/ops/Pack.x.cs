@@ -12,11 +12,8 @@ namespace Z0
     
     using static zfunc;
 
-
     partial class BitX
-    {
-        
-
+    {        
         [MethodImpl(Optimize)]
         public static ref Span<byte> Pack(this ReadOnlySpan<Bit> src, out Span<byte> dst)
         {
@@ -30,7 +27,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref Span<byte> Pack(this Span<Bit> src, out Span<byte> dst)
             => ref src.ReadOnly().Pack(out dst);
-
 
         [MethodImpl(Inline)]   
         public static ref T Pack<T>(this Span<byte> src, out T dst, int offset = 0)
@@ -63,10 +59,7 @@ namespace Z0
                     dstOffset += srcSize;
             }
             return dst;
-
         }
-
-
     }
 
 }

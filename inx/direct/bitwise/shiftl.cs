@@ -40,7 +40,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<ulong> shiftl(in Vec128<ulong> src, byte count)
             => ShiftLeftLogical(src, count);
-
         
         [MethodImpl(Inline)]
         public static Vec256<short> shiftl(in Vec256<short> src, byte count)
@@ -114,6 +113,38 @@ namespace Z0
         public static void shiftl(in Vec256<ulong> lhs, byte count, ref ulong dst)
             => store(shiftl(lhs,count), ref dst);
 
+       [MethodImpl(Inline)]
+        public static Vec128<int> shiftl(in Vec128<int> src, in Vec128<uint> count)
+            => ShiftLeftLogicalVariable(src, count);
+
+        [MethodImpl(Inline)]
+        public static Vec128<uint> shiftl(in Vec128<uint> src, in Vec128<uint> shifts)
+            => ShiftLeftLogicalVariable(src, shifts);
+
+        [MethodImpl(Inline)]
+        public static Vec128<long> shiftl(in Vec128<long> src, in Vec128<ulong> shifts)
+            => ShiftLeftLogicalVariable(src, shifts);
+
+        [MethodImpl(Inline)]
+        public static Vec128<ulong> shiftl(in Vec128<ulong> src, in Vec128<ulong> shifts)
+            => ShiftLeftLogicalVariable(src, shifts);       
+ 
+        [MethodImpl(Inline)]
+        public static Vec256<int> shiftl(in Vec256<int> src, in Vec256<uint> shifts)
+            => ShiftLeftLogicalVariable(src, shifts);
+
+        [MethodImpl(Inline)]
+        public static Vec256<uint> shiftl(in Vec256<uint> src, in Vec256<uint> shifts)
+            => ShiftLeftLogicalVariable(src, shifts);
+
+        [MethodImpl(Inline)]
+        public static Vec256<long> shiftl(in Vec256<long> src, in Vec256<ulong> shifts)
+            => ShiftLeftLogicalVariable(src, shifts);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ulong> shiftl(in Vec256<ulong> src, in Vec256<ulong> shifts)
+            => ShiftLeftLogicalVariable(src, shifts); 
+ 
         public static Span128<short> shiftl(ReadOnlySpan128<short> lhs, byte count, Span128<short> dst)
         {
             var width = dst.BlockWidth;
@@ -210,44 +241,13 @@ namespace Z0
             return dst;
         }
 
-        [MethodImpl(Inline)]
-        public static Vec128<int> shiftl(in Vec128<int> src, in Vec128<uint> count)
-            => ShiftLeftLogicalVariable(src, count);
-
-        [MethodImpl(Inline)]
-        public static Vec128<uint> shiftl(in Vec128<uint> src, in Vec128<uint> shifts)
-            => ShiftLeftLogicalVariable(src, shifts);
-
-        [MethodImpl(Inline)]
-        public static Vec128<long> shiftl(in Vec128<long> src, in Vec128<ulong> shifts)
-            => ShiftLeftLogicalVariable(src, shifts);
-
-        [MethodImpl(Inline)]
-        public static Vec128<ulong> shiftl(in Vec128<ulong> src, in Vec128<ulong> shifts)
-            => ShiftLeftLogicalVariable(src, shifts);       
- 
-        [MethodImpl(Inline)]
-        public static Vec256<int> shiftl(in Vec256<int> src, in Vec256<uint> shifts)
-            => ShiftLeftLogicalVariable(src, shifts);
-
-        [MethodImpl(Inline)]
-        public static Vec256<uint> shiftl(in Vec256<uint> src, in Vec256<uint> shifts)
-            => ShiftLeftLogicalVariable(src, shifts);
-
-        [MethodImpl(Inline)]
-        public static Vec256<long> shiftl(in Vec256<long> src, in Vec256<ulong> shifts)
-            => ShiftLeftLogicalVariable(src, shifts);
-
-        [MethodImpl(Inline)]
-        public static Vec256<ulong> shiftl(in Vec256<ulong> src, in Vec256<ulong> shifts)
-            => ShiftLeftLogicalVariable(src, shifts); 
   
         public static Span128<int> shiftl(in ReadOnlySpan128<int> lhs, in ReadOnlySpan128<uint> shifts, in Span128<int> dst)
         {
             var width = dst.BlockWidth;
             var cells = length(lhs,shifts);
             for(var i =0; i < cells; i += width)
-                dinx.store(dinx.shiftl(lhs.LoadVec128(i),shifts.LoadVec128(i)), ref dst[i]);            
+                dinx.store(dinx.shiftl(lhs.LoadVec128(i), shifts.LoadVec128(i)), ref dst[i]);            
             return dst;
         }
 

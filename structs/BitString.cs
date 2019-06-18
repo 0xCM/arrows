@@ -34,6 +34,12 @@ namespace Z0
             this.content  = content;
         }
 
+        public Bit this[int index]
+        {
+            [MethodImpl(Inline)]
+            get => content[index];
+        }
+        
         public override string ToString()
             => content;
 

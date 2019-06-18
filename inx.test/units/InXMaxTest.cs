@@ -28,8 +28,8 @@ namespace Z0.Test
         {
             var blocks = Pow2.T08;   
             var blocklen = Span128<int>.BlockLength;                     
-            var lhs = Randomizer.ReadOnlySpan128<int>(blocks);
-            var rhs = Randomizer.ReadOnlySpan128<int>(blocks);
+            var lhs = Random.ReadOnlySpan128<int>(blocks);
+            var rhs = Random.ReadOnlySpan128<int>(blocks);
             var expect = Span128.alloc<int>(blocks);
             var actual = Span128.alloc<int>(blocks);
             
@@ -61,8 +61,8 @@ namespace Z0.Test
         {
             var blocks = Pow2.T08;   
             var blocklen = Span256<int>.BlockLength;                     
-            var lhs = Randomizer.ReadOnlySpan256<int>(blocks);
-            var rhs = Randomizer.ReadOnlySpan256<int>(blocks);
+            var lhs = Random.ReadOnlySpan256<int>(blocks);
+            var rhs = Random.ReadOnlySpan256<int>(blocks);
             var expect = Span256.alloc<int>(blocks);
             var actual = Span256.alloc<int>(blocks);
             
