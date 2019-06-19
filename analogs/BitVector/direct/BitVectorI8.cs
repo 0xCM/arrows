@@ -38,11 +38,6 @@ namespace Z0
         public static BitVectorI8 Define(in sbyte src)
             => new BitVectorI8(src);
 
-        [MethodImpl(Inline)]
-        public static BitVectorI8 Define(
-            in Bit x00, in Bit x01, in Bit x02, in Bit x03, 
-            in Bit x04, in Bit x05, in Bit x06, Sign sign)
-                => pack8(x00, x01, x02, x03, x04, x05, x06, sign);
 
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVectorI8 lhs, in BitVectorI8 rhs)
@@ -68,7 +63,7 @@ namespace Z0
         public static BitVectorI8 operator ~(in BitVectorI8 src)
             => Define((sbyte) ~ src.data);
 
-        public Bit this[in int index]
+        public Bit this[in BitPos index]
         {
             [MethodImpl(Inline)]
             get => test(in data, in index);
@@ -85,15 +80,15 @@ namespace Z0
         
 
         [MethodImpl(Inline)]
-        public void EnableBit(in int pos)
+        public void EnableBit(in BitPos pos)
             => enable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public void DisableBit(in int pos)
+        public void DisableBit(in BitPos pos)
             => disable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public bool TestBit(in int pos)
+        public bool TestBit(in BitPos pos)
             => test(in data, in pos);
 
         [MethodImpl(Inline)]

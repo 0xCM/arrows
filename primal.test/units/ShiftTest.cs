@@ -51,9 +51,7 @@ namespace Z0.Test
             iter(Samples, i => Claim.eq((sbyte)(lhs[i] << rhs[i]), math.shiftl(lhs[i], rhs[i])));
     
             Shift<sbyte>(Orientation.Right, lhs, rhs);        
-            iter(Samples, i => Claim.eq((sbyte)(lhs[i] >> rhs[i]), math.shiftr(lhs[i], rhs[i])));
-    
-
+            iter(Samples, i => Claim.eq((sbyte)(lhs[i] >> rhs[i]), math.shiftr(lhs[i], rhs[i])));    
         }
 
         public void ShiftU8()
@@ -65,9 +63,7 @@ namespace Z0.Test
             iter(Samples, i => Claim.eq((byte)(lhs[i] << rhs[i]), math.shiftl(lhs[i], rhs[i])));
     
             Shift<byte>(Orientation.Right, lhs, rhs);        
-            iter(Samples, i => Claim.eq((byte)(lhs[i] >> rhs[i]), math.shiftr(lhs[i], rhs[i])));
-    
-
+            iter(Samples, i => Claim.eq((byte)(lhs[i] >> rhs[i]), math.shiftr(lhs[i], rhs[i])));    
         }
 
         public void ShiftI32()
@@ -80,8 +76,6 @@ namespace Z0.Test
     
             Shift<int>(Orientation.Right, lhs, rhs);        
             iter(Samples, i => Claim.eq(lhs[i] >> rhs[i], math.shiftr(lhs[i], rhs[i])));
-    
-
         }
 
         public void ShiftU32()
@@ -106,7 +100,6 @@ namespace Z0.Test
     
             Shift<long>(Orientation.Right, lhs, rhs);        
             iter(Samples, i => Claim.eq(lhs[i] >> rhs[i], math.shiftr(lhs[i], rhs[i])));
-
         }
 
         public void ShiftU64()
@@ -119,11 +112,7 @@ namespace Z0.Test
     
             Shift<ulong>(Orientation.Right, lhs, rhs);        
             iter(Samples, i => Claim.eq(lhs[i] >> rhs[i], math.shiftr(lhs[i], rhs[i])));
-
-
         }
 
-
     }
-
 }

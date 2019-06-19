@@ -10,11 +10,12 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
+    using System.Numerics;
 
     using static zfunc;    
     
-    partial class math
-    {
+    partial class Bits
+    {                
         [MethodImpl(Inline)]
         public static byte rotr(in byte value, int offset)
             => (byte)((value >> offset) | (value << (8 - offset)));
@@ -31,6 +32,16 @@ namespace Z0
         public static ulong rotr(in ulong  value, int offset)
             => (value >> offset) | (value << (64 - offset));
 
+
+        [MethodImpl(Inline)]
+        public static ulong rotate(ulong src, int offset, bool left = false)            
+            => left ? BitOperations.RotateLeft(src,offset) 
+                    : BitOperations.RotateRight(src,offset);
+
+        [MethodImpl(Inline)]
+        public static uint rotate(uint src, int offset, bool left = false)            
+            => left ? BitOperations.RotateLeft(src,offset) 
+                    : BitOperations.RotateRight(src,offset);
 
         [MethodImpl(Inline)]
         public static ref byte rotr(ref byte lhs, in int rhs)

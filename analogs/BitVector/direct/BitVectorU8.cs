@@ -72,13 +72,6 @@ namespace Z0
         public static BitVectorU8 Define(in ReadOnlySpan<Bit> src)
             => Define(in pack(src, out byte dst));
 
-        [MethodImpl(Inline)]
-        public static BitVectorU8 Define(
-            in Bit x00, in Bit x01, in Bit x02, in Bit x03, 
-            in Bit x04, in Bit x05, in Bit x06, in Bit x07)
-                => Bits.pack8(
-                    x00, x01, x02, x03, 
-                    x04, x05, x06, x07);
 
         [MethodImpl(Inline)]
         public static bool operator ==(in BitVectorU8 lhs, in BitVectorU8 rhs)
@@ -104,7 +97,7 @@ namespace Z0
         public static BitVectorU8 operator ~(in BitVectorU8 src)
             => Define((byte) ~ src.data);
 
-        public Bit this[in int pos]
+        public Bit this[in BitPos pos]
         {
             [MethodImpl(Inline)]
             get => test(in data, in pos);
@@ -120,15 +113,15 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public void EnableBit(in int pos)
+        public void EnableBit(in BitPos pos)
             => enable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public void DisableBit(in int pos)
+        public void DisableBit(in BitPos pos)
             => disable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public bool TestBit(in int pos)
+        public bool TestBit(in BitPos pos)
             => test(in data, in pos);
 
          [MethodImpl(Inline)]

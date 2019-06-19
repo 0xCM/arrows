@@ -57,7 +57,7 @@ namespace Z0.Test
 
             var eq = vExpect.Eq(vResult);
             for(var i=0; i<len; i++)
-                Claim.@true(eq[i]);            
+                Claim.yea(eq[i]);            
         }        
 
 
@@ -165,7 +165,7 @@ namespace Z0.Test
             var v3 = v1.Concat(v2, NatSum<N4,N3>.Rep).ReDim(N7);
             var v4 = Vector.Define(N7, 1, 2, 3, 4, 5, 6, 7);
             var v5 = v3.Eq(v4);
-            Claim.@true(v5.Unsize().All(x => true));
+            Claim.yea(v5.Unsize().All(x => true));
 
         }
 

@@ -130,25 +130,25 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                dinx.and(int8(lhs), int8(rhs), int8(dst));
+                int8(lhs).And(int8(rhs), int8(dst));
             else if (typeof(T) == typeof(byte))
-                dinx.and(uint8(lhs), uint8(rhs), uint8(dst));                    
+                uint8(lhs).And(uint8(rhs), uint8(dst));
             else if (typeof(T) == typeof(short))
-                dinx.and(int16(lhs), int16(rhs), int16(dst));
+                int16(lhs).And(int16(rhs), int16(dst));
             else if (typeof(T) == typeof(ushort))
-                dinx.and(uint16(lhs), uint16(rhs), uint16(dst));
+                uint16(lhs).And(uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dinx.and(int32(lhs), int32(rhs), int32(dst));
+                int32(lhs).And(int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dinx.and(uint32(lhs), uint32(rhs), uint32(dst));
+                uint32(lhs).And(uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dinx.and(int64(lhs), int64(rhs), int64(dst));
+                int64(lhs).And(int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dinx.and(uint64(lhs), uint64(rhs), uint64(dst));
+                uint64(lhs).And(uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dinx.and(float32(lhs), float32(rhs), float32(dst));
+                float32(lhs).And(float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                dinx.and(float64(lhs), float64(rhs), float64(dst));                
+                float64(lhs).And(float64(rhs), float64(dst));
             else    
                 throw unsupported(PrimalKinds.kind<T>());    
             return dst;        
@@ -158,25 +158,25 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                dinx.and(int8(lhs), int8(rhs), int8(dst));
+                int8(lhs).And(int8(rhs), int8(dst));
             else if (typeof(T) == typeof(byte))
-                dinx.and(uint8(lhs), uint8(rhs), uint8(dst));                    
+                uint8(lhs).And(uint8(rhs), uint8(dst));                    
             else if (typeof(T) == typeof(short))
-                dinx.and(int16(lhs), int16(rhs), int16(dst));
+                int16(lhs).And(int16(rhs), int16(dst));
             else if (typeof(T) == typeof(ushort))
-                dinx.and(uint16(lhs), uint16(rhs), uint16(dst));
+                uint16(lhs).And(uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dinx.and(int32(lhs), int32(rhs), int32(dst));
+                int32(lhs).And(int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dinx.and(uint32(lhs), uint32(rhs), uint32(dst));
+                uint32(lhs).And(uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dinx.and(int64(lhs), int64(rhs), int64(dst));
+                int64(lhs).And(int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dinx.and(uint64(lhs), uint64(rhs), uint64(dst));
+                uint64(lhs).And(uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dinx.and(float32(lhs), float32(rhs), float32(dst));
+                float32(lhs).And(float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                dinx.and(float64(lhs), float64(rhs), float64(dst));                
+                float64(lhs).And(float64(rhs), float64(dst));                
             else    
                 throw unsupported(PrimalKinds.kind<T>());    
             return dst;        

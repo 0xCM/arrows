@@ -27,10 +27,11 @@ namespace Z0
         public static IEnumerable<T> UniformStream<T>(this IRandomSource src, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
         {
+            var configured = domain.Configure();
             if(filter != null)
-                return src.FilteredStream(domain.Configure(),filter);
+                return src.FilteredStream(configured, filter);
             else
-                return src.UnfilteredStream(domain.Configure());
+                return src.UnfilteredStream(configured);
         }
 
         public static IEnumerable<T> Stream<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)
@@ -60,6 +61,8 @@ namespace Z0
             where T : struct
         {
             var next = default(T);    
+            var tries = 0;
+            var tryMax = 10;
             while(true)            
             {
                 if(typeof(T) == typeof(sbyte))
@@ -82,10 +85,20 @@ namespace Z0
                     next = generic<T>(src.Next(domain.As<float>()));                    
                 else if(typeof(T) == typeof(double))
                     next = generic<T>(src.Next(domain.As<double>()));                    
-                else throw unsupported<T>();
+                else 
+                    throw unsupported<T>();
 
                 if(filter(next))
+                {
+                    tries = 0;
                     yield return next;
+                }
+                else
+                {
+                    ++tries;
+                    if(tries > tryMax)
+                        throw new Exception($"Filter too rigid over {domain}; last failed value: {next}");
+                }
             }
         }
 

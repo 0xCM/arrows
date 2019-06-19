@@ -8,7 +8,6 @@ namespace Z0
     using System.Numerics;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using System.Runtime.Serialization;
         
     using static zfunc;
     using static ErrorMessages;
@@ -52,7 +51,6 @@ namespace Z0
                 if(lhs[i] != rhs[i])
                     throw failed(ClaimOpKind.EqItem, ItemsNotEqual(i, lhs[i], rhs[i], caller, file, line));
         }
-
 
         [MethodImpl(Inline)]
         public static bool eq(bool lhs, bool rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
@@ -135,12 +133,12 @@ namespace Z0
             => lhs > rhs ? true : throw failed(ClaimOpKind.Eq, NotGreaterThan(lhs, rhs, caller, file, line));
 
         [MethodImpl(Inline)]
-        public static bool @true(bool src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+        public static bool yea(bool src, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => src ? true 
                 : throw ClaimException.Define(NotTrue(msg, caller, file,line));
 
         [MethodImpl(Inline)]
-        public static bool @false(bool x, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+        public static bool nea(bool x, string msg = null, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => !x ? true : throw ClaimException.Define(NotFalse(msg, caller, file,line));
 
         [MethodImpl(Inline)]

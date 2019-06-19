@@ -52,6 +52,7 @@ namespace Z0.Test
         void Add128<T>(int blocks)
             where T : struct
         {
+            TypeCaseStart<T>();
             VerifyBinOp(blocks, new Vec128BinOp<T>(ginx.add), gmath.add<T>);
             TypeCaseEnd<T>();
         }
@@ -59,6 +60,7 @@ namespace Z0.Test
         void Sub128<T>(int blocks)
             where T : struct
         {
+            TypeCaseStart<T>();
             VerifyBinOp(blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
             TypeCaseEnd<T>();
         }
@@ -82,7 +84,6 @@ namespace Z0.Test
 
         public void Sub128()
         {
-
             var blocks = Pow2.T08;
             Sub128<sbyte>(blocks);
             Sub128<byte>(blocks);

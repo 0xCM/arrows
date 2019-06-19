@@ -8,13 +8,9 @@ namespace Z0
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
-    using System.Numerics;
-    using System.Runtime.Intrinsics;
-    using System.Runtime.Intrinsics.X86;
-    using Z0;
- 
     using static zfunc;
     using static As;
+    using static AsIn;
 
     public static class gbits
     {
@@ -204,21 +200,21 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                math.shiftr(ref int8(ref lhs), rhs);
+                math.shiftl(ref int8(ref lhs), rhs);
             else if (typeof(T) == typeof(byte))
-                math.shiftr(ref uint8(ref lhs), rhs);
+                math.shiftl(ref uint8(ref lhs), rhs);
             else if (typeof(T) == typeof(short))
-                math.shiftr(ref int16(ref lhs), rhs);
+                math.shiftl(ref int16(ref lhs), rhs);
             else if (typeof(T) == typeof(ushort))
-                math.shiftr(ref uint16(ref lhs), rhs);
+                math.shiftl(ref uint16(ref lhs), rhs);
             else if (typeof(T) == typeof(int))
-                math.shiftr(ref int32(ref lhs), rhs);
+                math.shiftl(ref int32(ref lhs), rhs);
             else if (typeof(T) == typeof(uint))
-                math.shiftr(ref uint32(ref lhs), rhs);
+                math.shiftl(ref uint32(ref lhs), rhs);
             else if (typeof(T) == typeof(long))
-                math.shiftr(ref int64(ref lhs), rhs);
+                math.shiftl(ref int64(ref lhs), rhs);
             else if (typeof(T) == typeof(ulong))
-                math.shiftr(ref uint64(ref lhs), rhs);
+                math.shiftl(ref uint64(ref lhs), rhs);
             else
                 throw unsupported<T>();
             return ref lhs;
@@ -367,8 +363,14 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        /// <summary>
+        /// Determines whether a position-identified bit in value is enabled
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The bit position</param>
+        /// <typeparam name="T">The primal value type</typeparam>
         [MethodImpl(Inline)]
-        public static bool test<T>(in T src, in int pos)
+        public static bool test<T>(in T src, in BitPos pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -395,8 +397,13 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        /// <summary>
+        /// Queries a bit source for the status of its most significant bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <typeparam name="T">The primal value type</typeparam>
         [MethodImpl(Inline)]
-        public static Bit hibit<T>(in T src, in int pos)
+        public static Bit hibit<T>(in T src)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -424,8 +431,14 @@ namespace Z0
         }
 
 
+        /// <summary>
+        /// Queries a bit source for the status of its least significant bit
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        /// <param name="pos">The bit position</param>
+        /// <typeparam name="T">The primal value type</typeparam>
         [MethodImpl(Inline)]
-        public static Bit lobit<T>(in T src, in int pos)
+        public static Bit lobit<T>(in T src)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -482,7 +495,7 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static ref T enable<T>(ref T src, in int pos)
+        public static ref T enable<T>(ref T src, in BitPos pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -508,7 +521,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static T enable<T>(T src, int pos)
+        public static T enable<T>(T src, in BitPos pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -532,7 +545,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref T disable<T>(ref T src, in int pos)
+        public static ref T disable<T>(ref T src, in BitPos pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -551,6 +564,10 @@ namespace Z0
                 Bits.disable(ref int64(ref src), in pos);
             else if(typeof(T) == typeof(ulong))
                 Bits.disable(ref uint64(ref src), in pos);
+            else if(typeof(T) == typeof(float))
+                Bits.disable(ref float32(ref src), in pos);
+            else if(typeof(T) == typeof(double))
+                Bits.disable(ref float64(ref src), in pos);
             else
                 throw unsupported<T>();
                 
@@ -558,7 +575,7 @@ namespace Z0
         }
             
         [MethodImpl(Inline)]
-        public static ref T toggle<T>(ref T src, in int pos)
+        public static ref T toggle<T>(ref T src, in BitPos pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -577,6 +594,10 @@ namespace Z0
                 Bits.toggle(ref int64(ref src), pos);
             else if(typeof(T) == typeof(ulong))
                 Bits.toggle(ref uint64(ref src), pos);
+            else if(typeof(T) == typeof(float))
+                Bits.toggle(ref float32(ref src), pos);
+            else if(typeof(T) == typeof(double))
+                Bits.toggle(ref float64(ref src), pos);
             else
                 throw unsupported<T>();
 
@@ -584,7 +605,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static T toggle<T>(T src, int pos)
+        public static T toggle<T>(T src, BitPos pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -603,6 +624,10 @@ namespace Z0
                 return generic<T>(Bits.toggle(int64(src), pos));
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(Bits.toggle(uint64(src), pos));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(Bits.toggle(float32(src), pos));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(Bits.toggle(float64(src), pos));
             else
                 throw unsupported<T>();
         }
@@ -649,25 +674,25 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static ref T loOff<T>(ref T src)
+        public static ref T loff<T>(ref T src)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                 Bits.loOff(ref int8(ref src));
+                 Bits.loff(ref int8(ref src));
             if(typeof(T) == typeof(byte))
-                 Bits.loOff(ref uint8(ref src));
+                 Bits.loff(ref uint8(ref src));
             if(typeof(T) == typeof(short))
-                 Bits.loOff(ref int16(ref src));
+                 Bits.loff(ref int16(ref src));
             if(typeof(T) == typeof(ushort))
-                 Bits.loOff(ref uint16(ref src));
+                 Bits.loff(ref uint16(ref src));
             if(typeof(T) == typeof(int))
-                 Bits.loOff(ref int32(ref src));
+                 Bits.loff(ref int32(ref src));
             if(typeof(T) == typeof(uint))
-                 Bits.loOff(ref uint32(ref src));
+                 Bits.loff(ref uint32(ref src));
             if(typeof(T) == typeof(long))
-                 Bits.loOff(ref int64(ref src));
+                 Bits.loff(ref int64(ref src));
             if(typeof(T) == typeof(ulong))
-                 Bits.loOff(ref uint64(ref src));
+                 Bits.loff(ref uint64(ref src));
             else
                 throw unsupported<T>();
 
@@ -679,13 +704,13 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(byte))
-                return generic<T>(math.rotr(uint8(lhs), rhs));
+                return generic<T>(Bits.rotr(uint8(lhs), rhs));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(math.rotr(uint16(lhs), rhs));
+                return generic<T>(Bits.rotr(uint16(lhs), rhs));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(math.rotr(uint32(lhs), rhs));
+                return generic<T>(Bits.rotr(uint32(lhs), rhs));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(math.rotr(uint64(lhs), rhs));
+                return generic<T>(Bits.rotr(uint64(lhs), rhs));
             else            
                 throw unsupported<T>();
         }           
@@ -695,13 +720,13 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(byte))
-                math.rotr(ref uint8(ref lhs), in rhs);
+                Bits.rotr(ref uint8(ref lhs), in rhs);
             else if(typeof(T) == typeof(ushort))
-                math.rotr(ref uint16(ref lhs), in rhs);
+                Bits.rotr(ref uint16(ref lhs), in rhs);
             else if(typeof(T) == typeof(uint))
-                math.rotr(ref uint32(ref lhs), in rhs);
+                Bits.rotr(ref uint32(ref lhs), in rhs);
             else if(typeof(T) == typeof(ulong))
-                math.rotr(ref uint64(ref lhs), in rhs);
+                Bits.rotr(ref uint64(ref lhs), in rhs);
             else            
                 throw unsupported<T>();
             return ref lhs;
@@ -713,13 +738,13 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(byte))
-                return generic<T>(math.rotl(uint8(lhs), rhs));
+                return generic<T>(Bits.rotl(uint8(lhs), rhs));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(math.rotl(uint16(lhs), rhs));
+                return generic<T>(Bits.rotl(uint16(lhs), rhs));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(math.rotl(uint32(lhs), rhs));
+                return generic<T>(Bits.rotl(uint32(lhs), rhs));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(math.rotl(uint64(lhs), rhs));
+                return generic<T>(Bits.rotl(uint64(lhs), rhs));
             else            
                 throw unsupported<T>();
         }           
@@ -729,65 +754,62 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(byte))
-                math.rotl(ref uint8(ref lhs), in rhs);
+                Bits.rotl(ref uint8(ref lhs), in rhs);
             else if(typeof(T) == typeof(ushort))
-                math.rotl(ref uint16(ref lhs), in rhs);
+                Bits.rotl(ref uint16(ref lhs), in rhs);
             else if(typeof(T) == typeof(uint))
-                math.rotl(ref uint32(ref lhs), in rhs);
+                Bits.rotl(ref uint32(ref lhs), in rhs);
             else if(typeof(T) == typeof(ulong))
-                math.rotl(ref uint64(ref lhs), in rhs);
+                Bits.rotl(ref uint64(ref lhs), in rhs);
             else            
                 throw unsupported<T>();
             return ref lhs;
         }           
 
-        public static string bitstring<T>(in T src, bool tlz = false, bool pfs = false)
-            where T : struct
-        {
-            var count = SizeOf<T>.BitSize;
-            var dst = new char[count];
-            var last = count - 1;
-            for(var i=0; i <= last; i++)
-                dst[last - i] = gbits.test(in src,i) 
-                              ? AsciDigits.A1 
-                              : AsciDigits.A0;
-            
-            var bsRaw = new string(dst);
-            if(!tlz && ! pfs)
-                return bsRaw;
-
-            bsRaw = tlz ? bsRaw.TrimStart(AsciDigits.A0) : bsRaw;
-            
-            if(tlz &&  bsRaw == string.Empty)
-                bsRaw += AsciDigits.A0;
-            
-            bsRaw = pfs ? BitSpecifier + bsRaw : bsRaw;
-            return bsRaw;            
-        }
-
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="start">The bit posiion within the source where extraction should benin</param>
+        /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static T parse<T>(string bitstring, int offset = 0)
+        public static T range<T>(in T lhs, in BitPos start, in byte length)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(Bits.parse(bitstring, offset, out sbyte _));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.parse(bitstring, offset, out byte _));
+                return generic<T>(Bits.range(in int8(in lhs), in start, in length));
+            if(typeof(T) == typeof(byte))
+                return generic<T>(Bits.range(in uint8(in lhs), in start, in length));
             else if(typeof(T) == typeof(short))
-                return generic<T>(Bits.parse(bitstring, offset, out short _));
+                return generic<T>(Bits.range(in int16(in lhs), in start, in length));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.parse(bitstring, offset, out ushort _));
+                return generic<T>(Bits.range(in uint16(in lhs), in start, in length));
             else if(typeof(T) == typeof(int))
-                return generic<T>(Bits.parse(bitstring, offset, out int _));
+                return generic<T>(Bits.range(in int32(in lhs), in start, in length));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.parse(bitstring, offset, out uint _));
+                return generic<T>(Bits.range(in uint32(in lhs), in start, in length));
             else if(typeof(T) == typeof(long))
-                return generic<T>(Bits.parse(bitstring, offset, out long _));
+                return generic<T>(Bits.range(in int64(in lhs), in start, in length));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.parse(bitstring, offset, out ulong _));
-            else
+                return generic<T>(Bits.range(in uint64(in lhs), in start, in length));
+            else            
                 throw unsupported<T>();
-        }
+        }           
+
+        /// <summary>
+        /// Determines whether identified bits in the operands agree.
+        /// </summary>
+        /// <param name="x">The first bit source</param>
+        /// <param name="nx">The first bit position</param>
+        /// <param name="y">The second bit source</param>
+        /// <param name="ny">The second bit position</param>
+        /// <typeparam name="S">The left operand type</typeparam>
+        /// <typeparam name="T">The right operand type</typeparam>
+        [MethodImpl(Inline)]
+        public static bool match<S,T>(in S x, in BitPos nx, T y, in BitPos ny)
+            where S : struct
+            where T : struct
+                => test(in x, in nx) == test(in y, in ny);
 
         public static ref Span<T> rotr<T>(ref Span<T> io, ReadOnlySpan<int> rhs)
             where T : struct

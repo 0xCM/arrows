@@ -33,20 +33,6 @@ namespace Z0.Test
         }
             
 
-        public void Extract128()
-        {
-            Extract128<byte>();
-            Extract128<sbyte>();
-            Extract128<short>();
-            Extract128<ushort>();
-            Extract128<int>();
-            Extract128<uint>();
-            Extract128<long>();
-            Extract128<ulong>();
-            Extract128<float>();
-            Extract128<double>();
-        }
-
         public void Extract256<T>()
             where T : struct
         {
@@ -70,9 +56,20 @@ namespace Z0.Test
             TypeCaseEnd<T>();                
 
         }
-        
-        public void Extract256()
+
+        public void Extract()
         {
+            Extract128<byte>();
+            Extract128<sbyte>();
+            Extract128<short>();
+            Extract128<ushort>();
+            Extract128<int>();
+            Extract128<uint>();
+            Extract128<long>();
+            Extract128<ulong>();
+            Extract128<float>();
+            Extract128<double>();
+
             Extract256<byte>();
             Extract256<sbyte>();
             Extract256<short>();
@@ -83,9 +80,7 @@ namespace Z0.Test
             Extract256<ulong>();
             Extract256<float>();
             Extract256<double>();
-
         }
-
 
     }
 

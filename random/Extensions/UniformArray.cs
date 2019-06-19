@@ -21,6 +21,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T[] NonZeroArray<T>(this IRandomSource random, int length, Interval<T>? domain = null)
             where T : struct
-                => random.Stream(domain, gmath.nonzero).TakeArray(length);        
+                => random.UniformStream(domain, gmath.nonzero).TakeArray(length);        
     }
 }

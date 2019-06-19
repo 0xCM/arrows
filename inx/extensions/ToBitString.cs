@@ -26,14 +26,14 @@ namespace Z0
             return bs;
         }
 
-        static string ToBitString<T>(this Span<T> src, bool tlz = false, bool pfs = false)
+        static string ToBitString<T>(this Span<T> src, bool tlz = false)
             where T : struct
         {
             var bs = string.Empty;
             var it = src.GetEnumerator();
             var len = src.Length;
             for(var i=len - 1; i>= 0; i--)
-                bs += gbits.bitstring(src[i],tlz,pfs);
+                bs += BitStringConvert.FromValue(src[i],tlz).ToString();
             return bs;
         }
 
@@ -41,19 +41,19 @@ namespace Z0
             where T : struct
                 => src.ToSpan().Unblock().ToHexString();
 
-       public static string ToBitString<T>(this Vec128<T> src, bool tlz = false, bool pfs = false)
+       public static string ToBitString<T>(this Vec128<T> src, bool tlz = false)
             where T : struct
-                => src.ToSpan().Unblock().ToBitString(tlz,pfs);
+                => src.ToSpan().Unblock().ToBitString(tlz);
 
-       public static string ToBitString<T>(this Vec256<T> src, bool tlz = false, bool pfs = false)
+       public static string ToBitString<T>(this Vec256<T> src, bool tlz = false)
             where T : struct
-                => src.ToSpan().Unblock().ToBitString(tlz, pfs);
+                => src.ToSpan().Unblock().ToBitString(tlz);
 
         public static string ToBlockedBitString<T>(this Vec128<T> src, int? width = null, string sep = null)
             where T : struct
-                => src.ToBitString(false, false).SeparateBlocks(width ?? SizeOf<T>.Size, sep ?? BlockSep );
+                => src.ToBitString(false).SeparateBlocks(width ?? SizeOf<T>.Size, sep ?? BlockSep );
 
-        public static string ToBlockedBitString<T>(this Vec256<T> src, string sep = null, bool tlz = false, bool pfs = false)
+        public static string ToBlockedBitString<T>(this Vec256<T> src, string sep = null, bool tlz = false)
             where T : struct
         {
             var len = src.Length();
@@ -65,14 +65,14 @@ namespace Z0
             {
                 if(i != start)
                     sb.Append(BlockSep);
-                sb.Append(gbits.bitstring(src[i],tlz,pfs));                
+                sb.Append(BitStringConvert.FromValue(src[i],tlz).ToString());                
             }
             return sb.ToString();
         }
 
-        public static string ToBlockedBitString<T>(this m256i src, string sep = null, bool tlz = false, bool pfs = false)
+        public static string ToBlockedBitString<T>(this m256i src, string sep = null, bool tlz = false)
             where T : struct
-                => src.ToVec256<T>().ToBlockedBitString(sep, tlz, pfs);
+                => src.ToVec256<T>().ToBlockedBitString(sep, tlz);
 
         public static string ToBlockedHexString<T>(this Vec128<T> src, int? width = null, string sep = null)
             where T : struct

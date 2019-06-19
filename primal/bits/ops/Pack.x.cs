@@ -8,13 +8,11 @@ namespace Z0
     using System.Numerics;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using System.Runtime.InteropServices;    
     
     using static zfunc;
 
     partial class BitX
     {        
-        [MethodImpl(Optimize)]
         public static ref Span<byte> Pack(this ReadOnlySpan<Bit> src, out Span<byte> dst)
         {
             dst = span<byte>(src.Length/8);
@@ -36,30 +34,84 @@ namespace Z0
             return ref dst;
         }
 
-        public static Span<uint> Pack(this ReadOnlySpan<byte> src, Span<uint> dst)            
-        {
-            var srcIx = 0;
-            var dstOffset = 0;
-            var dstIx = 0;
-            var srcSize = SizeOf<byte>.BitSize;
-            var dstSize = SizeOf<uint>.BitSize;
-            while(srcIx < src.Length && dstIx < dst.Length)
-            {
-                for(var i = 0; i< srcSize; i++)
-                    if(gbits.test(src[srcIx], i))
-                        gbits.enable(ref dst[dstIx], dstOffset + i);
+        [MethodImpl(Inline)]   
+        public static Span<ushort> Pack(this ReadOnlySpan<byte> src, Span<ushort> dst)            
+            => gbits.pack(src,dst);
 
-                srcIx++;
-                if((dstOffset + srcSize) >= dstSize)
-                {
-                    dstOffset = 0;
-                    dstIx++;
-                }
-                else
-                    dstOffset += srcSize;
-            }
+        [MethodImpl(Inline)]   
+        public static Span<uint> Pack(this ReadOnlySpan<byte> src, Span<uint> dst)            
+            => gbits.pack(src,dst);
+
+        [MethodImpl(Inline)]   
+        public static Span<ulong> Pack(this ReadOnlySpan<byte> src, Span<ulong> dst)            
+            => gbits.pack(src,dst);
+
+        [MethodImpl(Inline)]   
+        public static Span<uint> Pack(this ReadOnlySpan<ushort> src, Span<uint> dst)            
+            => gbits.pack(src,dst);
+
+        [MethodImpl(Inline)]   
+        public static Span<ulong> Pack(this ReadOnlySpan<ushort> src, Span<ulong> dst)            
+            => gbits.pack(src,dst);
+
+        [MethodImpl(Inline)]   
+        public static Span<ulong> Pack(this ReadOnlySpan<uint> src, Span<ulong> dst)            
+            => gbits.pack(src,dst);
+
+        /// <summary>
+        /// Interprets the source as an array of bytes
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]   
+        public static Span<byte> Unpack<T>(this T src, out Span<byte> dst)
+            where T : struct
+                => dst = Bytes.bytes(in src);
+
+        /// <summary>
+        /// Converts the source value to an array of bits
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static Span<Bit> Unpack(this in byte src, out Span<Bit> dst)
+            => Bits.unpack(in src, out dst);
+
+        /// <summary>
+        /// Converts the source value to an array of bits
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static Span<Bit> Unpack(this in ushort src, out Span<Bit> dst)
+            => Bits.unpack(in src, out dst);
+
+        /// <summary>
+        /// Converts the source value to an array of bits
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static Span<Bit> Unpack(this in int src, out Span<Bit> dst)
+            => Bits.unpack(in src, out dst);
+
+        /// <summary>
+        /// Converts the source value to an array of bits
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static Span<Bit> Unpack(this in ulong src, out Span<Bit> dst)
+            => Bits.unpack(in src, out dst);
+
+        public static Span<Bit> Unpack(this ReadOnlySpan<byte> src, out Span<Bit> dst)
+        {            
+            dst = span<Bit>(src.Length*8);
+            var offset = 0;
+            for(var i = 0; i<src.Length; i++, offset += 8)
+                src[i].Unpack(out Span<Bit> _).CopyTo(dst.Slice(offset));
             return dst;
         }
+
+        [MethodImpl(Inline)]        
+        public static Span<Bit> Unpack(this Span<byte> src, out Span<Bit> dst)
+            => src.ReadOnly().Unpack(out dst);
+
     }
 
 }

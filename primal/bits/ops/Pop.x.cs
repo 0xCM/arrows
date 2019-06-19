@@ -27,14 +27,6 @@ namespace Z0
             => src.ReadOnly().PopCount();
 
                
-        /// <summary>
-        /// Converts a bit to a byte
-        /// </summary>
-        /// <param name="src">The source value to convert</param>
-        [MethodImpl(Inline)]   
-        public static byte ToByte(this Bit src)
-            => src ? (byte)1 : (byte)0;
-
         [MethodImpl(Inline)]   
         public static ulong PopCount(this Span<byte> src)
             => Bits.pop(src);

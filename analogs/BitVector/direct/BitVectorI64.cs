@@ -61,7 +61,7 @@ namespace Z0
         public static BitVectorI64 operator ~(in BitVectorI64 src)
             => ~ src.data;
 
-        public Bit this[int pos]
+        public Bit this[in BitPos pos]
         {
             [MethodImpl(Inline)]
             get => test(data, pos);
@@ -77,15 +77,15 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public bool TestBit(in int pos)
+        public bool TestBit(in BitPos pos)
             => test(in data, in pos);
 
         [MethodImpl(Inline)]
-        public void EnableBit(in int pos)
+        public void EnableBit(in BitPos pos)
             => enable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public void DisableBit(in int pos)
+        public void DisableBit(in BitPos pos)
             => disable(ref data, in pos);
             
         public BitVectorI32 Hi

@@ -74,7 +74,7 @@ namespace Z0.Test
             m512.toggle<long>(ref point, 2, 3);
             var popY = m512.pop(point);
             var condition = (popY == popX + 1) || (popY == popX - 1);
-            Claim.@true(condition);
+            Claim.yea(condition);
         }
 
     }

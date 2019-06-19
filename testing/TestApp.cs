@@ -36,7 +36,8 @@ namespace Z0.Test
                 Trace(AppMsg.Define($"Creating unint {host.Name}", SeverityLevel.Babble));
                 var instance = host.CreateInstance<IUnitTest>();
                 instance.Configure(Config);
-                iter(Tests(host), t =>  Run(instance, hostpath, t));
+                if(instance.Enabled)
+                    iter(Tests(host), t =>  Run(instance, hostpath, t));
             }
             catch(Exception e)
             {

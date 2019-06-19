@@ -15,28 +15,16 @@ namespace Z0.Test
 
     public class InXBitwiseOps : UnitTest<InXBitwiseOps>
     {
-        public void TestAllOn()
-        {
-            var v1 = Vec128.define(uint.MaxValue, uint.MaxValue, uint.MaxValue, uint.MaxValue);
-            var v2 = Vec128.ones<uint>();
-            Claim.eq(v1,v2);
-
-            // Claim.@true(dinx.on(in v1));
-
-            // var v = Random.NextVec128<uint>();
-            // Claim.@false(dinx.on(v));
-
-        }     
 
         public void Nonzero()
         {
-            Claim.@true(ginx.nonzero(Vec256.define(1ul, 2ul, 3ul, 4ul)));
-            Claim.@true(ginx.nonzero(Vec256.define(1ul, 0ul, 0ul, 0ul)));
-            Claim.@false(ginx.nonzero(Vec256.define(0ul, 0ul, 0ul, 0ul)));
+            Claim.yea(ginx.nonzero(Vec256.define(1ul, 2ul, 3ul, 4ul)));
+            Claim.yea(ginx.nonzero(Vec256.define(1ul, 0ul, 0ul, 0ul)));
+            Claim.nea(ginx.nonzero(Vec256.define(0ul, 0ul, 0ul, 0ul)));
 
-            Claim.@true(ginx.nonzero(Vec128.define(1u, 2u, 3u, 4u)));
-            Claim.@true(ginx.nonzero(Vec128.define(1u, 0u, 0u, 0u)));
-            Claim.@false(ginx.nonzero(Vec128.define(0u, 0u, 0u, 0u)));
+            Claim.yea(ginx.nonzero(Vec128.define(1u, 2u, 3u, 4u)));
+            Claim.yea(ginx.nonzero(Vec128.define(1u, 0u, 0u, 0u)));
+            Claim.nea(ginx.nonzero(Vec128.define(0u, 0u, 0u, 0u)));
         }
 
         public void LeftShiftV256U32()

@@ -19,15 +19,31 @@ namespace Z0
         public int current;
 
         [MethodImpl(Inline)]
-        public static bool operator ==(BitPos lhs, BitPos rhs)        
+        public static implicit operator byte(in BitPos src)
+            => (byte)src.current;
+
+        [MethodImpl(Inline)]
+        public static implicit operator ushort(in BitPos src)
+            => (ushort)src.current;
+
+        [MethodImpl(Inline)]
+        public static implicit operator int(in BitPos src)
+            => src.current;
+
+        [MethodImpl(Inline)]
+        public static implicit operator BitPos(int src)
+            => Define(src);
+
+        [MethodImpl(Inline)]
+        public static bool operator ==(in BitPos lhs, in BitPos rhs)        
             => lhs.current == rhs.current;
 
         [MethodImpl(Inline)]
-        public static bool operator !=(BitPos lhs, BitPos rhs)        
+        public static bool operator !=(in BitPos lhs, in BitPos rhs)        
             => lhs.current != rhs.current;
 
         [MethodImpl(Inline)]
-        public static BitPos operator +(BitPos lhs, BitPos rhs)        
+        public static BitPos operator +(in BitPos lhs, in BitPos rhs)        
             => lhs.current + rhs.current;
 
         [MethodImpl(Inline)]
@@ -39,17 +55,8 @@ namespace Z0
             => new BitPos(current);
 
         [MethodImpl(Inline)]
-        public static implicit operator BitPos(int src)
-            => Define(src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator int(BitPos src)
-            => src.current;        
-
-        [MethodImpl(Inline)]
         public BitPos(int current)
             => this.current = current;
-
 
         public override int GetHashCode()
             => throw new NotSupportedException();

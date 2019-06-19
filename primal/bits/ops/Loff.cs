@@ -7,11 +7,6 @@ namespace Z0
     using System;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using System.Runtime.InteropServices;
-    using System.Numerics;
-    using System.Runtime.Intrinsics;
-    using System.Runtime.Intrinsics.X86;
-    using Z0;
  
     using static zfunc;
     
@@ -19,57 +14,56 @@ namespace Z0
     {                
 
         [MethodImpl(Inline)]
-        public static ref sbyte loOff(ref sbyte src)
+        public static ref sbyte loff(ref sbyte src)
         {
             src &= (sbyte)(src - 1);
             return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref byte loOff(ref byte src)
+        public static ref byte loff(ref byte src)
         {
             src &= (byte)(src - 1);
             return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref short loOff(ref short src)
+        public static ref short loff(ref short src)
         {
             src &= (short)(src - 1);
             return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref ushort loOff(ref ushort src)
+        public static ref ushort loff(ref ushort src)
         {
             src &= (ushort)(src - 1);
             return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref int loOff(ref int src)
+        public static ref int loff(ref int src)
         {
             src &= src - 1;
             return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref uint loOff(ref uint src)
+        public static ref uint loff(ref uint src)
         {
             src &= src - 1;
             return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref long loOff(ref long src)
+        public static ref long loff(ref long src)
         {
             src &= src - 1;
             return ref src;
         }
 
-    
         [MethodImpl(Inline)]
-        public static ref ulong loOff(ref ulong src)
+        public static ref ulong loff(ref ulong src)
         {
             src &= src - 1;
             return ref src;

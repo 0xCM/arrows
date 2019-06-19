@@ -132,22 +132,22 @@ namespace Z0.Test
         {
 
             Claim.eq(4, Span128.align<int>(4));
-            Claim.@true(Span128.aligned<int>(4));
+            Claim.yea(Span128.aligned<int>(4));
 
             Claim.eq(8, Span128.align<int>(5));
-            Claim.@false(Span128.aligned<int>(5));
+            Claim.nea(Span128.aligned<int>(5));
 
             Claim.eq(8, Span128.align<int>(6));
-            Claim.@false(Span128.aligned<int>(6));
+            Claim.nea(Span128.aligned<int>(6));
 
             Claim.eq(8, Span128.align<int>(7));
-            Claim.@false(Span128.aligned<int>(7));
+            Claim.nea(Span128.aligned<int>(7));
 
             Claim.eq(8, Span128.align<int>(8));
-            Claim.@true(Span128.aligned<int>(8));
+            Claim.yea(Span128.aligned<int>(8));
 
             Claim.eq(12, Span128.align<int>(9));
-            Claim.@false(Span128.aligned<int>(9));
+            Claim.nea(Span128.aligned<int>(9));
 
 
         }

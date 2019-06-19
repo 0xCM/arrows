@@ -59,6 +59,16 @@ namespace Z0
                 => Flip<T>.Op;
 
         [MethodImpl(Inline)]
+        public static ShiftOp<T> shiftl<T>(T lhs, int count)
+            where T : struct
+                => ShiftL<T>.Op;
+
+        [MethodImpl(Inline)]
+        public static ShiftOp<T> shiftr<T>(T lhs, int count)
+            where T : struct
+                => ShiftR<T>.Op;
+
+        [MethodImpl(Inline)]
         public static UnaryOp<T> negate<T>()
             where T : struct
                 => Negate<T>.Op;
@@ -132,7 +142,6 @@ namespace Z0
         {
             public static readonly BinaryOp<T> Op = gmath.mod<T>;
         }
-
  
         readonly struct And<T>
             where T : struct
@@ -157,6 +166,18 @@ namespace Z0
             where T : struct
         {
             public static readonly UnaryOp<T> Op = gmath.flip<T>;
+        }
+
+       readonly struct ShiftL<T>
+            where T : struct
+        {
+            public static readonly ShiftOp<T> Op = gbits.shiftl<T>;
+        }
+
+       readonly struct ShiftR<T>
+            where T : struct
+        {
+            public static readonly ShiftOp<T> Op = gbits.shiftr<T>;
         }
 
        readonly struct Negate<T>

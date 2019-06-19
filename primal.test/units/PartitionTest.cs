@@ -18,72 +18,24 @@ namespace Z0.Test
     public class PartitionTest : UnitTest<PartitionTest>
     {        
 
-        void TestClosed<T>(T min, T max, T? width = null)
-            where T : struct
+
+        public void Part0()
         {
-            var partition = closed(min, max).StepwisePartitionPoints(width);
-            
-            var firstExpect = min;
-            var firstActual = partition[0];
-
-            var lastExpect = max;
-            var lastActual = partition[partition.Length - 1];
-
-            Claim.eq(firstExpect, firstActual);
-            Claim.eq(lastExpect, lastActual);
-
+            var src = leftclosed(5,12);
+            var dst = src.StepwisePartitionPoints(1);
+            var fmt = dst.Map(x => x.ToString()).Concat(", ");
+            Claim.eq(src.Width() + 1, dst.Length);            
+            Claim.eq(items(5,6,7,8,9,10,11,12).ToSpan(), dst);
         }
-
-        void TestOpen<T>(T min, T max, T width)
-            where T : struct
-        {
-            var partition = open(min, max).StepwisePartitionPoints(width);            
-            var first = partition[0];
-            var last = partition[partition.Length - 1];
-            var countActual = partition.Length;
-            gmath.width(min, max, out T distance);
-            var countExpect = convert<T,int>(gmath.div(distance,width), out int x);
-            
-            Claim.eq(countExpect, countActual);
-            Claim.@true(gmath.gt(first, min));
-            Claim.@true(gmath.lt(last, max));
-
-        }
-
-        public void PartitionOpenInterval()
-        {
-            TestOpen(0, 99, 1);
-            TestOpen(0.0, 99.0, 1.0);
-            TestOpen(0.0, 100, 0.5);
-            TestOpen(0.0, 100, 0.72);
-
-        }
-        public void PartitionClosedInterval()
-        {
-            TestClosed((byte)3, (byte)57);
-            TestClosed(Byte.MinValue, Byte.MaxValue);
-            TestClosed((sbyte)0, SByte.MaxValue);            
-            TestClosed((short)-200, (short)57);            
-            TestClosed(0, 99);
-            TestClosed(0u,99u);
-            TestClosed(0L, 99L);
-            TestClosed(0ul,99ul);
-            TestClosed(-250.75, 100.20);
-            TestClosed(-250.75f, 100.20f);
-
-            TestClosed(100, 233, 5);
-            TestClosed(100, 234, 5);
-            TestClosed(100, 235, 5);
-            TestClosed(-100, 75, 3);
-        }
-
 
         public void Part1()
         {
             var src = leftclosed(5,20);
             var dst = src.StepwisePartition(1);
             var fmt = dst.Map(x => x.ToString()).Concat(" + ");
-            Claim.eq(15, dst.Length);
+            Claim.eq(src.Right - src.Left, dst.Length);
+            Claim.eq(leftclosed(5,6), dst.First());
+            Claim.eq(leftclosed(19,20), dst.Last());
 
         }
 
@@ -92,8 +44,9 @@ namespace Z0.Test
             var src = closed(5,20);
             var dst = src.StepwisePartition(1);
             var fmt = dst.Map(x => x.ToString()).Concat(" + ");
-            Claim.eq(15, dst.Length);
-
+            Claim.eq(src.Right - src.Left, dst.Length);
+            Claim.eq(leftclosed(5,6), dst.First());
+            Claim.eq(closed(19,20), dst.Last());
         }
 
         public void Part3()
@@ -101,37 +54,68 @@ namespace Z0.Test
             var src = open(5,20);
             var dst = src.StepwisePartition(1);
             var fmt = dst.Map(x => x.ToString()).Concat(" + ");
-            Claim.eq(15, dst.Length);
-            Claim.@true(dst.Last().RightOpen);
-
+            Claim.eq(src.Right - src.Left, dst.Length);
+            Claim.eq(open(5,6), dst.First());
+            Claim.eq(leftclosed(19,20), dst.Last());
         }
+
 
         public void Part4()
         {
-            var src = rightclosed(5,20);
-            var dst = src.StepwisePartition(1);
-            var fmt = dst.Map(x => x.ToString()).Concat(" + ");                    
-            Claim.eq(15, dst.Length);
-            Claim.@true(dst.Last().RightClosed);
-
-        }
-
-        public void Part5()
-        {
             var src = leftopen(1,100);
-            var dst = src.Partition(10);            
-            var fmt = dst.Map(x => x.ToString()).Concat(" + ");                    
-            Claim.eq(10, dst.Length);
+            var dst = src.PartitionPoints(10);
+            Claim.eq(10,dst.Length);
+            Claim.eq(1, dst.First());
+            Claim.eq(100, dst.Last());
         }
 
         public void Part6()
         {
             var src = closed(1,103);
             var dst = src.Partition(13);            
-            var fmt = dst.Map(x => x.ToString()).Concat(" + ");                    
-            Claim.eq(13, dst.Length);
-            Claim.@true(dst.Last().Closed);
+            var fmt = dst.Map(x => x.ToString()).Concat(" + ");   
+            Claim.yea(dst.Last().RightClosed);
 
         }
+
+        void VerifyPoints<T>(T min, T max, T step)
+            where T : struct
+        {
+            var points = open(min, max).StepwisePartitionPoints(step); 
+            var width = gmath.sub(max,min);
+            var deltaSum = gmath.zero<T>();
+            for(var i=0; i<points.Length - 1; i++)           
+            {
+                var left = points[i];
+                var right = points[i + 1];
+                gmath.add<T>(ref deltaSum, gmath.sub(right,left));                
+            }
+
+            Claim.eq(width, deltaSum);
+            
+
+            
+        }
+
+        public void VerifyPoints()
+        {
+            VerifyPoints(0, 99, 1);
+            VerifyPoints(0.0, 99.0, 1.0);
+            VerifyPoints(0.0, 100, 0.5);
+            VerifyPoints(0.0, 100, 0.72);
+            VerifyPoints(0, 99, 1);
+            VerifyPoints(0u, 99u, 1u);
+            VerifyPoints(0L, 99L, 1u);
+            VerifyPoints(0ul,99ul, 1ul);
+            VerifyPoints(-250.75, 100.20, 1.0);
+            VerifyPoints(-250.75f, 100.20f, 1.0f);
+
+            VerifyPoints(100, 233, 5);
+            VerifyPoints(100, 234, 5);
+            VerifyPoints(100, 235, 5);
+            VerifyPoints(-100, 75, 3);
+
+        }
+
     }
 }

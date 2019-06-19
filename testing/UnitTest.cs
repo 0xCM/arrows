@@ -14,7 +14,7 @@ namespace Z0.Test
 
     public interface IUnitTest : ITestContext
     {
-        
+        bool Enabled {get;}
     }
 
     public abstract class UnitTest<T> : TestContext<T>, IUnitTest
@@ -26,6 +26,9 @@ namespace Z0.Test
             {
 
             }
+        
+        public virtual bool Enabled 
+            => true;
     }
 
 

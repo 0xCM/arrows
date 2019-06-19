@@ -66,7 +66,7 @@ namespace Z0
         public static BitVector<T> operator ~(in BitVector<T> src)
             => gmath.flip(src.data);
         
-        public Bit this[in int pos]
+        public Bit this[in BitPos pos]
         {
             [MethodImpl(Inline)]
             get => gbits.test(in data, in pos);
@@ -81,33 +81,39 @@ namespace Z0
             }            
         }
 
+        public T this[in BitPos pos, byte len]
+        {
+            [MethodImpl(Inline)]
+            get => gbits.range(in data, in pos, len);
+        }
+
         [MethodImpl(Inline)]
-        public void Toggle(in int pos)
+        public void Toggle(in BitPos pos)
             => gbits.toggle(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public void RotR(in int pos)
-            => gbits.rotr(ref data, in pos);
+        public void RotR(in int dist)
+            => gbits.rotr(ref data, in dist);
 
         [MethodImpl(Inline)]
-        public void RotL(in int pos)
-            => gbits.rotl(ref data, in pos);
+        public void RotL(in int dist)
+            => gbits.rotl(ref data, in dist);
 
         [MethodImpl(Inline)]
-        public void Enable(in int pos)
+        public void Enable(in BitPos pos)
             => gbits.enable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public void Disable(in int pos)
+        public void Disable(in BitPos pos)
             => gbits.disable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public bool Test(in int pos)
+        public bool Test(in BitPos pos)
             => gbits.test(in data, in pos);
 
         [MethodImpl(Inline)]
-        public string BitString()
-            => gbits.bitstring(in data);
+        public BitString BitString()
+            => BitStringConvert.FromValue(in data);
 
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
@@ -132,10 +138,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool NEq(in BitVector<T> rhs)
             => gmath.neq(data, rhs.data);
-
-        [MethodImpl(Inline)]
-        public string Format()
-            => BitString();
 
         public override bool Equals(object obj)
             => throw new NotSupportedException();

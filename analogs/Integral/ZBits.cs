@@ -82,18 +82,18 @@ namespace Z0
           }
 
           [MethodImpl(Inline)]
-          public static string bitstring(in UInt128 src)
-               => gbits.bitstring(src.x11) 
-               + gbits.bitstring(src.x10) 
-               + gbits.bitstring(src.x01) 
-               + gbits.bitstring(src.x00);
+          public static BitString bitstring(in UInt128 src)
+               => BitStringConvert.FromValue(src.x11) 
+               + BitStringConvert.FromValue(src.x10) 
+               + BitStringConvert.FromValue(src.x01) 
+               + BitStringConvert.FromValue(src.x00);
 
           [MethodImpl(Inline)]
-          public static string bitstring(in Int128 src)
-               => gbits.bitstring(src.x11) 
-               + gbits.bitstring(src.x10) 
-               + gbits.bitstring(src.x01) 
-               + gbits.bitstring(src.x00);
+          public static BitString bitstring(in Int128 src)
+               => BitStringConvert.FromValue(src.x11) 
+               + BitStringConvert.FromValue(src.x10) 
+               + BitStringConvert.FromValue(src.x01) 
+               + BitStringConvert.FromValue(src.x00);
 
           [MethodImpl(Inline)]
           public static Span<byte> bytes(this in UInt128 src)

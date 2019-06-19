@@ -147,7 +147,7 @@ namespace Z0
             => SampleSize;
 
         bool ITestConfig.TraceEnabled 
-            => false;
+            => true;
 
         // ! Int8
         const sbyte Int8Min = sbyte.MinValue;

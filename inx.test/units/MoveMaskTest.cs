@@ -23,7 +23,7 @@ namespace Z0.Test
             var result = dinx.movemask(in src);
             var expect = 0;
             for(var pos=0; pos< src.Length(); pos++)
-                if(gbits.hibit(src[pos], pos))
+                if(gbits.hibit(src[pos]))
                     gbits.enable(ref expect, pos) ;                    
             Claim.eq(expect, result);
 

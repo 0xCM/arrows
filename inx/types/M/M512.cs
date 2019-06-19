@@ -887,7 +887,7 @@ namespace Z0
             get
             {
                 math.quorem(r.Value, 64, out Quorem<int> qr);
-                return part<ulong>(qr.Quotient).Test(qr.Remainder);                
+                return part<ulong>(qr.Quotient).TestBit(qr.Remainder);                
             }
         }
 

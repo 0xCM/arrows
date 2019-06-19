@@ -14,8 +14,8 @@ namespace Z0
     using static zfunc;    
     
 
-    partial class math
-    {
+    partial class Bits
+    {                
         [MethodImpl(Inline)]
         public static byte rotl(in byte src, int offset)
             => (byte)((src << offset) | (src >> (8 - offset)));
@@ -60,8 +60,6 @@ namespace Z0
             lhs = rotl(lhs,rhs);
             return ref lhs;
         }
-
-
     
     }
 }

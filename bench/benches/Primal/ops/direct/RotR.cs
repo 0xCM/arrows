@@ -39,7 +39,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle++)
             for(var it=0; it< dst.Length; it++)
-                dst[it] = math.rotr(lhs[it],rhs[it]);
+                dst[it] = Bits.rotr(lhs[it],rhs[it]);
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
     
@@ -51,7 +51,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle++)
             for(var it=0; it< dst.Length; it++)
-                dst[it] = math.rotr(lhs[it],rhs[it]);
+                dst[it] = Bits.rotr(lhs[it],rhs[it]);
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
@@ -63,7 +63,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle++)
             for(var it=0; it< dst.Length; it++)
-                dst[it] = math.rotr(lhs[it],rhs[it]);
+                dst[it] = Bits.rotr(lhs[it],rhs[it]);
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
@@ -75,7 +75,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < cycles; cycle++)
             for(var it=0; it< dst.Length; it++)
-                dst[it] = math.rotr(lhs[it],rhs[it]);
+                dst[it] = Bits.rotr(lhs[it],rhs[it]);
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
     }

@@ -63,7 +63,7 @@ namespace Z0.Test
             for(var i=0; i<samples; i++)            
             {
                 var next = random.Next(domain.Left, domain.Right);
-                Claim.@true(next >= domain.Left && next < domain.Right);
+                Claim.yea(next >= domain.Left && next < domain.Right);
                 dst[i] = random.Next(domain.Left, domain.Right);
             }
             var h = Histogram.Define(domain);
@@ -113,8 +113,8 @@ namespace Z0.Test
             var min = gmath.min<T>(samples);
             var max = gmath.max<T>(samples);
 
-            Claim.@true(gmath.between(max, domain.Left, domain.Right));
-            Claim.@true(gmath.between(min, domain.Left, domain.Right));
+            Claim.yea(gmath.between(max, domain.Left, domain.Right));
+            Claim.yea(gmath.between(min, domain.Left, domain.Right));
 
             TypeCaseEnd<T>(appMsg($"{domain}: min = {min} | max = {max} | avg = {avg}, time = {time.Ms} ms"));
         }
@@ -212,7 +212,7 @@ namespace Z0.Test
                 for(var partIx=0; partIx < M512.PartCount<T>(); partIx++)
                 {
                     var xPart = xSample.part<T>(partIx);
-                    Claim.@true(domain.Contains(xPart));
+                    Claim.yea(domain.Contains(xPart));
                 }
 
             }

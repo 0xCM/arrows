@@ -6,7 +6,6 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
-    using System.Numerics;
     using Z0;
  
     using static zfunc;
@@ -14,6 +13,113 @@ namespace Z0
     
     partial class Bits
     {                
+        [MethodImpl(Inline)]
+        public static ushort pack(byte x0, byte x1)
+        {            
+            return (ushort)(
+              (ushort)x0 << 0 * 8
+            | (ushort)x1 << 1 * 8
+            );
+        }
+
+
+        [MethodImpl(Inline)]
+        public static uint pack(byte x0, byte x1, byte x2, byte x3)
+        {            
+            return 
+              (uint)x0 << 0 * 8
+            | (uint)x1 << 1 * 8
+            | (uint)x2 << 2 * 8
+            | (uint)x3 << 3 * 8
+            ;
+        }
+
+
+        [MethodImpl(Inline)]
+        public static ulong pack(byte x0, byte x1, byte x2, byte x3, byte x4, byte x5, byte x6, byte x7)
+        {            
+            return 
+              (ulong)x0 << 0 * 8
+            | (ulong)x1 << 1 * 8
+            | (ulong)x2 << 2 * 8
+            | (ulong)x3 << 3 * 8
+            | (ulong)x4 << 4 * 8
+            | (ulong)x5 << 5 * 8
+            | (ulong)x6 << 6 * 8
+            | (ulong)x7 << 7 * 8
+            ;
+        }
+
+        [MethodImpl(Inline)]
+        public static uint pack(ushort x0, ushort x1)
+        {            
+            return 
+              (uint)x0 << 0 * 16
+            | (uint)x1 << 1 * 16
+            ;
+        }
+
+        [MethodImpl(Inline)]
+        public static ulong pack(ushort x0, ushort x1, ushort x2, ushort x3)
+            => (ulong)x0 << 0 * 16 | (ulong)x1 << 1 * 16 | (ulong)x0 << 2 * 16 | (ulong)x1 << 3 * 16;
+
+        [MethodImpl(Inline)]
+        public static (byte x0, byte x1) unpack(ushort x)
+          => ((byte)(x >> 0*8), (byte)(x >> 1*8));
+
+
+        [MethodImpl(Inline)]
+        public static (byte x0, byte x1, byte x2, byte x3) unpack(uint x)
+          => ((byte)(x >> 0*8), (byte)(x >> 1*8), (byte)(x >> 2*8), (byte)(x >> 3*8));
+
+        [MethodImpl(Inline)]
+        public static (byte x0, byte x1, byte x2, byte x3, byte x4, byte x5, byte x6, byte x7) unpack(ulong x)
+        {            
+          return (
+            (byte)(x >> 0*8),
+            (byte)(x >> 1*8),
+            (byte)(x >> 2*8),
+            (byte)(x >> 3*8),
+            (byte)(x >> 4*8),
+            (byte)(x >> 5*8),
+            (byte)(x >> 6*8),
+            (byte)(x >> 7*8));
+        }
+
+        /// <summary>
+        /// Slelects a bit from each supplied byte according to the postion parameter and 
+        /// packs these 8 bits into a single byte
+        /// </summary>
+        /// <param name="x00">The value to be packed into the least significant bit</param>
+        /// <param name="x01">The second value</param>
+        /// <param name="x02">The third value</param>
+        /// <param name="x03">The fourth value</param>
+        /// <param name="x04">The fifth value</param>
+        /// <param name="x05">The sixth value</param>
+        /// <param name="x06">The seventh value</param>
+        /// <param name="x00">The value to be packed into the most significant bit</param>
+        [MethodImpl(Inline)]
+        public static ref byte pack(
+          in byte x0, in byte x1, in byte x2, in byte x3, 
+          in byte x4, in byte x5, in byte x6, in byte x7, 
+          in byte pos, ref byte dst)
+        {
+          if(Bits.test(x0, pos)) Bits.enable(ref dst, 0);
+          if(Bits.test(x1, pos)) Bits.enable(ref dst, 1);
+          if(Bits.test(x2, pos)) Bits.enable(ref dst, 2);
+          if(Bits.test(x3, pos)) Bits.enable(ref dst, 3);
+          if(Bits.test(x4, pos)) Bits.enable(ref dst, 4);
+          if(Bits.test(x5, pos)) Bits.enable(ref dst, 5);
+          if(Bits.test(x6, pos)) Bits.enable(ref dst, 6);
+          if(Bits.test(x7, pos)) Bits.enable(ref dst, 7);
+          return ref dst;
+        }
+
+
+        [MethodImpl(Inline)]
+        public static ulong pack(in uint x0, in uint x1)
+              => (ulong)x0 | (ulong)x1 << 32;
+
         /// <summary>
         /// Packs bools into bytes
         /// </summary>
@@ -30,7 +136,7 @@ namespace Z0
             var dst = new byte[dstLen];
             for (int i = 0; i < srcLen; i++)
                 if (src[i])
-                    dst[i >> 3] |= (byte)(One << (i & 0x07));
+                    dst[i >> 3] |= (byte)((byte)1 << (i & 0x07));
             
             return dst;
         }
@@ -113,317 +219,144 @@ namespace Z0
                 if(src[last - i])
                     dst |= (1ul << i);
             return ref dst;
+        } 
+ 
+
+        [MethodImpl(Inline)]
+        static ref Bit test(in sbyte src, in int pos, out Bit dst)
+        {
+            dst = (src & (1 << pos)) != 0;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        static ref Bit test(in byte src, in int pos, out Bit dst)
+        {
+            dst = (src & (1 << pos)) != 0;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        static ref Bit test(in short src, in int pos, out Bit dst)
+        {
+            dst = (src & (1 << pos)) != 0;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        static ref Bit test(in ushort src, in int pos, out Bit dst)
+        {
+            dst = (src & (1 << pos)) != 0;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        static ref Bit test(in int src, in int pos, out Bit dst)
+        {
+            dst = (src & (1 << pos)) != I32Zero;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        static ref Bit test(in uint src, in int pos, out Bit dst)
+        {
+            dst = (src & (1u << pos)) != U32Zero;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        static ref Bit test(in long src, in int pos, out Bit dst)
+        {
+            dst = (src & (1L << pos)) != I64Zero;
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        static ref Bit test(in ulong src, in int pos, out Bit dst)
+        {
+            dst = (src & (1ul << pos)) != U64Zero;
+            return ref dst;
+        }
+
+        public static Span<Bit> unpack(in sbyte src, out Span<Bit> dst)
+        {
+            dst = new Bit[Pow2.T03];
+            var last = Pow2.T03 - 1;
+            for(var i = 0; i <= last; i++)
+                test(in src, in i, out dst[last - i]);            
+            return dst; 
+        }
+
+        public static Span<Bit> unpack(in byte src, out Span<Bit> dst)
+        {
+            dst = new Bit[Pow2.T03];
+            var last = Pow2.T03 - 1;
+            for(var i=0; i <= last; i++)
+                test(in src, in i, out dst[last - i]);
+            return dst; 
+        }
+
+        public static Span<Bit> unpack(in ushort src, out Span<Bit> dst)
+        {
+            dst = new Bit[Pow2.T04];
+            var last = Pow2.T04 - 1;
+            for(var i=0; i <= last; i++)
+                test(in src, in i, out dst[last - i]);
+            return dst; 
+        }
+
+        public static Span<Bit> unpack(in short src, out Span<Bit> dst)
+        {
+            dst = new Bit[Pow2.T04];
+            var last = Pow2.T04 - 1;
+            for(var i=0; i <= last; i++)
+                test(in src, in i, out dst[last - i]);
+            return dst; 
+        }
+
+        public static Span<Bit> unpack(in int src, out Span<Bit> dst)
+        {
+            dst = new Bit[Pow2.T05];
+            var last = Pow2.T05 - 1;
+            for(var i=0; i <= last; i++)
+                test(in src, in i, out dst[last - i]);
+            return dst; 
+        }
+
+        public static Span<Bit> unpack(in uint src, out Span<Bit> dst)
+        {
+            dst = new Bit[Pow2.T05];
+            var last = Pow2.T05 - 1;
+            for(var i=0; i <= last; i++)
+                test(in src, in i, out dst[last - i]);
+            return dst; 
+        }
+
+        public static Span<Bit> unpack(in long src, out Span<Bit> dst)
+        {
+            dst = new Bit[Pow2.T06];
+            var last = Pow2.T06 - 1;
+            for(var i=0; i <= last; i++)
+                test(in src, in i, out dst[last - i]);
+            return dst; 
+        }        
+
+        public static Span<Bit> unpack(in ulong src, out  Span<Bit> dst)
+        {
+            dst = new Bit[Pow2.T06];
+            var last = Pow2.T06 - 1;
+            for(var i=0; i <= last; i++)
+                test(src, in i, out dst[last - i]);
+            return dst; 
         }
  
-         /// <summary>
-        /// Packs 8 bytes into a single byte by considering only whether each input value is nonzero.
-        /// </summary>
-        /// <param name="x00">The value to be packed into the least significant bit</param>
-        /// <param name="x01">The second value</param>
-        /// <param name="x02">The third value</param>
-        /// <param name="x03">The fourth value</param>
-        /// <param name="x04">The fifth value</param>
-        /// <param name="x05">The sixth value</param>
-        /// <param name="x06">The seventh value</param>
-        /// <param name="x00">The value to be packed into the most significant bit</param>
         [MethodImpl(Inline)]
-        public static byte pack8(
-            in byte x00, in byte x01, in byte x02, in byte x03, 
-            in byte x04, in byte x05, in byte x06, in byte x07)
-        {
-            var dst = Zero;
-            
-            if(x00 != Zero)
-                enable(ref dst,0);
-            
-            if(x01 != Zero)
-                enable(ref dst,1);
-            
-            if(x02 != Zero)
-                enable(ref dst,2);
-
-            if(x03 != Zero)
-                enable(ref dst,3);
-
-            if(x04 != Zero)
-                enable(ref dst,4);
-
-            if(x05 != Zero)
-                enable(ref dst,5);
-
-            if(x06 != Zero)
-                enable(ref dst,6);
-
-            if(x07 != Zero)
-                enable(ref dst,7);
-            
-            return dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static byte pack8(
-            in Bit x00, in Bit x01, in Bit x02, in Bit x03, 
-            in Bit x04, in Bit x05, in Bit x06, in Bit x07)
-        {
-            var dst = (byte)0;
-            if(x00)
-                enable(ref dst, 0);
-            
-            if(x01)
-                enable(ref dst, 1);
-            
-            if(x02)
-                enable(ref dst, 2);
-
-            if(x03)
-                enable(ref dst, 3);
-
-            if(x04)
-                enable(ref dst, 4);
-
-            if(x05)
-                enable(ref dst, 5);
-
-            if(x06)
-                enable(ref dst, 6);
-
-            if(x07)
-                enable(ref dst,7);
-            
-            return dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static sbyte pack8(
-            in Bit x00, in Bit x01, in Bit x02, in Bit x03, 
-            in Bit x04, in Bit x05, in Bit x06, Sign sign)
-        {
-            var dst = (sbyte)0;
-
-            if(x00)
-                enable(ref dst, 0);
-            
-            if(x01)
-                enable(ref dst, 1);
-            
-            if(x02)
-                enable(ref dst, 2);
-
-            if(x03)
-                enable(ref dst, 3);
-
-            if(x04)
-                enable(ref dst, 4);
-
-            if(x05)
-                enable(ref dst, 5);
-
-            if(x06)
-                enable(ref dst, 6);
-            
-            return sign == Sign.Negative ? dst.Negate() : dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static ushort pack16(
-            in Bit x00, in Bit x01, in Bit x02, in Bit x03, 
-            in Bit x04, in Bit x05, in Bit x06, in Bit x07,
-            in Bit x08, in Bit x09, in Bit x10, in Bit x11, 
-            in Bit x12, in Bit x13, in Bit x14, in Bit x15)
+        public static Span<Bit> unpack(in float src, out Span<Bit> dst)
+            => dst = unpack(BitConverter.SingleToInt32Bits(src), out dst);
         
-        {
-            var dst = (ushort)0;
-
-            if(x00)
-                enable(ref dst, 0);
-            
-            if(x01)
-                enable(ref dst, 1);
-            
-            if(x02)
-                enable(ref dst, 2);
-
-            if(x03)
-                enable(ref dst, 3);
-
-            if(x04)
-                enable(ref dst, 4);
-
-            if(x05)
-                enable(ref dst, 5);
-
-            if(x06)
-                enable(ref dst, 6);
-
-            if(x07)
-                enable(ref dst, 7);
-
-            if(x08)
-                enable(ref dst, 8);
-            
-            if(x09)
-                enable(ref dst, 9);
-            
-            if(x10)
-                enable(ref dst, 10);
-
-            if(x11)
-                enable(ref dst, 11);
-
-            if(x12)
-                enable(ref dst, 12);
-
-            if(x13)
-                enable(ref dst, 13);
-
-            if(x14)
-                enable(ref dst, 14);
-
-            if(x15)
-                enable(ref dst, 15);
-
-            return dst;
-        }
-
-
-        /// <summary>
-        /// Packs uint8[2] => uint16
-        /// </summary>
-        /// <param name="x0">The low-order bits</param>
-        /// <param name="x1">The high-order bits</param>
         [MethodImpl(Inline)]
-        public static ushort pack16(in byte x0, in byte x1)
-            => (ushort) ((ushort)x1 << 8 | (ushort)x0);
- 
-
-        [MethodImpl(Inline)]
-        public static uint pack32(
-            in Bit x00, in Bit x01, in Bit x02, in Bit x03, 
-            in Bit x04, in Bit x05, in Bit x06, in Bit x07,
-            in Bit x08, in Bit x09, in Bit x10, in Bit x11, 
-            in Bit x12, in Bit x13, in Bit x14, in Bit x15,
-            in Bit x16, in Bit x17, in Bit x18, in Bit x19, 
-            in Bit x20, in Bit x21, in Bit x22, in Bit x23,
-            in Bit x24, in Bit x25, in Bit x26, in Bit x27, 
-            in Bit x28, in Bit x29, in Bit x30, in Bit x31
-            )
-        {
-            var dst = 0u;
-
-            if(x00) enable(ref dst, 0);            
-            if(x01) enable(ref dst, 1);            
-            if(x02) enable(ref dst, 2);
-            if(x03) enable(ref dst, 3);
-
-            if(x04) enable(ref dst, 4);
-            if(x05) enable(ref dst, 5);
-            if(x06) enable(ref dst, 6);
-            if(x07) enable(ref dst, 7);
-
-            if(x08) enable(ref dst, 8);            
-            if(x09) enable(ref dst, 9);            
-            if(x10) enable(ref dst, 10);
-            if(x11) enable(ref dst, 11);
-
-            if(x12) enable(ref dst, 12);
-            if(x13) enable(ref dst, 13);
-            if(x14) enable(ref dst, 14);
-            if(x15) enable(ref dst, 15);
-
-            if(x16) enable(ref dst,16);            
-            if(x17) enable(ref dst,17);
-            if(x18) enable(ref dst,18);
-            if(x19) enable(ref dst,19);
-
-            if(x20)
-                enable(ref dst,20);
-
-            if(x21)
-                enable(ref dst,21);
-
-            if(x22)
-                enable(ref dst,22);
-
-            if(x23)
-                enable(ref dst,23);
-
-            if(x24)
-                enable(ref dst,24);
-
-            if(x25)
-                enable(ref dst,25);
-            
-            if(x26)
-                enable(ref dst,26);
-            
-            if(x27)
-                enable(ref dst,27);
-
-            if(x28)
-                enable(ref dst,28);
-
-            if(x29)
-                enable(ref dst,29);
-
-            if(x30)
-                enable(ref dst,30);
-
-            if(x31)
-                enable(ref dst,31);
-
-            return dst;
-        }
-
-        /// <summary>
-        /// Packs uint8[4] => uint32
-        /// </summary>
-        /// <param name="x0">Bit indices [0 .. 7] </param>
-        /// <param name="x1">Bit indices [8 .. 15]</param>
-        /// <param name="x2">Bit indices [16 .. 25]</param>
-        /// <param name="x3">Bit indices [24 .. 31]</param>
-        [MethodImpl(Inline)]
-        public static uint pack32(byte x0, byte x1, byte x2, byte x3)
-            => BitConverter.ToUInt32(new byte[] {x0, x1,x2,x3});
-            
-        [MethodImpl(Inline)]
-        public static uint pack32(in ushort x0, in ushort x1)
-            => (uint)x1 << 16 | (uint)x0;
-
-        /// <summary>
-        /// Packs uint8[8] => uint64
-        /// </summary>
-        /// <param name="x0">Bit indices [0 .. 7] </param>
-        /// <param name="x1">Bit indices [8 .. 15]</param>
-        /// <param name="x2">Bit indices [16 .. 25]</param>
-        /// <param name="x3">Bit indices [24 .. 31]</param>
-        /// <param name="x4">Bit indices [32 .. 39]</param>
-        /// <param name="x5">Bit indices [40 .. 47]</param>
-        /// <param name="x6">Bit indices [48 .. 55]</param>
-        /// <param name="x7">Bit indices [55 .. 63]</param>
-        [MethodImpl(Inline)]
-        public static ulong pack64(
-            in byte x0, in byte x1, in byte x2, in byte x3, 
-            in byte x4, in byte x5, in byte x6, in byte x7)
-        {
-            Span<byte> src = stackalloc byte[8]{x0, x1, x2, x3, x4, x5, x6, x7};
-            return BitConverter.ToUInt64(src);
-        }
-
-        [MethodImpl(Inline)]
-        public static ulong pack64(in uint x0, in uint x1)
-            => (ulong)x1 << 32 | (ulong)x0;
-    
-        /// <summary>
-        /// Concatenates the bits of four ushort values to produce a ulong value
-        /// </summary>
-        /// <param name="x0">The least significant bits [0..15] of the result</param>
-        /// <param name="x1">Bits [16..31] of the result</param>
-        /// <param name="x2">Bits [32..47] of the result</param>
-        /// <param name="x3">The most significant bits [32..63] of the result</param>
-        [MethodImpl(Inline)]
-        public static ulong pack64(in ushort x0, in ushort x1, in ushort x2, in ushort x3)
-            => pack64(pack32(x0,x1), pack32(x2,x3));    
-
+        public static Span<Bit> unpack(in double src, out Span<Bit> dst)
+            => dst = unpack(BitConverter.DoubleToInt64Bits(src), out dst);
  
     }
 }

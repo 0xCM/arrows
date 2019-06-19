@@ -78,17 +78,16 @@ namespace Z0
 
         public static BitString bitstring(in M512 src)
         {   
-            var sb = sbuild();
-            sb.Append(src.x7.ToBitString());
-            sb.Append(src.x6.ToBitString());
-            sb.Append(src.x5.ToBitString());
-            sb.Append(src.x4.ToBitString());
-            sb.Append(src.x3.ToBitString());
-            sb.Append(src.x2.ToBitString());
-            sb.Append(src.x1.ToBitString());
-            sb.Append(src.x0.ToBitString());
-            return BitString.Define(sb.ToString());
-            
+            return BitString.Assemble(
+                src.x0.ToBitString(), 
+                src.x1.ToBitString(), 
+                src.x2.ToBitString(), 
+                src.x3.ToBitString(), 
+                src.x4.ToBitString(), 
+                src.x5.ToBitString(), 
+                src.x6.ToBitString(), 
+                src.x7.ToBitString() 
+                );            
         }
         
         public static HexString hexstring(in M512 src)
@@ -104,7 +103,6 @@ namespace Z0
             sb.Append(src.x0.ToHexString());
             return HexString.Define(sb.ToString());            
         }
-
     }
 
 }

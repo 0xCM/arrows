@@ -50,7 +50,6 @@ namespace Z0
         public static Vec128<ulong> andnot(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
             => AndNot(lhs, rhs);
  
-
         [MethodImpl(Inline)]
         public static Vec128<float> andnot(in Vec128<float> lhs, in Vec128<float> rhs)
             => AndNot(lhs, rhs);

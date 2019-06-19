@@ -29,8 +29,8 @@ namespace Z0.Test
             parts.ForEach(part => Claim.eq(partlen,part.Length));
             for(var i = 0; i < parts.Length; i++)
             {
-                var part = parts[i];
-                var x = gbits.parse<T>(part);
+                var part = BitString.Define(parts[i]);
+                var x = part.ToValue<T>();
                 var y = v1[i];
                 Claim.eq(x,y);
             }

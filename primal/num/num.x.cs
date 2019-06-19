@@ -264,9 +264,9 @@ namespace Z0
                 => Num.many(src);
 
         [MethodImpl(Inline)]
-        public static string ToBitString<T>(this num<T> src, bool tlz = false, bool pfs = false)
+        public static BitString ToBitString<T>(this num<T> src, bool tlz = false)
             where T : struct
-                => gbits.bitstring<T>(src.Scalar(), tlz, pfs);
+                => BitStringConvert.FromValue<T>(src.Scalar(), tlz);
 
         
         [MethodImpl(Inline)]

@@ -31,9 +31,11 @@ namespace Z0
         [MethodImpl(Inline)]
         public Interval(T left, bool leftclosed, T right, bool rightclosed)
         {
+            if(left.Equals(right))
+                throw new Exception($"Interval with left = {left} and right = {right} is ill-defined");
+
             this.Left = left;
             this.LeftClosed = leftclosed;
-
             this.Right = right;
             this.RightClosed = rightclosed;
         }

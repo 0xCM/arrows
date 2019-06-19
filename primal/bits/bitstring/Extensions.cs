@@ -11,9 +11,14 @@ namespace Z0
     
     using static zfunc;
     using static Bits;
-
+    using static BitStringConvert;
     public static class BitStringX
     {
+        [MethodImpl(Inline)]
+        public static T ToValue<T>(this BitString src)
+            where T : struct
+                => BitStringConvert.ToValue<T>(src);
+        
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
         /// </summary>
@@ -21,8 +26,8 @@ namespace Z0
         /// <param name="tlz">Specifies whether to trim leading zeros from the representation</param>
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static BitString ToBitString(this sbyte src, bool tlz = false, bool pfs = false)
-            => gbits.bitstring(src,tlz,pfs);
+        public static BitString ToBitString(this sbyte src, bool tlz = false)
+            => FromValue(src,tlz);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -31,8 +36,8 @@ namespace Z0
         /// <param name="tlz">Specifies whether to trim leading zeros from the representation</param>
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static BitString ToBitString(this byte src, bool tlz = false, bool pfs = false)
-            => gbits.bitstring(src,tlz,pfs);
+        public static BitString ToBitString(this byte src, bool tlz = false)
+            => FromValue(src,tlz);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -41,8 +46,8 @@ namespace Z0
         /// <param name="tlz">Specifies whether to trim leading zeros from the representation</param>
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static BitString ToBitString(this short src, bool tlz = false, bool pfs = false)
-            => gbits.bitstring(src,tlz,pfs);
+        public static BitString ToBitString(this short src, bool tlz = false)
+            => FromValue(src,tlz);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -51,8 +56,8 @@ namespace Z0
         /// <param name="tlz">Specifies whether to trim leading zeros from the representation</param>
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static BitString ToBitString(this ushort src, bool tlz = false, bool pfs = false)
-            => gbits.bitstring(src,tlz,pfs);
+        public static BitString ToBitString(this ushort src, bool tlz = false)
+            => FromValue(src,tlz);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -61,8 +66,8 @@ namespace Z0
         /// <param name="tlz">Specifies whether to trim leading zeros from the representation</param>
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static BitString ToBitString(this int src, bool tlz = false, bool pfs = false)
-            => gbits.bitstring(src,tlz,pfs);
+        public static BitString ToBitString(this int src, bool tlz = false)
+            => FromValue(src,tlz);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -71,8 +76,8 @@ namespace Z0
         /// <param name="tlz">Specifies whether to trim leading zeros from the representation</param>
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static BitString ToBitString(this uint src, bool tlz = false, bool pfs = false)
-            => gbits.bitstring(src,tlz,pfs);
+        public static BitString ToBitString(this uint src, bool tlz = false)
+            => FromValue(src,tlz);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -81,8 +86,8 @@ namespace Z0
         /// <param name="tlz">Specifies whether to trim leading zeros from the representation</param>
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static BitString ToBitString(this long src, bool tlz = false, bool pfs = false)
-            => gbits.bitstring(src, tlz, pfs);
+        public static BitString ToBitString(this long src, bool tlz = false)
+            => FromValue(src, tlz);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -91,8 +96,8 @@ namespace Z0
         /// <param name="tlz">Specifies whether to trim leading zeros from the representation</param>
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static BitString ToBitString(this ulong src, bool tlz = false, bool pfs = false)
-            => gbits.bitstring(src, tlz, pfs);
+        public static BitString ToBitString(this ulong src, bool tlz = false)
+            => FromValue(src, tlz);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -101,8 +106,8 @@ namespace Z0
         /// <param name="tlz">Specifies whether to trim leading zeros from the representation</param>
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static BitString ToBitString(this float src, bool tlz = false, bool pfs = false)
-            => gbits.bitstring(src, tlz, pfs);
+        public static BitString ToBitString(this float src, bool tlz = false)
+            => FromValue(src, tlz);
 
         /// <summary>
         /// Encodes the source value as a <see cref= 'BitString' />
@@ -111,8 +116,8 @@ namespace Z0
         /// <param name="tlz">Specifies whether to trim leading zeros from the representation</param>
         /// <param name="pfs">Specifies whether to prepend the '0b' format specifier to the representation</param>
         [MethodImpl(Inline)]
-        public static BitString ToBitString(this double src, bool tlz = false, bool pfs = false)
-            => gbits.bitstring(src, tlz, pfs);
+        public static BitString ToBitString(this double src, bool tlz = false)
+            => FromValue(src, tlz);
 
         [MethodImpl(Inline)]        
         public static BitString ToBitString(this Span<byte> src)
@@ -120,7 +125,7 @@ namespace Z0
             var dst = span<char>(src.Length);
             for(var i = 0; i<dst.Length; i++)
                 dst[i] = src[i] == 1 ? '1' : '0';
-            return new string(dst);
+            return BitString.Define(dst);
         }
 
         [MethodImpl(Optimize)]
@@ -132,7 +137,5 @@ namespace Z0
                if(src[i] == Bit.One) enable(ref dst[i], j);
             return ref dst;
         }
- 
- 
     }
 }

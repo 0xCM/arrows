@@ -13,7 +13,6 @@ namespace Z0
     using static Bits;
     using static Bytes;
 
-
     public ref struct BitVectorU16
     {
         ushort data;
@@ -26,18 +25,6 @@ namespace Z0
         public static implicit operator BitVector<ushort>(in BitVectorU16 src)
             => new BitVector<ushort>(in src.data);
 
-
-        [MethodImpl(Inline)]
-        public static BitVectorU16 Define(
-            in Bit x00, in Bit x01, in Bit x02, in Bit x03, 
-            in Bit x04, in Bit x05, in Bit x06, in Bit x07,
-            in Bit x08, in Bit x09, in Bit x10, in Bit x11, 
-            in Bit x12, in Bit x13, in Bit x14, in Bit x15)
-                => Bits.pack16(
-                    x00, x01, x02, x03, 
-                    x04, x05, x06, x07, 
-                    x08, x09, x10, x11, 
-                    x12, x13, x14, x15);
 
         [MethodImpl(Inline)]
         public static BitVectorU16 Define(in ushort src)
@@ -79,7 +66,7 @@ namespace Z0
         public static BitVectorU16 operator ~(in BitVectorU16 src)
             => Define((ushort) ~ src.data);
 
-        public Bit this[in int pos]
+        public Bit this[in BitPos pos]
         {
             [MethodImpl(Inline)]
             get => Bits.test(in data, in pos);
@@ -95,15 +82,15 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public void EnableBit(in int pos)
+        public void EnableBit(in BitPos pos)
             => enable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public void DisableBit(in int pos)
+        public void DisableBit(in BitPos pos)
             => disable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public bool TestBit(in int pos)
+        public bool TestBit(in BitPos pos)
             => test(in data, in pos);
 
         public BitVectorU8 Hi

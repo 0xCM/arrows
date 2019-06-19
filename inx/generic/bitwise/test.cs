@@ -17,31 +17,6 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static bool on<T>(in Vec128<T> src)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return dinx.on(in int8(in src));
-            else if(typeof(T) == typeof(byte))
-                return dinx.on(in uint8(in src));
-            else if(typeof(T) == typeof(short))
-                return dinx.on(in int16(in src));
-            else if(typeof(T) == typeof(ushort))
-                return dinx.on(in uint16(in src));
-            else if(typeof(T) == typeof(int))
-                return dinx.on(in int32(in src));
-            else if(typeof(T) == typeof(uint))
-                return dinx.on(in uint32(in src));
-            else if(typeof(T) == typeof(long))
-                return dinx.on(in int64(in src));
-            else if(typeof(T) == typeof(ulong))
-                return dinx.on(in uint64(in src));
-            else 
-                throw unsupported<T>();
-        }
-
-
-        [MethodImpl(Inline)]
         public static bool testc<T>(in Vec128<T> lhs,in Vec128<T> rhs)
             where T : struct
         {

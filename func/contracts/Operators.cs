@@ -13,6 +13,10 @@ namespace Z0
 
     public delegate T BinaryOp<T>(T lhs, T rhs);
 
+    public delegate S BinaryOp<S,T>(S lhs, T rhs);
+
+    public delegate T ShiftOp<T>(T lhs, int units);
+
     public delegate T BinaryOpIn<T>(in T lhs, in T rhs);
 
     public delegate ref T BinaryOpRef<T>(ref T lhs, T rhs);
