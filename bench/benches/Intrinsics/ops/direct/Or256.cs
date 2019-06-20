@@ -55,7 +55,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.or(lhs, rhs, dst);
+                dinxx.or(lhs, rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -65,7 +65,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.or(lhs, rhs, dst);
+                dinxx.or(lhs, rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -75,7 +75,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.or(lhs, rhs, dst);
+                dinxx.or(lhs, rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -85,7 +85,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.or(lhs, rhs, dst);
+                dinxx.or(lhs, rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -95,7 +95,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.or(lhs, rhs, dst);
+                dinxx.or(lhs, rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -105,7 +105,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.or(lhs, rhs, dst);
+                dinxx.or(lhs, rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -115,7 +115,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.or(lhs, rhs, dst);
+                dinxx.or(lhs, rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -125,7 +125,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.or(lhs, rhs, dst);
+                dinxx.or(lhs, rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -135,7 +135,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.or(lhs, rhs, dst);
+                dinxx.or(lhs, rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -145,7 +145,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.or(lhs, rhs, dst);
+                dinxx.or(lhs, rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
     }

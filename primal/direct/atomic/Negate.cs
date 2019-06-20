@@ -22,7 +22,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static byte negate(byte src)
-            => (byte)(~ (byte)(src - 1));
+            => (byte)(~src + 1);
      
         [MethodImpl(Inline)]
         public static short negate(short src)
@@ -30,7 +30,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ushort negate(ushort src)
-            => (ushort)(~ (ushort)(src - 1));     
+            => (ushort)(~src + 1);
 
         [MethodImpl(Inline)]
         public static int negate(int src)
@@ -38,7 +38,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static uint negate(uint src)
-            => ~ (src - 1);     
+            => ~src + 1;
 
         [MethodImpl(Inline)]
         public static long negate(long src)
@@ -46,7 +46,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ulong negate(ulong src)
-            => ~ (src - 1);     
+            => ~src + 1;
 
         [MethodImpl(Inline)]
         public static float negate(float src)
@@ -127,5 +127,4 @@ namespace Z0
             return ref src;
         }
    }
-
 }

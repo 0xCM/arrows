@@ -33,10 +33,20 @@ namespace Z0
         public static unsafe void _mm_storeu_si128(ref ushort dst, in m128i src)
             => Store(refptr(ref dst), v16u(src));
 
+        /// <summary>
+        /// void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
         [MethodImpl(Inline)]
         public static unsafe void _mm_storeu_si128(ref int dst, in m128i src)
             => Store(refptr(ref dst), v32i(src));
 
+        /// <summary>
+        /// _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
         [MethodImpl(Inline)]
         public static unsafe void _mm_storeu_si128(ref uint dst, in m128i src)
             => Store(refptr(ref dst), v32u(src));
@@ -45,6 +55,11 @@ namespace Z0
         public static unsafe void _mm_storeu_si128(ref long dst, in m128i src)
             => Store(refptr(ref dst), v64i(src));
 
+        /// <summary>
+        /// void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
         [MethodImpl(Inline)]
         public static unsafe void _mm_storeu_si128(ref ulong dst, in m128i src)
             => Store(refptr(ref dst), v64u(src));

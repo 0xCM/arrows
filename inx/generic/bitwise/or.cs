@@ -40,7 +40,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.or(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -68,7 +68,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.or(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
 
@@ -97,7 +97,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 dinx.or(float64(lhs), float64(rhs), ref float64(ref dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());            
+                throw unsupported<T>();
         }
         
         [MethodImpl(Inline)]
@@ -125,34 +125,34 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 dinx.or(float64(lhs), float64(rhs), ref float64(ref dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());            
+                throw unsupported<T>();
         }
 
         public static Span128<T> or<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                dinx.or(int8(lhs), int8(rhs), int8(dst));
+                dinxx.or(int8(lhs), int8(rhs), int8(dst));
             else if (typeof(T) == typeof(byte))
-                dinx.or(uint8(lhs), uint8(rhs), uint8(dst));                    
+                dinxx.or(uint8(lhs), uint8(rhs), uint8(dst));                    
             else if (typeof(T) == typeof(short))
-                dinx.or(int16(lhs), int16(rhs), int16(dst));
+                dinxx.or(int16(lhs), int16(rhs), int16(dst));
             else if (typeof(T) == typeof(ushort))
-                dinx.or(uint16(lhs), uint16(rhs), uint16(dst));
+                dinxx.or(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dinx.or(int32(lhs), int32(rhs), int32(dst));
+                dinxx.or(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dinx.or(uint32(lhs), uint32(rhs), uint32(dst));
+                dinxx.or(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dinx.or(int64(lhs), int64(rhs), int64(dst));
+                dinxx.or(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dinx.or(uint64(lhs), uint64(rhs), uint64(dst));
+                dinxx.or(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dinx.or(float32(lhs), float32(rhs), float32(dst));
+                dinxx.or(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                dinx.or(float64(lhs), float64(rhs), float64(dst));                
+                dinxx.or(float64(lhs), float64(rhs), float64(dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());         
+                throw unsupported<T>();
             return dst;   
         }
 
@@ -161,27 +161,27 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                dinx.or(int8(lhs), int8(rhs), int8(dst));
+                dinxx.or(int8(lhs), int8(rhs), int8(dst));
             else if (typeof(T) == typeof(byte))
-                dinx.or(uint8(lhs), uint8(rhs), uint8(dst));                    
+                dinxx.or(uint8(lhs), uint8(rhs), uint8(dst));                    
             else if (typeof(T) == typeof(short))
-                dinx.or(int16(lhs), int16(rhs), int16(dst));
+                dinxx.or(int16(lhs), int16(rhs), int16(dst));
             else if (typeof(T) == typeof(ushort))
-                dinx.or(uint16(lhs), uint16(rhs), uint16(dst));
+                dinxx.or(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dinx.or(int32(lhs), int32(rhs), int32(dst));
+                dinxx.or(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dinx.or(uint32(lhs), uint32(rhs), uint32(dst));
+                dinxx.or(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dinx.or(int64(lhs), int64(rhs), int64(dst));
+                dinxx.or(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dinx.or(uint64(lhs), uint64(rhs), uint64(dst));
+                dinxx.or(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dinx.or(float32(lhs), float32(rhs), float32(dst));
+                dinxx.or(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                dinx.or(float64(lhs), float64(rhs), float64(dst));                
+                dinxx.or(float64(lhs), float64(rhs), float64(dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());         
+                throw unsupported<T>();
             return dst;   
         }
     }

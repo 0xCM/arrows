@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "primal"
+		},
+		{
+			"path": "primal.test"
+		},
+		{
+			"path": "func"
+		},
+		{
+			"path": "structs"
+		}
+	],
+	"settings": {}
+}

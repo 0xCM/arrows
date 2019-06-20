@@ -7,6 +7,8 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
 
     using static zfunc;
 
@@ -19,19 +21,10 @@ namespace Z0
         [FieldOffset(8)]
         public long hi;
 
-       [MethodImpl(Inline)]
-        public static Int128 Define(long x0, long x1)
-        {
-            return new Int128(x0, x1);
-        }
-
         [MethodImpl(Inline)]
-        public static ref Int128 Define(long x0, long x1, out Int128 dst)
-        {
-            dst = new Int128(x0, x1);
-            return ref dst;
-        }
-
+        public static Int128 Define(long x0, long x1)        
+            => new Int128(x0, x1);
+        
         [MethodImpl(Inline)]
         public static bool operator ==(Int128 lhs, Int128 rhs)
             => lhs.lo == rhs.lo && lhs.hi == rhs.hi;
@@ -191,4 +184,6 @@ namespace Z0
             => throw new NotSupportedException();
         
     }
+
+
 }

@@ -21,6 +21,16 @@ namespace Z0
 
     partial class dinx
     {
+        [MethodImpl(Inline)]
+        public static UInt128 and(in UInt128 lhs, in UInt128 rhs)
+            => and(lhs.ToVec128(), rhs.ToVec128()).ToUInt128();
+
+        [MethodImpl(Inline)]
+        public static ref UInt128 and(in UInt128 lhs, in UInt128 rhs, out UInt128 dst)
+        {
+            dst = and(lhs.ToVec128(), rhs.ToVec128()).ToUInt128();
+            return ref dst;            
+        }
 
         [MethodImpl(Inline)]
         public static Vec128<byte> and(in Vec128<byte> lhs, in Vec128<byte> rhs)

@@ -55,7 +55,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.xor(lhs, rhs, dst);
+                dinxx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -69,7 +69,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.xor(lhs, rhs, dst);
+                dinxx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -83,7 +83,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.xor(lhs, rhs, dst);
+                dinxx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -97,7 +97,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.xor(lhs, rhs, dst);
+                dinxx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -111,7 +111,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.xor(lhs, rhs, dst);
+                dinxx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -125,7 +125,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.xor(lhs, rhs, dst);
+                dinxx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -139,7 +139,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.xor(lhs, rhs, dst);
+                dinxx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -153,7 +153,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.xor(lhs, rhs, dst);
+                dinxx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -167,7 +167,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.xor(lhs, rhs, dst);
+                dinxx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -181,7 +181,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.xor(lhs, rhs, dst);
+                dinxx.xor(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);

@@ -17,37 +17,57 @@ namespace Z0
 
     partial class x86
     {
+        /// <summary>
+        /// Adds each component from the first vector to the corresponding component in the second vector
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <intrinsic>__m128i _mm_add_epi8 (__m128i a, __m128i b) PADDB xmm, xmm/m128</intrinsic>
         [MethodImpl(Inline)]
-        public static m128i _mm_add_epi8(m128i a, m128i b)
+        public static m128i _mm_add_epi8(in m128i a, in m128i b)
+            => Add(v8i(a), v8i(b));
+
+
+        /// <summary>
+        /// Adds each component from the first vector to the corresponding component in the second vector
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <intrinsic>__m128i _mm_add_epi16 (__m128i a, __m128i b) PADDW xmm, xmm/m128</intrinsic>
+        [MethodImpl(Inline)]
+        public static m128i _mm_add_epi16(in m128i a, in m128i b)
+            => Add(v16i(a), v16i(b));
+
+        /// <summary>
+        /// Adds each component from the first vector to the corresponding component in the second vector
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <intrinsic>_mm_add_epi32 (__m128i a, __m128i b) PADDD xmm, xmm/m128</intrinsic>
+        [MethodImpl(Inline)]
+        public static m128i _mm_add_epi32(in m128i a, in m128i b)
+            => Add(v32i(a), v32i(b));
+
+        [MethodImpl(Inline)]
+        public static m128i _mm_add_epi64(in m128i a, in m128i b)
+            => Add(v64i(a), v64i(b));
+
+        [MethodImpl(Inline)]
+        public static m256i _mm256_mm_add_epi8(in m256i a, in m256i b)
             => Add(v8i(a), v8i(b));
 
         [MethodImpl(Inline)]
-        public static m128i _mm_add_epi16(m128i a, m128i b)
+        public static m256i _mm256_mm_add_epi16(in m256i a, in m256i b)
             => Add(v16i(a), v16i(b));
 
         [MethodImpl(Inline)]
-        public static m128i _mm_add_epi32(m128i a, m128i b)
+        public static m256i _mm256_mm_add_epi32(in m256i a, in m256i b)
             => Add(v32i(a), v32i(b));
 
         [MethodImpl(Inline)]
-        public static m128i _mm_add_epi64(m128i a, m128i b)
-            => Add(v32i(a), v32i(b));
-
-        [MethodImpl(Inline)]
-        public static m256i _mm_add_epi8(m256i a, m256i b)
-            => Add(v8i(a), v8i(b));
-
-        [MethodImpl(Inline)]
-        public static m256i _mm_add_epi16(m256i a, m256i b)
-            => Add(v16i(a), v16i(b));
-
-        [MethodImpl(Inline)]
-        public static m256i _mm_add_epi32(m256i a, m256i b)
-            => Add(v32i(a), v32i(b));
-
-        [MethodImpl(Inline)]
-        public static m256i _mm_add_epi64(m256i a, m256i b)
-            => Add(v32i(a), v32i(b));
+        public static m256i _mm256_add_epi64(in m256i a, in m256i b)
+            => Add(v64i(a), v64i(b));
+ 
     }
 
 }

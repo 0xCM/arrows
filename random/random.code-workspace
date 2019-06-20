@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../random.test"
+		},
+		{
+			"path": "../func"
+		},
+		{
+			"path": "../structs"
+		},
+		{
+			"path": "../primal.test"
+		},
+		{
+			"path": "../nats"
+		},
+		{
+			"path": "../analogs"
+		},
+		{
+			"path": "../inx"
+		},
+		{
+			"path": "../ms"
+		}
+	],
+	"settings": {}
+}

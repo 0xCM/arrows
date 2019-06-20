@@ -14,7 +14,6 @@ namespace Z0
     using static zfunc;
 
 
-
     public static class Seed1024
     {
 
@@ -77,17 +76,14 @@ namespace Z0
         static ulong[] Entropy()
         {
         
-            var csp = new RNGCryptoServiceProvider();
+            using var csp = new RNGCryptoServiceProvider();
             var dst = new byte[1024];
             csp.GetBytes(dst);
             return Unsafe.As<byte[],ulong[]>(ref dst);
         }
 
         public static ulong[] Entropic
-            => Entropy(); //guids().Take(8).ToU64Array();
-
+            => Entropy(); 
     }
-
-
 
 }

@@ -11,7 +11,9 @@ namespace Z0
         
     using static zfunc;    
     using static x86;
-    public static class avx_bitset
+
+
+    public static class avx_bitset1
     {
 
         public static readonly m256i shuf 

@@ -7,49 +7,46 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
 
     using static zfunc;
 
 
     [StructLayout(LayoutKind.Explicit, Size = 16)]
-    public ref struct UInt128
+    public struct UInt128
     {
         [MethodImpl(Inline)]
         public static UInt128 Define(ulong x0, ulong x1)
-        {
-            return new UInt128(x0, x1);
-        }
-
-        [MethodImpl(Inline)]
-        public static ref UInt128 Define(ulong x0, ulong x1, out UInt128 dst)
-        {
-            dst = new UInt128(x0, x1);
-            return ref dst;
-        }
+            => new UInt128(x0, x1);
 
         [MethodImpl(Inline)]
         public static bool operator ==(UInt128 lhs, UInt128 rhs)
             => lhs.lo == rhs.lo && lhs.hi == rhs.hi;
 
         [MethodImpl(Inline)]
-        public static bool operator !=(UInt128 lhs, UInt128 rhs)
+        public static bool operator !=(in UInt128 lhs, in UInt128 rhs)
             => lhs.lo != rhs.lo || lhs.hi != rhs.hi;
 
         [MethodImpl(Inline)]
-        public static UInt128 operator |(UInt128 lhs, UInt128 rhs)
-            => Define(lhs.lo | rhs.lo, lhs.hi | rhs.hi);
+        public static UInt128 operator |(in UInt128 lhs, in UInt128 rhs)
+            => As.asRef(in lhs).Or(rhs);
 
         [MethodImpl(Inline)]
-        public static UInt128 operator &(UInt128 lhs, UInt128 rhs)
-            => Define(lhs.lo & rhs.lo, lhs.hi & rhs.hi);
+        public static UInt128 operator &(in UInt128 lhs, in UInt128 rhs)
+            => As.asRef(in lhs).And(rhs);
 
         [MethodImpl(Inline)]
-        public static UInt128 operator ^(UInt128 lhs, UInt128 rhs)
-            => Define(lhs.lo ^ rhs.lo, lhs.hi ^ rhs.hi);
-
+        public static UInt128 operator ^(in UInt128 lhs, in UInt128 rhs)        
+            => As.asRef(in lhs).XOr(rhs);
+        
         [MethodImpl(Inline)]
         public static UInt128 operator ~(UInt128 src)
             => Define(~ src.lo, ~ src.hi);
+
+        [MethodImpl(Inline)]
+        public static implicit operator UInt128(ulong src)
+            => new UInt128(src, 0ul);
 
         [MethodImpl(Inline)]
         public UInt128(ulong lo, ulong hi)
@@ -191,5 +188,6 @@ namespace Z0
         public override int GetHashCode()
             => throw new NotSupportedException();
         
-    }
+    }    
+
 }

@@ -14,77 +14,91 @@ namespace Z0
     public static partial class x86
     {
         [MethodImpl(Inline)]
-        static Vector128<sbyte> v8i(m128i src)
+        static Vector128<sbyte> v8i(in m128i src)
             => (Vector128<sbyte>)src;
 
         [MethodImpl(Inline)]
-        static Vector128<byte> v8u(m128i src)
+        static Vector128<byte> v8u(in m128i src)
             => (Vector128<byte>)src;
 
         [MethodImpl(Inline)]
-        static Vector128<short> v16i(m128i src)
+        static Vector128<short> v16i(in m128i src)
             => (Vector128<short>)src;
 
         [MethodImpl(Inline)]
-        static Vector128<ushort> v16u(m128i src)
+        static Vector128<ushort> v16u(in m128i src)
             => (Vector128<ushort>)src;
 
         [MethodImpl(Inline)]
-        static Vector128<int> v32i(m128i src)
+        static Vector128<int> v32i(in m128i src)
             => (Vector128<int>)src;
 
         [MethodImpl(Inline)]
-        static Vector128<uint> v32u(m128i src)
+        static Vector128<uint> v32u(in m128i src)
             => (Vector128<uint>)src;
 
         [MethodImpl(Inline)]
-        static Vector128<long> v64i(m128i src)
+        static Vector128<long> v64i(in m128i src)
             => (Vector128<long>)src;
 
         [MethodImpl(Inline)]
-        static Vector128<ulong> v64u(m128i src)
+        static Vector128<ulong> v64u(in m128i src)
             => (Vector128<ulong>)src;
 
 
         [MethodImpl(Inline)]
-        static Vector256<sbyte> v8i(m256i src)
+        static Vector256<sbyte> v8i(in m256i src)
             => (Vector256<sbyte>)src;
 
         [MethodImpl(Inline)]
-        static Vector256<byte> v8u(m256i src)
+        static Vector256<byte> v8u(in m256i src)
             => (Vector256<byte>)src;
 
         [MethodImpl(Inline)]
-        static Vector256<short> v16i(m256i src)
+        static Vector256<short> v16i(in m256i src)
             => (Vector256<short>)src;
 
         [MethodImpl(Inline)]
-        static Vector256<ushort> v16u(m256i src)
+        static Vector256<ushort> v16u(in m256i src)
             => (Vector256<ushort>)src;
 
         [MethodImpl(Inline)]
-        static Vector256<int> v32i(m256i src)
+        static Vector256<int> v32i(in m256i src)
             => (Vector256<int>)src;
 
         [MethodImpl(Inline)]
-        static Vector256<uint> v32u(m256i src)
+        static Vector256<uint> v32u(in m256i src)
             => (Vector256<uint>)src;
 
         [MethodImpl(Inline)]
-        static Vector256<long> v64i(m256i src)
+        static Vector256<long> v64i(in m256i src)
             => (Vector256<long>)src;
 
         [MethodImpl(Inline)]
-        static Vector256<ulong> v64u(m256i src)
+        static Vector256<ulong> v64u(in m256i src)
             => (Vector256<ulong>)src;
 
         [MethodImpl(Inline)]
-        static Vector256<float> v32f(m256 src)
+        static Vector256<float> v32f(in m256 src)
             => src;
 
         [MethodImpl(Inline)]
-        static Vector256<double> v32d(m256d src)
+        static Vector256<double> v32d(in m256d src)
             => src;
+
+        [MethodImpl(Inline)]
+        static m256i lo(in m512i src)
+            => src.v0;
+
+        [MethodImpl(Inline)]
+        static m256i hi(in m512i src)
+            => src.v1;
+
+        [MethodImpl(Inline)]
+        static m512i pack(in m256i lo, in m256i hi)
+            => new m512i(lo,hi);
+
+
     }
 
 

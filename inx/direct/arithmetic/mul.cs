@@ -29,13 +29,27 @@ namespace Z0
                 hi = Bmi2.MultiplyNoFlags(lhs, rhs, pLo);
         }
 
+        /// <summary>
+        /// Effects multiplication of the form (lhs:ulong, rhs:ulong) -> result:ulong where
+        /// there result is obtained from the hi 64 bits of the 128-bit product
+        /// </summary>
         [MethodImpl(Inline)]
-        public static unsafe UInt128 mul(ulong lhs, ulong rhs, out UInt128 dst)
+        public static ulong umulh(ulong lhs, ulong rhs)
+            => umul128(lhs, rhs, out UInt128 _).hi;
+
+        /// <summary>
+        /// Effects multiplication of the form (lhs:ulong, rhs:ulong) -> result:uint128
+        /// </summary>
+        /// <param name="lhs">The left 64-bit operand</param>
+        /// <param name="rhs">The right 64-bit operand</param>
+        /// <param name="dst">The 128 bit result</param>
+        [MethodImpl(Inline)]
+        public static unsafe ref UInt128 umul128(ulong lhs, ulong rhs, out UInt128 dst)
         {
             dst = default;
             fixed(ulong* pLo = &dst.lo)
                 dst.hi = Bmi2.X64.MultiplyNoFlags(lhs, rhs, pLo);
-            return dst;
+            return ref dst;
         }
 
         [MethodImpl(Inline)]

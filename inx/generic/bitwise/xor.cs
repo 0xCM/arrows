@@ -40,7 +40,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.xor(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -68,7 +68,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.xor(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -96,7 +96,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 dinx.xor(float64(lhs), float64(rhs), ref float64(ref dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());            
+                throw unsupported<T>();
         }
         
         [MethodImpl(Inline)]
@@ -124,34 +124,34 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 dinx.xor(float64(lhs), float64(rhs), ref float64(ref dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());            
+                throw unsupported<T>();
         }
 
         public static Span128<T> xor<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                dinx.xor(int8(lhs), int8(rhs), int8(dst));
+                dinxx.xor(int8(lhs), int8(rhs), int8(dst));
             else if (typeof(T) == typeof(byte))
-                dinx.xor(uint8(lhs), uint8(rhs), uint8(dst));                    
+                dinxx.xor(uint8(lhs), uint8(rhs), uint8(dst));                    
             else if (typeof(T) == typeof(short))
-                dinx.xor(int16(lhs), int16(rhs), int16(dst));
+                dinxx.xor(int16(lhs), int16(rhs), int16(dst));
             else if (typeof(T) == typeof(ushort))
-                dinx.xor(uint16(lhs), uint16(rhs), uint16(dst));
+                dinxx.xor(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dinx.xor(int32(lhs), int32(rhs), int32(dst));
+                dinxx.xor(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dinx.xor(uint32(lhs), uint32(rhs), uint32(dst));
+                dinxx.xor(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dinx.xor(int64(lhs), int64(rhs), int64(dst));
+                dinxx.xor(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dinx.xor(uint64(lhs), uint64(rhs), uint64(dst));
+                dinxx.xor(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dinx.xor(float32(lhs), float32(rhs), float32(dst));
+                dinxx.xor(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                dinx.xor(float64(lhs), float64(rhs), float64(dst));                
+                dinxx.xor(float64(lhs), float64(rhs), float64(dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());         
+                throw unsupported<T>();
             return dst;   
         }
 
@@ -159,27 +159,27 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                dinx.xor(int8(lhs), int8(rhs), int8(dst));
+                dinxx.xor(int8(lhs), int8(rhs), int8(dst));
             else if (typeof(T) == typeof(byte))
-                dinx.xor(uint8(lhs), uint8(rhs), uint8(dst));                    
+                dinxx.xor(uint8(lhs), uint8(rhs), uint8(dst));                    
             else if (typeof(T) == typeof(short))
-                dinx.xor(int16(lhs), int16(rhs), int16(dst));
+                dinxx.xor(int16(lhs), int16(rhs), int16(dst));
             else if (typeof(T) == typeof(ushort))
-                dinx.xor(uint16(lhs), uint16(rhs), uint16(dst));
+                dinxx.xor(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dinx.xor(int32(lhs), int32(rhs), int32(dst));
+                dinxx.xor(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dinx.xor(uint32(lhs), uint32(rhs), uint32(dst));
+                dinxx.xor(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dinx.xor(int64(lhs), int64(rhs), int64(dst));
+                dinxx.xor(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dinx.xor(uint64(lhs), uint64(rhs), uint64(dst));
+                dinxx.xor(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dinx.xor(float32(lhs), float32(rhs), float32(dst));
+                dinxx.xor(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                dinx.xor(float64(lhs), float64(rhs), float64(dst));                
+                dinxx.xor(float64(lhs), float64(rhs), float64(dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());         
+                throw unsupported<T>();
             return dst;   
         }
  

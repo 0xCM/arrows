@@ -22,6 +22,8 @@ namespace Z0
     } __m512i;
     
      */
+
+    
     [StructLayout(LayoutKind.Explicit, Size = 64)]
     public ref struct M512
     {
@@ -891,34 +893,6 @@ namespace Z0
             }
         }
 
-        public byte this[Range r]
-        {
-            get
-            {
-                if(r.End.Value - r.Start.Value > 8)
-                    return 0;
-                else
-                {
-                    var dst = default(byte);
-                    var start = math.quorem(r.Start.Value, 8);
-                    var b1 = part<byte>(start.Quotient);
-
-                    var j = 0;
-                    for(var i = start.Remainder; i< 8; i++, j++)
-                        if(Bits.test(b1,i))
-                            Bits.enable(ref dst, j);
-
-                    var final = math.quorem(r.End.Value, 8);                    
-                    var b2 = part<byte>(final.Quotient);
-
-                    for(var i = 0; i< final.Remainder; i++, j++)
-                        if(Bits.test(b2,i))
-                            Bits.enable(ref dst, j);
-                }
-
-                return 0;
-            }
-        }
         
     }
 

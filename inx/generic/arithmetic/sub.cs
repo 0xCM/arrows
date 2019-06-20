@@ -41,7 +41,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.sub(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -69,7 +69,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.sub(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
        }
 
         [MethodImpl(Inline)]
@@ -97,7 +97,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 dinx.sub(float64(lhs), float64(rhs), ref float64(ref dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
         }
             
         [MethodImpl(Inline)]
@@ -136,32 +136,32 @@ namespace Z0
                 return dinx.sub(in float32(in lhs), in float32(in rhs)).As<T>();
             else if(typeof(T) == typeof(double))
                 return dinx.sub(in float64(in lhs), in float64(in rhs)).As<T>();
-            throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         public static Span128<T> sub<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                dinx.sub(int8(lhs), int8(rhs), int8(dst));
+                dinxx.sub(int8(lhs), int8(rhs), int8(dst));
             else if(typeof(T) == typeof(byte))
-                dinx.sub(uint8(lhs), uint8(rhs), uint8(dst));
+                dinxx.sub(uint8(lhs), uint8(rhs), uint8(dst));
             else if(typeof(T) == typeof(short))
-                dinx.sub(int16(lhs), int16(rhs), int16(dst));
+                dinxx.sub(int16(lhs), int16(rhs), int16(dst));
             else if(typeof(T) == typeof(ushort))
-                dinx.sub(uint16(lhs), uint16(rhs), uint16(dst));
+                dinxx.sub(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dinx.sub(int32(lhs), int32(rhs), int32(dst));
+                dinxx.sub(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dinx.sub(uint32(lhs), uint32(rhs), uint32(dst));
+                dinxx.sub(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dinx.sub(int64(lhs), int64(rhs), int64(dst));
+                dinxx.sub(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dinx.sub(uint64(lhs), uint64(rhs), uint64(dst));
+                dinxx.sub(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dinx.sub(float32(lhs), float32(rhs), float32(dst));
+                dinxx.sub(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                dinx.sub(float64(lhs), float64(rhs), float64(dst));
+                dinxx.sub(float64(lhs), float64(rhs), float64(dst));
             else 
                 throw unsupported(PrimalKinds.kind<T>());
             return dst;
@@ -171,25 +171,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                dinx.sub(int8(lhs), int8(rhs), int8(dst));
+                dinxx.sub(int8(lhs), int8(rhs), int8(dst));
             else if(typeof(T) == typeof(byte))
-                dinx.sub(uint8(lhs), uint8(rhs), uint8(dst));
+                dinxx.sub(uint8(lhs), uint8(rhs), uint8(dst));
             else if(typeof(T) == typeof(short))
-                dinx.sub(int16(lhs), int16(rhs), int16(dst));
+                dinxx.sub(int16(lhs), int16(rhs), int16(dst));
             else if(typeof(T) == typeof(ushort))
-                dinx.sub(uint16(lhs), uint16(rhs), uint16(dst));
+                dinxx.sub(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dinx.sub(int32(lhs), int32(rhs), int32(dst));
+                dinxx.sub(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dinx.sub(uint32(lhs), uint32(rhs), uint32(dst));
+                dinxx.sub(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dinx.sub(int64(lhs), int64(rhs), int64(dst));
+                dinxx.sub(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dinx.sub(uint64(lhs), uint64(rhs), uint64(dst));
+                dinxx.sub(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dinx.sub(float32(lhs), float32(rhs), float32(dst));
+                dinxx.sub(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                dinx.sub(float64(lhs), float64(rhs), float64(dst));
+                dinxx.sub(float64(lhs), float64(rhs), float64(dst));
             else 
                 throw unsupported(PrimalKinds.kind<T>());
             return dst;

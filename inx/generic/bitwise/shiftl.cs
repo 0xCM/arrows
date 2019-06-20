@@ -97,13 +97,13 @@ namespace Z0
             where T : struct
         {
             if(typeof(S) == typeof(int))
-                dinx.shiftl(int32(in lhs), uint32(in shifts), int32(in dst));
+                dinxx.shiftl(int32(in lhs), uint32(in shifts), int32(in dst));
             else if(typeof(S) == typeof(uint)) 
-                dinx.shiftl(uint32(in lhs), uint32(in shifts), uint32(in dst));
+                dinxx.shiftl(uint32(in lhs), uint32(in shifts), uint32(in dst));
             else if(typeof(S) == typeof(long))
-                dinx.shiftl(int64(in lhs), uint64(in shifts), int64(in dst));
+                dinxx.shiftl(int64(in lhs), uint64(in shifts), int64(in dst));
             else if(typeof(S) == typeof(ulong))
-                dinx.shiftl(uint64(in lhs), uint64(in shifts), uint64(in dst));
+                dinxx.shiftl(uint64(in lhs), uint64(in shifts), uint64(in dst));
             else
                 throw unsupported(PrimalKinds.kind<S>());
             return dst;
@@ -114,13 +114,13 @@ namespace Z0
             where S : struct
         {
             if(typeof(S) == typeof(int))
-                dinx.shiftl(int32(in lhs), uint32(in shifts), int32(in dst));
+                dinxx.shiftl(int32(in lhs), uint32(in shifts), int32(in dst));
             else if(typeof(S) == typeof(uint)) 
-                dinx.shiftl(uint32(in lhs), uint32(in shifts), uint32(in dst));
+                dinxx.shiftl(uint32(in lhs), uint32(in shifts), uint32(in dst));
             else if(typeof(S) == typeof(long))
-                dinx.shiftl(int64(in lhs), uint64(in shifts), int64(in dst));
+                dinxx.shiftl(int64(in lhs), uint64(in shifts), int64(in dst));
             else if(typeof(S) == typeof(ulong))
-                dinx.shiftl(uint64(in lhs), uint64(in shifts), uint64(in dst));
+                dinxx.shiftl(uint64(in lhs), uint64(in shifts), uint64(in dst));
             else
                 throw unsupported(PrimalKinds.kind<S>());
             return dst;

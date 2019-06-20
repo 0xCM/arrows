@@ -15,6 +15,11 @@ namespace Z0
 
     partial class dinx
     {
+
+        [MethodImpl(Inline)]
+        public static UInt128 shiftlw(UInt128 src, byte count)        
+            => dinx.shiftlw(src.ToVec128(), count).ToUInt128();                            
+
         [MethodImpl(Inline)]
         public static Vec128<short> shiftlw(in Vec128<short> src, byte count)
             => ShiftLeftLogical128BitLane(src, count);
@@ -38,7 +43,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<ulong> shiftlw(in Vec128<ulong> src, byte count)
             => ShiftLeftLogical128BitLane(src, count);
-
         
         [MethodImpl(Inline)]
         public static Vec256<short> shiftlw(in Vec256<short> src, byte count)

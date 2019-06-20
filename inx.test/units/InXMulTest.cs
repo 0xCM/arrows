@@ -21,7 +21,7 @@ namespace Z0.Test
             //Test case comes from https://docs.microsoft.com/et-ee/cpp/intrinsics/umul128?view=vs-2019
             var lhs = 0x0ffffffffffffffful;
             var rhs = 0xf0000000ul;
-            dinx.mul(lhs,rhs, out UInt128 dst);
+            dinx.umul128(lhs, rhs, out UInt128 dst);
             Claim.eq("0xeffffffffffffff10000000", dst.ToHexString());
 
         }
