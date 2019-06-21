@@ -72,5 +72,7 @@ namespace Z0
 
         public const char Quote = '\'';
 
+        public const char Space = ' ';
+
     }
 }

@@ -38,6 +38,10 @@ namespace Z0
  
  
         [MethodImpl(Inline)]
+        public static Vec256<ulong> ToVec256(this in Span<ulong> src, int offset = 0)
+            => Vec256.load(ref src[offset]);
+
+        [MethodImpl(Inline)]
         public static Vec256<byte> ToVec256(this byte src)
             => Vec256.define(src);
 

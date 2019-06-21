@@ -31,6 +31,8 @@ namespace Z0
             return leftclosed(min,max);
 
         }
+        public static HashSet<uint> TakeSet(this IRandomSource<uint> rng, int count)
+            => rng.Stream().Take(count).ToHashSet();
 
     }
 }

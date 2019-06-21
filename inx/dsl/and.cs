@@ -19,11 +19,10 @@ namespace Z0
     {
 
         /// <summary>
-        /// Computes a logical and of the source vectors
+        /// Computes a logical and of the left and right vectors
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
-        /// <returns></returns>
         /// <intrinsic>_mm256_and_si256 (__m256i a, __m256i b) VPAND ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static m256i _mm256_and_si256(in m256i a, in m256i b)

@@ -18,7 +18,7 @@ namespace Z0
     /// <remarks>
     /// See https://github.com/lemire/simdpcg
     /// </remarks>
-    public static class simdpcg32
+    public static class PcgAvx
     {
         static readonly m256i M0 = _mm256_set1_epi64x((0x5851f42d4c957f2dul) & 0xffffffffu);
         
@@ -32,21 +32,41 @@ namespace Z0
         
         static readonly m256i I32 = _mm256_set1_epi32(32);
 
+        public static Pcg32 Define(m512i seed, m512i inc)
+            => new Pcg32(seed,inc);
 
-        public class Pcg32Avx
+
+        public static m256i mul(m256i x, m256i ml, m256i mh) 
         {
+            m256i xl = _mm256_and_si256(x, _mm256_set1_epi64x(0x00000000fffffffful));
+            m256i xh = _mm256_srli_epi64(x, 32);
+            m256i hl = _mm256_slli_epi64(_mm256_mul_epu32(xh, ml), 32);
+            m256i lh = _mm256_slli_epi64(_mm256_mul_epu32(xl, mh), 32);
+            m256i ll = _mm256_mul_epu32(xl, ml);
+            return _mm256_add_epi64(ll, _mm256_add_epi64(hl, lh));
+        }
+
+        public class Pcg32
+        {
+            public Pcg32(m512i seed, m512i inc)
+            {
+                this.stateV0 = seed.v0;
+                this.stateV1 = seed.v1;
+                this.incV0 = inc.v0;
+                this.incV1 = inc.v1;
+            }
+
+            m256i stateV0;
+
             m256i stateV1;
 
-            m256i stateV2;
+            m256i incV0 = default;
 
-            m256i incV1 = default;
+            m256i incV1 = default;  
 
-            m256i incV2 = default;  
-
-            m256i step()
+            public Vec256<uint> Next()
             {
-                (var s0, var s1) = (stateV1, stateV2);
-
+                (var s0, var s1) = (stateV0, stateV1);
 
                 /* Improve high bits using xorshift step */
                 var s0s = _mm256_srli_epi64(s0, 18);
@@ -105,35 +125,20 @@ namespace Z0
                 var rot = _mm256_or_si256(rot0, rot1);
                             
 
-                stateV1 = _mm256_add_epi64(s0n, incV1);
-                stateV2 = _mm256_add_epi64(s1n, incV2);
+                stateV0 = _mm256_add_epi64(s0n, incV0);
+                stateV1 = _mm256_add_epi64(s1n, incV1);
 
                 /* Finally, rotate and return the result */
                 var result =
                     _mm256_or_si256(_mm256_srlv_epi32(xors, rot),
                                     _mm256_sllv_epi32(xors, _mm256_sub_epi32(I32, rot)));
 
-                return result;                        
+                return result.ToVec256<uint>();                        
                 
             }
 
 
         }
-
-
-        public class avx2_pcg32_random_t 
-        {
-            // RNG state.  All values are possible.
-            public m256i[] state = new m256i[2]; 
-            // Controls which RNG sequence (stream) is selected. Must *always* be odd.
-            public m256i[] inc = new m256i[2];   
-            // set to _mm256_set1_epi64x(UINT64_C(0x5851f42d4c957f2dULL) & 0xffffffffu);
-            public m256i pcg32_mult_l; 
-                    
-            // set to _mm256_set1_epi64x(UINT64_C(0x5851f42d4c957f2dULL) >> 32);                    
-            public m256i pcg32_mult_h; 
-
-        } 
 
         public class avx256_pcg32_random_t 
         {
@@ -151,83 +156,18 @@ namespace Z0
 
         } 
 
-        static m256i step(avx2_pcg32_random_t rng)
-        {
-            (var s0, var s1) = (rng.state[0], rng.state[1]);
 
-             /* Extract low and high words for partial products below */
-            m256i s0_l = _mm256_and_si256(s0, LoMask);
-            m256i s0_h = _mm256_srli_epi64(s0, 32);
-            m256i s1_l = _mm256_and_si256(s1, LoMask);
-            m256i s1_h = _mm256_srli_epi64(s1, 32);
+        // [MethodImpl(Inline)]
+        // public static Vec256<ulong> mul(Vec256<ulong> x, Vec256<ulong> ml, Vec256<ulong> mh)
+        // {
+        //     var mask = Vec256.define(0x00000000fffffffful);
+        //     var xl = and(x, mask);
+        //     var xh = shiftr(x,32);
 
-            /* Improve high bits using xorshift step */
-            m256i s0s = _mm256_srli_epi64(s0, 18);
-            m256i s1s = _mm256_srli_epi64(s1, 18);
+        //     return default;
+        // }
 
-            m256i s0x = _mm256_xor_si256(s0s, s0);
-            m256i s1x = _mm256_xor_si256(s1s, s1);
 
-            m256i s0xs = _mm256_srli_epi64(s0x, 27);
-            m256i s1xs = _mm256_srli_epi64(s1x, 27);
-
-            m256i xors0 = _mm256_and_si256(LoMask, s0xs);
-            m256i xors1 = _mm256_and_si256(LoMask, s1xs);
-        
-            // Use high bits to choose a bit-level rotation
-            m256i rot0 = _mm256_srli_epi64(s0, 59);
-            m256i rot1 = _mm256_srli_epi64(s1, 59);        
-
-            /* 64 bit multiplication using 32 bit partial products :( */
-            m256i m0_hl = _mm256_mul_epu32(s0_h, rng.pcg32_mult_l);
-            m256i m1_hl = _mm256_mul_epu32(s1_h, rng.pcg32_mult_l);
-            m256i m0_lh = _mm256_mul_epu32(s0_l, rng.pcg32_mult_h);
-            m256i m1_lh = _mm256_mul_epu32(s1_l, rng.pcg32_mult_h);
-
-            /* Assemble lower 32 bits, will be merged into one 256 bit vector below */
-            xors0 = _mm256_permutevar8x32_epi32(xors0, LoShift);
-            rot0 = _mm256_permutevar8x32_epi32(rot0, LoShift);
-            xors1 = _mm256_permutevar8x32_epi32(xors1, HiShift);
-            rot1 = _mm256_permutevar8x32_epi32(rot1, HiShift);
-
-            /* Continue with partial products */
-            m256i m0_ll = _mm256_mul_epu32(s0_l, rng.pcg32_mult_l);
-            m256i m1_ll = _mm256_mul_epu32(s1_l, rng.pcg32_mult_l);
-
-            m256i m0h = _mm256_add_epi64(m0_hl, m0_lh);
-            m256i m1h = _mm256_add_epi64(m1_hl, m1_lh);
-
-            m256i m0hs = _mm256_slli_epi64(m0h, 32);
-            m256i m1hs = _mm256_slli_epi64(m1h, 32);
-
-            m256i s0n = _mm256_add_epi64(m0hs, m0_ll);
-            m256i s1n = _mm256_add_epi64(m1hs, m1_ll);
-
-            m256i xors = _mm256_or_si256(xors0, xors1);
-            m256i rot = _mm256_or_si256(rot0, rot1);
-                        
-
-            rng.state[0] = _mm256_add_epi64(s0n, rng.inc[0]);
-            rng.state[1] = _mm256_add_epi64(s1n, rng.inc[1]);
-
-            /* Finally, rotate and return the result */
-            m256i result =
-                _mm256_or_si256(_mm256_srlv_epi32(xors, rot),
-                                _mm256_sllv_epi32(xors, _mm256_sub_epi32(I32, rot)));
-
-            return result;                        
-            
-        }
-
-        static m256i hacked_mm256_mullo_epi64(m256i x, m256i ml, m256i mh) 
-        {
-            m256i xl = _mm256_and_si256(x, _mm256_set1_epi64x(0x00000000fffffffful));
-            m256i xh = _mm256_srli_epi64(x, 32);
-            m256i hl = _mm256_slli_epi64(_mm256_mul_epu32(xh, ml), 32);
-            m256i lh = _mm256_slli_epi64(_mm256_mul_epu32(xl, mh), 32);
-            m256i ll = _mm256_mul_epu32(xl, ml);
-            return _mm256_add_epi64(ll, _mm256_add_epi64(hl, lh));
-        }
 
         static m256i hacked_mm256_rorv_epi32(m256i x, m256i r) 
         {
@@ -239,7 +179,7 @@ namespace Z0
         static m128i avx256_pcg32_random_r(avx256_pcg32_random_t rng) 
         {
             m256i oldstate = rng.state;
-            rng.state = _mm256_add_epi64(hacked_mm256_mullo_epi64(rng.state, rng.pcg32_mult_l, rng.pcg32_mult_h), rng.inc);
+            rng.state = _mm256_add_epi64(mul(rng.state, rng.pcg32_mult_l, rng.pcg32_mult_h), rng.inc);
             m256i xorshifted = _mm256_srli_epi64(
                 _mm256_xor_si256(_mm256_srli_epi64(oldstate, 18), oldstate), 27);
             m256i rot = _mm256_srli_epi64(oldstate, 59);

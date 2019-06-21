@@ -14,7 +14,6 @@ namespace Z0
 
     public static partial class BitX
     {
-
         /// <summary>
         /// Determines whether a bit in a specified position is on
         /// </summary>

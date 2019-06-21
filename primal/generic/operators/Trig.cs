@@ -5,9 +5,6 @@
 namespace Z0
 {
     using System;
-    using System.Linq;
-    using System.Reflection;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
         
     using static zfunc;    
@@ -15,55 +12,77 @@ namespace Z0
 
     partial class gmath
     {
+        [MethodImpl(Inline)]
+        public static T sin<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(math.sin(float32(src)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(math.sin(float64(src)));
+            else
+                throw unsupported<T>();
+        }
 
         [MethodImpl(Inline)]
-        static T sinF32<T>(T src)
-            => generic<T>(MathF.Sin(float32(src)));
+        public static T asin<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(math.asin(float32(src)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(math.asin(float64(src)));
+            else
+                throw unsupported<T>();
+        }
 
         [MethodImpl(Inline)]
-        static T sinF64<T>(T src)
-            => generic<T>(Math.Sin(float64(src)));
+        public static T cos<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(math.cos(float32(src)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(math.cos(float64(src)));
+            else
+                throw unsupported<T>();
+        }
 
         [MethodImpl(Inline)]
-        static T cosF32<T>(T src)
-            => generic<T>(MathF.Cos(float32(src)));
+        public static T acos<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(math.acos(float32(src)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(math.acos(float64(src)));
+            else
+                throw unsupported<T>();
+        }
 
         [MethodImpl(Inline)]
-        static T cosF64<T>(T src)
-            => generic<T>(Math.Cos(float64(src)));
+        public static T tan<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(math.tan(float32(src)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(math.tan(float64(src)));
+            else
+                throw unsupported<T>();
+        }
 
         [MethodImpl(Inline)]
-        static T tanF32<T>(T src)
-            => generic<T>(MathF.Tan(float32(src)));
-
-        [MethodImpl(Inline)]
-        static T tanF64<T>(T src)
-            => generic<T>(Math.Cos(float64(src)));
-
-
-        [MethodImpl(Inline)]
-        static T asinF32<T>(T src)
-            => generic<T>(MathF.Asin(float32(src)));
-
-        [MethodImpl(Inline)]
-        static T asinF64<T>(T src)
-            => generic<T>(Math.Asin(float64(src)));
-
-        [MethodImpl(Inline)]
-        static T acosF32<T>(T src)
-            => generic<T>(MathF.Acos(float32(src)));
-
-        [MethodImpl(Inline)]
-        static T acosF64<T>(T src)
-            => generic<T>(Math.Acos(float64(src)));
-
-        [MethodImpl(Inline)]
-        static T atanF32<T>(T src)
-            => generic<T>(MathF.Atan(float32(src)));
-
-        [MethodImpl(Inline)]
-        static T atanF64<T>(T src)
-            => generic<T>(Math.Acos(float64(src)));
+        public static T atan<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(math.atan(float32(src)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(math.atan(float64(src)));
+            else
+                throw unsupported<T>();
+        }
  
     }
 

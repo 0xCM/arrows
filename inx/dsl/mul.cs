@@ -46,6 +46,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static m256i _mm256_mul_epi32(in m256i a, in m256i b)
             => Multiply(v32i(a),v32i(b));
+    
+    
     }
 
 }

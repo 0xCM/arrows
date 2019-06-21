@@ -21,25 +21,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>((Math.Max(int8(lhs), int8(rhs))));
+                return generic<T>((math.max(int8(lhs), int8(rhs))));
             else if(typeof(T) == typeof(byte))
-                return generic<T>((Math.Max(uint8(lhs), uint8(rhs))));
+                return generic<T>((math.max(uint8(lhs), uint8(rhs))));
             else if(typeof(T) == typeof(short))
-                return generic<T>((Math.Max(int16(lhs), int16(rhs))));
+                return generic<T>((math.max(int16(lhs), int16(rhs))));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>((Math.Max(uint16(lhs), uint16(rhs))));
+                return generic<T>((math.max(uint16(lhs), uint16(rhs))));
             else if(typeof(T) == typeof(int))
-                return maxI32(lhs, rhs);
+                return generic<T>((math.max(int32(lhs), int32(rhs))));
             else if(typeof(T) == typeof(uint))
-                return maxU32(lhs, rhs);
+                return generic<T>((math.max(uint32(lhs), uint32(rhs))));
             else if(typeof(T) == typeof(long))
-                return maxI64(lhs,rhs);
+                return generic<T>((math.max(int64(lhs), int64(rhs))));
             else if(typeof(T) == typeof(ulong))
-                return maxU64(lhs,rhs);
+                return generic<T>((math.max(uint64(lhs), uint64(rhs))));
             else if(typeof(T) == typeof(float))
-                return maxF32(lhs, rhs);
+                return generic<T>((math.max(float32(lhs), float32(rhs))));
             else if(typeof(T) == typeof(double))
-                return maxF64(lhs,rhs);
+                return generic<T>((math.max(float64(lhs), float64(rhs))));
             else            
                 throw unsupported<T>();
         }           
@@ -70,33 +70,6 @@ namespace Z0
             else
                 throw unsupported<T>();
         }
-
-
-        [MethodImpl(Inline)]
-        static T maxI32<T>(T lhs, T rhs)
-            => generic<T>((Math.Max(int32(lhs), int32(rhs))));
-
-        [MethodImpl(Inline)]
-        static T maxU32<T>(T lhs, T rhs)
-            => generic<T>((Math.Max(uint32(lhs), int32(rhs))));
-
-        [MethodImpl(Inline)]
-        static T maxI64<T>(T lhs, T rhs)
-            => generic<T>((Math.Max(int64(lhs), int64(rhs))));
-
-        [MethodImpl(Inline)]
-        static T maxU64<T>(T lhs, T rhs)
-            => generic<T>((Math.Max(uint64(lhs), uint64(rhs))));
-
-        [MethodImpl(Inline)]
-        static T maxF32<T>(T lhs, T rhs)
-            => generic<T>((MathF.Max(float32(lhs), float32(rhs))));
-
-        [MethodImpl(Inline)]
-        static T maxF64<T>(T lhs, T rhs)
-            => generic<T>((Math.Max(float64(lhs), float64(rhs))));
-
-
 
     }
 

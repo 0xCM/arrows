@@ -53,9 +53,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static double log2(double src)
             => Math.Log2(src);
-
-
-
     }
 
 }

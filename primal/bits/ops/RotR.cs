@@ -17,61 +17,103 @@ namespace Z0
     partial class Bits
     {                
         [MethodImpl(Inline)]
-        public static byte rotr(in byte value, int offset)
-            => (byte)((value >> offset) | (value << (8 - offset)));
+        public static byte rotr(in byte src, int offset)
+            => (byte)((src >> offset) | (src << (8 - offset)));
 
         [MethodImpl(Inline)]
-        public static ushort rotr(in ushort value, int offset)
-            => (ushort)((value >> offset) | (value << (16 - offset)));
+        public static byte rotr(in byte src, byte offset)
+            => (byte)((src >> offset) | (src << (8 - offset)));
 
         [MethodImpl(Inline)]
-        public static uint rotr(in uint value, int offset)
-            => (value >> offset) | (value << (32 - offset));
+        public static ushort rotr(in ushort src, int offset)
+            => (ushort)((src >> offset) | (src << (16 - offset)));
 
         [MethodImpl(Inline)]
-        public static ulong rotr(in ulong  value, int offset)
-            => (value >> offset) | (value << (64 - offset));
-
-
-        [MethodImpl(Inline)]
-        public static ulong rotate(ulong src, int offset, bool left = false)            
-            => left ? BitOperations.RotateLeft(src,offset) 
-                    : BitOperations.RotateRight(src,offset);
+        public static uint rotr(in uint src, int offset)
+            => (src >> offset) | (src << (32 - offset));
 
         [MethodImpl(Inline)]
-        public static uint rotate(uint src, int offset, bool left = false)            
-            => left ? BitOperations.RotateLeft(src,offset) 
-                    : BitOperations.RotateRight(src,offset);
+        public static ulong rotr(in ulong src, int offset)
+            => (src >> offset) | (src << (64 - offset));
 
         [MethodImpl(Inline)]
-        public static ref byte rotr(ref byte lhs, in int rhs)
+        public static ushort rotr(in ushort src, ushort offset)
+            => (ushort)((src >> offset) | (src << (16 - offset)));
+
+        [MethodImpl(Inline)]
+        public static uint rotr(in uint src, uint offset)
+            => (src >> (int)offset) | (src << (32 - (int)offset));
+
+        [MethodImpl(Inline)]
+        public static ulong rotr(in ulong src, ulong offset)
+            => (src >> (int)offset) | (src << (64 - (int)offset));
+
+        [MethodImpl(Inline)]
+        public static ref byte rotr(ref byte src, in int offset)
         {
-            lhs = rotr(lhs,rhs);
-            return ref lhs;
+            src = rotr(src,offset);
+            return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref ushort rotr(ref ushort lhs, in int rhs)
+        public static ref ushort rotr(ref ushort src, in int offset)
         {
-            lhs = rotr(lhs,rhs);
-            return ref lhs;
+            src = rotr(src,offset);
+            return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref uint rotr(ref uint lhs, in int rhs)
+        public static ref uint rotr(ref uint src, in int offset)
         {
-            lhs = rotr(lhs,rhs);
-            return ref lhs;
+            src = rotr(src,offset);
+            return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref ulong rotr(ref ulong lhs, in int rhs)
+        public static ref ulong rotr(ref ulong src, in int offset)
         {
-            lhs = rotr(lhs,rhs);
-            return ref lhs;
+            src = rotr(src,offset);
+            return ref src;
         }
 
+        [MethodImpl(Inline)]
+        public static ref byte rotr(ref byte src, in byte offset)
+        {
+            src = rotr(src,offset);
+            return ref src;
+        }
 
+        [MethodImpl(Inline)]
+        public static ref ushort rotr(ref ushort src, in ushort offset)
+        {
+            src = rotr(src,offset);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint rotr(ref uint src, in uint offset)
+        {
+            src = rotr(src,offset);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong rotr(ref ulong src, in ulong offset)
+        {
+            src = rotr(src,offset);
+            return ref src;
+        }
+
+        /// <summary>
+        /// Derived from PCG implementation
+        /// </summary>
+        [MethodImpl(Inline)]
+        static uint rotrAlt(uint src, uint count)
+        {            
+            var lhs = src >> (int)count;
+            var rhs = src << (int)(~count & 31) + 1;
+            return lhs | rhs;
+        }            
     }
 
 }

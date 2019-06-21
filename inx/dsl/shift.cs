@@ -22,7 +22,6 @@ namespace Z0
         /// </summary>
         /// <param name="a"></param>
         /// <param name="imm8"></param>
-        /// <returns></returns>
         /// <intrinsic>__m256i _mm256_srli_epi64 (__m256i a, int imm8) VPSRLQ ymm, ymm, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static m256i _mm256_srli_epi64(in m256i a, byte imm8)
@@ -33,7 +32,6 @@ namespace Z0
         /// </summary>
         /// <param name="a"></param>
         /// <param name="imm8"></param>
-        /// <returns></returns>
         /// <intrinsic>__m256i _mm256_slli_epi64 (__m256i a, int imm8) VPSLLQ ymm, ymm, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static m256i _mm256_slli_epi64(in m256i a, byte imm8)
@@ -44,7 +42,6 @@ namespace Z0
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
-        /// <returns></returns>
         /// <intrinsic>__m256i _mm256_srlv_epi32 (__m256i a, __m256i count) VPSRLVD ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static m256i _mm256_srlv_epi32(in m256i a, in m256i b)
@@ -55,7 +52,6 @@ namespace Z0
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
-        /// <returns></returns>
         /// <intrinsic>_mm256_sllv_epi32 (__m256i a, __m256i count) VPSLLVD ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static m256i _mm256_sllv_epi32(in m256i a, in m256i b)

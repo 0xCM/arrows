@@ -16,31 +16,30 @@ namespace Z0
     partial class gmath
     {
         [MethodImpl(Inline)]
-        public static bool nonneg<T>(T src)
+        public static bool isPow2<T>(T src)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return math.nonneg(int8(ref src));
+                return math.isPow2(int8(src));
             else if(typeof(T) == typeof(byte))
-                return true;
+                return math.isPow2(uint8(src));
             else if(typeof(T) == typeof(short))
-                return math.nonneg(int16(ref src));
+                return math.isPow2(int16(src));
             else if(typeof(T) == typeof(ushort))
-                return true;
+                return math.isPow2(uint16(src));
             else if(typeof(T) == typeof(int))
-                return math.nonneg(int32(ref src));
+                return math.isPow2(int32(src));
             else if(typeof(T) == typeof(uint))
-                return true;
+                return math.isPow2(uint32(src));
             else if(typeof(T) == typeof(long))
-                return math.nonneg(int64(ref src));
+                return math.isPow2(int64(src));
             else if(typeof(T) == typeof(ulong))
-                return true;
-            else if(typeof(T) == typeof(float))
-                return math.nonneg(float32(ref src));
-            else if(typeof(T) == typeof(double))
-                return math.nonneg(float64(ref src));
+                return math.isPow2(uint64(src));
             else            
                 throw unsupported<T>();
-        }
+        }           
+
+
     }
+
 }

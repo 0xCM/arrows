@@ -16,12 +16,12 @@ namespace Z0
     partial class x86
     {
         /// <summary>
-        /// __m256i _mm256_or_si256 (__m256i a, __m256i b) VPOR ymm, ymm, ymm/m256
+        /// Computes the bitwise or of the operands
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        /// <intrinsic></intrinsic>
+        /// <intrinsic>__m256i _mm256_or_si256 (__m256i a, __m256i b) VPOR ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static m256i _mm256_or_si256(in m256i a, in m256i b)
             => Or(a,b);

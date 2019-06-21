@@ -14,26 +14,85 @@ namespace Z0.Test
     public class App : TestApp<App>
     {            
 
-        // protected override void RunTests()
-        // {
-        //     var srcA = items(1,2,3,4,5,6,7,8).ToSpan().ReadOnly();
-        //     var srcB = items(8,7,6,5,4,3,2,1).ToSpan().ReadOnly();
-        //     var vA = m256i.FromParts(srcA);
-        //     var vB = m256i.FromParts(srcB);
-        //     var vC = x86._mm_add_epi32(vA, vB);
+        protected override void RunTests()
+        {
+            var m = FastMod.computeM_u32(19);
 
-        //     var a = vA.Part<int>(3);
-        //     var b = vB.Part<int>(3);
-        //     var c = vC.Part<int>(3);            
+            {
+                var x = 17u;
+                var y = 15u;
+                var z = FastMod.mod(x, m, y);
+                print($"{x} (8) {y} = {z}");
+            }
 
-        //     print($"{a} + {b} = {c}");
+            {
+                var x = 17u;
+                var y = 16u;
+                var z = FastMod.mod(x, m, y);
+                print($"{x} (8) {y} = {z}");
+            }
 
-        //     Span<int> aParts = stackalloc int[8];
-        //     x86._mm256_storeu_si256(ref aParts[0], in vA);
-        //     print($"vA = {aParts.Format()}");
-            
 
-        // }
+            {
+                var x = 17u;
+                var y = 17u;
+                var z = FastMod.mod(x, m, y);
+                print($"{x} (8) {y} = {z}");
+            }
+
+            {
+                var x = 17u;
+                var y = 18u;
+                var z = FastMod.mod(x, m, y);
+                print($"{x} (8) {y} = {z}");
+            }
+
+            {
+                var x = 17u;
+                var y = 19u;
+                var z = FastMod.mod(x, m, y);
+                print($"{x} (8) {y} = {z}");
+            }
+
+            {
+                var x = 17u;
+                var y = 20u;
+                var z = FastMod.mod(x, m, y);
+                print($"{x} (8) {y} = {z}");
+            }
+
+            {
+                var x = 17u;
+                var y = 21u;
+                var z = FastMod.mod(x, m, y);
+                print($"{x} (8) {y} = {z}");
+            }
+
+            {
+                var x = 17u;
+                var y = 22u;
+                var z = FastMod.mod(x, m, y);
+                print($"{x} (8) {y} = {z}");
+            }
+
+
+            {
+                var x = 17u;
+                var y = 23u;
+                var z = FastMod.mod(x, m, y);
+                print($"{x} (8) {y} = {z}");
+            }
+
+            {
+                var x = 17u;
+                var y = 24u;
+                var z = FastMod.mod(x, m, y);
+                print($"{x} (8) {y} = {z}");
+            }
+
+
+
+        }
 
         public static void Main(params string[] args)
             => Run(args);

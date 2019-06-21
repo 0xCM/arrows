@@ -28,6 +28,25 @@ namespace Z0
                 throw unsupported(PrimalKinds.kind<T>());
         }
 
+
+        [MethodImpl(Inline)]
+        public static Vec128<T> mul<S,T>(in Vec128<S> lhs, in Vec128<S> rhs)
+            where S : struct
+            where T : struct
+        {
+            if(typeof(S) == typeof(int))
+                return generic<T>(dinx.mul(in int32(in lhs), in int32(in rhs)));
+            else if(typeof(S) == typeof(uint))
+                return generic<T>(dinx.mul(in uint32(in lhs), in uint32(in rhs)));
+            else if(typeof(S) == typeof(float))
+                return generic<T>(dinx.mul(in float32(in lhs), in float32(in rhs)));
+            else if(typeof(S) == typeof(double))
+                return generic<T>(dinx.mul(in float64(in lhs), in float64(in rhs)));
+            else 
+                throw unsupported<S>();
+
+        }
+
         [MethodImpl(Inline)]
         public static Vec256<T> mul<T>(in Vec256<T> lhs, in Vec256<T> rhs)
             where T : struct
@@ -41,20 +60,20 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Vec128<S> mul<S,T>(in Vec128<T> lhs, in Vec128<T> rhs)
+        public static Vec256<T> mul<S,T>(in Vec256<S> lhs, in Vec256<S> rhs)
             where S : struct
             where T : struct
         {
-            if(typeof(T) == typeof(int))
-                return generic<S>(dinx.mul(in int32(in lhs), in int32(in rhs)));
-            else if(typeof(T) == typeof(uint))
-                return generic<S>(dinx.mul(in uint32(in lhs), in uint32(in rhs)));
-            else if(typeof(T) == typeof(float))
-                return generic<S>(dinx.mul(in float32(in lhs), in float32(in rhs)));
-            else if(typeof(T) == typeof(double))
-                return generic<S>(dinx.mul(in float64(in lhs), in float64(in rhs)));
+            if(typeof(S) == typeof(int))
+                return generic<T>(dinx.mul(in int32(in lhs), in int32(in rhs)));
+            else if(typeof(S) == typeof(uint))
+                return generic<T>(dinx.mul(in uint32(in lhs), in uint32(in rhs)));
+            else if(typeof(S) == typeof(float))
+                return generic<T>(dinx.mul(in float32(in lhs), in float32(in rhs)));
+            else if(typeof(S) == typeof(double))
+                return generic<T>(dinx.mul(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<S>();
 
         }
 
@@ -63,24 +82,18 @@ namespace Z0
             where S : struct
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int32:
-                    dst = generic<S>(dinx.mul(in int32(in lhs), in int32(in rhs)));
-                    return ref dst;
-                case PrimalKind.uint32:
-                    dst = generic<S>(dinx.mul(in uint32(in lhs), in uint32(in rhs)));
-                    return ref dst;
-                case PrimalKind.float32:
-                    dst = generic<S>(dinx.mul(in float32(in lhs), in float32(in rhs)));
-                    return ref dst;                    
-                case PrimalKind.float64:
-                    dst = generic<S>(dinx.mul(in float64(in lhs), in float64(in rhs)));
-                    return ref dst;
-                default:
-                    throw unsupported(kind);
-            }            
+            if(typeof(T) == typeof(int))
+                dst = generic<S>(dinx.mul(in int32(in lhs), in int32(in rhs)));
+            else if (typeof(T) == typeof(uint))
+                dst = generic<S>(dinx.mul(in uint32(in lhs), in uint32(in rhs)));
+            else if (typeof(T) == typeof(float))
+                dst = generic<S>(dinx.mul(in float32(in lhs), in float32(in rhs)));
+            else if (typeof(T) == typeof(double))
+                dst = generic<S>(dinx.mul(in float64(in lhs), in float64(in rhs)));
+            else
+                throw unsupported<T>();
+            
+            return ref dst;
         }
 
         [MethodImpl(Inline)]

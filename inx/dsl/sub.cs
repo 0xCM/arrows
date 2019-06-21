@@ -18,25 +18,23 @@ namespace Z0
     partial class x86
     {
         /// <summary>
-        /// _mm256_sub_epi64 (__m256i a, __m256i b) VPSUBQ ymm, ymm, ymm/m256
+        /// Subtracts the second vector from the first
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
-        /// <intrinsic></intrinsic>
+        /// <intrinsic>_mm256_sub_epi64 (__m256i a, __m256i b) VPSUBQ ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static m256i _mm256_sub_epi64(in m256i a, in m256i b)
             => Subtract(v64i(a),v64i(b));
 
         /// <summary>
-        /// _mm256_sub_epi32 (__m256i a, __m256i b) VPSUBD ymm, ymm, ymm/m256
+        /// Subtracts the second vector from the first
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
-        /// <intrinsic></intrinsic>
+        /// <intrinsic>_mm256_sub_epi32 (__m256i a, __m256i b) VPSUBD ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static m256i _mm256_sub_epi32(in m256i a, in m256i b)
             => Subtract(v32i(a),v32i(b));
-
     }
-
 }

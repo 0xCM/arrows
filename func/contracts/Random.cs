@@ -4,10 +4,8 @@
 //-----------------------------------------------------------------------------
 namespace System
 {
+    using System.Collections.Generic;
  
-    /// <summary>
-    /// Defines required operations for all RNG's 
-    /// </summary>
     public interface IRandomSource
     {
         
@@ -21,10 +19,13 @@ namespace System
 
     }
 
-    public interface IRandomSource<T> : IRandomSource
+
+    public interface IRandomSource<T> 
         where T : struct
     {
-                
+        T Next();    
+
+        IEnumerable<T> Stream();            
     }
 
 }

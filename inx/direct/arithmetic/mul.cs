@@ -52,6 +52,7 @@ namespace Z0
             return ref dst;
         }
 
+
         [MethodImpl(Inline)]
         public static Vec128<long> clmul(in Vec128<long> lhs, in Vec128<long> rhs, byte control)
             =>  CarrylessMultiply(lhs, rhs,control);

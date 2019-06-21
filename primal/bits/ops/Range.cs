@@ -15,6 +15,12 @@ namespace Z0
     
     partial class Bits
     {                
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="start">The bit posiion within the source where extraction should benin</param>
+        /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
         public static sbyte range(in sbyte src, in BitPos start, in byte length)        
             => (sbyte)Bmi1.BitFieldExtract((uint)src, start, length);
@@ -29,7 +35,12 @@ namespace Z0
         public static byte range(in byte src, in BitPos start, in byte length)        
             => (byte)Bmi1.BitFieldExtract(src, start, length);
 
-
+        /// <summary>
+        /// Extracts a contiguous range of bits from the source
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="start">The bit posiion within the source where extraction should benin</param>
+        /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
         public static short range(in short src, in BitPos start, in byte length)        
             => (short)Bmi1.BitFieldExtract((uint)src, start, length);

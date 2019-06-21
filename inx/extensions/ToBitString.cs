@@ -39,15 +39,15 @@ namespace Z0
 
        public static string ToHexString<T>(this Vec128<T> src)
             where T : struct
-                => src.ToSpan().Unblock().ToHexString();
+                => src.Extract().ToHexString();
 
        public static string ToBitString<T>(this Vec128<T> src, bool tlz = false)
             where T : struct
-                => src.ToSpan().Unblock().ToBitString(tlz);
+                => src.Extract().ToBitString(tlz);
 
        public static string ToBitString<T>(this Vec256<T> src, bool tlz = false)
             where T : struct
-                => src.ToSpan().Unblock().ToBitString(tlz);
+                => src.Extract().ToBitString(tlz);
 
         public static string ToBlockedBitString<T>(this Vec128<T> src, int? width = null, string sep = null)
             where T : struct
@@ -80,7 +80,7 @@ namespace Z0
 
        public static string ToHexString<T>(this Vec256<T> src)
             where T : struct
-                => src.ToSpan().Unblock().ToHexString();
+                => src.Extract().ToHexString();
 
         public static string ToBlockedHexString<T>(this Vec256<T> src, int? width = null, string sep = null)
             where T : struct

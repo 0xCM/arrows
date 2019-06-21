@@ -12,131 +12,145 @@ namespace Z0
     using System.Security.Cryptography;
 
     using static zfunc;
+    using static As;
 
 
     public static class Seed64
-    {
-        
+    {    
         public static void GenSeeds(int count)
         {
-            var entropy = Seed.Entropy<ulong>(count);
-            var counter = 0;
-            foreach(var e in entropy)
-            {
-                
-                var name = "Seed" + (counter++).ToString().PadLeft(2,'0');
-                var format = new string(' ',8) + $"public const ulong {name} = {e.ToHexString(false,true)}ul;";
-                print(format);
-                print();
-            }
+            var entropy = Seed.Entropy<ulong>(count).ToByteSpan();
+            var code = InlineData.GenAccessor(entropy.ToArray(),"RawBytes");
+            print(code);
+               
         }
 
         /// <summary>
         /// Entropic seed generated for each call
         /// </summary>
-        public static ulong Enropic
+        public static ulong Entropic
             => Seed.Entropy<ulong>();
 
-        public const ulong Seed00 = 0x6b85fa440de5b8cul;
+        public static ulong Lookup(int i)
+            =>  RawBytes.TakeValue<ulong>(i); 
+        
+        public static ulong Seed00 => Lookup(0);
 
-        public const ulong Seed01 = 0x7b7531f97f027927ul;
+        public static ulong Seed01 => Lookup(1);
 
-        public const ulong Seed02 = 0x3d23d3e502385413ul;
+        public static ulong Seed02 => Lookup(2);
 
-        public const ulong Seed03 = 0xc2aeaaa2db28084dul;
+        public static ulong Seed03 => Lookup(3);
 
-        public const ulong Seed04 = 0x7e70fadc5e628bfful;
+        public static ulong Seed04 => Lookup(4);
 
-        public const ulong Seed05 = 0x9263b9d261881eaeul;
+        public static ulong Seed05 => Lookup(5);
 
-        public const ulong Seed06 = 0xc4629a81a2a652e2ul;
+        public static ulong Seed06 => Lookup(6);
 
-        public const ulong Seed07 = 0xc1bc851bc2106fbdul;
+        public static ulong Seed07 => Lookup(7);
 
-        public const ulong Seed08 = 0xcc72c823e062387eul;
+        public static ulong Seed08 => Lookup(8);
 
-        public const ulong Seed09 = 0xa92f9e10ff9b40f0ul;
+        public static ulong Seed09 => Lookup(9);
 
-        public const ulong Seed10 = 0xb90378da88e8a357ul;
+        public static ulong Seed10 => Lookup(10);
 
-        public const ulong Seed11 = 0x5b5138fadacc4453ul;
+        public static ulong Seed11 => Lookup(11);
 
-        public const ulong Seed12 = 0x4de6294bea9e50faul;
+        public static ulong Seed12 => Lookup(12);
 
-        public const ulong Seed13 = 0xeff692810d6f2279ul;
+        public static ulong Seed13 => Lookup(13);
 
-        public const ulong Seed14 = 0x9bb69aaceea1959ful;
+        public static ulong Seed14 => Lookup(14);
 
-        public const ulong Seed15 = 0x37103b0c95ffa7f1ul;
+        public static ulong Seed15 => Lookup(15);
 
-        public const ulong Seed16 = 0xec46e1f31460a140ul;
+        public static ulong Seed16 => Lookup(16);
 
-        public const ulong Seed17 = 0x3e9264b4caa32e2cul;
+        public static ulong Seed17 => Lookup(17);
 
-        public const ulong Seed18 = 0xc1114c9f887824f2ul;
+        public static ulong Seed18 => Lookup(18);
 
-        public const ulong Seed19 = 0xa9970116bda91b21ul;
+        public static ulong Seed19 => Lookup(19);
 
-        public const ulong Seed20 = 0xd795da54edbc1baeul;
+        public static ulong Seed20 => Lookup(20);
 
-        public const ulong Seed21 = 0x22525139068c1de0ul;
+        public static ulong Seed21 => Lookup(21);
 
-        public const ulong Seed22 = 0x5305570a74d8aab3ul;
+        public static ulong Seed22 => Lookup(22);
 
-        public const ulong Seed23 = 0xbaf3a1758abecc5eul;
+        public static ulong Seed23 => Lookup(23);
 
-        public const ulong Seed24 = 0x44f010d1c1139198ul;
+        public static ulong Seed24 => Lookup(24);
 
-        public const ulong Seed25 = 0x7f887aa9c017c0d4ul;
+        public static ulong Seed25 => Lookup(25);
 
-        public const ulong Seed26 = 0xc2028e76c9737fd8ul;
+        public static ulong Seed26 => Lookup(26);
 
-        public const ulong Seed27 = 0x11d6ffb29bb6fbc7ul;
+        public static ulong Seed27 => Lookup(27);
 
-        public const ulong Seed28 = 0x93ba815aad6ae036ul;
+        public static ulong Seed28 => Lookup(28);
 
-        public const ulong Seed29 = 0x77de3a33eb97cdc6ul;
+        public static ulong Seed29 => Lookup(29);
 
-        public const ulong Seed30 = 0x74f4d8408d60e411ul;
+        public static ulong Seed30 => Lookup(30);
 
-        public const ulong Seed31 = 0x4adf52d3edb9dcb2ul;
+        public static ulong Seed31 => Lookup(31);
 
-        public const ulong Seed32 = 0x34958170a5e0f364ul;
 
-        public const ulong Seed33 = 0x2c44775eaa8505f6ul;
-
-        public const ulong Seed34 = 0x8a0718a20285f2ccul;
-
-        public const ulong Seed35 = 0xef368a7d3f08cb21ul;
-
-        public const ulong Seed36 = 0x6339c654d59a3fd1ul;
-
-        public const ulong Seed37 = 0xd954055a89a31a0aul;
-
-        public const ulong Seed38 = 0x75c1d7d7e262cb8ul;
-
-        public const ulong Seed39 = 0x36122b3828c2958aul;
-
-        public const ulong Seed40 = 0xf413e31ceef9c843ul;
-
-        public const ulong Seed41 = 0xee7e527ca8259910ul;
-
-        public const ulong Seed42 = 0x84fe2563569c64b3ul;
-
-        public const ulong Seed43 = 0x43bfcbd6bb1978c6ul;
-
-        public const ulong Seed44 = 0xd541c8ead0a4b80ful;
-
-        public const ulong Seed45 = 0xba374b20c3589283ul;
-
-        public const ulong Seed46 = 0xabbc8f990d090d8eul;
-
-        public const ulong Seed47 = 0x6b1dbb547b498bcful;
-
-        public const ulong Seed48 = 0x12d4ec902f5ea09dul;
-
-        public const ulong Seed49 = 0xb0549906e7255148ul;
-
-    }
-
+        static ReadOnlySpan<byte> RawBytes => new byte[]
+        {
+            0x20, 0xda, 0x1f, 0x32, 0x4b, 0xca, 0x42, 0x5b,
+            0x06, 0xbd, 0xac, 0xdb, 0x28, 0x87, 0x7a, 0xd4,
+            0x0c, 0xd9, 0x1e, 0xde, 0x5d, 0x17, 0xd6, 0x7c,
+            0x08, 0xcf, 0x94, 0x93, 0xf4, 0x5c, 0x4f, 0x6b,
+            0x7a, 0x02, 0x62, 0x31, 0x37, 0xed, 0x21, 0x03,
+            0xef, 0xe4, 0x4c, 0x0a, 0xbd, 0x8d, 0x48, 0x21,
+            0xaf, 0x50, 0x9b, 0x7a, 0x75, 0x7d, 0xc0, 0xa7,
+            0x4b, 0x70, 0x86, 0x84, 0x64, 0xee, 0x2b, 0x04,
+            0x9c, 0xb5, 0x58, 0x3b, 0x35, 0xf3, 0x6f, 0x9a,
+            0xf1, 0x5f, 0x70, 0x5f, 0xd3, 0x1b, 0x76, 0x8e,
+            0x38, 0x72, 0xe0, 0x39, 0x6b, 0x6a, 0x45, 0x1a,
+            0x7e, 0x34, 0xa8, 0xfb, 0x3d, 0xe4, 0x46, 0xa7,
+            0x68, 0x41, 0x52, 0xa8, 0xbe, 0x22, 0xf6, 0xd9,
+            0x1f, 0xa9, 0x8f, 0xb5, 0xef, 0x5b, 0xa6, 0x51,
+            0x67, 0x64, 0x33, 0xae, 0xac, 0x7f, 0x0c, 0x71,
+            0xb2, 0x38, 0xc8, 0xce, 0x36, 0xfe, 0xbc, 0xb4,
+            0x0c, 0x79, 0x82, 0xef, 0x47, 0xe0, 0x79, 0xbb,
+            0x69, 0xfb, 0x4f, 0x36, 0x59, 0x54, 0xec, 0xea,
+            0x15, 0x24, 0x48, 0x77, 0xc3, 0x29, 0x3a, 0x50,
+            0xae, 0xf6, 0x7d, 0x6f, 0x36, 0x98, 0x54, 0x56,
+            0x74, 0x91, 0x4d, 0xec, 0x2a, 0x87, 0x9a, 0xfd,
+            0x64, 0x7a, 0x48, 0x4e, 0xfa, 0x4b, 0xfc, 0xcf,
+            0x09, 0xfb, 0x01, 0x9b, 0x78, 0xfa, 0x10, 0xe3,
+            0x3c, 0x3b, 0xf9, 0x67, 0xa0, 0x53, 0xef, 0xc8,
+            0x16, 0xf3, 0x7d, 0xd3, 0x11, 0xec, 0x25, 0x93,
+            0x00, 0xa9, 0xac, 0x26, 0x0f, 0x7c, 0x0a, 0xf4,
+            0xeb, 0xa1, 0xa8, 0x77, 0x11, 0x0c, 0x1f, 0xf3,
+            0x8b, 0x35, 0xb7, 0xbb, 0x83, 0xc7, 0xd4, 0xc4,
+            0x4d, 0xff, 0x80, 0xc9, 0xb7, 0x4e, 0xac, 0x41,
+            0xf7, 0x97, 0x90, 0x50, 0x06, 0x38, 0x75, 0x46,
+            0x3f, 0xf7, 0x3b, 0x83, 0x98, 0xfa, 0x9a, 0x5a,
+            0x1f, 0xb5, 0x2f, 0xb1, 0x7c, 0x78, 0x9e, 0xfe,
+            0x5d, 0x93, 0x2b, 0x66, 0x83, 0xd7, 0x49, 0x09,
+            0x54, 0xd8, 0x5e, 0x4f, 0x56, 0x46, 0x84, 0x25,
+            0x38, 0x41, 0xf3, 0x9a, 0x30, 0xb9, 0x98, 0x4d,
+            0xf6, 0x77, 0x7c, 0x72, 0x61, 0x1c, 0x1a, 0x55,
+            0x7b, 0x5f, 0xe5, 0xad, 0x8d, 0x07, 0x62, 0x61,
+            0xb7, 0xc3, 0x36, 0x4d, 0x9a, 0xcf, 0x44, 0x4c,
+            0x28, 0x41, 0xd5, 0x79, 0xd7, 0xe0, 0x1e, 0xd4,
+            0x92, 0x0d, 0x9c, 0x5b, 0x57, 0x68, 0xd9, 0x74,
+            0x89, 0x81, 0xd0, 0xc2, 0x77, 0x31, 0x8e, 0x00,
+            0xe3, 0x17, 0x8d, 0x5e, 0x2f, 0xb8, 0xac, 0x02,
+            0x61, 0x47, 0x07, 0x2d, 0x8c, 0xec, 0xe8, 0xcc,
+            0x5b, 0x70, 0x1f, 0xcf, 0x62, 0x96, 0xbc, 0x02,
+            0x21, 0x8c, 0x74, 0xfe, 0xec, 0x77, 0xd0, 0x49,
+            0x6e, 0x36, 0xf1, 0x72, 0xf1, 0x67, 0x9e, 0xbf,
+            0xbd, 0xde, 0x71, 0x18, 0x37, 0x18, 0x6d, 0x5c,
+            0x72, 0x9c, 0xbe, 0x29, 0xab, 0x98, 0x24, 0x31,
+            0x51, 0xe3, 0x5d, 0x0c, 0xe2, 0xdf, 0x2c, 0x66,
+            0xc2, 0x6e, 0xbc, 0x2c, 0xde, 0xc3, 0x0d, 0xd7,
+        };        
+  }
 }

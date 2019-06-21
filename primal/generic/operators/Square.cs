@@ -20,25 +20,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return squareI8(src);
+                return generic<T>(math.square(int8(src)));
             else if(typeof(T) == typeof(byte))
-                return squareU8(src);
+                return generic<T>(math.square(uint8(src)));
             else if(typeof(T) == typeof(short))
-                return squareI16(src);
+                return generic<T>(math.square(int16(src)));
             else if(typeof(T) == typeof(ushort))
-                return squareU16(src);
+                return generic<T>(math.square(uint16(src)));
             else if(typeof(T) == typeof(int))
-                return squareI32(src);
+                return generic<T>(math.square(int32(src)));
             else if(typeof(T) == typeof(uint))
-                return squareU32(src);
+                return generic<T>(math.square(uint32(src)));
             else if(typeof(T) == typeof(long))
-                return squareI64(src);
+                return generic<T>(math.square(int64(src)));
             else if(typeof(T) == typeof(ulong))
-                return squareU64(src);
+                return generic<T>(math.square(uint64(src)));
             else if(typeof(T) == typeof(float))
-                return squareF32(src);
+                return generic<T>(math.square(float32(src)));
             else if(typeof(T) == typeof(double))
-                return squareF64(src);
+                return generic<T>(math.square(float64(src)));
             else            
                 throw unsupported<T>();
         }           
@@ -71,54 +71,6 @@ namespace Z0
                 throw unsupported<T>();
         }           
 
-        public static ref Span<T> square<T>(ref Span<T> io)
-            where T : struct
-        {
-            for(var i=0; i< io.Length; i++)
-                square(ref io[i]);
-            return ref io;                
-        }
-
-
-        [MethodImpl(Inline)]
-        static T squareI8<T>(T src)
-            => squareI8(ref src);
-
-        [MethodImpl(Inline)]
-        static T squareU8<T>(T src)
-            => squareU8(ref src);
-
-        [MethodImpl(Inline)]
-        static T squareI16<T>(T src)
-            => squareI16(ref src);
-
-        [MethodImpl(Inline)]
-        static T squareU16<T>(T src)
-            => squareU16(ref src);
-
-        [MethodImpl(Inline)]
-        static T squareI32<T>(T src)
-            => squareI32(ref src);
-        
-        [MethodImpl(Inline)]
-        static T squareU32<T>(T src)
-            => squareU32(ref src);
-
-        [MethodImpl(Inline)]
-        static T squareI64<T>(T src)
-            => squareI64(ref src);
-
-        [MethodImpl(Inline)]
-        static T squareU64<T>(T src)
-            => squareU64(ref src);
-
-        [MethodImpl(Inline)]
-        static T squareF32<T>(T src)
-            => squareU32(ref src);
-
-        [MethodImpl(Inline)]
-        static T squareF64<T>(T src)
-            => squareI64(ref src);
 
         [MethodImpl(Inline)]
         static ref T squareI8<T>(ref T src)

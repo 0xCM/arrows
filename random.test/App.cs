@@ -12,39 +12,114 @@ namespace Z0.Test
     public class App : TestApp<App>
     {            
 
-        public void IndexTest()
+        void DslBench()
         {
-            var seed = Seed64.Seed00;
-            var index = Pcg64.DefaultIndex;
-            var pcg0 = Pcg64.Define(seed, index += 2);
-            var pcg1 = Pcg64.Define(seed, index += 2);
-            var pcg2 = Pcg64.Define(seed, index += 2);
-            var pcg3 = Pcg64.Define(seed, index += 2);
-            var sampleSize = Pow2.T08;
+            var lhs = Random.Span256<uint>(Pow2.T11);
+            var rhs = Random.Span256<uint>(Pow2.T11);
 
-            var s0 = pcg0.TakeSet(sampleSize);
-            var s1 = pcg1.TakeSet(sampleSize);
-            var s2 = pcg2.TakeSet(sampleSize);
-            var s3 = pcg3.TakeSet(sampleSize);
+            var sw2 = stopwatch();
+            for(var i=0; i <lhs.BlockCount; i++)
+            {
+                var v1 = lhs.Block(i).ToVec256();
+                var v2 = rhs.Block(i).ToVec256();
+                dinx.mul(v1,v2);
+            }
+            print($"direct time = {snapshot(sw2)}");
 
+            var sw1 = stopwatch();
+            for(var i=0; i <lhs.BlockCount; i++)
+            {
+                var v1 = lhs.Block(i).ToVec256();
+                var v2 = rhs.Block(i).ToVec256();
+                x86._mm256_mul_epu32(v1, v2);
+            }
+            print($"dsl time = {snapshot(sw1)}");
 
-            s1.IntersectWith(s2);            
-            s2.IntersectWith(s3);
+            var sw3 = stopwatch();
+            for(var i=0; i <lhs.BlockCount; i++)
+            {
+                var v1 = lhs.Block(i).ToVec256();
+                var v2 = rhs.Block(i).ToVec256();
+                ginx.mul<uint,ulong>(v1,v2);
+            }
+            print($"ginx time = {snapshot(sw3)}");
 
-            print((s1.Count + s2.Count).ToString());
+        }
 
+        void RunBlah()
+        {
+            var ibase = Seed64.Seed30;
+
+            var seeds = span(
+                Seed64.Seed00, Seed64.Seed01, Seed64.Seed02, Seed64.Seed03,
+                Seed64.Seed04, Seed64.Seed05, Seed64.Seed06, Seed64.Seed07
+                );
+
+            var indices = span(
+                ibase += 2, ibase += 2, ibase += 2, ibase += 2,
+                ibase += 2, ibase += 2,ibase += 2, ibase += 2 
+                );
+            
+            var s0 = seeds.ToVec256();
+            var s1 = seeds.ToVec256(4);
+            var i0 = indices.ToVec256();
+            var i1 = indices.ToVec256(4);
+
+            
+            var n = Pow2.T16;
+            
+            var pcgSuite = Pcg32.Suite(seeds, indices);
+            var rngAvx = PcgAvx.Define(m512i.Define(s0,s1), m512i.Define(i0,i1));
+
+            var x1 = pcgSuite.Next();
+            var y1 = rngAvx.Next().Extract();
+
+            print($"pcg: {x1.Format()}");
+            print($"pcg: {y1.Format()}");
+
+            var sw1 = stopwatch();
+            for(var i=0; i<n; i++)
+            {
+                for(var j=0; j< 8; j++)
+                    pcgSuite[j].Next();
+            }
+            
+            var time1 = snapshot(sw1);            
+            print($"Generated {n*8} uint32 values via standard algorithm in {time1}");
+            
+            var sw = stopwatch();
+            for(var i=0; i<n; i++)
+                rngAvx.Next();
+            var time2 = snapshot(sw);
+            print($"Generated {n*8} uint32 values via Avx algorithm in {time2}");
+            
 
         }
         protected override void RunTests()
         {
-            var rng = Pcg.Rng64(Seed64.Seed00);
-            var sample1 = rng.Stream().TakeSpan(5).Format();
-            print(sample1);
-            rng.Retreat(5);
-            var sample2 = rng.Stream().TakeSpan(5).Format();
-            print(sample2);
 
+            var pcg64 = RNG.Pcg64(Seed64.Seed05, Seed64.Seed07);
+            var data = pcg64.Stream().TakeSpan(Pow2.T05);
 
+            var sb = sbuild();
+            var seg = 0;
+            for(var i=0; i<data.Length; i++)
+            {
+                sb.Append(data[i].ToHexString());
+                if(i != data.Length - 1)
+                    sb.Append(", ");
+
+                if(seg++ == 3)
+                {
+                    sb.AppendLine();
+                    seg = 0;
+                }
+            }
+
+            print(sb.ToString());
+            
+
+            //base.RunTests();        
         }
         public static void Main(params string[] args)
             => Run(args);

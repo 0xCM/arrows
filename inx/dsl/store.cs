@@ -17,18 +17,42 @@ namespace Z0
 
     partial class x86
     {
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic>void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm</intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm_storeu_si128(ref sbyte dst, in m128i src)
             => Store(refptr(ref dst), v8i(src));
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm_storeu_si128(ref byte dst, in m128i src)
             => Store(refptr(ref dst), v8u(src));
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm_storeu_si128(ref short dst, in m128i src)
             => Store(refptr(ref dst), v16i(src));
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm_storeu_si128(ref ushort dst, in m128i src)
             => Store(refptr(ref dst), v16u(src));
@@ -38,6 +62,7 @@ namespace Z0
         /// </summary>
         /// <param name="dst"></param>
         /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm_storeu_si128(ref int dst, in m128i src)
             => Store(refptr(ref dst), v32i(src));
@@ -47,6 +72,7 @@ namespace Z0
         /// </summary>
         /// <param name="dst"></param>
         /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm_storeu_si128(ref uint dst, in m128i src)
             => Store(refptr(ref dst), v32u(src));
@@ -56,61 +82,133 @@ namespace Z0
             => Store(refptr(ref dst), v64i(src));
 
         /// <summary>
-        /// void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm
+        /// Writes the data from the source vector to a referenced location
         /// </summary>
         /// <param name="dst"></param>
         /// <param name="src"></param>
+        /// <intrinsic>void _mm_storeu_si128 (__m128i* mem_addr, __m128i a) MOVDQU m128, xmm</intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm_storeu_si128(ref ulong dst, in m128i src)
             => Store(refptr(ref dst), v64u(src));
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm_storeu_ps(ref float dst, in m128 src)
             => Store(refptr(ref dst), src);
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm_storeu_pd(ref double dst, in m128d src)
             => Store(refptr(ref dst), src);
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic>void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU m256, ymm</intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm256_storeu_si256(ref sbyte dst, in m256i src)
             => Store(refptr(ref dst), v8i(src));
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm256_storeu_si256(ref byte dst, in m256i src)
             => Store(refptr(ref dst), v8u(src));
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm256_storeu_si256(ref short dst, in m256i src)
             => Store(refptr(ref dst), v16i(src));
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm256_storeu_si256(ref ushort dst, in m256i src)
             => Store(refptr(ref dst), v16u(src));
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm256_storeu_si256(ref int dst, in m256i src)
             => Store(refptr(ref dst), v32i(src));
             
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm256_storeu_si256(ref uint dst, in m256i src)
             => Store(refptr(ref dst), v32u(src));
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm256_storeu_si256(ref long dst, in m256i src)
             => Store(refptr(ref dst), v64i(src));
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm256_storeu_si256(ref ulong dst, in m256i src)
             => Store(refptr(ref dst), v64u(src));
 
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm256_storeu_ps(ref float dst, in m256 src)
             => Store(refptr(ref dst), src);
 
-        [MethodImpl(Inline)]
+        /// <summary>
+        /// Writes the data from the source vector to a referenced location
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="src"></param>
+        /// <intrinsic></intrinsic>
+       [MethodImpl(Inline)]
         public static unsafe void _mm256_storeu_pd(ref double dst, in m256d src)
             => Store(refptr(ref dst), src);
     }
-
 }

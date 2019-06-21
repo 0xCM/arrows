@@ -14,7 +14,7 @@ namespace Z0
     /// <remarks>
     /// Core algorithms taken from the paper: https://arxiv.org/pdf/1402.6246.pdf
     /// </remarks>
-    public class XOrShift1024 : Rng, IRandomSource
+    public class XOrShift1024 : Rng, IRandomSource, IRandomSource<ulong>
     {
         /// <summary>
         /// The jump table of predetermined constants to facilitate an efficient way
@@ -79,16 +79,24 @@ namespace Z0
         
         [MethodImpl(Inline)]
         public ulong NextInt(ulong max) 
-            => this.NextU64(max);
+            => this.NextUInt64(max);
 
         [MethodImpl(Inline)]
         public int NextInt(int max)
-            => this.NextI32(max);
+            => this.NextInt32(max);
 
         [MethodImpl(Inline)]
         public double NextDouble()
             => ((double)NextInt()/(double)ulong.MaxValue);
 
+        ulong IRandomSource<ulong>.Next()
+            => NextInt();
+
+        IEnumerable<ulong> IRandomSource<ulong>.Stream()
+        {
+            while(true)
+                yield return NextInt();
+        }
     }
 
 }

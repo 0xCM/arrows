@@ -5,9 +5,6 @@
 namespace Z0
 {
     using System;
-    using System.Linq;
-    using System.Reflection;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
         
     using static zfunc;    
@@ -20,28 +17,28 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return powI8(b, exp);
+                return generic<T>(math.pow(int8(b), int8(exp)));
             else if(typeof(T) == typeof(byte))
-                return powU8(b, exp);
+                return generic<T>(math.pow(uint8(b), uint8(exp)));
             else if(typeof(T) == typeof(short))
-                return powI16(b, exp);
+                return generic<T>(math.pow(int16(b), int16(exp)));
             else if(typeof(T) == typeof(ushort))
-                return powU16(b, exp);
+                return generic<T>(math.pow(uint16(b), uint16(exp)));
             else if(typeof(T) == typeof(int))
-                return powI32(b, exp);
+                return generic<T>(math.pow(int32(b), int32(exp)));
             else if(typeof(T) == typeof(uint))
-                return powU32(b, exp);
+                return generic<T>(math.pow(uint32(b), uint32(exp)));
             else if(typeof(T) == typeof(long))
-                return powI64(b, exp);
+                return generic<T>(math.pow(int64(b), int64(exp)));
             else if(typeof(T) == typeof(ulong))
-                return powU64(b, exp);
+                return generic<T>(math.pow(uint64(b), uint64(exp)));
             else if(typeof(T) == typeof(float))
-                return powF32(b, exp);
+                return generic<T>(math.pow(float32(b), float32(exp)));
             else if(typeof(T) == typeof(double))
-                return powF64(b, exp);
+                return generic<T>(math.pow(float64(b), float64(exp)));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
-        }           
+               throw unsupported<T>();
+         }           
 
         [MethodImpl(Inline)]
         public static ref Span<T> pow<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
@@ -68,7 +65,7 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.pow(float64(lhs), float64(rhs));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+               throw unsupported<T>();
             return ref lhs;
         }
 
@@ -97,49 +94,8 @@ namespace Z0
             else if(typeof(T) == typeof(ulong))
                 math.pow(float64(lhs), float64(rhs));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return ref lhs;
         }
-
-
-        [MethodImpl(Inline)]
-        static T powU8<T>(T src, T exp)
-            => generic<T>(math.pow(int8(src), int8(exp)));
-
-        [MethodImpl(Inline)]
-        static T powI8<T>(T src, T exp)
-            => generic<T>(math.pow(uint8(src), uint8(exp)));
-
-        [MethodImpl(Inline)]
-        static T powI16<T>(T src, T exp)
-            => generic<T>(math.pow(int16(src), int16(exp)));
-
-        [MethodImpl(Inline)]
-        static T powU16<T>(T src, T exp)
-            => generic<T>(math.pow(uint16(src), uint16(exp)));
-
-        [MethodImpl(Inline)]
-        static T powI32<T>(T src, T exp)
-            => generic<T>(math.pow(int32(src), int32(exp)));
-        
-        [MethodImpl(Inline)]
-        static T powU32<T>(T src, T exp)
-            => generic<T>(math.pow(uint32(src), uint32(exp)));
-
-        [MethodImpl(Inline)]
-        static T powI64<T>(T src, T exp)
-            => generic<T>(math.pow(int64(src), int64(exp)));
-
-        [MethodImpl(Inline)]
-        static T powU64<T>(T src, T exp)
-            => generic<T>(math.pow(uint64(src), uint64(exp)));
-
-        [MethodImpl(Inline)]
-        static T powF32<T>(T src, T exp)
-            => generic<T>(math.pow(float32(src), float32(exp)));
-
-        [MethodImpl(Inline)]
-        static T powF64<T>(T src, T exp)
-            => generic<T>(math.pow(float64(src), float64(exp)));
     }
 }

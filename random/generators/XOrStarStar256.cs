@@ -26,7 +26,7 @@ namespace Z0
     /// Defines pseudorandom number generator
     /// </summary>
     /// <remarks> Core algorithm taken from http://xoshiro.di.unimi.it/xoshiro256starstar.c</remarks>
-    public class XOrStarStar256 : Rng, IRandomSource
+    public class XOrStarStar256 : Rng, IRandomSource, IRandomSource<ulong>
     {        
 
         /// <summary>
@@ -119,11 +119,21 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public ulong NextInt(ulong max) 
-            => this.NextU64(max);
+            => this.NextUInt64(max);
 
         [MethodImpl(Inline)]
         public int NextInt(int max)
-            => this.NextI32(max);
+            => this.NextInt32(max);
+
+
+        ulong IRandomSource<ulong>.Next()
+            => NextInt();
+
+        IEnumerable<ulong> IRandomSource<ulong>.Stream()
+        {
+            while(true)
+                yield return NextInt();
+        }
 
     }
 }

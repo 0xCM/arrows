@@ -41,7 +41,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(math.fma(float64(x), float64(y), float64(z)));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
     }

@@ -44,5 +44,15 @@ namespace Z0
             return dst;
         }                       
 
+        [MethodImpl(Inline)]
+        public static Span<T> Extract<T>(this in Vec128<T> src)
+            where T : struct            
+                => src.ToSpan().Unblock();
+
+        [MethodImpl(Inline)]
+        public static Span<T> Extract<T>(this in Vec256<T> src)
+            where T : struct            
+                => src.ToSpan().Unblock();
+
     }
 }

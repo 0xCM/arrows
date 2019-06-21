@@ -13,6 +13,8 @@ namespace Z0
     [StructLayout(LayoutKind.Explicit, Size = 64)]
     public struct m512i
     {
+        public static m512i Define(m256i lo, m256i hi)
+            => new m512i(lo,hi);
         public m512i(m256i lo, m256i hi)
         {
             this.v0 = lo;

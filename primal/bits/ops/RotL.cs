@@ -31,35 +31,78 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong rotl(in ulong src, int offset)
             => (src << offset) | (src >> (64 - offset));
-    
+
+        [MethodImpl(Inline)]
+        public static byte rotl(in byte src, byte offset)
+            => (byte)((src << offset) | (src >> (8 - offset)));
+
+        [MethodImpl(Inline)]
+        public static ushort rotl(in ushort src, ushort offset)
+            => (ushort)((src << offset) | (src >> (16 - offset)));
+
+        [MethodImpl(Inline)]
+        public static uint rotl(in uint src, uint offset)
+            => (src << (int)offset) | (src >> (32 - (int)offset));
+
+        [MethodImpl(Inline)]
+        public static ulong rotl(in ulong src, ulong offset)
+            => (src << (int)offset) | (src >> (64 - (int)offset));
     
         [MethodImpl(Inline)]
-        public static ref byte rotl(ref byte lhs, in int rhs)
+        public static ref byte rotl(ref byte src, in int offset)
         {
-            lhs = rotl(lhs,rhs);
-            return ref lhs;
+            src = rotl(src,offset);
+            return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref ushort rotl(ref ushort lhs, in int rhs)
+        public static ref ushort rotl(ref ushort src, in int offset)
         {
-            lhs = rotl(lhs,rhs);
-            return ref lhs;
+            src = rotl(src,offset);
+            return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref uint rotl(ref uint lhs, in int rhs)
+        public static ref uint rotl(ref uint src, in int offset)
         {
-            lhs = rotl(lhs,rhs);
-            return ref lhs;
+            src = rotl(src,offset);
+            return ref src;
         }
 
         [MethodImpl(Inline)]
-        public static ref ulong rotl(ref ulong lhs, in int rhs)
+        public static ref ulong rotl(ref ulong src, in int offset)
         {
-            lhs = rotl(lhs,rhs);
-            return ref lhs;
+            src = rotl(src,offset);
+            return ref src;
+        }    
+
+        [MethodImpl(Inline)]
+        public static ref byte rotl(ref byte src, in byte offset)
+        {
+            src = rotl(src,offset);
+            return ref src;
         }
-    
+
+        [MethodImpl(Inline)]
+        public static ref ushort rotl(ref ushort src, in ushort offset)
+        {
+            src = rotl(src,offset);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref uint rotl(ref uint src, in uint offset)
+        {
+            src = rotl(src,offset);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref ulong rotl(ref ulong src, in ulong offset)
+        {
+            src = rotl(src,offset);
+            return ref src;
+        }    
+
     }
 }

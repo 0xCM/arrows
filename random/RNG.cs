@@ -26,6 +26,13 @@ namespace Z0
 
         public static IRandomSource XOrStarStar256(ulong[] seed = null)
             => new XOrStarStar256(seed ?? Seed256.Default);
+ 
+        public static Pcg32 Pcg32(ulong s0, ulong? index = null)
+            => Z0.Pcg32.Define(s0, index);        
+
+        public static Pcg64 Pcg64(ulong s0, ulong? index = null)
+            => Z0.Pcg64.Define(s0, index);        
+
     }
 
 }

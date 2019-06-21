@@ -72,34 +72,6 @@ namespace Z0
             return ref src;
         }           
 
-        public static ref Span<T> sqrt<T>(ref Span<T> io)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                math.sqrt(int8(io));
-            else if(typeof(T) == typeof(byte))
-                math.sqrt(uint8(io));
-            else if(typeof(T) == typeof(short))
-                math.sqrt(int16(io));
-            else if(typeof(T) == typeof(ushort))
-                math.sqrt(uint16(io));
-            else if(typeof(T) == typeof(int))
-                math.sqrt(int32(io));
-            else if(typeof(T) == typeof(uint))
-                math.sqrt(uint32(io));
-            else if(typeof(T) == typeof(long))
-                math.sqrt(int64(io));
-            else if(typeof(T) == typeof(ulong))
-                math.sqrt(uint64(io));
-            else if(typeof(T) == typeof(float))
-                math.sqrt(float32(io));
-            else if(typeof(T) == typeof(double))
-                math.sqrt(float64(io));
-            else
-                 throw unsupported<T>();                
-           
-            return ref io;
-        }
 
         [MethodImpl(Inline)]
         static T sqrtI8<T>(T src)

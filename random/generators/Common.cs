@@ -14,7 +14,7 @@ namespace Z0
     using static zfunc;
     using static As;
 
-    static class NextIntX
+    static class RngCommon
     {
         /// <summary>
         /// Implements Leimire's algorithm for sampling a uniformly distribute random number
@@ -23,7 +23,7 @@ namespace Z0
         /// <param name="rng">A random source</param>
         /// <param name="max">The upper bound for the sample</param>
         /// <remarks>Reference: Fast Random Integer Generation in an Interval, Daniel Lemire 2018</remarks>
-        public static ulong NextU64(this IRandomSource rng, ulong max) 
+        public static ulong NextUInt64(this IRandomSource rng, ulong max) 
         {
             var x = rng.NextInt();
             dinx.umul128(x, max, out UInt128 m);
@@ -43,18 +43,25 @@ namespace Z0
             return vec.ToUInt128().lo;
         }
 
-
+        /// <summary>
+        /// Generates a psedorandom int in the interval [0, max) 
+        /// </summary>
+        /// <param name="rng">The stateful source on which the generation is predicated</param>
+        /// <param name="max">The exclusive maximum</param>
+        [MethodImpl(Inline)]
+        public static uint NextUInt32(this IRandomSource rng, uint max)         
+            => (uint)rng.NextInt((ulong)max);
+        
         /// <summary>
         /// Generates a psedorandom int in the interval [0, max) if max >= 0
         /// </summary>
         /// <param name="rng">The stateful source on which the generation is predicated</param>
         /// <param name="max">The exclusive maximum</param>
         [MethodImpl(Inline)]
-        public static int NextI32(this IRandomSource rng, int max)
+        public static int NextInt32(this IRandomSource rng, int max)
             => max >= 0 
             ? (int)rng.NextInt((ulong)max)  
             : - (int)rng.NextInt((ulong) (Int32.MaxValue + max));        
-
 
     }
 }

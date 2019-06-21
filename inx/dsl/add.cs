@@ -18,7 +18,7 @@ namespace Z0
     partial class x86
     {
         /// <summary>
-        /// Adds each component from the first vector to the corresponding component in the second vector
+        /// Computes the component-wise sum of the operands
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -29,7 +29,7 @@ namespace Z0
 
 
         /// <summary>
-        /// Adds each component from the first vector to the corresponding component in the second vector
+        /// Computes the component-wise sum of the operands
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -39,7 +39,7 @@ namespace Z0
             => Add(v16i(a), v16i(b));
 
         /// <summary>
-        /// Adds each component from the first vector to the corresponding component in the second vector
+        /// Computes the component-wise sum of the operands
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -48,26 +48,52 @@ namespace Z0
         public static m128i _mm_add_epi32(in m128i a, in m128i b)
             => Add(v32i(a), v32i(b));
 
+        /// <summary>
+        /// Computes the component-wise sum of the operands
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
         [MethodImpl(Inline)]
         public static m128i _mm_add_epi64(in m128i a, in m128i b)
             => Add(v64i(a), v64i(b));
 
+        /// <summary>
+        /// Computes the component-wise sum of the operands
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
         [MethodImpl(Inline)]
         public static m256i _mm256_mm_add_epi8(in m256i a, in m256i b)
             => Add(v8i(a), v8i(b));
 
+        /// <summary>
+        /// Computes the component-wise sum of the operands
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
         [MethodImpl(Inline)]
         public static m256i _mm256_mm_add_epi16(in m256i a, in m256i b)
             => Add(v16i(a), v16i(b));
 
+        /// <summary>
+        /// Computes the component-wise sum of the operands
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <intrinsic>__m256i _mm256_add_epi32 (__m256i a, __m256i b) VPADDD ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static m256i _mm256_mm_add_epi32(in m256i a, in m256i b)
             => Add(v32i(a), v32i(b));
 
+        /// <summary>
+        /// Computes the component-wise sum of the operands
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <intrinsic>__m256i _mm256_add_epi64 (__m256i a, __m256i b) VPADDQ ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static m256i _mm256_add_epi64(in m256i a, in m256i b)
             => Add(v64i(a), v64i(b));
  
     }
-
 }

@@ -15,6 +15,7 @@ namespace Z0
     using System.Diagnostics;
 
     using static zfunc;
+    using static As;
 
     partial class xfunc
     {
@@ -324,14 +325,15 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<byte> ToBytes<T>(this ReadOnlySpan<T> src)
+        public static ReadOnlySpan<byte> ToByteSpan<T>(this ReadOnlySpan<T> src)
             where T : struct
             => MemoryMarshal.AsBytes(src);
         
         [MethodImpl(Inline)]
-        public static Span<byte> ToBytes<T>(this Span<T> src)
+        public static Span<byte> ToByteSpan<T>(this Span<T> src)
             where T : struct
             => MemoryMarshal.AsBytes(src);
+
 
         public static (int Index, T Value)[] ToIndexedValues<T>(this ReadOnlySpan<T> src)
         {
@@ -480,5 +482,77 @@ namespace Z0
             where T : struct
                 => MemoryMarshal.Cast<S,T>(src);                                    
 
+
+        [MethodImpl(Inline)]
+        public static T TakeValue<T>(this ReadOnlySpan<byte> src, int offset)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(src.TakeInt8(offset));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(src.TakeUInt8(offset));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(src.TakeInt16(offset));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(src.TakeUInt16(offset));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(src.TakeInt32(offset));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(src.TakeUInt32(offset));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(src.TakeInt64(offset));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(src.TakeUInt64(offset));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(src.TakeFloat32(offset));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(src.TakeFloat64(offset));
+            throw unsupported<T>();
+        }
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> TakeValues<T>(this ReadOnlySpan<byte> src, int offset, int count)
+            where T : struct
+                => MemoryMarshal.Cast<byte,T>(src.Slice(offset, count* Unsafe.SizeOf<T>()));
+        
+        [MethodImpl(Inline)]
+        static sbyte TakeInt8(this ReadOnlySpan<byte> src, int offset)
+            => (sbyte)src[offset];    
+
+        [MethodImpl(Inline)]
+        static byte TakeUInt8(this ReadOnlySpan<byte> src, int offset)
+            => src[offset];    
+
+        [MethodImpl(Inline)]
+        static short TakeInt16(this ReadOnlySpan<byte> src, int offset)
+            => BitConverter.ToInt16(src.Slice(offset, 2));
+
+        [MethodImpl(Inline)]
+        static ushort TakeUInt16(this ReadOnlySpan<byte> src, int offset)
+            => BitConverter.ToUInt16(src.Slice(offset, 2));        
+
+        [MethodImpl(Inline)]
+        static int TakeInt32(this ReadOnlySpan<byte> src, int offset)
+            => BitConverter.ToInt32(src.Slice(offset, 4));
+
+        [MethodImpl(Inline)]
+        static uint TakeUInt32(this ReadOnlySpan<byte> src, int offset)
+            => BitConverter.ToUInt32(src.Slice(offset, 4));
+
+        [MethodImpl(Inline)]
+        static ulong TakeUInt64(this ReadOnlySpan<byte> src, int offset)
+            => BitConverter.ToUInt64(src.Slice(offset, 8));
+
+        [MethodImpl(Inline)]
+        static long TakeInt64(this ReadOnlySpan<byte> src, int offset)
+            => BitConverter.ToInt64(src.Slice(offset, 8));
+
+        [MethodImpl(Inline)]
+        static float TakeFloat32(this ReadOnlySpan<byte> src, int offset)
+            => BitConverter.ToSingle(src.Slice(offset, 4));
+
+        [MethodImpl(Inline)]
+        static double TakeFloat64(this ReadOnlySpan<byte> src, int offset)
+            => BitConverter.ToDouble(src.Slice(offset, 8));
     }
 }
