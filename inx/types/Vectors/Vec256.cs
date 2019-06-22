@@ -35,7 +35,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static implicit operator Vector256<T>(in Vec256<T> src)
-            => src.As<T>();
+            => src.data;
 
         [MethodImpl(Inline)]
         public Vec256(in Vector256<T> src)
@@ -81,9 +81,9 @@ namespace Z0
         }    
 
         [MethodImpl(Inline)]
-        public Vector256<U> As<U>() 
+        public Vec256<U> As<U>() 
             where U : struct        
-                => Unsafe.As<Vector256<T>, Vector256<U>>(ref Unsafe.AsRef(in data));        
+                => Unsafe.As<Vector256<T>, Vec256<U>>(ref Unsafe.AsRef(in data));        
 
         [MethodImpl(Inline)]
         public bool Eq(Vec256<T> rhs)

@@ -535,6 +535,13 @@ namespace Z0
             => src.GetMethods(BF_Declared);
 
         /// <summary>
+        /// Selects the public/non-public static/instance methods declared by a type that have a specific name
+        /// </summary>
+        /// <param name="src">The type to examine</param>
+        public static IEnumerable<MethodInfo> DeclaredMethods(this Type src, string name)
+            => src.GetMethods(BF_Declared).Where(m => m.Name == name);
+
+        /// <summary>
         /// Selects the public/non-public static/instance methods declared or exposed by a type
         /// </summary>
         /// <param name="src">The type to examine</param>

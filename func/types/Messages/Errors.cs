@@ -47,6 +47,9 @@ namespace Z0
         public static AppException EmptySourceSpan([Caller] string caller = null, [File] string file = null, [Line] int? line = null)
             => AppException.Define(ErrorMessages.EmptySourceSpan(caller,file,line));
 
+        public static IndexOutOfRangeException TooManyBytes(ByteSize requested, ByteSize available, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
+            => new IndexOutOfRangeException(ErrorMessages.TooManyBytes(requested, available, caller, file, line).ToString());
+
         public static IndexOutOfRangeException OutOfRange(int index, int min, int max, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
             => new IndexOutOfRangeException(ErrorMessages.IndexOutOfRange(index,min,max, caller, file, line).ToString());
 

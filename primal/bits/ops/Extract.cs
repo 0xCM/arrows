@@ -40,7 +40,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ulong extract(in ulong src, in ulong mask)        
             => Bmi2.X64.ParallelBitExtract(src,mask);
-
-
     }
 }

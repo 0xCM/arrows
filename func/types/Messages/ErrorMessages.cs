@@ -67,6 +67,9 @@ namespace Z0
         public static AppMsg IndexOutOfRange(int index, int min, int max, string caller, string file, int? line)
             => AppMsg.Define($"The supplied index {index} must be larger or equal to {min} and  less than {max}");
 
+        public static AppMsg TooManyBytes(ByteSize requested, ByteSize available, string caller, string file, int? line)
+            => AppMsg.Define($"The requested number of bytes, {requested} exceeds the maximum available bytes, {available}");
+
         public static AppMsg Unanticipated(Exception e, [CallerMemberName] string caller = null, 
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
                 => AppMsg.Define(e.ToString(), SeverityLevel.Error, caller, file, line);

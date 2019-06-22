@@ -29,7 +29,8 @@ namespace Z0
                 return dinx.movemask(in float32(in src));
             else if(typeof(T) == typeof(double))
                 return dinx.movemask(in float64(in src));
-            else throw unsupported<T>();
+            else 
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -44,9 +45,8 @@ namespace Z0
                 return dinx.movemask(in float32(in src));
             else if(typeof(T) == typeof(double))
                 return dinx.movemask(in float64(in src));
-            else throw unsupported<T>();
+            else 
+                throw unsupported<T>();
         }
-
-
     }
 }

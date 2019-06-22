@@ -128,13 +128,13 @@ namespace Z0
             where T : struct
         {
             if(typeof(S) == typeof(int))
-                dinx.mul(int32(lhs), int32(rhs), int64(dst));
+                int32(lhs).Mul(int32(rhs), int64(dst));
             else if(typeof(S) == typeof(uint))
-                dinx.mul(uint32(lhs), uint32(rhs), uint64(dst));
+                uint32(lhs).Mul(uint32(rhs), uint64(dst));
             else if(typeof(S) == typeof(float))
-                dinx.mul(float32(lhs), float32(rhs), float32(dst));
+                float32(lhs).Mul(float32(rhs), float32(dst));
             else if(typeof(S) == typeof(double))
-                dinx.mul(float64(rhs), float64(rhs), float64(dst));
+                float64(rhs).Mul(float64(rhs), float64(dst));
             else
                 throw unsupported(PrimalKinds.kind<T>());
             return dst;
@@ -145,15 +145,14 @@ namespace Z0
             where S : struct
             where T : struct
         {
-
             if(typeof(S) == typeof(int))
-                dinx.mul(int32(lhs), int32(rhs), int64(dst));
+                int32(lhs).Mul(int32(rhs), int64(dst));
             else if(typeof(S) == typeof(uint))
-                dinx.mul(uint32(lhs), uint32(rhs), uint64(dst));
+                uint32(lhs).Mul(uint32(rhs), uint64(dst));
             else if(typeof(S) == typeof(float))
-                dinx.mul(float32(lhs), float32(rhs), float32(dst));
+                float32(lhs).Mul(float32(rhs), float32(dst));
             else if(typeof(S) == typeof(double))
-                dinx.mul(float64(rhs), float64(rhs), float64(dst));
+                float64(rhs).Mul(float64(rhs), float64(dst));
             else
                 throw unsupported(PrimalKinds.kind<T>());
             return dst;

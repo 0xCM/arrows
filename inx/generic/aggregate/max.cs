@@ -8,14 +8,12 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
-
     
     using static zfunc;
     using static AsInX;
 
     public static partial class ginx
-    {
-        
+    {        
         [MethodImpl(Inline)]
         public static Vec128<T> max<T>(in Vec128<T> lhs, in Vec128<T> rhs)
             where T : struct
@@ -37,7 +35,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.max(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
         }
          
@@ -62,7 +60,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.max(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }        
     }
 }

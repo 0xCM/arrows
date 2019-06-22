@@ -14,7 +14,7 @@ namespace Z0
 
     public static class ShuffleX
     {
-       public static Span<T> Shuffle<T>(this Span<T> io, IRandomSource random = null)
+        public static Span<T> Shuffle<T>(this Span<T> io, IRandomSource random = null)
         {
             random = random ?? RNG.Default;
             var last = io.Length - 1;

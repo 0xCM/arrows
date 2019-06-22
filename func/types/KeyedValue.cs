@@ -16,7 +16,6 @@ namespace Z0
     /// </summary>
     public readonly struct KeyedValue<K,V> 
     {
-
         public static implicit operator KeyedValue<K,V>((K key, V value) src)
             => new KeyedValue<K,V>(src);
 

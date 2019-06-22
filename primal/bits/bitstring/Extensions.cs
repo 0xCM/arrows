@@ -14,6 +14,8 @@ namespace Z0
     using static BitStringConvert;
     public static class BitStringX
     {
+        const string BlockSep = " | ";
+
         [MethodImpl(Inline)]
         public static T ToValue<T>(this BitString src)
             where T : struct
@@ -128,7 +130,6 @@ namespace Z0
             return BitString.Define(dst);
         }
 
-        [MethodImpl(Optimize)]
         public static ref Span<byte> BitStringBytes(this ReadOnlySpan<char> src, out Span<byte> dst)
         {
             dst = span<byte>(src.Length/8);
@@ -137,5 +138,47 @@ namespace Z0
                if(src[i] == Bit.One) enable(ref dst[i], j);
             return ref dst;
         }
+ 
+         public static string ToBlockedBitString<T>(this ReadOnlySpan<T> src, int width, string sep = null, bool tlz = false)        
+            where T : struct
+        {
+            var sb = sbuild();
+            var start = src.Length - 1;
+            var counter = 0;
+            for(var i = start; i>= 0; i--)
+            {
+                if(counter++ == width)  
+                {                  
+                    sb.Append(sep ?? BlockSep);
+                    width = 0;
+                }
+                
+                sb.Append(FromValue(src[i],tlz).ToString());                
+            }
+            return sb.ToString();
+        }
+
+        public static string ToHexString<T>(this Span<T> src)
+            where T : struct
+        {
+            var bs = string.Empty;
+            var it = src.GetEnumerator();
+            var len = src.Length;
+            for(var i=len - 1; i>= 0; i--)
+                bs += gmath.hexstring(src[i], specifier:false);
+            return bs;
+        }
+
+        public static string ToBitString<T>(this Span<T> src, bool tlz = false)
+            where T : struct
+        {
+            var bs = string.Empty;
+            var it = src.GetEnumerator();
+            var len = src.Length;
+            for(var i=len - 1; i>= 0; i--)
+                bs += FromValue(src[i],tlz).ToString();
+            return bs;
+        }
+
     }
 }

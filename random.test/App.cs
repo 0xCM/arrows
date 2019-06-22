@@ -7,6 +7,7 @@ namespace Z0.Test
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
 
     using static zfunc;
     public class App : TestApp<App>
@@ -20,8 +21,8 @@ namespace Z0.Test
             var sw2 = stopwatch();
             for(var i=0; i <lhs.BlockCount; i++)
             {
-                var v1 = lhs.Block(i).ToVec256();
-                var v2 = rhs.Block(i).ToVec256();
+                var v1 = lhs.ToVec256(i);
+                var v2 = rhs.ToVec256(i);
                 dinx.mul(v1,v2);
             }
             print($"direct time = {snapshot(sw2)}");
@@ -29,8 +30,8 @@ namespace Z0.Test
             var sw1 = stopwatch();
             for(var i=0; i <lhs.BlockCount; i++)
             {
-                var v1 = lhs.Block(i).ToVec256();
-                var v2 = rhs.Block(i).ToVec256();
+                var v1 = lhs.ToVec256(i);
+                var v2 = rhs.ToVec256(i);
                 x86._mm256_mul_epu32(v1, v2);
             }
             print($"dsl time = {snapshot(sw1)}");
@@ -38,8 +39,8 @@ namespace Z0.Test
             var sw3 = stopwatch();
             for(var i=0; i <lhs.BlockCount; i++)
             {
-                var v1 = lhs.Block(i).ToVec256();
-                var v2 = rhs.Block(i).ToVec256();
+                var v1 = lhs.ToVec256(i);
+                var v2 = rhs.ToVec256(i);
                 ginx.mul<uint,ulong>(v1,v2);
             }
             print($"ginx time = {snapshot(sw3)}");
@@ -93,33 +94,13 @@ namespace Z0.Test
             var time2 = snapshot(sw);
             print($"Generated {n*8} uint32 values via Avx algorithm in {time2}");
             
-
         }
+
+
         protected override void RunTests()
-        {
+        {                        
 
-            var pcg64 = RNG.Pcg64(Seed64.Seed05, Seed64.Seed07);
-            var data = pcg64.Stream().TakeSpan(Pow2.T05);
-
-            var sb = sbuild();
-            var seg = 0;
-            for(var i=0; i<data.Length; i++)
-            {
-                sb.Append(data[i].ToHexString());
-                if(i != data.Length - 1)
-                    sb.Append(", ");
-
-                if(seg++ == 3)
-                {
-                    sb.AppendLine();
-                    seg = 0;
-                }
-            }
-
-            print(sb.ToString());
-            
-
-            //base.RunTests();        
+            base.RunTests();        
         }
         public static void Main(params string[] args)
             => Run(args);

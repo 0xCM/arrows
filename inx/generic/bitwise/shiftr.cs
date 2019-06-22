@@ -15,7 +15,6 @@ namespace Z0
 
     partial class ginx
     {
-
         [MethodImpl(Inline)]
         public static Vec128<S> shiftr<S,T>(in Vec128<S> lhs, in Vec128<T> shifts)
             where S : struct
@@ -30,8 +29,7 @@ namespace Z0
             else if(typeof(S) == typeof(ulong))
                 return generic<S>(dinx.shiftr(in uint64(lhs), in uint64(in shifts)));
             else
-                throw unsupported(PrimalKinds.kind<S>());
-
+                throw unsupported<S>();
         }
 
         [MethodImpl(Inline)]
@@ -48,7 +46,7 @@ namespace Z0
             else if(typeof(S) == typeof(ulong))
                 return generic<S>(dinx.shiftr(in uint64(lhs), in uint64(in shifts)));
             else
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
         }
 
         [MethodImpl(Inline)]
@@ -65,7 +63,7 @@ namespace Z0
             else if(typeof(S) == typeof(ulong))
                 dinx.shiftr(uint64(in lhs), uint64(in shifts), uint64(in dst));
             else
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
             return dst;
         }
 
@@ -82,7 +80,7 @@ namespace Z0
             else if(typeof(S) == typeof(ulong))
                 dinx.shiftr(uint64(in lhs), uint64(in shifts), uint64(in dst));
             else
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
             return dst;
         }
 

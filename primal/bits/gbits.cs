@@ -164,7 +164,6 @@ namespace Z0
             return ref lhs;
         }
 
-
         [MethodImpl(Inline)]
         public static T shiftl<T>(in T lhs, in uint rhs)
             where T : struct

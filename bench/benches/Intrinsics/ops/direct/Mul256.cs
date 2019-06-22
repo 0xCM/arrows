@@ -24,7 +24,7 @@ namespace Z0.Bench
             else if (typeof(T) == typeof(double))
                 return context.Mul(float64(lhs), float64(rhs)).As<T>();
             else 
-                throw unsupported(PrimalKinds.kind<T>());            
+                throw unsupported<T>();
         }
 
         static Metrics<float> Mul(this InXDContext256 context, ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs)
@@ -33,7 +33,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.mul(lhs, rhs, dst);
+                lhs.Mul(rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -43,7 +43,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinx.mul(lhs,rhs, dst);
+                lhs.Mul(rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         } 
     }

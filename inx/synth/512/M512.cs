@@ -9,20 +9,6 @@ namespace Z0
     using System.Runtime.InteropServices;
 
     using static zfunc;
-    /*
-    typedef union  __declspec(intrin_type) __declspec(align(64)) __m512i {
-        __int8              m512i_i8[64];
-        __int16             m512i_i16[32];
-        __int32             m512i_i32[16];
-        __int64             m512i_i64[8];
-        unsigned __int8     m512i_u8[64];
-        unsigned __int16    m512i_u16[32];
-        unsigned __int32    m512i_u32[16];
-        unsigned __int64    m512i_u64[8];
-    } __m512i;
-    
-     */
-
     
     [StructLayout(LayoutKind.Explicit, Size = 64)]
     public ref struct M512

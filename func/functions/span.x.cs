@@ -511,10 +511,30 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static T TakeValue<T>(this Span<byte> src, int offset)
+            where T : struct
+            => src.ReadOnly().TakeValue<T>(offset);
+
+        [MethodImpl(Inline)]
         public static ReadOnlySpan<T> TakeValues<T>(this ReadOnlySpan<byte> src, int offset, int count)
             where T : struct
                 => MemoryMarshal.Cast<byte,T>(src.Slice(offset, count* Unsafe.SizeOf<T>()));
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> TakeValues<T>(this Span<byte> src, int offset, int count)
+            where T : struct
+                => src.ReadOnly().TakeValues<T>(offset,count);
         
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> TakeValues<T>(this ReadOnlySpan<byte> src)
+            where T : struct
+                => src.TakeValues<T>(0, src.Length/Unsafe.SizeOf<T>());
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<T> TakeValues<T>(this Span<byte> src)
+            where T : struct
+                => src.ReadOnly().TakeValues<T>();
+
         [MethodImpl(Inline)]
         static sbyte TakeInt8(this ReadOnlySpan<byte> src, int offset)
             => (sbyte)src[offset];    

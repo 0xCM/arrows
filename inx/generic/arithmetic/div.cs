@@ -25,7 +25,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.div(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -37,7 +37,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.div(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         public static Span128<T> div<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
@@ -48,7 +48,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.div(float64(lhs), float64(rhs), float64(dst)));
             else                
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
         
         public static Span256<T> div<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
@@ -59,7 +59,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.div(float64(lhs), float64(rhs), float64(dst)));
             else                
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
     }

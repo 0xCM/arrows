@@ -55,7 +55,6 @@ namespace Z0
         public static ushort range(in ushort src, in BitPos start, in byte length)        
             => (ushort)Bmi1.BitFieldExtract(src, start, length);
 
-
         /// <summary>
         /// Extracts a contiguous range of bits from the source
         /// </summary>

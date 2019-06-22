@@ -76,25 +76,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.mul(int8(lhs), int8(rhs), int8(dst));
+                int8(lhs).Mul(int8(rhs), int8(dst));
             else if(typeof(T) == typeof(byte))
-                math.mul(uint8(lhs), uint8(rhs), uint8(dst));
+                uint8(lhs).Mul(uint8(rhs), uint8(dst));
             else if(typeof(T) == typeof(short))
-                math.mul(int16(lhs), int16(rhs), int16(dst));
+                int16(lhs).Mul(int16(rhs), int16(dst));
             else if(typeof(T) == typeof(ushort))
-                math.mul(uint16(lhs), uint16(rhs), uint16(dst));
+                uint16(lhs).Mul(uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                math.mul(int32(lhs), int32(rhs), int32(dst));
+                int32(lhs).Mul(int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                math.mul(uint32(lhs), uint32(rhs), uint32(dst));
+                uint32(lhs).Mul(uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                math.mul(int64(lhs), int64(rhs), int64(dst));
+                int64(lhs).Mul(int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                math.mul(uint64(lhs), uint64(rhs), uint64(dst));
+                uint64(lhs).Mul(uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                math.mul(float32(lhs), float32(rhs), float32(dst));
+                float32(lhs).Mul(float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                math.mul(float64(lhs), float64(rhs), float64(dst));
+                float64(lhs).Mul(float64(rhs), float64(dst));
             else
                 throw unsupported<T>();
             return dst;
@@ -104,25 +104,25 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.mul(int8(lhs), int8(rhs));
+                int8(lhs).Mul(int8(rhs));
             else if(typeof(T) == typeof(byte))
-                math.mul(uint8(lhs), uint8(rhs));
+                uint8(lhs).Mul(uint8(rhs));
             else if(typeof(T) == typeof(short))
-                math.mul(int16(lhs), int16(rhs));
+                int16(lhs).Mul(int16(rhs));
             else if(typeof(T) == typeof(ushort))
-                math.mul(uint16(lhs), uint16(rhs));
+                uint16(lhs).Mul(uint16(rhs));
             else if(typeof(T) == typeof(int))
-                math.mul(int32(lhs), int32(rhs));
+                int32(lhs).Mul(int32(rhs));
             else if(typeof(T) == typeof(uint))
-                math.mul(uint32(lhs), uint32(rhs));
+                uint32(lhs).Mul(uint32(rhs));
             else if(typeof(T) == typeof(long))
-                math.mul(int64(lhs), int64(rhs));
+                int64(lhs).Mul(int64(rhs));
             else if(typeof(T) == typeof(ulong))
-                math.mul(uint64(lhs), uint64(rhs));
+                uint64(lhs).Mul(uint64(rhs));
             else if(typeof(T) == typeof(float))
-                math.mul(float32(lhs), float32(rhs));
+                float32(lhs).Mul(float32(rhs));
             else if(typeof(T) == typeof(double))
-                math.mul(float64(lhs), float64(rhs));
+                float64(lhs).Mul(float64(rhs));
             else
                 throw unsupported<T>();
             return ref lhs;

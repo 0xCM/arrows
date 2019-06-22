@@ -53,6 +53,14 @@ namespace Z0
         public static Expression GetSubject(this UnaryExpression x)
             => x.Operand;
 
+        public static NamedValue<T> Evaluate<T>(this Expression<Func<T>> fx)
+            where T : struct
+        {
+            var name = fx.TryGetAccessedMember().MapValueOrElse(x => x.Name, () => "?");
+            var value = fx.Compile().Invoke();
+            return (name, value);
+        }
+
         /// <summary>
         /// Gets the expression that directly identifies the selected subject
         /// </summary>
@@ -323,9 +331,9 @@ namespace Z0
         /// Tests whether the test expression is a member access expression
         /// </summary>
         /// <param name="x">The expression to examine</param>
-        /// <returns></returns>
         public static bool IsMemberAccess(this Expression x)
             => x.NodeType == ExpressionType.MemberAccess;
+
 
         /// <summary>
         /// Tests whether the test expression is a function call

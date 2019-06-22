@@ -30,7 +30,6 @@ namespace Z0
                 return generic<T>(dinx.addh(in float64(in lhs), in float64(in rhs)));
             else 
                 throw unsupported<T>();
-
         }
 
         [MethodImpl(Inline)]
@@ -80,8 +79,6 @@ namespace Z0
                 dinx.addh(in float64(in lhs), in float64(in rhs), ref float64(ref dst));
             else 
                 throw unsupported<T>();
-        }
-        
+        }        
    }
-
 }

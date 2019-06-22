@@ -352,7 +352,7 @@ partial class zfunc
     /// <returns></returns>
     [MethodImpl(Inline)]
     public static string wrap(object left, object content, object right)
-        => $"{show(left)}{show(content)}{show(right)}";
+        => $"{left}{content}{right}";
 
     /// <summary>
     /// Encloses text between single quote (') characters
@@ -441,8 +441,7 @@ partial class zfunc
     /// <param name="content">The content to enclose</param>
     [MethodImpl(Inline)]
     public static string angled(string content)
-        => wrap("<", content, ">");
-
+        => $"<{content}>";
 
     /// <summary>
     /// Trims leading characters when matched
@@ -558,17 +557,6 @@ partial class zfunc
             ? toString(subject as string, ifMissing)
             : (subject != null ? subject.ToString() : ifMissing ?? estring());
 
-    /// <summary>
-    /// If subject is not null, invokes its ToString() method; otherwise, returns an empty string or a supplied marker
-    /// </summary>
-    /// <typeparam name="T">The subject type</typeparam>
-    /// <param name="subject">The subject</param>
-    [MethodImpl(Inline)]
-    public static string show<T>(T subject)
-        => (subject is string)
-            ? toString(subject as string, estring())
-            : (subject != null ? subject.ToString() : estring());
-
 
     [MethodImpl(Inline)]
     public static string hexstring(byte src)
@@ -658,14 +646,6 @@ partial class zfunc
     public static string cmdFlag(string value, string flag, string arg = null)
         => empty(value) ? estring() : flag + arg ?? estring();
 
-    /// <summary>
-    /// Conditionally emits the value of a command option predicated on its nullity
-    /// </summary>
-    /// <param name="value">The value to evaluate</param>
-    /// <returns></returns>
-    [MethodImpl(Inline)]
-    public static string cmdOption(object value)
-        => show(value);
 
     /// <summary>
     /// Creates a complied regular expression from the supplied pattern

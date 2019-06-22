@@ -10,6 +10,7 @@ namespace Z0
  
     using static zfunc;
     
+    
     public static partial class Bits
     {                
  

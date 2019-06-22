@@ -45,7 +45,6 @@ namespace Z0
         public static Vec128<double> mulAddSub(in Vec128<double> x, in Vec128<double> y, in Vec128<double> z)
             => MultiplyAddSubtract(x,y,z);
 
- 
          // dst = x*y + z
         [MethodImpl(Inline)]
         public static Num128<float> mulAdd(in Num128<float> x, in Num128<float> y, in Num128<float> z)

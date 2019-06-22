@@ -29,6 +29,28 @@ namespace Z0
                 hi = Bmi2.MultiplyNoFlags(lhs, rhs, pLo);
         }
 
+        [MethodImpl(Inline)]
+        public static Vec256<ulong> mul(in Vec256<ulong> x, in Vec256<ulong> y)    
+        {
+            ref var m = ref Vec1024.Merge(in x, in y, out Vec1024<uint>  _);
+            ref var xh = ref m.At(3);
+            ref var xl = ref m.At(2);
+            ref var yh = ref m.At(1);
+            ref var yl = ref m.At(0);
+
+            var xh_yl = dinx.mul(xh, yl);
+            var hl = dinx.shiftl(xh_yl, 32);
+
+            var xh_mh = dinx.mul(xh, yh);
+            var lh = dinx.shiftl(xh_mh, 32);
+
+            var xl_yl = dinx.mul(xl, yl);
+
+            var hl_lh = dinx.add(hl, lh);
+            var z = dinx.add(xl_yl, hl_lh);
+            return z;
+        }
+
         /// <summary>
         /// Effects multiplication of the form (lhs:ulong, rhs:ulong) -> result:ulong where
         /// there result is obtained from the hi 64 bits of the 128-bit product
@@ -53,6 +75,13 @@ namespace Z0
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <param name="control"></param>
+        /// <intrinsic>__m128i _mm_clmulepi64_si128 (__m128i a, __m128i b, const int imm8) PCLMULQDQ xmm, xmm/m128, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<long> clmul(in Vec128<long> lhs, in Vec128<long> rhs, byte control)
             =>  CarrylessMultiply(lhs, rhs,control);
@@ -133,68 +162,5 @@ namespace Z0
         public static Num128<double> mul(in Num128<double> lhs, in Num128<double> rhs)
             =>  MultiplyScalar(lhs, rhs);
 
-        public static Span128<long> mul(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, Span128<long> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(Multiply(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
-            return dst;            
-        }
-
-        public static Span128<ulong> mul(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, Span128<ulong> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(Multiply(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
-            return dst;            
-        }
-
-        public static Span128<float> mul(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(Multiply(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
-            return dst;            
-        }
-
-        public static Span128<double> mul(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, Span128<double> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(Multiply(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
-            return dst;            
-        }
-
-        public static Span256<long> mul(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, Span256<long> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(Multiply(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
-            return dst;            
-        }
-
-        public static Span256<ulong> mul(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, Span256<ulong> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(Multiply(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
-            return dst;            
-        }
-
-        public static Span256<float> mul(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, Span256<float> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(Multiply(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
-            return dst;            
-        }
-
-        public static Span256<double> mul(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, Span256<double> dst)
-        {
-            var blocks = dst.BlockCount;
-            for(var block = 0; block < blocks; block++)
-                store(Multiply(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
-            return dst;            
-        }
     }
 }

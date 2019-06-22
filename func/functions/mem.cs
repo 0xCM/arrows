@@ -10,6 +10,7 @@ namespace  Z0
     using System.Runtime.CompilerServices;    
     using System.Reflection.Emit;
     using System.Runtime.InteropServices;
+    using System.Linq.Expressions;
     
     using static zfunc;
 

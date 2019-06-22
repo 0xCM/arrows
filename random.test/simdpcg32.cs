@@ -46,6 +46,24 @@ namespace Z0
             return _mm256_add_epi64(ll, _mm256_add_epi64(hl, lh));
         }
 
+
+        public static Vec256<ulong> mul(Vec256<ulong> x, Vec256<uint> ml, Vec256<uint> mh)
+        {
+            var mask = Vec256.define(0x00000000fffffffful);
+            var xl = dinx.and(x, mask).As<uint>();
+            var xh = dinx.shiftr(x,32).As<uint>();
+            var xh_ml = dinx.mul(xh,ml);
+            var hl = dinx.shiftl(xh_ml, 32);
+            var xh_mh = dinx.mul(xh, mh);
+            var lh = dinx.shiftl(xh_mh, 32);
+            var ll = dinx.mul(xl, ml);
+            var hl_lh = dinx.add(hl, lh);
+            var final = dinx.add(ll, hl_lh);
+            return final;
+            
+            //var hl = dinx.shiftl()
+        }
+
         public class Pcg32
         {
             public Pcg32(m512i seed, m512i inc)

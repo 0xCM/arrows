@@ -72,7 +72,7 @@ namespace Z0
             => Advance(negate(count));        
 
         /// <summary>
-        /// Produces a pseudorandom output from a given source state
+        /// Produces a pseudorandom output predicated on a state
         /// </summary>
         /// <param name="state">The source state</param>
         /// <remarks>Follows the implementation of pcg_output_rxs_m_xs_64_64</remarks>

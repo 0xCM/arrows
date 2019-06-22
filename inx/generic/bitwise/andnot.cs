@@ -125,7 +125,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 dinx.andnot(float64(lhs), float64(rhs), ref float64(ref dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());            
+                throw unsupported<T>();
         }
     }
 }

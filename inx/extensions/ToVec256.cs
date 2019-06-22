@@ -41,47 +41,6 @@ namespace Z0
         public static Vec256<ulong> ToVec256(this in Span<ulong> src, int offset = 0)
             => Vec256.load(ref src[offset]);
 
-        [MethodImpl(Inline)]
-        public static Vec256<byte> ToVec256(this byte src)
-            => Vec256.define(src);
-
-        [MethodImpl(Inline)]
-        public static Vec256<sbyte> ToVec256(this sbyte src)
-            => Vec256.define(src);
-
-        [MethodImpl(Inline)]
-        public static Vec256<short> ToVec256(this short src)
-            => Vec256.define(src);
-
-        [MethodImpl(Inline)]
-        public static Vec256<ushort> ToVec256(this ushort src)
-            => Vec256.define(src);
-
-        [MethodImpl(Inline)]
-        public static Vec256<int> ToVec256(this int src)
-            => Vec256.define(src);
-
-        [MethodImpl(Inline)]
-        public static Vec256<uint> ToVec256(this uint src)
-            => Vec256.define(src);
-
-
-        [MethodImpl(Inline)]
-        public static Vec256<long> ToVec256(this long src)
-            => Vec256.define(src);
-
-        [MethodImpl(Inline)]
-        public static Vec256<ulong> ToVec256(this ulong src)
-            => Vec256.define(src);
-
-        [MethodImpl(Inline)]
-        public static Vec256<float> ToVec256(this float src)
-            => Vec256.define(src);
-
-        [MethodImpl(Inline)]
-        public static Vec256<double> ToVec256(this double src)
-            => Vec256.define(src);
-
     }
 
 }

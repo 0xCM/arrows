@@ -26,6 +26,29 @@ namespace Z0.Test
 
         }
 
+        void Mul256u64(int blocks)
+        {
+            var domain = closed(0ul, UInt32.MaxValue);
+            var lhs = Random.Span256<ulong>(blocks, domain);
+            var rhs = Random.Span256<ulong>(blocks, domain);
+            for(var block=0; block<blocks; block++)
+            {
+                var x = lhs.ToVec256(block);
+                var y = rhs.ToVec256(block);
+                var z = dinx.mul(x,y); 
+
+                var a = x.Extract().Replicate();
+                var b = y.Extract();
+                var c = a.Mul(b).ToVec256();
+                Claim.eq(z,c);                                           
+            }
+
+        }
+        public void Mul256u64()
+        {
+            Mul256u64(Pow2.T11);
+        }
+
     }
 
 }

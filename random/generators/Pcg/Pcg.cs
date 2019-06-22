@@ -39,7 +39,7 @@ namespace Z0
 
     }
 
-    public abstract class Pcg<S> 
+    public abstract class Pcg<S> : Rng
         where S : struct
     {
         protected S State;

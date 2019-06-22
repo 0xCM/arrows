@@ -80,8 +80,6 @@ namespace Z0
                 dinx.subh(in float64(in lhs), in float64(in rhs), ref float64(ref dst));
             else 
                 throw unsupported<T>();
-        }
-        
+        }        
    }
-
 }
