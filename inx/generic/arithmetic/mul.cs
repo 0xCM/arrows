@@ -25,7 +25,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.mul(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
 
@@ -56,7 +56,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.mul(in float64(in lhs), in float64(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -101,24 +101,16 @@ namespace Z0
             where S : struct
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int32:
+                if(typeof(T) == typeof(int))
                     dinx.mul(int32(lhs), int32(rhs), ref int64(ref first(dst)));
-                    break;
-                case PrimalKind.uint32:
+                else if(typeof(T) == typeof(uint))
                     dinx.mul(uint32(lhs), uint32(rhs), ref uint64(ref first(dst)));
-                    break;
-                case PrimalKind.float32:
+                else if(typeof(T) == typeof(float))
                     dinx.mul(float32(lhs), float32(rhs), ref float32(ref first(dst)));
-                    break;
-                case PrimalKind.float64:
+                else if(typeof(T) == typeof(double))
                     dinx.mul(float64(lhs), float64(rhs), ref float64(ref first(dst)));
-                break;                
-                default:
-                    throw unsupported(kind);                    
-            }
+                else
+                    throw unsupported<T>();
             return dst;
         }
  
@@ -136,7 +128,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                 float64(rhs).Mul(float64(rhs), float64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
             return dst;
         }
 
@@ -154,7 +146,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                 float64(rhs).Mul(float64(rhs), float64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
             return dst;
 
         }

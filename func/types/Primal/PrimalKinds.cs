@@ -43,41 +43,6 @@ namespace Z0
                 typeof(double),     
                 };
 
-        // [MethodImpl(Inline)]
-        // public static PrimalIndex index<T>(
-        //     T @sbyte = default(T), 
-        //     T @byte = default(T), 
-        //     T @short = default(T), 
-        //     T @ushort = default(T), 
-        //     T @int = default(T), 
-        //     T @uint = default(T), 
-        //     T @long = default(T), 
-        //     T @ulong = default(T), 
-        //     T @float = default(T), 
-        //     T @double = default(T)
-        //     ) => new PrimalIndex(
-        //             new object[]{ 
-        //                 @sbyte, @byte, @short, @ushort, @int, 
-        //                 @uint, @long, @ulong, @float, @double
-        //                 });
-
-        // [MethodImpl(Inline)]
-        // public static PrimalIndex index<I8,U8,I16,U16,I32,U32,I64,U64,F32,F64>(
-        //     I8 @sbyte = default(I8), 
-        //     U8 @byte = default(U8), 
-        //     I16 @short = default(I16), 
-        //     U16 @ushort = default(U16), 
-        //     I32 @int = default(I32), 
-        //     U32  @uint = default(U32), 
-        //     I64 @long = default(I64), 
-        //     U64 @ulong = default(U64), 
-        //     F32 @float = default(F32), 
-        //     F64 @double = default(F64)
-        //     ) => new PrimalIndex(
-        //         new object[]{
-        //             @sbyte, @byte, @short, @ushort, @int, 
-        //             @uint, @long, @ulong, @float, @double
-        //             });
 
         [MethodImpl(Inline)]
         public static Type type(PrimalKind key)

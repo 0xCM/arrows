@@ -159,7 +159,8 @@ namespace Z0
                 dst = generic<T>(load(ref float32(ref head)));
             else if(typeof(T) == typeof(double))
                 dst = generic<T>(load(ref float64(ref head)));
-            else throw unsupported(PrimalKinds.kind<T>());
+            else 
+                throw unsupported<T>();
             return ref dst;
         }
 
@@ -189,7 +190,8 @@ namespace Z0
                 dst = generic<T>(load(ref float32(ref head)));
             else if(typeof(T) == typeof(double))
                 dst = generic<T>(load(ref float64(ref head)));
-            else throw unsupported(PrimalKinds.kind<T>());
+            else 
+                throw unsupported<T>();
             return ref dst;
         }        
 

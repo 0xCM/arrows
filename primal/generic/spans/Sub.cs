@@ -36,7 +36,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 math.sub(float64(lhs), float64(rhs), float64(dst));
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
             return dst;
         }
 

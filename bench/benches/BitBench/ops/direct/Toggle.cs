@@ -51,7 +51,8 @@ namespace Z0.Bench
                 return context.Toggle(int64(src), positions).As<T>();
             else if(typeof(T) == typeof(ulong))
                 return context.Toggle(uint64(src),positions).As<T>();
-            throw unsupported(PrimalKinds.kind<T>());
+            else
+                throw unsupported<T>();
         }
 
         static Metrics<sbyte> Toggle(this BitDContext context, ReadOnlySpan<sbyte> src, ReadOnlySpan<int> pos)

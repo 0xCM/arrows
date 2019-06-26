@@ -42,6 +42,14 @@ namespace Z0
             => lhs.Equals(rhs) ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
 
         [MethodImpl(Inline)]
+        public static bool eq<T>(T[] lhs, T[] rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs.Eq(rhs) ? true : throw failed(ClaimOpKind.Eq, NotEqual(lhs,rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool neq<T>(T[] lhs, T[] rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => !lhs.Eq(rhs) ? true : throw failed(ClaimOpKind.NEq, NotEqual(lhs,rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
         public static bool neq<T>(T lhs, T rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => !lhs.Equals(rhs) ? true : throw failed(ClaimOpKind.Eq, Equal(lhs, rhs, caller, file, line));
 

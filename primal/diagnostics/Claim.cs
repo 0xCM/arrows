@@ -44,7 +44,7 @@ namespace Z0
         
         EqItem,
 
-        Neq,
+        NEq,
 
         Lt,
 

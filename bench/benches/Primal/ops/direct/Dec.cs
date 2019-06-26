@@ -40,7 +40,7 @@ namespace Z0.Bench
             else if(typeof(T) == typeof(double))
                     return config.Dec(float64(src)).As<T>();
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         static Metrics<sbyte> Dec(this PrimalDConfig config, ReadOnlySpan<sbyte> src)

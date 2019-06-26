@@ -93,10 +93,6 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<double> LoadVec256(this ReadOnlySpan256<double> src, int offset)
-            => Vec256.load(ref asRef(in src[offset]));
-
-        
-
-
+            => Vec256.load(ref asRef(in src[offset]));    
     }
 }

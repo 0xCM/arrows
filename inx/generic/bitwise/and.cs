@@ -39,7 +39,8 @@ namespace Z0
                 return generic<T>(dinx.and(in float32(in lhs), in float32(in rhs)));
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.and(in float64(in lhs), in float64(in rhs)));
-            else throw unsupported(PrimalKinds.kind<T>());
+            else 
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -66,7 +67,8 @@ namespace Z0
                 return generic<T>(dinx.and(in float32(in lhs), in float32(in rhs)));
             else if(typeof(T) == typeof(double))
                 return generic<T>(dinx.and(in float64(in lhs), in float64(in rhs)));
-            else throw unsupported(PrimalKinds.kind<T>());
+            else 
+                throw unsupported<T>();
         }
 
 
@@ -95,7 +97,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 dinx.and(float64(lhs), float64(rhs), ref float64(ref dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());            
+                throw unsupported<T>();
         }
         
         [MethodImpl(Inline)]
@@ -123,7 +125,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 dinx.and(float64(lhs), float64(rhs), ref float64(ref dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());            
+                throw unsupported<T>();
         }
 
         public static Span128<T> and<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
@@ -150,7 +152,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 float64(lhs).And(float64(rhs), float64(dst));
             else    
-                throw unsupported(PrimalKinds.kind<T>());    
+                throw unsupported<T>();
             return dst;        
         }
 
@@ -178,7 +180,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 float64(lhs).And(float64(rhs), float64(dst));                
             else    
-                throw unsupported(PrimalKinds.kind<T>());    
+                throw unsupported<T>();
             return dst;        
         } 
     }

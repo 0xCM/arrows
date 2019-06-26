@@ -42,7 +42,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                     convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
                             
            return dst;            
         }
@@ -72,7 +72,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
            return dst;            
         }
@@ -102,7 +102,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
            return dst;            
         }
@@ -132,7 +132,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
            return dst;            
         }
@@ -162,7 +162,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
            return dst;            
         }
@@ -192,7 +192,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
            return dst;            
         }
@@ -222,7 +222,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
            return dst;            
         }
@@ -253,7 +253,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
            return dst;            
         }
@@ -284,7 +284,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
            return dst;            
         }
@@ -314,7 +314,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
            return dst;            
         }
@@ -344,7 +344,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                   dst = generic<T>(convert(src, out double x));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
            return dst;            
         }
@@ -984,7 +984,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 convert(src, ref float64(ref dst));
             else            
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
 
             return ref dst;
         }
@@ -1014,7 +1014,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
         }
 
         [MethodImpl(Inline)]
@@ -1042,7 +1042,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
         }
 
 
@@ -1071,7 +1071,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
         }
 
         [MethodImpl(Inline)]
@@ -1099,7 +1099,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
         }
 
         [MethodImpl(Inline)]
@@ -1127,7 +1127,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
         }
 
         [MethodImpl(Inline)]
@@ -1155,7 +1155,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
         }
 
         [MethodImpl(Inline)]
@@ -1183,7 +1183,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
         }
 
         [MethodImpl(Inline)]
@@ -1211,7 +1211,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
         }
 
         [MethodImpl(Inline)]
@@ -1239,7 +1239,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
         }
 
 
@@ -1268,7 +1268,7 @@ namespace Z0
             else if(typeof(S) == typeof(double))
                 return convert(float64(src), out dst);
             else            
-                throw unsupported(PrimalKinds.kind<S>());
+                throw unsupported<S>();
         }
 
       #endregion

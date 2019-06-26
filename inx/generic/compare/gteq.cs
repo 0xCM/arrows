@@ -26,7 +26,8 @@ namespace Z0
                 return dinx.gteq(in float32(in lhs), in float32(in rhs));
             else if(typeof(T) == typeof(double))
                 return dinx.gteq(in float64(in lhs), in float64(in rhs));
-            throw unsupported(PrimalKinds.kind<T>());
+            else
+                throw unsupported<T>();
 
         }
 

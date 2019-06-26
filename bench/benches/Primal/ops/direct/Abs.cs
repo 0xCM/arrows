@@ -32,7 +32,7 @@ namespace Z0.Bench
             else if(typeof(T) == typeof(double))
                 return config.Abs(float64(src)).As<T>();
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         static Metrics<sbyte> Abs(this PrimalDConfig config, ReadOnlySpan<sbyte> src)

@@ -128,26 +128,26 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Num128<T> recip<T>(in Num128<T> src)
             where T : struct
-                => throw unsupported(PrimalKinds.kind<T>());
+                => throw unsupported<T>();
 
         [MethodImpl(Inline)]
         public static Num128<T> sqrt<T>(in Num128<T> src)
             where T : struct
-                => throw unsupported(PrimalKinds.kind<T>());
+                => throw unsupported<T>();
 
         [MethodImpl(Inline)]
         public static Num128<T> recipsqrt<T>(in Num128<T> src)
             where T : struct
-                => throw unsupported(PrimalKinds.kind<T>());
+                => throw unsupported<T>();
 
         [MethodImpl(Inline)]
         public static Num128<T> ceiling<T>(in Num128<T> src)
             where T : struct
-                => throw unsupported(PrimalKinds.kind<T>());
+                => throw unsupported<T>();
 
         [MethodImpl(Inline)]
         public static Num128<T> floor<T>(in Num128<T> src)
             where T : struct
-                => throw unsupported(PrimalKinds.kind<T>());
+                => throw unsupported<T>();
     }
 }

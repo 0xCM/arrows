@@ -348,5 +348,12 @@ namespace  Z0
                 effect(item);
         }
 
+        [MethodImpl(Inline)]   
+        public static (IEnumerable<T> x, IEnumerable<T> y) Duplicate<T>(this IEnumerable<T> src)
+            => (src, src);
+        
+        public static IEnumerable<T> Transform<S,T>(this IEnumerable<S> src, params Func<S,T>[] transformers)
+            => src.Select(item => transformers.Select(t => t(item))).SelectMany(x => x);
+
     }
 }

@@ -142,7 +142,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static unsafe ref Vec256<T> load<T>(in Span256<T> src, int block, out Vec256<T> dst)
+        public static ref Vec256<T> load<T>(in Span256<T> src, int block, out Vec256<T> dst)
             where T : struct
         {            
             ref var head = ref asRef(in src.Block(block));            
@@ -199,7 +199,6 @@ namespace Z0
                 throw unsupported<T>();
         }
         
-
         [MethodImpl(Inline)]
         public static Vec256<T> load<T>(T[] src, int block = 0)
             where T : struct  
@@ -255,8 +254,6 @@ namespace Z0
         public static Vec256<double> define(double x0)
             => Vector256.Create(x0);
 
-
-
         [MethodImpl(Inline)]
         public static unsafe Vec256<sbyte> define(
             sbyte x0, sbyte x1, sbyte x2, sbyte x3,  
@@ -289,7 +286,6 @@ namespace Z0
                 x16,x17,x18,x19,x20,x21,x22,x23,
                 x24,x25,x26,x27,x28,x29,x30,x31);
 
-
         [MethodImpl(Inline)]
         public static Vec256<byte> define(
             byte x0, byte x1, byte x2, byte x3,  
@@ -304,8 +300,6 @@ namespace Z0
                     x8,x9,x10,x11,x12,x13,x14,x15,
                     x16,x17,x18,x19,x20,x21,x22,x23,
                     x24,x25,x26,x27,x28,x29,x30,x31);
-
-
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<byte> definer(
@@ -331,7 +325,6 @@ namespace Z0
             short x12, short x13, short x14, short x15)
                 => Vector256.Create(x0,x1,x2,x3,x4,x5,x6,x7,
                     x8,x9,x10,x11,x12,x13,x14,x15);
-
 
         [MethodImpl(Inline)]
         public static Vec256<short> definer(
@@ -408,7 +401,6 @@ namespace Z0
             float x4, float x5, float x6, float x7 )
                 => Vector256.Create(x0,x1,x2,x3,x4,x5,x6,x7);
 
- 
         [MethodImpl(Inline)]
         public static unsafe Vec256<double> define(double x0, double x1, double x2, double x3)
                 => Vector256.Create(x0,x1,x2,x3);
@@ -472,6 +464,5 @@ namespace Z0
         static readonly Vec256<float> OneF32 = Vec256.define(1f);
 
         static readonly Vec256<double> OneF64 = Vec256.define(1d);
-
     } 
 }

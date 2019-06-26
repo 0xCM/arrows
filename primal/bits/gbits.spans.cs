@@ -194,7 +194,7 @@ namespace Z0
             else if (typeof(T) == typeof(ulong))
                 math.shiftl(uint64(src), offset);
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
             return ref src;
 
         }
@@ -220,7 +220,7 @@ namespace Z0
             else if (typeof(T) == typeof(ulong))
                 math.shiftl(uint64(src), offsets);
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
             return ref src;
         }
 

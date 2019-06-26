@@ -95,10 +95,6 @@ namespace Z0
             where T : struct
                 =>  ref Num.single(ref gmath.negate(ref Num.scalar(ref src)));
  
-        [MethodImpl(Inline)]
-        public static PrimalKind PrimalKind<T>(this num<T> src)
-            where T : struct
-                => PrimalKinds.kind<T>();
 
         [MethodImpl(Inline)]
         public static bool NEq<T>(this num<T> lhs, num<T> rhs)

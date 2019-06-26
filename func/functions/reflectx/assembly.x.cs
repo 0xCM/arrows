@@ -149,7 +149,10 @@ namespace Z0
 
         public static IEnumerable<Type> Classes(this Assembly a)
             => a.GetTypes().Classes();
-        
+
+        public static IEnumerable<Type> Classes(this Assembly a, string name)
+            => a.Classes().Where(c => c.Name == name);
+
         public static IEnumerable<Type> Enums(this Assembly a)
             => a.GetTypes().Enums();
 

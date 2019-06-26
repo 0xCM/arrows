@@ -33,6 +33,10 @@ namespace Z0
         
         public const string A = "𝔸";
         
+        public const string B = "𝔹";
+
+        public const string C = "ℂ";
+
         public const string N = "ℕ";
 
         public const string Q = "ℚ";

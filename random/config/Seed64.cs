@@ -98,7 +98,11 @@ namespace Z0
 
         public static ulong Seed31 => Lookup(31);
 
-
+        /// <summary>
+        /// See https://vcsjones.com/2019/02/01/csharp-readonly-span-bytes-static/ for an explanation
+        /// of how the jit optimizes this
+        /// </summary>
+        /// <value></value>
         static ReadOnlySpan<byte> RawBytes => new byte[]
         {
             0x20, 0xda, 0x1f, 0x32, 0x4b, 0xca, 0x42, 0x5b,

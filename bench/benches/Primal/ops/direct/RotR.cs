@@ -28,7 +28,7 @@ namespace Z0.Bench
             else if(typeof(T) == typeof(ulong))
                 return config.RotR(uint64(lhs), rhs).As<T>();
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         static Metrics<byte> RotR(this PrimalDConfig config, ReadOnlySpan<byte> lhs, ReadOnlySpan<int> rhs)

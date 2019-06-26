@@ -137,7 +137,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return math.gt(float64(lhs), float64(rhs), dst);
             else
-                throw unsupported(PrimalKinds.kind<T>());                
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]

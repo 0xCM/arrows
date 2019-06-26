@@ -31,26 +31,27 @@ namespace Z0.Bench
 
         }
 
-        static Metrics<ulong> Pop<S>(this BitDContext context, ReadOnlySpan<S> src)
-            where S : struct
+        static Metrics<ulong> Pop<T>(this BitDContext context, ReadOnlySpan<T> src)
+            where T : struct
         {
-            if(typeof(S) == typeof(sbyte))
+            if(typeof(T) == typeof(sbyte))
                 return context.Pop(int8(src));
-            else if(typeof(S) == typeof(byte))
+            else if(typeof(T) == typeof(byte))
                 return context.Pop(uint8(src));
-            else if(typeof(S) == typeof(short))
+            else if(typeof(T) == typeof(short))
                 return context.Pop(int16(src));
-            else if(typeof(S) == typeof(ushort))
+            else if(typeof(T) == typeof(ushort))
                 return context.Pop(uint16(src));
-            else if(typeof(S) == typeof(int))
+            else if(typeof(T) == typeof(int))
                 return context.Pop(int32(src));
-            else if(typeof(S) == typeof(uint))
+            else if(typeof(T) == typeof(uint))
                 return context.Pop(uint32(src));
-            else if(typeof(S) == typeof(long))
+            else if(typeof(T) == typeof(long))
                 return context.Pop(int64(src));
-            else if(typeof(S) == typeof(ulong))
+            else if(typeof(T) == typeof(ulong))
                 return context.Pop(uint64(src));
-            throw unsupported(PrimalKinds.kind<S>());
+            else 
+                throw unsupported<T>();
         }
 
         static Metrics<ulong> Pop(this BitDContext context, ReadOnlySpan<sbyte> src)

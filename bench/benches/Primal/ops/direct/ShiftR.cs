@@ -36,7 +36,7 @@ namespace Z0.Bench
             else if(typeof(T) == typeof(ulong))
                 return config.ShiftR(uint64(lhs), rhs).As<T>();
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         static Metrics<sbyte> ShiftR(this PrimalDConfig config, ReadOnlySpan<sbyte> lhs, ReadOnlySpan<int> rhs)

@@ -51,7 +51,8 @@ namespace Z0.Bench
                 return context.Disable(int64(src), positions).As<T>();
             else if(typeof(T) == typeof(ulong))
                 return context.Disable(uint64(src),positions).As<T>();
-            throw unsupported(PrimalKinds.kind<T>());
+            else
+                throw unsupported<T>();
         }
 
         static Metrics<sbyte> Disable(this BitDContext context, ReadOnlySpan<sbyte> src, ReadOnlySpan<int> pos)

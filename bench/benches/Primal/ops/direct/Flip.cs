@@ -36,7 +36,7 @@ namespace Z0.Bench
             else if(typeof(T) == typeof(ulong))
                 return config.Flip(uint64(src)).As<T>();
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         static Metrics<sbyte> Flip(this PrimalDConfig config, ReadOnlySpan<sbyte> src)

@@ -24,7 +24,7 @@ namespace Z0
             else if(typeof(T) == typeof(ushort))
                 return generic<T>(dinx.avg(in uint16(in lhs), in uint16(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
@@ -36,7 +36,7 @@ namespace Z0
             else if(typeof(T) == typeof(ushort))
                 return generic<T>(dinx.avg(in uint16(in lhs), in uint16(in rhs)));
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
     }
 }

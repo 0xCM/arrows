@@ -20,4 +20,36 @@ partial class zfunc
     [MethodImpl(Inline)]   
     public static ConcurrentIndex<K,V> cindex<K,V>()
         => new ConcurrentIndex<K,V>();
+
+    /// <summary>
+    /// Retrieves the current process
+    /// </summary>
+    [MethodImpl(Inline)]   
+    public static Process process()
+        => Process.GetCurrentProcess();
+
+    /// <summary>
+    /// Retrieves the process id of the current process
+    /// </summary>
+    [MethodImpl(Inline)]   
+    public static int procid()
+        => Process.GetCurrentProcess().Id;
+
+    /// <summary>
+    /// Retrieves the name of the current process
+    /// </summary>
+    [MethodImpl(Inline)]   
+    public static string procname()
+        => Process.GetCurrentProcess().ProcessName;
+
+    /// <summary>
+    /// Retrieves a process identified by a process id
+    /// </summary>
+    [MethodImpl(Inline)]   
+    public static Process process(int procid)
+        => Process.GetProcessById(procid);
+
+    [MethodImpl(Inline)]   
+    public static IntPtr intptr(ulong address)
+        => new IntPtr((long)address);
 }

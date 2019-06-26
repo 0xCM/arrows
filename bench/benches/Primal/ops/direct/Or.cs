@@ -37,7 +37,7 @@ namespace Z0.Bench
             else if(typeof(T) == typeof(ulong))
                     return config.Or(uint64(lhs), uint64(rhs)).As<T>();
             else
-                throw unsupported(PrimalKinds.kind<T>());            
+                throw unsupported<T>();
             
         }
 

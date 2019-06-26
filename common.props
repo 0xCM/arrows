@@ -16,6 +16,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
     <Prefer32Bit>false</Prefer32Bit>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>    
+
     <!--<DefineConstants>DEBUG;TRACE</DefineConstants>-->
   </PropertyGroup>
 

@@ -147,6 +147,9 @@ namespace Z0
         public static IEnumerable<HexString> ToHexStrings(this IEnumerable<byte> src, bool zpad = true, bool specifier = true)
             => src.Select(x => x.ToHexString(zpad, specifier));
 
+        public static string ToBlockedHexString(this IEnumerable<byte> src, bool specifier = false, string sep = " ")
+            => src.ToHexStrings(true, specifier).Select(x => x.ToString()).Concat(sep);
+
         /// <summary>
         /// Renders a stream of numbers as a stream of hexadecimal strings
         /// </summary>

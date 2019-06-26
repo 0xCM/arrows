@@ -13,11 +13,28 @@ namespace Z0
     using static System.Runtime.Intrinsics.X86.Sse3;
     using static System.Runtime.Intrinsics.X86.Sse2;
     using static System.Runtime.Intrinsics.X86.Ssse3;
+    using static System.Runtime.Intrinsics.X86.Avx2;
     
     using static zfunc;    
 
     partial class dinx
     {
+        [MethodImpl(Inline)]
+        public static Vec128<int> shuffle(in Vec128<int> src, byte control)
+            => Shuffle(src, control);
+
+        [MethodImpl(Inline)]
+        public static Vec128<uint> shuffle(in Vec128<uint> src, byte control)
+            => Shuffle(src, control);
+
+        [MethodImpl(Inline)]
+        public static Vec256<int> shuffle(in Vec256<int> src, byte control)
+            => Shuffle(src, control);
+
+        [MethodImpl(Inline)]
+        public static Vec256<uint> shuffle(in Vec256<uint> src, byte control)
+            => Shuffle(src, control);
+
         [MethodImpl(Inline)]
         public static Vec128<byte> shuffle(in Vec128<byte> src, in Vec128<byte> mask)
             => Shuffle(src, mask);
@@ -28,16 +45,21 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static Vec128<int> shuffle(in Vec128<int> src, byte control)
-            => Shuffle(src, control);
+        public static Vec256<byte> shuffle(in Vec256<byte> src, in Vec256<byte> mask)
+            => Shuffle(src, mask);
 
         [MethodImpl(Inline)]
-        public static Vec128<double> shuffle(in Vec128<double> lhs, in Vec128<double> rhs, byte control)
-            => Shuffle(lhs,rhs, control);
+        public static Vec256<sbyte> shuffle(in Vec256<sbyte> src, in Vec256<sbyte> mask)
+            => Shuffle(src, mask);
+
 
         [MethodImpl(Inline)]
         public static Vec128<float> shuffle(in Vec128<float> lhs, in Vec128<float> rhs,  byte control)
             => Shuffle(lhs,rhs, control);
+
+        [MethodImpl(Inline)]
+        public static Vec128<double> shuffle(in Vec128<double> lhs, in Vec128<double> rhs, byte control)
+            =>  Shuffle(lhs,rhs, control);
 
         [MethodImpl(Inline)]
         public static Vec128<short> shuffleHi(in Vec128<short> src, byte control)

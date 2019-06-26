@@ -19,33 +19,28 @@ namespace Z0.Bench
         public static Metrics<T> Mul<T>(this PrimalDConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    return Mul(int8(lhs), int8(rhs), config).As<T>();
-                case PrimalKind.uint8:
-                    return Mul(uint8(lhs), uint8(rhs), config).As<T>();
-                case PrimalKind.int16:
-                    return Mul(int16(lhs), int16(rhs), config).As<T>();
-                case PrimalKind.uint16:
-                    return Mul(uint16(lhs), uint16(rhs), config).As<T>();
-                case PrimalKind.int32:
-                    return Mul(int32(lhs), int32(rhs), config).As<T>();
-                case PrimalKind.uint32:
-                    return Mul(uint32(lhs), uint32(rhs), config).As<T>();
-                case PrimalKind.int64:
-                    return Mul(int64(lhs), int64(rhs), config).As<T>();
-                case PrimalKind.uint64:
-                    return Mul(uint64(lhs), uint64(rhs), config).As<T>();
-                case PrimalKind.float32:
-                    return Mul(float32(lhs), float32(rhs), config).As<T>();
-                case PrimalKind.float64:                    
-                    return Mul(float64(lhs), float64(rhs), config).As<T>();
-                default:
-                    throw unsupported(kind);
-            }
+            if(typeof(T) == typeof(sbyte))
+                    return config.Mul(int8(lhs), int8(rhs)).As<T>();
+            else if(typeof(T) == typeof(byte))
+                    return config.Mul(uint8(lhs), uint8(rhs)).As<T>();
+            else if(typeof(T) == typeof(short))
+                    return config.Mul(int16(lhs), int16(rhs)).As<T>();
+            else if(typeof(T) == typeof(ushort))
+                    return config.Mul(uint16(lhs), uint16(rhs)).As<T>();
+            else if(typeof(T) == typeof(int))
+                    return config.Mul(int32(lhs), int32(rhs)).As<T>();
+            else if(typeof(T) == typeof(uint))
+                    return config.Mul(uint32(lhs), uint32(rhs)).As<T>();
+            else if(typeof(T) == typeof(long))
+                    return config.Mul(int64(lhs), int64(rhs)).As<T>();
+            else if(typeof(T) == typeof(ulong))
+                    return config.Mul(uint64(lhs), uint64(rhs)).As<T>();
+            else if(typeof(T) == typeof(float))
+                    return config.Mul(float32(lhs), float32(rhs)).As<T>();
+            else if(typeof(T) == typeof(double))
+                    return config.Mul(float64(lhs), float64(rhs)).As<T>();
+            else
+                throw unsupported<T>();
         }
 
         static Metrics<sbyte> Mul(ReadOnlySpan<sbyte> lhs, ReadOnlySpan<sbyte> rhs, PrimalDConfig config = null)

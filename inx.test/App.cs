@@ -11,48 +11,11 @@ namespace Z0.Test
     using System.Runtime.CompilerServices;
     using System.Runtime.Intrinsics.X86;
     using System.Diagnostics;
-    using Microsoft.Diagnostics.Runtime;
-    using DR = Microsoft.Diagnostics.Runtime;
 
     using static zfunc;
 
     public class App : TestApp<App>
-    {            
-
-
-        static byte[] GetMethodAsm(MethodInfo method)
-        {
-            RuntimeHelpers.PrepareMethod(method.MethodHandle);
-            var handle = method.MethodHandle;
-            var pointer = handle.GetFunctionPointer();
-            using var target = DR.DataTarget.AttachToProcess(Process.GetCurrentProcess().Id, uint.MaxValue, AttachFlag.Passive);
-            var runtime = target.ClrVersions.Single(x => x.Flavor == ClrFlavor.Core).CreateRuntime();
-            var clrMethod = runtime.GetMethodByAddress((ulong)pointer);
-            Claim.eq(clrMethod.Name, method.Name);
-            
-            var start = clrMethod.HotColdInfo.HotStart;
-            var size = clrMethod.HotColdInfo.HotSize;
-
-            var buffer = new byte[size];
-            var success = runtime.ReadMemory(start,buffer, (int)size, out int count);
-            if(success)
-                return buffer;
-            else
-                throw new Exception($"Unabled to read data for {clrMethod.Name}");
-            
-        }
-
-        static void GetMethodAsmExample()
-        {
-            var method = typeof(App).DeclaredMethods(nameof(Mul)).NonGeneric().Concrete().Single();
-            var asm = GetMethodAsm(method).Bracket();
-            print(asm);
-
-        }
-
-        public static int Mul(int a, int b)
-            => a * b;
-        
+    {                    
         Duration Mul256u64(int blocks)
         {
             var domain = closed(0ul, UInt32.MaxValue);
@@ -71,11 +34,15 @@ namespace Z0.Test
 
         }
 
+        void Shuffle()
+        {
+            var v1 = Vec128.define(1,2,3,4);
+            var v2 = dinx.shuffle(v1, 0b01010101);
+            print(v2.ToString());
+        }
         protected override void RunTests()
         {            
-            var time = Mul256u64(Pow2.T20);
-            show(() => time);
-
+            Shuffle();
 
             //base.RunTests();
 
