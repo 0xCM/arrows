@@ -11,7 +11,6 @@ namespace Z0.Test
     using System.Numerics;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using Z0.Diagnostics;
 
     using static zfunc;
 

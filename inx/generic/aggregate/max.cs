@@ -12,7 +12,7 @@ namespace Z0
     using static zfunc;
     using static AsInX;
 
-    public static partial class ginx
+    partial class ginx
     {        
         [MethodImpl(Inline)]
         public static Vec128<T> max<T>(in Vec128<T> lhs, in Vec128<T> rhs)

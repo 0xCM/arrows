@@ -3,9 +3,9 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
+  <Import Project="..\package.targets" />
 
   <ItemGroup>
     <ProjectReference Include="..\structs\z0.structs.csproj" />

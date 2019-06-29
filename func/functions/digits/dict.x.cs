@@ -152,21 +152,6 @@ namespace Z0
         /// <param name="subject">The collection to query</param>
         /// <param name="key">The key that identifies the value</param>
         /// <returns></returns>
-        public static Option<V> TryFind<K, V>(this IDictionary<K, V> subject, K key)
-            => guard(key,
-                k => k != null,
-                k => subject.TryGetValue(k, out V value)
-                    ? some(value)
-                    : none<V>());
-
-        /// <summary>
-        /// Retrieves the key-identified value if possible
-        /// </summary>
-        /// <typeparam name="K">The key</typeparam>
-        /// <typeparam name="V">The type of value identified by the key</typeparam>
-        /// <param name="subject">The collection to query</param>
-        /// <param name="key">The key that identifies the value</param>
-        /// <returns></returns>
         public static Option<V> TryFind<K, V>(this IReadOnlyDictionary<K, V> subject, K key)
                 => key == null ? none<V>()
                 : (subject.TryGetValue(key, out V value)

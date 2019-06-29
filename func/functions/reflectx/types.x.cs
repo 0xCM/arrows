@@ -17,8 +17,6 @@ namespace Z0
 
     partial class Reflections
     {
-
-
         [MethodImpl(Inline)]
         public static bool IsStatic(this PropertyInfo p)
             => p.GetGetMethod()?.IsStatic == true 
@@ -31,7 +29,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool IsStatic(this Type t)
             => t.IsAbstract && t.IsSealed;
-
 
         /// <summary>
         /// Determines whether a type has a public default constructor
@@ -134,15 +131,13 @@ namespace Z0
         /// <returns></returns>
         [MethodImpl(Inline)]
         public static bool IsNullableType(this Type t)
-            => t.IsGenericType
-                && t.GetGenericTypeDefinition() == typeof(Nullable<>);
+            => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>);
 
         /// <summary>
         /// Determines whether a type is a nullable or non-nullable type with a given underlying type
         /// </summary>
         /// <typeparam name="T">The type to match</typeparam>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         internal static bool IsTypeOf<T>(this Type t)
             => t == typeof(T) || t.IsNullableType<T>();
@@ -156,113 +151,13 @@ namespace Z0
             => t.IsTypeOf<DateTime>();
 
         /// <summary>
-        /// Determines whether a supplied type is either a <see cref="Byte"/> or a <see cref="Nullable{Byte}"/>
-        /// </summary>
-        /// <param name="src">The type to examine</param>
-        /// <returns></returns>
-        [MethodImpl(Inline)]
-        public static bool IsUInt8(this Type src)
-            => src.IsTypeOf<Byte>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="SByte"/> or a <see cref="Nullable{SByte}"/>
-        /// </summary>
-        /// <param name="src">The type to examine</param>
-        /// <returns></returns>
-        [MethodImpl(Inline)]
-        public static bool IsInt8(this Type src)
-            => src.IsTypeOf<SByte>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="Int16"/> or a <see cref="Nullable{Int16}"/>
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsInt16(this Type t)
-            => t.IsTypeOf<Int16>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="UInt16"/> or a <see cref="Nullable{UInt16}"/>
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsUInt16(this Type t)
-            => t.IsTypeOf<UInt16>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="Int32"/> or a <see cref="Nullable{Int32}"/>
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsInt32(this Type t)
-            => t.IsTypeOf<Int32>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="UInt32"/> or a <see cref="Nullable{UInt32}"/>
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsUInt32(this Type t)
-            => t.IsTypeOf<UInt32>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="Int64"/> or a <see cref="Nullable{Int64}"/>
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        [MethodImpl(Inline)]
-        public static bool IsInt64(this Type t)
-            => t.IsTypeOf<Int64>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="UInt64"/> or a <see cref="Nullable{UInt64}"/>
-        /// </summary>
-        /// <param name="src">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsUInt64(this Type src)
-            => src.IsTypeOf<UInt64>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="Double"/> or a <see cref="Nullable{Double}"/>
-        /// </summary>
-        /// <param name="src">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsDouble(this Type src)
-            => src.IsTypeOf<Double>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="Single"/> or a <see cref="Nullable{Single}"/>
-        /// </summary>
-        /// <param name="src">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsSingle(this Type src)
-            => src.IsTypeOf<Single>();
-
-        /// <summary>
-        /// Determines whether a supplied type is either a <see cref="Decimal"/> or a nullable <see cref="Nullable{Decimal}"/>
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsDecimal(this Type t)
-            => t.IsTypeOf<Decimal>();
-
-        /// <summary>
-        /// Determines whether a supplied type is one of the intrinsic integral types or a nullable type thereof
-        /// </summary>
-        /// <param name="src">The type to examine</param>
-        [MethodImpl(Inline)]
-        public static bool IsInteger(this Type src)
-            => src.IsInt32() || src.IsInt64() || src.IsInt8() || src.IsInt16()
-            || src.IsUInt8() || src.IsUInt32() || src.IsUInt64() || src.IsUInt16();
-
-        /// <summary>
         /// Determines whether a supplied type is DBNull
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static bool IsDbNull(this Type t)
-            => t.IsTypeOf<DBNull>();
+        public static bool IsDbNull(this Type src)
+            => src == typeof(DBNull) || src.GetUnderlyingType() == typeof(DBNull);
 
         /// <summary>
         /// Determines whether a supplied type is either a <see cref="TimeSpan"/> or a <see cref="Nullable{TimeSpan}"/>
@@ -284,10 +179,17 @@ namespace Z0
         /// Determines whether a supplied type is of type string
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
         [MethodImpl(Inline)]
         public static bool IsString(this Type t)
             => t == typeof(string);
+
+        /// <summary>
+        /// Determines whether a supplied type is of type Void
+        /// </summary>
+        /// <param name="t">The type to examine</param>
+        [MethodImpl(Inline)]
+        public static bool IsVoid(this Type t)
+            => t == typeof(void);
 
         /// <summary>
         /// Determines whether a supplied type is either a <see cref="Char"/> or a nullable <see cref="Nullable{Char}"/>
@@ -316,27 +218,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool IsNullableType<T>(this Type t)
             => t.IsNullableType() && Nullable.GetUnderlyingType(t) == typeof(T);
-
-        /// <summary>
-        /// Determines whether a type is an intrinsic numeric type
-        /// </summary>
-        /// <param name="type">The type to evaluate</param>
-        public static bool IsIntrinsicNumber(this Type type)
-        {
-            switch (Type.GetTypeCode(type))
-            {
-                case TypeCode.Byte: case TypeCode.Decimal: case TypeCode.Double:
-                case TypeCode.Int16: case TypeCode.Int32: case TypeCode.Int64:
-                case TypeCode.SByte: case TypeCode.Single: case TypeCode.UInt16:
-                case TypeCode.UInt32: case TypeCode.UInt64:
-                    return true;
-                case TypeCode.Object:
-                    if (type.IsNullableType())
-                        return IsIntrinsicNumber(Nullable.GetUnderlyingType(type));
-                    return false;
-            }
-            return false;
-        }
 
         /// <summary>
         /// Determines whether a type is anonymous
@@ -414,7 +295,7 @@ namespace Z0
         /// Selects the public immutable  fields defined by the type
         /// </summary>
         /// <param name="t">The type to examine</param>
-        public static IEnumerable<FieldInfo> GetDeclaredPublicImmutableFields(this Type t, MemberInstanceType mit)
+        public static IEnumerable<FieldInfo> DeclaredPublicImmutableFields(this Type t, MemberInstanceType mit)
             => from f in (mit.IsStaticType() 
                     ? t.GetFields(BF_DeclaredPublicStatic) 
                     : t.GetFields(BF_DeclaredPublicInstance))
@@ -510,8 +391,12 @@ namespace Z0
         public static IEnumerable<PropertyInfo> DeclaredProperties(this Type t)
             => t.GetProperties(BF_Declared);
 
-        public static IEnumerable<PropertyInfo> AllProperties(this Type t)
-            => t.GetProperties(BF_All);
+        /// <summary>
+        /// Retrieves all instance/static and public/non-public properties iherited or declared by a type
+        /// </summary>
+        /// <param name="src">The type to examine</param>
+        public static IEnumerable<PropertyInfo> AllProperties(this Type src)
+            => src.GetProperties(BF_All);
 
         /// <summary>
         /// Retrieves all instance/static and public/non-public properties 
@@ -578,7 +463,6 @@ namespace Z0
         /// non-nullable underlying integral type
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
         public static Type GetUnderlyingType(this Type t)
         {
             if (t.IsNullableType())
@@ -591,46 +475,10 @@ namespace Z0
         }
 
         /// <summary>
-        /// Retrieves the public, staticic and immutable fields defined by the type
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        static IEnumerable<FieldInfo> GetDeclaredPublicStaticImmutableFields(this Type t)
-            =>  t.Fields().Public().Immutable().Static();
-
-        /// <summary>
-        /// Retrieves the values of the public, staticic and immutable fields defined by the type
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        static IEnumerable<object> GetDeclaredPublicStaticImmutableFieldValues(this Type t)
-            =>  t.Fields().Public().Static().Immutable().Values();
-
-        /// <summary>
-        /// Retrieves the T-values of the public, static and immutable fields defined by the type
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        static IEnumerable<T> GetDeclaredPublicStaticImmutableFieldValues<T>(this Type t)
-            =>  t.GetDeclaredPublicStaticImmutableFieldValues().Where(v => v is T).Cast<T>();
-
-        /// <summary>
-        /// Selects the public immutable instance fields defined by a type
-        /// </summary>
-        /// <param name="src">The type to examine</param>
-        static IEnumerable<FieldInfo> GetDeclaredPublicInstanceImmutableFields(this Type src)
-            =>  src.Fields().Public().Instance().Immutable();
-
-        /// <summary>
-        /// Retrieves the nonpublic immutable fields defined by a type
-        /// </summary>
-        /// <param name="src">The type to examine</param>
-        static IEnumerable<FieldInfo> GetDeclaredNonPublicInstanceImmutableFields(this Type src)
-            =>  src.Fields().NonPublic().Instance().Immutable();
-        
-        /// <summary>
         /// Retrieves the type's public inherited immutable instance fields
         /// </summary>
         /// <param name="t"></param>
-        /// <returns></returns>
-        public static IEnumerable<FieldInfo> GetInheritedPublicImmutableFields(this Type t, MemberInstanceType mit)
+        public static IEnumerable<FieldInfo> InheritedPublicImmutableFields(this Type t, MemberInstanceType mit)
             => from f in ((
                     mit.IsStaticType() 
                 ? t.BaseType?.GetFields(BF_AllPublicStatic) 
@@ -644,22 +492,16 @@ namespace Z0
         /// Retrieves the type's non-public fields
         /// </summary>
         /// <param name="src">The type to examine</param>
-        public static IEnumerable<FieldInfo> GetPublicImmutableFields(this Type src, MemberInstanceType mit)
-            => src.GetInheritedPublicImmutableFields(mit).Union(src.GetDeclaredPublicImmutableFields(mit));
+        public static IEnumerable<FieldInfo> PublicImmutableFields(this Type src, MemberInstanceType mit)
+            => src.InheritedPublicImmutableFields(mit).Union(src.DeclaredPublicImmutableFields(mit));
 
-        /// <summary>
-        /// Retrieves the non-public immutable instance fields declared by the type
-        /// </summary>
-        /// <param name="t">The type to examine</param>
-        public static IEnumerable<FieldInfo> DeclaredNonPublicImmutableInstanceFields(this Type t)
-            =>  t.Fields().NonPublic().Immutable().Instance();  
 
         /// <summary>
         /// Retrieves the non-public immutable instance fields inherited by the type
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <returns></returns>
-        public static IEnumerable<FieldInfo> GetInheritedRestrictedImmutableFields(this Type t)
+        static IEnumerable<FieldInfo> GetInheritedRestrictedImmutableFields(this Type t)
             => t.BaseType?.GetFields(BF_AllRestrictedInstance)
                         ?.Where(f => f.IsInitOnly || f.IsLiteral) ?? new FieldInfo[] { };
 
@@ -667,8 +509,8 @@ namespace Z0
         /// Retrieves the immutable instance fields inherited and declared by the type
         /// </summary>
         /// <param name="t">The type to examine</param>
-        public static IEnumerable<FieldInfo> GetRestrictedImmutableFields(this Type t)
-            => t.GetInheritedRestrictedImmutableFields().Union(t.DeclaredNonPublicImmutableInstanceFields());
+        public static IEnumerable<FieldInfo> RestrictedImmutableFields(this Type t)
+            => t.GetInheritedRestrictedImmutableFields().Union(t.Fields().NonPublic().Immutable().Instance());
 
         /// <summary>
         /// Retrieves the public properties declared by a type
@@ -676,8 +518,7 @@ namespace Z0
         /// <param name="t">The type to examine</param>
         /// <param name="mit">The instance type</param>
         /// <param name="requireSetters">Whether the existence of setters are requied to satisfy matches</param>
-        /// <returns></returns>
-        public static IEnumerable<PropertyInfo> GetDeclaredPublicProperties(this Type t, 
+        public static IEnumerable<PropertyInfo> DeclaredPublicProperties(this Type t, 
             MemberInstanceType mit,  bool requireSetters = false)
                 => (mit == MemberInstanceType.Instance 
                     ? t.GetProperties(BF_DeclaredPublicInstance) 
@@ -685,16 +526,14 @@ namespace Z0
                     ).Where(p => !p.IsIndexer() && (requireSetters ? p.HasSetter() : true));
 
         
-
         /// <summary>
         /// Retrieves the public instance properties declared by a type
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <param name="mit">The instance type</param>
         /// <param name="requireSetters">Whether the existence of setters are requied to satisfy matches</param>
-        /// <returns></returns>
         public static IEnumerable<PropertyInfo> GetDeclaredPublicInstanceProperties(this Type t, bool requireSetters = false)
-            => t.GetDeclaredPublicProperties(MemberInstanceType.Instance, requireSetters);
+            => t.DeclaredPublicProperties(MemberInstanceType.Instance, requireSetters);
         
         /// <summary>
         /// Retrieves the non-public properties declared by a type
@@ -702,23 +541,19 @@ namespace Z0
         /// <param name="t">The type to examine</param>
         /// <param name="mit">The instance type</param>
         /// <param name="requireSetters">Whether the existence of setters are requied to satisfy matches</param>
-        /// <returns></returns>
-
-        public static IEnumerable<PropertyInfo> GetDeclaredNonPublicProperties(this Type t, 
+        public static IEnumerable<PropertyInfo> DeclaredNonPublicProperties(this Type t, 
             MemberInstanceType mit, bool requireSetters = false)
                 => (mit == MemberInstanceType.Instance
                     ? t.GetProperties(BF_DeclaredNonPublicInstance)
                     : t.GetProperties(BF_DeclaredNonPublicStatic)
                     ).Where(p => !p.IsIndexer() && (requireSetters ? p.HasSetter() : true));
-
-            
+                    
         /// <summary>
         /// Searches for non-public methods delcared by the type
         /// </summary>
         /// <param name="t">The type to search</param>
         /// <param name="mit">The instance type</param>
-        /// <returns></returns>
-        public static IEnumerable<MethodInfo> GetDeclaredNonPublicMethods(this Type t,
+        public static IEnumerable<MethodInfo> DeclaredNonPublicMethods(this Type t,
             MemberInstanceType mit)
                 => (mit == MemberInstanceType.Instance
                     ? t.GetMethods(BF_DeclaredNonPublicInstance)
@@ -729,8 +564,7 @@ namespace Z0
         /// Retrieves the public instance properties declared by a supertype
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        public static IEnumerable<PropertyInfo> GetInheritedPublicProperties(this Type t, bool requireSetters = false)
+        public static IEnumerable<PropertyInfo> InheritedPublicProperties(this Type t, bool requireSetters = false)
             => t.BaseType?.GetProperties(BF_AllPublicInstance)
                         .Where(p => !p.IsIndexer() && (requireSetters ? p.HasSetter() : true))
                         ?? new PropertyInfo[] { };
@@ -767,7 +601,7 @@ namespace Z0
             types.Add(t);
             foreach (var type in types)
             {
-                iter(type.GetDeclaredPublicProperties(MemberInstanceType.Instance, requireSetters),
+                iter(type.DeclaredPublicProperties(MemberInstanceType.Instance, requireSetters),
                     p =>
                     {
                         if (deduplicate)
@@ -785,13 +619,12 @@ namespace Z0
             return props;
         }
 
-
         /// <summary>
         /// Gets the public methods inherited by a type
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <param name="InstanceType">The instance type classification</param>
-        public static IEnumerable<MethodInfo> GetInheritedPublicMethods(this Type t, MemberInstanceType InstanceType)
+        public static IEnumerable<MethodInfo> InheritedPublicMethods(this Type t, MemberInstanceType InstanceType)
             => (InstanceType.IsStaticType()
                 ? t.BaseType?.GetMethods(BF_AllPublicStatic)
                 : t.BaseType?.GetMethods(BF_AllPublicInstance)) 
@@ -803,7 +636,7 @@ namespace Z0
         /// <param name="t">The type to examine</param>
         /// <param name="InstanceType">The instance type classification</param>
         /// <returns></returns>
-        public static IEnumerable<MethodInfo> GetDeclaredPublicMethods(this Type t, MemberInstanceType InstanceType)
+        public static IEnumerable<MethodInfo> DeclaredPublicMethods(this Type t, MemberInstanceType InstanceType)
             => InstanceType.IsStaticType() 
             ? t.GetMethods(BF_DeclaredPublicStatic) 
             : t.GetMethods(BF_DeclaredPublicInstance);
@@ -814,16 +647,16 @@ namespace Z0
         /// <param name="t">The type to examine</param>
         /// <param name="InstanceType">The instance type classification</param>
         /// <returns></returns>
-        public static IEnumerable<MethodInfo> GetPublicMethods(this Type t, MemberInstanceType InstanceType)
-            => t.GetInheritedPublicMethods(InstanceType).Concat(t.GetDeclaredPublicMethods(InstanceType));
+        public static IEnumerable<MethodInfo> PublicMethods(this Type t, MemberInstanceType InstanceType)
+            => t.InheritedPublicMethods(InstanceType).Concat(t.DeclaredPublicMethods(InstanceType));
             
         /// <summary>
         /// Retrieves a type's public and read-only fields of a specific type
         /// </summary>
         /// <typeparam name="T">The field value type</typeparam>
         /// <param name="declaringType"></param>
-        public static IReadOnlyDictionary<string, T> GetDeclaredPublicReadonlyFieldIndex<T>(this Type declaringType)
-            => declaringType.GetDeclaredPublicImmutableFields(MemberInstanceType.Static).Where(f => f.FieldType == typeof(T))
+        public static IReadOnlyDictionary<string, T> FieldIndex<T>(this Type declaringType)
+            => declaringType.DeclaredPublicImmutableFields(MemberInstanceType.Static).Where(f => f.FieldType == typeof(T))
                     .Select(field =>
                         (
                             field.Name,
@@ -835,7 +668,7 @@ namespace Z0
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <param name="InstanceType">Whether to selct static or instance </param>
-        public static IEnumerable<MethodInfo> GetDeclaredMethods(this Type t, MemberInstanceType InstanceType)
+        public static IEnumerable<MethodInfo> DeclaredMethods(this Type t, MemberInstanceType InstanceType)
             => t.GetMethods(InstanceType.IsStaticType()  ? BF_DeclaredStatic : BF_DeclaredInstance);
 
         /// <summary>
@@ -861,18 +694,17 @@ namespace Z0
         /// <param name="t">The type to examine</param>
         /// <param name="InstanceType">Whether to selct static or instance </param>
         /// <returns></returns>
-        public static IEnumerable<MethodInfo> GetDeclaredInstanceMethods(this Type t)
+        public static IEnumerable<MethodInfo> DeclaredInstanceMethods(this Type t)
             => t.GetMethods(BF_DeclaredInstance);
 
         /// <summary>
         /// Retrieves all public properties exposed by a type and appropriately handles interface inheritance
         /// </summary>
         /// <param name="type">The type to examine</param>
-        /// <returns></returns>
         /// <remarks>
         /// Taken from: http://stackoverflow.com/questions/358835/getproperties-to-return-all-properties-for-an-interface-inheritance-hierarchy
         /// </remarks>   
-        public static PropertyInfo[] GetPublicInstanceProperties(this Type type)
+        public static PropertyInfo[] PublicInstanceProperties(this Type type)
         {
             if (type.IsInterface)
             {
@@ -915,8 +747,7 @@ namespace Z0
         /// Gets the static methods defined on a specified type
         /// </summary>
         /// <param name="t">The type to examine</param>
-        /// <returns></returns>
-        public static IEnumerable<MethodInfo> GetStaticMethods(this Type t)
+        public static IEnumerable<MethodInfo> StaticMethods(this Type t)
             => t.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
 
         /// <summary>
@@ -924,7 +755,7 @@ namespace Z0
         /// </summary>
         /// <param name="this">The type to examine</param>
         /// <returns></returns>
-        public static IEnumerable<PropertyInfo> GetStaticProperties(this Type @this)
+        public static IEnumerable<PropertyInfo> StaticProperties(this Type @this)
             => @this.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
 
         /// <summary>
@@ -935,22 +766,13 @@ namespace Z0
         public static Option<MethodInfo> StaticMethod(this Type t, string name) 
             => t.GetMethod(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
 
-
-        /// <summary>
-        /// Attempts to retrieve the value of a named static field
-        /// </summary>
-        /// <param name="src">The declaring type</param>
-        /// <param name="name">The name of the method</param>
-        static Option<V> DeclaredStaticFieldValue<V>(this Type src, string name)
-            => src.DeclaredStaticField(name).Select(x => (V)x.GetValue(null));
-
         /// <summary>
         /// Discovers a type's automatic properties
         /// </summary>
         /// <param name="t"></param>
         static IReadOnlyList<ValueMember> AutoProps(this Type t)
         {
-            var afquery = from f in t.GetRestrictedImmutableFields()
+            var afquery = from f in t.RestrictedImmutableFields()
                         where f.IsCompilerGenerated() && f.Name.EndsWith("__BackingField")
                         select f;
             var backingFields = afquery.ToList();// .ToReadOnlySet();
@@ -976,7 +798,7 @@ namespace Z0
             {
                 var members = new List<ValueMember>();        
                 members.AddRange(src.AutoProps());
-                var fieldMembers = t.GetPublicImmutableFields(MemberInstanceType.Instance).Select(x => new ValueMember(x));
+                var fieldMembers = t.PublicImmutableFields(MemberInstanceType.Instance).Select(x => new ValueMember(x));
                 members.AddRange(fieldMembers);
                 var propMembers = t.PublicPropertySearch(false, true).Where(x => x.CanRead && x.CanWrite).Select(x => new ValueMember(x));
                 members.AddRange(propMembers);
@@ -996,7 +818,7 @@ namespace Z0
         /// </summary>
         /// <param name="t">The type to examine</param>
         /// <param name="o">The type instance</param>
-        public static IReadOnlyDictionary<string, object> GetPropertyValues(this Type t, object o)
+        public static IReadOnlyDictionary<string, object> PropertyValues(this Type t, object o)
             => map(props(o), p => (p.Name, p.GetValue(o))).ToReadOnlyDictionary();
 
 
@@ -1005,8 +827,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="A"></typeparam>
         /// <param name="types"></param>
-        /// <returns></returns>
-        public static IReadOnlyDictionary<Type, Option<A>> GetTypeAttributions<A>(this IEnumerable<Type> types)
+        public static IReadOnlyDictionary<Type, Option<A>> TypeAttributions<A>(this IEnumerable<Type> types)
             where A : Attribute
             => (from type in types
                 let attrib = type.GetCustomAttribute<A>(true)
@@ -1019,7 +840,7 @@ namespace Z0
         /// </summary>
         /// <typeparam name="A">The attribute type</typeparam>
         /// <param name="t">The type to examine</param>
-        public static IReadOnlyDictionary<PropertyInfo, A> GetPropertyAttributions<A>(this Type t) where A : Attribute
+        public static IReadOnlyDictionary<PropertyInfo, A> PropertyAttributions<A>(this Type t) where A : Attribute
         {
             var q = from p in t.GetProperties(BF_Instance)
                     where Attribute.IsDefined(p, typeof(A))
@@ -1057,11 +878,11 @@ namespace Z0
         /// <typeparam name="A">The attribute type</typeparam>
         /// <param name="t">The type to examine</param>
         /// <param name="InstanceType">The member instance type</param>
-        public static IDictionary<MethodInfo, A> GetMethodAttributions<A>(this Type t,
+        public static IDictionary<MethodInfo, A> MethodAttributions<A>(this Type t,
                 MemberInstanceType InstanceType = MemberInstanceType.Instance)
                     where A : Attribute
         {
-            var q = from m in t.GetDeclaredMethods(InstanceType)
+            var q = from m in t.DeclaredMethods(InstanceType)
                     where Attribute.IsDefined(m, typeof(A))
                     let attrib = m.GetCustomAttribute<A>()
                     select new

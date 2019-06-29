@@ -3,22 +3,23 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <Import Project="..\package.targets" />
 
   <ItemGroup>
-    <ProjectReference Include="..\nats\z0.nats.csproj" />
-    <ProjectReference Include="..\structs\z0.structs.csproj" />
-    <ProjectReference Include="..\func\z0.zfunc.csproj" />
-    <ProjectReference Include="..\primal\z0.primal.csproj" />
     <ProjectReference Include="..\analogs\z0.analogs.csproj" />
+    <ProjectReference Include="..\deconstruct\z0.deconstruct.csproj" />
+    <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\inx\z0.inx.csproj" />
-    <ProjectReference Include="..\random\z0.random.csproj" />
-    <ProjectReference Include="..\mkl\z0.mkl.csproj" />
     <ProjectReference Include="..\linear\z0.linear.csproj" />
+    <ProjectReference Include="..\mkl\z0.mkl.csproj" />
+    <ProjectReference Include="..\ms\z0.ms.csproj" />
+    <ProjectReference Include="..\nats\z0.nats.csproj" />
+    <ProjectReference Include="..\primal\z0.primal.csproj" />
+    <ProjectReference Include="..\random\z0.random.csproj" />
     <ProjectReference Include="..\stats\z0.stats.csproj" />
+    <ProjectReference Include="..\structs\z0.structs.csproj" />
 
   </ItemGroup>
 

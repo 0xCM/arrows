@@ -351,6 +351,7 @@ namespace Z0
         public static Vec128<double> define(double x0)
             => Vector128.Create(x0);
 
+
         [MethodImpl(Inline)]
         public static Vec128<byte> define(
             byte x0, byte x1, byte x2, byte x3,  

@@ -72,37 +72,28 @@ partial class zfunc
     /// Concatenates a sequence of parameter arrays
     /// </summary>
     /// <param name="src">The source arrays</param>
-    /// <remarks>See https://stackoverflow.com/questions/415291/best-way-to-combine-two-or-more-byte-arrays-in-c-sharp</remarks>
     public static T[] concat<T>(params T[][] src)
-        where T : struct
     {
-        var ret = new T[src.Sum(x => x.Length)];
-        int offset = 0;
-        foreach (var data in src)
+        var totalLen = src.Sum(x => x.Length);
+        var dst = new T[totalLen];
+        var idx = 0;
+        for(var i=0; i< src.Length; i++)
         {
-            Buffer.BlockCopy(data, 0, ret, offset, data.Length);
-            offset += data.Length;
-        }
-        return ret;
+            var arr = src[i];
+            var len = arr.Length;
+            for(var j = 0; j<len; j++)
+                dst[idx++] = arr[j];            
+        }        
+
+        return dst;
     }
 
     /// <summary>
     /// Concatenates a sequence of arrays
     /// </summary>
     /// <param name="src">The source arrays</param>
-    /// <remarks>See https://stackoverflow.com/questions/415291/best-way-to-combine-two-or-more-byte-arrays-in-c-sharp</remarks>
     public static T[] concat<T>(IEnumerable<T[]> src)
-        where T : struct
-    {
-        var ret = new T[src.Sum(x => x.Length)];
-        int offset = 0;
-        foreach (var data in src)
-        {
-            Buffer.BlockCopy(data, 0, ret, offset, data.Length);
-            offset += data.Length;
-        }
-        return ret;
-    }
+        => concat(src.ToArray());
 
     /// <summary>
     /// Concatenates a sequence of strings

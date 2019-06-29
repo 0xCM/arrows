@@ -182,20 +182,43 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source method</param>
         [MethodImpl(Inline)]
-        public static string FullDisplayName(this MethodBase src)
+        public static string FullDisplayName(this MethodInfo src)
             => $"{src.DeclaringType.DisplayName()}{src.DisplayName()}";
 
         [MethodImpl(Inline)]
         public static Func<T,T,T> ToBinaryOperator<T>(this MethodInfo target)
             => binop<T>(target);
 
-        [MethodImpl(Inline)]
-        public static string DisplayName(this MethodBase src)
-        {
-            var attrib = src.GetCustomAttribute<DisplayNameAttribute>();
-            return attrib != null ? attrib.DisplayName.TrimEnd('/') : src.Name;
+        static string GenericMemberDisplayName(string memberName, IReadOnlyList<Type> args)
+        {                
+            var argFmt = args.Count != 0 ? args.Select(t => t.DisplayName()).Concat(", ") : string.Empty;
+            
+            var typeName = memberName.Replace($"`{args.Count}", string.Empty);
+            return typeName + (args.Count != 0 ? angled(argFmt) : string.Empty);
         }
 
+        
+        public static MethodSig MethodSig(this MethodInfo src)
+            => Z0.MethodSig.Define(src);
+
+        public static IReadOnlyList<Type> GenericSlots(this MethodInfo src)
+            => !(src.IsGenericMethod && !src.IsGenericMethodDefinition) ? new Type[]{} 
+               : src.IsConstructedGenericMethod
+               ? src.GetGenericArguments()
+               : src.GetGenericMethodDefinition().GetGenericArguments();
+
+        /// <summary>
+        /// If a type is non-generic, returns an emtpy list.
+        /// If a type is open generic, returns a list describing the open parameters
+        /// If a type is closed generic, returns a list describing the closed parameters
+        /// </summary>
+        /// <param name="src">The type from which to extract existing closed/open generic parameters</param>
+        public static IReadOnlyList<Type> GetGenericSlots(this Type src)
+            => (!src.IsGenericType && !src.IsGenericTypeDefinition) ? new Type[]{} 
+               : src.IsConstructedGenericType 
+               ? src.GenericTypeArguments 
+               : src.GetGenericTypeDefinition().GetGenericArguments();
+    
         /// <summary>
         /// Constructs a display name for a type
         /// </summary>
@@ -206,23 +229,49 @@ namespace Z0
             if (attrib != null)
                 return attrib.DisplayName;
 
-            if (!src.IsGenericType)
-                return src.Name;
+            if(src.IsPrimalNumeric())
+                return src.PrialNumericName();
+            
+            if(src.IsBool())
+                return "bool";
+            
+            if(src.IsVoid())
+                return "void";
+            
+            if(src.IsString())
+                return "string";            
+            
+            if(src.IsGenericType || src.IsByRef || src.IsByRefLike)
+            {
+                var name = src.Name.Replace("&", string.Empty);
+                name = src.IsByRef ? "byref " + name : name;
+                var args = src.GetGenericArguments();
+                if(args.Length != 0)
+                {
+                    name = name.Replace($"`{args.Length}", string.Empty);
+                    name += "<";
+                    for(var i= 0; i< args.Length; i++)
+                    {
+                        name += args[i].DisplayName();
+                        if(i != args.Length - 1)
+                            name += ",";
+                    }                                
+                    name += ">";
+                }
+                return name;
+            }
+            return src.Name;
+            // var slots = src.GetGenericSlots();
+            // return slots.Count == 0 ? src.Name : GenericMemberDisplayName(src.Name, slots);            
+        }
 
-            if (src.IsConstructedGenericType)
-            {
-                var typeArgs = src.GenericTypeArguments;
-                var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
-                var typeName = src.Name.Replace($"`{typeArgs.Length}", string.Empty);
-                return concat(typeName, "<", argFmt, ">");
-            }
-            else
-            {
-                var typeArgs = src.GetGenericTypeDefinition().GetGenericArguments();
-                var argFmt = string.Join(",", typeArgs.Select(a => a.DisplayName()).ToArray());
-                var typeName = src.Name.Replace($"`{typeArgs.Length}", string.Empty);
-                return concat(typeName, "<", argFmt, ">");
-            }
+        public static string DisplayName(this MethodInfo src)
+        {
+            var attrib = src.GetCustomAttribute<DisplayNameAttribute>();
+            if(attrib != null)
+                return attrib.DisplayName;
+            var slots = src.GenericSlots();
+            return slots.Count == 0 ? src.Name : GenericMemberDisplayName(src.Name, slots);            
         }
 
         public static IEnumerable<Type> Realize<T>(this IEnumerable<Type> src)

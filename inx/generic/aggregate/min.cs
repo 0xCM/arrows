@@ -13,7 +13,7 @@ namespace Z0
     using static zfunc;
     using static AsInX;
 
-    public static partial class ginx
+    partial class ginx
     {
         
         [MethodImpl(Inline)]

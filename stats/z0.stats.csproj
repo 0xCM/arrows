@@ -4,10 +4,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
-
-
 
   <ItemGroup>
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
@@ -15,7 +12,6 @@
     <ProjectReference Include="..\primal\z0.primal.csproj" />
     <ProjectReference Include="..\random\z0.random.csproj" />
     <ProjectReference Include="..\ms\z0.ms.csproj" />
-
   </ItemGroup>
 
 </Project>

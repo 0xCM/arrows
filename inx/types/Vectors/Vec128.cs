@@ -17,8 +17,7 @@ namespace Z0
     [StructLayout(LayoutKind.Sequential, Size = 16)]
     public readonly struct Vec128<T>
         where T : struct
-    {        
-    
+    {            
         public static readonly int Length = Vector128<T>.Count;
 
         public static readonly int CellSize = Unsafe.SizeOf<T>();
@@ -27,17 +26,18 @@ namespace Z0
 
         public static readonly Vec128<T> Zero = Vector128<T>.Zero;
         
-        readonly ulong x0;
-
-        readonly ulong x1;
+        readonly Vector128<T> data;        
     
+        public Vec128(in Vector128<T> src)
+            => this.data = src;
+
         [MethodImpl(Inline)]
         public static implicit operator Vec128<T>(Vector128<T> src)
-            => Unsafe.As<Vector128<T>, Vec128<T>>(ref src);
+            => new Vec128<T>(src);
 
         [MethodImpl(Inline)]
         public static implicit operator Vector128<T>(Vec128<T> src)
-            => Unsafe.As<Vec128<T>, Vector128<T>>(ref src);
+            => src.data;
 
         [MethodImpl(Inline)]
         static T Component(Vec128<T> src, int index)
@@ -66,13 +66,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public Vec128<U> As<U>() 
             where U : struct
-                => Unsafe.As<Vec128<T>, Vec128<U>>(ref Unsafe.AsRef(in this));         
+                => Unsafe.As<Vector128<T>, Vec128<U>>(ref Unsafe.AsRef(in data));         
 
         [MethodImpl(Inline)]
         public bool Eq(Vec128<T> rhs)
-            => Vector128(this).Equals(rhs);
+             => data.Equals(rhs.data);
 
         public override string ToString()
-            => Vector128(this).ToString();
+            => data.ToString();
     }     
 }

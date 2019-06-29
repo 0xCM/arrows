@@ -10,9 +10,7 @@ namespace Z0.Test
     using System.Runtime.CompilerServices;
     using System.IO;
     
-    using Z0.Diagnostics;    
     using static zfunc;
-
 
     public class BlockedSpanTest : UnitTest<BlockedSpanTest>
     {

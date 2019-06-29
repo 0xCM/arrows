@@ -115,41 +115,6 @@ namespace Z0
         }
  
 
-        public static Span128<T> mul<S,T>(ReadOnlySpan128<S> lhs, ReadOnlySpan128<S> rhs, Span128<T> dst)
-            where S : struct
-            where T : struct
-        {
-            if(typeof(S) == typeof(int))
-                int32(lhs).Mul(int32(rhs), int64(dst));
-            else if(typeof(S) == typeof(uint))
-                uint32(lhs).Mul(uint32(rhs), uint64(dst));
-            else if(typeof(S) == typeof(float))
-                float32(lhs).Mul(float32(rhs), float32(dst));
-            else if(typeof(S) == typeof(double))
-                float64(rhs).Mul(float64(rhs), float64(dst));
-            else
-                throw unsupported<T>();
-            return dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static Span256<T> mul<S,T>(ReadOnlySpan256<S> lhs, ReadOnlySpan256<S> rhs, Span256<T> dst)
-            where S : struct
-            where T : struct
-        {
-            if(typeof(S) == typeof(int))
-                int32(lhs).Mul(int32(rhs), int64(dst));
-            else if(typeof(S) == typeof(uint))
-                uint32(lhs).Mul(uint32(rhs), uint64(dst));
-            else if(typeof(S) == typeof(float))
-                float32(lhs).Mul(float32(rhs), float32(dst));
-            else if(typeof(S) == typeof(double))
-                float64(rhs).Mul(float64(rhs), float64(dst));
-            else
-                throw unsupported<T>();
-            return dst;
-
-        }
 
     }
 }

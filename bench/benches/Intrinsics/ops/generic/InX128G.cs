@@ -22,7 +22,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                ginx.add(lhs, rhs, dst);
+                lhs.Add(rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -33,7 +33,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                ginx.sub(lhs, rhs, dst);
+                lhs.Sub(rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -44,7 +44,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                ginx.mul(lhs, rhs, dst);
+                lhs.Mul(rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -55,7 +55,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                ginx.div(lhs, rhs, dst);
+                lhs.Div(rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -66,7 +66,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                ginx.and(lhs, rhs, dst);
+                lhs.And(rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -77,7 +77,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                ginx.or(lhs, rhs, dst);
+                lhs.Or(rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -88,7 +88,7 @@ namespace Z0.Bench
             var dst = alloc(lhs,rhs);
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                ginx.xor(lhs, rhs, dst);
+                lhs.XOr(rhs, dst);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
     }

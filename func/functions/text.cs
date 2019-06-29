@@ -378,7 +378,7 @@ partial class zfunc
     /// <param name="content"></param>
     [MethodImpl(Inline)]
     public static string paren(params object[] content)
-        => enclose(concat(content), lparen(), rparen());
+        => enclose(concat(content.Select(x => x.ToString())), lparen(), rparen());
 
     /// <summary>
     /// Renders a content array as a comma-separated list of values
@@ -441,7 +441,7 @@ partial class zfunc
     /// <param name="content">The content to enclose</param>
     [MethodImpl(Inline)]
     public static string angled(string content)
-        => $"<{content}>";
+        => String.IsNullOrWhiteSpace(content) ? string.Empty : $"<{content}>";
 
     /// <summary>
     /// Trims leading characters when matched

@@ -28,7 +28,6 @@ namespace Z0
 
         readonly Vector256<T> data;        
     
-
         [MethodImpl(Inline)]
         public static implicit operator Vec256<T>(in Vector256<T> src)
             => new Vec256<T>(src);
@@ -57,28 +56,6 @@ namespace Z0
             get => component(this,idx);
         }
 
-        /// <summary>
-        /// Extracts the components from the vector
-        /// </summary>
-        [MethodImpl(Inline)]
-        public T[] components()
-        {
-            var dst = new T[Length];
-            for(var i = 0; i<Length; i++)
-                dst[i] = component(data,i);
-            return dst;
-        }
-
-        /// <summary>
-        /// Copies the vector components to a supplied array
-        /// </summary>
-        [MethodImpl(Inline)]
-        public T[] components(ref T[] dst)
-        {
-            for(var i = 0; i< Length; i++)
-                dst[i] = component(data,i);
-            return dst;
-        }    
 
         [MethodImpl(Inline)]
         public Vec256<U> As<U>() 

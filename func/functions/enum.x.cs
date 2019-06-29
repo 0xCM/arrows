@@ -138,6 +138,15 @@ namespace  Z0
         public static IReadOnlyList<T> Map<S, T>(this IEnumerable<S> src, Func<S, T> f)
             => src.Select(item => f(item)).ToList();
 
+        public static IEnumerable<T> Mapi<S, T>(this IEnumerable<S> src, Func<int,S, T> f)
+        {
+            var i = 0;
+            var it = src.GetEnumerator();            
+            while(it.MoveNext())
+                yield return f(i++, it.Current);
+        }
+            
+
         /// <summary>
         /// Creates a read-only list from list
         /// </summary>

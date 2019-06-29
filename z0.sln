@@ -1,4 +1,5 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28917.181
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -12,45 +13,53 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.test", "test\z0.test.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.bench", "bench\z0.bench.csproj", "{45F1598A-C308-45C0-BE7B-26EBFC830CD6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.runner", "runner\z0.runner.csproj", "{8706906C-22E6-4752-9ADB-EA31F05C043E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.analogs", "analogs\z0.analogs.csproj", "{2B2973C9-A5D9-4697-9050-4DFEACE1111D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.inx", "inx\z0.inx.csproj", "{741B1C85-27B3-4ABD-A757-B0BDBC6EBB60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.random", "random\z0.random.csproj", "{AA36C5D4-C359-4E77-8A60-B2DC3F6E9CA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.random", "random\z0.random.csproj", "{AA36C5D4-C359-4E77-8A60-B2DC3F6E9CA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.mkl", "mkl\z0.mkl.csproj", "{50D858C1-1BA9-4AD2-8103-E455A3B0643C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.mkl", "mkl\z0.mkl.csproj", "{50D858C1-1BA9-4AD2-8103-E455A3B0643C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.testing", "testing\z0.testing.csproj", "{F1BC9C5A-A29E-47DD-879A-1B071B1257B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.testing", "testing\z0.testing.csproj", "{F1BC9C5A-A29E-47DD-879A-1B071B1257B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.inx.test", "inx.test\z0.inx.test.csproj", "{CEA67411-9B90-4B94-BE0A-E337D07D09B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.inx.test", "inx.test\z0.inx.test.csproj", "{CEA67411-9B90-4B94-BE0A-E337D07D09B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.primal.test", "primal.test\z0.primal.test.csproj", "{D160FBEE-86C6-47E9-814A-600CABFAA65C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.primal.test", "primal.test\z0.primal.test.csproj", "{D160FBEE-86C6-47E9-814A-600CABFAA65C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.random.test", "random.test\z0.random.test.csproj", "{249331F9-FACC-455C-B450-F0A2DD2FB0BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.random.test", "random.test\z0.random.test.csproj", "{249331F9-FACC-455C-B450-F0A2DD2FB0BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.stats", "stats\z0.stats.csproj", "{1A25FE0D-FE6C-410C-AB22-D7C7248D1252}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.stats", "stats\z0.stats.csproj", "{1A25FE0D-FE6C-410C-AB22-D7C7248D1252}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.linear.test", "linear.test\z0.linear.test.csproj", "{9FC7F5DC-E445-499F-ACD4-3B7AF39CC9E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.linear.test", "linear.test\z0.linear.test.csproj", "{9FC7F5DC-E445-499F-ACD4-3B7AF39CC9E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.mkl.test", "mkl.test\z0.mkl.test.csproj", "{6C8CED38-7C42-4D4A-A6E9-CF79670FF975}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.mkl.test", "mkl.test\z0.mkl.test.csproj", "{6C8CED38-7C42-4D4A-A6E9-CF79670FF975}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.ms", "ms\z0.ms.csproj", "{728D7A58-F450-4AC5-9C25-0775FD9360DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.ms", "ms\z0.ms.csproj", "{728D7A58-F450-4AC5-9C25-0775FD9360DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.ms.test", "ms.test\z0.ms.test.csproj", "{397D5D3F-DE95-4548-A217-3A205DB222C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.ms.test", "ms.test\z0.ms.test.csproj", "{397D5D3F-DE95-4548-A217-3A205DB222C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.linear", "linear\z0.linear.csproj", "{74D16C04-D5D3-4CA4-9944-D050AEE9E117}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.linear", "linear\z0.linear.csproj", "{74D16C04-D5D3-4CA4-9944-D050AEE9E117}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.structs", "structs\z0.structs.csproj", "{8F58300A-9E3B-4DD4-8D09-8676BA6FC2F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.structs", "structs\z0.structs.csproj", "{8F58300A-9E3B-4DD4-8D09-8676BA6FC2F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.stats.test", "stats.test\z0.stats.test.csproj", "{8E5E76B2-9C76-4888-981B-1B40894C34DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.stats.test", "stats.test\z0.stats.test.csproj", "{8E5E76B2-9C76-4888-981B-1B40894C34DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.func.test", "func.test\z0.func.test.csproj", "{FC5C079B-69F2-4B59-BAED-4E5E4AB3CE35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.func.test", "func.test\z0.func.test.csproj", "{FC5C079B-69F2-4B59-BAED-4E5E4AB3CE35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.analogs.test", "analogs.test\z0.analogs.test.csproj", "{5561EF08-4B44-443B-B98E-F9CA608A3483}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.analogs.test", "analogs.test\z0.analogs.test.csproj", "{5561EF08-4B44-443B-B98E-F9CA608A3483}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.rx", "rx\z0.rx.csproj", "{70A7D9EA-00D0-433B-A5A6-2671104B3674}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.deconstruct", "deconstruct\z0.deconstruct.csproj", "{0EFBDE29-63CE-43A1-AD69-CC88AD7392C8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "z0.suite", "suite\z0.suite.csproj", "{8CCA3CCF-1A5A-4AF1-90F4-668BB683E06E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{598A6D75-DF05-4B47-A53A-23308D05D6A2}"
+	ProjectSection(SolutionItems) = preProject
+		common.props = common.props
+		directory.build.props = directory.build.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "z0.devops", "devops\z0.devops.csproj", "{3EA88F88-C92A-4B8A-9883-0EA13FAFCEDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,10 +87,6 @@ Global
 		{45F1598A-C308-45C0-BE7B-26EBFC830CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45F1598A-C308-45C0-BE7B-26EBFC830CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45F1598A-C308-45C0-BE7B-26EBFC830CD6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8706906C-22E6-4752-9ADB-EA31F05C043E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8706906C-22E6-4752-9ADB-EA31F05C043E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8706906C-22E6-4752-9ADB-EA31F05C043E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8706906C-22E6-4752-9ADB-EA31F05C043E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2B2973C9-A5D9-4697-9050-4DFEACE1111D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2B2973C9-A5D9-4697-9050-4DFEACE1111D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B2973C9-A5D9-4697-9050-4DFEACE1111D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -94,10 +99,6 @@ Global
 		{AA36C5D4-C359-4E77-8A60-B2DC3F6E9CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA36C5D4-C359-4E77-8A60-B2DC3F6E9CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA36C5D4-C359-4E77-8A60-B2DC3F6E9CA6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{645A0CC3-F179-4D68-A3DD-B2E0992942B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{645A0CC3-F179-4D68-A3DD-B2E0992942B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{645A0CC3-F179-4D68-A3DD-B2E0992942B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{645A0CC3-F179-4D68-A3DD-B2E0992942B8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{50D858C1-1BA9-4AD2-8103-E455A3B0643C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{50D858C1-1BA9-4AD2-8103-E455A3B0643C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50D858C1-1BA9-4AD2-8103-E455A3B0643C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -158,10 +159,18 @@ Global
 		{5561EF08-4B44-443B-B98E-F9CA608A3483}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5561EF08-4B44-443B-B98E-F9CA608A3483}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5561EF08-4B44-443B-B98E-F9CA608A3483}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70A7D9EA-00D0-433B-A5A6-2671104B3674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70A7D9EA-00D0-433B-A5A6-2671104B3674}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70A7D9EA-00D0-433B-A5A6-2671104B3674}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70A7D9EA-00D0-433B-A5A6-2671104B3674}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EFBDE29-63CE-43A1-AD69-CC88AD7392C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EFBDE29-63CE-43A1-AD69-CC88AD7392C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EFBDE29-63CE-43A1-AD69-CC88AD7392C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EFBDE29-63CE-43A1-AD69-CC88AD7392C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CCA3CCF-1A5A-4AF1-90F4-668BB683E06E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CCA3CCF-1A5A-4AF1-90F4-668BB683E06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CCA3CCF-1A5A-4AF1-90F4-668BB683E06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CCA3CCF-1A5A-4AF1-90F4-668BB683E06E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EA88F88-C92A-4B8A-9883-0EA13FAFCEDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA88F88-C92A-4B8A-9883-0EA13FAFCEDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA88F88-C92A-4B8A-9883-0EA13FAFCEDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA88F88-C92A-4B8A-9883-0EA13FAFCEDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

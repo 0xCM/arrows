@@ -9,7 +9,6 @@ namespace Z0
 
     using static zfunc;
 
-
     public readonly struct PrimalKind<T>
     {
         public static readonly Type Type = typeof(T);
@@ -68,27 +67,5 @@ namespace Z0
         float32 = 9,
 
         float64 = 10,          
-
-    }
-
-    public static class PrimalX
-    {
-
-        [MethodImpl(Inline)]
-        public static bool IsIntegral(this PrimalKind kind)
-            => (byte)kind < (byte)PrimalKind.float32;
-
-        [MethodImpl(Inline)]
-        public static bool IsFloat(this PrimalKind kind)
-            => (byte)(kind) > (byte)PrimalKind.uint64;
-
-        [MethodImpl(Inline)]
-        public static bool IsSmallInt(this PrimalKind kind)
-            => (byte)(kind) < (byte)PrimalKind.int32;
-
-        [MethodImpl(Inline)]
-        public static bool IsLargeInt(this PrimalKind kind)
-            => (byte)(kind) > 4 && (byte)(kind) <9;
-
     }
 }

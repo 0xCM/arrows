@@ -76,6 +76,12 @@ partial class zfunc
         => terminal.ReadLine();
 
     /// <summary>
+    /// Reads a line of text from the terminal after printing a supplied message
+    /// </summary>
+    public static string read(AppMsg msg)
+        => terminal.ReadLine(msg);
+
+    /// <summary>
     /// Emits a warning-level message
     /// </summary>
     /// <param name="msg">The message to emit</param>

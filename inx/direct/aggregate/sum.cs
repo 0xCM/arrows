@@ -12,7 +12,7 @@ namespace Z0
     
     partial class dinx
     {
-        public static short sum(ReadOnlySpan<short> src)
+        public static short Sum(this ReadOnlySpan<short> src, NumericSystem system = NumericSystem.Intrinsic)
         {
             var veclen = Vec128<short>.Length;
             var seglen = 2*veclen;
@@ -40,7 +40,11 @@ namespace Z0
             return total;
         }
 
-        public static int sum(ReadOnlySpan<int> src)
+        [MethodImpl(Inline)]
+        public static short Sum(this Span<short> src, NumericSystem system = NumericSystem.Intrinsic)        
+            => src.ReadOnly().Sum(system);
+
+        public static int Sum(this ReadOnlySpan<int> src, NumericSystem system = NumericSystem.Intrinsic)
         {
             var veclen = Vec128<int>.Length;
             var seglen = 2*veclen;
@@ -68,7 +72,11 @@ namespace Z0
             return total;
         }
 
-        public static float sum(ReadOnlySpan<float> src)
+        [MethodImpl(Inline)]
+        public static int Sum(this Span<int> src, NumericSystem system = NumericSystem.Intrinsic)
+            => src.ReadOnly().Sum(system);
+
+        public static float Sum(this ReadOnlySpan<float> src, NumericSystem system = NumericSystem.Intrinsic)
         {
             var veclen = Vec128<float>.Length;
             var seglen = 2*veclen;
@@ -96,7 +104,11 @@ namespace Z0
             return total;
         }
 
-        public static double sum(ReadOnlySpan<double> src)
+        [MethodImpl(Inline)]
+        public static float Sum(this Span<float> src, NumericSystem system = NumericSystem.Intrinsic)
+            => src.ReadOnly().Sum(system);
+
+        public static double Sum(this ReadOnlySpan<double> src, NumericSystem system = NumericSystem.Intrinsic)
         {
             var veclen = Vec128<double>.Length;
             var seglen = 2*veclen;
@@ -123,5 +135,9 @@ namespace Z0
                  total += final[i];            
             return total;
         }
+
+        [MethodImpl(Inline)]
+        public static double Sum(this Span<double> src, NumericSystem system = NumericSystem.Intrinsic)        
+            => src.ReadOnly().Sum(system);
     }
 }

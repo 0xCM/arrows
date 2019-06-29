@@ -18,18 +18,6 @@ namespace Z0
     partial class ginx
     {
 
-        [MethodImpl(Inline)]
-        public static bool gteq<T>(in Num128<T> lhs, in Num128<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return dinx.gteq(in float32(in lhs), in float32(in rhs));
-            else if(typeof(T) == typeof(double))
-                return dinx.gteq(in float64(in lhs), in float64(in rhs));
-            else
-                throw unsupported<T>();
-
-        }
 
     }
 

@@ -9,7 +9,6 @@ namespace Z0.Test
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.IO;
-    using Z0.Diagnostics;
 
     
     using static zfunc;

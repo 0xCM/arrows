@@ -81,8 +81,25 @@ namespace Z0
             }
         }
 
-        public void WriteMessage(AppMsg msg)
-            => WriteLine(msg, ForeColor(msg.Level));
+        public void Write(object src, ConsoleColor color)
+        {
+            lock(locker)
+            {
+                var fg = Console.ForegroundColor;
+                Console.ForegroundColor = color;
+                Console.Write(src);
+                Console.ForegroundColor = fg;
+            }
+        }
+
+        public void WriteMessage(AppMsg msg, bool cr = true)
+        {   
+            if(cr)
+                WriteLine(msg, ForeColor(msg.Level)); 
+            else
+                Write(msg, ForeColor(msg.Level));
+        }
+            
                     
         public void WriteMessages(IEnumerable<AppMsg> messages)
         {
@@ -98,8 +115,12 @@ namespace Z0
             }            
         }
 
-        public string ReadLine()
-            => Console.ReadLine();
+        public string ReadLine(AppMsg msg = null)
+        {
+             if(msg != null)
+                WriteMessage(msg,false);
+             return Console.ReadLine();
+        }
 
         static ConsoleColor ForeColor(SeverityLevel level)
             => (ConsoleColor)level;

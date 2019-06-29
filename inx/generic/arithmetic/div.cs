@@ -40,27 +40,6 @@ namespace Z0
                 throw unsupported<T>();
         }
 
-        public static Span128<T> div<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return generic<T>(dinx.div(float32(lhs), float32(rhs), float32(dst)));
-            else if(typeof(T) == typeof(double))
-                return generic<T>(dinx.div(float64(lhs), float64(rhs), float64(dst)));
-            else                
-                throw unsupported<T>();
-        }
-        
-        public static Span256<T> div<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                return generic<T>(dinx.div(float32(lhs), float32(rhs), float32(dst)));
-            else if(typeof(T) == typeof(double))
-                return generic<T>(dinx.div(float64(lhs), float64(rhs), float64(dst)));
-            else                
-                throw unsupported<T>();
-        }
 
     }
 }
