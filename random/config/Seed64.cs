@@ -19,7 +19,7 @@ namespace Z0
     {    
         public static void GenSeeds(int count)
         {
-            var entropy = Seed.Entropy<ulong>(count).ToByteSpan();
+            var entropy = Seed.Entropy<ulong>(count).AsBytes();
             var code = InlineData.GenAccessor(entropy.ToArray(),"RawBytes");
             print(code);
                
@@ -32,7 +32,7 @@ namespace Z0
             => Seed.Entropy<ulong>();
 
         public static ulong Lookup(int i)
-            =>  RawBytes.TakeValue<ulong>(i); 
+            =>  RawBytes.ReadPrimalValue<ulong>(i); 
         
         public static ulong Seed00 => Lookup(0);
 

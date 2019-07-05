@@ -15,12 +15,13 @@
     <NullableContextOptions>disable</NullableContextOptions>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>    
+    <!-- <DebugType>full</DebugType> -->
     <Prefer32Bit>false</Prefer32Bit>
-    <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <LangVersion>preview</LangVersion>
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
-    <AssemblyVersion>1.0.18</AssemblyVersion>
+    <AssemblyVersion>1.0.33</AssemblyVersion>
     <VersionPrefix>$(AssemblyVersion)</VersionPrefix>
 
   </PropertyGroup>

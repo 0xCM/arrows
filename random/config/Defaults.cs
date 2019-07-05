@@ -10,7 +10,6 @@ namespace Z0
     using System.Runtime.InteropServices;
     using static zfunc;
     
-
     public readonly struct RngDefaults : 
         ISampleDefaults<sbyte>,
         ISampleDefaults<byte>,

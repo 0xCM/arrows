@@ -31,7 +31,26 @@ namespace Z0
             => Z0.Pcg32.Define(s0, index);        
 
         public static Pcg64 Pcg64(ulong s0, ulong? index = null)
-            => Z0.Pcg64.Define(s0, index);        
+            => Z0.Pcg64.Define(s0, index);     
+
+        public static IRandomSource FromConfig(RngConfig config)               
+        {
+            switch(config.RngId)
+            {
+                case RngKind.Pcg32:
+                case RngKind.Pcg64:
+                    var s0 =  BitConverter.ToUInt64(config.Seed,0);
+                    var index = config.Seed.Length >= 16 ? (ulong?)BitConverter.ToUInt64(config.Seed,8) : null;
+                    return config.RngId == RngKind.Pcg32 
+                        ? Pcg32(s0, index) as IRandomSource 
+                        : Pcg64(s0, index) as IRandomSource;
+                // case RngKind.XOr256:
+                //     return XOrStarStar256(config.Seed);
+
+                default:
+                    throw unsupported(config.RngId);
+            }
+        }
 
     }
 

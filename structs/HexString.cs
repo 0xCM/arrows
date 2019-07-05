@@ -23,6 +23,10 @@ namespace Z0
             => Define(src);
 
         [MethodImpl(Inline)]
+        public static implicit operator string(HexString src)                
+            => src.content;
+
+        [MethodImpl(Inline)]
         public static HexString Define(string content)                
             => new HexString(content);
             

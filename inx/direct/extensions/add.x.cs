@@ -9,15 +9,6 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
 
-    using static System.Runtime.Intrinsics.X86.Sse;
-    using static System.Runtime.Intrinsics.X86.Sse2;
-    using static System.Runtime.Intrinsics.X86.Avx2;
-    using static System.Runtime.Intrinsics.X86.Avx;
-
-    using static zfunc;
-    using static Span256;
-    using static Span128;
-    using static As;
     using static dinx;
 
     public static partial class dinxx
@@ -181,8 +172,5 @@ namespace Z0
                 store(Avx.Add(lhs.ToVec256(block), rhs.ToVec256(block)), ref dst.Block(block));            
             return dst;            
         }
- 
-
     }
-
 }

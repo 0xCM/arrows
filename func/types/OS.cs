@@ -9,54 +9,39 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using static zfunc;
 
-    public ref struct Counter
-    {
-        long FirstCount;
-
-        long LastCount;
-
-        [MethodImpl(Inline)]
-        Counter(in long FirstCount)
-        {
-            this.FirstCount = FirstCount;
-            this.LastCount = 0;
-        }
-
-
-        [MethodImpl(Inline)]
-        public static Counter Count()
-            => new Counter(OS.Counter);
-
-        [MethodImpl(Inline)]
-        public Duration Mark(bool reset = false)
-        {
-            LastCount = OS.Counter;
-            var delta = LastCount - FirstCount;
-            if(reset)
-                FirstCount = 0;
-            return Duration.Define(delta, OS.CounterMs(delta));
-        }
-    }
-
     public static class OS
     {
         const string kernel = "kernel32.dll";
 
         public static readonly long CounterFrequency;
         
-        static OS()
+        /// <summary>
+        /// Gets the OS thread ID, not the "ManagedThreadId" which is useless
+        /// </summary>
+        public static uint CurrentThreadId
         {
-            QueryPerformanceFrequency(ref CounterFrequency);
+            [MethodImpl(Inline)]
+            get => GetCurrentThreadId();
         }
 
+        /// <summary>
+        /// Returns the difference between the current Counter value and a prior counter value
+        /// </summary>
         [MethodImpl(Inline)]
         public static long CounterDelta(in long prior)
             => Counter - prior;
 
+        /// <summary>
+        /// Converts a counter value to milliseconds
+        /// </summary>
+        /// <param name="count">The count value to convert</param>
         [MethodImpl(Inline)]
         public static double CounterMs(in long count)
             => ((double)count)/((double) CounterFrequency);
 
+        /// <summary>
+        /// Gets the current value of the counter
+        /// </summary>
         public static long Counter
         {
             
@@ -69,14 +54,11 @@ namespace Z0
             }
         }
 
-
-        [MethodImpl(Inline)]
-        static long PerformanceCounter()
+        static OS()
         {
-            var count = 0L;
-            QueryPerformanceCounter(ref count);
-            return count;
+            QueryPerformanceFrequency(ref CounterFrequency);
         }
+
         
         [DllImport(kernel)]
         static extern int QueryPerformanceCounter(ref long count);
@@ -87,6 +69,12 @@ namespace Z0
         /// <remarks>This is determined by the OS at boot time and is invariant until the next reboot</remarks>
         [DllImport(kernel)]
         static extern int QueryPerformanceFrequency(ref long frequency);
+
+        /// <summary>
+        /// Get the OS ID of the current thread
+        /// </summary>
+        [DllImport(kernel)]
+        static extern uint GetCurrentThreadId();
 
 
     }

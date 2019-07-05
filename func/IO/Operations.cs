@@ -19,7 +19,8 @@ namespace Z0
 
         Bench,
 
-        App
+        App,
+
     }
 
     public static class LogTarget

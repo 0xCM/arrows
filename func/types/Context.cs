@@ -8,36 +8,25 @@ namespace Z0
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
+    using System.Collections.Concurrent;
     using System.Linq;
     
     using static zfunc;
 
-    
-    public interface IContext
-    {
-        IReadOnlyList<AppMsg> Emit(params AppMsg[] addenda);
-        
-        IReadOnlyList<AppMsg> Flush(params AppMsg[] addenda);
-    }
-    
+
     public abstract class Context : IContext
     {
-        protected IRandomSource Random {get;}
+        public IRandomSource Random {get;}
 
         List<AppMsg> Messages {get;} = new List<AppMsg>();
 
-        public IReadOnlyList<AppMsg> Flush(params AppMsg[] addenda)
+
+        public IReadOnlyList<AppMsg> DequeueMessages(params AppMsg[] addenda)
         {
             Messages.AddRange(addenda);
             var messages = Messages.ToArray();
             Messages.Clear();
             return messages;
-        }
-
-        public virtual void Emit(params AppMsg[] addenda)
-        {
-            var messages = Flush(addenda);
-            zfunc.print(messages);
         }
 
         protected Context(IRandomSource Randomizer)
@@ -51,7 +40,7 @@ namespace Z0
         protected void NotifyError(Exception e)
         {
             var msg = AppMsg.Define($"{e}", SeverityLevel.Error);
-            Emit(msg);
+            (this as IContext).EmitMessages(msg);
         }
 
         protected void HiLite(string msg, [CallerMemberName] string caller = null, 
@@ -78,13 +67,6 @@ namespace Z0
             if(TraceEnabled)
                 Messages.Add(msg.WithLevel(SeverityLevel.Babble));
         }
-
-        IReadOnlyList<AppMsg> IContext.Emit(params AppMsg[] addenda)
-        {
-            var messages = Flush(addenda);
-            Emit(messages.ToArray());
-            return messages;
-        }
     }
 
     public abstract class Context<T> : Context
@@ -96,11 +78,5 @@ namespace Z0
 
         }
 
-        public override void Emit(params AppMsg[] addenda)        
-        {
-            var messages = Flush(addenda);
-            zfunc.print(messages);
-            log(messages, LogArea.Test);            
-        }
     }   
 }

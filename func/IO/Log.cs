@@ -12,17 +12,6 @@ namespace Z0
 
     using static zfunc;
 
-    public interface ILogger
-    {
-        void Log(IEnumerable<AppMsg> src);
-        
-        void Log(AppMsg src);
-
-        void Log<T>(IEnumerable<IRecord> records, LogTarget<T> target, char delimiter, bool writeHeader, bool newFile, FileExtension ext = null)
-            where T : Enum;
-
-        void Log(string text);
-    }
 
     public static class Log
     {
@@ -72,7 +61,8 @@ namespace Z0
                     LogPath().Append(src.Select(x => x.ToString()));
             }
 
-            void LogRecords(IReadOnlyList<IRecord> records, char delimiter, bool writeHeader, FilePath dstFile)
+            void LogRecords<R>(IReadOnlyList<R> records, char delimiter, bool writeHeader, FilePath dstFile)
+                where R : IRecord
             {
                 if(writeHeader)
                     dstFile.Append(string.Join(delimiter, records[0].GetHeaders()));
@@ -80,8 +70,9 @@ namespace Z0
                 iter(records, r => dstFile.Append(r.Delimited(delimiter)));
             }
 
-            public void Log<T>(IEnumerable<IRecord> records, LogTarget<T> target, char delimiter, bool writeHeader = true, 
+            public void Log<R,T>(IEnumerable<R> records, LogTarget<T> target, char delimiter, bool writeHeader = true, 
                 bool newFile = true, FileExtension ext = null)
+                    where R : IRecord
                     where T : Enum
             {
                 var frozen = records.Freeze();

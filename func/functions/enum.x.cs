@@ -146,6 +146,20 @@ namespace  Z0
                 yield return f(i++, it.Current);
         }
             
+        /// <summary>
+        /// Transforms an array via an indexed mapping function
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <param name="f">The mapping function</param>
+        /// <typeparam name="S">The source type</typeparam>
+        /// <typeparam name="T">The target type</typeparam>
+        public static T[] Mapi<S, T>(this S[] src, Func<int,S, T> f)
+        {
+            var dst = new T[src.Length];
+            for(var i=0; i<dst.Length; i++)
+                dst[i] = f(i,src[i]);
+            return dst;
+        }
 
         /// <summary>
         /// Creates a read-only list from list
@@ -350,6 +364,7 @@ namespace  Z0
                 yield return x;
             }
         }
+
 
         public static void ForEach<T>(this IEnumerable<T> src, Action<T> effect)
         {

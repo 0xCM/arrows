@@ -9,7 +9,6 @@ namespace Z0
     using System.Linq;
     using System.ComponentModel;
     using System.Reflection;
-    using System.Reflection.Emit;
     using System.Runtime.CompilerServices;
     
     using static zfunc;
@@ -201,7 +200,7 @@ namespace Z0
         public static MethodSig MethodSig(this MethodInfo src)
             => Z0.MethodSig.Define(src);
 
-        public static IReadOnlyList<Type> GenericSlots(this MethodInfo src)
+        public static Type[] GenericSlots(this MethodInfo src)
             => !(src.IsGenericMethod && !src.IsGenericMethodDefinition) ? new Type[]{} 
                : src.IsConstructedGenericMethod
                ? src.GetGenericArguments()
@@ -261,8 +260,6 @@ namespace Z0
                 return name;
             }
             return src.Name;
-            // var slots = src.GetGenericSlots();
-            // return slots.Count == 0 ? src.Name : GenericMemberDisplayName(src.Name, slots);            
         }
 
         public static string DisplayName(this MethodInfo src)
@@ -271,7 +268,7 @@ namespace Z0
             if(attrib != null)
                 return attrib.DisplayName;
             var slots = src.GenericSlots();
-            return slots.Count == 0 ? src.Name : GenericMemberDisplayName(src.Name, slots);            
+            return slots.Length == 0 ? src.Name : GenericMemberDisplayName(src.Name, slots);            
         }
 
         public static IEnumerable<Type> Realize<T>(this IEnumerable<Type> src)

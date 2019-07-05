@@ -40,11 +40,10 @@ namespace Z0.Test
             var v2 = dinx.shuffle(v1, 0b01010101);
             print(v2.ToString());
         }
-        protected override void RunTests()
+        protected override void RunTests(string filter)
         {            
-            Shuffle();
 
-            //base.RunTests();
+            base.RunTests("BitMatrix");
 
         }
 

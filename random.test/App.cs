@@ -97,10 +97,10 @@ namespace Z0.Test
         }
 
 
-        protected override void RunTests()
+        protected override void RunTests(string filter)
         {                        
 
-            base.RunTests();        
+            base.RunTests(filter);        
         }
         public static void Main(params string[] args)
             => Run(args);

@@ -9,11 +9,38 @@ namespace Z0.Test
 
     public class App : TestApp<App>
     {           
-        protected override void RunTests()
+        
+        void TestBitMatrix()
         {
-            base.RunTests();
+            // var m8 = BitMatrix8.Identity;
 
-            //iter(gmath.Methods().Select(m => m.GetSignature().Format()), print);
+            // Claim.eq(m8[0,0], Bit.On);
+            // Claim.eq(m8[1,1], Bit.On);
+            // Claim.eq(m8[7,6], Bit.Off);
+            // Claim.eq(m8[7,7], Bit.On);
+
+            // print(m8.Format());
+
+
+            // var m4 = BitMatrix4.Identity;
+            // print(m4.Format());
+
+            // var m16 = BitMatrix16.Identity;
+            // Claim.eq(m16[0,0], Bit.On);
+            // Claim.eq(m16[1,1], Bit.On);
+
+            // print(m16.Format());
+
+            var m32 = BitMatrix32.Identity;
+            print(m32.Format());
+
+        }
+        
+        protected override void RunTests(string filter)
+        {            
+            base.RunTests("BitMatrix");
+            //TestBitMatrix();
+            
         
         } 
         public static void Main(params string[] args)

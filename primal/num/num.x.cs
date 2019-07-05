@@ -259,10 +259,6 @@ namespace Z0
             where T : struct
                 => Num.many(src);
 
-        [MethodImpl(Inline)]
-        public static BitString ToBitString<T>(this num<T> src, bool tlz = false)
-            where T : struct
-                => BitStringConvert.FromValue<T>(src.Scalar(), tlz);
 
         
         [MethodImpl(Inline)]
@@ -290,14 +286,5 @@ namespace Z0
             where T : struct    
                 =>  HexDigits.Parse(src.ToString());
 
-        /// <summary>
-        /// Converts a number to a string of decimal digits
-        /// </summary>
-        /// <param name="src">The source integer</param>
-        /// <typeparam name="T">The underlying primitive type</typeparam>
-        [MethodImpl(Inline)]   
-        public static Span<BinaryDigit> ToBinaryDigits<T>(this num<T> src)
-            where T : struct    
-                =>  BinaryDigits.Parse(src.ToBitString());
     }
 }

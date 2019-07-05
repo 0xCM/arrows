@@ -199,7 +199,5 @@ namespace Z0
                 lhs[i] &= rhs;
             return lhs;
         }
-
-
     }
 }

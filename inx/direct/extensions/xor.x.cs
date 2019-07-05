@@ -20,6 +20,70 @@ namespace Z0
     using static dinx;
     partial class dinxx
     {
+        [MethodImpl(Inline)]
+        public static Vec256<sbyte> XOr(this in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+            => dinx.xor(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<byte> XOr(this in Vec256<byte> lhs, in Vec256<byte> rhs)
+            => dinx.xor(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<short> XOr(this in Vec256<short> lhs, in Vec256<short> rhs)
+            => dinx.xor(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ushort> XOr(this in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+            => dinx.xor(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<int> XOr(this in Vec256<int> lhs, in Vec256<int> rhs)
+            => dinx.xor(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<uint> XOr(this in Vec256<uint> lhs, in Vec256<uint> rhs)
+            => dinx.xor(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<long> XOr(this in Vec256<long> lhs, in Vec256<long> rhs)
+            => dinx.xor(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ulong> XOr(this in Vec256<ulong> lhs, in Vec256<ulong> rhs)
+            => dinx.xor(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static void XOr(this in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
+            => dinx.xor(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void XOr(this in Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
+            => dinx.xor(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void XOr(this in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
+            => dinx.xor(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void XOr(this in Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
+            => dinx.xor(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void XOr(this in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
+            => dinx.xor(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void XOr(this in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
+            => dinx.xor(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void XOr(this in Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
+            => dinx.xor(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void XOr(this in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
+            => dinx.xor(in lhs, in rhs, ref dst);
+
 
         public static Span128<sbyte> xor(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, Span128<sbyte> dst)
         {

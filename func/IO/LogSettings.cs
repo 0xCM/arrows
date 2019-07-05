@@ -32,7 +32,6 @@ namespace Z0
         FolderPath LogDir(LogArea target)        
             => RootLogDir + FolderName.Define(target.ToString().ToLower());
 
-
         long LogDate
             => Date.Today.ToDateKey();
 
@@ -59,12 +58,9 @@ namespace Z0
         public FilePath LogPath(LogArea area, FileExtension ext = null, long? timestamp = null)
             => LogDir(area) + FileName.Define($"{area}.{timestamp ?? LogDate}.{ext ?? DefaultExtension}");
 
-
         public FilePath LogPath<T>(LogTarget<T> target, FileExtension ext = null, long? timestamp = null)
             where T : Enum
             => LogDir(target.Area) + FileName.Define($"{target.Area}.{target.KindName}.{timestamp ?? LogDate}.{ext ?? DefaultExtension}");
-
     }
-
 
 }

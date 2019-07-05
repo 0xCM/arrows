@@ -84,7 +84,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<ulong> hi(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
             => UnpackHigh(lhs, rhs);
-
     }
-
 }

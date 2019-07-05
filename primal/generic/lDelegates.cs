@@ -10,7 +10,8 @@ namespace Z0
     using System.Runtime.CompilerServices;
 
     using static zfunc;    
-    
+
+
     public static class PrimalDelegates
     {        
         [MethodImpl(Inline)]
@@ -58,15 +59,6 @@ namespace Z0
             where T : struct
                 => Flip<T>.Op;
 
-        [MethodImpl(Inline)]
-        public static ShiftOp<T> shiftl<T>(T lhs, int count)
-            where T : struct
-                => ShiftL<T>.Op;
-
-        [MethodImpl(Inline)]
-        public static ShiftOp<T> shiftr<T>(T lhs, int count)
-            where T : struct
-                => ShiftR<T>.Op;
 
         [MethodImpl(Inline)]
         public static UnaryOp<T> negate<T>()
@@ -166,18 +158,6 @@ namespace Z0
             where T : struct
         {
             public static readonly UnaryOp<T> Op = gmath.flip<T>;
-        }
-
-       readonly struct ShiftL<T>
-            where T : struct
-        {
-            public static readonly ShiftOp<T> Op = gbits.shiftl<T>;
-        }
-
-       readonly struct ShiftR<T>
-            where T : struct
-        {
-            public static readonly ShiftOp<T> Op = gbits.shiftr<T>;
         }
 
        readonly struct Negate<T>

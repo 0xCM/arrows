@@ -9,19 +9,76 @@ namespace Z0
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
     
-    using static System.Runtime.Intrinsics.X86.Sse;
-    using static System.Runtime.Intrinsics.X86.Sse2;
-    using static System.Runtime.Intrinsics.X86.Avx2;
-    using static System.Runtime.Intrinsics.X86.Avx;
-    
-    using static As;
     using static zfunc;
     using static Span256;
     using static Span128;
 
-
     partial class dinxx
     {
+        [MethodImpl(Inline)]
+        public static Vec256<sbyte> And(this in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+            => dinx.and(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<byte> And(this in Vec256<byte> lhs, in Vec256<byte> rhs)
+            => dinx.and(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<short> And(this in Vec256<short> lhs, in Vec256<short> rhs)
+            => dinx.and(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ushort> And(this in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+            => dinx.and(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<int> And(this in Vec256<int> lhs, in Vec256<int> rhs)
+            => dinx.and(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<uint> And(this in Vec256<uint> lhs, in Vec256<uint> rhs)
+            => dinx.and(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<long> And(this in Vec256<long> lhs, in Vec256<long> rhs)
+            => dinx.and(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ulong> And(this in Vec256<ulong> lhs, in Vec256<ulong> rhs)
+            => dinx.and(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static void And(this in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
+            => dinx.and(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void And(this in Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
+            => dinx.and(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void And(this in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
+            => dinx.and(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void And(this in Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
+            => dinx.and(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void And(this in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
+            => dinx.and(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void And(this in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
+            => dinx.and(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void And(this in Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
+            => dinx.and(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void And(this in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
+            => dinx.and(in lhs, in rhs, ref dst);
+
         public static Span128<sbyte> And(this ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, in Span128<sbyte> dst)
         {
             var width = dst.BlockWidth;

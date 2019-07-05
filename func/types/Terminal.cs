@@ -22,12 +22,25 @@ namespace Z0
         
         readonly object locker;
      
+        Option<Action> TerminationHandler;
+
         private Terminal()
         {
              locker = new object();
-             Console.OutputEncoding = new UnicodeEncoding();
-             
+             Console.OutputEncoding = new UnicodeEncoding();      
+             Console.CancelKeyPress += OnCancelKeyPressed;        
         }
+
+        /// <summary>
+        /// Specfifies the handler to invoke when the user enters a cancellation
+        /// command, such as Ctrl+C
+        /// </summary>
+        /// <param name="handler">The handler to invoke when a termination command is received</param>
+        public void SetTerminationHandler(Action handler)
+            => TerminationHandler = handler;
+
+        private void OnCancelKeyPressed(object sender, ConsoleCancelEventArgs args)
+            => TerminationHandler.OnSome(h => h());
 
         public void WriteLine(object src)
         {
@@ -99,8 +112,7 @@ namespace Z0
             else
                 Write(msg, ForeColor(msg.Level));
         }
-            
-                    
+                                
         public void WriteMessages(IEnumerable<AppMsg> messages)
         {
             lock(locker)            

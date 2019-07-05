@@ -61,12 +61,12 @@ namespace Z0.Test
                 var sw = stopwatch();
                 test.Invoke(unit,null);                    
                 var ms = sw.ElapsedMilliseconds;
-                messages.AddRange(unit.Flush());
+                messages.AddRange(unit.DequeueMessages());
                 messages.Add(AppMsg.Define($"{testName} executed. Runtime {ms}ms", SeverityLevel.Info));
             }
             catch(Exception e)
             {                
-                messages.AddRange(unit.Flush());                
+                messages.AddRange(unit.DequeueMessages());                
                 
                 if(e.InnerException is ClaimException claim)
                     messages.Add(claim.Message);
@@ -96,13 +96,13 @@ namespace Z0.Test
 
         }
 
-        protected virtual void RunTests()
+        protected virtual void RunTests(string filter)
         {
             try
             {
                 
 
-                Run(string.Empty, false);
+                Run(filter, false);
             }
             catch (Exception e)
             {
@@ -112,6 +112,6 @@ namespace Z0.Test
         }
 
         protected static void Run(params string[] args)
-            => new A().RunTests();
+            => new A().RunTests(string.Empty);
     }
 }

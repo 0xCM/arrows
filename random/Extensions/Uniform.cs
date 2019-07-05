@@ -33,6 +33,5 @@ namespace Z0
         }
         public static HashSet<uint> TakeSet(this IRandomSource<uint> rng, int count)
             => rng.Stream().Take(count).ToHashSet();
-
     }
 }

@@ -88,8 +88,6 @@ namespace Z0
             return Define(src.Slice(start, length));
         }
             
-        
-
         public int Length
         {
             [MethodImpl(Inline)]
@@ -105,7 +103,7 @@ namespace Z0
             var q = Math.DivRem(content.Length, width, out int r);
             var dst = new BitString[q + r];
             var len = dst.Length;
-            var lastix = len - 1;
+            var lastix = (len - 1);
             var j = 0;
             
             for(var i = 0; i < len; i++, j+= width)
@@ -122,6 +120,18 @@ namespace Z0
             }
             Array.Reverse(dst);
             return dst;
+        }
+
+        public string Format(int? blockWidth = null)
+        {
+            if(blockWidth != null)
+            {
+                var blocks = Blocks(blockWidth.Value);
+                return string.Join(' ',blocks);
+            }
+            else
+                return content;
+
         }
 
         public override string ToString()

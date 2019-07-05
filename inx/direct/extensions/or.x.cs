@@ -17,6 +17,70 @@ namespace Z0
 
     partial class dinxx
     {
+        [MethodImpl(Inline)]
+        public static Vec256<sbyte> Or(this in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<byte> Or(this in Vec256<byte> lhs, in Vec256<byte> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<short> Or(this in Vec256<short> lhs, in Vec256<short> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ushort> Or(this in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<int> Or(this in Vec256<int> lhs, in Vec256<int> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<uint> Or(this in Vec256<uint> lhs, in Vec256<uint> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<long> Or(this in Vec256<long> lhs, in Vec256<long> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ulong> Or(this in Vec256<ulong> lhs, in Vec256<ulong> rhs)
+            => dinx.or(in lhs, in rhs);
+
+        [MethodImpl(Inline)]
+        public static void Or(this in Vec256<sbyte> lhs, in Vec256<sbyte> rhs, ref sbyte dst)
+            => dinx.or(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void Or(this in Vec256<byte> lhs, in Vec256<byte> rhs, ref byte dst)
+            => dinx.or(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void Or(this in Vec256<short> lhs, in Vec256<short> rhs, ref short dst)
+            => dinx.or(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void Or(this in Vec256<ushort> lhs, in Vec256<ushort> rhs, ref ushort dst)
+            => dinx.or(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void Or(this in Vec256<int> lhs, in Vec256<int> rhs, ref int dst)
+            => dinx.or(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void Or(this in Vec256<uint> lhs, in Vec256<uint> rhs, ref uint dst)
+            => dinx.or(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void Or(this in Vec256<long> lhs, in Vec256<long> rhs, ref long dst)
+            => dinx.or(in lhs, in rhs, ref dst);
+
+        [MethodImpl(Inline)]
+        public static void Or(this in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
+            => dinx.or(in lhs, in rhs, ref dst);
+
         public static Span128<int> or(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, Span128<int> dst)
         {
             var width = dst.BlockWidth;

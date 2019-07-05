@@ -5,18 +5,12 @@
 namespace Z0
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.CompilerServices;
-    using System.Numerics;
-    using System.Text;
 
     using static zfunc;
-    using static As;
 
     public static partial class RandomSizedX
     {        
-
         [MethodImpl(Inline)]
         public static Vec128<T> NextVec128<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)        
             where T : struct
@@ -27,18 +21,19 @@ namespace Z0
             where T : struct
                 => random.Span256<T>(1, domain, filter).ToVec256();
         
+        [MethodImpl(Inline)]
         public static M512 NextM512<T>(this IRandomSource random, Interval<T> domain, Func<T,bool> filter = null)
             where T : struct
                 => m512.define(random.Stream(domain, filter).TakeSpan(64/SizeOf<T>.Size).ReadOnly());
 
+        [MethodImpl(Inline)]
         public static m256i NextM256i<T>(this IRandomSource random, Interval<T> domain, Func<T,bool> filter = null)
             where T : struct
                 => default;
-
+        
+        [MethodImpl(Inline)]
         public static M512 NextM512<T>(this IRandomSource random, Func<T,bool> filter = null)
             where T : struct
                 => m512.define(random.Stream<T>(null, filter).TakeSpan(64/SizeOf<T>.Size).ReadOnly());
-
     }
-
 }

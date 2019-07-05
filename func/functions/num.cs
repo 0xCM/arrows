@@ -31,6 +31,7 @@ partial class zfunc
         where T : struct
             =>  convert<T,double>(src.ToReadOnlySpan());
 
+
     public static IEnumerable<T> range<T>(T min, T max, T? step = null)
         where T : struct
     {

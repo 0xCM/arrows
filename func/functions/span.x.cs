@@ -19,6 +19,15 @@ namespace Z0
 
     partial class xfunc
     {
+        [MethodImpl(Inline)]
+        public static void CopyTo<T>(this Span<T> src, Span<T> dst, int offset)
+            => src.CopyTo(dst.Slice(offset));
+
+        [MethodImpl(Inline)]
+        public static void CopyTo<T>(this ReadOnlySpan<T> src, Span<T> dst, int offset)
+            => src.CopyTo(dst.Slice(offset));
+
+
         /// <summary>
         /// Constructs a span from an aray
         /// </summary>
@@ -324,16 +333,6 @@ namespace Z0
             return io;
         }
 
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<byte> ToByteSpan<T>(this ReadOnlySpan<T> src)
-            where T : struct
-            => MemoryMarshal.AsBytes(src);
-        
-        [MethodImpl(Inline)]
-        public static Span<byte> ToByteSpan<T>(this Span<T> src)
-            where T : struct
-            => MemoryMarshal.AsBytes(src);
-
 
         public static (int Index, T Value)[] ToIndexedValues<T>(this ReadOnlySpan<T> src)
         {
@@ -376,8 +375,7 @@ namespace Z0
         public static string FormatAsVector<T>(this Span<T> src, string sep = ", ")
             => src.ReadOnly().FormatAsVector(sep);
 
-
-         /// <summary>
+        /// <summary>
         /// Constructs a span from a sequence selection
         /// </summary>
         /// <param name="src">The source sequence</param>
@@ -386,7 +384,6 @@ namespace Z0
         public static Span256<T> ToSpan256<T>(this T[] src)
             where T : struct
             => Z0.Span256.load<T>(src);
-
 
         [MethodImpl(Inline)]
         public static Span128<T> ToSpan128<T>(this Span<T> src)
@@ -419,6 +416,22 @@ namespace Z0
             src.CopyTo(dst);
             return Z0.Span256.load<T>(dst);
         }
+
+        public static Span<T> Intersperse<T>(this ReadOnlySpan<T> src, T x)
+        {
+            var dst = span<T>(src.Length*2 - 1);
+            for(int i=0, j=0; i<src.Length; i++, j+= 2)
+            {
+                dst[j] = src[i];                
+                if(i != src.Length - 1)
+                    dst[j + 1] = x;                    
+            }
+            return dst;
+        }
+
+        [MethodImpl(Inline)]        
+        public static Span<T> Intersperse<T>(this Span<T> src, T x)
+            => src.ReadOnly().Intersperse(x);
 
         [MethodImpl(Inline)]        
         public static string Format<T>(this Span<T> src, char delimiter = ',', int offset = 0)
@@ -470,109 +483,48 @@ namespace Z0
             where N : ITypeNat, new()
                 => src.Slice((int)start.value);
  
+        /// <summary>
+        /// Presents a readonly span of one value-type as a span of another value-type
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="S">The source span element type</typeparam>
+        /// <typeparam name="T">The target span element type</typeparam>
         [MethodImpl(Inline)]        
         public static ReadOnlySpan<T> As<S,T>(this ReadOnlySpan<S> src)
             where S : struct
             where T : struct
                 => MemoryMarshal.Cast<S,T>(src);                                    
 
+        /// <summary>
+        /// Presents a span of one value-type as a span of another value-type
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="S">The source span element type</typeparam>
+        /// <typeparam name="T">The target span element type</typeparam>
         [MethodImpl(Inline)]        
         public static Span<T> As<S,T>(this Span<S> src)
             where S : struct
             where T : struct
                 => MemoryMarshal.Cast<S,T>(src);                                    
 
-
+        /// <summary>
+        /// Presents a value-type readonly span as a span of bytes
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The source span element type</typeparam>
         [MethodImpl(Inline)]
-        public static T TakeValue<T>(this ReadOnlySpan<byte> src, int offset)
+        public static ReadOnlySpan<byte> AsBytes<T>(this ReadOnlySpan<T> src)
             where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return generic<T>(src.TakeInt8(offset));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>(src.TakeUInt8(offset));
-            else if(typeof(T) == typeof(short))
-                return generic<T>(src.TakeInt16(offset));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(src.TakeUInt16(offset));
-            else if(typeof(T) == typeof(int))
-                return generic<T>(src.TakeInt32(offset));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(src.TakeUInt32(offset));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(src.TakeInt64(offset));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(src.TakeUInt64(offset));
-            else if(typeof(T) == typeof(float))
-                return generic<T>(src.TakeFloat32(offset));
-            else if(typeof(T) == typeof(double))
-                return generic<T>(src.TakeFloat64(offset));
-            throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static T TakeValue<T>(this Span<byte> src, int offset)
-            where T : struct
-            => src.ReadOnly().TakeValue<T>(offset);
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<T> TakeValues<T>(this ReadOnlySpan<byte> src, int offset, int count)
-            where T : struct
-                => MemoryMarshal.Cast<byte,T>(src.Slice(offset, count* Unsafe.SizeOf<T>()));
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<T> TakeValues<T>(this Span<byte> src, int offset, int count)
-            where T : struct
-                => src.ReadOnly().TakeValues<T>(offset,count);
+                => MemoryMarshal.AsBytes(src);
         
+        /// <summary>
+        /// Presents a value-type span as a span of bytes
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The source span element type</typeparam>
         [MethodImpl(Inline)]
-        public static ReadOnlySpan<T> TakeValues<T>(this ReadOnlySpan<byte> src)
+        public static Span<byte> AsBytes<T>(this Span<T> src)
             where T : struct
-                => src.TakeValues<T>(0, src.Length/Unsafe.SizeOf<T>());
-
-        [MethodImpl(Inline)]
-        public static ReadOnlySpan<T> TakeValues<T>(this Span<byte> src)
-            where T : struct
-                => src.ReadOnly().TakeValues<T>();
-
-        [MethodImpl(Inline)]
-        static sbyte TakeInt8(this ReadOnlySpan<byte> src, int offset)
-            => (sbyte)src[offset];    
-
-        [MethodImpl(Inline)]
-        static byte TakeUInt8(this ReadOnlySpan<byte> src, int offset)
-            => src[offset];    
-
-        [MethodImpl(Inline)]
-        static short TakeInt16(this ReadOnlySpan<byte> src, int offset)
-            => BitConverter.ToInt16(src.Slice(offset, 2));
-
-        [MethodImpl(Inline)]
-        static ushort TakeUInt16(this ReadOnlySpan<byte> src, int offset)
-            => BitConverter.ToUInt16(src.Slice(offset, 2));        
-
-        [MethodImpl(Inline)]
-        static int TakeInt32(this ReadOnlySpan<byte> src, int offset)
-            => BitConverter.ToInt32(src.Slice(offset, 4));
-
-        [MethodImpl(Inline)]
-        static uint TakeUInt32(this ReadOnlySpan<byte> src, int offset)
-            => BitConverter.ToUInt32(src.Slice(offset, 4));
-
-        [MethodImpl(Inline)]
-        static ulong TakeUInt64(this ReadOnlySpan<byte> src, int offset)
-            => BitConverter.ToUInt64(src.Slice(offset, 8));
-
-        [MethodImpl(Inline)]
-        static long TakeInt64(this ReadOnlySpan<byte> src, int offset)
-            => BitConverter.ToInt64(src.Slice(offset, 8));
-
-        [MethodImpl(Inline)]
-        static float TakeFloat32(this ReadOnlySpan<byte> src, int offset)
-            => BitConverter.ToSingle(src.Slice(offset, 4));
-
-        [MethodImpl(Inline)]
-        static double TakeFloat64(this ReadOnlySpan<byte> src, int offset)
-            => BitConverter.ToDouble(src.Slice(offset, 8));
+                => MemoryMarshal.AsBytes(src);
     }
 }

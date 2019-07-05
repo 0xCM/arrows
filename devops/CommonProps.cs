@@ -10,6 +10,7 @@ namespace Z0
     using System.Linq;
 
     using static Property;
+    using static Settings;
     
     public class MsVars
     {
@@ -32,10 +33,11 @@ namespace Z0
         public static Variable LibBuildDir => buildvar();
     }
 
+
     public static class CommonProps
     {                
         public static Property AssemblyVersion => prop("1.0.9");
-        public static Property TopDir => prop(@"J:\dev\projects\z0\");                
+        public static Property TopDir => prop(SlnDir);                
         public static Property BuildRootDir => prop($"{Vars.TopDir}bin\\");        
         public static Property LibBuildDir => prop($"{BuildRootDir}lib\\");        
         public static Property OutputDir => prop(Vars.LibBuildDir);

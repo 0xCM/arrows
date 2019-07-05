@@ -521,13 +521,6 @@ partial class zfunc
     public static string remove(string text, string substring)
         => text.Replace(substring, String.Empty);
 
-    /// <summary>
-    /// Reverses the string
-    /// </summary>
-    /// <param name="src">The string to reverse</param>
-    [MethodImpl(Inline)]   
-    public static string reorient(string src)
-        => new string(src.Reverse().ToArray());
 
     /// <summary>
     /// Functional equivalalent of <see cref="string.Join(string, IEnumerable{string})"/>

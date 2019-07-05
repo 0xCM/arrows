@@ -68,6 +68,7 @@ namespace Z0
             jump(J128);
         }
 
+
         void jump(ulong[] J) 
         {            
             var s0 = 0UL;

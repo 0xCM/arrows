@@ -712,6 +712,16 @@ namespace Z0
         public static string SeparateBlocks(this string src, int blocklen, string sep)
             => src.Partition(blocklen).Concat(sep);
 
+        public static string Intersperse(this string src, char x)
+        {
+            var sb = sbuild();
+            foreach(var item in src)
+            {
+                sb.Append(item);
+                sb.Append(x);
+            }
+            return sb.ToString();
+        }
 
     }
 }

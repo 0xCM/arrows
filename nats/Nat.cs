@@ -158,6 +158,12 @@ namespace Z0
             where K1 : ITypeNat, new()
                 => (natu<K1>(), natu<K2>());            
 
+        [MethodImpl(Inline)]   
+        public static (int k1, int k2) pairi<K1,K2>()
+            where K2 : ITypeNat, new()
+            where K1 : ITypeNat, new()
+                => (nati<K1>(), nati<K2>());            
+
         /// <summary>
         /// Constructs (k1,k2,k3) where k1:K2 & k2:K2 & k3:K3
         /// </summary>

@@ -32,10 +32,11 @@ partial class zfunc
     public static void log(AppMsg message, LogArea dst)
         => Log.Get(LogTarget.AreaRoot(dst)).Log(message);
 
-    public static void log<T>(IEnumerable<IRecord> records, LogTarget<T> dst, char delimiter = ',', 
+    public static void log<R,T>(IEnumerable<R> records, LogTarget<T> dst, char delimiter = ',', 
         bool writeHeader = true, bool newfile = true, FileExtension ext = null)
+            where R : IRecord
             where T : Enum
-            => Log.Get(dst).Log(records, dst, delimiter, true, newfile, ext);
+                => Log.Get(dst).Log(records, dst, delimiter, true, newfile, ext);
 
     public static void log(string text, LogArea dst)
         => Log.Get(LogTarget.AreaRoot(dst)).Log(text);

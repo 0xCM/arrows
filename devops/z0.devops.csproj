@@ -6,4 +6,8 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+
+  <ItemGroup>
+    <Compile Include="../.settings/Settings.cs" />
+  </ItemGroup>
 </Project>

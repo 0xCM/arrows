@@ -7,10 +7,6 @@ namespace Z0
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.ComponentModel;
-    using System.Reflection;
-    using System.Reflection.Emit;
-    using System.Runtime.CompilerServices;
     
     using static zfunc;
 
@@ -22,6 +18,8 @@ namespace Z0
             this.LeftVal = LeftValue;
             this.RightVal = RightValue;
             this.AreEqual = AreEqual;
+
+            
 
         }
         

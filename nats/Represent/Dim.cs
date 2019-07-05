@@ -55,7 +55,10 @@ namespace Z0
 
         public static implicit operator (ulong i, ulong j)(Dim<K1,K2> x)
             => Nat.pair<K1,K2>();
-    
+
+        public static implicit operator (int i, int j)(Dim<K1,K2> x)
+            => Nat.pairi<K1,K2>();
+
        /// <summary>
         /// Specifies the first component of the dimension
         /// </summary>

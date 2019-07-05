@@ -17,6 +17,18 @@
 		},
 		{
 			"path": "testing"
+		},
+		{
+			"path": "analogs"
+		},
+		{
+			"path": "primal"
+		},
+		{
+			"path": "structs"
+		},
+		{
+			"path": "ms"
 		}
 	],
 	"settings": {}

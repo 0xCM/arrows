@@ -24,6 +24,9 @@ namespace Z0
 
     }
 
-
+    static class App
+    {
+        public static void Main(params string[] args) { }
+    }
 
 }
