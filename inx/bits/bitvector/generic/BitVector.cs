@@ -7,142 +7,201 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
-    using System.Numerics;
+    using System.Collections.Generic;
+
 
     using static Bits;
     using static Bytes;
 
     using static zfunc;    
 
-    /// <summary>
-    /// Defines a generic bitvector
-    /// </summary>
-    public ref struct BitVector<T>
+    public ref struct BitVector<N,T>
+        where N : ITypeNat, new()
         where T : struct
     {
-        T data;
+        Span<T> bits;
 
-        public static readonly int BitCount = SizeOf<T>.BitSize;
+        static readonly BitSize PrimalSize = SizeOf<T>.BitSize;
 
-        public static readonly int DataSize = SizeOf<T>.Size;
+        static readonly BitSize BitCount = new N().value;
 
-        [MethodImpl(Inline)]
-        public BitVector(in T data)
-            => this.data = data;
-
-        [MethodImpl(Inline)]
-        public static BitVector<T> Define(in T src)
-            => new BitVector<T>(src);    
+        static readonly int SegLength = CalcSegLength();
+    
+        static readonly (int segment, int offset)[] BitMap
+            = CaclBitMap();
 
         [MethodImpl(Inline)]
-        public static implicit operator BitVector<T>(in T src)
-            => new BitVector<T>(src);
+        static (int segment, int offset) FindBit(int bitpos)
+            => BitMap[bitpos];
 
         [MethodImpl(Inline)]
-        public static implicit operator T(in BitVector<T> src)
-            => src.data;        
+        public BitVector(params T[] bits)
+            : this()
+        {
+            this.bits =bits;
+            require(bits.Length * PrimalSize >= BitCount);
+        }
 
         [MethodImpl(Inline)]
-        public static bool operator ==(in BitVector<T> lhs, in BitVector<T> rhs)
+        public BitVector(Span<T> bits)
+            : this()
+        {
+            this.bits =bits;
+            require(bits.Length * PrimalSize >= BitCount);
+        }
+
+        [MethodImpl(Inline)]
+        public static BitVector<N,T> Define(params T[] src)
+            => new BitVector<N,T>(src);    
+
+        [MethodImpl(Inline)]
+        public static bool operator ==(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
             => lhs.Eq(rhs);
 
         [MethodImpl(Inline)]
-        public static bool operator !=(in BitVector<T> lhs, in BitVector<T> rhs)
+        public static bool operator !=(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
             => lhs.NEq(rhs);
 
         [MethodImpl(Inline)]
-        public static BitVector<T> operator |(in BitVector<T> lhs, in BitVector<T> rhs)
-            => gmath.or(lhs.data, rhs.data);
+        public static BitVector<N,T> operator |(BitVector<N,T> lhs, in BitVector<N,T> rhs)
+            => new BitVector<N,T>(gmath.or(ref lhs.bits, rhs.bits));
 
         [MethodImpl(Inline)]
-        public static BitVector<T> operator &(in BitVector<T> lhs, in BitVector<T> rhs)
-            => gmath.and(lhs.data, rhs.data);
+        public static BitVector<N,T> operator &(BitVector<N,T> lhs, in BitVector<N,T> rhs)
+            => new BitVector<N,T>(gmath.and(ref lhs.bits, rhs.bits));
 
         [MethodImpl(Inline)]
-        public static BitVector<T> operator ^(in BitVector<T> lhs, in BitVector<T> rhs)
-            => gmath.xor(lhs.data, rhs.data);
+        public static BitVector<N,T> operator ^(BitVector<N,T> lhs, in BitVector<N,T> rhs)
+            => new BitVector<N,T>(gmath.xor(ref lhs.bits, rhs.bits));
 
         [MethodImpl(Inline)]
-        public static BitVector<T> operator ~(in BitVector<T> src)
-            => gmath.flip(src.data);
+        public static BitVector<N,T> operator ~(BitVector<N,T> src)
+            => new BitVector<N,T>(gmath.flip(ref src.bits));
         
-        public Bit this[in BitPos pos]
+        /// <summary>
+        /// Retrieves the value of the bit at a specified position
+        /// </summary>
+        /// <param name="pos">The absolute bit position</param>
+        [MethodImpl(Inline)]
+        public Bit GetBit(in int pos)
+        {
+            (var seg, var offset) = FindBit(pos);
+            return gbits.test(bits[seg], offset);
+        }
+            
+        /// <summary>
+        /// Sets the value of the bit at a specified position
+        /// </summary>
+        /// <param name="pos">The absolute bit position</param>
+        [MethodImpl(Inline)]
+        public void SetBit(in int pos, Bit value)
+        {
+            (var seg, var offset) = FindBit(pos);
+            gbits.set(ref bits[seg], pos, value);
+        }
+
+        public Bit this[in int pos]
         {
             [MethodImpl(Inline)]
-            get => gbits.test(in data, in pos);
+            get => GetBit(pos);
             
             [MethodImpl(Inline)]
-            set
-            {
-                if(value)
-                    gbits.enable(ref data, in pos);
-                else
-                    gbits.disable(ref data, in pos);                    
-            }            
+            set => SetBit(pos, value);
         }
 
-        public T this[in BitPos pos, byte len]
+        public Span<T> Bits
         {
             [MethodImpl(Inline)]
-            get => gbits.range(in data, in pos, len);
+            get => bits;
+        }
+
+
+        [MethodImpl(Inline)]
+        public void Toggle(in int pos)
+        {         
+            (var seg, var offset) = FindBit(pos);
+            gbits.toggle(ref bits[seg], in offset);
         }
 
         [MethodImpl(Inline)]
-        public void Toggle(in BitPos pos)
-            => gbits.toggle(ref data, in pos);
+        public void Enable(in int pos)
+        {
+            (var seg, var offset) = FindBit(pos);
+            gbits.enable(ref bits[seg], in offset);
+        }
 
         [MethodImpl(Inline)]
-        public void RotR(in int dist)
-            => gbits.rotr(ref data, in dist);
+        public void Disable(in int pos)
+        {
+            (var seg, var offset) = FindBit(pos);
+            gbits.disable(ref bits[seg], in offset);
+        }
 
         [MethodImpl(Inline)]
-        public void RotL(in int dist)
-            => gbits.rotl(ref data, in dist);
-
-        [MethodImpl(Inline)]
-        public void Enable(in BitPos pos)
-            => gbits.enable(ref data, in pos);
-
-        [MethodImpl(Inline)]
-        public void Disable(in BitPos pos)
-            => gbits.disable(ref data, in pos);
-
-        [MethodImpl(Inline)]
-        public bool Test(in BitPos pos)
-            => gbits.test(in data, in pos);
-
-        [MethodImpl(Inline)]
-        public BitString BitString()
-            => BitStringConvert.FromValue(in data);
+        public bool Test(in int pos)
+            => GetBit(pos);
 
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
-            => bytes(in data);
+            => bytes(in bits[0]);
 
         [MethodImpl(Inline)]
         public ulong Pop()
-            => gbits.pop(data);
+            => gbits.pop(in bits[0]);
         
         [MethodImpl(Inline)]
         public ulong Nlz()
-            => gbits.nlz(in data);
+            => gbits.nlz(in bits[0]);
 
         [MethodImpl(Inline)]
         public ulong Ntz()
-            => gbits.ntz(in data);
+            => gbits.ntz(in bits[0]);
 
         [MethodImpl(Inline)]
-        public bool Eq(in BitVector<T> rhs)
-            => gmath.eq(data, rhs.data);
+        public bool Eq(in BitVector<N,T> rhs)
+            => bits.Eq(rhs.bits);
 
         [MethodImpl(Inline)]
-        public bool NEq(in BitVector<T> rhs)
-            => gmath.neq(data, rhs.data);
+        public bool NEq(in BitVector<N,T> rhs)
+            => !bits.Eq(rhs.bits);
 
+        public string Format()
+            => bits.ToBitString().Substring(0,BitCount).Intersperse(AsciSym.Space);
+            
         public override bool Equals(object obj)
             => throw new NotSupportedException();
         
         public override int GetHashCode()
             => throw new NotSupportedException();
+ 
+        static int CalcSegLength()
+        {
+            if(PrimalSize >= BitCount)
+                return 1;
+            else
+            {
+                var qr = math.quorem(BitCount, PrimalSize);
+                return qr.Remainder == 0 ? qr.Quotient : qr.Quotient + 1;
+            }
+        }
+
+        static (int segment, int offset)[] CaclBitMap()
+        {
+            var dst =  new (int segment, int offset)[BitCount];
+            for(int i = 0, seg = 0, offset = 0; i < BitCount; i++)          
+            {
+                if(i != 0)
+                {
+                    if((i % PrimalSize) == 0)
+                    {
+                        seg++;
+                        offset = 0;
+                    }
+
+                }
+                dst[i] = (seg, offset++);
+            }
+            return dst;
+        }
     }
 }

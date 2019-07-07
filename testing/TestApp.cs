@@ -18,7 +18,6 @@ namespace Z0.Test
     public abstract class TestApp<A> : TestContext<A>
         where A : TestApp<A>, new()
     {
-
         IEnumerable<Type> CandidateTypes()
             => typeof(A).Assembly.Types().Realize<IUnitTest>().Where(t => t.ContainsGenericParameters == false);        
         
@@ -87,7 +86,6 @@ namespace Z0.Test
         protected TestApp()
         {
             Configure(Config.WithTrace());   
-
         }
 
         protected TestApp(ITestConfig config, IRandomSource random)
@@ -99,16 +97,13 @@ namespace Z0.Test
         protected virtual void RunTests(string filter)
         {
             try
-            {
-                
-
+            {            
                 Run(filter, false);
             }
             catch (Exception e)
             {
                 NotifyError(e);
             }
-
         }
 
         protected static void Run(params string[] args)

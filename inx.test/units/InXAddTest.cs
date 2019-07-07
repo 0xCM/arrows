@@ -15,45 +15,11 @@ namespace Z0.Test
 
     public class InXAddTest : UnitTest<InXAddTest>
     {
-
-        void VerifyBinOp<T>(int blocks, Vec128BinOp<T> inXOp, Func<T,T,T> primalOp)
-            where T : struct
-        {
-            var blocklen = Span128<T>.BlockLength;                     
-            var lhs = Random.ReadOnlySpan128<T>(blocks);
-            var rhs = Random.ReadOnlySpan128<T>(blocks);
-            var expect = Span128.alloc<T>(blocks);
-            var actual = Span128.alloc<T>(blocks);
-            var tmp = new T[blocklen];
-            
-            for(var block = 0; block<blocks; block++)
-            {
-                var offset = block*blocklen;
-
-                for(var i =0; i<blocklen; i++)
-                    tmp[i] = primalOp(lhs[offset + i], rhs[offset + i]);
-
-                var vExpect = Vec128.load<T>(ref tmp[0]);
-             
-                var vX = lhs.ToVec128(block);
-                var vY = rhs.ToVec128(block);
-                var vActual = inXOp(vX,vY);
-
-                Claim.eq(vExpect, vActual);
-            
-                ginx.store(vExpect, ref expect.Block(block));
-                ginx.store(vActual, ref actual.Block(block));
-
-            }
-            Claim.eq(expect, actual);
-
-        }
-
         void Add128<T>(int blocks)
             where T : struct
         {
             TypeCaseStart<T>();
-            VerifyBinOp(blocks, new Vec128BinOp<T>(ginx.add), gmath.add<T>);
+            InXBinOp.Verify(Random, blocks, new Vec128BinOp<T>(ginx.add), gmath.add<T>);
             TypeCaseEnd<T>();
         }
 
@@ -61,7 +27,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            VerifyBinOp(blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
+            InXBinOp.Verify(Random, blocks, new Vec128BinOp<T>(ginx.sub), gmath.sub<T>);
             TypeCaseEnd<T>();
         }
 

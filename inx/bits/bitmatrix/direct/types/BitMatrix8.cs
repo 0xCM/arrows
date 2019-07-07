@@ -60,6 +60,30 @@ namespace Z0
             => lhs.NEq(rhs);
 
         [MethodImpl(Inline)]
+        public static BitMatrix8 operator & (BitMatrix8 lhs, BitMatrix8 rhs)
+            => lhs.And(rhs);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix8 operator | (BitMatrix8 lhs, BitMatrix8 rhs)
+            => lhs.Or(rhs);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix8 operator ^ (BitMatrix8 lhs, BitMatrix8 rhs)
+            => lhs.XOr(rhs);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix8 operator ~ (BitMatrix8 src)
+            => src.Flip();
+
+        [MethodImpl(Inline)]
+        public static explicit operator ulong(BitMatrix8 src)
+            => BitConverter.ToUInt64(src.bits);
+
+        [MethodImpl(Inline)]
+        public static explicit operator BitMatrix8(ulong src)
+            => Define(src);
+
+        [MethodImpl(Inline)]
         BitMatrix8(ReadOnlySpan<byte> src)
         {                    
             require(src.Length == Pow2.T03);

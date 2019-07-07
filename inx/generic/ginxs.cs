@@ -247,25 +247,25 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                dinxx.or(int8(lhs), int8(rhs), int8(dst));
+                int8(lhs).Or(int8(rhs), int8(dst));
             else if (typeof(T) == typeof(byte))
-                dinxx.or(uint8(lhs), uint8(rhs), uint8(dst));                    
+                uint8(lhs).Or(uint8(rhs), uint8(dst));                    
             else if (typeof(T) == typeof(short))
-                dinxx.or(int16(lhs), int16(rhs), int16(dst));
+                int16(lhs).Or(int16(rhs), int16(dst));
             else if (typeof(T) == typeof(ushort))
-                dinxx.or(uint16(lhs), uint16(rhs), uint16(dst));
+                uint16(lhs).Or(uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dinxx.or(int32(lhs), int32(rhs), int32(dst));
+                int32(lhs).Or(int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dinxx.or(uint32(lhs), uint32(rhs), uint32(dst));
+                uint32(lhs).Or(uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dinxx.or(int64(lhs), int64(rhs), int64(dst));
+                int64(lhs).Or(int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dinxx.or(uint64(lhs), uint64(rhs), uint64(dst));
+                uint64(lhs).Or(uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dinxx.or(float32(lhs), float32(rhs), float32(dst));
+                float32(lhs).Or(float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                dinxx.or(float64(lhs), float64(rhs), float64(dst));                
+                float64(lhs).Or(float64(rhs), float64(dst));
             else    
                 throw unsupported<T>();
             return dst;   
@@ -276,25 +276,25 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                dinxx.or(int8(lhs), int8(rhs), int8(dst));
+                int8(lhs).Or(int8(rhs), int8(dst));
             else if (typeof(T) == typeof(byte))
-                dinxx.or(uint8(lhs), uint8(rhs), uint8(dst));                    
+                uint8(lhs).Or(uint8(rhs), uint8(dst));                    
             else if (typeof(T) == typeof(short))
-                dinxx.or(int16(lhs), int16(rhs), int16(dst));
+                int16(lhs).Or(int16(rhs), int16(dst));
             else if (typeof(T) == typeof(ushort))
-                dinxx.or(uint16(lhs), uint16(rhs), uint16(dst));
+                uint16(lhs).Or(uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dinxx.or(int32(lhs), int32(rhs), int32(dst));
+                int32(lhs).Or(int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dinxx.or(uint32(lhs), uint32(rhs), uint32(dst));
+                uint32(lhs).Or(uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dinxx.or(int64(lhs), int64(rhs), int64(dst));
+                int64(lhs).Or(int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dinxx.or(uint64(lhs), uint64(rhs), uint64(dst));
+                uint64(lhs).Or(uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dinxx.or(float32(lhs), float32(rhs), float32(dst));
+                float32(lhs).Or(float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                dinxx.or(float64(lhs), float64(rhs), float64(dst));                
+                float64(lhs).Or(float64(rhs), float64(dst));
             else    
                 throw unsupported<T>();
             return dst;   
@@ -371,31 +371,30 @@ namespace Z0
                 throw unsupported<S>();
             return dst;
         }
-
-
+        
         public static Span128<T> XOr<T>(this ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                dinxx.xor(int8(lhs), int8(rhs), int8(dst));
+                dinxx.XOr(int8(lhs), int8(rhs), int8(dst));
             else if (typeof(T) == typeof(byte))
-                dinxx.xor(uint8(lhs), uint8(rhs), uint8(dst));                    
+                dinxx.XOr(uint8(lhs), uint8(rhs), uint8(dst));                    
             else if (typeof(T) == typeof(short))
-                dinxx.xor(int16(lhs), int16(rhs), int16(dst));
+                dinxx.XOr(int16(lhs), int16(rhs), int16(dst));
             else if (typeof(T) == typeof(ushort))
-                dinxx.xor(uint16(lhs), uint16(rhs), uint16(dst));
+                dinxx.XOr(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dinxx.xor(int32(lhs), int32(rhs), int32(dst));
+                dinxx.XOr(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dinxx.xor(uint32(lhs), uint32(rhs), uint32(dst));
+                dinxx.XOr(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dinxx.xor(int64(lhs), int64(rhs), int64(dst));
+                dinxx.XOr(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dinxx.xor(uint64(lhs), uint64(rhs), uint64(dst));
+                dinxx.XOr(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dinxx.xor(float32(lhs), float32(rhs), float32(dst));
+                dinxx.XOr(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                dinxx.xor(float64(lhs), float64(rhs), float64(dst));                
+                dinxx.XOr(float64(lhs), float64(rhs), float64(dst));                
             else    
                 throw unsupported<T>();
             return dst;   
@@ -405,25 +404,25 @@ namespace Z0
             where T : struct
         {
             if (typeof(T) == typeof(sbyte))
-                dinxx.xor(int8(lhs), int8(rhs), int8(dst));
+                dinxx.XOr(int8(lhs), int8(rhs), int8(dst));
             else if (typeof(T) == typeof(byte))
-                dinxx.xor(uint8(lhs), uint8(rhs), uint8(dst));                    
+                dinxx.XOr(uint8(lhs), uint8(rhs), uint8(dst));                    
             else if (typeof(T) == typeof(short))
-                dinxx.xor(int16(lhs), int16(rhs), int16(dst));
+                dinxx.XOr(int16(lhs), int16(rhs), int16(dst));
             else if (typeof(T) == typeof(ushort))
-                dinxx.xor(uint16(lhs), uint16(rhs), uint16(dst));
+                dinxx.XOr(uint16(lhs), uint16(rhs), uint16(dst));
             else if(typeof(T) == typeof(int))
-                dinxx.xor(int32(lhs), int32(rhs), int32(dst));
+                dinxx.XOr(int32(lhs), int32(rhs), int32(dst));
             else if(typeof(T) == typeof(uint))
-                dinxx.xor(uint32(lhs), uint32(rhs), uint32(dst));
+                dinxx.XOr(uint32(lhs), uint32(rhs), uint32(dst));
             else if(typeof(T) == typeof(long))
-                dinxx.xor(int64(lhs), int64(rhs), int64(dst));
+                dinxx.XOr(int64(lhs), int64(rhs), int64(dst));
             else if(typeof(T) == typeof(ulong))
-                dinxx.xor(uint64(lhs), uint64(rhs), uint64(dst));
+                dinxx.XOr(uint64(lhs), uint64(rhs), uint64(dst));
             else if(typeof(T) == typeof(float))
-                dinxx.xor(float32(lhs), float32(rhs), float32(dst));
+                dinxx.XOr(float32(lhs), float32(rhs), float32(dst));
             else if(typeof(T) == typeof(double))
-                dinxx.xor(float64(lhs), float64(rhs), float64(dst));                
+                dinxx.XOr(float64(lhs), float64(rhs), float64(dst));                
             else    
                 throw unsupported<T>();
             return dst;   

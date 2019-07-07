@@ -14,16 +14,14 @@ namespace Z0.Test
 
 
     public class InX512Test : UnitTest<InX512Test>
-    {
-    
+    {    
         public void TestM512PartsA()
         {
             var point = Random.Next<int>();
             var src = m512.define(point);
             Claim.eq(M512.PartCount<int>(), 16);
             for(var i=0; i< M512.PartCount<int>(); i++)
-                Claim.eq(point, src.part<int>(i));
-            
+                Claim.eq(point, src.part<int>(i));            
         }
 
         public void TestPow2()
@@ -47,16 +45,16 @@ namespace Z0.Test
         public void TestM512PartsB()
         {
             
-            var point = Random.NextM512<sbyte>();
-            Claim.eq(point.part<sbyte>(22), point.part<sbyte>(bitpos(179)));
-            Claim.eq(point.part<int>(2), point.part<int>(bitpos(68)));
+            var point = Random.M512<sbyte>();
+            Claim.eq(point.part<sbyte>(22), point.part<sbyte>(179));
+            Claim.eq(point.part<int>(2), point.part<int>(68));
         }
 
         public void TestM512PartsC()
         {
             for(var j = 0; j < Pow2.T08; j++)
             {
-                var point = Random.NextM512<long>();
+                var point = Random.M512<long>();
                 var bs1 = point.ToBitString();
                 var bs2 = new char[512];
                 for(var i=0; i< bs2.Length; i++)
@@ -69,14 +67,12 @@ namespace Z0.Test
 
         public void TestM512Pop()
         {
-            var point = Random.NextM512<long>();
+            var point = Random.M512<long>();
             var popX = m512.pop(point);
             m512.toggle<long>(ref point, 2, 3);
             var popY = m512.pop(point);
             var condition = (popY == popX + 1) || (popY == popX - 1);
             Claim.yea(condition);
         }
-
     }
-
 }

@@ -98,7 +98,7 @@ namespace Z0.Test
             var pc1 = 0ul;
             for(var i = 0; i<src.Length; i++)
             {
-                var bv = BitVector<T>.Define(in src[i]);
+                var bv = BitVector<N,T>.Define(src[i]);
                 pc1 += bv.Pop();
             }
 

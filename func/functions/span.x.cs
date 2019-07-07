@@ -333,7 +333,6 @@ namespace Z0
             return io;
         }
 
-
         public static (int Index, T Value)[] ToIndexedValues<T>(this ReadOnlySpan<T> src)
         {
             var dst = alloc<(int,T)>(src.Length);

@@ -14,8 +14,7 @@ namespace Z0.Bench
     using static As;
 
     public static class AddInXNumD
-    {
-        
+    {        
         public static Metrics<T> Add<T>(this InXNumDContext128 context, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
         {
@@ -24,7 +23,7 @@ namespace Z0.Bench
             else if (typeof(T) == typeof(double))
                 return context.Add(float64(lhs), float64(rhs)).As<T>();
             else 
-                throw unsupported(PrimalKinds.kind<T>());            
+                throw unsupported<T>();
         }
 
         static Metrics<float> Add(this InXNumDContext128 context, ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs)
@@ -35,7 +34,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block < blocks; block++)
-                dinx.add(lhs.ToNum128(block), rhs.ToNum128(block), ref dst[block]);
+                dinx.add(lhs.ToScalar128(block), rhs.ToScalar128(block), ref dst[block]);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -47,7 +46,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block < blocks; block++)
-                dinx.add(lhs.ToNum128(block), rhs.ToNum128(block), ref dst[block]);
+                dinx.add(lhs.ToScalar128(block), rhs.ToScalar128(block), ref dst[block]);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         } 
     }

@@ -22,8 +22,8 @@ namespace Z0
             => this.data = data;
 
         [MethodImpl(Inline)]
-        public static implicit operator BitVector<byte>(in BitVector8 src)
-            => new BitVector<byte>(in src.data);
+        public static implicit operator BitVector<N8,byte>(in BitVector8 src)
+            => new BitVector<N8,byte>(src.data);
 
         [MethodImpl(Inline)]
         public static implicit operator BitVector8(in byte src)
@@ -33,34 +33,20 @@ namespace Z0
         public static implicit operator byte(in BitVector8 src)
             => src.data;
 
+        [MethodImpl(Inline)]
         public static BitVector8 Define(
             byte? x0 = null, byte? x1 = null, byte? x2 = null, byte? x3 = null, 
             byte? x4 = null, byte? x5 = null, byte? x6 = null, byte? x7 = null)
         {
             var x = default(byte);
-            if(x0 == 1)
-                x |= (1 << 0);
-
-            if(x1 == 1)
-                x |= (1 << 1);
-
-            if(x2 == 1)
-                x |= (1 << 2);
-
-            if(x3 == 1)
-                x |= (1 << 3);
-
-            if(x4 == 1)
-                x |= (1 << 4);
-
-            if(x5 == 1)
-                x |= (1 << 5);
-
-            if(x6 == 1)
-                x |= (1 << 6);
-
-            if(x7 == 1)
-                x |= (1 << 7);
+            if(x0 == 1) x |= (1 << 0);
+            if(x1 == 1) x |= (1 << 1);
+            if(x2 == 1) x |= (1 << 2);
+            if(x3 == 1) x |= (1 << 3);
+            if(x4 == 1) x |= (1 << 4);
+            if(x5 == 1) x |= (1 << 5);
+            if(x6 == 1) x |= (1 << 6);
+            if(x7 == 1) x |= (1 << 7);
             return x;
         }
 
@@ -96,7 +82,7 @@ namespace Z0
         public static BitVector8 operator ~(in BitVector8 src)
             => Define((byte) ~ src.data);
 
-        public Bit this[in BitPos pos]
+        public Bit this[in int pos]
         {
             [MethodImpl(Inline)]
             get => test(in data, in pos);
@@ -112,15 +98,15 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public void EnableBit(in BitPos pos)
+        public void EnableBit(in int pos)
             => enable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public void DisableBit(in BitPos pos)
+        public void DisableBit(in int pos)
             => disable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public bool TestBit(in BitPos pos)
+        public bool TestBit(in int pos)
             => test(in data, in pos);
 
          [MethodImpl(Inline)]

@@ -19,32 +19,28 @@ namespace Z0.Bench
         public static Metrics<T> XOr<T>(this InXDContext128 context, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int8:
-                    return XOr(int8(lhs), int8(rhs), context).As<T>();
-                case PrimalKind.uint8:
-                    return XOr(uint8(lhs), uint8(rhs), context).As<T>();
-                case PrimalKind.int16:
-                    return XOr(int16(lhs), int16(rhs), context).As<T>();
-                case PrimalKind.uint16:
-                    return XOr(uint16(lhs), uint16(rhs), context).As<T>();
-                case PrimalKind.int32:
-                    return XOr(int32(lhs), int32(rhs), context).As<T>();
-                case PrimalKind.uint32:
-                    return XOr(uint32(lhs), uint32(rhs), context).As<T>();
-                case PrimalKind.int64:
-                    return XOr(int64(lhs), int64(rhs), context).As<T>();
-                case PrimalKind.uint64:
-                    return XOr(uint64(lhs), uint64(rhs), context).As<T>();
-                case PrimalKind.float32:
-                    return XOr(float32(lhs), float32(rhs), context).As<T>();
-                case PrimalKind.float64:                    
-                    return XOr(float64(lhs), float64(rhs), context).As<T>();
-                default:
-                    throw unsupported(kind);
-            }
+            if(typeof(T) == typeof(sbyte))
+                return context.XOr(int8(lhs), int8(rhs)).As<T>();
+            else if(typeof(T) == typeof(byte))
+                return context.XOr(uint8(lhs), uint8(rhs)).As<T>();
+            else if(typeof(T) == typeof(short))
+                return context.XOr(int16(lhs), int16(rhs)).As<T>();
+            else if(typeof(T) == typeof(ushort))
+                return context.XOr(uint16(lhs), uint16(rhs)).As<T>();
+            else if(typeof(T) == typeof(int))                
+                return context.XOr(int32(lhs), int32(rhs)).As<T>();
+            else if(typeof(T) == typeof(uint))
+                return context.XOr(uint32(lhs), uint32(rhs)).As<T>();
+            else if(typeof(T) == typeof(long))
+                return context.XOr(int64(lhs), int64(rhs)).As<T>();
+            else if(typeof(T) == typeof(ulong))
+                return context.XOr(uint64(lhs), uint64(rhs)).As<T>();
+            else if(typeof(T) == typeof(float))
+                return context.XOr(float32(lhs), float32(rhs)).As<T>();
+            else if(typeof(T) == typeof(double))
+                return context.XOr(float64(lhs), float64(rhs)).As<T>();
+            else 
+                throw unsupported<T>();
         }
 
         static Metrics<sbyte> XOr(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, InXDContext128 context)
@@ -55,7 +51,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinxx.xor(lhs, rhs, dst);
+                dinxx.XOr(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -69,7 +65,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinxx.xor(lhs, rhs, dst);
+                dinxx.XOr(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -83,7 +79,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinxx.xor(lhs, rhs, dst);
+                dinxx.XOr(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -97,7 +93,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinxx.xor(lhs, rhs, dst);
+                dinxx.XOr(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -111,7 +107,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinxx.xor(lhs, rhs, dst);
+                dinxx.XOr(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -125,7 +121,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinxx.xor(lhs, rhs, dst);
+                dinxx.XOr(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -139,7 +135,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinxx.xor(lhs, rhs, dst);
+                dinxx.XOr(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -153,7 +149,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinxx.xor(lhs, rhs, dst);
+                dinxx.XOr(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -167,7 +163,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinxx.xor(lhs, rhs, dst);
+                dinxx.XOr(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);
@@ -181,7 +177,7 @@ namespace Z0.Bench
 
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
-                dinxx.xor(lhs, rhs, dst);
+                dinxx.XOr(lhs, rhs, dst);
             var time = snapshot(sw);
 
             return context.CaptureMetrics(opid, time, dst);

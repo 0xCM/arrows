@@ -11,7 +11,7 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Realizes a Beta distribution
+    /// Realizes a Laplace distribution
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class LaplaceDist<T> : Distribution<LaplaceSpec,T>

@@ -12,10 +12,8 @@ namespace Z0.Test
     
     using static zfunc;
 
-
     public class InXMulTest : UnitTest<InXMulTest>
     {
-
         public void Mul128()
         {
             //Test case comes from https://docs.microsoft.com/et-ee/cpp/intrinsics/umul128?view=vs-2019
@@ -33,13 +31,13 @@ namespace Z0.Test
             var rhs = Random.Span256<ulong>(blocks, domain);
             for(var block=0; block<blocks; block++)
             {
-                var x = lhs.ToVec256(block);
-                var y = rhs.ToVec256(block);
+                var x = lhs.LoadVec256(block);
+                var y = rhs.LoadVec256(block);
                 var z = dinx.mul(x,y); 
 
                 var a = x.Extract().Replicate();
                 var b = y.Extract();
-                var c = a.Mul(b).ToVec256();
+                var c = a.Mul(b).LoadVec256(0);
                 Claim.eq(z,c);                                           
             }
 

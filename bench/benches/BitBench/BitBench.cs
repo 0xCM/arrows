@@ -18,7 +18,7 @@ namespace Z0.Bench
         public static IReadOnlyList<MetricComparisonRecord> Run()
         {
             var ops = items(OpKind.Toggle, OpKind.Pop, OpKind.Enable, OpKind.Disable, OpKind.Test);
-            var prims = PrimalKinds.Integral;
+            var prims = PrimalKinds.IntList;
             var optypes =from o in ops from p in prims select OpType.Define(o,p);
             var config = MetricConfig.Define(MetricKind.BitG, runs: Pow2.T03, cycles: Pow2.T12, samples: Pow2.T11);
             var context = BitGContext.Define(config, Random(null));

@@ -7,32 +7,26 @@ namespace Z0.Test
     using System;
     using System.Linq;
     using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
-    using System.IO;
     
     using static zfunc;
 
-
     public class InXExtractTest : UnitTest<InXExtractTest>
-    {
-     
+    {     
         void Extract128<T>()
             where T : struct
         {
             TypeCaseStart<T>();
 
             var len = Vec128<T>.Length;
-            var src = Random.NextVec128<T>();
+            var src = Random.Vec128<T>();
             var expect = span<T>(len);
             src.StoreTo(expect);
             for(byte i = 0; i< len; i++)
                 Claim.eq(expect[i], ginx.extract(in src, i));
 
             TypeCaseEnd<T>();                
-
         }
             
-
         public void Extract256<T>()
             where T : struct
         {
@@ -40,7 +34,7 @@ namespace Z0.Test
 
             var len = Vec256<T>.Length;
             var half = len >> 1;
-            var src = Random.NextVec256<T>();
+            var src = Random.Vec256<T>();
             var srcData = src.StoreTo(span<T>(len));
             
             var x0 = ginx.extract(in src, 0);
@@ -54,7 +48,6 @@ namespace Z0.Test
             Claim.eq(y1,z1);
 
             TypeCaseEnd<T>();                
-
         }
 
         public void Extract()
@@ -81,9 +74,5 @@ namespace Z0.Test
             Extract256<float>();
             Extract256<double>();
         }
-
     }
-
 }
-
-

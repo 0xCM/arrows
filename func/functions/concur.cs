@@ -12,14 +12,6 @@ using Z0;
 partial class zfunc
 {
 
-    /// <summary>
-    /// Constructs an empty concurrent index 
-    /// </summary>
-    /// <typeparam name="K">The key type</typeparam>
-    /// <typeparam name="V">The value type</typeparam>
-    [MethodImpl(Inline)]   
-    public static ConcurrentIndex<K,V> cindex<K,V>()
-        => new ConcurrentIndex<K,V>();
 
     /// <summary>
     /// Retrieves the current process
@@ -52,4 +44,16 @@ partial class zfunc
     [MethodImpl(Inline)]   
     public static IntPtr intptr(ulong address)
         => new IntPtr((long)address);
+
+    [MethodImpl(Inline)]   
+    public static Task<T> task<T>(Func<T> worker)
+        => Task.Factory.StartNew(worker);
+
+    [MethodImpl(Inline)]   
+    public static Task task(Action worker)
+        => Task.Factory.StartNew(worker);
+
+    [MethodImpl(Inline)]   
+    public static Task<T> task<S,T>(Func<S,T> worker, S s0)
+        => Task.Factory.StartNew(o => worker((S)o), s0);
 }

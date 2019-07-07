@@ -19,7 +19,7 @@ namespace Z0.Test
 
         public void Case1()
         {
-            var src = Random.NextVec128<byte>();
+            var src = Random.Vec128<byte>();
             var result = dinx.movemask(in src);
             var expect = 0;
             for(var pos=0; pos< src.Length(); pos++)

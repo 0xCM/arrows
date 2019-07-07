@@ -16,11 +16,11 @@ namespace Z0
     {
         public static T[] Array<T>(this IRandomSource random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
-                => random.UniformStream(domain,filter).TakeArray(length);
+                => random.Stream(domain,filter).TakeArray(length);
          
         [MethodImpl(Inline)]
         public static T[] NonZeroArray<T>(this IRandomSource random, int length, Interval<T>? domain = null)
             where T : struct
-                => random.UniformStream(domain, gmath.nonzero).TakeArray(length);        
+                => random.Stream(domain, gmath.nonzero).TakeArray(length);        
     }
 }

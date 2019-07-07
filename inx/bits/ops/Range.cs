@@ -22,8 +22,8 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static sbyte range(in sbyte src, in BitPos start, in byte length)        
-            => (sbyte)Bmi1.BitFieldExtract((uint)src, start, length);
+        public static sbyte range(in sbyte src, in int start, in byte length)        
+            => (sbyte)Bmi1.BitFieldExtract((uint)src, (byte)start, length);
 
         /// <summary>
         /// Extracts a contiguous range of bits from the source
@@ -32,8 +32,8 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static byte range(in byte src, in BitPos start, in byte length)        
-            => (byte)Bmi1.BitFieldExtract(src, start, length);
+        public static byte range(in byte src, in int start, in byte length)        
+            => (byte)Bmi1.BitFieldExtract(src, (byte)start, length);
 
         /// <summary>
         /// Extracts a contiguous range of bits from the source
@@ -42,8 +42,8 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static short range(in short src, in BitPos start, in byte length)        
-            => (short)Bmi1.BitFieldExtract((uint)src, start, length);
+        public static short range(in short src, in int start, in byte length)        
+            => (short)Bmi1.BitFieldExtract((uint)src, (byte)start, length);
 
         /// <summary>
         /// Extracts a contiguous range of bits from the source
@@ -52,8 +52,8 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static ushort range(in ushort src, in BitPos start, in byte length)        
-            => (ushort)Bmi1.BitFieldExtract(src, start, length);
+        public static ushort range(in ushort src, in int start, in byte length)        
+            => (ushort)Bmi1.BitFieldExtract(src, (byte)start, length);
 
         /// <summary>
         /// Extracts a contiguous range of bits from the source
@@ -62,16 +62,16 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static uint range(in uint src, in BitPos start, in byte length)        
-            => Bmi1.BitFieldExtract(src, start, length);
+        public static uint range(in uint src, in int start, in byte length)        
+            => Bmi1.BitFieldExtract(src, (byte)start, length);
 
         [MethodImpl(Inline)]
-        public static int range(in int src, in BitPos start, in byte length)        
-            => (int)Bmi1.BitFieldExtract((uint)src, start, length);
+        public static int range(in int src, in int start, in byte length)        
+            => (int)Bmi1.BitFieldExtract((uint)src, (byte)start, length);
 
         [MethodImpl(Inline)]
-        public static long range(in long src, in BitPos start, in byte length)
-            => (long)Bmi1.X64.BitFieldExtract((ulong)src, start, length);            
+        public static long range(in long src, in int start, in byte length)
+            => (long)Bmi1.X64.BitFieldExtract((ulong)src, (byte)start, length);            
 
         /// <summary>
         /// Extracts a contiguous range of bits from the source
@@ -80,7 +80,7 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static ulong range(in ulong src, in BitPos start, in byte length)
-            => Bmi1.X64.BitFieldExtract(src, start, length);            
+        public static ulong range(in ulong src, in int start, in byte length)
+            => Bmi1.X64.BitFieldExtract(src, (byte)start, length);            
     }
 }

@@ -14,7 +14,69 @@ namespace Z0
 
     partial class UniformRandom
     {
-        public static IEnumerable<T> UniformStream<T>(this IRandomSource src, Interval<T> domain, Func<T,bool> filter = null)
+        /// <summary>
+        /// Produces a stream of uniformly random values
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">If specified, the domain of the random variable</param>
+        /// <param name="filter">If specified, values that do not satisfy the predicate are excluded from the stream</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static IEnumerable<T> Stream<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)
+            where T : struct
+                => random.UniformStream(domain,filter);
+
+        /// <summary>
+        /// Produces a stream of uniformly random values
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">The domain of the random variable</param>
+        /// <param name="filter">If specified, values that do not satisfy the predicate are excluded from the stream</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static IEnumerable<T> Stream<T>(this IRandomSource random, Interval<T> domain, Func<T,bool> filter = null)
+            where T : struct
+                => random.UniformStream(domain,filter);
+
+        /// <summary>
+        /// Produces a stream of nonzero uniformly random values
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">If specified, the domain of the random variable</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static IEnumerable<T> NonZeroStream<T>(this IRandomSource random, Interval<T>? domain = null)
+                where T : struct
+                    => random.UniformStream(domain, gmath.nonzero);
+
+        /// <summary>
+        /// Produces a stream of nonzero uniformly random values
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">The domain of the random variable</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static IEnumerable<T> NonZeroStream<T>(this IRandomSource random, Interval<T> domain)
+                where T : struct
+                    => random.UniformStream(domain, gmath.nonzero);
+
+        /// <summary>
+        /// Fills a client-allocated target with a specified number of uniformly random values
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="domain">The domain of the random variable</param>
+        /// <param name="count">The number of values to send to the target</param>
+        /// <param name="dst">A reference to the target location</param>
+        /// <param name="filter">If specified, values that do not satisfy the predicate are excluded from the stream</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static void StreamTo<T>(this IRandomSource random, Interval<T> domain, int count, ref T dst, Func<T,bool> filter = null)
+            where T : struct
+        {
+            var it = random.Stream<T>(domain,filter).Take(count).GetEnumerator();
+            var counter = 0;
+            while(it.MoveNext())
+                Unsafe.Add(ref dst, counter++) = it.Current;
+        }
+
+        static IEnumerable<T> UniformStream<T>(this IRandomSource src, Interval<T> domain, Func<T,bool> filter = null)
             where T : struct
         {
 
@@ -24,7 +86,7 @@ namespace Z0
                 return src.UnfilteredStream(domain);
 
         }
-        public static IEnumerable<T> UniformStream<T>(this IRandomSource src, Interval<T>? domain = null, Func<T,bool> filter = null)
+        static IEnumerable<T> UniformStream<T>(this IRandomSource src, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
         {
             var configured = domain.Configure();
@@ -33,30 +95,12 @@ namespace Z0
             else
                 return src.UnfilteredStream(configured);
         }
-
-        public static IEnumerable<T> Stream<T>(this IRandomSource random, Interval<T>? domain = null, Func<T,bool> filter = null)
-            where T : struct
-                => random.UniformStream(domain,filter);
-
-        [MethodImpl(Inline)]
-        public static IEnumerable<T> NonZeroStream<T>(this IRandomSource random, Interval<T>? domain = null)
-                where T : struct
-                    => random.UniformStream(domain, gmath.nonzero);
-
-        public static void StreamTo<T>(this IRandomSource random, Interval<T> domain, int count, ref T dst, Func<T,bool> filter = null)
-            where T : struct
-        {
-            var it = random.Stream<T>(domain,filter).Take(count).GetEnumerator();
-            var counter = 0;
-            while(it.MoveNext())
-                Unsafe.Add(ref dst, counter++) = it.Current;
-        }
  
        [MethodImpl(Inline)]
        static Interval<T> Configure<T>(this Interval<T>? domain)        
             where T : struct
                 => domain.ValueOrElse(() => TypeBoundDomain<T>());
-
+                
         static IEnumerable<T> FilteredStream<T>(this IRandomSource src, Interval<T> domain, Func<T,bool> filter)
             where T : struct
         {

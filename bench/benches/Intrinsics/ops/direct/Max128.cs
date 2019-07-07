@@ -18,16 +18,12 @@ namespace Z0.Bench
         public static Metrics<T> Max<T>(this InXDContext128 context, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-                case PrimalKind.int16:
-                    return  context.Max(int16(lhs), int16(rhs)).As<T>();
-                case PrimalKind.int32:
-                    return  context.Max(int32(lhs), int32(rhs)).As<T>();
-            }
-
-            throw unsupported(kind);
+            if(typeof(T) == typeof(short))
+                return  context.Max(int16(lhs), int16(rhs)).As<T>();
+            else if(typeof(T) == typeof(int))
+                return  context.Max(int32(lhs), int32(rhs)).As<T>();
+            else
+                throw unsupported<T>();
         }
 
         static Metrics<int> Max(this InXDContext128 context, ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs )
@@ -37,7 +33,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block <  dst.BlockCount; block++)
-                Vec128.store(dinx.max(lhs.ToVec128(block), rhs.ToVec128(block)), dst, block);            
+                    Vec128.store(dinx.max(lhs.LoadVec128(block), rhs.LoadVec128(block)), dst, block);            
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -48,7 +44,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block <  dst.BlockCount; block++)
-                Vec128.store(dinx.max(lhs.ToVec128(block), rhs.ToVec128(block)), dst, block);
+                    Vec128.store(dinx.max(lhs.LoadVec128(block), rhs.LoadVec128(block)), dst, block);
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
     }

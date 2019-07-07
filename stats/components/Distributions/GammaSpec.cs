@@ -32,7 +32,6 @@ namespace Z0
                 Rate = Rate,
             };
 
-
         GammaSpec()
         {
 
@@ -46,6 +45,5 @@ namespace Z0
 
         [Symbol(Greek.beta)]
         public double Rate {get; private set;}
-
     }
 }

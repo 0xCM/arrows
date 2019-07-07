@@ -12,7 +12,6 @@ namespace Z0.Test
     
     using static zfunc;
 
-
     public class InXBitwiseOps : UnitTest<InXBitwiseOps>
     {
 
@@ -29,14 +28,14 @@ namespace Z0.Test
 
         public void LeftShiftV256U32()
         {
-            var src = Random.NextVec256<uint>();
-            var shifts = Random.NextVec256<uint>(closed(1u,7u));  
+            var src = Random.Vec256<uint>();
+            var shifts = Random.Vec256<uint>(closed(1u,7u));  
 
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
-            var v1 = expect.ToVec256();
+            var v1 = expect.LoadVec256();
             var v2 = ginx.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
@@ -44,14 +43,14 @@ namespace Z0.Test
         
         public void LeftShiftV128U32()
         {
-            var src = Random.NextVec128<uint>();
-            var shifts = Random.NextVec128<uint>(closed(1u,7u));            
+            var src = Random.Vec128<uint>();
+            var shifts = Random.Vec128<uint>(closed(1u,7u));            
 
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
-            var v1 = expect.ToVec128();
+            var v1 = expect.LoadVec128();
             var v2 = ginx.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
@@ -59,14 +58,14 @@ namespace Z0.Test
 
         public void LeftShiftV128U64()
         {
-            var src = Random.NextVec128<ulong>();
-            var shifts = Random.NextVec128<ulong>(closed(1ul,7ul));            
+            var src = Random.Vec128<ulong>();
+            var shifts = Random.Vec128<ulong>(closed(1ul,7ul));            
 
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
-            var v1 = expect.ToVec128();
+            var v1 = expect.LoadVec128();
             var v2 = ginx.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            
@@ -74,14 +73,14 @@ namespace Z0.Test
 
         public void LeftShiftV256U64()
         {
-            var src = Random.NextVec256<ulong>();
-            var shifts = Random.NextVec256<ulong>(closed(1ul,7ul));            
+            var src = Random.Vec256<ulong>();
+            var shifts = Random.Vec256<ulong>(closed(1ul,7ul));            
             
             var expect = src.ToSpan();
             for(var i = 0; i < src.Length(); i ++)
                 expect[i] = gbits.shiftl(src[i], shifts[i]);
             
-            var v1 = expect.ToVec256();
+            var v1 = expect.LoadVec256();
             var v2 = ginx.shiftl(src, shifts);            
 
             Claim.eq(v1,v2);            

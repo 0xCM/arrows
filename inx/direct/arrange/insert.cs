@@ -8,11 +8,9 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
-    using System.Collections.Generic;
         
     using static System.Runtime.Intrinsics.X86.Sse2;
     using static System.Runtime.Intrinsics.X86.Sse41;
-    using static System.Runtime.Intrinsics.X86.Sse42;
 
     using static zfunc;
     
@@ -49,5 +47,45 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<ulong> insert(ulong src, in Vec128<ulong> dst, byte index)        
             => Avx2.X64.Insert(dst,src,index);
+
+        [MethodImpl(Inline)]
+        public static Vec256<sbyte> insert(in Vec128<sbyte> src, in Vec256<sbyte> dst, byte index)        
+            => Avx.InsertVector128(dst,src,index);
+
+        [MethodImpl(Inline)]
+        public static Vec256<byte> insert(in Vec128<byte> src, in Vec256<byte> dst, byte index)        
+            => Avx.InsertVector128(dst,src,index);
+
+        [MethodImpl(Inline)]
+        public static Vec256<short> insert(in Vec128<short> src, in Vec256<short> dst, byte index)        
+            => Avx.InsertVector128(dst,src,index);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ushort> insert(in Vec128<ushort> src, in Vec256<ushort> dst, byte index)        
+            => Avx.InsertVector128(dst,src,index);
+
+        [MethodImpl(Inline)]
+        public static Vec256<int> insert(in Vec128<int> src, in Vec256<int> dst, byte index)        
+            => Avx.InsertVector128(dst,src,index);
+
+        [MethodImpl(Inline)]
+        public static Vec256<uint> insert(in Vec128<uint> src, in Vec256<uint> dst, byte index)        
+            => Avx.InsertVector128(dst,src,index);
+
+        [MethodImpl(Inline)]
+        public static Vec256<long> insert(in Vec128<long> src, in Vec256<long> dst, byte index)        
+            => Avx.InsertVector128(dst,src,index);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ulong> insert(in Vec128<ulong> src, in Vec256<ulong> dst, byte index)        
+            => Avx.InsertVector128(dst,src,index);
+
+        [MethodImpl(Inline)]
+        public static Vec256<float> insert(in Vec128<float> src, in Vec256<float> dst, byte index)        
+            => Avx.InsertVector128(dst,src,index);
+
+        [MethodImpl(Inline)]
+        public static Vec256<double> insert(in Vec128<double> src, in Vec256<double> dst, byte index)        
+            => Avx.InsertVector128(dst,src,index);
     }
 }

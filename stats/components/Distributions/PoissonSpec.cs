@@ -32,5 +32,4 @@ namespace Z0
         [Symbol(Greek.lambda)]
         public double Lambda {get;}
     }
-
 }

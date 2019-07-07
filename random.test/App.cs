@@ -21,8 +21,8 @@ namespace Z0.Test
             var sw2 = stopwatch();
             for(var i=0; i <lhs.BlockCount; i++)
             {
-                var v1 = lhs.ToVec256(i);
-                var v2 = rhs.ToVec256(i);
+                var v1 = lhs.LoadVec256(i);
+                var v2 = rhs.LoadVec256(i);
                 dinx.mul(v1,v2);
             }
             print($"direct time = {snapshot(sw2)}");
@@ -30,8 +30,8 @@ namespace Z0.Test
             var sw1 = stopwatch();
             for(var i=0; i <lhs.BlockCount; i++)
             {
-                var v1 = lhs.ToVec256(i);
-                var v2 = rhs.ToVec256(i);
+                var v1 = lhs.LoadVec256(i);
+                var v2 = rhs.LoadVec256(i);
                 x86._mm256_mul_epu32(v1, v2);
             }
             print($"dsl time = {snapshot(sw1)}");
@@ -39,8 +39,8 @@ namespace Z0.Test
             var sw3 = stopwatch();
             for(var i=0; i <lhs.BlockCount; i++)
             {
-                var v1 = lhs.ToVec256(i);
-                var v2 = rhs.ToVec256(i);
+                var v1 = lhs.LoadVec256(i);
+                var v2 = rhs.LoadVec256(i);
                 ginx.mul<uint,ulong>(v1,v2);
             }
             print($"ginx time = {snapshot(sw3)}");
@@ -49,7 +49,7 @@ namespace Z0.Test
 
         void RunBlah()
         {
-            var ibase = Seed64.Seed30;
+            var ibase = Seed64.Seed10;
 
             var seeds = span(
                 Seed64.Seed00, Seed64.Seed01, Seed64.Seed02, Seed64.Seed03,
@@ -61,10 +61,10 @@ namespace Z0.Test
                 ibase += 2, ibase += 2,ibase += 2, ibase += 2 
                 );
             
-            var s0 = seeds.ToVec256();
-            var s1 = seeds.ToVec256(4);
-            var i0 = indices.ToVec256();
-            var i1 = indices.ToVec256(4);
+            var s0 = seeds.LoadVec256(0);
+            var s1 = seeds.LoadVec256(4);
+            var i0 = indices.LoadVec256();
+            var i1 = indices.LoadVec256(4);
 
             
             var n = Pow2.T16;

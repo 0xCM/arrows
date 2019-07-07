@@ -106,7 +106,8 @@ namespace Z0.Bench
                     metrics = config.Sqrt(src);   
                     break;
                 default: 
-                    throw unsupported(op, PrimalKinds.kind<T>());
+                    throw unsupported<T>();
+
             }
             print(metrics.Describe());
 
@@ -159,7 +160,8 @@ namespace Z0.Bench
                     metrics = config.GtEq(lhs, rhs);   
                     break;                
                 default: 
-                    throw unsupported(op, PrimalKinds.kind<T>());
+                    throw unsupported<T>();
+
             }            
 
             print(metrics.Describe());

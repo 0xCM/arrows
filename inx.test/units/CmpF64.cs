@@ -26,8 +26,8 @@ namespace Z0.Test
         void Verify(FloatComparisonMode mode)
         {
 
-            var lhs = Random.NextVec128<double>();
-            var rhs = Random.NextVec128<double>();
+            var lhs = Random.Vec128<double>();
+            var rhs = Random.Vec128<double>();
 
             var lDst = span<double>(2);
             lhs.StoreTo(lDst);

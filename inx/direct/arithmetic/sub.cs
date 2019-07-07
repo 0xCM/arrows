@@ -74,7 +74,6 @@ namespace Z0
         public static Vec256<short> sub(in Vec256<short> lhs, in Vec256<short> rhs)
             => Subtract(lhs, rhs);
 
-
         [MethodImpl(Inline)]
         public static Vec256<ushort> sub(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
             => Subtract(lhs, rhs);

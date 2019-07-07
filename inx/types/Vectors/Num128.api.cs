@@ -45,8 +45,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return  scalar<T>(float64(value));
             else
-                throw unsupported(PrimalKinds.kind<T>());
-
+                throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]

@@ -11,11 +11,9 @@ namespace Z0.Test
     using System.IO;
     
     using static zfunc;
-
     
     public class RandomTest : UnitTest<RandomTest>
     {
-
         public void I8DomainSatisifed()
         {
             var samples = Pow2.T11;
@@ -106,7 +104,7 @@ namespace Z0.Test
         {            
             TypeCaseStart<T>();
             var sw = stopwatch();
-            var samples = Random.UniformStream(domain).TakeArray(count);
+            var samples = Random.Stream(domain).TakeArray(count);
             var time = snapshot(sw);
             
             var avg = gmath.avg<T>(samples);
@@ -124,7 +122,7 @@ namespace Z0.Test
         {
             TypeCaseStart<T>();
             var sw = stopwatch();
-            var samples = Random.UniformStream<T>().TakeArray(count);
+            var samples = Random.Stream<T>().TakeArray(count);
             var time = snapshot(sw);
             var min = gmath.min<T>(samples);
             var max = gmath.max<T>(samples);
@@ -151,14 +149,12 @@ namespace Z0.Test
             UniformBounded<int>(count);
             UniformBounded<uint>(count);
         }
-    
 
         static long ToInt64(byte[] value, int startIndex)
         {
 
             return Unsafe.ReadUnaligned<long>(ref value[startIndex]);
         }
-
 
         void Bernouli(double alpha, int count)
         {
@@ -208,7 +204,7 @@ namespace Z0.Test
             TypeCaseStart<T>();
             for(var i=0; i<count; i++)
             {
-                var xSample = Random.NextM512(domain);
+                var xSample = Random.M512(domain);
                 for(var partIx=0; partIx < M512.PartCount<T>(); partIx++)
                 {
                     var xPart = xSample.part<T>(partIx);
@@ -229,9 +225,5 @@ namespace Z0.Test
             Sample512(closed(-250000d, 250000d), count);
 
         }
-
-
     }
-
-
 }

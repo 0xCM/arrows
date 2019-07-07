@@ -60,5 +60,13 @@ namespace Z0
         [MethodImpl(Inline)]
         public static string Format(this in BitMatrix64 src)
             => src.bits.Format(64);    
+        
+        [MethodImpl(Inline)]
+        public static string Format<M,N,T>(this in BitMatrix<M,N,T> src)
+            where M : ITypeNat, new()        
+            where N : ITypeNat, new()
+            where T : struct
+                => src.Bits.AsBytes().Format(src.ColCount);
+
     }
 }

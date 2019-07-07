@@ -16,24 +16,18 @@ namespace Z0
         /// Specifies the set of unsigned primal integer types
         /// </summary>
         public static readonly Type[] UnsignedInt = 
-            array(
-                typeof(byte),  typeof(ushort), 
-                typeof(uint), typeof(ulong)
-                );
+            array(typeof(byte),  typeof(ushort), typeof(uint), typeof(ulong));
 
         /// <summary>
         /// Specifies the set of signed primal integer types
         /// </summary>
         public static readonly Type[] SignedInt = 
-            array(
-                typeof(sbyte), typeof(short), 
-                typeof(int),  typeof(long)
-                );
+            array(typeof(sbyte), typeof(short), typeof(int),  typeof(long));
 
         /// <summary>
         /// Specifies the set of primal integer types
         /// </summary>
-        public static readonly Type[] Integral = 
+        public static readonly Type[] Int = 
             concat(UnsignedInt, SignedInt);
 
         /// <summary>

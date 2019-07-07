@@ -6,57 +6,40 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
     
     using static zfunc;
 
     /// <summary>
-    /// Specifies a 0-relative bit position where significance increases
-    /// in the same direction as the position. The meaning of a negativev
-    /// position will be determined by a given use case, if any.
+    /// Identifies a bit position within a span of memory 
+    /// via an element offset and relative index
     /// </summary>
-    public ref struct BitPos
+    
+    [StructLayout(LayoutKind.Explicit, Size = 3)]
+    public readonly struct BitPos
     {
-        public int current;
+        /// <summary>
+        /// The span offset
+        /// </summary>
+        [FieldOffset(0)]
+        public readonly ushort Offset;
+
+        /// <summary>
+        /// The bit position relative to the offset
+        /// </summary>
+        [FieldOffset(2)]
+        public readonly byte Index;
 
         [MethodImpl(Inline)]
-        public static implicit operator byte(in BitPos src)
-            => (byte)src.current;
+        public static BitPos Define(ushort Offset, byte Index)
+            => new BitPos(Offset, Index);
 
         [MethodImpl(Inline)]
-        public static implicit operator ushort(in BitPos src)
-            => (ushort)src.current;
-
-        [MethodImpl(Inline)]
-        public static implicit operator int(in BitPos src)
-            => src.current;
-
-        [MethodImpl(Inline)]
-        public static implicit operator BitPos(int src)
-            => Define(src);
-
-        [MethodImpl(Inline)]
-        public static bool operator ==(in BitPos lhs, in BitPos rhs)        
-            => lhs.current == rhs.current;
-
-        [MethodImpl(Inline)]
-        public static bool operator !=(in BitPos lhs, in BitPos rhs)        
-            => lhs.current != rhs.current;
-
-        [MethodImpl(Inline)]
-        public static BitPos operator +(in BitPos lhs, in BitPos rhs)        
-            => lhs.current + rhs.current;
-
-        [MethodImpl(Inline)]
-        public static BitPos operator ++(BitPos src)        
-            => ++src.current;
-
-        [MethodImpl(Inline)]
-        public static BitPos Define(int current)
-            => new BitPos(current);
-
-        [MethodImpl(Inline)]
-        public BitPos(int current)
-            => this.current = current;
+        public BitPos(ushort Offset, byte Index)
+        {
+            this.Offset = Offset;
+            this.Index = Index;
+        }   
 
         public override int GetHashCode()
             => throw new NotSupportedException();

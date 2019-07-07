@@ -15,11 +15,11 @@ namespace Z0
         public static Span<T> Span<T>(this IRandomSource random, int length, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct
         {
-            var stream = domain != null ? random.UniformStream<T>(domain.Value) : random.UniformStream<T>();
+            var stream = domain != null ? random.Stream<T>(domain.Value) : random.Stream<T>();
             return stream.TakeSpan(length);
         }
 
-       [MethodImpl(Inline)]
+        [MethodImpl(Inline)]
         public static Span<N,T> Span<N,T>(this IRandomSource random, N length = default, Interval<T>? domain = null, Func<T,bool> filter = null)
             where T : struct  
             where N : ITypeNat, new()
@@ -52,7 +52,7 @@ namespace Z0
             where T : struct
         {
             var count = Z0.Span128.blocklength<T>(blocks);
-            var src = random.UniformStream(domain,filter).TakeSpan(count);
+            var src = random.Stream(domain,filter).TakeSpan(count);
             return src.ToSpan128(); 
         }
 
@@ -70,7 +70,7 @@ namespace Z0
             where T : struct
         {
             var count = Z0.Span256.blocklength<T>(blocks);
-            var src = random.UniformStream(domain,filter).TakeSpan(count);
+            var src = random.Stream(domain,filter).TakeSpan(count);
             return src.ToSpan256(); 
         }
 

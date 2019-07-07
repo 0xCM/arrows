@@ -19,7 +19,13 @@ namespace Z0
 
     partial class xfunc
     {
-
+        /// <summary>
+        /// Reads a primal value from a span of bytes beginning at a specified offset;
+        /// the number of bytes consumed is predicated on the target tpe
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="offset">The position of the byte where reading will begin</param>
+        /// <typeparam name="T">The target type</typeparam>
         [MethodImpl(Inline)]
         public static T ReadPrimalValue<T>(this ReadOnlySpan<byte> src, int offset = 0)
             where T : struct

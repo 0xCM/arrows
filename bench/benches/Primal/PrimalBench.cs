@@ -24,7 +24,7 @@ namespace Z0.Bench
 
         public static IReadOnlyList<MetricComparisonRecord> Run()
         {
-            var ops = OpType.Define(OpKinds.BinaryAritmetic, PrimalKinds.All);
+            var ops = OpType.Define(OpKinds.BinaryAritmetic, PrimalKinds.AllList);
             var config = PrimalGConfig.Define(MetricKind.PrimalG, runs: Pow2.T04, cycles: Pow2.T13, samples: Pow2.T11);
             var context = config.Context();
             var comparisons = new List<MetricComparisonRecord>();

@@ -5,16 +5,16 @@
 namespace Z0
 {
     using System;
-    using System.Linq;
-    using System.Collections.Generic;
 
     using static zfunc;
 
-    public class BetaSpec : IDistributionSpec
+    /// <summary>
+    /// Characterizes a beta distribution
+    /// </summary>
+    public readonly struct BetaSpec : IDistributionSpec
     {
         public static BetaSpec Define(double alpha, double beta)
-            => new BetaSpec(alpha,beta);
-        
+            => new BetaSpec(alpha,beta);        
         public BetaSpec(double alpha, double beta)
         {
             this.Alpha = alpha;
@@ -22,9 +22,9 @@ namespace Z0
         }
         
         [Symbol(Greek.alpha)]
-        public double Alpha {get;}
+        public readonly double Alpha;
 
         [Symbol(Greek.beta)]
-        public double Beta {get;}
+        public readonly double Beta;
     }
 }

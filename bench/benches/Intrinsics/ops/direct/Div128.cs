@@ -18,17 +18,12 @@ namespace Z0.Bench
         public static Metrics<T> Div<T>(this InXDContext128 context, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-
-            switch(kind)
-            {
-                case PrimalKind.float32:
-                    return Div(float32(lhs), float32(rhs), context).As<T>();
-                case PrimalKind.float64:                    
-                    return Div(float64(lhs), float64(rhs), context).As<T>();
-                default:
-                    throw unsupported(kind);
-            }
+            if(typeof(T) == typeof(float))
+                return Div(float32(lhs), float32(rhs), context).As<T>();
+            else if(typeof(T) == typeof(double))
+                return Div(float64(lhs), float64(rhs), context).As<T>();
+            else
+                throw unsupported<T>();
         }
 
         public static Metrics<float> Div(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, InXDContext128 context = null)

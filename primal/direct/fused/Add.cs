@@ -70,9 +70,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i = 0; i< len; i++)
-            {
                 dst[i] = add(lhs[i], rhs[i]);
-            }
             return dst;
         }
 

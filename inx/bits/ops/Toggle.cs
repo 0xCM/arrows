@@ -15,39 +15,39 @@ namespace Z0
     {                
 
           [MethodImpl(Inline)]
-          public static sbyte toggle(sbyte src, BitPos pos)
+          public static sbyte toggle(sbyte src, int pos)
                => src ^= (sbyte)(1 << pos);
 
           [MethodImpl(Inline)]
-          public static byte toggle(byte src, BitPos pos)
+          public static byte toggle(byte src, int pos)
                => src ^= (byte)(1 << pos);
 
           [MethodImpl(Inline)]
-          public static short toggle(short src, BitPos pos)
+          public static short toggle(short src, int pos)
                => src ^= (short)(1 << pos);
 
           [MethodImpl(Inline)]
-          public static ushort toggle(ushort src, BitPos pos)
+          public static ushort toggle(ushort src, int pos)
                => src ^= (ushort)(1 << pos);
 
           [MethodImpl(Inline)]
-          public static int toggle(int src, BitPos pos)
+          public static int toggle(int src, int pos)
                => src ^= (1 << pos);
 
           [MethodImpl(Inline)]
-          public static uint toggle(uint src, BitPos pos)
+          public static uint toggle(uint src, int pos)
                => src ^= (1u << pos);
 
           [MethodImpl(Inline)]
-          public static long toggle(long src, BitPos pos)
+          public static long toggle(long src, int pos)
                => src ^= (1L << pos);
 
           [MethodImpl(Inline)]
-          public static ulong toggle(ulong src, BitPos pos)
+          public static ulong toggle(ulong src, int pos)
                => src ^= (1ul << pos);
 
           [MethodImpl(Inline)]
-          public static float toggle(float src, BitPos pos)
+          public static float toggle(float src, int pos)
           {
                ref var bits = ref Unsafe.As<float,int>(ref src);
                bits ^= (1 << pos);
@@ -55,7 +55,7 @@ namespace Z0
           }
 
           [MethodImpl(Inline)]
-          public static double toggle(double src, BitPos pos)
+          public static double toggle(double src, int pos)
           {
                ref var bits = ref Unsafe.As<double,long>(ref src);
                bits ^= (1L << pos);
@@ -63,63 +63,63 @@ namespace Z0
           }
 
           [MethodImpl(Inline)]
-          public static ref sbyte toggle(ref sbyte src, BitPos pos)
+          public static ref sbyte toggle(ref sbyte src, int pos)
           {
                src ^= (sbyte)(1 << pos);
                return ref src;
           }
 
           [MethodImpl(Inline)]
-          public static ref byte toggle(ref byte src, BitPos pos)
+          public static ref byte toggle(ref byte src, int pos)
           {
                src ^= (byte)(1 << pos);
                return ref src;
           }
 
           [MethodImpl(Inline)]
-          public static ref short toggle(ref short src, BitPos pos)
+          public static ref short toggle(ref short src, int pos)
           {
                src ^= (short)(1 << pos);
                return ref src;
           }
 
           [MethodImpl(Inline)]
-          public static ref ushort toggle(ref ushort src, BitPos pos)
+          public static ref ushort toggle(ref ushort src, int pos)
           {
                src ^= (ushort)(1 << pos);
                return ref src;
           }
 
           [MethodImpl(Inline)]
-          public static ref int toggle(ref int src, BitPos pos)
+          public static ref int toggle(ref int src, int pos)
           {
                src ^= (1 << pos);
                return ref src;
           }
 
           [MethodImpl(Inline)]
-          public static ref uint toggle(ref uint src, BitPos pos)
+          public static ref uint toggle(ref uint src, int pos)
           {
                src ^= (1u << pos);
                return ref src;
           }
 
           [MethodImpl(Inline)]
-          public static ref long toggle(ref long src, BitPos pos)
+          public static ref long toggle(ref long src, int pos)
           {
                src ^= (1L << pos);
                return ref src;
           }
 
           [MethodImpl(Inline)]
-          public static ref ulong toggle(ref ulong src, BitPos pos)
+          public static ref ulong toggle(ref ulong src, int pos)
           {
                src ^= (1ul << pos);
                return ref src;
           } 
 
           [MethodImpl(Inline)]
-          public static ref float toggle(ref float src, BitPos pos)
+          public static ref float toggle(ref float src, int pos)
           {
                ref var bits = ref Unsafe.As<float,int>(ref src);
                bits ^= (1 << pos);
@@ -127,7 +127,7 @@ namespace Z0
           } 
 
           [MethodImpl(Inline)]
-          public static ref double toggle(ref double src, BitPos pos)
+          public static ref double toggle(ref double src, int pos)
           {
                ref var bits = ref Unsafe.As<double,long>(ref src);
                bits ^= (1L << pos);

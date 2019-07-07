@@ -6,7 +6,6 @@ namespace Z0
 {
     using System;
     using System.Linq;
-    using System.Collections.Generic;
 
     using static zfunc;
 
@@ -14,7 +13,7 @@ namespace Z0
     /// Characterizes a bernouli distribution
     /// </summary>
     /// <remarks>See https://en.wikipedia.org/wiki/Bernoulli_distribution</remarks>
-    public class BernoulliSpec : IDistributionSpec
+    public readonly struct BernoulliSpec : IDistributionSpec
     {
         public static BernoulliSpec Define(double p)
             => new BernoulliSpec(p);
@@ -29,7 +28,7 @@ namespace Z0
         /// the probability of success
         /// </summary>
         [Symbol(AsciLower.p)]
-        public double p {get;}
+        public readonly double p;
     }
 
 }

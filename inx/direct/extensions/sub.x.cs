@@ -26,7 +26,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -34,7 +34,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -42,7 +42,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -50,7 +50,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -58,7 +58,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -66,7 +66,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -74,7 +74,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -82,7 +82,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -90,7 +90,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -98,7 +98,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec128(block),rhs.ToVec128(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -106,7 +106,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -114,7 +114,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -122,7 +122,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -130,7 +130,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -138,7 +138,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -146,7 +146,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -154,7 +154,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -162,7 +162,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -170,7 +170,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -178,10 +178,8 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.ToVec256(block),rhs.ToVec256(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
             return dst;            
         }
-
-
     }
 }

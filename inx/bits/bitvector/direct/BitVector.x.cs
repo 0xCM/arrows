@@ -30,21 +30,6 @@ namespace Z0
             => src;
 
 
-        [MethodImpl(Inline)]
-        public static BitVector<byte> ToGeneric(this BitVector8 src)
-            => src;
-
-        [MethodImpl(Inline)]
-        public static BitVector<ushort> ToGeneric(this BitVector16 src)
-            => src;
-
-        [MethodImpl(Inline)]
-        public static BitVector<uint> ToGeneric(this BitVector32 src)
-            => src;
-
-        [MethodImpl(Inline)]
-        public static BitVector<ulong> ToGeneric(this BitVector64 src)
-            => src;
 
     }
 }

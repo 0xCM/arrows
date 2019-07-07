@@ -12,24 +12,6 @@ namespace Z0
 
     using static zfunc;
 
-    public interface IDistributionSpec
-    {
-        
-    }
-
-    public interface IDistribution<T>
-        where T : struct
-    {
-        IEnumerable<T> Sample();
-    }
-
-    public interface IDistribution<S,T> : IDistribution<T>
-        where S : IDistributionSpec
-        where T : struct
-    {
-        
-    }
-
     public abstract class Distribution<S,T> : IDistribution<S,T>
         where S : IDistributionSpec
         where T : struct
@@ -50,6 +32,4 @@ namespace Z0
         
         public abstract IEnumerable<T> Sample();
     }
-
-
 }

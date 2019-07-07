@@ -73,7 +73,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        BitString RangeRev(BitPos start, int length)
+        BitString RangeRev(int start, int length)
         {
             int offset = start;
             var dst = new char[length];
@@ -82,7 +82,7 @@ namespace Z0
             return BitString.Define(dst);
         }
 
-        public BitString Range(BitPos start, int length)
+        public BitString Range(int start, int length)
         {
             var src = new Span<char>(content.Reverse().ToArray());
             return Define(src.Slice(start, length));

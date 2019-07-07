@@ -10,7 +10,5 @@ using Z0;
 
 partial class zfunc
 {
-    [MethodImpl(Inline)]
-    public static BitPos bitpos(int pos)
-        => pos;    
+
 }

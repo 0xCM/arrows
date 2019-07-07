@@ -27,7 +27,7 @@ namespace Z0.Bench
         static IEnumerable<MetricComparisonRecord> Iter(bool silent = false)
         {
             var random = Random(null);
-            var sources = PrimalKinds.All;
+            var sources = PrimalKinds.AllList;
             var targets = items(PrimalKind.int32, PrimalKind.float64, PrimalKind.int64, PrimalKind.uint64);
             var runs = Pow2.T04;
             var cycles = Pow2.T09;

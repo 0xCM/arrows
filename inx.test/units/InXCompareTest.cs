@@ -21,7 +21,7 @@ namespace Z0.Test
             var src = Random.Span128<T>(blocks); 
             var sw = stopwatch();
             for(var block = 0; block< src.BlockCount; block++)
-                Claim.yea(ginx.eq(src.ToVec128(block) , src.ToVec128(block)));
+                Claim.yea(ginx.eq(src.LoadVec128(block) , src.LoadVec128(block)));
             TypeCaseEnd<T>();
             return snapshot(sw);
         }
@@ -33,7 +33,7 @@ namespace Z0.Test
             var src = Random.Span256<T>(blocks); 
             var sw = stopwatch();
             for(var block = 0; block< src.BlockCount; block++)
-                Claim.yea(ginx.eq(src.ToVec256(block) , src.ToVec256(block)));
+                Claim.yea(ginx.eq(src.LoadVec256(block) , src.LoadVec256(block)));
             TypeCaseEnd<T>();
             return snapshot(sw);
         }
@@ -42,7 +42,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var v1 = Random.NextVec128<T>();                
+            var v1 = Random.Vec128<T>();                
             var v2 = v1.Inc();
             var cmp = v2.Gt(v1);
             Claim.yea(cmp);                    
@@ -53,7 +53,7 @@ namespace Z0.Test
             where T : struct
         {
             TypeCaseStart<T>();
-            var v1 = Random.NextVec256<T>();                
+            var v1 = Random.Vec256<T>();                
             var v2 = v1.Inc();
             var cmp = v2.Gt(v1);
             Claim.yea(cmp);                    

@@ -6,15 +6,10 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;    
-    using System.Runtime.Intrinsics;
-    using System.Runtime.Intrinsics.X86;
     
     using static zfunc;    
-    using static As;
-    using static Span256;
-    using static Span128;
-
-
+    using static dinx;
+    
     partial class dinxx
     {
         [MethodImpl(Inline)]
@@ -81,187 +76,164 @@ namespace Z0
         public static void Or(this in Vec256<ulong> lhs, in Vec256<ulong> rhs, ref ulong dst)
             => dinx.or(in lhs, in rhs, ref dst);
 
-        public static Span128<int> or(ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, Span128<int> dst)
+        public static Span128<sbyte> Or(this ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, in Span128<sbyte> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span128<uint> or(ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, Span128<uint> dst)
+        public static Span128<byte> Or(this ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, in Span128<byte> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span128<long> or(ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, Span128<long> dst)
+        public static Span128<short> Or(this ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, in Span128<short> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span128<ulong> or(ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, Span128<ulong> dst)
+        public static Span128<ushort> Or(this ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, in Span128<ushort> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span128<float> or(ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, Span128<float> dst)
+        public static Span128<int> Or(this ReadOnlySpan128<int> lhs, ReadOnlySpan128<int> rhs, in Span128<int> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span128<double> or(ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, Span128<double> dst)
+        public static Span128<uint> Or(this ReadOnlySpan128<uint> lhs, ReadOnlySpan128<uint> rhs, in Span128<uint> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span256<sbyte> or(ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, Span256<sbyte> dst)
+        public static Span128<long> Or(this ReadOnlySpan128<long> lhs, ReadOnlySpan128<long> rhs, in Span128<long> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span256<byte> or(ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, Span256<byte> dst)
+        public static Span128<ulong> Or(this ReadOnlySpan128<ulong> lhs, ReadOnlySpan128<ulong> rhs, in Span128<ulong> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span256<short> or(ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, Span256<short> dst)
+        public static Span128<float> Or(this ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs, in Span128<float> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span256<ushort> or(ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, Span256<ushort> dst)
+        public static Span128<double> Or(this ReadOnlySpan128<double> lhs, ReadOnlySpan128<double> rhs, in Span128<double> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec128(block), rhs.LoadVec128(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span256<int> or(ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, Span256<int> dst)
+        public static Span256<sbyte> Or(this ReadOnlySpan256<sbyte> lhs, ReadOnlySpan256<sbyte> rhs, in Span256<sbyte> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span256<uint> or(ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, Span256<uint> dst)
+        public static Span256<byte> Or(this ReadOnlySpan256<byte> lhs, ReadOnlySpan256<byte> rhs, in Span256<byte> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span256<long> or(ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, Span256<long> dst)
+        public static Span256<short> Or(this ReadOnlySpan256<short> lhs, ReadOnlySpan256<short> rhs, in Span256<short> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span256<ulong> or(ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, Span256<ulong> dst)
+        public static Span256<ushort> Or(this ReadOnlySpan256<ushort> lhs, ReadOnlySpan256<ushort> rhs, in Span256<ushort> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
- 
-
-        public static Span128<short> or(ReadOnlySpan128<short> lhs, ReadOnlySpan128<short> rhs, Span128<short> dst)
+        public static Span256<int> Or(this ReadOnlySpan256<int> lhs, ReadOnlySpan256<int> rhs, in Span256<int> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span128<ushort> or(ReadOnlySpan128<ushort> lhs, ReadOnlySpan128<ushort> rhs, Span128<ushort> dst)
+        public static Span256<uint> Or(this ReadOnlySpan256<uint> lhs, ReadOnlySpan256<uint> rhs, in Span256<uint> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span128<sbyte> or(ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs, Span128<sbyte> dst)
+        public static Span256<long> Or(this ReadOnlySpan256<long> lhs, ReadOnlySpan256<long> rhs, in Span256<long> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span128<byte> or(ReadOnlySpan128<byte> lhs, ReadOnlySpan128<byte> rhs, Span128<byte> dst)
+        public static Span256<ulong> Or(this ReadOnlySpan256<ulong> lhs, ReadOnlySpan256<ulong> rhs, in Span256<ulong> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec128(i), rhs.LoadVec128(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
-       public static Span256<float> or(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, Span256<float> dst)
+        public static Span256<float> Or(this ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, in Span256<float> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
         }
 
-        public static Span256<double> or(ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, Span256<double> dst)
+        public static Span256<double> Or(this ReadOnlySpan256<double> lhs, ReadOnlySpan256<double> rhs, in Span256<double> dst)
         {
-            var width = dst.BlockWidth;
-            var cells = length(lhs,rhs);
-            for(var i =0; i < cells; i += width)
-                dinx.or(lhs.LoadVec256(i), rhs.LoadVec256(i), ref dst[i]);            
+            var blocks = dst.BlockCount;
+            for(var block = 0; block < blocks; block++)
+                or(lhs.LoadVec256(block), rhs.LoadVec256(block), ref dst.Block(block));
             return dst;            
-        }
- 
+        } 
     }
 }

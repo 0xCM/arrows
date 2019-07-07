@@ -12,44 +12,6 @@ namespace Z0
 
     using static zfunc;
 
-    public abstract class CodeGenerator
-    {
-        
-    }
-
-    public abstract class SourceCode
-    {
-        public string Text {get;}
-
-        protected SourceCode(string Text)
-            => this.Text = Text;
-
-    }
-    
-    public abstract class SourceCode<T> : SourceCode
-        where T : SourceCode<T>, new()
-    {
-        protected SourceCode(string Text)
-            : base(Text)
-        {
-
-        }
-
-    }
-
-    public class CSharpSource : SourceCode<CSharpSource>
-    {
-        public CSharpSource()
-            : base(string.Empty)
-        {}
-
-        public CSharpSource(string Text)
-            : base(Text)
-        {
-
-        }
-    }
-
     public class InlineData : CodeGenerator
     {
         public static InlineData Generator(byte[] data, string propName)
@@ -100,5 +62,4 @@ namespace Z0
             return dst.ToString();
         }
     }
-
 }

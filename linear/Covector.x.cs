@@ -13,7 +13,6 @@ namespace Z0
     using static nfunc;
     using static zfunc;
 
-
     public static class CovectorX
     {
         [MethodImpl(Inline)]

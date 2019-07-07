@@ -14,18 +14,7 @@ namespace Z0
 
     public static class Vector
     {
-        // [MethodImpl(Inline)]
-        // public static Vector<Sum<M,N>,T> Concat<M,N,T>(Vector<M,T> v1, Vector<N,T> v2)
-        //     where M : ITypeNat, new()
-        //     where N : ITypeNat, new()
-        //     where T : struct
-        // {
-        //     var dst = span<T>(new Sum<M,N>());
-        //     v1.Unsize().CopyTo(dst);
-        //     v2.Unsize().CopyTo(dst.Slice(new M()));
-        //     return Vector<Sum<M,N>,T>.Define(dst);
-        // }
-
+     
         [MethodImpl(Inline)]
         public static Vector<P,T> Concat<M,N,P,T>(Vector<M,T> v1, Vector<N,T> v2, P sum = default)
             where M : ITypeNat, new()
@@ -45,9 +34,10 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <typeparam name="T">The source type</typeparam>
         [MethodImpl(Inline)]
-        public static BitVector<T> Bits<T>(in T src)        
+        public static BitVector<N,T> Bits<N,T>(in T src)        
+            where N : ITypeNat, new()
             where T : struct
-                => new BitVector<T>(in src);
+                => new BitVector<N,T>(src);
 
         /// <summary>
         /// Loads a natural span from an existing span that is required to have

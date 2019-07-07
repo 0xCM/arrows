@@ -11,16 +11,13 @@ namespace Z0
     
     using static zfunc;    
 
-
     public static class IncX
     {
         public static Vec128<T> Inc<T>(in this Vec128<T> src)
             where T : struct
                 => ginx.inc(in src);
-
         public static Vec256<T> Inc<T>(in this Vec256<T> src)
             where T : struct
                 => ginx.inc(in src);
-
     }
 }

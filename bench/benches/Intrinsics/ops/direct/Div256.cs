@@ -24,7 +24,7 @@ namespace Z0.Bench
             else if(typeof(T) == typeof(double))
                 return Div(float64(lhs), float64(rhs), context).As<T>();
             else
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         static Metrics<float> Div(ReadOnlySpan256<float> lhs, ReadOnlySpan256<float> rhs, InXDContext256 context)

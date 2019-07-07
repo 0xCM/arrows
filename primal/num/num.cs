@@ -20,7 +20,7 @@ namespace Z0
     {
         readonly T x;
 
-        public static readonly PrimalInfo<T> NumInfo = PrimalInfo.Get<T>();
+        public static readonly IPrimalInfo<T> NumInfo = PrimalInfo.Get<T>();
 
         public static readonly bool Signed = NumInfo.Signed;
 

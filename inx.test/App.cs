@@ -6,11 +6,7 @@ namespace Z0.Test
 {        
     using System;
     using System.Linq;
-    using System.Runtime.Intrinsics;
-    using System.Reflection;
-    using System.Runtime.CompilerServices;
-    using System.Runtime.Intrinsics.X86;
-    using System.Diagnostics;
+    using System.Collections.Generic;
 
     using static zfunc;
 
@@ -26,13 +22,15 @@ namespace Z0.Test
 
             for(var block=0; block<blocks; block++)
             {
-                var x = lhs.ToVec256(block);
-                var y = rhs.ToVec256(block);
+                var x = lhs.LoadVec256(block);
+                var y = rhs.LoadVec256(block);
                 dinx.mul(x,y); 
             }
             return snapshot(sw);
 
         }
+
+        
 
         void Shuffle()
         {
@@ -43,11 +41,14 @@ namespace Z0.Test
         protected override void RunTests(string filter)
         {            
 
-            base.RunTests("BitMatrix");
+            //base.RunTests("Bitwise");
 
+            var l1 = BitMatrix<N9,N9,byte>.GridLayout;
+            print(l1.Format());
         }
 
         public static void Main(params string[] args)
             => Run(args);
+    
     }
 }

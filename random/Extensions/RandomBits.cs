@@ -16,18 +16,20 @@ namespace Z0
 
     public static class RandomBits
     {        
-        public static IEnumerable<Bit> Bits(this IRandomSource rng)
+        /// <summary>
+        /// Produces a stream of uniformly random bits
+        /// </summary>
+        /// <param name="random">The random source</param>
+        public static IEnumerable<Bit> Bits(this IRandomSource random)
         {
-            var q = (rng as Rng).BitQ;
+            var q = (random as Rng).BitQ;
             while(true)
             {
                 if(q.TryDequeue(out Bit bit))
-                {
                     yield return bit;
-                }
                 else
                 {
-                    var u64 = rng.NextInt();
+                    var u64 = random.NextInt();
                     for(var i = 0; i< 64; i++)
                     {
                         if(i == 0)
@@ -46,6 +48,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Sign NextSign(this IRandomSource rng)
             => rng.NextBit() ? Sign.Positive : Sign.Negative;
-
     }
 }

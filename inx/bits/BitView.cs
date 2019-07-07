@@ -82,7 +82,7 @@ namespace Z0
             get => ref Bytes[offset];
         }
 
-        public Bit this[ByteSize offset, BitPos pos]        
+        public Bit this[ByteSize offset, int pos]        
         {
             get => Bits.test(in Bytes[offset], pos);
             set

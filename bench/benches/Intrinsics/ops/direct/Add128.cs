@@ -40,7 +40,7 @@ namespace Z0.Bench
             else if (typeof(T) == typeof(double))
                 return context.Add(float64(lhs), float64(rhs)).As<T>();
             else 
-                throw unsupported(PrimalKinds.kind<T>());
+                throw unsupported<T>();
         }
 
         static Metrics<sbyte> Add(this InXDContext128 context, ReadOnlySpan128<sbyte> lhs, ReadOnlySpan128<sbyte> rhs)

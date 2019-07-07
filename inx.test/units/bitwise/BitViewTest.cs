@@ -15,7 +15,7 @@ namespace Z0.Test
     {
         public void UnsignedNegation()
         {
-            var x = Random.NextVec256<int>();
+            var x = Random.Vec256<int>();
             var y = x.ToBitView();
             var sb = sbuild();
             for(var i = y.ByteCount - 1; i >= 0; i--)
@@ -26,10 +26,6 @@ namespace Z0.Test
             var ys = sb.ToString();
             var xs = x.ToBitString();
             Claim.eq(xs,ys);
-
         }
-
     }
-
-
 }

@@ -24,7 +24,8 @@ namespace Z0.Bench
             else if (typeof(T) == typeof(double))
                 return context.Sqrt(float64(src)).As<T>();
             else 
-                throw unsupported(PrimalKinds.kind<T>());            
+                throw unsupported<T>();
+
         }
 
         static Metrics<float> Sqrt(this InXNumDContext128 context, ReadOnlySpan128<float> src)
@@ -35,7 +36,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block < blocks; block++)
-                dst[block] = dinx.sqrt(src.ToNum128(block));
+                dst[block] = dinx.sqrt(src.ToScalar128(block));
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -47,7 +48,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block < blocks; block++)
-                dst[block] = dinx.sqrt(src.ToNum128(block));
+                dst[block] = dinx.sqrt(src.ToScalar128(block));
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         } 
     }

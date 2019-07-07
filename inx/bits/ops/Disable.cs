@@ -12,7 +12,7 @@ namespace Z0
     partial class Bits
     {                
           [MethodImpl(Inline)]
-          public static ref byte disable(ref byte src, in BitPos pos)
+          public static ref byte disable(ref byte src, in int pos)
           {
                var m = (byte)(1 << pos);
                src &= m.Flip();
@@ -20,7 +20,7 @@ namespace Z0
           }
 
           [MethodImpl(Inline)]
-          public static ref sbyte disable(ref sbyte src, in BitPos pos)
+          public static ref sbyte disable(ref sbyte src, in int pos)
           {
                var m = (sbyte)(1 << pos);
                src &= m.Flip();
@@ -28,7 +28,7 @@ namespace Z0
           }
 
           [MethodImpl(Inline)]
-          public static ref short disable(ref short src, in BitPos pos)
+          public static ref short disable(ref short src, in int pos)
           {
                var m = (short)(1 << pos);
                src &= m.Flip();
@@ -36,7 +36,7 @@ namespace Z0
           }
 
           [MethodImpl(Inline)]
-          public static ref ushort disable(ref ushort src, in BitPos pos)
+          public static ref ushort disable(ref ushort src, in int pos)
           {
                var m = (ushort)(1 << pos);
                src &= m.Flip();
@@ -44,7 +44,7 @@ namespace Z0
           }
 
           [MethodImpl(Inline)]
-          public static ref int disable(ref int src, in BitPos pos)
+          public static ref int disable(ref int src, in int pos)
           {
                var m = 1 << pos;
                src &= m.Flip();
@@ -52,7 +52,7 @@ namespace Z0
           }
 
           [MethodImpl(Inline)]
-          public static ref uint disable(ref uint src, in BitPos pos)
+          public static ref uint disable(ref uint src, in int pos)
           {
                var m = 1u << pos;
                src &= m.Flip();
@@ -60,7 +60,7 @@ namespace Z0
           }
 
           [MethodImpl(Inline)]
-          public static ref long disable(ref long src, in BitPos pos)
+          public static ref long disable(ref long src, in int pos)
           {
                var m = 1L << pos;
                src &= m.Flip();
@@ -68,7 +68,7 @@ namespace Z0
           }
 
           [MethodImpl(Inline)]
-          public static ref ulong disable(ref ulong src, in BitPos pos)
+          public static ref ulong disable(ref ulong src, in int pos)
           {
                var m = 1ul << pos;
                src &= m.Flip();
@@ -76,7 +76,7 @@ namespace Z0
           }
 
           [MethodImpl(Inline)]
-          public static ref float disable(ref float src, in BitPos pos)
+          public static ref float disable(ref float src, in int pos)
           {
                ref var bits = ref Unsafe.As<float,int>(ref src);
                var m = 1 << pos;
@@ -85,7 +85,7 @@ namespace Z0
           } 
 
           [MethodImpl(Inline)]
-          public static ref double disable(ref double src, in BitPos pos)
+          public static ref double disable(ref double src, in int pos)
           {
                ref var bits = ref Unsafe.As<double,long>(ref src);
                var m = 1L << pos;

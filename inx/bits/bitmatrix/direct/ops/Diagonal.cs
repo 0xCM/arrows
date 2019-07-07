@@ -13,6 +13,16 @@ namespace Z0
     partial class BitMatrixX
     {    
        [MethodImpl(Inline)]
+        public static BitVector4 Diagonal(this in BitMatrix4 src)
+        {
+            var dst = (byte)0;
+            for(byte i=0; i < BitMatrix4.N; i++)
+                if(src[i,i])
+                    Bits.enable(ref dst, i);
+            return dst;                    
+        }
+
+       [MethodImpl(Inline)]
         public static BitVector8 Diagonal(this in BitMatrix8 src)
         {
             var dst = (byte)0;

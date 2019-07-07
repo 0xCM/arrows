@@ -444,7 +444,47 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe Vec256<double> load(ref double head)
             => LoadVector256(pfloat64(ref head));
- 
+
+        [MethodImpl(Inline)]
+        public static Vec256<sbyte> load(Span<sbyte> src)
+            => load(ref src[0]);
+
+        [MethodImpl(Inline)]
+        public static Vec256<byte> load(Span<byte> src)
+            => load(ref src[0]);
+
+        [MethodImpl(Inline)]
+        public static Vec256<short> load(Span<short> src)
+            => load(ref src[0]);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ushort> load(Span<ushort> src)
+            => load(ref src[0]);
+
+        [MethodImpl(Inline)]
+        public static Vec256<int> load(Span<int> src)
+            => load(ref src[0]);
+
+        [MethodImpl(Inline)]
+        public static Vec256<uint> load(Span<uint> src)
+            => load(ref src[0]);
+
+        [MethodImpl(Inline)]
+        public static Vec256<long> load(Span<long> src)
+            => load(ref src[0]);
+
+        [MethodImpl(Inline)]
+        public static Vec256<ulong> load(Span<ulong> src)
+            => load(ref src[0]);
+
+        [MethodImpl(Inline)]
+        public static Vec256<float> load(Span<float> src)
+            => load(ref src[0]);
+
+        [MethodImpl(Inline)]
+        public static Vec256<double> load(Span<double> src)
+            => load(ref src[0]);
+        
         static readonly Vec256<byte> OneU8 = Vec256.define((byte)1);
 
         static readonly Vec256<sbyte> OneI8 = Vec256.define((sbyte)1);

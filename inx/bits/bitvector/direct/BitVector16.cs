@@ -22,8 +22,8 @@ namespace Z0
             => this.data = data;
 
         [MethodImpl(Inline)]
-        public static implicit operator BitVector<ushort>(in BitVector16 src)
-            => new BitVector<ushort>(in src.data);
+        public static implicit operator BitVector<N16,ushort>(in BitVector16 src)
+            => new BitVector<N16,ushort>(src.data);
 
         [MethodImpl(Inline)]
         public static BitVector16 Define(in ushort src)
@@ -65,7 +65,7 @@ namespace Z0
         public static BitVector16 operator ~(in BitVector16 src)
             => Define((ushort) ~ src.data);
 
-        public Bit this[in BitPos pos]
+        public Bit this[in int pos]
         {
             [MethodImpl(Inline)]
             get => Bits.test(in data, in pos);
@@ -81,15 +81,15 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public void EnableBit(in BitPos pos)
+        public void EnableBit(in int pos)
             => enable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public void DisableBit(in BitPos pos)
+        public void DisableBit(in int pos)
             => disable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public bool TestBit(in BitPos pos)
+        public bool TestBit(in int pos)
             => test(in data, in pos);
 
         public BitVector8 Hi

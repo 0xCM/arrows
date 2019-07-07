@@ -23,7 +23,7 @@ namespace Z0.Bench
             else if (typeof(T) == typeof(double))
                 return context.Sub(float64(lhs), float64(rhs)).As<T>();
             else 
-                throw unsupported(PrimalKinds.kind<T>());            
+                throw unsupported<T>();
         }
 
 
@@ -35,7 +35,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block < blocks; block++)
-                dst[block] = dinx.sub(lhs.ToNum128(block), rhs.ToNum128(block));
+                dst[block] = dinx.sub(lhs.ToScalar128(block), rhs.ToScalar128(block));
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         }
 
@@ -47,7 +47,7 @@ namespace Z0.Bench
             var sw = stopwatch();
             for(var cycle = 0; cycle < context.Cycles; cycle++)
             for(var block = 0; block < blocks; block++)
-                dst[block] = dinx.sub(lhs.ToNum128(block), rhs.ToNum128(block));
+                dst[block] = dinx.sub(lhs.ToScalar128(block), rhs.ToScalar128(block));
             return context.CaptureMetrics(opid, snapshot(sw), dst);
         } 
     }

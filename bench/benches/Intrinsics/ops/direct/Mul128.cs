@@ -18,17 +18,12 @@ namespace Z0.Bench
         public static Metrics<T> Mul<T>(this InXDContext128 context, ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
             where T : struct
         {
-            var kind = PrimalKinds.kind<T>();
-            switch(kind)
-            {
-
-                case PrimalKind.float32:
-                    return context.Mul(float32(lhs), float32(rhs)).As<T>();
-                case PrimalKind.float64:                    
-                    return context.Mul(float64(lhs), float64(rhs)).As<T>();
-                default:
-                    throw unsupported(kind);
-            }
+            if(typeof(T) == typeof(float))
+                return context.Mul(float32(lhs), float32(rhs)).As<T>();
+            else if (typeof(T) == typeof(double))
+                return context.Mul(float64(lhs), float64(rhs)).As<T>();
+            else 
+                throw unsupported<T>();
         }
 
         static Metrics<float> Mul(this InXDContext128 context, ReadOnlySpan128<float> lhs, ReadOnlySpan128<float> rhs)

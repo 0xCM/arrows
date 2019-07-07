@@ -28,7 +28,7 @@ namespace Z0.Test
         public void IndexTest()
         {
             var seed = Seed64.Seed00;
-            var index = Seed64.Seed30;
+            var index = Seed64.Seed10;
             var pcg0 = Pcg32.Define(seed, index += 2);
             var pcg1 = Pcg32.Define(seed, index += 2);
             var pcg2 = Pcg32.Define(seed, index += 2);

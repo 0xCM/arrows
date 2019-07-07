@@ -18,15 +18,15 @@ namespace Z0
     public ref struct BitVector64
     {
         [MethodImpl(Inline)]
-        public static implicit operator BitVector<ulong>(in BitVector64 src)
-            => new BitVector<ulong>(in src.data);
+        public static implicit operator BitVector<N64,ulong>(in BitVector64 src)
+            => new BitVector<N64,ulong>(src.data);
 
         ulong data;
 
         const int BitSize = 64;
 
         [MethodImpl(Inline)]
-        public BitVector64(in source data)
+        public BitVector64(in ulong data)
             => this.data = data;
 
         [MethodImpl(Inline)]
@@ -40,7 +40,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVector64 Define(in ReadOnlySpan<Bit> src)
-            => Define(in pack(src, out source data));
+            => Define(in pack(src, out ulong data));
 
         [MethodImpl(Inline)]
         public static BitVector64 Define(in source src)
@@ -78,7 +78,7 @@ namespace Z0
         public static BitVector64 operator ~(in BitVector64 src)
             => ~src.data;
 
-        public Bit this[in BitPos pos]
+        public Bit this[in int pos]
         {
             [MethodImpl(Inline)]
             get => test(in data, in pos);
@@ -100,15 +100,15 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public void EnableBit(in BitPos pos)
+        public void EnableBit(in int pos)
             => enable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public void DisableBit(in BitPos pos)
+        public void DisableBit(in int pos)
             => disable(ref data, in pos);
 
         [MethodImpl(Inline)]
-        public bool TestBit(in BitPos pos)
+        public bool TestBit(in int pos)
             => test(in data, in pos);
 
         public BitVector32 Hi

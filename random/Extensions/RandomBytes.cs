@@ -9,11 +9,12 @@ namespace Z0
     using System.Linq;
     using System.Runtime.CompilerServices;
 
-    using static zfunc;
-    using static As;
-
     public static class RandomBytes
     {
+        /// <summary>
+        /// Produces a stream of uniformly random bits
+        /// </summary>
+        /// <param name="random">The random source</param>
         public static IEnumerable<byte> Bytes(this IRandomSource random)
         {
             var q = (random as Rng).ByteQ;
@@ -32,6 +33,5 @@ namespace Z0
                 }                
             }
         }
-
     }
 }

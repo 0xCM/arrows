@@ -15,53 +15,22 @@ namespace Z0
 
     public static partial class BitMatrixX
     {   
-        [MethodImpl(Inline)] 
-        public static BitMatrix8 Replicate(this BitMatrix8 src)
-            => BitMatrix8.Define(src.bits.ReadOnly());
+        [MethodImpl(Inline)]
+        public static BitVector8 Row(this in BitMatrix8 src, int index)
+            => src.bits[index];
 
-        [MethodImpl(Inline)] 
-        public static BitMatrix16 Replicate(this BitMatrix16 src)
-            => BitMatrix16.Define(src.bits.ReadOnly());
+        [MethodImpl(Inline)]
+        public static BitVector16 Row(this in BitMatrix16 src, int index)
+            => src.bits[index];
 
-        [MethodImpl(Inline)] 
-        public static BitMatrix32 Replicate(this BitMatrix32 src)
-            => BitMatrix32.Define(src.bits.ReadOnly());
+        [MethodImpl(Inline)]
+        public static BitVector32 Row(this in BitMatrix32 src, int index)
+            => src.bits[index];
 
-        [MethodImpl(Inline)] 
-        public static BitMatrix64 Replicate(this BitMatrix64 src)
-            => BitMatrix64.Define(src.bits.ReadOnly()); 
+        [MethodImpl(Inline)]
+        public static BitVector64 Row(this in BitMatrix64 src, int index)
+            => src.bits[index];
 
-        /// <summary>
-        /// Returns the underlying matrix data as a span of bytes
-        /// </summary>
-        /// <param name="src">The source matrix</param>
-        [MethodImpl(Inline)] 
-        public static Span<byte> Bytes(this ref BitMatrix8 src)
-            => src.bits;
-
-        /// <summary>
-        /// Returns the underlying matrix data as a span of bytes
-        /// </summary>
-        /// <param name="src">The source matrix</param>
-        [MethodImpl(Inline)] 
-        public static Span<byte> Bytes(this ref BitMatrix16 src)
-            => src.bits.AsBytes();
-
-        /// <summary>
-        /// Returns the underlying matrix data as a span of bytes
-        /// </summary>
-        /// <param name="src">The source matrix</param>
-        [MethodImpl(Inline)] 
-        public static Span<byte> Bytes(this ref BitMatrix32 src)
-            => src.bits.AsBytes();
-
-        /// <summary>
-        /// Returns the underlying matrix data as a span of bytes
-        /// </summary>
-        /// <param name="src">The source matrix</param>
-        [MethodImpl(Inline)] 
-        public static Span<byte> Bytes(this ref BitMatrix64 src)
-            => src.bits.AsBytes();
-
+ 
     }
 }

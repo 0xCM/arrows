@@ -12,11 +12,17 @@ namespace Z0
 
     partial class BitMatrixX
     {    
+        [MethodImpl(Inline)]
+        public static ref BitMatrix4 And(this ref BitMatrix4 lhs, in BitMatrix4 rhs)
+        {
+             lhs.bits = ((ushort) ((ushort)lhs & (ushort)rhs)).ToBytes();
+             return ref lhs;
+        }
 
         [MethodImpl(Inline)]
         public static ref BitMatrix8 And(this ref BitMatrix8 lhs, in BitMatrix8 rhs)
         {
-             lhs.bits = BitConverter.GetBytes(lhs.bits.As<byte,ulong>()[0] & rhs.bits.As<byte,ulong>()[0]);
+             lhs.bits =((ulong)lhs & (ulong)rhs).ToBytes();
              return ref lhs;
         }
         
@@ -52,5 +58,14 @@ namespace Z0
             }
             return ref lhs;
         }
+
+        public static ref BitMatrix<M,N,T> And<M,N,T>(this ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
+            where N : ITypeNat, new()
+            where M : ITypeNat, new()
+            where T : struct
+        {
+            return ref lhs;
+        }
+
     }
 }

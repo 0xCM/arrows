@@ -22,7 +22,7 @@ namespace Z0.Bench
                 OpKind.Add, OpKind.Sub, OpKind.Mul, 
                 OpKind.Div, OpKind.Mod, 
                 OpKind.And, OpKind.Or, OpKind.XOr, OpKind.Flip);
-            var prims = PrimalKinds.Integral;
+            var prims = PrimalKinds.IntList;
             var optypes =from o in ops from p in prims select OpType.Define(o,p);
             var context = MetricConfig.Define(MetricKind.VecG, runs: Pow2.T04, cycles: Pow2.T13, samples: Pow2.T12).VecGContext();
             var comparisons = new List<MetricComparisonRecord>();

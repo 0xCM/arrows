@@ -17,13 +17,6 @@ namespace Z0
 
     public static class Seed64
     {    
-        public static void GenSeeds(int count)
-        {
-            var entropy = Seed.Entropy<ulong>(count).AsBytes();
-            var code = InlineData.GenAccessor(entropy.ToArray(),"RawBytes");
-            print(code);
-               
-        }
 
         /// <summary>
         /// Entropic seed generated for each call
@@ -32,71 +25,40 @@ namespace Z0
             => Seed.Entropy<ulong>();
 
         public static ulong Lookup(int i)
-            =>  RawBytes.ReadPrimalValue<ulong>(i); 
+            =>  RawBytes.ReadPrimalValue<ulong>(i*8); 
         
         public static ulong Seed00 => Lookup(0);
 
-        public static ulong Seed01 => Lookup(1);
+        public static ulong Seed01 => Lookup(8);
 
-        public static ulong Seed02 => Lookup(2);
+        public static ulong Seed02 => Lookup(16);
 
-        public static ulong Seed03 => Lookup(3);
+        public static ulong Seed03 => Lookup(24);
 
-        public static ulong Seed04 => Lookup(4);
+        public static ulong Seed04 => Lookup(32);
 
-        public static ulong Seed05 => Lookup(5);
+        public static ulong Seed05 => Lookup(40);
 
-        public static ulong Seed06 => Lookup(6);
+        public static ulong Seed06 => Lookup(48);
 
-        public static ulong Seed07 => Lookup(7);
+        public static ulong Seed07 => Lookup(56);
 
-        public static ulong Seed08 => Lookup(8);
+        public static ulong Seed08 => Lookup(64);
 
-        public static ulong Seed09 => Lookup(9);
+        public static ulong Seed09 => Lookup(72);
 
-        public static ulong Seed10 => Lookup(10);
+        public static ulong Seed10 => Lookup(80);
 
-        public static ulong Seed11 => Lookup(11);
+        public static ulong Seed11 => Lookup(88);
 
-        public static ulong Seed12 => Lookup(12);
+        public static ulong Seed12 => Lookup(96);
 
-        public static ulong Seed13 => Lookup(13);
+        public static ulong Seed13 => Lookup(104);
 
-        public static ulong Seed14 => Lookup(14);
+        public static ulong Seed14 => Lookup(112);
 
-        public static ulong Seed15 => Lookup(15);
+        public static ulong Seed15 => Lookup(120);
 
-        public static ulong Seed16 => Lookup(16);
-
-        public static ulong Seed17 => Lookup(17);
-
-        public static ulong Seed18 => Lookup(18);
-
-        public static ulong Seed19 => Lookup(19);
-
-        public static ulong Seed20 => Lookup(20);
-
-        public static ulong Seed21 => Lookup(21);
-
-        public static ulong Seed22 => Lookup(22);
-
-        public static ulong Seed23 => Lookup(23);
-
-        public static ulong Seed24 => Lookup(24);
-
-        public static ulong Seed25 => Lookup(25);
-
-        public static ulong Seed26 => Lookup(26);
-
-        public static ulong Seed27 => Lookup(27);
-
-        public static ulong Seed28 => Lookup(28);
-
-        public static ulong Seed29 => Lookup(29);
-
-        public static ulong Seed30 => Lookup(30);
-
-        public static ulong Seed31 => Lookup(31);
 
         /// <summary>
         /// See https://vcsjones.com/2019/02/01/csharp-readonly-span-bytes-static/ for an explanation

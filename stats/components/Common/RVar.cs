@@ -13,46 +13,46 @@ namespace Z0
 
     public static class RVar
     {
-
         public static RVar<T> define<T>(Interval<T> domain, IRandomSource random)
             where T : struct
                 => new RVar<T>(domain,random);
     }
 
-    public readonly struct RVar<T>
+    /// <summary>
+    /// Defines a random variable
+    /// </summary>
+    public class RVar<T>
         where T : struct
-    {
-        readonly IEnumerable<T> stream;
-
-        public readonly Interval<T> domain;
-        
+    {        
         public RVar(Interval<T> domain, IRandomSource random)
         {
-            this.domain = domain;
-            this.stream = random.UniformStream<T>(domain);
+            this.Domain = domain;
+            this.stream = random.Stream<T>(domain);
         }
+
+        readonly IEnumerable<T> stream;
+
+        public Interval<T> Domain {get;}
 
         /// <summary>
         /// Samples a specified number of values
         /// </summary>
         /// <param name="count">The sample count</param>
-        public T[] sample(int count)
+        public T[] Sample(int count)
             => stream.TakeArray(count);
-
 
         /// <summary>
         /// Samples an arbitrary number of values
         /// </summary>
         /// <param name="count">The sample count</param>
-        public IEnumerable<T> sample()
+        public IEnumerable<T> Sample()
             => stream;
 
         /// <summary>
         /// Samples exactly one value
         /// </summary>
         [MethodImpl(Inline)]
-        public T one()
+        public T Next()
             => stream.First();
     }
-
 }

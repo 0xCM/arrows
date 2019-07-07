@@ -78,5 +78,13 @@ namespace Z0
             As.generic<T>(ref dst[0]) = src;
             return dst;
         }
+
+        [MethodImpl(Inline)]
+        public static bool TestBit(this Span<byte> src, int pos)
+        {
+            var q = Math.DivRem(pos, 8, out int r);
+            return Bits.test(src[q], r);
+        }
+
     }
 }

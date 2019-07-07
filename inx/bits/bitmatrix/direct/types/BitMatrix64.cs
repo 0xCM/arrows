@@ -51,6 +51,22 @@ namespace Z0
             => new BitMatrix64(src);
 
         [MethodImpl(Inline)]
+        public static BitMatrix64 operator & (BitMatrix64 lhs, BitMatrix64 rhs)
+            => lhs.And(rhs);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix64 operator | (BitMatrix64 lhs, BitMatrix64 rhs)
+            => lhs.Or(rhs);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix64 operator ^ (BitMatrix64 lhs, BitMatrix64 rhs)
+            => lhs.XOr(rhs);
+
+        [MethodImpl(Inline)]
+        public static BitMatrix64 operator ~ (BitMatrix64 src)
+            => src.Flip();
+
+        [MethodImpl(Inline)]
         public static bool operator ==(BitMatrix64 lhs, BitMatrix64 rhs)
             => lhs.Eq(rhs);
 

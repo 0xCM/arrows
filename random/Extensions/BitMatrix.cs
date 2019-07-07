@@ -12,6 +12,9 @@ namespace Z0
 
     partial class UniformRandom
     {
+        [MethodImpl(Inline)]
+        public static BitMatrix4 BitMatrix4(this IRandomSource random)
+            => Z0.BitMatrix4.Define(random.Next<ushort>());
 
         [MethodImpl(Inline)]
         public static BitMatrix8 BitMatrix8(this IRandomSource random)
@@ -28,6 +31,14 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix64 BitMatrix64(this IRandomSource random)
             => Z0.BitMatrix64.Define(random.Span<ulong>(64));        
+    
+        [MethodImpl(Inline)]
+        public static BitMatrix<M,N,T> BitMatrix<M,N,T>(this IRandomSource random, M m = default, N n = default, T x = default)
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct
+                => Z0.BitMatrix.Define(random.Span<T>(BitGridSpec.Define(m,n,x).TotalSegLength()),m,n);
+
     }
 
 }

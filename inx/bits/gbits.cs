@@ -175,25 +175,25 @@ namespace Z0
                 => shiftl(lhs, (int)rhs);
 
         [MethodImpl(Inline)]
-        public static ulong pop<T>(T src)
+        public static ulong pop<T>(in T src)
             where T : struct
         {        
             if(typeof(T) == typeof(sbyte))
-                 return Bits.pop(int8(src));
+                 return Bits.pop(int8(in src));
             else if(typeof(T) == typeof(byte))
-                 return Bits.pop(uint8(src));
+                 return Bits.pop(uint8(in src));
             else if(typeof(T) == typeof(short))
-                 return Bits.pop(int16(src));
+                 return Bits.pop(int16(in src));
             else if(typeof(T) == typeof(ushort))
-                 return Bits.pop(uint16(src));
+                 return Bits.pop(uint16(in src));
             else if(typeof(T) == typeof(int))
-                 return Bits.pop(int32(src));
+                 return Bits.pop(int32(in src));
             else if(typeof(T) == typeof(uint))
-                 return Bits.pop(uint32(src));
+                 return Bits.pop(uint32(in src));
             else if(typeof(T) == typeof(long))
-                 return Bits.pop(int64(src));
+                 return Bits.pop(int64(in src));
             else if(typeof(T) == typeof(ulong))
-                 return Bits.pop(uint64(src));
+                 return Bits.pop(uint64(in src));
             else 
                 throw unsupported<T>();
         }
@@ -205,7 +205,7 @@ namespace Z0
         /// <param name="pos">The bit position</param>
         /// <typeparam name="T">The primal value type</typeparam>
         [MethodImpl(Inline)]
-        public static bool test<T>(in T src, in BitPos pos)
+        public static bool test<T>(in T src, in int pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -328,8 +328,14 @@ namespace Z0
         }
 
 
+        /// <summary>
+        /// Enables an identified source bit
+        /// </summary>
+        /// <param name="src">The source segment</param>
+        /// <param name="pos">The 0-based index of the bit to change</param>
+        /// <typeparam name="T">The source element type</typeparam>
         [MethodImpl(Inline)]
-        public static ref T enable<T>(ref T src, in BitPos pos)
+        public static ref T enable<T>(ref T src, in int pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -354,8 +360,14 @@ namespace Z0
             return ref src;                            
         }
 
+        /// <summary>
+        /// Enables an identified source bit
+        /// </summary>
+        /// <param name="src">The source segment</param>
+        /// <param name="pos">The 0-based index of the bit to change</param>
+        /// <typeparam name="T">The source element type</typeparam>
         [MethodImpl(Inline)]
-        public static T enable<T>(T src, in BitPos pos)
+        public static T enable<T>(T src, in int pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -378,8 +390,14 @@ namespace Z0
                 throw unsupported<T>();            
         }
 
+        /// <summary>
+        /// Disables an identified source bit
+        /// </summary>
+        /// <param name="src">The source segment</param>
+        /// <param name="pos">The 0-based index of the bit to change</param>
+        /// <typeparam name="T">The source element type</typeparam>
         [MethodImpl(Inline)]
-        public static ref T disable<T>(ref T src, in BitPos pos)
+        public static ref T disable<T>(ref T src, in int pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -408,8 +426,26 @@ namespace Z0
             return ref src;                            
         }
             
+        /// <summary>
+        /// Sets an identified bit to a supplied value
+        /// </summary>
+        /// <param name="src">The source segment</param>
+        /// <param name="pos">The bit position</param>
+        /// <param name="value">The value to be applied</param>
+        /// <typeparam name="T">The source element type</typeparam>
         [MethodImpl(Inline)]
-        public static ref T toggle<T>(ref T src, in BitPos pos)
+        public static ref T set<T>(ref T src, in int pos, Bit value)            
+            where T : struct
+        {
+            if(value)
+                enable(ref src, pos);
+            else
+                disable(ref src, pos);
+            return ref src;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref T toggle<T>(ref T src, in int pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -439,7 +475,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static T toggle<T>(T src, BitPos pos)
+        public static T toggle<T>(T src, int pos)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -670,7 +706,7 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static T range<T>(in T lhs, in BitPos start, in byte length)
+        public static T range<T>(in T lhs, in int start, in byte length)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -703,7 +739,7 @@ namespace Z0
         /// <typeparam name="S">The left operand type</typeparam>
         /// <typeparam name="T">The right operand type</typeparam>
         [MethodImpl(Inline)]
-        public static bool match<S,T>(in S x, in BitPos nx, T y, in BitPos ny)
+        public static bool match<S,T>(in S x, in int nx, T y, in int ny)
             where S : struct
             where T : struct
                 => test(in x, in nx) == test(in y, in ny);
@@ -737,7 +773,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Span<char> bichars<T>(in T src)
+        public static Span<char> bitchars<T>(in T src)
             where T : struct
         {
              if(typeof(T) == typeof(sbyte))
@@ -766,7 +802,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Span<char> bichars<T>(in T src, Span<char> dst, int offset)
+        public static Span<char> bitchars<T>(in T src, Span<char> dst, int offset)
             where T : struct
         {
              if(typeof(T) == typeof(sbyte))

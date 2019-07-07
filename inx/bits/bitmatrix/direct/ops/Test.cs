@@ -15,6 +15,10 @@ namespace Z0
     partial class BitMatrixX
     {    
         [MethodImpl(Inline)]
+        public static bool IsZero(this in BitMatrix4 src)
+            => BitConverter.ToUInt16(src.bits) == 0;
+
+        [MethodImpl(Inline)]
         public static bool IsZero(this in BitMatrix8 src)
             => BitConverter.ToUInt64(src.bits) == 0;
 

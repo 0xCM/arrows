@@ -10,101 +10,135 @@ namespace Z0
 
     using static zfunc;
 
-    public interface IPrimalInfoProvider<T>
+    public interface IPrimalInfo<T>
+        where T : struct
     {
-        PrimalInfo<T> PrimalInfo {get;}
+        T MinVal {get;}
+        
+        T MaxVal {get;}
+        
+        bool Signed {get;}
+
+        T One {get;}
+
+        T Zero {get;}
+
+        Option<T> Epsilon {get;}
+
+        BitSize BitSize {get;}
+
+        ByteSize ByteSize {get;}
+        
+        bool Infinite {get;}
+
+    }
+
+    public interface IPrimalDescriptor<T>
+        where T : struct
+    {
+        IPrimalInfo<T> Description {get;}
     }
 
     public readonly struct PrimalInfo : 
-        IPrimalInfoProvider<byte>, 
-        IPrimalInfoProvider<sbyte>, 
-        IPrimalInfoProvider<short>,
-        IPrimalInfoProvider<ushort>, 
-        IPrimalInfoProvider<int>,
-        IPrimalInfoProvider<uint>,
-        IPrimalInfoProvider<long>,
-        IPrimalInfoProvider<ulong>,            
-        IPrimalInfoProvider<float>, 
-        IPrimalInfoProvider<double>, 
-        IPrimalInfoProvider<decimal>,
-        IPrimalInfoProvider<BigInteger>                    
+        IPrimalDescriptor<byte>, 
+        IPrimalDescriptor<sbyte>, 
+        IPrimalDescriptor<short>,
+        IPrimalDescriptor<ushort>, 
+        IPrimalDescriptor<int>,
+        IPrimalDescriptor<uint>,
+        IPrimalDescriptor<long>,
+        IPrimalDescriptor<ulong>,            
+        IPrimalDescriptor<float>, 
+        IPrimalDescriptor<double>, 
+        IPrimalDescriptor<decimal>,
+        IPrimalDescriptor<BigInteger>                    
     {
         static readonly PrimalInfo Inhabitant = default;
 
         [MethodImpl(Inline)]
-        public static PrimalInfo<T> Get<T>()
-            => Provider<T>().PrimalInfo;            
+        public static IPrimalInfo<T> Get<T>()
+            where T : struct
+            => Provider<T>().Description;            
 
         [MethodImpl(Inline)]
         public static T zero<T>()
-            => Get<T>().Zero;
+            where T : struct
+                => Get<T>().Zero;
 
         [MethodImpl(Inline)]
         public static T one<T>()
-            => Get<T>().One;
+            where T : struct
+                => Get<T>().One;
 
         [MethodImpl(Inline)]
         public static T minval<T>()
-            => Get<T>().MinVal;
+            where T : struct
+                => Get<T>().MinVal;
 
         [MethodImpl(Inline)]
         public static T maxval<T>()
-            => Get<T>().MaxVal;
+            where T : struct
+                => Get<T>().MaxVal;
 
         [MethodImpl(Inline)]
         public static bool signed<T>()
-            => Get<T>().Signed;
+            where T : struct
+                => Get<T>().Signed;
 
         [MethodImpl(Inline)]
         public static bool unsigned<T>()
-            => !Get<T>().Signed;
+            where T : struct
+                => !Get<T>().Signed;
 
         [MethodImpl(Inline)]
         public static BitSize bitsize<T>()
-            => Get<T>().BitSize;
+            where T : struct
+                => Get<T>().BitSize;
 
         [MethodImpl(Inline)]
         public static ByteSize bytesize<T>()
-            => Get<T>().ByteSize;
+            where T : struct
+                => Get<T>().ByteSize;
 
         [MethodImpl(Inline)]
-        static IPrimalInfoProvider<T> Provider<T>() 
-            => cast<IPrimalInfoProvider<T>>(Inhabitant);
+        static IPrimalDescriptor<T> Provider<T>() 
+            where T : struct
+                => cast<IPrimalDescriptor<T>>(Inhabitant);
 
-        PrimalInfo<sbyte> IPrimalInfoProvider<sbyte>.PrimalInfo 
+        IPrimalInfo<sbyte> IPrimalDescriptor<sbyte>.Description 
             => Int8Info.Summary;
 
-        PrimalInfo<byte> IPrimalInfoProvider<byte>.PrimalInfo 
+        IPrimalInfo<byte> IPrimalDescriptor<byte>.Description 
             => UInt8Info.Summary;
 
-        PrimalInfo<short> IPrimalInfoProvider<short>.PrimalInfo 
+        IPrimalInfo<short> IPrimalDescriptor<short>.Description 
             => Int16Info.Summary;
 
-        PrimalInfo<ushort> IPrimalInfoProvider<ushort>.PrimalInfo 
+        IPrimalInfo<ushort> IPrimalDescriptor<ushort>.Description 
             => UInt16Info.Summary;
 
-        PrimalInfo<int> IPrimalInfoProvider<int>.PrimalInfo 
+        IPrimalInfo<int> IPrimalDescriptor<int>.Description 
             => Int32Info.Summary;
 
-        PrimalInfo<uint> IPrimalInfoProvider<uint>.PrimalInfo 
+        IPrimalInfo<uint> IPrimalDescriptor<uint>.Description 
             => UInt32Info.Summary;
 
-        PrimalInfo<long> IPrimalInfoProvider<long>.PrimalInfo 
+        IPrimalInfo<long> IPrimalDescriptor<long>.Description 
             => Int64Info.Summary;
 
-        PrimalInfo<ulong> IPrimalInfoProvider<ulong>.PrimalInfo 
+        IPrimalInfo<ulong> IPrimalDescriptor<ulong>.Description 
             => UInt64Info.Summary;
 
-        PrimalInfo<float> IPrimalInfoProvider<float>.PrimalInfo 
+        IPrimalInfo<float> IPrimalDescriptor<float>.Description 
             => Float32Info.Summary;
 
-        PrimalInfo<double> IPrimalInfoProvider<double>.PrimalInfo 
+        IPrimalInfo<double> IPrimalDescriptor<double>.Description 
             => Float64Info.Summary;
 
-        PrimalInfo<decimal> IPrimalInfoProvider<decimal>.PrimalInfo 
+        IPrimalInfo<decimal> IPrimalDescriptor<decimal>.Description 
             => DecimalInfo.Summary;
 
-        PrimalInfo<BigInteger> IPrimalInfoProvider<BigInteger>.PrimalInfo 
+        IPrimalInfo<BigInteger> IPrimalDescriptor<BigInteger>.Description 
             => BigIntegerInfo.Summary;
 
     }
@@ -324,8 +358,8 @@ namespace Z0
         public static readonly PrimalInfo<BigInteger> Summary 
             = new PrimalInfo<BigInteger>((0,0), Signed, Zero, One, BitSize,0,true);
     }                   
-
-    public readonly struct PrimalInfo<T>
+    public readonly struct PrimalInfo<T> : IPrimalInfo<T>
+        where T : struct
     {
         public PrimalInfo((T min, T max) range, bool signed, T zero, T one, uint bitsize, T epsilon = default, bool infinite = false)
         {
@@ -336,7 +370,7 @@ namespace Z0
             this.Zero = zero;
             this.BitSize = bitsize;
             this.Infinite = infinite;
-            this.Epsilon = epsilon != default ? some(epsilon) : none<T>();
+            this.Epsilon = ! epsilon.Equals(default) ? some(epsilon) : none<T>();
             this.ByteSize = BitSize;
         }
 
