@@ -47,6 +47,7 @@ namespace Z0
         /// </summary>
         public readonly BitSize ColCount;
 
+
         public string Format()
             => (PrimalSize, RowCount, ColCount).Format();
     }

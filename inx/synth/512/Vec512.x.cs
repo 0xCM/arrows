@@ -6,10 +6,7 @@ namespace Z0
 {
     using System;
     using System.Linq;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;    
-    using System.Runtime.Intrinsics;
-    using System.Runtime.Intrinsics.X86;
     using System.Runtime.InteropServices;
     
     using static zfunc;    
@@ -55,7 +52,8 @@ namespace Z0
             where T : struct            
                 => new Span<T>(Unsafe.AsPointer(ref src), Vec512<T>.Length);
 
-        public static string ToHexString<T>(this Vec512<T> src, bool blocked = false, int? bwidth = null, string bsep = null)
+        [MethodImpl(Inline)]
+        public static string ToHexString<T>(this Vec512<T> src, bool blocked = false, int? bwidth = null, char? bsep = null)
             where T : struct
                 => src.Hi().ToHexString(blocked, bwidth, bsep) + src.Lo().ToHexString(blocked, bwidth, bsep);
     }

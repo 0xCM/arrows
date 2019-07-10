@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <LangVersion>preview</LangVersion>
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
-    <AssemblyVersion>1.0.33</AssemblyVersion>
+    <AssemblyVersion>1.0.34</AssemblyVersion>
     <VersionPrefix>$(AssemblyVersion)</VersionPrefix>
 
   </PropertyGroup>

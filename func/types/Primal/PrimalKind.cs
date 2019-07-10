@@ -56,71 +56,76 @@ namespace Z0
     /// </remarks>
     [Flags]
     public enum PrimalKind : uint
-    {        
+    {   
+        /// <summary>
+        /// Indicates the absence of a specification
+        /// </summary>
+        None = 0,
+
         /// <summary>
         /// When present, identifies an signed type
         /// </summary>
-        SignedFacet = Pow2.T01,
+        Signed = Pow2.T01,
 
         /// <summary>
         /// When present, identifies an integral type
         /// </summary>
-        IntegralFacet = Pow2.T02,
+        Integral = Pow2.T02,
 
         /// <summary>
         /// When present, identifies a floating point type
         /// </summary>
-        FloatingFacet = Pow2.T03,
+        Floating = Pow2.T03,
         
         /// <summary>
         /// Identifies a signed 8-bit integer type
         /// </summary>
-        int8 = Pow2.T08 | SignedFacet | IntegralFacet,
+        int8 = Pow2.T08 | Signed | Integral,
 
         /// <summary>
         /// Identifies an unsigned 8-bit integer type
         /// </summary>
-        uint8 = Pow2.T09 | IntegralFacet,
+        uint8 = Pow2.T09 | Integral,
 
         /// <summary>
         /// Identifies a signed 16-bit integer type
         /// </summary>
-        int16 = Pow2.T10 | SignedFacet | IntegralFacet,
+        int16 = Pow2.T10 | Signed | Integral,
 
         /// <summary>
         /// Identifies an unsigned 16-bit integer type
         /// </summary>
-        uint16 = Pow2.T11 | IntegralFacet,
+        uint16 = Pow2.T11 | Integral,
 
         /// <summary>
         /// Identifies a signed 32-bit integer type
         /// </summary>
-        int32 = Pow2.T12 | SignedFacet | IntegralFacet,
+        int32 = Pow2.T12 | Signed | Integral,
         
         /// <summary>
         /// Identifies an unsigned 32-bit integer type
         /// </summary>
-        uint32 = Pow2.T13 | IntegralFacet,
+        uint32 = Pow2.T13 | Integral,
 
         /// <summary>
         /// Identifies a signed 64-bit integer type
         /// </summary>
-        int64 = Pow2.T14 | SignedFacet | IntegralFacet,
+        int64 = Pow2.T14 | Signed | Integral,
 
         /// <summary>
         /// Identifies an unsigned 64-bit integer type
         /// </summary>
-        uint64 = Pow2.T15 | IntegralFacet,
+        uint64 = Pow2.T15 | Integral,
                             
         /// <summary>
         /// Identifies a a 32-bit floating point type
         /// </summary>
-        float32 = Pow2.T16 | SignedFacet | FloatingFacet,
+        float32 = Pow2.T16 | Signed | Floating,
 
         /// <summary>
         /// Identifies a a 64-bit floating point type
         /// </summary>
-        float64 = Pow2.T17 | SignedFacet | FloatingFacet,    
+        float64 = Pow2.T17 | Signed | Floating,    
         
         /// <summary>
         /// Identifies the signed integral types
@@ -135,12 +140,43 @@ namespace Z0
         /// <summary>
         /// Identifies the integral types
         /// </summary>
-        Int = SignedFacet | UnsignedInt,
+        Int = Signed | UnsignedInt,
 
         /// <summary>
         /// Identifies the floating point types
         /// </summary>
         Floats = float64 | float32,
+
+        /// <summary>
+        /// Identifies all primal types
+        /// </summary>
+        All = Int | Floats
+
+    }
+
+    public class PrimalKindsAttribute : Attribute
+    {
+        public PrimalKindsAttribute(PrimalKind SrcSupport)
+        {
+            this.SrcSupport = SrcSupport;
+        }
+
+        public PrimalKindsAttribute(PrimalKind LhsSupport, PrimalKind RhsSupport)
+        {
+            this.LhsSupport = LhsSupport;
+            this.RhsSupport = RhsSupport;
+        }
+
+        /// <summary>
+        /// Specifies the primal kinds supported by a source operand
+        /// </summary>
+        /// <value></value>
+        public PrimalKind SrcSupport {get;}
+
+        public PrimalKind LhsSupport {get;}
+
+        public PrimalKind RhsSupport {get;}
+
 
     }
 }

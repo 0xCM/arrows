@@ -22,8 +22,12 @@ namespace Z0
         
         void Run(params string[] args)
         {
-            
+            var b256 = new Byte256();
+            print(b256.GenerateSourceInt8().Format());
+
+
         }
+            
 
 
         static void Main(params string[] args)

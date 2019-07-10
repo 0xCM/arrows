@@ -78,15 +78,15 @@ namespace Z0
 
         public static BitString bitstring(in M512 src)
         {   
-            return BitString.Assemble(
-                src.x0.ToBitString(), 
-                src.x1.ToBitString(), 
-                src.x2.ToBitString(), 
-                src.x3.ToBitString(), 
-                src.x4.ToBitString(), 
-                src.x5.ToBitString(), 
-                src.x6.ToBitString(), 
-                src.x7.ToBitString() 
+            return BitString.From(
+                src.x0, 
+                src.x1, 
+                src.x2, 
+                src.x3, 
+                src.x4, 
+                src.x5, 
+                src.x6, 
+                src.x7 
                 );            
         }
         

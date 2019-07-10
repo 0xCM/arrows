@@ -91,6 +91,6 @@ namespace Z0
             => AppMsg.Define(GetHeaderText(), SeverityLevel.HiliteCL);
         
         public AppMsg DescribeContent()
-            => AppMsg.Define(Delimited(), SeverityLevel.Perform);
+            => AppMsg.Define(Delimited(), SeverityLevel.Benchmark);
     }
 }

@@ -21,5 +21,4 @@ partial class zfunc
     public static ReadOnlySpan<char> Replicate(this char src, int count)
         => new string(src,count);
 
-
 }

@@ -114,15 +114,14 @@ namespace Z0
         public BitVector32 Hi
         {
             [MethodImpl(Inline)]
-            get => hi(data);        
+            get => (uint)hi(data);        
         }
         
         public BitVector32 Lo
         {
             [MethodImpl(Inline)]
-            get => lo(data);    
+            get => (uint)lo(data);    
         }
-
 
         [MethodImpl(Inline)]
         public BitString BitString()
@@ -131,7 +130,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public Span<byte> Bytes()
             => bytes(data);
-
 
         [MethodImpl(Inline)]
         public int PopCount()

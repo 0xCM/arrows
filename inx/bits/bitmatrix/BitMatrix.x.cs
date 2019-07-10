@@ -15,22 +15,6 @@ namespace Z0
 
     public static partial class BitMatrixX
     {   
-        [MethodImpl(Inline)]
-        public static BitVector8 Row(this in BitMatrix8 src, int index)
-            => src.bits[index];
-
-        [MethodImpl(Inline)]
-        public static BitVector16 Row(this in BitMatrix16 src, int index)
-            => src.bits[index];
-
-        [MethodImpl(Inline)]
-        public static BitVector32 Row(this in BitMatrix32 src, int index)
-            => src.bits[index];
-
-        [MethodImpl(Inline)]
-        public static BitVector64 Row(this in BitMatrix64 src, int index)
-            => src.bits[index];
-
  
     }
 }

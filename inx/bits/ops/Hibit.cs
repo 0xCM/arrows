@@ -94,7 +94,5 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Bit hibit(in double src)
             => test(in src, SizeOf<double>.BitSize - 1);
-
     }
-
 }

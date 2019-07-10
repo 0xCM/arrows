@@ -77,7 +77,7 @@ namespace Z0
                 $" | Difference = {delta.Ms} ms",
                 $" | Performance Ratio = {ratio}"
                 );
-            return AppMsg.Define(description,  SeverityLevel.Perform);
+            return AppMsg.Define(description,  SeverityLevel.Benchmark);
         }
 
     } 

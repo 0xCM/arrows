@@ -14,7 +14,7 @@ namespace Z0
 
     public abstract class CodeGenerator
     {
-        
+
     }
 
     public abstract class SourceCode
@@ -23,6 +23,12 @@ namespace Z0
 
         protected SourceCode(string Text)
             => this.Text = Text;
+        
+        public string Format()
+            => Text;
+        
+        public override string ToString()
+            => Format();
 
     }
     

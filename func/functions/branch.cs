@@ -3,11 +3,8 @@
 // License     :  MIT
 //-----------------------------------------------------------------------------
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Diagnostics;
 
 using Z0;
 
@@ -53,7 +50,6 @@ partial class zfunc
 
         return Unit.Value;
     }
-
 
     /// <summary>
     /// Returns true if the input is false, false otherwise
@@ -110,7 +106,6 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static Y when<X, Y>(X test, Predicate<X> predicate, Func<X, Y> @true, Func<X, Y> @false)
         => predicate(test) ? @true(test) : @false(test);
-
 
     /// <summary>
     /// Maps the source <paramref name="x"/> to a value in the target space <typeparamref name="Y"/>
@@ -194,7 +189,6 @@ partial class zfunc
     /// <typeparam name="Y">The evaluation type</typeparam>
     /// <param name="v">The candidate value</param>
     /// <param name="f">The function to apply if matched</param>
-    /// <returns></returns>
     public static Option<Y> ifType<X, Y>(object v, Func<X, Y> f)
     {
         switch (v)
@@ -233,7 +227,6 @@ partial class zfunc
     /// <param name="v">The value to be evaluated </param>
     /// <param name="f">The function to apply</param>
     /// <param name="else">The alternate</param>
-    /// <returns></returns>
     public static Y ifType<X, Y>((object candididate, X right) v, Func<(X left, X right), Y> f, Func<object, Y> @else)
     {
         switch (v.candididate)
@@ -244,5 +237,4 @@ partial class zfunc
                 return @else(v.candididate);
         }
     }
-
 }

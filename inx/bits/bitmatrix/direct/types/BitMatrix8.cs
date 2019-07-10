@@ -112,6 +112,10 @@ namespace Z0
         public int ColDim
             => N;
  
+         [MethodImpl(Inline)]
+        public BitVector8 Row(int index)
+            => bits[index];
+
         [MethodImpl(Inline)]
         public bool Eq(in BitMatrix8 rhs)
             => BitConverter.ToUInt64(bits) == BitConverter.ToUInt64(rhs.bits);

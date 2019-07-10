@@ -18,7 +18,7 @@ namespace Z0
     {
         public IRandomSource Random {get;}
 
-        List<AppMsg> Messages {get;} = new List<AppMsg>();
+        protected List<AppMsg> Messages {get;} = new List<AppMsg>();
 
 
         public IReadOnlyList<AppMsg> DequeueMessages(params AppMsg[] addenda)
@@ -47,25 +47,16 @@ namespace Z0
             [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
                 => Messages.Add(AppMsg.Define(msg, SeverityLevel.HiliteCL, caller, file, line));
 
-        protected void TypeCaseStart<T>([CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define($"{caller}<{typeof(T).Name}> executing", SeverityLevel.HiliteCL));
-
-        protected void TypeCaseEnd<T>([CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define($"{caller}<{typeof(T).Name}> succeeded", SeverityLevel.HiliteCL));
-
-        protected void TypeCaseEnd<T>(AppMsg msg, [CallerMemberName] string caller = null)
-            => Messages.Add(AppMsg.Define($"{caller}<{typeof(T).Name}> succeeded: {msg}", SeverityLevel.HiliteCL));
-
-        protected void Trace(string msg)
+        protected void Trace(string msg, SeverityLevel? severity = null)
         {
             if(TraceEnabled)
-                Messages.Add(AppMsg.Define($"{msg}", SeverityLevel.Babble));
+                Messages.Add(AppMsg.Define($"{msg}", severity ?? SeverityLevel.Babble));
         }
 
-        protected void Trace(AppMsg msg)
+        protected void Trace(AppMsg msg, SeverityLevel? severity = null)
         {
             if(TraceEnabled)
-                Messages.Add(msg.WithLevel(SeverityLevel.Babble));
+                Messages.Add(msg.WithLevel(severity ?? SeverityLevel.Babble));
         }
     }
 

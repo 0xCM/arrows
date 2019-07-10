@@ -17,6 +17,14 @@ namespace Z0
     partial class xfunc
     {
         /// <summary>
+        /// Invokes the implic conversion string -> ReadOnlySpan[char]
+        /// </summary>
+        /// <param name="src">the souce string</param>
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<char> ToReadOnlySpan(this string src)
+            => src;
+
+        /// <summary>
         /// Encloses a string within a boundary
         /// </summary>
         /// <param name="s">The string to enclose</param>
@@ -284,9 +292,6 @@ namespace Z0
         public static string FormatAsVector<T>(this IEnumerable<T> src, string sep = ", ")
             => AsciSym.Lt + string.Join(sep, src.Select(x => x.ToString())).TrimEnd() + AsciSym.Gt;
  
-        [MethodImpl(Inline)]
-        public static Atoms Contain(this IEnumerable<Atom> src)
-           => Atoms.Contain(src);
 
         [MethodImpl(Inline)]   
         public static string Format(this ReadOnlySpan<char> src)
@@ -711,6 +716,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static string SeparateBlocks(this string src, int blocklen, string sep)
             => src.Partition(blocklen).Concat(sep);
+
+        [MethodImpl(Inline)]
+        public static string SeparateBlocks(this string src, int blocklen, char sep)
+            => src.Partition(blocklen).Concat(sep.ToString());
 
         public static string Intersperse(this string src, char x)
         {

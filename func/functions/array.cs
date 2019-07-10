@@ -99,5 +99,22 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static T[] array<S,T>(IEnumerable<S> src, Func<S,T> f)
         => src.Select(f).ToArray();
+    
+    /// <summary>
+    /// Computes the hash code of an array
+    /// </summary>
+    /// <param name="items">The source array</param>
+    /// <typeparam name="T">The array element type</typeparam>
+    /// <remarks>Derived from https://stackoverflow.com/questions/1646807/quick-and-simple-hash-code-combinations</remarks>
+    public static int hash<T>(params T[] items)
+    {
+        var h = 17;
+        unchecked
+        {
+            for(var i=0; i<items.Length; i++)
+                h = h*31 + items[i].GetHashCode();                
+        }
+        return h;
+    }
 
 }

@@ -41,7 +41,7 @@ namespace Z0
         /// <summary>
         /// Identifies benchmark/timing result
         /// </summary>
-        Perform = ConsoleColor.Magenta,
+        Benchmark = ConsoleColor.Magenta,
 
         /// <summary>
         /// Dark blue foreground 
@@ -72,8 +72,6 @@ namespace Z0
         /// Magenta foreground
         /// </summary>
         HiliteML = ConsoleColor.Magenta,
-
-
     }
 
 
@@ -158,12 +156,7 @@ namespace Z0
         public AppMsg WithPrependedContent(string Content)    
             => new AppMsg($"{Content}{this.Content}", Level, Caller, CallerFile, FileLine);
 
-
         public AppMsg WithAppendedContent(string Content)    
             => new AppMsg($"{this.Content}{Content}", Level, Caller, CallerFile, FileLine);
-
     }
-
-
-
 }

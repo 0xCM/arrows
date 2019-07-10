@@ -17,6 +17,21 @@ namespace Z0
     /// </summary>
     public readonly struct Bit
     {
+        readonly bool value;
+        
+        [MethodImpl(Inline)]
+        public Bit(bool value)        
+            => this.value = value;
+
+        public static readonly Bit Off = false;
+
+        public static readonly Bit On = true;
+
+        public const char Zero = '0';
+
+        public const char One = '1';
+
+
         [MethodImpl(Inline)]
         public static char And(char lhs, char rhs)
             => (lhs == One & rhs == One) ? One : Zero;
@@ -32,26 +47,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public static char Flip(char src)
             => src == One ? Zero : One;
-
-        readonly bool value;
-        
-        [MethodImpl(Inline)]
-        public Bit(bool value)        
-            => this.value = value;
-
-        public static readonly Bit Off = false;
-
-        public static readonly Bit On = true;
-
-        public const char Zero = '0';
-
-        public const char One = '1';
-
+            
         const string ZeroS = "0";
 
         const string OneS = "1";
         
-
+        [MethodImpl(Inline)]
         public static Bit Parse(char c)
             => c == One;
 
@@ -186,7 +187,6 @@ namespace Z0
                     (false, true) => false,
                     (true, false) => false
                 };
-
 
         [MethodImpl(Inline)]
         public bool Equals(Bit rhs)

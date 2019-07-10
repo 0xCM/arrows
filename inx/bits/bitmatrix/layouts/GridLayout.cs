@@ -28,6 +28,9 @@ namespace Z0
 
         readonly IReadOnlyDictionary<int, BitGridCell[]> RowLayout;
 
+        /// <summary>
+        /// The specification from which the layout was calculated
+        /// </summary>
         public readonly BitGridSpec GridSpec;
         
         /// <summary>

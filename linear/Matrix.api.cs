@@ -24,9 +24,6 @@ namespace Z0
             where T : struct
                 => new Matrix<M, N, T>(src);
 
-
-
-
         public static void save<M,N,T>(Matrix<M,N,T> src, FilePath dst)
             where M : ITypeNat, new()
             where N : ITypeNat, new()

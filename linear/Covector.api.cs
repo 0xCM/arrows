@@ -13,8 +13,7 @@ namespace Z0
     using static zfunc;
 
     public static class Covector
-    {
-        
+    {        
         /// <summary>
         /// Loads a natural span from an existing span that is required to have
         /// the specified natural length. This operation performs no allocation.

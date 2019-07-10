@@ -17,27 +17,42 @@ namespace Z0
     /// </summary>
     public readonly struct BitGridCell
     {   
-        public static implicit operator BitGridCell((int Index, int Segment, int Row, int Col) x)
-            => new BitGridCell(x.Index, x.Segment, x.Row, x.Col);
+        public static implicit operator BitGridCell((int BitPos, int SegPos, int Row, int Col, int Offset) x)
+            => new BitGridCell(x.BitPos, x.SegPos, x.Row, x.Col, x.Offset);
 
-        public BitGridCell(int Index, int Segment, int Row, int Col)
+        public BitGridCell(int BitPos, int SegPos, int Row, int Col, int Offset)
         {
-            this.Index = Index;
-            this.Segment = Segment;
+            this.BitPos = BitPos;
+            this.SegPos = SegPos;
             this.Row =Row;
             this.Col = Col;
+            this.Offset = Offset;
         }
         
-        public readonly int Index;
+        /// <summary>
+        /// The absolute bit position
+        /// </summary>
+        public readonly int BitPos;
+        
+        public readonly int SegPos;
 
-        public readonly int Segment;
-
+        /// <summary>
+        /// The absolute row index
+        /// </summary>
         public readonly int Row;
 
+        /// <summary>
+        /// The absolute column index
+        /// </summary>
         public readonly int Col;
 
+        /// <summary>
+        /// The segment-relative column offset
+        /// </summary>
+        public readonly int Offset;
+
         public string Format()
-            => $"(Bit = {Index}, Segment = {Segment}, Row = {Row}, Col = {Col})";
+            => $"(Bit = {BitPos}, Segment = {SegPos}, Row = {Row}, Col = {Col}, Offset = {Offset})";
     }
 
 

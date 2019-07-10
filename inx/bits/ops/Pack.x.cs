@@ -35,6 +35,14 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]   
+        public static ref T Pack<T>(this ReadOnlySpan<byte> src, out T dst, int offset = 0)
+            where T : struct
+        {
+            dst = Bytes.read<T>(src, offset);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]   
         public static Span<ushort> Pack(this ReadOnlySpan<byte> src, Span<ushort> dst)            
             => gbits.pack(src,dst);
 

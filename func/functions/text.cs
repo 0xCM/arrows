@@ -26,7 +26,7 @@ partial class zfunc
     /// </summary>
     [MethodImpl(Inline)]   
     public static string eol() 
-        => AsciEscape.EOL;
+        => "\r\n";
 
     /// <summary>
     /// Formats the source value as a string
@@ -291,8 +291,6 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static string enquote(string text)
         => $"{AsciSym.Quote}{text}{AsciSym.Quote}";
-
-
 
     /// <summary>
     /// Encloses text within (possibly distinct) left and right boundaries

@@ -59,16 +59,23 @@ namespace Z0
 
     public static class Pow2
     {        
+        
         static readonly byte[] _PowU8 = new byte[]
         {
             T00, T01, T02, T03, T04, T05, T06, T07 
         };
+
+        static readonly IReadOnlyDictionary<byte,byte> _PowU8Index
+            = _PowU8.Mapi((i,v) => (v,(byte)i)).ToDictionary();
 
         static readonly ushort[] _PowU16 = new ushort[]
         {
             T00, T01, T02, T03, T04, T05, T06, T07, 
             T08, T09, T10, T11, T12, T13, T14, T15, 
         };
+
+        static readonly IReadOnlyDictionary<ushort,ushort> _PowU16Index
+            = _PowU16.Mapi((i,v) => (v,(ushort)i)).ToDictionary();
 
         static readonly uint[] _PowU32 = new uint[]
         {
@@ -78,16 +85,22 @@ namespace Z0
             T24, T25, T26, T27, T28, T29, T30, T31, 
         };
 
+        static readonly IReadOnlyDictionary<uint,uint> _PowU32Index
+            = _PowU32.Mapi((i,v) => (v,(uint)i)).ToDictionary();
+
         static readonly ulong[] _PowU64 = new ulong[]{
             T00, T01, T02, T03, T04, T05, T06, T07, 
             T08, T09, T10, T11, T12, T13, T14, T15, 
             T16, T17, T18, T19, T20, T21, T22, T23, 
             T24, T25, T26, T27, T28, T29, T30, T31, 
-            T32, T33, T34, T35, T36, T37, T28, T39,
+            T32, T33, T34, T35, T36, T37, T38, T39,
             T40, T41, T42, T43, T44, T45, T46, T47, 
             T48, T49, T50, T51, T52, T53, T54, T55, 
             T56, T57, T58, T59, T60, T61, T62, T63};
 
+
+        static readonly IReadOnlyDictionary<ulong,ulong> _PowU64Index
+            = _PowU64.Mapi((i,v) => (v,(ulong)i)).ToDictionary();
 
         /// <summary>
         /// Computes 2^i 
@@ -131,6 +144,29 @@ namespace Z0
             }            
             return 0;
         }
+
+        static T Pow2Error<T>(T pow2)
+            => throw new ArgumentException($"{pow2} is not a power of 2");
+
+        [MethodImpl(Inline)]
+        public static byte exp(byte pow2)
+            => _PowU8Index.TryGetValue(pow2, out byte e) ? e : Pow2Error(pow2);
+
+        [MethodImpl(Inline)]
+        public static ushort exp(ushort pow2)
+            => _PowU16Index.TryGetValue(pow2, out ushort e) ? e : Pow2Error(pow2);
+
+        [MethodImpl(Inline)]
+        public static uint exp(uint pow2)
+            => _PowU32Index.TryGetValue(pow2, out uint e) ? e : Pow2Error(pow2);
+
+        [MethodImpl(Inline)]
+        public static uint exp(int pow2)
+            => exp((uint)pow2);
+
+        [MethodImpl(Inline)]
+        public static ulong exp(ulong pow2)
+            => _PowU64Index.TryGetValue(pow2, out ulong e) ? e : Pow2Error(pow2);
 
         /// <summary>
         /// 2^0 = 1

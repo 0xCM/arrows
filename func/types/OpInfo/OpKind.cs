@@ -155,6 +155,25 @@ namespace Z0
 
     }
 
+    class CompoundOpSymbols
+    {
+        public const string Eq = "==";
+
+        public const string GtEq = ">=";
+
+        public const string LtEq = "<=";
+
+        public const string NEq = "!=";
+
+        public const string Increment = "++";
+
+        public const string Decrement = "--";
+
+        public const string ShiftL = "<<";
+
+        public const string ShiftR = ">>";
+
+    }
 
     public enum OpKind : byte
     {        
@@ -215,14 +234,14 @@ namespace Z0
         /// <summary>
         /// Indicates a left-shift bitwise operator
         /// </summary>
-        [Symbol(AsciCompound.ShiftL,MathSym.LT2), Arity(OpArity.Binary),
+        [Symbol(CompoundOpSymbols.ShiftL, MathSym.LT2), Arity(OpArity.Binary),
             Description("Indicates a left-shift bitwise operator")]
         ShiftL,
 
         /// <summary>
         /// Indicates a right-shift bitwise operator
         /// </summary>
-        [Symbol(AsciCompound.ShiftR, MathSym.GT2), Arity(OpArity.Binary),
+        [Symbol(CompoundOpSymbols.ShiftR, MathSym.GT2), Arity(OpArity.Binary),
             Description("Indicates a right-shift bitwise operator")]
         ShiftR,
 
@@ -296,14 +315,14 @@ namespace Z0
         /// <summary>
         /// Indicates a unary increment operator
         /// </summary>
-        [Symbol(AsciCompound.Increment), Arity(OpArity.Unary),
+        [Symbol(CompoundOpSymbols.Increment), Arity(OpArity.Unary),
             Description("Indicates a unary increment operator")]
         Inc,
 
         /// <summary>
         /// Indicates a unary operator that decrements a value by a unit
         /// </summary>
-        [Symbol(AsciCompound.Decrement), Arity(OpArity.Unary), 
+        [Symbol(CompoundOpSymbols.Decrement), Arity(OpArity.Unary), 
             Description("Indicates a unary decrement operator")]
         Dec,
 
@@ -338,7 +357,8 @@ namespace Z0
         /// <summary>
         /// Indicates a unary aggregate operator calculates the maximum value contained in a collection
         /// </summary>
-        [Arity(OpArity.UnaryCollection)]
+        [Arity(OpArity.UnaryCollection),
+            Description("Indicates a unary aggregate operator calculates the maximum value contained in a collection")]
         Max,
 
         /// <summary>
@@ -360,7 +380,7 @@ namespace Z0
         /// <summary>
         /// Indicates a binary predicate that adjudicates operand equality
         /// </summary>
-        [Symbol(AsciCompound.Eq), Arity(OpArity.Binary)]
+        [Symbol(CompoundOpSymbols.Eq), Arity(OpArity.Binary)]
         Eq,
         
         /// <summary>
@@ -374,7 +394,7 @@ namespace Z0
         /// Indicates a binary predicate that determines whether the left
         /// operand is not smaller than the right operand
         /// </summary>
-        [Symbol(AsciCompound.GtEq,MathSym.GTEQ), Arity(OpArity.Binary)]
+        [Symbol(CompoundOpSymbols.GtEq,MathSym.GTEQ), Arity(OpArity.Binary)]
         GtEq,
         
         /// <summary>
@@ -387,7 +407,7 @@ namespace Z0
         /// <summary>
         /// Indicates a binary predicate that determines whether the left operand value is less than or equal to the right operand value
         /// </summary>
-        [Symbol(AsciCompound.LtEq, MathSym.LTEQ), Arity(OpArity.Binary),
+        [Symbol(CompoundOpSymbols.LtEq, MathSym.LTEQ), Arity(OpArity.Binary),
             Description("Indicates a binary predicate that determines whether the left operand value is less than or equal to the right operand value")]
         LtEq,
 

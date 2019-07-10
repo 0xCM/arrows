@@ -53,7 +53,7 @@ namespace Z0
             => MetricComparison.Define(lhs.Summarize(), rhs.Summarize());
 
         public static AppMsg FormatMessage(this MetricComparisonRecord src, char delimiter = ',', bool digitcommas = false)        
-            => AppMsg.Define(src.Delimited(delimiter,digitcommas), SeverityLevel.Perform);
+            => AppMsg.Define(src.Delimited(delimiter,digitcommas), SeverityLevel.Benchmark);
         
         public static IReadOnlyList<AppMsg> FormatMessages(this IEnumerable<MetricComparisonRecord> src, char delimiter = ',', bool digitcommas = false)
         {

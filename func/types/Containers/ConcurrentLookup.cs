@@ -15,6 +15,7 @@ namespace Z0
     
     using static zfunc;
 
+
     public interface IConcurrentLookup<K,V>
     {
         V Acquire(K key, Func<K,V> factory);
@@ -41,6 +42,8 @@ namespace Z0
         public V Acquire(K key, Func<K,V> factory)
             => Index.Acquire(key,factory);
     }
+
+    
 
     class ConcurrentLookup<K,V> : IConcurrentLookup<K,V>
     {

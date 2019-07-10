@@ -24,7 +24,7 @@ partial class zfunc
         where T : struct, IMonoidA<T>
     {
         
-        var cumulant = default(T).zero;
+        var cumulant = default(T).Zero;
         foreach(var item in src)
             cumulant = cumulant.add(item);            
         return cumulant;

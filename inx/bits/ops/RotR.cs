@@ -16,65 +16,41 @@ namespace Z0
     
     partial class Bits
     {                
+        /// <summary>
+        /// Rotates bits in the source rightwards by a specified offset
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public static byte rotr(in byte src, int offset)
+        public static byte rotr(byte src, byte offset)
             => (byte)((src >> offset) | (src << (8 - offset)));
 
+        /// <summary>
+        /// Rotates bits in the source rightwards by a specified offset
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public static byte rotr(in byte src, byte offset)
-            => (byte)((src >> offset) | (src << (8 - offset)));
-
-        [MethodImpl(Inline)]
-        public static ushort rotr(in ushort src, int offset)
+        public static ushort rotr(ushort src, ushort offset)
             => (ushort)((src >> offset) | (src << (16 - offset)));
 
+        /// <summary>
+        /// Rotates bits in the source rightwards by a specified offset
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public static uint rotr(in uint src, int offset)
-            => (src >> offset) | (src << (32 - offset));
-
-        [MethodImpl(Inline)]
-        public static ulong rotr(in ulong src, int offset)
-            => (src >> offset) | (src << (64 - offset));
-
-        [MethodImpl(Inline)]
-        public static ushort rotr(in ushort src, ushort offset)
-            => (ushort)((src >> offset) | (src << (16 - offset)));
-
-        [MethodImpl(Inline)]
-        public static uint rotr(in uint src, uint offset)
+        public static uint rotr(uint src, uint offset)
             => (src >> (int)offset) | (src << (32 - (int)offset));
 
+        /// <summary>
+        /// Rotates bits in the source rightwards by a specified offset
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The magnitude of the rotation</param>
         [MethodImpl(Inline)]
-        public static ulong rotr(in ulong src, ulong offset)
+        public static ulong rotr(ulong src, ulong offset)
             => (src >> (int)offset) | (src << (64 - (int)offset));
-
-        [MethodImpl(Inline)]
-        public static ref byte rotr(ref byte src, in int offset)
-        {
-            src = rotr(src,offset);
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref ushort rotr(ref ushort src, in int offset)
-        {
-            src = rotr(src,offset);
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref uint rotr(ref uint src, in int offset)
-        {
-            src = rotr(src,offset);
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref ulong rotr(ref ulong src, in int offset)
-        {
-            src = rotr(src,offset);
-            return ref src;
-        }
 
         [MethodImpl(Inline)]
         public static ref byte rotr(ref byte src, in byte offset)
@@ -104,16 +80,6 @@ namespace Z0
             return ref src;
         }
 
-        /// <summary>
-        /// Derived from PCG implementation
-        /// </summary>
-        [MethodImpl(Inline)]
-        static uint rotrAlt(uint src, uint count)
-        {            
-            var lhs = src >> (int)count;
-            var rhs = src << (int)(~count & 31) + 1;
-            return lhs | rhs;
-        }            
     }
 
 }

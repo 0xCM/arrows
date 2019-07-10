@@ -12,6 +12,5 @@ partial class zfunc
 {
     [MethodImpl(Inline)]
     public static Arrow<S,T> arrow<S,T>(S source, T target)
-        => new Arrow<S,T>(source, target);
-    
+        => new Arrow<S,T>(source, target);    
 }

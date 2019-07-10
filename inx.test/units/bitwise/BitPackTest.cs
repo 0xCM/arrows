@@ -18,7 +18,7 @@ namespace Z0.Test
             var src = Random.Span<ushort>(Pow2.T11);
             foreach(var x in src)
             {
-                (var x0, var x1) = Bits.unpack(x);
+                (var x0, var x1) = Bits.split(x);
                 var y = Bits.pack(x0, x1);
                 Claim.eq(x,y);
                 Claim.eq(x, BitConverter.ToUInt16(new byte[]{x0, x1}));
@@ -30,7 +30,7 @@ namespace Z0.Test
             var src = Random.Span<uint>(Pow2.T11);
             foreach(var x in src)
             {
-                (var x0, var x1, var x2, var x3) = Bits.unpack(x);
+                (var x0, var x1, var x2, var x3) = Bits.split(x, new N4());
                 var y = Bits.pack(x0, x1, x2, x3);
                 Claim.eq(x,y);
                 Claim.eq(x, BitConverter.ToUInt32(new byte[]{x0, x1, x2, x3}));
@@ -44,8 +44,12 @@ namespace Z0.Test
                 var x3 = (byte)0b10100111;
                 Claim.eq(xval, Bits.pack(x0, x1, x2,x3));
 
-                var bs = BitString.Assemble("10101000", "11100101", "00111000","10100111");
-                Claim.yea(bs == xval.ToBitString());
+                var bsExpect = "10100111001110001110010110101000";
+                var bsActual = xval.ToBitString().Format();
+                Claim.eq(bsExpect, bsActual);
+
+                var bsAssembly = BitString.Assemble("10101000", "11100101", "00111000","10100111").Format();
+                Claim.eq(bsExpect, bsAssembly);
             }
         }
 
@@ -54,7 +58,7 @@ namespace Z0.Test
             var src = Random.Span<ulong>(Pow2.T11);
             foreach(var x in src)
             {
-                (var x0, var x1, var x2, var x3, var x4, var x5, var x6, var x7) = Bits.unpack(x);
+                (var x0, var x1, var x2, var x3, var x4, var x5, var x6, var x7) = Bits.split(x, new N8());
                 var y = Bits.pack(x0, x1, x2, x3, x4, x5, x6, x7);
                 Claim.eq(x,y);
                 Claim.eq(x, BitConverter.ToUInt64(new byte[]{x0, x1, x2, x3, x4, x5, x6, x7}));
@@ -84,7 +88,7 @@ namespace Z0.Test
             var src = Random.Span<ulong>(Pow2.T11);
             foreach(var x in src)
             {
-                (var x0, var x1, var x2, var x3, var x4, var x5, var x6, var x7) = Bits.unpack(x);
+                (var x0, var x1, var x2, var x3, var x4, var x5, var x6, var x7) = Bits.split(x, new N8());
 
                 for(var i=0; i<8; i++)
                 {
@@ -136,6 +140,25 @@ namespace Z0.Test
                 Claim.eq(x, y, AppMsg.Error($"{x.BitString()} != {y.BitString()}"));
             }
         
+        }
+
+        void PackSplitPackU16()
+        {
+            var len = Pow2.T08;
+            var lhs = Random.Bytes().Take(len).Freeze();
+            var rhs = Random.Bytes().Take(len).Freeze();
+            for(var i=0; i<len; i++)
+            {
+                var dst = Bits.pack(lhs[i],rhs[i]);
+                (var x0, var x1) = Bits.split(dst);
+                Claim.eq(x0, lhs[i]);
+                Claim.eq(x1, rhs[i]);
+
+            }
+        }
+        public void PackSplitPack()
+        {
+            PackSplitPackU16();
         }
 
 

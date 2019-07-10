@@ -92,6 +92,16 @@ namespace Z0.Test
             for(var i = 0; i<len; i++)
                 Require.numeq(baseline(lhs[i],rhs[i]), op(lhs[i],rhs[i]), caller, file, line);            
         }
-             
+
+        protected void TypeCaseStart<C>([CallerMemberName] string caller = null)
+            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> executing", SeverityLevel.HiliteCL));
+
+        protected void TypeCaseEnd<C>([CallerMemberName] string caller = null)
+            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> succeeded", SeverityLevel.HiliteCL));
+
+        protected void TypeCaseEnd<C>(AppMsg msg, [CallerMemberName] string caller = null)
+            => Messages.Add(AppMsg.Define($"{typeof(T).Name}/{caller}<{typeof(C).Name}> succeeded: {msg}", SeverityLevel.HiliteCL));
+
+
     }
 }

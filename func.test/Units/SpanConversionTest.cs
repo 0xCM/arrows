@@ -59,6 +59,24 @@ namespace Z0.Test
             VerifyBytesToValues<double>();
         }
 
+        public void VerifyReverse()
+        {
+            var src1 = Random.Span<byte>(23).ReadOnly();
+            var src2 = Random.Span<byte>(24).ReadOnly();
+
+            var rev1 = src1.Reverse();
+            var rev2 = src2.Reverse();
+            
+            var lastix = src1.Length -1;            
+            for(var i=0; i<src1.Length; i++)
+                Claim.eq(rev1[lastix - i], src1[i]);
+
+            lastix = src2.Length -1;            
+            for(var i=0; i<src2.Length; i++)
+                Claim.eq(rev2[lastix - i], src2[i]);
+
+        }
+
         public void VerifyNonPrimal()
         {
             var bits = Random.Bits().TakeSpan(Pow2.T08);

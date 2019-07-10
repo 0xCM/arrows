@@ -47,8 +47,8 @@ namespace Z0.Test
         public void PopCount4()
         {
             var x =  0b111010010110011010111001110000100001101ul;
-            var xbs = BitString.Define("111010010110011010111001110000100001101");
-            var y = xbs.ToValue<ulong>();
+            var xbs = BitString.From("111010010110011010111001110000100001101");
+            var y = xbs.ToPrimalValue<ulong>();
             Claim.eq(x, y);
 
             var pcx = Bits.pop(x);
@@ -104,11 +104,9 @@ namespace Z0.Test
 
             for(var i = 0; i<src.Length; i++)
             {
-                var bs = BitStringConvert.FromValue(in src[i]);
+                var bs = BitString.From(in src[i]);
             }
-
         }
-
 
     }
 

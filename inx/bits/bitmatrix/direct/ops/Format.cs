@@ -17,10 +17,7 @@ namespace Z0
     {    
         static string Format(this Span<byte> src, int rowlen)            
         {
-            Span<char> dst = new char[src.Length*8];
-            for(var i = 0; i< src.Length; i++)
-                src[i].ToBitChars(dst, i*8);
-            
+            var dst = src.ToBitChars();
             var sb = sbuild();
             for(var i=0; i<dst.Length; i+= rowlen)
             {

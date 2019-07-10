@@ -525,5 +525,15 @@ namespace Z0
         public static Span<byte> AsBytes<T>(this Span<T> src)
             where T : struct
                 => MemoryMarshal.AsBytes(src);
+ 
+        [MethodImpl(Inline)]
+        public static Span<T> Reverse<T>(this ReadOnlySpan<T> src)        
+        {
+            var dst = span<T>(src.Length);
+            var lastix = dst.Length - 1;
+            for(var i=0; i<dst.Length; i++)
+                dst[lastix - i] = src[i];
+            return dst;
+        }                
     }
 }

@@ -41,10 +41,7 @@ namespace Z0.Test
         protected override void RunTests(string filter)
         {            
 
-            //base.RunTests("Bitwise");
-
-            var l1 = BitMatrix<N9,N9,byte>.GridLayout;
-            print(l1.Format());
+            base.RunTests(filter);
         }
 
         public static void Main(params string[] args)

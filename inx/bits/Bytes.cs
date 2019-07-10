@@ -16,7 +16,6 @@ namespace Z0
 
     public static class Bytes
     {
-
         [MethodImpl(Inline)]
         public static T read<T>(byte[] src, in int offset = 0)
             where T : struct
@@ -28,10 +27,14 @@ namespace Z0
                 =>  Unsafe.ReadUnaligned<T>(ref src[offset]);
 
         [MethodImpl(Inline)]
+        public static T read<T>(in ReadOnlySpan<byte> src, in int offset = 0)
+            where T : struct
+                =>  Unsafe.ReadUnaligned<T>(ref asRef( in src[offset]));
+
+        [MethodImpl(Inline)]
         public static ref T read<T>(in Span<byte> src, in int offset, out T dst)
             where T : struct
-        {
-            
+        {            
             dst = Unsafe.ReadUnaligned<T>(ref src[offset]);
             return ref dst;
         }
@@ -85,6 +88,5 @@ namespace Z0
             var q = Math.DivRem(pos, 8, out int r);
             return Bits.test(src[q], r);
         }
-
     }
 }

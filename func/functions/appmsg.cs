@@ -18,5 +18,4 @@ partial class zfunc
 
     public static AppMsg errorMsg(object content)
         => AppMsg.Define($"{content}",SeverityLevel.Error);
-
 }

@@ -13,7 +13,6 @@ namespace Z0
     
     partial class Bits
     {                
-
           [MethodImpl(Inline)]
           public static ref sbyte enable(ref sbyte src, in int pos)
           {

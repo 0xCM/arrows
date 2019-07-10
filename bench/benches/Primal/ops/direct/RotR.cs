@@ -16,22 +16,22 @@ namespace Z0.Bench
 
     public static class RotRDMetrics
     {
-        public static Metrics<T> RotR<T>(this PrimalDConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs)
+        public static Metrics<T> RotR<T>(this PrimalDConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(byte))
-                return config.RotR(uint8(lhs), rhs).As<T>();
+                return config.RotR(uint8(lhs), uint8(rhs)).As<T>();
             else if(typeof(T) == typeof(ushort))
-                return config.RotR(uint16(lhs), rhs).As<T>();
+                return config.RotR(uint16(lhs), uint16(rhs)).As<T>();
             else if(typeof(T) == typeof(uint))
-                return config.RotR(uint32(lhs), rhs).As<T>();
+                return config.RotR(uint32(lhs), uint32(rhs)).As<T>();
             else if(typeof(T) == typeof(ulong))
-                return config.RotR(uint64(lhs), rhs).As<T>();
+                return config.RotR(uint64(lhs), uint64(rhs)).As<T>();
             else
                 throw unsupported<T>();
         }
 
-        static Metrics<byte> RotR(this PrimalDConfig config, ReadOnlySpan<byte> lhs, ReadOnlySpan<int> rhs)
+        static Metrics<byte> RotR(this PrimalDConfig config, ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
         {
             var opid = Id<byte>(OpKind.RotR);            
             var cycles = config.Cycles;
@@ -43,7 +43,7 @@ namespace Z0.Bench
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
     
-        static Metrics<ushort> RotR(this PrimalDConfig config, ReadOnlySpan<ushort> lhs, ReadOnlySpan<int> rhs)
+        static Metrics<ushort> RotR(this PrimalDConfig config, ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
         {
             var opid = Id<ushort>(OpKind.RotR);            
             var cycles = config.Cycles;
@@ -55,7 +55,7 @@ namespace Z0.Bench
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<uint> RotR(this PrimalDConfig config, ReadOnlySpan<uint> lhs, ReadOnlySpan<int> rhs)
+        static Metrics<uint> RotR(this PrimalDConfig config, ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
         {
             var opid = Id<uint>(OpKind.RotR);            
             var cycles = config.Cycles;
@@ -67,7 +67,7 @@ namespace Z0.Bench
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-        static Metrics<ulong> RotR(this PrimalDConfig config, ReadOnlySpan<ulong> lhs, ReadOnlySpan<int> rhs)
+        static Metrics<ulong> RotR(this PrimalDConfig config, ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
         {
             var opid = Id<ulong>(OpKind.RotR);            
             var cycles = config.Cycles;

@@ -39,6 +39,14 @@ namespace Z0
             where T : struct
                 => Z0.BitMatrix.Define(random.Span<T>(BitGridSpec.Define(m,n,x).TotalSegLength()),m,n);
 
+
+        [MethodImpl(Inline)]
+        public static BitMatrix<N,N,T> BitMatrix<N,T>(this IRandomSource random, N n = default, T x = default)
+            where N : ITypeNat, new()
+            where T : struct
+                => random.BitMatrix<N,N,T>();
+                
+
     }
 
 }

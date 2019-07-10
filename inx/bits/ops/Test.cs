@@ -14,7 +14,6 @@ namespace Z0
 
     partial class Bits
     {                
-
         [MethodImpl(Inline)]
         public static bool test(in sbyte src, in int pos)
             => (src & (1 << pos)) != 0;
@@ -55,5 +54,4 @@ namespace Z0
         public static bool test(in double src, in int pos)
             => test(BitConverter.DoubleToInt64Bits(src),pos);
     }
-
 }

@@ -22,7 +22,7 @@ namespace Z0
         /// </summary>
         static readonly Dim<M,N> Dim = default;
 
-        static readonly BitGridSpec GridSpec = (SizeOf<T>.BitSize, (int)Dim.j, (int)Dim.i);
+        static readonly BitGridSpec GridSpec = (SizeOf<T>.BitSize, (int)Dim.i, (int)Dim.j);
         
         public static readonly BitGridLayout GridLayout = GridSpec.CalcLayout();
 
@@ -40,40 +40,40 @@ namespace Z0
         public static BitMatrix<M,N,T> Ones()
         {
             Span<T> data = new T[GridLayout.TotalSegments];
-            var matrix = new BitMatrix<M, N, T>(data);
-            for(var i=0; i< GridLayout.RowCount; i++)
-                for(var j=0; j<GridLayout.ColCount; j++)
-                    matrix[i,j] = Bit.On;
-            return matrix;
-        }
-            
-
-        [MethodImpl(Inline)]
-        Bit GetBit(int row, int col)
-        {
-            var cell = GridLayout.Row(row)[col];
-            return gbits.test(in bits[cell.Segment], cell.Col);                    
-        }
-
-        [MethodImpl(Inline)]
-        void SetBit(int row, int col, Bit value)
-        {
-            var cell = GridLayout.Row(row)[col];
-            gbits.set(ref bits[cell.Segment], cell.Col, value);
+            for(var i=0; i<data.Length; i++)
+                for(var j = 0; j< SizeOf<T>.BitSize; j++)
+                    gbits.enable(ref data[i], j);
+            return new BitMatrix<M, N, T>(data);
         }
 
         [MethodImpl(Inline)]
         public BitMatrix(Span<T> src)
         {
-            require(src.Length == GridLayout.TotalSegments);
+            require(src.Length == GridLayout.TotalSegments, 
+                $"A span of length {src.Length} was provided which differs from the required segment count of {GridLayout.TotalSegments}");
             this.bits = src;
         }
 
         [MethodImpl(Inline)]
         public BitMatrix(ReadOnlySpan<T> src)
         {
-            require(src.Length == GridLayout.TotalSegments);
+            require(src.Length == GridLayout.TotalSegments, 
+                $"A span of length {src.Length} was provided which differs from the required segment count of {GridLayout.TotalSegments}");
             this.bits = src.Replicate();
+        }
+
+        [MethodImpl(Inline)]
+        Bit GetBit(int row, int col)
+        {
+            var cell = GridLayout.Row(row)[col];
+            return gbits.test(in bits[cell.SegPos], cell.Offset);                    
+        }
+
+        [MethodImpl(Inline)]
+        void SetBit(int row, int col, Bit value)
+        {
+            var cell = GridLayout.Row(row)[col];
+            gbits.set(ref bits[cell.SegPos], cell.Offset, value);
         }
 
         public Bit this[int row, int col]
@@ -85,12 +85,11 @@ namespace Z0
             set => SetBit(row, col, value);
         }            
 
-
         /// <summary>
         /// The number of rows in the matrix
         /// </summary>
         public int RowCount
-            => GridSpec.RowCount;
+            => GridLayout.RowCount;
 
         /// <summary>
         /// The (padded) length of a primal span/array required to store a row of grid data.
@@ -102,7 +101,7 @@ namespace Z0
         /// The number of columns in the matrix
         /// </summary>
         public int ColCount
-            => GridSpec.ColCount;
+            => GridLayout.ColCount;
 
         /// <summary>
         /// Provides direct access to the underlying bitstore
@@ -112,20 +111,22 @@ namespace Z0
         
         [MethodImpl(Inline)]
         int RowOffset(int row)        
-            => GridLayout.Row(row)[0].Segment;
-        
+            => GridLayout.Row(row)[0].SegPos;
+                
         [MethodImpl(Inline)]
         Span<T> RowData(int row)
-            =>bits.Slice(RowOffset(row), GridLayout.RowSegments);
+            => bits.Slice(RowOffset(row), GridLayout.RowSegments);
 
         /// <summary>
         /// Retrives an identified row of bits
         /// </summary>
-        /// <param name="row">The 0-based row index</param>
+        /// <param name="index">The 0-based row index</param>
         [MethodImpl(Inline)]
-        public BitVector<M,T> RowVector(int row)                    
-            => new BitVector<M,T>(RowData(row));        
+        public BitVector<M,T> Row(int index)                    
+            => new BitVector<M,T>(RowData(index));        
         
+        public BitGridLayout Layout
+            => GridLayout;
 
 
     }

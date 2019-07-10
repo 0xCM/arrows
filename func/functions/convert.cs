@@ -8,14 +8,11 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;    
-using System.Runtime.Intrinsics;
-using System.Diagnostics;
 
 using Z0;
 
 partial class zfunc
 {
-
     [MethodImpl(Inline)]   
     public static T convert<S,T>(S src, out T dst)
         where T : struct

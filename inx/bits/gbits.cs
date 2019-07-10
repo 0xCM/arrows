@@ -174,7 +174,12 @@ namespace Z0
             where T : struct
                 => shiftl(lhs, (int)rhs);
 
-        [MethodImpl(Inline)]
+        /// <summary>
+        /// Counts the number enabled source bits
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source value type</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
         public static ulong pop<T>(in T src)
             where T : struct
         {        
@@ -204,7 +209,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="pos">The bit position</param>
         /// <typeparam name="T">The primal value type</typeparam>
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
         public static bool test<T>(in T src, in int pos)
             where T : struct
         {
@@ -542,38 +547,25 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        /// <summary>
+        /// Given 2^n, finds n
+        /// </summary>
+        /// <param name="pow2">A value obtained by raising 2 to some power</param>
+        /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static T extract<T>(T src, T mask)
-            where T : struct
+        public static T exp<T>(T pow2)
         {
             if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.extract(uint8(src), uint8(mask)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.extract(uint16(src), uint16(mask)));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.extract(uint32(src), uint32(mask)));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.extract(uint64(src), uint64(mask)));
-            else            
+                return generic<T>(uint8(pow2));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(uint16(pow2));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(uint32(pow2));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(uint64(pow2));
+            else
                 throw unsupported<T>();
-        }           
-
-        [MethodImpl(Inline)]
-        public static T deposit<T>(T src, T mask)
-            where T : struct
-        {
-            if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.deposit(uint8(src), uint8(mask)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.deposit(uint16(src), uint16(mask)));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.deposit(uint32(src), uint32(mask)));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.deposit(uint64(src), uint64(mask)));
-            else            
-                throw unsupported<T>();
-        }           
-
+        }
 
         [MethodImpl(Inline)]
         public static ref T loff<T>(ref T src)
@@ -601,23 +593,14 @@ namespace Z0
             return ref src;
         }       
  
-        [MethodImpl(Inline)]
-        public static T rotr<T>(T src, int offset)
-            where T : struct
-        {
-            if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.rotr(uint8(src), offset));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.rotr(uint16(src), offset));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.rotr(uint32(src), offset));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.rotr(uint64(src), offset));
-            else            
-                throw unsupported<T>();
-        }           
-
-        [MethodImpl(Inline)]
+ 
+        /// <summary>
+        /// Rotates bits in the source rightwards by a specified offset
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The magnitude of the rotation</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
         public static T rotr<T>(T src, T offset)
             where T : struct
         {
@@ -633,40 +616,37 @@ namespace Z0
                 throw unsupported<T>();
         }           
 
-        [MethodImpl(Inline)]
-        public static ref T rotr<T>(ref T src, in int offset)
+        /// <summary>
+        /// Rotates bits in the source rightwards by a specified offset
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The magnitude of the rotation</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        public static ref T rotr<T>(ref T src, in T offset)
             where T : struct
         {
             if(typeof(T) == typeof(byte))
-                Bits.rotr(ref uint8(ref src), in offset);
+                Bits.rotr(ref uint8(ref src), in uint8(in offset));
             else if(typeof(T) == typeof(ushort))
-                Bits.rotr(ref uint16(ref src), in offset);
+                Bits.rotr(ref uint16(ref src), in uint16(in offset));
             else if(typeof(T) == typeof(uint))
-                Bits.rotr(ref uint32(ref src), in offset);
+                Bits.rotr(ref uint32(ref src), in uint32(in offset));
             else if(typeof(T) == typeof(ulong))
-                Bits.rotr(ref uint64(ref src), in offset);
+                Bits.rotr(ref uint64(ref src), in uint64(in offset));
             else            
                 throw unsupported<T>();
             return ref src;
         }           
  
-        [MethodImpl(Inline)]
-        public static T rotl<T>(T src, int offset)
-            where T : struct
-        {
-            if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.rotl(uint8(src), offset));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.rotl(uint16(src), offset));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.rotl(uint32(src), offset));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.rotl(uint64(src), offset));
-            else            
-                throw unsupported<T>();
-        }           
-
-        [MethodImpl(Inline)]
+ 
+        /// <summary>
+        /// Rotates bits in the source leftwards by a specified offset
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The magnitude of the rotation</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
         public static T rotl<T>(T src, T offset)
             where T : struct
         {
@@ -682,22 +662,71 @@ namespace Z0
                 throw unsupported<T>();
         }           
 
-        [MethodImpl(Inline)]
-        public static ref T rotl<T>(ref T src, in int offset)
+        /// <summary>
+        /// Rotates bits in the source leftwards by a specified offset
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="offset">The magnitude of the rotation</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        public static ref T rotl<T>(ref T src, in T offset)
             where T : struct
         {
             if(typeof(T) == typeof(byte))
-                Bits.rotl(ref uint8(ref src), in offset);
+                Bits.rotl(ref uint8(ref src), uint8(in offset));
             else if(typeof(T) == typeof(ushort))
-                Bits.rotl(ref uint16(ref src), in offset);
+                Bits.rotl(ref uint16(ref src), uint16(in offset));
             else if(typeof(T) == typeof(uint))
-                Bits.rotl(ref uint32(ref src), in offset);
+                Bits.rotl(ref uint32(ref src), uint32(in offset));
             else if(typeof(T) == typeof(ulong))
-                Bits.rotl(ref uint64(ref src), in offset);
+                Bits.rotl(ref uint64(ref src), uint64(in offset));
             else            
                 throw unsupported<T>();
             return ref src;
         }           
+
+        /// <summary>
+        /// Extracts a sequence of mask-identifed bits from the source
+        /// </summary>
+        /// <param name="src">The source vale</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        public static T extract<T>(T src, T mask)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                return generic<T>(Bits.extract(uint8(src), uint8(mask)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Bits.extract(uint16(src), uint16(mask)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(Bits.extract(uint32(src), uint32(mask)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Bits.extract(uint64(src), uint64(mask)));
+            else            
+                throw unsupported<T>();
+        }           
+
+        /// <summary>
+        /// Returns the position of the least on bit in the source
+        /// </summary>
+        /// <param name="src">The source vale</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        public static T lopos<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                return generic<T>(Bits.lopos(uint8(src)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Bits.lopos(uint16(src)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(Bits.lopos(uint32(src)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Bits.lopos(uint64(src)));
+            else            
+                throw unsupported<T>();
+        }           
+
 
         /// <summary>
         /// Extracts a contiguous range of bits from the source
@@ -705,130 +734,228 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
-        [MethodImpl(Inline)]
-        public static T range<T>(in T lhs, in int start, in byte length)
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
+        public static T extract<T>(in T lhs, in byte start, in byte length)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(Bits.range(in int8(in lhs), in start, in length));
+                return generic<T>(Bits.extract(in int8(in lhs), in start, in length));
             if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.range(in uint8(in lhs), in start, in length));
+                return generic<T>(Bits.extract(in uint8(in lhs), in start, in length));
             else if(typeof(T) == typeof(short))
-                return generic<T>(Bits.range(in int16(in lhs), in start, in length));
+                return generic<T>(Bits.extract(in int16(in lhs), in start, in length));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.range(in uint16(in lhs), in start, in length));
+                return generic<T>(Bits.extract(in uint16(in lhs), in start, in length));
             else if(typeof(T) == typeof(int))
-                return generic<T>(Bits.range(in int32(in lhs), in start, in length));
+                return generic<T>(Bits.extract(in int32(in lhs), in start, in length));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.range(in uint32(in lhs), in start, in length));
+                return generic<T>(Bits.extract(in uint32(in lhs), in start, in length));
             else if(typeof(T) == typeof(long))
-                return generic<T>(Bits.range(in int64(in lhs), in start, in length));
+                return generic<T>(Bits.extract(in int64(in lhs), in start, in length));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.range(in uint64(in lhs), in start, in length));
+                return generic<T>(Bits.extract(in uint64(in lhs), in start, in length));
+            else            
+                throw unsupported<T>();
+        }           
+
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        public static T deposit<T>(in T src, in T mask)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                return generic<T>(Bits.deposit(in uint8(in src), in uint8(in mask)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Bits.deposit(in uint16(in src), in uint16(in mask)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(Bits.deposit(in uint32(in src), in uint32(in mask)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(Bits.deposit(in uint64(in src), in uint64(in mask)));
             else            
                 throw unsupported<T>();
         }           
 
         /// <summary>
+        /// Deposits mask-identified bits from the source
+        /// </summary>
+        /// <param name="src">The source/target value</param>
+        /// <param name="mask"></param>
+        /// <typeparam name="T">The identifiying mask</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        public static ref T deposit<T>(ref T src, T mask)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                Bits.deposit(ref uint8(ref src), uint8(mask));
+            else if(typeof(T) == typeof(ushort))
+                Bits.deposit(ref uint16(ref src), uint16(mask));
+            else if(typeof(T) == typeof(uint))
+                Bits.deposit(ref uint32(ref src), uint32(mask));
+            else if(typeof(T) == typeof(ulong))
+                Bits.deposit(ref uint64(ref src), uint64(mask));
+            else            
+                throw unsupported<T>();
+            return ref src;
+        }
+
+        /// <summary>
+        /// Constructs a bytespan where each entry, ordered from lo to hi,
+        /// represents a single bit in the soure value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The primal source type</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        public static ReadOnlySpan<byte> bitseq<T>(T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                return Bits.bitseq(uint8(src));
+            else if(typeof(T) == typeof(ushort))
+                return Bits.bitseq(uint16(src));
+            else if(typeof(T) == typeof(uint))
+                return Bits.bitseq(uint32(src));
+            else if(typeof(T) == typeof(ulong))
+                return Bits.bitseq(uint64(src));
+            else            
+                throw unsupported<T>();            
+        }        
+
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        public static ref T packseq<T>(ReadOnlySpan<byte> src, out T dst)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                dst = generic<T>(ref Bits.packseq(src, out byte _));
+            else if(typeof(T) == typeof(ushort))
+                dst = generic<T>(ref Bits.packseq(src, out ushort _));
+            else if(typeof(T) == typeof(uint))
+                dst = generic<T>(ref Bits.packseq(src, out uint _));
+            else if(typeof(T) == typeof(ulong))
+                dst = generic<T>(ref Bits.packseq(src, out ulong _));
+            else            
+                throw unsupported<T>();            
+            return ref dst;
+        }        
+
+        /// <summary>
+        /// Constructs the bitstring text for an integral value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        public static string bstext<T>(T src)
+        {
+            if(typeof(T) == typeof(byte))
+                return Bits.bstext(uint8(src));
+            else if(typeof(T) == typeof(sbyte))
+                return Bits.bstext(int8(src));
+            else if(typeof(T) == typeof(ushort))
+                return Bits.bstext(uint16(src));
+            else if(typeof(T) == typeof(short))
+                return Bits.bstext(int16(src));
+            else if(typeof(T) == typeof(uint))
+                return Bits.bstext(uint32(src));
+            else if(typeof(T) == typeof(int))
+                return Bits.bstext(int32(src));
+            else if(typeof(T) == typeof(ulong))
+                return Bits.bstext(uint64(src));
+            else if(typeof(T) == typeof(long))
+                return Bits.bstext(int64(src));
+            else            
+                throw unsupported<T>();            
+        }
+
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
+        public static char bitchar<T>(in T src, int pos)
+            where T : struct
+                => gbits.test(in src, pos)  ? AsciDigits.A1 : AsciDigits.A0;                
+
+        /// <summary>
+        /// Constructs bitstring characters for integral values
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        public static ReadOnlySpan<char> bitchars<T>(in T src)
+        {
+            if(typeof(T) == typeof(byte))
+                return Bits.bitchars(uint8(in src));
+            else if(typeof(T) == typeof(sbyte))
+                return Bits.bitchars(int8(in src));
+            else if(typeof(T) == typeof(ushort))
+                return Bits.bitchars(uint16(in src));
+            else if(typeof(T) == typeof(short))
+                return Bits.bitchars(int16(in src));
+            else if(typeof(T) == typeof(uint))
+                return Bits.bitchars(uint32(in src));
+            else if(typeof(T) == typeof(int))
+                return Bits.bitchars(int32(in src));
+            else if(typeof(T) == typeof(ulong))
+                return Bits.bitchars(uint64(in src));
+            else if(typeof(T) == typeof(long))
+                return Bits.bitchars(int64(in src));
+            else            
+                throw unsupported<T>();            
+        }
+
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.UnsignedInt)]
+        public static BitString bitstring<T>(T src)
+            => bitchars<T>(src).Reverse();
+
+        public static ref T parse<T>(in ReadOnlySpan<char> src, in int offset, out T dst)
+            where T : struct
+        {            
+            var last = Math.Min(Unsafe.SizeOf<T>()*8, src.Length) - 1;                                    
+            dst = gmath.zero<T>();
+            for(int i=offset, pos = 0; i<= last; i++, pos++)
+                if(src[i] == Bit.One)
+                    gbits.enable(ref dst, pos);                        
+            return ref dst;
+        }
+
+        /// <summary>
         /// Determines whether identified bits in the operands agree.
         /// </summary>
-        /// <param name="x">The first bit source</param>
+        /// <param name="lhs">The first bit source</param>
         /// <param name="nx">The first bit position</param>
-        /// <param name="y">The second bit source</param>
+        /// <param name="rhs">The second bit source</param>
         /// <param name="ny">The second bit position</param>
         /// <typeparam name="S">The left operand type</typeparam>
         /// <typeparam name="T">The right operand type</typeparam>
-        [MethodImpl(Inline)]
-        public static bool match<S,T>(in S x, in int nx, T y, in int ny)
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.All, PrimalKind.All)]
+        public static bool match<S,T>(in S lhs, in int nx, T rhs, in int ny)
             where S : struct
             where T : struct
-                => test(in x, in nx) == test(in y, in ny);
+                => test(in lhs, in nx) == test(in rhs, in ny);
 
-        public static Span<T> pack<S,T>(ReadOnlySpan<S> src, Span<T> dst)            
-            where S : struct
+        /// <summary>
+        /// Converts a span of primal values to a span of characters, each of which represent a bit
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [PrimalKinds(PrimalKind.All)]
+        public static Span<char> bitchars<T>(ReadOnlySpan<T> src)
             where T : struct
         {
-            var srcIx = 0;
-            var dstOffset = 0;
-            var dstIx = 0;
-            var srcSize = SizeOf<S>.BitSize;
-            var dstSize = SizeOf<T>.BitSize;
-            
-            while(srcIx < src.Length && dstIx < dst.Length)
-            {
-                for(var i = 0; i< srcSize; i++)
-                    if(test(src[srcIx], i))
-                       enable(ref dst[dstIx], dstOffset + i);
-
-                srcIx++;
-                if((dstOffset + srcSize) >= dstSize)
-                {
-                    dstOffset = 0;
-                    dstIx++;
-                }
-                else
-                    dstOffset += srcSize;
-            }
-            return dst;
+            var segcount = src.Length;
+            var seglen = Unsafe.SizeOf<T>()*8;
+            var bitcount = segcount * seglen;
+            Span<char> dst = new char[bitcount];
+            var lastix = bitcount - 1;
+            for(var seg = 0; seg < segcount; seg++)
+            for(var pos = 0; pos < seglen; pos++, lastix--)
+                dst[lastix] = bitchar(in src[seg], pos);
+            return dst;         
         }
 
-        [MethodImpl(Inline)]
-        public static Span<char> bitchars<T>(in T src)
+        /// <summary>
+        /// Converts a span of primal values to a span of characters, each of which represent a bit
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <typeparam name="T">The source type</typeparam>
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.All)]
+        public static Span<char> bitchars<T>(Span<T> src)
             where T : struct
-        {
-             if(typeof(T) == typeof(sbyte))
-                return int8(in src).ToBitChars();
-            else if(typeof(T) == typeof(byte))
-                return uint8(in src).ToBitChars();
-            else if(typeof(T) == typeof(short))
-                return int16(in src).ToBitChars();
-            else if(typeof(T) == typeof(ushort))
-                return uint16(in src).ToBitChars();
-            else if(typeof(T) == typeof(int))
-                return int32(in src).ToBitChars();
-            else if(typeof(T) == typeof(uint))
-                return uint32(in src).ToBitChars();
-            else if(typeof(T) == typeof(long))
-                return int64(in src).ToBitChars();
-            else if(typeof(T) == typeof(ulong))
-                return uint64(in src).ToBitChars();
-            else if(typeof(T) == typeof(float))
-                return float32(in src).ToBitChars();
-            else if(typeof(T) == typeof(double))
-                return float64(in src).ToBitChars();
-            else
-                throw unsupported<T>();
-           
-        }
-
-        [MethodImpl(Inline)]
-        public static Span<char> bitchars<T>(in T src, Span<char> dst, int offset)
-            where T : struct
-        {
-             if(typeof(T) == typeof(sbyte))
-                return int8(in src).ToBitChars(dst,offset);
-            else if(typeof(T) == typeof(byte))
-                return uint8(in src).ToBitChars(dst,offset);
-            else if(typeof(T) == typeof(short))
-                return int16(in src).ToBitChars(dst,offset);
-            else if(typeof(T) == typeof(ushort))
-                return uint16(in src).ToBitChars(dst,offset);
-            else if(typeof(T) == typeof(int))
-                return int32(in src).ToBitChars(dst,offset);
-            else if(typeof(T) == typeof(uint))
-                return uint32(in src).ToBitChars(dst,offset);
-            else if(typeof(T) == typeof(long))
-                return int64(in src).ToBitChars(dst,offset);
-            else if(typeof(T) == typeof(ulong))
-                return uint64(in src).ToBitChars(dst,offset);
-            else if(typeof(T) == typeof(float))
-                return float32(in src).ToBitChars(dst,offset);
-            else if(typeof(T) == typeof(double))
-                return float64(in src).ToBitChars(dst,offset);
-            else
-                throw unsupported<T>();
-           
-        }
-
+                => bitchars(src.ReadOnly());
+        
     }
 }

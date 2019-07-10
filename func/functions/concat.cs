@@ -7,7 +7,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Diagnostics;
 using System.Text;
 
 using Z0;
@@ -33,7 +32,6 @@ partial class zfunc
         Buffer.BlockCopy(second, 0, ret, first.Length, second.Length);
         return ret;
     }
-
 
     /// <summary>
     /// Concatentates a parameter array of byte arrays
@@ -151,6 +149,4 @@ partial class zfunc
     [MethodImpl(Inline)]   
     public static string concat(Span<string> src, string sep = ", ")
         => concat(src.ReadOnly(), sep);
-    
-
 }

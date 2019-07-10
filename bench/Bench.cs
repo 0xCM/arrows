@@ -58,7 +58,7 @@ namespace Z0.Bench
             log(comparisons, target, ext: FileExtension.Define("csv"));
             if(!silent)
             {
-                print(AppMsg.Define(MetricComparisonRecord.GetHeaderText(), SeverityLevel.Perform));
+                print(AppMsg.Define(MetricComparisonRecord.GetHeaderText(), SeverityLevel.Benchmark));
                 foreach(var record in comparisons)
                     print(record.FormatMessage());
             }

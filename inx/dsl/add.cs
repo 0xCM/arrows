@@ -27,7 +27,6 @@ namespace Z0
         public static m128i _mm_add_epi8(in m128i a, in m128i b)
             => Add(v8i(a), v8i(b));
 
-
         /// <summary>
         /// Computes the component-wise sum of the operands
         /// </summary>

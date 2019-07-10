@@ -52,16 +52,11 @@ namespace Z0.Bench
             var rhs = op.IsDivision() 
                 ? random.NonZeroSpan<T>(config.Samples) 
                 : random.ReadOnlySpan<T>(config.Samples);
-            var moves = op.IsBitMovement() 
-                ? random.ReadOnlySpan<int>(config.Samples, closed(0, SizeOf<T>.BitSize)) 
-                : ReadOnlySpan<int>.Empty;
 
             GC.Collect();            
             for(var i=0; i<config.Runs; i++)
             {                
-                if(op.IsBitMovement())
-                    config.Run(op, lhs, moves);
-                else if(op.Arity() == OpArity.Binary)
+                if(op.Arity() == OpArity.Binary)
                     metrics += config.Run<T>(op, lhs, rhs);
                 else if(op.Arity() == OpArity.Unary)
                     metrics += config.Run(op, lhs);
@@ -159,6 +154,18 @@ namespace Z0.Bench
                 case OpKind.GtEq:
                     metrics = config.GtEq(lhs, rhs);   
                     break;                
+                // case OpKind.ShiftL:
+                //     metrics = config.ShiftL(lhs,rhs);   
+                // break;
+                // case OpKind.ShiftR:
+                //     metrics = config.ShiftR(lhs,rhs);   
+                // break;
+                case OpKind.RotL:
+                    metrics = config.RotL(lhs,rhs);   
+                break;
+                case OpKind.RotR:
+                    metrics = config.RotR(lhs,rhs);   
+                break;
                 default: 
                     throw unsupported<T>();
 
@@ -169,29 +176,6 @@ namespace Z0.Bench
             return metrics;
         }
 
-        static Metrics<T> Run<T>(this PrimalGConfig config, OpKind op, ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs)
-            where T : struct
-        {
-            var metrics = Metrics<T>.Zero;
-            switch(op)
-            {
-                case OpKind.ShiftL:
-                    metrics = config.ShiftL(lhs,rhs);   
-                break;
-                case OpKind.ShiftR:
-                    metrics = config.ShiftR(lhs,rhs);   
-                break;
-                case OpKind.RotL:
-                    metrics = config.RotL(lhs,rhs);   
-                break;
-                case OpKind.RotR:
-                    metrics = config.RotR(lhs,rhs);   
-                break;
-                default: 
-                    throw unsupported(op);
-            }
-            return metrics;
-        }
 
    }
 }

@@ -225,7 +225,7 @@ namespace Z0
         }
 
 
-        public static ref Span<T> rotr<T>(ref Span<T> io, ReadOnlySpan<int> rhs)
+        public static ref Span<T> rotr<T>(ref Span<T> io, ReadOnlySpan<T> rhs)
             where T : struct
         {
             var len = io.Length;
@@ -234,13 +234,41 @@ namespace Z0
             return ref io;
         }
 
-        public static ref Span<T> rotl<T>(ref Span<T> io, ReadOnlySpan<int> rhs)
+        public static ref Span<T> rotl<T>(ref Span<T> io, ReadOnlySpan<T> rhs)
             where T : struct
         {
             var len = io.Length;
             for(var i=0; i<len; i++)
                 io[i] = rotl(io[i],rhs[i]);
             return ref io;
+        }
+
+         public static Span<T> pack<S,T>(ReadOnlySpan<S> src, Span<T> dst)            
+            where S : struct
+            where T : struct
+        {
+            var srcIx = 0;
+            var dstOffset = 0;
+            var dstIx = 0;
+            var srcSize = SizeOf<S>.BitSize;
+            var dstSize = SizeOf<T>.BitSize;
+            
+            while(srcIx < src.Length && dstIx < dst.Length)
+            {
+                for(var i = 0; i< srcSize; i++)
+                    if(test(src[srcIx], i))
+                       enable(ref dst[dstIx], dstOffset + i);
+
+                srcIx++;
+                if((dstOffset + srcSize) >= dstSize)
+                {
+                    dstOffset = 0;
+                    dstIx++;
+                }
+                else
+                    dstOffset += srcSize;
+            }
+            return dst;
         }
 
     }

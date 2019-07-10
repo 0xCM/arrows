@@ -106,6 +106,10 @@ namespace Z0
             => N;
 
         [MethodImpl(Inline)]
+        public BitVector16 Row(int index)
+            => bits[index];
+
+        [MethodImpl(Inline)]
         public bool Eq(in BitMatrix16 rhs)
             => this.AndNot(rhs).IsZero();
 

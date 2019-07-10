@@ -334,7 +334,7 @@ namespace Z0.Bench
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-       public static Metrics<T> RotL<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs)
+       public static Metrics<T> RotL<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             var opid =  Id<T>(OpKind.RotL);
@@ -347,7 +347,7 @@ namespace Z0.Bench
             return opid.CaptureMetrics(cycles*dst.Length, snapshot(sw), dst);
         }
 
-       public static Metrics<T> RotR<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<int> rhs)
+       public static Metrics<T> RotR<T>(this PrimalGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
             var opid =  Id<T>(OpKind.RotR);

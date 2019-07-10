@@ -37,27 +37,56 @@ namespace Z0
             => spec.RowCount * spec.RowSegLength();
 
         public static IReadOnlyDictionary<int, BitGridCell[]> CreateRowIndex(this IEnumerable<BitGridCell> Cells)
-            => Cells.GroupBy(x => x.Row).Select(x => (x.Key, x.OrderBy(u => u.Index).ToArray())).ToDictionary();
+            => Cells.GroupBy(x => x.Row).Select(x => (x.Key, x.OrderBy(u => u.BitPos).ToArray())).ToDictionary();
 
-        public static IEnumerable<BitGridCell> GridCells(this BitGridSpec spec)
+        static IEnumerable<BitGridCell> GridCellsOld(this BitGridSpec spec)
         {                    
             var bitcount = spec.RowCount * spec.ColCount;
+            var rowSegLen = spec.RowSegLength();
             for(int i=0, col=0, seg = 0, row = 0 ; i< bitcount; i++, col++)
             {
                 if(i != 0)
                 {
-                    if((i % spec.PrimalSize) == 0)
+                    bool rowFinished = (i % spec.ColCount) == 0;
+
+                    if((i % spec.PrimalSize) == 0 || rowFinished)
                         seg++;
 
-                    if((i % spec.ColCount) == 0)
+                    if(rowFinished)
                     {
                         col = 0;
                         row++;
                     }
                 }
-                yield return (i, seg, row, col);
+                yield return (i, seg, row, col,0);
             }
         }        
+
+        public static IEnumerable<BitGridCell> GridCells(this BitGridSpec spec)
+        {                                                        
+            var bit = 0;
+            var seg = 0;
+            var segbits = spec.PrimalSize;
+
+            for(int row = 0, rowbit = 0; row < spec.RowCount; row++)
+            {
+                for(var col = 0; col < spec.ColCount; col++, bit++, rowbit++, segbits--)
+                {
+                    if(segbits == 0)
+                    {
+                        seg++;
+                        segbits = spec.PrimalSize;
+                    }
+                   
+                   yield return (bit, seg, row, col, spec.PrimalSize - segbits);
+                }
+
+                seg++;
+                segbits = spec.PrimalSize;
+            }
+          
+            
+        }
 
         public static BitGridLayout CalcLayout(this BitGridSpec spec)
             => new BitGridLayout(spec, spec.GridCells());
