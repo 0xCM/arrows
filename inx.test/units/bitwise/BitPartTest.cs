@@ -38,7 +38,7 @@ namespace Z0.Test
             {
                 var bc1 =  BitString.From(src[i]).Format();
                 var bc2 = gbits.bstext(src[i]);
-                var bc3 = gbits.bitstring(src[i]);
+                var bc3 = BitString.From(src[i]);
                 Claim.eq(bc1,bc2);
                 Claim.eq(bc1,bc3);
             }

@@ -56,11 +56,6 @@ namespace Z0
                 =>  ref Num.single(ref gmath.mod(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
         [MethodImpl(Inline)]
-        public static ref num<T> And<T>(this ref num<T> lhs, num<T> rhs)
-            where T : struct
-                =>  ref Num.single(ref gmath.and(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
-
-        [MethodImpl(Inline)]
         public static ref num<T> Or<T>(this ref num<T> lhs, num<T> rhs)
             where T : struct
                 =>  ref Num.single(ref gmath.or(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
@@ -70,10 +65,6 @@ namespace Z0
             where T : struct
                 =>  ref Num.single(ref gmath.xor(ref Num.scalar(ref lhs), Num.scalar(ref rhs)));
 
-        [MethodImpl(Inline)]
-        public static ref num<T> Flip<T>(this ref num<T> src)
-            where T : struct
-                =>  ref Num.single(ref gmath.flip(ref Num.scalar(ref src)));
 
         [MethodImpl(Inline)]
         public static ref num<T> Inc<T>(this ref num<T> src)

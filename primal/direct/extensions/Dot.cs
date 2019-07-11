@@ -20,7 +20,15 @@ namespace Z0
             => math.dot(lhs,rhs);
 
         [MethodImpl(Inline)]
+        public static sbyte Dot(this Span<sbyte> lhs, ReadOnlySpan<sbyte> rhs)
+            => math.dot(lhs,rhs);
+
+        [MethodImpl(Inline)]
         public static byte Dot(this ReadOnlySpan<byte> lhs, ReadOnlySpan<byte> rhs)
+            => math.dot(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static byte Dot(this Span<byte> lhs, ReadOnlySpan<byte> rhs)
             => math.dot(lhs,rhs);
 
         [MethodImpl(Inline)]
@@ -28,7 +36,15 @@ namespace Z0
             => math.dot(lhs,rhs);
 
         [MethodImpl(Inline)]
+        public static short Dot(this Span<short> lhs, ReadOnlySpan<short> rhs)
+            => math.dot(lhs,rhs);
+
+        [MethodImpl(Inline)]
         public static ushort Dot(this ReadOnlySpan<ushort> lhs, ReadOnlySpan<ushort> rhs)
+            => math.dot(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static ushort Dot(this Span<ushort> lhs, ReadOnlySpan<ushort> rhs)
             => math.dot(lhs,rhs);
 
         [MethodImpl(Inline)]
@@ -36,7 +52,15 @@ namespace Z0
             => math.dot(lhs,rhs);
 
         [MethodImpl(Inline)]
+        public static int Dot(this Span<int> lhs, ReadOnlySpan<int> rhs)
+            => math.dot(lhs,rhs);
+
+        [MethodImpl(Inline)]
         public static uint Dot(this ReadOnlySpan<uint> lhs, ReadOnlySpan<uint> rhs)
+            => math.dot(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static uint Dot(this Span<uint> lhs, ReadOnlySpan<uint> rhs)
             => math.dot(lhs,rhs);
 
         [MethodImpl(Inline)]
@@ -44,7 +68,15 @@ namespace Z0
             => math.dot(lhs,rhs);
 
         [MethodImpl(Inline)]
+        public static long Dot(this Span<long> lhs, ReadOnlySpan<long> rhs)
+            => math.dot(lhs,rhs);
+
+        [MethodImpl(Inline)]
         public static ulong Dot(this ReadOnlySpan<ulong> lhs, ReadOnlySpan<ulong> rhs)
+            => math.dot(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static ulong Dot(this Span<ulong> lhs, ReadOnlySpan<ulong> rhs)
             => math.dot(lhs,rhs);
 
         [MethodImpl(Inline)]
@@ -52,7 +84,15 @@ namespace Z0
             => math.dot(lhs,rhs);
 
         [MethodImpl(Inline)]
+        public static float Dot(this Span<float> lhs, ReadOnlySpan<float> rhs)
+            => math.dot(lhs,rhs);
+
+        [MethodImpl(Inline)]
         public static double Dot(this ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs)
+            => math.dot(lhs,rhs);
+
+        [MethodImpl(Inline)]
+        public static double Dot(this Span<double> lhs, ReadOnlySpan<double> rhs)
             => math.dot(lhs,rhs);
 
     }

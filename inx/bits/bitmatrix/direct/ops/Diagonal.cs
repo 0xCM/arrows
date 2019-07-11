@@ -10,7 +10,7 @@ namespace Z0
 
     using static zfunc;
 
-    partial class BitMatrixX
+    partial class BitMatrixOps
     {    
        [MethodImpl(Inline)]
         public static BitVector4 Diagonal(this in BitMatrix4 src)

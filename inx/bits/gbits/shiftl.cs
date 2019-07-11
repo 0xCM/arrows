@@ -5,6 +5,7 @@
 namespace Z0
 {
     using System;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using static zfunc;
@@ -13,110 +14,92 @@ namespace Z0
 
     partial class gbits
     {
-        public static Span<T> shiftr<T>(ReadOnlySpan<T> src, ReadOnlySpan<int> offsets, Span<T> dst)
+
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        public static T shiftl<T>(T src, int offset)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.shiftr(int8(src), offsets, int8(dst));
+                return generic<T>((sbyte)(int8(src) << offset));
             else if(typeof(T) == typeof(byte))
-                math.shiftr(uint8(src), offsets, uint8(dst));
+                return generic<T>((byte)(uint8(src) << offset));
             else if(typeof(T) == typeof(short))
-                math.shiftr(int16(src), offsets, int16(dst));
+                return generic<T>((short)(int16(src) << offset));
             else if(typeof(T) == typeof(ushort))
-                math.shiftr(uint16(src), offsets, uint16(dst));
+                return generic<T>((ushort)(uint16(src) << offset));
             else if(typeof(T) == typeof(int))
-                math.shiftr(int32(src), offsets, int32(dst));
+                return generic<T>(int32(src) << offset);
             else if(typeof(T) == typeof(uint))
-                math.shiftr(uint32(src), offsets, uint32(dst));
+                return generic<T>(uint32(src) << offset);
             else if(typeof(T) == typeof(long))
-                math.shiftr(int64(src), offsets, int64(dst));
+                return generic<T>(int64(src) << offset);
             else if(typeof(T) == typeof(ulong))
-                math.shiftr(uint64(src), offsets, uint64(dst));
-            else
+                return generic<T>(uint64(src) << offset);
+            else            
                 throw unsupported<T>();
-            return dst;
+        }           
 
-        }
-
-        public static Span<T> shiftr<T>(ReadOnlySpan<T> src, int offset, Span<T> dst)
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        public static T shiftl<T>(T src, T offset)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                math.shiftr(int8(src), offset, int8(dst));
+                return generic<T>((sbyte)(int8(src) << (int)int8(offset)));
             else if(typeof(T) == typeof(byte))
-                math.shiftr(uint8(src), offset, uint8(dst));
+                return generic<T>((byte)(uint8(src) << (int)uint8(offset)));
             else if(typeof(T) == typeof(short))
-                math.shiftr(int16(src), offset, int16(dst));
+                return generic<T>((short)(int16(src) << (int)int16(offset)));
             else if(typeof(T) == typeof(ushort))
-                math.shiftr(uint16(src), offset, uint16(dst));
+                return generic<T>((ushort)(uint16(src) << (int)uint16(offset)));
             else if(typeof(T) == typeof(int))
-                math.shiftr(int32(src), offset, int32(dst));
+                return generic<T>(int32(src) << (int)int32(offset));
             else if(typeof(T) == typeof(uint))
-                math.shiftr(uint32(src), offset, uint32(dst));
+                return generic<T>(uint32(src) << (int)uint32(offset));
             else if(typeof(T) == typeof(long))
-                math.shiftr(int64(src), offset, int64(dst));
+                return generic<T>(int64(src) << (int)int64(offset));
             else if(typeof(T) == typeof(ulong))
-                math.shiftr(uint64(src), offset, uint64(dst));
-            else
+                return generic<T>(uint64(src) << (int)uint64(offset));
+            else            
                 throw unsupported<T>();
-            return dst;
-        }
+        }           
 
-        public static Span<T> shiftr<T>(ReadOnlySpan<T> src, int offset)
-            where T : struct
-            => shiftr(src, offset, span<T>(src.Length));
- 
-        [MethodImpl(Inline)]
-        public static ref Span<T> shiftr<T>(ref Span<T> src, int offset)
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        public static ref T shiftl<T>(ref T lhs, int rhs)
             where T : struct
         {
-            if(typeof(T) == typeof(sbyte))
-                math.shiftr(int8(src), offset);
-            else if(typeof(T) == typeof(byte))
-                math.shiftr(uint8(src), offset);
-            else if(typeof(T) == typeof(short))
-                math.shiftr(int16(src), offset);
-            else if(typeof(T) == typeof(ushort))
-                math.shiftr(uint16(src), offset);
-            else if(typeof(T) == typeof(int))
-                math.shiftr(int32(src), offset);
-            else if(typeof(T) == typeof(uint))
-                math.shiftr(uint32(src), offset);
-            else if(typeof(T) == typeof(long))
-                math.shiftr(int64(src), offset);
-            else if(typeof(T) == typeof(ulong))
-                math.shiftr(uint64(src), offset);
+            if (typeof(T) == typeof(sbyte))
+                math.shiftl(ref int8(ref lhs), rhs);
+            else if (typeof(T) == typeof(byte))
+                math.shiftl(ref uint8(ref lhs), rhs);
+            else if (typeof(T) == typeof(short))
+                math.shiftl(ref int16(ref lhs), rhs);
+            else if (typeof(T) == typeof(ushort))
+                math.shiftl(ref uint16(ref lhs), rhs);
+            else if (typeof(T) == typeof(int))
+                math.shiftl(ref int32(ref lhs), rhs);
+            else if (typeof(T) == typeof(uint))
+                math.shiftl(ref uint32(ref lhs), rhs);
+            else if (typeof(T) == typeof(long))
+                math.shiftl(ref int64(ref lhs), rhs);
+            else if (typeof(T) == typeof(ulong))
+                math.shiftl(ref uint64(ref lhs), rhs);
             else
                 throw unsupported<T>();
-            return ref src;
+            return ref lhs;
         }
 
         [MethodImpl(Inline)]
-        public static ref Span<T> shiftr<T>(ref Span<T> src, Span<int> offsets)
+        public static T shiftl<T>(in T lhs, in uint rhs)
             where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                math.shiftr(int8(src), offsets);
-            else if(typeof(T) == typeof(byte))
-                math.shiftr(uint8(src), offsets);
-            else if(typeof(T) == typeof(short))
-                math.shiftr(int16(src), offsets);
-            else if(typeof(T) == typeof(ushort))
-                math.shiftr(uint16(src), offsets);
-            else if(typeof(T) == typeof(int))
-                math.shiftr(int32(src), offsets);
-            else if(typeof(T) == typeof(uint))
-                math.shiftr(uint32(src), offsets);
-            else if(typeof(T) == typeof(long))
-                math.shiftr(int64(src), offsets);
-            else if(typeof(T) == typeof(ulong))
-                math.shiftr(uint64(src), offsets);
-            else
-                throw unsupported<T>();
-            return ref src;
-        }
- 
+                => shiftl(lhs, (int)rhs);
+
         [MethodImpl(Inline)]
+        public static T shiftl<T>(in T lhs, in ulong rhs)
+            where T : struct
+                => shiftl(lhs, (int)rhs);
+
+
+         [MethodImpl(Inline)]
         public static Span<T> shiftl<T>(ReadOnlySpan<T> src, ReadOnlySpan<int> offsets, Span<T> dst)
             where T : struct
         {
@@ -168,12 +151,12 @@ namespace Z0
 
         }
 
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static Span<T> shiftl<T>(ReadOnlySpan<T> src, int offset)
             where T : struct
             => shiftl(src, offset, span<T>(src.Length));
 
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref Span<T> shiftl<T>(ref Span<T> src, int offset)
             where T : struct
         {
@@ -199,7 +182,7 @@ namespace Z0
 
         }
 
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref Span<T> shiftl<T>(ref Span<T> src, Span<int> offsets)
             where T : struct
         {
@@ -223,53 +206,5 @@ namespace Z0
                 throw unsupported<T>();
             return ref src;
         }
-
-
-        public static ref Span<T> rotr<T>(ref Span<T> io, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var len = io.Length;
-            for(var i=0; i<len; i++)
-                io[i] = rotr(io[i],rhs[i]);
-            return ref io;
-        }
-
-        public static ref Span<T> rotl<T>(ref Span<T> io, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var len = io.Length;
-            for(var i=0; i<len; i++)
-                io[i] = rotl(io[i],rhs[i]);
-            return ref io;
-        }
-
-         public static Span<T> pack<S,T>(ReadOnlySpan<S> src, Span<T> dst)            
-            where S : struct
-            where T : struct
-        {
-            var srcIx = 0;
-            var dstOffset = 0;
-            var dstIx = 0;
-            var srcSize = SizeOf<S>.BitSize;
-            var dstSize = SizeOf<T>.BitSize;
-            
-            while(srcIx < src.Length && dstIx < dst.Length)
-            {
-                for(var i = 0; i< srcSize; i++)
-                    if(test(src[srcIx], i))
-                       enable(ref dst[dstIx], dstOffset + i);
-
-                srcIx++;
-                if((dstOffset + srcSize) >= dstSize)
-                {
-                    dstOffset = 0;
-                    dstIx++;
-                }
-                else
-                    dstOffset += srcSize;
-            }
-            return dst;
-        }
-
-    }
+   }
 }

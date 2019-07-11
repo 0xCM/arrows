@@ -13,8 +13,6 @@ namespace Z0.Test
     using static zfunc;
     public class GaussianTest : UnitTest<GaussianTest>
     {
-
-
         public void Gaussian1()
         {
             var mean = 0;

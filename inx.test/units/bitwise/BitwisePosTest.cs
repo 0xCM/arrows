@@ -21,27 +21,6 @@ namespace Z0.Test
 
         }
 
-        void HiBit<T>()
-            where T : struct
-        {
-            TypeCaseStart<T>();
-            var values = Random.Stream<T>().Take(Pow2.T08);
-            iter(values, v =>{
-                if(gmath.negative(v))
-                    Claim.eq(gbits.hibit(v), Bit.On);
-                else
-                    Claim.eq(gbits.hibit(v), Bit.Off);
-            });            
-            TypeCaseEnd<T>();
-        }
-
-        public void HiBits()
-        {
-            HiBit<sbyte>();
-            HiBit<short>();
-            HiBit<int>();
-            HiBit<long>();
-        }
     }
 
 }

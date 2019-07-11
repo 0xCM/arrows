@@ -22,7 +22,7 @@ namespace Z0.Test
             {
                 var src = Random.Vec128<T>();
                 var srcData = src.Extract();
-                var expect  = Vec128.load(ref gmath.flip(ref srcData)[0]);
+                var expect  = Vec128.load(ref gbits.flip(ref srcData)[0]);
                 var actual = ginx.flip(in src);
                 Claim.yea(expect.Eq(actual));
             }
@@ -37,7 +37,7 @@ namespace Z0.Test
             {
                 var src = Random.Vec256<T>();
                 var srcData = src.Extract();
-                var expect  = Vec256.load(ref gmath.flip(ref srcData)[0]);
+                var expect  = Vec256.load(ref gbits.flip(ref srcData)[0]);
                 var actual = ginx.flip(in src);
                 Claim.yea(expect.Eq(actual));
             }

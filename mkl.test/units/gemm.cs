@@ -61,6 +61,16 @@ namespace Z0.Mkl
 
         }
 
+        public void Dot()
+        {
+            var lhs = Random.Span<double>(Pow2.T08);
+            var rhs = Random.Span<double>(Pow2.T08);
+
+            var x = mkl.dot(lhs,rhs).Round(4);
+            var y = lhs.ReadOnly().Dot(rhs).Round(4);
+            Claim.eq(x,y);
+        }
+
         public void VSlInit()
         {
             //IntPtr stream = IntPtr.Zero;
@@ -72,17 +82,21 @@ namespace Z0.Mkl
                 var i32Fmt = i32.Format();
                 Trace(appMsg(i32Fmt));
 
-                var u32 = mkl.uniform(stream, span<uint>(10));
+                var u32 = mkl.ubits(stream, span<uint>(10));
                 var u32Fmt = u32.Format();
                 Trace(appMsg(u32Fmt));
 
-                var u64 = mkl.uniform(stream, span<ulong>(10));
+                var u64 = mkl.ubits(stream, span<ulong>(10));
                 var u64Fmt = u64.Format();
                 Trace(appMsg(u64Fmt));
-            }
-            
-        }
 
+                var bernoulli = mkl.bernoulli(stream, .5, span<Bit>(10));
+                Trace(appMsg(bernoulli.Format()));
+
+                var geometric = mkl.geometric(stream, .5, span<int>(20));
+                Trace(appMsg(geometric.Format()));
+            }            
+        }
 
     }
 

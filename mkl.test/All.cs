@@ -111,13 +111,9 @@ namespace Z0.Mkl
     public static class CBLASX
     {
 
-
-
-
         [MethodImpl(Inline)]
         static Stopwatch start()
             => stopwatch();
-
 
         public static void sasum()
         {
@@ -172,7 +168,6 @@ namespace Z0.Mkl
             output(y.FormatAsVector());
             conclude(time);                                    
         }
-
 
         static void gemm<M,N>()
             where M : ITypeNat, new()

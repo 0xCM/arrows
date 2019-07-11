@@ -10,7 +10,7 @@ namespace Z0
 
     using static zfunc;
 
-    partial class BitMatrixX
+    partial class BitMatrixOps
     {    
         [MethodImpl(Inline)]
         public static ref BitMatrix4 AndNot(this ref BitMatrix4 lhs, in BitMatrix4 rhs)

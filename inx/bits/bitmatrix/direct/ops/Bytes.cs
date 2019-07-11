@@ -13,7 +13,7 @@ namespace Z0
 
     using static zfunc;
 
-    partial class BitMatrixX
+    partial class BitMatrixOps
     {   
 
         /// <summary>

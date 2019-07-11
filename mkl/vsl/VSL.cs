@@ -9,9 +9,11 @@ namespace Z0.Mkl
 	using System.Collections.Generic;
 	using System.Runtime.CompilerServices;
 	using System.Runtime.InteropServices;
+    using System.Security;
 
 	using static zfunc;
     
+    [SuppressUnmanagedCodeSecurity]
     public static partial class VSL
     {
         const string MklDll = "mkl_rt.dll";
@@ -51,6 +53,11 @@ namespace Z0.Mkl
         [DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslRngStatus viRngUniformBits32(int method, IntPtr stream, int count, ref uint values);
 
+        [DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern VslRngStatus viRngBernoulli(int method, IntPtr stream, int count, ref int values, double p);
+
+        [DllImport(MklDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static extern VslRngStatus viRngGeometric(int method, IntPtr stream, int count, ref int values, double p);
 
     }
 

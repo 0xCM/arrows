@@ -67,6 +67,10 @@ namespace Z0
             => !lhs.Eq(rhs);
 
         [MethodImpl(Inline)]
+        public static Bit operator *(in BitVector8 lhs, in BitVector8 rhs)
+            => (lhs & rhs) != 0;
+
+        [MethodImpl(Inline)]
         public static BitVector8 operator |(in BitVector8 lhs, in BitVector8 rhs)
             => Define((byte)(lhs.data | rhs.data));
 

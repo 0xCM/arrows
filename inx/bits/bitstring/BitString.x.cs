@@ -178,9 +178,7 @@ namespace Z0
         public static BitString ToBitString<T>(this Vec256<T> src)
             where T : struct
         {
-            var data = src.Extract();
-            Claim.eq(Vec256<T>.Length, data.Length);
-            return BitString.From(data);
+            return BitString.From(src.Extract());
         }
 
         /// <summary>
@@ -211,13 +209,6 @@ namespace Z0
         public static BitString ToBitString(this Span<char> src)
             => src;
 
-        /// <summary>
-        /// Explicitly invokes a <see cref='BitString'/> implicit constructor
-        /// </summary>
-        /// <param name="src">The source bitchars</param>
-        [MethodImpl(Inline)]   
-        public static BitString ToBitString(this ReadOnlySpan<char> src)
-            => src;
 
         /// <summary>
         /// Converts a bitstring to a span of packed bytes

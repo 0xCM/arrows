@@ -62,6 +62,46 @@ namespace Z0.Test
             BitVectorCreate<N32,uint>(Pow2.T08);
         }
 
+        public void ScalarProduct1()
+        {
+            var x = Random.BitMatrix<N5,N5,byte>();
+            var y = x.Transpose();
+            var z = BitMatrix.Zeros<N5,byte>();
+            for(var i = 0; i<x.RowCount; i++)
+            {
+                var rowX = x.Row(i);
+                for(var j=0; j<y.RowCount; j++)
+                {
+                    var rowY = y.Row(j);
+                    z[i,j] = rowX * rowY;
+                }
+            }
+            
+        }
+
+        public void ScalarProduct2()
+        {
+            byte xr0 = 0b10101;
+            byte xr1 = 0b00101;
+            byte xr2 = 0b11000;
+            byte xr3 = 0b00111;
+            byte xr4 = 0b01011;
+            var x = BitMatrix.Define(N5.Rep, N5.Rep, xr0,xr1,xr2, xr3,xr4);
+            var y = x.Transpose();
+            var z = BitMatrix.Zeros<N5,byte>();            
+            for(var i = 0; i<x.RowCount; i++)
+            {
+                var rowX = x.Row(i);
+                for(var j=0; j<y.RowCount; j++)
+                {
+                    var rowY = y.Row(j);
+                    z[i,j] = rowX * rowY;
+                }
+            }
+            Claim.eq(Bit.On,z[0,0]);
+
+
+        }
 
     }
 

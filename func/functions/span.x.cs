@@ -534,6 +534,12 @@ namespace Z0
             for(var i=0; i<dst.Length; i++)
                 dst[lastix - i] = src[i];
             return dst;
-        }                
+        }              
+
+        [MethodImpl(Inline)]
+        public static Span<T> Reverse<T>(this Span<T> src)        
+            => src.ReadOnly().Reverse();
+        
+
     }
 }

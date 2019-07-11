@@ -26,7 +26,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitString From<T>(in T src)
             where T : struct
-                => gbits.bitchars(in src).Reverse();
+                => From(gbits.bstext(in src));
 
         /// <summary>
         /// Constructs a bitstring from a span of primal values
@@ -34,9 +34,9 @@ namespace Z0
         /// <param name="src">The source span</param>
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
-        public static BitString From<T>(ReadOnlySpan<T> src)
+        static BitString From<T>(ReadOnlySpan<T> src)
             where T : struct
-                => gbits.bitchars(src);
+                => gbits.bitchars(src).Reverse();
 
         /// <summary>
         /// Constructs a bitstring from a span of primal values
@@ -67,14 +67,6 @@ namespace Z0
             => From(string.Join(string.Empty, parts.Reverse()));
 
         /// <summary>
-        /// Assembles a bistring given parts ordered from lo to hi
-        /// </summary>
-        /// <param name="parts">The source parts</param>
-        [MethodImpl(Inline)]
-        public static BitString From(params BitString[] parts)
-            => From(string.Join(string.Empty, parts.Reverse()));
-
-        /// <summary>
         /// Assembles a bitstring from primal parts ordered from lo to hi
         /// </summary>
         /// <param name="parts">The primal values that define bitstring segments</param>
@@ -83,7 +75,6 @@ namespace Z0
         public static BitString From<T>(params T[] parts)
             where T : struct
             => From(parts.ToSpan());
-
 
         public static readonly BitString Empty = From(string.Empty);
 
@@ -159,11 +150,6 @@ namespace Z0
             get => content[index];
         }
 
-        public BitString Range(int start, int length)
-        {
-            var src = new Span<char>(content.Reverse().ToArray());
-            return From((ReadOnlySpan<char>)src.Slice(start, length));
-        }
             
         public uint Length
         {

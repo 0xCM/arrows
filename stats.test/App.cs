@@ -24,9 +24,17 @@ namespace Z0.Test
             where T : struct
                 => print($"{evolution.FirstTerm} -> {evolution.FinalTerm}: {evolution.Time}");
 
+        void EvolveSeries()
+        {
+            TimeSeries.Evolve(closed(-250.75, 256.5),Show).Wait();            
+        }
+        
         protected override void RunTests(string filter)
         {
-            TimeSeries.Evolve(closed(-250.75, 256.5),Show).Wait();
+            var samples = Random.BernoulliStream(.2).Take(Pow2.T20).Freeze();
+            var success = (double)samples.Where(x => x).Count();
+            var result = success / (double) Pow2.T20;
+            print(result.ToString());
         }
         
         public static void Main(params string[] args)

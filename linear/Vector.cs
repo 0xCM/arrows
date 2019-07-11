@@ -67,15 +67,15 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vector<T> operator & (in Vector<T> lhs, in Vector<T> rhs) 
-            => gmath.and(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
+            => gbits.and(lhs.data, rhs.data, alloc(lhs,rhs)).ToSpan256();
 
         [MethodImpl(Inline)]
         public static Vector<T> operator | (in Vector<T> lhs, in Vector<T> rhs) 
-            => gmath.or(lhs.data, rhs.data, span<T>(count(lhs,rhs))).ToSpan256();
+            => gbits.or(lhs.data, rhs.data, span<T>(count(lhs,rhs))).ToSpan256();
 
         [MethodImpl(Inline)]
         public static Vector<T> operator ^ (in Vector<T> lhs, in Vector<T> rhs) 
-            => gmath.xor(lhs.data, rhs.data, lhs.data.ToSpan()).ToSpan256();
+            => gbits.xor(lhs.data, rhs.data, lhs.data.ToSpan()).ToSpan256();
 
         [MethodImpl(Inline)]
         public static Vector<T> operator << (in Vector<T> lhs, int rhs) 
@@ -99,7 +99,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vector<T> operator ~ (in Vector<T> src) 
-            => gmath.flip(src.data, alloc(src)).ToSpan256();
+            => gbits.flip(src.data, alloc(src)).ToSpan256();
 
         [MethodImpl(Inline)]
         public static Span<bool> operator < (in Vector<T> lhs, in Vector<T> rhs) 
@@ -226,7 +226,7 @@ namespace Z0
         {
             var x = unblock(data);
             var y = unblock(rhs.data);
-            gmath.and(ref x, y);
+            gbits.and(ref x, y);
             return this;
         }
 
@@ -235,7 +235,7 @@ namespace Z0
         {
             var x = unblock(data);
             var y = unblock(rhs.data);
-            gmath.or(ref x, y);
+            gbits.or(ref x, y);
             return this;
         }
 
@@ -244,7 +244,7 @@ namespace Z0
         {
             var x = unblock(data);
             var y = unblock(rhs.data);
-            gmath.xor(ref x, y);
+            gbits.xor(ref x, y);
             return this;
         }
 
@@ -288,7 +288,7 @@ namespace Z0
         public Vector<T> Flip()
         {
             var x = unblock(data);
-            gmath.flip(ref x);
+            gbits.flip(ref x);
             return this;
         }
 

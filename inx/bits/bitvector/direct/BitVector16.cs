@@ -50,6 +50,10 @@ namespace Z0
             => !lhs.Eq(rhs);
 
         [MethodImpl(Inline)]
+        public static Bit operator *(in BitVector16 lhs, in BitVector16 rhs)
+            => (lhs & rhs) != 0;
+
+        [MethodImpl(Inline)]
         public static BitVector16 operator |(in BitVector16 lhs, in BitVector16 rhs)
             => Define((ushort)(lhs.data | rhs.data));
 

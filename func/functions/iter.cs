@@ -3,17 +3,14 @@
 // License     :  MIT
 //-----------------------------------------------------------------------------
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Diagnostics;
 
 using Z0;
 
 partial class zfunc
 {
-
     /// <summary>
     /// Aplies an action to the sequence of integers min,min+1,...,max - 1
     /// </summary>
@@ -92,12 +89,4 @@ partial class zfunc
         for(var i = start; i < limit; i += step)   
             f(i);             
     }
-
-    // [MethodImpl(Inline)]
-    // public static IEnumerable<int> range(int start, int limit, int step)
-    // {
-    //     for(var i = start; i< limit; i += step)
-    //         yield return i;
-    // }
-
 }

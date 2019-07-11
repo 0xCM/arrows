@@ -252,6 +252,4 @@ partial class zfunc
     public static Span128<T> alloc<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs)
         where T : struct
             => Span128.alloc(lhs,rhs);
-
-
 }

@@ -122,12 +122,19 @@ namespace Z0
         /// </summary>
         /// <param name="index">The 0-based row index</param>
         [MethodImpl(Inline)]
-        public BitVector<M,T> Row(int index)                    
-            => new BitVector<M,T>(RowData(index));        
+        public BitVector<N,T> Row(int index)                    
+            => new BitVector<N,T>(RowData(index));        
         
+
+        [MethodImpl(Inline)]
+        public void ReplaceCol(int col, BitVector<M,T> src)
+        {
+            for(var row=0; row< RowCount; row++)
+                this[row,col] = src[row];
+        }
+
+
         public BitGridLayout Layout
             => GridLayout;
-
-
     }
 }

@@ -6,13 +6,16 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
-        
-    using static zfunc;    
+    using System.Runtime.InteropServices;
+    using static zfunc;
     using static As;
+    using static AsIn;
 
-    partial class gmath
+    partial class gbits
     {
-        public static Span<T> flip<T>(ReadOnlySpan<T> src, Span<T> dst)
+
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
+         public static Span<T> flip<T>(ReadOnlySpan<T> src, Span<T> dst)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -36,6 +39,7 @@ namespace Z0
             return dst;
         }
 
+         [MethodImpl(Inline), PrimalKinds(PrimalKind.Int)]
         public static ref Span<T> flip<T>(ref Span<T> io)
             where T : struct
         {
@@ -59,6 +63,7 @@ namespace Z0
                 throw unsupported<T>();
             return ref io;
         }
-    }
+ 
 
+    }
 }

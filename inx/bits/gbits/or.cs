@@ -5,24 +5,46 @@
 namespace Z0
 {
     using System;
-    using System.Linq;
-    using System.Reflection;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-        
-    using static zfunc;    
+    using System.Runtime.InteropServices;
+    using static zfunc;
     using static As;
+    using static AsIn;
 
-    partial class gmath
+    partial class gbits
     {
 
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
+        public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                math.or(int8(lhs), int8(rhs), int8(dst));
+            else if(typeof(T) == typeof(byte))
+                math.or(uint8(lhs), uint8(rhs), uint8(dst));
+            else if(typeof(T) == typeof(short))
+                math.or(int16(lhs), int16(rhs), int16(dst));
+            else if(typeof(T) == typeof(ushort))
+                math.or(uint16(lhs), uint16(rhs), uint16(dst));
+            else if(typeof(T) == typeof(int))
+                math.or(int32(lhs), int32(rhs), int32(dst));
+            else if(typeof(T) == typeof(uint))
+                math.or(uint32(lhs), uint32(rhs), uint32(dst));
+            else if(typeof(T) == typeof(long))
+                math.or(int64(lhs), int64(rhs), int64(dst));
+            else if(typeof(T) == typeof(ulong))
+                math.or(uint64(lhs), uint64(rhs), uint64(dst));
+            else
+                throw unsupported<T>();
+            return dst;
+        }
+
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
-                => or(lhs,rhs, span<T>(length(lhs,rhs)));
+                => or(lhs, rhs, span<T>(length(lhs,rhs)));
 
-
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref Span<T> or<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
@@ -47,7 +69,7 @@ namespace Z0
             return ref lhs;
         }
 
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref Span<T> or<T>(ref Span<T> lhs, T rhs)
             where T : struct
         {
@@ -73,5 +95,8 @@ namespace Z0
         }
 
 
+
+
     }
+
 }

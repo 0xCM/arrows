@@ -10,7 +10,7 @@ namespace Z0
 
     using static zfunc;
 
-    partial class BitMatrixX
+    partial class BitMatrixOps
     {
         [MethodImpl(Inline)]
         public static ref Vec128<ushort> LoadVector(this in BitMatrix16 src, out Vec128<ushort> dst, int rowOffset)

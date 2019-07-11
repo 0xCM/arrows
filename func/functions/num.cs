@@ -15,11 +15,9 @@ using static Constants;
 
 partial class zfunc
 {
-
     [MethodImpl(Inline)]
     public static bool testbit(in ulong src, in int pos)
         => (src & (U64One << pos)) != 0ul;
-
 
     [MethodImpl(Inline)]
     public static Span<float> floats<T>(params T[] src)
@@ -30,8 +28,7 @@ partial class zfunc
     public static Span<double> doubles<T>(params T[] src)
         where T : struct
             =>  convert<T,double>(src.ToReadOnlySpan());
-
-
+    
     public static IEnumerable<T> range<T>(T min, T max, T? step = null)
         where T : struct
     {
@@ -117,12 +114,9 @@ partial class zfunc
         }
         else
             throw unsupported<T>();
-
     }
 
     public static IEnumerable<T> range<T>(T count)
         where T : struct
             => range(default(T), count);
-
-
 }

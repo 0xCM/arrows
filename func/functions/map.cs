@@ -13,6 +13,7 @@ using Z0;
 
 partial class zfunc
 {
+    [MethodImpl(Inline)]   
     public static HashSet<T> set<T>(params T[] src)
         => new HashSet<T>(src);
 
@@ -56,7 +57,6 @@ partial class zfunc
     public static Y apply<X,Y>(X x,Func<X,Y> f)
         => f(x);
 
-
     /// <summary>
     /// Reduces a sequence to a single value via a supplied operator
     /// </summary>
@@ -73,7 +73,6 @@ partial class zfunc
         return cumulant;
     }
 
- 
     /// <summary>
     /// Transforms a function (S,T) -> U to a function S -> (T -> U)
     /// </summary>
@@ -107,5 +106,4 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static Lazy<T> defer<T>(Func<T> factory)
         => new Lazy<T>(factory);
-
 }

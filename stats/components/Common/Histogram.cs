@@ -57,6 +57,9 @@ namespace Z0
         /// <param name="value">The source value</param>
         public void Deposit(T value)
         {
+            var partition = gmath.div(gmath.sub(value, Domain.Left), BinWidth);
+            
+            
             var deposited = false;
             for(int i = 1; i< Partitions.Length; i++)                    
             {

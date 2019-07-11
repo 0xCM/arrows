@@ -13,38 +13,6 @@ namespace Z0
     using static zfunc;
 
 
-    public abstract class PathComponent<T>
-        where T : PathComponent<T>
-    {
-        public string Name {get;}
-
-        protected PathComponent(string Name)
-            => this.Name = Name;
-        
-        public override string ToString()
-            => Name;
-        
-        public bool Nonempty
-            => nonempty(Name);
-
-    }
-
-    /// <summary>
-    /// Defines a file extension
-    /// </summary>
-    public class FileExtension : PathComponent<FileExtension>
-    {
-        public static FileExtension Define(string Name)
-            => new FileExtension(Name);
-
-        public FileExtension(string Name)
-            : base(Name)
-        {
-
-        }
-    }
-
-
     /// <summary>
     /// Defines a file name along with the extension in isolation 
     /// and without ascribing additional path content

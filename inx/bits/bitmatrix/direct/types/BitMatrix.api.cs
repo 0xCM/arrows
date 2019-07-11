@@ -79,6 +79,13 @@ namespace Z0
         }    
 
         [MethodImpl(Inline)]
+        public static BitMatrix<M,N,T> Define<M,N,T>(M m = default, N n = default)        
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct
+                => BitMatrix<M,N,T>.Zeros();
+
+        [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> Define<M,N,T>(ReadOnlySpan<T> src, M m = default, N n = default)        
             where M : ITypeNat, new()
             where N : ITypeNat, new()
@@ -87,6 +94,13 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix<M,N,T> Define<M,N,T>(Span<T> src, M m = default, N n = default)        
+            where M : ITypeNat, new()
+            where N : ITypeNat, new()
+            where T : struct
+                => new BitMatrix<M,N,T>(src); 
+
+        [MethodImpl(Inline)]
+        public static BitMatrix<M,N,T> Define<M,N,T>(M m = default, N n = default,params T[] src)        
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct

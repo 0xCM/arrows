@@ -9,7 +9,7 @@ namespace Z0
 
     using static zfunc;
 
-    partial class BitMatrixX
+    partial class BitMatrixOps
     {   
         [MethodImpl(Inline)] 
         public static BitMatrix4 Replicate(this BitMatrix4 src)

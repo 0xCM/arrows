@@ -13,7 +13,7 @@ namespace Z0
 
     using static zfunc;
 
-    partial class BitMatrixX
+    partial class BitMatrixOps
     {    
         static string Format(this Span<byte> src, int rowlen)            
         {
@@ -29,12 +29,15 @@ namespace Z0
             return sb.ToString();
         }
 
+        [MethodImpl(Inline)]
         static string Format(this Span<ushort> src, int rowlen)            
             => MemoryMarshal.AsBytes(src).Format(rowlen);
 
+        [MethodImpl(Inline)]
         static string Format(this Span<uint> src, int rowlen)            
             => MemoryMarshal.AsBytes(src).Format(rowlen);
 
+        [MethodImpl(Inline)]
         static string Format(this Span<ulong> src, int rowlen)            
             => MemoryMarshal.AsBytes(src).Format(rowlen);
 

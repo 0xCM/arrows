@@ -16,7 +16,6 @@ using static Z0.ReflectionFlags;
 
 partial class zfunc
 {
-
     /// <summary>
     /// Gets the literal values for an enum type
     /// </summary>
@@ -31,7 +30,6 @@ partial class zfunc
     [MethodImpl(Inline)]
     public static Assembly assembly<T>()
         => typeof(T).Assembly;
-
 
     /// <summary>
     /// Specifies the generic type definition for a specified generic type
@@ -102,7 +100,6 @@ partial class zfunc
             || typeof(T) == typeof(long)
             || typeof(T) == typeof(float) 
             || typeof(T) == typeof(double);            
-
 
     /// <summary>
     /// Determines whether a type is a native unsigned type

@@ -6,14 +6,14 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;
-        
-    using static zfunc;    
+    using System.Runtime.InteropServices;
+    using static zfunc;
     using static As;
+    using static AsIn;
 
-    partial class gmath
+    partial class gbits
     {
-
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct
         {
@@ -38,13 +38,13 @@ namespace Z0
             return dst;
         }
 
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
                 => xor(lhs,rhs, span<T>(length(lhs,rhs)));
         
 
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref Span<T> xor<T>(ref Span<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct
         {
@@ -69,7 +69,7 @@ namespace Z0
             return ref lhs;
         }
 
-        [MethodImpl(Inline)]
+        [MethodImpl(Inline), PrimalKinds(PrimalKind.Integral)]
         public static ref Span<T> xor<T>(ref Span<T> lhs, T rhs)
             where T : struct
         {

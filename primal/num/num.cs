@@ -207,12 +207,6 @@ namespace Z0
         public static bool operator >= (num<T> lhs, in num<T> rhs) 
             => gmath.gteq(unwrap(lhs), unwrap(rhs));            
 
-        [MethodImpl(Inline)]
-        public static num<T> operator & (num<T> lhs, in num<T> rhs) 
-        {
-            var result = gmath.and(unwrap(lhs), unwrap(rhs));            
-            return Unsafe.As<T,num<T>>(ref result);
-        }
 
         [MethodImpl(Inline)]
         public static num<T> operator | (num<T> lhs, in num<T> rhs) 

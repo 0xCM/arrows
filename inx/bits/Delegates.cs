@@ -14,6 +14,26 @@ namespace Z0
     public static class BitwiseDelegates
     {
         [MethodImpl(Inline)]
+        public static BinaryOp<T> and<T>()
+            where T : struct
+                => And<T>.Op;
+
+        [MethodImpl(Inline)]
+        public static BinaryOp<T> or<T>()
+            where T : struct
+                => Or<T>.Op;
+ 
+        [MethodImpl(Inline)]
+        public static BinaryOp<T> xor<T>()
+            where T : struct
+                => XOr<T>.Op;
+
+        [MethodImpl(Inline)]
+        public static UnaryOp<T> flip<T>()
+            where T : struct
+                => Flip<T>.Op;
+
+        [MethodImpl(Inline)]
         public static ShiftOp<T> shiftl<T>(T lhs, int count)
             where T : struct
                 => ShiftL<T>.Op;
@@ -35,6 +55,31 @@ namespace Z0
             public static readonly ShiftOp<T> Op = gbits.shiftr<T>;
         }
 
+
+        readonly struct And<T>
+            where T : struct
+        {
+            public static readonly BinaryOp<T> Op = gbits.and<T>;
+        }
+
+
+        readonly struct Or<T>
+            where T : struct
+        {
+            public static readonly BinaryOp<T> Op = gmath.or<T>;
+        }
+
+        readonly struct XOr<T>
+            where T : struct
+        {
+            public static readonly BinaryOp<T> Op = gmath.xor<T>;
+        }
+
+       readonly struct Flip<T>
+            where T : struct
+        {
+            public static readonly UnaryOp<T> Op = gmath.flip<T>;
+        }
 
     }
 

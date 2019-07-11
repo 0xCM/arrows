@@ -67,20 +67,24 @@ namespace Z0
             => lhs.NEq(rhs);
 
         [MethodImpl(Inline)]
+        public static Bit operator *(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
+            => (lhs & rhs).Pop() != 0;
+
+        [MethodImpl(Inline)]
         public static BitVector<N,T> operator |(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gmath.or(ref lhs.bits, rhs.bits));
+            => new BitVector<N,T>(gbits.or(ref lhs.bits, rhs.bits));
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator &(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gmath.and(ref lhs.bits, rhs.bits));
+            => new BitVector<N,T>(gbits.and(ref lhs.bits, rhs.bits));
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator ^(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gmath.xor(ref lhs.bits, rhs.bits));
+            => new BitVector<N,T>(gbits.xor(ref lhs.bits, rhs.bits));
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator ~(BitVector<N,T> src)
-            => new BitVector<N,T>(gmath.flip(ref src.bits));
+            => new BitVector<N,T>(gbits.flip(ref src.bits));
         
         /// <summary>
         /// Retrieves the value of the bit at a specified position
@@ -183,7 +187,7 @@ namespace Z0
                 count += gbits.pop(bits[i]);
             return count;
         }
-                
+
         [MethodImpl(Inline)]
         public bool Eq(in BitVector<N,T> rhs)
             => bits.Eq(rhs.bits);

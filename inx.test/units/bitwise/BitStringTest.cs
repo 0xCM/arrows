@@ -47,7 +47,7 @@ namespace Z0.Test
             for(var i=0; i<src.Length; i++)
             {
                 var x = src[i];
-                var bs = gbits.bitstring(src[i]);
+                var bs = BitString.From(src[i]);
                 var y = bs.ToPrimalValue<T>();
                 Claim.eq(x,y);                
             }
@@ -67,13 +67,6 @@ namespace Z0.Test
             Span<uint> src2 = new uint[]{BitConverter.ToUInt32(src1)};
             var src3 = BitConverter.ToUInt32(src1);
             
-            var bc1 = gbits.bitchars(src1);
-            var bc2 = gbits.bitchars(src2);
-            
-            Claim.eq(fmt0, bc1.Format());
-            Claim.eq(fmt0, bc1.ToBitString().Format());
-            Claim.eq(fmt0, bc2.Format());
-            Claim.eq(fmt0, bc2.ToBitString().Format());
             Claim.eq(fmt0, src3.ToBitString().Format());
 
         }

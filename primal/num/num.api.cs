@@ -158,10 +158,6 @@ namespace Z0
             where T : struct
                 => lhs.Mod(rhs);
 
-        [MethodImpl(Inline)]
-        public static num<T> and<T>(num<T> lhs, num<T> rhs)
-            where T : struct
-                => lhs.And(rhs);
 
         [MethodImpl(Inline)]
         public static num<T> or<T>(num<T> lhs, num<T> rhs)
