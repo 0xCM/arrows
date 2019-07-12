@@ -1,0 +1,56 @@
+/*
+    Copyright 2005-2019 Intel Corporation.
+
+    This software and the related documents are Intel copyrighted materials, and your
+    use of them is governed by the express license under which they were provided to
+    you ("License"). Unless the License provides otherwise, you may not use, modify,
+    copy, publish, distribute, disclose or transmit this software or the related
+    documents without Intel's prior written permission.
+
+    This software and the related documents are provided as is, with no express or
+    implied warranties, other than those that are expressly stated in the License.
+
+
+
+*/
+
+#ifndef __TBB_thread_H
+#define __TBB_thread_H
+
+#include "../tbb_config.h"
+
+#if TBB_IMPLEMENT_CPP0X
+
+#include "../tbb_thread.h"
+
+namespace std {
+
+typedef tbb::tbb_thread thread;
+
+namespace this_thread {
+    using tbb::this_tbb_thread::get_id;
+    using tbb::this_tbb_thread::yield;
+
+    inline void sleep_for(const tbb::tick_count::interval_t& rel_time) {
+        tbb::internal::thread_sleep_v3( rel_time );
+    }
+}
+
+} // namespace std
+
+#else /* TBB_IMPLEMENT_CPP0X */
+
+#define __TBB_COMPAT_THREAD_RECURSION_PROTECTOR 1
+#include <thread>
+#undef __TBB_COMPAT_THREAD_RECURSION_PROTECTOR
+
+#endif /* TBB_IMPLEMENT_CPP0X */
+
+#else /* __TBB_thread_H */
+
+#if __TBB_COMPAT_THREAD_RECURSION_PROTECTOR
+#error The tbb/compat/thread header attempts to include itself. \
+       Please make sure that {TBBROOT}/include/tbb/compat is NOT in include paths.
+#endif
+
+#endif /* __TBB_thread_H */

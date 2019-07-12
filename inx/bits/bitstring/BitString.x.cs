@@ -187,7 +187,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The underlying primal type</typeparam>
         [MethodImpl(Inline)]   
-        public static BitString ToBitString<T>(this m256i src)
+        public static BitString ToBitString<T>(this __m256i src)
             where T : struct
                 => src.ToVec256<T>().ToBitString();
 

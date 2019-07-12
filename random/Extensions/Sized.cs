@@ -55,7 +55,7 @@ namespace Z0
         /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static m256i M256i<T>(this IRandomSource random, Interval<T> domain, Func<T,bool> filter = null)
+        public static __m256i M256i<T>(this IRandomSource random, Interval<T> domain, Func<T,bool> filter = null)
             where T : struct
                 => default;
         

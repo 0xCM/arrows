@@ -137,7 +137,7 @@ namespace Z0.Mkl
             var method = intro();
             var n = 4;
             var incx = 1;
-            var x = doubles(1.2, 2.5, 3.0, 1.7, 4.0, 0.53, -5.5, -0.29).ToComplex();            
+            var x =  ComplexF64.Load(doubles(1.2, 2.5, 3.0, 1.7, 4.0, 0.53, -5.5, -0.29));
             input(x.FormatAsVector());
             
             var expect = x.Map(z => Math.Abs(z.re) + Math.Abs(z.im)).Reduce((a,b) => a + b);

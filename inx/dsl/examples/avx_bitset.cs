@@ -16,7 +16,7 @@ namespace Z0
     public static class avx_bitset1
     {
 
-        public static readonly m256i shuf 
+        public static readonly __m256i shuf 
             = _mm256_setr_epi8(0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4, 0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4);
 
 

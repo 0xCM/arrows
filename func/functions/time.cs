@@ -38,4 +38,23 @@ partial class zfunc
     public static Date today()
         => DateTime.Today;
 
+    /// <summary>
+    /// Measures the respective times required to execute a pair of functions,
+    /// each of which iterate a computational block a specified number of times
+    /// </summary>
+    /// <param name="n">The number of computational block iterations</param>
+    /// <param name="left">The first function</param>
+    /// <param name="right">THe second function</param>
+    public static OpTimePair measure(long n, string leftLabel, string rightLabel, Action<long> left, Action<long> right)
+    {
+        var lTimer = stopwatch();
+        left(n);
+        var lTime = OpTime.Define(leftLabel, n, snapshot(lTimer));
+        var rTimer = stopwatch();
+        right(n);
+        var rTime = OpTime.Define(rightLabel, n, snapshot(rTimer));
+        return (lTime, rTime);
+    }
+
+
 }

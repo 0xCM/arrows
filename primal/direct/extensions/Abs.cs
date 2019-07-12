@@ -106,5 +106,26 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ReadOnlySpan<double> Abs(this ReadOnlySpan<double> src, Span<double> dst )
             => math.abs(src,dst);            
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<short> Abs(this short[] src, short[] dst)
+            => math.abs(src,dst);            
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<int> Abs(this int[] src, int[] dst)
+            => math.abs(src,dst);            
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<long> Abs(this long[] src, long[] dst)
+            => math.abs(src,dst);            
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<float> Abs(this float[] src, float[] dst)
+            => math.abs(src,dst);            
+
+        [MethodImpl(Inline)]
+        public static ReadOnlySpan<double> Abs(this double[] src, double[] dst )
+            => math.abs(src,dst);            
+
     }
 }

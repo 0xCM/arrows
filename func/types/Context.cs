@@ -58,6 +58,27 @@ namespace Z0
             if(TraceEnabled)
                 Messages.Add(msg.WithLevel(severity ?? SeverityLevel.Babble));
         }
+
+        /// <summary>
+        /// Emits a performance-related trace message
+        /// </summary>
+        /// <param name="msg">The message to emit</param>
+        protected void TracePerf(AppMsg msg)
+        {
+            if(TraceEnabled)
+                Messages.Add(msg.WithLevel(SeverityLevel.Benchmark));
+        }
+
+        /// <summary>
+        /// Emits a performance-related trace message
+        /// </summary>
+        /// <param name="msg">The message to emit</param>
+        protected void TracePerf(string msg)
+        {
+            if(TraceEnabled)
+                Messages.Add(AppMsg.Define($"{msg}", SeverityLevel.Benchmark));
+        }
+
     }
 
     public abstract class Context<T> : Context

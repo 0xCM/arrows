@@ -20,29 +20,29 @@ namespace Z0
     /// </remarks>
     public static class PcgAvx
     {
-        static readonly m256i M0 = _mm256_set1_epi64x((0x5851f42d4c957f2dul) & 0xffffffffu);
+        static readonly __m256i M0 = _mm256_set1_epi64x((0x5851f42d4c957f2dul) & 0xffffffffu);
         
-        static readonly m256i M1 = _mm256_set1_epi64x(0x5851f42d4c957f2dul >> 32);
+        static readonly __m256i M1 = _mm256_set1_epi64x(0x5851f42d4c957f2dul >> 32);
         
-        static readonly m256i LoMask = _mm256_set1_epi64x(0x00000000ffffffff);
+        static readonly __m256i LoMask = _mm256_set1_epi64x(0x00000000ffffffff);
                 
-        static readonly m256i LoShift = _mm256_set_epi32(7, 7, 7, 7, 6, 4, 2, 0);
+        static readonly __m256i LoShift = _mm256_set_epi32(7, 7, 7, 7, 6, 4, 2, 0);
         
-        static readonly m256i HiShift = _mm256_set_epi32(6, 4, 2, 0, 7, 7, 7, 7);
+        static readonly __m256i HiShift = _mm256_set_epi32(6, 4, 2, 0, 7, 7, 7, 7);
         
-        static readonly m256i I32 = _mm256_set1_epi32(32);
+        static readonly __m256i I32 = _mm256_set1_epi32(32);
 
         public static Pcg32 Define(m512i seed, m512i inc)
             => new Pcg32(seed,inc);
 
 
-        public static m256i mul(m256i x, m256i ml, m256i mh) 
+        public static __m256i mul(__m256i x, __m256i ml, __m256i mh) 
         {
-            m256i xl = _mm256_and_si256(x, _mm256_set1_epi64x(0x00000000fffffffful));
-            m256i xh = _mm256_srli_epi64(x, 32);
-            m256i hl = _mm256_slli_epi64(_mm256_mul_epu32(xh, ml), 32);
-            m256i lh = _mm256_slli_epi64(_mm256_mul_epu32(xl, mh), 32);
-            m256i ll = _mm256_mul_epu32(xl, ml);
+            __m256i xl = _mm256_and_si256(x, _mm256_set1_epi64x(0x00000000fffffffful));
+            __m256i xh = _mm256_srli_epi64(x, 32);
+            __m256i hl = _mm256_slli_epi64(_mm256_mul_epu32(xh, ml), 32);
+            __m256i lh = _mm256_slli_epi64(_mm256_mul_epu32(xl, mh), 32);
+            __m256i ll = _mm256_mul_epu32(xl, ml);
             return _mm256_add_epi64(ll, _mm256_add_epi64(hl, lh));
         }
 
@@ -74,13 +74,13 @@ namespace Z0
                 this.incV1 = inc.v1;
             }
 
-            m256i stateV0;
+            __m256i stateV0;
 
-            m256i stateV1;
+            __m256i stateV1;
 
-            m256i incV0 = default;
+            __m256i incV0 = default;
 
-            m256i incV1 = default;  
+            __m256i incV1 = default;  
 
             public Vec256<uint> Next()
             {
@@ -161,16 +161,16 @@ namespace Z0
         public class avx256_pcg32_random_t 
         {
             // (8x64bits) RNG state.  All values are possible.
-            public m256i state; 
+            public __m256i state; 
             
             // (8x64bits)Controls which RNG sequences (stream) is selected. Must *always* be odd. You probably want distinct sequences
-            public m256i inc;   
+            public __m256i inc;   
 
             // set to _mm256_set1_epi64x(UINT64_C(0x5851f42d4c957f2d) & 0xffffffff)
-            public m256i pcg32_mult_l; 
+            public __m256i pcg32_mult_l; 
 
             // set to _mm256_set1_epi64x(UINT64_C(0x5851f42d4c957f2d) >> 32)
-            public m256i pcg32_mult_h; 
+            public __m256i pcg32_mult_h; 
 
         } 
 
@@ -187,20 +187,20 @@ namespace Z0
 
 
 
-        static m256i hacked_mm256_rorv_epi32(m256i x, m256i r) 
+        static __m256i hacked_mm256_rorv_epi32(__m256i x, __m256i r) 
         {
             return _mm256_or_si256(
                 _mm256_sllv_epi32(x, _mm256_sub_epi32(_mm256_set1_epi32(32), r)),
                 _mm256_srlv_epi32(x, r));
         }
 
-        static m128i avx256_pcg32_random_r(avx256_pcg32_random_t rng) 
+        static __m128i avx256_pcg32_random_r(avx256_pcg32_random_t rng) 
         {
-            m256i oldstate = rng.state;
+            __m256i oldstate = rng.state;
             rng.state = _mm256_add_epi64(mul(rng.state, rng.pcg32_mult_l, rng.pcg32_mult_h), rng.inc);
-            m256i xorshifted = _mm256_srli_epi64(
+            __m256i xorshifted = _mm256_srli_epi64(
                 _mm256_xor_si256(_mm256_srli_epi64(oldstate, 18), oldstate), 27);
-            m256i rot = _mm256_srli_epi64(oldstate, 59);
+            __m256i rot = _mm256_srli_epi64(oldstate, 59);
             return _mm256_castsi256_si128(
                 _mm256_permutevar8x32_epi32(hacked_mm256_rorv_epi32(xorshifted, rot),
                                             _mm256_set_epi32(7, 7, 7, 7, 6, 4, 2, 0)));

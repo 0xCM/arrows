@@ -13,21 +13,21 @@ namespace Z0
     [StructLayout(LayoutKind.Explicit, Size = 64)]
     public struct m512i
     {
-        public static m512i Define(m256i lo, m256i hi)
+        public static m512i Define(__m256i lo, __m256i hi)
             => new m512i(lo,hi);
         
-        public m512i(m256i lo, m256i hi)
+        public m512i(__m256i lo, __m256i hi)
         {
             this.v0 = lo;
             this.v1 = hi;
         }
         
         [FieldOffset(0)]
-        public m256i v0;
+        public __m256i v0;
 
         
         [FieldOffset(32)]
-        public m256i v1;
+        public __m256i v1;
     }     
 
 }

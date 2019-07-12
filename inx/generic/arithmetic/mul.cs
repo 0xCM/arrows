@@ -102,13 +102,13 @@ namespace Z0
             where T : struct
         {
                 if(typeof(T) == typeof(int))
-                    dinx.mul(int32(lhs), int32(rhs), ref int64(ref first(dst)));
+                    dinx.mul(int32(lhs), int32(rhs), ref int64(ref head(dst)));
                 else if(typeof(T) == typeof(uint))
-                    dinx.mul(uint32(lhs), uint32(rhs), ref uint64(ref first(dst)));
+                    dinx.mul(uint32(lhs), uint32(rhs), ref uint64(ref head(dst)));
                 else if(typeof(T) == typeof(float))
-                    dinx.mul(float32(lhs), float32(rhs), ref float32(ref first(dst)));
+                    dinx.mul(float32(lhs), float32(rhs), ref float32(ref head(dst)));
                 else if(typeof(T) == typeof(double))
-                    dinx.mul(float64(lhs), float64(rhs), ref float64(ref first(dst)));
+                    dinx.mul(float64(lhs), float64(rhs), ref float64(ref head(dst)));
                 else
                     throw unsupported<T>();
             return dst;

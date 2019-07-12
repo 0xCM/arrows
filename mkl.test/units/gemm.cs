@@ -2,16 +2,10 @@
 // Copyright   :  (c) Chris Moore, 2019
 // License     :  MIT
 //-----------------------------------------------------------------------------
-namespace Z0.Mkl
+namespace Z0.Mkl.Test
 {
     using System;
     using System.Linq;
-    using System.Reflection;
-    using System.Diagnostics;    
-    using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
-    using System.Security;
-    using System.Runtime.InteropServices;
 
     using static zfunc;
     using static nfunc;
@@ -21,7 +15,6 @@ namespace Z0.Mkl
 
     public class GemmTest : UnitTest<GemmTest>
     {
-
         static void gemm<M,N>()
             where M : ITypeNat, new()
             where N : ITypeNat, new()
@@ -80,7 +73,14 @@ namespace Z0.Mkl
                 //VSL.viRngUniform(0, stream, buffer.Length, ref buffer[0], -200, 200).ThrowOnError();
                 var i32 = mkl.uniform(stream, closed(-200, 200), span<int>(10));
                 var i32Fmt = i32.Format();
-                Trace(appMsg(i32Fmt));
+                Trace($"Discrete uniform i32 {appMsg(i32Fmt)}");
+
+                var f32 = mkl.uniform(stream, closed(-250f, 250f), span<float>(10));
+                Trace($"Continuous uniform f32 {appMsg(f32.Format())}");
+
+                var f64 = mkl.uniform(stream, closed(-250d, 250d), span<double>(10));
+                Trace($"Continuous uniform f64 {appMsg(f64.Format())}");
+
 
                 var u32 = mkl.ubits(stream, span<uint>(10));
                 var u32Fmt = u32.Format();
@@ -95,6 +95,8 @@ namespace Z0.Mkl
 
                 var geometric = mkl.geometric(stream, .5, span<int>(20));
                 Trace(appMsg(geometric.Format()));
+
+
             }            
         }
 

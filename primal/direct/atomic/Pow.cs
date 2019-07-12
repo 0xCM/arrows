@@ -6,15 +6,12 @@ namespace Z0
 {
     using System;
     using System.Linq;
-    using System.Reflection;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
     
     using static zfunc;    
     using static Constants;
     
-
     partial class math
     {
         // See https://stackoverflow.com/questions/101439/the-most-efficient-way-to-implement-an-integer-based-power-function-powint-int

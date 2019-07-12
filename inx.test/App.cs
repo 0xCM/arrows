@@ -30,8 +30,6 @@ namespace Z0.Test
 
         }
 
-        
-
         void Shuffle()
         {
             var v1 = Vec128.define(1,2,3,4);
@@ -40,7 +38,6 @@ namespace Z0.Test
         }
         protected override void RunTests(string filter)
         {            
-
             base.RunTests(filter);
         }
 

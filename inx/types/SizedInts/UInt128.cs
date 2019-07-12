@@ -49,6 +49,14 @@ namespace Z0
             => new UInt128(src, 0ul);
 
         [MethodImpl(Inline)]
+        public static implicit operator Vector128<ulong>(in UInt128 src)
+            => Vector128.Create(src.lo, src.hi);
+
+        [MethodImpl(Inline)]
+        public static implicit operator UInt128(in Vector128<ulong> src)
+            => src.ToUInt128();
+
+        [MethodImpl(Inline)]
         public UInt128(ulong lo, ulong hi)
         {
 

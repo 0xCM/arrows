@@ -216,28 +216,57 @@ partial class zfunc
         where T : struct
             => MemoryMarshal.AsBytes(span(src));
 
+    /// <summary>
+    /// Reconstitutes a value from a bytespan
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <typeparam name="T">The value type</typeparam>
     [MethodImpl(Inline)]
     public static T read<T>(ReadOnlySpan<byte> src)
         where T : struct
             =>  MemoryMarshal.Read<T>(src);
 
+    /// <summary>
+    /// Reconstitutes a value from a bytespan
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <param name="dst">A reference to the target value</param>
+    /// <typeparam name="T">The value type</typeparam>
     [MethodImpl(Inline)]
-    public static void read<T>(ReadOnlySpan<byte> src, out T dst)
+    public static ref T read<T>(ReadOnlySpan<byte> src, out T dst)
         where T : struct
-            => dst = read<T>(src);
-
+    {
+        dst = read<T>(src);
+        return ref dst;
+    }
+            
+    /// <summary>
+    /// Serializes a value into a bytespan
+    /// </summary>
+    /// <param name="src">A reference to the source value</param>
+    /// <param name="dst">The client-allocated destination span</param>
+    /// <typeparam name="T"></typeparam>
     [MethodImpl(Inline)]
     public static void write<T>(ref T src, Span<byte> dst)
         where T : struct
             => MemoryMarshal.Write(dst, ref src);
 
+    /// <summary>
+    /// Returns a reference to the location of the first span element
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]
-    public static ref T first<T>(Span<T> src)
-        where T : struct
-            =>  ref MemoryMarshal.GetReference<T>(src);
+    public static ref T head<T>(Span<T> src)
+        =>  ref MemoryMarshal.GetReference<T>(src);
 
+    /// <summary>
+    /// Returns a readonly reference to the location of the first span element
+    /// </summary>
+    /// <param name="src">The source span</param>
+    /// <typeparam name="T">The element type</typeparam>
     [MethodImpl(Inline)]
-    public static ref readonly T first<T>(ReadOnlySpan<T> src)
+    public static ref readonly T head<T>(ReadOnlySpan<T> src)
         where T : struct
             =>  ref MemoryMarshal.GetReference<T>(src);
 

@@ -314,6 +314,12 @@ namespace Z0
         public static Span<T> MapRange<S,T>(this Span<S> src, int offset, int length, Func<S, T> f)
             => src.ReadOnly().MapRange(offset,length, f);
 
+        /// <summary>
+        /// Clones the source span into a new span
+        /// </summary>
+        /// <param name="src">The span to replicate</param>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <returns>Returns the replicated span</returns>
         [MethodImpl(Inline)]
         public static Span<T> Replicate<T>(this ReadOnlySpan<T> src)
         {
@@ -322,10 +328,22 @@ namespace Z0
             return dst;
         }
 
+        /// <summary>
+        /// Clones the source span into a new span
+        /// </summary>
+        /// <param name="src">The span to replicate</param>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <returns>Returns the replicated span</returns>
         [MethodImpl(Inline)]
         public static Span<T> Replicate<T>(this Span<T> src)
             => src.ReadOnly().Replicate();
 
+        /// <summary>
+        /// Fills a span with a supplied valuie
+        /// </summary>
+        /// <param name="io">The span to manipulate</param>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <returns>The manipulated span</returns>
         [MethodImpl(Inline)]
         public static Span<T> FillWith<T>(this Span<T> io, T value)
         {
@@ -333,6 +351,20 @@ namespace Z0
             return io;
         }
 
+        /// <summary>
+        /// Overwrites span content with the default/zero value
+        /// </summary>
+        /// <param name="io">The span to manipulate</param>
+        /// <typeparam name="T">The element type</typeparam>
+        /// <returns>The manipulated span</returns>
+        [MethodImpl(Inline)]
+        public static Span<T> ZeroFill<T>(this Span<T> io)
+            where T : struct
+        {
+            io.Fill(default(T));
+            return io;
+        }
+        
         public static (int Index, T Value)[] ToIndexedValues<T>(this ReadOnlySpan<T> src)
         {
             var dst = alloc<(int,T)>(src.Length);

@@ -58,7 +58,7 @@ namespace Z0
          
         [MethodImpl(Inline)]
         public static Vec128<ulong> ToVec128(this in UInt128 src)
-            => Unsafe.As<UInt128, Vec128<ulong>>(ref As.asRef(in src));
+            => Vec128.define(src.lo, src.hi);
 
         [MethodImpl(Inline)]
         public static UInt128 ToUInt128(this in Vec128<ulong> src)
@@ -72,7 +72,7 @@ namespace Z0
         public static UInt128 ToUInt128(this in Vector128<ulong> src)
             => Unsafe.As<Vector128<ulong>,UInt128>(ref As.asRef(in src));
  
-         /// <summary>
+        /// <summary>
         /// Renders a number as a hexadecimal string
         /// </summary>
         /// <param name="src">The source number</param>
@@ -101,6 +101,13 @@ namespace Z0
         public static ref UInt128 XOr(this ref UInt128 lhs, in UInt128 rhs)
         {
             dinx.xor(lhs, rhs, out lhs);
+            return ref lhs;
+        }
+
+        [MethodImpl(Inline)]
+        public static ref UInt128 ShiftL(this ref UInt128 lhs, byte count)
+        {
+            dinx.shiftlw(lhs, count);
             return ref lhs;
         }
 
