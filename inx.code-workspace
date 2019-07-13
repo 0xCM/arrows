@@ -5,30 +5,6 @@
 		},
 		{
 			"path": "inx.test"
-		},
-		{
-			"path": "func"
-		},
-		{
-			"path": "nats"
-		},
-		{
-			"path": "random"
-		},
-		{
-			"path": "testing"
-		},
-		{
-			"path": "analogs"
-		},
-		{
-			"path": "primal"
-		},
-		{
-			"path": "structs"
-		},
-		{
-			"path": "ms"
 		}
 	],
 	"settings": {}

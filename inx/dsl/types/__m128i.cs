@@ -66,7 +66,6 @@ namespace Z0
         public static implicit operator __m128i(in Vec128<ulong> src)
             => FromVec128(in src);
 
-
         [MethodImpl(Inline)]
         public static explicit operator Vec128<sbyte>(in __m128i src)
             => src.ToVec128<sbyte>();
@@ -213,8 +212,6 @@ namespace Z0
         
         [FieldOffset(15)]
         public sbyte x000Fs;
-
-
         
         #endregion
 

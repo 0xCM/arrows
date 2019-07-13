@@ -171,7 +171,7 @@ namespace Z0
         public static __m256 _mm256_and_ps(in __m256 a, in __m256 b)
             => And(a,b);
 
-        ///<intrinsic> __m256d _mm256_andnot_pd (__m256d a, __m256d b) VANDNPD ymm, ymm, ymm/m256 </intrinsic>
+        ///<intrinsic> __m256d _mm256_andnot_pd (__m256d a, __m256d b) VANDNPD ymm, ymm, ymm/m256</intrinsic>
         [MethodImpl(Inline)]
         public static __m256d _mm256_andnot_pd(in __m256d a, in __m256d b)
             => AndNot(a,b);
@@ -235,7 +235,37 @@ namespace Z0
         [MethodImpl(Inline)]
         public static __m256d _mm256_ceil_pd(in __m256d a)
             => Ceiling(a);
+
+        ///<intrinsic> __m256d _mm256_max_pd (__m256d a, __m256d b) VMAXPD ymm, ymm, ymm/m256
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_max_pd(in __m256d a, in __m256d b)
+            => Max(a,b);
         
+        ///<intrinsic> __m256 _mm256_max_ps (__m256 a, __m256 b) VMAXPS ymm, ymm, ymm/m256
+        [MethodImpl(Inline)]
+        public static __m256 _mm256_max_ps(in __m256 a, in __m256 b)
+            => Max(a,b);
+        
+        ///<intrinsic> __m256d _mm256_min_pd (__m256d a, __m256d b) VMINPD ymm, ymm, ymm/m256
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_min_pd(in __m256d a, in __m256d b)
+            => Min(a,b);
+        
+        ///<intrinsic> __m256 _mm256_min_ps (__m256 a, __m256 b) VMINPS ymm, ymm, ymm/m256
+        [MethodImpl(Inline)]
+        public static __m256 _mm256_min_ps(in __m256 a, in __m256 b)
+            => Min(a,b);
+
+        //<intrinsic> __m256d _mm256_sqrt_pd (__m256d a) VSQRTPD ymm, ymm/m256
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_sqrt_pd(in __m256d a)
+            => Sqrt(a);
+        
+        //<intrinsic> __m256 _mm256_sqrt_ps (__m256 a) VSQRTPS ymm, ymm/m256
+        [MethodImpl(Inline)]
+        public static __m256 _mm256_sqrt_ps(in __m256 a)
+            => Sqrt(a);
+
         ///<intrinsic> __m128d _mm_cmp_pd (__m128d a, __m128d b, const int imm8) VCMPPD xmm, xmm, xmm/m128, imm8 </intrinsic>
         [MethodImpl(Inline)]
         public static __m128d _mm_cmp_pd(in __m128d a, in __m128d b, FloatComparisonMode imm8)
@@ -359,28 +389,12 @@ namespace Z0
         public static unsafe void _mm256_storeu_si256(ref byte dst, in __m256i src)
             => Store(refptr(ref dst), v8u(src));
 
-        /// <intrinsic>void _mm256_storeu_pd (double * mem_addr, __m256d a) MOVUPD m256, ymm</intrinsic>
-       [MethodImpl(Inline)]
-        public static unsafe void _mm256_storeu_pd(ref double dst, in __m256d src)
-            => Store(refptr(ref dst), src);
-
-        /// <intrinsic>void _mm256_storeu_ps (float * mem_addr, __m256 a) MOVUPS m256, ymm</intrinsic>
-        [MethodImpl(Inline)]
-        public static unsafe void _mm256_storeu_ps(ref float dst, in __m256 src)
-            => Store(refptr(ref dst), src);
-
-
         /// <intrinsic>void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU m256, ymm</intrinsic>
         [MethodImpl(Inline)]
-        public static unsafe void _mm256_storeu_si256(ref long dst, in __m256i src)
-            => Store(refptr(ref dst), v64i(src));
+        public static unsafe void _mm256_storeu_si256(ref short dst, in __m256i src)
+            => Store(refptr(ref dst), v16i(src));
 
         /// <intrinsic>void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU m256, ymm</intrinsic>
-        [MethodImpl(Inline)]
-        public static unsafe void _mm256_storeu_si256(ref ulong dst, in __m256i src)
-            => Store(refptr(ref dst), v64u(src));
-
-        /// <intrinsic></intrinsic>
         [MethodImpl(Inline)]
         public static unsafe void _mm256_storeu_si256(ref ushort dst, in __m256i src)
             => Store(refptr(ref dst), v16u(src));
@@ -397,8 +411,23 @@ namespace Z0
 
         /// <intrinsic>void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU m256, ymm</intrinsic>
         [MethodImpl(Inline)]
-        public static unsafe void _mm256_storeu_si256(ref short dst, in __m256i src)
-            => Store(refptr(ref dst), v16i(src));
+        public static unsafe void _mm256_storeu_si256(ref long dst, in __m256i src)
+            => Store(refptr(ref dst), v64i(src));
+
+        /// <intrinsic>void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU m256, ymm</intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe void _mm256_storeu_si256(ref ulong dst, in __m256i src)
+            => Store(refptr(ref dst), v64u(src));
+
+        /// <intrinsic>void _mm256_storeu_ps (float * mem_addr, __m256 a) MOVUPS m256, ymm</intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe void _mm256_storeu_ps(ref float dst, in __m256 src)
+            => Store(refptr(ref dst), src);
+
+        /// <intrinsic>void _mm256_storeu_pd (double * mem_addr, __m256d a) MOVUPD m256, ymm</intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe void _mm256_storeu_pd(ref double dst, in __m256d src)
+            => Store(refptr(ref dst), src);
 
         ///<intrinsic> __m256 _mm256_dp_ps (__m256 a, __m256 b, const int imm8) VDPPS ymm, ymm, ymm/m256, imm8 </intrinsic>
         [MethodImpl(Inline)]
@@ -435,6 +464,16 @@ namespace Z0
         public static __m128i _mm256_extractf128_si256(in __m256i a, byte imm8)
             => ExtractVector128(v64i(a), imm8);
 
+        ///<intrinsic> __m128 _mm256_extractf128_ps (__m256 a, const int imm8) VEXTRACTF128 xmm/m128, ymm, imm8 </intrinsic>
+        [MethodImpl(Inline)]
+        public static __m128 _mm256_extractf128_ps(in __m256 a, byte imm8)
+            => ExtractVector128(a, imm8);
+
+        ///<intrinsic> __m128d _mm256_extractf128_pd (__m256d a, const int imm8) VEXTRACTF128 xmm/m128, ymm, imm8 </intrinsic>
+        [MethodImpl(Inline)]
+        public static __m128d _mm256_extractf128_pd(in __m256d a, byte imm8)
+            => ExtractVector128(a, imm8);
+
         ///<intrinsic> __m256d _mm256_mul_pd (__m256d a, __m256d b) VMULPD ymm, ymm, ymm/m256
         [MethodImpl(Inline)]
         public static __m256d _mm256_mul_pd(in __m256d a, in __m256d b)
@@ -445,460 +484,417 @@ namespace Z0
         public static __m256 _mm256_mul_ps(in __m256 a, in __m256 b)
             => Multiply(a,b);
 
+        ///<intrinsic> __m256d _mm256_floor_pd (__m256d a) VROUNDPS ymm, ymm/m256, imm8(9) </intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_floor_pd(in __m256d a)
+            => Floor(a);
+        
+        ///<intrinsic> __m256 _mm256_floor_ps (__m256 a) VROUNDPS ymm, ymm/m256, imm8(9) </intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256 _mm256_floor_ps(in __m256 a)
+            => Floor(a);
+
+        ///<intrinsic> __m256d _mm256_hadd_pd (__m256d a, __m256d b) VHADDPD ymm, ymm, ymm/m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_hadd_pd(in __m256d a, in __m256d b)
+            => HorizontalAdd(a,b);
+        
+        ///<intrinsic> __m256 _mm256_hadd_ps (__m256 a, __m256 b) VHADDPS ymm, ymm, ymm/m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256 _mm256_hadd_ps(in __m256 a, in __m256 b)
+            => HorizontalAdd(a,b);
+
+        ///<intrinsic> __m256d _mm256_hsub_pd (__m256d a, __m256d b) VHSUBPD ymm, ymm, ymm/m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_hsub_pd(in __m256d a, in __m256d b)
+            => HorizontalSubtract(a,b);
+        
+        ///<intrinsic> __m256 _mm256_hsub_ps (__m256 a, __m256 b) VHSUBPS ymm, ymm, ymm/m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256 _mm256_hsub_ps(in __m256 a, in __m256 b)
+            => HorizontalSubtract(a,b);
+
+        ///<intrinsic> __m256i _mm256_insertf128_si256 (__m256i a, __m128i b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256i InsertVector128(in __m256i a, in __m128i b, byte imm8)
+            => InsertVector128(a,b, imm8);
+
+        ///<intrinsic> __m256 _mm256_insertf128_ps (__m256 a, __m128 b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
+        public static __m256 InsertVector128(in __m256 a, in __m128 b, byte imm8)
+            => InsertVector128(a,b,imm8);
+        
+        ///<intrinsic> __m256d _mm256_insertf128_pd (__m256d a, __m128d b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
+        public static __m256d InsertVector128(in __m256d a, in __m128d b, byte imm8)
+            => InsertVector128(a,b,imm8);
+
+        ///<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_load_si256(ref ulong mem_addr)
+            => LoadAlignedVector256(refptr(ref mem_addr));
+
+        ///<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_load_si256(ref ushort mem_addr)
+            => LoadAlignedVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256 _mm256_load_ps (float const * mem_addr) VMOVAPS ymm, ymm/m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256 _mm256_load_ps(ref float mem_addr)
+            => LoadAlignedVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_load_si256(ref sbyte mem_addr)
+            => LoadAlignedVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_load_si256(ref uint mem_addr)        
+            => LoadAlignedVector256(refptr(ref mem_addr));
+
+        ///<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_load_si256(ref int mem_addr)
+            => LoadAlignedVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_load_si256(ref short mem_addr)
+            => LoadAlignedVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256d _mm256_load_pd (double const * mem_addr) VMOVAPD ymm, ymm/m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256d _mm256_load_pd(ref double mem_addr)
+            => LoadAlignedVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_load_si256(ref byte mem_addr)
+            => LoadAlignedVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_load_si256(ref long mem_addr)
+            => LoadAlignedVector256(refptr(ref mem_addr));
+
+        ///<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_lddqu_si256(ref ulong mem_addr)
+            => LoadDquVector256(refptr(ref mem_addr));
+        
+        //<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_lddqu_si256(ref byte mem_addr)
+            => LoadDquVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_lddqu_si256(ref int mem_addr)
+            => LoadDquVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_lddqu_si256(ref long mem_addr)
+            => LoadDquVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_lddqu_si256(ref sbyte mem_addr)
+            => LoadDquVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_lddqu_si256(ref ushort mem_addr)
+            => LoadDquVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_lddqu_si256(ref uint mem_addr)
+            => LoadDquVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_lddqu_si256(ref short mem_addr)
+            => LoadDquVector256(refptr(ref mem_addr));
+
+        ///<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_loadu_si256(ref int mem_addr)
+            => LoadVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_loadu_si256(ref ulong mem_addr)
+            => LoadVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_loadu_si256(ref ushort mem_addr)
+            => LoadVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_loadu_si256(ref uint mem_addr)
+            => LoadVector256(refptr(ref mem_addr));
+
+        ///<intrinsic> __m256 _mm256_loadu_ps (float const * mem_addr) VMOVUPS ymm, ymm/m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256 _mm256_loadu_ps(ref float mem_addr)
+            => LoadVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_loadu_si256(ref short mem_addr)
+            => LoadVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_loadu_si256(ref long mem_addr)
+            => LoadVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256d _mm256_loadu_pd (double const * mem_addr) VMOVUPD ymm, ymm/m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256d _mm256_loadu_pd(ref double mem_addr)
+            => LoadVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_loadu_si256(ref byte mem_addr)
+            => LoadVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_loadu_si256(ref sbyte mem_addr)
+            => LoadVector256(refptr(ref mem_addr));
+        
+        ///<intrinsic> __m128d _mm_maskload_pd (double const * mem_addr, __m128i mask) VMASKMOVPD xmm, xmm, in __m128 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m128d _mm_maskload_pd(ref double mem_addr, in __m128d mask)
+            => MaskLoad(refptr(ref mem_addr), mask);
+        
+        ///<intrinsic> __m256d _mm256_maskload_pd (double const * mem_addr, __m256i mask) VMASKMOVPD ymm, ymm, in __m256 </intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256d _mm256_maskload_pd(ref double mem_addr, in __m256d mask)
+            => MaskLoad(refptr(ref mem_addr), mask);
+        
+        ///<intrinsic> __m128 _mm_maskload_ps (float const * mem_addr, __m128i mask) VMASKMOVPS xmm, xmm, in __m128 </intrinsic> 
+        [MethodImpl(Inline)]
+        public static unsafe __m128 _mm_maskload_ps(ref float mem_addr, in __m128 mask)
+            => MaskLoad(refptr(ref mem_addr), mask);
+        
+        ///<intrinsic> __m256 _mm256_maskload_ps (float const * mem_addr, __m256i mask) VMASKMOVPS ymm, ymm, in __m256 </intrinsic> 
+        [MethodImpl(Inline)]
+        public static unsafe __m256 _mm256_maskload_ps(ref float mem_addr, in __m256 mask)
+            => MaskLoad(refptr(ref mem_addr), mask);
+        
+        ///<intrinsic> void _mm256_maskstore_ps (float * mem_addr, __m256i mask, __m256 a) VMASKMOVPS __m256, ymm, ymm </intrinsic> 
+        [MethodImpl(Inline)]
+        public static unsafe void _mm256_maskstore_ps(ref float mem_addr, in __m256 mask, in __m256 a)
+            => MaskStore(refptr(ref mem_addr), mask, a);
+        
+        ///<intrinsic> void _mm_maskstore_ps (float * mem_addr, __m128i mask, __m128 a) VMASKMOVPS __m128, xmm, xmm </intrinsic> 
+        [MethodImpl(Inline)]
+        public static unsafe void _mm_maskstore_ps(ref float mem_addr, in __m128 mask, in __m128 a)
+            => MaskStore(refptr(ref mem_addr), mask, a);
+        
+        ///<intrinsic> void _mm_maskstore_pd (double * mem_addr, __m128i mask, __m128d a) VMASKMOVPD __m128, xmm, xmm </intrinsic> 
+        [MethodImpl(Inline)]
+        public static unsafe void _mm_maskstore_pd(ref double mem_addr, in __m128d mask, in __m128d a)
+            => MaskStore(refptr(ref mem_addr), mask, a);
+        
+        ///<intrinsic> void _mm256_maskstore_pd (double * mem_addr, __m256i mask, __m256d a) VMASKMOVPD __m256, ymm, ymm </intrinsic> 
+        [MethodImpl(Inline)]
+        public static unsafe void _mm256_maskstore_pd(ref double mem_addr, in __m256d mask, in __m256d a)
+            => MaskStore(refptr(ref mem_addr), mask, a);
+
+        ///<intrinsic> int _mm256_movemask_pd (__m256d a) VMOVMSKPD reg, ymm</intrinsic>
+        [MethodImpl(Inline)]
+        public static int _mm256_movemask_pd(in __m256d a)
+            => MoveMask(a);
+        
+        ///<intrinsic> int _mm256_movemask_ps (__m256 a) VMOVMSKPS reg, ymm</intrinsic>
+        [MethodImpl(Inline)]
+        public static int _mm256_movemask_ps(in __m256 a)
+            => MoveMask(a);
+                
+        ///<intrinsic> __m256 _mm256_or_ps (__m256 a, __m256 b) VORPS ymm, ymm, ymm/m256</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256 _mm256_or_ps(in __m256 a, in __m256 b)
+            => Or(a,b);
+        
+        ///<intrinsic> __m256d _mm256_or_pd (__m256d a, __m256d b) VORPD ymm, ymm, ymm/m256</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_or_pd(in __m256d a, in __m256d b)
+            => Or(a,b);
+        
+        ///<intrinsic> __m256 _mm256_permute_ps (__m256 a, int imm8) VPERMILPS ymm, ymm, imm8</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256 _mm256_permute_ps(in __m256 a, byte imm8)
+            => Permute(a,imm8);
+        
+        ///<intrinsic> __m128d _mm_permute_pd (__m128d a, int imm8) VPERMILPD xmm, xmm, imm8</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m128d _mm_permute_pd(in __m128d a, byte imm8)
+            => Permute(a,imm8);
+        
+        ///<intrinsic> __m128 _mm_permute_ps (__m128 a, int imm8) VPERMILPS xmm, xmm, imm8</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m128 _mm_permute_ps(in __m128 a, byte imm8)
+            => Permute(a,imm8);
+        
+        ///<intrinsic> __m256d _mm256_permute_pd (__m256d a, int imm8) VPERMILPD ymm, ymm, imm8</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_permute_pd(in __m256d a, byte imm8)
+            => Permute(a,imm8);
+        
+        ///<intrinsic> __m256d _mm256_permute2f128_pd (__m256d a, __m256d b, int imm8) VPERM2F128 ymm, ymm, ymm/m256, imm8</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_permute2f128_pd(in __m256d a, in __m256d b, byte imm8)
+            => Permute2x128(a,b,imm8);
+                            
+        ///<intrinsic> __m256 _mm256_permute2f128_ps (__m256 a, __m256 b, int imm8) VPERM2F128 ymm, ymm, ymm/m256, imm8</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256 _mm256_permute2f128_ps(in __m256 a, in __m256 b, byte imm8)
+            => Permute2x128(a,b,imm8);
+        
+        ///<intrinsic> __m256i _mm256_permute2f128_si256 (__m256i a, __m256i b, int imm8) VPERM2F128 ymm, ymm, ymm/m256, imm8</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256i _mm256_permute2f128_si256(in __m256i a, in __m256i b, byte imm8)
+            => Permute2x128(v64i(a),v64i(b),imm8);
+                        
+        ///<intrinsic> __m256 _mm256_permutevar_ps (__m256 a, __m256i b) VPERMILPS ymm, ymm, ymm/m256</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256 _mm256_permutevar_ps(in __m256 a, in __m256i b)
+            => PermuteVar(a,v32i(b));
+        
+        ///<intrinsic> __m128d _mm_permutevar_pd (__m128d a, __m128i b) VPERMILPD xmm, xmm, xmm/m128</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m128d _mm_permutevar_pd(in __m128d a, in __m128i b)
+            => PermuteVar(a,b);
+        
+        ///<intrinsic> __m128 _mm_permutevar_ps (__m128 a, __m128i b) VPERMILPS xmm, xmm, xmm/m128</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m128 _mm_permutevar_ps(in __m128 a, in __m128i b)
+            => PermuteVar(a,b);
+        
+        ///<intrinsic> __m256d _mm256_permutevar_pd (__m256d a, __m256i b) VPERMILPD ymm, ymm, ymm/m256</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_permutevar_pd(in __m256d a, in __m256i b)
+            => PermuteVar(a,b);
+                
+        ///<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_CUR_DIRECTION) VROUNDPD ymm, ymm/m256, imm8(4)</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_round_pd(in __m256d a)
+            => RoundCurrentDirection(a);
+        
+        ///<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_CUR_DIRECTION) VROUNDPS ymm, ymm/m256, imm8(4)</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256 _mm256_round_ps(in __m256 a)
+            => RoundCurrentDirection(a);        
+
+        //<intrinsic> __m256d _mm256_shuffle_pd (__m256d a, __m256d b, const int imm8) VSHUFPD ymm, ymm, ymm/m256, imm8
+        [MethodImpl(Inline)]
+        public static __m256d _mm256_shuffle_pd(in __m256d a, in __m256d b, byte imm8)
+            => Shuffle(a,b,imm8);
+        
+        //<intrinsic> __m256 _mm256_shuffle_ps (__m256 a, __m256 b, const int imm8) VSHUFPS ymm, ymm, ymm/m256, imm8
+        [MethodImpl(Inline)]
+        public static __m256 _mm256_shuffle_ps(in __m256 a, in __m256 b, byte imm8)
+            => Shuffle(a,b,imm8);
 
         #if false
-                                        
-                
-        
-        //<intrinsic> __m128 _mm256_extractf128_ps (__m256 a, const int imm8) VEXTRACTF128 xmm/m128, ymm, imm8 </intrinsic>
-        public static __m128 ExtractVector128(in __m256 value, byte imm8)
-        
-        //<intrinsic> __m128i _mm256_extractf128_si256 (__m256i a, const int imm8) VEXTRACTF128 xmm/m128, ymm, imm8 </intrinsic>
-        public static Vector128<sbyte> ExtractVector128(in __m256i a, byte imm8)
-        
-        //<intrinsic> __m128i _mm256_extractf128_si256 (__m256i a, const int imm8) VEXTRACTF128 xmm/m128, ymm, imm8 </intrinsic>
-        public static __m128i ExtractVector128(in __m256i a, byte imm8)
-        
-        //<intrinsic> __m128i _mm256_extractf128_si256 (__m256i a, const int imm8) VEXTRACTF128 xmm/m128, ymm, imm8 </intrinsic>
-        public static __m128i ExtractVector128(in __m128i a, byte imm8)
-        
-        //<intrinsic> __m128i _mm256_extractf128_si256 (__m256i a, const int imm8) VEXTRACTF128 xmm/m128, ymm, imm8 </intrinsic>
-        public static __m128i ExtractVector128(in __m256i a, byte imm8)
-        
-        //<intrinsic> __m128d _mm256_extractf128_pd (__m256d a, const int imm8) VEXTRACTF128 xmm/m128, ymm, imm8 </intrinsic>
-        public static __m128d ExtractVector128(in __m256d a, byte imm8)
-        
-        //<intrinsic> __m128i _mm256_extractf128_si256 (__m256i a, const int imm8) VEXTRACTF128 xmm/m128, ymm, imm8 </intrinsic>
-        public static __m128i ExtractVector128(in __m256i a, byte imm8)
-        
-        //<intrinsic> __m128i _mm256_extractf128_si256 (__m256i a, const int imm8) VEXTRACTF128 xmm/m128, ymm, imm8 </intrinsic>
-        public static __m128i ExtractVector128(in __m256i a, byte imm8)
-        
-        //<intrinsic> __m256d _mm256_floor_pd (__m256d a) VROUNDPS ymm, ymm/m256, imm8(9) </intrinsic>
-        public static __m256d Floor(in __m256d a)
-        
-        //<intrinsic> __m256 _mm256_floor_ps (__m256 a) VROUNDPS ymm, ymm/m256, imm8(9) </intrinsic>
-        public static __m256 Floor(in __m256 value)
-        
-        //<intrinsic> __m256d _mm256_hadd_pd (__m256d a, __m256d b) VHADDPD ymm, ymm, ymm/m256 </intrinsic>
-        public static __m256d HorizontalAdd(in __m256d a, in __m256d b)
-        
-        //<intrinsic> __m256 _mm256_hadd_ps (__m256 a, __m256 b) VHADDPS ymm, ymm, ymm/m256 </intrinsic>
-        public static __m256 HorizontalAdd(in __m256 a, in __m256 b)
-        
-        //<intrinsic> __m256d _mm256_hsub_pd (__m256d a, __m256d b) VHSUBPD ymm, ymm, ymm/m256 </intrinsic>
-        public static __m256d HorizontalSubtract(in __m256d a, in __m256d b)
-        
-        //<intrinsic> __m256 _mm256_hsub_ps (__m256 a, __m256 b) VHSUBPS ymm, ymm, ymm/m256 </intrinsic>
-        public static __m256 HorizontalSubtract(in __m256 a, in __m256 b)
-        
-        //<intrinsic> __m256i _mm256_insertf128_si256 (__m256i a, __m128i b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
-        public static __m256i InsertVector128(in __m256i a, in __m128i data, byte imm8)
-        
-        //<intrinsic> __m256i _mm256_insertf128_si256 (__m256i a, __m128i b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
-        public static __m256i InsertVector128(in __m256i a, in __m128i data, byte imm8)
-        
-        //<intrinsic> __m256i _mm256_insertf128_si256 (__m256i a, __m128i b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
-        public static __m256i InsertVector128(in __m256i a, in __m128i data, byte imm8)
-        
-        //<intrinsic> __m256 _mm256_insertf128_ps (__m256 a, __m128 b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
-        public static __m256 InsertVector128(in __m256 value, in __m128 data, byte imm8)
-        
-        //<intrinsic> __m256d _mm256_insertf128_pd (__m256d a, __m128d b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
-        public static __m256d InsertVector128(in __m256d a, in __m128d data, byte imm8)
-        
-        //<intrinsic> __m256i _mm256_insertf128_si256 (__m256i a, __m128i b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
-        public static __m256i InsertVector128(in __m256i a, in __m128i data, byte imm8)
-        
-        //<intrinsic> __m256i _mm256_insertf128_si256 (__m256i a, __m128i b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
-        public static __m256i InsertVector128(in __m256i a, Vector128<sbyte> data, byte imm8)
-        
-        //<intrinsic> __m256i _mm256_insertf128_si256 (__m256i a, __m128i b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
-        public static __m256i InsertVector128(in __m256i a, in __m128i data, byte imm8)
-        
-        //<intrinsic> __m256i _mm256_insertf128_si256 (__m256i a, __m128i b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
-        public static __m128i InsertVector128(in __m128i a, in __m128i data, byte imm8)
-        
-        //<intrinsic> __m256i _mm256_insertf128_si256 (__m256i a, __m128i b, int imm8) VINSERTF128 ymm, ymm, xmm/m128, imm8 </intrinsic>
-        public static __m256i InsertVector128(in __m256i a, in __m128i data, byte imm8)
-        
-        //<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
-        public static __m256i LoadAlignedVector256(ref ulong mem_addr)
-        
-        //<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
-        public static __m256i LoadAlignedVector256(ref ushort mem_addr)
-        
-        //<intrinsic> __m256 _mm256_load_ps (float const * mem_addr) VMOVAPS ymm, ymm/m256 </intrinsic>
-        public static __m256 LoadAlignedVector256(ref float mem_addr)
-        
-        //<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
-        public static __m256i LoadAlignedVector256(ref sbyte mem_addr)
-        
-        //<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
-        public static __m256i LoadAlignedVector256(ref uint mem_addr)
-        
-        //<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
-        public static __m128i LoadAlignedVector256(ref int mem_addr)
-        
-        //<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
-        public static __m256i LoadAlignedVector256(ref short mem_addr)
-        
-        //<intrinsic> __m256d _mm256_load_pd (double const * mem_addr) VMOVAPD ymm, ymm/m256 </intrinsic>
-        public static __m256d LoadAlignedVector256(ref double mem_addr)
-        
-        //<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
-        public static __m256i LoadAlignedVector256(ref byte mem_addr)
-        
-        //<intrinsic> __m256i _mm256_load_si256 (__m256i const * mem_addr) VMOVDQA ymm, in __m256 </intrinsic>
-        public static __m256i LoadAlignedVector256(ref long mem_addr)
-        
-        //<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadDquVector256(ref ulong mem_addr)
-        
-        //<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadDquVector256(ref byte mem_addr)
-        
-        //<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
-        public static __m128i LoadDquVector256(ref int mem_addr)
-        
-        //<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadDquVector256(ref long mem_addr)
-        
-        //<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadDquVector256(ref sbyte mem_addr)
-        
-        //<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadDquVector256(ref ushort mem_addr)
-        
-        //<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadDquVector256(ref uint mem_addr)
-        
-        //<intrinsic> __m256i _mm256_lddqu_si256 (__m256i const * mem_addr) VLDDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadDquVector256(ref short mem_addr)
-        
-        //<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
-        public static __m128i LoadVector256(ref int mem_addr)
-        
-        //<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadVector256(ref ulong mem_addr)
-        
-        //<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadVector256(ref ushort mem_addr)
-        
-        //<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadVector256(ref uint mem_addr)
-        
-        //<intrinsic> __m256 _mm256_loadu_ps (float const * mem_addr) VMOVUPS ymm, ymm/m256 </intrinsic>
-        public static __m256 LoadVector256(ref float mem_addr)
-        
-        //<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadVector256(ref short mem_addr)
-        
-        //<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadVector256(ref long mem_addr)
-        
-        //<intrinsic> __m256d _mm256_loadu_pd (double const * mem_addr) VMOVUPD ymm, ymm/m256 </intrinsic>
-        public static __m256d LoadVector256(ref double mem_addr)
-        
-        //<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadVector256(ref byte mem_addr)
-        
-        //<intrinsic> __m256i _mm256_loadu_si256 (__m256i const * mem_addr) VMOVDQU ymm, in __m256 </intrinsic>
-        public static __m256i LoadVector256(ref sbyte mem_addr)
-        
-        //<intrinsic> __m128d _mm_maskload_pd (double const * mem_addr, __m128i mask) VMASKMOVPD xmm, xmm, in __m128 </intrinsic>
-        public static __m128d MaskLoad(ref double mem_addr, in __m128d mask)
-        
-        //<intrinsic> __m256d _mm256_maskload_pd (double const * mem_addr, __m256i mask) VMASKMOVPD ymm, ymm, in __m256 </intrinsic>
-        public static __m256d MaskLoad(ref double mem_addr, in __m256d mask)
-        
-        //<intrinsic> __m128 _mm_maskload_ps (float const * mem_addr, __m128i mask) VMASKMOVPS xmm,
-        //<intrinsic> xmm, in __m128
-        public static __m128 MaskLoad(ref float mem_addr, in __m128 mask)
-        //
-        
-        //<intrinsic> __m256 _mm256_maskload_ps (float const * mem_addr, __m256i mask) VMASKMOVPS ymm, ymm, in __m256
-        public static __m256 MaskLoad(ref float mem_addr, in __m256 mask)
-        
-        //<intrinsic> void _mm256_maskstore_ps (float * mem_addr, __m256i mask, __m256 a) VMASKMOVPS
-        //<intrinsic> __m256, ymm, ymm
-        public static void MaskStore(ref float mem_addr, in __m256 mask, in __m256 source)
-        //
-        
-        //<intrinsic> void _mm_maskstore_ps (float * mem_addr, __m128i mask, __m128 a) VMASKMOVPS __m128,
-        //<intrinsic> xmm, xmm
-        public static void MaskStore(ref float mem_addr, in __m128 mask, in __m128 source)
-        //
-        
-        //<intrinsic> void _mm_maskstore_pd (double * mem_addr, __m128i mask, __m128d a) VMASKMOVPD
-        //<intrinsic> __m128, xmm, xmm
-        public static void MaskStore(ref double mem_addr, in __m128d mask, in __m128d source)
-        //
-        
-        //<intrinsic> void _mm256_maskstore_pd (double * mem_addr, __m256i mask, __m256d a) VMASKMOVPD
-        //<intrinsic> __m256, ymm, ymm
-        public static void MaskStore(ref double mem_addr, in __m256d mask, in __m256d source)
-        //
-        
-        //<intrinsic> __m256d _mm256_max_pd (__m256d a, __m256d b) VMAXPD ymm, ymm, ymm/m256
-        public static __m256d Max(in __m256d a, in __m256d b)
-        //
-        
-        //<intrinsic> __m256 _mm256_max_ps (__m256 a, __m256 b) VMAXPS ymm, ymm, ymm/m256
-        public static __m256 Max(in __m256 a, in __m256 b)
-        //
-        
-        //<intrinsic> __m256d _mm256_min_pd (__m256d a, __m256d b) VMINPD ymm, ymm, ymm/m256
-        public static __m256d Min(in __m256d a, in __m256d b)
-        //
-        
-        //<intrinsic> __m256 _mm256_min_ps (__m256 a, __m256 b) VMINPS ymm, ymm, ymm/m256
-        public static __m256 Min(in __m256 a, in __m256 b)
-        //
-        
-        //<intrinsic> int _mm256_movemask_pd (__m256d a) VMOVMSKPD reg, ymm
-        public static int MoveMask(in __m256d a)
-        //
-        
-        //<intrinsic> int _mm256_movemask_ps (__m256 a) VMOVMSKPS reg, ymm
-        public static int MoveMask(in __m256 value)
-        //
-        
-        
-        //<intrinsic> __m256 _mm256_or_ps (__m256 a, __m256 b) VORPS ymm, ymm, ymm/m256
-        public static __m256 Or(in __m256 a, in __m256 b)
-        //
-        
-        //<intrinsic> __m256d _mm256_or_pd (__m256d a, __m256d b) VORPD ymm, ymm, ymm/m256
-        public static __m256d Or(in __m256d a, in __m256d b)
-        //
-        
-        //<intrinsic> __m256 _mm256_permute_ps (__m256 a, int imm8) VPERMILPS ymm, ymm, imm8
-        public static __m256 Permute(in __m256 value, byte imm8)
-        //
-        
-        //<intrinsic> __m128d _mm_permute_pd (__m128d a, int imm8) VPERMILPD xmm, xmm, imm8
-        public static __m128d Permute(in __m128d value, byte imm8)
-        //
-        
-        //<intrinsic> __m128 _mm_permute_ps (__m128 a, int imm8) VPERMILPS xmm, xmm, imm8
-        public static __m128 Permute(in __m128 value, byte imm8)
-        //
-        
-        //<intrinsic> __m256d _mm256_permute_pd (__m256d a, int imm8) VPERMILPD ymm, ymm, imm8
-        public static __m256d Permute(in __m256d a, byte imm8)
-        //
-        
-        //<intrinsic> __m256d _mm256_permute2f128_pd (__m256d a, __m256d b, int imm8) VPERM2F128 ymm,
-        //<intrinsic> ymm, ymm/m256, imm8
-        public static __m256d Permute2x128(in __m256d a, in __m256d b, byte imm8)
-        //
-        
-        //<intrinsic> __m256i _mm256_permute2f128_si256 (__m256i a, __m256i b, int imm8) VPERM2F128
-        //<intrinsic> ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i left, in __m256i right, byte imm8)
-        //
-        
-        //<intrinsic> __m256i _mm256_permute2f128_si256 (__m256i a, __m256i b, int imm8) VPERM2F128
-        //<intrinsic> ymm, ymm, ymm/m256, imm8
-        public static __m128i Permute2x128(in __m128i left, in __m128i right, byte imm8)
-        //
-        
-        //<intrinsic> __m256i _mm256_permute2f128_si256 (__m256i a, __m256i b, int imm8) VPERM2F128
-        //<intrinsic> ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i left, in __m256i right, byte imm8)
-        //
-        
-        //<intrinsic> __m256i _mm256_permute2f128_si256 (__m256i a, __m256i b, int imm8) VPERM2F128
-        //<intrinsic> ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i left, in __m256i right, byte imm8)
-        //
-        
-        //<intrinsic> __m256 _mm256_permute2f128_ps (__m256 a, __m256 b, int imm8) VPERM2F128 ymm,
-        //<intrinsic> ymm, ymm/m256, imm8
-        public static __m256 Permute2x128(in __m256 a, in __m256 b, byte imm8)
-        //
-        
-        //<intrinsic> __m256i _mm256_permute2f128_si256 (__m256i a, __m256i b, int imm8) VPERM2F128
-        //<intrinsic> ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i left, in __m256i right, byte imm8)
-        //
-        
-        //<intrinsic> __m256i _mm256_permute2f128_si256 (__m256i a, __m256i b, int imm8) VPERM2F128
-        //<intrinsic> ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i left, in __m256i right, byte imm8)
-        //
-        
-        //<intrinsic> __m256i _mm256_permute2f128_si256 (__m256i a, __m256i b, int imm8) VPERM2F128
-        //<intrinsic> ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i left, in __m256i right, byte imm8)
-        //
-        
-        //<intrinsic> __m256i _mm256_permute2f128_si256 (__m256i a, __m256i b, int imm8) VPERM2F128
-        //<intrinsic> ymm, ymm, ymm/m256, imm8
-        public static __m256i Permute2x128(in __m256i left, in __m256i right, byte imm8)
-        //
-        
-        //<intrinsic> __m256 _mm256_permutevar_ps (__m256 a, __m256i b) VPERMILPS ymm, ymm, ymm/m256
-        public static __m256 PermuteVar(in __m256 a, in __m128i b)
-        //
-        
-        //<intrinsic> __m128d _mm_permutevar_pd (__m128d a, __m128i b) VPERMILPD xmm, xmm, xmm/m128
-        public static __m128d PermuteVar(in __m128d left, in __m128i b)
-        
-        //<intrinsic> __m128 _mm_permutevar_ps (__m128 a, __m128i b) VPERMILPS xmm, xmm, xmm/m128
-        public static __m128 PermuteVar(in __m128 left, in __m128i b)
-        
-        //<intrinsic> __m256d _mm256_permutevar_pd (__m256d a, __m256i b) VPERMILPD ymm, ymm, ymm/m256
-        public static __m256d PermuteVar(in __m256d left, in __m256i b)
-        
-        
-        //<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_CUR_DIRECTION) VROUNDPD ymm, ymm/m256,
-        //<intrinsic> imm8(4)
-        public static __m256d RoundCurrentDirection(in __m256d a)
-        
-        //<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_CUR_DIRECTION) VROUNDPS ymm, ymm/m256, imm8(4)
-        public static __m256 RoundCurrentDirection(in __m256 value)
-        
-        //<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC)
-        //<intrinsic> VROUNDPD ymm, ymm/m256, imm8(8)
-        public static __m256d RoundToNearestInteger(in __m256d a)
-        //
-        
-        //<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC)
-        //<intrinsic> VROUNDPS ymm, ymm/m256, imm8(8)
-        public static __m256 RoundToNearestInteger(in __m256 value)
-        //
-        
-        //<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_NEG_INF | _MM_FROUND_NO_EXC)
-        //<intrinsic> VROUNDPD ymm, ymm/m256, imm8(9)
-        public static __m256d RoundToNegativeInfinity(in __m256d a)
-        //
-        
-        //<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_NEG_INF | _MM_FROUND_NO_EXC)
-        //<intrinsic> VROUNDPS ymm, ymm/m256, imm8(9)
-        public static __m256 RoundToNegativeInfinity(in __m256 value)
-        
+                                                                            
+        //<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC) VROUNDPD ymm, ymm/m256, imm8(8)
+        // public static __m256d _mm256_round_pd(in __m256d a)
+        //      => RoundToNearestInteger(a);
+        
+        //<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC) VROUNDPS ymm, ymm/m256, imm8(8)
+        // public static __m256 _mm256_round_ps(in __m256 a)
+        //     => RoundToNearestInteger(a);
+        
+        //<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_NEG_INF | _MM_FROUND_NO_EXC) VROUNDPD ymm, ymm/m256, imm8(9)
+        // public static __m256d _mm256_round_pd(in __m256d a)
+        //     => RoundToNegativeInfinity(a);
+        
+        //<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_NEG_INF | _MM_FROUND_NO_EXC) VROUNDPS ymm, ymm/m256, imm8(9)
+        // public static __m256 _mm256_round_ps(in __m256 a)
+        //     => RoundToNegativeInfinity(a);
+
         //<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_POS_INF | _MM_FROUND_NO_EXC) VROUNDPD ymm, ymm/m256, imm8(10)
         public static __m256d RoundToPositiveInfinity(in __m256d a)
         
         //<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_POS_INF | _MM_FROUND_NO_EXC) VROUNDPS ymm, ymm/m256, imm8(10)
         public static __m256 RoundToPositiveInfinity(in __m256 value)
         
-        //<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC) VROUNDPS
-        //<intrinsic> ymm, ymm/m256, imm8(11)
+        //<intrinsic> __m256 _mm256_round_ps (__m256 a, _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC) VROUNDPS ymm, ymm/m256, imm8(11)
         public static __m256 RoundToZero(in __m256 value)
-        //
         
-        //<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC) VROUNDPD
-        //<intrinsic> ymm, ymm/m256, imm8(11)
+        //<intrinsic> __m256d _mm256_round_pd (__m256d a, _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC) VROUNDPD ymm, ymm/m256, imm8(11)
         public static __m256d RoundToZero(in __m256d a)
-        //
-        
-        //<intrinsic> __m256d _mm256_shuffle_pd (__m256d a, __m256d b, const int imm8) VSHUFPD ymm,
-        //<intrinsic> ymm, ymm/m256, imm8
-        public static __m256d Shuffle(in __m256d a, in __m256d right, byte control)
-        //
-        
-        //<intrinsic> __m256 _mm256_shuffle_ps (__m256 a, __m256 b, const int imm8) VSHUFPS ymm, ymm,
-        //<intrinsic> ymm/m256, imm8
-        public static __m256 Shuffle(in __m256 value, in __m256 b, byte control)
-        //
-        
-        //<intrinsic> __m256d _mm256_sqrt_pd (__m256d a) VSQRTPD ymm, ymm/m256
-        public static __m256d Sqrt(in __m256d a)
-        //
-        
-        //<intrinsic> __m256 _mm256_sqrt_ps (__m256 a) VSQRTPS ymm, ymm/m256
-        public static __m256 Sqrt(in __m256 value)
-        
-        //<intrinsic> void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU __m256, ymm <intrinsic>
-        public static void Store(ref ulong mem_addr, in __m256i a)
-        
-        //<intrinsic> void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU __m256, ymm <intrinsic>
-        public static void Store(ref uint mem_addr, in __m256i a)
-        
-        //<intrinsic> void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU __m256, ymm <intrinsic>
-        public static void Store(ref ushort mem_addr, in __m256i a)
-        
-        //<intrinsic> void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU __m256, ymm <intrinsic>
-        public static void Store(ref sbyte mem_addr, in __m256i a)
         
         
-        //<intrinsic> void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU __m256, ymm <intrinsic>
-        public static void Store(ref int mem_addr, in __m128i source)
         
-        //<intrinsic> void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU __m256, ymm <intrinsic>
-        public static void Store(ref short mem_addr, in __m256i a)
         
-        //<intrinsic> void _mm256_storeu_pd (double * mem_addr, __m256d a) MOVUPD __m256, ymm <intrinsic>
-        public static void Store(ref double mem_addr, in __m256d source)
-        
-        //<intrinsic> void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU __m256, ymm <intrinsic>
-        public static void Store(ref byte mem_addr, in __m256i a)
-        
-        //<intrinsic> void _mm256_storeu_si256 (__m256i * mem_addr, __m256i a) MOVDQU __m256, ymm <intrinsic>
-        public static void Store(ref long mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
-        public static void StoreAligned(ref ushort mem_addr, in __m256i a)
+        public static unsafe void StoreAligned(ref ushort mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
-        public static void StoreAligned(ref ulong mem_addr, in __m256i a)
+        public static unsafe void StoreAligned(ref ulong mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
-        public static void StoreAligned(ref uint mem_addr, in __m256i a)
+        public static unsafe void StoreAligned(ref uint mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_store_ps (float * mem_addr, __m256 a) VMOVAPS __m256, ymm <intrinsic>
-        public static void StoreAligned(ref float mem_addr, in __m256 source)
+        public static unsafe void StoreAligned(ref float mem_addr, in __m256 a)
         
         //<intrinsic> void _mm256_store_pd (double * mem_addr, __m256d a) VMOVAPD __m256, ymm <intrinsic>
-        public static void StoreAligned(ref double mem_addr, in __m256d source)
+        public static unsafe void StoreAligned(ref double mem_addr, in __m256d a)
         
         //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
-        public static void StoreAligned(ref long mem_addr, in __m256i a)
+        public static unsafe void StoreAligned(ref long mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
-        public static void StoreAligned(ref int mem_addr, in __m128i source)
+        public static unsafe void StoreAligned(ref int mem_addr, in __m128i a)
         
         //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
-        public static void StoreAligned(ref short mem_addr, in __m256i a)
+        public static unsafe void StoreAligned(ref short mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
-        public static void StoreAligned(ref byte mem_addr, in __m256i a)
+        public static unsafe void StoreAligned(ref byte mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_store_si256 (__m256i * mem_addr, __m256i a) MOVDQA __m256, ymm <intrinsic>
-        public static void StoreAligned(ref sbyte mem_addr, in __m256i a)
+        public static unsafe void StoreAligned(ref sbyte mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
-        public static void StoreAlignedNonTemporal(ref ulong mem_addr, in __m256i a)
+        public static unsafe void StoreAlignedNonTemporal(ref ulong mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
-        public static void StoreAlignedNonTemporal(ref ushort mem_addr, in __m256i a)
+        public static unsafe void StoreAlignedNonTemporal(ref ushort mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
-        public static void StoreAlignedNonTemporal(ref uint mem_addr, in __m256i a)
+        public static unsafe void StoreAlignedNonTemporal(ref uint mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_stream_ps (float * mem_addr, __m256 a) MOVNTPS __m256, ymm <intrinsic>
-        public static void StoreAlignedNonTemporal(ref float mem_addr, in __m256 source)
+        public static unsafe void StoreAlignedNonTemporal(ref float mem_addr, in __m256 a)
         
         //<intrinsic> void _mm256_stream_pd (double * mem_addr, __m256d a) MOVNTPD __m256, ymm <intrinsic>
-        public static void StoreAlignedNonTemporal(ref double mem_addr, in __m256d source)
+        public static unsafe void StoreAlignedNonTemporal(ref double mem_addr, in __m256d a)
         
         //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
-        public static void StoreAlignedNonTemporal(ref long mem_addr, in __m256i a)
+        public static unsafe void StoreAlignedNonTemporal(ref long mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
-        public static void StoreAlignedNonTemporal(ref sbyte mem_addr, in __m256i a)
+        public static unsafe void StoreAlignedNonTemporal(ref sbyte mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
-        public static void StoreAlignedNonTemporal(ref byte mem_addr, in __m256i a)
+        public static unsafe void StoreAlignedNonTemporal(ref byte mem_addr, in __m256i a)
         
         //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
-        public static void StoreAlignedNonTemporal(ref int mem_addr, in __m128i source)
+        public static unsafe void StoreAlignedNonTemporal(ref int mem_addr, in __m128i a)
         
         //<intrinsic> void _mm256_stream_si256 (__m256i * mem_addr, __m256i a) VMOVNTDQ __m256, ymm <intrinsic>
-        public static void StoreAlignedNonTemporal(ref short mem_addr, in __m256i a)
+        public static unsafe void StoreAlignedNonTemporal(ref short mem_addr, in __m256i a)
         
         //<intrinsic> __m256d _mm256_sub_pd (__m256d a, __m256d b) VSUBPD ymm, ymm, ymm/m256 <intrinsic>
         public static __m256d Subtract(in __m256d a, in __m256d b)
@@ -907,7 +903,7 @@ namespace Z0
         public static __m256 Subtract(in __m256 a, in __m256 b)
         
         //<intrinsic> int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
-        public static bool TestC(in __m256i left, in __m256i right)        
+        public static bool TestC(in __m256i a, in __m256i b)        
         
         //<intrinsic> int _mm256_testc_ps (__m256 a, __m256 b) VTESTPS ymm, ymm/m256 </intrinsic>
         public static bool TestC(in __m256 a, in __m256 b)
@@ -916,45 +912,39 @@ namespace Z0
         public static bool TestC(in __m256d a, in __m256d b)
                 
         //<intrinsic> int _mm_testc_ps (__m128 a, __m128 b) VTESTPS xmm, xmm/m128 </intrinsic>
-        public static bool TestC(in __m128 left, in __m128 right)
+        public static bool TestC(in __m128 a, in __m128 b)
         
         //<intrinsic> int _mm_testc_pd (__m128d a, __m128d b) VTESTPD xmm, xmm/m128 </intrinsic>
-        public static bool TestC(in __m128d left, in __m128d right)
+        public static bool TestC(in __m128d a, in __m128d b)
         
         //<intrinsic> int _mm256_testc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
-        public static bool TestC(in __m128i left, in __m128i right)
+        public static bool TestC(in __m128i a, in __m128i b)
         
         //<intrinsic> int _mm256_testnzc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
-        public static bool TestNotZAndNotC(in __m256i left, in __m256i right)
+        public static bool TestNotZAndNotC(in __m256i a, in __m256i b)
         
         //<intrinsic> int _mm256_testnzc_ps (__m256 a, __m256 b) VTESTPS ymm, ymm/m256 </intrinsic>
         public static bool TestNotZAndNotC(in __m256 a, in __m256 b)
                 
         //<intrinsic> int _mm256_testnzc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
-        public static bool TestNotZAndNotC(in __m256i left, in __m256i right)
+        public static bool TestNotZAndNotC(in __m256i a, in __m256i b)
                 
         //<intrinsic> int _mm256_testnzc_pd (__m256d a, __m256d b) VTESTPD ymm, ymm/m256 </intrinsic>
         public static bool TestNotZAndNotC(in __m256d a, in __m256d b)        
         
         //<intrinsic> int _mm_testnzc_ps (__m128 a, __m128 b) VTESTPS xmm, xmm/m128 </intrinsic>
-        public static bool TestNotZAndNotC(in __m128 left, in __m128 right)
+        public static bool TestNotZAndNotC(in __m128 a, in __m128 b)
         
         //<intrinsic> int _mm_testnzc_pd (__m128d a, __m128d b) VTESTPD xmm, xmm/m128 </intrinsic>
-        public static bool TestNotZAndNotC(in __m128d left, in __m128d right)
+        public static bool TestNotZAndNotC(in __m128d a, in __m128d b)
         
         //<intrinsic> int _mm256_testnzc_si256 (__m256i a, __m256i b) VPTEST ymm, ymm/m256 </intrinsic>
-        public static bool TestNotZAndNotC(in __m128i left, in __m128i right)
-        
+        public static bool TestNotZAndNotC(in __m128i a, in __m128i b)
+            
                 
-        //<intrinsic> int _mm256_testz_ps (__m256 a, __m256 b) VTESTPS ymm, ymm/m256 </intrinsic>
-        public static bool TestZ(in __m256 a, in __m256 b)
-                            
-                
-        //<intrinsic> int _mm_testz_ps (__m128 a, __m128 b) VTESTPS xmm, xmm/m128 </intrinsic>
-        public static bool TestZ(in __m128 left, in __m128 right)
         
         //<intrinsic> int _mm_testz_pd (__m128d a, __m128d b) VTESTPD xmm, xmm/m128 </intrinsic>
-        public static bool TestZ(in __m128d left, in __m128d right)
+        public static bool TestZ(in __m128d a, in __m128d b)
         
         
         //<intrinsic> __m256d _mm256_unpackhi_pd (__m256d a, __m256d b) VUNPCKHPD ymm, ymm, ymm/m256 </intrinsic>

@@ -18,9 +18,8 @@ namespace Z0
 
         /// <intrinsic>void _mm_storeu_ps (float* mem_addr, __m128 a) MOVUPS m128, xmm</intrinsic>
         [MethodImpl(Inline)]
-        public static unsafe void _mm_storeu_ps(ref float dst, in __m128 src)
-            => Store(refptr(ref dst), src);
-
+        public static unsafe void _mm_storeu_ps(ref float mem_addr, in __m128 a)
+            => Store(refptr(ref mem_addr), a);
 
         ///<intrinsic> __m128 _mm_mul_ps (__m128 a, __m128 b) MULPS xmm, xmm/m128
         [MethodImpl(Inline)]
@@ -57,37 +56,26 @@ namespace Z0
     }
 
 /*
-    public abstract class Sse
-    {
-
-        //
-        // Summary:
         ///<intrinsic> __m128 _mm_add_ps (__m128 a, __m128 b) ADDPS xmm, xmm/m128
         [MethodImpl(Inline)]
         public static __m128 Add(__m128 a, __m128 b)
-        //
-        // Summary:
+
         ///<intrinsic> __m128 _mm_add_ss (__m128 a, __m128 b) ADDSS xmm, xmm/m32
         [MethodImpl(Inline)]
         public static __m128 AddScalar(__m128 a, __m128 b)
-        //
-        // Summary:
+
         ///<intrinsic> __m128 _mm_and_ps (__m128 a, __m128 b) ANDPS xmm, xmm/m128
         [MethodImpl(Inline)]
         public static __m128 And(__m128 a, __m128 b)
 
-        //
-        // Summary:
         ///<intrinsic> __m128 _mm_cmpeq_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(0)
         [MethodImpl(Inline)]
         public static __m128 CompareEqual(__m128 a, __m128 b)
-        //
-        // Summary:
+
         ///<intrinsic> __m128 _mm_cmpgt_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(6)
         [MethodImpl(Inline)]
         public static __m128 CompareGreaterThan(__m128 a, __m128 b)
-        //
-        // Summary:
+
         ///<intrinsic> __m128 _mm_cmpge_ps (__m128 a, __m128 b) CMPPS xmm, xmm/m128, imm8(5)
         [MethodImpl(Inline)]
         public static __m128 CompareGreaterThanOrEqual(__m128 a, __m128 b)
@@ -282,8 +270,6 @@ namespace Z0
         public static __m128 SqrtScalar(__m128 a)
             => SqrtScalar(a);
         
-        //
-        // Summary:
         ///<intrinsic> __m128 _mm_sqrt_ss (__m128 a, __m128 b) SQRTSS xmm, xmm/m32 The above native
         ///<intrinsic> signature does not exist. We provide this additional overload for consistency
         ///<intrinsic> with the other scalar APIs.
@@ -309,16 +295,13 @@ namespace Z0
         // Summary:
         ///<intrinsic> void _mm_storel_pi (__m64* mem_addr, __m128 a) MOVLPS m64, xmm
         public static void StoreLow(float* address, __m128 source)
-        //
-        // Summary:
+
         ///<intrinsic> void _mm_store_ss (float* mem_addr, __m128 a) MOVSS m32, xmm
         public static void StoreScalar(float* address, __m128 source)
-        //
-        // Summary:
+
         ///<intrinsic> __m128d _mm_sub_ps (__m128d a, __m128d b) SUBPS xmm, xmm/m128
         public static __m128 Subtract(__m128 a, __m128 b)
-        //
-        // Summary:
+
         ///<intrinsic> __m128 _mm_sub_ss (__m128 a, __m128 b) SUBSS xmm, xmm/m32
         public static __m128 SubtractScalar(__m128 a, __m128 b)
 

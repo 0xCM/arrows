@@ -14,22 +14,35 @@ namespace Z0
     [StructLayout(LayoutKind.Explicit, Size = 16)]
     public struct __m128d
     {
+        [FieldOffset(0)]
+        public double x0d;
 
+        [FieldOffset(8)]
+        public double x1d;
+ 
         [MethodImpl(Inline)]
         public Vec128<double> ToVec128()
-                => Unsafe.As<__m128d,Vec128<double>>(ref this);
+            => Vec128.define(x0d, x1d);
 
         [MethodImpl(Inline)]
         public static __m128d FromVec128(in Vec128<double> src)
-                => Unsafe.As<Vec128<double>, __m128d>(ref As.asRef(in src));
+        {
+            var dst = default(__m128d);
+            dinx.store(in src, ref dst.x0d);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         public Vector128<double> ToVector128()
-                => Unsafe.As<__m128d,Vector128<double>>(ref this);
+            => Vector128.Create(x0d, x1d);
 
         [MethodImpl(Inline)]
         public static __m128d FromVector128(in Vector128<double> src)
-                => Unsafe.As<Vector128<double>, __m128d>(ref As.asRef(in src));
+        {
+            var dst = default(__m128d);
+            dinx.store(in src, ref dst.x0d);
+            return dst;
+        }
 
         [MethodImpl(Inline)]
         public static implicit operator __m128d(in Vec128<double> src)
@@ -39,7 +52,6 @@ namespace Z0
         public static implicit operator Vec128<double>(in __m128d src)
             => src.ToVec128();
 
-
         [MethodImpl(Inline)]
         public static implicit operator __m128d(in Vector128<double> src)
             => FromVector128(in src);
@@ -47,12 +59,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator Vector128<double>(in __m128d src)
             => src.ToVector128();
-
-        [FieldOffset(0)]
-        public double x0d;
-
-        [FieldOffset(8)]
-        public double x1d;
     }
 
 }

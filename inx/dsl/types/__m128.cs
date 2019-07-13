@@ -14,41 +14,6 @@ namespace Z0
     [StructLayout(LayoutKind.Explicit, Size = 16)]
     public struct __m128
     {
-
-        [MethodImpl(Inline)]
-        public Vec128<float> ToVec128()
-                => Unsafe.As<__m128,Vec128<float>>(ref this);
-
-        [MethodImpl(Inline)]
-        public static __m128 FromVec128(in Vec128<float> src)
-                => Unsafe.As<Vec128<float>, __m128>(ref As.asRef(in src));
-
-        [MethodImpl(Inline)]
-        public Vector128<float> ToVector128()
-                => Unsafe.As<__m128,Vector128<float>>(ref this);
-
-        [MethodImpl(Inline)]
-        public static __m128 FromVector128(in Vector128<float> src)
-                => Unsafe.As<Vector128<float>, __m128>(ref As.asRef(in src));
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128(in Vec128<float> src)
-            => FromVec128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator Vec128<float>(in __m128 src)
-            => src.ToVec128();
-
-
-        [MethodImpl(Inline)]
-        public static implicit operator __m128(in Vector128<float> src)
-            => FromVector128(in src);
-
-        [MethodImpl(Inline)]
-        public static implicit operator Vector128<float>(in __m128 src)
-            => src.ToVector128();
-
-
         [FieldOffset(0)]
         public float x00f;
 
@@ -61,6 +26,44 @@ namespace Z0
         [FieldOffset(12)]
         public float x03f;
 
-    }
+        [MethodImpl(Inline)]
+        public Vec128<float> ToVec128()
+            => Vec128.define(x00f,x01f,x02f,x03f);
 
+        [MethodImpl(Inline)]
+        public static __m128 FromVec128(in Vec128<float> src)
+        {
+            var dst = default(__m128);
+            dinx.store(in src, ref dst.x00f);
+            return dst;
+        }
+            
+        [MethodImpl(Inline)]
+        public Vector128<float> ToVector128()
+            => Vector128.Create(x00f,x01f,x02f,x03f);
+
+        [MethodImpl(Inline)]
+        public static __m128 FromVector128(in Vector128<float> src)
+        {
+            var dst = default(__m128);
+            dinx.store(in src, ref dst.x00f);
+            return dst;
+        }
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128(in Vec128<float> src)
+            => FromVec128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vec128<float>(in __m128 src)
+            => src.ToVec128();
+
+        [MethodImpl(Inline)]
+        public static implicit operator __m128(in Vector128<float> src)
+            => FromVector128(in src);
+
+        [MethodImpl(Inline)]
+        public static implicit operator Vector128<float>(in __m128 src)
+            => src.ToVector128();
+    }
 }

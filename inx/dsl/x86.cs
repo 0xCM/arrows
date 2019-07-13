@@ -45,7 +45,6 @@ namespace Z0
         static Vector128<ulong> v64u(in __m128i src)
             => (Vector128<ulong>)src;
 
-
         [MethodImpl(Inline)]
         static Vector256<sbyte> v8i(in __m256i src)
             => (Vector256<sbyte>)src;
@@ -87,16 +86,16 @@ namespace Z0
             => src;
 
         [MethodImpl(Inline)]
-        static __m256i lo(in m512i src)
+        static __m256i lo(in __m512i src)
             => src.v0;
 
         [MethodImpl(Inline)]
-        static __m256i hi(in m512i src)
+        static __m256i hi(in __m512i src)
             => src.v1;
 
         [MethodImpl(Inline)]
-        static m512i pack(in __m256i lo, in __m256i hi)
-            => new m512i(lo,hi);
+        static __m512i pack(in __m256i lo, in __m256i hi)
+            => new __m512i(lo,hi);
     }
 
 }

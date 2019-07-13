@@ -24,7 +24,7 @@ namespace Z0.Test
             {
                 var x = lhs.LoadVec256(block);
                 var y = rhs.LoadVec256(block);
-                dinx.mul(x,y); 
+                dinx.vumul256(x,y); 
             }
             return snapshot(sw);
 
@@ -38,7 +38,7 @@ namespace Z0.Test
         }
         protected override void RunTests(string filter)
         {            
-            base.RunTests(filter);
+            base.RunTests("NatModTest");
         }
 
         public static void Main(params string[] args)

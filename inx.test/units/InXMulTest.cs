@@ -14,39 +14,63 @@ namespace Z0.Test
 
     public class InXMulTest : UnitTest<InXMulTest>
     {
-        public void Mul128()
+        public void VerifyUMul128Powers()
         {
-            //Test case comes from https://docs.microsoft.com/et-ee/cpp/intrinsics/umul128?view=vs-2019
-            var lhs = 0x0ffffffffffffffful;
-            var rhs = 0xf0000000ul;
-            dinx.umul128(lhs, rhs, out UInt128 dst);
-            Claim.eq("0xeffffffffffffff10000000", dst.ToHexString());
+            for(var i=0; i<=63; i++)
+            for(var j=0; j<=63; j++)
+            {
+                var dst = dinx.umul128(Pow2.pow(i), Pow2.pow(j), out UInt128 _);
+                var bsActual = dst.ToBitString();
+                var bsExpect = BitString.FromPow2(i + j);
+                Claim.eq(bsExpect.Format2(true), bsActual.Format2(true));                
+            }                
 
         }
-
-        void Mul256u64(int blocks)
+        
+        public void VerifyMul256u64()
         {
-            var domain = closed(0ul, UInt32.MaxValue);
-            var lhs = Random.Span256<ulong>(blocks, domain);
-            var rhs = Random.Span256<ulong>(blocks, domain);
-            for(var block=0; block<blocks; block++)
+            void VerifyMul256u64(int blocks)
             {
-                var x = lhs.LoadVec256(block);
-                var y = rhs.LoadVec256(block);
-                var z = dinx.mul(x,y); 
+                BlockSamplesStart(blocks);
+                var domain = closed(0ul, UInt32.MaxValue);
+                var lhs = Random.Span256<ulong>(blocks, domain);
+                var rhs = Random.Span256<ulong>(blocks, domain);
+                for(var block=0; block<blocks; block++)
+                {
+                    var x = lhs.LoadVec256(block);
+                    var y = rhs.LoadVec256(block);
+                    var z = dinx.vumul256(x,y); 
 
-                var a = x.Extract().Replicate();
-                var b = y.Extract();
-                var c = a.Mul(b).LoadVec256(0);
-                Claim.eq(z,c);                                           
+                    var a = x.Extract().Replicate();
+                    var b = y.Extract();
+                    var c = a.Mul(b).LoadVec256(0);
+                    Claim.eq(z,c);                                           
+                }
+                BlockSamplesEnd(blocks);
             }
 
-        }
-        public void Mul256u64()
-        {
-            Mul256u64(Pow2.T11);
+            VerifyMul256u64(Pow2.T11);
         }
 
+        public void VerifyUMul64()
+        {
+            void VerifyUMul64(int samples)
+            {
+                PointSamplesStart(samples);
+                var x = Random.Span<uint>(samples);
+                var y = Random.Span<uint>(samples);
+                for(var i=0; i< samples; i++)
+                {
+                    var xi = x[i];
+                    var yi = y[i];
+                    var z = (ulong)xi * (ulong)yi;
+                    Claim.eq(z, dinx.umul64(xi,yi));
+                }
+                PointSamplesEnd(samples);
+            }
+
+            VerifyUMul64(Pow2.T12);
+        }
     }
 
 }

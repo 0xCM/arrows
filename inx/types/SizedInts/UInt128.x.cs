@@ -49,12 +49,12 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Span<byte> ToBytes(this in UInt128 src)
-               => span(
-                    src.x0000, src.x0001, src.x0010, src.x0011,
-                    src.x0100, src.x0101, src.x0110, src.x0111,                        
-                    src.x1100, src.x1101, src.x1110, src.x1111,            
-                    src.x1000, src.x1001, src.x1010, src.x1011
-               );
+            => span(
+                src.x0000, src.x0001, src.x0010, src.x0011,
+                src.x0100, src.x0101, src.x0110, src.x0111,                        
+                src.x1100, src.x1101, src.x1110, src.x1111,            
+                src.x1000, src.x1001, src.x1010, src.x1011
+            );
          
         [MethodImpl(Inline)]
         public static Vec128<ulong> ToVec128(this in UInt128 src)
@@ -105,7 +105,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref UInt128 ShiftL(this ref UInt128 lhs, byte count)
+        public static ref UInt128 ShiftLW(this ref UInt128 lhs, byte count)
         {
             dinx.shiftlw(lhs, count);
             return ref lhs;

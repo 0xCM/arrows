@@ -16,7 +16,12 @@ namespace Z0
 
     public readonly struct BitString : IWord<BitString, BinaryAlphabet>
     {
+        /// <summary>
+        /// The state
+        /// </summary>
         readonly char[] content;
+
+        readonly byte[] content2;
 
         /// <summary>
         /// Constructs a bitstring from primal value
@@ -27,6 +32,18 @@ namespace Z0
         public static BitString From<T>(in T src)
             where T : struct
                 => From(gbits.bstext(in src));
+
+        /// <summary>
+        /// Constructs a bitstring from a power of 2
+        /// </summary>
+        /// <param name="exp">The value of the expoonent</param>
+        [MethodImpl(Inline)]
+        public static BitString FromPow2(int exp)
+        {
+            Span<Bit> dst = stackalloc Bit[exp + 1];
+            dst[exp] = 1;
+            return From(dst);
+        }
 
         /// <summary>
         /// Constructs a bitstring from a span of primal values
@@ -48,12 +65,34 @@ namespace Z0
             where T : struct
                 => From(src.ReadOnly());
 
-        const string Specifier = "0b";
-
+        /// <summary>
+        /// Constructs a bitstring from a clr string of 0's and 1's 
+        /// </summary>
+        /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static BitString From(string src)                
             => new BitString(src);
 
+        /// <summary>
+        /// Constructs a bitstring from bitspan
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static BitString From(Span<Bit> src)                
+            => new BitString(src);
+
+        /// <summary>
+        /// Constructs a bitstring from a span of '0' and '1' characters
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static BitString From(Span<char> src)                
+            => new BitString(src);
+
+        /// <summary>
+        /// Constructs a bitstring from a readonly span of '0' and '1' characters
+        /// </summary>
+        /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static BitString From(ReadOnlySpan<char> src)                
             => new BitString(src);
@@ -74,8 +113,11 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitString From<T>(params T[] parts)
             where T : struct
-            => From(parts.ToSpan());
+                => From(parts.ToSpan());
 
+        /// <summary>
+        /// Defines the canonical emtpy bitstring of 0 length
+        /// </summary>
         public static readonly BitString Empty = From(string.Empty);
 
         [MethodImpl(Inline)]
@@ -127,18 +169,38 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        BitString(string content)
+        BitString(string content)            
         {
             this.content = content.ToCharArray();
             Check(this.content);
+            this.content2 = new byte[content.Length];
+
+            var len = content.Length;
+            var lastix = len - 1;
+            for(var i=0; i<content.Length; i++)
+                content2[lastix - i] = (byte)(content[i] == '0' ? 0 : 1);
         }
             
+        [MethodImpl(Inline)]
+        BitString(ReadOnlySpan<Bit> content)
+        {
+            this.content = new char[content.Length];
+            this.content2 = new byte[content.Length];
+            for(var i=0; i<content.Length; i++)
+            {
+                this.content[i] = content[i];
+                this.content2[i] = (byte)(content[i] ? 1 : 0);
+            }
+        }
 
         [MethodImpl(Inline)]
         BitString(ReadOnlySpan<char> content)
         {
             this.content = content.ToArray();
             Check(this.content);
+            this.content2 = new byte[content.Length];
+            for(var i=0; i< content.Length; i++)
+                this.content2[i] = (byte)(content[i] == '0' ? 0 : 1);
         }
 
         public bool IsEmpty
@@ -211,6 +273,8 @@ namespace Z0
         public BitString Zero 
             => Empty;
 
+        const string Specifier = "0b";
+
         /// <summary>
         /// Copies the bit characters from this bitstring to a span at a specified offset
         /// </summary>
@@ -239,6 +303,16 @@ namespace Z0
             }
             else
                 return (specifier ? Specifier : string.Empty) + fmt;
+        }
+
+        public string Format2(bool tlz = false, bool specifier = false, int? blockWidth = null, char? blocksep = null)
+        {            
+            Span<char> dst = stackalloc char[content2.Length];
+            var lastix = dst.Length - 1;
+            for(var i=0; i< dst.Length; i++)
+                dst[lastix - i] = content2[i] == 0 ? '0' : '1';
+            var x = new string(dst);
+            return tlz ? x.TrimStart('0') : x;
         }
 
         /// <summary>
@@ -376,5 +450,8 @@ namespace Z0
 
         public BitString Concat(BitString rhs)
             => this + rhs;
+ 
+         
+
     }
 }

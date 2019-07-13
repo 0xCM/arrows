@@ -66,6 +66,14 @@ namespace Z0
         public static Span<bool> ToBools(this Span<Bit> src)
             => src.ReadOnly().ToBools();
 
+        public static Span<char> ToBitChars(this Span<Bit> src)
+        {
+            Span<char> dst = new char[src.Length];
+            for(var i=0; i<src.Length; i++)
+                dst[i] = src[i];
+            return dst;
+        }
+            
         [MethodImpl(Inline)]
         public static byte TakeByte(this ReadOnlySpan<Bit> src)
         {
