@@ -8,8 +8,10 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
 
     using static zfunc;
+    using static As;
 
     [StructLayout(LayoutKind.Explicit, Size = 32)]
     public struct __m256
@@ -55,10 +57,10 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static __m256 FromVector256(in Vector256<float> src)
+        public static unsafe __m256 FromVector256(in Vector256<float> src)
         {
             __m256 dst = default;
-            dinx.store(in src, ref dst.x00s);
+            Avx2.Store(refptr(ref dst.x00s), src);
             return dst;
         }
 

@@ -43,7 +43,7 @@ namespace Z0
         /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static __m512i M512<T>(this IRandomSource random, Interval<T> domain, Func<T,bool> filter = null)
+        public static __m512i m512i<T>(this IRandomSource random, Interval<T> domain, Func<T,bool> filter = null)
             where T : struct
                 => __m512i.Define(random.Stream(domain, filter).TakeSpan(64/SizeOf<T>.Size).ReadOnly());
         
@@ -54,7 +54,7 @@ namespace Z0
         /// <param name="filter">If specified, component values for which the predicate returns false are excluded</param>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static __m512i M512<T>(this IRandomSource random, Func<T,bool> filter = null)
+        public static __m512i m512i<T>(this IRandomSource random, Func<T,bool> filter = null)
             where T : struct
                 => __m512i.Define(random.Stream<T>(null, filter).TakeSpan(64/SizeOf<T>.Size).ReadOnly());
     }

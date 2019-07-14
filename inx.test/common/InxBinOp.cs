@@ -20,16 +20,24 @@ namespace Z0.Test
             where T : struct
         {
             var blocklen = Span128<T>.BlockLength;                     
+            
             var lhs = random.ReadOnlySpan128<T>(blocks);
+            Claim.eq(blocks*blocklen,lhs.Length);
+            
             var rhs = random.ReadOnlySpan128<T>(blocks);
+            Claim.eq(blocks*blocklen,rhs.Length);
+            
             var expect = Span128.alloc<T>(blocks);
+            Claim.eq(blocks, expect.BlockCount);
+
             var actual = Span128.alloc<T>(blocks);
+            Claim.eq(blocks, actual.BlockCount);
+
             var tmp = new T[blocklen];
             
-            for(var block = 0; block<blocks; block++)
+            for(var block = 0; block < blocks; block++)
             {
                 var offset = block*blocklen;
-
                 for(var i =0; i<blocklen; i++)
                     tmp[i] = primalOp(lhs[offset + i], rhs[offset + i]);
 

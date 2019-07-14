@@ -31,19 +31,6 @@ namespace Z0.Bench
         }
  
 
-         public static Metrics<T> And<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            var opid =  Id<T>(OpKind.And);
-            var src = lhs.Numbers(rhs);
-            var dst = Num.alloc<T>(length(lhs,rhs));
-            var cycles = config.Cycles;
-            var sw = stopwatch();
-            for(var cycle = 1; cycle <= cycles; cycle++)
-            for(var sample = 0; sample < dst.Length; sample++)
-                dst[sample] = src.Left[sample] & src.Right[sample];                   
-            return opid.DefineMetrics(cycles*dst.Length, snapshot(sw), dst);
-        }
 
         public static Metrics<T> Add<T>(this NumGConfig config, ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
             where T : struct

@@ -8,6 +8,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
 
     using static zfunc;
     using static As;
@@ -44,10 +45,10 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static __m256d FromVector256(in Vector256<double> src)
+        public static unsafe __m256d FromVector256(in Vector256<double> src)
         {
             __m256d dst = default;
-            dinx.store(in src, ref dst.x0d);
+            Avx2.Store(refptr(ref dst.x0d), src);
             return dst;
         }
 

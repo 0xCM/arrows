@@ -8,7 +8,6 @@ namespace Z0
     using System.Runtime.CompilerServices;    
     using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
-
     
     using static zfunc;    
 
@@ -29,6 +28,7 @@ namespace Z0
             return dst;
         }                       
 
+
         /// <summary>
         /// Sends the components of the vector to a blocked span that is 
         /// returned to the caller
@@ -40,6 +40,7 @@ namespace Z0
             where T : struct            
         {
             var dst = Span256.alloc<T>(1);
+            Claim.eq(dst.Length, Vec256<T>.Length);
             Vec256.store(in src, ref dst[0]);
             return dst;
         }                       

@@ -134,9 +134,6 @@ namespace Z0.Bench
                 case OpKind.Mod:
                     metrics = config.Mod<T>(lhs, rhs);   
                     break;                
-                case OpKind.And:
-                    metrics = config.And<T>(lhs, rhs);   
-                    break;                
                 case OpKind.Or:
                     metrics = config.Or<T>(lhs, rhs);   
                     break;                

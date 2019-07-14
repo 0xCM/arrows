@@ -38,7 +38,8 @@ namespace Z0.Test
         }
         protected override void RunTests(string filter)
         {            
-            base.RunTests("NatModTest");
+            //base.RunTests("InXAddTest");
+            base.RunTests(filter);
         }
 
         public static void Main(params string[] args)

@@ -53,6 +53,9 @@ namespace Z0
         public static IndexOutOfRangeException OutOfRange(int index, int min, int max, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
             => new IndexOutOfRangeException(ErrorMessages.IndexOutOfRange(index,min,max, caller, file, line).ToString());
 
+        public static T ThrowOutOfRange<T>(int index, int min, int max, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
+            => throw OutOfRange(index, min, max, caller, file, line);
+
         public static AppException KindUnsupported<T>(T kind, [Caller] string caller = null, [File] string file = null, [Line] int? line = null)
             where T : Enum
                 => AppException.Define(ErrorMessages.KindUnsupported(kind, caller, file, line));

@@ -8,8 +8,10 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using System.Runtime.Intrinsics;
+    using System.Runtime.Intrinsics.X86;
 
     using static zfunc;
+    using static As;
 
     [StructLayout(LayoutKind.Explicit, Size = 16)]
     public struct __m128
@@ -43,10 +45,10 @@ namespace Z0
             => Vector128.Create(x00f,x01f,x02f,x03f);
 
         [MethodImpl(Inline)]
-        public static __m128 FromVector128(in Vector128<float> src)
+        public static unsafe __m128 FromVector128(in Vector128<float> src)
         {
             var dst = default(__m128);
-            dinx.store(in src, ref dst.x00f);
+            Avx2.Store(refptr(ref dst.x00f), src);
             return dst;
         }
 

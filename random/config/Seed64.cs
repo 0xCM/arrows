@@ -24,40 +24,42 @@ namespace Z0
         public static ulong Entropic
             => Seed.Entropy<ulong>();
 
-        public static ulong Lookup(int i)
-            =>  RawBytes.ReadPrimalValue<ulong>(i*8); 
-        
+        public static ulong Lookup(uint i)
+            => i <= 15 
+             ? RawBytes.ReadPrimalValue<ulong>((int)(i*8)) 
+             : Errors.ThrowOutOfRange<ulong>((int)i, 0, 15);
+                            
         public static ulong Seed00 => Lookup(0);
 
-        public static ulong Seed01 => Lookup(8);
+        public static ulong Seed01 => Lookup(1);
 
-        public static ulong Seed02 => Lookup(16);
+        public static ulong Seed02 => Lookup(2);
 
-        public static ulong Seed03 => Lookup(24);
+        public static ulong Seed03 => Lookup(3);
 
-        public static ulong Seed04 => Lookup(32);
+        public static ulong Seed04 => Lookup(4);
 
-        public static ulong Seed05 => Lookup(40);
+        public static ulong Seed05 => Lookup(5);
 
-        public static ulong Seed06 => Lookup(48);
+        public static ulong Seed06 => Lookup(6);
 
-        public static ulong Seed07 => Lookup(56);
+        public static ulong Seed07 => Lookup(7);
 
-        public static ulong Seed08 => Lookup(64);
+        public static ulong Seed08 => Lookup(8);
 
-        public static ulong Seed09 => Lookup(72);
+        public static ulong Seed09 => Lookup(9);
 
-        public static ulong Seed10 => Lookup(80);
+        public static ulong Seed10 => Lookup(10);
 
-        public static ulong Seed11 => Lookup(88);
+        public static ulong Seed11 => Lookup(11);
 
-        public static ulong Seed12 => Lookup(96);
+        public static ulong Seed12 => Lookup(12);
 
-        public static ulong Seed13 => Lookup(104);
+        public static ulong Seed13 => Lookup(13);
 
-        public static ulong Seed14 => Lookup(112);
+        public static ulong Seed14 => Lookup(14);
 
-        public static ulong Seed15 => Lookup(120);
+        public static ulong Seed15 => Lookup(15);
 
 
         /// <summary>

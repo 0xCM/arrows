@@ -204,10 +204,10 @@ namespace Z0.Test
             TypeCaseStart<T>();
             for(var i=0; i<count; i++)
             {
-                var xSample = Random.M512(domain);
-                for(var partIx=0; partIx < M512.PartCount<T>(); partIx++)
+                var xSample = Random.m512i(domain);
+                for(var partIx=0; partIx < __m512i.PartCount<T>(); partIx++)
                 {
-                    var xPart = xSample.part<T>(partIx);
+                    var xPart = xSample.Part<T>(partIx);
                     Claim.yea(domain.Contains(xPart));
                 }
 

@@ -407,43 +407,43 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<sbyte> load(ref sbyte head)
-            => LoadVector256(pint8(ref head));
+            => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<byte> load(ref byte head)
-            => LoadVector256(puint8(ref head));
+            => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<short> load(ref short head)
-            => LoadVector256(pint16(ref head));
+            => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<ushort> load(ref ushort head)
-            => LoadVector256(puint16(ref head));
+            => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<int> load(ref int head)
-            => LoadVector256(pint32(ref head));
+            => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<uint> load(ref uint head)
-            => LoadVector256(puint32(ref head));
+            => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<long> load(ref long head)
-            => LoadVector256(pint64(ref head));
+            => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<ulong> load(ref ulong head)
-            => LoadVector256(puint64(ref head));
+            => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<float> load(ref float head)
-            => LoadVector256(pfloat32(ref head));
+            => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
         public static unsafe Vec256<double> load(ref double head)
-            => LoadVector256(pfloat64(ref head));
+            => LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
         public static Vec256<sbyte> load(Span<sbyte> src)

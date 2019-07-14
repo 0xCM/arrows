@@ -44,8 +44,10 @@ namespace Z0
         
         void Init(ulong s0, ulong index)
         {
-            if(index % 2 == 0)
-                throw new ArgumentException($"Then index value {index} is not odd");
+            
+            //The index must be odd; so at this point either an exception must be
+            //thrown or the index must be manipulated; the latter was chosen
+            index = index % 2 == 0 ? index + 1 : index;
 
             this.Index = (index << 1) | 1u;
             Step();

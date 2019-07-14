@@ -23,12 +23,17 @@ namespace Z0
 
     */
 
-    [StructLayout(LayoutKind.Explicit, Size = 64)]
+    [StructLayout(LayoutKind.Explicit, Size = ByteSize)]
     public struct __m512i
     {
+        public const int ByteSize = 64;
+        
         public static __m512i Define(__m256i lo, __m256i hi)
             => new __m512i(lo,hi);
-        
+
+        public static int PartCount<T>()
+            where T : struct => ByteSize/Unsafe.SizeOf<T>();
+
         [MethodImpl(Inline)]
         public static unsafe __m512i Define<T>(ReadOnlySpan<T> src)
             where T : struct
@@ -88,6 +93,7 @@ namespace Z0
             where T : struct
                 => ref Unsafe.Add(ref Head<T>(), pos);
 
+
         [MethodImpl(Inline)]
         public BitString ToBitString()
             => BitString.From(this.x0, this.x1, this.x2, this.x3, this.x4, this.x5, this.x6, this.x7);            
@@ -130,6 +136,16 @@ namespace Z0
         public void ToggleBit<T>(int partIx, int offset)
             where T : struct
                 => gbits.toggle(ref this.Part<T>(partIx), offset);
+        
+        public Bit this[int bitpos]
+        {
+            [MethodImpl(Inline)]
+            get
+            {
+                var qr = math.quorem(ByteSize, 8);
+                return TestBit<byte>(qr.Quotient, qr.Remainder);                
+            }
+        }
 
         
         [FieldOffset(0)]

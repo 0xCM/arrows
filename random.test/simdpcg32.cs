@@ -32,7 +32,7 @@ namespace Z0
         
         static readonly __m256i I32 = _mm256_set1_epi32(32);
 
-        public static Pcg32 Define(m512i seed, m512i inc)
+        public static Pcg32 Define(in __m512i seed, in __m512i inc)
             => new Pcg32(seed,inc);
 
 
@@ -66,7 +66,7 @@ namespace Z0
 
         public class Pcg32
         {
-            public Pcg32(m512i seed, m512i inc)
+            public Pcg32(in __m512i seed, in __m512i inc)
             {
                 this.stateV0 = seed.v0;
                 this.stateV1 = seed.v1;
@@ -84,7 +84,8 @@ namespace Z0
 
             public Vec256<uint> Next()
             {
-                (var s0, var s1) = (stateV0, stateV1);
+                var s0= stateV0;
+                var s1 = stateV1;
 
                 /* Improve high bits using xorshift step */
                 var s0s = _mm256_srli_epi64(s0, 18);

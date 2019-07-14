@@ -47,33 +47,44 @@ namespace Z0.Test
 
         }
 
-        void RunBlah()
+        static void DefineSeeds(ulong ibase, 
+            out Span<ulong> seeds, out Span<ulong> indices,  
+            out Vec256<ulong> s0, out Vec256<ulong> s1, 
+            out Vec256<ulong> i0, out Vec256<ulong> i1)
         {
-            var ibase = Seed64.Seed10;
-
-            var seeds = span(
+            seeds = span(
                 Seed64.Seed00, Seed64.Seed01, Seed64.Seed02, Seed64.Seed03,
                 Seed64.Seed04, Seed64.Seed05, Seed64.Seed06, Seed64.Seed07
                 );
 
-            var indices = span(
+            indices = span(
                 ibase += 2, ibase += 2, ibase += 2, ibase += 2,
                 ibase += 2, ibase += 2,ibase += 2, ibase += 2 
                 );
             
-            var s0 = seeds.LoadVec256(0);
-            var s1 = seeds.LoadVec256(4);
-            var i0 = indices.LoadVec256();
-            var i1 = indices.LoadVec256(4);
+            s0 = seeds.LoadVec256(0);
+            s1 = seeds.LoadVec256(4);
+            i0 = indices.LoadVec256();
+            i1 = indices.LoadVec256(4);
+        }
 
+        void BenchSimdPcg32()
+        {
+            DefineSeeds(Seed64.Seed10, 
+                out Span<ulong> seeds, out Span<ulong> indices, 
+                out Vec256<ulong> s0, out Vec256<ulong> s1, 
+                out Vec256<ulong> i0, out Vec256<ulong> i1);
             
-            var n = Pow2.T16;
-            
+            var n = Pow2.T16;            
+
+
             var pcgSuite = Pcg32.Suite(seeds, indices);
-            var rngAvx = PcgAvx.Define(m512i.Define(s0,s1), m512i.Define(i0,i1));
 
+            var rngAvx = PcgAvx.Define(__m512i.Define(s0,s1), __m512i.Define(i0,i1));
+        
             var x1 = pcgSuite.Next();
-            var y1 = rngAvx.Next().Extract();
+            var y1S = rngAvx.Next();
+            var y1 = y1S.Extract();
 
             print($"pcg: {x1.Format()}");
             print($"pcg: {y1.Format()}");
@@ -98,9 +109,10 @@ namespace Z0.Test
 
 
         protected override void RunTests(string filter)
-        {                        
-
-            base.RunTests(filter);        
+        {     
+            
+            BenchSimdPcg32();
+            //base.RunTests(filter);        
         }
         public static void Main(params string[] args)
             => Run(args);

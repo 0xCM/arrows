@@ -107,7 +107,7 @@ namespace Z0.Test
             
             var calcs = span<T>(len);
             for(var i = 0; i< calcs.Length; i++)
-                calcs[i] = gmath.and(data.LeftSrc[i], data.RightSrc[i]);
+                calcs[i] = gbits.and(data.LeftSrc[i], data.RightSrc[i]);
             var vExpect = Vector.Load(calcs, rep);            
             
             VerifyEquality(vExpect, vResult);

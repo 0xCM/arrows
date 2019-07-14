@@ -273,43 +273,43 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<sbyte> load(ref sbyte src)
-            => LoadVector128(pint8(ref src));
+            => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<byte> load(ref byte src)
-            => LoadVector128(puint8(ref src));
+            => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<short> load(ref short src)
-            => LoadVector128(pint16(ref src));
+            => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<ushort> load(ref ushort src)
-            => LoadVector128(puint16(ref src));
+            => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<int> load(ref int src)
-            => LoadVector128(pint32(ref src));
+            => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<uint> load(ref uint src)
-            => LoadVector128(puint32(ref src));
+            => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<long> load(ref long src)
-            => LoadVector128(pint64(ref src));
+            => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<ulong> load(ref ulong src)
-            => LoadVector128(puint64(ref src));
+            => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<float> load(ref float src)
-            => LoadVector128(pfloat32(ref src));
+            => LoadVector128(refptr(ref src));
 
         [MethodImpl(Inline)]
         public static unsafe Vec128<double> load(ref double src)
-            => LoadVector128(pfloat64(ref src)); 
+            => LoadVector128(refptr(ref src)); 
  
         [MethodImpl(Inline)]
         public static Vec128<byte> define(byte x0)
