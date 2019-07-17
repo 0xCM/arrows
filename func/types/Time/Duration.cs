@@ -11,25 +11,27 @@ namespace Z0
     
     using static zfunc;
 
+    /// <summary>
+    /// Captures the length of a time period predicated on timer ticks
+    /// </summary>
     public readonly struct Duration
     {
+        /// <summary>
+        /// The number of elapsed timer ticks that determines the period length
+        /// </summary>
         public readonly long Ticks;
 
-        public readonly double Ms;
 
         public static readonly Duration Zero = new Duration(0);
         
-        public static Duration Define(long ticks, double? ms = null)
-            => new Duration(ticks, ms);
+        public static Duration Define(long timerTicks)
+            => new Duration(timerTicks);
 
         public static implicit operator Duration(TimeSpan src)
             => new Duration(src.Ticks);
 
-        public static implicit operator Duration(long ticks)
-            => Define(ticks);
-
-        public static Duration Mark(Stopwatch sw)
-            => Define(sw.ElapsedTicks);
+        public static implicit operator Duration(long timerTicks)
+            => Define(timerTicks);
             
         [MethodImpl(Inline)]
         public static Duration operator +(Duration lhs, Duration rhs)
@@ -96,30 +98,40 @@ namespace Z0
             => lhs.Ticks <= rhs.Ticks;
             
         [MethodImpl(Inline)]
-        public Duration(long Ticks, double? ms = null)
+        public Duration(long TimerTicks)
         {
-            this.Ticks = Ticks;
-            this.Ms = ms ?? ticksToMs(Ticks);
+            this.Ticks = TimerTicks;
         }
 
-        [MethodImpl(Inline)]
-        public Duration(TimeSpan ts)
+        static readonly ulong TicksPerSecond = (ulong)Stopwatch.Frequency;
+
+        /// <summary>
+        /// The number of nanoseconds that elapse during a timer tick
+        /// </summary>
+        static ulong NsPerTick = 1_000_000_000/TicksPerSecond;
+
+        static readonly double TicksPerMs  = (double)TicksPerSecond/1000.0;
+
+        /// <summary>
+        /// The duration expressed in nanoseconds
+        /// </summary>
+        public ulong Ns
         {
-            this.Ticks = ts.Ticks;
-            this.Ms = ticksToMs(Ticks);
+            [MethodImpl(Inline)]
+            get => NsPerTick * (ulong)Ticks;
         }
 
-        public Duration Half()
-            => new Duration(Ticks/2);
+        public ulong TimerTicks
+        {
+            [MethodImpl(Inline)]
+            get => (ulong)Ticks;
+        }
 
-        static readonly double TicksPerMs 
-            = (double)Stopwatch.Frequency/1000.0;
-
-        public double FractionalMs
+        public double Ms
             => ((double)Ticks)/TicksPerMs;
 
         public override string ToString()
-            => $"{FractionalMs} ms";
+            => $"{Ns} ns ~ ".PadLeft(16) + $"{Ms} ms";
 
         public bool Equals(Duration rhs)
             => this.Ticks == rhs.Ticks;

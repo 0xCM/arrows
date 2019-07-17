@@ -69,6 +69,13 @@ namespace Z0
                 Messages.Add(msg.WithLevel(SeverityLevel.Benchmark));
         }
 
+        protected void TracePerf(OpTimePair timing)
+        {
+            if(TraceEnabled)
+                TracePerf(timing.Format());
+        }
+
+
         /// <summary>
         /// Emits a performance-related trace message
         /// </summary>

@@ -14,7 +14,7 @@ namespace Z0.Test
     {   
         static AppMsg CompleteMsg<T>(ITimeSeries<T> series, Duration runtime)
             where T : struct
-            => AppMsg.Define($"Series Id = {series.Id} | Last Term = {series.Observed} | Evolution Time = {runtime.FractionalMs} ms", SeverityLevel.Info);
+            => AppMsg.Define($"Series Id = {series.Id} | Last Term = {series.Observed} | Evolution Time = {runtime.Ms} ms", SeverityLevel.Info);
 
         static void EmitCompletion<T>(ITimeSeries<T> series, Duration runtime)
             where T : struct

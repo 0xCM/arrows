@@ -11,10 +11,64 @@ namespace Z0.Test
     using System.IO;
     
     using static zfunc;
+    using static Nats;
 
 
     public class NatModTest : UnitTest<NatModTest>
     {
+
+        public void VerifyMul()
+        {
+            VerifyMul(N3);
+            VerifyMul(N5);
+            VerifyMul(N7);
+            VerifyMul(N10);
+            VerifyMul(N11);
+            VerifyMul(N13);
+            VerifyMul(N32);
+            VerifyMul(N64);
+            VerifyMul(N128);
+            VerifyMul(N1024);
+        }
+
+        public void VerifyIncrement()
+        {
+            VerifyIncrement(N128);
+            VerifyIncrement(N5);
+            VerifyIncrement(N20);            
+        }
+
+        public void VerifyDecrement()
+        {
+            VerifyDecrement(N13);
+            VerifyDecrement(N17);
+            VerifyDecrement(N32);
+            VerifyDecrement(N64);
+            VerifyDecrement(N128);
+        }
+
+        public void VerifyInverse()
+        {
+            VerifyInverse(N3);
+            VerifyInverse(N5);
+            VerifyInverse(N7);
+            VerifyInverse(N11);
+            VerifyInverse(N13);
+            VerifyInverse(N17);
+            VerifyInverse(N19);
+            VerifyInverse(N31);
+            VerifyInverse(N41);
+            VerifyInverse(N1277);
+        }
+
+        public void VerifyAdd()
+        {
+            var samples = Pow2.T08;
+            VerifyAdd(samples,N87);
+            VerifyAdd(samples,N64);
+            VerifyAdd(samples,N512);
+        }
+
 
         public void TestCreate()
         {
@@ -39,41 +93,62 @@ namespace Z0.Test
 
         }
 
-        public void TestIncrement()
+        void VerifyIncrement<N>(N n = default)
+            where N :ITypeNat, new()
         {
-            var n = new N5();
+            TypeCaseStart<N>();
+
             var x = Mod.Define(n);
-            var a0 = x;
-            var a1 = ++x;
-            var a2 = ++x;
-            var a3 = ++x;
-            var a4 = ++x;
-            var a5 = ++x;
-            Claim.eq(Mod.Define(n), a0);
-            Claim.eq(Mod.Define(1, n), a1);
-            Claim.eq(Mod.Define(2, n), a2);
-            Claim.eq(Mod.Define(3, n), a3);
-            Claim.eq(Mod.Define(4, n), a4);
-            Claim.eq(Mod.Define(n), a5);
+            var y = Mod.Define(n);
+            var max = (uint)n.value;
+
+            x++; x++; x++;
+            y += 3u;
+            Claim.eq(x,y);
+
+            x++; x++; x++; x++; x++; x++; x++; x++; x++; x++;
+            y += 10u;
+            Claim.eq(x,y);
+
+
+            var a = Mod.Define(max,n);
+            var b = Mod.Define(max,n);
+
+            for(var k = 1; k<max*3; k++)            
+            {
+                ++a; 
+                Claim.eq(a, b += 1u);
+            }
+
+            TypeCaseEnd<N>();
         }
 
-        public void TestDecrement()
-        {
 
-            var n = new N5();
-            var x = Mod.Define(n);
-            var a0 = x;
-            var a1 = --x;
-            var a2 = --x;
-            var a3 = --x;
-            var a4 = --x;
-            var a5 = --x;
-            Claim.eq(Mod.Define(n), a0);
-            Claim.eq(Mod.Define(4, n), a1);
-            Claim.eq(Mod.Define(3, n), a2);
-            Claim.eq(Mod.Define(2, n), a3);
-            Claim.eq(Mod.Define(1, n), a4);
-            Claim.eq(Mod.Define(n), a5);
+        void VerifyDecrement<N>(N n = default)
+            where N :ITypeNat, new()
+        {
+            TypeCaseStart<N>();
+
+            var max = (uint)n.value - 1;
+            var last = Mod.Define(max, n);
+            var m = last;
+            
+            var i = (int)max;
+            do --m;
+            while(--i >= 0);
+            
+            Claim.eq(m, last);
+
+            var x = max;
+            var y = Mod.Define(max,n);
+
+            for(var k = 1; k<i*3; k++)            
+            {
+                --x; 
+                Claim.eq(x, y -= 1u);
+            }
+
+            TypeCaseEnd<N>();
 
         }
 
@@ -90,13 +165,14 @@ namespace Z0.Test
             Claim.eq(Mod.Define(14,n), b14a);
         }
 
-        public void TestAddition()
+        public void VerifyAdd<N>(int samples, N n = default)
+            where N :ITypeNat, new()
         {
-            var N = NatSeq<N8,N7>.Rep;
-            var n = (uint)N.value;
-            var n0 = Mod.Define(N);
+            TypeCaseStart<N>();
 
-            var samples = Pow2.T08;
+            var nVal = (uint)n.value;
+            var n0 = Mod.Define(n);
+
             var lhs = Random.Span<uint>(samples);
             var rhs = Random.Span<uint>(samples);
             for(var i=0; i<samples; i++)
@@ -105,21 +181,25 @@ namespace Z0.Test
                 var y = rhs[i];
                 
                 var xN = n0 + x;
-                Claim.eq(Mod.Define(x,N), xN);
+                Claim.eq(Mod.Define(x,n), xN);
 
                 var yN = n0 + y;
-                Claim.eq(Mod.Define(y,N), yN);
+                Claim.eq(Mod.Define(y,n), yN);
                 
                 var zN = xN + yN;                
-                var z = (uint)(((ulong)x + (ulong)y) % (ulong)n);
+                var z = (uint)(((ulong)x + (ulong)y) % (ulong)nVal);
                 Claim.eq(z, zN.State, appMsg($"{xN} + {yN} = {zN} != {z} = ({x} + {y}) % {n}", SeverityLevel.Error));                
             }
 
+            TypeCaseEnd<N>();
         }
 
-        static string FormatTable<T>(T[,] entries, uint m, uint n, uint offset = 0)
+
+        static string FormatTable<T>(T[,] entries, uint offset = 0)
         {
             var sb = sbuild();
+            var m = entries.GetLength(0);
+            var n = entries.GetLength(1);
 
             for(var i=0; i<n; i++)
                 if(i == 0)
@@ -140,41 +220,47 @@ namespace Z0.Test
 
         }
 
-        public void TestMul()
+        void VerifyMul<N>(N n = default)
+            where N : ITypeNat, new()
         {
-            var N = new N7();
-            var n = (uint)N.value;
-            var n0 = Mod.Define(N);            
-            var expect = new uint[n,n];
-            for(var i=0u; i<N; i++)
-            for(var j=0u; j<N; j++)
+            TypeCaseStart<N>();
+            var nVal = (uint)n.value;
+            var n0 = Mod.Define(n);            
+            var expect = new uint[nVal,nVal];
+            for(var i=0u; i<nVal; i++)
+            for(var j=0u; j<nVal; j++)
             {
                 var x = n0 + i;
                 var y = n0 + j;
                 var z = x*y;
-                expect[i,j] = (i*j) % (uint)N.value;
+                expect[i,j] = (i*j) % nVal;
 
                 Claim.eq(expect[i,j], z);
             }
+            TypeCaseEnd<N>();
 
-            Trace(FormatTable(expect,n,n,1));
         }
-
-        void TestInversion()
+ 
+        void VerifyInverse<N>(N n = default)
+            where N : ITypeNat, new()
         {
-            var N = new N11();
-            var n0 = Mod.Define(N);
+
+            TypeCaseStart<N>();
+            var n0 = Mod.Define(n);
             var n1 = n0 + 1u;
-            for(var i=1u; i<N; i++)
+            for(var i=1u; i<n.value; i++)
             {
                 var x = n0 + i;
                 var y = x.Invert();
                 var z = x * y;
-                //Claim.eq(n1,z);
-                Trace($"{x}*{y} = {z}");
+                Claim.eq(n1, z);
             }
+            TypeCaseEnd<N>();
+
         }
 
     }
+
+
 
 }

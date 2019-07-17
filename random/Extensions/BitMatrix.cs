@@ -10,7 +10,7 @@ namespace Z0
 
     using static zfunc;
 
-    partial class UniformRandom
+    partial class RngX
     {
         [MethodImpl(Inline)]
         public static BitMatrix4 BitMatrix4(this IRandomSource random)
@@ -18,7 +18,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitMatrix8 BitMatrix8(this IRandomSource random)
-            => Z0.BitMatrix8.Define(random.NextInt());
+            => Z0.BitMatrix8.Define(random.NextUInt64());
 
         [MethodImpl(Inline)]
         public static BitMatrix16 BitMatrix16(this IRandomSource random)

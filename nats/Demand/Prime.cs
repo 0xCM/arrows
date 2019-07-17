@@ -26,6 +26,12 @@ namespace Z0
 
         public bool valid {get;}
 
+        public ulong value 
+            => k.value;
+
+        public NatSeq seq 
+            => k.seq;
+
         public string format()
             => valid ? $"{k} is prime" : $"INVALID({k} is prime)";    
         

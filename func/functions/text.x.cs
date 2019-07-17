@@ -283,15 +283,31 @@ namespace Z0
             => bracket(string.Join(sep, src.Select(x => x.ToString())).TrimEnd());
 
         /// <summary>
+        /// Encloses a string between left and right brackets
+        /// </summary>
+        [MethodImpl(Inline)]
+        public static string Bracket(this string src)
+            => bracket(src);
+
+        /// <summary>
         /// Formats a stream as a vector
         /// </summary>
         /// <param name="src">The source stream</param>
         /// <param name="sep">The item separator</param>
         /// <typeparam name="T">The item type</typeparam>
-        [MethodImpl(Inline)]
         public static string FormatAsVector<T>(this IEnumerable<T> src, string sep = ", ")
             => AsciSym.Lt + string.Join(sep, src.Select(x => x.ToString())).TrimEnd() + AsciSym.Gt;
  
+        /// <summary>
+        /// Formats a stream as a delimited sequence with an optional custom value formatter
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="sep">The item separator</param>
+        /// <param name="formatter">An optional custom value formatter</formatter>
+        /// <typeparam name="T">The item type</typeparam>
+        public static string Format<T>(this IEnumerable<T> src, string sep = ", ",  Func<T,string> formatter = null)
+            => string.Join(sep, src.Select(x => formatter?.Invoke(x) ?? x.ToString())).TrimEnd();
+
 
         [MethodImpl(Inline)]   
         public static string Format(this ReadOnlySpan<char> src)

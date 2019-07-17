@@ -9,7 +9,7 @@ namespace Z0
 
     using static zfunc;
 
-    public static partial class RandomSizedX
+    partial class RngX
     {        
         /// <summary>
         /// Produces a random 128-bit intrinsic vector

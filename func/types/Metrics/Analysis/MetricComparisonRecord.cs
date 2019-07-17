@@ -77,8 +77,8 @@ namespace Z0
                 $"{LeftOp.Trim()}{delimiter}".PadRight(OpNameLen), 
                 $"{RightOp.Trim()}{delimiter}".PadRight(OpNameLen), 
                 FormatOpCount(delimiter, digitcommas),
-                $"{LeftTime.Ms} ms{delimiter}".PadRight(MetricLen), 
-                $"{RightTime.Ms} ms{delimiter}".PadRight(MetricLen), 
+                $"{LeftTime}{delimiter}".PadRight(MetricLen), 
+                $"{RightTime}{delimiter}".PadRight(MetricLen), 
                     Ratio);
 
         public override string ToString()

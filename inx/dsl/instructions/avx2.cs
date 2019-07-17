@@ -404,18 +404,18 @@ namespace Z0
 
         ///<intrinsic> __m256i _mm256_broadcastd_epi32 (__m128i a) VPBROADCASTD ymm, in m32</intrinsic>
         [MethodImpl(Inline)]
-        public static unsafe __m256i _mm256_broadcastd_epi32(ref uint a)
-            => BroadcastScalarToVector256(refptr(ref a));
+        public static unsafe __m256i _mm256_broadcastd_epi32(ref uint mem_addr)
+            => BroadcastScalarToVector256(refptr(ref mem_addr));
 
         ///<intrinsic> __m256i _mm256_broadcastw_epi16 (__m128i a) VPBROADCASTW ymm, in m16</intrinsic>
         [MethodImpl(Inline)]
-        public static unsafe __m256i _mm256_broadcastw_epi16(ref ushort a)
-            => BroadcastScalarToVector256(refptr(ref a));
+        public static unsafe __m256i _mm256_broadcastw_epi16(ref ushort mem_addr)
+            => BroadcastScalarToVector256(refptr(ref mem_addr));
 
         ///<intrinsic> __m256i _mm256_broadcastb_epi8 (__m128i a) VPBROADCASTB ymm, in m8</intrinsic>
         [MethodImpl(Inline)]
-        public static unsafe __m256i _mm256_broadcastb_epi8(ref sbyte a)
-            => BroadcastScalarToVector256(refptr(ref a));
+        public static unsafe __m256i _mm256_broadcastb_epi8(ref sbyte mem_addr)
+            => BroadcastScalarToVector256(refptr(ref mem_addr));
 
         ///<intrinsic> __m256i _mm256_broadcastd_epi32 (__m128i a) VPBROADCASTD ymm, xmm</intrinsic>
         [MethodImpl(Inline)]
@@ -426,6 +426,11 @@ namespace Z0
         [MethodImpl(Inline)]
         public static __m256i _mm256_broadcastw_epi16(in __m128i a)
             => BroadcastScalarToVector256(v16i(a));
+
+        ///<intrinsic> __m128i _mm_broadcastw_epi16 (__m128i a) VPBROADCASTW xmm, in m16</intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m128i _mm_broadcastw_epi16(ref ushort mem_addr)
+            => BroadcastScalarToVector128(refptr(ref mem_addr));
 
         ///<intrinsic> __m256i _mm256_broadcastb_epi8 (__m128i a) VPBROADCASTB ymm, xmm</intrinsic>
         [MethodImpl(Inline)]
@@ -439,121 +444,130 @@ namespace Z0
 
         ///<intrinsic> __m256i _mm256_broadcastb_epi8 (__m128i a) VPBROADCASTB ymm, in m8</intrinsic>        
         [MethodImpl(Inline)]
-        public static unsafe __m256i _mm256_broadcastb_epi8(ref byte src)
-            => BroadcastScalarToVector256(refptr(ref src));
+        public static unsafe __m256i _mm256_broadcastb_epi8(ref byte mem_addr)
+            => BroadcastScalarToVector256(refptr(ref mem_addr));
 
         ///<intrinsic> __m256i _mm256_broadcastw_epi16 (__m128i a) VPBROADCASTW ymm, in m16</intrinsic>        
         [MethodImpl(Inline)]
-        public static unsafe __m256i _mm256_broadcastw_epi16(ref short src)
-            => BroadcastScalarToVector256(refptr(ref src));
+        public static unsafe __m256i _mm256_broadcastw_epi16(ref short mem_addr)
+            => BroadcastScalarToVector256(refptr(ref mem_addr));
 
         ///<intrinsic> __m256i _mm256_broadcastd_epi32 (__m128i a) VPBROADCASTD ymm, in m32</intrinsic>        
         [MethodImpl(Inline)]
-        public static unsafe __m256i _mm256_broadcastd_epi32(ref int src)
-            => BroadcastScalarToVector256(refptr(ref src));
+        public static unsafe __m256i _mm256_broadcastd_epi32(ref int mem_addr)
+            => BroadcastScalarToVector256(refptr(ref mem_addr));
+
+        ///<intrinsic> __m256i _mm256_broadcastq_epi64 (__m128i a) VPBROADCASTQ ymm, in m64</intrinsic>
+        [MethodImpl(Inline)]
+        public static unsafe __m256i _mm256_broadcastq_epi64(ref long mem_addr)
+            => BroadcastScalarToVector256(refptr(ref mem_addr));
 
         ///<intrinsic> __m256 _mm256_broadcastss_ps (__m128 a) VBROADCASTSS ymm, xmm</intrinsic>
         [MethodImpl(Inline)]
         public static __m256d _mm256_broadcastss_ps(in __m128d a)
             => BroadcastScalarToVector256(a);
 
+        ///<intrinsic> __m256i _mm256_subs_epi8 (__m256i a, __m256i b) VPSUBSB ymm, ymm, ymm/m256<intrinsic>
+        [MethodImpl(Inline)]
+        public static __m256i _mm256_subs_epi8(in __m256i a, in __m256i b)
+            => Subtract(v8i(a), v8i(b));
+
         #if false
 
-        //<intrinsic> __m256i _mm256_adds_epi16 (__m256i a, __m256i b) VPADDSW ymm, ymm, ymm/m256
+        ///<intrinsic> __m256i _mm256_adds_epi16 (__m256i a, __m256i b) VPADDSW ymm, ymm, ymm/m256</intrinsic>
+        [MethodImpl(Inline)]
         public static __m256i _mm256_adds_epi16(in __m256i a, in __m256i b)
-        //
 
-        //<intrinsic> __m256i _mm256_adds_epi8 (__m256i a, __m256i b) VPADDSB ymm, ymm, ymm/m256
+        ///<intrinsic> __m256i _mm256_adds_epi8 (__m256i a, __m256i b) VPADDSB ymm, ymm, ymm/m256</intrinsic>
+        [MethodImpl(Inline)]
         public static __m256i _mm256_adds_epi8(in __m256i a, in __m256i b)
-        //
 
-        //<intrinsic> __m256i _mm256_adds_epu16 (__m256i a, __m256i b) VPADDUSW ymm, ymm, ymm/m256
+        ///<intrinsic> __m256i _mm256_adds_epu16 (__m256i a, __m256i b) VPADDUSW ymm, ymm, ymm/m256</intrinsic>
+        [MethodImpl(Inline)]
         public static __m256i _mm256_adds_epu16(in __m256i a, in __m256i b)
 
-        //<intrinsic> __m256i _mm256_alignr_epi8 (__m256i a, __m256i b, const int imm8) VPALIGNR ymm,ymm, ymm/m256, imm8 
         // This intrinsic generates VPALIGNR that operates over bytes rather than elements of the vectors.
+        ///<intrinsic> __m256i _mm256_alignr_epi8 (__m256i a, __m256i b, const int imm8) VPALIGNR ymm,ymm, ymm/m256, imm8</intrinsic>
+        [MethodImpl(Inline)]
         public static __m256i _mm256_alignr_epi8(in __m256i a, in __m256i b, byte count)
 
-
-        //<intrinsic> __m128i _mm_broadcastq_epi64 (__m128i a) VPBROADCASTQ xmm, in m64
+        ///<intrinsic> __m128i _mm_broadcastq_epi64 (__m128i a) VPBROADCASTQ xmm, in m64</intrinsic>
+        [MethodImpl(Inline)]
         public static __m128i _mm_broadcastq_epi64(ref ulong a)
-        //
 
-        //<intrinsic> __m128i _mm_broadcastw_epi16 (__m128i a) VPBROADCASTW xmm, xmm
+        //<intrinsic> __m128i _mm_broadcastw_epi16 (__m128i a) VPBROADCASTW xmm, xmm</intrinsic>
+        [MethodImpl(Inline)]
         public static __m128i _mm_broadcastw_epi16(__m128i value)
-        //
 
-        //<intrinsic> __m128i _mm_broadcastd_epi32 (__m128i a) VPBROADCASTD xmm, in m32
+        ///<intrinsic> __m128i _mm_broadcastd_epi32 (__m128i a) VPBROADCASTD xmm, in m32</intrinsic>
+        [MethodImpl(Inline)]
         public static __m128i _mm_broadcastd_epi32(ref uint a)
-        //
 
-        //<intrinsic> __m128i _mm_broadcastw_epi16 (__m128i a) VPBROADCASTW xmm, in m16
-        public static __m128i BroadcastScalarToVector128(ref ushort a)
+        
+        //<intrinsic> __m128i _mm_broadcastb_epi8 (__m128i a) VPBROADCASTB xmm, in m8</intrinsic>
+        [MethodImpl(Inline)]
+        public static __m128i _mm_broadcastb_epi8(ref sbyte mem_addr)
 
-        //<intrinsic> __m128i _mm_broadcastb_epi8 (__m128i a) VPBROADCASTB xmm, in m8
-        public static __m128i _mm_broadcastb_epi8(ref sbyte a)
-
-        //<intrinsic> __m128i _mm_broadcastq_epi64 (__m128i a) VPBROADCASTQ xmm, xmm
+        //<intrinsic> __m128i _mm_broadcastq_epi64 (__m128i a) VPBROADCASTQ xmm, xmm</intrinsic>
+        [MethodImpl(Inline)]
         public static __m128i _mm_broadcastq_epi64(in __m128i value)
         //
 
-        //<intrinsic> __m128i _mm_broadcastd_epi32 (__m128i a) VPBROADCASTD xmm, xmm
+        //<intrinsic> __m128i _mm_broadcastd_epi32 (__m128i a) VPBROADCASTD xmm, xmm</intrinsic>
+        [MethodImpl(Inline)]
         public static __m128i _mm_broadcastd_epi32(in __m128i value)
         //
 
-        //<intrinsic> __m128 _mm_broadcastss_ps (__m128 a) VBROADCASTSS xmm, xmm
+        ///<intrinsic> __m128 _mm_broadcastss_ps (__m128 a) VBROADCASTSS xmm, xmm</intrinsic>
+        [MethodImpl(Inline)]
         public static __m128d _mm_broadcastss_ps(in __m128d value)
-        //
 
-        //<intrinsic> __m128i _mm_broadcastw_epi16 (__m128i a) VPBROADCASTW xmm, in m16
-        
+        ///<intrinsic> __m128i _mm_broadcastw_epi16 (__m128i a) VPBROADCASTW xmm, in m16</intrinsic>
+        [MethodImpl(Inline)]
         public static __m128i _mm_broadcastw_epi16(ref short a)
+
+        [MethodImpl(Inline)]
         public static __m128i _mm_broadcastb_epi8(in __m128i value)
 
-        //<intrinsic> __m128i _mm_broadcastd_epi32 (__m128i a) VPBROADCASTD xmm, in m32        
+        ///<intrinsic> __m128i _mm_broadcastd_epi32 (__m128i a) VPBROADCASTD xmm, in m32</intrinsic>
+        [MethodImpl(Inline)]
         public static __m128i _mm_broadcastd_epi32(ref int a)
-        //
 
-        //<intrinsic> __m128i _mm_broadcastq_epi64 (__m128i a) VPBROADCASTQ xmm, in m64
-        
+        ///<intrinsic> __m128i _mm_broadcastq_epi64 (__m128i a) VPBROADCASTQ xmm, in m64</intrinsic>
+        [MethodImpl(Inline)]
         public static __m128i _mm_broadcastq_epi64(ref long a)
-        //
 
-        //<intrinsic> __m128i _mm_broadcastb_epi8 (__m128i a) VPBROADCASTB xmm, in m8
-        
+        ///<intrinsic> __m128i _mm_broadcastb_epi8 (__m128i a) VPBROADCASTB xmm, in m8</intrinsic>   
+        [MethodImpl(Inline)]
         public static __m128i _mm_broadcastb_epi8(ref byte a)
 
-        //<intrinsic> __m128d _mm_broadcastsd_pd (__m128d a) VMOVDDUP xmm, xmm
+        ///<intrinsic> __m128d _mm_broadcastsd_pd (__m128d a) VMOVDDUP xmm, xmm</intrinsic>
+        [MethodImpl(Inline)]
         public static __m128d _mm_broadcastsd_pd(in __m128d value)
 
-        //<intrinsic> __m128i _mm_broadcastw_epi16 (__m128i a) VPBROADCASTW xmm, xmm
+        ///<intrinsic> __m128i _mm_broadcastw_epi16 (__m128i a) VPBROADCASTW xmm, xmm</intrinsic>
+        [MethodImpl(Inline)]
         public static __m128i _mm_broadcastw_epi16(in __m128i value)
 
-        //<intrinsic> __m256i _mm256_broadcastq_epi64 (__m128i a) VPBROADCASTQ ymm, in m64
-        
+        ///<intrinsic> __m256i _mm256_broadcastq_epi64 (__m128i a) VPBROADCASTQ ymm, in m64</intrinsic>
+        [MethodImpl(Inline)]
         public static __m256i _mm256_broadcastq_epi64(ref ulong a);
-
 
         ///<intrinsic> __m256i _mm256_broadcastb_epi8 (__m128i a) VPBROADCASTB ymm, xmm</intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_broadcastb_epi8(in __m128i a);
-        //
 
-        //<intrinsic> __m256d _mm256_broadcastsd_pd (__m128d a) VBROADCASTSD ymm, xmm
+        ///<intrinsic> __m256d _mm256_broadcastsd_pd (__m128d a) VBROADCASTSD ymm, xmm</intrinsic>
         [MethodImpl(Inline)]
         public static m256d _mm256_broadcastsd_pd(in __m128d a);
-        //
 
-        //<intrinsic> __m256i _mm256_broadcastw_epi16 (__m128i a) VPBROADCASTW ymm, xmm
+        ///<intrinsic> __m256i _mm256_broadcastw_epi16 (__m128i a) VPBROADCASTW ymm, xmm</intrinsic>
         [MethodImpl(Inline)]
         public static __m256i _mm256_broadcastw_epi16(in __m128i a);
 
-        //<intrinsic> __m256i _mm256_broadcastq_epi64 (__m128i a) VPBROADCASTQ ymm, in m64        
-        [MethodImpl(Inline)]
-        public static __m256i BroadcastScalarToVector256(ref long a);
-        //
+        
 
-        //<intrinsic> __m256i _mm256_broadcastsi128_si256 (__m128i a) VBROADCASTI128 ymm, in __m128 The        
+        ///<intrinsic> __m256i _mm256_broadcastsi128_si256 (__m128i a) VBROADCASTI128 ymm, in __m128</intrinsic>
         [MethodImpl(Inline)]
         public static __m256i BroadcastVector128ToVector256(ref byte mem_addr);
         //
@@ -1496,9 +1510,6 @@ namespace Z0
         //<intrinsic> __m256i _mm256_subs_epi16 (__m256i a, __m256i b) VPSUBSW ymm, ymm, ymm/m256<intrinsic>
         public static __m256i _mm256_subs_epi16(in __m256i a, in __m256i b);
 
-        //<intrinsic> __m256i _mm256_subs_epi8 (__m256i a, __m256i b) VPSUBSB ymm, ymm, ymm/m256<intrinsic>
-        [MethodImpl(Inline)]
-        public static __m256i _mm256_subs_epi8(in __m256i a, in __m256i b);
  
 
     #endif

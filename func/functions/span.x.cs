@@ -27,7 +27,6 @@ namespace Z0
         public static void CopyTo<T>(this ReadOnlySpan<T> src, Span<T> dst, int offset)
             => src.CopyTo(dst.Slice(offset));
 
-
         /// <summary>
         /// Constructs a span from an aray
         /// </summary>
@@ -365,46 +364,27 @@ namespace Z0
             return io;
         }
         
-        public static (int Index, T Value)[] ToIndexedValues<T>(this ReadOnlySpan<T> src)
+        /// <summary>
+        /// Creates a dictionary from a span using the element indices as keys
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static IDictionary<int,T> ToDictionary<T>(this ReadOnlySpan<T> src)
         {
-            var dst = alloc<(int,T)>(src.Length);
-            for(var i = 0; i< dst.Length; i++)
-                dst[i] = (i,src[i]);
+            var dst = new Dictionary<int,T>(src.Length);
+            for(var i = 0; i< src.Length; i++)
+                dst[i] = src[i];
             return dst;
         }
 
-        [MethodImpl(Inline)]
-        public static (int Index, T Value)[] ToIndexedValues<T>(this Span<T> src)        
-            => src.ReadOnly().ToIndexedValues();
-
-        [MethodImpl(Inline)]
-        public static (T[] Left, T[] Right) PairReplicate<T>(this ReadOnlySpan<T> src)
-            where T : struct
-                => (src.Replicate().ToArray(), src.Replicate().ToArray());
-
         /// <summary>
-        /// Formats a readonly span as a vector
+        /// Creates a dictionary from a span using the element indices as keys
         /// </summary>
-        /// <param name="src">The source stream</param>
-        /// <param name="sep">The item separator</param>
-        /// <typeparam name="T">The item type</typeparam>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
-        public static string FormatAsVector<T>(this ReadOnlySpan<T> src, string sep = ", ")
-        {
-            var components = src.Map(x => x.ToString());
-            var body = concat(components, sep);
-            return AsciSym.Lt + body + AsciSym.Gt;
-        }
-            
-        /// <summary>
-        /// Formats a span as a vector
-        /// </summary>
-        /// <param name="src">The source stream</param>
-        /// <param name="sep">The item separator</param>
-        /// <typeparam name="T">The item type</typeparam>
-        [MethodImpl(Inline)]
-        public static string FormatAsVector<T>(this Span<T> src, string sep = ", ")
-            => src.ReadOnly().FormatAsVector(sep);
+        public static IDictionary<int,T> ToDictionary<T>(this Span<T> src)        
+            => src.ReadOnly().ToDictionary();
 
         /// <summary>
         /// Constructs a span from a sequence selection
@@ -430,6 +410,11 @@ namespace Z0
         public static ReadOnlySpanPair<T> PairWith<T>(this ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)        
             => new ReadOnlySpanPair<T>(lhs,rhs);
     
+        /// <summary>
+        /// Clones a blocked span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Span256<T> Replicate<T>(this Span256<T> src)
             where T : struct
@@ -439,6 +424,11 @@ namespace Z0
             return Z0.Span256.load<T>(dst);
         }
 
+        /// <summary>
+        /// Clones a blocked span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]
         public static Span256<T> Replicate<T>(this ReadOnlySpan256<T> src)
             where T : struct
@@ -448,6 +438,12 @@ namespace Z0
             return Z0.Span256.load<T>(dst);
         }
 
+        /// <summary>
+        /// Creates a new span by interposing a specified element between each element of an existing span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="x">The value to place between each element in the new span</param>
+        /// <typeparam name="T">The element type</typeparam>
         public static Span<T> Intersperse<T>(this ReadOnlySpan<T> src, T x)
         {
             var dst = span<T>(src.Length*2 - 1);
@@ -460,54 +456,22 @@ namespace Z0
             return dst;
         }
 
+        /// <summary>
+        /// Creates a new span by interposing a specified element between each element of an existing span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="x">The value to place between each element in the new span</param>
+        /// <typeparam name="T">The element type</typeparam>
         [MethodImpl(Inline)]        
         public static Span<T> Intersperse<T>(this Span<T> src, T x)
             => src.ReadOnly().Intersperse(x);
 
-        [MethodImpl(Inline)]        
-        public static string Format<T>(this Span<T> src, char delimiter = ',', int offset = 0)
-            => src.ReadOnly().Format(delimiter, offset);
-
-        [MethodImpl(Inline)]        
-        public static string Format<T>(this ReadOnlySpan128<T> src, char delimiter = ',', int offset = 0)
-            where T : struct
-            => src.Unblock().Format(delimiter, offset);
-
-        [MethodImpl(Inline)]        
-        public static string Format<T>(this Span128<T> src, char delimiter = ',', int offset = 0)
-            where T : struct
-            => src.Unblock().Format(delimiter, offset);
-
-        [MethodImpl(Inline)]        
-        public static string Format<T>(this ReadOnlySpan256<T> src, char delimiter = ',', int offset = 0)
-            where T : struct
-            => src.UnBlock().Format(delimiter, offset);
-
-        [MethodImpl(Inline)]        
-        public static string Format<T>(this Span256<T> src, char delimiter = ',', int offset = 0)
-            where T : struct
-            => src.Unblock().Format(delimiter, offset);
-
-        public static string Format<T>(this ReadOnlySpan<T> src, char delimiter = ',', int offset = 0)
-        {
-            var sb = new StringBuilder();            
-            for(var i = offset; i< src.Length; i++)
-            {
-                if(i != offset)
-                    sb.Append(delimiter);
-                sb.Append($"{src[i]}");
-            }
-            return sb.ToString();
-        }
 
         [MethodImpl(Inline)]        
         public static Span<N,T> ToNatSpan<N,T>(this Span<T> src, N size = default)
             where N : ITypeNat, new()
                 => new Span<N, T>(src);
        
-        public static string Format<N,T>(this Span<N,T> src, char delimiter = ',', int offset = 0)
-            where N : ITypeNat, new()
-                => src.Unsize().Format(delimiter,offset);
 
         [MethodImpl(Inline)]        
         public static Span<T> Slice<N,T>(this Span<T> src, N start = default)
@@ -571,7 +535,109 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Span<T> Reverse<T>(this Span<T> src)        
             => src.ReadOnly().Reverse();
+
         
+        //TODO: There ought to be an allocation-free way to do this
+        /// <summary>
+        /// Lifts the content of a span into a LINQ enumerable
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static IEnumerable<T> ToEnumerable<T>(this ReadOnlySpan<T> src)
+            => src.ToArray();
+            
+
+        /// <summary>
+        /// Lifts the content of a span into a LINQ enumerable
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static IEnumerable<T> ToEnumerable<T>(this Span<T> src)
+            => src.ReadOnly().ToEnumerable();
+
+        /// <summary>
+        /// Creates a set from a span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static ISet<T> ToSet<T>(this Span<T> src)        
+            => new HashSet<T>(src.ToEnumerable());
+
+        /// <summary>
+        /// Creates a set from a readonly span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <typeparam name="T">The element type</typeparam>
+        [MethodImpl(Inline)]
+        public static ISet<T> ToSet<T>(this ReadOnlySpan<T> src)        
+            => new HashSet<T>(src.ToEnumerable());
+
+        [MethodImpl(Inline)]        
+        public static string Format<T>(this Span<T> src, char delimiter = ',', int offset = 0)
+            => src.ReadOnly().Format(delimiter, offset);
+
+        [MethodImpl(Inline)]        
+        public static string Format<T>(this ReadOnlySpan128<T> src, char delimiter = ',', int offset = 0)
+            where T : struct
+            => src.Unblock().Format(delimiter, offset);
+
+        [MethodImpl(Inline)]        
+        public static string Format<T>(this Span128<T> src, char delimiter = ',', int offset = 0)
+            where T : struct
+            => src.Unblock().Format(delimiter, offset);
+
+        [MethodImpl(Inline)]        
+        public static string Format<T>(this ReadOnlySpan256<T> src, char delimiter = ',', int offset = 0)
+            where T : struct
+            => src.UnBlock().Format(delimiter, offset);
+
+        [MethodImpl(Inline)]        
+        public static string Format<T>(this Span256<T> src, char delimiter = ',', int offset = 0)
+            where T : struct
+            => src.Unblock().Format(delimiter, offset);
+
+        public static string Format<T>(this ReadOnlySpan<T> src, char delimiter = ',', int offset = 0)
+        {
+            var sb = new StringBuilder();            
+            for(var i = offset; i< src.Length; i++)
+            {
+                if(i != offset)
+                    sb.Append(delimiter);
+                sb.Append($"{src[i]}");
+            }
+            return sb.ToString();
+        }
+
+        [MethodImpl(Inline)]        
+        public static string Format<N,T>(this Span<N,T> src, char delimiter = ',', int offset = 0)
+            where N : ITypeNat, new()
+                => src.Unsize().Format(delimiter,offset);
+
+        /// <summary>
+        /// Formats a readonly span as a vector
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="sep">The item separator</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static string FormatAsVector<T>(this ReadOnlySpan<T> src, string sep = ", ")
+        {
+            var components = src.Map(x => x.ToString());
+            var body = concat(components, sep);
+            return AsciSym.Lt + body + AsciSym.Gt;
+        }
+            
+        /// <summary>
+        /// Formats a span as a vector
+        /// </summary>
+        /// <param name="src">The source stream</param>
+        /// <param name="sep">The item separator</param>
+        /// <typeparam name="T">The item type</typeparam>
+        [MethodImpl(Inline)]
+        public static string FormatAsVector<T>(this Span<T> src, string sep = ", ")
+            => src.ReadOnly().FormatAsVector(sep);
 
     }
 }

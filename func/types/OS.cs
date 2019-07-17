@@ -54,6 +54,21 @@ namespace Z0
             }
         }
 
+        /// <summary>
+        /// Gets the CPU cycles consumed by the calling thread
+        /// </summary>
+        public static ulong ThreadCpuCycles 
+        {
+            [MethodImpl(Inline)]
+            get
+            {
+                var cycles = 0ul;
+                if (!QueryThreadCycleTime((IntPtr)(-2), ref cycles))
+                    return 0ul;
+                return cycles;
+            }
+        }
+
         static OS()
         {
             QueryPerformanceFrequency(ref CounterFrequency);
@@ -76,6 +91,38 @@ namespace Z0
         [DllImport(kernel)]
         static extern uint GetCurrentThreadId();
 
+        /// <summary>
+        /// Gets the handle of the current thread
+        /// </summary>
+        [DllImport(kernel)]
+        static extern IntPtr GetCurrentThread();
 
+
+        /// <summary>
+        /// Retrieves the cyle time for a specified thread
+        /// </summary>
+        /// <param name="hThread">The handle to the thread</param>
+        /// <param name="cycles">The number of cpu clock cycles used by the thread</param>
+        /// <returns></returns>
+        [DllImport(kernel)]
+        static extern bool QueryThreadCycleTime(IntPtr hThread, ref ulong cycles);
+
+        /// <summary>
+        /// Retrieves the sum of the cycle time of all threads of the specified process.
+        /// </summary>
+        /// <param name="hProc">The handle to the process</param>
+        /// <param name="cycles">The number of cpu clock cycles used by the threads of the process</param>
+        /// <returns></returns>
+        [DllImport(kernel)]
+        static extern bool QueryProcessCycleTime(IntPtr hProc, ref ulong cycles);
+
+        [DllImport(kernel)]
+        static extern void QueryInterruptTime(ref ulong time);
+
+
+        [DllImport(kernel)]
+        static extern void QueryInterruptTimePrecise(ref ulong time);
+
+                
     }
 }

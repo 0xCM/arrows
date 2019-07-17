@@ -9,7 +9,7 @@ namespace Z0
 
     using static constant;    
 
-    public readonly struct N11 : INatSeq<N11>
+    public readonly struct N11 : INatSeq<N11>, INatPrime<N11>
     {
         public static readonly N11 Rep = default;
 

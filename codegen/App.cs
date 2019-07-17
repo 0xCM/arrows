@@ -15,7 +15,7 @@ namespace Z0
     {
 
         public App()
-            :base(Z0.XOrStarStar256.define(Seed256.BenchSeed))
+            :base(Z0.XOrShift256.define(Seed256.BenchSeed))
         {
             
         }

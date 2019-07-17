@@ -53,7 +53,8 @@ partial class zfunc
         var rTimer = stopwatch();
         right(n);
         var rTime = OpTime.Define(rightLabel, n, snapshot(rTimer));
-        return (lTime, rTime);
+        OpTimePair result = (lTime, rTime);
+        return result;
     }
 
 

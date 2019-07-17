@@ -13,8 +13,15 @@ namespace Z0
 
     partial class ginx
     {
+        
+        /// <summary>
+        /// Extracts an index-identified component from a vector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        /// <param name="index">The identifying index</param>
+        /// <typeparam name="T">The component type</typeparam>
         [MethodImpl(Inline)]
-        public static T extract<T>(in Vec128<T> src, byte index)
+        public static T component<T>(in Vec128<T> src, byte index)
             where T : struct
         {
             if(typeof(T) == typeof(byte))
@@ -39,36 +46,64 @@ namespace Z0
                 return generic<T>(float64(src[index]));
             else 
                 throw unsupported<T>();
-
         }
 
         [MethodImpl(Inline)]
-        public static Vec128<T> extract<T>(in Vec256<T> src, byte index)
+        public static Vec128<T> lo<T>(in Vec256<T> src)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(dinx.extract(in int8(in src), index));
+                return generic<T>(dinx.lo(in int8(in src)));
             else if(typeof(T) == typeof(byte))
-                return generic<T>(dinx.extract(in uint8(in src), index));
+                return generic<T>(dinx.lo(in uint8(in src)));
             else if(typeof(T) == typeof(short))
-                return generic<T>(dinx.extract(in int16(in src), index));
+                return generic<T>(dinx.lo(in int16(in src)));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(dinx.extract(in uint16(in src), index));
+                return generic<T>(dinx.lo(in uint16(in src)));
             else if(typeof(T) == typeof(int))
-                return generic<T>(dinx.extract(in int32(in src), index));
+                return generic<T>(dinx.lo(in int32(in src)));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(dinx.extract(in uint32(in src), index));
+                return generic<T>(dinx.lo(in uint32(in src)));
             else if(typeof(T) == typeof(long))
-                return generic<T>(dinx.extract(in int64(in src), index));
+                return generic<T>(dinx.lo(in int64(in src)));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(dinx.extract(in uint64(in src), index));
+                return generic<T>(dinx.lo(in uint64(in src)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dinx.extract(in float32(in src), index));
+                return generic<T>(dinx.lo(in float32(in src)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dinx.extract(in float64(in src), index));
+                return generic<T>(dinx.lo(in float64(in src)));
             else 
                 throw unsupported<T>();
         }
+
+        [MethodImpl(Inline)]
+        public static Vec128<T> hi<T>(in Vec256<T> src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(sbyte))
+                return generic<T>(dinx.hi(in int8(in src)));
+            else if(typeof(T) == typeof(byte))
+                return generic<T>(dinx.hi(in uint8(in src)));
+            else if(typeof(T) == typeof(short))
+                return generic<T>(dinx.hi(in int16(in src)));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(dinx.hi(in uint16(in src)));
+            else if(typeof(T) == typeof(int))
+                return generic<T>(dinx.hi(in int32(in src)));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(dinx.hi(in uint32(in src)));
+            else if(typeof(T) == typeof(long))
+                return generic<T>(dinx.hi(in int64(in src)));
+            else if(typeof(T) == typeof(ulong))
+                return generic<T>(dinx.hi(in uint64(in src)));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(dinx.hi(in float32(in src)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dinx.hi(in float64(in src)));
+            else 
+                throw unsupported<T>();
+        }
+
 
     }
 }

@@ -15,7 +15,6 @@ namespace  Z0
     
     partial class xfunc
     {
-
         /// <summary>
         /// Returns true if a value is the NaN representative
         /// </summary>

@@ -16,8 +16,6 @@ namespace Z0
 
     public static class Seed1024
     {
-
-
         static Guid[] FixedGuids = new Guid[]        
         {   
             Guid.Parse("a719bf6a-b70f-473c-9a25-00f4f7169af7"),

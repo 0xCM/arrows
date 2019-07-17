@@ -36,19 +36,19 @@ namespace Z0
 
 
         [MethodImpl(Inline)]
-        public static IEnumerable<T> PartitionPointStream<T>(this Interval<T> src, T? stepWidth = null)
+        public static IEnumerable<T> PartitionPointStream<T>(this Interval<T> src, T? stepWidth = null, int? precision = null)
             where T : struct
         {            
             var width = stepWidth ?? gmath.one<T>();            
-
+            var scale = precision ?? 4;
             if(src.LeftClosed)
                 yield return src.Left;
             
-            var next = gmath.add(src.Left, width);
+            var next = gmath.round(gmath.add(src.Left, width), scale);
             while(gmath.lt(next,src.Right))
             {
                 yield return next;
-                next = gmath.add(next, width);
+                next = gmath.round(gmath.add(next, width), scale);
             }
 
             if(src.RightClosed)

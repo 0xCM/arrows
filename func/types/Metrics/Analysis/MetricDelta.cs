@@ -66,15 +66,14 @@ namespace Z0
        {
             var title = $"{comparison.LeftTitle} / {comparison.RightTitle}";
             var delta = comparison.LeftMetrics.WorkTime - comparison.RightMetrics.WorkTime;
-            var width = Math.Abs(delta.Ms);
             var leftDuration = comparison.LeftMetrics.WorkTime;
             var rightDuration = comparison.RightMetrics.WorkTime;
-            var ratio = Math.Round((double)leftDuration.Ticks / (double)rightDuration.Ticks, 4);
+            var ratio = Math.Round((double)leftDuration.TimerTicks / (double)rightDuration.TimerTicks, 4);
             var description = concat(
                 $"{title}", 
-                $" | Left Time  = {leftDuration.Ms} ms",
-                $" | Right Time = {rightDuration.Ms} ms",
-                $" | Difference = {delta.Ms} ms",
+                $" | Left Time  = {leftDuration}",
+                $" | Right Time = {rightDuration}",
+                $" | Difference = {delta}",
                 $" | Performance Ratio = {ratio}"
                 );
             return AppMsg.Define(description,  SeverityLevel.Benchmark);

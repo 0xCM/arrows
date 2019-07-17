@@ -20,7 +20,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static byte lopos(byte src)
-            => Pow2.exp((byte)Bmi1.ExtractLowestSetBit(src));
+            => Pow2.inv((byte)Bmi1.ExtractLowestSetBit(src));
 
         /// <summary>
         /// Determines the position of the least on bit
@@ -28,7 +28,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static ushort lopos(ushort src)
-            => Pow2.exp((ushort)Bmi1.ExtractLowestSetBit(src));
+            => Pow2.inv((ushort)Bmi1.ExtractLowestSetBit(src));
 
         /// <summary>
         /// Determines the position of the least on bit
@@ -36,7 +36,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static uint lopos(uint src)
-            => Pow2.exp(Bmi1.ExtractLowestSetBit(src));
+            => Pow2.inv(Bmi1.ExtractLowestSetBit(src));
 
         /// <summary>
         /// Determines the position of the least on bit
@@ -44,7 +44,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
         public static ulong lopos(ulong src)
-            => Pow2.exp(Bmi1.X64.ExtractLowestSetBit(src));
+            => Pow2.inv(Bmi1.X64.ExtractLowestSetBit(src));
     }
 
 }

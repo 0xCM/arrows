@@ -111,8 +111,7 @@ namespace Z0.Test
         protected override void RunTests(string filter)
         {     
             
-            BenchSimdPcg32();
-            //base.RunTests(filter);        
+            base.RunTests(filter);        
         }
         public static void Main(params string[] args)
             => Run(args);

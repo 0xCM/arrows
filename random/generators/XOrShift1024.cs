@@ -5,7 +5,6 @@ namespace Z0
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
-    using System.Runtime.InteropServices;
     using static zfunc;
 
     /// <summary>
@@ -36,11 +35,14 @@ namespace Z0
         
         int p;
 
+        Polyrand MR;
+
         public XOrShift1024(ulong[] seed)
         {
             if(seed.Length < 16)
                 throw new Exception($"Not enough seed! 1024 bits = 128 bytes = 16 longs are required");
             this.state = As.uint64(seed).ToArray();
+            this.MR = RNG.Polyrand(this);
         }
 
         public XOrShift1024(Span<byte> seed)
@@ -48,6 +50,7 @@ namespace Z0
             if(seed.Length < 128)
                 throw new Exception($"Not enough seed! 1024 bits = 128 bytes are required");
             this.state = As.uint64(seed).ToArray();
+            this.MR = RNG.Polyrand(this);
         }
 
         public void Jump() 
@@ -60,7 +63,7 @@ namespace Z0
                 if ( (JT[i] & 1ul << b) != 0)
                     for(int j = 0; j < 16; j++)
                         t[j] ^= state[(j + p) & 15];
-                NextInt();
+                NextUInt64();
             }
 
             for(int j = 0; j < 16; j++)
@@ -68,7 +71,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public ulong NextInt() 
+        public ulong NextUInt64() 
         {
             ulong s0 = state[p];
             ulong s1 = state[p = (p + 1) & 15];
@@ -77,26 +80,20 @@ namespace Z0
             return state[p] * Multiplier;
         }
         
-        [MethodImpl(Inline)]
-        public ulong NextInt(ulong max) 
-            => this.NextUInt64(max);
-
-        [MethodImpl(Inline)]
-        public int NextInt(int max)
-            => this.NextInt32(max);
 
         [MethodImpl(Inline)]
         public double NextDouble()
-            => ((double)NextInt()/(double)ulong.MaxValue);
+            => MR.Next<double>();
 
-        ulong IRandomSource<ulong>.Next()
-            => NextInt();
+        ulong IPointSource<ulong>.Next()
+            => NextUInt64();
 
-        IEnumerable<ulong> IRandomSource<ulong>.Stream()
-        {
-            while(true)
-                yield return NextInt();
-        }
+        ulong IRandomSource.NextUInt64(ulong max)
+            => (this as IRandomSource<ulong>).NextUInt64(max);
+
+        int IRandomSource.NextInt32(int max)
+            => (this as IRandomSource<ulong>).NextInt32(max);
+
     }
 
 }

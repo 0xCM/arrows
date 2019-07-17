@@ -10,4 +10,18 @@
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ContentWithTargetPath Include="lib\dll\z0-vml-clib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>z0-vml-clib.dll</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ContentWithTargetPath Include="lib\dll\z0-vsl-clib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>z0-vsl-clib.dll</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+
 </Project>

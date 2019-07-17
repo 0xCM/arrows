@@ -23,8 +23,8 @@ namespace Z0
             if(LeftBench.OpCount != RightBench.OpCount)   
                 throw new Exception("OpCount mismatch");
 
-            var leftTicks = (double)LeftBench.Metrics.WorkTime.Ticks;
-            var rightTicks = (double)RightBench.Metrics.WorkTime.Ticks;
+            var leftTicks = (double)LeftBench.Metrics.WorkTime.TimerTicks;
+            var rightTicks = (double)RightBench.Metrics.WorkTime.TimerTicks;
             this.Ratio = Math.Round(leftTicks / rightTicks, 4);         
         }
 

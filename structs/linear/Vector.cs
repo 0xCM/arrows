@@ -35,10 +35,14 @@ namespace Z0
         public static Vector<N,T> Define(Span<T> src)
             => new Vector<N,T>(src);
 
+        [MethodImpl(Inline)]
+        public static Vector<N,T> Define(params T[] src)
+            => new Vector<N, T>(src);
+
         /// <summary>
         /// Specifies the length of the vector, i.e. its component count
         /// </summary>
-        public static readonly int Length = nati<N>();     
+        public static readonly int NatLength = nati<N>();     
 
         /// <summary>
         /// Vec => Slice
@@ -64,7 +68,7 @@ namespace Z0
         Vector(ref T src)
         {
             data =  NatSpan.load<N,T>(ref src);  
-            require(data.Length == Length);
+            require(data.Length == NatLength);
         }
 
         [MethodImpl(Inline)]
@@ -76,14 +80,14 @@ namespace Z0
         [MethodImpl(Inline)]
         Vector(in ReadOnlySpan<T> src)
         {
-            require(src.Length == Length);
+            require(src.Length == NatLength);
             data = NatSpan.replicate<N,T>(src);
         }
 
         [MethodImpl(Inline)]
         Vector(Span<T> src)
         {
-            require(src.Length == Length);
+            require(src.Length == NatLength);
             data = NatSpan.adapt(src, NatRep);
         }
 
@@ -95,6 +99,9 @@ namespace Z0
         
         Span<N,T> data {get;}
 
+        public int Length
+            => NatLength;
+            
         public ref T this[int index] 
             => ref data[index];
 

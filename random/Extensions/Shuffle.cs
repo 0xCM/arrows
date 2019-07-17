@@ -12,15 +12,14 @@ namespace Z0
     using static zfunc;
     using static As;
 
-    public static class ShuffleX
+    partial class RngX
     {
-        public static Span<T> Shuffle<T>(this Span<T> io, IRandomSource random = null)
+        public static Span<T> Shuffle<T>(this IRandomSource random, Span<T> io)
         {
-            random = random ?? RNG.Default;
             var last = io.Length - 1;
             for (int i = last; i > 0; i--)
             {
-                int j = random.NextInt(i + 1);
+                int j = random.NextInt32(i + 1);
                 var temp = io[i];
                 io[i] = io[j];
                 io[j] = temp;
@@ -28,20 +27,29 @@ namespace Z0
             return io;
         }
 
+        public static Permutation<N,T> Shuffle<N,T>(this IRandomSource random, Permutation<N,T> src)
+            where N : ITypeNat, new()
+            where T : struct
+        {            
+            for (var i = src.Length; i >= 1; i--)
+                src.Transpose((uint)i, random.Next(leftclosed(1u, (uint)i + 1u)));
+            return src;            
+        }
+
         [MethodImpl(Inline)]
-        public static Span<T> Shuffle<T>(this ReadOnlySpan<T> src, IRandomSource random = null)
-            => src.Replicate().Shuffle(random ?? RNG.Default);
+        public static Span<T> Shuffle<T>(this IRandomSource random, ReadOnlySpan<T> src)
+            => random.Shuffle(src.Replicate());
  
-        public static Perm Shuffle(this Perm src, IRandomSource random = null)
+        public static Permutation Shuffle(this IRandomSource random, Permutation src)
         {
-            random = random ?? RNG.Default;
             var last = src.Length - 1;
             for (int i = last; i > 0; i--)
             {
-                int j = random.NextInt(i + 1);
+                int j = random.NextInt32(i + 1);
                 src.Transpose(i,j);
             }
             return src;            
+
         }
     }
 }

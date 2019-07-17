@@ -12,6 +12,7 @@ namespace Z0
 
     partial class gmath
     {
+        [MethodImpl(Inline)]
         public static Span<T> add<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
             where T : struct
         {

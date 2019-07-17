@@ -99,12 +99,12 @@ namespace MsInfer
         [Stochastic]
         public static int Int(int maxPlus1, IRandomSource random = null)
         {
-            return random?.NextInt(maxPlus1) ?? gen.Next(maxPlus1);
+            return random?.NextInt32(maxPlus1) ?? gen.Next(maxPlus1);
         }
 
         [MethodImpl(Inline)]
         static int NextInt(int max, IRandomSource random)
-            => random?.NextInt(max) ?? gen.Next(max);
+            => random?.NextInt32(max) ?? gen.Next(max);
 
         [MethodImpl(Inline)]
         static double NextDouble(IRandomSource random)
@@ -162,7 +162,7 @@ namespace MsInfer
             // (would also work the other way)
             for (int i = n - 1; i > 0; i--)
             {
-                int j = random?.NextInt(i + 1) ??Rand.Int(i + 1);
+                int j = random?.NextInt32(i + 1) ??Rand.Int(i + 1);
                 T temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
@@ -183,7 +183,7 @@ namespace MsInfer
             // (would also work the other way)
             for (int i = n - 1; i > 0; i--)
             {
-                int j = random?.NextInt(i + 1) ?? Rand.Int(i + 1);
+                int j = random?.NextInt32(i + 1) ?? Rand.Int(i + 1);
                 T temp = list[i];
                 list[i] = list[j];
                 list[j] = temp;
@@ -237,7 +237,7 @@ namespace MsInfer
                 {
                     while (true)
                     {
-                        int item = random?.NextInt(itemCount) ?? Rand.Int(itemCount);
+                        int item = random?.NextInt32(itemCount) ?? Rand.Int(itemCount);
                         if (!set.Contains(item))
                         {
                             set.Add(item);

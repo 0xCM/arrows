@@ -47,23 +47,6 @@ namespace Z0
         }
 
 
-        public static Vec256<ulong> mul(Vec256<ulong> x, Vec256<uint> ml, Vec256<uint> mh)
-        {
-            var mask = Vec256.define(0x00000000fffffffful);
-            var xl = dinx.and(x, mask).As<uint>();
-            var xh = dinx.shiftr(x,32).As<uint>();
-            var xh_ml = dinx.mul(xh,ml);
-            var hl = dinx.shiftl(xh_ml, 32);
-            var xh_mh = dinx.mul(xh, mh);
-            var lh = dinx.shiftl(xh_mh, 32);
-            var ll = dinx.mul(xl, ml);
-            var hl_lh = dinx.add(hl, lh);
-            var final = dinx.add(ll, hl_lh);
-            return final;
-            
-            //var hl = dinx.shiftl()
-        }
-
         public class Pcg32
         {
             public Pcg32(in __m512i seed, in __m512i inc)
@@ -174,18 +157,6 @@ namespace Z0
             public __m256i pcg32_mult_h; 
 
         } 
-
-
-        // [MethodImpl(Inline)]
-        // public static Vec256<ulong> mul(Vec256<ulong> x, Vec256<ulong> ml, Vec256<ulong> mh)
-        // {
-        //     var mask = Vec256.define(0x00000000fffffffful);
-        //     var xl = and(x, mask);
-        //     var xh = shiftr(x,32);
-
-        //     return default;
-        // }
-
 
 
         static __m256i hacked_mm256_rorv_epi32(__m256i x, __m256i r) 

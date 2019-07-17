@@ -9,6 +9,7 @@ namespace Z0
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
     using System.Linq;
+    using static zfunc;
 
     public readonly struct OpTime
     {
@@ -92,10 +93,9 @@ namespace Z0
 
         public string Format()
         {
-            var fmt = $"{LeftLabel} = {Left.WorkTime}".PadRight(25) 
-                   + $"| {RightLabel} = {Right.WorkTime}".PadRight(25) 
-                   + $"| OpCount = {OpCount}";
-            return fmt;
+            var x = $"{LeftLabel}".PadRight(20) + $"| Ops = {OpCount} " + $"| Time = {Left.WorkTime}";
+            var y = $"{RightLabel}".PadRight(20) + $"| Ops = {OpCount} " + $"| Time = {Right.WorkTime}";
+            return x + eol() + y;
 
         }
             

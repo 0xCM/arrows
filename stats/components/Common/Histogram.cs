@@ -52,6 +52,25 @@ namespace Z0
              : leftclosed(Partitions[ix-1], Partitions[ix]);
 
         /// <summary>
+        /// Returns the least bin count
+        /// </summary>
+        public int MinBinCount
+            => Counts.Min();
+        
+        /// <summary>
+        /// Returns the greatest bin count
+        /// </summary>
+        public int MaxBinCount
+            => Counts.Max();
+
+        /// <summary>
+        /// Returns the average bin count
+        /// </summary>
+        public double AvgBinCount
+            => Counts.Average();
+        
+
+        /// <summary>
         /// Distribute a single value to the histogram
         /// </summary>
         /// <param name="value">The source value</param>

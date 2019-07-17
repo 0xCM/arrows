@@ -1,0 +1,1 @@
+nmake libintel64 export=vml.list interface=ilp64 name=z0-vml-clib

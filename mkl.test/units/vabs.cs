@@ -67,7 +67,7 @@ namespace Z0.Mkl.Test
         public void vAbsF64Perf()
         {
             var n = Pow2.T08;
-            var i = Pow2.T10;
+            var i = Pow2.T12;
             TracePerf(vabsF64Perf(n, i).Format());
             TracePerf(vabsF32Perf(n, i).Format());
             

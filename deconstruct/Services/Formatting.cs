@@ -38,7 +38,8 @@ namespace Z0
         public static string FormatAsm(this MethodDisassembly src)
         {
             var format = sbuild();
-            format.AppendLine(src.MethodSig.Format());
+            
+            format.AppendLine($"{src.NativeAddress.ToHexString(false,false,true)}h: {src.MethodSig.Format()}");
             format.AppendLine("asm ".PadRight(80, '-'));                                    
             format.AppendLine(src.AsmBody.FormatAsm());
             format.AppendLine("end asm ".PadRight(80, '-'));

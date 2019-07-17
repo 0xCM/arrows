@@ -52,7 +52,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static Vec256<ushort> subs(in Vec256<ushort> lhs, in Vec256<ushort> rhs)        
-            =>  SubtractSaturate(lhs,rhs);
+            => SubtractSaturate(lhs,rhs);
     }
 
 }

@@ -84,7 +84,7 @@ namespace Z0
             var msg = string.Empty;
             msg += OpId.ToString().PadRight(50);
             msg += $" | OpCount = {OpCount.ToString(digitcommas ? "#,#" : string.Empty).PadRight(14)}";
-            msg += $" | Duration = {WorkTime.Ms} ms";
+            msg += $" | Duration = {WorkTime}";
             if(total)
                 msg += " (total)";
             return AppMsg.Define(msg, SeverityLevel.Info);

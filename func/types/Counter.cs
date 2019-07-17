@@ -53,7 +53,7 @@ namespace Z0
             var delta = Math.Abs(LastCount - FirstCount);
             if(reset)
                 FirstCount = 0;
-            return Duration.Define(delta, OS.CounterMs(delta));
+            return Duration.Define(delta);
         }
     }
 }

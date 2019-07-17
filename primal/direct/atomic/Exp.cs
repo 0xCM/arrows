@@ -15,46 +15,86 @@ namespace Z0
     
     partial class math
     {
+        /// <summary>
+        /// Raises e to a specified exponent
+        /// </summary>
+        /// <param name="pow">The exponent</param>
         [MethodImpl(Inline)]
-        public static sbyte exp(sbyte src)
-            => (sbyte)MathF.Exp(src);
+        public static sbyte exp(sbyte pow)
+            => (sbyte)MathF.Exp(pow);
 
+        /// <summary>
+        /// Raises e to a specified exponent
+        /// </summary>
+        /// <param name="pow">The exponent</param>
         [MethodImpl(Inline)]
-        public static byte exp(byte src)
-            => (byte)MathF.Exp(src);
+        public static byte exp(byte pow)
+            => (byte)MathF.Exp(pow);
 
+        /// <summary>
+        /// Raises e to a specified exponent
+        /// </summary>
+        /// <param name="pow">The exponent</param>
         [MethodImpl(Inline)]
-        public static short exp(short src)
-            => (short)MathF.Exp(src);
+        public static short exp(short pow)
+            => (short)MathF.Exp(pow);
 
+        /// <summary>
+        /// Raises e to a specified exponent
+        /// </summary>
+        /// <param name="pow">The exponent</param>
         [MethodImpl(Inline)]
-        public static ushort exp(ushort src)
-            => (ushort)MathF.Exp(src);
+        public static ushort exp(ushort pow)
+            => (ushort)MathF.Exp(pow);
 
+        /// <summary>
+        /// Raises e to a specified exponent
+        /// </summary>
+        /// <param name="pow">The exponent</param>
         [MethodImpl(Inline)]
-        public static int exp(int src)
-            => (int)MathF.Exp(src);
+        public static int exp(int pow)
+            => (int)MathF.Exp(pow);
 
+        /// <summary>
+        /// Raises e to a specified exponent
+        /// </summary>
+        /// <param name="pow">The exponent</param>
         [MethodImpl(Inline)]
-        public static uint exp(uint src)
-            => (uint)MathF.Exp(src);
+        public static uint exp(uint pow)
+            => (uint)MathF.Exp(pow);
 
+        /// <summary>
+        /// Raises e to a specified exponent
+        /// </summary>
+        /// <param name="pow">The exponent</param>
         [MethodImpl(Inline)]
-        public static long exp(long src)
-            => (long)Math.Exp(src);
+        public static long exp(long pow)
+            => (long)Math.Exp(pow);
 
+        /// <summary>
+        /// Raises e to a specified exponent
+        /// </summary>
+        /// <param name="pow">The exponent</param>
         [MethodImpl(Inline)]
-        public static ulong exp(ulong src)
-            => (ulong)Math.Exp(src);
+        public static ulong exp(ulong pow)
+            => (ulong)Math.Exp(pow);
 
+        /// <summary>
+        /// Raises e to a specified exponent
+        /// </summary>
+        /// <param name="pow">The exponent</param>
         [MethodImpl(Inline)]
-        public static float exp(float src)
-            => MathF.Exp(src);
+        public static float exp(float pow)
+            => MathF.Exp(pow);
 
+        /// <summary>
+        /// Raises e to a specified exponent
+        /// </summary>
+        /// <param name="pow">The exponent</param>
         [MethodImpl(Inline)]
-        public static double exp(double src)
-            => Math.Exp(src);
-
+        public static double exp(double pow)
+            => Math.Exp(pow);
+        
     }
 
 }

@@ -182,5 +182,58 @@ namespace Z0
             Array.Copy(src, dst, src.Length);
             return dst;
         }
+
+        /// <summary>
+        /// Returns the index of the first value that matches a specified value, if any. Otherwise, returns -1
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <param name="value">The value to match in the source</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static int FirstIndexOf<T>(this T[] src, T value)
+        {
+            for(var i=0; i<src.Length; i++)
+                if(src[i].Equals(value))
+                    return i;
+            return -1;
+        }
+
+        /// <summary>
+        /// Creates a new array by sampling the source array at each specified index
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <param name="indices">The indices that define the values to be extracted from the source</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static T[] Values<T>(this T[] src, int[] indices)
+        {
+            var dst = new T[indices.Length];
+            for(var i=0; i< indices.Length; i++)
+                dst[i] = src[indices[i]];
+            return dst;
+        }
+
+        /// <summary>
+        /// Fills an array, in-place, with a specified value
+        /// </summary>
+        /// <param name="src">The input array</param>
+        /// <param name="value">The fill value</param>
+        /// <typeparam name="T">The element type</typeparam>
+        public static T[] Fill<T>(this T[] src, T value)
+        {
+            for(var i=0; i<src.Length; i++)
+                src[i] = value;
+            return src;
+        }
+
+        /// <summary>
+        /// Replicates a source value a specified number of times and returns an array with the result
+        /// </summary>
+        /// <param name="src">The value to replicate</param>
+        /// <param name="count">The number of clones</param>
+        /// <typeparam name="T">The value type</typeparam>
+        [MethodImpl(Inline)]
+        public static T[] Replicate<T>(this T src, int count)
+            where T : struct
+                => array<T>(count).Fill(src);
+
     }
 }

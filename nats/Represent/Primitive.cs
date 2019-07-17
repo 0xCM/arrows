@@ -149,9 +149,15 @@ namespace Z0
     /// <summary>
     /// The singleton type representative for 3
     /// </summary>
-    public readonly struct N3 : ITypeNat<N3>, INatSeq<N3>,
-        INatPrime<N3>, INatPrimitive<N3>, INatOdd<N3>,
-        INatNonZero<N3>, INatPrior<N3,N2>, INatNext<N3,N4>
+    public readonly struct N3 : 
+        ITypeNat<N3>, 
+        INatSeq<N3>,
+        INatPrime<N3>, 
+        INatPrimitive<N3>, 
+        INatOdd<N3>,
+        INatNonZero<N3>, 
+        INatPrior<N3,N2>, 
+        INatNext<N3,N4>
     {
         public static readonly N3 Rep = default;        
 
@@ -226,9 +232,15 @@ namespace Z0
     /// <summary>
     /// The singleton type representative for 5
     /// </summary>
-    public readonly struct N5 : ITypeNat<N5>, INatSeq<N5>,
-        INatPrime<N5>, INatPrimitive<N5>, INatOdd<N5>,
-        INatNonZero<N5>, INatPrior<N5,N4>, INatNext<N5,N6>
+    public readonly struct N5 : 
+        ITypeNat<N5>, 
+        INatSeq<N5>,
+        INatPrime<N5>, 
+        INatPrimitive<N5>, 
+        INatOdd<N5>,
+        INatNonZero<N5>, 
+        INatPrior<N5,N4>, 
+        INatNext<N5,N6>
     {
         public static readonly N5 Rep = default;
 
@@ -409,8 +421,6 @@ namespace Z0
             => true;
 
         public override string ToString() 
-            => value.ToString();
-               
- 
+            => value.ToString();             
     }
 }

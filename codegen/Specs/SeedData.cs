@@ -16,7 +16,7 @@ namespace Z0
     {
         public static void GenSeeds64(int count)
         {
-            var entropy = Seed.Entropy<ulong>(count).AsBytes();
+            var entropy = Entropy.Values<ulong>(count).AsBytes();
             var code = InlineData.GenAccessor(entropy.ToArray(),"RawBytes");
             print(code);               
         }

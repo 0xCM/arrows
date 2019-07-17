@@ -31,10 +31,10 @@ namespace Z0
             = new Queue<byte>(8);
 
         public override int Next()
-            => (int)Source.NextInt((ulong)Int32.MaxValue);
+            => (int)Source.NextUInt64((ulong)Int32.MaxValue);
 
         public override int Next(int maxValue)
-            => (int)Source.NextInt((ulong)maxValue);
+            => (int)Source.NextUInt64((ulong)maxValue);
 
         public override int Next(int minValue, int maxValue)
         {
@@ -74,7 +74,7 @@ namespace Z0
                     yield return b;
                 else
                 {
-                    var bytes = BitConverter.GetBytes(Source.NextInt());
+                    var bytes = BitConverter.GetBytes(Source.NextUInt64());
                     for(var i = 0; i< bytes.Length; i++)
                         if(i == 0)
                             yield return bytes[i];

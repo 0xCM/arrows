@@ -40,7 +40,6 @@ namespace Z0.Mkl
         [MethodImpl(Inline)]
         public static double asum(Span<float> src)        
             => CBLAS.cblas_sasum(src.Length, ref src[0], 1);
-
         
         /// <summary>
         /// Computes the sum of the absolute value of each component

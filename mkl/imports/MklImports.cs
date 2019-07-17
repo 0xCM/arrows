@@ -18,6 +18,7 @@ namespace Z0.Mkl
     {
         internal const string MklDll = "mkl_rt.dll";
 
+
         internal const CallingConvention Cdecl = CallingConvention.Cdecl;
 
     }

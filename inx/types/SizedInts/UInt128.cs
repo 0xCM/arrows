@@ -147,6 +147,10 @@ namespace Z0
             => src.ToUInt128();
 
         [MethodImpl(Inline)]
+        public static explicit operator ulong(in UInt128 src)
+            => src.lo;
+
+        [MethodImpl(Inline)]
         public UInt128(ulong lo, ulong hi)
         {
 

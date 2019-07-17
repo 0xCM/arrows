@@ -24,7 +24,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(math.round(float64(src), scale));
             else
-                throw unsupported<T>();
+                return src;
         }
 
         [MethodImpl(Inline)]
@@ -36,7 +36,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 math.round(float64(src), scale, float64(dst));
             else
-                throw unsupported<T>();
+                return src.Replicate();
             return dst;
         }
 
@@ -53,11 +53,8 @@ namespace Z0
                 math.round(float32(io), scale);
             else if(typeof(T) == typeof(double))
                 math.round(float64(io), scale);
-            else
-                throw unsupported<T>();
             return ref io;        
         }
 
     }
-
 }

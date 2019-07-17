@@ -162,6 +162,28 @@ namespace  Z0
         }
 
         /// <summary>
+        /// Transforms an array via an indexed mapping function with optional parallellism
+        /// </summary>
+        /// <param name="src">The source array</param>
+        /// <param name="f">The mapping function</param>
+        /// <param name="pll">Specifies whether the map the source values in parallell</param>
+        /// <typeparam name="S">The source type</typeparam>
+        /// <typeparam name="T">The target type</typeparam>
+        public static T[] Mapi<S, T>(this S[] src, Func<int,S, T> f, bool pll)
+        {
+            if(!pll)
+                return src.Mapi(f);
+            
+            var dst = new T[src.Length];
+            var pllQuery = from index in range(src.Length).AsParallel()
+                            select (index, value: f(index, src[index]));
+            var results = pllQuery.ToArray();
+            foreach(var result in results)
+                dst[result.index] = result.value;
+            return dst;
+        }
+
+        /// <summary>
         /// Creates a read-only list from list
         /// </summary>
         /// <param name="src">The source sequence</param>
@@ -176,6 +198,14 @@ namespace  Z0
         [MethodImpl(Inline)]
         public static IReadOnlyList<T> ToReadOnlyList<T>(this IEnumerable<T> src)
             => src.ToList();
+
+        /// <summary>
+        /// Creates a multiset from a source sequence
+        /// </summary>
+        /// <param name="src">The data source</param>
+        /// <typeparam name="T">The data type</typeparam>
+        public static Multiset<T> ToMultiSet<T>(this IEnumerable<T> src)
+            => new Multiset<T>(src);
 
         /// <summary>
         /// Returns the first element if it exists; otherwise returns the supplied default
@@ -364,7 +394,6 @@ namespace  Z0
                 yield return x;
             }
         }
-
 
         public static void ForEach<T>(this IEnumerable<T> src, Action<T> effect)
         {

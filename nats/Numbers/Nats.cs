@@ -52,11 +52,29 @@ namespace Z0
 
         public static readonly N20 N20 = default;
 
+        public static readonly N26 N26 = default;
+
+        public static readonly NatSeq<N3,N1> N31 = default;
+
         public static readonly N32 N32 = default;
+
+        public static readonly NatSeq<N3,N3> N33 = default;
+
+        public static readonly NatSeq<N3,N9> N39 = default;
+
+        public static readonly NatSeq<N4,N0> N40 = default;
+
+        public static readonly NatSeq<N4,N1> N41 = default;
 
         public static readonly N63 N63 = default;
 
         public static readonly N64 N64 = default;
+    
+        public static readonly NatSeq<N6,N5> N65 = default;
+
+        public static readonly NatSeq<N8,N7> N87 = default;
+
+        public static readonly NatSeq<N8,N7> N88 = default;
 
         public static readonly N127 N127 = default;
 
@@ -65,6 +83,8 @@ namespace Z0
         public static readonly N255 N255 = default;
 
         public static readonly N256 N256 = default;
+
+        public static readonly NatSeq<N2,N5,N7> N257 = default;
 
         public static readonly N512 N512 = default;
 
@@ -77,5 +97,9 @@ namespace Z0
         public static readonly N8192 N8192 = default;
 
         public static readonly N16384 N16384 = default;
+
+        
+        public static readonly NatSeq<N1,N2,N7,N7> N1277 = default;        
+
     } 
 }

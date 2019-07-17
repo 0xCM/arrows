@@ -7,11 +7,14 @@ namespace Z0
     using System;
     using System.Linq;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
     using MsInfer;
+    using MsMl;
     using MsInfer.Distributions;
     using Dist = MsInfer.Distributions;
     using MlStats = MsMl.Stats;
+    using static zfunc;
 
     /// <summary>
     /// Exposes desired operations
@@ -42,7 +45,6 @@ namespace Z0
             var sysrand = SysRand.FromSource(random);
             while(true)
                 yield return MlStats.SampleFromPoisson(sysrand, lambda);
-
         }
 
         public static IEnumerable<float> SampleLaplace(this IRandomSource random, float mean, float scale)
@@ -129,9 +131,24 @@ namespace Z0
         /// <param name="samples">The number of samples to draw</param>
         /// <typeparam name="T">The list item type</typeparam>
         public static HashSet<T> SampleWithoutReplacement<T>(this IRandomSource random, IReadOnlyList<T> src, int samples)
-            => Rand.SampleWithoutReplacement(src,samples, random);
+            => Rand.SampleWithoutReplacement(src,samples, random);        
         
-    
+    }
+
+    public static class MsFn
+    {
+
+        [MethodImpl(Inline)]       
+        public static double erfc(double x)        
+            => ProbabilityFunctions.Erfc(x);
+        
+        [MethodImpl(Inline)]       
+        public static double erf(double x)
+            => ProbabilityFunctions.Erf(x);
+
+        [MethodImpl(Inline)]       
+        public static double erfinv(double x)
+            => ProbabilityFunctions.Erfinv(x);
     }
 
 }

@@ -65,7 +65,7 @@ namespace Z0
             T00, T01, T02, T03, T04, T05, T06, T07 
         };
 
-        static readonly IReadOnlyDictionary<byte,byte> _PowU8Index
+        static readonly IReadOnlyDictionary<byte,byte> _PowU8Iverse
             = _PowU8.Mapi((i,v) => (v,(byte)i)).ToDictionary();
 
         static readonly ushort[] _PowU16 = new ushort[]
@@ -74,8 +74,8 @@ namespace Z0
             T08, T09, T10, T11, T12, T13, T14, T15, 
         };
 
-        static readonly IReadOnlyDictionary<ushort,ushort> _PowU16Index
-            = _PowU16.Mapi((i,v) => (v,(ushort)i)).ToDictionary();
+        static readonly IReadOnlyDictionary<ushort,byte> _PowU16Inverse
+            = _PowU16.Mapi((i,v) => (v,(byte)i)).ToDictionary();
 
         static readonly uint[] _PowU32 = new uint[]
         {
@@ -85,8 +85,8 @@ namespace Z0
             T24, T25, T26, T27, T28, T29, T30, T31, 
         };
 
-        static readonly IReadOnlyDictionary<uint,uint> _PowU32Index
-            = _PowU32.Mapi((i,v) => (v,(uint)i)).ToDictionary();
+        static readonly IReadOnlyDictionary<uint,byte> _PowU32Inverse
+            = _PowU32.Mapi((i,v) => (v,(byte)i)).ToDictionary();
 
         static readonly ulong[] _PowU64 = new ulong[]{
             T00, T01, T02, T03, T04, T05, T06, T07, 
@@ -99,74 +99,124 @@ namespace Z0
             T56, T57, T58, T59, T60, T61, T62, T63};
 
 
-        static readonly IReadOnlyDictionary<ulong,ulong> _PowU64Index
-            = _PowU64.Mapi((i,v) => (v,(ulong)i)).ToDictionary();
+        static readonly IReadOnlyDictionary<ulong,byte> _PowU64Inverse
+            = _PowU64.Mapi((i,v) => (v,(byte)i)).ToDictionary();
 
         /// <summary>
-        /// Computes 2^i 
+        /// Computes 2^i where i is an integer value in the interval [0,7]
         /// </summary>
-        /// <param name="exp">The exponent</param>
+        /// <param name="i">The exponent</param>
         [MethodImpl(Inline)]
-        public static ulong pow(in int exp)
-            =>  _PowU64[exp];
+        public static byte pow(sbyte i)
+            => _PowU8[i];
 
-        public static T[] powers<T>(in byte minExp, in byte maxExp)
+        /// <summary>
+        /// Computes 2^i where i is an integer value in the interval [0,7]
+        /// </summary>
+        /// <param name="i">The exponent</param>
+        [MethodImpl(Inline)]
+        public static byte pow(byte i)
+            => _PowU8[i];
+
+        /// <summary>
+        /// Computes 2^i where i is an integer value in the interval [0,15]
+        /// </summary>
+        /// <param name="i">The exponent</param>
+        [MethodImpl(Inline)]
+        public static ushort pow(short i)
+            => _PowU16[i];
+
+        /// <summary>
+        /// Computes 2^i where i is an integer value in the interval [0,15]
+        /// </summary>
+        /// <param name="i">The exponent</param>
+        [MethodImpl(Inline)]
+        public static ushort pow(ushort i)
+            => _PowU16[i];
+
+        /// <summary>
+        /// Computes 2^i where i is an integer value in the interval [0,31]
+        /// </summary>
+        /// <param name="i">The exponent</param>
+        [MethodImpl(Inline)]
+        public static uint pow(int i)
+            => _PowU32[i];
+
+        /// <summary>
+        /// Computes 2^i where i is an integer value in the interval [0,31]
+        /// </summary>
+        /// <param name="i">The exponent</param>
+        [MethodImpl(Inline)]
+        public static uint pow(uint i)
+            => _PowU32[i];
+
+        /// <summary>
+        /// Computes 2^i where i is an integer value in the interval [0,63]
+        /// </summary>
+        /// <param name="i">The exponent</param>
+        [MethodImpl(Inline)]
+        public static ulong pow(long i)
+            => _PowU64[i];
+
+        /// <summary>
+        /// Computes 2^i where i is an integer value in the interval [0,63]
+        /// </summary>
+        /// <param name="i">The exponent</param>
+        [MethodImpl(Inline)]
+        public static ulong pow(ulong i)
+            => _PowU64[i];
+
+        /// <summary>
+        /// For i < j, computes the sequence 2^i, ..., 2^j 
+        /// </summary>
+        /// <param name="i">The minimum power</param>
+        /// <param name="j">The maximum power</param>
+        /// <typeparam name="T">The computation result type</typeparam>
+        public static T[] powers<T>(in byte i, in byte j)
             where T : struct
         {   
-            var dst = new T[maxExp - minExp + 1];
-            var current = minExp;
-            var i = 0;
-            while(current <= maxExp)
-                dst[i++] = convert<ulong,T>(pow(current++));
+            var dst = new T[j - i + 1];
+            var current = (ulong)i;
+            var pos = 0;
+            while(current <= j)
+                dst[pos++] = convert<ulong,T>(pow(current++));
             return dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static byte floor(byte src)
-        {            
-            if(src != 0)
-            {
-                for(var i = _PowU8.Length - 1; i >= 0; i--)
-                    if(src >= _PowU8[i])
-                        return _PowU8[i];
-            }            
-            return 0;
-        }
-
-        [MethodImpl(Inline)]
-        public static ushort floor(ushort src)
-        {            
-            if(src != 0)
-            {
-                for(var i = _PowU16.Length - 1; i >= 0; i--)
-                    if(src >= _PowU16[i])
-                        return _PowU16[i];
-            }            
-            return 0;
         }
 
         static T Pow2Error<T>(T pow2)
             => throw new ArgumentException($"{pow2} is not a power of 2");
 
+        /// <summary>
+        /// Given n, computes i  n = 2^i
+        /// </summary>
+        /// <param name="n">The exponentiated value n such that 2^n <= 2^7</param>
         [MethodImpl(Inline)]
-        public static byte exp(byte pow2)
-            => _PowU8Index.TryGetValue(pow2, out byte e) ? e : Pow2Error(pow2);
+        public static byte inv(byte n)
+            => _PowU8Iverse.TryGetValue(n, out byte e) ? e : Pow2Error(n);
 
+        /// <summary>
+        /// Given n, computes i  n = 2^i
+        /// </summary>
+        /// <param name="n">The exponentiated value n such that 2^n <= 2^15</param>
         [MethodImpl(Inline)]
-        public static ushort exp(ushort pow2)
-            => _PowU16Index.TryGetValue(pow2, out ushort e) ? e : Pow2Error(pow2);
+        public static ushort inv(ushort pow2)
+            => _PowU16Inverse.TryGetValue(pow2, out byte e) ? e : Pow2Error(pow2);
 
+        /// <summary>
+        /// Given n, computes i  n = 2^i
+        /// </summary>
+        /// <param name="n">The exponentiated value n such that 2^n <= 2^31</param>
         [MethodImpl(Inline)]
-        public static uint exp(uint pow2)
-            => _PowU32Index.TryGetValue(pow2, out uint e) ? e : Pow2Error(pow2);
+        public static uint inv(uint pow2)
+            => _PowU32Inverse.TryGetValue(pow2, out byte e) ? e : Pow2Error(pow2);
 
+        /// <summary>
+        /// Given n, computes i  n = 2^63
+        /// </summary>
+        /// <param name="n">The exponentiated value n such that 2^n <= 2^15</param>
         [MethodImpl(Inline)]
-        public static uint exp(int pow2)
-            => exp((uint)pow2);
-
-        [MethodImpl(Inline)]
-        public static ulong exp(ulong pow2)
-            => _PowU64Index.TryGetValue(pow2, out ulong e) ? e : Pow2Error(pow2);
+        public static ulong inv(ulong pow2)
+            => _PowU64Inverse.TryGetValue(pow2, out byte e) ? e : Pow2Error(pow2);
 
         /// <summary>
         /// 2^0 = 1
@@ -294,32 +344,32 @@ namespace Z0
         public const int T24 = 2*T23;
 
         /// <summary>
-        /// 2^25 = _
+        /// 2^25 = 33,554,432
         /// </summary>
         public const int T25 = 2*T24;
         
         /// <summary>
-        /// 2^26 = _
+        /// 2^26 = 67,108,864
         /// </summary>
         public const int T26 = 2*T25;
         
         /// <summary>
-        /// 2^27 = _
+        /// 2^27 = 134,217,728
         /// </summary>
         public const int T27 = 2*T26;
         
         /// <summary>
-        /// 2^28 = _
+        /// 2^28 = 268,435,456
         /// </summary>
         public const int T28 = 2*T27;
         
         /// <summary>
-        /// 2^29 = _
+        /// 2^29 = 268,435,456
         /// </summary>
         public const int T29 = 2*T28;
         
         /// <summary>
-        /// 2^30 = _
+        /// 2^30 = 1,073,741,824
         /// </summary>
         public const int T30 = 2*T29;
         

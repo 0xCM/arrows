@@ -26,8 +26,15 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe void mul(uint lhs, uint rhs, out uint lo, out uint hi)
         {
-            fixed(uint* pLo = &lo)
-                hi = Bmi2.MultiplyNoFlags(lhs, rhs, pLo);
+            lo = 0;
+            hi = Bmi2.MultiplyNoFlags(lhs, rhs, refptr(ref lo));
+        }
+
+        [MethodImpl(Inline)]
+        public static unsafe uint umulHi(uint lhs, uint rhs)
+        {
+            var lo = 0u;
+            return  Bmi2.MultiplyNoFlags(lhs,rhs, refptr(ref lo));
         }
 
         /// <summary>
@@ -38,32 +45,38 @@ namespace Z0
         [MethodImpl(Inline)]
         public static unsafe ulong umul64(uint lhs, uint rhs)
         {
-            var dst = 0ul;
-            return (((ulong)Bmi2.MultiplyNoFlags(lhs, rhs, puint32(ref dst))) << 32) | dst;
+            var dst = 0u;
+            return (((ulong)Bmi2.MultiplyNoFlags(lhs, rhs, refptr(ref dst))) << 32) | dst;
         }
 
         /// <summary>
-        /// Effects multiplication of the form (lhs:ulong, rhs:ulong) -> result:uint128
+        /// Calculates the 128-bit product of two 64-bit integers
         /// </summary>
-        /// <param name="lhs">The left 64-bit operand</param>
-        /// <param name="rhs">The right 64-bit operand</param>
+        /// <param name="lhs">The left operand</param>
+        /// <param name="rhs">The right operand</param>
         /// <param name="dst">The 128 bit result</param>
         [MethodImpl(Inline)]
         public static unsafe ref UInt128 umul128(ulong lhs, ulong rhs, out UInt128 dst)
         {
             dst = default;
-            fixed(ulong* pLo = &dst.lo)
-                dst.hi = Bmi2.X64.MultiplyNoFlags(lhs, rhs, pLo);
+            dst.hi = Bmi2.X64.MultiplyNoFlags(lhs,rhs, refptr(ref dst.lo));
+            // fixed(ulong* pLo = &dst.lo)
+            //     dst.hi = Bmi2.X64.MultiplyNoFlags(lhs, rhs, pLo);
             return ref dst;
         }
 
+        
         /// <summary>
         /// Effects multiplication of the form (lhs:ulong, rhs:ulong) -> result:ulong where
         /// the result is obtained from the hi 64 bits of the 128-bit product
         /// </summary>
         [MethodImpl(Inline)]
-        public static ulong umulh(ulong lhs, ulong rhs)
+        public static ulong umulHi(ulong lhs, ulong rhs)
             => umul128(lhs, rhs, out UInt128 _).hi;
+
+        [MethodImpl(Inline)]
+        public static ulong umulLo(ulong lhs, ulong rhs)
+            => umul128(lhs, rhs, out UInt128 _).lo;
 
         /// <summary>
         /// Multiplies two two 256-bit/u64 vectors to yield a 256-bit/u64 vector

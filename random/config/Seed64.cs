@@ -18,12 +18,6 @@ namespace Z0
     public static class Seed64
     {    
 
-        /// <summary>
-        /// Entropic seed generated for each call
-        /// </summary>
-        public static ulong Entropic
-            => Seed.Entropy<ulong>();
-
         public static ulong Lookup(uint i)
             => i <= 15 
              ? RawBytes.ReadPrimalValue<ulong>((int)(i*8)) 

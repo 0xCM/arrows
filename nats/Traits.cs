@@ -177,7 +177,7 @@ namespace Z0
     /// Requires k:K => k % 2 == 0
     /// </summary>
     /// <typeparam name="K">An even natural type</typeparam>
-    public interface INatEven<K> : INatDemand<K>
+    public interface INatEven<K> : ITypeNat
         where K : ITypeNat, new()
     {
 
@@ -187,7 +187,7 @@ namespace Z0
     /// Requires k:K => k % 2 != 0
     /// </summary>
     /// <typeparam name="K">An Odd natural type</typeparam>
-    public interface INatOdd<K> : INatDemand<K>
+    public interface INatOdd<K> : ITypeNat
         where K : ITypeNat, new()
     {
 
@@ -293,7 +293,7 @@ namespace Z0
     /// Requires n:T => n is prime
     /// </summary>
     /// <typeparam name="K">A prime nat type</typeparam>
-    public interface INatPrime<K> : INatDemand<K>
+    public interface INatPrime<K> : ITypeNat
         where K : ITypeNat, new()
     {
         

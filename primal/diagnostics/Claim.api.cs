@@ -129,8 +129,36 @@ namespace Z0
             => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));
 
         [MethodImpl(Inline)]
+        public static bool lt(uint lhs, uint rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
         public static bool lt(ulong lhs, ulong rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));        
+
+        [MethodImpl(Inline)]
+        public static bool lt(float lhs, float rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool lt(double lhs, double rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs < rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool lteq(int lhs, int rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs <= rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));        
+
+        [MethodImpl(Inline)]
+        public static bool lteq(uint lhs, uint rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs <= rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));        
+
+        [MethodImpl(Inline)]
+        public static bool lteq(long lhs, long rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs <= rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));        
+
+        [MethodImpl(Inline)]
+        public static bool lteq(ulong lhs, ulong rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs <= rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));        
 
         [MethodImpl(Inline)]
         public static bool gt(long lhs, long rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
@@ -138,6 +166,14 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static bool gt(ulong lhs, ulong rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs > rhs ? true : throw failed(ClaimOpKind.Eq, NotGreaterThan(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool gt(float lhs, float rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs > rhs ? true : throw failed(ClaimOpKind.Eq, NotGreaterThan(lhs, rhs, caller, file, line));
+
+        [MethodImpl(Inline)]
+        public static bool gt(double lhs, double rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => lhs > rhs ? true : throw failed(ClaimOpKind.Eq, NotGreaterThan(lhs, rhs, caller, file, line));
 
         [MethodImpl(Inline)]

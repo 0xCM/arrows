@@ -8,7 +8,6 @@
   <Import Project="..\package.targets" />
 
   <ItemGroup>
-    <ProjectReference Include="..\analogs\z0.analogs.csproj" />
     <ProjectReference Include="..\deconstruct\z0.deconstruct.csproj" />
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\inx\z0.inx.csproj" />

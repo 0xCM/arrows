@@ -13,6 +13,7 @@ namespace Z0
     
     using static zfunc;
     using static nfunc;
+    
     public static class NatSpan
     {
         public static Span<M,P,double> mul<M,N,P>(Span<M,N,double> lhs, Span<N,P,double> rhs)

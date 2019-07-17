@@ -16,11 +16,19 @@ namespace Z0
         where K: ITypeNat, new()
     {
         static readonly K k = default;
+        
         static readonly string description = $"{k} % {2} != {0}";
+        
         public NatOdd(K n)
             => valid = demand(n.value % 2 != 0);
         
         public bool valid {get;}
+
+        public ulong value 
+            => k.value;
+
+        public NatSeq seq 
+            => k.seq;
 
         public string format()
             => valid ? description: $"INVALID({description})";    

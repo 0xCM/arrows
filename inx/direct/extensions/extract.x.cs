@@ -41,6 +41,23 @@ namespace Z0
         [MethodImpl(Inline)]
         public static float Extract(this in Vec128<float> src, int index)
             => Sse41.Extract(src,(byte)index);
+
+        /// <summary>
+        /// Extracts the low 64 bits of the source vector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static ulong Lo(this in Vec128<ulong> src)
+            => Sse42.X64.Extract(src, 0);
+
+        /// <summary>
+        /// Extracts the high 64 bits of the source vector
+        /// </summary>
+        /// <param name="src">The source vector</param>
+        [MethodImpl(Inline)]
+        public static ulong Hi(this in Vec128<ulong> src)
+            => Sse42.X64.Extract(src,  1);
+
     }
 
 }

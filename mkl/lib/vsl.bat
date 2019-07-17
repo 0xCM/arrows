@@ -1,0 +1,1 @@
+nmake libintel64 export=vsl.list interface=ilp64 name=z0-vsl-clib

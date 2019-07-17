@@ -33,6 +33,8 @@ namespace Z0
 
         bool Find(K key, out V value);
 
+        V this[K key] {get;}
+
         Option<V> TryFind(K key);
         
     }
@@ -55,7 +57,10 @@ namespace Z0
 
         public Lookup(params (K key, V value)[] kvp)
             => store = kvp.ToDictionary();
-         
+
+        public V this[K key] 
+            => store[key];
+
         [MethodImpl(Inline)]
         public void Add(K key, V value)
             => store.Add(key,value);

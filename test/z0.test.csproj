@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\testing\z0.testing.csproj" />
 
-    <ProjectReference Include="..\analogs\z0.analogs.csproj" />
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\inx\z0.inx.csproj" />
     <ProjectReference Include="..\linear\z0.linear.csproj" />

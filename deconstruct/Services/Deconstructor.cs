@@ -9,6 +9,7 @@ namespace Z0
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using Microsoft.Diagnostics.Runtime;
 	using Iced.Intel;
 
@@ -177,7 +178,7 @@ namespace Z0
         /// </summary>
         /// <returns>The (disposable) target</returns>
         static DataTarget InProcTarget()
-            => DataTarget.AttachToProcess(procid(), uint.MaxValue, AttachFlag.Passive);
+            => DataTarget.AttachToProcess(Process.GetCurrentProcess().Id, uint.MaxValue, AttachFlag.Passive);
 
 		static IEnumerable<MethodAsmBody> DecodeAsm(DataTarget target, IEnumerable<MethodBase> methods)
 		{				

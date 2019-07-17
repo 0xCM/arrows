@@ -19,14 +19,17 @@ namespace Z0
 
     partial class dinx
     {
+        ///<intrinsic>__m128i _mm_shuffle_epi32 (__m128i a, int immediate) PSHUFD xmm, xmm/m128, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<int> shuffle(in Vec128<int> src, byte control)
             => Shuffle(src, control);
 
+        ///<intrinsic>__m128i _mm_shuffle_epi32 (__m128i a, int immediate) PSHUFD xmm, xmm/m128, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec128<uint> shuffle(in Vec128<uint> src, byte control)
             => Shuffle(src, control);
 
+        ///<intrinsic>__m256i _mm256_shuffle_epi32 (__m256i a, const int imm8) VPSHUFD ymm, ymm/m256, imm8</intrinsic>
         [MethodImpl(Inline)]
         public static Vec256<int> shuffle(in Vec256<int> src, byte control)
             => Shuffle(src, control);
@@ -43,7 +46,6 @@ namespace Z0
         public static Vec128<sbyte> shuffle(in Vec128<sbyte> src, in Vec128<sbyte> mask)
             => Shuffle(src, mask);
 
-
         [MethodImpl(Inline)]
         public static Vec256<byte> shuffle(in Vec256<byte> src, in Vec256<byte> mask)
             => Shuffle(src, mask);
@@ -51,7 +53,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<sbyte> shuffle(in Vec256<sbyte> src, in Vec256<sbyte> mask)
             => Shuffle(src, mask);
-
 
         [MethodImpl(Inline)]
         public static Vec128<float> shuffle(in Vec128<float> lhs, in Vec128<float> rhs,  byte control)

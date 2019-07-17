@@ -61,6 +61,6 @@ namespace Z0
             => concat( 
                 $"{OpName}{delimiter}".PadRight(OpNameLen), 
                 DelimitScalar(OpCount, delimiter, digitcommas),
-                $"{WorkTime.Ms} ms{delimiter}");
+                $"{WorkTime}{delimiter}");
     }
 }

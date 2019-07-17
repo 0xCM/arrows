@@ -43,6 +43,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static short Sum(this Span<short> src, NumericSystem system = NumericSystem.Intrinsic)        
             => src.ReadOnly().Sum(system);
+            
 
         public static int Sum(this ReadOnlySpan<int> src, NumericSystem system = NumericSystem.Intrinsic)
         {

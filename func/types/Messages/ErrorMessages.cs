@@ -65,7 +65,7 @@ namespace Z0
             => AppMsg.Define($"Length mismatch, {lhs} != {rhs}", SeverityLevel.Error, caller, file, line);
 
         public static AppMsg IndexOutOfRange(int index, int min, int max, string caller, string file, int? line)
-            => AppMsg.Define($"The supplied index {index} must be larger or equal to {min} and  less than {max}");
+            => AppMsg.Define($"The index {index} is not between {min} and {max}");
 
         public static AppMsg TooManyBytes(ByteSize requested, ByteSize available, string caller, string file, int? line)
             => AppMsg.Define($"The requested number of bytes, {requested} exceeds the maximum available bytes, {available}");

@@ -62,7 +62,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static UInt128 ToUInt128(this in Vec128<ulong> src)
-            => Unsafe.As<Vec128<ulong>,UInt128>(ref As.asRef(in src));
+            => Unsafe.As<Vec128<ulong>, UInt128>(ref As.asRef(in src));
 
         [MethodImpl(Inline)]
         public static int PopCount(this in UInt128 src)

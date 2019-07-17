@@ -10,7 +10,7 @@ namespace Z0
     using static constant;    
     using static nfunc;
 
-    public readonly struct N17 : INatSeq<N17>
+    public readonly struct N17 : INatSeq<N17>, INatPrime<N11>
     {
         public static readonly N17 Rep = default;
 

@@ -52,6 +52,58 @@ namespace Z0.Test
         
         }
 
+        public void MultiRandInt32()
+        {
+            var mr = RNG.Polyrand(Random); 
+            var data = mr.Take<int>(Pow2.T23);
+            int pos = 0, neg = 0, zed = 0;
+            foreach(var x in data)
+                if(x > 0)       pos++;
+                else if(x < 0)  neg++;
+                else            zed++;
+            var r = math.abs(pos - neg)/((double)pos + (double)neg);
+            var tolerance = .01;
+            Claim.lt(r, tolerance);
+
+                       
+        }
+
+        public void MultiRandInt64()
+        {
+            var mr = RNG.Polyrand(Random); 
+            var data = mr.Take<long>(Pow2.T12);
+            int pos = 0, neg = 0, zed = 0;
+            foreach(var x in data)
+                if(x > 0)       pos++;
+                else if(x < 0)  neg++;
+                else            zed++;
+            var r = math.abs(pos - neg)/((double)pos + (double)neg);
+            var tolerance = .01;
+            Claim.lt(r, tolerance);
+
+                       
+        }
+
+
+        public void TestWyHash64()
+        {
+            var rng = RNG.WyHash64();
+            var data = rng.Take(Pow2.T20);
+            var cutpoint = (double)UInt64.MaxValue/2.0;
+
+            var above = 0;
+            var below = 0;
+            foreach(var x in data)
+                if(x>= cutpoint)
+                    above++;
+                else if(x < cutpoint)
+                    below++;
+            
+            var r = (math.abs(above - below)/((double)(above + below))).Round(4);
+            var tolerance = .01;
+            Claim.lt(r, tolerance);                    
+        }
+
         public void SystemRandomTest()
         {
             var samples = Pow2.T11;
@@ -99,6 +151,8 @@ namespace Z0.Test
 
         }
 
+
+
         void UniformRange<T>(Interval<T> domain, int count)
             where T : struct
         {            
@@ -114,7 +168,7 @@ namespace Z0.Test
             Claim.yea(gmath.between(max, domain.Left, domain.Right));
             Claim.yea(gmath.between(min, domain.Left, domain.Right));
 
-            TypeCaseEnd<T>(appMsg($"{domain}: min = {min} | max = {max} | avg = {avg}, time = {time.Ms} ms"));
+            TypeCaseEnd<T>(appMsg($"{domain}: min = {min} | max = {max} | avg = {avg}, time = {time}"));
         }
 
         void UniformBounded<T>(int count)
@@ -127,7 +181,7 @@ namespace Z0.Test
             var min = gmath.min<T>(samples);
             var max = gmath.max<T>(samples);
             var avg = gmath.avg<T>(samples);
-            TypeCaseEnd<T>(appMsg($"min = {min} | max = {max} | avg = {avg}, time = {time.Ms} ms"));
+            TypeCaseEnd<T>(appMsg($"min = {min} | max = {max} | avg = {avg}, time = {time}"));
         }
 
         public void TestUniformRange()

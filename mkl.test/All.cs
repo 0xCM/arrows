@@ -96,7 +96,7 @@ namespace Z0.Mkl
     
          public static string format(Duration time)
          {  
-             return $"{time.FractionalMs} ms";
+             return $"{time.Ms} ms";
          }
 
         public static void output(string title, object value, Duration? time = null)
