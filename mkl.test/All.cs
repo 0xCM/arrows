@@ -22,21 +22,122 @@ namespace Z0.Mkl
     {
         const string Intro = "beginning";
         const string Finale = "finished";
+
+        static readonly string Divider = new string('-',80);
         
-        public static string intro([CallerMemberName] string method = null)
+        public static (string method, string msg) intro(bool silent = true, [CallerMemberName] string method = null)
         {
-            cyan($"{method} => {Intro}");
-            cyan(new string('-',80));
-            return method;
+            var line1 = $"{method} => {Intro}";
+            var line2 = Divider;
+            if(!silent)
+            {
+                cyan(line1);
+                cyan(line2);
+            }
+            return  (method, line1 + eol() + line2);
         }
 
-        public static string varintro(string variation, [CallerMemberName] string method = null)
+        public static (string method, string msg) varintro(string variation, bool silent = true, [CallerMemberName] string method = null)
         {
             var variant = $"{method}[{variation}]";
-            print();
-            cyan($"{variant} => {Intro}");
-            cyan(new string('-',80));
-            return variant;
+            var line1 = $"{variant} => {Intro}";
+            var line2 = Divider;
+            if(!silent)
+            {
+                print();
+                cyan($"{variant} => {Intro}");
+                cyan(Divider);
+            }
+            return (variant, line1 + eol() + line2);
+        }
+
+
+        public static string finale(string title, object value, Duration time, bool silent = true, [CallerMemberName] string method = null)
+        {
+            var line1 = $"Output {title}: {value}";
+            var line2 = $"{method} => {Finale} | Runtime = {format(time)}";
+            
+            if(!silent)
+            {
+                magenta(line1);
+                cyan(line2);
+            }
+            
+            return line1 + eol() + line2;
+        }
+
+        [MethodImpl(Inline)]
+        public static string finale(string title, object value, Stopwatch sw, bool silent = true, [CallerMemberName] string method = null)
+            => finale(title, value, snapshot(sw), silent, method);
+
+        public static string output(object output, bool silent = true)
+        {
+            var msg = $" Actual: {output}";
+            if(!silent)
+                magenta(msg);
+            return msg;
+        }
+
+        public static string expected(object expect, bool silent = true)
+        {
+            var msg = $" Expect: {expect}";
+            if(!silent)
+                magenta(msg);
+            return msg;
+        }
+
+
+        public static string conclude(Duration time, bool silent = true, [CallerMemberName] string method = null)    
+        {
+            var msg = $"Runtime: {format(time)}";
+            if(!silent)            
+            {
+                cyan(msg);
+                print();
+            }
+            return msg;
+        }
+
+        public static void input(object input)
+            => cyan("  Input", input);
+
+        public static string input(string title, object input, bool silent = true)
+        {
+            var msg = $"Input {title}: {input}";
+            if(!silent)
+            {
+                cyan(msg);
+            }
+            return msg;
+        }
+            
+
+        [MethodImpl(Inline)]
+        public static (Stopwatch timer, string report) input(string firstTitle, object firstValue, string secondTitle, object secondValue, bool silent = true)
+        {
+            var report = sbuild();
+            report.AppendLine(input(firstTitle, firstValue, silent));
+            report.AppendLine(input(secondTitle, secondValue, silent));
+            return (stopwatch(), report.ToString());
+        }
+
+    
+         public static string format(Duration time)
+         {  
+             return $"{time.Ms} ms";
+         }
+
+        public static string output(string title, object value, Duration time, bool silent = true)
+        {
+            var line1 = $"{title}: {value}";
+            var line2 = $"Runtime: {format(time)}";
+            if(!silent)
+            {
+                magenta(line1);
+                magenta(line2);
+            }
+            return line1 + eol() + line2;
+
         }
 
 
@@ -53,59 +154,6 @@ namespace Z0.Mkl
                 => ((long)src.Reduce(Math.Max)).ToDeciDigits().Length;
 
 
-        public static void finale(string title, object value, Duration time, [CallerMemberName] string method = null)
-        {
-            magenta($"Output {title}", value);
-            cyan($"{method} => {Finale} | Runtime = {format(time)}");
-        }
-
-        [MethodImpl(Inline)]
-        public static void finale(string title, object value, Stopwatch sw, [CallerMemberName] string method = null)
-            => finale(title, value, snapshot(sw), method);
-
-        public static void output(object output)
-            => magenta(" Actual", output);
-
-        public static void expected(object expect)
-            => magenta(" Expect", expect);
-
-
-        public static void conclude(Duration time, [CallerMemberName] string method = null)    
-        {
-            
-            cyan($"Runtime", format(time));
-            print();
-        }
-
-        public static void input(object input)
-            => cyan("  Input", input);
-
-        public static void input(string title, object input)
-            => cyan($"Input {title}", input);
-
-        [MethodImpl(Inline)]
-        public static Stopwatch input(string firstTitle, object firstValue, string secondTitle, object secondValue)
-        {
-            input(firstTitle, firstValue);
-            print();
-            input(secondTitle, secondValue);
-            print();
-            return stopwatch();
-        }
-
-    
-         public static string format(Duration time)
-         {  
-             return $"{time.Ms} ms";
-         }
-
-        public static void output(string title, object value, Duration? time = null)
-        {
-            magenta(title, value);
-            if(time != null)            
-                magenta($"Runtime", format(time.Value));
-        }
-
     }
 
     public static class CBLASX
@@ -117,8 +165,8 @@ namespace Z0.Mkl
 
         public static void sasum()
         {
-            var method = intro();
-
+            var silent = true;   
+            (var method, var msg) = intro(silent);
             var n = 10;
             var incx = 1;
             var x = floats(1.0,  -2.0,  3.0,  4.0,  -5.0,  6.0,  -7.0,  8.0,  -9.0,  10.0);
@@ -128,17 +176,20 @@ namespace Z0.Mkl
             var result = CBLAS.cblas_sasum(n, ref x[0], incx);
             var time = snapshot(sw);            
 
-            output(result);            
-            conclude(time);                                    
+            msg += output(result, silent);            
+            msg += eol();
+            msg += conclude(time, silent);            
         }
 
         public static void dzasum()
         {
-            var method = intro();
+            var silent = true;
+            (var method, var msg) = intro(silent);            
+
             var n = 4;
             var incx = 1;
             var x =  ComplexF64.Load(doubles(1.2, 2.5, 3.0, 1.7, 4.0, 0.53, -5.5, -0.29));
-            input(x.FormatAsVector());
+            msg += input(x.FormatAsVector(),silent);
             
             var expect = x.Map(z => Math.Abs(z.re) + Math.Abs(z.im)).Reduce((a,b) => a + b);
             expected(expect);
@@ -152,7 +203,7 @@ namespace Z0.Mkl
 
         public static void saxpy()
         {
-            var method = intro();
+            (var method, var msg) = intro();
             var n = 5;
             var incx = 1;
             var incy = 1;
@@ -169,13 +220,13 @@ namespace Z0.Mkl
             conclude(time);                                    
         }
 
-        static void gemm<M,N>()
+        static string gemm<M,N>(bool silent = true)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
         {
             var m = nati<M>();
             var n = nati<N>();
-            var method = varintro($"{m}x{n} * {n}x{m} = {m}x{m}");
+            (var method, var introMsg) = varintro($"{m}x{n} * {n}x{m} = {m}x{m}", silent);
             var count = m*n;
             
             var srcA = span<double>(count);
@@ -188,23 +239,31 @@ namespace Z0.Mkl
                 srcB[i-1] = i;
             var b = NatSpan.load<N,M,double>(ref srcB[0]);
 
-            var timer = input(
+            (var timer, var startMsg) = input(
                 nameof(a), a.Format(zpad: a.EntryPadWidth()), 
-                nameof(b), b.Format(zpad: b.EntryPadWidth())
+                nameof(b), b.Format(zpad: b.EntryPadWidth()),
+                silent
                 );            
+
             var c = mkl.gemm(a,b);            
-            var time = snapshot(timer);   
-        
-            finale(nameof(c), c.Format(zpad: c.EntryPadWidth()), timer, method);
+            var time = snapshot(timer); 
+            var finaleMsg = finale(nameof(c), c.Format(zpad: c.EntryPadWidth()), timer, silent, method);
+                
+            var report = sbuild();
+            report.AppendLine(introMsg);
+            report.AppendLine(startMsg);
+            report.AppendLine(finaleMsg);
+            return report.ToString();
         }
         
         public static void gemm()
         {
-            gemm<N3,N4>();
-            gemm<N5,N7>();
-            gemm<N10,N10>();
-            gemm<N16,N16>();
-            gemm<N17,N17>();
+            var report = sbuild();
+            report.AppendLine(gemm<N3,N4>());
+            report.AppendLine(gemm<N5,N7>());
+            report.AppendLine(gemm<N10,N10>());
+            report.AppendLine(gemm<N16,N16>());
+            report.AppendLine(gemm<N17,N17>());
 
         }
         

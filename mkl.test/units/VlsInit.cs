@@ -16,34 +16,45 @@ namespace Z0.Mkl.Test
     {
         public void TestVlsInit()
         {
+            var report = sbuild();
+            bool silent = true;
+
+            string append(string msg)
+            {
+                report.AppendLine(msg); 
+                if(!silent)
+                    Trace(msg);
+                return msg;
+            };
+
             //IntPtr stream = IntPtr.Zero;
             //VSL.vslNewStream(ref stream, BRNG.VSL_BRNG_MCG59, 28923892).ThrowOnError();            
             using(var stream = mkl.stream(BRNG.VSL_BRNG_NONDETERM, 1))
             {
                 //VSL.viRngUniform(0, stream, buffer.Length, ref buffer[0], -200, 200).ThrowOnError();
                 var i32 = mkl.uniform(stream, closed(-200, 200), span<int>(10));
-                var i32Fmt = i32.Format();
-                Trace($"Discrete uniform i32 {appMsg(i32Fmt)}");
+                var i32Fmt = i32.Format();                
+                append($"Discrete uniform i32 {appMsg(i32Fmt)}");
 
                 var f32 = mkl.uniform(stream, closed(-250f, 250f), span<float>(10));
-                Trace($"Continuous uniform f32 {appMsg(f32.Format())}");
+                append($"Continuous uniform f32 {appMsg(f32.Format())}");
 
                 var f64 = mkl.uniform(stream, closed(-250d, 250d), span<double>(10));
-                Trace($"Continuous uniform f64 {appMsg(f64.Format())}");
+                append($"Continuous uniform f64 {appMsg(f64.Format())}");
 
                 var u32 = mkl.ubits(stream, span<uint>(10));
                 var u32Fmt = u32.Format();
-                Trace(appMsg(u32Fmt));
+                append(u32Fmt);
 
                 var u64 = mkl.ubits(stream, span<ulong>(10));
                 var u64Fmt = u64.Format();
-                Trace(appMsg(u64Fmt));
+                append(u64Fmt);
 
                 var bernoulli = mkl.bernoulli(stream, .5, span<Bit>(10));
-                Trace(appMsg(bernoulli.Format()));
+                append($"Bernoulli  {bernoulli.Format()}");
 
                 var geometric = mkl.geometric(stream, .5, span<int>(20));
-                Trace(appMsg(geometric.Format()));
+                append(geometric.Format());
             }                    
         }
     }

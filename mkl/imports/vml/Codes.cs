@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// Copyright   :  (c) Chris Moore, 2019
+// License     :  MIT
+//-----------------------------------------------------------------------------
 namespace Z0.Mkl
 {
 
@@ -59,12 +63,19 @@ namespace Z0.Mkl
     enum VmlMask
     {
         VML_ACCURACY_MASK =           0x0000000F,
+        
         VML_FPUMODE_MASK =            0x000000F0,
+        
         VML_ERRMODE_MASK =           0x0000FF00,
+        
         VML_ERRMODE_STDHANDLER_MASK = 0x00002F00,
+        
         VML_ERRMODE_CALLBACK_MASK =   0x00001000,
+        
         VML_NUM_THREADS_OMP_MASK =    0x00030000,
+        
         VML_FTZDAZ_MASK =             0x003C0000,
+        
         VML_TRAP_EXCEPTIONS_MASK =    0x0F000000,
 
     }

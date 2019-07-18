@@ -5,8 +5,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
-#include "mkl_vml_defines.h"
-#include "mkl_vml_types.h"
+#include "root.h"
 
 #if !defined(MKL_CALL_CONV)
 #   if defined(__MIC__) || defined(__TARGET_ARCH_MIC)
@@ -31,6 +30,214 @@ extern "C" {
 #if  !defined(_MKL_API)
 #define _MKL_API(rtype,name,arg)   extern rtype MKL_CALL_CONV   name    arg;
 #endif
+
+
+/*
+//++
+//  MACRO DEFINITIONS
+//  Macro definitions for VML mode and VML error status.
+//
+//  VML mode controls VML function accuracy, floating-point settings (rounding
+//  mode and precision) and VML error handling options. Default VML mode is
+//  VML_HA | VML_ERRMODE_DEFAULT, i.e. VML high accuracy functions are
+//  called, and current floating-point precision and the rounding mode is used.
+//
+//  Error status macros are used for error classification.
+//--
+*/
+
+/*
+//  VML FUNCTION ACCURACY CONTROL
+//  VML_HA - when VML_HA is set, high accuracy VML functions are called
+//  VML_LA - when VML_LA is set, low accuracy VML functions are called
+//  VML_EP - when VML_EP is set, enhanced performance VML functions are called
+//
+//  NOTE: VML_HA, VML_LA and VML_EP must not be used in combination
+*/
+#define VML_LA 0x00000001
+#define VML_HA 0x00000002
+#define VML_EP 0x00000003
+
+
+/*
+//  SETTING OPTIMAL FLOATING-POINT PRECISION AND ROUNDING MODE
+//  Definitions below are to set optimal floating-point control word
+//  (precision and rounding mode).
+//
+//  For their correct work, VML functions change floating-point precision and
+//  rounding mode (if necessary). Since control word changing is typically
+//  expensive operation, it is recommended to set precision and rounding mode
+//  to optimal values before VML function calls.
+//
+//  VML_FLOAT_CONSISTENT  - use this value if the calls are typically to single
+//                          precision VML functions
+//  VML_DOUBLE_CONSISTENT - use this value if the calls are typically to double
+//                          precision VML functions
+//  VML_RESTORE           - restore original floating-point precision and
+//                          rounding mode
+//  VML_DEFAULT_PRECISION - use default (current) floating-point precision and
+//                          rounding mode
+//  NOTE: VML_FLOAT_CONSISTENT, VML_DOUBLE_CONSISTENT, VML_RESTORE and
+//        VML_DEFAULT_PRECISION must not be used in combination
+*/
+#define VML_DEFAULT_PRECISION 0x00000000
+#define VML_FLOAT_CONSISTENT  0x00000010
+#define VML_DOUBLE_CONSISTENT 0x00000020
+#define VML_RESTORE           0x00000030
+
+/*
+//  VML ERROR HANDLING CONTROL
+//  Macros below are used to control VML error handler.
+//
+//  VML_ERRMODE_IGNORE   - ignore errors
+//  VML_ERRMODE_ERRNO    - errno variable is set on error
+//  VML_ERRMODE_STDERR   - error description text is written to stderr on error
+//  VML_ERRMODE_EXCEPT   - exception is raised on error
+//  VML_ERRMODE_CALLBACK - user's error handler function is called on error
+//  VML_ERRMODE_NOERR    - ignore errors and do not update status
+//  VML_ERRMODE_DEFAULT  - errno variable is set, exceptions are raised and
+//                         user's error handler is called on error
+//  NOTE: VML_ERRMODE_IGNORE must not be used in combination with
+//        VML_ERRMODE_ERRNO, VML_ERRMODE_STDERR, VML_ERRMODE_EXCEPT,
+//        VML_ERRMODE_CALLBACK and VML_ERRMODE_DEFAULT.
+//  NOTE: VML_ERRMODE_NOERR must not be used in combination with any
+//        other VML_ERRMODE setting.
+*/
+#define VML_ERRMODE_IGNORE   0x00000100
+#define VML_ERRMODE_ERRNO    0x00000200
+#define VML_ERRMODE_STDERR   0x00000400
+#define VML_ERRMODE_EXCEPT   0x00000800
+#define VML_ERRMODE_CALLBACK 0x00001000
+#define VML_ERRMODE_NOERR    0x00002000
+#define VML_ERRMODE_DEFAULT  \
+VML_ERRMODE_ERRNO | VML_ERRMODE_CALLBACK | VML_ERRMODE_EXCEPT
+
+/*
+//  OpenMP(R) number of threads mode macros
+//  VML_NUM_THREADS_OMP_AUTO   - Maximum number of threads is determined by
+//                               environmental variable OPM_NUM_THREADS or
+//                               omp_set_num_threads() function
+//  VML_NUM_THREADS_OMP_FIXED  - Number of threads is determined by
+//                               environmental variable OPM_NUM_THREADS
+//                               omp_set_num_threads() functions
+*/
+#define VML_NUM_THREADS_OMP_AUTO   0x00000000
+#define VML_NUM_THREADS_OMP_FIXED  0x00010000
+
+/*
+//  FTZ & DAZ mode macros
+//  VML_FTZDAZ_ON   - FTZ & DAZ MXCSR mode enabled
+//                    for faster (sub)denormal values processing
+//  VML_FTZDAZ_OFF  - FTZ & DAZ MXCSR mode disabled
+//                    for accurate (sub)denormal values processing
+*/
+#define VML_FTZDAZ_ON   0x00280000
+#define VML_FTZDAZ_OFF  0x00140000
+
+/*
+//  Exception trap macros
+//  VML_TRAP_INVALID             Trap invalid arithmetic operand exception
+//  VML_TRAP_DIVBYZERO           Trap divide-by-zero exception
+//  VML_TRAP_OVERFLOW            Trap numeric overflow exception
+//  VML_TRAP_UNDERFLOW           Trap numeric underflow exception
+*/
+
+#define VML_TRAP_INVALID    0x01000000
+#define VML_TRAP_DIVBYZERO  0x02000000
+#define VML_TRAP_OVERFLOW   0x04000000
+#define VML_TRAP_UNDERFLOW  0x08000000
+
+/*
+//  ACCURACY, FLOATING-POINT CONTROL, FTZDAZ AND ERROR HANDLING MASKS
+//  Accuracy, floating-point and error handling control are packed in
+//  the VML mode variable. Macros below are useful to extract accuracy and/or
+//  floating-point control and/or error handling control settings.
+//
+//  VML_ACCURACY_MASK           - extract accuracy bits
+//  VML_FPUMODE_MASK            - extract floating-point control bits
+//  VML_ERRMODE_MASK            - extract error handling control bits
+//                                (including error callback bits)
+//  VML_ERRMODE_STDHANDLER_MASK - extract error handling control bits
+//                                (not including error callback bits)
+//  VML_ERRMODE_CALLBACK_MASK   - extract error callback bits
+//  VML_NUM_THREADS_OMP_MASK    - extract OpenMP(R) number of threads mode bits
+//  VML_FTZDAZ_MASK             - extract FTZ & DAZ bits
+//  VML_TRAP_EXCEPTIONS_MASK    - extract exception trap bits
+*/
+#define VML_ACCURACY_MASK           0x0000000F
+#define VML_FPUMODE_MASK            0x000000F0
+#define VML_ERRMODE_MASK            0x0000FF00
+#define VML_ERRMODE_STDHANDLER_MASK 0x00002F00
+#define VML_ERRMODE_CALLBACK_MASK   0x00001000
+#define VML_NUM_THREADS_OMP_MASK    0x00030000
+#define VML_FTZDAZ_MASK             0x003C0000
+#define VML_TRAP_EXCEPTIONS_MASK    0x0F000000
+
+/*
+//  ERROR STATUS MACROS
+//  VML_STATUS_OK        - no errors
+//  VML_STATUS_BADSIZE   - array dimension is not positive
+//  VML_STATUS_BADMEM    - invalid pointer passed
+//  VML_STATUS_ERRDOM    - at least one of arguments is out of function domain
+//  VML_STATUS_SING      - at least one of arguments caused singularity
+//  VML_STATUS_OVERFLOW  - at least one of arguments caused overflow
+//  VML_STATUS_UNDERFLOW - at least one of arguments caused underflow
+//  VML_STATUS_ACCURACYWARNING - function doesn't support set accuracy mode,
+//                               lower accuracy mode was used instead
+*/
+#define VML_STATUS_OK                    0
+#define VML_STATUS_BADSIZE              -1
+#define VML_STATUS_BADMEM               -2
+#define VML_STATUS_ERRDOM                1
+#define VML_STATUS_SING                  2
+#define VML_STATUS_OVERFLOW              3
+#define VML_STATUS_UNDERFLOW             4
+#define VML_STATUS_ACCURACYWARNING       1000
+
+/*
+//++
+//  TYPEDEFS
+//--
+*/
+
+/*
+//  ERROR CALLBACK CONTEXT.
+//  Error callback context structure is used in a user's error callback
+//  function with the following interface:
+//
+//      int USER_CALLBACK_FUNC_NAME( DefVmlErrorContext par )
+//
+//  Error callback context fields:
+//  iCode        - error status
+//  iIndex       - index of bad argument
+//  dbA1         - 1-st argument value, at which error occured
+//  dbA2         - 2-nd argument value, at which error occured
+//                 (2-argument functions only)
+//  dbR1         - 1-st resulting value
+//  dbR2         - 2-nd resulting value (2-result functions only)
+//  cFuncName    - function name, for which error occured
+//  iFuncNameLen - length of function name
+*/
+typedef struct _DefVmlErrorContext
+{
+    int     iCode;
+    int     iIndex;
+    double  dbA1;
+    double  dbA2;
+    double  dbR1;
+    double  dbR2;
+    char    cFuncName[64];
+    int     iFuncNameLen;
+    double  dbA1Im;
+    double  dbA2Im;
+    double  dbR1Im;
+    double  dbR2Im;
+} DefVmlErrorContext;
+
+/*
+// User error callback handler function type
+*/
+typedef int (*VMLErrorCallBack) (DefVmlErrorContext* pdefVmlErrorContext);
 
 
 /*  VML ELEMENTARY FUNCTION DECLARATIONS */
@@ -85,12 +292,54 @@ _Mkl_Api(void,vzSub,(const MKL_INT n,  const MKL_Complex16 a[], const MKL_Comple
 _Mkl_Api(void,vmcSub,(const MKL_INT n,  const MKL_Complex8  a[], const MKL_Complex8  b[], MKL_Complex8  r[], MKL_INT64 mode))
 _Mkl_Api(void,vmzSub,(const MKL_INT n,  const MKL_Complex16 a[], const MKL_Complex16 b[], MKL_Complex16 r[], MKL_INT64 mode))
 
+/* Multiplicaton: r[i] = a[i] * b[i] */
+_Mkl_Api(void,vsMul,(const MKL_INT n,  const float  a[], const float  b[], float  r[]))
+_Mkl_Api(void,vdMul,(const MKL_INT n,  const double a[], const double b[], double r[]))
+
+_Mkl_Api(void,vmsMul,(const MKL_INT n,  const float  a[], const float  b[], float  r[], MKL_INT64 mode))
+_Mkl_Api(void,vmdMul,(const MKL_INT n,  const double a[], const double b[], double r[], MKL_INT64 mode))
+
+/* Complex multiplication: r[i] = a[i] * b[i] */
+_Mkl_Api(void,vcMul,(const MKL_INT n,  const MKL_Complex8  a[], const MKL_Complex8  b[], MKL_Complex8  r[]))
+_Mkl_Api(void,vzMul,(const MKL_INT n,  const MKL_Complex16 a[], const MKL_Complex16 b[], MKL_Complex16 r[]))
+
+_Mkl_Api(void,vmcMul,(const MKL_INT n,  const MKL_Complex8  a[], const MKL_Complex8  b[], MKL_Complex8  r[], MKL_INT64 mode))
+_Mkl_Api(void,vmzMul,(const MKL_INT n,  const MKL_Complex16 a[], const MKL_Complex16 b[], MKL_Complex16 r[], MKL_INT64 mode))
+
+/* Division: r[i] = a[i] / b[i] */
+_Mkl_Api(void,vsDiv,(const MKL_INT n,  const float  a[], const float  b[], float  r[]))
+_Mkl_Api(void,vdDiv,(const MKL_INT n,  const double a[], const double b[], double r[]))
+
+_Mkl_Api(void,vmsDiv,(const MKL_INT n,  const float  a[], const float  b[], float  r[], MKL_INT64 mode))
+_Mkl_Api(void,vmdDiv,(const MKL_INT n,  const double a[], const double b[], double r[], MKL_INT64 mode))
+
+/* Complex division: r[i] = a[i] / b[i] */
+_Mkl_Api(void,vcDiv,(const MKL_INT n,  const MKL_Complex8  a[], const MKL_Complex8  b[], MKL_Complex8  r[]))
+_Mkl_Api(void,vzDiv,(const MKL_INT n,  const MKL_Complex16 a[], const MKL_Complex16 b[], MKL_Complex16 r[]))
+
+_Mkl_Api(void,vmcDiv,(const MKL_INT n,  const MKL_Complex8  a[], const MKL_Complex8  b[], MKL_Complex8  r[], MKL_INT64 mode))
+_Mkl_Api(void,vmzDiv,(const MKL_INT n,  const MKL_Complex16 a[], const MKL_Complex16 b[], MKL_Complex16 r[], MKL_INT64 mode))
+
 /* Reciprocal: r[i] = 1.0 / a[i] */
 _Mkl_Api(void,vsInv,(const MKL_INT n,  const float  a[], float  r[]))
 _Mkl_Api(void,vdInv,(const MKL_INT n,  const double a[], double r[]))
 
 _Mkl_Api(void,vmsInv,(const MKL_INT n,  const float  a[], float  r[], MKL_INT64 mode))
 _Mkl_Api(void,vmdInv,(const MKL_INT n,  const double a[], double r[], MKL_INT64 mode))
+
+/* Modulus function: r[i] = fmod(a[i], b[i]) */
+_Mkl_Api(void, vsFmod, (const MKL_INT n, const float  a[], const float  b[], float  r[]))
+_Mkl_Api(void, vdFmod, (const MKL_INT n, const double a[], const double b[], double r[]))
+
+_Mkl_Api(void, vmsFmod, (const MKL_INT n, const float  a[], const float  b[], float  r[], MKL_INT64 mode))
+_Mkl_Api(void, vmdFmod, (const MKL_INT n, const double a[], const double b[], double r[], MKL_INT64 mode))
+
+/* Remainder function: r[i] = remainder(a[i], b[i]) */
+_Mkl_Api(void, vsRemainder, (const MKL_INT n, const float  a[], const float  b[], float  r[]))
+_Mkl_Api(void, vdRemainder, (const MKL_INT n, const double a[], const double b[], double r[]))
+
+_Mkl_Api(void, vmsRemainder, (const MKL_INT n, const float  a[], const float  b[], float  r[], MKL_INT64 mode))
+_Mkl_Api(void, vmdRemainder, (const MKL_INT n, const double a[], const double b[], double r[], MKL_INT64 mode))
 
 /* Square root: r[i] = a[i]^0.5 */
 _Mkl_Api(void,vsSqrt,(const MKL_INT n,  const float  a[], float  r[]))
@@ -442,12 +691,33 @@ _Mkl_Api(void,vdAtanh,(const MKL_INT n,  const double a[], double r[]))
 _Mkl_Api(void,vmsAtanh,(const MKL_INT n,  const float  a[], float  r[], MKL_INT64 mode))
 _Mkl_Api(void,vmdAtanh,(const MKL_INT n,  const double a[], double r[], MKL_INT64 mode))
 
+/* Arc tangent of a/b: r[i] = arctan(a[i]/b[i]) */
+_Mkl_Api(void,vsAtan2,(const MKL_INT n,  const float  a[], const float  b[], float  r[]))
+_Mkl_Api(void,vdAtan2,(const MKL_INT n,  const double a[], const double b[], double r[]))
+
+_Mkl_Api(void,vmsAtan2,(const MKL_INT n,  const float  a[], const float  b[], float  r[], MKL_INT64 mode))
+_Mkl_Api(void,vmdAtan2,(const MKL_INT n,  const double a[], const double b[], double r[], MKL_INT64 mode))
+
+/* Arc tangent of a/b divided by PI: r[i] = arctan(a[i]/b[i])/PI */
+_Mkl_Api(void, vsAtan2pi, (const MKL_INT n, const float  a[], const float  b[], float  r[]))
+_Mkl_Api(void, vdAtan2pi, (const MKL_INT n, const double a[], const double b[], double r[]))
+
+_Mkl_Api(void, vmsAtan2pi, (const MKL_INT n, const float  a[], const float  b[], float  r[], MKL_INT64 mode))
+_Mkl_Api(void, vmdAtan2pi, (const MKL_INT n, const double a[], const double b[], double r[], MKL_INT64 mode))
+
 /* Complex hyperbolic arc tangent: r[i] = arcth(a[i]) */
 _Mkl_Api(void,vcAtanh,(const MKL_INT n,  const MKL_Complex8  a[], MKL_Complex8  r[]))
 _Mkl_Api(void,vzAtanh,(const MKL_INT n,  const MKL_Complex16 a[], MKL_Complex16 r[]))
 
 _Mkl_Api(void,vmcAtanh,(const MKL_INT n,  const MKL_Complex8  a[], MKL_Complex8  r[], MKL_INT64 mode))
 _Mkl_Api(void,vmzAtanh,(const MKL_INT n,  const MKL_Complex16 a[], MKL_Complex16 r[], MKL_INT64 mode))
+
+/* Sine & cosine: r1[i] = sin(a[i]), r2[i]=cos(a[i]) */
+_Mkl_Api(void,vsSinCos,(const MKL_INT n,  const float  a[], float  r1[], float  r2[]))
+_Mkl_Api(void,vdSinCos,(const MKL_INT n,  const double a[], double r1[], double r2[]))
+
+_Mkl_Api(void,vmsSinCos,(const MKL_INT n,  const float  a[], float  r1[], float  r2[], MKL_INT64 mode))
+_Mkl_Api(void,vmdSinCos,(const MKL_INT n,  const double a[], double r1[], double r2[], MKL_INT64 mode))
 
 /* Error function: r[i] = erf(a[i]) */
 _Mkl_Api(void,vsErf,(const MKL_INT n,  const float  a[], float  r[]))
@@ -512,47 +782,7 @@ _Mkl_Api(void,vdTGamma,(const MKL_INT n,  const double a[], double r[]))
 _Mkl_Api(void,vmsTGamma,(const MKL_INT n,  const float  a[], float  r[], MKL_INT64 mode))
 _Mkl_Api(void,vmdTGamma,(const MKL_INT n,  const double a[], double r[], MKL_INT64 mode))
 
-/* Arc tangent of a/b: r[i] = arctan(a[i]/b[i]) */
-_Mkl_Api(void,vsAtan2,(const MKL_INT n,  const float  a[], const float  b[], float  r[]))
-_Mkl_Api(void,vdAtan2,(const MKL_INT n,  const double a[], const double b[], double r[]))
 
-_Mkl_Api(void,vmsAtan2,(const MKL_INT n,  const float  a[], const float  b[], float  r[], MKL_INT64 mode))
-_Mkl_Api(void,vmdAtan2,(const MKL_INT n,  const double a[], const double b[], double r[], MKL_INT64 mode))
-
-/* Arc tangent of a/b divided by PI: r[i] = arctan(a[i]/b[i])/PI */
-_Mkl_Api(void, vsAtan2pi, (const MKL_INT n, const float  a[], const float  b[], float  r[]))
-_Mkl_Api(void, vdAtan2pi, (const MKL_INT n, const double a[], const double b[], double r[]))
-
-_Mkl_Api(void, vmsAtan2pi, (const MKL_INT n, const float  a[], const float  b[], float  r[], MKL_INT64 mode))
-_Mkl_Api(void, vmdAtan2pi, (const MKL_INT n, const double a[], const double b[], double r[], MKL_INT64 mode))
-
-/* Multiplicaton: r[i] = a[i] * b[i] */
-_Mkl_Api(void,vsMul,(const MKL_INT n,  const float  a[], const float  b[], float  r[]))
-_Mkl_Api(void,vdMul,(const MKL_INT n,  const double a[], const double b[], double r[]))
-
-_Mkl_Api(void,vmsMul,(const MKL_INT n,  const float  a[], const float  b[], float  r[], MKL_INT64 mode))
-_Mkl_Api(void,vmdMul,(const MKL_INT n,  const double a[], const double b[], double r[], MKL_INT64 mode))
-
-/* Complex multiplication: r[i] = a[i] * b[i] */
-_Mkl_Api(void,vcMul,(const MKL_INT n,  const MKL_Complex8  a[], const MKL_Complex8  b[], MKL_Complex8  r[]))
-_Mkl_Api(void,vzMul,(const MKL_INT n,  const MKL_Complex16 a[], const MKL_Complex16 b[], MKL_Complex16 r[]))
-
-_Mkl_Api(void,vmcMul,(const MKL_INT n,  const MKL_Complex8  a[], const MKL_Complex8  b[], MKL_Complex8  r[], MKL_INT64 mode))
-_Mkl_Api(void,vmzMul,(const MKL_INT n,  const MKL_Complex16 a[], const MKL_Complex16 b[], MKL_Complex16 r[], MKL_INT64 mode))
-
-/* Division: r[i] = a[i] / b[i] */
-_Mkl_Api(void,vsDiv,(const MKL_INT n,  const float  a[], const float  b[], float  r[]))
-_Mkl_Api(void,vdDiv,(const MKL_INT n,  const double a[], const double b[], double r[]))
-
-_Mkl_Api(void,vmsDiv,(const MKL_INT n,  const float  a[], const float  b[], float  r[], MKL_INT64 mode))
-_Mkl_Api(void,vmdDiv,(const MKL_INT n,  const double a[], const double b[], double r[], MKL_INT64 mode))
-
-/* Complex division: r[i] = a[i] / b[i] */
-_Mkl_Api(void,vcDiv,(const MKL_INT n,  const MKL_Complex8  a[], const MKL_Complex8  b[], MKL_Complex8  r[]))
-_Mkl_Api(void,vzDiv,(const MKL_INT n,  const MKL_Complex16 a[], const MKL_Complex16 b[], MKL_Complex16 r[]))
-
-_Mkl_Api(void,vmcDiv,(const MKL_INT n,  const MKL_Complex8  a[], const MKL_Complex8  b[], MKL_Complex8  r[], MKL_INT64 mode))
-_Mkl_Api(void,vmzDiv,(const MKL_INT n,  const MKL_Complex16 a[], const MKL_Complex16 b[], MKL_Complex16 r[], MKL_INT64 mode))
 
 /* Power function: r[i] = a[i]^b[i] */
 _Mkl_Api(void,vsPow,(const MKL_INT n,  const float  a[], const float  b[], float  r[]))
@@ -603,12 +833,6 @@ _Mkl_Api(void, vdPowr, (const MKL_INT n, const double a[], const double b[], dou
 _Mkl_Api(void, vmsPowr, (const MKL_INT n, const float  a[], const float  b[], float  r[], MKL_INT64 mode))
 _Mkl_Api(void, vmdPowr, (const MKL_INT n, const double a[], const double b[], double r[], MKL_INT64 mode))
 
-/* Sine & cosine: r1[i] = sin(a[i]), r2[i]=cos(a[i]) */
-_Mkl_Api(void,vsSinCos,(const MKL_INT n,  const float  a[], float  r1[], float  r2[]))
-_Mkl_Api(void,vdSinCos,(const MKL_INT n,  const double a[], double r1[], double r2[]))
-
-_Mkl_Api(void,vmsSinCos,(const MKL_INT n,  const float  a[], float  r1[], float  r2[], MKL_INT64 mode))
-_Mkl_Api(void,vmdSinCos,(const MKL_INT n,  const double a[], double r1[], double r2[], MKL_INT64 mode))
 
 /* Linear fraction: r[i] = (a[i]*scalea + shifta)/(b[i]*scaleb + shiftb) */
 _Mkl_Api(void,vsLinearFrac,(const MKL_INT n,  const float  a[], const float  b[], const float  scalea, const float  shifta, const float  scaleb, const float  shiftb, float  r[]))
@@ -618,10 +842,6 @@ _Mkl_Api(void,vmsLinearFrac,(const MKL_INT n,  const float  a[], const float  b[
 _Mkl_Api(void,vmdLinearFrac,(const MKL_INT n,  const double a[], const double b[], const double scalea, const double shifta, const double scaleb, const double shiftb, double r[], MKL_INT64 mode))
 
 /* Integer value rounded towards plus infinity: r[i] = ceil(a[i]) */
-_MKL_API(void,VSCEIL,(const MKL_INT *n, const float  a[], float  r[]))
-_MKL_API(void,VDCEIL,(const MKL_INT *n, const double a[], double r[]))
-_mkl_api(void,vsceil,(const MKL_INT *n, const float  a[], float  r[]))
-_mkl_api(void,vdceil,(const MKL_INT *n, const double a[], double r[]))
 _Mkl_Api(void,vsCeil,(const MKL_INT n,  const float  a[], float  r[]))
 _Mkl_Api(void,vdCeil,(const MKL_INT n,  const double a[], double r[]))
 
@@ -649,19 +869,6 @@ _Mkl_Api(void,vdModf,(const MKL_INT n,  const double a[], double r1[], double r2
 _Mkl_Api(void,vmsModf,(const MKL_INT n,  const float  a[], float  r1[], float  r2[], MKL_INT64 mode))
 _Mkl_Api(void,vmdModf,(const MKL_INT n,  const double a[], double r1[], double r2[], MKL_INT64 mode))
 
-/* Modulus function: r[i] = fmod(a[i], b[i]) */
-_Mkl_Api(void, vsFmod, (const MKL_INT n, const float  a[], const float  b[], float  r[]))
-_Mkl_Api(void, vdFmod, (const MKL_INT n, const double a[], const double b[], double r[]))
-
-_Mkl_Api(void, vmsFmod, (const MKL_INT n, const float  a[], const float  b[], float  r[], MKL_INT64 mode))
-_Mkl_Api(void, vmdFmod, (const MKL_INT n, const double a[], const double b[], double r[], MKL_INT64 mode))
-
-/* Remainder function: r[i] = remainder(a[i], b[i]) */
-_Mkl_Api(void, vsRemainder, (const MKL_INT n, const float  a[], const float  b[], float  r[]))
-_Mkl_Api(void, vdRemainder, (const MKL_INT n, const double a[], const double b[], double r[]))
-
-_Mkl_Api(void, vmsRemainder, (const MKL_INT n, const float  a[], const float  b[], float  r[], MKL_INT64 mode))
-_Mkl_Api(void, vmdRemainder, (const MKL_INT n, const double a[], const double b[], double r[], MKL_INT64 mode))
 
 /* Next after function: r[i] = nextafter(a[i], b[i]) */
 _Mkl_Api(void, vsNextAfter, (const MKL_INT n, const float  a[], const float  b[], float  r[]))

@@ -12,7 +12,7 @@ namespace Z0.Test
     {
         public void MultiCharSymbols()
         {
-            print($"Length = {BlackBoard.A.Length}");
+            Claim.eq(2, BlackBoard.A.Length);
         }
 
     }

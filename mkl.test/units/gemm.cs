@@ -15,15 +15,17 @@ namespace Z0.Mkl.Test
 
     public class GemmTest : UnitTest<GemmTest>
     {
-        static void gemm<M,N>()
+        static string gemm<M,N>(bool silent = true)
             where M : ITypeNat, new()
             where N : ITypeNat, new()
         {
             var m = nati<M>();
             var n = nati<N>();
-            var method = varintro($"{m}x{n} * {n}x{m} = {m}x{m}");
             var count = m*n;
+
+            (var method, var introMsg) = varintro($"{m}x{n} * {n}x{m} = {m}x{m}", silent);
             
+                    
             var srcA = span<double>(count);
             for(var i=1; i<= count; i++)
                 srcA[i-1] = i;
@@ -34,14 +36,21 @@ namespace Z0.Mkl.Test
                 srcB[i-1] = i;
             var b = NatSpan.load<N,M,double>(ref srcB[0]);
 
-            var timer = input(
+            (var timer, var startMsg) = input(
                 nameof(a), a.Format(zpad: a.EntryPadWidth()), 
-                nameof(b), b.Format(zpad: b.EntryPadWidth())
+                nameof(b), b.Format(zpad: b.EntryPadWidth()),
+                silent
                 );            
+
             var c = mkl.gemm(a,b);            
             var time = snapshot(timer);   
-        
-            finale(nameof(c), c.Format(zpad: c.EntryPadWidth()), timer, method);
+            var finaleMsg = finale(nameof(c), c.Format(zpad: c.EntryPadWidth()), timer, silent, method);
+
+            var report = sbuild();
+            report.AppendLine(introMsg);
+            report.AppendLine(startMsg);
+            report.AppendLine(finaleMsg);
+            return report.ToString();
         }
         
         public static void Gemm()
