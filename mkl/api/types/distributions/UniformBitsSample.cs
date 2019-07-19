@@ -12,26 +12,19 @@ namespace Z0.Mkl
     using static zfunc;
     using static nfunc;
 
-
-    public ref struct GeometricSample<T>
+    public ref struct UniformBitsSample<T>
         where T : struct
     {
-        public GeometricSample(BRNG rng, double p, Span<T> data)
+        public UniformBitsSample(BRNG rng, Span<T> data)
         {
             this.SourceRng = rng;
-            this.P = p;
             this.SampleData = data;
-        }        
+        }
 
         /// <summary>
         /// The generator used during sample generation
         /// </summary>
         public BRNG SourceRng;
-
-        /// <summary>
-        /// The probability of trial success
-        /// </summary>
-        public double P;
         
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
@@ -43,14 +36,6 @@ namespace Z0.Mkl
         /// </summary>
         public string Format()
             => SampleData.Format();
-
-    }
-
-    public static class GeometricSample
-    {
-        public static GeometricSample<T> GeometricSampled<T>(this BRNG rng, double p, Span<T> data)
-            where T : struct
-                => new GeometricSample<T>(rng, p, data);
     }
 
 

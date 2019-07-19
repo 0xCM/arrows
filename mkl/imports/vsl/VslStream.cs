@@ -39,7 +39,7 @@ namespace Z0.Mkl
     partial class VSL
     {        
 
-       [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslRngStatus vslNewStream(ref IntPtr stream, BRNG brng, uint seed);
 
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]

@@ -18,6 +18,7 @@ namespace Z0.Mkl
     static class VML
     {
         const string VmlDll = "z0-vml-clib.dll";
+
 		/* Addition: r[i] = a[i] + b[i] */
         [DllImport(VmlDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void vsAdd(int n, ref float a, ref float b, ref float r);		
@@ -167,7 +168,6 @@ namespace Z0.Mkl
         /* Reciprocal cube root: r[i] = 1/a[i]^(1/3) */
         [DllImport(VmlDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern void vdInvCbrt(int n, ref double a, ref double r);		
-
 
         /* Exponential function: r[i] = e^a[i] */
         [DllImport(VmlDll, CallingConvention=Cdecl, ExactSpelling=true)]

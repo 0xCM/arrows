@@ -150,7 +150,7 @@ namespace Z0.Mkl
         public static GaussianSample<float> gaussian(VslStream stream, float mu, float sigma, Span<float> buffer)
         {
             VSL.vsRngGaussian(VslGaussianMethod.BoxMuller1, stream, buffer.Length, ref buffer[0], mu, sigma).ThrowOnError();
-            return stream.Brng().GaussianSampled(mu,sigma,buffer);
+            return stream.Brng().GaussianSample(mu,sigma,buffer);
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Z0.Mkl
         public static GaussianSample<double> gaussian(VslStream stream, double mu, double sigma, Span<double> buffer)
         {
             VSL.vdRngGaussian(VslGaussianMethod.BoxMuller1, stream, buffer.Length, ref buffer[0], mu, sigma).ThrowOnError();
-            return stream.Brng().GaussianSampled(mu,sigma,buffer);
+            return stream.Brng().GaussianSample(mu,sigma,buffer);
         }
 
 

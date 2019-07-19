@@ -11,39 +11,8 @@ namespace Z0.Mkl
     using static zfunc;
     using static MklImports;
 
-    /// <summary>
-    /// Represents a summary statistics task
-    /// </summary>
-    public sealed class VslSSTask<T> : MklTask<VslSSTask<T>>
-    {
-
-        public VslSSTask()
-        {
-
-        }
-
-        public VslSSTask(int Dim,  T[] Observations)
-        {
-            this.Dim = Dim;
-            this.OservationCount = Observations.Length / Dim;
-            this.Observations = Observations;
 
 
-        }
-
-        public readonly int Dim;
-
-        public readonly int OservationCount;
-
-        public readonly T[] Observations;
-             
-
-        public override void Dispose()
-        {
-            if(Pointer != IntPtr.Zero)
-                VSL.vslSSDeleteTask(ref Pointer);
-        }
-    }
 
     partial class VSL
     {        
@@ -59,8 +28,20 @@ namespace Z0.Mkl
         /// <param name="weights">A weight vector of length obsCount. If NULL, implies each observation has a weight of 1 </param>
         /// <param name="indices">Array of vector components of length dim indicating the components that sould be processed. If null, all components are procesed</param>
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern SSStatus vsldSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
+        public static extern VslSSStatus vslsSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
             ref float observations, ref float weights, ref int indices);
+
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static unsafe extern VslSSStatus vslsSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
+            ref float observations, ref float weights, int* pIndices = null);
+
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static unsafe extern VslSSStatus vslsSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
+            ref float observations, float* pWeights, ref int indices);
+
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static unsafe extern VslSSStatus vslsSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
+            ref float observations, float* pWeights = null, int* pIndices = null);
 
         /// <summary>
         /// Creates a new double-precisiion summary statistics task
@@ -73,32 +54,44 @@ namespace Z0.Mkl
         /// <param name="weights">A weight vector of length obsCount. If NULL, implies each observation has a weight of 1 </param>
         /// <param name="indices">Array of vector components of length dim indicating the components that sould be processed. If null, all components are procesed</param>
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern SSStatus vsldSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
+        public static extern VslSSStatus vsldSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
             ref double observations, ref double weights, ref int indices);
+
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static unsafe extern VslSSStatus vsldSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
+            ref double observations, ref double weights, int* pIndices = null);
+
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static unsafe extern VslSSStatus vsldSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
+            ref double observations, double* pWeights, ref int indices);
+
+        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+        public static unsafe extern VslSSStatus vsldSSNewTask(ref IntPtr task, ref int dim, ref int obsCount, ref VslSSMatrixStorage obsStorage, 
+            ref double observations, double* pWeights = null, int* pIndices = null);
 
         /// <summary>
         /// Deletes a summary statistics task
         /// </summary>
         /// <param name="task">A reference to the task pointer that the routine will deallocate</param>
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern SSStatus vslSSDeleteTask(ref IntPtr task);
+        public static extern VslSSStatus vslSSDeleteTask(ref IntPtr task);
 
 
          [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-         public static extern SSStatus vsldSSEditTask(IntPtr task, int param, ref int value);
+         public static extern VslSSStatus vsliSSEditTask(IntPtr task, VslSSTaskParameter param, ref int value);
 
          [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-         public static extern SSStatus vsldSSEditTask(IntPtr task, SSTaskParameter param, ref float value);
+         public static extern VslSSStatus vslsSSEditTask(IntPtr task, VslSSTaskParameter param, ref float value);
+
+         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
+         public static extern VslSSStatus vsldSSEditTask(IntPtr task, VslSSTaskParameter param, ref double value);
+
 
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern SSStatus vsldSSEditTask(IntPtr task, SSTaskParameter param, ref double value);
-
-
-        [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern SSStatus vslsSSCompute(IntPtr task, SSComputeRoutine routines, SSComputeMethod methods);
+        public static extern VslSSStatus vslsSSCompute(IntPtr task, VslSSComputeRoutine routines, VslSSComputeMethod methods);
 
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
-        public static extern SSStatus vsldSSCompute(IntPtr task, SSComputeRoutine routines, SSComputeMethod methods);
+        public static extern VslSSStatus vsldSSCompute(IntPtr task, VslSSComputeRoutine routines, VslSSComputeMethod methods);
 
     }
     

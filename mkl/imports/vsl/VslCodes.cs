@@ -125,107 +125,139 @@ namespace Z0.Mkl
         
     public enum VslError 
     {
+
+        [MklCode("Everying is OK")]
         VSL_ERROR_OK = 0,
         
-        [MklCode("")]
+        [MklCode("Feature invoked is not implemented")]
         VSL_ERROR_FEATURE_NOT_IMPLEMENTED = -1,
         
-        [MklCode("")]
+        [MklCode("Unknown error")]
         VSL_ERROR_UNKNOWN = -2,
         
-        [MklCode("")]
+        [MklCode("Input argument value is not valid")]
         VSL_ERROR_BADARGS = -3,
         
-        [MklCode("")]
+        [MklCode("System cannot allocate memory")]
         VSL_ERROR_MEM_FAILURE = -4,
         
-        [MklCode("")]
+        [MklCode("Input pointer argument is NULL.")]
         VSL_ERROR_NULL_PTR = -5,
         
-        [MklCode("")]
+        [MklCode("CPU version is not supported")]
         VSL_ERROR_CPU_NOT_SUPPORTED = -6,
     }
 
-    public enum VslSSMatrixStorage
+    public enum VslSSMatrixStorage : int
     {
         /// <summary>
         /// Observation vectors are organized by rows. For example, 10 observations
         /// in dimension 3 will conform to a 10 row 3 column matrix
         /// </summary>
-        [MklCode("")]
+        [MklCode("Observation vectors are organized by rows")]
         VSL_SS_MATRIX_STORAGE_ROWS  =    0x00010000,
         
         /// <summary>
         /// Observation vectors are organized by columns. For example, 10 observations
         /// in dimension 3 will conform to a 3 row by 10 column matrix
         /// </summary>
-        [MklCode("")]
+        [MklCode("Observation vectors are organized by columns")]
         VSL_SS_MATRIX_STORAGE_COLS  =   0x00020000
 
     }
 
     public enum VslRngStatus
     {
+        [MklCode("")]
         VSL_ERROR_OK = 0,
 
+        [MklCode("")]
         VSL_ERROR_MEM_FAILURE  = -4,
 
+        [MklCode("")]
         VSL_RNG_ERROR_INVALID_BRNG_INDEX = - 1000,
     
+        [MklCode("")]
         VSL_RNG_ERROR_LEAPFROG_UNSUPPORTED = - 1002,
     
+        [MklCode("")]
         VSL_RNG_ERROR_SKIPAHEAD_UNSUPPORTED = - 1003,
     
+        [MklCode("")]
         VSL_RNG_ERROR_BRNGS_INCOMPATIBLE = - 1005,
     
+        [MklCode("")]
         VSL_RNG_ERROR_BAD_STREAM = - 1006,
     
+        [MklCode("")]
         VSL_RNG_ERROR_BRNG_TABLE_FULL    = - 1007,
     
+        [MklCode("")]
         VSL_RNG_ERROR_BAD_STREAM_STATE_SIZE     = - 1008,
     
+        [MklCode("")]
         VSL_RNG_ERROR_BAD_WORD_SIZE = - 1009,
     
+        [MklCode("")]
         VSL_RNG_ERROR_BAD_NSEEDS = - 1010,
     
+        [MklCode("")]
         VSL_RNG_ERROR_BAD_NBITS = - 1011,
     
+        [MklCode("")]
         VSL_RNG_ERROR_QRNG_PERIOD_ELAPSED = - 1012,
     
+        [MklCode("")]
         VSL_RNG_ERROR_LEAPFROG_NSTREAMS_TOO_BIG = - 1013,
     
+        [MklCode("")]
         VSL_RNG_ERROR_BRNG_NOT_SUPPORTED = - 1014,
 
         /* abstract stream related errors */
+        [MklCode("")]
         VSL_RNG_ERROR_BAD_UPDATE = - 1120,
         
+        [MklCode("")]
         VSL_RNG_ERROR_NO_NUMBERS = - 1121,
         
+        [MklCode("")]
         VSL_RNG_ERROR_INVALID_ABSTRACT_STREAM = - 1122,
 
         /* non determenistic stream related errors */
+        [MklCode("")]
         VSL_RNG_ERROR_NONDETERM_NOT_SUPPORTED     = - 1130,
+
+        [MklCode("")]
         VSL_RNG_ERROR_NONDETERM_NRETRIES_EXCEEDED = - 1131,
 
         /* ARS5 stream related errors */
+        [MklCode("")]
         VSL_RNG_ERROR_ARS5_NOT_SUPPORTED        = - 1140,
 
         /* Multinomial distribution probability array related errors */
+        [MklCode("")]
         VSL_DISTR_MULTINOMIAL_BAD_PROBABILITY_ARRAY    = - 1150,
 
         /* read/write stream to file errors */
+        [MklCode("")]
         VSL_RNG_ERROR_FILE_CLOSE = - 1100,
         
+        [MklCode("")]
         VSL_RNG_ERROR_FILE_OPEN = - 1101,
         
+        [MklCode("")]
         VSL_RNG_ERROR_FILE_WRITE = - 1102,
         
+        [MklCode("")]
         VSL_RNG_ERROR_FILE_READ = - 1103,
 
+        [MklCode("")]
         VSL_RNG_ERROR_BAD_FILE_FORMAT = - 1110,
         
+        [MklCode("")]
         VSL_RNG_ERROR_UNSUPPORTED_FILE_VER = - 1111,
 
+        [MklCode("")]
         VSL_RNG_ERROR_BAD_MEM_FORMAT = - 1200
 
     }
@@ -234,14 +266,17 @@ namespace Z0.Mkl
     {
         VSL_RNG_METHOD_UNIFORM_STD = 0,
         
+        [MklCode("")]
         VSL_RNG_METHOD_UNIFORMBITS32_STD = 0, 
         
+        [MklCode("")]
         VSL_RNG_METHOD_UNIFORMBITS64_STD = 0,
 
         /// <summary>
         /// Generates normally distributed random number x thru the pair of uniformly distributed numbers u1 and u2 according to the formula:
         /// x=sqrt(-ln(u1))*sin(2*Pi*u2)
         /// </summary>       
+        [MklCode("")]
         VSL_RNG_METHOD_GAUSSIAN_BOXMULLER = 0,
 
         /// <summary>
@@ -251,384 +286,526 @@ namespace Z0.Mkl
         /// x2=sqrt(-ln(u1))*cos(2*Pi*u2)
         /// NOTE: implementation correctly works with odd vector lengths
         /// </summary>       
+        [MklCode("")]
         VSL_RNG_METHOD_GAUSSIAN_BOXMULLER2 = 1, 
 
         /// <summary>
         /// inverse cumulative distribution function method
         /// </summary>       
+        [MklCode("")]
         VSL_RNG_METHOD_GAUSSIAN_ICDF = 2,
 
+        [MklCode("")]
         VSL_RNG_METHOD_ACCURACY_FLAG  = (1<<30),
 
+        [MklCode("")]
         VSL_RNG_METHOD_GAMMA_GNORM = 0,
 
+        [MklCode("")]
         VSL_RNG_METHOD_GAMMA_GNORM_ACCURATE = VSL_RNG_METHOD_GAMMA_GNORM | VSL_RNG_METHOD_ACCURACY_FLAG,
 
     }
 
     enum VslGaussianMethod
     {
+        [MklCode("")]
         BoxMuller1 = 0,
 
+        [MklCode("")]
         BoxMuller2 = VSL_RNG_METHOD_GAUSSIAN_BOXMULLER2,
 
+        [MklCode("")]
         IDCF = VSL_RNG_METHOD_GAUSSIAN_ICDF,
     }
 
     enum VslGammaMethod
     {
+        [MklCode("")]
         GNorm = VSL_RNG_METHOD_GAMMA_GNORM,
 
+        [MklCode("")]
         GNormAccurate = VSL_RNG_METHOD_GAMMA_GNORM_ACCURATE
     }
 
 
-    enum SSTaskParameter
+    enum VslSSTaskParameter
     {
         /// <summary>
         /// Address of a variable that holds the task dimension
         /// </summary>
+        [MklCode("Address of a variable that holds the task dimension")]
         VSL_SS_ED_DIMEN = 1,
 
         /// <summary>
         /// Address of a variable that holds the number of observations
         /// </summary>
+        [MklCode("Address of a variable that holds the number of observations")]
         VSL_SS_ED_OBSERV_N = 2,
 
         /// <summary>
         /// Address of the observation matrix
         /// </summary>
+        [MklCode("Address of the observation matrix")]
         VSL_SS_ED_OBSERV = 3,
 
         /// <summary>
         /// Address of a variable that holds the storage format for the observation matrix
         /// </summary>
+        [MklCode("Address of a variable that holds the storage format for the observation matrix")]
         VSL_SS_ED_OBSERV_STORAGE = 4,
 
         /// <summary>
         /// Address of the array of indices
         /// </summary>
+        [MklCode("Address of the array of indices")]
         VSL_SS_ED_INDC = 5,
 
         /// <summary>
         /// Address of the array of observation weights
         /// </summary>
+        [MklCode("Address of the array of observation weights")]
         VSL_SS_ED_WEIGHTS = 6,
         
         /// <summary>
         /// Address of the array of means
         /// </summary>
+        [MklCode("Address of the array of means")]
         VSL_SS_ED_MEAN = 7,
         
         /// <summary>
         /// Address of an array of raw moments of the second order
         /// </summary>
+        [MklCode("Address of an array of raw moments of the second order")]
         VSL_SS_ED_2R_MOM = 8,
         
+        /// <summary>
+        /// Address of an array of raw moments of the third order
+        /// </summary>
+        [MklCode("Address of an array of raw moments of the third order")]
         VSL_SS_ED_3R_MOM = 9,
         
+        /// <summary>
+        /// Address of an array of raw moments of the fourth order
+        /// </summary>
+        [MklCode("Address of an array of raw moments of the fourth order")]
         VSL_SS_ED_4R_MOM = 10,
         
+        /// <summary>
+        /// 
+        /// </summary>
+        [MklCode("")]
         VSL_SS_ED_2C_MOM = 11,
         
+        /// <summary>
+        /// 
+        /// </summary>
+        [MklCode("")]
         VSL_SS_ED_3C_MOM = 12,
                 
+        /// <summary>
+        /// 
+        /// </summary>
+        [MklCode("")]
         VSL_SS_ED_4C_MOM = 13,
         
+        /// <summary>
+        /// Address of array of sums
+        /// </summary>
+        [MklCode("Address of array of sums")]
         VSL_SS_ED_SUM = 67,
         
+        /// <summary>
+        /// Address of array of raw sums of 2nd order
+        /// </summary>
+        [MklCode("Address of array of raw sums of 2nd order")]
         VSL_SS_ED_2R_SUM = 68,
         
+        /// <summary>
+        /// Address of array of raw sums of 3rd order
+        /// </summary>
+        [MklCode("Address of array of raw sums of 3rd order")]
         VSL_SS_ED_3R_SUM = 69,
         
+        /// <summary>
+        /// Address of array of raw sums of 4th order
+        /// </summary>
+        [MklCode("Address of array of raw sums of 4th order")]
         VSL_SS_ED_4R_SUM = 70,
         
+        /// <summary>
+        /// 
+        /// </summary>
+        [MklCode("")]
         VSL_SS_ED_2C_SUM = 71,
         
+        /// <summary>
+        /// 
+        /// </summary>
+        [MklCode("")]
         VSL_SS_ED_3C_SUM = 72,
         
+        /// <summary>
+        /// 
+        /// </summary>
+        [MklCode("")]
         VSL_SS_ED_4C_SUM = 73,
         
+        /// <summary>
+        /// Address of the array of kurtosis estimates
+        /// </summary>
+        [MklCode("Address of the array of kurtosis estimates")]
         VSL_SS_ED_KURTOSIS = 14,
         
+        /// <summary>
+        /// Address of the array of skewness estimates
+        /// </summary>
+        [MklCode("Address of the array of skewness estimates")]
         VSL_SS_ED_SKEWNESS = 15,
         
+        /// <summary>
+        /// Address of the array of minimum estimates
+        /// </summary>
+        [MklCode("Address of the array of minimum estimates")]
         VSL_SS_ED_MIN = 16,
         
+        /// <summary>
+        /// Address of the array of maximum estimates
+        /// </summary>
+        [MklCode("Address of the array of maximum estimates")]
         VSL_SS_ED_MAX = 17,
 
         /// <summary>
         /// Address of the array of variation coefficients
         /// </summary>
+        [MklCode("Address of the array of variation coefficients")]
         VSL_SS_ED_VARIATION = 18,
         
         /// <summary>
         /// Address of a covariance matrix
         /// </summary>
+        [MklCode("Address of a covariance matrix")]
         VSL_SS_ED_COV = 19,
         
         /// <summary>
         /// Address of the variable that holds the storage format for a covariance matrix
         /// </summary>
+        [MklCode("Address of the variable that holds the storage format for a covariance matrix")]
         VSL_SS_ED_COV_STORAGE = 20,
         
         /// <summary>
         /// Address of a correlation matrix 
         /// </summary>
+        [MklCode("Address of a correlation matrix")]
         VSL_SS_ED_COR = 21,
         
         /// <summary>
         /// Address of the variable that holds the storage format for a correlation matrix
         /// </summary>
+        [MklCode("Address of the variable that holds the storage format for a correlation matrix")]
         VSL_SS_ED_COR_STORAGE = 22,
         
         /// <summary>
         /// Address of cross-product matrix
         /// </summary>
+        [MklCode("Address of cross-product matrix")]
         VSL_SS_ED_CP = 74,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_CP_STORAGE = 75,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_ACCUM_WEIGHT = 23,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_QUANT_ORDER_N = 24,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_QUANT_ORDER = 25,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_QUANT_QUANTILES = 26,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_ORDER_STATS = 27,
         
+        [MklCode("")]
         VSL_SS_ED_GROUP_INDC = 28,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_POOLED_COV_STORAGE = 29,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_POOLED_MEAN = 30,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_POOLED_COV = 31,
         
 
         /// <summary>
         /// Address of an array of indices for which covariance/means should be computed
         /// </summary>
+        [MklCode("Address of an array of indices for which covariance/means should be computed")]
         VSL_SS_ED_GROUP_COV_INDC = 32,
 
         /// <summary>
-        /// Address of an array of indices for which group estimates such as covariance or means are requested        
+        /// Address of an array of indices for which group estimates such as covariance or means are requested
         /// </summary>
+        [MklCode("Address of an array of indices for which group estimates such as covariance or means are requested")]
         VSL_SS_ED_REQ_GROUP_INDC = 32,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_GROUP_MEAN = 33,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_GROUP_COV_STORAGE = 34,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_GROUP_COV = 35,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_ROBUST_COV_STORAGE = 36,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_ROBUST_COV_PARAMS_N = 37,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_ROBUST_COV_PARAMS = 38,
         
+        /// <summary>
         /// Address of an array of robust means
+        /// </summary>
+        [MklCode("Address of an array of robust means")]
         VSL_SS_ED_ROBUST_MEAN = 39,
         
+        /// <summary>
         /// Address of a robust covariance matrix
+        /// </summary>
+        [MklCode("Address of a robust covariance matrix")]
         VSL_SS_ED_ROBUST_COV = 40,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_OUTLIERS_PARAMS_N = 41,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_OUTLIERS_PARAMS = 42,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_OUTLIERS_WEIGHT = 43,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_ORDER_STATS_STORAGE = 44,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_PARTIAL_COV_IDX = 45,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_PARTIAL_COV = 46,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_PARTIAL_COV_STORAGE = 47,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_PARTIAL_COR = 48,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_PARTIAL_COR_STORAGE = 49,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_MI_PARAMS_N = 50,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_MI_PARAMS = 51,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_MI_INIT_ESTIMATES_N = 52,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_MI_INIT_ESTIMATES = 53,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_MI_SIMUL_VALS_N = 54,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_MI_SIMUL_VALS = 55,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_MI_ESTIMATES_N = 56,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_MI_ESTIMATES = 57,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_MI_PRIOR_N = 58,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_MI_PRIOR = 59,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_PARAMTR_COR = 60,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_PARAMTR_COR_STORAGE = 61,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_STREAM_QUANT_PARAMS_N = 62,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_STREAM_QUANT_PARAMS = 63,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_STREAM_QUANT_ORDER_N = 64,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_STREAM_QUANT_ORDER = 65,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_STREAM_QUANT_QUANTILES = 66,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_MDAD = 76,
         
         /// <summary>
         /// 
         /// </summary>
+        [MklCode("")]
         VSL_SS_ED_MNAD = 77,
         
         /// <summary>
         /// Address of the array that stores sorted results
         /// </summary>
+        [MklCode("Address of the array that stores sorted results")]
         VSL_SS_ED_SORTED_OBSERV = 78,
         
         /// <summary>
         /// Address of a variable that holds the storage format of an output matrix
         /// </summary>
+        [MklCode("Address of a variable that holds the storage format of an output matrix")]
         VSL_SS_ED_SORTED_OBSERV_STORAGE = 79,
     }
 
@@ -638,71 +815,83 @@ namespace Z0.Mkl
     ///  minimum, maximum, skewness/kurtosis) using the following methods
     /// </summary>
     [Flags]
-    enum SSComputeMethod
+    enum VslSSComputeMethod : int
     {
         /// <summary>
         /// Estimates are computed for price of one or two passes over observations using highly optimized Intel(R) MKL routines
         /// </summary>
-        VSL_SS_METHOD_FAST =                    0x00000001,
+        [MklCode("Estimates are computed for price of one or two passes over observations using highly optimized Intel(R) MKL routines")]
+        VSL_SS_METHOD_FAST = 0x00000001,
 
         /// <summary>
         /// Estimate is computed for price of one pass of the observations
         /// </summary>
-        VSL_SS_METHOD_1PASS =                  0x00000002,
+        [MklCode("Estimate is computed for price of one pass of the observations")]
+        VSL_SS_METHOD_1PASS = 0x00000002,
 
         /// <summary>
         /// Estimates are computed for price of one or two passes over observations given user defined mean for central moments, covariance and correlation
         /// </summary>
-        VSL_SS_METHOD_FAST_USER_MEAN =          0x00000100,
+        [MklCode("Estimates are computed for price of one or two passes over observations given user defined mean for central moments, covariance and correlation")]
+        VSL_SS_METHOD_FAST_USER_MEAN = 0x00000100,
 
         /// <summary>
         /// Convert cross-product matrix to variance-covariance/correlation matrix 
         /// </summary>
-        VSL_SS_METHOD_CP_TO_COVCOR =            0x00000200,
+        [MklCode("Convert cross-product matrix to variance-covariance/correlation matrix ")]
+        VSL_SS_METHOD_CP_TO_COVCOR = 0x00000200,
 
         /// <summary>
         /// Convert raw/central sums to raw/central moments
         /// </summary>
-        VSL_SS_METHOD_SUM_TO_MOM =              0x00000400,
+        [MklCode("Convert raw/central sums to raw/central moments")]
+        VSL_SS_METHOD_SUM_TO_MOM = 0x00000400,
 
         /// <summary>
-        /// Parametrization of correlation matrix using SPECTRAL DECOMPOSITION (SD) method
+        /// Parametrization of correlation matrix using spectral decomposition method
         /// </summary>
+        [MklCode("Parametrization of correlation matrix using spectral decomposition method")]
         VSL_SS_METHOD_SD = 0x00000004,
 
         /// <summary>
         /// Robust estimation of variance-covariance matrix and mean supports Rocke algorithm, TBS-estimator
         /// </summary>
+        [MklCode("Robust estimation of variance-covariance matrix and mean supports Rocke algorithm, TBS-estimator")]
         VSL_SS_METHOD_TBS =0x00000008,
 
         /// <summary>
         /// SS routine for estimation of missing values supports Multiple Imputation (MI) method
         /// </summary>
+        [MklCode("SS routine for estimation of missing values supports Multiple Imputation (MI) method")]
         VSL_SS_METHOD_MI = 0x00000010,
 
         /// <summary>
         /// SS provides routine for detection of outliers, BACON method
         /// </summary>
+        [MklCode("SS provides routine for detection of outliers, BACON method")]
         VSL_SS_METHOD_BACON = 0x00000020,
 
         /// <summary>
         /// Streaming: intermediate estimates of quantiles during processing the next block are computed
         /// </summary>
+        [MklCode("Streaming: intermediate estimates of quantiles during processing the next block are computed")]
         VSL_SS_METHOD_SQUANTS_ZW = 0x00000040,
 
         /// <summary>
         /// Streaming: intermediate estimates of quantiles during processing the next block are not computed
         /// </summary>
+        [MklCode("Streaming: intermediate estimates of quantiles during processing the next block are not computed")]
         VSL_SS_METHOD_SQUANTS_ZW_FAST = 0x00000080,
 
         /// <summary>
-        /// Radix sorting
+        /// Sorting using the radix method
         /// </summary>
+        [MklCode("Radix sorting")]
         VSL_SS_METHOD_RADIX = 0x00100000,
     }
     
     [Flags]
-    enum SSComputeRoutine : ulong
+    enum VslSSComputeRoutine : long
     {        
         /// <summary>        
         /// Computes the array of means.
@@ -713,25 +902,25 @@ namespace Z0.Mkl
         /// <summary>        
         /// Computes the array of the 2nd order raw moments
         /// </summary>
-        [MklCode("")]
+        [MklCode("Computes the array of the 2nd order raw moments")]
         VSL_SS_2R_MOM = 0x0000000000000002,
 
         /// <summary>        
         /// Computes the array of the 3rd order raw moments
         /// </summary>
-        [MklCode("")]
+        [MklCode("Computes the array of the 3rd order raw moments")]
         VSL_SS_3R_MOM = 0x0000000000000004,
         
         /// <summary>        
         /// Computes the array of the 4th order raw moments
         /// </summary>
-        [MklCode("")]
+        [MklCode("Computes the array of the 4th order raw moments")]
         VSL_SS_4R_MOM = 0x0000000000000008,
         
         /// <summary>        
         /// Computes the array of central sums of the 2nd order
         /// </summary>
-        [MklCode("")]
+        [MklCode("Computes the array of central sums of the 2nd order")]
         VSL_SS_2C_MOM = 0x0000000000000010,
         
         /// <summary>        
@@ -749,13 +938,13 @@ namespace Z0.Mkl
         /// <summary>        
         /// Computes the array of sums        
         /// </summary>
-        [MklCode("")]
+        [MklCode("Computes the array of sums")]
         VSL_SS_SUM =  0x0000000002000000,
         
         /// <summary>        
         /// Computes the array of raw sums of the 2nd order
         /// </summary>
-        [MklCode("")]
+        [MklCode("Computes the array of raw sums of the 2nd order")]
         VSL_SS_2R_SUM = 0x0000000004000000,
         
         /// <summary>        
@@ -791,123 +980,146 @@ namespace Z0.Mkl
         /// <summary>        
         /// Computes the array of kurtosis values
         /// </summary>
-        [MklCode("")]
+        [MklCode("Computes the array of kurtosis values")]
         VSL_SS_KURTOSIS = 0x0000000000000080,
         
         /// <summary>        
         /// Computes the array of skewness values
         /// </summary>
+        [MklCode("")]
         VSL_SS_SKEWNESS = 0x0000000000000100,
         
         /// <summary>        
         /// Computes the array of variation coefficients
         /// </summary>
+        [MklCode("")]
         VSL_SS_VARIATION = 0x0000000000000200,
         
         /// <summary>        
         /// Computes the array of minimum values
         /// </summary>
+        [MklCode("")]
         VSL_SS_MIN =  0x0000000000000400, 
         
         /// <summary>        
         /// Computes the array of maximum values
         /// </summary>
+        [MklCode("")]
         VSL_SS_MAX =  0x0000000000000800,
         
         /// <summary>        
         /// Computes a covariance matrix.
         /// </summary>
+        [MklCode("")]
         VSL_SS_COV =  0x0000000000001000,
         
         /// <summary>        
         /// Computes a correlation matrix. The main diagonal of the correlation matrix holds 
         /// variances of the random vector components
         /// </summary>
+        [MklCode("")]
         VSL_SS_COR =  0x0000000000002000,
         
         /// <summary>        
         /// Computes a cross-product matrix
         /// </summary>
+        [MklCode("")]
         VSL_SS_CP =   0x0000000100000000,
         
         /// <summary>        
         ///
         /// </summary>
+        [MklCode("")]
         VSL_SS_POOLED_COV = 0x0000000000004000,
         
         /// <summary>        
         ///
         /// </summary>
+        [MklCode("")]
         VSL_SS_GROUP_COV = 0x0000000000008000,
         
         /// <summary>        
         ///
         /// </summary>
+        [MklCode("")]
         VSL_SS_POOLED_MEAN = 0x0000000800000000,
         
         /// <summary>        
         ///
         /// </summary>
+        [MklCode("")]
         VSL_SS_GROUP_MEAN = 0x0000001000000000,
         
         /// <summary>        
         /// Computes quantiles
         /// </summary>
+        [MklCode("")]
         VSL_SS_QUANTS = 0x0000000000010000,
         
         /// <summary>        
         /// Computes order statistics
         /// </summary>
+        [MklCode("")]
         VSL_SS_ORDER_STATS = 0x0000000000020000,
         
         /// <summary>        
         ///
         /// </summary>
+        [MklCode("")]
         VSL_SS_SORTED_OBSERV = 0x0000008000000000,
         
         /// <summary>        
         /// Computes a robust covariance matrix
         /// </summary>
+        [MklCode("")]
         VSL_SS_ROBUST_COV = 0x0000000000040000,
         
         /// <summary>        
         /// Detects outliers in the dataset
         /// </summary>
+        [MklCode("")]
         VSL_SS_OUTLIERS = 0x0000000000080000,
         
         /// <summary>        
         /// Computes a partial covariance matrix.
         /// </summary>
+        [MklCode("")]
         VSL_SS_PARTIAL_COV = 0x0000000000100000,
         
         /// <summary>        
         /// Computes a partial correlation matrix
         /// </summary>
+        [MklCode("Computes a partial correlation ")]
         VSL_SS_PARTIAL_COR = 0x0000000000200000,
         
         /// <summary>        
         /// Supports missing values in datasets.
         /// </summary>
+        [MklCode("Supports missing values in datasets.")]
         VSL_SS_MISSING_VALS = 0x0000000000400000,
         
         /// <summary>        
         /// Computes a parameterized correlation matrix.
         /// </summary>
+        [MklCode("Computes a parameterized correlation matrix.")]
         VSL_SS_PARAMTR_COR = 0x0000000000800000,
         
         /// <summary>        
         /// Computes quantiles for streaming data.
         /// </summary>
+        [MklCode("Computes quantiles for streaming data.")]
         VSL_SS_STREAM_QUANTS = 0x0000000001000000,
         
         /// <summary>        
         /// Computes median absolute deviation
         /// </summary>
+        [MklCode("Computes median absolute deviation")]
         VSL_SS_MDAD = 0x0000000200000000,
         
         /// <summary>        
         /// Computes mean absolute deviation
         /// </summary>
+        [MklCode("Computes mean absolute deviation")]
         VSL_SS_MNAD = 0x0000000400000000,
 
    }    
@@ -915,25 +1127,25 @@ namespace Z0.Mkl
     /// <summary>
     /// Defines summary statistic status codes
     /// </summary>
-    public enum SSStatus
+    public enum VslSSStatus
     {
         
         /// <summary>
         /// Everything is OK
         /// </summary>        
-        [MklCode("")]
+        [MklCode("Everything is OK")]
         VSL_SS_OK = VslError.VSL_ERROR_OK,
 
         /// <summary>
         /// Correlation matrix is not of full rank.
         /// </summary>        
-        [MklCode("")]
+        [MklCode("Correlation matrix is not of full rank.")]
         VSL_SS_NOT_FULL_RANK_MATRIX = 4028,
 
         /// <summary>
         /// Correlation matrix passed into the parameterization function is semi-definite.
         /// </summary>        
-        [MklCode("")]
+        [MklCode("Correlation matrix passed into the parameterization function is semi-definite.")]
         VSL_SS_SEMIDEFINITE_COR = 4029,
         
         /// <summary>
@@ -945,13 +1157,13 @@ namespace Z0.Mkl
         /// <summary>
         /// Dimension value is invalid.
         /// </summary>
-        [MklCode("")]
+        [MklCode("Dimension value is invalid.")]
         VSL_SS_ERROR_BAD_DIMEN = -4001,
         
         /// <summary>
         /// Invalid number (zero or negative) of observations was obtained
         /// </summary>
-        [MklCode("")]
+        [MklCode("Invalid number (zero or negative) of observations was obtained")]
         VSL_SS_ERROR_BAD_OBSERV_N = -4002,
 
         /// <summary>
@@ -1197,121 +1409,145 @@ namespace Z0.Mkl
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_ROBUST_COV_PARAMS_N_ADDR = -4043,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_STORAGE_ADDR = -4044,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_PARTIAL_COV_IDX_ADDR = -4045,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_PARTIAL_COV_ADDR = -4046,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_PARTIAL_COR_ADDR = -4047,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_PARAMS_ADDR = -4048,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_PARAMS_N_ADDR = -4049,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_BAD_PARAMS_N = -4050,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_PARAMS = -4051,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_INIT_ESTIMATES_N_ADDR = -4052,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_INIT_ESTIMATES_ADDR  = -4053,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_SIMUL_VALS_ADDR = -4054,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_SIMUL_VALS_N_ADDR = -4055,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_ESTIMATES_N_ADDR = -4056,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_ESTIMATES_ADDR = -4057,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_SIMUL_VALS_N = -4058,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_ESTIMATES_N = -4059,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_OUTPUT_PARAMS = -4060,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_PRIOR_N_ADDR = -4061,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_PRIOR_ADDR = -4062,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_MI_MISSING_VALS_N = -4063,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_STREAM_QUANT_PARAMS_N_ADDR = -4064,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_STREAM_QUANT_PARAMS_ADDR = -4065,
         
         /// <summary>
         /// 
         /// </summary>        
+        [MklCode("")]
         VSL_SS_ERROR_BAD_STREAM_QUANT_PARAMS_N = -4066,
         
         /// <summary>
@@ -1502,15 +1738,5 @@ namespace Z0.Mkl
 
     }
 
-    public static class VslCodeX
-    {
-        [MethodImpl(Inline)]
-        public static bool IsError(this VslRngStatus status)
-            => status != VslRngStatus.VSL_ERROR_OK;
-
-        [MethodImpl(Inline)]
-        public static bool ThrowOnError(this VslRngStatus status)
-            =>!status.IsError() ? false : throw new Exception($"VSL Error Code {status}");
-
-    }
+ 
 }

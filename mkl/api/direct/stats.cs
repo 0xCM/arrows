@@ -15,7 +15,14 @@ namespace Z0.Mkl
     partial class mkl
     {            
 
-        
+        [MethodImpl(Inline)]
+        public static IVslSSTask<float> sstask(int dim, float[] samples)        
+            => VslSSTaskF32.Define(dim, samples);
+
+        [MethodImpl(Inline)]
+        public static IVslSSTask<double> sstask(int dim, double[] samples)        
+            => VslSSTaskF64.Define(dim, samples);
+
 
 
     }

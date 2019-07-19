@@ -16,23 +16,23 @@ namespace Z0.Mkl.Test
     public class VAbsTest : UnitTest<VAbsTest>
     {
 
-        public void vabsF32()
+        public void vAbsF32()
         {
             var src = Random.Span<float>(Pow2.T08);
-            var dst1 = mkl.vabs(src, src.Replicate().ZeroFill());
+            var dst1 = mkl.abs(src, src.Replicate().ZeroFill());
             var dst2 = src.Replicate().Abs();
             Claim.eq(dst1,dst2);
         }
 
-        public void vabsF64()
+        public void vAbsF64()
         {
             var src = Random.Span<double>(Pow2.T08);
-            var dst1 = mkl.vabs(src, src.Replicate().ZeroFill());
+            var dst1 = mkl.abs(src, src.Replicate().ZeroFill());
             var dst2 = src.Replicate().Abs();
             Claim.eq(dst1,dst2);
         }
 
-        OpTimePair vabsF32Perf(int samples, long iterations)
+        OpTimePair vAbsF32Perf(int samples, long iterations)
         {
             var src = Random.Array<float>(samples);
             var dst1 = array<float>(samples);
@@ -44,11 +44,11 @@ namespace Z0.Mkl.Test
             },
             n => {
                 for(var i=0; i<n; i++)
-                    mkl.vabs(src,dst2);
+                    mkl.abs(src,dst2);
             });   
         }
 
-        OpTimePair vabsF64Perf(int samples, long iterations)
+        OpTimePair vAbsF64Perf(int samples, long iterations)
         {
             var src = Random.Array<double>(samples);
             var dst1 = array<double>(samples);
@@ -60,7 +60,7 @@ namespace Z0.Mkl.Test
             },
             n => {
                 for(var i=0; i<n; i++)
-                    mkl.vabs(src,dst2);
+                    mkl.abs(src,dst2);
             });   
         }
 
@@ -68,9 +68,17 @@ namespace Z0.Mkl.Test
         {
             var n = Pow2.T08;
             var i = Pow2.T12;
-            TracePerf(vabsF64Perf(n, i).Format());
-            TracePerf(vabsF32Perf(n, i).Format());
+            TracePerf(vAbsF64Perf(n, i).Format());
+            TracePerf(vAbsF32Perf(n, i).Format());
             
+        }
+
+        public void vDivTest()
+        {
+            var x = 20f;
+            var y = 4.5f;
+            var z = mkl.div(x,y);
+            Trace($"{x} div {y} = {z}");
         }
 
     }

@@ -41,7 +41,7 @@ namespace Z0.Test
                 
             }
 
-       protected K[] Sample<K>(bool nonzero = false)
+       protected K[] RandArray<K>(bool nonzero = false)
             where K : struct
         {
             var config = Config.Get<K>();
@@ -56,7 +56,7 @@ namespace Z0.Test
         {
             var kind = PrimalKinds.kind<K>();            
             var opid = opKind.PrimalGOpId<K>();           
-            var src = Sample<K>(nonzero);
+            var src = RandArray<K>(nonzero);
             var timing = stopwatch();                        
 
             for(var i = 0; i<src.Length; i++)
@@ -69,8 +69,8 @@ namespace Z0.Test
         {
             var kind = PrimalKinds.kind<K>();            
             var opid = opKind.PrimalGOpId<K>();           
-            var lhs = Sample<K>();
-            var rhs = Sample<K>(nonzero);
+            var lhs = RandArray<K>();
+            var rhs = RandArray<K>(nonzero);
             var len = length(lhs,rhs);
             var timing = stopwatch();            
 
@@ -84,8 +84,8 @@ namespace Z0.Test
         {
             var kind = PrimalKinds.kind<K>(); 
             var opid = opKind.PrimalGOpId<K>();           
-            var lhs = Sample<K>();
-            var rhs = Sample<K>(nonzero);
+            var lhs = RandArray<K>();
+            var rhs = RandArray<K>(nonzero);
             var len = length(lhs,rhs);
             var timing = stopwatch();
             

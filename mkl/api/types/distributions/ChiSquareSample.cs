@@ -12,16 +12,20 @@ namespace Z0.Mkl
     using static zfunc;
     using static nfunc;
 
-    public ref struct UniformRangeSample<T>
+    /// <summary>
+    /// Encapsulates data sampled from a Chi^2 distribution joined with
+    /// the BRNG identifier and distribution parameters that were specified
+    /// when the sample was taken
+    /// </summary>
+    public ref struct ChiSquareSample<T>
         where T : struct
     {
-        public UniformRangeSample(BRNG rng, Interval<T> range, Span<T> data)
+        public ChiSquareSample(BRNG rng, int freedom, Span<T> data)
         {
             this.SourceRng = rng;
-            this.Range = range;
+            this.Freedom = freedom;
             this.SampleData = data;
-        }
-
+        }        
 
         /// <summary>
         /// The generator used during sample generation
@@ -29,10 +33,10 @@ namespace Z0.Mkl
         public BRNG SourceRng;
 
         /// <summary>
-        /// The range of values over which the sample was taken
+        /// The degrees of freedom
         /// </summary>
-        public Interval<T> Range;
-
+        public int Freedom;
+        
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
         /// </summary>
@@ -43,13 +47,6 @@ namespace Z0.Mkl
         /// </summary>
         public string Format()
             => SampleData.Format();
-    }
-
-    public static class UniformRangeSample
-    {
-        public static UniformRangeSample<T> UniformRangeSampled<T>(this BRNG rng, Interval<T> range, Span<T> data)
-            where T : struct
-                => new UniformRangeSample<T>(rng, range, data);
     }
 
 }

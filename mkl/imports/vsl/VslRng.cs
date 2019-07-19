@@ -155,9 +155,5 @@ namespace Z0.Mkl
         /// </remarks>
         [DllImport(VslDll, CallingConvention=Cdecl, ExactSpelling=true)]
         public static extern VslRngStatus vdRngChiSquare(int method, IntPtr stream, int count, ref double values, int v);
-
-
- 
     }
-
 }

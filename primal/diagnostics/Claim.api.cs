@@ -161,6 +161,14 @@ namespace Z0
             => lhs <= rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));        
 
         [MethodImpl(Inline)]
+        public static bool lteq(float lhs, float rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs <= rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));        
+
+        [MethodImpl(Inline)]
+        public static bool lteq(double lhs, double rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
+            => lhs <= rhs ? true : throw failed(ClaimOpKind.Eq, NotLessThan(lhs, rhs, caller, file, line));        
+
+        [MethodImpl(Inline)]
         public static bool gt(long lhs, long rhs, [Member] string caller = null, [File] string file = null, [Line] int? line = null)
             => lhs > rhs ? true : throw failed(ClaimOpKind.Eq, NotGreaterThan(lhs, rhs, caller, file, line));
 

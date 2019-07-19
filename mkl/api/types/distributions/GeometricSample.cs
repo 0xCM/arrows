@@ -13,14 +13,13 @@ namespace Z0.Mkl
     using static nfunc;
 
 
-    public ref struct GaussianSample<T>
+    public ref struct GeometricSample<T>
         where T : struct
     {
-        public GaussianSample(BRNG rng, double mu, double sigma, Span<T> data)
+        public GeometricSample(BRNG rng, double p, Span<T> data)
         {
             this.SourceRng = rng;
-            this.Mu = mu;
-            this.Sigma = sigma;
+            this.P = p;
             this.SampleData = data;
         }        
 
@@ -30,14 +29,9 @@ namespace Z0.Mkl
         public BRNG SourceRng;
 
         /// <summary>
-        /// The mean
+        /// The probability of trial success
         /// </summary>
-        public double Mu;
-
-        /// <summary>
-        /// The standard deviation
-        /// </summary>
-        public double Sigma;
+        public double P;
         
         /// <summary>
         /// The data that has been sampled according to the attendant parameters
@@ -50,13 +44,6 @@ namespace Z0.Mkl
         public string Format()
             => SampleData.Format();
 
-    }
-
-    public static class GaussianSample
-    {
-        public static GaussianSample<T> GaussianSampled<T>(this BRNG rng, double mu, double sigma, Span<T> data)
-            where T : struct
-                => new GaussianSample<T>(rng, mu, sigma, data);
     }
 
 

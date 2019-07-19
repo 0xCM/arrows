@@ -10,6 +10,9 @@ namespace Z0
 
     using static zfunc;
 
+    /// <summary>
+    /// Defines bitmatrix of natural dimensions over a primal type
+    /// </summary>
     public ref struct BitMatrix<M,N,T>
         where M : ITypeNat, new()        
         where N : ITypeNat, new()
@@ -132,7 +135,6 @@ namespace Z0
             for(var row=0; row< RowCount; row++)
                 this[row,col] = src[row];
         }
-
 
         public BitGridLayout Layout
             => GridLayout;

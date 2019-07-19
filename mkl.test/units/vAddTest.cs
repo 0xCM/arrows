@@ -20,7 +20,7 @@ namespace Z0.Mkl.Test
         {
             var lhs = Random.Span<float>(Pow2.T08);
             var rhs = Random.Span<float>(Pow2.T08);
-            var dst1 = mkl.vadd(lhs, rhs, span<float>(Pow2.T08));
+            var dst1 = mkl.add(lhs, rhs, span<float>(Pow2.T08));
             var dst2 = lhs.Replicate().Add(rhs);
             Claim.eq(dst1,dst2);
         }
@@ -29,7 +29,7 @@ namespace Z0.Mkl.Test
         {
             var lhs = Random.Span<double>(Pow2.T08);
             var rhs = Random.Span<double>(Pow2.T08);
-            var dst1 = mkl.vadd(lhs, rhs, span<double>(Pow2.T08));
+            var dst1 = mkl.add(lhs, rhs, span<double>(Pow2.T08));
             var dst2 = lhs.Replicate().Add(rhs);
             Claim.eq(dst1,dst2);
         }
@@ -51,7 +51,7 @@ namespace Z0.Mkl.Test
             },
             n => {
                 for(var i=0; i<n; i++)
-                    mkl.vadd(lhs2, rhs2, dst2);
+                    mkl.add(lhs2, rhs2, dst2);
             });   
         }
 
@@ -73,7 +73,7 @@ namespace Z0.Mkl.Test
             },
             n => {
                 for(var i=0; i<n; i++)
-                    mkl.vadd(lhs2,rhs2, dst2);
+                    mkl.add(lhs2,rhs2, dst2);
             });   
         }
 
