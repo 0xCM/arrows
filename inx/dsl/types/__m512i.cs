@@ -118,17 +118,17 @@ namespace Z0
              + Bits.pop(this.x4) + Bits.pop(this.x5) + Bits.pop(this.x6) + Bits.pop(this.x7);        
 
         [MethodImpl(Inline)]
-        public Bit TestBit<T>(BitPos pos)
+        public Bit TestBit<T>(BitPos<T> pos)
             where T : struct
                 => gbits.test(in this.Part<T>(pos.SegIdx), pos.BitOffset);
 
         [MethodImpl(Inline)]
-        public void EnableBit<T>(BitPos pos)
+        public void EnableBit<T>(BitPos<T> pos)
             where T : struct
                 => gbits.enable(ref this.Part<T>(pos.SegIdx), pos.BitOffset);
 
         [MethodImpl(Inline)]
-        public void DisableBit<T>(BitPos pos)
+        public void DisableBit<T>(BitPos<T> pos)
             where T : struct
                 => gbits.disable(ref this.Part<T>(pos.SegIdx), pos.BitOffset);
 
@@ -142,8 +142,8 @@ namespace Z0
             [MethodImpl(Inline)]
             get
             {
-                var qr = BitPos.Define(math.quorem(ByteSize, 8));                
-                return TestBit<byte>(qr);                
+                var pos = BitPos<ulong>.FromIndex(bitpos);                
+                return TestBit(pos);                
             }
         }
 

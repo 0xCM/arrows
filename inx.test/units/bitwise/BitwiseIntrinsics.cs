@@ -12,7 +12,7 @@ namespace Z0.Test
     
     using static zfunc;
 
-    public class InXBitwiseOps : UnitTest<InXBitwiseOps>
+    public class BitwiseIntrinsics : UnitTest<BitwiseIntrinsics>
     {
 
         public void Nonzero()

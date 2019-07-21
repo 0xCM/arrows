@@ -93,8 +93,8 @@ namespace Z0
             [MethodImpl(Inline)]
             get
             {
-                var qr = BitPos.Define(math.quorem(r.Value, 64));
-                return part<ulong>(qr.SegIdx).TestBit(qr.BitOffset);                
+                var pos = BitPos<ulong>.FromIndex((uint)r.Value);
+                return part<ulong>(pos.SegIdx).TestBit(pos.BitOffset);                
             }
         }        
     }

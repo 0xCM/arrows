@@ -32,7 +32,6 @@ namespace Z0
         /// Computes the total length of a primal array/span required to store a matrix of data
         /// </summary>
         /// <param name="spec">The characterizing specification</param>
-        /// <returns></returns>
         public static int TotalSegLength(this BitGridSpec spec)
             => spec.RowCount * spec.RowSegLength();
 
