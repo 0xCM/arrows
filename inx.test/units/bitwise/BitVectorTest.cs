@@ -10,6 +10,7 @@ namespace Z0.Test
 
     using static zfunc;
 
+
     public class BitVectorTest : UnitTest<BitVectorTest>
     {
         void BitVectorCreate<N,T>(int samples)
@@ -19,7 +20,7 @@ namespace Z0.Test
             TypeCaseStart<N,T>();
             var dim = default(N);
             var capacity = BitLayout.SegmentCapacity<T>();
-            var segcount = BitLayout.MinSegmentCount(capacity, dim.value);
+            var segcount = BitLayout.MinSegmentCount<T>(dim.value);
             var src = Random.Span<T>(samples);
             for(var i=0; i<samples; i+= segcount)
             {
@@ -38,7 +39,7 @@ namespace Z0.Test
         {
             TypeCaseStart<T>();
             var capacity = BitLayout.SegmentCapacity<T>();
-            var segcount = BitLayout.MinSegmentCount(capacity, dim);
+            var segcount = BitLayout.MinSegmentCount<T>(dim);
             var src = Random.Span<T>(samples);
             for(var i=0; i<samples; i += segcount)
             {
@@ -77,7 +78,7 @@ namespace Z0.Test
             var segCapacity = BitLayout.SegmentCapacity<T>();
             Claim.eq(segCapacity, SizeOf<T>.BitSize);
 
-            var segcount = BitLayout.MinSegmentCount(segCapacity, dim);
+            var segcount = BitLayout.MinSegmentCount<T>(dim);
             for(var i=0; i<samples; i += segcount)
             {
                 var bvSrc = src.Slice(i, segcount);

@@ -37,7 +37,7 @@ namespace Z0
             where M : ITypeNat, new()
             where N : ITypeNat, new()
             where T : struct
-                => Z0.BitMatrix.Define(random.Span<T>(BitGridSpec.Define(m,n,x).TotalSegLength()),m,n);
+                => Z0.BitMatrix.Define(random.Span<T>(BitLayout.Grid(m,n,x).TotalStorageLength()),m,n);
 
 
         [MethodImpl(Inline)]

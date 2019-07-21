@@ -28,11 +28,11 @@ namespace Z0.Test
 
         public void Verify9x4Layout()
         {
-            var spec = BitGridSpec.Define<N9,N4,byte>();    
-            Claim.eq(9, spec.RowCount);
-            Claim.eq(4, spec.ColCount);
+            var grid = BitLayout.Grid<N9,N4,byte>();    
+            Claim.eq(9, grid.RowCount);
+            Claim.eq(4, grid.ColCount);
 
-            var layout = spec.CalcLayout();
+            var layout = grid.CalcLayout();
             Claim.eq(36, layout.CellCount);
             Claim.eq(9, layout.RowCount);
             Claim.eq(4, layout.ColCount);
@@ -43,11 +43,11 @@ namespace Z0.Test
             Claim.eq(4, row0.Length);            
             Claim.eq(0, row0[0].Col);
             Claim.eq(3, row0[3].Col);
-            Claim.eq(0, row0[3].SegPos);
+            Claim.eq(0, (int)row0[3].BitPos.SegIdx);
 
             var row8 = layout.Row(8);
             Claim.eq(4, row8.Length);
-            Claim.eq(8, row8[3].SegPos);
+            Claim.eq(8, (int)row8[3].BitPos.SegIdx);
 
             var m = BitMatrix.Ones<N9,N4,byte>();
             Claim.eq(9,m.RowCount);
@@ -62,7 +62,7 @@ namespace Z0.Test
 
         public void Verify16x16Layout()
         {
-            var spec = BitGridSpec.Define<N16,N16,byte>();    
+            var spec = BitLayout.Grid<N16,N16,byte>();    
             Claim.eq(16, spec.RowCount);
             Claim.eq(16, spec.ColCount);
 
@@ -78,7 +78,7 @@ namespace Z0.Test
 
                     var cell = cells[col];
 
-                    Claim.eq(bitpos, cell.BitPos);
+                    Claim.eq(bitpos, cell.BitPos.LinearIndex);
                     Claim.eq(row, cell.Row);
                     Claim.eq(col, cell.Col);
                 }
@@ -98,7 +98,7 @@ namespace Z0.Test
             Claim.eq(16, row0.Length);            
             Claim.eq(0, row0[0].Col);
             Claim.eq(3, row0[3].Col);
-            Claim.eq(1, row0[9].SegPos);
+            Claim.eq(1, (int)row0[9].BitPos.SegIdx);
 
             var m = BitMatrix.Ones<N16,byte>();
             Claim.eq(16,m.RowCount);

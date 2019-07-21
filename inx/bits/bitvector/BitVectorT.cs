@@ -19,8 +19,6 @@ namespace Z0
         /// </summary>
         public static readonly BitSize SegCapacity = SizeOf<T>.BitSize;
 
-        public static readonly BitSize SegHalf = SegCapacity /2;
-
         readonly Span<T> bits;
     
         readonly int MaxBitCount;
@@ -293,8 +291,6 @@ namespace Z0
         
         public override int GetHashCode()
             => throw new NotSupportedException(); 
-        
-
     }
 
 }

@@ -11,98 +11,27 @@ namespace Z0
 
     using static zfunc;
 
-    public readonly struct BitLayout
+
+    public class BitLayout<T>
+        where T : struct
     {        
-        /// <summary>
-        /// Calculates the maximum number of bits one segment can hold
-        /// </summary>
-        /// <typeparam name="T">The segment type</typeparam>
-        public static BitSize SegmentCapacity<T>()     
-            where T : struct
-                => Unsafe.SizeOf<T>()* 8;
-
-        /// <summary>
-        /// Calculates the minimum number of segments required to hold a contiguous sequence of bits
-        /// </summary>
-        /// <param name="capacity">The number of bits that comprise each segment</param>
-        /// <param name="bitcount">The number of bits</param>
-        public static int MinSegmentCount(BitSize capacity, BitSize bitcount)
-        {
-            if(capacity >= bitcount)
-                return 1;
-            else
-            {
-                var qr = math.quorem(bitcount, capacity);
-                return qr.Remainder == 0 ? qr.Quotient : qr.Quotient + 1;
-            }
-        }
-
-        /// <summary>
-        /// Calculates the minimum number of segments required to hold a contiguous sequence of bits
-        /// </summary>
-        /// <param name="segsize">The number of bytes that comprise each segment</param>
-        /// <param name="bitcount">The number of bits</param>
-        /// <typeparam name="T">The segment type</typeparam>
-        public static int MinSegmentCount<T>(BitSize bitcount)
-            where T : struct
-                => MinSegmentCount(SegmentCapacity<T>(), bitcount);
-
-        /// <summary>
-        /// Calculates a canonical bijection from a contiguous sequence of bits onto a contiguous sequence of segments
-        /// </summary>
-        /// <param name="capacity">The maximum number of bits a segment can contain</param>        
-        /// <param name="bitcount">The total number of bits to distribute over one or more segments</param>        
-        public static BitPos<T>[] BitMap<T>(BitSize capacity, BitSize bitcount)
-            where T : struct
-        {
-            var dst =  new BitPos<T>[bitcount];
-            ushort seg = 0;
-            byte offset = 0;
-            for(var i = 0; i < bitcount; i++)          
-            {
-                if(i != 0)
-                {
-                    if((i % capacity) == 0)
-                    {
-                        seg++;
-                        offset = 0;
-                    }
-                }
-                dst[i] = (seg, offset++);
-            }
-            return dst;
-        }
-
-
-        /// <summary>
-        /// Calculates the bijection between a contiguous bit sequence onto a contiguous segment sequence
-        /// </summary>
-        /// <param name="bitcount">The number of bits</param>
-        /// <typeparam name="T">The segment type</typeparam>
-        [MethodImpl(Inline)]
-        public static BitPos<T>[] BitMap<T>(int bitcount)
-            where T : struct       
-                => BitMap<T>(SegmentCapacity<T>(), bitcount);
-
-        public BitLayout(BitGridSpec spec, IEnumerable<BitGridCell> Cells)
+        public BitLayout(BitGridSpec<T> spec, IEnumerable<BitGridCell<T>> Cells)
         {
             this.GridSpec = spec;
             this.RowCount = spec.RowCount;
             this.ColCount = spec.ColCount;
             this.CellCount = spec.RowCount * spec.ColCount;
-            this.RowSegments = spec.RowSegLength();
+            this.RowSegments = spec.RowStorageLength;
             this.TotalSegments = RowSegments * spec.RowCount;
-            this.RowLayout = Cells.CreateRowIndex();
+            this.RowLayout = CreateLayoutIndex(Cells);
             Claim.eq(spec.RowCount, RowLayout.Count);
             Claim.eq(spec.ColCount, RowLayout.First().Value.Length);                         
         }
 
-        readonly IReadOnlyDictionary<int, BitGridCell[]> RowLayout;
-
         /// <summary>
         /// The specification from which the layout was calculated
         /// </summary>
-        public readonly BitGridSpec GridSpec;
+        public readonly BitGridSpec<T> GridSpec;
         
         /// <summary>
         /// The number of rows in the layout
@@ -130,8 +59,51 @@ namespace Z0
         /// <see cref='RowSegments'/>
         /// </summary>
         public readonly int TotalSegments;
-        
-        public Span<BitGridCell> Row(int index)
-            => RowLayout[index];            
+
+        readonly IReadOnlyDictionary<int, BitGridCell<T>[]> RowLayout;
+       
+        [MethodImpl(Inline)]
+        public Span<BitGridCell<T>> Row(int row)
+            => RowLayout[row];            
+
+        [MethodImpl(Inline)]
+        public BitGridCell<T> Cell(int row, int col)
+            => RowLayout[row][col];            
+
+        public Span<BitGridCell<T>> this[int row]
+        {
+            [MethodImpl(Inline)]
+            get => Row(row);
+        }
+
+        public BitGridCell<T> this[int row, int col]
+        {
+            [MethodImpl(Inline)]
+            get => Cell(row, col);
+        }
+
+        public string Format()
+        {
+            var format = sbuild();
+            format.Append($"RowCount = {RowCount}, ");
+            format.Append($"ColCount = {ColCount}, ");
+            format.Append($"CellCount = {CellCount}, ");
+            format.Append($"RowSegLength = {RowSegments}");
+            format.AppendLine();
+            for(var row = 0; row<RowCount; row++)
+            {
+                var rowData = Row(row);
+                for(var i=0; i<rowData.Length; i++)
+                    format.AppendLine(rowData[i].Format());
+            }
+            return format.ToString();
+        }
+
+        public override string ToString()
+            => Format();    
+ 
+         static IReadOnlyDictionary<int, BitGridCell<T>[]> CreateLayoutIndex(IEnumerable<BitGridCell<T>> Cells)
+                => Cells.GroupBy(x => x.Row).Select(x => (x.Key, x.OrderBy(u => u.BitPos.LinearIndex).ToArray())).ToDictionary();
+
     }
 }

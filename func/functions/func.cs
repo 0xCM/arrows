@@ -46,4 +46,12 @@ partial class zfunc
     public static T ifNull<T>(T x, Func<T> replace)
         where T : class => x ?? replace();
 
+    /// <summary>
+    /// Computes the number of bits required to store a value type
+    /// </summary>
+    /// <typeparam name="T">The value type</typeparam>
+    [MethodImpl(Inline)]
+    public static int bitsize<T>()
+        where T :struct
+            => Unsafe.SizeOf<T>()*8;
 }

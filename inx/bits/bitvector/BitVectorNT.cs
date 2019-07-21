@@ -21,7 +21,7 @@ namespace Z0
 
         public static readonly BitSize TotalBitCount = new N().value;
     
-        static readonly BitPos<T>[] BitMap = BitLayout.BitMap<T>(SegmentCapacity, TotalBitCount);
+        static readonly BitPos<T>[] BitMap = BitLayout.BitMap<T>(TotalBitCount);
 
         [MethodImpl(Inline)]
         public BitVector(params T[] bits)

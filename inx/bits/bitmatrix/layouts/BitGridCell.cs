@@ -12,29 +12,22 @@ namespace Z0
     using static zfunc;
 
     /// <summary>
-    /// Defines a coordinate for a grid cell to facilitate efficient
-    /// correlation and lookup
+    /// Corrlates a bit position with a grid row and column
     /// </summary>
-    public readonly struct BitGridCell
+    public readonly struct BitGridCell<T>
+        where T : struct
     {   
-        public static implicit operator BitGridCell((int BitPos, int SegPos, int Row, int Col, byte Offset) x)
-            => new BitGridCell(x.BitPos, x.SegPos, x.Row, x.Col, x.Offset);
-
-        public BitGridCell(int BitPos, int SegPos, int Row, int Col, byte Offset)
+        public BitGridCell(BitPos<T> BitPos, int Row, int Col)
         {
             this.BitPos = BitPos;
-            this.SegPos = SegPos;
             this.Row =Row;
             this.Col = Col;
-            this.Offset = Offset;
         }
-        
+
         /// <summary>
-        /// The absolute bit position
+        /// The position of the cell relative to contiguous T-memory
         /// </summary>
-        public readonly int BitPos;
-        
-        public readonly int SegPos;
+        public readonly BitPos<T> BitPos;
 
         /// <summary>
         /// The absolute row index
@@ -46,14 +39,7 @@ namespace Z0
         /// </summary>
         public readonly int Col;
 
-        /// <summary>
-        /// The segment-relative column offset
-        /// </summary>
-        public readonly byte Offset;
-
         public string Format()
-            => $"(Bit = {BitPos}, Segment = {SegPos}, Row = {Row}, Col = {Col}, Offset = {Offset})";
+            => $"(Bit = {BitPos}, Segment = {BitPos.SegIdx}, Row = {Row}, Col = {Col}, Offset = {BitPos.BitOffset})";
     }
-
-
 }
